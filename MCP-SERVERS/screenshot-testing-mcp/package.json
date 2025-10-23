@@ -1,0 +1,37 @@
+{
+  "name": "@ai-dev-standards/screenshot-testing-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for visual regression testing",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "screenshot-testing-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "test": "vitest"
+  },
+  "keywords": [
+    "mcp",
+    "screenshot-testing",
+    "visual-regression",
+    "playwright",
+    "testing"
+  ],
+  "author": "ai-dev-standards",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "playwright": "^1.47.0",
+    "pixelmatch": "^6.0.0",
+    "pngjs": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/pngjs": "^6.0.5",
+    "typescript": "^5.3.0",
+    "vitest": "^1.6.0"
+  }
+}
