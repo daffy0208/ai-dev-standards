@@ -1,0 +1,56 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-10-21",
+  "description": "Registry of reusable tools available in ai-dev-standards. Tools are individual functions/utilities that agents can use. This registry will be populated as tools are added to the TOOLS/ directory.",
+  "tools": [],
+  "categories": [
+    {
+      "id": "data-retrieval",
+      "name": "Data Retrieval",
+      "description": "Tools for fetching and searching data (web search, API calls, database queries)"
+    },
+    {
+      "id": "data-transformation",
+      "name": "Data Transformation",
+      "description": "Tools for processing and transforming data (parsing, formatting, conversion)"
+    },
+    {
+      "id": "communication",
+      "name": "Communication",
+      "description": "Tools for messaging and notifications (Slack, email, webhooks)"
+    },
+    {
+      "id": "file-operations",
+      "name": "File Operations",
+      "description": "Tools for file manipulation (read, write, search, process)"
+    },
+    {
+      "id": "code-execution",
+      "name": "Code Execution",
+      "description": "Tools for running code and scripts (Python, Node.js, shell commands)"
+    },
+    {
+      "id": "api-integration",
+      "name": "API Integration",
+      "description": "Tools for integrating with external APIs and services"
+    }
+  ],
+  "usage_notes": {
+    "purpose": "This registry catalogs reusable tools for AI agents",
+    "status": "Currently empty - will be populated as tools are created",
+    "location": "Tools should be added to appropriate subdirectories in TOOLS/",
+    "documentation": "Each tool must have README.md with usage examples",
+    "framework_specific": "Tools may be specific to certain frameworks (LangChain, CrewAI, etc.)"
+  },
+  "future_tools": {
+    "note": "Examples of tools that may be added in the future",
+    "examples": [
+      "Web search tool (Brave API, Google Custom Search)",
+      "File search and processing utilities",
+      "Database query tools",
+      "API wrapper tools for common services",
+      "Code analysis and linting tools",
+      "Testing and validation utilities"
+    ]
+  }
+}

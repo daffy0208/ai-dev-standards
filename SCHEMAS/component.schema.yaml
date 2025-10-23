@@ -1,0 +1,82 @@
+# Component Configuration Schema
+
+$schema: "http://json-schema.org/draft-07/schema#"
+title: Component Configuration
+description: Schema for component generation configuration
+
+type: object
+required:
+  - name
+
+properties:
+  name:
+    type: string
+    description: Component name (PascalCase)
+    pattern: "^[A-Z][a-zA-Z0-9]*$"
+    examples:
+      - Button
+      - UserProfile
+      - DataTable
+
+  props:
+    type: object
+    description: Component props and their types
+    additionalProperties:
+      oneOf:
+        - type: string
+          enum: [string, number, boolean, function, ReactNode]
+        - type: array
+          items:
+            type: string
+    examples:
+      - variant:
+          - primary
+          - secondary
+        size:
+          - sm
+          - md
+          - lg
+        onClick: function
+
+  tests:
+    type: boolean
+    description: Generate test files
+    default: true
+
+  storybook:
+    type: boolean
+    description: Generate Storybook stories
+    default: false
+
+  template:
+    type: string
+    description: Template to use
+    enum:
+      - default
+      - form
+      - data-display
+      - navigation
+    default: default
+
+examples:
+  - name: Button
+    props:
+      variant:
+        - primary
+        - secondary
+      size:
+        - sm
+        - md
+        - lg
+      disabled: boolean
+      onClick: function
+    tests: true
+    storybook: true
+
+  - name: UserCard
+    props:
+      name: string
+      email: string
+      avatar: string
+      onClick: function
+    tests: true

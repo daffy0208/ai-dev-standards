@@ -1,0 +1,1522 @@
+{
+  "version": "1.1.0",
+  "lastUpdated": "2025-10-23T12:11:49.168Z",
+  "description": "Central registry of all ai-dev-standards resources",
+  "skills": [
+    {
+      "name": "3d-visualizer",
+      "version": "1.0.0",
+      "description": "Expert in Three.js, 3D graphics, and interactive 3D visualizations",
+      "path": "SKILLS/3d-visualizer/SKILL.md",
+      "tags": [
+        "design"
+      ],
+      "category": "design"
+    },
+    {
+      "name": "accessibility-engineer",
+      "version": "1.0.0",
+      "description": "Implement accessibility (a11y) best practices to make applications usable by everyone. Use when building UIs, conducting accessibility audits, or ensuring WCAG compliance. Covers screen readers, keyboard navigation, ARIA attributes, and inclusive design patterns.",
+      "path": "SKILLS/accessibility-engineer/SKILL.md",
+      "tags": [
+        "design",
+        "accessibility"
+      ],
+      "category": "design",
+      "requires": {
+        "mcps": {
+          "existing": [
+            "accessibility-checker"
+          ],
+          "planned": []
+        },
+        "components": [
+          "ui-components"
+        ],
+        "integrations": [],
+        "standards": [
+          "authentication-patterns"
+        ]
+      }
+    },
+    {
+      "name": "animation-designer",
+      "version": "1.0.0",
+      "description": "Expert in web animations, transitions, and motion design using Framer Motion and CSS",
+      "path": "SKILLS/animation-designer/SKILL.md",
+      "tags": [
+        "design"
+      ],
+      "category": "design"
+    },
+    {
+      "name": "api-designer",
+      "version": "1.0.0",
+      "description": "Design REST and GraphQL APIs. Use when creating backend APIs, defining API contracts, or integrating third-party services. Covers endpoint design, authentication, versioning, documentation, and best practices.",
+      "path": "SKILLS/api-designer/SKILL.md",
+      "tags": [
+        "api",
+        "design"
+      ],
+      "category": "design",
+      "requires": {
+        "mcps": {
+          "existing": [],
+          "planned": [
+            "openapi-generator",
+            "api-validator"
+          ]
+        },
+        "components": [
+          "mcp-servers"
+        ],
+        "integrations": [
+          "llm-providers"
+        ],
+        "standards": [
+          "microservices-pattern",
+          "serverless-pattern"
+        ]
+      }
+    },
+    {
+      "name": "audio-producer",
+      "version": "1.0.0",
+      "description": "Expert in web audio, audio processing, and interactive sound design",
+      "path": "SKILLS/audio-producer/SKILL.md",
+      "tags": [
+        "design"
+      ],
+      "category": "design"
+    },
+    {
+      "name": "brand-designer",
+      "version": "1.0.0",
+      "description": "Expert in brand identity, logo design, and visual brand systems",
+      "path": "SKILLS/brand-designer/SKILL.md",
+      "tags": [
+        "design"
+      ],
+      "category": "design"
+    },
+    {
+      "name": "context-preserver",
+      "version": "1.0.0",
+      "description": "Automatically save and restore development context to minimize cognitive load when resuming work. Use when switching tasks, taking breaks, or returning after interruptions. Captures mental state, file locations, and next steps. Designed for ADHD developers with high context-switching costs.",
+      "path": "SKILLS/context-preserver/SKILL.md",
+      "tags": [
+        "design"
+      ],
+      "category": "design"
+    },
+    {
+      "name": "copywriter",
+      "version": "1.0.0",
+      "description": "Expert in writing compelling copy for web, marketing, and product",
+      "path": "SKILLS/copywriter/SKILL.md",
+      "tags": [
+        "product"
+      ],
+      "category": "product"
+    },
+    {
+      "name": "data-engineer",
+      "version": "1.0.0",
+      "description": "Expert in data pipelines, ETL processes, and data infrastructure",
+      "path": "SKILLS/data-engineer/SKILL.md",
+      "tags": [],
+      "category": "devops",
+      "requires": {
+        "mcps": {
+          "existing": [],
+          "planned": [
+            "etl-pipeline-builder",
+            "data-quality-checker",
+            "schema-migrator"
+          ]
+        },
+        "components": [],
+        "integrations": [
+          "platforms"
+        ],
+        "standards": [
+          "database-design-patterns"
+        ]
+      }
+    },
+    {
+      "name": "data-visualizer",
+      "version": "1.0.0",
+      "description": "Expert in creating charts, dashboards, and data visualizations using modern libraries",
+      "path": "SKILLS/data-visualizer/SKILL.md",
+      "tags": [
+        "design"
+      ],
+      "category": "design"
+    },
+    {
+      "name": "dark-matter-analyzer",
+      "version": "1.0.0",
+      "description": "Analyze repositories to reveal unseen patterns, strategic drift, and organizational health. Use when assessing repository coherence, diagnosing project issues, identifying documentation inflation, or understanding why a codebase feels misaligned with its stated goals.",
+      "path": "SKILLS/dark-matter-analyzer/SKILL.md",
+      "tags": [
+        "analysis",
+        "repository-health",
+        "coherence",
+        "patterns"
+      ],
+      "category": "devops",
+      "requires": {
+        "mcps": {
+          "existing": [
+            "dark-matter-analyzer"
+          ],
+          "planned": []
+        },
+        "components": [],
+        "integrations": [],
+        "standards": []
+      }
+    },
+    {
+      "name": "deployment-advisor",
+      "version": "1.0.0",
+      "description": "Choose deployment strategy and infrastructure. Use when deciding where to deploy applications, setting up CI/CD, or configuring production environments. Covers Vercel, Railway, AWS, Cloudflare Workers, and Docker.",
+      "path": "SKILLS/deployment-advisor/SKILL.md",
+      "tags": [
+        "product",
+        "strategy",
+        "ai",
+        "deployment"
+      ],
+      "category": "product",
+      "requires": {
+        "mcps": {
+          "existing": [],
+          "planned": [
+            "infra-provisioner",
+            "monitoring-setup"
+          ]
+        },
+        "components": [],
+        "integrations": [
+          "platforms"
+        ],
+        "standards": [
+          "serverless-pattern"
+        ]
+      }
+    },
+    {
+      "name": "design-system-architect",
+      "version": "1.0.0",
+      "description": "Build scalable, maintainable design systems that unify product experiences. Use when creating component libraries, design tokens, or establishing design standards. Covers atomic design, Storybook, theming, and design system governance.",
+      "path": "SKILLS/design-system-architect/SKILL.md",
+      "tags": [
+        "product",
+        "ai",
+        "design"
+      ],
+      "category": "product",
+      "requires": {
+        "mcps": {
+          "existing": [
+            "component-generator"
+          ],
+          "planned": [
+            "component-cataloger",
+            "design-token-manager"
+          ]
+        },
+        "components": [
+          "ui-components"
+        ],
+        "integrations": [],
+        "standards": []
+      }
+    },
+    {
+      "name": "focus-session-manager",
+      "version": "1.0.0",
+      "description": "Automatically manage focus sessions, breaks, and hyperfocus protection. Uses ADHD-optimized Pomodoro technique with flexible timers, health reminders, and gentle interruptions. Protects against hyperfocus burnout while maximizing productive time.",
+      "path": "SKILLS/focus-session-manager/SKILL.md",
+      "tags": [
+        "product",
+        "ai"
+      ],
+      "category": "product"
+    },
+    {
+      "name": "frontend-builder",
+      "version": "1.0.0",
+      "description": "Build modern React/Next.js frontends. Use when creating web applications, choosing frontend stack, structuring components, or implementing UI/UX designs. Covers React, Next.js, Tailwind CSS, and component patterns.",
+      "path": "SKILLS/frontend-builder/SKILL.md",
+      "tags": [
+        "ai",
+        "frontend",
+        "ux",
+        "design"
+      ],
+      "category": "design",
+      "requires": {
+        "mcps": {
+          "existing": [
+            "component-generator"
+          ],
+          "planned": []
+        },
+        "components": [
+          "ui-components",
+          "forms"
+        ],
+        "integrations": [],
+        "standards": []
+      }
+    },
+    {
+      "name": "go-to-market-planner",
+      "version": "1.0.0",
+      "description": "Plan product launches and go-to-market strategy. Use when launching products, entering new markets, or planning marketing campaigns. Covers positioning, channels, messaging, and launch execution.",
+      "path": "SKILLS/go-to-market-planner/SKILL.md",
+      "tags": [
+        "product",
+        "strategy",
+        "ai"
+      ],
+      "category": "product",
+      "requires": {
+        "mcps": {
+          "existing": [],
+          "planned": [
+            "market-analyzer",
+            "competitor-tracker",
+            "launch-checklist"
+          ]
+        },
+        "components": [],
+        "integrations": [],
+        "standards": []
+      }
+    },
+    {
+      "name": "iot-developer",
+      "version": "1.0.0",
+      "description": "Expert in IoT development, microcontrollers, sensors, and MQTT protocols",
+      "path": "SKILLS/iot-developer/SKILL.md",
+      "tags": [],
+      "category": "specialized"
+    },
+    {
+      "name": "knowledge-graph-builder",
+      "version": "1.0.0",
+      "description": "Design and build knowledge graphs. Use when modeling complex relationships, building semantic search, or creating knowledge bases. Covers schema design, entity relationships, and graph database selection.",
+      "path": "SKILLS/knowledge-graph-builder/SKILL.md",
+      "tags": [
+        "design"
+      ],
+      "category": "design",
+      "requires": {
+        "mcps": {
+          "existing": [],
+          "planned": [
+            "neo4j",
+            "graph-visualizer",
+            "ontology-builder"
+          ]
+        },
+        "components": [],
+        "integrations": [],
+        "standards": []
+      }
+    },
+    {
+      "name": "livestream-engineer",
+      "version": "1.0.0",
+      "description": "Expert in live streaming, WebRTC, and real-time video/audio",
+      "path": "SKILLS/livestream-engineer/SKILL.md",
+      "tags": [],
+      "category": "content"
+    },
+    {
+      "name": "localization-engineer",
+      "version": "1.0.0",
+      "description": "Expert in internationalization (i18n), multi-language support, and localization",
+      "path": "SKILLS/localization-engineer/SKILL.md",
+      "tags": [],
+      "category": "engineering"
+    },
+    {
+      "name": "mobile-developer",
+      "version": "1.0.0",
+      "description": "Expert in React Native, Expo, and cross-platform mobile development",
+      "path": "SKILLS/mobile-developer/SKILL.md",
+      "tags": [
+        "frontend"
+      ],
+      "category": "frontend"
+    },
+    {
+      "name": "multi-agent-architect",
+      "version": "1.0.0",
+      "description": "Design and orchestrate multi-agent systems. Use when building complex AI systems requiring specialization, parallel processing, or collaborative problem-solving. Covers agent coordination, communication patterns, and task delegation strategies.",
+      "path": "SKILLS/multi-agent-architect/SKILL.md",
+      "tags": [
+        "ai",
+        "agents",
+        "design"
+      ],
+      "category": "ai",
+      "requires": {
+        "mcps": {
+          "existing": [],
+          "planned": [
+            "agent-orchestrator",
+            "agent-monitor",
+            "conversation-manager"
+          ]
+        },
+        "components": [
+          "agents",
+          "workflows"
+        ],
+        "integrations": [
+          "llm-providers"
+        ],
+        "standards": [
+          "event-driven-architecture"
+        ]
+      }
+    },
+    {
+      "name": "mvp-builder",
+      "version": "1.0.0",
+      "description": "Rapid MVP development and feature prioritization for fast product validation. Use when building minimum viable products, prioritizing features, validating ideas quickly, or when users need to ship products fast while avoiding over-engineering.",
+      "path": "SKILLS/mvp-builder/SKILL.md",
+      "tags": [
+        "mvp",
+        "product",
+        "api"
+      ],
+      "category": "product",
+      "requires": {
+        "mcps": {
+          "existing": [
+            "feature-prioritizer"
+          ],
+          "planned": [
+            "risk-analyzer",
+            "mvp-tracker"
+          ]
+        },
+        "components": [
+          "agents",
+          "workflows"
+        ],
+        "integrations": [],
+        "standards": []
+      }
+    },
+    {
+      "name": "performance-optimizer",
+      "version": "1.0.0",
+      "description": "Optimize application performance and scalability. Use when investigating slow applications, scaling bottlenecks, or improving response times. Covers profiling, caching, database optimization, and frontend performance.",
+      "path": "SKILLS/performance-optimizer/SKILL.md",
+      "tags": [
+        "frontend",
+        "performance"
+      ],
+      "category": "frontend",
+      "requires": {
+        "mcps": {
+          "existing": [],
+          "planned": [
+            "performance-profiler",
+            "bundle-analyzer",
+            "lighthouse-runner"
+          ]
+        },
+        "components": [],
+        "integrations": [],
+        "standards": [
+          "database-design-patterns"
+        ]
+      }
+    },
+    {
+      "name": "product-strategist",
+      "version": "1.0.0",
+      "description": "Validate product-market fit and strategic direction. Use when defining new products, validating problem-solution fit, prioritizing features, or making build-vs-buy decisions. Focuses on discovery and validation before development.",
+      "path": "SKILLS/product-strategist/SKILL.md",
+      "tags": [
+        "product",
+        "strategy"
+      ],
+      "category": "product",
+      "requires": {
+        "mcps": {
+          "existing": [],
+          "planned": [
+            "interview-transcriber",
+            "user-insight-analyzer"
+          ]
+        },
+        "components": [],
+        "integrations": [],
+        "standards": []
+      }
+    },
+    {
+      "name": "quality-auditor",
+      "version": "1.0.0",
+      "description": "Comprehensive quality auditing and evaluation of tools, frameworks, and systems against industry best practices with detailed scoring across 12 critical dimensions",
+      "path": "SKILLS/quality-auditor/SKILL.md",
+      "tags": [
+        "ai",
+        "testing",
+        "quality",
+        "audit"
+      ],
+      "category": "general",
+      "requires": {
+        "mcps": {
+          "existing": [
+            "screenshot-testing"
+          ],
+          "planned": []
+        },
+        "components": [
+          "ui-components"
+        ],
+        "integrations": [],
+        "standards": []
+      }
+    },
+    {
+      "name": "rag-implementer",
+      "version": "1.0.0",
+      "description": "Implement retrieval-augmented generation systems. Use when building knowledge-intensive applications, document search, Q&A systems, or need to ground LLM responses in external data. Covers embedding strategy, vector stores, retrieval pipelines, and evaluation.",
+      "path": "SKILLS/rag-implementer/SKILL.md",
+      "tags": [
+        "strategy",
+        "rag",
+        "ai"
+      ],
+      "category": "ai",
+      "requires": {
+        "mcps": {
+          "existing": [
+            "vector-database",
+            "embedding-generator"
+          ],
+          "planned": [
+            "semantic-search",
+            "document-processor"
+          ]
+        },
+        "components": [
+          "rag-pipelines"
+        ],
+        "integrations": [
+          "vector-databases",
+          "llm-providers"
+        ],
+        "standards": [
+          "rag-pattern"
+        ]
+      }
+    },
+    {
+      "name": "security-engineer",
+      "version": "1.0.0",
+      "description": "Implement security best practices across the application stack. Use when securing APIs, implementing authentication, preventing vulnerabilities, or conducting security reviews. Covers OWASP Top 10, auth patterns, input validation, encryption, and security monitoring.",
+      "path": "SKILLS/security-engineer/SKILL.md",
+      "tags": [
+        "api",
+        "security"
+      ],
+      "category": "backend",
+      "requires": {
+        "mcps": {
+          "existing": [],
+          "planned": [
+            "vulnerability-scanner",
+            "dependency-auditor",
+            "secrets-detector"
+          ]
+        },
+        "components": [],
+        "integrations": [
+          "platforms"
+        ],
+        "standards": [
+          "authentication-patterns"
+        ]
+      }
+    },
+    {
+      "name": "spatial-developer",
+      "version": "1.0.0",
+      "description": "Expert in AR/VR, WebXR, and spatial computing for Vision Pro and web",
+      "path": "SKILLS/spatial-developer/SKILL.md",
+      "tags": [],
+      "category": "specialized"
+    },
+    {
+      "name": "task-breakdown-specialist",
+      "version": "1.0.0",
+      "description": "Break large tasks into ADHD-friendly micro-tasks that minimize activation energy and maximize momentum. Use when feeling overwhelmed, can't start a task, or need to make progress visible. Optimized for ADHD developers with 15-minute task chunking and dopamine-driven ordering.",
+      "path": "SKILLS/task-breakdown-specialist/SKILL.md",
+      "tags": [],
+      "category": "specialized"
+    },
+    {
+      "name": "technical-writer",
+      "version": "1.0.0",
+      "description": "Create clear, comprehensive technical documentation for developers and users. Use when documenting APIs, writing user guides, creating tutorials, or setting up documentation sites. Covers API docs, user guides, architecture documentation, and documentation best practices.",
+      "path": "SKILLS/technical-writer/SKILL.md",
+      "tags": [
+        "api"
+      ],
+      "category": "backend",
+      "requires": {
+        "mcps": {
+          "existing": [],
+          "planned": [
+            "doc-generator",
+            "diagram-generator",
+            "changelog-generator"
+          ]
+        },
+        "components": [],
+        "integrations": [],
+        "standards": []
+      }
+    },
+    {
+      "name": "testing-strategist",
+      "version": "1.0.0",
+      "description": "Design and implement comprehensive testing strategies. Use when setting up tests, choosing test types, implementing TDD, or improving code quality. Covers unit tests, integration tests, E2E tests, test-driven development, and testing best practices.",
+      "path": "SKILLS/testing-strategist/SKILL.md",
+      "tags": [
+        "design",
+        "testing"
+      ],
+      "category": "design"
+    },
+    {
+      "name": "user-researcher",
+      "version": "1.0.0",
+      "description": "Conduct user research and validation. Use when discovering user needs, validating assumptions, creating personas, or understanding pain points. Covers interviews, surveys, analysis, and synthesis.",
+      "path": "SKILLS/user-researcher/SKILL.md",
+      "tags": [
+        "ai"
+      ],
+      "category": "specialized",
+      "requires": {
+        "mcps": {
+          "existing": [],
+          "planned": [
+            "interview-scheduler",
+            "feedback-aggregator",
+            "persona-generator"
+          ]
+        },
+        "components": [],
+        "integrations": [],
+        "standards": []
+      }
+    },
+    {
+      "name": "ux-designer",
+      "version": "1.0.0",
+      "description": "Design user experiences and interfaces. Use when creating user journeys, wireframes, prototypes, or improving usability. Covers user flows, information architecture, interaction design, and accessibility.",
+      "path": "SKILLS/ux-designer/SKILL.md",
+      "tags": [
+        "ux",
+        "design",
+        "accessibility"
+      ],
+      "category": "design",
+      "requires": {
+        "mcps": {
+          "existing": [],
+          "planned": [
+            "wireframe-generator",
+            "design-system-checker",
+            "user-flow-visualizer"
+          ]
+        },
+        "components": [
+          "ui-components"
+        ],
+        "integrations": [],
+        "standards": []
+      }
+    },
+    {
+      "name": "video-producer",
+      "version": "1.0.0",
+      "description": "Expert in video playback, streaming, and video player customization",
+      "path": "SKILLS/video-producer/SKILL.md",
+      "tags": [],
+      "category": "content"
+    },
+    {
+      "name": "visual-designer",
+      "version": "1.0.0",
+      "description": "Design beautiful, consistent user interfaces with proper color theory, typography, spacing, and visual hierarchy. Use when creating design systems, choosing colors and fonts, or establishing visual direction. Covers color theory, typography scales, spacing systems, and design principles.",
+      "path": "SKILLS/visual-designer/SKILL.md",
+      "tags": [
+        "design"
+      ],
+      "category": "design"
+    },
+    {
+      "name": "voice-interface-builder",
+      "version": "1.0.0",
+      "description": "Expert in building voice interfaces, speech recognition, and text-to-speech systems",
+      "path": "SKILLS/voice-interface-builder/SKILL.md",
+      "tags": [],
+      "category": "general"
+    }
+  ],
+  "mcpServers": [
+    {
+      "name": "accessibility-checker",
+      "version": "0.0.0",
+      "description": "Automated WCAG compliance checking for web applications.",
+      "path": "MCP-SERVERS/accessibility-checker-mcp",
+      "tags": [
+        "mcp",
+        "accessibility-checker"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
+    },
+    {
+      "name": "component-generator",
+      "version": "0.0.0",
+      "description": "Intelligent React/Next.js component scaffolding with best practices built-in.",
+      "path": "MCP-SERVERS/component-generator-mcp",
+      "tags": [
+        "mcp",
+        "component-generator"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
+    },
+    {
+      "name": "dark-matter-analyzer",
+      "version": "1.0.0",
+      "description": "MCP server for repository coherence analysis and organizational health insights",
+      "path": "MCP-SERVERS/dark-matter-analyzer-mcp",
+      "tags": [
+        "mcp",
+        "dark-matter-mode",
+        "repository-analysis",
+        "coherence",
+        "organizational-health",
+        "code-patterns",
+        "documentation-analysis"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "embedding-generator",
+      "version": "1.0.0",
+      "description": "MCP server for generating embeddings with OpenAI and Cohere",
+      "path": "MCP-SERVERS/embedding-generator-mcp",
+      "tags": [
+        "mcp",
+        "embeddings",
+        "openai",
+        "cohere",
+        "semantic-search",
+        "rag"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "openai": "^4.20.0",
+        "cohere-ai": "^7.7.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "feature-prioritizer",
+      "version": "1.0.0",
+      "description": "MCP server for feature prioritization using P0/P1/P2 framework",
+      "path": "MCP-SERVERS/feature-prioritizer-mcp",
+      "tags": [
+        "mcp",
+        "prioritization",
+        "feature-prioritization",
+        "mvp",
+        "product-management"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "screenshot-testing",
+      "version": "0.0.0",
+      "description": "Visual regression testing for web applications using Percy, Chromatic, or Playwright.",
+      "path": "MCP-SERVERS/screenshot-testing-mcp",
+      "tags": [
+        "mcp",
+        "screenshot-testing"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
+    },
+    {
+      "name": "vector-database",
+      "version": "1.0.0",
+      "description": "MCP server for vector database operations (Pinecone, Weaviate, Chroma)",
+      "path": "MCP-SERVERS/vector-database-mcp",
+      "tags": [
+        "mcp",
+        "vector-database",
+        "pinecone",
+        "weaviate",
+        "chroma",
+        "embeddings",
+        "semantic-search"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "@pinecone-database/pinecone": "^2.0.0",
+        "weaviate-ts-client": "^2.0.0",
+        "chromadb": "^1.7.0"
+      },
+      "enables": [],
+      "status": "active"
+    }
+  ],
+  "playbooks": [
+    {
+      "name": "deployment-checklist",
+      "version": "1.0.0",
+      "description": "Pre-deployment checklist",
+      "path": "PLAYBOOKS/deployment-checklist.md",
+      "tags": [
+        "deployment",
+        "checklist",
+        "production"
+      ]
+    },
+    {
+      "name": "incident-response",
+      "version": "1.0.0",
+      "description": "How to respond to production incidents",
+      "path": "PLAYBOOKS/incident-response.md",
+      "tags": [
+        "incidents",
+        "production",
+        "emergency"
+      ]
+    },
+    {
+      "name": "rollback-procedure",
+      "version": "1.0.0",
+      "description": "How to rollback deployments safely",
+      "path": "PLAYBOOKS/rollback-procedure.md",
+      "tags": [
+        "rollback",
+        "deployment",
+        "recovery"
+      ]
+    },
+    {
+      "name": "adhd-getting-unstuck",
+      "version": "1.0.0",
+      "description": "ADHD-specific strategies for getting unstuck",
+      "path": "PLAYBOOKS/adhd-getting-unstuck.md",
+      "tags": [
+        "adhd",
+        "productivity",
+        "mental-health"
+      ]
+    },
+    {
+      "name": "backup-and-restore",
+      "version": "1.0.0",
+      "description": "Backup and restore procedures for databases and critical data",
+      "path": "PLAYBOOKS/backup-and-restore.md",
+      "tags": [
+        "backup",
+        "recovery",
+        "database",
+        "disaster-recovery"
+      ]
+    },
+    {
+      "name": "database-migration",
+      "version": "1.0.0",
+      "description": "Safe database migration and schema change procedures",
+      "path": "PLAYBOOKS/database-migration.md",
+      "tags": [
+        "database",
+        "migration",
+        "schema",
+        "deployment"
+      ]
+    },
+    {
+      "name": "validation-first-development",
+      "version": "1.0.0",
+      "description": "Lean startup 5-phase workflow with time limits and cost discipline",
+      "path": "PLAYBOOKS/validation-first-development.md",
+      "tags": [
+        "product",
+        "validation",
+        "lean-startup",
+        "cost-efficiency",
+        "mvp"
+      ]
+    }
+  ],
+  "architecturePatterns": [
+    {
+      "name": "rag-pattern",
+      "version": "1.0.0",
+      "description": "Retrieval Augmented Generation architecture",
+      "path": "STANDARDS/architecture-patterns/rag-pattern.md",
+      "tags": [
+        "rag",
+        "ai",
+        "architecture"
+      ]
+    },
+    {
+      "name": "microservices-pattern",
+      "version": "1.0.0",
+      "description": "Microservices architecture pattern",
+      "path": "STANDARDS/architecture-patterns/microservices-pattern.md",
+      "tags": [
+        "microservices",
+        "architecture",
+        "distributed"
+      ]
+    },
+    {
+      "name": "serverless-pattern",
+      "version": "1.0.0",
+      "description": "Serverless architecture pattern",
+      "path": "STANDARDS/architecture-patterns/serverless-pattern.md",
+      "tags": [
+        "serverless",
+        "architecture",
+        "cloud"
+      ]
+    },
+    {
+      "name": "authentication-patterns",
+      "version": "1.0.0",
+      "description": "Authentication and authorization patterns",
+      "path": "STANDARDS/architecture-patterns/authentication-patterns.md",
+      "tags": [
+        "authentication",
+        "security",
+        "architecture"
+      ]
+    },
+    {
+      "name": "database-design-patterns",
+      "version": "1.0.0",
+      "description": "Database design and optimization patterns",
+      "path": "STANDARDS/architecture-patterns/database-design-patterns.md",
+      "tags": [
+        "database",
+        "architecture",
+        "performance"
+      ]
+    },
+    {
+      "name": "error-tracking",
+      "version": "1.0.0",
+      "description": "Error tracking and monitoring patterns",
+      "path": "STANDARDS/architecture-patterns/error-tracking.md",
+      "tags": [
+        "errors",
+        "monitoring",
+        "observability"
+      ]
+    },
+    {
+      "name": "event-driven-architecture",
+      "version": "1.0.0",
+      "description": "Event-driven architecture patterns",
+      "path": "STANDARDS/architecture-patterns/event-driven-architecture.md",
+      "tags": [
+        "events",
+        "architecture",
+        "messaging"
+      ]
+    },
+    {
+      "name": "logging-strategy",
+      "version": "1.0.0",
+      "description": "Logging strategy and best practices",
+      "path": "STANDARDS/architecture-patterns/logging-strategy.md",
+      "tags": [
+        "logging",
+        "observability",
+        "monitoring"
+      ]
+    },
+    {
+      "name": "monitoring-and-alerting",
+      "version": "1.0.0",
+      "description": "Monitoring and alerting patterns",
+      "path": "STANDARDS/architecture-patterns/monitoring-and-alerting.md",
+      "tags": [
+        "monitoring",
+        "alerting",
+        "observability"
+      ]
+    },
+    {
+      "name": "real-time-systems",
+      "version": "1.0.0",
+      "description": "Real-time system architecture patterns",
+      "path": "STANDARDS/architecture-patterns/real-time-systems.md",
+      "tags": [
+        "real-time",
+        "architecture",
+        "websockets"
+      ]
+    }
+  ],
+  "templates": {
+    "cursorrules": {
+      "minimal": "TEMPLATES/cursorrules-minimal.md",
+      "saas": "TEMPLATES/cursorrules-saas.md",
+      "aiRag": "TEMPLATES/cursorrules-ai-rag.md",
+      "existingProject": "TEMPLATES/cursorrules-existing-project.md",
+      "quickTest": "TEMPLATES/cursorrules-quick-test.md"
+    },
+    "projects": {
+      "saasStarter": "TEMPLATES/project-starters/saas-starter",
+      "ragSystem": "TEMPLATES/project-starters/rag-system"
+    }
+  },
+  "integrations": [
+    {
+      "category": "framework-adapters",
+      "description": "Framework integration adapters",
+      "path": "INTEGRATIONS/framework-adapters",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "llm-providers",
+      "description": "LLM provider integrations",
+      "path": "INTEGRATIONS/llm-providers",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "platforms",
+      "description": "Platform integrations (Vercel, AWS, etc.)",
+      "path": "INTEGRATIONS/platforms",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "vector-databases",
+      "description": "Vector database integrations",
+      "path": "INTEGRATIONS/vector-databases",
+      "alwaysUpdate": false
+    }
+  ],
+  "components": [
+    {
+      "category": "agents",
+      "description": "Agent implementations and patterns",
+      "path": "COMPONENTS/agents",
+      "alwaysUpdate": false,
+      "dependencies": {
+        "integrations": [
+          "llm-providers"
+        ],
+        "utils": [
+          "api",
+          "cli"
+        ],
+        "components": []
+      }
+    },
+    {
+      "category": "mcp-servers",
+      "description": "Reusable MCP server components",
+      "path": "COMPONENTS/mcp-servers",
+      "alwaysUpdate": false,
+      "dependencies": {
+        "integrations": [],
+        "utils": [
+          "api"
+        ],
+        "components": []
+      }
+    },
+    {
+      "category": "rag-pipelines",
+      "description": "RAG pipeline components",
+      "path": "COMPONENTS/rag-pipelines",
+      "alwaysUpdate": false,
+      "dependencies": {
+        "integrations": [
+          "vector-databases",
+          "llm-providers"
+        ],
+        "utils": [
+          "api"
+        ],
+        "components": []
+      }
+    },
+    {
+      "category": "ui-components",
+      "description": "Reusable UI components",
+      "path": "COMPONENTS/ui-components",
+      "alwaysUpdate": false,
+      "dependencies": {
+        "integrations": [],
+        "utils": [],
+        "components": []
+      }
+    },
+    {
+      "category": "workflows",
+      "description": "Workflow automation components",
+      "path": "COMPONENTS/workflows",
+      "alwaysUpdate": false,
+      "dependencies": {
+        "integrations": [],
+        "utils": [
+          "cli"
+        ],
+        "components": [
+          "agents"
+        ]
+      }
+    },
+    {
+      "category": "auth",
+      "description": "Authentication and authorization components",
+      "path": "COMPONENTS/auth",
+      "alwaysUpdate": false,
+      "dependencies": {
+        "integrations": [],
+        "utils": [
+          "api"
+        ],
+        "components": [
+          "forms"
+        ]
+      }
+    },
+    {
+      "category": "errors",
+      "description": "Error handling and error boundary components",
+      "path": "COMPONENTS/errors",
+      "alwaysUpdate": false,
+      "dependencies": {
+        "integrations": [],
+        "utils": [],
+        "components": []
+      }
+    },
+    {
+      "category": "feedback",
+      "description": "User feedback components (toasts, notifications, alerts)",
+      "path": "COMPONENTS/feedback",
+      "alwaysUpdate": false,
+      "dependencies": {
+        "integrations": [],
+        "utils": [],
+        "components": [
+          "ui-components"
+        ]
+      }
+    },
+    {
+      "category": "forms",
+      "description": "Form components and validation",
+      "path": "COMPONENTS/forms",
+      "alwaysUpdate": false,
+      "dependencies": {
+        "integrations": [],
+        "utils": [
+          "validation"
+        ],
+        "components": [
+          "ui-components"
+        ]
+      }
+    }
+  ],
+  "standards": [
+    {
+      "category": "architecture-patterns",
+      "description": "Architecture patterns and designs",
+      "path": "STANDARDS/architecture-patterns",
+      "alwaysUpdate": true,
+      "files": [
+        "rag-pattern.md",
+        "microservices-pattern.md",
+        "serverless-pattern.md",
+        "event-driven-architecture.md",
+        "real-time-systems.md",
+        "authentication-patterns.md",
+        "database-design-patterns.md",
+        "error-tracking.md",
+        "logging-strategy.md",
+        "monitoring-and-alerting.md"
+      ]
+    },
+    {
+      "category": "best-practices",
+      "description": "Best practices for development",
+      "path": "STANDARDS/best-practices",
+      "alwaysUpdate": true,
+      "files": [
+        "security-best-practices.md",
+        "testing-best-practices.md",
+        "database-best-practices.md"
+      ]
+    },
+    {
+      "category": "coding-conventions",
+      "description": "Coding style and conventions",
+      "path": "STANDARDS/coding-conventions",
+      "alwaysUpdate": true
+    },
+    {
+      "category": "project-structure",
+      "description": "Project structure standards",
+      "path": "STANDARDS/project-structure",
+      "alwaysUpdate": true
+    }
+  ],
+  "utils": [
+    {
+      "category": "cli",
+      "description": "CLI utilities and command-line helpers",
+      "path": "UTILS/cli",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "scripts",
+      "description": "Development scripts and automation",
+      "path": "UTILS/scripts",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "api",
+      "description": "API client utilities and HTTP helpers",
+      "path": "UTILS/api",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "env",
+      "description": "Environment variable management and configuration",
+      "path": "UTILS/env",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "validation",
+      "description": "Data validation utilities and schema validators",
+      "path": "UTILS/validation",
+      "alwaysUpdate": false
+    }
+  ],
+  "tools": [
+    {
+      "category": "crewai-tools",
+      "description": "CrewAI tool implementations",
+      "path": "TOOLS/crewai-tools",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "langchain-tools",
+      "description": "LangChain tool implementations",
+      "path": "TOOLS/langchain-tools",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "mcp-tools",
+      "description": "MCP tool implementations",
+      "path": "TOOLS/mcp-tools",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "custom-tools",
+      "description": "Custom tool implementations",
+      "path": "TOOLS/custom-tools",
+      "alwaysUpdate": false
+    }
+  ],
+  "examples": [
+    {
+      "category": "complete-projects",
+      "description": "Complete example projects",
+      "path": "EXAMPLES/complete-projects",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "mini-examples",
+      "description": "Small focused examples",
+      "path": "EXAMPLES/mini-examples",
+      "alwaysUpdate": false
+    }
+  ],
+  "configFiles": [
+    {
+      "name": ".cursorrules",
+      "version": "1.0.0",
+      "description": "Cursor IDE rules and best practices",
+      "path": "TEMPLATES/config-files/.cursorrules.latest",
+      "alwaysUpdate": true,
+      "mergeStrategy": "replace"
+    },
+    {
+      "name": ".gitignore",
+      "version": "1.0.0",
+      "description": "Git ignore patterns",
+      "path": "TEMPLATES/config-files/.gitignore.latest",
+      "alwaysUpdate": true,
+      "mergeStrategy": "merge"
+    },
+    {
+      "name": ".env.example",
+      "version": "1.0.0",
+      "description": "Environment variable template",
+      "path": "TEMPLATES/config-files/.env.example.latest",
+      "alwaysUpdate": true,
+      "mergeStrategy": "merge"
+    },
+    {
+      "name": "tsconfig.json",
+      "version": "1.0.0",
+      "description": "TypeScript configuration",
+      "path": "TEMPLATES/config-files/tsconfig.json.latest",
+      "alwaysUpdate": false,
+      "mergeStrategy": "smart-merge"
+    },
+    {
+      "name": ".prettierrc",
+      "version": "1.0.0",
+      "description": "Prettier code formatting rules",
+      "path": "TEMPLATES/config-files/.prettierrc.latest",
+      "alwaysUpdate": true,
+      "mergeStrategy": "replace"
+    },
+    {
+      "name": ".eslintrc.json",
+      "version": "1.0.0",
+      "description": "ESLint configuration",
+      "path": "TEMPLATES/config-files/.eslintrc.json.latest",
+      "alwaysUpdate": true,
+      "mergeStrategy": "smart-merge"
+    },
+    {
+      "name": "tailwind.config.js",
+      "version": "1.0.0",
+      "description": "Tailwind CSS configuration",
+      "path": "TEMPLATES/config-files/tailwind.config.js.latest",
+      "alwaysUpdate": false,
+      "mergeStrategy": "smart-merge"
+    }
+  ],
+  "schemas": [
+    {
+      "name": "ai-dev-config",
+      "version": "1.0.0",
+      "description": "JSON schema for ai-dev project configuration",
+      "path": "SCHEMAS/ai-dev.config.schema.yaml",
+      "validates": [
+        "project configuration",
+        ".ai-dev.json"
+      ]
+    },
+    {
+      "name": "component",
+      "version": "1.0.0",
+      "description": "JSON schema for reusable component structure",
+      "path": "SCHEMAS/component.schema.yaml",
+      "validates": [
+        "components"
+      ]
+    }
+  ],
+  "installers": [
+    {
+      "name": "bootstrap",
+      "version": "1.0.0",
+      "description": "Bootstrap complete ai-dev-standards setup in any project",
+      "path": "INSTALLERS/bootstrap",
+      "installs": {
+        "skills": "all",
+        "mcps": "all",
+        "components": [
+          "agents",
+          "ui-components",
+          "forms",
+          "workflows"
+        ],
+        "integrations": [
+          "llm-providers"
+        ],
+        "standards": "all",
+        "templates": "all"
+      },
+      "creates": [
+        ".ai-dev/",
+        ".claude/",
+        ".cursorrules",
+        ".gitignore",
+        ".env.example"
+      ]
+    },
+    {
+      "name": "create-rag-system",
+      "version": "1.0.0",
+      "description": "Create RAG system from scratch with all necessary components",
+      "path": "INSTALLERS/create-rag-system",
+      "installs": {
+        "skills": [
+          "rag-implementer"
+        ],
+        "mcps": [
+          "vector-database",
+          "embedding-generator"
+        ],
+        "components": [
+          "rag-pipelines"
+        ],
+        "integrations": [
+          "vector-databases",
+          "llm-providers"
+        ],
+        "standards": [
+          "rag-pattern"
+        ]
+      },
+      "creates": [
+        "src/rag/",
+        ".env.example",
+        "rag.config.ts"
+      ]
+    },
+    {
+      "name": "create-saas",
+      "version": "1.0.0",
+      "description": "Create SaaS project with auth, payments, and essential features",
+      "path": "INSTALLERS/create-saas",
+      "installs": {
+        "skills": [
+          "mvp-builder",
+          "product-strategist",
+          "frontend-builder",
+          "api-designer",
+          "deployment-advisor"
+        ],
+        "mcps": [
+          "component-generator",
+          "accessibility-checker"
+        ],
+        "components": [
+          "ui-components",
+          "forms",
+          "auth",
+          "feedback"
+        ],
+        "integrations": [
+          "framework-adapters",
+          "llm-providers",
+          "platforms"
+        ],
+        "standards": [
+          "authentication-patterns",
+          "serverless-pattern"
+        ]
+      },
+      "creates": [
+        "app/",
+        "components/",
+        "lib/",
+        ".env.example",
+        "middleware.ts"
+      ]
+    }
+  ],
+  "scripts": [
+    {
+      "name": "update-registry",
+      "version": "1.0.0",
+      "description": "Automatically sync META/registry.json with filesystem resources",
+      "path": "scripts/update-registry.js",
+      "purpose": "Maintain registry accuracy",
+      "usage": "node scripts/update-registry.js or npm run update-registry"
+    },
+    {
+      "name": "add-skill-requirements",
+      "version": "1.0.0",
+      "description": "Add requires field to skills with their MCP, component, integration, and standard dependencies",
+      "path": "scripts/add-skill-requirements.js",
+      "purpose": "Phase 2 relationship metadata",
+      "usage": "node scripts/add-skill-requirements.js"
+    },
+    {
+      "name": "add-component-dependencies",
+      "version": "1.0.0",
+      "description": "Add dependencies field to components listing their integration, util, and component requirements",
+      "path": "scripts/add-component-dependencies.js",
+      "purpose": "Phase 2 relationship metadata",
+      "usage": "node scripts/add-component-dependencies.js"
+    }
+  ],
+  "changeLog": [
+    {
+      "version": "1.0.0",
+      "date": "2025-10-22",
+      "changes": [
+        "Initial release",
+        "35 skills available",
+        "3 MCP servers",
+        "6 playbooks",
+        "10 architecture patterns"
+      ]
+    }
+  ]
+}

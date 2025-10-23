@@ -1,0 +1,369 @@
+{
+  "description": "Complete relationship mapping between skills, MCPs, components, integrations, and standards",
+  "lastUpdated": "2025-10-23",
+  "version": "1.2.0",
+  "relationships": {
+    "skills_to_mcps": {
+      "accessibility-engineer": {
+        "existing": ["accessibility-checker"],
+        "planned": []
+      },
+      "frontend-builder": {
+        "existing": ["component-generator"],
+        "planned": []
+      },
+      "quality-auditor": {
+        "existing": ["screenshot-testing"],
+        "planned": []
+      },
+      "rag-implementer": {
+        "existing": [],
+        "planned": ["vector-database", "embedding-generator", "semantic-search", "document-processor"]
+      },
+      "multi-agent-architect": {
+        "existing": [],
+        "planned": ["agent-orchestrator", "agent-monitor", "conversation-manager"]
+      },
+      "mvp-builder": {
+        "existing": [],
+        "planned": ["feature-prioritizer", "risk-analyzer", "mvp-tracker"]
+      },
+      "product-strategist": {
+        "existing": [],
+        "planned": ["interview-transcriber", "user-insight-analyzer"]
+      },
+      "api-designer": {
+        "existing": [],
+        "planned": ["openapi-generator", "api-validator"]
+      },
+      "deployment-advisor": {
+        "existing": [],
+        "planned": ["infra-provisioner", "monitoring-setup"]
+      },
+      "performance-optimizer": {
+        "existing": [],
+        "planned": ["performance-profiler", "bundle-analyzer", "lighthouse-runner"]
+      },
+      "security-engineer": {
+        "existing": [],
+        "planned": ["vulnerability-scanner", "dependency-auditor", "secrets-detector"]
+      },
+      "dark-matter-analyzer": {
+        "existing": ["dark-matter-analyzer"],
+        "planned": []
+      },
+      "3d-visualizer": {
+        "existing": [],
+        "planned": ["3d-renderer", "model-optimizer"]
+      },
+      "animation-designer": {
+        "existing": [],
+        "planned": ["animation-generator", "motion-tracker"]
+      },
+      "audio-producer": {
+        "existing": [],
+        "planned": ["audio-processor", "transcription-service"]
+      },
+      "brand-designer": {
+        "existing": [],
+        "planned": ["brand-asset-generator", "style-guide-validator"]
+      },
+      "context-preserver": {
+        "existing": [],
+        "planned": ["context-store", "session-manager"]
+      },
+      "copywriter": {
+        "existing": [],
+        "planned": ["tone-analyzer", "content-optimizer"]
+      },
+      "data-engineer": {
+        "existing": ["vector-database", "embedding-generator"],
+        "planned": ["data-pipeline-builder", "etl-orchestrator"]
+      },
+      "data-visualizer": {
+        "existing": [],
+        "planned": ["chart-generator", "dashboard-builder"]
+      },
+      "design-system-architect": {
+        "existing": ["component-generator"],
+        "planned": ["design-token-manager", "theme-generator"]
+      },
+      "focus-session-manager": {
+        "existing": [],
+        "planned": ["pomodoro-timer", "distraction-blocker"]
+      },
+      "go-to-market-planner": {
+        "existing": ["feature-prioritizer"],
+        "planned": ["market-research-analyzer", "launch-tracker"]
+      },
+      "iot-developer": {
+        "existing": [],
+        "planned": ["device-simulator", "mqtt-broker"]
+      },
+      "knowledge-graph-builder": {
+        "existing": ["vector-database", "embedding-generator"],
+        "planned": ["graph-visualizer", "entity-extractor"]
+      },
+      "livestream-engineer": {
+        "existing": [],
+        "planned": ["stream-monitor", "chat-moderator"]
+      },
+      "localization-engineer": {
+        "existing": [],
+        "planned": ["translation-manager", "locale-validator"]
+      },
+      "mobile-developer": {
+        "existing": [],
+        "planned": ["app-preview-generator", "native-bridge-tester"]
+      },
+      "task-breakdown-specialist": {
+        "existing": ["feature-prioritizer"],
+        "planned": ["task-estimator", "dependency-mapper"]
+      },
+      "technical-writer": {
+        "existing": [],
+        "planned": ["doc-generator", "api-doc-builder"]
+      },
+      "testing-strategist": {
+        "existing": ["screenshot-testing"],
+        "planned": ["test-coverage-analyzer", "mutation-tester"]
+      },
+      "user-researcher": {
+        "existing": [],
+        "planned": ["survey-analyzer", "usability-tracker"]
+      },
+      "ux-designer": {
+        "existing": ["component-generator", "accessibility-checker"],
+        "planned": ["wireframe-generator", "user-flow-visualizer"]
+      },
+      "video-producer": {
+        "existing": [],
+        "planned": ["video-editor", "subtitle-generator"]
+      },
+      "visual-designer": {
+        "existing": ["component-generator"],
+        "planned": ["asset-optimizer", "color-palette-generator"]
+      },
+      "voice-interface-builder": {
+        "existing": [],
+        "planned": ["voice-simulator", "intent-tester"]
+      },
+      "spatial-developer": {
+        "existing": [],
+        "planned": ["spatial-renderer", "ar-simulator"]
+      }
+    },
+    "skills_to_components": {
+      "rag-implementer": ["rag-pipelines"],
+      "frontend-builder": ["ui-components", "forms"],
+      "accessibility-engineer": ["ui-components"],
+      "mvp-builder": ["agents", "workflows"],
+      "multi-agent-architect": ["agents", "workflows"],
+      "api-designer": ["mcp-servers"],
+      "quality-auditor": ["ui-components"],
+      "3d-visualizer": ["ui-components"],
+      "animation-designer": ["ui-components"],
+      "audio-producer": [],
+      "brand-designer": ["ui-components"],
+      "context-preserver": ["agents", "workflows"],
+      "copywriter": [],
+      "data-engineer": ["rag-pipelines"],
+      "data-visualizer": ["ui-components"],
+      "design-system-architect": ["ui-components", "forms"],
+      "focus-session-manager": ["ui-components"],
+      "go-to-market-planner": ["workflows"],
+      "iot-developer": [],
+      "knowledge-graph-builder": ["rag-pipelines"],
+      "livestream-engineer": [],
+      "localization-engineer": ["ui-components"],
+      "mobile-developer": ["ui-components"],
+      "task-breakdown-specialist": ["workflows"],
+      "technical-writer": [],
+      "testing-strategist": ["ui-components"],
+      "user-researcher": [],
+      "ux-designer": ["ui-components", "forms"],
+      "video-producer": [],
+      "visual-designer": ["ui-components"],
+      "voice-interface-builder": [],
+      "spatial-developer": ["ui-components"]
+    },
+    "skills_to_integrations": {
+      "rag-implementer": ["vector-databases", "llm-providers"],
+      "deployment-advisor": ["platforms"],
+      "api-designer": ["llm-providers"],
+      "security-engineer": ["platforms"],
+      "data-engineer": ["platforms", "vector-databases"],
+      "3d-visualizer": [],
+      "animation-designer": [],
+      "audio-producer": [],
+      "brand-designer": [],
+      "context-preserver": ["vector-databases"],
+      "copywriter": ["llm-providers"],
+      "data-visualizer": ["platforms"],
+      "design-system-architect": [],
+      "focus-session-manager": [],
+      "go-to-market-planner": ["platforms"],
+      "iot-developer": ["platforms"],
+      "knowledge-graph-builder": ["vector-databases", "llm-providers"],
+      "livestream-engineer": ["platforms"],
+      "localization-engineer": [],
+      "mobile-developer": ["platforms"],
+      "task-breakdown-specialist": ["llm-providers"],
+      "technical-writer": ["llm-providers"],
+      "testing-strategist": ["platforms"],
+      "user-researcher": [],
+      "ux-designer": [],
+      "video-producer": ["platforms"],
+      "visual-designer": [],
+      "voice-interface-builder": ["llm-providers"],
+      "spatial-developer": ["platforms"]
+    },
+    "skills_to_standards": {
+      "rag-implementer": ["rag-pattern"],
+      "accessibility-engineer": ["authentication-patterns"],
+      "api-designer": ["microservices-pattern", "serverless-pattern"],
+      "deployment-advisor": ["serverless-pattern"],
+      "security-engineer": ["authentication-patterns"],
+      "performance-optimizer": ["database-design-patterns"],
+      "multi-agent-architect": ["event-driven-architecture"],
+      "data-engineer": ["database-design-patterns"],
+      "3d-visualizer": [],
+      "animation-designer": [],
+      "audio-producer": [],
+      "brand-designer": [],
+      "context-preserver": ["event-driven-architecture"],
+      "copywriter": [],
+      "data-visualizer": [],
+      "design-system-architect": [],
+      "focus-session-manager": [],
+      "go-to-market-planner": [],
+      "iot-developer": ["event-driven-architecture"],
+      "knowledge-graph-builder": ["rag-pattern", "database-design-patterns"],
+      "livestream-engineer": ["event-driven-architecture"],
+      "localization-engineer": [],
+      "mobile-developer": ["authentication-patterns"],
+      "task-breakdown-specialist": [],
+      "technical-writer": [],
+      "testing-strategist": [],
+      "user-researcher": [],
+      "ux-designer": ["authentication-patterns"],
+      "video-producer": [],
+      "visual-designer": [],
+      "voice-interface-builder": [],
+      "spatial-developer": []
+    },
+    "mcps_to_skills": {
+      "accessibility-checker": ["accessibility-engineer", "frontend-builder", "quality-auditor", "ux-designer"],
+      "component-generator": ["frontend-builder", "design-system-architect", "ux-designer", "visual-designer"],
+      "screenshot-testing": ["quality-auditor", "frontend-builder", "testing-strategist"],
+      "dark-matter-analyzer": ["dark-matter-analyzer", "quality-auditor", "product-strategist"],
+      "embedding-generator": ["rag-implementer", "data-engineer", "knowledge-graph-builder"],
+      "feature-prioritizer": ["mvp-builder", "product-strategist", "go-to-market-planner", "task-breakdown-specialist"],
+      "vector-database": ["rag-implementer", "data-engineer", "knowledge-graph-builder", "context-preserver"]
+    },
+    "components_dependencies": {
+      "rag-pipelines": {
+        "integrations": ["vector-databases", "llm-providers"],
+        "utils": ["api"]
+      },
+      "ui-components": {
+        "components": [],
+        "utils": []
+      },
+      "agents": {
+        "integrations": ["llm-providers"],
+        "utils": ["api", "cli"]
+      },
+      "workflows": {
+        "components": ["agents"],
+        "utils": ["cli"]
+      },
+      "forms": {
+        "components": ["ui-components"],
+        "utils": ["validation"]
+      },
+      "mcp-servers": {
+        "utils": ["api"]
+      }
+    },
+    "skill_relationships": {
+      "dark-matter-analyzer": {
+        "complements": ["quality-auditor", "product-strategist", "mvp-builder"],
+        "informs": ["technical-debt-assessor", "testing-strategist"],
+        "analyzes": ["entire_repository", "BUILD_FOCUS", "registries", "relationships"]
+      },
+      "quality-auditor": {
+        "complements": ["dark-matter-analyzer"],
+        "follows": ["dark-matter-analyzer"]
+      }
+    },
+    "meta_analysis_capabilities": {
+      "dark-matter-analyzer": {
+        "checks": [
+          "BUILD_FOCUS_adherence",
+          "relationship_integrity",
+          "automation_gaps",
+          "registry_consistency",
+          "file_update_consistency",
+          "version_synchronization"
+        ],
+        "detects_patterns": [
+          "moratorium_violation",
+          "documentation_inflation",
+          "orphaned_skill",
+          "broken_mcp_reference",
+          "stale_planned_mcp",
+          "undocumented_mcp",
+          "registry_drift",
+          "version_mismatch",
+          "manual_update_required"
+        ],
+        "triggers": [
+          "after_major_change",
+          "weekly_health_check",
+          "pre_release",
+          "user_discovered_gap"
+        ],
+        "validates": [
+          "skill_count_consistency",
+          "mcp_count_consistency",
+          "relationship_bidirectional",
+          "all_files_updated"
+        ]
+      }
+    },
+    "installers_manifest": {
+      "bootstrap": {
+        "installs": {
+          "skills": "all",
+          "mcps": "all",
+          "components": ["agents", "ui-components", "forms", "workflows"],
+          "integrations": ["llm-providers"],
+          "standards": "all",
+          "templates": "all"
+        },
+        "creates": [".ai-dev/", ".claude/", ".cursorrules", ".gitignore", ".env.example"]
+      },
+      "create-rag-system": {
+        "installs": {
+          "skills": ["rag-implementer"],
+          "mcps": ["vector-database", "embedding-generator"],
+          "components": ["rag-pipelines"],
+          "integrations": ["vector-databases", "llm-providers"],
+          "standards": ["rag-pattern"]
+        },
+        "creates": ["src/rag/", ".env.example", "rag.config.ts"]
+      },
+      "create-saas": {
+        "installs": {
+          "skills": ["mvp-builder", "product-strategist", "frontend-builder", "api-designer", "deployment-advisor"],
+          "mcps": ["component-generator", "accessibility-checker"],
+          "components": ["ui-components", "forms", "auth", "feedback"],
+          "integrations": ["framework-adapters", "llm-providers", "platforms"],
+          "standards": ["authentication-patterns", "serverless-pattern"]
+        },
+        "creates": ["app/", "components/", "lib/", ".env.example", "middleware.ts"]
+      }
+    }
+  }
+}

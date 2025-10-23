@@ -1,0 +1,21 @@
+{
+  "name": "@ai-dev-standards/bootstrap",
+  "version": "1.0.0",
+  "description": "Auto-install and initialize ai-dev CLI for any project",
+  "main": "index.js",
+  "bin": {
+    "ai-dev-bootstrap": "./index.js"
+  },
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": [
+    "ai-dev",
+    "bootstrap",
+    "installer",
+    "auto-setup"
+  ],
+  "author": "AI Dev Standards",
+  "license": "MIT",
+  "preferGlobal": false
+}

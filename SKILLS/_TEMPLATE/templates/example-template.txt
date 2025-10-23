@@ -1,0 +1,34 @@
+# [Skill Name] Template
+
+This is an example template that users can customize for their specific needs.
+
+## Section 1: [Category]
+
+[Placeholder text with instructions]
+
+**TODO:**
+- [ ] Replace [PLACEHOLDER] with actual value
+- [ ] Customize for your use case
+- [ ] Remove these instructions when done
+
+## Section 2: [Category]
+
+### Subsection
+
+[More placeholder content]
+
+**Variables to replace:**
+- `{{PROJECT_NAME}}`: Your project name
+- `{{AUTHOR}}`: Your name
+- `{{DATE}}`: Current date
+
+## Section 3: [Category]
+
+[Additional template content...]
+
+---
+
+**Notes:**
+- This template follows [relevant standard or pattern]
+- See SKILL.md for detailed guidance on customizing this template
+- Check EXAMPLES.md for filled-in examples

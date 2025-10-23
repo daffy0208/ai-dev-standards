@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Pre-commit hook for ai-dev-standards
+# Validates consistency before allowing commit
+
+echo "🔍 Running pre-commit validation..."
+
+# Run validation
+npm run validate --silent
+
+if [ $? -ne 0 ]; then
+  echo ""
+  echo "❌ PRE-COMMIT VALIDATION FAILED"
+  echo ""
+  echo "Your commit has been blocked because validation failed."
+  echo ""
+  echo "To fix automatically:"
+  echo "  npm run sync"
+  echo ""
+  echo "To bypass (NOT RECOMMENDED):"
+  echo "  git commit --no-verify"
+  echo ""
+  exit 1
+fi
+
+echo "✅ Validation passed - proceeding with commit"
+exit 0

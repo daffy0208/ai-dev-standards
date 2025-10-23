@@ -1,0 +1,17 @@
+{
+  "name": "@ai-dev-standards/create-saas",
+  "version": "1.0.0",
+  "description": "Create a SaaS application with one command",
+  "main": "index.js",
+  "bin": {
+    "create-saas": "./index.js"
+  },
+  "keywords": [
+    "saas",
+    "starter",
+    "next.js",
+    "typescript"
+  ],
+  "author": "AI Dev Standards",
+  "license": "MIT"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "@ai-dev-standards/create-rag-system",
+  "version": "1.0.0",
+  "description": "Create a RAG system with one command",
+  "main": "index.js",
+  "bin": {
+    "create-rag-system": "./index.js"
+  },
+  "keywords": [
+    "rag",
+    "vector-database",
+    "langchain",
+    "ai"
+  ],
+  "author": "AI Dev Standards",
+  "license": "MIT"
+}

@@ -1,0 +1,231 @@
+# AI Dev Standards - Cursor Rules
+# Auto-updated by ai-dev sync
+
+## Core Principles
+
+- **TypeScript strict mode** - All code must be typed
+- **Functional components** - Use React hooks, not classes
+- **Zod validation** - Validate all inputs and API responses
+- **Tailwind CSS** - Use utility classes, no custom CSS
+- **Server components** - Use Next.js 14 App Router patterns
+
+## Code Style
+
+### TypeScript
+```typescript
+// ✅ Good - Explicit types
+interface User {
+  id: string
+  name: string
+  email: string
+}
+
+// ❌ Bad - Any types
+const user: any = getData()
+```
+
+### React Components
+```typescript
+// ✅ Good - Functional with types
+interface ButtonProps {
+  variant: 'primary' | 'secondary'
+  onClick: () => void
+  children: React.ReactNode
+}
+
+export function Button({ variant, onClick, children }: ButtonProps) {
+  return <button onClick={onClick}>{children}</button>
+}
+
+// ❌ Bad - Class components
+class Button extends React.Component { }
+```
+
+### Data Validation
+```typescript
+// ✅ Good - Zod validation
+import { z } from 'zod'
+
+const userSchema = z.object({
+  id: z.string(),
+  email: z.string().email()
+})
+
+const user = userSchema.parse(data)
+
+// ❌ Bad - No validation
+const user = data as User
+```
+
+## Architecture Patterns
+
+### Server Components (Next.js 14)
+```typescript
+// app/page.tsx - Server component by default
+export default async function Page() {
+  const data = await getData()
+  return <div>{data}</div>
+}
+```
+
+### Client Components
+```typescript
+'use client'
+import { useState } from 'react'
+
+export function Counter() {
+  const [count, setCount] = useState(0)
+  return <button onClick={() => setCount(count + 1)}>{count}</button>
+}
+```
+
+### API Routes
+```typescript
+// app/api/users/route.ts
+import { NextResponse } from 'next/server'
+
+export async function GET() {
+  const users = await db.users.findMany()
+  return NextResponse.json(users)
+}
+```
+
+## Testing
+
+### Unit Tests
+```typescript
+import { render, screen } from '@testing-library/react'
+import { Button } from './Button'
+
+describe('Button', () => {
+  it('renders children', () => {
+    render(<Button>Click me</Button>)
+    expect(screen.getByText('Click me')).toBeInTheDocument()
+  })
+})
+```
+
+### Coverage Requirements
+- **Minimum 80%** line coverage
+- **All public functions** must have tests
+- **All API routes** must have integration tests
+
+## Error Handling
+
+```typescript
+// ✅ Good - Explicit error handling
+try {
+  const result = await riskyOperation()
+  return { success: true, data: result }
+} catch (error) {
+  console.error('Operation failed:', error)
+  return { success: false, error: error.message }
+}
+
+// ❌ Bad - Silent failures
+const result = await riskyOperation().catch(() => null)
+```
+
+## Accessibility
+
+- **All images** must have alt text
+- **All buttons** must have accessible labels
+- **All forms** must have proper labels
+- **Keyboard navigation** must work everywhere
+- **WCAG AA compliance** minimum
+
+```typescript
+// ✅ Good
+<button aria-label="Close dialog">×</button>
+<img src="logo.png" alt="Company logo" />
+
+// ❌ Bad
+<div onClick={handleClick}>Click me</div>
+<img src="logo.png" />
+```
+
+## Performance
+
+- **Server components** for data fetching
+- **Lazy load** heavy components
+- **Optimize images** with next/image
+- **Code splitting** by route
+
+```typescript
+// ✅ Good - Lazy loading
+import dynamic from 'next/dynamic'
+
+const HeavyComponent = dynamic(() => import('./HeavyComponent'), {
+  loading: () => <p>Loading...</p>
+})
+```
+
+## Security
+
+- **Never hardcode secrets** - Use environment variables
+- **Validate all inputs** - Use Zod schemas
+- **Sanitize user content** - Prevent XSS
+- **Use HTTPS** everywhere
+
+```typescript
+// ✅ Good
+const apiKey = process.env.API_KEY
+
+// ❌ Bad
+const apiKey = 'sk-abc123...'
+```
+
+## File Organization
+
+```
+app/
+├── (auth)/
+│   ├── login/page.tsx
+│   └── signup/page.tsx
+├── dashboard/
+│   └── page.tsx
+└── api/
+    └── users/route.ts
+
+components/
+├── ui/
+│   ├── Button.tsx
+│   └── Card.tsx
+└── features/
+    └── UserProfile.tsx
+
+lib/
+├── db.ts
+├── auth.ts
+└── utils.ts
+```
+
+## Git Commit Messages
+
+```
+feat: Add user authentication
+fix: Resolve login redirect bug
+docs: Update API documentation
+refactor: Simplify payment logic
+test: Add tests for UserProfile
+```
+
+## AI-Specific Guidelines
+
+When working with AI:
+- Use **skills** from `SKILLS/` directory
+- Follow **patterns** from architecture docs
+- Use **MCPs** for automation tasks
+- Reference **playbooks** for operational tasks
+
+## ADHD-Friendly Practices
+
+- **Small commits** - Commit every 15-30 minutes
+- **Clear naming** - Functions and variables should be obvious
+- **Short functions** - Max 20 lines per function
+- **Comments** - Explain WHY, not WHAT
+
+---
+
+Last updated: Auto-synced by ai-dev CLI
+Version: 1.0.0

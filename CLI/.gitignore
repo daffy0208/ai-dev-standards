@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+*.log
+
+# Testing artifacts
+.ai-dev.json
+.ai-dev-cache/
+.claude/
+*.backup
+
+# Build output
+dist/
+build/
+
+# Lock files (we track package.json only)
+package-lock.json
+yarn.lock

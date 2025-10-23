@@ -1,0 +1,245 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  # Job 1: Test
+  test:
+    name: Test (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Generate coverage report
+        run: npm run test:coverage
+        continue-on-error: true
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        if: matrix.node-version == '20.x'
+        with:
+          files: ./coverage/lcov.info
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: false
+
+  # Job 2: Lint
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+        continue-on-error: true
+
+      - name: Check formatting
+        run: npm run format:check
+        continue-on-error: true
+
+  # Job 3: Type Check
+  typecheck:
+    name: Type Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run TypeScript compiler
+        run: npm run typecheck
+
+  # Job 4: Build
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build CLI
+        run: |
+          cd CLI
+          npm ci
+          npm run build || echo "No build script defined"
+
+  # Job 5: Security Audit
+  security:
+    name: Security Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Run npm audit
+        run: npm audit --audit-level=moderate
+        continue-on-error: true
+
+  # Job 6: Registry Validation - CRITICAL
+  registry-validation:
+    name: Registry Completeness Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run registry validation tests
+        run: npm run test:registry
+
+      - name: Verify all skills are registered
+        run: |
+          echo "🔍 Checking registry completeness..."
+
+          # Count skills in directory
+          SKILL_DIRS=$(find SKILLS -maxdepth 1 -type d ! -name SKILLS ! -name _TEMPLATE | wc -l)
+          echo "Skills in SKILLS/ directory: $SKILL_DIRS"
+
+          # Count skills in registry
+          REGISTRY_SKILLS=$(jq '.skills | length' META/registry.json)
+          echo "Skills in META/registry.json: $REGISTRY_SKILLS"
+
+          # Verify they match
+          if [ "$SKILL_DIRS" -ne "$REGISTRY_SKILLS" ]; then
+            echo "❌ CRITICAL: Registry incomplete! $SKILL_DIRS skills exist but only $REGISTRY_SKILLS registered."
+            echo "This means $((SKILL_DIRS - REGISTRY_SKILLS)) skills are INVISIBLE to projects!"
+            exit 1
+          fi
+
+          echo "✅ All $SKILL_DIRS skills are registered and discoverable"
+
+      - name: Verify CLI uses registry (not mock data)
+        run: |
+          echo "🔍 Checking CLI commands..."
+
+          # Check if CLI commands have TODO comments indicating mock data
+          if grep -r "TODO: Fetch from actual ai-dev-standards repo" CLI/commands/ 2>/dev/null; then
+            echo "❌ CRITICAL: CLI commands still have TODO comments - using mock data instead of registry!"
+            exit 1
+          fi
+
+          # Check if sync.js reads from registry
+          if [ -f CLI/commands/sync.js ]; then
+            if ! grep -q "registry.json\|META/registry" CLI/commands/sync.js; then
+              echo "⚠️  WARNING: CLI sync.js doesn't appear to read from registry.json"
+            else
+              echo "✅ CLI sync.js appears to read from registry"
+            fi
+          fi
+
+          echo "✅ CLI validation passed"
+
+      - name: Verify README accuracy
+        run: |
+          echo "🔍 Checking README documentation..."
+
+          # Extract skill names from README (simple check)
+          # This is a basic check - the full test is in registry-validation.test.ts
+
+          if ! grep -q "mvp-builder" README.md; then
+            echo "❌ README missing critical skill: mvp-builder"
+            exit 1
+          fi
+
+          if ! grep -q "product-strategist" README.md; then
+            echo "❌ README missing critical skill: product-strategist"
+            exit 1
+          fi
+
+          echo "✅ README contains critical skills"
+
+  # Job 7: Status Check
+  status:
+    name: All Checks Passed
+    runs-on: ubuntu-latest
+    needs: [test, lint, typecheck, build, registry-validation]
+    if: always()
+
+    steps:
+      - name: Check status
+        run: |
+          if [[ "${{ needs.test.result }}" == "success" && \
+                "${{ needs.lint.result }}" == "success" && \
+                "${{ needs.typecheck.result }}" == "success" && \
+                "${{ needs.build.result }}" == "success" && \
+                "${{ needs.registry-validation.result }}" == "success" ]]; then
+            echo "✅ All checks passed!"
+            exit 0
+          else
+            echo "❌ Some checks failed"
+            echo "Test: ${{ needs.test.result }}"
+            echo "Lint: ${{ needs.lint.result }}"
+            echo "Type Check: ${{ needs.typecheck.result }}"
+            echo "Build: ${{ needs.build.result }}"
+            echo "Registry Validation: ${{ needs.registry-validation.result }}"
+            exit 1
+          fi

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://ai-dev-standards.com/schemas/ai-dev-config.json",
+  "version": "1.0.0",
+  "lastSync": "2025-10-22T12:00:00Z",
+  "description": "AI Dev Standards project configuration - tracks what's installed and sync settings",
+
+  "tracking": [
+    "skills",
+    "mcps",
+    "cursorrules",
+    "gitignore",
+    "tools"
+  ],
+
+  "frequency": "git-hook",
+
+  "installed": {
+    "skills": [
+      "mvp-builder",
+      "rag-implementer",
+      "product-strategist",
+      "api-designer",
+      "frontend-builder"
+    ],
+    "mcps": [
+      "accessibility-checker",
+      "component-generator",
+      "screenshot-testing"
+    ],
+    "tools": [
+      "web-search-tool",
+      "database-query-tool"
+    ],
+    "integrations": [
+      "supabase",
+      "stripe",
+      "pinecone"
+    ]
+  },
+
+  "preferences": {
+    "autoApprove": false,
+    "notifications": true,
+    "backupBeforeSync": true
+  },
+
+  "metadata": {
+    "projectType": "saas",
+    "framework": "nextjs",
+    "language": "typescript",
+    "createdAt": "2025-10-22T12:00:00Z"
+  }
+}

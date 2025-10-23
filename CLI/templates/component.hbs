@@ -1,0 +1,20 @@
+{{!-- Component Template --}}
+import { z } from 'zod'
+
+const {{lowercase name}}PropsSchema = z.object({
+{{#each props}}
+  {{@key}}: {{#if (eq this "string")}}z.string(){{else if (eq this "number")}}z.number(){{else if (eq this "boolean")}}z.boolean().optional(){{else}}z.any(){{/if}},
+{{/each}}
+})
+
+export type {{name}}Props = z.infer<typeof {{lowercase name}}PropsSchema>
+
+export function {{name}}(props: {{name}}Props) {
+  const validated = {{lowercase name}}PropsSchema.parse(props)
+
+  return (
+    <div className="{{kebabCase name}}">
+      {/* Component implementation */}
+    </div>
+  )
+}

@@ -1,0 +1,125 @@
+# AI Dev Config Schema
+
+$schema: "http://json-schema.org/draft-07/schema#"
+title: AI Dev Configuration
+description: Configuration file schema for ai-dev generate command
+
+type: object
+
+properties:
+  components:
+    type: array
+    description: Components to generate
+    items:
+      $ref: "./component.schema.yaml"
+
+  mcpServers:
+    type: array
+    description: MCP servers to generate
+    items:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: MCP server name
+        template:
+          type: string
+          enum:
+            - custom
+            - accessibility-checker
+            - component-generator
+            - screenshot-testing
+          default: custom
+        description:
+          type: string
+        features:
+          type: array
+          items:
+            type: string
+            enum:
+              - tools
+              - resources
+              - prompts
+          default:
+            - tools
+
+  integrations:
+    type: array
+    description: Integrations to generate
+    items:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Integration name
+        provider:
+          type: string
+          enum:
+            - supabase
+            - stripe
+            - resend
+            - openai
+            - anthropic
+            - pinecone
+            - custom
+          default: custom
+        withAuth:
+          type: boolean
+          default: false
+        withRag:
+          type: boolean
+          default: false
+
+  tools:
+    type: array
+    description: Tools to generate
+    items:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Tool name
+        framework:
+          type: string
+          enum:
+            - langchain
+            - crewai
+            - custom
+          default: custom
+        category:
+          type: string
+          enum:
+            - data-retrieval
+            - data-transformation
+            - communication
+            - file-operations
+            - code-execution
+            - api-integration
+          default: custom
+
+examples:
+  - components:
+      - name: Button
+        props:
+          variant:
+            - primary
+            - secondary
+        tests: true
+        storybook: true
+
+    integrations:
+      - name: supabase
+        provider: supabase
+        withAuth: true
+
+    mcpServers:
+      - name: accessibility-checker
+        template: accessibility-checker
+        features:
+          - tools
