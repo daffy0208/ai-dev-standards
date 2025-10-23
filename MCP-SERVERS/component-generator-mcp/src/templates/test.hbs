@@ -1,0 +1,23 @@
+import { describe, it, expect } from 'vitest'
+import { render } from '@testing-library/react'
+import { {{pascalName}} } from './{{pascalName}}'
+
+describe('{{pascalName}}', () => {
+  it('renders children', () => {
+    const { getByText } = render(
+      <{{pascalName}}>
+        Test Content
+      </{{pascalName}}>
+    )
+    expect(getByText('Test Content')).toBeDefined()
+  })
+
+{{#each props}}
+{{#if (isTestable @key ../testableProps)}}
+  it('handles {{@key}} prop', () => {
+    // TODO: Add test for {{@key}}
+  })
+
+{{/if}}
+{{/each}}
+})

@@ -1,0 +1,33 @@
+import type { Meta, StoryObj } from '@storybook/react'
+import { {{pascalName}} } from './{{pascalName}}'
+
+const meta = {
+  title: 'Components/{{pascalName}}',
+  component: {{pascalName}},
+  parameters: {
+    layout: 'centered',
+  },
+  tags: ['autodocs'],
+} satisfies Meta<typeof {{pascalName}}>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  args: {
+{{#each defaultArgs}}
+    {{@key}}: {{{this}}},
+{{/each}}
+    children: 'Example Content',
+  },
+}
+
+{{#each variants}}
+export const {{pascalCase this}}: Story = {
+  args: {
+    ...Default.args,
+    // TODO: Customize variant
+  },
+}
+
+{{/each}}

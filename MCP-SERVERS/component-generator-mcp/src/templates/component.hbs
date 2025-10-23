@@ -1,0 +1,25 @@
+import { z } from 'zod'
+
+{{#if description}}
+/**
+ * {{description}}
+ */
+{{/if}}
+const {{camelName}}PropsSchema = z.object({
+{{#each props}}
+  {{@key}}: {{zodType}},
+{{/each}}
+  children: z.any().optional()
+})
+
+export type {{pascalName}}Props = z.infer<typeof {{camelName}}PropsSchema>
+
+export function {{pascalName}}(props: {{pascalName}}Props) {
+  const { {{propsDestructure}}, children } = {{camelName}}PropsSchema.parse(props)
+
+  return (
+    <div className="{{kebabName}}">
+      {children}
+    </div>
+  )
+}
