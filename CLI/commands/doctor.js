@@ -2,7 +2,7 @@ const chalk = require('chalk')
 const ora = require('ora')
 const fs = require('fs-extra')
 const path = require('path')
-const { execa } = require('execa')
+const execa = require('execa')
 
 /**
  * Doctor Command

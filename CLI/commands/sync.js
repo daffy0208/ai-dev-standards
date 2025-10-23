@@ -2,7 +2,7 @@ const chalk = require('chalk')
 const ora = require('ora')
 const fs = require('fs-extra')
 const path = require('path')
-const { execa } = require('execa')
+const execa = require('execa')
 const inquirer = require('inquirer')
 
 /**
@@ -29,19 +29,21 @@ async function syncCommand(options) {
     if (!config) {
       console.log(chalk.yellow('⚠️  Project not initialized for auto-sync\n'))
 
-      const { init } = await inquirer.prompt([{
-        type: 'confirm',
-        name: 'init',
-        message: 'Initialize auto-sync for this project?',
-        default: true
-      }])
+      if (!options.yes) {
+        const { init } = await inquirer.prompt([{
+          type: 'confirm',
+          name: 'init',
+          message: 'Initialize auto-sync for this project?',
+          default: true
+        }])
 
-      if (!init) {
-        console.log(chalk.gray('Skipped.\n'))
-        return
+        if (!init) {
+          console.log(chalk.gray('Skipped.\n'))
+          return
+        }
       }
 
-      config = await initializeSync(projectPath)
+      config = await initializeSync(projectPath, options)
     }
 
     // 2. Check for updates
@@ -111,37 +113,48 @@ async function syncCommand(options) {
 /**
  * Initialize sync for project
  */
-async function initializeSync(projectPath) {
+async function initializeSync(projectPath, options = {}) {
   const spinner = ora('Initializing auto-sync...').start()
 
-  // Ask what to track
-  const answers = await inquirer.prompt([
-    {
-      type: 'checkbox',
-      name: 'track',
-      message: 'What should be auto-synced?',
-      choices: [
-        { name: 'Skills (claude.md)', value: 'skills', checked: true },
-        { name: 'MCP Servers', value: 'mcps', checked: true },
-        { name: 'Cursor Rules (.cursorrules)', value: 'cursorrules', checked: true },
-        { name: 'Git Ignore (.gitignore)', value: 'gitignore', checked: true },
-        { name: 'Tools & Integrations', value: 'tools', checked: true },
-        { name: 'Templates', value: 'templates', checked: false }
-      ]
-    },
-    {
-      type: 'list',
-      name: 'frequency',
-      message: 'Auto-sync frequency:',
-      choices: [
-        { name: 'On every git pull (recommended)', value: 'git-hook' },
-        { name: 'Daily', value: 'daily' },
-        { name: 'Weekly', value: 'weekly' },
-        { name: 'Manual only', value: 'manual' }
-      ],
-      default: 'git-hook'
+  let answers
+
+  // If --yes flag is provided, use defaults
+  if (options.yes) {
+    answers = {
+      track: ['skills', 'mcps', 'cursorrules', 'gitignore', 'tools'],
+      frequency: 'git-hook'
     }
-  ])
+    spinner.text = 'Using default sync settings...'
+  } else {
+    // Ask what to track
+    answers = await inquirer.prompt([
+      {
+        type: 'checkbox',
+        name: 'track',
+        message: 'What should be auto-synced?',
+        choices: [
+          { name: 'Skills (claude.md)', value: 'skills', checked: true },
+          { name: 'MCP Servers', value: 'mcps', checked: true },
+          { name: 'Cursor Rules (.cursorrules)', value: 'cursorrules', checked: true },
+          { name: 'Git Ignore (.gitignore)', value: 'gitignore', checked: true },
+          { name: 'Tools & Integrations', value: 'tools', checked: true },
+          { name: 'Templates', value: 'templates', checked: false }
+        ]
+      },
+      {
+        type: 'list',
+        name: 'frequency',
+        message: 'Auto-sync frequency:',
+        choices: [
+          { name: 'On every git pull (recommended)', value: 'git-hook' },
+          { name: 'Daily', value: 'daily' },
+          { name: 'Weekly', value: 'weekly' },
+          { name: 'Manual only', value: 'manual' }
+        ],
+        default: 'git-hook'
+      }
+    ])
+  }
 
   const config = {
     version: await getLatestVersion(),

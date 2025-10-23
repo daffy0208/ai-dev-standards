@@ -3,7 +3,7 @@ const ora = require('ora')
 const inquirer = require('inquirer')
 const fs = require('fs-extra')
 const path = require('path')
-const { execa } = require('execa')
+const execa = require('execa')
 
 const ProjectGenerator = require('../generators/project-generator')
 
