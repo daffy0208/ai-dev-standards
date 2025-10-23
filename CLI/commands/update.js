@@ -347,33 +347,19 @@ async function updateAll(projectPath, options) {
 }
 
 /**
- * Fetch available skills
+ * Fetch available skills from GitHub
  */
 async function fetchAvailableSkills() {
-  // TODO: Fetch from actual ai-dev-standards repo
-  return [
-    { name: 'data-visualizer', description: 'Create charts and dashboards' },
-    { name: 'iot-developer', description: 'IoT and sensor integration' },
-    { name: 'spatial-developer', description: 'AR/VR development' }
-  ]
+  const { fetchSkills } = require('../utils/github-fetch')
+  return await fetchSkills()
 }
 
 /**
- * Fetch available MCPs
+ * Fetch available MCPs from GitHub
  */
 async function fetchAvailableMcps() {
-  return [
-    {
-      name: 'accessibility-checker',
-      description: 'WCAG compliance checking',
-      path: './MCP-SERVERS/accessibility-checker-mcp/index.js'
-    },
-    {
-      name: 'component-generator',
-      description: 'Generate React components',
-      path: './MCP-SERVERS/component-generator-mcp/index.js'
-    }
-  ]
+  const { fetchMCPs } = require('../utils/github-fetch')
+  return await fetchMCPs()
 }
 
 /**

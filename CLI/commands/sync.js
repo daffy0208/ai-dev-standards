@@ -393,52 +393,16 @@ ai-dev sync --yes --silent
  * Fetch latest standards from GitHub
  */
 async function fetchLatestStandards() {
-  const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main'
-
-  try {
-    // Fetch registries from GitHub
-    const skillRegistryUrl = `${GITHUB_RAW_BASE}/META/skill-registry.json`
-    const mcpRegistryUrl = `${GITHUB_RAW_BASE}/META/registry.json`
-    const cursorrulesUrl = `${GITHUB_RAW_BASE}/.cursorrules`
-    const gitignoreUrl = `${GITHUB_RAW_BASE}/.gitignore`
-
-    // Use execa to fetch with curl (works in most environments)
-    const [skillResponse, mcpResponse, cursorrulesResponse, gitignoreResponse] = await Promise.all([
-      execa('curl', ['-s', skillRegistryUrl]).then(r => JSON.parse(r.stdout)),
-      execa('curl', ['-s', mcpRegistryUrl]).then(r => JSON.parse(r.stdout)),
-      execa('curl', ['-s', cursorrulesUrl]).then(r => r.stdout),
-      execa('curl', ['-s', gitignoreUrl]).then(r => r.stdout)
-    ])
-
-    return {
-      version: mcpResponse.version || '1.0.0',
-      skills: skillResponse.skills || [],
-      mcps: mcpResponse.mcps || [],
-      tools: [],
-      cursorrules: cursorrulesResponse,
-      gitignore: gitignoreResponse
-    }
-  } catch (error) {
-    throw new Error(`Failed to fetch latest standards from GitHub: ${error.message}`)
-  }
+  const { fetchAllStandards } = require('../utils/github-fetch')
+  return await fetchAllStandards()
 }
 
 /**
  * Get latest version from GitHub
  */
 async function getLatestVersion() {
-  try {
-    const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main'
-    const packageUrl = `${GITHUB_RAW_BASE}/package.json`
-
-    const response = await execa('curl', ['-s', packageUrl])
-    const packageJson = JSON.parse(response.stdout)
-
-    return packageJson.version || '1.0.0'
-  } catch (error) {
-    // Fallback to default version if fetch fails
-    return '1.0.0'
-  }
+  const { fetchVersion } = require('../utils/github-fetch')
+  return await fetchVersion()
 }
 
 /**

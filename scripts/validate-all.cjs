@@ -310,6 +310,65 @@ function validateRootFiles(actual) {
   }
 }
 
+/**
+ * Validate CLI Commands
+ * Check that CLI commands have no TODOs and fetch from GitHub
+ */
+function validateCLICommands() {
+  section('Validating CLI Commands');
+
+  // Check 23: No TODOs in critical CLI paths
+  const cliPaths = ['CLI/commands/', 'CLI/generators/', 'CLI/utils/'];
+  let todoCount = 0;
+
+  for (const cliPath of cliPaths) {
+    try {
+      const todos = execSync(`grep -r "TODO\\|FIXME" ${cliPath} --include="*.js" 2>/dev/null || true`, { encoding: 'utf8' });
+      if (todos.trim().length > 0) {
+        const lines = todos.trim().split('\n').filter(l => l.length > 0);
+        todoCount += lines.length;
+        error(`Found ${lines.length} TODOs in ${cliPath}:`);
+        lines.forEach(line => console.log(`    ${RED}${line}${RESET}`));
+      }
+    } catch (e) {
+      // Path might not exist, that's okay
+    }
+  }
+
+  if (todoCount === 0) {
+    success('No TODOs in critical CLI paths');
+  }
+
+  // Check 24: CLI utils exist and export GitHub functions
+  if (fs.existsSync('CLI/utils/github-fetch.js')) {
+    const utilContent = fs.readFileSync('CLI/utils/github-fetch.js', 'utf8');
+    if (utilContent.includes('GITHUB_RAW_BASE') &&
+        utilContent.includes('fetchSkills') &&
+        utilContent.includes('fetchMCPs')) {
+      success('CLI GitHub fetch utility correctly configured');
+    } else {
+      error('CLI GitHub fetch utility missing required functions');
+    }
+  } else {
+    error('CLI/utils/github-fetch.js not found');
+  }
+
+  // Check 25: Critical CLI commands use GitHub fetch utility
+  const criticalCommands = ['CLI/commands/sync.js', 'CLI/commands/update.js'];
+  for (const cmdPath of criticalCommands) {
+    if (fs.existsSync(cmdPath)) {
+      const content = fs.readFileSync(cmdPath, 'utf8');
+      if (content.includes('github-fetch')) {
+        success(`${cmdPath} uses GitHub fetch utility`);
+      } else {
+        error(`${cmdPath} does not use GitHub fetch utility`);
+      }
+    } else {
+      warn(`${cmdPath} not found`);
+    }
+  }
+}
+
 // Main validation
 function main() {
   console.log(`\n${GREEN}🔍 AI Dev Standards - Complete Validation${RESET}\n`);
@@ -328,6 +387,7 @@ function main() {
   validateDocumentation(actual);
   validateRootFiles(actual);
   validateClaudeConfig(actual.skillNames);
+  validateCLICommands();
 
   // Summary
   console.log(`\n${YELLOW}=== Validation Summary ===${RESET}\n`);
