@@ -1,0 +1,35 @@
+{
+  "name": "@ai-dev-standards/api-validator-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for validating API requests and responses against schemas",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "api-validator-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "test": "vitest"
+  },
+  "keywords": [
+    "mcp",
+    "api-validation",
+    "schema-validation",
+    "json-schema",
+    "api-testing"
+  ],
+  "author": "ai-dev-standards",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.6.0"
+  }
+}
