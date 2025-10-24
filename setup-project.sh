@@ -103,6 +103,16 @@ else
     echo -e "${GREEN}✅ Setup complete!${NC}\n"
 fi
 
+# Run project analysis
+echo -e "${BLUE}🔍 Analyzing your project...${NC}\n"
+if [ -x "$AI_DEV_STANDARDS_DIR/scripts/analyze-project.sh" ]; then
+    "$AI_DEV_STANDARDS_DIR/scripts/analyze-project.sh" "$PROJECT_DIR"
+else
+    echo -e "${YELLOW}⚠️  Analysis script not found, skipping analysis${NC}"
+fi
+
+echo ""
+
 # Show summary
 echo -e "${BLUE}📊 Summary:${NC}"
 echo -e "${GRAY}  Project: $PROJECT_DIR${NC}"
