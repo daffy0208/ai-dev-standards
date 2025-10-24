@@ -1,0 +1,35 @@
+{
+  "name": "@ai-dev-standards/test-runner-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for running tests, parsing results, and generating coverage reports",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "test-runner-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "test": "vitest"
+  },
+  "keywords": [
+    "mcp",
+    "testing",
+    "vitest",
+    "jest",
+    "coverage",
+    "test-runner"
+  ],
+  "author": "ai-dev-standards",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "execa": "^8.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.6.0"
+  }
+}

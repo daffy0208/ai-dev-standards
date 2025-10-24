@@ -1,0 +1,37 @@
+{
+  "name": "@ai-dev-standards/openapi-generator-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for generating OpenAPI/Swagger specifications from code",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "openapi-generator-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "test": "vitest"
+  },
+  "keywords": [
+    "mcp",
+    "openapi",
+    "swagger",
+    "api-design",
+    "documentation"
+  ],
+  "author": "ai-dev-standards",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "openapi-typescript": "^6.7.0",
+    "swagger-parser": "^10.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/swagger-parser": "^7.0.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.6.0"
+  }
+}
+

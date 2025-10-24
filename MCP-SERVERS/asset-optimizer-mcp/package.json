@@ -1,0 +1,14 @@
+{
+  "name": "@ai-dev-standards/asset-optimizer-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for optimizing images, generating color palettes, and managing assets",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": { "asset-optimizer-mcp": "dist/index.js" },
+  "scripts": { "build": "tsc", "dev": "tsc --watch", "start": "node dist/index.js", "test": "vitest" },
+  "keywords": ["mcp", "image-optimization", "assets", "color-palette", "compression"],
+  "author": "ai-dev-standards",
+  "license": "MIT",
+  "dependencies": { "@modelcontextprotocol/sdk": "^0.5.0" },
+  "devDependencies": { "@types/node": "^20.0.0", "typescript": "^5.3.0", "vitest": "^1.6.0" }
+}

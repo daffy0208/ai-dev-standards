@@ -1,0 +1,14 @@
+{
+  "name": "@ai-dev-standards/wireframe-generator-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for generating wireframes and user flow diagrams",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": { "wireframe-generator-mcp": "dist/index.js" },
+  "scripts": { "build": "tsc", "dev": "tsc --watch", "start": "node dist/index.js", "test": "vitest" },
+  "keywords": ["mcp", "wireframes", "user-flows", "ux", "diagrams"],
+  "author": "ai-dev-standards",
+  "license": "MIT",
+  "dependencies": { "@modelcontextprotocol/sdk": "^0.5.0" },
+  "devDependencies": { "@types/node": "^20.0.0", "typescript": "^5.3.0", "vitest": "^1.6.0" }
+}
