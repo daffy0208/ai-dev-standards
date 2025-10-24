@@ -550,11 +550,11 @@
       "description": "Setup script displays resource counts in completion message"
     },
     "scripts/analyze-project.sh": {
-      "depends_on_registries": ["skill-registry"],
+      "depends_on_registries": ["skill-registry", "mcp-registry", "tool-registry", "component-registry", "integration-registry"],
       "update_type": "content",
-      "sections": ["skill recommendations"],
-      "priority": "medium",
-      "description": "Analysis script recommends skills based on project stage"
+      "sections": ["skill recommendations", "START-HERE.md generation", "resource counts"],
+      "priority": "high",
+      "description": "Analysis script recommends skills and generates START-HERE.md with actionable next steps"
     },
     "scripts/regenerate-relationships.ts": {
       "depends_on_registries": ["all"],
@@ -634,8 +634,8 @@
     "file_dependencies": {
       "total_tracked_files": 19,
       "critical_files": 3,
-      "high_priority_files": 6,
-      "medium_priority_files": 8,
+      "high_priority_files": 7,
+      "medium_priority_files": 7,
       "low_priority_files": 2,
       "files_by_update_type": {
         "code": 4,

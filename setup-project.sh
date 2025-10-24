@@ -107,6 +107,14 @@ fi
 echo -e "${BLUE}🔍 Analyzing your project...${NC}\n"
 if [ -x "$AI_DEV_STANDARDS_DIR/scripts/analyze-project.sh" ]; then
     "$AI_DEV_STANDARDS_DIR/scripts/analyze-project.sh" "$PROJECT_DIR"
+
+    # Add START-HERE.md to .gitignore if it exists
+    if [ -f ".gitignore" ]; then
+        if ! grep -q "START-HERE.md" .gitignore; then
+            echo "START-HERE.md" >> .gitignore
+            echo -e "${GRAY}  Added START-HERE.md to .gitignore${NC}"
+        fi
+    fi
 else
     echo -e "${YELLOW}⚠️  Analysis script not found, skipping analysis${NC}"
 fi
@@ -126,9 +134,10 @@ if [ -f ".ai-dev.json" ]; then
 fi
 
 echo ""
-echo -e "${BLUE}📚 Next steps:${NC}"
-echo -e "${GRAY}  1. Customize .cursorrules with your project details${NC}"
-echo -e "${GRAY}  2. Open project in VS Code or Cursor${NC}"
-echo -e "${GRAY}  3. Start coding with AI assistance!${NC}"
+echo -e "${GREEN}${BOLD}✨ Setup Complete!${NC}\n"
+echo -e "${BLUE}📚 What to do next:${NC}"
 echo ""
-echo -e "${GREEN}✨ All 37 skills, 34 MCPs, and 103 resources are now available!${NC}\n"
+echo -e "${YELLOW}  👉 Open START-HERE.md and follow the instructions${NC}"
+echo -e "${GRAY}     It contains your personalized roadmap and exact prompt for Claude${NC}"
+echo ""
+echo -e "${GREEN}✅ All 37 skills, 34 MCPs, and 103 resources are now available!${NC}\n"
