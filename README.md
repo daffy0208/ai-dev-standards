@@ -32,91 +32,40 @@ Think of this as a **shared brain** between you and Claude:
 
 ---
 
-## Quick Start
+## 🚀 Quick Start
 
-### Option 1: Auto-Bootstrap (Recommended) ⚡
-
-**One command to set up everything automatically:**
-
-```bash
-npx @ai-dev-standards/bootstrap
-```
-
-This automatically:
-- ✅ Installs the ai-dev CLI
-- ✅ Sets up your project for auto-sync
-- ✅ Installs latest skills, MCPs, and config files
-- ✅ Creates git hooks for automatic updates
-- ✅ Configures best practices (`.cursorrules`, `.gitignore`, etc.)
-
-**That's it!** Your project is now fully configured and will stay up-to-date automatically.
-
-See [Bootstrap Guide](DOCS/BOOTSTRAP.md) for more options and troubleshooting.
-
----
-
-### Option 2: Manual Setup
-
-**For Humans: Using This Repository**
-
-**Step 1: Clone the repository**
-
-```bash
-git clone <repository-url> ~/ai-dev-standards
-cd ~/ai-dev-standards
-```
-
-**Step 2: Install the CLI**
-
-```bash
-cd CLI
-npm install
-npm link
-```
-
-**Step 3: Use in your projects**
+**One command. Any project.**
 
 ```bash
 cd /your/project
-
-# Initialize and sync
-ai-dev sync
-
-# Or generate specific components
-ai-dev generate skill api-designer
-ai-dev generate mcp supabase-manager
+bash ~/ai-dev-standards/setup-project.sh
 ```
 
-**Alternative: Copy Templates (No CLI)**
+**That's it!**
 
-For **new projects:**
-```bash
-# For SaaS/web apps
-cp ~/ai-dev-standards/TEMPLATES/cursorrules-saas.md /your/project/.cursorrules
+The tool automatically:
+- ✅ Detects your project type (Next.js, React, Python, empty, etc.)
+- ✅ Installs everything needed
+- ✅ Analyzes your repository
+- ✅ Recommends where to start
+- ✅ Syncs all 103 resources
 
-# For AI/RAG projects
-cp ~/ai-dev-standards/TEMPLATES/cursorrules-ai-rag.md /your/project/.cursorrules
+**Works for:**
+- New projects, existing projects
+- Any language, any framework
+- Empty repos to large codebases
+- Local or freshly cloned from GitHub
 
-# For minimal setup
-cp ~/ai-dev-standards/TEMPLATES/cursorrules-minimal.md /your/project/.cursorrules
-```
+**After 2 minutes, you have:**
+- 37 skills
+- 34 MCP servers
+- 103 total resources
+- Project analysis with recommendations
+- Exact roadmap for where to start
 
-For **existing projects:**
-```bash
-# Document and improve existing codebase
-cp ~/ai-dev-standards/TEMPLATES/cursorrules-existing-project.md /your/project/.cursorrules
-# Then fill in your tech stack, conventions, and technical debt
-```
+**See:** [INSTALL.md](INSTALL.md) for complete setup guide or [DOCS/TROUBLESHOOTING.md](DOCS/TROUBLESHOOTING.md) if you have connection issues.
 
-**Step 4: Start working**
-
-Claude will automatically:
-- Load relevant skills based on your tasks
-- Follow architecture patterns for design decisions
-- Apply best practices for security and quality
-- Use decision frameworks for technology choices
-
-**New to this?** See the [5-minute quick start guide](DOCS/QUICK-START.md) or [try a sample project](EXAMPLES/sample-project-cursorrules.md).
+---
 
 ### For AI Assistants: Loading Context
 

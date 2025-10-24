@@ -29,70 +29,69 @@ The tool figures out everything automatically.
 5. Analyzes your repository
 6. Shows you exactly where to start
 
-**Then you see:**
-```
-✓ Project Health: Good (75/100)
-✓ Project Stage: early
-✓ Recommended: testing-strategist, frontend-builder
-⚡ Quick Win: Add README.md
-```
-
 **Works everywhere:**
 - New projects, existing projects
 - Any language, any framework
 - Empty repos to large codebases
 - Local or freshly cloned from GitHub
 
+---
 
 ## 📊 What You'll See
 
 ```bash
-$ npx @ai-dev-standards/bootstrap
+$ bash ~/ai-dev-standards/setup-project.sh
 
-🚀 AI Dev Standards Bootstrap
+🚀 AI Dev Standards - Project Setup
 
-✅ Node.js v20.10.0 detected
-✅ ai-dev CLI already installed
+✅ Found ai-dev-standards at: /home/user/ai-dev-standards
+✅ Installing CLI...
+✅ CLI installed successfully
 
-📋 Project not initialized. Setting up auto-sync...
+📋 Detecting project type...
+✅ Detected: Next.js project
 
+📝 Setting up configuration...
   Created: .ai-dev.json
   Created: .claude/claude.md
   Created: .claude/mcp-settings.json
-  Created: .git/hooks/post-merge
   Added to .gitignore: .ai-dev.json
   Added to .gitignore: .ai-dev-cache/
 
-🔄 Running initial sync...
+🔄 Syncing resources...
+✅ 37 skills synced
+✅ 34 MCPs configured
+✅ 103 total resources available
 
-📦 Available Updates:
+🔍 Analyzing your project...
 
-  • skill: mvp-builder
-    Rapid MVP development
-  • skill: api-designer
-    Design REST/GraphQL APIs
-  • mcp: supabase-manager
-    Manage Supabase projects
-  • config: .cursorrules
-    Best practices for TypeScript/React
+📊 Project Analysis:
+✓ Project Health: Good (75/100)
+✓ Project Stage: early
+✓ Project Type: nextjs
 
-🔧 Applying updates...
+📝 Recommended Next Steps:
+  1. Add README.md - Document purpose and setup
+  2. Add testing framework - Jest or Vitest
+  3. Set up CI/CD - GitHub Actions
 
-✅ Sync complete!
+Recommended Skills:
+  • testing-strategist - Set up comprehensive tests
+  • frontend-builder - Structure your React app
+  • deployment-advisor - Choose deployment strategy
 
-📊 Summary:
-  • 2 skills added
-  • 1 MCPs configured
-  • 1 config files updated
+⚡ Quick Wins (Do These First):
+  1. Create README.md with project description
+  2. Add .env.example for environment variables
+  3. Set up ESLint and Prettier
 
-✅ Auto-sync enabled!
+✅ Setup Complete!
 
-📚 What happens now:
-  • Auto-sync runs after every git pull
-  • Skills, MCPs, and configs stay up-to-date
-  • Run manually: ai-dev sync
-
-✨ Your project is now auto-synced with ai-dev-standards!
+You now have access to:
+  • 37 skills
+  • 34 MCP servers
+  • 103 total resources
+  • Project-specific recommendations
 ```
 
 ---

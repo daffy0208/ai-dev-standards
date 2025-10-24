@@ -549,12 +549,47 @@
       "priority": "medium",
       "description": "Setup script displays resource counts in completion message"
     },
+    "scripts/analyze-project.sh": {
+      "depends_on_registries": ["skill-registry"],
+      "update_type": "content",
+      "sections": ["skill recommendations"],
+      "priority": "medium",
+      "description": "Analysis script recommends skills based on project stage"
+    },
     "scripts/regenerate-relationships.ts": {
       "depends_on_registries": ["all"],
       "update_type": "code",
       "sections": ["extractSkillRelationships", "extractMcpRelationships"],
       "priority": "critical",
       "description": "Relationship regeneration script must process all registries correctly"
+    },
+    "INSTALL.md": {
+      "depends_on_registries": ["all"],
+      "update_type": "statistics",
+      "sections": ["resource counts"],
+      "priority": "high",
+      "description": "Installation guide must show current resource counts"
+    },
+    "SETUP.txt": {
+      "depends_on_registries": ["all"],
+      "update_type": "statistics",
+      "sections": ["resource counts"],
+      "priority": "medium",
+      "description": "Quick reference must show current resource counts"
+    },
+    "DOCS/QUICK-START.md": {
+      "depends_on_registries": ["all"],
+      "update_type": "statistics",
+      "sections": ["version number", "resource counts"],
+      "priority": "high",
+      "description": "Quick start guide must reference current version and counts"
+    },
+    "DOCS/TROUBLESHOOTING.md": {
+      "depends_on_registries": ["all"],
+      "update_type": "documentation",
+      "sections": ["CLI commands", "setup instructions"],
+      "priority": "medium",
+      "description": "Troubleshooting guide references CLI and setup processes"
     },
     "SYNC-UPDATE-PLAN.md": {
       "depends_on_registries": ["all"],
@@ -597,16 +632,16 @@
       {"script": "db-migrate", "usage_count": 1}
     ],
     "file_dependencies": {
-      "total_tracked_files": 14,
+      "total_tracked_files": 19,
       "critical_files": 3,
-      "high_priority_files": 3,
-      "medium_priority_files": 6,
+      "high_priority_files": 6,
+      "medium_priority_files": 8,
       "low_priority_files": 2,
       "files_by_update_type": {
         "code": 4,
-        "content": 1,
-        "statistics": 8,
-        "documentation": 1
+        "content": 2,
+        "statistics": 11,
+        "documentation": 2
       }
     }
   },
