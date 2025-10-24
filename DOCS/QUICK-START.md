@@ -1,35 +1,55 @@
-# Quick Start: Get AI Dev Standards Running in 30 Seconds
+# Quick Start: Get AI Dev Standards Running in 2 Minutes
 
-**TL;DR:** Run one command, start coding with best practices.
+**TL;DR:** Copy a template file, run one command, start coding with 103 resources.
+
+**Version:** 1.3.0 | **Updated:** 2025-10-24
 
 ---
 
-## ⚡ Fastest Way (30 Seconds)
+## ⚡ Fastest Way (2 Minutes)
 
 ### For ANY Project (New or Existing)
 
 ```bash
+# 1. Navigate to your project
 cd /your/project
-npx @ai-dev-standards/bootstrap
+
+# 2. Copy template (choose one)
+cp ~/ai-dev-standards/TEMPLATES/cursorrules-saas.md .cursorrules
+
+# 3. Set up sync
+ai-dev sync --yes
+
+# Done! Start coding with AI assistance
 ```
 
 **That's it!** ✨
 
-This automatically:
-- ✅ Installs the ai-dev CLI
-- ✅ Creates `.ai-dev.json` configuration
-- ✅ Sets up `.claude/` with all 12 skills
-- ✅ Configures MCPs (Supabase, Stripe, etc.)
-- ✅ Updates `.cursorrules` with best practices
-- ✅ Updates `.gitignore` with standard patterns
-- ✅ Sets up git hooks (auto-sync on every pull)
-- ✅ Runs initial sync
+This gives you access to:
+- ✅ 37 specialized skills
+- ✅ 34 MCP servers (92% coverage)
+- ✅ 9 tools + 4 scripts
+- ✅ 13 reusable components
+- ✅ 6 service integrations
+- ✅ Auto-sync on git pull
+- ✅ File dependency tracking
 
 **Works for:**
 - ✅ New projects (just created)
 - ✅ Existing projects (any size)
 - ✅ Projects with or without git
-- ✅ Projects with or without package.json
+- ✅ Any tech stack
+
+---
+
+## 🔮 Coming Soon: One-Command Bootstrap
+
+```bash
+npx @ai-dev-standards/bootstrap
+```
+
+**Status:** Tracked for next release (HIGH priority)
+**Until then:** Use the 2-minute setup above
 
 ---
 
@@ -117,10 +137,12 @@ Open your project in Claude Code and ask:
 You: "What skills are available from ai-dev-standards?"
 ```
 
-**Expected:** Claude lists all 12 skills:
-- mvp-builder, rag-implementer, product-strategist
-- api-designer, frontend-builder, deployment-advisor
-- And 6 more...
+**Expected:** Claude lists all 37 skills:
+- mvp-builder, rag-implementer, product-strategist, multi-agent-architect
+- api-designer, frontend-builder, deployment-advisor, security-engineer
+- data-engineer, data-visualizer, knowledge-graph-builder, performance-optimizer
+- ux-designer, visual-designer, design-system-architect, accessibility-engineer
+- And 21 more...
 
 ✅ **If yes:** Working perfectly!
 ❌ **If no:** Run `ai-dev sync` manually
@@ -361,19 +383,36 @@ ai-dev info skill mvp-builder
 cat .claude/skills/mvp-builder/README.md
 ```
 
-**All 12 skills:**
-1. **mvp-builder** - Feature prioritization, MVP patterns
-2. **rag-implementer** - RAG system implementation
-3. **product-strategist** - Product-market fit validation
-4. **api-designer** - REST/GraphQL API design
-5. **frontend-builder** - React/Next.js development
-6. **deployment-advisor** - Infrastructure decisions
-7. **data-visualizer** - Charts and dashboards
-8. **spatial-developer** - 3D/WebXR development
-9. **performance-optimizer** - Performance tuning
-10. **user-researcher** - User research methodology
-11. **ux-designer** - UX/UI design
-12. **go-to-market-planner** - Launch strategy
+**All 37 skills available:**
+
+**Product & Strategy:**
+- mvp-builder, product-strategist, go-to-market-planner, user-researcher
+
+**AI & Data:**
+- rag-implementer, knowledge-graph-builder, multi-agent-architect
+- data-engineer, data-visualizer
+
+**Frontend:**
+- frontend-builder, ux-designer, visual-designer, animation-designer
+- design-system-architect, accessibility-engineer, mobile-developer
+
+**Backend & Infrastructure:**
+- api-designer, deployment-advisor, performance-optimizer, security-engineer
+
+**Specialized:**
+- 3d-visualizer, spatial-developer, voice-interface-builder, video-producer
+- audio-producer, livestream-engineer, iot-developer, localization-engineer
+
+**Quality & Documentation:**
+- testing-strategist, quality-auditor, technical-writer, copywriter, brand-designer
+
+**ADHD Support:**
+- context-preserver, focus-session-manager, task-breakdown-specialist
+
+**Repository Analysis:**
+- dark-matter-analyzer
+
+See `META/skill-registry.json` for complete details
 
 ---
 
@@ -529,17 +568,23 @@ mv .cursorrules.backup .cursorrules
 ## 🎉 You're Ready!
 
 **What you have now:**
-- ✅ All 12 skills available to Claude
-- ✅ MCPs configured for common services
+- ✅ All 37 skills available to Claude
+- ✅ 34 MCP servers (92% skill coverage)
+- ✅ 9 tools + 4 scripts for automation
+- ✅ 13 reusable components
+- ✅ 6 service integrations
 - ✅ Best practices enforced via .cursorrules
-- ✅ Auto-sync on every git pull
-- ✅ Config files always current
+- ✅ Auto-sync on every git pull (optional)
+- ✅ File dependency tracking system
+
+**Total: 103 resources at your fingertips**
 
 **What happens automatically:**
 - ✅ Skills update when standards update
 - ✅ New MCPs become available automatically
+- ✅ Components and integrations sync automatically
 - ✅ Config files get latest best practices
-- ✅ Zero maintenance needed
+- ✅ File dependency tracking prevents missing updates
 
 **Next:** Just start coding! Claude has everything it needs. 🚀
 
