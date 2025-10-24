@@ -1,0 +1,26 @@
+# AI Dev Standards - Setup Instructions
+
+ONE COMMAND. ANY PROJECT.
+
+cd /your/project
+bash ~/ai-dev-standards/setup-project.sh
+
+That's it.
+
+The tool automatically:
+✓ Detects your project type
+✓ Installs everything
+✓ Analyzes your repository  
+✓ Recommends where to start
+
+No configuration needed.
+Works for new projects, existing projects, any language, any framework.
+
+After 2 minutes, you have:
+• 37 skills
+• 34 MCP servers
+• 103 total resources
+• Project analysis with recommendations
+• Exact roadmap for where to start
+
+See INSTALL.md for details.

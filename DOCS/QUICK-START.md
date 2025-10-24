@@ -6,66 +6,43 @@
 
 ---
 
-## ⚡ Fastest Way (2 Minutes)
+## ⚡ 2 Minutes to Full Setup
 
-### For ANY Project (New or Existing)
-
-**Option 1: Automated Setup (Recommended)**
+### One Command. Any Project.
 
 ```bash
-# From your project directory
 cd /your/project
-
-# Run setup script
 bash ~/ai-dev-standards/setup-project.sh
-
-# Done! Start coding with AI assistance
 ```
 
-**Option 2: Manual Setup**
+**Done!** ✨
 
-```bash
-# 1. Navigate to your project
-cd /your/project
+No configuration. No options. No choices.
+The tool figures out everything automatically.
 
-# 2. Copy template (choose one)
-cp ~/ai-dev-standards/TEMPLATES/cursorrules-saas.md .cursorrules
+**What happens automatically:**
 
-# 3. Set up sync
-ai-dev sync --yes
+1. Detects your project (Next.js? React? Python? Empty?)
+2. Installs CLI (if needed)
+3. Copies the right template for your stack
+4. Syncs all 103 resources
+5. Analyzes your repository
+6. Shows you exactly where to start
 
-# Done! Start coding with AI assistance
+**Then you see:**
+```
+✓ Project Health: Good (75/100)
+✓ Project Stage: early
+✓ Recommended: testing-strategist, frontend-builder
+⚡ Quick Win: Add README.md
 ```
 
-**That's it!** ✨
+**Works everywhere:**
+- New projects, existing projects
+- Any language, any framework
+- Empty repos to large codebases
+- Local or freshly cloned from GitHub
 
-This gives you access to:
-- ✅ 37 specialized skills
-- ✅ 34 MCP servers (92% coverage)
-- ✅ 9 tools + 4 scripts
-- ✅ 13 reusable components
-- ✅ 6 service integrations
-- ✅ Auto-sync on git pull
-- ✅ File dependency tracking
-
-**Works for:**
-- ✅ New projects (just created)
-- ✅ Existing projects (any size)
-- ✅ Projects with or without git
-- ✅ Any tech stack
-
----
-
-## 🔮 Coming Soon: One-Command Bootstrap
-
-```bash
-npx @ai-dev-standards/bootstrap
-```
-
-**Status:** Tracked for next release (HIGH priority)
-**Until then:** Use the 2-minute setup above
-
----
 
 ## 📊 What You'll See
 
