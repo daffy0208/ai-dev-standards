@@ -545,7 +545,23 @@ async function loadProjectConfig(projectPath) {
     return null
   }
 
-  return await fs.readJson(configPath)
+  const config = await fs.readJson(configPath)
+
+  // Ensure all required fields exist with defaults
+  return {
+    version: config.version || '1.0.0',
+    lastSync: config.lastSync || null,
+    tracking: config.tracking || ['skills', 'mcps', 'tools', 'components', 'integrations', 'cursorrules', 'gitignore'],
+    frequency: config.frequency || 'git-hook',
+    installed: {
+      skills: config.installed?.skills || [],
+      mcps: config.installed?.mcps || [],
+      tools: config.installed?.tools || [],
+      scripts: config.installed?.scripts || [],
+      components: config.installed?.components || [],
+      integrations: config.installed?.integrations || []
+    }
+  }
 }
 
 /**
