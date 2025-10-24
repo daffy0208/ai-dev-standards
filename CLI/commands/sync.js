@@ -370,8 +370,13 @@ async function addSkillToProject(projectPath, skill) {
 
   let content = await fs.readFile(claudeMdPath, 'utf8')
 
+  // Use the skill path from the registry, or construct it
+  const skillPath = skill.path || `/SKILLS/${skill.id}/SKILL.md`
+  const githubBaseUrl = 'https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main'
+  const fullPath = `${githubBaseUrl}${skillPath}`
+
   // Add skill reference
-  const skillReference = `\n### ${skill.name}\n\n${skill.description}\n\n**Location:** \`/path/to/ai-dev-standards/SKILLS/${skill.name}/SKILL.md\`\n`
+  const skillReference = `\n### ${skill.name}\n\n${skill.description}\n\n**Location:** \`${fullPath}\`\n`
 
   if (!content.includes(skill.name)) {
     content += skillReference
