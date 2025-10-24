@@ -116,12 +116,9 @@ async function initializeProject() {
     tracking: [
       'skills',           // AI development skills
       'mcps',             // MCP server configurations
+      'tools',            // Development tools
       'components',       // Reusable code components
       'integrations',     // Third-party integrations
-      'standards',        // Architecture patterns & best practices
-      'utils',            // Utility functions and scripts
-      'tools',            // Development tools
-      'examples',         // Example implementations
       'cursorrules',      // Cursor IDE rules
       'gitignore'         // Git ignore patterns
     ],
@@ -129,12 +126,10 @@ async function initializeProject() {
     installed: {
       skills: [],
       mcps: [],
-      components: [],
-      integrations: [],
-      standards: [],
-      utils: [],
       tools: [],
-      examples: []
+      scripts: [],
+      components: [],
+      integrations: []
     },
     preferences: {
       autoApprove: false,
