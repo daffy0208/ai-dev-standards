@@ -251,7 +251,7 @@ class OpenAPIGeneratorServer {
               enum: ['header', 'query', 'cookie'],
               description: 'For apiKey: where to send',
             },
-            name: {
+            parameterName: {
               type: 'string',
               description: 'For apiKey: parameter name',
             },
@@ -631,14 +631,15 @@ class OpenAPIGeneratorServer {
     // Add examples to responses
     for (const [path, methods] of Object.entries(this.spec.paths)) {
       for (const [method, operation] of Object.entries(methods as any)) {
-        if (operation.responses) {
-          for (const [code, response] of Object.entries(operation.responses)) {
+        if ((operation as any).responses) {
+          for (const [code, response] of Object.entries((operation as any).responses)) {
+            const resp = response as any;
             if (
-              response.content?.['application/json']?.schema &&
-              !response.content['application/json'].example
+              resp.content?.['application/json']?.schema &&
+              !resp.content['application/json'].example
             ) {
-              response.content['application/json'].example = this.generateExampleValue(
-                response.content['application/json'].schema
+              resp.content['application/json'].example = this.generateExampleValue(
+                resp.content['application/json'].schema
               );
               count++;
             }
