@@ -14,6 +14,8 @@
       "language": "typescript",
       "framework": "custom",
       "supports_skills": ["multi-agent-architect"],
+      "supports_mcps": ["agent-orchestrator-mcp"],
+      "depends_on": [],
       "features": [
         "Task execution",
         "Error handling",
@@ -29,7 +31,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": ["frontend-builder", "security-engineer"],
+      "supports_skills": ["frontend-builder", "security-engineer", "mobile-developer"],
+      "supports_mcps": ["component-generator-mcp", "mobile-builder-mcp"],
+      "depends_on": ["form-field", "use-form"],
       "features": [
         "Email/password login",
         "Form validation",
@@ -46,7 +50,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": ["frontend-builder", "security-engineer"],
+      "supports_skills": ["frontend-builder", "security-engineer", "mobile-developer"],
+      "supports_mcps": ["component-generator-mcp", "mobile-builder-mcp"],
+      "depends_on": ["form-field", "use-form"],
       "features": [
         "User registration",
         "Password strength validation",
@@ -64,6 +70,8 @@
       "language": "typescript",
       "framework": "react",
       "supports_skills": ["frontend-builder", "security-engineer"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": ["form-field", "use-form"],
       "features": [
         "Email verification",
         "Token validation",
@@ -79,7 +87,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": ["frontend-builder", "security-engineer"],
+      "supports_skills": ["frontend-builder", "security-engineer", "accessibility-engineer"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": [],
       "features": [
         "Authentication checking",
         "Redirect to login",
@@ -95,7 +105,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": ["frontend-builder"],
+      "supports_skills": ["frontend-builder", "mobile-developer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "mobile-builder-mcp"],
+      "depends_on": ["error-fallback"],
       "features": [
         "Error catching",
         "Fallback UI",
@@ -112,6 +124,8 @@
       "language": "typescript",
       "framework": "react",
       "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp", "wireframe-generator-mcp"],
+      "depends_on": [],
       "features": [
         "User-friendly error display",
         "Retry functionality",
@@ -128,6 +142,8 @@
       "language": "typescript",
       "framework": "react",
       "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp", "wireframe-generator-mcp"],
+      "depends_on": [],
       "features": [
         "404 messaging",
         "Navigation links",
@@ -143,7 +159,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_skills": ["frontend-builder", "ux-designer", "design-system-architect", "mobile-developer"],
+      "supports_mcps": ["component-generator-mcp", "mobile-builder-mcp", "design-token-manager-mcp"],
+      "depends_on": [],
       "features": [
         "Animated spinner",
         "Size variants",
@@ -159,7 +177,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_skills": ["frontend-builder", "ux-designer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": [],
       "features": [
         "Content placeholders",
         "Animation",
@@ -175,7 +195,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_skills": ["frontend-builder", "ux-designer", "design-system-architect", "mobile-developer"],
+      "supports_mcps": ["component-generator-mcp", "mobile-builder-mcp", "design-token-manager-mcp"],
+      "depends_on": [],
       "features": [
         "Success/error/info variants",
         "Auto-dismiss",
@@ -192,7 +214,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": ["frontend-builder", "accessibility-engineer"],
+      "supports_skills": ["frontend-builder", "accessibility-engineer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp", "design-token-manager-mcp"],
+      "depends_on": [],
       "features": [
         "Input types",
         "Validation",
@@ -210,6 +234,8 @@
       "language": "typescript",
       "framework": "react",
       "supports_skills": ["frontend-builder"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": [],
       "features": [
         "Form state",
         "Validation",

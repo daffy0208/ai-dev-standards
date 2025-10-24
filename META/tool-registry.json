@@ -1,0 +1,310 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-10-24",
+  "description": "Registry of executable tools in ai-dev-standards. Tools are standalone utilities that can be invoked by skills, MCPs, or directly by developers.",
+  "total_tools": 9,
+  "total_scripts": 4,
+  "tools": [
+    {
+      "id": "api-caller-tool",
+      "name": "API Caller Tool",
+      "category": "custom-tools",
+      "description": "Make HTTP requests to REST APIs with flexible configuration",
+      "path": "/TOOLS/custom-tools/api-caller-tool.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": ["api-designer", "testing-strategist", "frontend-builder"],
+      "supports_mcps": ["api-validator-mcp", "openapi-generator-mcp"],
+      "features": [
+        "GET/POST/PUT/DELETE requests",
+        "Header management",
+        "Authentication support",
+        "Response validation"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "database-query-tool",
+      "name": "Database Query Tool",
+      "category": "custom-tools",
+      "description": "Execute SQL queries and manage database operations",
+      "path": "/TOOLS/custom-tools/database-query-tool.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": ["data-engineer", "rag-implementer", "backend-builder"],
+      "supports_mcps": ["database-migration-mcp"],
+      "features": [
+        "SQL query execution",
+        "Transaction management",
+        "Connection pooling",
+        "Query validation"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "filesystem-tool",
+      "name": "Filesystem Tool",
+      "category": "custom-tools",
+      "description": "File system operations for reading, writing, and managing files",
+      "path": "/TOOLS/custom-tools/filesystem-tool.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": ["all"],
+      "supports_mcps": ["all"],
+      "features": [
+        "File read/write",
+        "Directory operations",
+        "Path manipulation",
+        "File metadata"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "web-scraper-tool",
+      "name": "Web Scraper Tool",
+      "category": "custom-tools",
+      "description": "Extract data from websites with customizable selectors",
+      "path": "/TOOLS/custom-tools/web-scraper-tool.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": ["data-engineer", "user-researcher", "market-analyzer"],
+      "supports_mcps": ["market-analyzer-mcp", "user-insight-analyzer-mcp"],
+      "features": [
+        "HTML parsing",
+        "CSS selector support",
+        "JavaScript rendering",
+        "Rate limiting"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "code-analyzer-tool",
+      "name": "Code Analyzer Tool",
+      "category": "crewai-tools",
+      "description": "Analyze code quality, complexity, and security issues",
+      "path": "/TOOLS/crewai-tools/code-analyzer-tool.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "crewai",
+      "supports_skills": ["quality-auditor", "security-engineer", "performance-optimizer"],
+      "supports_mcps": ["code-quality-scanner-mcp", "security-scanner-mcp"],
+      "features": [
+        "Code smell detection",
+        "Complexity metrics",
+        "Security vulnerability scanning",
+        "Best practice validation"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "test-generator-tool",
+      "name": "Test Generator Tool",
+      "category": "crewai-tools",
+      "description": "Generate unit tests, integration tests, and test fixtures",
+      "path": "/TOOLS/crewai-tools/test-generator-tool.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "crewai",
+      "supports_skills": ["testing-strategist", "quality-auditor"],
+      "supports_mcps": ["test-runner-mcp", "screenshot-testing-mcp"],
+      "features": [
+        "Unit test generation",
+        "Integration test scaffolding",
+        "Test fixture creation",
+        "Mocking utilities"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "embedding-tool",
+      "name": "Embedding Tool",
+      "category": "langchain-tools",
+      "description": "Generate embeddings using various embedding models",
+      "path": "/TOOLS/langchain-tools/embedding-tool.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "langchain",
+      "supports_skills": ["rag-implementer", "semantic-search"],
+      "supports_mcps": ["embedding-generator-mcp"],
+      "features": [
+        "Multiple embedding models",
+        "Batch processing",
+        "Caching",
+        "Dimension reduction"
+      ],
+      "depends_on": ["openai", "anthropic", "cohere"]
+    },
+    {
+      "id": "vector-search-tool",
+      "name": "Vector Search Tool",
+      "category": "langchain-tools",
+      "description": "Search vector databases for semantic similarity",
+      "path": "/TOOLS/langchain-tools/vector-search-tool.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "langchain",
+      "supports_skills": ["rag-implementer", "knowledge-graph-builder"],
+      "supports_mcps": ["vector-database-mcp", "semantic-search-mcp"],
+      "features": [
+        "Similarity search",
+        "Metadata filtering",
+        "Hybrid search",
+        "Re-ranking"
+      ],
+      "depends_on": ["pinecone", "weaviate", "chroma", "qdrant"]
+    },
+    {
+      "id": "mcp-client-tool",
+      "name": "MCP Client Tool",
+      "category": "mcp-tools",
+      "description": "Connect to and invoke MCP server tools",
+      "path": "/TOOLS/mcp-tools/mcp-client-tool.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "mcp",
+      "supports_skills": ["all"],
+      "supports_mcps": ["all"],
+      "features": [
+        "MCP server connection",
+        "Tool invocation",
+        "Resource access",
+        "Prompt execution"
+      ],
+      "depends_on": []
+    }
+  ],
+  "supporting_scripts": [
+    {
+      "id": "db-backup",
+      "name": "Database Backup Script",
+      "category": "utilities",
+      "description": "Automated database backup with compression and cloud upload",
+      "path": "/UTILS/scripts/db-backup.ts",
+      "status": "active",
+      "language": "typescript",
+      "supports_skills": ["data-engineer", "deployment-advisor"],
+      "supports_mcps": ["database-migration-mcp"],
+      "features": [
+        "PostgreSQL/MySQL/MongoDB support",
+        "Compression",
+        "Cloud storage upload",
+        "Scheduled backups"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "db-migrate",
+      "name": "Database Migration Script",
+      "category": "utilities",
+      "description": "Run database migrations with version control",
+      "path": "/UTILS/scripts/db-migrate.ts",
+      "status": "active",
+      "language": "typescript",
+      "supports_skills": ["data-engineer", "backend-builder"],
+      "supports_mcps": ["database-migration-mcp"],
+      "features": [
+        "Migration execution",
+        "Rollback support",
+        "Version tracking",
+        "Multiple database support"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "test-runner",
+      "name": "Test Runner Script",
+      "category": "utilities",
+      "description": "Execute test suites with coverage reporting",
+      "path": "/UTILS/scripts/test-runner.ts",
+      "status": "active",
+      "language": "typescript",
+      "supports_skills": ["testing-strategist", "quality-auditor"],
+      "supports_mcps": ["test-runner-mcp", "screenshot-testing-mcp"],
+      "features": [
+        "Jest/Vitest support",
+        "Coverage reporting",
+        "Parallel execution",
+        "Watch mode"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "deploy",
+      "name": "Deployment Script",
+      "category": "utilities",
+      "description": "Deploy applications to various platforms",
+      "path": "/UTILS/scripts/deploy.ts",
+      "status": "active",
+      "language": "typescript",
+      "supports_skills": ["deployment-advisor"],
+      "supports_mcps": ["deployment-orchestrator-mcp"],
+      "features": [
+        "Multi-platform deployment",
+        "Pre-deployment checks",
+        "Rollback support",
+        "Health verification"
+      ],
+      "depends_on": []
+    }
+  ],
+  "categories": {
+    "custom-tools": {
+      "name": "Custom Tools",
+      "count": 4,
+      "description": "Custom-built tools for common operations",
+      "tools": ["api-caller-tool", "database-query-tool", "filesystem-tool", "web-scraper-tool"]
+    },
+    "crewai-tools": {
+      "name": "CrewAI Tools",
+      "count": 2,
+      "description": "Tools built with CrewAI framework",
+      "tools": ["code-analyzer-tool", "test-generator-tool"]
+    },
+    "langchain-tools": {
+      "name": "LangChain Tools",
+      "count": 2,
+      "description": "Tools built with LangChain framework",
+      "tools": ["embedding-tool", "vector-search-tool"]
+    },
+    "mcp-tools": {
+      "name": "MCP Tools",
+      "count": 1,
+      "description": "Tools for MCP server integration",
+      "tools": ["mcp-client-tool"]
+    },
+    "utilities": {
+      "name": "Utility Scripts",
+      "count": 4,
+      "description": "Standalone utility scripts for common operations",
+      "scripts": ["db-backup", "db-migrate", "test-runner", "deploy"]
+    }
+  },
+  "statistics": {
+    "total_tools": 9,
+    "total_scripts": 4,
+    "by_category": {
+      "custom-tools": 4,
+      "crewai-tools": 2,
+      "langchain-tools": 2,
+      "mcp-tools": 1,
+      "utilities": 4
+    },
+    "skills_covered": 15,
+    "mcps_covered": 12
+  },
+  "usage_notes": {
+    "purpose": "This registry catalogs all executable tools and scripts",
+    "invocation": "Tools can be invoked by skills, MCPs, or directly via CLI",
+    "cross_references": [
+      "META/skill-registry.json - Maps skills to tools",
+      "META/mcp-registry.json - Maps MCPs to tools",
+      "META/relationship-mapping.json - Complete resource relationships"
+    ],
+    "adding_tools": "Place tools in appropriate subdirectories in TOOLS/",
+    "documentation": "Each tool must include usage examples and type definitions"
+  }
+}

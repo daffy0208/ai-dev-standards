@@ -11,8 +11,9 @@
       "description": "OpenAI API integration for GPT models",
       "path": "/INTEGRATIONS/llm-providers/openai-client.ts",
       "status": "active",
-      "supports_skills": ["rag-implementer", "multi-agent-architect"],
-      "supports_mcps": ["embedding-generator-mcp"],
+      "supports_skills": ["rag-implementer", "multi-agent-architect", "copywriter", "voice-interface-builder"],
+      "supports_mcps": ["embedding-generator-mcp", "agent-orchestrator-mcp"],
+      "depends_on": [],
       "features": [
         "Chat completions",
         "Embeddings generation",
@@ -29,7 +30,9 @@
       "description": "Anthropic API integration for Claude models",
       "path": "/INTEGRATIONS/llm-providers/anthropic-client.ts",
       "status": "active",
-      "supports_skills": ["rag-implementer", "multi-agent-architect"],
+      "supports_skills": ["rag-implementer", "multi-agent-architect", "copywriter"],
+      "supports_mcps": ["embedding-generator-mcp", "agent-orchestrator-mcp"],
+      "depends_on": [],
       "features": [
         "Message API",
         "Streaming responses",
@@ -47,7 +50,9 @@
       "path": "/INTEGRATIONS/platforms/supabase/",
       "files": ["client.ts", "server.ts", "README.md"],
       "status": "active",
-      "supports_skills": ["frontend-builder", "deployment-advisor", "security-engineer"],
+      "supports_skills": ["frontend-builder", "deployment-advisor", "security-engineer", "data-engineer", "mobile-developer", "mvp-builder", "api-designer"],
+      "supports_mcps": ["database-migration-mcp", "deployment-orchestrator-mcp", "mobile-builder-mcp"],
+      "depends_on": [],
       "features": [
         "PostgreSQL database",
         "Authentication",
@@ -66,7 +71,9 @@
       "path": "/INTEGRATIONS/platforms/stripe/",
       "files": ["client.ts", "webhooks.ts", "README.md"],
       "status": "active",
-      "supports_skills": ["frontend-builder", "api-designer"],
+      "supports_skills": ["frontend-builder", "api-designer", "mvp-builder"],
+      "supports_mcps": [],
+      "depends_on": [],
       "features": [
         "Payment processing",
         "Subscription management",
@@ -83,7 +90,9 @@
       "description": "Resend email service integration",
       "path": "/INTEGRATIONS/platforms/resend/client.ts",
       "status": "active",
-      "supports_skills": ["frontend-builder"],
+      "supports_skills": ["frontend-builder", "mvp-builder"],
+      "supports_mcps": [],
+      "depends_on": [],
       "features": [
         "Transactional emails",
         "Template support",
@@ -102,6 +111,7 @@
       "status": "active",
       "supports_skills": ["rag-implementer"],
       "supports_mcps": ["vector-database-mcp", "semantic-search-mcp"],
+      "depends_on": [],
       "features": [
         "Vector storage",
         "Similarity search",
