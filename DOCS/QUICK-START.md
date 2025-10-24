@@ -10,6 +10,20 @@
 
 ### For ANY Project (New or Existing)
 
+**Option 1: Automated Setup (Recommended)**
+
+```bash
+# From your project directory
+cd /your/project
+
+# Run setup script
+bash ~/ai-dev-standards/setup-project.sh
+
+# Done! Start coding with AI assistance
+```
+
+**Option 2: Manual Setup**
+
 ```bash
 # 1. Navigate to your project
 cd /your/project
