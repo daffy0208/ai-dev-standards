@@ -542,6 +542,13 @@
       "priority": "high",
       "description": "Bootstrap installer must handle all 6 resource types"
     },
+    "setup-project.sh": {
+      "depends_on_registries": ["all"],
+      "update_type": "statistics",
+      "sections": ["line 124: final success message"],
+      "priority": "medium",
+      "description": "Setup script displays resource counts in completion message"
+    },
     "scripts/regenerate-relationships.ts": {
       "depends_on_registries": ["all"],
       "update_type": "code",
@@ -590,15 +597,15 @@
       {"script": "db-migrate", "usage_count": 1}
     ],
     "file_dependencies": {
-      "total_tracked_files": 13,
+      "total_tracked_files": 14,
       "critical_files": 3,
       "high_priority_files": 3,
-      "medium_priority_files": 5,
+      "medium_priority_files": 6,
       "low_priority_files": 2,
       "files_by_update_type": {
         "code": 4,
         "content": 1,
-        "statistics": 7,
+        "statistics": 8,
         "documentation": 1
       }
     }
