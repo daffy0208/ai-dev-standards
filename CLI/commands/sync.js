@@ -121,7 +121,7 @@ async function initializeSync(projectPath, options = {}) {
   // If --yes flag is provided, use defaults
   if (options.yes) {
     answers = {
-      track: ['skills', 'mcps', 'cursorrules', 'gitignore', 'tools'],
+      track: ['skills', 'mcps', 'cursorrules', 'gitignore', 'tools', 'components', 'integrations'],
       frequency: 'git-hook'
     }
     spinner.text = 'Using default sync settings...'
@@ -135,9 +135,11 @@ async function initializeSync(projectPath, options = {}) {
         choices: [
           { name: 'Skills (claude.md)', value: 'skills', checked: true },
           { name: 'MCP Servers', value: 'mcps', checked: true },
+          { name: 'Tools', value: 'tools', checked: true },
+          { name: 'Components', value: 'components', checked: true },
+          { name: 'Integrations', value: 'integrations', checked: true },
           { name: 'Cursor Rules (.cursorrules)', value: 'cursorrules', checked: true },
           { name: 'Git Ignore (.gitignore)', value: 'gitignore', checked: true },
-          { name: 'Tools & Integrations', value: 'tools', checked: true },
           { name: 'Templates', value: 'templates', checked: false }
         ]
       },
@@ -165,6 +167,8 @@ async function initializeSync(projectPath, options = {}) {
       skills: [],
       mcps: [],
       tools: [],
+      scripts: [],
+      components: [],
       integrations: []
     }
   }
@@ -194,7 +198,7 @@ async function checkForUpdates(config) {
   // Check skills
   if (config.tracking.includes('skills')) {
     const newSkills = latest.skills.filter(skill =>
-      !config.installed.skills.includes(skill.name)
+      !config.installed.skills.includes(skill.id)
     )
 
     for (const skill of newSkills) {
@@ -210,7 +214,7 @@ async function checkForUpdates(config) {
   // Check MCPs
   if (config.tracking.includes('mcps')) {
     const newMcps = latest.mcps.filter(mcp =>
-      !config.installed.mcps.includes(mcp.name)
+      !config.installed.mcps.includes(mcp.id)
     )
 
     for (const mcp of newMcps) {
@@ -226,7 +230,7 @@ async function checkForUpdates(config) {
   // Check tools
   if (config.tracking.includes('tools')) {
     const newTools = latest.tools.filter(tool =>
-      !config.installed.tools.includes(tool.name)
+      !config.installed.tools.includes(tool.id)
     )
 
     for (const tool of newTools) {
@@ -235,6 +239,52 @@ async function checkForUpdates(config) {
         name: tool.name,
         description: tool.description,
         data: tool
+      })
+    }
+
+    // Check scripts
+    const newScripts = latest.scripts.filter(script =>
+      !config.installed.scripts.includes(script.id)
+    )
+
+    for (const script of newScripts) {
+      updates.push({
+        type: 'script',
+        name: script.name,
+        description: script.description,
+        data: script
+      })
+    }
+  }
+
+  // Check components
+  if (config.tracking.includes('components')) {
+    const newComponents = latest.components.filter(comp =>
+      !config.installed.components.includes(comp.id)
+    )
+
+    for (const comp of newComponents) {
+      updates.push({
+        type: 'component',
+        name: comp.name,
+        description: comp.description,
+        data: comp
+      })
+    }
+  }
+
+  // Check integrations
+  if (config.tracking.includes('integrations')) {
+    const newIntegrations = latest.integrations.filter(int =>
+      !config.installed.integrations.includes(int.id)
+    )
+
+    for (const integration of newIntegrations) {
+      updates.push({
+        type: 'integration',
+        name: integration.name,
+        description: integration.description,
+        data: integration
       })
     }
   }
@@ -273,17 +323,32 @@ async function applyUpdate(projectPath, update, config) {
   switch (update.type) {
     case 'skill':
       await addSkillToProject(projectPath, update.data)
-      config.installed.skills.push(update.data.name)
+      config.installed.skills.push(update.data.id)
       break
 
     case 'mcp':
       await addMcpToProject(projectPath, update.data)
-      config.installed.mcps.push(update.data.name)
+      config.installed.mcps.push(update.data.id)
       break
 
     case 'tool':
       await addToolToProject(projectPath, update.data)
-      config.installed.tools.push(update.data.name)
+      config.installed.tools.push(update.data.id)
+      break
+
+    case 'script':
+      await addScriptToProject(projectPath, update.data)
+      config.installed.scripts.push(update.data.id)
+      break
+
+    case 'component':
+      await addComponentToProject(projectPath, update.data)
+      config.installed.components.push(update.data.id)
+      break
+
+    case 'integration':
+      await addIntegrationToProject(projectPath, update.data)
+      config.installed.integrations.push(update.data.id)
       break
 
     case 'config':
@@ -344,12 +409,64 @@ async function addMcpToProject(projectPath, mcp) {
  * Add tool to project
  */
 async function addToolToProject(projectPath, tool) {
-  // Copy tool file to project
+  // Fetch and copy tool file to project
   const toolsDir = path.join(projectPath, 'tools')
   await fs.ensureDir(toolsDir)
 
-  const toolPath = path.join(toolsDir, `${tool.name}.ts`)
-  await fs.writeFile(toolPath, tool.content)
+  // Fetch tool file from GitHub
+  const { fetchText } = require('../utils/github-fetch')
+  const content = await fetchText(tool.path.substring(1)) // Remove leading /
+
+  const toolFile = path.basename(tool.path)
+  await fs.writeFile(path.join(toolsDir, toolFile), content)
+}
+
+/**
+ * Add script to project
+ */
+async function addScriptToProject(projectPath, script) {
+  // Copy script to scripts directory
+  const scriptsDir = path.join(projectPath, 'scripts')
+  await fs.ensureDir(scriptsDir)
+
+  const { fetchText } = require('../utils/github-fetch')
+  const content = await fetchText(script.path.substring(1))
+
+  const scriptFile = path.basename(script.path)
+  const scriptPath = path.join(scriptsDir, scriptFile)
+  await fs.writeFile(scriptPath, content, { mode: 0o755 })
+}
+
+/**
+ * Add component to project
+ */
+async function addComponentToProject(projectPath, component) {
+  // Copy component to components directory
+  const componentsDir = path.join(projectPath, 'components', component.category)
+  await fs.ensureDir(componentsDir)
+
+  // Fetch component file from GitHub
+  const { fetchText } = require('../utils/github-fetch')
+  const content = await fetchText(component.path.substring(1)) // Remove leading /
+
+  const componentFile = path.basename(component.path)
+  await fs.writeFile(path.join(componentsDir, componentFile), content)
+}
+
+/**
+ * Add integration to project
+ */
+async function addIntegrationToProject(projectPath, integration) {
+  // Copy integration to lib directory
+  const integrationsDir = path.join(projectPath, 'lib', 'integrations', integration.category)
+  await fs.ensureDir(integrationsDir)
+
+  // Fetch integration file from GitHub
+  const { fetchText } = require('../utils/github-fetch')
+  const content = await fetchText(integration.path.substring(1))
+
+  const integrationFile = path.basename(integration.path)
+  await fs.writeFile(path.join(integrationsDir, integrationFile), content)
 }
 
 /**
@@ -446,12 +563,18 @@ function showSyncSummary(updates) {
   const skillCount = updates.filter(u => u.type === 'skill').length
   const mcpCount = updates.filter(u => u.type === 'mcp').length
   const toolCount = updates.filter(u => u.type === 'tool').length
+  const scriptCount = updates.filter(u => u.type === 'script').length
+  const componentCount = updates.filter(u => u.type === 'component').length
+  const integrationCount = updates.filter(u => u.type === 'integration').length
   const configCount = updates.filter(u => u.type === 'config').length
 
   console.log(chalk.bold('📊 Summary:\n'))
   if (skillCount > 0) console.log(chalk.gray(`  • ${skillCount} skills added`))
   if (mcpCount > 0) console.log(chalk.gray(`  • ${mcpCount} MCPs configured`))
   if (toolCount > 0) console.log(chalk.gray(`  • ${toolCount} tools added`))
+  if (scriptCount > 0) console.log(chalk.gray(`  • ${scriptCount} scripts added`))
+  if (componentCount > 0) console.log(chalk.gray(`  • ${componentCount} components added`))
+  if (integrationCount > 0) console.log(chalk.gray(`  • ${integrationCount} integrations added`))
   if (configCount > 0) console.log(chalk.gray(`  • ${configCount} config files updated`))
 
   console.log(chalk.bold('\n💡 Tip:'))

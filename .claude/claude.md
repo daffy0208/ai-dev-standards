@@ -1,6 +1,40 @@
 # Claude Configuration
 
+## Available Resources
+
+This repository provides a comprehensive resource system for AI-powered development:
+
+### 📋 Complete Resource Inventory
+
+- **37 Skills** - Specialized development methodologies and expertise areas
+- **34 MCP Servers** - Executable tools providing 92% skill coverage (1.1:1 ratio)
+- **9 Tools + 4 Scripts** - LangChain, CrewAI tools, and automation scripts
+- **13 Components** - Reusable React components and patterns
+- **6 Integrations** - Pre-configured service integrations (OpenAI, Supabase, etc.)
+
+**Total: 103 Resources**
+
+### 📍 Registry Locations
+
+All resources are cataloged in `/META/` registries:
+- `skill-registry.json` - All 37 skills with descriptions and metadata
+- `mcp-registry.json` - All 34 MCP servers
+- `tool-registry.json` - All 9 tools + 4 scripts
+- `component-registry.json` - All 13 components
+- `integration-registry.json` - All 6 integrations
+- `relationship-mapping.json` - Complete dependency graph and file dependencies
+
+### 🔗 How Resources Work Together
+
+Use `relationship-mapping.json` to discover:
+- Which MCPs support each skill (e.g., rag-implementer → vector-database-mcp, embedding-generator-mcp)
+- Which tools each MCP requires (e.g., vector-database-mcp → vector-search-tool, embedding-tool)
+- Which components complement each skill (e.g., frontend-builder → login-form, error-boundary)
+- Which integrations enable functionality (e.g., rag-implementer → openai, pinecone)
+
 ## Skills
+
+All 37 skills are listed below with descriptions and locations:
 
 
 ### 3d-visualizer

@@ -23,6 +23,16 @@ Status: Active
 - **performance-optimizer** - Query latency optimization
 - **multi-agent-architect** - If using multiple agents
 
+### Available Resources
+This project has access to:
+- **37 Skills** - Including rag-implementer, knowledge-graph-builder, data-engineer
+- **34 MCPs** - Including vector-database-mcp, embedding-generator-mcp, semantic-search-mcp
+- **9 Tools + 4 Scripts** - vector-search-tool, embedding-tool, web-scraper-tool
+- **13 Components** - Including simple-task-agent for agent implementations
+- **6 Integrations** - OpenAI, Anthropic, Pinecone (vector DB)
+
+See `META/relationship-mapping.json` for RAG-specific resource dependencies.
+
 ---
 
 ## Project Context

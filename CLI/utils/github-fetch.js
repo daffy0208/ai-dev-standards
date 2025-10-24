@@ -44,11 +44,46 @@ async function fetchSkills() {
 }
 
 /**
- * Fetch all MCPs from registry.json
+ * Fetch all MCPs from mcp-registry.json
  */
 async function fetchMCPs() {
-  const registry = await fetchJSON('META/registry.json')
+  const registry = await fetchJSON('META/mcp-registry.json')
   return registry.mcps || []
+}
+
+/**
+ * Fetch all tools from tool-registry.json
+ */
+async function fetchTools() {
+  const registry = await fetchJSON('META/tool-registry.json')
+  return {
+    tools: registry.tools || [],
+    scripts: registry.supporting_scripts || []
+  }
+}
+
+/**
+ * Fetch all components from component-registry.json
+ */
+async function fetchComponents() {
+  const registry = await fetchJSON('META/component-registry.json')
+  return registry.components || []
+}
+
+/**
+ * Fetch all integrations from integration-registry.json
+ */
+async function fetchIntegrations() {
+  const registry = await fetchJSON('META/integration-registry.json')
+  return registry.integrations || []
+}
+
+/**
+ * Fetch relationship mapping
+ */
+async function fetchRelationships() {
+  const mapping = await fetchJSON('META/relationship-mapping.json')
+  return mapping
 }
 
 /**
@@ -81,9 +116,23 @@ async function fetchGitignore() {
  * Fetch all standards (used by sync command)
  */
 async function fetchAllStandards() {
-  const [skills, mcps, cursorrules, gitignore, version] = await Promise.all([
+  const [
+    skills,
+    mcps,
+    toolsData,
+    components,
+    integrations,
+    relationships,
+    cursorrules,
+    gitignore,
+    version
+  ] = await Promise.all([
     fetchSkills(),
     fetchMCPs(),
+    fetchTools(),
+    fetchComponents(),
+    fetchIntegrations(),
+    fetchRelationships(),
     fetchCursorrules(),
     fetchGitignore(),
     fetchVersion()
@@ -93,7 +142,11 @@ async function fetchAllStandards() {
     version,
     skills,
     mcps,
-    tools: [],
+    tools: toolsData.tools,
+    scripts: toolsData.scripts,
+    components,
+    integrations,
+    relationships,
     cursorrules,
     gitignore
   }
@@ -104,6 +157,10 @@ module.exports = {
   fetchText,
   fetchSkills,
   fetchMCPs,
+  fetchTools,
+  fetchComponents,
+  fetchIntegrations,
+  fetchRelationships,
   fetchVersion,
   fetchCursorrules,
   fetchGitignore,

@@ -16,6 +16,14 @@ Status: Active
 2. ~/ai-dev-standards/META/HOW-TO-USE.md
 3. ~/ai-dev-standards/META/DECISION-FRAMEWORK.md
 
+### Available Resources
+This project has access to:
+- **37 Skills** - Specialized development methodologies (see META/skill-registry.json)
+- **34 MCPs** - Executable development tools (92% skill coverage)
+- **9 Tools + 4 Scripts** - LangChain, CrewAI, custom utilities
+- **13 Components** - Reusable React components and patterns
+- **6 Integrations** - OpenAI, Anthropic, Supabase, Stripe, etc.
+
 ### Primary Skills
 - mvp-builder
 - frontend-builder

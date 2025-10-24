@@ -19,6 +19,19 @@ Status: Active
 **Check skill registry for relevant skills:**
 - ~/ai-dev-standards/META/skill-registry.json
 
+### Available Resources
+This project has access to:
+- **37 Skills** - Specialized development methodologies
+- **34 MCPs** - Executable development tools (92% skill coverage)
+- **9 Tools + 4 Scripts** - LangChain, CrewAI, custom utilities
+- **13 Components** - Reusable React components (auth, forms, errors, feedback)
+- **6 Integrations** - OpenAI, Anthropic, Supabase, Stripe, Pinecone, Resend
+
+See registries in `META/` for complete details:
+- skill-registry.json, mcp-registry.json, tool-registry.json
+- component-registry.json, integration-registry.json
+- relationship-mapping.json (dependency graph)
+
 ### Primary Skills for This Project
 - **mvp-builder** - Feature prioritization with P0/P1/P2
 - **product-strategist** - Market validation and problem-solution fit

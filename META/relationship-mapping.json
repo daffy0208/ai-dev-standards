@@ -464,6 +464,99 @@
       "required_integrations": []
     }
   },
+  "file_dependencies": {
+    "CLI/commands/sync.js": {
+      "depends_on_registries": ["skill-registry", "mcp-registry", "tool-registry", "component-registry", "integration-registry"],
+      "update_type": "code",
+      "sections": ["checkForUpdates", "applyUpdate", "initializeSync", "showSyncSummary"],
+      "priority": "critical",
+      "description": "Sync command needs updating when new resource types are added or registry structures change"
+    },
+    "CLI/utils/github-fetch.js": {
+      "depends_on_registries": ["all"],
+      "update_type": "code",
+      "sections": ["fetchAllStandards", "module.exports"],
+      "priority": "critical",
+      "description": "Fetch utility must be updated when new registries are added"
+    },
+    ".claude/claude.md": {
+      "depends_on_registries": ["skill-registry"],
+      "update_type": "content",
+      "sections": ["Skills section"],
+      "priority": "high",
+      "description": "Must list all 37 skills with names, descriptions, and locations"
+    },
+    ".cursorrules": {
+      "depends_on_registries": ["all"],
+      "update_type": "statistics",
+      "sections": ["Available Resources"],
+      "priority": "high",
+      "description": "Statistics and registry references need updating when counts change"
+    },
+    "README.md": {
+      "depends_on_registries": ["all"],
+      "update_type": "statistics",
+      "sections": ["lines 9-26", "version number", "resource counts"],
+      "priority": "high",
+      "description": "Version and resource statistics must be current"
+    },
+    "TEMPLATES/cursorrules-ai-rag.md": {
+      "depends_on_registries": ["all"],
+      "update_type": "statistics",
+      "sections": ["Available Resources"],
+      "priority": "medium",
+      "description": "Template should reference current registry statistics"
+    },
+    "TEMPLATES/cursorrules-existing-project.md": {
+      "depends_on_registries": ["all"],
+      "update_type": "statistics",
+      "sections": ["Available Resources"],
+      "priority": "medium",
+      "description": "Template should reference current registry statistics"
+    },
+    "TEMPLATES/cursorrules-minimal.md": {
+      "depends_on_registries": ["all"],
+      "update_type": "statistics",
+      "sections": ["Available Resources"],
+      "priority": "medium",
+      "description": "Template should reference current registry statistics"
+    },
+    "TEMPLATES/cursorrules-quick-test.md": {
+      "depends_on_registries": ["all"],
+      "update_type": "statistics",
+      "sections": ["Available Resources"],
+      "priority": "medium",
+      "description": "Template should reference current registry statistics"
+    },
+    "TEMPLATES/cursorrules-saas.md": {
+      "depends_on_registries": ["all"],
+      "update_type": "statistics",
+      "sections": ["Available Resources"],
+      "priority": "medium",
+      "description": "Template should reference current registry statistics"
+    },
+    "INSTALLERS/bootstrap/bootstrap.js": {
+      "depends_on_registries": ["all"],
+      "update_type": "code",
+      "sections": ["installation logic", "resource fetching"],
+      "priority": "high",
+      "description": "Bootstrap installer must handle all 6 resource types"
+    },
+    "scripts/regenerate-relationships.ts": {
+      "depends_on_registries": ["all"],
+      "update_type": "code",
+      "sections": ["extractSkillRelationships", "extractMcpRelationships"],
+      "priority": "critical",
+      "description": "Relationship regeneration script must process all registries correctly"
+    },
+    "SYNC-UPDATE-PLAN.md": {
+      "depends_on_registries": ["all"],
+      "update_type": "documentation",
+      "sections": ["all sections"],
+      "priority": "low",
+      "description": "Planning document - can be archived once updates are complete"
+    }
+  },
   "statistics": {
     "total_skills": 37,
     "total_mcps": 34,
@@ -495,12 +588,27 @@
       {"script": "test-runner", "usage_count": 2},
       {"script": "db-backup", "usage_count": 1},
       {"script": "db-migrate", "usage_count": 1}
-    ]
+    ],
+    "file_dependencies": {
+      "total_tracked_files": 13,
+      "critical_files": 3,
+      "high_priority_files": 3,
+      "medium_priority_files": 5,
+      "low_priority_files": 2,
+      "files_by_update_type": {
+        "code": 4,
+        "content": 1,
+        "statistics": 7,
+        "documentation": 1
+      }
+    }
   },
   "usage_notes": {
     "purpose": "This is the single source of truth for resource dependencies. Skills and MCPs reference this mapping to discover required resources.",
     "validation": "CI validates that all referenced resources exist in their respective registries",
     "generation": "This file can be regenerated from individual registries using scripts/regenerate-relationships.ts",
+    "file_dependencies": "The file_dependencies section tracks which files need updating when registries change. This ensures systematic updates and prevents files from falling out of sync.",
+    "automation": "When registries are updated, check file_dependencies to see which files need updating. Sort by priority (critical > high > medium > low) and update_type.",
     "cross_references": [
       "META/skill-registry.json - All skills",
       "META/mcp-registry.json - All MCPs",

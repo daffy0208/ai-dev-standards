@@ -38,12 +38,21 @@ interface McpMapping {
   required_integrations: string[]
 }
 
+interface FileDependency {
+  depends_on_registries: string[]
+  update_type: string
+  sections: string[]
+  priority: string
+  description: string
+}
+
 interface RelationshipMapping {
   version: string
   last_updated: string
   description: string
   skills: Record<string, SkillMapping>
   mcps: Record<string, McpMapping>
+  file_dependencies: Record<string, FileDependency>
   statistics: {
     total_skills: number
     total_mcps: number
@@ -53,11 +62,21 @@ interface RelationshipMapping {
     most_used_components: Array<{ component: string; usage_count: number }>
     most_used_integrations: Array<{ integration: string; usage_count: number }>
     most_used_scripts: Array<{ script: string; usage_count: number }>
+    file_dependencies: {
+      total_tracked_files: number
+      critical_files: number
+      high_priority_files: number
+      medium_priority_files: number
+      low_priority_files: number
+      files_by_update_type: Record<string, number>
+    }
   }
   usage_notes: {
     purpose: string
     validation: string
     generation: string
+    file_dependencies: string
+    automation: string
     cross_references: string[]
   }
 }
@@ -231,12 +250,134 @@ function extractMcpRelationships(
 }
 
 /**
+ * Get file dependencies configuration
+ */
+function getFileDependencies(): Record<string, FileDependency> {
+  return {
+    'CLI/commands/sync.js': {
+      depends_on_registries: ['skill-registry', 'mcp-registry', 'tool-registry', 'component-registry', 'integration-registry'],
+      update_type: 'code',
+      sections: ['checkForUpdates', 'applyUpdate', 'initializeSync', 'showSyncSummary'],
+      priority: 'critical',
+      description: 'Sync command needs updating when new resource types are added or registry structures change'
+    },
+    'CLI/utils/github-fetch.js': {
+      depends_on_registries: ['all'],
+      update_type: 'code',
+      sections: ['fetchAllStandards', 'module.exports'],
+      priority: 'critical',
+      description: 'Fetch utility must be updated when new registries are added'
+    },
+    '.claude/claude.md': {
+      depends_on_registries: ['skill-registry'],
+      update_type: 'content',
+      sections: ['Skills section'],
+      priority: 'high',
+      description: 'Must list all 37 skills with names, descriptions, and locations'
+    },
+    '.cursorrules': {
+      depends_on_registries: ['all'],
+      update_type: 'statistics',
+      sections: ['Available Resources'],
+      priority: 'high',
+      description: 'Statistics and registry references need updating when counts change'
+    },
+    'README.md': {
+      depends_on_registries: ['all'],
+      update_type: 'statistics',
+      sections: ['lines 9-26', 'version number', 'resource counts'],
+      priority: 'high',
+      description: 'Version and resource statistics must be current'
+    },
+    'TEMPLATES/cursorrules-ai-rag.md': {
+      depends_on_registries: ['all'],
+      update_type: 'statistics',
+      sections: ['Available Resources'],
+      priority: 'medium',
+      description: 'Template should reference current registry statistics'
+    },
+    'TEMPLATES/cursorrules-existing-project.md': {
+      depends_on_registries: ['all'],
+      update_type: 'statistics',
+      sections: ['Available Resources'],
+      priority: 'medium',
+      description: 'Template should reference current registry statistics'
+    },
+    'TEMPLATES/cursorrules-minimal.md': {
+      depends_on_registries: ['all'],
+      update_type: 'statistics',
+      sections: ['Available Resources'],
+      priority: 'medium',
+      description: 'Template should reference current registry statistics'
+    },
+    'TEMPLATES/cursorrules-quick-test.md': {
+      depends_on_registries: ['all'],
+      update_type: 'statistics',
+      sections: ['Available Resources'],
+      priority: 'medium',
+      description: 'Template should reference current registry statistics'
+    },
+    'TEMPLATES/cursorrules-saas.md': {
+      depends_on_registries: ['all'],
+      update_type: 'statistics',
+      sections: ['Available Resources'],
+      priority: 'medium',
+      description: 'Template should reference current registry statistics'
+    },
+    'INSTALLERS/bootstrap/bootstrap.js': {
+      depends_on_registries: ['all'],
+      update_type: 'code',
+      sections: ['installation logic', 'resource fetching'],
+      priority: 'high',
+      description: 'Bootstrap installer must handle all 6 resource types'
+    },
+    'scripts/regenerate-relationships.ts': {
+      depends_on_registries: ['all'],
+      update_type: 'code',
+      sections: ['extractSkillRelationships', 'extractMcpRelationships'],
+      priority: 'critical',
+      description: 'Relationship regeneration script must process all registries correctly'
+    },
+    'SYNC-UPDATE-PLAN.md': {
+      depends_on_registries: ['all'],
+      update_type: 'documentation',
+      sections: ['all sections'],
+      priority: 'low',
+      description: 'Planning document - can be archived once updates are complete'
+    }
+  }
+}
+
+/**
+ * Calculate file dependency statistics
+ */
+function calculateFileDependencyStatistics(fileDeps: Record<string, FileDependency>) {
+  const priorities = Object.values(fileDeps).map(dep => dep.priority)
+  const updateTypes = Object.values(fileDeps).map(dep => dep.update_type)
+
+  const updateTypeCount: Record<string, number> = {}
+  updateTypes.forEach(type => {
+    updateTypeCount[type] = (updateTypeCount[type] || 0) + 1
+  })
+
+  return {
+    total_tracked_files: Object.keys(fileDeps).length,
+    critical_files: priorities.filter(p => p === 'critical').length,
+    high_priority_files: priorities.filter(p => p === 'high').length,
+    medium_priority_files: priorities.filter(p => p === 'medium').length,
+    low_priority_files: priorities.filter(p => p === 'low').length,
+    files_by_update_type: updateTypeCount
+  }
+}
+
+/**
  * Calculate usage statistics
  */
 function calculateStatistics(
   skillMappings: Record<string, SkillMapping>,
   mcpMappings: Record<string, McpMapping>,
-  skillRegistry: Registry
+  skillRegistry: Registry,
+  fileDeps: Record<string, FileDependency>
 ): RelationshipMapping['statistics'] {
   const toolUsage: Record<string, number> = {}
   const componentUsage: Record<string, number> = {}
@@ -312,6 +453,7 @@ function calculateStatistics(
       .sort((a, b) => b[1] - a[1])
       .slice(0, 5)
       .map(([script, usage_count]) => ({ script, usage_count })),
+    file_dependencies: calculateFileDependencyStatistics(fileDeps)
   }
 }
 
@@ -343,9 +485,13 @@ async function regenerateRelationships() {
     integrationRegistry
   )
 
+  console.log('Getting file dependencies...')
+
+  const fileDependencies = getFileDependencies()
+
   console.log('Calculating statistics...')
 
-  const statistics = calculateStatistics(skillMappings, mcpMappings, skillRegistry)
+  const statistics = calculateStatistics(skillMappings, mcpMappings, skillRegistry, fileDependencies)
 
   const relationshipMapping: RelationshipMapping = {
     version: '2.0.0',
@@ -354,6 +500,7 @@ async function regenerateRelationships() {
       'Complete mapping of skills and MCPs to their required resources (tools, components, integrations, scripts). This is the single source of truth for resource dependencies.',
     skills: skillMappings,
     mcps: mcpMappings,
+    file_dependencies: fileDependencies,
     statistics,
     usage_notes: {
       purpose:
@@ -362,6 +509,10 @@ async function regenerateRelationships() {
         'CI validates that all referenced resources exist in their respective registries',
       generation:
         'This file can be regenerated from individual registries using scripts/regenerate-relationships.ts',
+      file_dependencies:
+        'The file_dependencies section tracks which files need updating when registries change. This ensures systematic updates and prevents files from falling out of sync.',
+      automation:
+        'When registries are updated, check file_dependencies to see which files need updating. Sort by priority (critical > high > medium > low) and update_type.',
       cross_references: [
         'META/skill-registry.json - All skills',
         'META/mcp-registry.json - All MCPs',
