@@ -1,0 +1,385 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-10-24",
+  "description": "Registry of reusable components in ai-dev-standards. Components are pre-built implementations for common patterns.",
+  "total_components": 13,
+  "components": [
+    {
+      "id": "simple-task-agent",
+      "name": "Simple Task Agent",
+      "category": "agents",
+      "description": "Basic task execution agent template",
+      "path": "/COMPONENTS/agents/simple-task-agent.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": ["multi-agent-architect"],
+      "features": [
+        "Task execution",
+        "Error handling",
+        "State management"
+      ]
+    },
+    {
+      "id": "login-form",
+      "name": "Login Form",
+      "category": "auth",
+      "description": "Authentication login form component",
+      "path": "/COMPONENTS/auth/LoginForm.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "security-engineer"],
+      "features": [
+        "Email/password login",
+        "Form validation",
+        "Error handling",
+        "Loading states"
+      ]
+    },
+    {
+      "id": "signup-form",
+      "name": "Signup Form",
+      "category": "auth",
+      "description": "User registration form component",
+      "path": "/COMPONENTS/auth/SignupForm.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "security-engineer"],
+      "features": [
+        "User registration",
+        "Password strength validation",
+        "Email verification",
+        "Terms acceptance"
+      ]
+    },
+    {
+      "id": "password-reset",
+      "name": "Password Reset",
+      "category": "auth",
+      "description": "Password reset flow component",
+      "path": "/COMPONENTS/auth/PasswordReset.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "security-engineer"],
+      "features": [
+        "Email verification",
+        "Token validation",
+        "Password update"
+      ]
+    },
+    {
+      "id": "protected-route",
+      "name": "Protected Route",
+      "category": "auth",
+      "description": "Route protection wrapper for authenticated pages",
+      "path": "/COMPONENTS/auth/ProtectedRoute.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "security-engineer"],
+      "features": [
+        "Authentication checking",
+        "Redirect to login",
+        "Role-based access"
+      ]
+    },
+    {
+      "id": "error-boundary",
+      "name": "Error Boundary",
+      "category": "errors",
+      "description": "React error boundary for graceful error handling",
+      "path": "/COMPONENTS/errors/ErrorBoundary.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder"],
+      "features": [
+        "Error catching",
+        "Fallback UI",
+        "Error reporting"
+      ]
+    },
+    {
+      "id": "error-fallback",
+      "name": "Error Fallback",
+      "category": "errors",
+      "description": "Error fallback UI component",
+      "path": "/COMPONENTS/errors/ErrorFallback.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "features": [
+        "User-friendly error display",
+        "Retry functionality",
+        "Error details"
+      ]
+    },
+    {
+      "id": "not-found",
+      "name": "404 Not Found",
+      "category": "errors",
+      "description": "404 error page component",
+      "path": "/COMPONENTS/errors/NotFound.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "features": [
+        "404 messaging",
+        "Navigation links",
+        "Search functionality"
+      ]
+    },
+    {
+      "id": "loading-spinner",
+      "name": "Loading Spinner",
+      "category": "feedback",
+      "description": "Loading indicator component",
+      "path": "/COMPONENTS/feedback/LoadingSpinner.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "features": [
+        "Animated spinner",
+        "Size variants",
+        "Color customization"
+      ]
+    },
+    {
+      "id": "skeleton",
+      "name": "Skeleton Loader",
+      "category": "feedback",
+      "description": "Skeleton loading placeholder component",
+      "path": "/COMPONENTS/feedback/Skeleton.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "features": [
+        "Content placeholders",
+        "Animation",
+        "Shape variants"
+      ]
+    },
+    {
+      "id": "toast",
+      "name": "Toast Notification",
+      "category": "feedback",
+      "description": "Toast notification component",
+      "path": "/COMPONENTS/feedback/Toast.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "features": [
+        "Success/error/info variants",
+        "Auto-dismiss",
+        "Position control",
+        "Action buttons"
+      ]
+    },
+    {
+      "id": "form-field",
+      "name": "Form Field",
+      "category": "forms",
+      "description": "Reusable form field component with validation",
+      "path": "/COMPONENTS/forms/FormField.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "accessibility-engineer"],
+      "features": [
+        "Input types",
+        "Validation",
+        "Error messages",
+        "ARIA labels"
+      ]
+    },
+    {
+      "id": "use-form",
+      "name": "useForm Hook",
+      "category": "forms",
+      "description": "Form state management hook",
+      "path": "/COMPONENTS/forms/useForm.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder"],
+      "features": [
+        "Form state",
+        "Validation",
+        "Submit handling",
+        "Reset functionality"
+      ]
+    }
+  ],
+  "categories": {
+    "agents": {
+      "name": "AI Agents",
+      "count": 1,
+      "description": "Reusable AI agent implementations",
+      "components": ["simple-task-agent"],
+      "needed": [
+        "rag-agent",
+        "research-agent",
+        "code-review-agent",
+        "multi-agent-coordinator"
+      ]
+    },
+    "auth": {
+      "name": "Authentication",
+      "count": 4,
+      "description": "Authentication and authorization components",
+      "components": ["login-form", "signup-form", "password-reset", "protected-route"],
+      "needed": []
+    },
+    "errors": {
+      "name": "Error Handling",
+      "count": 3,
+      "description": "Error display and handling components",
+      "components": ["error-boundary", "error-fallback", "not-found"],
+      "needed": []
+    },
+    "feedback": {
+      "name": "User Feedback",
+      "count": 3,
+      "description": "Loading states and user feedback components",
+      "components": ["loading-spinner", "skeleton", "toast"],
+      "needed": [
+        "progress-bar",
+        "alert",
+        "modal"
+      ]
+    },
+    "forms": {
+      "name": "Forms",
+      "count": 2,
+      "description": "Form components and utilities",
+      "components": ["form-field", "use-form"],
+      "needed": [
+        "select",
+        "checkbox",
+        "radio",
+        "file-upload"
+      ]
+    },
+    "mcp-servers": {
+      "name": "MCP Servers",
+      "count": 0,
+      "description": "MCP server component implementations",
+      "components": [],
+      "needed": [
+        "base-mcp-server",
+        "mcp-tool-handler",
+        "mcp-resource-handler",
+        "mcp-prompt-handler"
+      ]
+    },
+    "rag-pipelines": {
+      "name": "RAG Pipelines",
+      "count": 0,
+      "description": "RAG pipeline components",
+      "components": [],
+      "needed": [
+        "document-loader",
+        "text-chunker",
+        "embedding-pipeline",
+        "vector-store-client",
+        "retrieval-pipeline",
+        "rag-orchestrator"
+      ]
+    },
+    "ui-components": {
+      "name": "UI Components",
+      "count": 0,
+      "description": "General UI components",
+      "components": [],
+      "needed": [
+        "button",
+        "card",
+        "input",
+        "modal",
+        "dropdown",
+        "table",
+        "pagination",
+        "tabs"
+      ]
+    },
+    "workflows": {
+      "name": "Workflows",
+      "count": 0,
+      "description": "Workflow orchestration components",
+      "components": [],
+      "needed": [
+        "task-queue",
+        "workflow-orchestrator",
+        "state-manager",
+        "event-bus"
+      ]
+    }
+  },
+  "critical_missing_categories": [
+    {
+      "category": "mcp-servers",
+      "priority": "CRITICAL",
+      "reason": "34 MCPs exist but no reusable component patterns",
+      "supports_mcps": "all 34 MCPs",
+      "impact": "HIGH - MCPs cannot reference standard implementations"
+    },
+    {
+      "category": "rag-pipelines",
+      "priority": "CRITICAL",
+      "reason": "rag-implementer skill needs pipeline components",
+      "supports_skills": ["rag-implementer"],
+      "supports_mcps": ["vector-database-mcp", "embedding-generator-mcp", "semantic-search-mcp"],
+      "impact": "HIGH - RAG implementations have no reusable patterns"
+    },
+    {
+      "category": "ui-components",
+      "priority": "HIGH",
+      "reason": "frontend-builder skill needs basic UI components",
+      "supports_skills": ["frontend-builder", "design-system-architect", "accessibility-engineer"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "impact": "MEDIUM - Developers build from scratch each time"
+    },
+    {
+      "category": "workflows",
+      "priority": "HIGH",
+      "reason": "multi-agent-architect skill needs orchestration components",
+      "supports_skills": ["multi-agent-architect", "mvp-builder"],
+      "supports_mcps": ["agent-orchestrator-mcp"],
+      "impact": "MEDIUM - Multi-agent systems lack standard patterns"
+    }
+  ],
+  "statistics": {
+    "total_components": 13,
+    "by_category": {
+      "agents": 1,
+      "auth": 4,
+      "errors": 3,
+      "feedback": 3,
+      "forms": 2,
+      "mcp-servers": 0,
+      "rag-pipelines": 0,
+      "ui-components": 0,
+      "workflows": 0
+    },
+    "empty_categories": 4,
+    "skills_covered": 5
+  },
+  "usage_notes": {
+    "purpose": "This registry catalogs reusable component implementations",
+    "installation": "Use 'ai-dev install component <name>' to install components",
+    "cross_references": [
+      "META/skill-registry.json - Maps skills to components",
+      "META/mcp-registry.json - Maps MCPs to components"
+    ],
+    "adding_components": "Place components in appropriate subdirectories in COMPONENTS/",
+    "documentation": "Each component must include usage examples and props documentation"
+  }
+}

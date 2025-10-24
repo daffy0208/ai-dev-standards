@@ -1,0 +1,239 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-10-24",
+  "description": "Registry of third-party integrations available in ai-dev-standards. Integrations provide pre-configured code for connecting to external services.",
+  "total_integrations": 10,
+  "integrations": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "category": "llm-providers",
+      "description": "OpenAI API integration for GPT models",
+      "path": "/INTEGRATIONS/llm-providers/openai-client.ts",
+      "status": "active",
+      "supports_skills": ["rag-implementer", "multi-agent-architect"],
+      "supports_mcps": ["embedding-generator-mcp"],
+      "features": [
+        "Chat completions",
+        "Embeddings generation",
+        "Function calling",
+        "Streaming responses"
+      ],
+      "authentication": "API key",
+      "documentation_url": "https://platform.openai.com/docs"
+    },
+    {
+      "id": "anthropic",
+      "name": "Anthropic Claude",
+      "category": "llm-providers",
+      "description": "Anthropic API integration for Claude models",
+      "path": "/INTEGRATIONS/llm-providers/anthropic-client.ts",
+      "status": "active",
+      "supports_skills": ["rag-implementer", "multi-agent-architect"],
+      "features": [
+        "Message API",
+        "Streaming responses",
+        "Vision support",
+        "Tool use"
+      ],
+      "authentication": "API key",
+      "documentation_url": "https://docs.anthropic.com"
+    },
+    {
+      "id": "supabase",
+      "name": "Supabase",
+      "category": "platforms",
+      "description": "Supabase backend-as-a-service integration",
+      "path": "/INTEGRATIONS/platforms/supabase/",
+      "files": ["client.ts", "server.ts", "README.md"],
+      "status": "active",
+      "supports_skills": ["frontend-builder", "deployment-advisor", "security-engineer"],
+      "features": [
+        "PostgreSQL database",
+        "Authentication",
+        "Realtime subscriptions",
+        "Storage",
+        "Edge functions"
+      ],
+      "authentication": "API key + JWT",
+      "documentation_url": "https://supabase.com/docs"
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "category": "platforms",
+      "description": "Stripe payment processing integration",
+      "path": "/INTEGRATIONS/platforms/stripe/",
+      "files": ["client.ts", "webhooks.ts", "README.md"],
+      "status": "active",
+      "supports_skills": ["frontend-builder", "api-designer"],
+      "features": [
+        "Payment processing",
+        "Subscription management",
+        "Webhook handling",
+        "Customer portal"
+      ],
+      "authentication": "API key + signing secret",
+      "documentation_url": "https://stripe.com/docs"
+    },
+    {
+      "id": "resend",
+      "name": "Resend",
+      "category": "platforms",
+      "description": "Resend email service integration",
+      "path": "/INTEGRATIONS/platforms/resend/client.ts",
+      "status": "active",
+      "supports_skills": ["frontend-builder"],
+      "features": [
+        "Transactional emails",
+        "Template support",
+        "Email tracking",
+        "Batch sending"
+      ],
+      "authentication": "API key",
+      "documentation_url": "https://resend.com/docs"
+    },
+    {
+      "id": "pinecone",
+      "name": "Pinecone",
+      "category": "vector-databases",
+      "description": "Pinecone vector database integration",
+      "path": "/INTEGRATIONS/vector-databases/pinecone/client.ts",
+      "status": "active",
+      "supports_skills": ["rag-implementer"],
+      "supports_mcps": ["vector-database-mcp", "semantic-search-mcp"],
+      "features": [
+        "Vector storage",
+        "Similarity search",
+        "Metadata filtering",
+        "Namespaces"
+      ],
+      "authentication": "API key",
+      "documentation_url": "https://docs.pinecone.io"
+    }
+  ],
+  "categories": {
+    "llm-providers": {
+      "name": "LLM Providers",
+      "count": 2,
+      "description": "Large Language Model API integrations",
+      "integrations": ["openai", "anthropic"],
+      "needed": ["cohere", "together-ai", "huggingface"]
+    },
+    "platforms": {
+      "name": "Platform Services",
+      "count": 3,
+      "description": "Backend and platform service integrations",
+      "integrations": ["supabase", "stripe", "resend"],
+      "needed": ["vercel", "railway", "fly-io", "clerk", "auth0"]
+    },
+    "vector-databases": {
+      "name": "Vector Databases",
+      "count": 1,
+      "description": "Vector database integrations for RAG and semantic search",
+      "integrations": ["pinecone"],
+      "needed": ["weaviate", "chroma", "qdrant", "pgvector"]
+    },
+    "graph-databases": {
+      "name": "Graph Databases",
+      "count": 0,
+      "description": "Graph database integrations",
+      "integrations": [],
+      "needed": ["neo4j", "dgraph"]
+    },
+    "framework-adapters": {
+      "name": "Framework Adapters",
+      "count": 0,
+      "description": "Integrations for web frameworks",
+      "integrations": [],
+      "needed": ["nextjs", "remix", "astro", "sveltekit"]
+    }
+  },
+  "missing_high_priority": [
+    {
+      "id": "weaviate",
+      "name": "Weaviate",
+      "category": "vector-databases",
+      "reason": "Hybrid search support for rag-implementer skill",
+      "priority": "HIGH",
+      "supports_skills": ["rag-implementer"],
+      "supports_mcps": ["vector-database-mcp", "semantic-search-mcp"]
+    },
+    {
+      "id": "chroma",
+      "name": "Chroma",
+      "category": "vector-databases",
+      "reason": "Embedded vector DB for prototyping",
+      "priority": "HIGH",
+      "supports_skills": ["rag-implementer"],
+      "supports_mcps": ["vector-database-mcp"]
+    },
+    {
+      "id": "qdrant",
+      "name": "Qdrant",
+      "category": "vector-databases",
+      "reason": "High-performance vector search",
+      "priority": "MEDIUM",
+      "supports_skills": ["rag-implementer"],
+      "supports_mcps": ["vector-database-mcp"]
+    },
+    {
+      "id": "neo4j",
+      "name": "Neo4j",
+      "category": "graph-databases",
+      "reason": "Graph database for knowledge-graph-builder skill",
+      "priority": "HIGH",
+      "supports_skills": ["knowledge-graph-builder"],
+      "supports_mcps": ["graph-database-mcp"]
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel",
+      "category": "platforms",
+      "reason": "Deployment platform for deployment-advisor skill",
+      "priority": "MEDIUM",
+      "supports_skills": ["deployment-advisor"],
+      "supports_mcps": ["deployment-orchestrator-mcp"]
+    },
+    {
+      "id": "railway",
+      "name": "Railway",
+      "category": "platforms",
+      "reason": "Full-stack deployment platform",
+      "priority": "MEDIUM",
+      "supports_skills": ["deployment-advisor"],
+      "supports_mcps": ["deployment-orchestrator-mcp"]
+    },
+    {
+      "id": "cohere",
+      "name": "Cohere",
+      "category": "llm-providers",
+      "reason": "Embedding models for RAG",
+      "priority": "MEDIUM",
+      "supports_skills": ["rag-implementer"],
+      "supports_mcps": ["embedding-generator-mcp"]
+    }
+  ],
+  "statistics": {
+    "total_integrations": 6,
+    "by_category": {
+      "llm-providers": 2,
+      "platforms": 3,
+      "vector-databases": 1,
+      "graph-databases": 0,
+      "framework-adapters": 0
+    },
+    "missing_critical": 7,
+    "skills_covered": 8
+  },
+  "usage_notes": {
+    "purpose": "This registry catalogs all third-party service integrations",
+    "installation": "Use 'ai-dev setup <service>' to install integrations",
+    "cross_references": [
+      "META/skill-registry.json - Maps skills to integrations",
+      "META/mcp-registry.json - Maps MCPs to integrations"
+    ],
+    "adding_integrations": "Place integration code in appropriate subdirectories in INTEGRATIONS/",
+    "documentation": "Each integration must have README.md with setup instructions"
+  }
+}

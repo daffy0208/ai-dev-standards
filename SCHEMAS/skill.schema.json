@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Skill Definition Schema",
+  "description": "Schema for validating skill definitions in ai-dev-standards",
+  "type": "object",
+  "required": ["name", "description", "path", "status"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Skill identifier (kebab-case)",
+      "examples": ["rag-implementer", "frontend-builder", "api-designer"]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 500,
+      "description": "Clear description of what the skill does"
+    },
+    "triggers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Keywords that activate this skill"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["core", "specialized", "experimental", "adhd-support"]
+      },
+      "description": "Skill categorization tags"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "product-development",
+        "ai-systems",
+        "technical-implementation",
+        "infrastructure",
+        "design",
+        "specialized",
+        "adhd-support",
+        "analysis"
+      ],
+      "description": "Primary skill category"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": ["beginner", "intermediate", "advanced", "expert"],
+      "description": "Skill complexity level"
+    },
+    "estimated_time": {
+      "type": "string",
+      "pattern": "^\\d+-\\d+ (minutes|hours|days)$",
+      "examples": ["30-60 minutes", "1-3 hours", "1-2 days"],
+      "description": "Estimated time to complete typical task"
+    },
+    "path": {
+      "type": "string",
+      "pattern": "^/SKILLS/[a-z0-9-]+/$",
+      "description": "Path to skill directory"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "deprecated", "experimental", "frozen"],
+      "description": "Skill status"
+    },
+    "prerequisites": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Skills that should be understood first"
+    },
+    "related_skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Skills that work well together"
+    },
+    "supports_mcps": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9-]+-mcp$"
+      },
+      "description": "MCPs that this skill uses"
+    },
+    "frameworks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Compatible frameworks (or 'all')"
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Supported programming languages"
+    }
+  },
+  "examples": [
+    {
+      "name": "rag-implementer",
+      "description": "Implement retrieval-augmented generation systems with vector databases and embeddings",
+      "triggers": ["rag-implementer", "rag implementer"],
+      "tags": ["core"],
+      "category": "ai-systems",
+      "difficulty": "advanced",
+      "estimated_time": "2-4 hours",
+      "path": "/SKILLS/rag-implementer/",
+      "status": "active",
+      "prerequisites": ["api-designer"],
+      "related_skills": ["multi-agent-architect"],
+      "supports_mcps": ["vector-database-mcp", "embedding-generator-mcp", "semantic-search-mcp"],
+      "frameworks": ["langchain", "llamaindex"],
+      "languages": ["python", "typescript"]
+    }
+  ]
+}

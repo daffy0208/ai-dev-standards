@@ -1,0 +1,735 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-10-24",
+  "description": "Registry of all MCP servers in ai-dev-standards. MCPs (Model Context Protocol servers) provide tools, resources, and prompts that skills can use to execute tasks.",
+  "total_mcps": 34,
+  "coverage": "92% (31/37 skills have MCP support)",
+  "mcps": [
+    {
+      "id": "3d-asset-manager-mcp",
+      "name": "3D Asset Manager MCP",
+      "description": "Manage and optimize 3D assets for web applications",
+      "category": "media",
+      "supports_skills": ["3d-visualizer"],
+      "features": ["tools", "resources"],
+      "path": "/MCP-SERVERS/3d-asset-manager-mcp",
+      "status": "active",
+      "phase": 5,
+      "capabilities": [
+        "Load 3D models (GLB, FBX, OBJ)",
+        "Optimize 3D assets",
+        "Compress textures",
+        "Generate LODs"
+      ]
+    },
+    {
+      "id": "accessibility-checker-mcp",
+      "name": "Accessibility Checker MCP",
+      "description": "WCAG compliance checking and accessibility auditing",
+      "category": "testing",
+      "supports_skills": ["accessibility-engineer"],
+      "features": ["tools"],
+      "path": "/MCP-SERVERS/accessibility-checker-mcp",
+      "status": "active",
+      "phase": 1,
+      "tested": true,
+      "capabilities": [
+        "WCAG 2.1 compliance checking",
+        "Screen reader compatibility testing",
+        "Color contrast validation",
+        "Keyboard navigation testing"
+      ]
+    },
+    {
+      "id": "agent-orchestrator-mcp",
+      "name": "Agent Orchestrator MCP",
+      "description": "Coordinate multi-agent workflows and task delegation",
+      "category": "orchestration",
+      "supports_skills": ["multi-agent-architect", "agent-orchestrator"],
+      "features": ["tools", "resources"],
+      "path": "/MCP-SERVERS/agent-orchestrator-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Agent coordination",
+        "Task delegation",
+        "State management",
+        "Performance monitoring"
+      ]
+    },
+    {
+      "id": "animation-library-mcp",
+      "name": "Animation Library MCP",
+      "description": "Web animation tools and motion design utilities",
+      "category": "media",
+      "supports_skills": ["animation-designer"],
+      "features": ["tools", "resources"],
+      "path": "/MCP-SERVERS/animation-library-mcp",
+      "status": "active",
+      "phase": 5,
+      "capabilities": [
+        "Animation presets",
+        "Easing functions",
+        "Timeline management",
+        "Performance optimization"
+      ]
+    },
+    {
+      "id": "api-validator-mcp",
+      "name": "API Validator MCP",
+      "description": "Validate REST and GraphQL API schemas",
+      "category": "development",
+      "supports_skills": ["api-designer"],
+      "features": ["tools"],
+      "path": "/MCP-SERVERS/api-validator-mcp",
+      "status": "active",
+      "phase": 2,
+      "capabilities": [
+        "OpenAPI schema validation",
+        "GraphQL schema validation",
+        "Request/response validation",
+        "API contract testing"
+      ]
+    },
+    {
+      "id": "asset-optimizer-mcp",
+      "name": "Asset Optimizer MCP",
+      "description": "Optimize images, fonts, and other web assets",
+      "category": "optimization",
+      "supports_skills": ["visual-designer"],
+      "features": ["tools"],
+      "path": "/MCP-SERVERS/asset-optimizer-mcp",
+      "status": "active",
+      "phase": 4,
+      "capabilities": [
+        "Image compression",
+        "Format conversion",
+        "Responsive images",
+        "Font subsetting"
+      ]
+    },
+    {
+      "id": "audio-processor-mcp",
+      "name": "Audio Processor MCP",
+      "description": "Process and optimize audio for web applications",
+      "category": "media",
+      "supports_skills": ["audio-producer"],
+      "features": ["tools"],
+      "path": "/MCP-SERVERS/audio-processor-mcp",
+      "status": "active",
+      "phase": 5,
+      "capabilities": [
+        "Audio transcoding",
+        "Level normalization",
+        "Format conversion",
+        "Audio analysis"
+      ]
+    },
+    {
+      "id": "chart-builder-mcp",
+      "name": "Chart Builder MCP",
+      "description": "Create charts and data visualizations",
+      "category": "visualization",
+      "supports_skills": ["data-visualizer"],
+      "features": ["tools", "resources"],
+      "path": "/MCP-SERVERS/chart-builder-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Chart generation",
+        "Data transformation",
+        "Interactive visualizations",
+        "Export capabilities"
+      ]
+    },
+    {
+      "id": "code-quality-scanner-mcp",
+      "name": "Code Quality Scanner MCP",
+      "description": "Scan code for quality issues and best practices",
+      "category": "quality",
+      "supports_skills": ["quality-auditor"],
+      "features": ["tools"],
+      "path": "/MCP-SERVERS/code-quality-scanner-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Code smell detection",
+        "Complexity analysis",
+        "Best practice validation",
+        "Technical debt tracking"
+      ]
+    },
+    {
+      "id": "component-generator-mcp",
+      "name": "Component Generator MCP",
+      "description": "Generate React components with tests and stories",
+      "category": "development",
+      "supports_skills": ["frontend-builder"],
+      "features": ["tools"],
+      "path": "/MCP-SERVERS/component-generator-mcp",
+      "status": "active",
+      "phase": 1,
+      "capabilities": [
+        "React component generation",
+        "TypeScript support",
+        "Test generation",
+        "Storybook stories"
+      ]
+    },
+    {
+      "id": "dark-matter-analyzer-mcp",
+      "name": "Dark Matter Analyzer MCP",
+      "description": "Analyze repository health and identify strategic drift",
+      "category": "analysis",
+      "supports_skills": ["dark-matter-analyzer"],
+      "features": ["tools", "resources"],
+      "path": "/MCP-SERVERS/dark-matter-analyzer-mcp",
+      "status": "active",
+      "phase": 2,
+      "tested": true,
+      "capabilities": [
+        "Repository coherence analysis",
+        "Documentation inflation detection",
+        "Strategic drift identification",
+        "Pattern recognition"
+      ]
+    },
+    {
+      "id": "database-migration-mcp",
+      "name": "Database Migration MCP",
+      "description": "Manage database schema migrations",
+      "category": "database",
+      "supports_skills": ["data-engineer"],
+      "features": ["tools"],
+      "path": "/MCP-SERVERS/database-migration-mcp",
+      "status": "active",
+      "phase": 2,
+      "capabilities": [
+        "Schema migration",
+        "Version control",
+        "Rollback support",
+        "Migration testing"
+      ]
+    },
+    {
+      "id": "deployment-orchestrator-mcp",
+      "name": "Deployment Orchestrator MCP",
+      "description": "Orchestrate deployments across platforms",
+      "category": "deployment",
+      "supports_skills": ["deployment-advisor"],
+      "features": ["tools", "resources"],
+      "path": "/MCP-SERVERS/deployment-orchestrator-mcp",
+      "status": "active",
+      "phase": 2,
+      "capabilities": [
+        "Multi-platform deployment",
+        "Rollback automation",
+        "Health checks",
+        "Deployment strategies"
+      ]
+    },
+    {
+      "id": "design-token-manager-mcp",
+      "name": "Design Token Manager MCP",
+      "description": "Manage design tokens and design system variables",
+      "category": "design",
+      "supports_skills": ["design-system-architect"],
+      "features": ["tools", "resources"],
+      "path": "/MCP-SERVERS/design-token-manager-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Token management",
+        "Multi-platform export",
+        "Theme generation",
+        "Version control"
+      ]
+    },
+    {
+      "id": "doc-generator-mcp",
+      "name": "Documentation Generator MCP",
+      "description": "Generate documentation from code and comments",
+      "category": "documentation",
+      "supports_skills": ["technical-writer"],
+      "features": ["tools"],
+      "path": "/MCP-SERVERS/doc-generator-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "API documentation generation",
+        "Code comment extraction",
+        "Markdown generation",
+        "Diagram generation"
+      ]
+    },
+    {
+      "id": "embedding-generator-mcp",
+      "name": "Embedding Generator MCP",
+      "description": "Generate embeddings for RAG and semantic search",
+      "category": "ai",
+      "supports_skills": ["rag-implementer"],
+      "features": ["tools"],
+      "path": "/MCP-SERVERS/embedding-generator-mcp",
+      "status": "active",
+      "phase": 2,
+      "tested": true,
+      "capabilities": [
+        "Text embedding generation",
+        "Batch processing",
+        "Multiple embedding models",
+        "Caching support"
+      ]
+    },
+    {
+      "id": "feature-prioritizer-mcp",
+      "name": "Feature Prioritizer MCP",
+      "description": "Prioritize features using P0/P1/P2 matrix",
+      "category": "product",
+      "supports_skills": ["mvp-builder"],
+      "features": ["tools", "resources"],
+      "path": "/MCP-SERVERS/feature-prioritizer-mcp",
+      "status": "active",
+      "phase": 2,
+      "tested": true,
+      "capabilities": [
+        "Priority matrix analysis",
+        "Impact scoring",
+        "Effort estimation",
+        "MVP scope definition"
+      ]
+    },
+    {
+      "id": "graph-database-mcp",
+      "name": "Graph Database MCP",
+      "description": "Manage Neo4j and graph database operations",
+      "category": "database",
+      "supports_skills": ["knowledge-graph-builder"],
+      "features": ["tools", "resources"],
+      "path": "/MCP-SERVERS/graph-database-mcp",
+      "status": "active",
+      "phase": 4,
+      "capabilities": [
+        "Node and relationship management",
+        "Cypher query execution",
+        "Graph visualization",
+        "Schema management"
+      ]
+    },
+    {
+      "id": "i18n-manager-mcp",
+      "name": "Internationalization Manager MCP",
+      "description": "Manage translations and i18n workflows",
+      "category": "localization",
+      "supports_skills": ["localization-engineer"],
+      "features": ["tools", "resources"],
+      "path": "/MCP-SERVERS/i18n-manager-mcp",
+      "status": "active",
+      "phase": 4,
+      "capabilities": [
+        "Translation management",
+        "Locale validation",
+        "RTL support",
+        "Pluralization rules"
+      ]
+    },
+    {
+      "id": "iot-device-manager-mcp",
+      "name": "IoT Device Manager MCP",
+      "description": "Manage IoT devices and MQTT communication",
+      "category": "iot",
+      "supports_skills": ["iot-developer"],
+      "features": ["tools", "resources"],
+      "path": "/MCP-SERVERS/iot-device-manager-mcp",
+      "status": "active",
+      "phase": 5,
+      "capabilities": [
+        "MQTT pub/sub",
+        "Device simulation",
+        "Sensor data collection",
+        "Device provisioning"
+      ]
+    },
+    {
+      "id": "market-analyzer-mcp",
+      "name": "Market Analyzer MCP",
+      "description": "Analyze market trends and competitive landscape",
+      "category": "product",
+      "supports_skills": ["go-to-market-planner"],
+      "features": ["tools", "resources"],
+      "path": "/MCP-SERVERS/market-analyzer-mcp",
+      "status": "active",
+      "phase": 4,
+      "capabilities": [
+        "Market size analysis",
+        "Competitor tracking",
+        "Trend analysis",
+        "TAM/SAM/SOM calculation"
+      ]
+    },
+    {
+      "id": "mobile-builder-mcp",
+      "name": "Mobile Builder MCP",
+      "description": "Build and deploy React Native mobile applications",
+      "category": "development",
+      "supports_skills": ["mobile-developer"],
+      "features": ["tools", "resources"],
+      "path": "/MCP-SERVERS/mobile-builder-mcp",
+      "status": "active",
+      "phase": 4,
+      "capabilities": [
+        "Expo project setup",
+        "Component generation",
+        "Build automation",
+        "App store deployment"
+      ]
+    },
+    {
+      "id": "openapi-generator-mcp",
+      "name": "OpenAPI Generator MCP",
+      "description": "Generate OpenAPI specifications from code",
+      "category": "development",
+      "supports_skills": ["api-designer"],
+      "features": ["tools"],
+      "path": "/MCP-SERVERS/openapi-generator-mcp",
+      "status": "active",
+      "phase": 2,
+      "capabilities": [
+        "OpenAPI spec generation",
+        "Schema inference",
+        "Documentation generation",
+        "Client SDK generation"
+      ]
+    },
+    {
+      "id": "performance-profiler-mcp",
+      "name": "Performance Profiler MCP",
+      "description": "Profile application performance and identify bottlenecks",
+      "category": "optimization",
+      "supports_skills": ["performance-optimizer"],
+      "features": ["tools"],
+      "path": "/MCP-SERVERS/performance-profiler-mcp",
+      "status": "active",
+      "phase": 2,
+      "capabilities": [
+        "Performance profiling",
+        "Bottleneck detection",
+        "Memory analysis",
+        "Lighthouse audits"
+      ]
+    },
+    {
+      "id": "screenshot-testing-mcp",
+      "name": "Screenshot Testing MCP",
+      "description": "Visual regression testing with Playwright",
+      "category": "testing",
+      "supports_skills": ["testing-strategist", "quality-auditor"],
+      "features": ["tools"],
+      "path": "/MCP-SERVERS/screenshot-testing-mcp",
+      "status": "active",
+      "phase": 1,
+      "capabilities": [
+        "Visual regression testing",
+        "Cross-browser testing",
+        "Snapshot comparison",
+        "Automated testing"
+      ]
+    },
+    {
+      "id": "security-scanner-mcp",
+      "name": "Security Scanner MCP",
+      "description": "Scan for security vulnerabilities and best practices",
+      "category": "security",
+      "supports_skills": ["security-engineer"],
+      "features": ["tools"],
+      "path": "/MCP-SERVERS/security-scanner-mcp",
+      "status": "active",
+      "phase": 2,
+      "capabilities": [
+        "Vulnerability scanning",
+        "Dependency auditing",
+        "Secret detection",
+        "OWASP Top 10 checks"
+      ]
+    },
+    {
+      "id": "semantic-search-mcp",
+      "name": "Semantic Search MCP",
+      "description": "Semantic search and retrieval for RAG systems",
+      "category": "ai",
+      "supports_skills": ["rag-implementer"],
+      "features": ["tools", "resources"],
+      "path": "/MCP-SERVERS/semantic-search-mcp",
+      "status": "active",
+      "phase": 2,
+      "capabilities": [
+        "Semantic search",
+        "Vector similarity",
+        "Hybrid search",
+        "Reranking"
+      ]
+    },
+    {
+      "id": "seo-analyzer-mcp",
+      "name": "SEO Analyzer MCP",
+      "description": "Analyze SEO and content optimization",
+      "category": "marketing",
+      "supports_skills": ["copywriter"],
+      "features": ["tools"],
+      "path": "/MCP-SERVERS/seo-analyzer-mcp",
+      "status": "active",
+      "phase": 5,
+      "capabilities": [
+        "SEO analysis",
+        "Meta tag validation",
+        "Content optimization",
+        "Readability scoring"
+      ]
+    },
+    {
+      "id": "streaming-setup-mcp",
+      "name": "Streaming Setup MCP",
+      "description": "Setup and manage live streaming infrastructure",
+      "category": "media",
+      "supports_skills": ["livestream-engineer"],
+      "features": ["tools", "resources"],
+      "path": "/MCP-SERVERS/streaming-setup-mcp",
+      "status": "active",
+      "phase": 5,
+      "capabilities": [
+        "RTMP setup",
+        "HLS streaming",
+        "WebRTC configuration",
+        "Stream monitoring"
+      ]
+    },
+    {
+      "id": "test-runner-mcp",
+      "name": "Test Runner MCP",
+      "description": "Execute and manage test suites",
+      "category": "testing",
+      "supports_skills": ["testing-strategist"],
+      "features": ["tools"],
+      "path": "/MCP-SERVERS/test-runner-mcp",
+      "status": "active",
+      "phase": 2,
+      "capabilities": [
+        "Test execution",
+        "Coverage reporting",
+        "Test generation",
+        "Parallel testing"
+      ]
+    },
+    {
+      "id": "user-insight-analyzer-mcp",
+      "name": "User Insight Analyzer MCP",
+      "description": "Analyze user feedback and research data",
+      "category": "product",
+      "supports_skills": ["product-strategist", "user-researcher"],
+      "features": ["tools", "resources"],
+      "path": "/MCP-SERVERS/user-insight-analyzer-mcp",
+      "status": "active",
+      "phase": 2,
+      "capabilities": [
+        "Interview transcription",
+        "Sentiment analysis",
+        "Pattern recognition",
+        "Insight extraction"
+      ]
+    },
+    {
+      "id": "vector-database-mcp",
+      "name": "Vector Database MCP",
+      "description": "Manage vector databases for RAG and semantic search",
+      "category": "ai",
+      "supports_skills": ["rag-implementer"],
+      "features": ["tools", "resources"],
+      "path": "/MCP-SERVERS/vector-database-mcp",
+      "status": "active",
+      "phase": 2,
+      "tested": true,
+      "capabilities": [
+        "Vector storage",
+        "Similarity search",
+        "Index management",
+        "Metadata filtering"
+      ]
+    },
+    {
+      "id": "video-optimizer-mcp",
+      "name": "Video Optimizer MCP",
+      "description": "Optimize and process video content",
+      "category": "media",
+      "supports_skills": ["video-producer"],
+      "features": ["tools"],
+      "path": "/MCP-SERVERS/video-optimizer-mcp",
+      "status": "active",
+      "phase": 5,
+      "capabilities": [
+        "Video transcoding",
+        "Thumbnail generation",
+        "Subtitle generation",
+        "Quality optimization"
+      ]
+    },
+    {
+      "id": "wireframe-generator-mcp",
+      "name": "Wireframe Generator MCP",
+      "description": "Generate wireframes and UI mockups",
+      "category": "design",
+      "supports_skills": ["ux-designer"],
+      "features": ["tools", "resources"],
+      "path": "/MCP-SERVERS/wireframe-generator-mcp",
+      "status": "active",
+      "phase": 4,
+      "capabilities": [
+        "Wireframe generation",
+        "Component libraries",
+        "Export to Figma",
+        "Responsive layouts"
+      ]
+    }
+  ],
+  "categories": {
+    "ai": {
+      "name": "AI & Machine Learning",
+      "count": 3,
+      "mcps": ["vector-database-mcp", "embedding-generator-mcp", "semantic-search-mcp"]
+    },
+    "development": {
+      "name": "Development Tools",
+      "count": 4,
+      "mcps": ["api-validator-mcp", "component-generator-mcp", "openapi-generator-mcp", "mobile-builder-mcp"]
+    },
+    "testing": {
+      "name": "Testing & Quality",
+      "count": 3,
+      "mcps": ["accessibility-checker-mcp", "screenshot-testing-mcp", "test-runner-mcp"]
+    },
+    "deployment": {
+      "name": "Deployment & Infrastructure",
+      "count": 1,
+      "mcps": ["deployment-orchestrator-mcp"]
+    },
+    "database": {
+      "name": "Database Management",
+      "count": 2,
+      "mcps": ["database-migration-mcp", "graph-database-mcp"]
+    },
+    "media": {
+      "name": "Media Processing",
+      "count": 5,
+      "mcps": ["3d-asset-manager-mcp", "animation-library-mcp", "audio-processor-mcp", "video-optimizer-mcp", "streaming-setup-mcp"]
+    },
+    "optimization": {
+      "name": "Performance & Optimization",
+      "count": 2,
+      "mcps": ["performance-profiler-mcp", "asset-optimizer-mcp"]
+    },
+    "product": {
+      "name": "Product Development",
+      "count": 3,
+      "mcps": ["feature-prioritizer-mcp", "user-insight-analyzer-mcp", "market-analyzer-mcp"]
+    },
+    "design": {
+      "name": "Design Tools",
+      "count": 2,
+      "mcps": ["design-token-manager-mcp", "wireframe-generator-mcp"]
+    },
+    "security": {
+      "name": "Security",
+      "count": 1,
+      "mcps": ["security-scanner-mcp"]
+    },
+    "quality": {
+      "name": "Code Quality",
+      "count": 1,
+      "mcps": ["code-quality-scanner-mcp"]
+    },
+    "orchestration": {
+      "name": "Orchestration",
+      "count": 1,
+      "mcps": ["agent-orchestrator-mcp"]
+    },
+    "analysis": {
+      "name": "Analysis Tools",
+      "count": 1,
+      "mcps": ["dark-matter-analyzer-mcp"]
+    },
+    "visualization": {
+      "name": "Data Visualization",
+      "count": 1,
+      "mcps": ["chart-builder-mcp"]
+    },
+    "documentation": {
+      "name": "Documentation",
+      "count": 1,
+      "mcps": ["doc-generator-mcp"]
+    },
+    "localization": {
+      "name": "Localization",
+      "count": 1,
+      "mcps": ["i18n-manager-mcp"]
+    },
+    "iot": {
+      "name": "IoT",
+      "count": 1,
+      "mcps": ["iot-device-manager-mcp"]
+    },
+    "marketing": {
+      "name": "Marketing",
+      "count": 1,
+      "mcps": ["seo-analyzer-mcp"]
+    }
+  },
+  "phases": {
+    "phase_1": {
+      "name": "Original MCPs",
+      "count": 3,
+      "description": "Initial MCPs from project start"
+    },
+    "phase_2": {
+      "name": "Core Build + Cursor Import + Priority Fill",
+      "count": 13,
+      "description": "Primary development phase"
+    },
+    "phase_3": {
+      "name": "High Priority",
+      "count": 5,
+      "description": "Critical capability expansion"
+    },
+    "phase_4": {
+      "name": "Specialized",
+      "count": 6,
+      "description": "Domain-specific tools"
+    },
+    "phase_5": {
+      "name": "Media",
+      "count": 7,
+      "description": "Media processing and streaming"
+    }
+  },
+  "statistics": {
+    "total_mcps": 34,
+    "with_tests": 4,
+    "skills_covered": 31,
+    "skills_without_mcps": 6,
+    "coverage_percentage": 84,
+    "ratio": "1.1:1"
+  },
+  "skills_without_mcps": [
+    "brand-designer",
+    "context-preserver",
+    "focus-session-manager",
+    "spatial-developer",
+    "task-breakdown-specialist",
+    "voice-interface-builder"
+  ],
+  "usage_notes": {
+    "purpose": "This registry catalogs all MCP servers and their relationships to skills",
+    "cross_references": [
+      "META/skill-registry.json - Maps skills to MCPs",
+      "SKILL-MCP-PARITY-REPORT.md - Tracks skill-to-MCP coverage"
+    ],
+    "integration": "MCPs are referenced in skill documentation and playbooks"
+  }
+}

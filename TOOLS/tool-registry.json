@@ -1,56 +1,259 @@
 {
-  "version": "1.0.0",
-  "last_updated": "2025-10-21",
-  "description": "Registry of reusable tools available in ai-dev-standards. Tools are individual functions/utilities that agents can use. This registry will be populated as tools are added to the TOOLS/ directory.",
-  "tools": [],
+  "version": "2.0.0",
+  "last_updated": "2025-10-24",
+  "description": "Registry of reusable tools available in ai-dev-standards. Tools are individual functions/utilities that agents can use.",
+  "total_tools": 4,
+  "tools": [
+    {
+      "id": "api-caller-tool",
+      "name": "API Caller Tool",
+      "description": "Make HTTP requests to external APIs with retry logic and error handling",
+      "category": "api-integration",
+      "framework": "custom",
+      "language": "typescript",
+      "path": "/TOOLS/custom-tools/api-caller-tool.ts",
+      "status": "active",
+      "supports_skills": ["api-designer", "deployment-advisor"],
+      "supports_mcps": ["api-validator-mcp"],
+      "capabilities": [
+        "GET/POST/PUT/DELETE requests",
+        "Automatic retry with exponential backoff",
+        "Request/response validation",
+        "Error handling"
+      ],
+      "dependencies": ["axios"],
+      "usage_example": "const result = await apiCallerTool.call({ url, method, data })"
+    },
+    {
+      "id": "database-query-tool",
+      "name": "Database Query Tool",
+      "description": "Execute database queries with connection pooling and error handling",
+      "category": "data-retrieval",
+      "framework": "custom",
+      "language": "typescript",
+      "path": "/TOOLS/custom-tools/database-query-tool.ts",
+      "status": "active",
+      "supports_skills": ["data-engineer", "performance-optimizer"],
+      "supports_mcps": ["database-migration-mcp"],
+      "capabilities": [
+        "SQL query execution",
+        "Connection pooling",
+        "Transaction support",
+        "Query parameter sanitization"
+      ],
+      "dependencies": ["pg", "mysql2"],
+      "usage_example": "const rows = await databaseQueryTool.query(sql, params)"
+    },
+    {
+      "id": "filesystem-tool",
+      "name": "Filesystem Tool",
+      "description": "Read, write, and manipulate files with safety checks",
+      "category": "file-operations",
+      "framework": "custom",
+      "language": "typescript",
+      "path": "/TOOLS/custom-tools/filesystem-tool.ts",
+      "status": "active",
+      "supports_skills": ["frontend-builder", "technical-writer"],
+      "supports_mcps": ["component-generator-mcp", "doc-generator-mcp"],
+      "capabilities": [
+        "Read files",
+        "Write files",
+        "Create directories",
+        "Path validation",
+        "Safety checks"
+      ],
+      "dependencies": ["fs", "path"],
+      "usage_example": "await filesystemTool.writeFile(path, content)"
+    },
+    {
+      "id": "web-scraper-tool",
+      "name": "Web Scraper Tool",
+      "description": "Scrape web pages and extract structured data",
+      "category": "data-retrieval",
+      "framework": "custom",
+      "language": "typescript",
+      "path": "/TOOLS/custom-tools/web-scraper-tool.ts",
+      "status": "active",
+      "supports_skills": ["user-researcher", "product-strategist"],
+      "supports_mcps": ["user-insight-analyzer-mcp", "market-analyzer-mcp"],
+      "capabilities": [
+        "HTML parsing",
+        "CSS selector support",
+        "JavaScript rendering",
+        "Rate limiting",
+        "Robots.txt respect"
+      ],
+      "dependencies": ["cheerio", "puppeteer"],
+      "usage_example": "const data = await webScraperTool.scrape(url, selectors)"
+    }
+  ],
   "categories": [
     {
       "id": "data-retrieval",
       "name": "Data Retrieval",
-      "description": "Tools for fetching and searching data (web search, API calls, database queries)"
+      "description": "Tools for fetching and searching data (web search, API calls, database queries)",
+      "tool_count": 2,
+      "tools": ["database-query-tool", "web-scraper-tool"]
     },
     {
       "id": "data-transformation",
       "name": "Data Transformation",
-      "description": "Tools for processing and transforming data (parsing, formatting, conversion)"
+      "description": "Tools for processing and transforming data (parsing, formatting, conversion)",
+      "tool_count": 0,
+      "tools": [],
+      "needed": [
+        "json-transformer-tool",
+        "csv-parser-tool",
+        "data-validator-tool"
+      ]
     },
     {
       "id": "communication",
       "name": "Communication",
-      "description": "Tools for messaging and notifications (Slack, email, webhooks)"
+      "description": "Tools for messaging and notifications (Slack, email, webhooks)",
+      "tool_count": 0,
+      "tools": [],
+      "needed": [
+        "slack-notifier-tool",
+        "email-sender-tool",
+        "webhook-caller-tool"
+      ]
     },
     {
       "id": "file-operations",
       "name": "File Operations",
-      "description": "Tools for file manipulation (read, write, search, process)"
+      "description": "Tools for file manipulation (read, write, search, process)",
+      "tool_count": 1,
+      "tools": ["filesystem-tool"]
     },
     {
       "id": "code-execution",
       "name": "Code Execution",
-      "description": "Tools for running code and scripts (Python, Node.js, shell commands)"
+      "description": "Tools for running code and scripts (Python, Node.js, shell commands)",
+      "tool_count": 0,
+      "tools": [],
+      "needed": [
+        "python-executor-tool",
+        "node-executor-tool",
+        "shell-command-tool"
+      ]
     },
     {
       "id": "api-integration",
       "name": "API Integration",
-      "description": "Tools for integrating with external APIs and services"
+      "description": "Tools for integrating with external APIs and services",
+      "tool_count": 1,
+      "tools": ["api-caller-tool"]
     }
   ],
+  "frameworks": {
+    "custom": {
+      "name": "Custom Tools",
+      "description": "Framework-agnostic tools that work with any system",
+      "count": 4,
+      "path": "/TOOLS/custom-tools/"
+    },
+    "langchain": {
+      "name": "LangChain Tools",
+      "description": "Tools specifically designed for LangChain agents",
+      "count": 0,
+      "path": "/TOOLS/langchain-tools/",
+      "needed": [
+        "vector-search-langchain",
+        "embedding-langchain",
+        "reranking-langchain"
+      ]
+    },
+    "crewai": {
+      "name": "CrewAI Tools",
+      "description": "Tools specifically designed for CrewAI agents",
+      "count": 0,
+      "path": "/TOOLS/crewai-tools/",
+      "needed": [
+        "code-analyzer-crewai",
+        "test-generator-crewai",
+        "doc-generator-crewai"
+      ]
+    },
+    "mcp": {
+      "name": "MCP Tools",
+      "description": "Tools that interact with MCP servers",
+      "count": 0,
+      "path": "/TOOLS/mcp-tools/",
+      "needed": [
+        "mcp-client-tool",
+        "mcp-server-caller-tool"
+      ]
+    }
+  },
+  "priority_tools_to_add": {
+    "high_priority": [
+      {
+        "id": "vector-search-tool",
+        "name": "Vector Search Tool",
+        "category": "data-retrieval",
+        "framework": "langchain",
+        "supports_skills": ["rag-implementer"],
+        "supports_mcps": ["vector-database-mcp", "semantic-search-mcp"],
+        "reason": "Critical for RAG implementations"
+      },
+      {
+        "id": "embedding-generator-tool",
+        "name": "Embedding Generator Tool",
+        "category": "data-transformation",
+        "framework": "langchain",
+        "supports_skills": ["rag-implementer"],
+        "supports_mcps": ["embedding-generator-mcp"],
+        "reason": "Essential for semantic search"
+      },
+      {
+        "id": "test-generator-tool",
+        "name": "Test Generator Tool",
+        "category": "code-execution",
+        "framework": "crewai",
+        "supports_skills": ["testing-strategist"],
+        "supports_mcps": ["test-runner-mcp"],
+        "reason": "Automate test creation"
+      },
+      {
+        "id": "code-analyzer-tool",
+        "name": "Code Analyzer Tool",
+        "category": "code-execution",
+        "framework": "crewai",
+        "supports_skills": ["quality-auditor", "security-engineer"],
+        "supports_mcps": ["code-quality-scanner-mcp", "security-scanner-mcp"],
+        "reason": "Code quality and security scanning"
+      }
+    ],
+    "medium_priority": [
+      {
+        "id": "performance-profiler-tool",
+        "name": "Performance Profiler Tool",
+        "category": "code-execution",
+        "framework": "custom",
+        "supports_skills": ["performance-optimizer"],
+        "supports_mcps": ["performance-profiler-mcp"],
+        "reason": "Performance optimization"
+      },
+      {
+        "id": "dependency-auditor-tool",
+        "name": "Dependency Auditor Tool",
+        "category": "code-execution",
+        "framework": "custom",
+        "supports_skills": ["security-engineer"],
+        "supports_mcps": ["security-scanner-mcp"],
+        "reason": "Security dependency checking"
+      }
+    ]
+  },
   "usage_notes": {
     "purpose": "This registry catalogs reusable tools for AI agents",
-    "status": "Currently empty - will be populated as tools are created",
-    "location": "Tools should be added to appropriate subdirectories in TOOLS/",
+    "cross_references": [
+      "META/skill-registry.json - Maps skills to tools",
+      "META/mcp-registry.json - Maps MCPs to tools"
+    ],
+    "adding_tools": "Tools should be added to appropriate subdirectories in TOOLS/",
     "documentation": "Each tool must have README.md with usage examples",
     "framework_specific": "Tools may be specific to certain frameworks (LangChain, CrewAI, etc.)"
-  },
-  "future_tools": {
-    "note": "Examples of tools that may be added in the future",
-    "examples": [
-      "Web search tool (Brave API, Google Custom Search)",
-      "File search and processing utilities",
-      "Database query tools",
-      "API wrapper tools for common services",
-      "Code analysis and linting tools",
-      "Testing and validation utilities"
-    ]
   }
 }
