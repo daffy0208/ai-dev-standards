@@ -371,7 +371,13 @@ async function addSkillToProject(projectPath, skill) {
   let content = await fs.readFile(claudeMdPath, 'utf8')
 
   // Use the skill path from the registry, or construct it
-  const skillPath = skill.path || `/SKILLS/${skill.id}/SKILL.md`
+  let skillPath = skill.path || `/SKILLS/${skill.id}/SKILL.md`
+
+  // If path ends with /, append SKILL.md
+  if (skillPath.endsWith('/')) {
+    skillPath = `${skillPath}SKILL.md`
+  }
+
   const githubBaseUrl = 'https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main'
   const fullPath = `${githubBaseUrl}${skillPath}`
 
