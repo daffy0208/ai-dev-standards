@@ -135,6 +135,13 @@
       "required_integrations": [],
       "supporting_scripts": []
     },
+    "knowledge-base-manager": {
+      "required_mcps": ["knowledge-base-mcp", "vector-database-mcp", "embedding-generator-mcp", "graph-database-mcp"],
+      "required_tools": ["vector-search-tool", "embedding-tool", "database-query-tool"],
+      "required_components": [],
+      "required_integrations": ["openai", "anthropic", "pinecone"],
+      "supporting_scripts": []
+    },
     "knowledge-graph-builder": {
       "required_mcps": ["graph-database-mcp"],
       "required_tools": ["vector-search-tool", "database-query-tool"],
@@ -393,6 +400,11 @@
       "required_components": [],
       "required_integrations": []
     },
+    "knowledge-base-mcp": {
+      "required_tools": ["vector-search-tool", "embedding-tool", "database-query-tool"],
+      "required_components": [],
+      "required_integrations": ["openai", "anthropic", "pinecone"]
+    },
     "market-analyzer-mcp": {
       "required_tools": ["web-scraper-tool", "api-caller-tool"],
       "required_components": [],
@@ -484,7 +496,7 @@
       "update_type": "content",
       "sections": ["Skills section"],
       "priority": "high",
-      "description": "Must list all 37 skills with names, descriptions, and locations"
+      "description": "Must list all 38 skills with names, descriptions, and locations"
     },
     ".cursorrules": {
       "depends_on_registries": ["all"],
@@ -600,9 +612,9 @@
     }
   },
   "statistics": {
-    "total_skills": 37,
-    "total_mcps": 34,
-    "skills_with_mcps": 31,
+    "total_skills": 38,
+    "total_mcps": 35,
+    "skills_with_mcps": 32,
     "skills_without_mcps": 6,
     "most_used_tools": [
       {"tool": "filesystem-tool", "usage_count": 20},

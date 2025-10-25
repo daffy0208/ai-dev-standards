@@ -1,0 +1,72 @@
+{
+  "project_name": "YOUR_PROJECT_NAME",
+  "description": "Project description here",
+  "version": "1.0.0",
+  "current_phase": "Phase 1: Initial Development",
+  "rci_score": 50,
+  "target_rci": 80,
+  "status": "active",
+  "repository": "https://github.com/yourusername/your-project",
+  "tech_stack": {
+    "primary": ["TypeScript", "React"],
+    "frameworks": ["Next.js"],
+    "databases": [],
+    "tools": ["Claude Code", "Archon MCP", "ai-dev-standards"]
+  },
+  "tasks": [
+    {
+      "id": "P0-1",
+      "title": "Your first critical task",
+      "description": "Detailed description of what needs to be done",
+      "priority": "P0",
+      "status": "todo",
+      "skills_to_use": ["mvp-builder", "frontend-builder"],
+      "estimated_effort": "2 days",
+      "estimated_hours": 16,
+      "dependencies": [],
+      "deliverables": [
+        "File or feature to deliver"
+      ],
+      "acceptance_criteria": [
+        "Clear criteria for done"
+      ],
+      "archon_workflow": [
+        "1. Research: archon:perform_rag_query('topic')",
+        "2. Research: archon:search_code_examples('pattern')",
+        "3. Status: archon:manage_task(status='doing')",
+        "4. Invoke: Relevant skills",
+        "5. Implement: Build the feature",
+        "6. Quality: Apply quality checks",
+        "7. Status: archon:manage_task(status='review')"
+      ]
+    }
+  ],
+  "metrics": {
+    "total_tasks": 1,
+    "p0_tasks": 1,
+    "p1_tasks": 0,
+    "p2_tasks": 0
+  },
+  "success_criteria": {
+    "rci_target": 80,
+    "criteria": [
+      "All P0 tasks completed",
+      "Quality metrics met",
+      "User validation passed"
+    ]
+  },
+  "integration_workflow": {
+    "proven_pattern": "Archon (WHAT/WHEN) + Skills (HOW)",
+    "workflow_steps": [
+      "1. Get task from Archon",
+      "2. Research with Archon RAG + code examples",
+      "3. Update task status to 'doing'",
+      "4. Invoke relevant skills for implementation",
+      "5. Implement with combined guidance",
+      "6. Quality check with quality skills",
+      "7. Update task to 'review'",
+      "8. After validation → mark 'done'",
+      "9. Get next task"
+    ]
+  }
+}

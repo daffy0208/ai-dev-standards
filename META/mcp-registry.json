@@ -316,6 +316,26 @@
       ]
     },
     {
+      "id": "knowledge-base-mcp",
+      "name": "Knowledge Base MCP",
+      "description": "Comprehensive knowledge base management with CRUD operations, versioning, validation, and curation",
+      "category": "ai",
+      "supports_skills": ["knowledge-base-manager", "rag-implementer", "knowledge-graph-builder", "data-engineer"],
+      "features": ["tools"],
+      "path": "/MCP-SERVERS/knowledge-base-mcp",
+      "status": "active",
+      "phase": 5,
+      "capabilities": [
+        "Create, read, update, delete knowledge entries",
+        "Query with filters (type, category, tags, text)",
+        "Validate for duplicates, conflicts, staleness",
+        "Version tracking and history",
+        "Bulk import/export operations",
+        "Support for document (RAG) and entity (graph) knowledge",
+        "Quality control and curation tools"
+      ]
+    },
+    {
       "id": "i18n-manager-mcp",
       "name": "Internationalization Manager MCP",
       "description": "Manage translations and i18n workflows",
@@ -592,8 +612,8 @@
   "categories": {
     "ai": {
       "name": "AI & Machine Learning",
-      "count": 3,
-      "mcps": ["vector-database-mcp", "embedding-generator-mcp", "semantic-search-mcp"]
+      "count": 4,
+      "mcps": ["vector-database-mcp", "embedding-generator-mcp", "semantic-search-mcp", "knowledge-base-mcp"]
     },
     "development": {
       "name": "Development Tools",

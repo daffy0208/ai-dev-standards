@@ -145,6 +145,12 @@ Design and build knowledge graphs. Use when modeling complex relationships, buil
 
 **Location:** `/SKILLS/knowledge-graph-builder/SKILL.md`
 
+### knowledge-base-manager
+
+Design, build, and maintain comprehensive knowledge bases. Bridges document-based (RAG) and entity-based (graph) knowledge systems. Use when building knowledge-intensive applications, managing organizational knowledge, or creating intelligent information systems.
+
+**Location:** `/SKILLS/knowledge-base-manager/SKILL.md`
+
 ### livestream-engineer
 
 Expert in live streaming, WebRTC, and real-time video/audio
