@@ -1,0 +1,229 @@
+{
+  "task_id": "P0-4",
+  "project_name": "ai-dev-standards",
+  "title": "Analyze SI Systems v5 Repository for Brain Knowledge Extraction",
+  "description": "Deep analysis of https://github.com/daffy0208/si-systems-v5 repository to extract patterns, knowledge, and reusable artifacts for the ai-dev-standards Repository Brain. This is a strategic research task to understand what information from this large production repository can help build and enhance our brain's knowledge base.",
+  "priority": "P0",
+  "status": "todo",
+  "estimated_effort": "3-6 hours",
+  "estimated_hours": 24,
+  "dependencies": [],
+  "skills_to_use": [
+    "dark-matter-analyzer",
+    "knowledge-base-manager",
+    "technical-writer",
+    "quality-auditor",
+    "archon-manager",
+    "task-breakdown-specialist"
+  ],
+  "context": {
+    "session_file": "META/SESSION-2025-10-25-SI-SYSTEMS-BRAIN-RESEARCH.md",
+    "brain_architecture": "META/REPOSITORY-BRAIN.md",
+    "target_repository": "https://github.com/daffy0208/si-systems-v5",
+    "purpose": "Extract knowledge to populate Repository Brain layers 1-5"
+  },
+  "workflow_phases": [
+    {
+      "phase": "1. High-Level Reconnaissance",
+      "duration": "30 minutes",
+      "goal": "Understand scope before deep diving",
+      "archon_actions": [
+        "archon:perform_rag_query({ query: 'repository analysis best practices', match_count: 5 })",
+        "archon:search_code_examples({ query: 'large repository analysis', match_count: 3 })",
+        "archon:manage_task({ action: 'update', task_id: 'P0-4', update_fields: { status: 'doing' } })"
+      ],
+      "skills": [
+        "dark-matter-analyzer - Initial repository scan",
+        "quality-auditor - Pattern quality scoring"
+      ],
+      "deliverables": [
+        "Repository size metrics (files, LOC, complexity)",
+        "Primary technologies identified",
+        "Directory structure overview",
+        "Key entry points mapped",
+        "Decision: Is this valuable for brain extraction?"
+      ]
+    },
+    {
+      "phase": "2. Structured Analysis",
+      "duration": "2-4 hours",
+      "goal": "Deep extraction of patterns and knowledge",
+      "archon_actions": [
+        "archon:perform_rag_query({ query: 'knowledge extraction from codebases', match_count: 5 })"
+      ],
+      "skills": [
+        "knowledge-base-manager - Structure findings systematically",
+        "technical-writer - Document discoveries"
+      ],
+      "sub_phases": [
+        {
+          "name": "Structure Analysis",
+          "duration": "30 min",
+          "tasks": [
+            "Complete directory mapping",
+            "Tech stack identification",
+            "Dependency analysis"
+          ]
+        },
+        {
+          "name": "Pattern Extraction",
+          "duration": "60 min",
+          "tasks": [
+            "Architecture patterns",
+            "Design patterns",
+            "API patterns",
+            "Use quality-auditor for pattern quality scoring"
+          ]
+        },
+        {
+          "name": "Knowledge Extraction",
+          "duration": "60 min",
+          "tasks": [
+            "Business logic understanding",
+            "Data models",
+            "API contracts",
+            "Use knowledge-base-manager to structure findings"
+          ]
+        },
+        {
+          "name": "Strategic Insights",
+          "duration": "30 min",
+          "tasks": [
+            "Strengths/gaps analysis",
+            "Coherence scoring (Dark Matter)",
+            "Recommendations"
+          ]
+        }
+      ],
+      "deliverables": [
+        "L1-STRUCTURE/ - Complete architecture mapping",
+        "L2-PATTERNS/ - Extracted patterns with quality scores",
+        "L3-KNOWLEDGE/ - Domain knowledge documentation",
+        "L4-INSIGHTS/ - Strategic analysis and coherence score"
+      ]
+    },
+    {
+      "phase": "3. Integration Planning",
+      "duration": "30 minutes",
+      "goal": "Decide what to extract and integrate",
+      "archon_actions": [
+        "archon:manage_task({ action: 'update', task_id: 'P0-4', update_fields: { status: 'review' } })"
+      ],
+      "skills": [
+        "archon-manager - Coordinate decisions"
+      ],
+      "questions_to_answer": [
+        "Which patterns should become STANDARDS/architecture-patterns/?",
+        "Which capabilities should become new Skills?",
+        "Which tools should become new MCPs?",
+        "Which examples should be preserved?",
+        "What integrations are worth documenting?"
+      ],
+      "deliverables": [
+        "L5-EXTRACTION/ - Prioritized list of artifacts to create",
+        "Integration roadmap",
+        "Effort estimates for implementation"
+      ]
+    },
+    {
+      "phase": "4. Implementation (Optional)",
+      "duration": "Variable",
+      "goal": "Create approved extractions",
+      "note": "Only proceed if Phase 3 identifies high-value extractions",
+      "archon_actions": [
+        "archon:manage_task({ action: 'update', task_id: 'P0-4', update_fields: { status: 'done' } })",
+        "archon:manage_task({ action: 'list', filter_by: 'status', filter_value: 'todo' })"
+      ],
+      "tasks": [
+        "Create new skills if warranted",
+        "Add patterns to STANDARDS/",
+        "Document integrations",
+        "Update registries",
+        "Run validation"
+      ]
+    }
+  ],
+  "hierarchical_knowledge_structure": {
+    "output_location": "si-systems-v5-brain/",
+    "layers": {
+      "L1-STRUCTURE": {
+        "purpose": "Repository architecture",
+        "files": [
+          "directory-map.json - Complete file/folder structure",
+          "tech-stack.json - Technologies, frameworks, libraries",
+          "dependencies.json - Dependency graph",
+          "entry-points.json - Main files, CLIs, APIs"
+        ]
+      },
+      "L2-PATTERNS": {
+        "purpose": "Code patterns & practices",
+        "subdirs": [
+          "architecture-patterns/ - How the system is structured",
+          "design-patterns/ - Recurring code patterns",
+          "api-patterns/ - API design approaches",
+          "anti-patterns/ - Things to avoid"
+        ]
+      },
+      "L3-KNOWLEDGE": {
+        "purpose": "Domain knowledge",
+        "subdirs": [
+          "business-logic/ - What the system does",
+          "data-models/ - Data structures and schemas",
+          "api-contracts/ - API specifications",
+          "workflows/ - Business processes",
+          "integrations/ - External systems"
+        ]
+      },
+      "L4-INSIGHTS": {
+        "purpose": "Strategic insights",
+        "files": [
+          "strengths.md - What's done well",
+          "gaps.md - Missing capabilities",
+          "opportunities.md - Improvement areas",
+          "coherence-score.md - Repository health (Dark Matter)",
+          "recommendations.md - Strategic advice"
+        ]
+      },
+      "L5-EXTRACTION": {
+        "purpose": "Reusable artifacts",
+        "subdirs": [
+          "skills-to-create/ - Skills we can extract",
+          "patterns-to-add/ - Patterns to add to STANDARDS/",
+          "mcps-to-build/ - MCP servers we could create",
+          "integrations-to-add/ - Integrations worth adding",
+          "examples-to-capture/ - Code examples to preserve"
+        ]
+      }
+    }
+  },
+  "open_questions": [
+    "Is si-systems-v5 public or private? (affects access)",
+    "What specific aspects interest you most?",
+    "Time constraint: Quick scan or comprehensive analysis?",
+    "End goal: Skills extraction, pattern learning, or both?"
+  ],
+  "acceptance_criteria": [
+    "Repository scanned and metrics collected",
+    "Hierarchical knowledge base structure created (L1-L5)",
+    "Patterns extracted and quality-scored",
+    "Strategic insights documented",
+    "Integration recommendations provided",
+    "Decision made on what to extract and integrate"
+  ],
+  "resources": {
+    "session_context": "META/SESSION-2025-10-25-SI-SYSTEMS-BRAIN-RESEARCH.md",
+    "brain_design": "META/REPOSITORY-BRAIN.md",
+    "skill_catalog": "META/skill-registry.json",
+    "archon_guide": "DOCS/ARCHON-INTEGRATION.md"
+  },
+  "next_morning_start": {
+    "step_1": "Read META/SESSION-2025-10-25-SI-SYSTEMS-BRAIN-RESEARCH.md to reload full context",
+    "step_2": "Review this task file (ARCHON-TASK-SI-SYSTEMS-ANALYSIS.json)",
+    "step_3": "Confirm repository access to https://github.com/daffy0208/si-systems-v5",
+    "step_4": "Answer open questions above",
+    "step_5": "Begin Phase 1: High-Level Reconnaissance"
+  },
+  "created_at": "2025-10-25T21:00:00Z",
+  "created_by": "Claude Code",
+  "for_archon_import": true
+}
