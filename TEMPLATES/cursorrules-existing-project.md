@@ -40,8 +40,8 @@ Status: Active (Existing Project)
 
 ### Available Resources
 This project has access to:
-- **38 Skills** - Specialized methodologies for development, optimization, and architecture
-- **35 MCPs** - Executable tools for testing, deployment, analysis, and more
+- **39 Skills** - Specialized methodologies for development, optimization, and architecture
+- **36 MCPs** - Executable tools for testing, deployment, analysis, and more
 - **9 Tools + 4 Scripts** - Automation utilities for common tasks
 - **13 Components** - Reusable UI patterns (auth, forms, errors, feedback)
 - **6 Integrations** - Quick setup for OpenAI, Supabase, Stripe, Pinecone, etc.

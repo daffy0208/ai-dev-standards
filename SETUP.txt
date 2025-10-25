@@ -17,9 +17,9 @@ No configuration needed.
 Works for new projects, existing projects, any language, any framework.
 
 After 2 minutes, you have:
-• 38 skills
-• 35 MCP servers
-• 105 total resources
+• 39 skills
+• 36 MCP servers
+• 107 total resources
 • Project analysis with recommendations
 • Exact roadmap for where to start
 

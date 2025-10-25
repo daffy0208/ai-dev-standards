@@ -15,7 +15,7 @@
 Think of this as a **shared brain** between you and Claude:
 
 - **38 Specialized Skills** - Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, and more)
-- **35 MCP Servers** - Executable development tools providing 92% skill coverage (1.1:1 ratio)
+- **36 MCP Servers** - Executable development tools providing 92% skill coverage (1.1:1 ratio)
 - **9 Tools + 4 Scripts** - LangChain, CrewAI, and custom automation utilities
 - **13 Reusable Components** - React components for common patterns (auth, forms, errors, feedback)
 - **6 Service Integrations** - Pre-configured connections to OpenAI, Supabase, Stripe, Pinecone, and more
@@ -24,7 +24,7 @@ Think of this as a **shared brain** between you and Claude:
 - **Decision Frameworks** - Clear guidance for choosing technologies
 - **Validation & Trust** - Automated testing ensures all resources are discoverable and accessible
 
-**Total Resources:** 105 (38 skills + 35 MCPs + 9 tools + 4 scripts + 13 components + 6 integrations)
+**Total Resources:** 105 (39 skills + 36 MCPs + 9 tools + 4 scripts + 13 components + 6 integrations)
 
 **Resource Coverage:** 100% discoverability • 92% skill-to-MCP coverage • Complete dependency mapping
 
@@ -57,9 +57,9 @@ The tool automatically:
 - Local or freshly cloned from GitHub
 
 **After 2 minutes, you have:**
-- 38 skills
-- 35 MCP servers
-- 105 total resources
+- 39 skills
+- 36 MCP servers
+- 107 total resources
 - Project analysis with recommendations
 - Exact roadmap for where to start
 

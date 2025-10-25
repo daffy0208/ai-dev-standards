@@ -4,93 +4,158 @@
   "description": "Complete mapping of skills and MCPs to their required resources (tools, components, integrations, scripts). This is the single source of truth for resource dependencies.",
   "skills": {
     "3d-visualizer": {
-      "required_mcps": ["3d-asset-manager-mcp"],
-      "required_tools": ["filesystem-tool"],
+      "required_mcps": [
+        "3d-asset-manager-mcp"
+      ],
+      "required_tools": [
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": [],
       "supporting_scripts": []
     },
     "accessibility-engineer": {
-      "required_mcps": ["accessibility-checker-mcp"],
+      "required_mcps": [
+        "accessibility-checker-mcp"
+      ],
       "required_tools": [],
-      "required_components": ["form-field", "protected-route"],
+      "required_components": [
+        "form-field",
+        "protected-route"
+      ],
       "required_integrations": [],
       "supporting_scripts": []
     },
     "animation-designer": {
-      "required_mcps": ["animation-library-mcp"],
+      "required_mcps": [
+        "animation-library-mcp"
+      ],
       "required_tools": [],
       "required_components": [],
       "required_integrations": [],
       "supporting_scripts": []
     },
     "api-designer": {
-      "required_mcps": ["openapi-generator-mcp", "api-validator-mcp"],
-      "required_tools": ["api-caller-tool"],
+      "required_mcps": [
+        "openapi-generator-mcp",
+        "api-validator-mcp"
+      ],
+      "required_tools": [
+        "api-caller-tool"
+      ],
       "required_components": [],
-      "required_integrations": ["supabase", "stripe"],
+      "required_integrations": [
+        "supabase",
+        "stripe"
+      ],
       "supporting_scripts": []
     },
     "audio-producer": {
-      "required_mcps": ["audio-processor-mcp"],
-      "required_tools": ["filesystem-tool"],
+      "required_mcps": [
+        "audio-processor-mcp"
+      ],
+      "required_tools": [
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": [],
       "supporting_scripts": []
     },
     "brand-designer": {
       "required_mcps": [],
-      "required_tools": ["filesystem-tool"],
+      "required_tools": [
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": [],
       "supporting_scripts": []
     },
     "context-preserver": {
       "required_mcps": [],
-      "required_tools": ["filesystem-tool"],
+      "required_tools": [
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": [],
       "supporting_scripts": []
     },
     "copywriter": {
-      "required_mcps": ["seo-analyzer-mcp"],
+      "required_mcps": [
+        "seo-analyzer-mcp"
+      ],
       "required_tools": [],
       "required_components": [],
-      "required_integrations": ["openai", "anthropic"],
+      "required_integrations": [
+        "openai",
+        "anthropic"
+      ],
       "supporting_scripts": []
     },
     "dark-matter-analyzer": {
-      "required_mcps": ["dark-matter-analyzer-mcp"],
-      "required_tools": ["filesystem-tool", "code-analyzer-tool"],
+      "required_mcps": [
+        "dark-matter-analyzer-mcp"
+      ],
+      "required_tools": [
+        "filesystem-tool",
+        "code-analyzer-tool"
+      ],
       "required_components": [],
       "required_integrations": [],
       "supporting_scripts": []
     },
     "data-engineer": {
-      "required_mcps": ["database-migration-mcp"],
-      "required_tools": ["database-query-tool", "web-scraper-tool"],
+      "required_mcps": [
+        "database-migration-mcp"
+      ],
+      "required_tools": [
+        "database-query-tool",
+        "web-scraper-tool"
+      ],
       "required_components": [],
-      "required_integrations": ["supabase"],
-      "supporting_scripts": ["db-backup", "db-migrate"]
+      "required_integrations": [
+        "supabase"
+      ],
+      "supporting_scripts": [
+        "db-backup",
+        "db-migrate"
+      ]
     },
     "data-visualizer": {
-      "required_mcps": ["chart-builder-mcp"],
-      "required_tools": ["database-query-tool"],
+      "required_mcps": [
+        "chart-builder-mcp"
+      ],
+      "required_tools": [
+        "database-query-tool"
+      ],
       "required_components": [],
       "required_integrations": [],
       "supporting_scripts": []
     },
     "deployment-advisor": {
-      "required_mcps": ["deployment-orchestrator-mcp"],
+      "required_mcps": [
+        "deployment-orchestrator-mcp"
+      ],
       "required_tools": [],
       "required_components": [],
-      "required_integrations": ["supabase"],
-      "supporting_scripts": ["deploy"]
+      "required_integrations": [
+        "supabase"
+      ],
+      "supporting_scripts": [
+        "deploy"
+      ]
     },
     "design-system-architect": {
-      "required_mcps": ["design-token-manager-mcp"],
+      "required_mcps": [
+        "design-token-manager-mcp"
+      ],
       "required_tools": [],
-      "required_components": ["error-boundary", "loading-spinner", "skeleton", "toast", "form-field"],
+      "required_components": [
+        "error-boundary",
+        "loading-spinner",
+        "skeleton",
+        "toast",
+        "form-field"
+      ],
       "required_integrations": [],
       "supporting_scripts": []
     },
@@ -102,8 +167,12 @@
       "supporting_scripts": []
     },
     "frontend-builder": {
-      "required_mcps": ["component-generator-mcp"],
-      "required_tools": ["api-caller-tool"],
+      "required_mcps": [
+        "component-generator-mcp"
+      ],
+      "required_tools": [
+        "api-caller-tool"
+      ],
       "required_components": [
         "login-form",
         "signup-form",
@@ -118,67 +187,125 @@
         "form-field",
         "use-form"
       ],
-      "required_integrations": ["supabase", "stripe", "resend"],
-      "supporting_scripts": ["deploy"]
+      "required_integrations": [
+        "supabase",
+        "stripe",
+        "resend"
+      ],
+      "supporting_scripts": [
+        "deploy"
+      ]
     },
     "go-to-market-planner": {
-      "required_mcps": ["market-analyzer-mcp"],
-      "required_tools": ["web-scraper-tool"],
+      "required_mcps": [
+        "market-analyzer-mcp"
+      ],
+      "required_tools": [
+        "web-scraper-tool"
+      ],
       "required_components": [],
       "required_integrations": [],
       "supporting_scripts": []
     },
     "iot-developer": {
-      "required_mcps": ["iot-device-manager-mcp"],
+      "required_mcps": [
+        "iot-device-manager-mcp"
+      ],
       "required_tools": [],
       "required_components": [],
       "required_integrations": [],
       "supporting_scripts": []
     },
     "knowledge-base-manager": {
-      "required_mcps": ["knowledge-base-mcp", "vector-database-mcp", "embedding-generator-mcp", "graph-database-mcp"],
-      "required_tools": ["vector-search-tool", "embedding-tool", "database-query-tool"],
+      "required_mcps": [
+        "knowledge-base-mcp",
+        "vector-database-mcp",
+        "embedding-generator-mcp",
+        "graph-database-mcp"
+      ],
+      "required_tools": [
+        "vector-search-tool",
+        "embedding-tool",
+        "database-query-tool"
+      ],
       "required_components": [],
-      "required_integrations": ["openai", "anthropic", "pinecone"],
+      "required_integrations": [
+        "openai",
+        "anthropic",
+        "pinecone"
+      ],
       "supporting_scripts": []
     },
     "knowledge-graph-builder": {
-      "required_mcps": ["graph-database-mcp"],
-      "required_tools": ["vector-search-tool", "database-query-tool"],
+      "required_mcps": [
+        "graph-database-mcp"
+      ],
+      "required_tools": [
+        "vector-search-tool",
+        "database-query-tool"
+      ],
       "required_components": [],
       "required_integrations": [],
       "supporting_scripts": []
     },
     "livestream-engineer": {
-      "required_mcps": ["streaming-setup-mcp"],
+      "required_mcps": [
+        "streaming-setup-mcp"
+      ],
       "required_tools": [],
       "required_components": [],
       "required_integrations": [],
       "supporting_scripts": []
     },
     "localization-engineer": {
-      "required_mcps": ["i18n-manager-mcp"],
-      "required_tools": ["filesystem-tool"],
+      "required_mcps": [
+        "i18n-manager-mcp"
+      ],
+      "required_tools": [
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": [],
       "supporting_scripts": []
     },
     "mobile-developer": {
-      "required_mcps": ["mobile-builder-mcp"],
+      "required_mcps": [
+        "mobile-builder-mcp"
+      ],
       "required_tools": [],
-      "required_components": ["login-form", "signup-form", "error-boundary", "loading-spinner", "toast"],
-      "required_integrations": ["supabase"],
-      "supporting_scripts": ["deploy"]
+      "required_components": [
+        "login-form",
+        "signup-form",
+        "error-boundary",
+        "loading-spinner",
+        "toast"
+      ],
+      "required_integrations": [
+        "supabase"
+      ],
+      "supporting_scripts": [
+        "deploy"
+      ]
     },
     "multi-agent-architect": {
-      "required_mcps": ["agent-orchestrator-mcp"],
+      "required_mcps": [
+        "agent-orchestrator-mcp"
+      ],
       "required_tools": [],
-      "required_components": ["simple-task-agent"],
-      "required_integrations": ["openai", "anthropic"],
+      "required_components": [
+        "simple-task-agent"
+      ],
+      "required_integrations": [
+        "openai",
+        "anthropic"
+      ],
       "supporting_scripts": []
     },
     "mvp-builder": {
-      "required_mcps": ["feature-prioritizer-mcp", "component-generator-mcp"],
+      "required_mcps": [
+        "feature-prioritizer-mcp",
+        "component-generator-mcp"
+      ],
       "required_tools": [],
       "required_components": [
         "login-form",
@@ -189,29 +316,52 @@
         "toast",
         "form-field"
       ],
-      "required_integrations": ["supabase", "stripe", "resend"],
-      "supporting_scripts": ["deploy"]
+      "required_integrations": [
+        "supabase",
+        "stripe",
+        "resend"
+      ],
+      "supporting_scripts": [
+        "deploy"
+      ]
     },
     "performance-optimizer": {
-      "required_mcps": ["performance-profiler-mcp"],
-      "required_tools": ["code-analyzer-tool"],
+      "required_mcps": [
+        "performance-profiler-mcp"
+      ],
+      "required_tools": [
+        "code-analyzer-tool"
+      ],
       "required_components": [],
       "required_integrations": [],
       "supporting_scripts": []
     },
     "product-strategist": {
-      "required_mcps": ["user-insight-analyzer-mcp", "feature-prioritizer-mcp"],
-      "required_tools": ["web-scraper-tool"],
+      "required_mcps": [
+        "user-insight-analyzer-mcp",
+        "feature-prioritizer-mcp"
+      ],
+      "required_tools": [
+        "web-scraper-tool"
+      ],
       "required_components": [],
       "required_integrations": [],
       "supporting_scripts": []
     },
     "quality-auditor": {
-      "required_mcps": ["code-quality-scanner-mcp", "screenshot-testing-mcp"],
-      "required_tools": ["code-analyzer-tool", "test-generator-tool"],
+      "required_mcps": [
+        "code-quality-scanner-mcp",
+        "screenshot-testing-mcp"
+      ],
+      "required_tools": [
+        "code-analyzer-tool",
+        "test-generator-tool"
+      ],
       "required_components": [],
       "required_integrations": [],
-      "supporting_scripts": ["test-runner"]
+      "supporting_scripts": [
+        "test-runner"
+      ]
     },
     "rag-implementer": {
       "required_mcps": [
@@ -225,14 +375,29 @@
         "database-query-tool"
       ],
       "required_components": [],
-      "required_integrations": ["openai", "anthropic", "pinecone"],
+      "required_integrations": [
+        "openai",
+        "anthropic",
+        "pinecone"
+      ],
       "supporting_scripts": []
     },
     "security-engineer": {
-      "required_mcps": ["security-scanner-mcp"],
-      "required_tools": ["code-analyzer-tool"],
-      "required_components": ["login-form", "signup-form", "password-reset", "protected-route"],
-      "required_integrations": ["supabase"],
+      "required_mcps": [
+        "security-scanner-mcp"
+      ],
+      "required_tools": [
+        "code-analyzer-tool"
+      ],
+      "required_components": [
+        "login-form",
+        "signup-form",
+        "password-reset",
+        "protected-route"
+      ],
+      "required_integrations": [
+        "supabase"
+      ],
       "supporting_scripts": []
     },
     "spatial-developer": {
@@ -250,43 +415,76 @@
       "supporting_scripts": []
     },
     "technical-writer": {
-      "required_mcps": ["doc-generator-mcp"],
-      "required_tools": ["filesystem-tool"],
+      "required_mcps": [
+        "doc-generator-mcp"
+      ],
+      "required_tools": [
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": [],
       "supporting_scripts": []
     },
     "testing-strategist": {
-      "required_mcps": ["test-runner-mcp", "screenshot-testing-mcp"],
-      "required_tools": ["test-generator-tool", "api-caller-tool"],
+      "required_mcps": [
+        "test-runner-mcp",
+        "screenshot-testing-mcp"
+      ],
+      "required_tools": [
+        "test-generator-tool",
+        "api-caller-tool"
+      ],
       "required_components": [],
       "required_integrations": [],
-      "supporting_scripts": ["test-runner"]
+      "supporting_scripts": [
+        "test-runner"
+      ]
     },
     "user-researcher": {
-      "required_mcps": ["user-insight-analyzer-mcp"],
-      "required_tools": ["web-scraper-tool"],
+      "required_mcps": [
+        "user-insight-analyzer-mcp"
+      ],
+      "required_tools": [
+        "web-scraper-tool"
+      ],
       "required_components": [],
       "required_integrations": [],
       "supporting_scripts": []
     },
     "ux-designer": {
-      "required_mcps": ["wireframe-generator-mcp"],
+      "required_mcps": [
+        "wireframe-generator-mcp"
+      ],
       "required_tools": [],
-      "required_components": ["error-fallback", "not-found", "loading-spinner", "skeleton", "toast"],
+      "required_components": [
+        "error-fallback",
+        "not-found",
+        "loading-spinner",
+        "skeleton",
+        "toast"
+      ],
       "required_integrations": [],
       "supporting_scripts": []
     },
     "video-producer": {
-      "required_mcps": ["video-optimizer-mcp"],
-      "required_tools": ["filesystem-tool"],
+      "required_mcps": [
+        "video-optimizer-mcp"
+      ],
+      "required_tools": [
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": [],
       "supporting_scripts": []
     },
     "visual-designer": {
-      "required_mcps": ["asset-optimizer-mcp", "design-token-manager-mcp"],
-      "required_tools": ["filesystem-tool"],
+      "required_mcps": [
+        "asset-optimizer-mcp",
+        "design-token-manager-mcp"
+      ],
+      "required_tools": [
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": [],
       "supporting_scripts": []
@@ -295,25 +493,48 @@
       "required_mcps": [],
       "required_tools": [],
       "required_components": [],
-      "required_integrations": ["openai"],
+      "required_integrations": [
+        "openai"
+      ],
+      "supporting_scripts": []
+    },
+    "archon-manager": {
+      "required_mcps": [
+        "archon-mcp"
+      ],
+      "required_tools": [],
+      "required_components": [],
+      "required_integrations": [
+        "supabase",
+        "openai"
+      ],
       "supporting_scripts": []
     }
   },
   "mcps": {
     "3d-asset-manager-mcp": {
-      "required_tools": ["filesystem-tool"],
+      "required_tools": [
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
     "accessibility-checker-mcp": {
       "required_tools": [],
-      "required_components": ["form-field"],
+      "required_components": [
+        "form-field"
+      ],
       "required_integrations": []
     },
     "agent-orchestrator-mcp": {
       "required_tools": [],
-      "required_components": ["simple-task-agent"],
-      "required_integrations": ["openai", "anthropic"]
+      "required_components": [
+        "simple-task-agent"
+      ],
+      "required_integrations": [
+        "openai",
+        "anthropic"
+      ]
     },
     "animation-library-mcp": {
       "required_tools": [],
@@ -321,64 +542,96 @@
       "required_integrations": []
     },
     "api-validator-mcp": {
-      "required_tools": ["api-caller-tool"],
+      "required_tools": [
+        "api-caller-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
     "asset-optimizer-mcp": {
-      "required_tools": ["filesystem-tool"],
+      "required_tools": [
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
     "audio-processor-mcp": {
-      "required_tools": ["filesystem-tool"],
+      "required_tools": [
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
     "chart-builder-mcp": {
-      "required_tools": ["database-query-tool"],
+      "required_tools": [
+        "database-query-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
     "code-quality-scanner-mcp": {
-      "required_tools": ["code-analyzer-tool", "filesystem-tool"],
+      "required_tools": [
+        "code-analyzer-tool",
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
     "component-generator-mcp": {
-      "required_tools": ["filesystem-tool"],
+      "required_tools": [
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
     "dark-matter-analyzer-mcp": {
-      "required_tools": ["filesystem-tool", "code-analyzer-tool"],
+      "required_tools": [
+        "filesystem-tool",
+        "code-analyzer-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
     "database-migration-mcp": {
-      "required_tools": ["database-query-tool"],
+      "required_tools": [
+        "database-query-tool"
+      ],
       "required_components": [],
-      "required_integrations": ["supabase"]
+      "required_integrations": [
+        "supabase"
+      ]
     },
     "deployment-orchestrator-mcp": {
       "required_tools": [],
       "required_components": [],
-      "required_integrations": ["supabase"]
+      "required_integrations": [
+        "supabase"
+      ]
     },
     "design-token-manager-mcp": {
-      "required_tools": ["filesystem-tool"],
+      "required_tools": [
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
     "doc-generator-mcp": {
-      "required_tools": ["filesystem-tool", "code-analyzer-tool"],
+      "required_tools": [
+        "filesystem-tool",
+        "code-analyzer-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
     "embedding-generator-mcp": {
-      "required_tools": ["embedding-tool"],
+      "required_tools": [
+        "embedding-tool"
+      ],
       "required_components": [],
-      "required_integrations": ["openai", "anthropic"]
+      "required_integrations": [
+        "openai",
+        "anthropic"
+      ]
     },
     "feature-prioritizer-mcp": {
       "required_tools": [],
@@ -386,12 +639,17 @@
       "required_integrations": []
     },
     "graph-database-mcp": {
-      "required_tools": ["database-query-tool", "vector-search-tool"],
+      "required_tools": [
+        "database-query-tool",
+        "vector-search-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
     "i18n-manager-mcp": {
-      "required_tools": ["filesystem-tool"],
+      "required_tools": [
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
@@ -401,47 +659,85 @@
       "required_integrations": []
     },
     "knowledge-base-mcp": {
-      "required_tools": ["vector-search-tool", "embedding-tool", "database-query-tool"],
+      "required_tools": [
+        "vector-search-tool",
+        "embedding-tool",
+        "database-query-tool"
+      ],
       "required_components": [],
-      "required_integrations": ["openai", "anthropic", "pinecone"]
+      "required_integrations": [
+        "openai",
+        "anthropic",
+        "pinecone"
+      ]
     },
     "market-analyzer-mcp": {
-      "required_tools": ["web-scraper-tool", "api-caller-tool"],
+      "required_tools": [
+        "web-scraper-tool",
+        "api-caller-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
     "mobile-builder-mcp": {
-      "required_tools": ["filesystem-tool"],
-      "required_components": ["login-form", "signup-form", "error-boundary", "loading-spinner", "toast"],
-      "required_integrations": ["supabase"]
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [
+        "login-form",
+        "signup-form",
+        "error-boundary",
+        "loading-spinner",
+        "toast"
+      ],
+      "required_integrations": [
+        "supabase"
+      ]
     },
     "openapi-generator-mcp": {
-      "required_tools": ["filesystem-tool", "api-caller-tool"],
+      "required_tools": [
+        "filesystem-tool",
+        "api-caller-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
     "performance-profiler-mcp": {
-      "required_tools": ["code-analyzer-tool"],
+      "required_tools": [
+        "code-analyzer-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
     "screenshot-testing-mcp": {
-      "required_tools": ["filesystem-tool"],
+      "required_tools": [
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
     "security-scanner-mcp": {
-      "required_tools": ["code-analyzer-tool", "filesystem-tool"],
+      "required_tools": [
+        "code-analyzer-tool",
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
     "semantic-search-mcp": {
-      "required_tools": ["vector-search-tool", "embedding-tool"],
+      "required_tools": [
+        "vector-search-tool",
+        "embedding-tool"
+      ],
       "required_components": [],
-      "required_integrations": ["pinecone"]
+      "required_integrations": [
+        "pinecone"
+      ]
     },
     "seo-analyzer-mcp": {
-      "required_tools": ["web-scraper-tool"],
+      "required_tools": [
+        "web-scraper-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
@@ -451,197 +747,372 @@
       "required_integrations": []
     },
     "test-runner-mcp": {
-      "required_tools": ["test-generator-tool", "filesystem-tool"],
+      "required_tools": [
+        "test-generator-tool",
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
     "user-insight-analyzer-mcp": {
-      "required_tools": ["web-scraper-tool"],
+      "required_tools": [
+        "web-scraper-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
     "vector-database-mcp": {
-      "required_tools": ["vector-search-tool", "embedding-tool"],
+      "required_tools": [
+        "vector-search-tool",
+        "embedding-tool"
+      ],
       "required_components": [],
-      "required_integrations": ["pinecone"]
+      "required_integrations": [
+        "pinecone"
+      ]
     },
     "video-optimizer-mcp": {
-      "required_tools": ["filesystem-tool"],
+      "required_tools": [
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
     "wireframe-generator-mcp": {
-      "required_tools": ["filesystem-tool"],
+      "required_tools": [
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": []
+    },
+    "archon-mcp": {
+      "required_tools": [],
+      "required_components": [],
+      "required_integrations": [
+        "supabase",
+        "openai"
+      ]
     }
   },
   "file_dependencies": {
     "CLI/commands/sync.js": {
-      "depends_on_registries": ["skill-registry", "mcp-registry", "tool-registry", "component-registry", "integration-registry"],
+      "depends_on_registries": [
+        "skill-registry",
+        "mcp-registry",
+        "tool-registry",
+        "component-registry",
+        "integration-registry"
+      ],
       "update_type": "code",
-      "sections": ["checkForUpdates", "applyUpdate", "initializeSync", "showSyncSummary"],
+      "sections": [
+        "checkForUpdates",
+        "applyUpdate",
+        "initializeSync",
+        "showSyncSummary"
+      ],
       "priority": "critical",
       "description": "Sync command needs updating when new resource types are added or registry structures change"
     },
     "CLI/utils/github-fetch.js": {
-      "depends_on_registries": ["all"],
+      "depends_on_registries": [
+        "all"
+      ],
       "update_type": "code",
-      "sections": ["fetchAllStandards", "module.exports"],
+      "sections": [
+        "fetchAllStandards",
+        "module.exports"
+      ],
       "priority": "critical",
       "description": "Fetch utility must be updated when new registries are added"
     },
     ".claude/claude.md": {
-      "depends_on_registries": ["skill-registry"],
+      "depends_on_registries": [
+        "skill-registry"
+      ],
       "update_type": "content",
-      "sections": ["Skills section"],
+      "sections": [
+        "Skills section"
+      ],
       "priority": "high",
       "description": "Must list all 38 skills with names, descriptions, and locations"
     },
     ".cursorrules": {
-      "depends_on_registries": ["all"],
+      "depends_on_registries": [
+        "all"
+      ],
       "update_type": "statistics",
-      "sections": ["Available Resources"],
+      "sections": [
+        "Available Resources"
+      ],
       "priority": "high",
       "description": "Statistics and registry references need updating when counts change"
     },
     "README.md": {
-      "depends_on_registries": ["all"],
+      "depends_on_registries": [
+        "all"
+      ],
       "update_type": "statistics",
-      "sections": ["lines 9-26", "version number", "resource counts"],
+      "sections": [
+        "lines 9-26",
+        "version number",
+        "resource counts"
+      ],
       "priority": "high",
       "description": "Version and resource statistics must be current"
     },
     "TEMPLATES/cursorrules-ai-rag.md": {
-      "depends_on_registries": ["all"],
+      "depends_on_registries": [
+        "all"
+      ],
       "update_type": "statistics",
-      "sections": ["Available Resources"],
+      "sections": [
+        "Available Resources"
+      ],
       "priority": "medium",
       "description": "Template should reference current registry statistics"
     },
     "TEMPLATES/cursorrules-existing-project.md": {
-      "depends_on_registries": ["all"],
+      "depends_on_registries": [
+        "all"
+      ],
       "update_type": "statistics",
-      "sections": ["Available Resources"],
+      "sections": [
+        "Available Resources"
+      ],
       "priority": "medium",
       "description": "Template should reference current registry statistics"
     },
     "TEMPLATES/cursorrules-minimal.md": {
-      "depends_on_registries": ["all"],
+      "depends_on_registries": [
+        "all"
+      ],
       "update_type": "statistics",
-      "sections": ["Available Resources"],
+      "sections": [
+        "Available Resources"
+      ],
       "priority": "medium",
       "description": "Template should reference current registry statistics"
     },
     "TEMPLATES/cursorrules-quick-test.md": {
-      "depends_on_registries": ["all"],
+      "depends_on_registries": [
+        "all"
+      ],
       "update_type": "statistics",
-      "sections": ["Available Resources"],
+      "sections": [
+        "Available Resources"
+      ],
       "priority": "medium",
       "description": "Template should reference current registry statistics"
     },
     "TEMPLATES/cursorrules-saas.md": {
-      "depends_on_registries": ["all"],
+      "depends_on_registries": [
+        "all"
+      ],
       "update_type": "statistics",
-      "sections": ["Available Resources"],
+      "sections": [
+        "Available Resources"
+      ],
       "priority": "medium",
       "description": "Template should reference current registry statistics"
     },
     "INSTALLERS/bootstrap/bootstrap.js": {
-      "depends_on_registries": ["all"],
+      "depends_on_registries": [
+        "all"
+      ],
       "update_type": "code",
-      "sections": ["installation logic", "resource fetching"],
+      "sections": [
+        "installation logic",
+        "resource fetching"
+      ],
       "priority": "high",
       "description": "Bootstrap installer must handle all 6 resource types"
     },
     "setup-project.sh": {
-      "depends_on_registries": ["all"],
+      "depends_on_registries": [
+        "all"
+      ],
       "update_type": "statistics",
-      "sections": ["line 124: final success message"],
+      "sections": [
+        "line 124: final success message"
+      ],
       "priority": "medium",
       "description": "Setup script displays resource counts in completion message"
     },
     "scripts/analyze-project.sh": {
-      "depends_on_registries": ["skill-registry", "mcp-registry", "tool-registry", "component-registry", "integration-registry"],
+      "depends_on_registries": [
+        "skill-registry",
+        "mcp-registry",
+        "tool-registry",
+        "component-registry",
+        "integration-registry"
+      ],
       "update_type": "content",
-      "sections": ["skill recommendations", "START-HERE.md generation", "resource counts"],
+      "sections": [
+        "skill recommendations",
+        "START-HERE.md generation",
+        "resource counts"
+      ],
       "priority": "high",
       "description": "Analysis script recommends skills and generates START-HERE.md with actionable next steps"
     },
     "scripts/regenerate-relationships.ts": {
-      "depends_on_registries": ["all"],
+      "depends_on_registries": [
+        "all"
+      ],
       "update_type": "code",
-      "sections": ["extractSkillRelationships", "extractMcpRelationships"],
+      "sections": [
+        "extractSkillRelationships",
+        "extractMcpRelationships"
+      ],
       "priority": "critical",
       "description": "Relationship regeneration script must process all registries correctly"
     },
     "INSTALL.md": {
-      "depends_on_registries": ["all"],
+      "depends_on_registries": [
+        "all"
+      ],
       "update_type": "statistics",
-      "sections": ["resource counts"],
+      "sections": [
+        "resource counts"
+      ],
       "priority": "high",
       "description": "Installation guide must show current resource counts"
     },
     "SETUP.txt": {
-      "depends_on_registries": ["all"],
+      "depends_on_registries": [
+        "all"
+      ],
       "update_type": "statistics",
-      "sections": ["resource counts"],
+      "sections": [
+        "resource counts"
+      ],
       "priority": "medium",
       "description": "Quick reference must show current resource counts"
     },
     "DOCS/QUICK-START.md": {
-      "depends_on_registries": ["all"],
+      "depends_on_registries": [
+        "all"
+      ],
       "update_type": "statistics",
-      "sections": ["version number", "resource counts"],
+      "sections": [
+        "version number",
+        "resource counts"
+      ],
       "priority": "high",
       "description": "Quick start guide must reference current version and counts"
     },
     "DOCS/TROUBLESHOOTING.md": {
-      "depends_on_registries": ["all"],
+      "depends_on_registries": [
+        "all"
+      ],
       "update_type": "documentation",
-      "sections": ["CLI commands", "setup instructions"],
+      "sections": [
+        "CLI commands",
+        "setup instructions"
+      ],
       "priority": "medium",
       "description": "Troubleshooting guide references CLI and setup processes"
     },
     "SYNC-UPDATE-PLAN.md": {
-      "depends_on_registries": ["all"],
+      "depends_on_registries": [
+        "all"
+      ],
       "update_type": "documentation",
-      "sections": ["all sections"],
+      "sections": [
+        "all sections"
+      ],
       "priority": "low",
       "description": "Planning document - can be archived once updates are complete"
     }
   },
   "statistics": {
-    "total_skills": 38,
-    "total_mcps": 35,
-    "skills_with_mcps": 32,
+    "total_skills": 39,
+    "total_mcps": 36,
+    "skills_with_mcps": 33,
     "skills_without_mcps": 6,
     "most_used_tools": [
-      {"tool": "filesystem-tool", "usage_count": 20},
-      {"tool": "code-analyzer-tool", "usage_count": 9},
-      {"tool": "web-scraper-tool", "usage_count": 7},
-      {"tool": "api-caller-tool", "usage_count": 6},
-      {"tool": "database-query-tool", "usage_count": 6}
+      {
+        "tool": "filesystem-tool",
+        "usage_count": 20
+      },
+      {
+        "tool": "code-analyzer-tool",
+        "usage_count": 9
+      },
+      {
+        "tool": "web-scraper-tool",
+        "usage_count": 7
+      },
+      {
+        "tool": "api-caller-tool",
+        "usage_count": 6
+      },
+      {
+        "tool": "database-query-tool",
+        "usage_count": 6
+      }
     ],
     "most_used_components": [
-      {"component": "loading-spinner", "usage_count": 5},
-      {"component": "toast", "usage_count": 5},
-      {"component": "login-form", "usage_count": 4},
-      {"component": "signup-form", "usage_count": 4},
-      {"component": "error-boundary", "usage_count": 4}
+      {
+        "component": "loading-spinner",
+        "usage_count": 5
+      },
+      {
+        "component": "toast",
+        "usage_count": 5
+      },
+      {
+        "component": "login-form",
+        "usage_count": 4
+      },
+      {
+        "component": "signup-form",
+        "usage_count": 4
+      },
+      {
+        "component": "error-boundary",
+        "usage_count": 4
+      }
     ],
     "most_used_integrations": [
-      {"integration": "supabase", "usage_count": 9},
-      {"integration": "openai", "usage_count": 5},
-      {"integration": "anthropic", "usage_count": 4},
-      {"integration": "pinecone", "usage_count": 3},
-      {"integration": "stripe", "usage_count": 3}
+      {
+        "integration": "supabase",
+        "usage_count": 9
+      },
+      {
+        "integration": "openai",
+        "usage_count": 5
+      },
+      {
+        "integration": "anthropic",
+        "usage_count": 4
+      },
+      {
+        "integration": "pinecone",
+        "usage_count": 3
+      },
+      {
+        "integration": "stripe",
+        "usage_count": 3
+      }
     ],
     "most_used_scripts": [
-      {"script": "deploy", "usage_count": 4},
-      {"script": "test-runner", "usage_count": 2},
-      {"script": "db-backup", "usage_count": 1},
-      {"script": "db-migrate", "usage_count": 1}
+      {
+        "script": "deploy",
+        "usage_count": 4
+      },
+      {
+        "script": "test-runner",
+        "usage_count": 2
+      },
+      {
+        "script": "db-backup",
+        "usage_count": 1
+      },
+      {
+        "script": "db-migrate",
+        "usage_count": 1
+      }
     ],
     "file_dependencies": {
       "total_tracked_files": 19,

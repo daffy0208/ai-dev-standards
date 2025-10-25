@@ -1,7 +1,7 @@
 {
-  "version": "3.9.0",
-  "last_updated": "2025-10-23",
-  "description": "Registry of all available skills in ai-dev-standards. Skills are model-invoked capabilities that Claude activates based on context. Now includes 37 active skills covering product development, AI systems, technical implementation, infrastructure, UX design, ADHD support, and repository analysis.",
+  "version": "3.10.0",
+  "last_updated": "2025-10-25",
+  "description": "Registry of all available skills in ai-dev-standards. Skills are model-invoked capabilities that Claude activates based on context. Now includes 39 active skills covering product development, AI systems, technical implementation, infrastructure, UX design, ADHD support, repository analysis, and project management.",
   "skills": [
     {
       "name": "3d-visualizer",
@@ -92,6 +92,40 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
+      "frameworks": [
+        "all"
+      ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
+      "name": "archon-manager",
+      "description": "Master Archon MCP for strategic project management, task tracking, and knowledge base operations. The strategic layer (WHAT/WHEN) that coordinates with Skills (HOW). Use for managing projects, tracking tasks, querying knowledge bases, or implementing the Archon+Skills two-layer architecture.",
+      "triggers": [
+        "archon-manager",
+        "archon manager",
+        "archon",
+        "project management mcp",
+        "task tracking"
+      ],
+      "tags": [
+        "project-management",
+        "ai-native"
+      ],
+      "category": "project-management",
+      "difficulty": "intermediate",
+      "estimated_time": "1-2 hours setup",
+      "path": "/SKILLS/archon-manager/",
+      "status": "active",
+      "prerequisites": [],
+      "related_skills": [
+        "rag-implementer",
+        "knowledge-base-manager",
+        "mvp-builder",
+        "product-strategist",
+        "multi-agent-architect"
+      ],
       "frameworks": [
         "all"
       ],
@@ -412,30 +446,6 @@
       ]
     },
     {
-      "name": "knowledge-graph-builder",
-      "description": "Design and build knowledge graphs. Use when modeling complex relationships, building semantic search, or creating knowledge bases. Covers schema design, entity relationships, and graph database selection.",
-      "triggers": [
-        "knowledge-graph-builder",
-        "knowledge graph builder"
-      ],
-      "tags": [
-        "specialized"
-      ],
-      "category": "specialized",
-      "difficulty": "intermediate",
-      "estimated_time": "1-3 hours",
-      "path": "/SKILLS/knowledge-graph-builder/",
-      "status": "active",
-      "prerequisites": [],
-      "related_skills": ["rag-implementer", "knowledge-base-manager"],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
-    },
-    {
       "name": "knowledge-base-manager",
       "description": "Design, build, and maintain comprehensive knowledge bases. Bridges document-based (RAG) and entity-based (graph) knowledge systems. Use when building knowledge-intensive applications, managing organizational knowledge, or creating intelligent information systems.",
       "triggers": [
@@ -453,7 +463,39 @@
       "path": "/SKILLS/knowledge-base-manager/",
       "status": "active",
       "prerequisites": [],
-      "related_skills": ["rag-implementer", "knowledge-graph-builder", "data-engineer", "quality-auditor"],
+      "related_skills": [
+        "rag-implementer",
+        "knowledge-graph-builder",
+        "data-engineer",
+        "quality-auditor"
+      ],
+      "frameworks": [
+        "all"
+      ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
+      "name": "knowledge-graph-builder",
+      "description": "Design and build knowledge graphs. Use when modeling complex relationships, building semantic search, or creating knowledge bases. Covers schema design, entity relationships, and graph database selection.",
+      "triggers": [
+        "knowledge-graph-builder",
+        "knowledge graph builder"
+      ],
+      "tags": [
+        "specialized"
+      ],
+      "category": "specialized",
+      "difficulty": "intermediate",
+      "estimated_time": "1-3 hours",
+      "path": "/SKILLS/knowledge-graph-builder/",
+      "status": "active",
+      "prerequisites": [],
+      "related_skills": [
+        "rag-implementer",
+        "knowledge-base-manager"
+      ],
       "frameworks": [
         "all"
       ],
@@ -676,7 +718,10 @@
       "path": "/SKILLS/rag-implementer/",
       "status": "active",
       "prerequisites": [],
-      "related_skills": ["knowledge-base-manager", "knowledge-graph-builder"],
+      "related_skills": [
+        "knowledge-base-manager",
+        "knowledge-graph-builder"
+      ],
       "frameworks": [
         "all"
       ],

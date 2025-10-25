@@ -19,8 +19,8 @@ Status: Active
 ### Available Resources
 
 This project has access to:
-- **38 Skills** - Specialized development methodologies (see META/skill-registry.json)
-- **35 MCPs** - Executable development tools (92% skill coverage)
+- **39 Skills** - Specialized development methodologies (see META/skill-registry.json)
+- **36 MCPs** - Executable development tools (92% skill coverage)
 - **9 Tools + 4 Scripts** - LangChain, CrewAI, custom utilities
 - **13 Components** - React components (auth, forms, errors, feedback)
 - **6 Integrations** - OpenAI, Anthropic, Supabase, Stripe, Pinecone, Resend

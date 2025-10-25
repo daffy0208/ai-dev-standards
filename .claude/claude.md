@@ -6,19 +6,19 @@ This repository provides a comprehensive resource system for AI-powered developm
 
 ### 📋 Complete Resource Inventory
 
-- **38 Skills** - Specialized development methodologies and expertise areas
-- **35 MCP Servers** - Executable tools providing 92% skill coverage (1.1:1 ratio)
+- **39 Skills** - Specialized development methodologies and expertise areas
+- **36 MCP Servers** - Executable tools providing 92% skill coverage (1.1:1 ratio)
 - **9 Tools + 4 Scripts** - LangChain, CrewAI tools, and automation scripts
 - **13 Components** - Reusable React components and patterns
 - **6 Integrations** - Pre-configured service integrations (OpenAI, Supabase, etc.)
 
-**Total: 105 Resources**
+**Total: 107 Resources**
 
 ### 📍 Registry Locations
 
 All resources are cataloged in `/META/` registries:
-- `skill-registry.json` - All 38 skills with descriptions and metadata
-- `mcp-registry.json` - All 35 MCP servers
+- `skill-registry.json` - All 39 skills with descriptions and metadata
+- `mcp-registry.json` - All 36 MCP servers
 - `tool-registry.json` - All 9 tools + 4 scripts
 - `component-registry.json` - All 13 components
 - `integration-registry.json` - All 6 integrations
@@ -34,7 +34,7 @@ Use `relationship-mapping.json` to discover:
 
 ## Skills
 
-All 38 skills are listed below with descriptions and locations:
+All 39 skills are listed below with descriptions and locations:
 
 
 ### 3d-visualizer
@@ -54,6 +54,12 @@ Implement accessibility (a11y) best practices to make applications usable by eve
 Expert in web animations, transitions, and motion design using Framer Motion and CSS
 
 **Location:** `/SKILLS/animation-designer/SKILL.md`
+
+### archon-manager
+
+Master Archon MCP for strategic project management, task tracking, and knowledge base operations. The strategic layer (WHAT/WHEN) that coordinates with Skills (HOW). Use when managing projects, tracking tasks, querying knowledge bases, or implementing the Archon+Skills two-layer architecture.
+
+**Location:** `/SKILLS/archon-manager/SKILL.md`
 
 ### api-designer
 
