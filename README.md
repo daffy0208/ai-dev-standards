@@ -24,7 +24,7 @@ Think of this as a **shared brain** between you and Claude:
 - **Decision Frameworks** - Clear guidance for choosing technologies
 - **Validation & Trust** - Automated testing ensures all resources are discoverable and accessible
 
-**Total Resources:** 103 (37 skills + 34 MCPs + 9 tools + 4 scripts + 13 components + 6 integrations)
+**Total Resources:** 105 (38 skills + 35 MCPs + 9 tools + 4 scripts + 13 components + 6 integrations)
 
 **Resource Coverage:** 100% discoverability • 92% skill-to-MCP coverage • Complete dependency mapping
 
@@ -57,9 +57,9 @@ The tool automatically:
 - Local or freshly cloned from GitHub
 
 **After 2 minutes, you have:**
-- 37 skills
-- 34 MCP servers
-- 103 total resources
+- 38 skills
+- 35 MCP servers
+- 105 total resources
 - Project analysis with recommendations
 - Exact roadmap for where to start
 

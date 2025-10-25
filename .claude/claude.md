@@ -6,19 +6,19 @@ This repository provides a comprehensive resource system for AI-powered developm
 
 ### 📋 Complete Resource Inventory
 
-- **37 Skills** - Specialized development methodologies and expertise areas
-- **34 MCP Servers** - Executable tools providing 92% skill coverage (1.1:1 ratio)
+- **38 Skills** - Specialized development methodologies and expertise areas
+- **35 MCP Servers** - Executable tools providing 92% skill coverage (1.1:1 ratio)
 - **9 Tools + 4 Scripts** - LangChain, CrewAI tools, and automation scripts
 - **13 Components** - Reusable React components and patterns
 - **6 Integrations** - Pre-configured service integrations (OpenAI, Supabase, etc.)
 
-**Total: 103 Resources**
+**Total: 105 Resources**
 
 ### 📍 Registry Locations
 
 All resources are cataloged in `/META/` registries:
-- `skill-registry.json` - All 37 skills with descriptions and metadata
-- `mcp-registry.json` - All 34 MCP servers
+- `skill-registry.json` - All 38 skills with descriptions and metadata
+- `mcp-registry.json` - All 35 MCP servers
 - `tool-registry.json` - All 9 tools + 4 scripts
 - `component-registry.json` - All 13 components
 - `integration-registry.json` - All 6 integrations
@@ -34,7 +34,7 @@ Use `relationship-mapping.json` to discover:
 
 ## Skills
 
-All 37 skills are listed below with descriptions and locations:
+All 38 skills are listed below with descriptions and locations:
 
 
 ### 3d-visualizer

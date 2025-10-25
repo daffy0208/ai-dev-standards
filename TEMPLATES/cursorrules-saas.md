@@ -21,8 +21,8 @@ Status: Active
 
 ### Available Resources
 This project has access to:
-- **37 Skills** - Specialized development methodologies
-- **34 MCPs** - Executable development tools (92% skill coverage)
+- **38 Skills** - Specialized development methodologies
+- **35 MCPs** - Executable development tools (92% skill coverage)
 - **9 Tools + 4 Scripts** - LangChain, CrewAI, custom utilities
 - **13 Components** - Reusable React components (auth, forms, errors, feedback)
 - **6 Integrations** - OpenAI, Anthropic, Supabase, Stripe, Pinecone, Resend

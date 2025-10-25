@@ -59,9 +59,9 @@ $ bash ~/ai-dev-standards/setup-project.sh
   Added to .gitignore: .ai-dev-cache/
 
 🔄 Syncing resources...
-✅ 37 skills synced
-✅ 34 MCPs configured
-✅ 103 total resources available
+✅ 38 skills synced
+✅ 35 MCPs configured
+✅ 105 total resources available
 
 🔍 Analyzing your project...
 
@@ -88,9 +88,9 @@ Recommended Skills:
 ✅ Setup Complete!
 
 You now have access to:
-  • 37 skills
-  • 34 MCP servers
-  • 103 total resources
+  • 38 skills
+  • 35 MCP servers
+  • 105 total resources
   • Project-specific recommendations
 ```
 
@@ -127,7 +127,7 @@ Open your project in Claude Code and ask:
 You: "What skills are available from ai-dev-standards?"
 ```
 
-**Expected:** Claude lists all 37 skills:
+**Expected:** Claude lists all 38 skills:
 - mvp-builder, rag-implementer, product-strategist, multi-agent-architect
 - api-designer, frontend-builder, deployment-advisor, security-engineer
 - data-engineer, data-visualizer, knowledge-graph-builder, performance-optimizer
@@ -373,7 +373,7 @@ ai-dev info skill mvp-builder
 cat .claude/skills/mvp-builder/README.md
 ```
 
-**All 37 skills available:**
+**All 38 skills available:**
 
 **Product & Strategy:**
 - mvp-builder, product-strategist, go-to-market-planner, user-researcher
@@ -558,8 +558,8 @@ mv .cursorrules.backup .cursorrules
 ## 🎉 You're Ready!
 
 **What you have now:**
-- ✅ All 37 skills available to Claude
-- ✅ 34 MCP servers (92% skill coverage)
+- ✅ All 38 skills available to Claude
+- ✅ 35 MCP servers (92% skill coverage)
 - ✅ 9 tools + 4 scripts for automation
 - ✅ 13 reusable components
 - ✅ 6 service integrations

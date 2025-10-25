@@ -5,8 +5,8 @@
 This is the **AI Dev Standards** repository - a complete system for maintaining AI development standards with automatic installation and syncing.
 
 **Key Components:**
-- **SKILLS/** - 37 specialized skills (mvp-builder, rag-implementer, data-visualizer, etc.)
-- **MCP-SERVERS/** - 34 MCP server implementations (executable tools)
+- **SKILLS/** - 38 specialized skills (mvp-builder, rag-implementer, data-visualizer, etc.)
+- **MCP-SERVERS/** - 35 MCP server implementations (executable tools)
 - **TOOLS/** - 9 LangChain/CrewAI tools + 4 supporting scripts
 - **COMPONENTS/** - 13 reusable React components and patterns
 - **INTEGRATIONS/** - 6 third-party service integrations (OpenAI, Supabase, etc.)
@@ -16,7 +16,7 @@ This is the **AI Dev Standards** repository - a complete system for maintaining 
 - **DOCS/** - Complete documentation (2500+ lines)
 
 **Current Status:** ✅ Production Ready (v1.3.0)
-**Coverage:** 92% skill-to-MCP parity (1.1:1 ratio) • 103 total resources
+**Coverage:** 92% skill-to-MCP parity (1.1:1 ratio) • 105 total resources
 
 ---
 
@@ -303,8 +303,8 @@ This project has access to a comprehensive resource system:
 ### 📋 Resource Registries
 
 All resources are cataloged in `/META/` registries:
-- **`skill-registry.json`** - All 37 specialized skills
-- **`mcp-registry.json`** - All 34 MCP servers
+- **`skill-registry.json`** - All 38 specialized skills
+- **`mcp-registry.json`** - All 35 MCP servers
 - **`tool-registry.json`** - All 9 tools + 4 scripts
 - **`component-registry.json`** - All 13 components
 - **`integration-registry.json`** - All 6 integrations
@@ -375,9 +375,9 @@ Third-party service integrations. See `META/integration-registry.json`:
 
 ### 📊 Resource Statistics
 
-- **Total Resources:** 103 (37 skills + 34 MCPs + 9 tools + 4 scripts + 13 components + 6 integrations)
+- **Total Resources:** 105 (38 skills + 35 MCPs + 9 tools + 4 scripts + 13 components + 6 integrations)
 - **Skill Coverage:** 100% (all skills have at least one supporting resource)
-- **MCP Coverage:** 92% (34/37 skills have MCP support)
+- **MCP Coverage:** 92% (35/38 skills have MCP support)
 - **Most Used Tool:** filesystem-tool (20 usages)
 - **Most Used Component:** loading-spinner (5 usages)
 - **Most Used Integration:** supabase (9 usages)
