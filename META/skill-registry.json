@@ -427,7 +427,33 @@
       "path": "/SKILLS/knowledge-graph-builder/",
       "status": "active",
       "prerequisites": [],
-      "related_skills": [],
+      "related_skills": ["rag-implementer", "knowledge-base-manager"],
+      "frameworks": [
+        "all"
+      ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
+      "name": "knowledge-base-manager",
+      "description": "Design, build, and maintain comprehensive knowledge bases. Bridges document-based (RAG) and entity-based (graph) knowledge systems. Use when building knowledge-intensive applications, managing organizational knowledge, or creating intelligent information systems.",
+      "triggers": [
+        "knowledge-base-manager",
+        "knowledge base manager",
+        "kb manager"
+      ],
+      "tags": [
+        "ai-native",
+        "data"
+      ],
+      "category": "ai-native",
+      "difficulty": "intermediate",
+      "estimated_time": "2-4 weeks",
+      "path": "/SKILLS/knowledge-base-manager/",
+      "status": "active",
+      "prerequisites": [],
+      "related_skills": ["rag-implementer", "knowledge-graph-builder", "data-engineer", "quality-auditor"],
       "frameworks": [
         "all"
       ],
@@ -650,7 +676,7 @@
       "path": "/SKILLS/rag-implementer/",
       "status": "active",
       "prerequisites": [],
-      "related_skills": [],
+      "related_skills": ["knowledge-base-manager", "knowledge-graph-builder"],
       "frameworks": [
         "all"
       ],

@@ -1,0 +1,343 @@
+{
+  "project_name": "ai-dev-standards",
+  "description": "Comprehensive development standards with 37 skills, 34 MCPs, and proven Archon integration framework",
+  "version": "1.5.0",
+  "current_phase": "Phase 2: Knowledge Base & Integration Enhancements",
+  "rci_score": 70,
+  "target_rci": 85,
+  "status": "active",
+  "repository": "https://github.com/daffy0208/ai-dev-standards",
+  "tech_stack": {
+    "primary": ["TypeScript", "Node.js", "Bash"],
+    "frameworks": ["MCP Protocol", "Commander.js"],
+    "databases": ["Neo4j", "Pinecone", "pgvector"],
+    "tools": ["Claude Code", "Archon MCP"]
+  },
+  "phase_1_complete": {
+    "delivered": [
+      "37 specialized skills",
+      "34 MCP servers (92% skill coverage)",
+      "103 total resources",
+      "CLI tool (ai-dev sync)",
+      "Setup automation (setup-project.sh)",
+      "Auto-analysis with START-HERE.md",
+      "Simplified documentation (ONE command approach)",
+      "Relationship mapping system"
+    ],
+    "rci_achieved": 70
+  },
+  "phase_2_objectives": {
+    "goals": [
+      "Fill knowledge base coverage gaps",
+      "Document Archon + Skills integration pattern",
+      "Add advanced knowledge management features",
+      "Improve MCP testing and validation",
+      "Create comprehensive examples"
+    ],
+    "target_rci": 85,
+    "estimated_duration": "3-4 weeks"
+  },
+  "tasks": [
+    {
+      "id": "P0-1",
+      "title": "Create Knowledge Base Manager skill",
+      "description": "Build a unified skill for managing structured knowledge across RAG and graph systems. This skill provides comprehensive guidance for knowledge base design, implementation, curation, and maintenance. Addresses the gap discovered between RAG (documents) and Knowledge Graphs (entities) by providing a holistic knowledge management methodology.",
+      "priority": "P0",
+      "status": "todo",
+      "skills_to_use": ["technical-writer", "rag-implementer", "knowledge-graph-builder"],
+      "estimated_effort": "2 days",
+      "estimated_hours": 16,
+      "dependencies": [],
+      "deliverables": [
+        "SKILLS/knowledge-base-manager/SKILL.md",
+        "SKILLS/knowledge-base-manager/README.md",
+        "Knowledge curation best practices",
+        "KB architecture decision framework",
+        "Integration patterns for RAG + Graphs"
+      ],
+      "acceptance_criteria": [
+        "Skill provides clear guidance on when to use KB vs RAG vs Graph",
+        "Includes 6-phase implementation framework",
+        "Covers knowledge curation, validation, and versioning",
+        "Has concrete examples and code snippets",
+        "Integrates with existing rag-implementer and knowledge-graph-builder skills"
+      ],
+      "archon_workflow": [
+        "1. Research: archon:perform_rag_query('knowledge base management patterns')",
+        "2. Research: archon:search_code_examples('knowledge base typescript')",
+        "3. Status: archon:manage_task(status='doing')",
+        "4. Invoke: technical-writer, rag-implementer, knowledge-graph-builder skills",
+        "5. Implement: Create SKILL.md with comprehensive methodology",
+        "6. Quality: Review with testing-strategist skill",
+        "7. Status: archon:manage_task(status='review')"
+      ]
+    },
+    {
+      "id": "P0-2",
+      "title": "Build knowledge-base-mcp server",
+      "description": "Create MCP server providing CRUD operations for knowledge entries, versioning, validation, source tracking, and conflict resolution. This MCP makes knowledge management executable rather than just advisory. Supports both document-based (RAG) and entity-based (graph) knowledge.",
+      "priority": "P0",
+      "status": "todo",
+      "skills_to_use": ["api-designer", "data-engineer", "testing-strategist"],
+      "estimated_effort": "3 days",
+      "estimated_hours": 24,
+      "dependencies": ["P0-1"],
+      "deliverables": [
+        "MCP-SERVERS/knowledge-base-mcp/",
+        "MCP-SERVERS/knowledge-base-mcp/README.md",
+        "MCP-SERVERS/knowledge-base-mcp/package.json",
+        "MCP-SERVERS/knowledge-base-mcp/src/index.ts",
+        "MCP-SERVERS/knowledge-base-mcp/src/tools/",
+        "Comprehensive test suite"
+      ],
+      "tools_to_implement": [
+        "create_knowledge_entry - Add new knowledge",
+        "update_knowledge_entry - Update existing knowledge",
+        "delete_knowledge_entry - Remove knowledge",
+        "query_knowledge - Search knowledge base",
+        "validate_knowledge - Check for conflicts/duplicates",
+        "version_knowledge - Track knowledge evolution",
+        "import_knowledge - Bulk import from sources",
+        "export_knowledge - Export for backup/sharing"
+      ],
+      "acceptance_criteria": [
+        "All 8 tools implemented and tested",
+        "Supports both document and entity knowledge types",
+        "Includes versioning and conflict detection",
+        "Has comprehensive error handling",
+        "Documented with examples in README",
+        "Registered in mcp-registry.json",
+        "Added to relationship-mapping.json"
+      ],
+      "archon_workflow": [
+        "1. Research: archon:perform_rag_query('MCP server implementation patterns')",
+        "2. Research: archon:search_code_examples('MCP tools TypeScript')",
+        "3. Status: archon:manage_task(status='doing')",
+        "4. Invoke: api-designer (for tool design), data-engineer (for storage)",
+        "5. Implement: Build MCP server with 8 tools",
+        "6. Quality: testing-strategist for test coverage",
+        "7. Status: archon:manage_task(status='review')"
+      ]
+    },
+    {
+      "id": "P0-3",
+      "title": "Create Archon + Skills integration guide",
+      "description": "Document the proven two-layer architecture pattern from SI Systems project. This guide shows developers how to use Archon (strategic layer) + ai-dev-standards Skills (tactical layer) together for optimal development workflow. Makes the integration repeatable and teachable.",
+      "priority": "P0",
+      "status": "todo",
+      "skills_to_use": ["technical-writer", "mvp-builder"],
+      "estimated_effort": "1 day",
+      "estimated_hours": 8,
+      "dependencies": [],
+      "deliverables": [
+        "DOCS/ARCHON-INTEGRATION.md",
+        "TEMPLATES/archon-project-template.json",
+        "EXAMPLES/archon-workflow-example.md",
+        "Update to README.md mentioning Archon integration"
+      ],
+      "content_sections": [
+        "The Two-Layer Architecture (Archon + Skills)",
+        "Three-Phase Workflow (Planning, Execution, Validation)",
+        "Task-to-Skill Mapping Guidelines",
+        "Anti-Patterns to Avoid",
+        "Success Patterns",
+        "Quick Start Guide",
+        "Example Projects",
+        "Troubleshooting"
+      ],
+      "acceptance_criteria": [
+        "Clear explanation of Archon + Skills complementarity",
+        "Concrete examples from real projects (SI Systems)",
+        "Step-by-step workflow instructions",
+        "Task-to-skill mapping reference",
+        "Ready-to-use Archon project template",
+        "Linked from main README.md"
+      ],
+      "archon_workflow": [
+        "1. Research: Review SI Systems integration doc",
+        "2. Status: archon:manage_task(status='doing')",
+        "3. Invoke: technical-writer (for structure), mvp-builder (for practicality)",
+        "4. Implement: Write comprehensive guide",
+        "5. Quality: Review for clarity and completeness",
+        "6. Status: archon:manage_task(status='review')"
+      ]
+    },
+    {
+      "id": "P1-1",
+      "title": "Add knowledge-base-pattern.md architecture guide",
+      "description": "Create architecture pattern document covering knowledge base design strategies, when to use KB vs RAG vs Graph, hybrid approaches, and implementation patterns. Complements the knowledge-base-manager skill with deeper architectural guidance.",
+      "priority": "P1",
+      "status": "todo",
+      "skills_to_use": ["knowledge-graph-builder", "rag-implementer", "api-designer"],
+      "estimated_effort": "1.5 days",
+      "estimated_hours": 12,
+      "dependencies": ["P0-1"],
+      "deliverables": [
+        "STANDARDS/architecture-patterns/knowledge-base-pattern.md",
+        "Decision framework diagrams",
+        "Architecture comparison tables"
+      ],
+      "acceptance_criteria": [
+        "Covers all KB architecture styles (Document-based, Entity-based, Hybrid)",
+        "Clear decision criteria for choosing approach",
+        "Trade-off analysis for each pattern",
+        "Integration patterns with RAG and graphs",
+        "Code examples and implementations"
+      ]
+    },
+    {
+      "id": "P1-2",
+      "title": "Create auto-integration script for new projects",
+      "description": "Build script that automatically sets up both Archon MCP + ai-dev-standards in new projects. Detects project type, creates Archon project, initializes skills, and generates integration documentation. Makes adoption frictionless.",
+      "priority": "P1",
+      "status": "todo",
+      "skills_to_use": ["deployment-advisor", "testing-strategist"],
+      "estimated_effort": "2 days",
+      "estimated_hours": 16,
+      "dependencies": ["P0-3"],
+      "deliverables": [
+        "scripts/setup-archon-integration.sh",
+        "TEMPLATES/archon-mcp-settings.json",
+        "Auto-generated integration checklist"
+      ],
+      "acceptance_criteria": [
+        "Detects if Archon is available",
+        "Creates Archon project structure automatically",
+        "Initializes ai-dev-standards",
+        "Generates project-specific integration guide",
+        "Works with existing setup-project.sh"
+      ]
+    },
+    {
+      "id": "P1-3",
+      "title": "Build knowledge curation utilities",
+      "description": "Create tools for knowledge base quality control: duplicate detection, conflict resolution, source validation, knowledge scoring, and automated updates. Ensures knowledge bases remain high-quality over time.",
+      "priority": "P1",
+      "status": "todo",
+      "skills_to_use": ["data-engineer", "quality-auditor"],
+      "estimated_effort": "2 days",
+      "estimated_hours": 16,
+      "dependencies": ["P0-2"],
+      "deliverables": [
+        "TOOLS/knowledge-curator/",
+        "Duplicate detection algorithm",
+        "Conflict resolution workflow",
+        "Knowledge scoring system"
+      ],
+      "acceptance_criteria": [
+        "Detects duplicate knowledge entries",
+        "Flags conflicting information",
+        "Scores knowledge quality (source, recency, confidence)",
+        "Integrates with knowledge-base-mcp",
+        "CLI interface for curation tasks"
+      ]
+    },
+    {
+      "id": "P1-4",
+      "title": "Comprehensive MCP testing suite",
+      "description": "Build automated testing for all 34 MCP servers. Validates tools work correctly, handles errors properly, and integrates with skills as expected. Critical for maintaining 92% skill-to-MCP parity.",
+      "priority": "P1",
+      "status": "todo",
+      "skills_to_use": ["testing-strategist", "quality-auditor"],
+      "estimated_effort": "3 days",
+      "estimated_hours": 24,
+      "dependencies": [],
+      "deliverables": [
+        "tests/mcp-servers/",
+        "Automated test suite for all MCPs",
+        "CI/CD integration",
+        "MCP health dashboard"
+      ],
+      "acceptance_criteria": [
+        "Tests for all 34 MCP servers",
+        "Validates tool signatures and responses",
+        "Error handling coverage",
+        "Performance benchmarks",
+        "Runs in CI/CD pipeline"
+      ]
+    },
+    {
+      "id": "P2-1",
+      "title": "Create example integration projects",
+      "description": "Build 3-5 example projects showing real-world usage of Archon + ai-dev-standards: SaaS app, RAG system, API service, mobile app, and knowledge base. Demonstrates best practices and accelerates adoption.",
+      "priority": "P2",
+      "status": "todo",
+      "skills_to_use": ["mvp-builder", "technical-writer"],
+      "estimated_effort": "4 days",
+      "estimated_hours": 32,
+      "dependencies": ["P0-3"],
+      "deliverables": [
+        "EXAMPLES/saas-app-with-archon/",
+        "EXAMPLES/rag-system-with-archon/",
+        "EXAMPLES/api-service-with-archon/",
+        "Video walkthroughs",
+        "Step-by-step tutorials"
+      ]
+    },
+    {
+      "id": "P2-2",
+      "title": "Build skill recommendation engine",
+      "description": "Create AI-powered system that recommends which skills to use based on task description. Uses RAG over skill registry to suggest optimal skill combinations. Makes skill discovery easier for users.",
+      "priority": "P2",
+      "status": "todo",
+      "skills_to_use": ["multi-agent-architect", "rag-implementer"],
+      "estimated_effort": "3 days",
+      "estimated_hours": 24,
+      "dependencies": ["P0-1", "P1-1"],
+      "deliverables": [
+        "TOOLS/skill-recommender/",
+        "CLI command: ai-dev suggest",
+        "Integration with START-HERE.md generation"
+      ]
+    },
+    {
+      "id": "P2-3",
+      "title": "Add versioning system for skills",
+      "description": "Track skill evolution, breaking changes, deprecations, and migrations. Allows projects to pin skill versions and upgrade intentionally. Critical for production stability.",
+      "priority": "P2",
+      "status": "todo",
+      "skills_to_use": ["data-engineer", "deployment-advisor"],
+      "estimated_effort": "2 days",
+      "estimated_hours": 16,
+      "dependencies": [],
+      "deliverables": [
+        "Skill version tracking in registry",
+        "Migration guides for breaking changes",
+        "CLI: ai-dev upgrade",
+        "Compatibility matrix"
+      ]
+    }
+  ],
+  "metrics": {
+    "total_tasks": 9,
+    "p0_tasks": 3,
+    "p1_tasks": 4,
+    "p2_tasks": 2,
+    "estimated_total_hours": 168,
+    "estimated_total_days": 21
+  },
+  "success_criteria": {
+    "rci_target": 85,
+    "criteria": [
+      "All P0 tasks completed",
+      "Knowledge base gap filled with skill + MCP + pattern",
+      "Archon integration documented and proven",
+      "MCP testing coverage >80%",
+      "At least 2 example projects completed"
+    ]
+  },
+  "integration_workflow": {
+    "proven_pattern": "Archon (WHAT/WHEN) + Skills (HOW)",
+    "workflow_steps": [
+      "1. Get task from Archon",
+      "2. Research with Archon RAG + code examples",
+      "3. Update task status to 'doing'",
+      "4. Invoke relevant skills for implementation",
+      "5. Implement with combined guidance",
+      "6. Quality check with quality skills",
+      "7. Update task to 'review'",
+      "8. After validation → mark 'done'",
+      "9. Get next task"
+    ]
+  }
+}
