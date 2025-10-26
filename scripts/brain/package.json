@@ -1,0 +1,27 @@
+{
+  "name": "@ai-dev-standards/brain",
+  "version": "1.0.0",
+  "description": "Repository Brain - Intelligence system for ai-dev-standards",
+  "main": "dist/brain-core.js",
+  "bin": {
+    "brain": "./dist/brain.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "brain": "ts-node brain.ts"
+  },
+  "keywords": [
+    "ai-dev",
+    "brain",
+    "intelligence",
+    "automation"
+  ],
+  "author": "AI Dev Standards",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  }
+}

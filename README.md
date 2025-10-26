@@ -116,6 +116,43 @@ ai-dev-standards/
 
 ---
 
+## 🧠 Repository Brain
+
+The **Repository Brain** is an intelligence system that manages, understands, and orchestrates all 108 resources.
+
+### What It Does
+
+```bash
+brain status                    # Current state (40 skills, 36 MCPs, 108 resources)
+brain search "authentication"   # Search across all resources
+brain decide "add new skill"    # Get workflow recommendations
+brain select-skills "build MVP" # Get skill recommendations
+brain relationships rag-implementer # Show dependencies
+brain validate                  # Validate registries
+```
+
+### Architecture (4 Layers)
+
+1. **Layer 1: Knowledge** - Complete understanding of repository state (registries + mappings)
+2. **Layer 2: Enforcement** - Automated validation and drift prevention
+3. **Layer 3: Decision** - Intelligent workflow and tool selection
+4. **Layer 4: Management** - Strategic planning via Archon MCP
+
+### Installation & Usage
+
+```bash
+cd scripts/brain
+npm install
+npm run build
+npm run brain -- status
+```
+
+**See:** `scripts/brain/README.md` for complete documentation
+
+**Design:** `META/REPOSITORY-BRAIN.md` for architecture details
+
+---
+
 ## Available Skills
 
 ### Product Development
