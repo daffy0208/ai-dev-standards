@@ -1,7 +1,7 @@
 {
-  "version": "3.10.0",
-  "last_updated": "2025-10-25",
-  "description": "Registry of all available skills in ai-dev-standards. Skills are model-invoked capabilities that Claude activates based on context. Now includes 39 active skills covering product development, AI systems, technical implementation, infrastructure, UX design, ADHD support, repository analysis, and project management.",
+  "version": "3.11.0",
+  "last_updated": "2025-10-26",
+  "description": "Registry of all available skills in ai-dev-standards. Skills are model-invoked capabilities that Claude activates based on context. Now includes 40 active skills covering product development, AI systems, technical implementation, infrastructure, UX design, ADHD support, repository analysis, project management, and data forensics.",
   "skills": [
     {
       "name": "3d-visualizer",
@@ -294,6 +294,42 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
+      "frameworks": [
+        "all"
+      ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
+      "name": "forensic-data-engineer",
+      "description": "Expert in data forensics, anomaly detection, audit trail analysis, fraud detection, and breach investigation",
+      "triggers": [
+        "forensic-data-engineer",
+        "forensic data engineer",
+        "data forensics",
+        "forensics",
+        "fraud detection",
+        "anomaly detection",
+        "audit trail",
+        "breach investigation"
+      ],
+      "tags": [
+        "security",
+        "forensics",
+        "compliance"
+      ],
+      "category": "specialized",
+      "difficulty": "advanced",
+      "estimated_time": "2-4 hours",
+      "path": "/SKILLS/forensic-data-engineer/",
+      "status": "active",
+      "prerequisites": [],
+      "related_skills": [
+        "data-engineer",
+        "security-engineer",
+        "quality-auditor"
+      ],
       "frameworks": [
         "all"
       ],

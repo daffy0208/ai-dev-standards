@@ -6,18 +6,18 @@ This repository provides a comprehensive resource system for AI-powered developm
 
 ### 📋 Complete Resource Inventory
 
-- **39 Skills** - Specialized development methodologies and expertise areas
+- **40 Skills** - Specialized development methodologies and expertise areas
 - **36 MCP Servers** - Executable tools providing 92% skill coverage (1.1:1 ratio)
 - **9 Tools + 4 Scripts** - LangChain, CrewAI tools, and automation scripts
 - **13 Components** - Reusable React components and patterns
 - **6 Integrations** - Pre-configured service integrations (OpenAI, Supabase, etc.)
 
-**Total: 107 Resources**
+**Total: 108 Resources**
 
 ### 📍 Registry Locations
 
 All resources are cataloged in `/META/` registries:
-- `skill-registry.json` - All 39 skills with descriptions and metadata
+- `skill-registry.json` - All 40 skills with descriptions and metadata
 - `mcp-registry.json` - All 36 MCP servers
 - `tool-registry.json` - All 9 tools + 4 scripts
 - `component-registry.json` - All 13 components
@@ -34,7 +34,7 @@ Use `relationship-mapping.json` to discover:
 
 ## Skills
 
-All 39 skills are listed below with descriptions and locations:
+All 40 skills are listed below with descriptions and locations:
 
 
 ### 3d-visualizer
@@ -108,6 +108,12 @@ Expert in data pipelines, ETL processes, and data infrastructure
 Expert in creating charts, dashboards, and data visualizations using modern libraries
 
 **Location:** `/SKILLS/data-visualizer/SKILL.md`
+
+### forensic-data-engineer
+
+Expert in data forensics, anomaly detection, audit trail analysis, fraud detection, and breach investigation. Use when investigating security incidents, detecting fraud patterns, analyzing audit trails, ensuring compliance (GDPR, SOC2, HIPAA), tracking data lineage, or recovering compromised data.
+
+**Location:** `/SKILLS/forensic-data-engineer/SKILL.md`
 
 ### deployment-advisor
 

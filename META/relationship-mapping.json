@@ -1,6 +1,6 @@
 {
-  "version": "2.0.0",
-  "last_updated": "2025-10-24",
+  "version": "2.1.0",
+  "last_updated": "2025-10-26",
   "description": "Complete mapping of skills and MCPs to their required resources (tools, components, integrations, scripts). This is the single source of truth for resource dependencies.",
   "skills": {
     "3d-visualizer": {
@@ -119,6 +119,19 @@
         "db-backup",
         "db-migrate"
       ]
+    },
+    "forensic-data-engineer": {
+      "required_mcps": [
+        "database-migration-mcp"
+      ],
+      "required_tools": [
+        "database-query-tool"
+      ],
+      "required_components": [],
+      "required_integrations": [
+        "supabase"
+      ],
+      "supporting_scripts": []
     },
     "data-visualizer": {
       "required_mcps": [
