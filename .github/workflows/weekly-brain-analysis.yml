@@ -1,0 +1,223 @@
+name: Weekly Repository Brain Analysis
+
+on:
+  schedule:
+    # Runs every Monday at 9:00 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  brain-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install tsx for TypeScript execution
+        run: npm install -g tsx
+
+      - name: Run brain status check
+        id: brain-status
+        run: |
+          echo "Running brain status check..."
+          tsx scripts/brain/brain.ts status > brain-status.txt 2>&1
+          cat brain-status.txt
+        continue-on-error: true
+
+      - name: Run brain health check
+        id: brain-health
+        run: |
+          echo "Running brain health check..."
+          tsx scripts/brain/brain.ts health > brain-health.txt 2>&1
+          cat brain-health.txt
+        continue-on-error: true
+
+      - name: Run brain validation
+        id: brain-validate
+        run: |
+          echo "Running brain validation..."
+          tsx scripts/brain/brain.ts validate > brain-validate.txt 2>&1
+          cat brain-validate.txt
+        continue-on-error: true
+
+      - name: Run documentation validation
+        id: docs-validate
+        run: |
+          echo "Running documentation consistency check..."
+          npm run validate:docs > docs-validate.txt 2>&1 || true
+          cat docs-validate.txt
+
+      - name: Generate analysis report
+        id: generate-report
+        run: |
+          cat > brain-report.md << 'EOF'
+          # 🧠 Weekly Repository Brain Analysis
+
+          **Analysis Date:** $(date -u +"%Y-%m-%d %H:%M UTC")
+          **Branch:** ${{ github.ref_name }}
+
+          ## 📊 Repository Status
+
+          ```
+          $(cat brain-status.txt)
+          ```
+
+          ## 🏥 Health Check
+
+          ```
+          $(cat brain-health.txt)
+          ```
+
+          ## ✅ Validation Results
+
+          ```
+          $(cat brain-validate.txt)
+          ```
+
+          ## 📚 Documentation Consistency
+
+          ```
+          $(cat docs-validate.txt)
+          ```
+
+          ## 🎯 Summary
+
+          This automated analysis runs every Monday to ensure repository health and consistency.
+
+          - **Registry Integrity:** Check registries are valid and consistent
+          - **Skill-MCP Coverage:** Verify all skills have MCP support
+          - **Documentation Drift:** Ensure README/INSTALL match registries
+          - **File Dependencies:** Validate relationship mappings
+
+          ---
+
+          🤖 Generated automatically by [Repository Brain Analysis](https://github.com/${{ github.repository }}/actions/workflows/weekly-brain-analysis.yml)
+          EOF
+
+          cat brain-report.md
+
+      - name: Check for issues
+        id: check-issues
+        run: |
+          # Check if there are any issues in the reports
+          ISSUES_FOUND=false
+
+          if grep -i "error\|failed\|critical\|degraded" brain-health.txt brain-validate.txt docs-validate.txt; then
+            ISSUES_FOUND=true
+          fi
+
+          echo "issues_found=$ISSUES_FOUND" >> $GITHUB_OUTPUT
+          echo "Issues found: $ISSUES_FOUND"
+
+      - name: Create or update GitHub issue
+        if: steps.check-issues.outputs.issues_found == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('brain-report.md', 'utf8');
+
+            // Check for existing open issue
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: ['brain-analysis', 'automated']
+            });
+
+            const title = '🧠 Weekly Brain Analysis: Issues Detected';
+
+            if (issues.data.length > 0) {
+              // Update existing issue
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issues.data[0].number,
+                body: report
+              });
+
+              // Add comment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issues.data[0].number,
+                body: '🔄 **Updated analysis** - Issues still present'
+              });
+
+              console.log(`Updated existing issue #${issues.data[0].number}`);
+            } else {
+              // Create new issue
+              const issue = await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: title,
+                body: report,
+                labels: ['brain-analysis', 'automated', 'needs-attention']
+              });
+
+              console.log(`Created new issue #${issue.data.number}`);
+            }
+
+      - name: Close issue if healthy
+        if: steps.check-issues.outputs.issues_found == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Check for existing open issue and close it
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: ['brain-analysis', 'automated']
+            });
+
+            if (issues.data.length > 0) {
+              const issue = issues.data[0];
+
+              // Add comment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: '✅ **All issues resolved!** Repository health is good. Closing this issue.'
+              });
+
+              // Close issue
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed'
+              });
+
+              console.log(`Closed issue #${issue.number} - repository is healthy`);
+            } else {
+              console.log('No open issues found - repository is healthy');
+            }
+
+      - name: Upload analysis artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: brain-analysis-${{ github.run_number }}
+          path: |
+            brain-status.txt
+            brain-health.txt
+            brain-validate.txt
+            docs-validate.txt
+            brain-report.md
+          retention-days: 30

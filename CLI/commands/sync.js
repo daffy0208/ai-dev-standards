@@ -639,7 +639,7 @@ function deepMerge(target, source) {
   const result = { ...target }
 
   for (const key in source) {
-    if (source.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(source, key)) {
       if (key in result) {
         // Key exists in both - recursively merge
         result[key] = deepMerge(result[key], source[key])

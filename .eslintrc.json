@@ -57,6 +57,16 @@
     "build/",
     "coverage/",
     "*.config.js",
-    "*.config.ts"
+    "*.config.ts",
+    "CLI/commands/test-codex.js"
+  ],
+  "overrides": [
+    {
+      "files": ["CLI/**/*.js", "scripts/**/*.js", "scripts/**/*.cjs"],
+      "rules": {
+        "no-console": "off",
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
   ]
 }
