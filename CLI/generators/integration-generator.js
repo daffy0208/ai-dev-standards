@@ -96,12 +96,17 @@ export class ${className} {
   ): Promise<T> {
     const url = \`\${this.baseUrl}\${endpoint}\`
 
+    // Convert Headers instance to plain object if needed
+    const optionsHeaders = options.headers instanceof Headers
+      ? Object.fromEntries(options.headers.entries())
+      : options.headers || {}
+
     const response = await fetch(url, {
       ...options,
       headers: {
         'Authorization': \`Bearer \${this.apiKey}\`,
         'Content-Type': 'application/json',
-        ...options.headers
+        ...optionsHeaders
       }
     })
 

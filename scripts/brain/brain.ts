@@ -70,8 +70,11 @@ async function main() {
   }
 
   const command = args[0];
-  // From scripts/brain/dist/brain.js, go back 3 levels to reach root
-  const rootPath = path.resolve(__dirname, '../../..');
+  // Resolve repository root: handle both TypeScript source and compiled JS execution
+  // When run from scripts/brain/brain.ts: __dirname = scripts/brain, need ../..
+  // When run from scripts/brain/dist/brain.js: __dirname = scripts/brain/dist, need ../../..
+  const isCompiledDist = __dirname.endsWith('dist');
+  const rootPath = path.resolve(__dirname, isCompiledDist ? '../../..' : '../..');
 
   try {
     printInfo('Initializing brain...');
@@ -330,23 +333,25 @@ async function commandRelationships(brain: any, skillName: string) {
   }
 }
 
-async function commandReverseDeps(brain: any, type: string, name: string) {
+async function commandReverseDeps(brain: any, type: string, nameOrId: string) {
   if (type !== 'mcp') {
     printError(`Unknown type: ${type}. Use 'mcp'`);
     process.exit(1);
   }
 
-  if (!name) {
-    printError('Please provide an MCP name');
+  if (!nameOrId) {
+    printError('Please provide an MCP name or ID');
     process.exit(1);
   }
 
-  printHeader(`Reverse Dependencies: ${name}`);
+  printHeader(`Reverse Dependencies: ${nameOrId}`);
 
-  const deps = await brain.getReverseDependencies(name);
+  const deps = await brain.getReverseDependencies(nameOrId);
 
   console.log(colorize('MCP:', 'bright'));
-  console.log(`  ${deps.mcp.name} - ${deps.mcp.description}\n`);
+  console.log(`  ID: ${colorize(deps.mcp.id, 'dim')}`);
+  console.log(`  Name: ${deps.mcp.name}`);
+  console.log(`  Description: ${colorize(deps.mcp.description, 'dim')}\n`);
 
   if (deps.usedBySkills.length > 0) {
     console.log(colorize('Used by Skills:', 'bright'));
@@ -626,7 +631,7 @@ ${colorize('Query Knowledge:', 'cyan')}
 
 ${colorize('Relationships:', 'cyan')}
   relationships <skill>       Show skill relationships
-  reverse-deps mcp <name>     Show what uses this MCP
+  reverse-deps mcp <id|name>  Show what uses this MCP (by ID or name)
 
 ${colorize('Decision Making:', 'cyan')}
   select-skills <task>        Get skill recommendations

@@ -297,6 +297,32 @@ ${llmProvider.toUpperCase()}_API_KEY=your-api-key
 `
     await this.writeFile(projectPath, '.env.example', envContent)
 
+    // Create docs directory with sample document
+    await this.writeFile(projectPath, 'docs/document1.txt', `# Sample Document
+
+This is a sample document for your RAG system.
+
+## Overview
+
+Replace this file with your actual documents to ingest into the vector database.
+
+## Getting Started
+
+1. Add your documents to the docs/ directory
+2. Update scripts/ingest.ts to reference your documents
+3. Run \`npm run ingest\` to process and store them
+
+## Example Content
+
+This sample document demonstrates how documents are processed:
+- The content is split into chunks
+- Each chunk is embedded using OpenAI embeddings
+- Embeddings are stored in ${vectorDb} for similarity search
+- You can then query this content using natural language
+
+Add more meaningful content here to test your RAG system!
+`)
+
     // scripts/ingest.ts
     await this.writeFile(projectPath, 'scripts/ingest.ts', `import { readFile } from 'fs/promises'
 import { createVectorStore, ingestDocument } from '../lib/rag'
@@ -373,15 +399,22 @@ npm install
 cp .env.example .env.local
 \`\`\`
 
-3. Ingest documents:
+3. Fill in your API keys in \`.env.local\`
+
+4. Ingest documents (a sample document is included in \`docs/\`):
 \`\`\`bash
 npm run ingest
 \`\`\`
 
-4. Query:
+5. Query:
 \`\`\`bash
 npm run query
 \`\`\`
+
+## Documents
+
+A sample document (\`docs/document1.txt\`) is included to test the system.
+Replace it with your own documents and update \`scripts/ingest.ts\` accordingly.
 
 ## Features
 

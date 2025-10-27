@@ -489,7 +489,7 @@ async function updateConfigFile(projectPath, fileName, content) {
   if (await fs.pathExists(filePath)) {
     // Merge with existing
     const existing = await fs.readFile(filePath, 'utf8')
-    const merged = mergeConfigContent(existing, content)
+    const merged = mergeConfigContent(existing, content, fileName)
     await fs.writeFile(filePath, merged)
   } else {
     // Create new
@@ -500,8 +500,25 @@ async function updateConfigFile(projectPath, fileName, content) {
 /**
  * Merge config content (preserve custom changes)
  */
-function mergeConfigContent(existing, newContent) {
-  // Simple merge - append new content if not present
+function mergeConfigContent(existing, newContent, fileName) {
+  // Detect if content is JSON by checking if it's valid JSON
+  const isJsonFile = fileName && (
+    fileName.endsWith('.json') ||
+    fileName === '.cursorrules' ||
+    fileName === 'package.json'
+  )
+
+  // Try to parse as JSON for structured merging
+  if (isJsonFile || isValidJson(existing) || isValidJson(newContent)) {
+    try {
+      return mergeJsonContent(existing, newContent)
+    } catch (error) {
+      console.warn(`Warning: Failed to merge as JSON, falling back to line-based merge: ${error.message}`)
+      // Fall through to line-based merge
+    }
+  }
+
+  // Line-based merge for plain text files (like .gitignore)
   const lines = existing.split('\n')
   const newLines = newContent.split('\n')
 
@@ -515,19 +532,130 @@ function mergeConfigContent(existing, newContent) {
 }
 
 /**
+ * Check if string is valid JSON
+ */
+function isValidJson(str) {
+  if (!str || typeof str !== 'string') return false
+  const trimmed = str.trim()
+  if (!trimmed) return false
+
+  try {
+    JSON.parse(trimmed)
+    return true
+  } catch {
+    return false
+  }
+}
+
+/**
+ * Merge JSON content (deep merge objects, preserve existing values)
+ */
+function mergeJsonContent(existing, newContent) {
+  // Handle empty existing content
+  if (!existing || !existing.trim()) {
+    return typeof newContent === 'string' ? newContent : JSON.stringify(newContent, null, 2)
+  }
+
+  // Parse both JSONs
+  let existingObj
+  let newObj
+
+  try {
+    existingObj = JSON.parse(existing)
+  } catch (error) {
+    throw new Error(`Failed to parse existing JSON: ${error.message}`)
+  }
+
+  try {
+    newObj = typeof newContent === 'string' ? JSON.parse(newContent) : newContent
+  } catch (error) {
+    throw new Error(`Failed to parse new JSON: ${error.message}`)
+  }
+
+  // Deep merge the objects
+  const merged = deepMerge(existingObj, newObj)
+
+  // Return formatted JSON
+  return JSON.stringify(merged, null, 2)
+}
+
+/**
+ * Deep merge two objects (existing values take precedence)
+ */
+function deepMerge(target, source) {
+  // If target is not an object, return source
+  if (!target || typeof target !== 'object') {
+    return source
+  }
+
+  // If source is not an object, return target (preserve existing)
+  if (!source || typeof source !== 'object') {
+    return target
+  }
+
+  // Handle arrays - concatenate and deduplicate
+  if (Array.isArray(target) && Array.isArray(source)) {
+    return [...new Set([...target, ...source])]
+  }
+
+  // Handle objects - merge keys
+  const result = { ...target }
+
+  for (const key in source) {
+    if (source.hasOwnProperty(key)) {
+      if (key in result) {
+        // Key exists in both - recursively merge
+        result[key] = deepMerge(result[key], source[key])
+      } else {
+        // Key only in source - add it
+        result[key] = source[key]
+      }
+    }
+  }
+
+  return result
+}
+
+/**
  * Setup git hook
  */
 async function setupGitHook(projectPath) {
   const hookPath = path.join(projectPath, '.git', 'hooks', 'post-merge')
+  const backupPath = path.join(projectPath, '.git', 'hooks', 'post-merge.backup')
 
-  const hookContent = `#!/bin/sh
+  const newHookContent = `#!/bin/sh
 # Auto-sync with ai-dev-standards after git pull
 
 echo "🔄 Auto-syncing with ai-dev-standards..."
 ai-dev sync --yes --silent
 `
 
-  await fs.writeFile(hookPath, hookContent, { mode: 0o755 })
+  // Check if hook already exists
+  if (await fs.pathExists(hookPath)) {
+    const existingContent = await fs.readFile(hookPath, 'utf8')
+
+    // If existing hook already has our sync command, skip
+    if (existingContent.includes('ai-dev sync')) {
+      console.log(chalk.gray('  Git hook already configured'))
+      return
+    }
+
+    // Create backup of existing hook
+    await fs.copy(hookPath, backupPath)
+    console.log(chalk.yellow(`  ⚠️  Existing post-merge hook backed up to: ${backupPath}`))
+
+    // Merge: append our command to existing hook
+    const mergedContent = existingContent.trimEnd() + '\n\n' +
+      '# Added by ai-dev-standards\n' +
+      newHookContent.split('\n').slice(1).join('\n') // Skip shebang if already present
+
+    await fs.writeFile(hookPath, mergedContent, { mode: 0o755 })
+    console.log(chalk.green('  ✓ Git hook updated (existing commands preserved)'))
+  } else {
+    // No existing hook, create new one
+    await fs.writeFile(hookPath, newHookContent, { mode: 0o755 })
+    console.log(chalk.green('  ✓ Git hook created'))
+  }
 }
 
 /**

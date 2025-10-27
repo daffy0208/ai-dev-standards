@@ -165,21 +165,22 @@ export class RepositoryBrain {
 
   /**
    * Get reverse dependencies (what uses this MCP?)
+   * Supports both MCP ID and friendly name
    */
-  async getReverseDependencies(mcpName: string): Promise<{
+  async getReverseDependencies(mcpIdOrName: string): Promise<{
     mcp: any;
     usedBySkills: string[];
   }> {
     this.ensureInitialized();
 
-    const mcp = this.knowledge.getMCP(mcpName);
+    const mcp = this.knowledge.getMCP(mcpIdOrName);
     if (!mcp) {
-      throw new Error(`MCP '${mcpName}' not found`);
+      throw new Error(`MCP '${mcpIdOrName}' not found. Use either the ID (e.g., 'vector-database-mcp') or friendly name (e.g., 'Vector Database MCP')`);
     }
 
     return {
       mcp,
-      usedBySkills: this.knowledge.getSkillsUsingMCP(mcpName)
+      usedBySkills: this.knowledge.getSkillsUsingMCP(mcpIdOrName)
     };
   }
 

@@ -175,11 +175,24 @@ export class KnowledgeLayer {
   }
 
   /**
-   * Get specific MCP by name
+   * Get specific MCP by ID or friendly name
+   * Supports both formats:
+   * - ID: "3d-asset-manager-mcp"
+   * - Friendly name: "3D Asset Manager MCP"
    */
-  getMCP(id: string): MCP | null {
+  getMCP(idOrName: string): MCP | null {
     if (!this.mcpRegistry) throw new Error('Registries not loaded');
-    return this.mcpRegistry.mcps.find(m => m.id === id) || null;
+
+    // First try exact ID match
+    let mcp = this.mcpRegistry.mcps.find(m => m.id === idOrName);
+
+    // If not found, try friendly name match (case-insensitive)
+    if (!mcp) {
+      const lowerQuery = idOrName.toLowerCase();
+      mcp = this.mcpRegistry.mcps.find(m => m.name.toLowerCase() === lowerQuery);
+    }
+
+    return mcp || null;
   }
 
   /**
@@ -264,12 +277,22 @@ export class KnowledgeLayer {
 
   /**
    * Get skills that use a specific MCP (reverse lookup)
+   * Supports both ID and friendly name formats
    */
-  getSkillsUsingMCP(mcpName: string): string[] {
+  getSkillsUsingMCP(mcpIdOrName: string): string[] {
     if (!this.relationshipMapping) throw new Error('Registries not loaded');
+
+    // First, resolve to MCP ID if friendly name was provided
+    const mcp = this.getMCP(mcpIdOrName);
+    if (!mcp) {
+      return []; // MCP not found
+    }
+
+    const mcpId = mcp.id;
     const skills: string[] = [];
+
     for (const [skillName, deps] of Object.entries(this.relationshipMapping.skills)) {
-      if (deps.required_mcps.includes(mcpName)) {
+      if (deps.required_mcps.includes(mcpId)) {
         skills.push(skillName);
       }
     }
