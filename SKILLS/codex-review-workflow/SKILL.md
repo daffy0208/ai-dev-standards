@@ -1,3 +1,32 @@
+---
+name: codex-review-workflow
+version: 1.0.0
+description: Automated code review workflow using OpenAI Codex CLI. Implements iterative fix-and-review cycles until code passes validation or reaches iteration limit. Use when building features requiring automated code validation, security checks, or quality assurance through Codex CLI.
+category: automation
+tags:
+  - automation
+  - code-review
+  - quality
+  - testing
+triggers:
+  - "review with codex"
+  - "run codex review"
+  - "automated code review"
+  - "validate with codex"
+  - "codex cli"
+prerequisites:
+  - Codex CLI installed and available
+  - Git repository (or --skip-git-repo-check flag)
+related_skills:
+  - testing-strategist
+  - security-engineer
+  - quality-auditor
+  - technical-writer
+related_mcps:
+  - code-quality-scanner
+  - security-scanner
+---
+
 # Codex Review Workflow
 
 ## Overview

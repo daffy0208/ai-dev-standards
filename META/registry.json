@@ -1,6 +1,6 @@
 {
   "version": "1.1.0",
-  "lastUpdated": "2025-10-27T22:53:14.401Z",
+  "lastUpdated": "2025-10-27T23:09:48.521Z",
   "description": "Central registry of all ai-dev-standards resources",
   "skills": [
     {
@@ -1553,25 +1553,6 @@
         "ux-designer skill\n-"
       ],
       "status": "active"
-    },
-    {
-      "name": "supabase",
-      "version": "0.0.0",
-      "description": "MCP server for Supabase operations (database, auth, storage, real-time)",
-      "path": "MCP-SERVERS/supabase-mcp",
-      "tags": [
-        "mcp",
-        "supabase",
-        "database",
-        "auth",
-        "storage"
-      ],
-      "features": [
-        "tools"
-      ],
-      "dependencies": {},
-      "enables": [],
-      "status": "planned"
     }
   ],
   "playbooks": [

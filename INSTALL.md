@@ -15,7 +15,7 @@ bash ~/ai-dev-standards/setup-project.sh
 
 1. Figures out your project type (Next.js, React, Python, empty, etc.)
 2. Installs everything needed
-3. Gives you 105 resources (skills, tools, components)
+3. Gives you 121 resources (skills, tools, components)
 4. Analyzes your repository
 5. Tells you exactly where to start
 
@@ -26,13 +26,13 @@ bash ~/ai-dev-standards/setup-project.sh
 ## What You Get
 
 ```
-✓ 42 Skills - Specialized methodologies
-✓ 36 MCPs - Automation tools
+✓ 45 Skills - Specialized methodologies
+✓ 48 MCPs - Automation tools
 ✓ 9 Tools + 4 Scripts
 ✓ 13 Components
 ✓ 6 Integrations
 
-= 109 Total Resources
+= 121 Total Resources
 ```
 
 Plus:

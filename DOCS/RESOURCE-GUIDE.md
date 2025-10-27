@@ -52,7 +52,7 @@ Quick reference for all ai-dev-standards resources. Everything listed here is re
 2. **component-generator** — React component generation with tests
 3. **screenshot-testing** — Visual regression testing
 
-**⚠️ Gap:** 30 more MCPs needed to match skill count. See BUILD_FOCUS.md for roadmap.
+**⚠️ Gap:** --4 more MCPs needed to match skill count. See BUILD_FOCUS.md for roadmap.
 
 ### Key Standards
 - **rag-pattern.md** — RAG architecture
@@ -206,7 +206,7 @@ Every resource is registered in META/registry.json and validated by:
 
 ### Relationship Mapping
 - 3/3 MCPs list which skills they enable
-- 37/37 skills declare what they require
+- 45/45 skills declare what they require
 - 9/9 components list their dependencies
 - 3/3 installers detail what they install
 
@@ -221,7 +221,7 @@ Every resource is registered in META/registry.json and validated by:
 - **Status:** Active development (see BUILD_FOCUS.md)
 
 ### Skill Relationship Metadata: 50%
-- **Current:** 37/37 skills have `requires` field
+- **Current:** 45/45 skills have `requires` field
 - **Target:** All high-priority skills
 - **Status:** Phase 2 complete for priority skills
 

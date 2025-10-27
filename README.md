@@ -6,7 +6,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
 [![Node](https://img.shields.io/badge/Node-%3E%3D18.0.0-green.svg)](https://nodejs.org/)
 
-**Version 1.0.1** | **Last Updated:** 2025-10-27
+**Version 2.0.0** | **Last Updated:** 2025-10-27
 
 216 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
 
@@ -515,9 +515,10 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
 
 ## Versioning
 
-**Current Version:** 1.1.0
+**Current Version:** 2.0.0
 
 **Version History:**
+- **2.0.0** (2025-10-27): Phase 3 Complete - Design System (75 resources, 48 MCPs, 216 total)
 - **1.1.0** (2025-10-22): Quality & Trust Update
   - 45 specialized skills (100% discoverable)
   - Automated registry validation system

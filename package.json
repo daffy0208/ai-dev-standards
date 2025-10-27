@@ -1,6 +1,6 @@
 {
   "name": "ai-dev-standards",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Curated knowledge base for AI-assisted software development",
   "type": "module",
   "scripts": {
@@ -27,7 +27,11 @@
     "sync:mcps": "node scripts/sync-mcp-registry.cjs",
     "pre-commit": "npm run validate",
     "install-hooks": "bash scripts/install-hooks.sh",
-    "postinstall": "bash scripts/install-hooks.sh || true"
+    "postinstall": "bash scripts/install-hooks.sh || true",
+    "version:major": "node scripts/bump-version.cjs major",
+    "version:minor": "node scripts/bump-version.cjs minor",
+    "version:patch": "node scripts/bump-version.cjs patch",
+    "release": "npm run validate:fix && npm run validate && npm version"
   },
   "keywords": [
     "ai",

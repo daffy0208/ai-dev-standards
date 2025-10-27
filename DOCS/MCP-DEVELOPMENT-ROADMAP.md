@@ -11,7 +11,7 @@
 
 **Transform skills from aspirational to actionable by building corresponding MCPs.**
 
-**Current:** 45 skills, 49 MCPs (0.9:1 ratio - 92% actionable)
+**Current:** 45 skills, 49 MCPs (0.9:1 ratio - 109% actionable)
 **Target:** 45 skills, 50 MCPs (0.9:1 ratio - 94% actionable)
 
 ---

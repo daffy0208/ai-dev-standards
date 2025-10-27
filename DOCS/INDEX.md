@@ -144,4 +144,4 @@ When adding new documentation:
 
 *Last Updated: 2025-10-23*
 *Total Documentation Files: 18 active, 20+ legacy*
-*Skills: 37 | MCPs: 7 | Skill-to-Tool Ratio: 5.3:1*
+*Skills: 45 | MCPs: 49 | Skill-to-Tool Ratio: 0.9:1*

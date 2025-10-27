@@ -1,40 +1,6 @@
 # Claude Configuration
 
-## Available Resources
-
-This repository provides a comprehensive resource system for AI-powered development:
-
-### 📋 Complete Resource Inventory
-
-- **44 Skills** - Specialized development methodologies and expertise areas (includes design automation)
-- **48 MCP Servers** - Executable tools providing 92% skill coverage (1.1:1 ratio)
-- **24 Tools + 4 Scripts** - LangChain, CrewAI, media tools, design tools, observability tools, and automation scripts
-- **70 Components** - Reusable React components and patterns (44 UI components + 6 media components + 4 workflow components + 4 MCP server components + 6 RAG pipeline components + 6 other)
-- **25 Integrations** - Pre-configured service integrations (LLM providers, platforms, deployment, vector DBs, graph DBs, media services, icon libraries, font services, design tools)
-
-**Total: 215 Resources**
-
-### 📍 Registry Locations
-
-All resources are cataloged in `/META/` registries:
-- `skill-registry.json` - All 44 skills with descriptions and metadata
-- `mcp-registry.json` - All 48 MCP servers (includes 16 design MCPs)
-- `tool-registry.json` - All 24 tools + 4 scripts (includes media and design tools)
-- `component-registry.json` - All 70 components (44 UI + 6 media + 4 workflows + 4 MCP server + 6 RAG pipeline + 6 other)
-- `integration-registry.json` - All 25 integrations (2 LLM + 3 platforms + 3 deployment + 4 vector DBs + 1 graph DB + 3 media services + 3 icon libraries + 2 font services + 4 design tools)
-- `relationship-mapping.json` - Complete dependency graph and file dependencies
-
-### 🔗 How Resources Work Together
-
-Use `relationship-mapping.json` to discover:
-- Which MCPs support each skill (e.g., rag-implementer → vector-database-mcp, embedding-generator-mcp)
-- Which tools each MCP requires (e.g., vector-database-mcp → vector-search-tool, embedding-tool)
-- Which components complement each skill (e.g., frontend-builder → login-form, error-boundary)
-- Which integrations enable functionality (e.g., rag-implementer → openai, pinecone)
-
 ## Skills
-
-All 44 skills are listed below with descriptions and locations:
 
 
 ### 3d-visualizer
@@ -55,17 +21,23 @@ Expert in web animations, transitions, and motion design using Framer Motion and
 
 **Location:** `/SKILLS/animation-designer/SKILL.md`
 
+### api-designer
+
+Design REST and GraphQL APIs. Use when creating backend APIs, defining API contracts, or integrating third-party services. Covers endpoint design, authentication, versioning, documentation, and best practices.
+
+**Location:** `/SKILLS/api-designer/SKILL.md`
+
 ### archon-manager
 
 Master Archon MCP for strategic project management, task tracking, and knowledge base operations. The strategic layer (WHAT/WHEN) that coordinates with Skills (HOW). Use when managing projects, tracking tasks, querying knowledge bases, or implementing the Archon+Skills two-layer architecture.
 
 **Location:** `/SKILLS/archon-manager/SKILL.md`
 
-### api-designer
+### asset-manager
 
-Design REST and GraphQL APIs. Use when creating backend APIs, defining API contracts, or integrating third-party services. Covers endpoint design, authentication, versioning, documentation, and best practices.
+Organize design assets, optimize images and fonts, maintain brand asset libraries, implement version control for assets, and enforce naming conventions. Keep design assets organized and production-ready.
 
-**Location:** `/SKILLS/api-designer/SKILL.md`
+**Location:** `/SKILLS/asset-manager/SKILL.md`
 
 ### audio-producer
 
@@ -84,12 +56,6 @@ Expert in brand identity, logo design, and visual brand systems
 Automatically save and restore development context to minimize cognitive load when resuming work. Use when switching tasks, taking breaks, or returning after interruptions. Captures mental state, file locations, and next steps. Designed for ADHD developers with high context-switching costs.
 
 **Location:** `/SKILLS/context-preserver/SKILL.md`
-
-### codex-review-workflow
-
-Automated code review workflow using OpenAI Codex CLI. Implements iterative fix-and-review cycles until code passes validation or reaches iteration limit. Use when building features requiring automated code validation, security checks, or quality assurance through Codex CLI.
-
-**Location:** `/SKILLS/codex-review-workflow/SKILL.md`
 
 ### copywriter
 
@@ -115,12 +81,6 @@ Expert in creating charts, dashboards, and data visualizations using modern libr
 
 **Location:** `/SKILLS/data-visualizer/SKILL.md`
 
-### forensic-data-engineer
-
-Expert in data forensics, anomaly detection, audit trail analysis, fraud detection, and breach investigation. Use when investigating security incidents, detecting fraud patterns, analyzing audit trails, ensuring compliance (GDPR, SOC2, HIPAA), tracking data lineage, or recovering compromised data.
-
-**Location:** `/SKILLS/forensic-data-engineer/SKILL.md`
-
 ### deployment-advisor
 
 Choose deployment strategy and infrastructure. Use when deciding where to deploy applications, setting up CI/CD, or configuring production environments. Covers Vercel, Railway, AWS, Cloudflare Workers, and Docker.
@@ -133,11 +93,23 @@ Build scalable, maintainable design systems that unify product experiences. Use 
 
 **Location:** `/SKILLS/design-system-architect/SKILL.md`
 
+### figma-developer
+
+Extract components from Figma, convert designs to React components, sync design tokens, and generate code from designs. Bridge the gap between design and code with automated workflows.
+
+**Location:** `/SKILLS/figma-developer/SKILL.md`
+
 ### focus-session-manager
 
 Automatically manage focus sessions, breaks, and hyperfocus protection. Uses ADHD-optimized Pomodoro technique with flexible timers, health reminders, and gentle interruptions. Protects against hyperfocus burnout while maximizing productive time.
 
 **Location:** `/SKILLS/focus-session-manager/SKILL.md`
+
+### forensic-data-engineer
+
+Expert in data forensics, anomaly detection, audit trail analysis, fraud detection, and breach investigation
+
+**Location:** `/SKILLS/forensic-data-engineer/SKILL.md`
 
 ### frontend-builder
 
@@ -157,17 +129,17 @@ Expert in IoT development, microcontrollers, sensors, and MQTT protocols
 
 **Location:** `/SKILLS/iot-developer/SKILL.md`
 
-### knowledge-graph-builder
-
-Design and build knowledge graphs. Use when modeling complex relationships, building semantic search, or creating knowledge bases. Covers schema design, entity relationships, and graph database selection.
-
-**Location:** `/SKILLS/knowledge-graph-builder/SKILL.md`
-
 ### knowledge-base-manager
 
 Design, build, and maintain comprehensive knowledge bases. Bridges document-based (RAG) and entity-based (graph) knowledge systems. Use when building knowledge-intensive applications, managing organizational knowledge, or creating intelligent information systems.
 
 **Location:** `/SKILLS/knowledge-base-manager/SKILL.md`
+
+### knowledge-graph-builder
+
+Design and build knowledge graphs. Use when modeling complex relationships, building semantic search, or creating knowledge bases. Covers schema design, entity relationships, and graph database selection.
+
+**Location:** `/SKILLS/knowledge-graph-builder/SKILL.md`
 
 ### livestream-engineer
 
@@ -211,6 +183,12 @@ Validate product-market fit and strategic direction. Use when defining new produ
 
 **Location:** `/SKILLS/product-strategist/SKILL.md`
 
+### prototype-designer
+
+Create interactive prototypes, design user flows, implement prototype testing strategies, and manage handoff to development. Validate ideas before building.
+
+**Location:** `/SKILLS/prototype-designer/SKILL.md`
+
 ### quality-auditor
 
 Comprehensive quality auditing and evaluation of tools, frameworks, and systems against industry best practices with detailed scoring across 12 critical dimensions
@@ -234,6 +212,12 @@ Implement security best practices across the application stack. Use when securin
 Expert in AR/VR, WebXR, and spatial computing for Vision Pro and web
 
 **Location:** `/SKILLS/spatial-developer/SKILL.md`
+
+### supabase-developer
+
+Build full-stack applications with Supabase (PostgreSQL, Auth, Storage, Real-time, Edge Functions). Use when implementing authentication, database design with RLS, file storage, real-time features, or serverless functions.
+
+**Location:** `/SKILLS/supabase-developer/SKILL.md`
 
 ### task-breakdown-specialist
 
@@ -282,21 +266,3 @@ Design beautiful, consistent user interfaces with proper color theory, typograph
 Expert in building voice interfaces, speech recognition, and text-to-speech systems
 
 **Location:** `/SKILLS/voice-interface-builder/SKILL.md`
-
-### figma-developer
-
-Master Figma-to-code workflows and automation. Use when building design-to-code pipelines, extracting design tokens, automating component generation from Figma, or setting up design system synchronization.
-
-**Location:** `/SKILLS/figma-developer/SKILL.md`
-
-### asset-manager
-
-Organize, optimize, and manage design assets at scale. Use when setting up asset libraries, implementing CDN strategies, managing design system assets, or optimizing images and fonts for production.
-
-**Location:** `/SKILLS/asset-manager/SKILL.md`
-
-### prototype-designer
-
-Create interactive prototypes for user testing and validation. Use when building click-through prototypes, setting up user testing workflows, creating interactive demos, or validating UX concepts before development.
-
-**Location:** `/SKILLS/prototype-designer/SKILL.md`

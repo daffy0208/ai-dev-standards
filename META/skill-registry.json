@@ -1,7 +1,7 @@
 {
-  "version": "3.13.0",
+  "version": "3.18.0",
   "last_updated": "2025-10-27",
-  "description": "Registry of all available skills in ai-dev-standards. Skills are model-invoked capabilities that Claude activates based on context. Now includes 44 active skills covering product development, AI systems, technical implementation, infrastructure, UX design, ADHD support, repository analysis, project management, data forensics, automated code review workflows, and design automation.",
+  "description": "Registry of all available skills in ai-dev-standards. Skills are model-invoked capabilities that Claude activates based on context. Now includes 45 active skills covering product development, AI systems, technical implementation, infrastructure, UX design, ADHD support, repository analysis, project management, data forensics, automated code review workflows, and design automation.",
   "skills": [
     {
       "name": "3d-visualizer",
@@ -101,7 +101,7 @@
     },
     {
       "name": "archon-manager",
-      "description": "Master Archon MCP for strategic project management, task tracking, and knowledge base operations. The strategic layer (WHAT/WHEN) that coordinates with Skills (HOW). Use for managing projects, tracking tasks, querying knowledge bases, or implementing the Archon+Skills two-layer architecture.",
+      "description": "Master Archon MCP for strategic project management, task tracking, and knowledge base operations. The strategic layer (WHAT/WHEN) that coordinates with Skills (HOW). Use when managing projects, tracking tasks, querying knowledge bases, or implementing the Archon+Skills two-layer architecture.",
       "triggers": [
         "archon-manager",
         "archon manager",
@@ -111,21 +111,42 @@
       ],
       "tags": [
         "project-management",
-        "ai-native"
+        "knowledge-management",
+        "task-tracking",
+        "rag",
+        "strategic-planning"
       ],
       "category": "project-management",
       "difficulty": "intermediate",
-      "estimated_time": "1-2 hours setup",
+      "estimated_time": "1-3 hours",
       "path": "/SKILLS/archon-manager/",
       "status": "active",
       "prerequisites": [],
-      "related_skills": [
-        "rag-implementer",
-        "knowledge-base-manager",
-        "mvp-builder",
-        "product-strategist",
-        "multi-agent-architect"
+      "related_skills": [],
+      "frameworks": [
+        "all"
       ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
+      "name": "asset-manager",
+      "description": "Organize design assets, optimize images and fonts, maintain brand asset libraries, implement version control for assets, and enforce naming conventions. Keep design assets organized and production-ready.",
+      "triggers": [
+        "asset-manager",
+        "asset manager"
+      ],
+      "tags": [
+        "specialized"
+      ],
+      "category": "specialized",
+      "difficulty": "intermediate",
+      "estimated_time": "1-3 hours",
+      "path": "/SKILLS/asset-manager/",
+      "status": "active",
+      "prerequisites": [],
+      "related_skills": [],
       "frameworks": [
         "all"
       ],
@@ -182,6 +203,36 @@
       ]
     },
     {
+      "name": "codex-review-workflow",
+      "description": "Automated code review workflow using OpenAI Codex CLI. Implements iterative fix-and-review cycles until code passes validation or reaches iteration limit. Use when building features requiring automated code validation, security checks, or quality assurance through Codex CLI.",
+      "triggers": [
+        "\"review with codex\"",
+        "\"run codex review\"",
+        "\"automated code review\"",
+        "\"validate with codex\"",
+        "\"codex cli\""
+      ],
+      "tags": [
+        "automation",
+        "code-review",
+        "quality",
+        "testing"
+      ],
+      "category": "automation",
+      "difficulty": "intermediate",
+      "estimated_time": "1-3 hours",
+      "path": "/SKILLS/codex-review-workflow/",
+      "status": "active",
+      "prerequisites": [],
+      "related_skills": [],
+      "frameworks": [
+        "all"
+      ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
       "name": "context-preserver",
       "description": "Automatically save and restore development context to minimize cognitive load when resuming work. Use when switching tasks, taking breaks, or returning after interruptions. Captures mental state, file locations, and next steps. Designed for ADHD developers with high context-switching costs.",
       "triggers": [
@@ -198,43 +249,6 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
-    },
-    {
-      "name": "codex-review-workflow",
-      "description": "Automated code review workflow using OpenAI Codex CLI. This skill should be used when the user requests code to be reviewed using Codex CLI, or when implementing features that should be validated with automated code review. Implements an iterative fix-and-review cycle until code passes review or reaches iteration limit.",
-      "triggers": [
-        "codex-review-workflow",
-        "codex review workflow",
-        "codex review",
-        "automated code review"
-      ],
-      "tags": [
-        "automation",
-        "code-review",
-        "quality-assurance",
-        "iterative-workflow"
-      ],
-      "category": "specialized",
-      "difficulty": "intermediate",
-      "estimated_time": "Varies (review: 1-2min, fixes: 5-30min per iteration)",
-      "path": "/SKILLS/codex-review-workflow/",
-      "status": "active",
-      "prerequisites": [
-        "Codex CLI installed",
-        "Git repository"
-      ],
-      "related_skills": [
-        "testing-strategist",
-        "security-engineer",
-        "quality-auditor",
-        "technical-writer"
-      ],
       "frameworks": [
         "all"
       ],
@@ -339,42 +353,6 @@
       ]
     },
     {
-      "name": "forensic-data-engineer",
-      "description": "Expert in data forensics, anomaly detection, audit trail analysis, fraud detection, and breach investigation",
-      "triggers": [
-        "forensic-data-engineer",
-        "forensic data engineer",
-        "data forensics",
-        "forensics",
-        "fraud detection",
-        "anomaly detection",
-        "audit trail",
-        "breach investigation"
-      ],
-      "tags": [
-        "security",
-        "forensics",
-        "compliance"
-      ],
-      "category": "specialized",
-      "difficulty": "advanced",
-      "estimated_time": "2-4 hours",
-      "path": "/SKILLS/forensic-data-engineer/",
-      "status": "active",
-      "prerequisites": [],
-      "related_skills": [
-        "data-engineer",
-        "security-engineer",
-        "quality-auditor"
-      ],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
-    },
-    {
       "name": "deployment-advisor",
       "description": "Choose deployment strategy and infrastructure. Use when deciding where to deploy applications, setting up CI/CD, or configuring production environments. Covers Vercel, Railway, AWS, Cloudflare Workers, and Docker.",
       "triggers": [
@@ -423,6 +401,30 @@
       ]
     },
     {
+      "name": "figma-developer",
+      "description": "Extract components from Figma, convert designs to React components, sync design tokens, and generate code from designs. Bridge the gap between design and code with automated workflows.",
+      "triggers": [
+        "figma-developer",
+        "figma developer"
+      ],
+      "tags": [
+        "specialized"
+      ],
+      "category": "specialized",
+      "difficulty": "intermediate",
+      "estimated_time": "1-3 hours",
+      "path": "/SKILLS/figma-developer/",
+      "status": "active",
+      "prerequisites": [],
+      "related_skills": [],
+      "frameworks": [
+        "all"
+      ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
       "name": "focus-session-manager",
       "description": "Automatically manage focus sessions, breaks, and hyperfocus protection. Uses ADHD-optimized Pomodoro technique with flexible timers, health reminders, and gentle interruptions. Protects against hyperfocus burnout while maximizing productive time.",
       "triggers": [
@@ -436,6 +438,30 @@
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
       "path": "/SKILLS/focus-session-manager/",
+      "status": "active",
+      "prerequisites": [],
+      "related_skills": [],
+      "frameworks": [
+        "all"
+      ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
+      "name": "forensic-data-engineer",
+      "description": "Expert in data forensics, anomaly detection, audit trail analysis, fraud detection, and breach investigation",
+      "triggers": [
+        "forensic-data-engineer",
+        "forensic data engineer"
+      ],
+      "tags": [
+        "specialized"
+      ],
+      "category": "specialized",
+      "difficulty": "intermediate",
+      "estimated_time": "1-3 hours",
+      "path": "/SKILLS/forensic-data-engineer/",
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
@@ -523,25 +549,18 @@
       "description": "Design, build, and maintain comprehensive knowledge bases. Bridges document-based (RAG) and entity-based (graph) knowledge systems. Use when building knowledge-intensive applications, managing organizational knowledge, or creating intelligent information systems.",
       "triggers": [
         "knowledge-base-manager",
-        "knowledge base manager",
-        "kb manager"
+        "knowledge base manager"
       ],
       "tags": [
-        "ai-native",
-        "data"
+        "specialized"
       ],
-      "category": "ai-native",
+      "category": "specialized",
       "difficulty": "intermediate",
-      "estimated_time": "2-4 weeks",
+      "estimated_time": "1-3 hours",
       "path": "/SKILLS/knowledge-base-manager/",
       "status": "active",
       "prerequisites": [],
-      "related_skills": [
-        "rag-implementer",
-        "knowledge-graph-builder",
-        "data-engineer",
-        "quality-auditor"
-      ],
+      "related_skills": [],
       "frameworks": [
         "all"
       ],
@@ -565,10 +584,7 @@
       "path": "/SKILLS/knowledge-graph-builder/",
       "status": "active",
       "prerequisites": [],
-      "related_skills": [
-        "rag-implementer",
-        "knowledge-base-manager"
-      ],
+      "related_skills": [],
       "frameworks": [
         "all"
       ],
@@ -745,6 +761,30 @@
       ]
     },
     {
+      "name": "prototype-designer",
+      "description": "Create interactive prototypes, design user flows, implement prototype testing strategies, and manage handoff to development. Validate ideas before building.",
+      "triggers": [
+        "prototype-designer",
+        "prototype designer"
+      ],
+      "tags": [
+        "specialized"
+      ],
+      "category": "specialized",
+      "difficulty": "intermediate",
+      "estimated_time": "1-3 hours",
+      "path": "/SKILLS/prototype-designer/",
+      "status": "active",
+      "prerequisites": [],
+      "related_skills": [],
+      "frameworks": [
+        "all"
+      ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
       "name": "quality-auditor",
       "description": "Comprehensive quality auditing and evaluation of tools, frameworks, and systems against industry best practices with detailed scoring across 12 critical dimensions",
       "triggers": [
@@ -791,10 +831,7 @@
       "path": "/SKILLS/rag-implementer/",
       "status": "active",
       "prerequisites": [],
-      "related_skills": [
-        "knowledge-base-manager",
-        "knowledge-graph-builder"
-      ],
+      "related_skills": [],
       "frameworks": [
         "all"
       ],
@@ -840,6 +877,36 @@
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
       "path": "/SKILLS/spatial-developer/",
+      "status": "active",
+      "prerequisites": [],
+      "related_skills": [],
+      "frameworks": [
+        "all"
+      ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
+      "name": "supabase-developer",
+      "description": "Build full-stack applications with Supabase (PostgreSQL, Auth, Storage, Real-time, Edge Functions). Use when implementing authentication, database design with RLS, file storage, real-time features, or serverless functions.",
+      "triggers": [
+        "supabase-developer",
+        "supabase developer",
+        "supabase dev"
+      ],
+      "tags": [
+        "backend",
+        "database",
+        "authentication",
+        "storage",
+        "real-time",
+        "serverless"
+      ],
+      "category": "backend",
+      "difficulty": "intermediate",
+      "estimated_time": "1-3 hours",
+      "path": "/SKILLS/supabase-developer/",
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
@@ -1035,170 +1102,6 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
-    },
-    {
-      "name": "supabase-developer",
-      "description": "Build full-stack applications with Supabase (PostgreSQL, Auth, Storage, Real-time, Edge Functions). Use when implementing authentication, database design with RLS, file storage, real-time features, or serverless functions.",
-      "triggers": [
-        "supabase-developer",
-        "supabase developer",
-        "supabase dev"
-      ],
-      "tags": [
-        "backend",
-        "database",
-        "authentication",
-        "storage",
-        "real-time",
-        "serverless"
-      ],
-      "category": "backend",
-      "difficulty": "intermediate",
-      "estimated_time": "2-4 hours",
-      "path": "/SKILLS/supabase-developer/",
-      "status": "active",
-      "prerequisites": [],
-      "related_skills": [
-        "api-designer",
-        "security-engineer",
-        "frontend-builder",
-        "data-engineer",
-        "performance-optimizer"
-      ],
-      "supports_mcps": [
-        "supabase-mcp"
-      ],
-      "required_tools": [
-        "database-query-tool",
-        "api-caller-tool"
-      ],
-      "required_integrations": [
-        "supabase"
-      ],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
-    },
-    {
-      "name": "figma-developer",
-      "description": "Master Figma-to-code workflows and automation. Use when building design-to-code pipelines, extracting design tokens, automating component generation from Figma, or setting up design system synchronization.",
-      "triggers": [
-        "figma-developer",
-        "figma developer",
-        "figma to code",
-        "design to code"
-      ],
-      "tags": [
-        "design",
-        "automation"
-      ],
-      "category": "specialized",
-      "difficulty": "intermediate",
-      "estimated_time": "2-4 hours",
-      "path": "/SKILLS/figma-developer/",
-      "status": "active",
-      "prerequisites": [],
-      "related_skills": [
-        "frontend-builder",
-        "design-system-architect",
-        "ux-designer",
-        "visual-designer"
-      ],
-      "supports_mcps": [
-        "figma-sync-mcp",
-        "design-handoff-mcp",
-        "component-generator-mcp"
-      ],
-      "required_integrations": [
-        "figma"
-      ],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
-    },
-    {
-      "name": "asset-manager",
-      "description": "Organize, optimize, and manage design assets at scale. Use when setting up asset libraries, implementing CDN strategies, managing design system assets, or optimizing images and fonts for production.",
-      "triggers": [
-        "asset-manager",
-        "asset manager",
-        "design assets",
-        "asset management"
-      ],
-      "tags": [
-        "design",
-        "optimization"
-      ],
-      "category": "specialized",
-      "difficulty": "intermediate",
-      "estimated_time": "2-4 hours",
-      "path": "/SKILLS/asset-manager/",
-      "status": "active",
-      "prerequisites": [],
-      "related_skills": [
-        "performance-optimizer",
-        "visual-designer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "asset-library-mcp",
-        "asset-optimizer-mcp"
-      ],
-      "required_integrations": [
-        "cloudinary",
-        "imgix"
-      ],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
-    },
-    {
-      "name": "prototype-designer",
-      "description": "Create interactive prototypes for user testing and validation. Use when building click-through prototypes, setting up user testing workflows, creating interactive demos, or validating UX concepts before development.",
-      "triggers": [
-        "prototype-designer",
-        "prototype designer",
-        "prototyping",
-        "interactive prototype"
-      ],
-      "tags": [
-        "design",
-        "ux"
-      ],
-      "category": "specialized",
-      "difficulty": "intermediate",
-      "estimated_time": "2-4 hours",
-      "path": "/SKILLS/prototype-designer/",
-      "status": "active",
-      "prerequisites": [],
-      "related_skills": [
-        "ux-designer",
-        "visual-designer",
-        "user-researcher"
-      ],
-      "supports_mcps": [
-        "wireframe-generator-mcp",
-        "figma-sync-mcp"
-      ],
-      "required_integrations": [
-        "figma",
-        "adobe-xd"
-      ],
       "frameworks": [
         "all"
       ],

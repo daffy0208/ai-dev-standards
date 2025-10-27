@@ -175,7 +175,7 @@ function validateDocumentation(actual) {
 
   const files = [
     { path: 'README.md', regex: /(\d+)\s+Specialized Skills/ },
-    { path: 'BUILD_FOCUS.md', regex: /Current:\s*(\d+)\s+skills/ },
+    // BUILD_FOCUS.md moved to .archive/planning/ - no longer active
     { path: 'DOCS/INDEX.md', regex: /explore\s+(\d+)\s+specialized/ },
     { path: 'DOCS/MCP-DEVELOPMENT-ROADMAP.md', regex: /Current:\*\*\s*(\d+)\s+skills/ }
   ];
@@ -206,7 +206,7 @@ function validateDocumentation(actual) {
   // Check MCP counts
   const mcpFiles = [
     { path: 'README.md', regex: /(\d+)\s+MCP Tools/ },
-    { path: 'BUILD_FOCUS.md', regex: /(\d+)\s+MCPs/ },
+    // BUILD_FOCUS.md moved to .archive/planning/ - no longer active
     { path: 'DOCS/INDEX.md', regex: /MCPs:\s*(\d+)/ }
   ];
 
