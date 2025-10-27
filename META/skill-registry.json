@@ -1,7 +1,7 @@
 {
-  "version": "3.11.0",
-  "last_updated": "2025-10-26",
-  "description": "Registry of all available skills in ai-dev-standards. Skills are model-invoked capabilities that Claude activates based on context. Now includes 40 active skills covering product development, AI systems, technical implementation, infrastructure, UX design, ADHD support, repository analysis, project management, and data forensics.",
+  "version": "3.12.0",
+  "last_updated": "2025-10-27",
+  "description": "Registry of all available skills in ai-dev-standards. Skills are model-invoked capabilities that Claude activates based on context. Now includes 41 active skills covering product development, AI systems, technical implementation, infrastructure, UX design, ADHD support, repository analysis, project management, data forensics, and automated code review workflows.",
   "skills": [
     {
       "name": "3d-visualizer",
@@ -198,6 +198,43 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
+      "frameworks": [
+        "all"
+      ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
+      "name": "codex-review-workflow",
+      "description": "Automated code review workflow using OpenAI Codex CLI. This skill should be used when the user requests code to be reviewed using Codex CLI, or when implementing features that should be validated with automated code review. Implements an iterative fix-and-review cycle until code passes review or reaches iteration limit.",
+      "triggers": [
+        "codex-review-workflow",
+        "codex review workflow",
+        "codex review",
+        "automated code review"
+      ],
+      "tags": [
+        "automation",
+        "code-review",
+        "quality-assurance",
+        "iterative-workflow"
+      ],
+      "category": "specialized",
+      "difficulty": "intermediate",
+      "estimated_time": "Varies (review: 1-2min, fixes: 5-30min per iteration)",
+      "path": "/SKILLS/codex-review-workflow/",
+      "status": "active",
+      "prerequisites": [
+        "Codex CLI installed",
+        "Git repository"
+      ],
+      "related_skills": [
+        "testing-strategist",
+        "security-engineer",
+        "quality-auditor",
+        "technical-writer"
+      ],
       "frameworks": [
         "all"
       ],

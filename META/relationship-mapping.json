@@ -1,6 +1,6 @@
 {
-  "version": "2.1.0",
-  "last_updated": "2025-10-26",
+  "version": "2.2.0",
+  "last_updated": "2025-10-27",
   "description": "Complete mapping of skills and MCPs to their required resources (tools, components, integrations, scripts). This is the single source of truth for resource dependencies.",
   "skills": {
     "3d-visualizer": {
@@ -78,6 +78,19 @@
       "required_components": [],
       "required_integrations": [],
       "supporting_scripts": []
+    },
+    "codex-review-workflow": {
+      "required_mcps": [],
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": [],
+      "supporting_scripts": [],
+      "external_dependencies": [
+        "Codex CLI (OpenAI)",
+        "Git"
+      ]
     },
     "copywriter": {
       "required_mcps": [

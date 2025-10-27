@@ -6,18 +6,18 @@ This repository provides a comprehensive resource system for AI-powered developm
 
 ### 📋 Complete Resource Inventory
 
-- **40 Skills** - Specialized development methodologies and expertise areas
+- **41 Skills** - Specialized development methodologies and expertise areas
 - **36 MCP Servers** - Executable tools providing 92% skill coverage (1.1:1 ratio)
 - **9 Tools + 4 Scripts** - LangChain, CrewAI tools, and automation scripts
 - **13 Components** - Reusable React components and patterns
 - **6 Integrations** - Pre-configured service integrations (OpenAI, Supabase, etc.)
 
-**Total: 108 Resources**
+**Total: 109 Resources**
 
 ### 📍 Registry Locations
 
 All resources are cataloged in `/META/` registries:
-- `skill-registry.json` - All 40 skills with descriptions and metadata
+- `skill-registry.json` - All 41 skills with descriptions and metadata
 - `mcp-registry.json` - All 36 MCP servers
 - `tool-registry.json` - All 9 tools + 4 scripts
 - `component-registry.json` - All 13 components
@@ -34,7 +34,7 @@ Use `relationship-mapping.json` to discover:
 
 ## Skills
 
-All 40 skills are listed below with descriptions and locations:
+All 41 skills are listed below with descriptions and locations:
 
 
 ### 3d-visualizer
@@ -84,6 +84,12 @@ Expert in brand identity, logo design, and visual brand systems
 Automatically save and restore development context to minimize cognitive load when resuming work. Use when switching tasks, taking breaks, or returning after interruptions. Captures mental state, file locations, and next steps. Designed for ADHD developers with high context-switching costs.
 
 **Location:** `/SKILLS/context-preserver/SKILL.md`
+
+### codex-review-workflow
+
+Automated code review workflow using OpenAI Codex CLI. Implements iterative fix-and-review cycles until code passes validation or reaches iteration limit. Use when building features requiring automated code validation, security checks, or quality assurance through Codex CLI.
+
+**Location:** `/SKILLS/codex-review-workflow/SKILL.md`
 
 ### copywriter
 
