@@ -1,7 +1,7 @@
 {
-  "version": "3.12.1",
+  "version": "3.12.2",
   "last_updated": "2025-10-27",
-  "description": "Registry of all available skills in ai-dev-standards. Skills are model-invoked capabilities that Claude activates based on context. Now includes 41 active skills covering product development, AI systems, technical implementation, infrastructure, UX design, ADHD support, repository analysis, project management, data forensics, and automated code review workflows.",
+  "description": "Registry of all available skills in ai-dev-standards. Skills are model-invoked capabilities that Claude activates based on context. Now includes 42 active skills covering product development, AI systems, technical implementation, infrastructure, UX design, ADHD support, repository analysis, project management, data forensics, and automated code review workflows.",
   "skills": [
     {
       "name": "3d-visualizer",
@@ -1035,6 +1035,52 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
+      "frameworks": [
+        "all"
+      ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
+      "name": "supabase-developer",
+      "description": "Build full-stack applications with Supabase (PostgreSQL, Auth, Storage, Real-time, Edge Functions). Use when implementing authentication, database design with RLS, file storage, real-time features, or serverless functions.",
+      "triggers": [
+        "supabase-developer",
+        "supabase developer",
+        "supabase dev"
+      ],
+      "tags": [
+        "backend",
+        "database",
+        "authentication",
+        "storage",
+        "real-time",
+        "serverless"
+      ],
+      "category": "backend",
+      "difficulty": "intermediate",
+      "estimated_time": "2-4 hours",
+      "path": "/SKILLS/supabase-developer/",
+      "status": "active",
+      "prerequisites": [],
+      "related_skills": [
+        "api-designer",
+        "security-engineer",
+        "frontend-builder",
+        "data-engineer",
+        "performance-optimizer"
+      ],
+      "supports_mcps": [
+        "supabase-mcp"
+      ],
+      "required_tools": [
+        "database-query-tool",
+        "api-caller-tool"
+      ],
+      "required_integrations": [
+        "supabase"
+      ],
       "frameworks": [
         "all"
       ],

@@ -26,7 +26,7 @@ bash ~/ai-dev-standards/setup-project.sh
 ## What You Get
 
 ```
-✓ 41 Skills - Specialized methodologies
+✓ 42 Skills - Specialized methodologies
 ✓ 36 MCPs - Automation tools
 ✓ 9 Tools + 4 Scripts
 ✓ 13 Components

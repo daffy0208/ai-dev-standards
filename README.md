@@ -8,14 +8,14 @@
 
 **Version 1.0.1** | **Last Updated:** 2025-10-27
 
-109 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
+112 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
 
 ## What This Repository Does
 
 Think of this as a **shared brain** between you and Claude:
 
-- **39 Specialized Skills** - Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, and more)
-- **36 MCP Servers** - Executable development tools providing 92% skill coverage (0.92:1 ratio - nearly 1:1!)
+- **42 Specialized Skills** - Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, and more)
+- **36 MCP Servers** - Executable development tools providing 86% skill coverage (0.86:1 ratio - strong actionability!)
 - **9 Tools + 4 Scripts** - LangChain, CrewAI, and custom automation utilities
 - **13 Reusable Components** - React components for common patterns (auth, forms, errors, feedback)
 - **6 Service Integrations** - Pre-configured connections to OpenAI, Supabase, Stripe, Pinecone, and more
@@ -24,9 +24,9 @@ Think of this as a **shared brain** between you and Claude:
 - **Decision Frameworks** - Clear guidance for choosing technologies
 - **Validation & Trust** - Automated testing ensures all resources are discoverable and accessible
 
-**Total Resources:** 109 (39 skills + 36 MCPs + 9 tools + 4 scripts + 13 components + 6 integrations + 2 other)
+**Total Resources:** 112 (42 skills + 36 MCPs + 9 tools + 4 scripts + 13 components + 6 integrations + 2 other)
 
-**Resource Coverage:** 100% discoverability • 92% skill-to-MCP coverage • Complete dependency mapping
+**Resource Coverage:** 100% discoverability • 86% skill-to-MCP coverage • Complete dependency mapping
 
 **Core Philosophy:** Quality over quantity. Every resource has been carefully curated, tested, and documented for its specific purpose.
 
@@ -48,7 +48,7 @@ The tool automatically:
 - ✅ Installs everything needed
 - ✅ Analyzes your repository
 - ✅ Recommends where to start
-- ✅ Syncs all 109 resources
+- ✅ Syncs all 112 resources
 
 **Works for:**
 - New projects, existing projects
@@ -57,9 +57,9 @@ The tool automatically:
 - Local or freshly cloned from GitHub
 
 **After 2 minutes, you have:**
-- 39 skills
+- 42 skills
 - 36 MCP servers
-- 109 total resources
+- 112 total resources
 - Project analysis with recommendations
 - Exact roadmap for where to start
 
@@ -89,7 +89,7 @@ ai-dev-standards/
 │   ├── DECISION-FRAMEWORK.md       # Technology decision guidance
 │   └── skill-registry.json         # Searchable skill catalog
 │
-├── SKILLS/                         # Specialized methodologies (36 total)
+├── SKILLS/                         # Specialized methodologies (42 total)
 │   ├── mvp-builder/                # MVP development and feature prioritization
 │   ├── rag-implementer/            # Retrieval-augmented generation systems
 │   ├── product-strategist/         # Product-market fit validation
@@ -118,12 +118,12 @@ ai-dev-standards/
 
 ## 🧠 Repository Brain
 
-The **Repository Brain** is an intelligence system that manages, understands, and orchestrates all 109 resources.
+The **Repository Brain** is an intelligence system that manages, understands, and orchestrates all 112 resources.
 
 ### What It Does
 
 ```bash
-brain status                    # Current state (39 skills, 36 MCPs, 109 resources)
+brain status                    # Current state (42 skills, 36 MCPs, 112 resources)
 brain search "authentication"   # Search across all resources
 brain decide "add new skill"    # Get workflow recommendations
 brain select-skills "build MVP" # Get skill recommendations
@@ -237,7 +237,7 @@ You can also **explicitly request** a skill:
 ## Key Features
 
 ### 🎯 Focused & Curated
-- 36 specialized skills covering all aspects of development
+- 42 specialized skills covering all aspects of development
 - Only proven patterns and practices
 - Every resource validated and discoverable (100% registry coverage)
 
@@ -290,27 +290,27 @@ This repository enforces **validation-first development** to prevent wasting tim
 
 ### Resource Discovery & Trust
 Every resource in this repository is:
-- ✅ **Registered** in META/registry.json (39 skills + 36 MCPs + all resources)
+- ✅ **Registered** in META/registry.json (42 skills + 36 MCPs + all resources)
 - ✅ **Discoverable** via CLI and bootstrap (no invisible resources)
 - ✅ **Validated** on every commit (automated tests + CI/CD)
 - ✅ **Audited** with mandatory completeness checks
 
-**Current Resources:** 39 skills, 36 MCPs, 109 total resources, all 100% discoverable
+**Current Resources:** 42 skills, 36 MCPs, 112 total resources, all 100% discoverable
 
 **See:** [Audit Trust Restoration](DOCS/AUDIT-TRUST-RESTORATION.md) for details on the 5-layer protection system.
 
 ### ✅ Excellent Skill-to-MCP Coverage
 
-**Current Status:** 39 skills with 36 MCPs = **92% coverage** (0.92:1 ratio)
+**Current Status:** 42 skills with 36 MCPs = **86% coverage** (0.86:1 ratio)
 
 **What This Means:**
 - **Skills** describe HOW to do things (methodologies, approaches)
 - **MCPs** actually DO things (tools, actions, automation)
-- **92% coverage** means most skills have executable tools backing them
+- **86% coverage** means strong skill-to-tool alignment
 
 **Coverage Breakdown:**
-- ✅ **33 skills** have MCP support (fully actionable)
-- ⚠️ **6 skills** without MCPs (aspirational only):
+- ✅ **36 skills** have MCP support (fully actionable)
+- ⚠️ **6 skills** without dedicated MCPs (methodology-focused):
   - brand-designer
   - context-preserver
   - focus-session-manager
@@ -321,7 +321,7 @@ Every resource in this repository is:
 **Why This Matters:**
 - Users can execute most methodologies automatically
 - AI can both advise AND act
-- High automation value throughout the system
+- Strong automation value throughout the system
 
 **See:** `META/mcp-registry.json` for complete MCP catalog and coverage details
 
@@ -429,7 +429,7 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
 ## Philosophy
 
 ### Quality Over Quantity
-- **36 specialized skills** covering essential development areas
+- **42 specialized skills** covering essential development areas
 - **Proven patterns** over theoretical frameworks
 - Every item curated, tested, and 100% discoverable
 
@@ -455,7 +455,7 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
 ## Roadmap
 
 ### Phase 1: Foundation ✅ (Complete)
-- [x] 36 specialized skills extracted and adapted
+- [x] 42 specialized skills extracted and adapted
 - [x] RAG architecture pattern documented
 - [x] Meta files and navigation created
 - [x] Decision framework established
@@ -519,7 +519,7 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
 
 **Version History:**
 - **1.1.0** (2025-10-22): Quality & Trust Update
-  - 36 specialized skills (100% discoverable)
+  - 42 specialized skills (100% discoverable)
   - Automated registry validation system
   - CI/CD enforcement (blocks incomplete registry)
   - Quality auditor Phase 0 mandatory checks
@@ -571,7 +571,7 @@ A: Yes! All skills and patterns have been tested in real projects. Security and 
 This repository was created by evaluating and refining the Framework Library, keeping only the highest quality content and rewriting it for Claude Code's official architecture.
 
 **What changed:**
-- From scattered frameworks to 36 specialized skills
+- From scattered frameworks to 42 specialized skills
 - From mixed formats to official YAML frontmatter
 - From 19% discoverable to 100% validated resources
 - From unclear boundaries to clear categorization

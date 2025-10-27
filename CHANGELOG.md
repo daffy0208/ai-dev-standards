@@ -94,9 +94,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🔄 Version Bumps
 - CLI: 1.0.0 → 1.0.1
-- skill-registry.json: 3.12.0 → 3.12.1
+- skill-registry.json: 3.12.0 → 3.12.2
 - mcp-registry.json: 1.0.0 → 1.0.1
 - relationship-mapping.json: 2.2.0 → 2.2.1
+
+### 📊 Documentation Consistency (Phase 4 - Dogfooding)
+- **Added Missing Skill** - `supabase-developer` was missing from skill-registry.json
+  - Complete 1,502-line skill for building full-stack Supabase applications
+  - PostgreSQL, Auth, Storage, Real-time, Edge Functions
+  - Now properly registered in skill-registry.json
+- **Fixed All Documentation** - Updated 42 skill references across README and INSTALL
+  - README.md: All 8 locations updated (39 → 42 skills, 109 → 112 resources)
+  - INSTALL.md: Updated skill count (41 → 42 skills)
+  - Coverage recalculated: 92% → 86% (36 MCPs / 42 skills)
+  - Total resources: 109 → 112 (42 + 36 + 9 + 4 + 13 + 6 + 2)
+- **Created Validation Tool** - `scripts/validate-docs-consistency.cjs`
+  - Automatically validates README/INSTALL/CHANGELOG against registries
+  - Prevents documentation drift (the problem we just fixed)
+  - Runs validation to ensure consistency
+  - **Dogfooding**: Used our own Repository Brain system to solve our own problem
 
 ### 📝 Related Commits
 - `a79b1d2` - Phase 1: Security validation system
