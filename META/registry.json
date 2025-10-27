@@ -1,6 +1,6 @@
 {
   "version": "1.1.0",
-  "lastUpdated": "2025-10-23T12:11:49.168Z",
+  "lastUpdated": "2025-10-27T22:53:14.401Z",
   "description": "Central registry of all ai-dev-standards resources",
   "skills": [
     {
@@ -22,22 +22,7 @@
         "design",
         "accessibility"
       ],
-      "category": "design",
-      "requires": {
-        "mcps": {
-          "existing": [
-            "accessibility-checker"
-          ],
-          "planned": []
-        },
-        "components": [
-          "ui-components"
-        ],
-        "integrations": [],
-        "standards": [
-          "authentication-patterns"
-        ]
-      }
+      "category": "design"
     },
     {
       "name": "animation-designer",
@@ -58,26 +43,29 @@
         "api",
         "design"
       ],
-      "category": "design",
-      "requires": {
-        "mcps": {
-          "existing": [],
-          "planned": [
-            "openapi-generator",
-            "api-validator"
-          ]
-        },
-        "components": [
-          "mcp-servers"
-        ],
-        "integrations": [
-          "llm-providers"
-        ],
-        "standards": [
-          "microservices-pattern",
-          "serverless-pattern"
-        ]
-      }
+      "category": "design"
+    },
+    {
+      "name": "archon-manager",
+      "version": "1.0.0",
+      "description": "Master Archon MCP for strategic project management, task tracking, and knowledge base operations. The strategic layer (WHAT/WHEN) that coordinates with Skills (HOW). Use when managing projects, tracking tasks, querying knowledge bases, or implementing the Archon+Skills two-layer architecture.",
+      "path": "SKILLS/archon-manager/SKILL.md",
+      "tags": [
+        "strategy"
+      ],
+      "category": "specialized"
+    },
+    {
+      "name": "asset-manager",
+      "version": "1.0.0",
+      "description": "Organize design assets, optimize images and fonts, maintain brand asset libraries, implement version control for assets, and enforce naming conventions. Keep design assets organized and production-ready.",
+      "path": "SKILLS/asset-manager/SKILL.md",
+      "tags": [
+        "product",
+        "ai",
+        "design"
+      ],
+      "category": "product"
     },
     {
       "name": "audio-producer",
@@ -110,6 +98,18 @@
       "category": "design"
     },
     {
+      "name": "codex-review-workflow",
+      "version": "1.0.0",
+      "description": "Automated code review workflow using OpenAI Codex CLI. Implements iterative fix-and-review cycles until code passes validation or reaches iteration limit. Use when building features requiring automated code validation, security checks, or quality assurance through Codex CLI.",
+      "path": "SKILLS/codex-review-workflow/SKILL.md",
+      "tags": [
+        "code-review",
+        "automation",
+        "quality"
+      ],
+      "category": "devops"
+    },
+    {
       "name": "copywriter",
       "version": "1.0.0",
       "description": "Expert in writing compelling copy for web, marketing, and product",
@@ -120,29 +120,22 @@
       "category": "product"
     },
     {
+      "name": "dark-matter-analyzer",
+      "version": "1.0.0",
+      "description": "Analyze repositories to reveal unseen patterns, strategic drift, and organizational health. Use when assessing repository coherence, diagnosing project issues, identifying documentation inflation, or understanding why a codebase feels misaligned with its stated goals.",
+      "path": "SKILLS/dark-matter-analyzer/SKILL.md",
+      "tags": [
+        "strategy"
+      ],
+      "category": "specialized"
+    },
+    {
       "name": "data-engineer",
       "version": "1.0.0",
       "description": "Expert in data pipelines, ETL processes, and data infrastructure",
       "path": "SKILLS/data-engineer/SKILL.md",
       "tags": [],
-      "category": "devops",
-      "requires": {
-        "mcps": {
-          "existing": [],
-          "planned": [
-            "etl-pipeline-builder",
-            "data-quality-checker",
-            "schema-migrator"
-          ]
-        },
-        "components": [],
-        "integrations": [
-          "platforms"
-        ],
-        "standards": [
-          "database-design-patterns"
-        ]
-      }
+      "category": "devops"
     },
     {
       "name": "data-visualizer",
@@ -155,30 +148,6 @@
       "category": "design"
     },
     {
-      "name": "dark-matter-analyzer",
-      "version": "1.0.0",
-      "description": "Analyze repositories to reveal unseen patterns, strategic drift, and organizational health. Use when assessing repository coherence, diagnosing project issues, identifying documentation inflation, or understanding why a codebase feels misaligned with its stated goals.",
-      "path": "SKILLS/dark-matter-analyzer/SKILL.md",
-      "tags": [
-        "analysis",
-        "repository-health",
-        "coherence",
-        "patterns"
-      ],
-      "category": "devops",
-      "requires": {
-        "mcps": {
-          "existing": [
-            "dark-matter-analyzer"
-          ],
-          "planned": []
-        },
-        "components": [],
-        "integrations": [],
-        "standards": []
-      }
-    },
-    {
       "name": "deployment-advisor",
       "version": "1.0.0",
       "description": "Choose deployment strategy and infrastructure. Use when deciding where to deploy applications, setting up CI/CD, or configuring production environments. Covers Vercel, Railway, AWS, Cloudflare Workers, and Docker.",
@@ -189,23 +158,7 @@
         "ai",
         "deployment"
       ],
-      "category": "product",
-      "requires": {
-        "mcps": {
-          "existing": [],
-          "planned": [
-            "infra-provisioner",
-            "monitoring-setup"
-          ]
-        },
-        "components": [],
-        "integrations": [
-          "platforms"
-        ],
-        "standards": [
-          "serverless-pattern"
-        ]
-      }
+      "category": "product"
     },
     {
       "name": "design-system-architect",
@@ -217,23 +170,18 @@
         "ai",
         "design"
       ],
-      "category": "product",
-      "requires": {
-        "mcps": {
-          "existing": [
-            "component-generator"
-          ],
-          "planned": [
-            "component-cataloger",
-            "design-token-manager"
-          ]
-        },
-        "components": [
-          "ui-components"
-        ],
-        "integrations": [],
-        "standards": []
-      }
+      "category": "product"
+    },
+    {
+      "name": "figma-developer",
+      "version": "1.0.0",
+      "description": "Extract components from Figma, convert designs to React components, sync design tokens, and generate code from designs. Bridge the gap between design and code with automated workflows.",
+      "path": "SKILLS/figma-developer/SKILL.md",
+      "tags": [
+        "frontend",
+        "design"
+      ],
+      "category": "design"
     },
     {
       "name": "focus-session-manager",
@@ -247,6 +195,16 @@
       "category": "product"
     },
     {
+      "name": "forensic-data-engineer",
+      "version": "1.0.0",
+      "description": "Expert in data forensics, anomaly detection, audit trail analysis, fraud detection, and breach investigation",
+      "path": "SKILLS/forensic-data-engineer/SKILL.md",
+      "tags": [
+        "ai"
+      ],
+      "category": "data"
+    },
+    {
       "name": "frontend-builder",
       "version": "1.0.0",
       "description": "Build modern React/Next.js frontends. Use when creating web applications, choosing frontend stack, structuring components, or implementing UI/UX designs. Covers React, Next.js, Tailwind CSS, and component patterns.",
@@ -257,21 +215,7 @@
         "ux",
         "design"
       ],
-      "category": "design",
-      "requires": {
-        "mcps": {
-          "existing": [
-            "component-generator"
-          ],
-          "planned": []
-        },
-        "components": [
-          "ui-components",
-          "forms"
-        ],
-        "integrations": [],
-        "standards": []
-      }
+      "category": "design"
     },
     {
       "name": "go-to-market-planner",
@@ -283,20 +227,7 @@
         "strategy",
         "ai"
       ],
-      "category": "product",
-      "requires": {
-        "mcps": {
-          "existing": [],
-          "planned": [
-            "market-analyzer",
-            "competitor-tracker",
-            "launch-checklist"
-          ]
-        },
-        "components": [],
-        "integrations": [],
-        "standards": []
-      }
+      "category": "product"
     },
     {
       "name": "iot-developer",
@@ -307,6 +238,18 @@
       "category": "specialized"
     },
     {
+      "name": "knowledge-base-manager",
+      "version": "1.0.0",
+      "description": "Design, build, and maintain comprehensive knowledge bases. Bridges document-based (RAG) and entity-based (graph) knowledge systems. Use when building knowledge-intensive applications, managing organizational knowledge, or creating intelligent information systems.",
+      "path": "SKILLS/knowledge-base-manager/SKILL.md",
+      "tags": [
+        "rag",
+        "ai",
+        "design"
+      ],
+      "category": "ai"
+    },
+    {
       "name": "knowledge-graph-builder",
       "version": "1.0.0",
       "description": "Design and build knowledge graphs. Use when modeling complex relationships, building semantic search, or creating knowledge bases. Covers schema design, entity relationships, and graph database selection.",
@@ -314,20 +257,7 @@
       "tags": [
         "design"
       ],
-      "category": "design",
-      "requires": {
-        "mcps": {
-          "existing": [],
-          "planned": [
-            "neo4j",
-            "graph-visualizer",
-            "ontology-builder"
-          ]
-        },
-        "components": [],
-        "integrations": [],
-        "standards": []
-      }
+      "category": "design"
     },
     {
       "name": "livestream-engineer",
@@ -365,27 +295,7 @@
         "agents",
         "design"
       ],
-      "category": "ai",
-      "requires": {
-        "mcps": {
-          "existing": [],
-          "planned": [
-            "agent-orchestrator",
-            "agent-monitor",
-            "conversation-manager"
-          ]
-        },
-        "components": [
-          "agents",
-          "workflows"
-        ],
-        "integrations": [
-          "llm-providers"
-        ],
-        "standards": [
-          "event-driven-architecture"
-        ]
-      }
+      "category": "ai"
     },
     {
       "name": "mvp-builder",
@@ -397,24 +307,7 @@
         "product",
         "api"
       ],
-      "category": "product",
-      "requires": {
-        "mcps": {
-          "existing": [
-            "feature-prioritizer"
-          ],
-          "planned": [
-            "risk-analyzer",
-            "mvp-tracker"
-          ]
-        },
-        "components": [
-          "agents",
-          "workflows"
-        ],
-        "integrations": [],
-        "standards": []
-      }
+      "category": "product"
     },
     {
       "name": "performance-optimizer",
@@ -425,22 +318,7 @@
         "frontend",
         "performance"
       ],
-      "category": "frontend",
-      "requires": {
-        "mcps": {
-          "existing": [],
-          "planned": [
-            "performance-profiler",
-            "bundle-analyzer",
-            "lighthouse-runner"
-          ]
-        },
-        "components": [],
-        "integrations": [],
-        "standards": [
-          "database-design-patterns"
-        ]
-      }
+      "category": "frontend"
     },
     {
       "name": "product-strategist",
@@ -451,19 +329,18 @@
         "product",
         "strategy"
       ],
-      "category": "product",
-      "requires": {
-        "mcps": {
-          "existing": [],
-          "planned": [
-            "interview-transcriber",
-            "user-insight-analyzer"
-          ]
-        },
-        "components": [],
-        "integrations": [],
-        "standards": []
-      }
+      "category": "product"
+    },
+    {
+      "name": "prototype-designer",
+      "version": "1.0.0",
+      "description": "Create interactive prototypes, design user flows, implement prototype testing strategies, and manage handoff to development. Validate ideas before building.",
+      "path": "SKILLS/prototype-designer/SKILL.md",
+      "tags": [
+        "design",
+        "testing"
+      ],
+      "category": "design"
     },
     {
       "name": "quality-auditor",
@@ -472,24 +349,9 @@
       "path": "SKILLS/quality-auditor/SKILL.md",
       "tags": [
         "ai",
-        "testing",
-        "quality",
-        "audit"
+        "testing"
       ],
-      "category": "general",
-      "requires": {
-        "mcps": {
-          "existing": [
-            "screenshot-testing"
-          ],
-          "planned": []
-        },
-        "components": [
-          "ui-components"
-        ],
-        "integrations": [],
-        "standards": []
-      }
+      "category": "general"
     },
     {
       "name": "rag-implementer",
@@ -501,29 +363,7 @@
         "rag",
         "ai"
       ],
-      "category": "ai",
-      "requires": {
-        "mcps": {
-          "existing": [
-            "vector-database",
-            "embedding-generator"
-          ],
-          "planned": [
-            "semantic-search",
-            "document-processor"
-          ]
-        },
-        "components": [
-          "rag-pipelines"
-        ],
-        "integrations": [
-          "vector-databases",
-          "llm-providers"
-        ],
-        "standards": [
-          "rag-pattern"
-        ]
-      }
+      "category": "ai"
     },
     {
       "name": "security-engineer",
@@ -534,24 +374,7 @@
         "api",
         "security"
       ],
-      "category": "backend",
-      "requires": {
-        "mcps": {
-          "existing": [],
-          "planned": [
-            "vulnerability-scanner",
-            "dependency-auditor",
-            "secrets-detector"
-          ]
-        },
-        "components": [],
-        "integrations": [
-          "platforms"
-        ],
-        "standards": [
-          "authentication-patterns"
-        ]
-      }
+      "category": "backend"
     },
     {
       "name": "spatial-developer",
@@ -560,6 +383,17 @@
       "path": "SKILLS/spatial-developer/SKILL.md",
       "tags": [],
       "category": "specialized"
+    },
+    {
+      "name": "supabase-developer",
+      "version": "1.0.0",
+      "description": "Build full-stack applications with Supabase (PostgreSQL, Auth, Storage, Real-time, Edge Functions). Use when implementing authentication, database design with RLS, file storage, real-time features, or serverless functions.",
+      "path": "SKILLS/supabase-developer/SKILL.md",
+      "tags": [
+        "rag",
+        "design"
+      ],
+      "category": "ai"
     },
     {
       "name": "task-breakdown-specialist",
@@ -577,20 +411,7 @@
       "tags": [
         "api"
       ],
-      "category": "backend",
-      "requires": {
-        "mcps": {
-          "existing": [],
-          "planned": [
-            "doc-generator",
-            "diagram-generator",
-            "changelog-generator"
-          ]
-        },
-        "components": [],
-        "integrations": [],
-        "standards": []
-      }
+      "category": "backend"
     },
     {
       "name": "testing-strategist",
@@ -611,20 +432,7 @@
       "tags": [
         "ai"
       ],
-      "category": "specialized",
-      "requires": {
-        "mcps": {
-          "existing": [],
-          "planned": [
-            "interview-scheduler",
-            "feedback-aggregator",
-            "persona-generator"
-          ]
-        },
-        "components": [],
-        "integrations": [],
-        "standards": []
-      }
+      "category": "specialized"
     },
     {
       "name": "ux-designer",
@@ -636,22 +444,7 @@
         "design",
         "accessibility"
       ],
-      "category": "design",
-      "requires": {
-        "mcps": {
-          "existing": [],
-          "planned": [
-            "wireframe-generator",
-            "design-system-checker",
-            "user-flow-visualizer"
-          ]
-        },
-        "components": [
-          "ui-components"
-        ],
-        "integrations": [],
-        "standards": []
-      }
+      "category": "design"
     },
     {
       "name": "video-producer",
@@ -682,36 +475,260 @@
   ],
   "mcpServers": [
     {
+      "name": "3d-asset-manager",
+      "version": "1.0.0",
+      "description": "MCP server for loading, optimizing, and managing 3D models and textures",
+      "path": "MCP-SERVERS/3d-asset-manager-mcp",
+      "tags": [
+        "mcp",
+        "3d",
+        "threejs",
+        "gltf",
+        "models",
+        "textures"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [
+        "3d-visualizer skill\n-"
+      ],
+      "status": "active"
+    },
+    {
       "name": "accessibility-checker",
-      "version": "0.0.0",
-      "description": "Automated WCAG compliance checking for web applications.",
+      "version": "1.0.0",
+      "description": "MCP server for automated WCAG compliance checking",
       "path": "MCP-SERVERS/accessibility-checker-mcp",
       "tags": [
         "mcp",
-        "accessibility-checker"
+        "accessibility",
+        "wcag",
+        "a11y",
+        "contrast",
+        "testing"
       ],
       "features": [
         "tools"
       ],
-      "dependencies": {},
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "axe-core": "^4.8.0"
+      },
       "enables": [],
-      "status": "planned"
+      "status": "active"
+    },
+    {
+      "name": "agent-orchestrator",
+      "version": "1.0.0",
+      "description": "MCP server for coordinating multi-agent workflows and communication",
+      "path": "MCP-SERVERS/agent-orchestrator-mcp",
+      "tags": [
+        "mcp",
+        "multi-agent",
+        "orchestration",
+        "agent-coordination",
+        "workflow"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [
+        "multi-agent-architect skill\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "animation-library",
+      "version": "1.0.0",
+      "description": "MCP server for Framer Motion animation presets and configurations",
+      "path": "MCP-SERVERS/animation-library-mcp",
+      "tags": [
+        "mcp",
+        "animation",
+        "framer-motion",
+        "transitions",
+        "motion"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [
+        "animation-designer skill\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "api-validator",
+      "version": "1.0.0",
+      "description": "MCP server for validating API requests and responses against schemas",
+      "path": "MCP-SERVERS/api-validator-mcp",
+      "tags": [
+        "mcp",
+        "api-validation",
+        "schema-validation",
+        "json-schema",
+        "api-testing"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "ajv": "^8.12.0",
+        "ajv-formats": "^2.1.1"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "asset-library",
+      "version": "1.0.0",
+      "description": "MCP server for managing design assets and generating variants",
+      "path": "MCP-SERVERS/asset-library-mcp",
+      "tags": [
+        "mcp",
+        "assets",
+        "design",
+        "images",
+        "library"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "asset-optimizer",
+      "version": "1.0.0",
+      "description": "MCP server for optimizing images, generating color palettes, and managing assets",
+      "path": "MCP-SERVERS/asset-optimizer-mcp",
+      "tags": [
+        "mcp",
+        "image-optimization",
+        "assets",
+        "color-palette",
+        "compression"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [
+        "visual-designer skill\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "audio-processor",
+      "version": "1.0.0",
+      "description": "MCP server for audio optimization, format conversion, and processing",
+      "path": "MCP-SERVERS/audio-processor-mcp",
+      "tags": [
+        "mcp",
+        "audio",
+        "processing",
+        "compression",
+        "web-audio"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [
+        "audio-producer skill\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "chart-builder",
+      "version": "1.0.0",
+      "description": "MCP server for creating charts and data visualizations programmatically",
+      "path": "MCP-SERVERS/chart-builder-mcp",
+      "tags": [
+        "mcp",
+        "charts",
+        "visualization",
+        "d3",
+        "recharts",
+        "victory"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [
+        "data-visualizer skill\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "code-quality-scanner",
+      "version": "1.0.0",
+      "description": "MCP server for scanning code quality, complexity, and technical debt",
+      "path": "MCP-SERVERS/code-quality-scanner-mcp",
+      "tags": [
+        "mcp",
+        "code-quality",
+        "complexity",
+        "technical-debt",
+        "eslint",
+        "sonarqube"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "execa": "^8.0.1"
+      },
+      "enables": [
+        "quality-auditor skill\n-"
+      ],
+      "status": "active"
     },
     {
       "name": "component-generator",
-      "version": "0.0.0",
-      "description": "Intelligent React/Next.js component scaffolding with best practices built-in.",
+      "version": "1.0.0",
+      "description": "MCP server for intelligent React/Next.js component scaffolding",
       "path": "MCP-SERVERS/component-generator-mcp",
       "tags": [
         "mcp",
-        "component-generator"
+        "component",
+        "generator",
+        "react",
+        "nextjs",
+        "scaffolding"
       ],
       "features": [
         "tools"
       ],
-      "dependencies": {},
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "handlebars": "^4.7.8",
+        "prettier": "^3.1.0"
+      },
       "enables": [],
-      "status": "planned"
+      "status": "active"
     },
     {
       "name": "dark-matter-analyzer",
@@ -734,6 +751,135 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "dark-mode-converter",
+      "version": "0.0.0",
+      "description": "Convert light mode designs to accessible dark mode with automatic color adjustments, contrast validation, and palette generation.",
+      "path": "MCP-SERVERS/dark-mode-converter-mcp",
+      "tags": [
+        "mcp",
+        "dark-mode-converter"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
+    },
+    {
+      "name": "database-migration",
+      "version": "1.0.0",
+      "description": "MCP server for generating and running database migrations with Prisma and Drizzle",
+      "path": "MCP-SERVERS/database-migration-mcp",
+      "tags": [
+        "mcp",
+        "database",
+        "migrations",
+        "prisma",
+        "drizzle",
+        "schema"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "execa": "^8.0.1"
+      },
+      "enables": [
+        "data-engineer skill\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "deployment-orchestrator",
+      "version": "1.0.0",
+      "description": "MCP server for orchestrating deployments to Vercel, Railway, AWS, and other platforms",
+      "path": "MCP-SERVERS/deployment-orchestrator-mcp",
+      "tags": [
+        "mcp",
+        "deployment",
+        "vercel",
+        "railway",
+        "aws",
+        "ci-cd"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [
+        "deployment-advisor skill\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "design-handoff",
+      "version": "0.0.0",
+      "description": "Streamline design-to-development handoff with automated spec extraction, code generation, and design-code comparison.",
+      "path": "MCP-SERVERS/design-handoff-mcp",
+      "tags": [
+        "mcp",
+        "design-handoff"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
+    },
+    {
+      "name": "design-token-manager",
+      "version": "1.0.0",
+      "description": "MCP server for managing design tokens and generating theme configurations",
+      "path": "MCP-SERVERS/design-token-manager-mcp",
+      "tags": [
+        "mcp",
+        "design-tokens",
+        "design-system",
+        "theming",
+        "css-variables"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [
+        "design-system-architect skill\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "doc-generator",
+      "version": "1.0.0",
+      "description": "MCP server for generating documentation from code, diagrams, and changelogs",
+      "path": "MCP-SERVERS/doc-generator-mcp",
+      "tags": [
+        "mcp",
+        "documentation",
+        "jsdoc",
+        "typedoc",
+        "mermaid",
+        "changelog"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "execa": "^8.0.1"
+      },
+      "enables": [
+        "technical-writer skill\n-"
+      ],
       "status": "active"
     },
     {
@@ -782,13 +928,13 @@
       "status": "active"
     },
     {
-      "name": "screenshot-testing",
+      "name": "figma-sync",
       "version": "0.0.0",
-      "description": "Visual regression testing for web applications using Percy, Chromatic, or Playwright.",
-      "path": "MCP-SERVERS/screenshot-testing-mcp",
+      "description": "Sync Figma designs with your codebase - import components, extract design tokens, and automate design-to-code workflow.",
+      "path": "MCP-SERVERS/figma-sync-mcp",
       "tags": [
         "mcp",
-        "screenshot-testing"
+        "figma-sync"
       ],
       "features": [
         "tools"
@@ -796,6 +942,544 @@
       "dependencies": {},
       "enables": [],
       "status": "planned"
+    },
+    {
+      "name": "font-optimizer",
+      "version": "0.0.0",
+      "description": "MCP server for font optimization including subsetting, format conversion, and usage analysis.",
+      "path": "MCP-SERVERS/font-optimizer-mcp",
+      "tags": [
+        "mcp",
+        "font-optimizer"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
+    },
+    {
+      "name": "graph-database",
+      "version": "1.0.0",
+      "description": "MCP server for Neo4j operations, Cypher queries, and graph visualization",
+      "path": "MCP-SERVERS/graph-database-mcp",
+      "tags": [
+        "mcp",
+        "neo4j",
+        "graph-database",
+        "cypher",
+        "knowledge-graph"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [
+        "knowledge-graph-builder skill\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "i18n-manager",
+      "version": "1.0.0",
+      "description": "MCP server for managing translations, extracting strings, and locale files",
+      "path": "MCP-SERVERS/i18n-manager-mcp",
+      "tags": [
+        "mcp",
+        "i18n",
+        "internationalization",
+        "translations",
+        "localization"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [
+        "localization-engineer skill\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "icon-library",
+      "version": "0.0.0",
+      "description": "MCP server providing icon search and retrieval across multiple icon libraries (Heroicons, Lucide, Font Awesome).",
+      "path": "MCP-SERVERS/icon-library-mcp",
+      "tags": [
+        "mcp",
+        "icon-library"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
+    },
+    {
+      "name": "illustration-generator",
+      "version": "0.0.0",
+      "description": "Generate custom illustrations, characters, and scenes with AI-powered illustration generation.",
+      "path": "MCP-SERVERS/illustration-generator-mcp",
+      "tags": [
+        "mcp",
+        "illustration-generator"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
+    },
+    {
+      "name": "image-generator",
+      "version": "0.0.0",
+      "description": "AI-powered image generation MCP server supporting multiple providers (OpenAI DALL-E, Midjourney, Stable Diffusion).",
+      "path": "MCP-SERVERS/image-generator-mcp",
+      "tags": [
+        "mcp",
+        "image-generator"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
+    },
+    {
+      "name": "iot-device-manager",
+      "version": "1.0.0",
+      "description": "MCP server for IoT device management, MQTT operations, and firmware updates",
+      "path": "MCP-SERVERS/iot-device-manager-mcp",
+      "tags": [
+        "mcp",
+        "iot",
+        "mqtt",
+        "devices",
+        "firmware",
+        "sensors"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [
+        "iot-developer skill\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "knowledge-base",
+      "version": "1.0.0",
+      "description": "MCP server for knowledge base management - CRUD operations, versioning, validation, and curation",
+      "path": "MCP-SERVERS/knowledge-base-mcp",
+      "tags": [
+        "mcp",
+        "knowledge-base",
+        "rag",
+        "knowledge-graph",
+        "ai-dev-standards"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "market-analyzer",
+      "version": "1.0.0",
+      "description": "MCP server for market analysis, sizing, and competitor tracking",
+      "path": "MCP-SERVERS/market-analyzer-mcp",
+      "tags": [
+        "mcp",
+        "market-analysis",
+        "competitor-tracking",
+        "market-sizing",
+        "gtm"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [
+        "go-to-market-planner skill\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "mobile-builder",
+      "version": "1.0.0",
+      "description": "MCP server for generating React Native and Expo mobile projects",
+      "path": "MCP-SERVERS/mobile-builder-mcp",
+      "tags": [
+        "mcp",
+        "react-native",
+        "expo",
+        "mobile",
+        "ios",
+        "android"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "execa": "^8.0.1"
+      },
+      "enables": [
+        "mobile-developer skill\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "openapi-generator",
+      "version": "1.0.0",
+      "description": "MCP server for generating OpenAPI/Swagger specifications from code",
+      "path": "MCP-SERVERS/openapi-generator-mcp",
+      "tags": [
+        "mcp",
+        "openapi",
+        "swagger",
+        "api-design",
+        "documentation"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "openapi-typescript": "^6.7.0",
+        "swagger-parser": "^10.0.3"
+      },
+      "enables": [
+        "api-designer skill\r\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "performance-profiler",
+      "version": "1.0.0",
+      "description": "MCP server for profiling application performance and identifying bottlenecks",
+      "path": "MCP-SERVERS/performance-profiler-mcp",
+      "tags": [
+        "mcp",
+        "performance",
+        "profiling",
+        "lighthouse",
+        "bundle-analysis"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "execa": "^8.0.1"
+      },
+      "enables": [
+        "performance-optimizer skill\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "props-documenter",
+      "version": "1.0.0",
+      "description": "MCP server for documenting React component props",
+      "path": "MCP-SERVERS/props-documenter-mcp",
+      "tags": [
+        "mcp",
+        "props",
+        "documentation",
+        "react",
+        "typescript"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "responsive-preview",
+      "version": "1.0.0",
+      "description": "MCP server for responsive design preview and testing",
+      "path": "MCP-SERVERS/responsive-preview-mcp",
+      "tags": [
+        "mcp",
+        "responsive",
+        "preview",
+        "testing",
+        "breakpoints"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "screenshot-testing",
+      "version": "1.0.0",
+      "description": "MCP server for visual regression testing",
+      "path": "MCP-SERVERS/screenshot-testing-mcp",
+      "tags": [
+        "mcp",
+        "screenshot",
+        "testing",
+        "visual",
+        "regression",
+        "playwright"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "playwright": "^1.40.0",
+        "pixelmatch": "^5.3.0",
+        "pngjs": "^7.0.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "security-scanner",
+      "version": "1.0.0",
+      "description": "MCP server for scanning security vulnerabilities, dependencies, and secrets",
+      "path": "MCP-SERVERS/security-scanner-mcp",
+      "tags": [
+        "mcp",
+        "security",
+        "vulnerability-scanning",
+        "owasp",
+        "secrets-detection",
+        "dependency-audit"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "execa": "^8.0.1"
+      },
+      "enables": [
+        "security-engineer skill\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "semantic-search",
+      "version": "1.0.0",
+      "description": "MCP server for semantic search with query embedding, similarity search, and re-ranking",
+      "path": "MCP-SERVERS/semantic-search-mcp",
+      "tags": [
+        "mcp",
+        "semantic-search",
+        "rag",
+        "embeddings",
+        "vector-search",
+        "re-ranking"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [
+        "`rag-implementer` skill\r\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "seo-analyzer",
+      "version": "1.0.0",
+      "description": "MCP server for SEO analysis, readability scoring, and keyword analysis",
+      "path": "MCP-SERVERS/seo-analyzer-mcp",
+      "tags": [
+        "mcp",
+        "seo",
+        "readability",
+        "keywords",
+        "content-analysis"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [
+        "copywriter skill\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "storybook-generator",
+      "version": "1.0.0",
+      "description": "MCP server for generating Storybook stories from React components",
+      "path": "MCP-SERVERS/storybook-generator-mcp",
+      "tags": [
+        "mcp",
+        "storybook",
+        "design-system",
+        "component-documentation",
+        "react"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "streaming-setup",
+      "version": "1.0.0",
+      "description": "MCP server for WebRTC configuration and live streaming setup",
+      "path": "MCP-SERVERS/streaming-setup-mcp",
+      "tags": [
+        "mcp",
+        "webrtc",
+        "streaming",
+        "live-video",
+        "peer-connection"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [
+        "livestream-engineer skill\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "svg-generator",
+      "version": "0.0.0",
+      "description": "Generate, optimize, and manage SVG graphics for icons, illustrations, and patterns.",
+      "path": "MCP-SERVERS/svg-generator-mcp",
+      "tags": [
+        "mcp",
+        "svg-generator"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
+    },
+    {
+      "name": "test-runner",
+      "version": "1.0.0",
+      "description": "MCP server for running tests, parsing results, and generating coverage reports",
+      "path": "MCP-SERVERS/test-runner-mcp",
+      "tags": [
+        "mcp",
+        "testing",
+        "vitest",
+        "jest",
+        "coverage",
+        "test-runner"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "execa": "^8.0.1"
+      },
+      "enables": [
+        "testing-strategist skill\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "theme-builder",
+      "version": "0.0.0",
+      "description": "Generate complete design system themes with automatic color scales, dark mode, accessibility validation, and multi-format export.",
+      "path": "MCP-SERVERS/theme-builder-mcp",
+      "tags": [
+        "mcp",
+        "theme-builder"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
+    },
+    {
+      "name": "typography-analyzer",
+      "version": "1.0.0",
+      "description": "MCP server for typography analysis and type scale generation",
+      "path": "MCP-SERVERS/typography-analyzer-mcp",
+      "tags": [
+        "mcp",
+        "typography",
+        "design-system",
+        "readability",
+        "accessibility"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "user-insight-analyzer",
+      "version": "1.0.0",
+      "description": "MCP server for analyzing user feedback and extracting patterns, pain points, and insights",
+      "path": "MCP-SERVERS/user-insight-analyzer-mcp",
+      "tags": [
+        "mcp",
+        "user-research",
+        "insights",
+        "product-strategy",
+        "analysis"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "openai": "^4.20.0"
+      },
+      "enables": [
+        "product-strategist",
+        "user-researcher skills\r\n-"
+      ],
+      "status": "active"
     },
     {
       "name": "vector-database",
@@ -822,6 +1506,72 @@
       },
       "enables": [],
       "status": "active"
+    },
+    {
+      "name": "video-optimizer",
+      "version": "1.0.0",
+      "description": "MCP server for video compression, format conversion, and streaming setup",
+      "path": "MCP-SERVERS/video-optimizer-mcp",
+      "tags": [
+        "mcp",
+        "video",
+        "compression",
+        "ffmpeg",
+        "streaming"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "execa": "^8.0.1"
+      },
+      "enables": [
+        "video-producer skill\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "wireframe-generator",
+      "version": "1.0.0",
+      "description": "MCP server for generating wireframes and user flow diagrams",
+      "path": "MCP-SERVERS/wireframe-generator-mcp",
+      "tags": [
+        "mcp",
+        "wireframes",
+        "user-flows",
+        "ux",
+        "diagrams"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [
+        "ux-designer skill\n-"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "supabase",
+      "version": "0.0.0",
+      "description": "MCP server for Supabase operations (database, auth, storage, real-time)",
+      "path": "MCP-SERVERS/supabase-mcp",
+      "tags": [
+        "mcp",
+        "supabase",
+        "database",
+        "auth",
+        "storage"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
     }
   ],
   "playbooks": [

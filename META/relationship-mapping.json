@@ -564,6 +564,70 @@
         "openai"
       ],
       "supporting_scripts": []
+    },
+    "asset-manager": {
+      "required_mcps": [
+        "asset-optimizer-mcp",
+        "asset-library-mcp"
+      ],
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": [
+        "cloudinary",
+        "imgix"
+      ],
+      "supporting_scripts": []
+    },
+    "figma-developer": {
+      "required_mcps": [
+        "figma-sync-mcp",
+        "design-token-manager-mcp"
+      ],
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": [
+        "figma"
+      ],
+      "supporting_scripts": []
+    },
+    "prototype-designer": {
+      "required_mcps": [
+        "wireframe-generator-mcp",
+        "design-handoff-mcp"
+      ],
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": [
+        "figma"
+      ],
+      "supporting_scripts": []
+    },
+    "supabase-developer": {
+      "required_mcps": [
+        "database-migration-mcp"
+      ],
+      "required_tools": [
+        "database-query-tool"
+      ],
+      "required_components": [
+        "login-form",
+        "signup-form",
+        "password-reset",
+        "protected-route"
+      ],
+      "required_integrations": [
+        "supabase"
+      ],
+      "supporting_scripts": [
+        "db-backup",
+        "db-migrate"
+      ]
     }
   },
   "mcps": {
@@ -1222,5 +1286,144 @@
       "META/component-registry.json - All components",
       "META/integration-registry.json - All integrations"
     ]
+  },
+  "relationships": {
+    "skills_to_mcps": {
+      "3d-visualizer": [
+        "3d-asset-manager-mcp"
+      ],
+      "accessibility-engineer": [
+        "accessibility-checker-mcp"
+      ],
+      "animation-designer": [
+        "animation-library-mcp"
+      ],
+      "api-designer": [
+        "openapi-generator-mcp",
+        "api-validator-mcp"
+      ],
+      "audio-producer": [
+        "audio-processor-mcp"
+      ],
+      "brand-designer": [],
+      "context-preserver": [],
+      "codex-review-workflow": [],
+      "copywriter": [
+        "seo-analyzer-mcp"
+      ],
+      "dark-matter-analyzer": [
+        "dark-matter-analyzer-mcp"
+      ],
+      "data-engineer": [
+        "database-migration-mcp"
+      ],
+      "forensic-data-engineer": [
+        "database-migration-mcp"
+      ],
+      "data-visualizer": [
+        "chart-builder-mcp"
+      ],
+      "deployment-advisor": [
+        "deployment-orchestrator-mcp"
+      ],
+      "design-system-architect": [
+        "design-token-manager-mcp"
+      ],
+      "focus-session-manager": [],
+      "frontend-builder": [
+        "component-generator-mcp"
+      ],
+      "go-to-market-planner": [
+        "market-analyzer-mcp"
+      ],
+      "iot-developer": [
+        "iot-device-manager-mcp"
+      ],
+      "knowledge-base-manager": [
+        "knowledge-base-mcp",
+        "vector-database-mcp",
+        "embedding-generator-mcp",
+        "graph-database-mcp"
+      ],
+      "knowledge-graph-builder": [
+        "graph-database-mcp"
+      ],
+      "livestream-engineer": [
+        "streaming-setup-mcp"
+      ],
+      "localization-engineer": [
+        "i18n-manager-mcp"
+      ],
+      "mobile-developer": [
+        "mobile-builder-mcp"
+      ],
+      "multi-agent-architect": [
+        "agent-orchestrator-mcp"
+      ],
+      "mvp-builder": [
+        "feature-prioritizer-mcp",
+        "component-generator-mcp"
+      ],
+      "performance-optimizer": [
+        "performance-profiler-mcp"
+      ],
+      "product-strategist": [
+        "user-insight-analyzer-mcp",
+        "feature-prioritizer-mcp"
+      ],
+      "quality-auditor": [
+        "code-quality-scanner-mcp",
+        "screenshot-testing-mcp"
+      ],
+      "rag-implementer": [
+        "vector-database-mcp",
+        "embedding-generator-mcp",
+        "semantic-search-mcp"
+      ],
+      "security-engineer": [
+        "security-scanner-mcp"
+      ],
+      "spatial-developer": [],
+      "task-breakdown-specialist": [],
+      "technical-writer": [
+        "doc-generator-mcp"
+      ],
+      "testing-strategist": [
+        "test-runner-mcp",
+        "screenshot-testing-mcp"
+      ],
+      "user-researcher": [
+        "user-insight-analyzer-mcp"
+      ],
+      "ux-designer": [
+        "wireframe-generator-mcp"
+      ],
+      "video-producer": [
+        "video-optimizer-mcp"
+      ],
+      "visual-designer": [
+        "asset-optimizer-mcp",
+        "design-token-manager-mcp"
+      ],
+      "voice-interface-builder": [],
+      "archon-manager": [
+        "archon-mcp"
+      ],
+      "asset-manager": [
+        "asset-optimizer-mcp",
+        "asset-library-mcp"
+      ],
+      "figma-developer": [
+        "figma-sync-mcp",
+        "design-token-manager-mcp"
+      ],
+      "prototype-designer": [
+        "wireframe-generator-mcp",
+        "design-handoff-mcp"
+      ],
+      "supabase-developer": [
+        "database-migration-mcp"
+      ]
+    }
   }
 }

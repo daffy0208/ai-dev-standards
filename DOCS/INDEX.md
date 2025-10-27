@@ -47,7 +47,7 @@ Complete guide to all documentation in the ai-dev-standards framework.
 ## Skills & Tools
 
 ### Skills Documentation
-Navigate to `/SKILLS/` directory to explore 37 specialized AI agent skills:
+Navigate to `/SKILLS/` directory to explore 45 specialized AI agent skills:
 - Each skill has a `SKILL.md` (detailed specification)
 - Each skill has a `README.md` (user-friendly guide)
 - Use the [Skill Registry](../META/skill-registry.json) for a complete list

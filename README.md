@@ -123,7 +123,7 @@ The **Repository Brain** is an intelligence system that manages, understands, an
 ### What It Does
 
 ```bash
-brain status                    # Current state (42 skills, 36 MCPs, 112 resources)
+brain status                    # Current state (45 skills, 48 MCPs, 216 resources)
 brain search "authentication"   # Search across all resources
 brain decide "add new skill"    # Get workflow recommendations
 brain select-skills "build MVP" # Get skill recommendations
@@ -237,7 +237,7 @@ You can also **explicitly request** a skill:
 ## Key Features
 
 ### 🎯 Focused & Curated
-- 42 specialized skills covering all aspects of development
+- 45 specialized skills covering all aspects of development
 - Only proven patterns and practices
 - Every resource validated and discoverable (100% registry coverage)
 
@@ -290,18 +290,18 @@ This repository enforces **validation-first development** to prevent wasting tim
 
 ### Resource Discovery & Trust
 Every resource in this repository is:
-- ✅ **Registered** in META/registry.json (42 skills + 36 MCPs + all resources)
+- ✅ **Registered** in META/registry.json (45 skills + 48 MCPs + all resources)
 - ✅ **Discoverable** via CLI and bootstrap (no invisible resources)
 - ✅ **Validated** on every commit (automated tests + CI/CD)
 - ✅ **Audited** with mandatory completeness checks
 
-**Current Resources:** 42 skills, 36 MCPs, 112 total resources, all 100% discoverable
+**Current Resources:** 45 skills, 48 MCPs, 216 total resources, all 100% discoverable
 
 **See:** [Audit Trust Restoration](DOCS/AUDIT-TRUST-RESTORATION.md) for details on the 5-layer protection system.
 
 ### ✅ Excellent Skill-to-MCP Coverage
 
-**Current Status:** 42 skills with 36 MCPs = **86% coverage** (0.86:1 ratio)
+**Current Status:** 45 skills with 48 MCPs = **92% coverage** (0.9:1 ratio)
 
 **What This Means:**
 - **Skills** describe HOW to do things (methodologies, approaches)
@@ -309,7 +309,7 @@ Every resource in this repository is:
 - **86% coverage** means strong skill-to-tool alignment
 
 **Coverage Breakdown:**
-- ✅ **36 skills** have MCP support (fully actionable)
+- ✅ **41 skills** have MCP support (fully actionable)
 - ⚠️ **6 skills** without dedicated MCPs (methodology-focused):
   - brand-designer
   - context-preserver
@@ -429,7 +429,7 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
 ## Philosophy
 
 ### Quality Over Quantity
-- **42 specialized skills** covering essential development areas
+- **45 specialized skills** covering essential development areas
 - **Proven patterns** over theoretical frameworks
 - Every item curated, tested, and 100% discoverable
 
@@ -455,7 +455,7 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
 ## Roadmap
 
 ### Phase 1: Foundation ✅ (Complete)
-- [x] 42 specialized skills extracted and adapted
+- [x] 45 specialized skills extracted and adapted
 - [x] RAG architecture pattern documented
 - [x] Meta files and navigation created
 - [x] Decision framework established
@@ -475,7 +475,7 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
 - [x] Engineering MCPs (openapi-generator, api-validator, component-generator)
 - [x] Quality MCPs (performance-profiler, security-scanner, code-quality-scanner)
 - [x] Design MCPs (wireframe-generator, design-token-manager, asset-optimizer)
-- **Achieved:** 36 MCPs providing 92% skill coverage (exceeded 30 MCP goal!)
+- **Achieved:** 48 MCPs providing 92% skill coverage (exceeded 30 MCP goal!)
 
 ### Phase 4: Enhancement (Planned)
 - [ ] Additional architecture patterns
@@ -519,7 +519,7 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
 
 **Version History:**
 - **1.1.0** (2025-10-22): Quality & Trust Update
-  - 42 specialized skills (100% discoverable)
+  - 45 specialized skills (100% discoverable)
   - Automated registry validation system
   - CI/CD enforcement (blocks incomplete registry)
   - Quality auditor Phase 0 mandatory checks
@@ -571,7 +571,7 @@ A: Yes! All skills and patterns have been tested in real projects. Security and 
 This repository was created by evaluating and refining the Framework Library, keeping only the highest quality content and rewriting it for Claude Code's official architecture.
 
 **What changed:**
-- From scattered frameworks to 42 specialized skills
+- From scattered frameworks to 45 specialized skills
 - From mixed formats to official YAML frontmatter
 - From 19% discoverable to 100% validated resources
 - From unclear boundaries to clear categorization
