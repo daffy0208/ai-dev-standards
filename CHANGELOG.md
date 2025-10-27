@@ -7,6 +7,111 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.0.1] - 2025-10-27
+
+### 🔒 Security Fixes (Phase 1 - CRITICAL)
+
+#### CLI Security Hardening
+- **NEW: Centralized Validation System** - Created `CLI/utils/validation.js` with comprehensive input sanitization
+  - `sanitizeName()` - Prevents path traversal attacks (e.g., `../../../etc/passwd`)
+  - `validateComponentName()` - Prevents code injection in component names
+  - `validateIdentifier()` - Validates JavaScript/TypeScript identifiers
+  - `toPascalCase()` - Safe string transformations
+- **Fixed 9 CRITICAL vulnerabilities** across all generators:
+  - `component-generator.js` - Sanitized component names and prop names
+  - `integration-generator.js` - Validated integration class names
+  - `mcp-generator.js` - Sanitized MCP server names
+  - All generators now validate user input before file system operations
+
+### 🐛 Bug Fixes (Phase 2 - HIGH Priority)
+
+#### CLI Sync Command (`CLI/commands/sync.js`)
+- **Git Hook Protection** - Fixed hook overwrite issues
+  - Checks for existing hooks before installation
+  - Creates backups of existing hooks
+  - Merges AI Dev Standards commands with existing hooks
+  - Idempotent: skips if already configured
+- **JSON Config Safety** - Fixed config file corruption
+  - Deep merge instead of shallow merge prevents data loss
+  - Preserves user customizations during updates
+  - Validates JSON structure before writing
+- **Headers Compatibility** - Fixed fetch failures with old Node versions
+  - Converts Headers instances to plain objects
+  - Ensures compatibility with Node 18+
+  - Prevents runtime errors in HTTP requests
+
+#### Repository Brain System (`scripts/brain/`)
+- **Path Resolution** - Fixed CLI path issues
+  - Detects if running from compiled dist or source
+  - Correctly resolves root path in both scenarios
+  - `brain.ts` line 74: Dynamic path calculation
+- **Reverse Dependencies** - Fixed lookup errors
+  - Added null checks for missing registries
+  - Graceful handling of malformed data
+  - Prevents crashes when querying dependencies
+
+#### RAG System
+- **Missing Files** - Fixed file not found errors
+  - Added existence checks before reading
+  - Clear error messages for missing files
+  - Prevents silent failures
+
+### ✨ Code Quality Improvements (Phase 3 - MEDIUM Priority)
+
+#### TypeScript Type Safety
+- **brain-core.ts** - Replaced 40+ `any` types with proper types
+  - `getSkill()` now returns `Promise<Skill | null>`
+  - `listSkills()` returns `Promise<Skill[]>`
+  - `search()` returns typed search results
+  - Improved IDE autocomplete and type checking
+- **brain.ts** - Added return type annotations
+  - All command functions now have explicit return types
+  - Parameters properly typed with interfaces
+  - Removed implicit `any` warnings
+
+#### Path Normalization
+- **sync.js** - Fixed registry path handling
+  - `normalizeRegistryPath()` removes leading slashes
+  - Consistent path handling across sync operations
+  - Lines 417-423: Path normalization implementation
+
+#### Code Cleanup
+- **Dead Code Removal** - Removed unused variables and functions
+- **Consistent Defaults** - Added proper default values for optional parameters
+- **Improved Comments** - Added "FIX:" comments explaining all changes
+
+### 📊 Test Coverage
+
+#### New Test Suite
+- **77 comprehensive tests** covering:
+  - Security validation (path traversal, code injection)
+  - Generator functionality (components, MCPs, integrations)
+  - Sync command operations
+  - Brain system path resolution
+  - Type safety and error handling
+- **100% test pass rate**
+- All tests run in parallel for fast feedback
+
+### 🔄 Version Bumps
+- CLI: 1.0.0 → 1.0.1
+- skill-registry.json: 3.12.0 → 3.12.1
+- mcp-registry.json: 1.0.0 → 1.0.1
+- relationship-mapping.json: 2.2.0 → 2.2.1
+
+### 📝 Related Commits
+- `a79b1d2` - Phase 1: Security validation system
+- `9a5d744` - Phase 2: Git hook protection and sync improvements
+- `fb7e024` - Phase 2: Additional sync fixes
+- `3d812a5` - Phase 3: Type safety and quality improvements
+
+### ⚠️ Breaking Changes
+None - all fixes are backward compatible
+
+### 🙏 Acknowledgments
+Fixes identified and validated using OpenAI Codex CLI automated code review
+
+---
+
 ## [1.0.0] - 2025-10-22
 
 ### 🎉 Initial Release - Production Ready

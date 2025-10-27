@@ -1,6 +1,6 @@
 {
   "name": "@ai-dev-standards/cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "AI-powered development standards CLI - Auto-generate components, MCPs, integrations, and complete projects",
   "main": "index.js",
   "bin": {
