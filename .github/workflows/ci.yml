@@ -217,7 +217,51 @@ jobs:
 
           echo "✅ README contains critical skills"
 
-  # Job 7: Status Check
+  # Job 7: Codex Code Review (PR only)
+  codex-review:
+    name: Codex Code Review
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    needs: [lint, typecheck]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Install Codex CLI
+        run: npm install -g @anthropics/codex-cli@latest
+
+      - name: Get changed files
+        id: changed-files
+        run: |
+          git fetch origin ${{ github.base_ref }}
+          CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRT origin/${{ github.base_ref }}...HEAD | \
+            grep -E '^(CLI/commands/.*\.js|scripts/brain/.*\.ts|scripts/.*\.js|src/.*\.(js|ts))$' || true)
+
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "files_changed=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "files_changed=true" >> $GITHUB_OUTPUT
+          echo "$CHANGED_FILES" > changed-files.txt
+
+      - name: Run Codex review
+        if: steps.changed-files.outputs.files_changed == 'true'
+        run: |
+          chmod +x ./scripts/ci/codex-review.sh
+          FILES=$(cat changed-files.txt | tr '\n' ' ')
+          ./scripts/ci/codex-review.sh $FILES
+
+  # Job 8: Status Check
   status:
     name: All Checks Passed
     runs-on: ubuntu-latest
