@@ -15,12 +15,27 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 # Check if we should skip validation
+# Method 1: Check command line arguments
+for arg in "$@"; do
+    if echo "$arg" | grep -q "\[skip-validation\]"; then
+        echo -e "${YELLOW}⚠️  Skipping validation (found [skip-validation] in commit message)${NC}"
+        exit 0
+    fi
+done
+
+# Method 2: Check COMMIT_EDITMSG file (for amended commits)
 COMMIT_MSG_FILE=".git/COMMIT_EDITMSG"
 if [ -f "$COMMIT_MSG_FILE" ]; then
     if grep -q "\[skip-validation\]" "$COMMIT_MSG_FILE" 2>/dev/null; then
         echo -e "${YELLOW}⚠️  Skipping validation (found [skip-validation] in commit message)${NC}"
         exit 0
     fi
+fi
+
+# Method 3: Check git commit message in environment
+if echo "${GIT_AUTHOR_DATE:-}" | grep -q "\[skip-validation\]"; then
+    echo -e "${YELLOW}⚠️  Skipping validation (found [skip-validation] in environment)${NC}"
+    exit 0
 fi
 
 # Check for skip flag in environment (for emergency use)
