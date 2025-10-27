@@ -26,6 +26,7 @@ export interface Skill {
 }
 
 export interface MCP {
+  id: string;
   name: string;
   description: string;
   category: string;
@@ -176,9 +177,9 @@ export class KnowledgeLayer {
   /**
    * Get specific MCP by name
    */
-  getMCP(name: string): MCP | null {
+  getMCP(id: string): MCP | null {
     if (!this.mcpRegistry) throw new Error('Registries not loaded');
-    return this.mcpRegistry.mcps.find(m => m.name === name) || null;
+    return this.mcpRegistry.mcps.find(m => m.id === id) || null;
   }
 
   /**
