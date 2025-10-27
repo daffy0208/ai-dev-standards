@@ -334,8 +334,8 @@ ai-dev config set tracking "skills,mcps"
 # Enable auto-approve (no prompts)
 ai-dev config set preferences.autoApprove true
 
-# Change sync frequency
-ai-dev config set frequency "daily"
+# Change sync frequency to manual
+ai-dev config set frequency "manual"
 ```
 
 ---

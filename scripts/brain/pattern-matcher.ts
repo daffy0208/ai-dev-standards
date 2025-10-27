@@ -461,10 +461,16 @@ export class PatternMatcher {
   }
 
   /**
-   * Compare patterns and recommend best fit
+   * TYPE SAFETY FIX 3: Compare patterns with proper typing
    */
   comparePatterns(patternNames: string[]): {
-    comparison: Record<string, any>;
+    comparison: Record<string, {
+      complexity: string;
+      estimated_time: string;
+      pros_count: number;
+      cons_count: number;
+      skills_required: number;
+    }>;
     recommendation: string;
     reasoning: string;
   } {
@@ -480,7 +486,13 @@ export class PatternMatcher {
       };
     }
 
-    const comparison: Record<string, any> = {};
+    const comparison: Record<string, {
+      complexity: string;
+      estimated_time: string;
+      pros_count: number;
+      cons_count: number;
+      skills_required: number;
+    }> = {};
 
     for (const pattern of patterns) {
       comparison[pattern.name] = {
