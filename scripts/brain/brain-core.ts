@@ -9,14 +9,18 @@
  */
 
 import { KnowledgeLayer, Skill, MCP } from './knowledge-layer';
-import { WorkflowEngine } from './workflow-engine';
-import { SkillSelector } from './skill-selector';
-import { MCPIntegrator } from './mcp-integrator';
-import { PatternMatcher } from './pattern-matcher';
+import { WorkflowEngine, WorkflowDecision, WorkflowStep } from './workflow-engine';
+import { SkillSelector, SkillSelection } from './skill-selector';
+import { MCPIntegrator, MCPIntegration } from './mcp-integrator';
+import { PatternMatcher, ArchitecturePattern, PatternMatch } from './pattern-matcher';
 import * as fs from 'fs';
 import * as path from 'path';
 
 export { Skill, MCP } from './knowledge-layer';
+export { WorkflowDecision, WorkflowStep } from './workflow-engine';
+export { SkillSelection } from './skill-selector';
+export { MCPIntegration } from './mcp-integrator';
+export { ArchitecturePattern, PatternMatch } from './pattern-matcher';
 
 export class RepositoryBrain {
   private knowledge: KnowledgeLayer;
@@ -74,7 +78,15 @@ export class RepositoryBrain {
    * Get current repository status
    */
   async status(): Promise<{
-    state: any;
+    state: {
+      skills: number;
+      mcps: number;
+      totalResources: number;
+      skillRegistryVersion: string;
+      mcpRegistryVersion: string;
+      relationshipVersion: string;
+      lastUpdated: string;
+    };
     health: 'healthy' | 'degraded' | 'critical';
     issues: string[];
   }> {
@@ -100,7 +112,7 @@ export class RepositoryBrain {
   /**
    * Get skill by name
    */
-  async getSkill(name: string) {
+  async getSkill(name: string): Promise<Skill | null> {
     this.ensureInitialized();
     return this.knowledge.getSkill(name);
   }
@@ -108,7 +120,7 @@ export class RepositoryBrain {
   /**
    * Get all skills
    */
-  async listSkills(): Promise<any[]> {
+  async listSkills(): Promise<Skill[]> {
     this.ensureInitialized();
     return this.knowledge.getAllSkills();
   }
@@ -116,7 +128,7 @@ export class RepositoryBrain {
   /**
    * Get all MCPs
    */
-  async listMCPs(): Promise<any[]> {
+  async listMCPs(): Promise<MCP[]> {
     this.ensureInitialized();
     return this.knowledge.getAllMCPs();
   }
@@ -125,8 +137,8 @@ export class RepositoryBrain {
    * Search across all resources
    */
   async search(query: string): Promise<{
-    skills: any[];
-    mcps: any[];
+    skills: Skill[];
+    mcps: MCP[];
   }> {
     this.ensureInitialized();
     return {
@@ -139,7 +151,7 @@ export class RepositoryBrain {
    * Get relationships for a skill
    */
   async getRelationships(skillName: string): Promise<{
-    skill: any;
+    skill: Skill;
     relatedSkills: string[];
     dependencies: {
       mcps: string[];
@@ -168,7 +180,7 @@ export class RepositoryBrain {
    * Supports both MCP ID and friendly name
    */
   async getReverseDependencies(mcpIdOrName: string): Promise<{
-    mcp: any;
+    mcp: MCP;
     usedBySkills: string[];
   }> {
     this.ensureInitialized();
@@ -248,7 +260,7 @@ export class RepositoryBrain {
     this.ensureInitialized();
     if (!this.skillSelector) throw new Error('SkillSelector not initialized');
 
-    const selection = this.skillSelector.select(taskDescription);
+    const selection: SkillSelection = this.skillSelector.select(taskDescription);
 
     return {
       recommended: selection.primary,
@@ -260,13 +272,7 @@ export class RepositoryBrain {
   /**
    * Advanced skill selection with detailed scoring
    */
-  async selectSkillsAdvanced(taskDescription: string): Promise<{
-    primary: string[];
-    secondary: string[];
-    optional: string[];
-    reasoning: string;
-    confidence: number;
-  }> {
+  async selectSkillsAdvanced(taskDescription: string): Promise<SkillSelection> {
     this.ensureInitialized();
     if (!this.skillSelector) throw new Error('SkillSelector not initialized');
 
@@ -300,7 +306,7 @@ export class RepositoryBrain {
   /**
    * Advanced MCP integration with recommendations
    */
-  async integrateMCPs(skillNames: string[]) {
+  async integrateMCPs(skillNames: string[]): Promise<MCPIntegration> {
     this.ensureInitialized();
     if (!this.mcpIntegrator) throw new Error('MCPIntegrator not initialized');
 
@@ -323,13 +329,13 @@ export class RepositoryBrain {
     const skillSelection = await this.selectSkills(scenario);
 
     // Generate workflow using WorkflowEngine
-    const decision = this.workflowEngine.decide(scenario, skillSelection.recommended);
+    const decision: WorkflowDecision = this.workflowEngine.decide(scenario, skillSelection.recommended);
 
     // Get required MCPs
     const mcpSelection = await this.getRequiredMCPs(skillSelection.recommended);
 
     return {
-      workflow: decision.steps.map(s => s.action),
+      workflow: decision.steps.map((s: WorkflowStep) => s.action),
       skills: skillSelection.recommended,
       mcps: mcpSelection.mcps,
       estimatedTime: decision.estimatedTime,
@@ -340,17 +346,22 @@ export class RepositoryBrain {
   /**
    * Advanced workflow decision with detailed steps
    */
-  async decideWorkflowAdvanced(scenario: string) {
+  async decideWorkflowAdvanced(scenario: string): Promise<WorkflowDecision & {
+    mcps: string[];
+    recommendedMCPs: string[];
+    tools: string[];
+    integrations: string[];
+  }> {
     this.ensureInitialized();
 
     // Select skills
     const skillSelection = await this.selectSkills(scenario);
 
     // Generate workflow
-    const decision = this.workflowEngine.decide(scenario, skillSelection.recommended);
+    const decision: WorkflowDecision = this.workflowEngine.decide(scenario, skillSelection.recommended);
 
     // Get MCP integration
-    const integration = await this.integrateMCPs(skillSelection.recommended);
+    const integration: MCPIntegration = await this.integrateMCPs(skillSelection.recommended);
 
     return {
       ...decision,
@@ -369,7 +380,7 @@ export class RepositoryBrain {
   /**
    * Match architecture patterns to a problem
    */
-  async matchPatterns(problemDescription: string) {
+  async matchPatterns(problemDescription: string): Promise<PatternMatch[]> {
     this.ensureInitialized();
     return this.patternMatcher.match(problemDescription);
   }
@@ -377,7 +388,7 @@ export class RepositoryBrain {
   /**
    * Get specific architecture pattern
    */
-  async getPattern(patternName: string) {
+  async getPattern(patternName: string): Promise<ArchitecturePattern | null> {
     this.ensureInitialized();
     return this.patternMatcher.getPattern(patternName);
   }
@@ -385,7 +396,7 @@ export class RepositoryBrain {
   /**
    * Get all available patterns
    */
-  async getAllPatterns() {
+  async getAllPatterns(): Promise<ArchitecturePattern[]> {
     this.ensureInitialized();
     return this.patternMatcher.getAllPatterns();
   }
@@ -393,7 +404,11 @@ export class RepositoryBrain {
   /**
    * Compare architecture patterns
    */
-  async comparePatterns(patternNames: string[]) {
+  async comparePatterns(patternNames: string[]): Promise<{
+    comparison: Record<string, any>;
+    recommendation: string;
+    reasoning: string;
+  }> {
     this.ensureInitialized();
     return this.patternMatcher.comparePatterns(patternNames);
   }
@@ -480,7 +495,7 @@ export class RepositoryBrain {
   /**
    * Get skills by category
    */
-  async getSkillsByCategory(category: string): Promise<any[]> {
+  async getSkillsByCategory(category: string): Promise<Skill[]> {
     this.ensureInitialized();
     return this.knowledge.getSkillsByCategory(category);
   }

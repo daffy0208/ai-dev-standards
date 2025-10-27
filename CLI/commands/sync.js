@@ -2,7 +2,6 @@ const chalk = require('chalk')
 const ora = require('ora')
 const fs = require('fs-extra')
 const path = require('path')
-const execa = require('execa')
 const inquirer = require('inquirer')
 
 /**
@@ -17,7 +16,7 @@ const inquirer = require('inquirer')
  *
  * ADHD-friendly: Set it once, forget it!
  */
-async function syncCommand(options) {
+async function syncCommand(options = {}) {
   console.log(chalk.blue('\n🔄 Syncing with ai-dev-standards...\n'))
 
   const projectPath = process.cwd()
@@ -149,8 +148,6 @@ async function initializeSync(projectPath, options = {}) {
         message: 'Auto-sync frequency:',
         choices: [
           { name: 'On every git pull (recommended)', value: 'git-hook' },
-          { name: 'Daily', value: 'daily' },
-          { name: 'Weekly', value: 'weekly' },
           { name: 'Manual only', value: 'manual' }
         ],
         default: 'git-hook'
@@ -417,6 +414,15 @@ async function addMcpToProject(projectPath, mcp) {
 }
 
 /**
+ * Normalize registry path for GitHub fetch
+ * Removes leading '/' if present to avoid double-slashing in URLs
+ */
+function normalizeRegistryPath(registryPath) {
+  if (!registryPath) return ''
+  return registryPath.startsWith('/') ? registryPath.substring(1) : registryPath
+}
+
+/**
  * Add tool to project
  */
 async function addToolToProject(projectPath, tool) {
@@ -426,7 +432,7 @@ async function addToolToProject(projectPath, tool) {
 
   // Fetch tool file from GitHub
   const { fetchText } = require('../utils/github-fetch')
-  const content = await fetchText(tool.path.substring(1)) // Remove leading /
+  const content = await fetchText(normalizeRegistryPath(tool.path))
 
   const toolFile = path.basename(tool.path)
   await fs.writeFile(path.join(toolsDir, toolFile), content)
@@ -441,7 +447,7 @@ async function addScriptToProject(projectPath, script) {
   await fs.ensureDir(scriptsDir)
 
   const { fetchText } = require('../utils/github-fetch')
-  const content = await fetchText(script.path.substring(1))
+  const content = await fetchText(normalizeRegistryPath(script.path))
 
   const scriptFile = path.basename(script.path)
   const scriptPath = path.join(scriptsDir, scriptFile)
@@ -458,7 +464,7 @@ async function addComponentToProject(projectPath, component) {
 
   // Fetch component file from GitHub
   const { fetchText } = require('../utils/github-fetch')
-  const content = await fetchText(component.path.substring(1)) // Remove leading /
+  const content = await fetchText(normalizeRegistryPath(component.path))
 
   const componentFile = path.basename(component.path)
   await fs.writeFile(path.join(componentsDir, componentFile), content)
@@ -474,7 +480,7 @@ async function addIntegrationToProject(projectPath, integration) {
 
   // Fetch integration file from GitHub
   const { fetchText } = require('../utils/github-fetch')
-  const content = await fetchText(integration.path.substring(1))
+  const content = await fetchText(normalizeRegistryPath(integration.path))
 
   const integrationFile = path.basename(integration.path)
   await fs.writeFile(path.join(integrationsDir, integrationFile), content)

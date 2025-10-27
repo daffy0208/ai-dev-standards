@@ -23,7 +23,7 @@
  */
 
 import * as path from 'path';
-import { createBrain } from './brain-core';
+import { createBrain, RepositoryBrain, Skill, MCP, WorkflowStep, PatternMatch } from './brain-core';
 
 const COLORS = {
   reset: '\x1b[0m',
@@ -136,7 +136,7 @@ async function main() {
   }
 }
 
-async function commandStatus(brain: any) {
+async function commandStatus(brain: RepositoryBrain) {
   printHeader('Repository Status');
 
   const status = await brain.status();
@@ -165,7 +165,7 @@ async function commandStatus(brain: any) {
   }
 }
 
-async function commandHealth(brain: any) {
+async function commandHealth(brain: RepositoryBrain) {
   printHeader('Health Check');
 
   const health = await brain.healthCheck();
@@ -188,7 +188,7 @@ async function commandHealth(brain: any) {
   }
 }
 
-async function commandValidate(brain: any) {
+async function commandValidate(brain: RepositoryBrain) {
   printHeader('Validation');
 
   const result = await brain.validate();
@@ -205,11 +205,11 @@ async function commandValidate(brain: any) {
   }
 }
 
-async function commandList(brain: any, type: string) {
+async function commandList(brain: RepositoryBrain, type: string) {
   if (type === 'skills') {
     printHeader('All Skills');
     const skills = await brain.listSkills();
-    skills.forEach((skill: any) => {
+    skills.forEach((skill: Skill) => {
       console.log(`${colorize(skill.name, 'cyan')}`);
       console.log(`  ${colorize(skill.description, 'dim')}`);
       console.log(`  Category: ${skill.category} | Difficulty: ${skill.difficulty}`);
@@ -219,7 +219,7 @@ async function commandList(brain: any, type: string) {
   } else if (type === 'mcps') {
     printHeader('All MCPs');
     const mcps = await brain.listMCPs();
-    mcps.forEach((mcp: any) => {
+    mcps.forEach((mcp: MCP) => {
       console.log(`${colorize(mcp.name, 'magenta')}`);
       console.log(`  ${colorize(mcp.description, 'dim')}`);
       console.log(`  Category: ${mcp.category} | Status: ${mcp.status}`);
@@ -232,7 +232,7 @@ async function commandList(brain: any, type: string) {
   }
 }
 
-async function commandSearch(brain: any, query: string) {
+async function commandSearch(brain: RepositoryBrain, query: string) {
   if (!query) {
     printError('Please provide a search query');
     process.exit(1);
@@ -244,14 +244,14 @@ async function commandSearch(brain: any, query: string) {
 
   if (results.skills.length > 0) {
     console.log(colorize('Skills:', 'bright'));
-    results.skills.forEach((skill: any) => {
+    results.skills.forEach((skill: Skill) => {
       console.log(`  ${colorize(skill.name, 'cyan')} - ${skill.description}`);
     });
   }
 
   if (results.mcps.length > 0) {
     console.log(`\n${colorize('MCPs:', 'bright')}`);
-    results.mcps.forEach((mcp: any) => {
+    results.mcps.forEach((mcp: MCP) => {
       console.log(`  ${colorize(mcp.name, 'magenta')} - ${mcp.description}`);
     });
   }
@@ -264,7 +264,7 @@ async function commandSearch(brain: any, query: string) {
   }
 }
 
-async function commandShow(brain: any, type: string, name: string) {
+async function commandShow(brain: RepositoryBrain, type: string, name: string) {
   if (type === 'skill') {
     printHeader(`Skill: ${name}`);
     const skill = await brain.getSkill(name);
@@ -292,7 +292,7 @@ async function commandShow(brain: any, type: string, name: string) {
   }
 }
 
-async function commandRelationships(brain: any, skillName: string) {
+async function commandRelationships(brain: RepositoryBrain, skillName: string) {
   if (!skillName) {
     printError('Please provide a skill name');
     process.exit(1);
@@ -333,7 +333,7 @@ async function commandRelationships(brain: any, skillName: string) {
   }
 }
 
-async function commandReverseDeps(brain: any, type: string, nameOrId: string) {
+async function commandReverseDeps(brain: RepositoryBrain, type: string, nameOrId: string) {
   if (type !== 'mcp') {
     printError(`Unknown type: ${type}. Use 'mcp'`);
     process.exit(1);
@@ -361,7 +361,7 @@ async function commandReverseDeps(brain: any, type: string, nameOrId: string) {
   }
 }
 
-async function commandSelectSkills(brain: any, task: string) {
+async function commandSelectSkills(brain: RepositoryBrain, task: string) {
   if (!task) {
     printError('Please provide a task description');
     process.exit(1);
@@ -387,7 +387,7 @@ async function commandSelectSkills(brain: any, task: string) {
   }
 }
 
-async function commandSelectMCPs(brain: any, skillNames: string[]) {
+async function commandSelectMCPs(brain: RepositoryBrain, skillNames: string[]) {
   if (skillNames.length === 0) {
     printError('Please provide at least one skill name');
     process.exit(1);
@@ -405,7 +405,7 @@ async function commandSelectMCPs(brain: any, skillNames: string[]) {
   }
 
   console.log(`\n${colorize('Breakdown:', 'dim')}`);
-  Object.entries(selection.breakdown).forEach(([skill, mcps]: [string, any]) => {
+  Object.entries(selection.breakdown).forEach(([skill, mcps]: [string, string[]]) => {
     console.log(`  ${skill}:`);
     if (mcps.length > 0) {
       mcps.forEach((m: string) => console.log(`    - ${m}`));
@@ -415,7 +415,7 @@ async function commandSelectMCPs(brain: any, skillNames: string[]) {
   });
 }
 
-async function commandDecide(brain: any, scenario: string) {
+async function commandDecide(brain: RepositoryBrain, scenario: string) {
   if (!scenario) {
     printError('Please provide a scenario description');
     process.exit(1);
@@ -446,7 +446,7 @@ async function commandDecide(brain: any, scenario: string) {
   console.log(`  ${decision.reasoning}`);
 }
 
-async function commandPatterns(brain: any, problem: string) {
+async function commandPatterns(brain: RepositoryBrain, problem: string) {
   if (!problem) {
     printError('Please provide a problem description');
     process.exit(1);
@@ -462,7 +462,7 @@ async function commandPatterns(brain: any, problem: string) {
   }
 
   console.log(colorize('Top Matches:', 'bright'));
-  matches.slice(0, 3).forEach((match: any, i: number) => {
+  matches.slice(0, 3).forEach((match: PatternMatch, i: number) => {
     console.log(`\n${colorize(`${i + 1}. ${match.pattern.name}`, 'cyan')} (confidence: ${match.confidence}%)`);
     console.log(`   ${colorize(match.pattern.description, 'dim')}`);
     console.log(`   ${colorize('Complexity:', 'yellow')} ${match.pattern.complexity} | ${colorize('Time:', 'yellow')} ${match.pattern.estimated_time}`);
@@ -484,7 +484,7 @@ async function commandPatterns(brain: any, problem: string) {
   console.log(`\n${colorize(`Total patterns analyzed: ${matches.length}`, 'bright')}`);
 }
 
-async function commandWorkflow(brain: any, scenario: string) {
+async function commandWorkflow(brain: RepositoryBrain, scenario: string) {
   if (!scenario) {
     printError('Please provide a scenario description');
     process.exit(1);
@@ -498,7 +498,7 @@ async function commandWorkflow(brain: any, scenario: string) {
   console.log(`  ${colorize(workflow.workflowType, 'yellow')}\n`);
 
   console.log(colorize('Steps:', 'bright'));
-  workflow.steps.forEach((step: any) => {
+  workflow.steps.forEach((step: WorkflowStep) => {
     const optional = step.optional ? colorize('[optional]', 'dim') : '';
     console.log(`  ${colorize(step.order.toString(), 'cyan')}. ${step.action} ${optional}`);
     console.log(`     ${colorize(step.description, 'dim')}`);
@@ -537,7 +537,7 @@ async function commandWorkflow(brain: any, scenario: string) {
   }
 }
 
-async function commandAnalyze(brain: any, task: string) {
+async function commandAnalyze(brain: RepositoryBrain, task: string) {
   if (!task) {
     printError('Please provide a task description');
     process.exit(1);
@@ -595,7 +595,7 @@ async function commandAnalyze(brain: any, task: string) {
   // Patterns Section
   if (analysis.patterns && analysis.patterns.length > 0) {
     console.log(`\n${colorize('═══ Architecture Patterns ═══', 'bright')}`);
-    analysis.patterns.slice(0, 3).forEach((match: any, i: number) => {
+    analysis.patterns.slice(0, 3).forEach((match: PatternMatch, i: number) => {
       console.log(`${i + 1}. ${colorize(match.pattern.name, 'cyan')} (${match.confidence}% match)`);
       console.log(`   ${colorize(match.pattern.description, 'dim')}`);
     });
