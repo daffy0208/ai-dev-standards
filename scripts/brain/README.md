@@ -65,6 +65,11 @@ brain reverse-deps mcp vector-database-mcp # What uses this MCP?
 brain select-skills "build MVP" # Get skill recommendations
 brain select-mcps rag-implementer # Get required MCPs
 brain decide "add new feature"  # Get workflow recommendation
+
+# Phase 2 - Advanced Intelligence
+brain patterns "need knowledge base" # Match architecture patterns
+brain workflow "implement RAG"   # Detailed workflow with steps
+brain analyze "build AI chatbot" # Comprehensive analysis (all engines)
 ```
 
 ## Examples
@@ -190,6 +195,132 @@ MCPs:
 Total: 4 results
 ```
 
+### Example 6: Match Architecture Patterns (Phase 2)
+
+```bash
+$ brain patterns "need knowledge base with semantic search"
+
+━━━ Architecture Patterns: "need knowledge base with semantic search" ━━━
+
+Top Matches:
+
+1. RAG System (confidence: 100%)
+   Retrieval-Augmented Generation for knowledge-intensive applications
+   Complexity: moderate | Time: 1-2 weeks
+   Reasons: Use case match: "knowledge base", Use case match: "semantic search"
+   Pros: Grounds LLM responses in factual data, Reduces hallucinations
+   Cons: Requires vector database infrastructure, Embedding costs
+   Skills: rag-implementer, knowledge-base-manager, data-engineer
+
+Total patterns analyzed: 1
+```
+
+### Example 7: Detailed Workflow (Phase 2)
+
+```bash
+$ brain workflow "implement RAG system"
+
+━━━ Detailed Workflow: "implement RAG system" ━━━
+
+Workflow Type:
+  rag-system
+
+Steps:
+  1. Design
+     Design RAG architecture
+     Time: 45 min | Skills: rag-implementer
+
+  2. Setup Vector DB
+     Configure vector database
+     Time: 30 min | Skills: rag-implementer
+
+  3. Embeddings
+     Implement embedding generation
+     Time: 45 min | Skills: rag-implementer
+
+  4. Ingestion
+     Build document ingestion pipeline
+     Time: 1 hour | Skills: data-engineer
+
+  5. Retrieval
+     Implement retrieval logic
+     Time: 1 hour | Skills: rag-implementer
+
+  6. LLM Integration
+     Integrate with LLM
+     Time: 45 min | Skills: rag-implementer
+
+  7. Evaluation
+     Build evaluation framework
+     Time: 45 min | Skills: testing-strategist
+
+  8. Test
+     Test end-to-end
+     Time: 30 min | Skills:
+
+Required Resources:
+  Skills: rag-implementer, data-engineer, testing-strategist
+  MCPs: vector-database-mcp, embedding-generator-mcp, semantic-search-mcp
+
+Estimated Time: 6 hours
+
+Alternative Approaches:
+  - Use existing RAG service (e.g., LlamaIndex Cloud)
+  - Start with simple keyword search
+
+Warnings:
+⚠ RAG systems require vector database - ensure infrastructure is ready
+```
+
+### Example 8: Comprehensive Analysis (Phase 2)
+
+```bash
+$ brain analyze "need rag implementer to build knowledge base with vector database"
+
+━━━ Comprehensive Analysis: "need rag implementer to build knowledge base with vector database" ━━━
+
+═══ Skills ═══
+Primary:
+  ✓ rag-implementer
+
+Optional:
+  - knowledge-base-manager
+  - archon-manager
+  - knowledge-graph-builder
+
+Confidence: 100%
+Reasoning: Primary match: rag-implementer (score: 30). Fuzzy trigger match: "rag-implementer".
+
+═══ Workflow ═══
+Type: rag-system
+Steps: 8
+Estimated Time: 6 hours
+
+═══ MCPs ═══
+Required:
+  ✓ vector-database-mcp
+  ✓ embedding-generator-mcp
+  ✓ semantic-search-mcp
+
+Recommended:
+  - knowledge-base-mcp
+
+Warnings:
+⚠ MCP 'vector-database-mcp' is required but not yet implemented
+⚠ MCP 'embedding-generator-mcp' is required but not yet implemented
+⚠ MCP 'semantic-search-mcp' is required but not yet implemented
+
+═══ Architecture Patterns ═══
+1. RAG System (83% match)
+   Retrieval-Augmented Generation for knowledge-intensive applications
+
+═══ Summary ═══
+Complexity: moderate
+Recommended Skills: 2
+Total Estimated Time: 6 hours
+Overall Confidence: 100%
+```
+
 ## API Usage
 
 You can also use the brain programmatically:
@@ -216,6 +347,24 @@ async function example() {
   // Get workflow recommendation
   const workflow = await brain.decideWorkflow('add new feature');
   console.log('Steps:', workflow.workflow);
+
+  // Phase 2 - Advanced Intelligence
+
+  // Match architecture patterns
+  const patterns = await brain.matchPatterns('need knowledge base');
+  console.log('Top pattern:', patterns[0].pattern.name);
+
+  // Get detailed workflow
+  const detailedWorkflow = await brain.decideWorkflowAdvanced('implement RAG');
+  console.log('Workflow type:', detailedWorkflow.workflowType);
+  console.log('Steps:', detailedWorkflow.steps.length);
+
+  // Comprehensive analysis
+  const analysis = await brain.analyze('build AI chatbot');
+  console.log('Primary skills:', analysis.skills.primary);
+  console.log('Required MCPs:', analysis.mcps.required);
+  console.log('Best pattern:', analysis.patterns[0].pattern.name);
+  console.log('Confidence:', analysis.summary.confidence);
 }
 ```
 
@@ -264,13 +413,42 @@ npm run brain -- search "authentication"
 
 ### Layer 3: Decision
 
-- **File**: `workflow-engine.ts` (planned)
-- **Purpose**: Intelligent decision making
+The decision layer consists of 4 specialized engines working together:
+
+#### Workflow Engine
+- **File**: `workflow-engine.ts`
+- **Purpose**: Generate context-aware workflows
 - **Capabilities**:
-  - Workflow selection
-  - Skill matching
-  - MCP dependency resolution
-  - Pattern matching
+  - 15 workflow types (new-skill, new-mcp, rag-system, etc.)
+  - Detailed steps with time estimates
+  - Alternative approaches and warnings
+
+#### Skill Selector
+- **File**: `skill-selector.ts`
+- **Purpose**: Advanced skill matching with scoring
+- **Capabilities**:
+  - Weighted scoring algorithm (triggers 15pts, name 10pts, description 1pt/word, category 2pts, tags 3pts)
+  - Confidence levels (high/medium/low)
+  - Fuzzy matching for partial matches
+  - Complexity analysis
+
+#### MCP Integrator
+- **File**: `mcp-integrator.ts`
+- **Purpose**: MCP dependency resolution
+- **Capabilities**:
+  - Direct and transitive dependencies
+  - Required, recommended, and optional MCPs
+  - Compatibility checking
+  - Setup complexity estimation
+
+#### Pattern Matcher
+- **File**: `pattern-matcher.ts`
+- **Purpose**: Architecture pattern recommendation
+- **Capabilities**:
+  - 8 architecture patterns (RAG, Multi-Agent, Full-Stack, MVP, etc.)
+  - Trade-off analysis (pros/cons)
+  - Use case matching with confidence scoring
+  - Pattern comparison
 
 ### Layer 4: Management
 
@@ -288,13 +466,16 @@ npm run brain -- search "authentication"
 - [x] Layer 1: Knowledge queries
 - [x] Brain core class
 - [x] CLI interface
-- [x] Basic commands
+- [x] Basic commands (12 commands)
 
-### 🏗️ Phase 2: Intelligence (In Progress)
-- [ ] Workflow engine
-- [ ] Advanced skill selection
-- [ ] Pattern matcher
-- [ ] Decision rules documentation
+### ✅ Phase 2: Intelligence (Complete)
+- [x] Workflow engine (15 workflow types)
+- [x] Advanced skill selection (weighted scoring)
+- [x] MCP integrator (dependency resolution)
+- [x] Pattern matcher (8 architecture patterns)
+- [x] Brain-core integration (comprehensive analyze() method)
+- [x] CLI commands: patterns, workflow, analyze
+- [x] Decision rules documentation
 
 ### 📋 Phase 3: Enforcement (Planned)
 - [ ] Validation scripts
@@ -326,5 +507,6 @@ For issues or questions about the brain:
 
 ---
 
-**Status**: Phase 1 Complete (Knowledge Layer + CLI) ✅
-**Next**: Phase 2 (Decision Layer) 🏗️
+**Status**: Phase 2 Complete (Knowledge + Decision Layers) ✅
+**Features**: 15 commands, 4 engines, 8 architecture patterns, 15 workflow types
+**Next**: Phase 3 (Enforcement Layer) 📋

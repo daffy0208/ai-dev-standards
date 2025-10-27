@@ -9,25 +9,51 @@
  */
 
 import { KnowledgeLayer, Skill, MCP } from './knowledge-layer';
+import { WorkflowEngine } from './workflow-engine';
+import { SkillSelector } from './skill-selector';
+import { MCPIntegrator } from './mcp-integrator';
+import { PatternMatcher } from './pattern-matcher';
+import * as fs from 'fs';
+import * as path from 'path';
 
 export { Skill, MCP } from './knowledge-layer';
 
 export class RepositoryBrain {
   private knowledge: KnowledgeLayer;
+  private workflowEngine: WorkflowEngine;
+  private skillSelector: SkillSelector | null = null;
+  private mcpIntegrator: MCPIntegrator | null = null;
+  private patternMatcher: PatternMatcher;
   private rootPath: string;
   private initialized: boolean = false;
 
   constructor(rootPath: string) {
     this.rootPath = rootPath;
     this.knowledge = new KnowledgeLayer(rootPath);
+    this.workflowEngine = new WorkflowEngine();
+    this.patternMatcher = new PatternMatcher();
   }
 
   /**
-   * Initialize the brain (load all registries)
+   * Initialize the brain (load all registries and engines)
    */
   async initialize(): Promise<void> {
     if (this.initialized) return;
+
+    // Load registries
     await this.knowledge.loadRegistries();
+
+    // Initialize engines with loaded data
+    const allSkills = this.knowledge.getAllSkills();
+    const allMCPs = this.knowledge.getAllMCPs();
+
+    // Load relationship mapping
+    const relationshipPath = path.join(this.rootPath, 'META', 'relationship-mapping.json');
+    const relationshipMapping = JSON.parse(fs.readFileSync(relationshipPath, 'utf-8'));
+
+    this.skillSelector = new SkillSelector(allSkills);
+    this.mcpIntegrator = new MCPIntegrator(allMCPs, relationshipMapping);
+
     this.initialized = true;
   }
 
@@ -211,7 +237,7 @@ export class RepositoryBrain {
   // ============================================
 
   /**
-   * Select skills for a given task description
+   * Select skills for a given task description (Enhanced with SkillSelector)
    */
   async selectSkills(taskDescription: string): Promise<{
     recommended: string[];
@@ -219,81 +245,69 @@ export class RepositoryBrain {
     alternatives: string[];
   }> {
     this.ensureInitialized();
+    if (!this.skillSelector) throw new Error('SkillSelector not initialized');
 
-    const lowerTask = taskDescription.toLowerCase();
-    const allSkills = this.knowledge.getAllSkills();
-
-    // Simple matching based on triggers and descriptions
-    const scored = allSkills.map(skill => {
-      let score = 0;
-
-      // Check triggers
-      for (const trigger of skill.triggers) {
-        if (lowerTask.includes(trigger.toLowerCase())) {
-          score += 10;
-        }
-      }
-
-      // Check description words
-      const descWords = skill.description.toLowerCase().split(/\s+/);
-      const taskWords = lowerTask.split(/\s+/);
-      for (const taskWord of taskWords) {
-        if (descWords.includes(taskWord)) {
-          score += 1;
-        }
-      }
-
-      // Check name
-      if (lowerTask.includes(skill.name.toLowerCase())) {
-        score += 5;
-      }
-
-      return { skill: skill.name, score };
-    });
-
-    // Sort by score
-    scored.sort((a, b) => b.score - a.score);
-
-    const recommended = scored.filter(s => s.score >= 5).map(s => s.skill).slice(0, 3);
-    const alternatives = scored.filter(s => s.score > 0 && s.score < 5).map(s => s.skill).slice(0, 3);
-
-    const reasoning = recommended.length > 0
-      ? `Selected based on matching triggers and description keywords. Primary match: ${recommended[0]}`
-      : 'No strong matches found. Consider refining task description.';
+    const selection = this.skillSelector.select(taskDescription);
 
     return {
-      recommended,
-      reasoning,
-      alternatives
+      recommended: selection.primary,
+      reasoning: selection.reasoning,
+      alternatives: [...selection.secondary, ...selection.optional]
     };
   }
 
   /**
-   * Get required MCPs for given skills
+   * Advanced skill selection with detailed scoring
+   */
+  async selectSkillsAdvanced(taskDescription: string): Promise<{
+    primary: string[];
+    secondary: string[];
+    optional: string[];
+    reasoning: string;
+    confidence: number;
+  }> {
+    this.ensureInitialized();
+    if (!this.skillSelector) throw new Error('SkillSelector not initialized');
+
+    return this.skillSelector.select(taskDescription);
+  }
+
+  /**
+   * Get required MCPs for given skills (Enhanced with MCPIntegrator)
    */
   async getRequiredMCPs(skillNames: string[]): Promise<{
     mcps: string[];
     breakdown: Record<string, string[]>;
   }> {
     this.ensureInitialized();
+    if (!this.mcpIntegrator) throw new Error('MCPIntegrator not initialized');
 
-    const allMCPs = new Set<string>();
-    const breakdown: Record<string, string[]> = {};
-
-    for (const skillName of skillNames) {
-      const deps = this.knowledge.getSkillDependencies(skillName);
-      breakdown[skillName] = deps.mcps;
-      deps.mcps.forEach(mcp => allMCPs.add(mcp));
-    }
+    const integration = this.mcpIntegrator.integrate(skillNames);
 
     return {
-      mcps: Array.from(allMCPs),
-      breakdown
+      mcps: integration.required,
+      breakdown: integration.dependencies.reduce((acc, dep) => {
+        for (const skill of dep.requiredBy) {
+          if (!acc[skill]) acc[skill] = [];
+          acc[skill].push(dep.mcp);
+        }
+        return acc;
+      }, {} as Record<string, string[]>)
     };
   }
 
   /**
-   * Decide workflow for a given scenario
+   * Advanced MCP integration with recommendations
+   */
+  async integrateMCPs(skillNames: string[]) {
+    this.ensureInitialized();
+    if (!this.mcpIntegrator) throw new Error('MCPIntegrator not initialized');
+
+    return this.mcpIntegrator.integrate(skillNames);
+  }
+
+  /**
+   * Decide workflow for a given scenario (Enhanced with WorkflowEngine)
    */
   async decideWorkflow(scenario: string): Promise<{
     workflow: string[];
@@ -304,75 +318,141 @@ export class RepositoryBrain {
   }> {
     this.ensureInitialized();
 
-    const lowerScenario = scenario.toLowerCase();
-
-    // Workflow decision rules
-    let workflow: string[] = [];
-    let estimatedTime = '2-4 hours';
-
-    if (lowerScenario.includes('new skill') || lowerScenario.includes('add skill')) {
-      workflow = [
-        'Research existing patterns',
-        'Check if official MCP exists',
-        'Create SKILL.md',
-        'Update skill-registry.json',
-        'Update relationship-mapping.json',
-        'Update CLAUDE.md',
-        'Update README.md',
-        'Validate all changes',
-        'Commit and push'
-      ];
-      estimatedTime = '2-3 hours';
-    } else if (lowerScenario.includes('new feature') || lowerScenario.includes('add feature')) {
-      workflow = [
-        'Load project context',
-        'Check playbooks for patterns',
-        'Select appropriate skills',
-        'Implement feature',
-        'Write tests',
-        'Update documentation',
-        'Validate changes',
-        'Commit'
-      ];
-      estimatedTime = '3-6 hours';
-    } else if (lowerScenario.includes('enhance') || lowerScenario.includes('improve')) {
-      workflow = [
-        'Load existing implementation',
-        'Identify gaps',
-        'Research best practices',
-        'Implement enhancements',
-        'Update tests',
-        'Update documentation',
-        'Validate',
-        'Commit'
-      ];
-      estimatedTime = '2-4 hours';
-    } else {
-      // Default workflow
-      workflow = [
-        'Understand requirement',
-        'Select skills',
-        'Implement',
-        'Test',
-        'Document',
-        'Validate',
-        'Commit'
-      ];
-      estimatedTime = '2-4 hours';
-    }
-
     // Select skills based on scenario
     const skillSelection = await this.selectSkills(scenario);
+
+    // Generate workflow using WorkflowEngine
+    const decision = this.workflowEngine.decide(scenario, skillSelection.recommended);
 
     // Get required MCPs
     const mcpSelection = await this.getRequiredMCPs(skillSelection.recommended);
 
     return {
-      workflow,
+      workflow: decision.steps.map(s => s.action),
       skills: skillSelection.recommended,
       mcps: mcpSelection.mcps,
-      estimatedTime,
-      reasoning: `Matched scenario to standard workflow. ${skillSelection.reasoning}`
+      estimatedTime: decision.estimatedTime,
+      reasoning: decision.reasoning
+    };
+  }
+
+  /**
+   * Advanced workflow decision with detailed steps
+   */
+  async decideWorkflowAdvanced(scenario: string) {
+    this.ensureInitialized();
+
+    // Select skills
+    const skillSelection = await this.selectSkills(scenario);
+
+    // Generate workflow
+    const decision = this.workflowEngine.decide(scenario, skillSelection.recommended);
+
+    // Get MCP integration
+    const integration = await this.integrateMCPs(skillSelection.recommended);
+
+    return {
+      ...decision,
+      mcps: integration.required,
+      recommendedMCPs: integration.recommended,
+      tools: integration.tools,
+      integrations: integration.integrations,
+      warnings: [...decision.warnings, ...integration.warnings]
+    };
+  }
+
+  // ============================================
+  // PATTERN MATCHING
+  // ============================================
+
+  /**
+   * Match architecture patterns to a problem
+   */
+  async matchPatterns(problemDescription: string) {
+    this.ensureInitialized();
+    return this.patternMatcher.match(problemDescription);
+  }
+
+  /**
+   * Get specific architecture pattern
+   */
+  async getPattern(patternName: string) {
+    this.ensureInitialized();
+    return this.patternMatcher.getPattern(patternName);
+  }
+
+  /**
+   * Get all available patterns
+   */
+  async getAllPatterns() {
+    this.ensureInitialized();
+    return this.patternMatcher.getAllPatterns();
+  }
+
+  /**
+   * Compare architecture patterns
+   */
+  async comparePatterns(patternNames: string[]) {
+    this.ensureInitialized();
+    return this.patternMatcher.comparePatterns(patternNames);
+  }
+
+  // ============================================
+  // COMPREHENSIVE ANALYSIS
+  // ============================================
+
+  /**
+   * Comprehensive analysis combining all engines
+   */
+  async analyze(taskDescription: string) {
+    this.ensureInitialized();
+
+    // 1. Skill Selection
+    const skills = await this.selectSkillsAdvanced(taskDescription);
+
+    // 2. Workflow Generation
+    const workflow = await this.decideWorkflowAdvanced(taskDescription);
+
+    // 3. MCP Integration
+    const mcpIntegration = await this.integrateMCPs(skills.primary);
+
+    // 4. Pattern Matching
+    const patterns = await this.matchPatterns(taskDescription);
+
+    // 5. Complexity Analysis
+    const complexity = this.skillSelector?.analyzeComplexity(taskDescription);
+
+    return {
+      task: taskDescription,
+      skills: {
+        primary: skills.primary,
+        secondary: skills.secondary,
+        optional: skills.optional,
+        confidence: skills.confidence,
+        reasoning: skills.reasoning
+      },
+      workflow: {
+        type: workflow.workflowType,
+        steps: workflow.steps,
+        estimatedTime: workflow.estimatedTime,
+        alternatives: workflow.alternatives,
+        warnings: workflow.warnings
+      },
+      mcps: {
+        required: mcpIntegration.required,
+        recommended: mcpIntegration.recommended,
+        optional: mcpIntegration.optional,
+        warnings: mcpIntegration.warnings
+      },
+      tools: mcpIntegration.tools,
+      integrations: workflow.integrations,
+      patterns: patterns.slice(0, 3), // Top 3 patterns
+      complexity: complexity || { complexity: 'moderate', recommendedSkillCount: 2, estimatedTime: '2-4 hours' },
+      summary: {
+        totalEstimatedTime: workflow.estimatedTime,
+        confidence: skills.confidence,
+        complexity: complexity?.complexity || 'moderate'
+      }
     };
   }
 

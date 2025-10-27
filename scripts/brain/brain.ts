@@ -17,6 +17,9 @@
  *   brain select-skills <task> - Get skill recommendations
  *   brain select-mcps <skills...> - Get required MCPs
  *   brain decide <scenario> - Get workflow recommendation
+ *   brain patterns <problem> - Match architecture patterns (Phase 2)
+ *   brain workflow <scenario> - Get detailed workflow with steps (Phase 2)
+ *   brain analyze <task> - Comprehensive analysis with all engines (Phase 2)
  */
 
 import * as path from 'path';
@@ -67,7 +70,8 @@ async function main() {
   }
 
   const command = args[0];
-  const rootPath = path.resolve(__dirname, '../..');
+  // From scripts/brain/dist/brain.js, go back 3 levels to reach root
+  const rootPath = path.resolve(__dirname, '../../..');
 
   try {
     printInfo('Initializing brain...');
@@ -107,6 +111,15 @@ async function main() {
         break;
       case 'decide':
         await commandDecide(brain, args.slice(1).join(' '));
+        break;
+      case 'patterns':
+        await commandPatterns(brain, args.slice(1).join(' '));
+        break;
+      case 'workflow':
+        await commandWorkflow(brain, args.slice(1).join(' '));
+        break;
+      case 'analyze':
+        await commandAnalyze(brain, args.slice(1).join(' '));
         break;
       default:
         printError(`Unknown command: ${command}`);
@@ -428,6 +441,169 @@ async function commandDecide(brain: any, scenario: string) {
   console.log(`  ${decision.reasoning}`);
 }
 
+async function commandPatterns(brain: any, problem: string) {
+  if (!problem) {
+    printError('Please provide a problem description');
+    process.exit(1);
+  }
+
+  printHeader(`Architecture Patterns: "${problem}"`);
+
+  const matches = await brain.matchPatterns(problem);
+
+  if (matches.length === 0) {
+    printWarning('No matching patterns found');
+    return;
+  }
+
+  console.log(colorize('Top Matches:', 'bright'));
+  matches.slice(0, 3).forEach((match: any, i: number) => {
+    console.log(`\n${colorize(`${i + 1}. ${match.pattern.name}`, 'cyan')} (confidence: ${match.confidence}%)`);
+    console.log(`   ${colorize(match.pattern.description, 'dim')}`);
+    console.log(`   ${colorize('Complexity:', 'yellow')} ${match.pattern.complexity} | ${colorize('Time:', 'yellow')} ${match.pattern.estimated_time}`);
+
+    if (match.matchReasons.length > 0) {
+      console.log(`   ${colorize('Reasons:', 'dim')} ${match.matchReasons.slice(0, 2).join(', ')}`);
+    }
+
+    // Show pros/cons
+    console.log(`   ${colorize('Pros:', 'green')} ${match.pattern.tradeoffs.pros.slice(0, 2).join(', ')}`);
+    console.log(`   ${colorize('Cons:', 'red')} ${match.pattern.tradeoffs.cons.slice(0, 2).join(', ')}`);
+
+    // Show required skills
+    if (match.pattern.skills.length > 0) {
+      console.log(`   ${colorize('Skills:', 'cyan')} ${match.pattern.skills.slice(0, 3).join(', ')}`);
+    }
+  });
+
+  console.log(`\n${colorize(`Total patterns analyzed: ${matches.length}`, 'bright')}`);
+}
+
+async function commandWorkflow(brain: any, scenario: string) {
+  if (!scenario) {
+    printError('Please provide a scenario description');
+    process.exit(1);
+  }
+
+  printHeader(`Detailed Workflow: "${scenario}"`);
+
+  const workflow = await brain.decideWorkflowAdvanced(scenario);
+
+  console.log(colorize('Workflow Type:', 'bright'));
+  console.log(`  ${colorize(workflow.workflowType, 'yellow')}\n`);
+
+  console.log(colorize('Steps:', 'bright'));
+  workflow.steps.forEach((step: any) => {
+    const optional = step.optional ? colorize('[optional]', 'dim') : '';
+    console.log(`  ${colorize(step.order.toString(), 'cyan')}. ${step.action} ${optional}`);
+    console.log(`     ${colorize(step.description, 'dim')}`);
+    console.log(`     ${colorize('Time:', 'yellow')} ${step.estimatedTime} | ${colorize('Skills:', 'cyan')} ${step.requiredSkills.join(', ')}`);
+    console.log();
+  });
+
+  console.log(colorize('Required Resources:', 'bright'));
+
+  if (workflow.skills && workflow.skills.length > 0) {
+    console.log(`  ${colorize('Skills:', 'cyan')} ${workflow.skills.join(', ')}`);
+  }
+
+  if (workflow.mcps && workflow.mcps.length > 0) {
+    console.log(`  ${colorize('MCPs:', 'magenta')} ${workflow.mcps.join(', ')}`);
+  }
+
+  if (workflow.tools && workflow.tools.length > 0) {
+    console.log(`  ${colorize('Tools:', 'yellow')} ${workflow.tools.join(', ')}`);
+  }
+
+  if (workflow.integrations && workflow.integrations.length > 0) {
+    console.log(`  ${colorize('Integrations:', 'green')} ${workflow.integrations.join(', ')}`);
+  }
+
+  console.log(`\n${colorize('Estimated Time:', 'yellow')} ${workflow.estimatedTime}`);
+
+  if (workflow.alternatives && workflow.alternatives.length > 0) {
+    console.log(`\n${colorize('Alternative Approaches:', 'bright')}`);
+    workflow.alternatives.forEach((alt: string) => console.log(`  - ${alt}`));
+  }
+
+  if (workflow.warnings && workflow.warnings.length > 0) {
+    console.log(`\n${colorize('Warnings:', 'yellow')}`);
+    workflow.warnings.forEach((warning: string) => printWarning(warning));
+  }
+}
+
+async function commandAnalyze(brain: any, task: string) {
+  if (!task) {
+    printError('Please provide a task description');
+    process.exit(1);
+  }
+
+  printHeader(`Comprehensive Analysis: "${task}"`);
+
+  const analysis = await brain.analyze(task);
+
+  // Skills Section
+  console.log(colorize('═══ Skills ═══', 'bright'));
+  console.log(colorize('Primary:', 'green'));
+  if (analysis.skills.primary.length > 0) {
+    analysis.skills.primary.forEach((s: string) => console.log(`  ✓ ${s}`));
+  } else {
+    console.log(`  (none)`);
+  }
+
+  if (analysis.skills.secondary.length > 0) {
+    console.log(colorize('\nSecondary:', 'yellow'));
+    analysis.skills.secondary.forEach((s: string) => console.log(`  - ${s}`));
+  }
+
+  if (analysis.skills.optional.length > 0) {
+    console.log(colorize('\nOptional:', 'dim'));
+    analysis.skills.optional.forEach((s: string) => console.log(`  - ${s}`));
+  }
+
+  console.log(`\n${colorize('Confidence:', 'cyan')} ${analysis.skills.confidence}%`);
+  console.log(colorize('Reasoning:', 'dim'), analysis.skills.reasoning);
+
+  // Workflow Section
+  console.log(`\n${colorize('═══ Workflow ═══', 'bright')}`);
+  console.log(`${colorize('Type:', 'cyan')} ${analysis.workflow.type}`);
+  console.log(`${colorize('Steps:', 'cyan')} ${analysis.workflow.steps.length}`);
+  console.log(`${colorize('Estimated Time:', 'yellow')} ${analysis.workflow.estimatedTime}`);
+
+  // MCPs Section
+  console.log(`\n${colorize('═══ MCPs ═══', 'bright')}`);
+  if (analysis.mcps.required.length > 0) {
+    console.log(colorize('Required:', 'green'));
+    analysis.mcps.required.forEach((m: string) => console.log(`  ✓ ${m}`));
+  }
+
+  if (analysis.mcps.recommended.length > 0) {
+    console.log(colorize('\nRecommended:', 'yellow'));
+    analysis.mcps.recommended.forEach((m: string) => console.log(`  - ${m}`));
+  }
+
+  if (analysis.mcps.warnings.length > 0) {
+    console.log(colorize('\nWarnings:', 'red'));
+    analysis.mcps.warnings.forEach((w: string) => printWarning(w));
+  }
+
+  // Patterns Section
+  if (analysis.patterns && analysis.patterns.length > 0) {
+    console.log(`\n${colorize('═══ Architecture Patterns ═══', 'bright')}`);
+    analysis.patterns.slice(0, 3).forEach((match: any, i: number) => {
+      console.log(`${i + 1}. ${colorize(match.pattern.name, 'cyan')} (${match.confidence}% match)`);
+      console.log(`   ${colorize(match.pattern.description, 'dim')}`);
+    });
+  }
+
+  // Complexity Section
+  console.log(`\n${colorize('═══ Summary ═══', 'bright')}`);
+  console.log(`${colorize('Complexity:', 'cyan')} ${analysis.complexity.complexity}`);
+  console.log(`${colorize('Recommended Skills:', 'cyan')} ${analysis.complexity.recommendedSkillCount}`);
+  console.log(`${colorize('Total Estimated Time:', 'yellow')} ${analysis.summary.totalEstimatedTime}`);
+  console.log(`${colorize('Overall Confidence:', 'green')} ${analysis.summary.confidence}%`);
+}
+
 function printUsage() {
   console.log(`
 ${colorize('Repository Brain CLI', 'bright')}
@@ -457,12 +633,20 @@ ${colorize('Decision Making:', 'cyan')}
   select-mcps <skills...>     Get required MCPs
   decide <scenario>           Get workflow recommendation
 
+${colorize('Phase 2 - Advanced Intelligence:', 'magenta')}
+  patterns <problem>          Match architecture patterns
+  workflow <scenario>         Get detailed workflow with steps
+  analyze <task>              Comprehensive analysis (all engines)
+
 ${colorize('Examples:', 'bright')}
   brain status
   brain search "authentication"
   brain show skill mvp-builder
   brain select-skills "build MVP"
   brain decide "add new feature"
+  brain patterns "need knowledge base with search"
+  brain workflow "implement RAG system"
+  brain analyze "build AI chatbot with custom knowledge"
 `);
 }
 
