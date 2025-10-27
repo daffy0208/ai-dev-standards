@@ -6,22 +6,22 @@ This repository provides a comprehensive resource system for AI-powered developm
 
 ### 📋 Complete Resource Inventory
 
-- **41 Skills** - Specialized development methodologies and expertise areas
-- **36 MCP Servers** - Executable tools providing 92% skill coverage (1.1:1 ratio)
-- **9 Tools + 4 Scripts** - LangChain, CrewAI tools, and automation scripts
-- **13 Components** - Reusable React components and patterns
-- **6 Integrations** - Pre-configured service integrations (OpenAI, Supabase, etc.)
+- **44 Skills** - Specialized development methodologies and expertise areas (includes design automation)
+- **48 MCP Servers** - Executable tools providing 92% skill coverage (1.1:1 ratio)
+- **24 Tools + 4 Scripts** - LangChain, CrewAI, media tools, design tools, observability tools, and automation scripts
+- **70 Components** - Reusable React components and patterns (44 UI components + 6 media components + 4 workflow components + 4 MCP server components + 6 RAG pipeline components + 6 other)
+- **25 Integrations** - Pre-configured service integrations (LLM providers, platforms, deployment, vector DBs, graph DBs, media services, icon libraries, font services, design tools)
 
-**Total: 109 Resources**
+**Total: 215 Resources**
 
 ### 📍 Registry Locations
 
 All resources are cataloged in `/META/` registries:
-- `skill-registry.json` - All 41 skills with descriptions and metadata
-- `mcp-registry.json` - All 36 MCP servers
-- `tool-registry.json` - All 9 tools + 4 scripts
-- `component-registry.json` - All 13 components
-- `integration-registry.json` - All 6 integrations
+- `skill-registry.json` - All 44 skills with descriptions and metadata
+- `mcp-registry.json` - All 48 MCP servers (includes 16 design MCPs)
+- `tool-registry.json` - All 24 tools + 4 scripts (includes media and design tools)
+- `component-registry.json` - All 70 components (44 UI + 6 media + 4 workflows + 4 MCP server + 6 RAG pipeline + 6 other)
+- `integration-registry.json` - All 25 integrations (2 LLM + 3 platforms + 3 deployment + 4 vector DBs + 1 graph DB + 3 media services + 3 icon libraries + 2 font services + 4 design tools)
 - `relationship-mapping.json` - Complete dependency graph and file dependencies
 
 ### 🔗 How Resources Work Together
@@ -34,7 +34,7 @@ Use `relationship-mapping.json` to discover:
 
 ## Skills
 
-All 41 skills are listed below with descriptions and locations:
+All 44 skills are listed below with descriptions and locations:
 
 
 ### 3d-visualizer
@@ -282,3 +282,21 @@ Design beautiful, consistent user interfaces with proper color theory, typograph
 Expert in building voice interfaces, speech recognition, and text-to-speech systems
 
 **Location:** `/SKILLS/voice-interface-builder/SKILL.md`
+
+### figma-developer
+
+Master Figma-to-code workflows and automation. Use when building design-to-code pipelines, extracting design tokens, automating component generation from Figma, or setting up design system synchronization.
+
+**Location:** `/SKILLS/figma-developer/SKILL.md`
+
+### asset-manager
+
+Organize, optimize, and manage design assets at scale. Use when setting up asset libraries, implementing CDN strategies, managing design system assets, or optimizing images and fonts for production.
+
+**Location:** `/SKILLS/asset-manager/SKILL.md`
+
+### prototype-designer
+
+Create interactive prototypes for user testing and validation. Use when building click-through prototypes, setting up user testing workflows, creating interactive demos, or validating UX concepts before development.
+
+**Location:** `/SKILLS/prototype-designer/SKILL.md`

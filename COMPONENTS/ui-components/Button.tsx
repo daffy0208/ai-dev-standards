@@ -1,27 +1,6 @@
-/**
- * Button Component
- *
- * Reusable button component with variants, sizes, and states.
- *
- * @example
- * ```tsx
- * <Button variant="primary" size="md" onClick={handleClick}>
- *   Click me
- * </Button>
- *
- * <Button variant="secondary" size="lg" loading>
- *   Loading...
- * </Button>
- *
- * <Button variant="outline" size="sm" disabled>
- *   Disabled
- * </Button>
- * ```
- */
-
-import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '@/lib/utils/cn'
+import React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from './utils';
 
 const buttonVariants = cva(
   'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
@@ -31,21 +10,19 @@ const buttonVariants = cva(
         primary:
           'bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-600',
         secondary:
-          'bg-gray-600 text-white hover:bg-gray-700 focus-visible:ring-gray-600',
-        outline:
-          'border border-gray-300 bg-transparent hover:bg-gray-100 focus-visible:ring-gray-400',
+          'bg-gray-200 text-gray-900 hover:bg-gray-300 focus-visible:ring-gray-400',
         ghost:
-          'bg-transparent hover:bg-gray-100 focus-visible:ring-gray-400',
+          'hover:bg-gray-100 hover:text-gray-900 focus-visible:ring-gray-400',
         destructive:
           'bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-600',
-        link:
-          'bg-transparent underline-offset-4 hover:underline text-blue-600',
+        outline:
+          'border border-gray-300 bg-transparent hover:bg-gray-100 focus-visible:ring-gray-400',
+        link: 'text-blue-600 underline-offset-4 hover:underline focus-visible:ring-blue-600',
       },
       size: {
-        sm: 'h-8 px-3 text-xs',
-        md: 'h-10 px-4',
-        lg: 'h-12 px-6 text-base',
-        xl: 'h-14 px-8 text-lg',
+        sm: 'h-9 px-3 text-xs',
+        md: 'h-10 px-4 py-2',
+        lg: 'h-11 px-8 text-base',
         icon: 'h-10 w-10',
       },
     },
@@ -54,57 +31,23 @@ const buttonVariants = cva(
       size: 'md',
     },
   }
-)
+);
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
-  /**
-   * Show loading spinner
-   */
-  loading?: boolean
-
-  /**
-   * Icon to display before children
-   */
-  leftIcon?: React.ReactNode
-
-  /**
-   * Icon to display after children
-   */
-  rightIcon?: React.ReactNode
-
-  /**
-   * Make button full width
-   */
-  fullWidth?: boolean
+  asChild?: boolean;
+  loading?: boolean;
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      className,
-      variant,
-      size,
-      loading,
-      leftIcon,
-      rightIcon,
-      fullWidth,
-      disabled,
-      children,
-      ...props
-    },
-    ref
-  ) => {
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, loading, disabled, children, ...props }, ref) => {
     return (
       <button
-        className={cn(
-          buttonVariants({ variant, size }),
-          fullWidth && 'w-full',
-          className
-        )}
+        className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         disabled={disabled || loading}
+        aria-busy={loading}
         {...props}
       >
         {loading && (
@@ -113,6 +56,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <circle
               className="opacity-25"
@@ -129,12 +73,12 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             />
           </svg>
         )}
-        {!loading && leftIcon && <span className="mr-2">{leftIcon}</span>}
         {children}
-        {!loading && rightIcon && <span className="ml-2">{rightIcon}</span>}
       </button>
-    )
+    );
   }
-)
+);
 
-Button.displayName = 'Button'
+Button.displayName = 'Button';
+
+export { Button, buttonVariants };

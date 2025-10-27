@@ -487,3 +487,92 @@ export function createRAGOrchestrator(
     ...options,
   })
 }
+
+/**
+ * RAG pipeline monitor for performance tracking
+ */
+export class RAGMonitor {
+  private metrics: {
+    queryCount: number
+    totalQueryTime: number
+    avgQueryTime: number
+    cacheHits: number
+    cacheMisses: number
+    errors: Array<{ timestamp: Date; error: string }>
+  }
+
+  constructor() {
+    this.metrics = {
+      queryCount: 0,
+      totalQueryTime: 0,
+      avgQueryTime: 0,
+      cacheHits: 0,
+      cacheMisses: 0,
+      errors: []
+    }
+  }
+
+  /**
+   * Record query execution
+   */
+  recordQuery(executionTimeMs: number, cached: boolean = false): void {
+    this.metrics.queryCount++
+    this.metrics.totalQueryTime += executionTimeMs
+
+    if (cached) {
+      this.metrics.cacheHits++
+    } else {
+      this.metrics.cacheMisses++
+    }
+
+    this.metrics.avgQueryTime = this.metrics.totalQueryTime / this.metrics.queryCount
+  }
+
+  /**
+   * Record error
+   */
+  recordError(error: string): void {
+    this.metrics.errors.push({
+      timestamp: new Date(),
+      error
+    })
+
+    // Keep only last 100 errors
+    if (this.metrics.errors.length > 100) {
+      this.metrics.errors.shift()
+    }
+  }
+
+  /**
+   * Get current metrics
+   */
+  getMetrics() {
+    return {
+      ...this.metrics,
+      cacheHitRate: this.metrics.queryCount > 0
+        ? this.metrics.cacheHits / this.metrics.queryCount
+        : 0
+    }
+  }
+
+  /**
+   * Reset metrics
+   */
+  reset(): void {
+    this.metrics = {
+      queryCount: 0,
+      totalQueryTime: 0,
+      avgQueryTime: 0,
+      cacheHits: 0,
+      cacheMisses: 0,
+      errors: []
+    }
+  }
+
+  /**
+   * Export metrics to JSON
+   */
+  exportMetrics(): string {
+    return JSON.stringify(this.getMetrics(), null, 2)
+  }
+}

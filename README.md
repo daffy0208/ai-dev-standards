@@ -8,25 +8,25 @@
 
 **Version 1.0.1** | **Last Updated:** 2025-10-27
 
-112 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
+216 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
 
 ## What This Repository Does
 
 Think of this as a **shared brain** between you and Claude:
 
-- **42 Specialized Skills** - Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, and more)
-- **36 MCP Servers** - Executable development tools providing 86% skill coverage (0.86:1 ratio - strong actionability!)
-- **9 Tools + 4 Scripts** - LangChain, CrewAI, and custom automation utilities
-- **13 Reusable Components** - React components for common patterns (auth, forms, errors, feedback)
-- **6 Service Integrations** - Pre-configured connections to OpenAI, Supabase, Stripe, Pinecone, and more
-- **Architecture Patterns** - Proven approaches for complex systems (RAG, multi-agent, knowledge graphs)
-- **Best Practices** - Security, performance, and quality standards
+- **45 Specialized Skills** - Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, design systems, and more)
+- **48 MCP Servers** - Executable development tools providing 92% skill coverage (1.1:1 ratio - strong actionability!)
+- **24 Tools + 4 Scripts** - LangChain, CrewAI, design utilities, and automation scripts
+- **70 Reusable Components** - React components for common patterns (auth, forms, errors, feedback, media, layouts, advanced UI)
+- **25 Service Integrations** - Pre-configured connections to OpenAI, Supabase, Stripe, Pinecone, Cloudinary, Figma, and more
+- **Architecture Patterns** - Proven approaches for complex systems (RAG, multi-agent, knowledge graphs, design systems)
+- **Best Practices** - Security, performance, accessibility, and quality standards
 - **Decision Frameworks** - Clear guidance for choosing technologies
 - **Validation & Trust** - Automated testing ensures all resources are discoverable and accessible
 
-**Total Resources:** 112 (42 skills + 36 MCPs + 9 tools + 4 scripts + 13 components + 6 integrations + 2 other)
+**Total Resources:** 216 (45 skills + 48 MCPs + 24 tools + 4 scripts + 70 components + 25 integrations)
 
-**Resource Coverage:** 100% discoverability • 86% skill-to-MCP coverage • Complete dependency mapping
+**Resource Coverage:** 100% discoverability • 92% skill-to-MCP coverage • Complete dependency mapping
 
 **Core Philosophy:** Quality over quantity. Every resource has been carefully curated, tested, and documented for its specific purpose.
 
@@ -48,7 +48,7 @@ The tool automatically:
 - ✅ Installs everything needed
 - ✅ Analyzes your repository
 - ✅ Recommends where to start
-- ✅ Syncs all 112 resources
+- ✅ Syncs all 216 resources
 
 **Works for:**
 - New projects, existing projects
@@ -57,9 +57,9 @@ The tool automatically:
 - Local or freshly cloned from GitHub
 
 **After 2 minutes, you have:**
-- 42 skills
-- 36 MCP servers
-- 112 total resources
+- 45 skills
+- 48 MCP servers
+- 216 total resources
 - Project analysis with recommendations
 - Exact roadmap for where to start
 
@@ -89,7 +89,7 @@ ai-dev-standards/
 │   ├── DECISION-FRAMEWORK.md       # Technology decision guidance
 │   └── skill-registry.json         # Searchable skill catalog
 │
-├── SKILLS/                         # Specialized methodologies (42 total)
+├── SKILLS/                         # Specialized methodologies (45 total)
 │   ├── mvp-builder/                # MVP development and feature prioritization
 │   ├── rag-implementer/            # Retrieval-augmented generation systems
 │   ├── product-strategist/         # Product-market fit validation

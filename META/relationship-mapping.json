@@ -1,5 +1,5 @@
 {
-  "version": "2.2.1",
+  "version": "2.3.0",
   "last_updated": "2025-10-27",
   "description": "Complete mapping of skills and MCPs to their required resources (tools, components, integrations, scripts). This is the single source of truth for resource dependencies.",
   "skills": {
@@ -254,11 +254,22 @@
         "embedding-tool",
         "database-query-tool"
       ],
-      "required_components": [],
+      "required_components": [
+        "document-loader",
+        "text-chunker",
+        "embedding-pipeline",
+        "vector-store-client",
+        "retrieval-pipeline",
+        "rag-orchestrator"
+      ],
       "required_integrations": [
         "openai",
         "anthropic",
-        "pinecone"
+        "pinecone",
+        "weaviate",
+        "chroma",
+        "qdrant",
+        "neo4j"
       ],
       "supporting_scripts": []
     },
@@ -271,7 +282,9 @@
         "database-query-tool"
       ],
       "required_components": [],
-      "required_integrations": [],
+      "required_integrations": [
+        "neo4j"
+      ],
       "supporting_scripts": []
     },
     "livestream-engineer": {
@@ -319,7 +332,11 @@
       ],
       "required_tools": [],
       "required_components": [
-        "simple-task-agent"
+        "simple-task-agent",
+        "base-mcp-server",
+        "mcp-tool-handler",
+        "mcp-resource-handler",
+        "mcp-prompt-handler"
       ],
       "required_integrations": [
         "openai",
@@ -345,7 +362,8 @@
       "required_integrations": [
         "supabase",
         "stripe",
-        "resend"
+        "resend",
+        "chroma"
       ],
       "supporting_scripts": [
         "deploy"
@@ -400,11 +418,22 @@
         "vector-search-tool",
         "database-query-tool"
       ],
-      "required_components": [],
+      "required_components": [
+        "document-loader",
+        "text-chunker",
+        "embedding-pipeline",
+        "vector-store-client",
+        "retrieval-pipeline",
+        "rag-orchestrator"
+      ],
       "required_integrations": [
         "openai",
         "anthropic",
-        "pinecone"
+        "pinecone",
+        "weaviate",
+        "chroma",
+        "qdrant",
+        "neo4j"
       ],
       "supporting_scripts": []
     },
@@ -670,7 +699,9 @@
         "vector-search-tool"
       ],
       "required_components": [],
-      "required_integrations": []
+      "required_integrations": [
+        "neo4j"
+      ]
     },
     "i18n-manager-mcp": {
       "required_tools": [
@@ -690,11 +721,22 @@
         "embedding-tool",
         "database-query-tool"
       ],
-      "required_components": [],
+      "required_components": [
+        "document-loader",
+        "text-chunker",
+        "embedding-pipeline",
+        "vector-store-client",
+        "retrieval-pipeline",
+        "rag-orchestrator"
+      ],
       "required_integrations": [
         "openai",
         "anthropic",
-        "pinecone"
+        "pinecone",
+        "weaviate",
+        "chroma",
+        "qdrant",
+        "neo4j"
       ]
     },
     "market-analyzer-mcp": {
@@ -755,9 +797,16 @@
         "vector-search-tool",
         "embedding-tool"
       ],
-      "required_components": [],
+      "required_components": [
+        "retrieval-pipeline",
+        "vector-store-client",
+        "embedding-pipeline"
+      ],
       "required_integrations": [
-        "pinecone"
+        "pinecone",
+        "weaviate",
+        "chroma",
+        "qdrant"
       ]
     },
     "seo-analyzer-mcp": {
@@ -792,9 +841,15 @@
         "vector-search-tool",
         "embedding-tool"
       ],
-      "required_components": [],
+      "required_components": [
+        "vector-store-client",
+        "embedding-pipeline"
+      ],
       "required_integrations": [
-        "pinecone"
+        "pinecone",
+        "weaviate",
+        "chroma",
+        "qdrant"
       ]
     },
     "video-optimizer-mcp": {

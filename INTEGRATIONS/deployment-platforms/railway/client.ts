@@ -85,13 +85,36 @@ export interface DeployServiceOptions {
 export class RailwayClient {
   private token: string
   private apiUrl: string
+  private timeout: number
+  private maxRetries: number
 
   constructor(options: RailwayClientOptions = {}) {
     this.token = options.token || process.env.RAILWAY_TOKEN || ''
     this.apiUrl = options.apiUrl || 'https://backboard.railway.app/graphql/v2'
+    this.timeout = 30000 // 30 seconds
+    this.maxRetries = 3
 
     if (!this.token) {
       throw new Error('Railway token is required')
+    }
+  }
+
+  /**
+   * Health check - verify API connectivity and token validity
+   *
+   * @example
+   * ```typescript
+   * const isHealthy = await client.healthCheck()
+   * console.log('API is accessible:', isHealthy)
+   * ```
+   */
+  async healthCheck(): Promise<boolean> {
+    try {
+      const query = `query { me { id } }`
+      await this.graphql(query)
+      return true
+    } catch (error) {
+      return false
     }
   }
 
@@ -309,6 +332,65 @@ export class RailwayClient {
   }
 
   /**
+   * Restart a service
+   *
+   * @param serviceId - The service ID to restart
+   * @param environmentId - The environment ID
+   * @returns The restarted deployment
+   *
+   * @example
+   * ```typescript
+   * await client.restartService('serv_xxx', 'env_xxx')
+   * console.log('Service restarted')
+   * ```
+   */
+  async restartService(serviceId: string, environmentId: string): Promise<Deployment> {
+    const mutation = `
+      mutation($serviceId: String!, $environmentId: String!) {
+        serviceInstanceRedeploy(
+          serviceId: $serviceId
+          environmentId: $environmentId
+        ) {
+          id
+          status
+          createdAt
+        }
+      }
+    `
+
+    const response = await this.graphql(mutation, { serviceId, environmentId })
+    return response.data.serviceInstanceRedeploy
+  }
+
+  /**
+   * Get service info
+   *
+   * @param serviceId - The service ID
+   * @returns Service details
+   *
+   * @example
+   * ```typescript
+   * const service = await client.getService('serv_xxx')
+   * console.log('Service:', service.name)
+   * ```
+   */
+  async getService(serviceId: string): Promise<Service & { projectId: string }> {
+    const query = `
+      query($serviceId: String!) {
+        service(id: $serviceId) {
+          id
+          name
+          createdAt
+          projectId
+        }
+      }
+    `
+
+    const response = await this.graphql(query, { serviceId })
+    return response.data.service
+  }
+
+  /**
    * List environment variables
    */
   async listVariables(
@@ -414,33 +496,59 @@ export class RailwayClient {
   }
 
   /**
-   * Make GraphQL request
+   * Make GraphQL request with timeout and retry logic
    */
-  private async graphql(query: string, variables?: any): Promise<any> {
-    const response = await fetch(this.apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.token}`,
-      },
-      body: JSON.stringify({
-        query,
-        variables,
-      }),
-    })
+  private async graphql(query: string, variables?: any, retryCount = 0): Promise<any> {
+    try {
+      const response = await fetch(this.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${this.token}`,
+        },
+        body: JSON.stringify({
+          query,
+          variables,
+        }),
+        signal: AbortSignal.timeout(this.timeout),
+      })
 
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({ message: response.statusText }))
-      throw new Error(`Railway API error: ${error.message || response.statusText}`)
+      if (!response.ok) {
+        // Retry on rate limit or server errors
+        if ((response.status === 429 || response.status >= 500) && retryCount < this.maxRetries) {
+          const delay = Math.pow(2, retryCount) * 1000 // Exponential backoff
+          await new Promise(resolve => setTimeout(resolve, delay))
+          return this.graphql(query, variables, retryCount + 1)
+        }
+
+        const error = await response.json().catch(() => ({ message: response.statusText }))
+        throw new Error(`Railway API error: ${error.message || response.statusText}`)
+      }
+
+      const result = await response.json()
+
+      if (result.errors) {
+        // Retry on server errors
+        if (retryCount < this.maxRetries) {
+          const delay = Math.pow(2, retryCount) * 1000
+          await new Promise(resolve => setTimeout(resolve, delay))
+          return this.graphql(query, variables, retryCount + 1)
+        }
+
+        throw new Error(`GraphQL error: ${result.errors[0].message}`)
+      }
+
+      return result
+    } catch (error: any) {
+      // Retry on network errors or timeouts
+      if ((error.name === 'AbortError' || error.name === 'TypeError') && retryCount < this.maxRetries) {
+        const delay = Math.pow(2, retryCount) * 1000
+        await new Promise(resolve => setTimeout(resolve, delay))
+        return this.graphql(query, variables, retryCount + 1)
+      }
+
+      throw error
     }
-
-    const result = await response.json()
-
-    if (result.errors) {
-      throw new Error(`GraphQL error: ${result.errors[0].message}`)
-    }
-
-    return result
   }
 }
 

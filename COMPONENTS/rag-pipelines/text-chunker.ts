@@ -339,3 +339,144 @@ export async function chunkDocuments(
   const chunker = new TextChunker(options)
   return await chunker.chunkDocuments(documents)
 }
+
+/**
+ * Advanced chunking utilities
+ */
+export class ChunkingUtils {
+  /**
+   * Analyze text to recommend optimal chunk size
+   */
+  static analyzeText(text: string): {
+    recommendedChunkSize: number
+    recommendedOverlap: number
+    strategy: ChunkStrategy
+    stats: {
+      totalChars: number
+      totalWords: number
+      avgSentenceLength: number
+      paragraphCount: number
+    }
+  } {
+    const totalChars = text.length
+    const words = text.split(/\s+/).filter(w => w.length > 0)
+    const totalWords = words.length
+    const sentences = text.match(/[^.!?]+[.!?]+/g) || []
+    const paragraphs = text.split(/\n\n+/).filter(p => p.trim().length > 0)
+
+    const avgSentenceLength = sentences.length > 0
+      ? totalChars / sentences.length
+      : totalChars
+
+    let strategy: ChunkStrategy = 'recursive'
+    let recommendedChunkSize = 1000
+
+    // Determine strategy based on content structure
+    if (text.includes('#') || text.includes('##')) {
+      strategy = 'markdown'
+      recommendedChunkSize = 1500
+    } else if (avgSentenceLength > 200) {
+      strategy = 'fixed'
+      recommendedChunkSize = 800
+    } else if (paragraphs.length > 10) {
+      strategy = 'recursive'
+      recommendedChunkSize = 1000
+    }
+
+    return {
+      recommendedChunkSize,
+      recommendedOverlap: Math.floor(recommendedChunkSize * 0.15),
+      strategy,
+      stats: {
+        totalChars,
+        totalWords,
+        avgSentenceLength,
+        paragraphCount: paragraphs.length
+      }
+    }
+  }
+
+  /**
+   * Validate chunk quality
+   */
+  static validateChunk(chunk: ChunkResult): {
+    valid: boolean
+    issues: string[]
+    score: number
+  } {
+    const issues: string[] = []
+    let score = 100
+
+    // Check if chunk is too short
+    if (chunk.text.length < 50) {
+      issues.push('Chunk is too short')
+      score -= 30
+    }
+
+    // Check if chunk ends mid-sentence
+    const lastChar = chunk.text.trim().slice(-1)
+    if (!['.', '!', '?', '\n'].includes(lastChar)) {
+      issues.push('Chunk ends mid-sentence')
+      score -= 20
+    }
+
+    // Check if chunk starts mid-sentence
+    const firstChar = chunk.text.trim()[0]
+    if (firstChar && firstChar !== firstChar.toUpperCase() && firstChar.match(/[a-z]/)) {
+      issues.push('Chunk starts mid-sentence')
+      score -= 15
+    }
+
+    // Check for incomplete code blocks
+    const codeBlockCount = (chunk.text.match(/```/g) || []).length
+    if (codeBlockCount % 2 !== 0) {
+      issues.push('Incomplete code block')
+      score -= 25
+    }
+
+    return {
+      valid: score >= 50,
+      issues,
+      score: Math.max(0, score)
+    }
+  }
+
+  /**
+   * Merge small chunks
+   */
+  static mergeSmallChunks(
+    chunks: ChunkResult[],
+    minSize: number = 100
+  ): ChunkResult[] {
+    const merged: ChunkResult[] = []
+    let current: ChunkResult | null = null
+
+    for (const chunk of chunks) {
+      if (!current) {
+        current = { ...chunk }
+        continue
+      }
+
+      if (current.text.length < minSize) {
+        // Merge with current
+        current = {
+          text: current.text + ' ' + chunk.text,
+          metadata: {
+            ...current.metadata,
+            chunk_count: current.metadata.chunk_count + 1,
+            char_count: current.text.length + chunk.text.length + 1
+          }
+        }
+      } else {
+        merged.push(current)
+        current = { ...chunk }
+      }
+    }
+
+    if (current) {
+      merged.push(current)
+    }
+
+    return merged
+  }
+}

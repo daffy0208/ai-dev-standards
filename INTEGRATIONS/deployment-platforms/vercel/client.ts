@@ -123,20 +123,57 @@ export interface EnvironmentVariable {
   value: string
   target: Array<'production' | 'preview' | 'development'>
   type: 'encrypted' | 'plain'
+  id?: string
+}
+
+export interface DeploymentFile {
+  name: string
+  size: number
+  mode: number
+  type: 'file' | 'directory'
+}
+
+export interface LogEntry {
+  timestamp: number
+  text: string
+  source: 'build' | 'runtime'
+  type: 'stdout' | 'stderr'
 }
 
 export class VercelClient {
   private token: string
   private teamId?: string
   private apiUrl: string
+  private timeout: number
+  private maxRetries: number
 
   constructor(options: VercelClientOptions = {}) {
     this.token = options.token || process.env.VERCEL_TOKEN || ''
     this.teamId = options.teamId || process.env.VERCEL_TEAM_ID
     this.apiUrl = options.apiUrl || 'https://api.vercel.com'
+    this.timeout = 30000 // 30 seconds
+    this.maxRetries = 3
 
     if (!this.token) {
       throw new Error('Vercel token is required')
+    }
+  }
+
+  /**
+   * Health check - verify API connectivity and token validity
+   *
+   * @example
+   * ```typescript
+   * const isHealthy = await client.healthCheck()
+   * console.log('API is accessible:', isHealthy)
+   * ```
+   */
+  async healthCheck(): Promise<boolean> {
+    try {
+      await this.request('GET', '/v2/user')
+      return true
+    } catch (error) {
+      return false
     }
   }
 
@@ -198,6 +235,44 @@ export class VercelClient {
    */
   async deleteDeployment(deploymentId: string): Promise<void> {
     await this.request('DELETE', `/v13/deployments/${deploymentId}`)
+  }
+
+  /**
+   * Rollback to a previous deployment by promoting it to production
+   *
+   * @param deploymentId - The deployment ID to rollback to
+   * @param projectName - The project name
+   * @returns The promoted deployment
+   *
+   * @example
+   * ```typescript
+   * // Get previous successful deployment
+   * const deployments = await client.listDeployments('my-app')
+   * const previousDeployment = deployments.find(d => d.state === 'READY' && d.target === 'production')
+   *
+   * // Rollback to it
+   * await client.rollback(previousDeployment.id, 'my-app')
+   * ```
+   */
+  async rollback(deploymentId: string, projectName: string): Promise<Deployment> {
+    // Get the deployment to verify it exists and is ready
+    const deployment = await this.getDeployment(deploymentId)
+
+    if (deployment.state !== 'READY') {
+      throw new Error(`Cannot rollback to deployment ${deploymentId}: state is ${deployment.state}, must be READY`)
+    }
+
+    // Promote the deployment by creating an alias to the production domain
+    const project = await this.getProject(projectName)
+    const productionDomain = project.targets?.production?.domain
+
+    if (productionDomain) {
+      await this.request('POST', `/v2/deployments/${deploymentId}/aliases`, {
+        alias: productionDomain
+      })
+    }
+
+    return deployment
   }
 
   /**
@@ -332,12 +407,13 @@ export class VercelClient {
   }
 
   /**
-   * Make API request
+   * Make API request with timeout and retry logic
    */
   private async request(
     method: string,
     endpoint: string,
-    body?: any
+    body?: any,
+    retryCount = 0
   ): Promise<any> {
     const url = new URL(endpoint, this.apiUrl)
 
@@ -354,25 +430,44 @@ export class VercelClient {
     const options: RequestInit = {
       method,
       headers,
+      signal: AbortSignal.timeout(this.timeout),
     }
 
     if (body && ['POST', 'PATCH', 'PUT'].includes(method)) {
       options.body = JSON.stringify(body)
     }
 
-    const response = await fetch(url.toString(), options)
+    try {
+      const response = await fetch(url.toString(), options)
 
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({ message: response.statusText }))
-      throw new Error(`Vercel API error: ${error.message || response.statusText}`)
+      if (!response.ok) {
+        // Retry on rate limit or server errors
+        if ((response.status === 429 || response.status >= 500) && retryCount < this.maxRetries) {
+          const delay = Math.pow(2, retryCount) * 1000 // Exponential backoff
+          await new Promise(resolve => setTimeout(resolve, delay))
+          return this.request(method, endpoint, body, retryCount + 1)
+        }
+
+        const error = await response.json().catch(() => ({ message: response.statusText }))
+        throw new Error(`Vercel API error: ${error.message || response.statusText}`)
+      }
+
+      // Some endpoints return 204 No Content
+      if (response.status === 204) {
+        return null
+      }
+
+      return response.json()
+    } catch (error: any) {
+      // Retry on network errors or timeouts
+      if ((error.name === 'AbortError' || error.name === 'TypeError') && retryCount < this.maxRetries) {
+        const delay = Math.pow(2, retryCount) * 1000
+        await new Promise(resolve => setTimeout(resolve, delay))
+        return this.request(method, endpoint, body, retryCount + 1)
+      }
+
+      throw error
     }
-
-    // Some endpoints return 204 No Content
-    if (response.status === 204) {
-      return null
-    }
-
-    return response.json()
   }
 }
 

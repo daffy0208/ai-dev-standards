@@ -1,8 +1,8 @@
 {
-  "version": "1.0.0",
-  "last_updated": "2025-10-24",
+  "version": "2.0.0",
+  "last_updated": "2025-10-27",
   "description": "Registry of third-party integrations available in ai-dev-standards. Integrations provide pre-configured code for connecting to external services.",
-  "total_integrations": 10,
+  "total_integrations": 25,
   "integrations": [
     {
       "id": "openai",
@@ -11,8 +11,16 @@
       "description": "OpenAI API integration for GPT models",
       "path": "/INTEGRATIONS/llm-providers/openai-client.ts",
       "status": "active",
-      "supports_skills": ["rag-implementer", "multi-agent-architect", "copywriter", "voice-interface-builder"],
-      "supports_mcps": ["embedding-generator-mcp", "agent-orchestrator-mcp"],
+      "supports_skills": [
+        "rag-implementer",
+        "multi-agent-architect",
+        "copywriter",
+        "voice-interface-builder"
+      ],
+      "supports_mcps": [
+        "embedding-generator-mcp",
+        "agent-orchestrator-mcp"
+      ],
       "depends_on": [],
       "features": [
         "Chat completions",
@@ -30,8 +38,15 @@
       "description": "Anthropic API integration for Claude models",
       "path": "/INTEGRATIONS/llm-providers/anthropic-client.ts",
       "status": "active",
-      "supports_skills": ["rag-implementer", "multi-agent-architect", "copywriter"],
-      "supports_mcps": ["embedding-generator-mcp", "agent-orchestrator-mcp"],
+      "supports_skills": [
+        "rag-implementer",
+        "multi-agent-architect",
+        "copywriter"
+      ],
+      "supports_mcps": [
+        "embedding-generator-mcp",
+        "agent-orchestrator-mcp"
+      ],
       "depends_on": [],
       "features": [
         "Message API",
@@ -48,10 +63,26 @@
       "category": "platforms",
       "description": "Supabase backend-as-a-service integration",
       "path": "/INTEGRATIONS/platforms/supabase/client.ts",
-      "additional_files": ["server.ts", "hooks.tsx", "README.md"],
+      "additional_files": [
+        "server.ts",
+        "hooks.tsx",
+        "README.md"
+      ],
       "status": "active",
-      "supports_skills": ["frontend-builder", "deployment-advisor", "security-engineer", "data-engineer", "mobile-developer", "mvp-builder", "api-designer"],
-      "supports_mcps": ["database-migration-mcp", "deployment-orchestrator-mcp", "mobile-builder-mcp"],
+      "supports_skills": [
+        "frontend-builder",
+        "deployment-advisor",
+        "security-engineer",
+        "data-engineer",
+        "mobile-developer",
+        "mvp-builder",
+        "api-designer"
+      ],
+      "supports_mcps": [
+        "database-migration-mcp",
+        "deployment-orchestrator-mcp",
+        "mobile-builder-mcp"
+      ],
       "depends_on": [],
       "features": [
         "PostgreSQL database",
@@ -69,9 +100,16 @@
       "category": "platforms",
       "description": "Stripe payment processing integration",
       "path": "/INTEGRATIONS/platforms/stripe/client.ts",
-      "additional_files": ["webhooks.ts", "README.md"],
+      "additional_files": [
+        "webhooks.ts",
+        "README.md"
+      ],
       "status": "active",
-      "supports_skills": ["frontend-builder", "api-designer", "mvp-builder"],
+      "supports_skills": [
+        "frontend-builder",
+        "api-designer",
+        "mvp-builder"
+      ],
       "supports_mcps": [],
       "depends_on": [],
       "features": [
@@ -90,7 +128,10 @@
       "description": "Resend email service integration",
       "path": "/INTEGRATIONS/platforms/resend/client.ts",
       "status": "active",
-      "supports_skills": ["frontend-builder", "mvp-builder"],
+      "supports_skills": [
+        "frontend-builder",
+        "mvp-builder"
+      ],
       "supports_mcps": [],
       "depends_on": [],
       "features": [
@@ -109,8 +150,13 @@
       "description": "Pinecone vector database integration",
       "path": "/INTEGRATIONS/vector-databases/pinecone/client.ts",
       "status": "active",
-      "supports_skills": ["rag-implementer"],
-      "supports_mcps": ["vector-database-mcp", "semantic-search-mcp"],
+      "supports_skills": [
+        "rag-implementer"
+      ],
+      "supports_mcps": [
+        "vector-database-mcp",
+        "semantic-search-mcp"
+      ],
       "depends_on": [],
       "features": [
         "Vector storage",
@@ -120,6 +166,536 @@
       ],
       "authentication": "API key",
       "documentation_url": "https://docs.pinecone.io"
+    },
+    {
+      "id": "neo4j",
+      "name": "Neo4j",
+      "category": "graph-databases",
+      "description": "Neo4j graph database integration for knowledge graphs and relationship mapping",
+      "path": "/INTEGRATIONS/graph-databases/neo4j/client.ts",
+      "additional_files": [
+        "README.md"
+      ],
+      "status": "active",
+      "supports_skills": [
+        "knowledge-graph-builder",
+        "knowledge-base-manager",
+        "rag-implementer",
+        "data-engineer"
+      ],
+      "supports_mcps": [
+        "graph-database-mcp",
+        "knowledge-graph-mcp",
+        "semantic-search-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Node and relationship CRUD",
+        "Cypher query execution",
+        "Transaction support",
+        "Connection pooling",
+        "Shortest path algorithms",
+        "Database statistics"
+      ],
+      "authentication": "Username + password",
+      "documentation_url": "https://neo4j.com/docs/"
+    },
+    {
+      "id": "weaviate",
+      "name": "Weaviate",
+      "category": "vector-databases",
+      "description": "Weaviate vector database integration with hybrid search support",
+      "path": "/INTEGRATIONS/vector-databases/weaviate/client.ts",
+      "additional_files": [
+        "README.md"
+      ],
+      "status": "active",
+      "supports_skills": [
+        "rag-implementer",
+        "knowledge-base-manager"
+      ],
+      "supports_mcps": [
+        "vector-database-mcp",
+        "semantic-search-mcp",
+        "knowledge-base-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Vector similarity search",
+        "Hybrid search (vector + keyword)",
+        "Batch operations",
+        "Schema management",
+        "Alpha parameter for search balance",
+        "Filtering and aggregations"
+      ],
+      "authentication": "API key",
+      "documentation_url": "https://weaviate.io/developers/weaviate"
+    },
+    {
+      "id": "chroma",
+      "name": "Chroma",
+      "category": "vector-databases",
+      "description": "Chroma embedded vector database for prototyping and development",
+      "path": "/INTEGRATIONS/vector-databases/chroma/client.ts",
+      "additional_files": [
+        "README.md"
+      ],
+      "status": "active",
+      "supports_skills": [
+        "rag-implementer",
+        "knowledge-base-manager",
+        "mvp-builder"
+      ],
+      "supports_mcps": [
+        "vector-database-mcp",
+        "semantic-search-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Embedded and client-server modes",
+        "Batch operations",
+        "Metadata filtering",
+        "Multiple distance metrics",
+        "Collections management",
+        "In-memory and persistent storage"
+      ],
+      "authentication": "None (embedded) / API key (client)",
+      "documentation_url": "https://docs.trychroma.com"
+    },
+    {
+      "id": "qdrant",
+      "name": "Qdrant",
+      "category": "vector-databases",
+      "description": "Qdrant high-performance vector database with advanced filtering",
+      "path": "/INTEGRATIONS/vector-databases/qdrant/client.ts",
+      "additional_files": [
+        "README.md"
+      ],
+      "status": "active",
+      "supports_skills": [
+        "rag-implementer",
+        "knowledge-base-manager"
+      ],
+      "supports_mcps": [
+        "vector-database-mcp",
+        "semantic-search-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "High-performance vector search",
+        "Advanced filtering",
+        "Payload storage",
+        "Batch operations",
+        "Multiple distance metrics",
+        "Collections and snapshots"
+      ],
+      "authentication": "API key (optional)",
+      "documentation_url": "https://qdrant.tech/documentation/"
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel",
+      "category": "deployment-platforms",
+      "description": "Vercel deployment platform integration",
+      "path": "/INTEGRATIONS/deployment-platforms/vercel/client.ts",
+      "additional_files": [
+        "README.md"
+      ],
+      "status": "active",
+      "supports_skills": [
+        "deployment-advisor",
+        "frontend-builder",
+        "mvp-builder"
+      ],
+      "supports_mcps": [
+        "deployment-orchestrator-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Deployment management (create, get, list, cancel, rollback)",
+        "Domain management (add, remove, list)",
+        "Environment variables (create, get, update, delete)",
+        "Project management",
+        "Analytics and logs"
+      ],
+      "authentication": "API token",
+      "documentation_url": "https://vercel.com/docs/rest-api"
+    },
+    {
+      "id": "railway",
+      "name": "Railway",
+      "category": "deployment-platforms",
+      "description": "Railway full-stack deployment platform integration",
+      "path": "/INTEGRATIONS/deployment-platforms/railway/client.ts",
+      "additional_files": [
+        "README.md"
+      ],
+      "status": "active",
+      "supports_skills": [
+        "deployment-advisor",
+        "frontend-builder",
+        "data-engineer",
+        "mvp-builder"
+      ],
+      "supports_mcps": [
+        "deployment-orchestrator-mcp",
+        "database-migration-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Service management (create, restart, deploy)",
+        "Database provisioning (Postgres, MySQL, MongoDB, Redis)",
+        "Environment variables management",
+        "Deployment history",
+        "Logs and metrics"
+      ],
+      "authentication": "API token",
+      "documentation_url": "https://docs.railway.app/reference/public-api"
+    },
+    {
+      "id": "fly-io",
+      "name": "Fly.io",
+      "category": "deployment-platforms",
+      "description": "Fly.io multi-region deployment platform integration",
+      "path": "/INTEGRATIONS/deployment-platforms/fly-io/client.ts",
+      "additional_files": [
+        "README.md"
+      ],
+      "status": "active",
+      "supports_skills": [
+        "deployment-advisor",
+        "frontend-builder",
+        "performance-optimizer",
+        "mvp-builder"
+      ],
+      "supports_mcps": [
+        "deployment-orchestrator-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Multi-region deployment",
+        "Machine (VM) management",
+        "Volume (persistent storage) support",
+        "App scaling",
+        "Certificate management",
+        "Secret management"
+      ],
+      "authentication": "API token",
+      "documentation_url": "https://fly.io/docs/reference/api/"
+    },
+    {
+      "id": "cloudinary",
+      "name": "Cloudinary",
+      "category": "media-services",
+      "description": "Cloudinary CDN and image transformations",
+      "path": "/INTEGRATIONS/media-services/cloudinary/client.ts",
+      "status": "active",
+      "supports_skills": [
+        "frontend-builder",
+        "visual-designer",
+        "performance-optimizer"
+      ],
+      "supports_mcps": [
+        "asset-optimizer-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Image upload and storage",
+        "Real-time transformations",
+        "Responsive images",
+        "Video processing",
+        "CDN delivery"
+      ],
+      "authentication": "API key + secret",
+      "documentation_url": "https://cloudinary.com/documentation"
+    },
+    {
+      "id": "imgix",
+      "name": "Imgix",
+      "category": "media-services",
+      "description": "Real-time image processing and optimization",
+      "path": "/INTEGRATIONS/media-services/imgix/client.ts",
+      "status": "active",
+      "supports_skills": [
+        "frontend-builder",
+        "performance-optimizer"
+      ],
+      "supports_mcps": [
+        "asset-optimizer-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Real-time image transformations",
+        "Responsive images",
+        "Format optimization",
+        "Blur and effects",
+        "CDN delivery"
+      ],
+      "authentication": "API key",
+      "documentation_url": "https://docs.imgix.com/"
+    },
+    {
+      "id": "unsplash",
+      "name": "Unsplash",
+      "category": "media-services",
+      "description": "Stock photo API for high-quality images",
+      "path": "/INTEGRATIONS/media-services/unsplash/client.ts",
+      "status": "active",
+      "supports_skills": [
+        "frontend-builder",
+        "visual-designer"
+      ],
+      "supports_mcps": [],
+      "depends_on": [],
+      "features": [
+        "Search high-quality photos",
+        "Random photo selection",
+        "Photo collections",
+        "User profiles",
+        "Download tracking"
+      ],
+      "authentication": "API key",
+      "documentation_url": "https://unsplash.com/documentation"
+    },
+    {
+      "id": "heroicons",
+      "name": "Heroicons",
+      "category": "icon-libraries",
+      "description": "Beautiful hand-crafted SVG icons by the Tailwind CSS team",
+      "path": "/INTEGRATIONS/icon-libraries/heroicons/client.ts",
+      "status": "active",
+      "supports_skills": [
+        "frontend-builder",
+        "visual-designer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "icon-library-mcp",
+        "component-generator-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "500+ icons",
+        "Outline and solid styles",
+        "24x24 and 20x20 sizes",
+        "React components",
+        "TypeScript support"
+      ],
+      "authentication": "None (open source)",
+      "documentation_url": "https://heroicons.com/"
+    },
+    {
+      "id": "lucide",
+      "name": "Lucide",
+      "category": "icon-libraries",
+      "description": "Beautiful and consistent icon toolkit",
+      "path": "/INTEGRATIONS/icon-libraries/lucide/client.ts",
+      "status": "active",
+      "supports_skills": [
+        "frontend-builder",
+        "visual-designer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "icon-library-mcp",
+        "component-generator-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "1000+ icons",
+        "Consistent design",
+        "React/Vue/Angular support",
+        "TypeScript support",
+        "Tree-shakeable"
+      ],
+      "authentication": "None (open source)",
+      "documentation_url": "https://lucide.dev/"
+    },
+    {
+      "id": "font-awesome",
+      "name": "Font Awesome",
+      "category": "icon-libraries",
+      "description": "World's most popular icon set and toolkit",
+      "path": "/INTEGRATIONS/icon-libraries/font-awesome/client.ts",
+      "status": "active",
+      "supports_skills": [
+        "frontend-builder",
+        "visual-designer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "icon-library-mcp",
+        "component-generator-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Thousands of icons",
+        "Multiple styles (solid, regular, light, duotone)",
+        "React/Vue components",
+        "Pro version available",
+        "Icon stacking and layering"
+      ],
+      "authentication": "None (free) / API key (Pro)",
+      "documentation_url": "https://fontawesome.com/docs"
+    },
+    {
+      "id": "google-fonts",
+      "name": "Google Fonts",
+      "category": "font-services",
+      "description": "Free and open-source font library",
+      "path": "/INTEGRATIONS/font-services/google-fonts/client.ts",
+      "status": "active",
+      "supports_skills": [
+        "frontend-builder",
+        "visual-designer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "font-optimizer-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "1400+ font families",
+        "Variable fonts",
+        "Web font optimization",
+        "CDN delivery",
+        "Font subsetting"
+      ],
+      "authentication": "None (free)",
+      "documentation_url": "https://developers.google.com/fonts"
+    },
+    {
+      "id": "adobe-fonts",
+      "name": "Adobe Fonts",
+      "category": "font-services",
+      "description": "Premium web font service (formerly Typekit)",
+      "path": "/INTEGRATIONS/font-services/adobe-fonts/client.ts",
+      "status": "active",
+      "supports_skills": [
+        "frontend-builder",
+        "visual-designer",
+        "brand-designer"
+      ],
+      "supports_mcps": [
+        "font-optimizer-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "20,000+ fonts",
+        "Premium font foundries",
+        "Web and desktop fonts",
+        "Font syncing",
+        "CSS integration"
+      ],
+      "authentication": "Adobe Creative Cloud account",
+      "documentation_url": "https://fonts.adobe.com/docs"
+    },
+    {
+      "id": "figma",
+      "name": "Figma",
+      "category": "design-tools",
+      "description": "Figma REST API for design-to-code workflows",
+      "path": "/INTEGRATIONS/design-tools/figma/client.ts",
+      "status": "active",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "visual-designer",
+        "design-system-architect",
+        "figma-developer"
+      ],
+      "supports_mcps": [
+        "figma-sync-mcp",
+        "design-handoff-mcp",
+        "component-generator-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "File and node access",
+        "Design token extraction",
+        "Component metadata",
+        "Export images",
+        "Version history"
+      ],
+      "authentication": "Personal access token",
+      "documentation_url": "https://www.figma.com/developers/api"
+    },
+    {
+      "id": "sketch",
+      "name": "Sketch",
+      "category": "design-tools",
+      "description": "Sketch API for design asset management",
+      "path": "/INTEGRATIONS/design-tools/sketch/client.ts",
+      "status": "active",
+      "supports_skills": [
+        "ux-designer",
+        "visual-designer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "design-handoff-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Document access",
+        "Layer export",
+        "Symbol management",
+        "Shared libraries",
+        "Plugin integration"
+      ],
+      "authentication": "API token",
+      "documentation_url": "https://developer.sketch.com/"
+    },
+    {
+      "id": "adobe-xd",
+      "name": "Adobe XD",
+      "category": "design-tools",
+      "description": "Adobe XD API for prototypes and design specs",
+      "path": "/INTEGRATIONS/design-tools/adobe-xd/client.ts",
+      "status": "active",
+      "supports_skills": [
+        "ux-designer",
+        "visual-designer"
+      ],
+      "supports_mcps": [
+        "design-handoff-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Prototype access",
+        "Design spec export",
+        "Asset export",
+        "Comment management",
+        "Sharing controls"
+      ],
+      "authentication": "Adobe Creative Cloud",
+      "documentation_url": "https://developer.adobe.com/xd/"
+    },
+    {
+      "id": "canva",
+      "name": "Canva",
+      "category": "design-tools",
+      "description": "Canva API for design automation",
+      "path": "/INTEGRATIONS/design-tools/canva/client.ts",
+      "status": "active",
+      "supports_skills": [
+        "visual-designer",
+        "brand-designer",
+        "copywriter"
+      ],
+      "supports_mcps": [],
+      "depends_on": [],
+      "features": [
+        "Design creation",
+        "Template access",
+        "Brand kit management",
+        "Asset library",
+        "Export to multiple formats"
+      ],
+      "authentication": "API key",
+      "documentation_url": "https://www.canva.dev/docs/connect/"
     }
   ],
   "categories": {
@@ -127,114 +703,154 @@
       "name": "LLM Providers",
       "count": 2,
       "description": "Large Language Model API integrations",
-      "integrations": ["openai", "anthropic"],
-      "needed": ["cohere", "together-ai", "huggingface"]
+      "integrations": [
+        "openai",
+        "anthropic"
+      ],
+      "needed": [
+        "cohere",
+        "together-ai",
+        "huggingface"
+      ]
     },
     "platforms": {
       "name": "Platform Services",
       "count": 3,
       "description": "Backend and platform service integrations",
-      "integrations": ["supabase", "stripe", "resend"],
-      "needed": ["vercel", "railway", "fly-io", "clerk", "auth0"]
+      "integrations": [
+        "supabase",
+        "stripe",
+        "resend"
+      ],
+      "needed": [
+        "clerk",
+        "auth0"
+      ]
+    },
+    "deployment-platforms": {
+      "name": "Deployment Platforms",
+      "count": 3,
+      "description": "Deployment and infrastructure platform integrations",
+      "integrations": [
+        "vercel",
+        "railway",
+        "fly-io"
+      ],
+      "needed": []
     },
     "vector-databases": {
       "name": "Vector Databases",
-      "count": 1,
+      "count": 4,
       "description": "Vector database integrations for RAG and semantic search",
-      "integrations": ["pinecone"],
-      "needed": ["weaviate", "chroma", "qdrant", "pgvector"]
+      "integrations": [
+        "pinecone",
+        "weaviate",
+        "chroma",
+        "qdrant"
+      ],
+      "needed": [
+        "pgvector"
+      ]
     },
     "graph-databases": {
       "name": "Graph Databases",
-      "count": 0,
+      "count": 1,
       "description": "Graph database integrations",
-      "integrations": [],
-      "needed": ["neo4j", "dgraph"]
+      "integrations": [
+        "neo4j"
+      ],
+      "needed": [
+        "dgraph"
+      ]
     },
     "framework-adapters": {
       "name": "Framework Adapters",
       "count": 0,
       "description": "Integrations for web frameworks",
       "integrations": [],
-      "needed": ["nextjs", "remix", "astro", "sveltekit"]
+      "needed": [
+        "nextjs",
+        "remix",
+        "astro",
+        "sveltekit"
+      ]
+    },
+    "media-services": {
+      "name": "Media Services",
+      "count": 3,
+      "description": "CDN, image processing, and stock photo services",
+      "integrations": [
+        "cloudinary",
+        "imgix",
+        "unsplash"
+      ],
+      "needed": []
+    },
+    "icon-libraries": {
+      "name": "Icon Libraries",
+      "count": 3,
+      "description": "Icon sets and toolkits",
+      "integrations": [
+        "heroicons",
+        "lucide",
+        "font-awesome"
+      ],
+      "needed": []
+    },
+    "font-services": {
+      "name": "Font Services",
+      "count": 2,
+      "description": "Web font services and libraries",
+      "integrations": [
+        "google-fonts",
+        "adobe-fonts"
+      ],
+      "needed": []
+    },
+    "design-tools": {
+      "name": "Design Tools",
+      "count": 4,
+      "description": "Design tool API integrations",
+      "integrations": [
+        "figma",
+        "sketch",
+        "adobe-xd",
+        "canva"
+      ],
+      "needed": []
     }
   },
   "missing_high_priority": [
-    {
-      "id": "weaviate",
-      "name": "Weaviate",
-      "category": "vector-databases",
-      "reason": "Hybrid search support for rag-implementer skill",
-      "priority": "HIGH",
-      "supports_skills": ["rag-implementer"],
-      "supports_mcps": ["vector-database-mcp", "semantic-search-mcp"]
-    },
-    {
-      "id": "chroma",
-      "name": "Chroma",
-      "category": "vector-databases",
-      "reason": "Embedded vector DB for prototyping",
-      "priority": "HIGH",
-      "supports_skills": ["rag-implementer"],
-      "supports_mcps": ["vector-database-mcp"]
-    },
-    {
-      "id": "qdrant",
-      "name": "Qdrant",
-      "category": "vector-databases",
-      "reason": "High-performance vector search",
-      "priority": "MEDIUM",
-      "supports_skills": ["rag-implementer"],
-      "supports_mcps": ["vector-database-mcp"]
-    },
-    {
-      "id": "neo4j",
-      "name": "Neo4j",
-      "category": "graph-databases",
-      "reason": "Graph database for knowledge-graph-builder skill",
-      "priority": "HIGH",
-      "supports_skills": ["knowledge-graph-builder"],
-      "supports_mcps": ["graph-database-mcp"]
-    },
-    {
-      "id": "vercel",
-      "name": "Vercel",
-      "category": "platforms",
-      "reason": "Deployment platform for deployment-advisor skill",
-      "priority": "MEDIUM",
-      "supports_skills": ["deployment-advisor"],
-      "supports_mcps": ["deployment-orchestrator-mcp"]
-    },
-    {
-      "id": "railway",
-      "name": "Railway",
-      "category": "platforms",
-      "reason": "Full-stack deployment platform",
-      "priority": "MEDIUM",
-      "supports_skills": ["deployment-advisor"],
-      "supports_mcps": ["deployment-orchestrator-mcp"]
-    },
     {
       "id": "cohere",
       "name": "Cohere",
       "category": "llm-providers",
       "reason": "Embedding models for RAG",
       "priority": "MEDIUM",
-      "supports_skills": ["rag-implementer"],
-      "supports_mcps": ["embedding-generator-mcp"]
+      "supports_skills": [
+        "rag-implementer"
+      ],
+      "supports_mcps": [
+        "embedding-generator-mcp"
+      ]
     }
   ],
   "statistics": {
-    "total_integrations": 6,
+    "total_integrations": 25,
     "by_category": {
       "llm-providers": 2,
       "platforms": 3,
-      "vector-databases": 1,
-      "graph-databases": 0,
-      "framework-adapters": 0
+      "deployment-platforms": 3,
+      "vector-databases": 4,
+      "graph-databases": 1,
+      "framework-adapters": 0,
+      "media-services": 3,
+      "icon-libraries": 3,
+      "font-services": 2,
+      "design-tools": 4
     },
-    "missing_critical": 7,
-    "skills_covered": 8
+    "missing_critical": 1,
+    "skills_covered": 22
   },
   "usage_notes": {
     "purpose": "This registry catalogs all third-party service integrations",

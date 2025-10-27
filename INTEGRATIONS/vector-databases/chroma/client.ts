@@ -1,40 +1,52 @@
 /**
  * Chroma Vector Database Client
  *
- * Integration with Chroma for embedded vector storage and retrieval.
+ * Integration with ChromaDB for embedded vector storage and retrieval.
+ * ChromaDB is the open-source embedding database that makes it easy to build
+ * LLM applications by making knowledge, facts, and skills pluggable for LLMs.
  *
  * Features:
  * - Embedded database (no separate server needed)
- * - Vector similarity search
- * - Metadata filtering
+ * - Client-server mode support
+ * - Vector similarity search with multiple distance metrics
+ * - Advanced metadata filtering
+ * - Batch operations with configurable size
  * - Collections management
  * - Distance metrics (L2, cosine, IP)
+ * - Persistent storage support
  *
  * @example
  * ```typescript
  * import { ChromaClient } from './client'
  *
+ * // Embedded mode (no external service required)
  * const client = new ChromaClient({
  *   path: './chroma_db'
  * })
  *
- * // Create collection
- * await client.createCollection('documents', {
- *   metadata: { description: 'Document embeddings' }
+ * // Client-server mode
+ * const remoteClient = new ChromaClient({
+ *   url: 'http://localhost:8000',
+ *   auth: 'your-token'
  * })
  *
- * // Add vectors
- * await client.addVectors('documents', {
+ * // Create collection
+ * await client.createCollection('documents', {
+ *   metadata: { description: 'Document embeddings', hnsw:space: 'cosine' }
+ * })
+ *
+ * // Add vectors (batch operation)
+ * await client.upsert('documents', {
  *   ids: ['doc1', 'doc2'],
  *   embeddings: [[0.1, 0.2, ...], [0.3, 0.4, ...]],
- *   metadatas: [{ title: 'Doc 1' }, { title: 'Doc 2' }],
+ *   metadatas: [{ title: 'Doc 1', category: 'tech' }, { title: 'Doc 2', category: 'science' }],
  *   documents: ['Content 1', 'Content 2']
  * })
  *
- * // Search
+ * // Search with metadata filtering
  * const results = await client.search('documents', queryVector, {
- *   nResults: 10,
- *   where: { title: 'Doc 1' }
+ *   limit: 10,
+ *   filter: { category: 'tech' }
  * })
  * ```
  */
@@ -70,9 +82,16 @@ export interface AddVectorsParams {
   documents?: string[]
 }
 
+export interface UpsertOptions {
+  batchSize?: number
+  onProgress?: (current: number, total: number) => void
+}
+
 export interface SearchOptions {
   nResults?: number
+  limit?: number // Alias for nResults
   where?: Record<string, any>
+  filter?: Record<string, any> // Alias for where
   whereDocument?: Record<string, any>
   include?: Array<'embeddings' | 'metadatas' | 'documents' | 'distances'>
 }
@@ -192,24 +211,48 @@ export class ChromaClient {
   }
 
   /**
-   * Upsert vectors (add or update)
+   * Upsert vectors (add or update) with batch support
+   * Efficiently handles large datasets by processing in batches
+   */
+  async upsert(
+    collectionName: string,
+    params: AddVectorsParams,
+    options: UpsertOptions = {}
+  ): Promise<void> {
+    const collection = await this.getOrCreateCollection(collectionName)
+    const batchSize = options.batchSize || 100
+    const total = params.ids.length
+
+    // Process in batches to avoid memory issues
+    for (let i = 0; i < total; i += batchSize) {
+      const endIdx = Math.min(i + batchSize, total)
+
+      await collection.upsert({
+        ids: params.ids.slice(i, endIdx),
+        embeddings: params.embeddings.slice(i, endIdx),
+        metadatas: params.metadatas?.slice(i, endIdx),
+        documents: params.documents?.slice(i, endIdx),
+      })
+
+      if (options.onProgress) {
+        options.onProgress(endIdx, total)
+      }
+    }
+  }
+
+  /**
+   * Legacy alias for upsert (backward compatibility)
    */
   async upsertVectors(
     collectionName: string,
     params: AddVectorsParams
   ): Promise<void> {
-    const collection = await this.getOrCreateCollection(collectionName)
-
-    await collection.upsert({
-      ids: params.ids,
-      embeddings: params.embeddings,
-      metadatas: params.metadatas,
-      documents: params.documents,
-    })
+    return this.upsert(collectionName, params)
   }
 
   /**
    * Vector similarity search
+   * Supports both single vector and batch queries
    */
   async search(
     collectionName: string,
@@ -223,10 +266,14 @@ export class ChromaClient {
       ? (queryEmbeddings as number[][])
       : [queryEmbeddings as number[]]
 
+    // Support both nResults and limit, and where/filter aliases
+    const nResults = options.nResults || options.limit || 10
+    const where = options.where || options.filter
+
     const results = await collection.query({
       queryEmbeddings: embeddings,
-      nResults: options.nResults || 10,
-      where: options.where,
+      nResults,
+      where,
       whereDocument: options.whereDocument,
       include: options.include || ['metadatas', 'documents', 'distances'],
     })
@@ -349,6 +396,104 @@ export class ChromaClient {
 }
 
 /**
+ * Utility Functions
+ */
+
+/**
+ * Normalize vector to unit length (for cosine similarity)
+ */
+export function normalizeVector(vector: number[]): number[] {
+  const magnitude = Math.sqrt(vector.reduce((sum, val) => sum + val * val, 0))
+  if (magnitude === 0) return vector
+  return vector.map(val => val / magnitude)
+}
+
+/**
+ * Calculate cosine similarity between two vectors
+ */
+export function cosineSimilarity(a: number[], b: number[]): number {
+  if (a.length !== b.length) {
+    throw new Error('Vectors must have same length')
+  }
+
+  const dotProduct = a.reduce((sum, val, i) => sum + val * b[i], 0)
+  const magnitudeA = Math.sqrt(a.reduce((sum, val) => sum + val * val, 0))
+  const magnitudeB = Math.sqrt(b.reduce((sum, val) => sum + val * val, 0))
+
+  if (magnitudeA === 0 || magnitudeB === 0) return 0
+  return dotProduct / (magnitudeA * magnitudeB)
+}
+
+/**
+ * Calculate Euclidean distance between two vectors
+ */
+export function euclideanDistance(a: number[], b: number[]): number {
+  if (a.length !== b.length) {
+    throw new Error('Vectors must have same length')
+  }
+
+  return Math.sqrt(a.reduce((sum, val, i) => sum + Math.pow(val - b[i], 2), 0))
+}
+
+/**
+ * Calculate L2 (squared Euclidean) distance
+ */
+export function l2Distance(a: number[], b: number[]): number {
+  if (a.length !== b.length) {
+    throw new Error('Vectors must have same length')
+  }
+
+  return a.reduce((sum, val, i) => sum + Math.pow(val - b[i], 2), 0)
+}
+
+/**
+ * Chunk text into overlapping segments
+ * Useful for processing long documents before embedding
+ */
+export function chunkText(
+  text: string,
+  chunkSize: number = 500,
+  overlap: number = 50
+): string[] {
+  const chunks: string[] = []
+  const words = text.split(/\s+/)
+
+  for (let i = 0; i < words.length; i += chunkSize - overlap) {
+    const chunk = words.slice(i, i + chunkSize).join(' ')
+    if (chunk.trim()) {
+      chunks.push(chunk.trim())
+    }
+  }
+
+  return chunks.length > 0 ? chunks : [text]
+}
+
+/**
+ * Generate unique ID from text content
+ */
+export function generateId(text: string, prefix: string = 'doc'): string {
+  // Simple hash function for generating IDs
+  let hash = 0
+  for (let i = 0; i < text.length; i++) {
+    const char = text.charCodeAt(i)
+    hash = (hash << 5) - hash + char
+    hash = hash & hash // Convert to 32-bit integer
+  }
+  return `${prefix}_${Math.abs(hash)}_${Date.now()}`
+}
+
+/**
+ * Batch array into smaller chunks
+ */
+export function batchArray<T>(array: T[], batchSize: number): T[][] {
+  const batches: T[][] = []
+  for (let i = 0; i < array.length; i += batchSize) {
+    batches.push(array.slice(i, i + batchSize))
+  }
+  return batches
+}
+
+/**
  * Create Chroma client with environment variables
  */
 export function createChromaClient(): ChromaClient {
@@ -357,4 +502,83 @@ export function createChromaClient(): ChromaClient {
     url: process.env.CHROMA_URL,
     auth: process.env.CHROMA_AUTH_TOKEN,
   })
+}
+
+/**
+ * Example usage and patterns
+ */
+export async function examples() {
+  const client = new ChromaClient({ path: './my_chroma_db' })
+
+  // Example 1: Create collection with metadata
+  await client.createCollection('documents', {
+    metadata: {
+      description: 'Document embeddings',
+      'hnsw:space': 'cosine', // Distance metric
+    },
+  })
+
+  // Example 2: Batch upsert with progress tracking
+  const documents = Array.from({ length: 1000 }, (_, i) => ({
+    id: `doc_${i}`,
+    embedding: Array(384).fill(0).map(() => Math.random()),
+    metadata: { index: i, category: 'test' },
+    document: `Document ${i} content`,
+  }))
+
+  await client.upsert(
+    'documents',
+    {
+      ids: documents.map(d => d.id),
+      embeddings: documents.map(d => d.embedding),
+      metadatas: documents.map(d => d.metadata),
+      documents: documents.map(d => d.document),
+    },
+    {
+      batchSize: 100,
+      onProgress: (current, total) => {
+        console.log(`Progress: ${current}/${total} (${Math.round(current / total * 100)}%)`)
+      },
+    }
+  )
+
+  // Example 3: Search with filtering
+  const queryVector = Array(384).fill(0).map(() => Math.random())
+  const results = await client.search('documents', queryVector, {
+    limit: 5,
+    filter: { category: 'test' },
+    include: ['metadatas', 'documents', 'distances'],
+  })
+
+  console.log('Search results:', results)
+
+  // Example 4: Text chunking before embedding
+  const longText = 'This is a very long document...'.repeat(100)
+  const chunks = chunkText(longText, 500, 50)
+
+  const chunkIds = chunks.map((_, i) => generateId(chunks[i], 'chunk'))
+  // Then embed each chunk and upsert
+
+  // Example 5: Get collection statistics
+  const count = await client.count('documents')
+  console.log(`Collection has ${count} vectors`)
+
+  // Example 6: Delete by filter
+  await client.deleteByFilter('documents', { category: 'test' })
+
+  // Example 7: Peek at first items
+  const sample = await client.peek('documents', 5)
+  console.log('First 5 items:', sample)
+}
+
+/**
+ * Singleton instance (optional pattern)
+ */
+let instance: ChromaClient | null = null
+
+export function getChromaClient(config?: ChromaConfig): ChromaClient {
+  if (!instance) {
+    instance = config ? new ChromaClient(config) : createChromaClient()
+  }
+  return instance
 }

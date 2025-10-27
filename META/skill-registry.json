@@ -1,7 +1,7 @@
 {
-  "version": "3.12.2",
+  "version": "3.13.0",
   "last_updated": "2025-10-27",
-  "description": "Registry of all available skills in ai-dev-standards. Skills are model-invoked capabilities that Claude activates based on context. Now includes 42 active skills covering product development, AI systems, technical implementation, infrastructure, UX design, ADHD support, repository analysis, project management, data forensics, and automated code review workflows.",
+  "description": "Registry of all available skills in ai-dev-standards. Skills are model-invoked capabilities that Claude activates based on context. Now includes 44 active skills covering product development, AI systems, technical implementation, infrastructure, UX design, ADHD support, repository analysis, project management, data forensics, automated code review workflows, and design automation.",
   "skills": [
     {
       "name": "3d-visualizer",
@@ -1080,6 +1080,124 @@
       ],
       "required_integrations": [
         "supabase"
+      ],
+      "frameworks": [
+        "all"
+      ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
+      "name": "figma-developer",
+      "description": "Master Figma-to-code workflows and automation. Use when building design-to-code pipelines, extracting design tokens, automating component generation from Figma, or setting up design system synchronization.",
+      "triggers": [
+        "figma-developer",
+        "figma developer",
+        "figma to code",
+        "design to code"
+      ],
+      "tags": [
+        "design",
+        "automation"
+      ],
+      "category": "specialized",
+      "difficulty": "intermediate",
+      "estimated_time": "2-4 hours",
+      "path": "/SKILLS/figma-developer/",
+      "status": "active",
+      "prerequisites": [],
+      "related_skills": [
+        "frontend-builder",
+        "design-system-architect",
+        "ux-designer",
+        "visual-designer"
+      ],
+      "supports_mcps": [
+        "figma-sync-mcp",
+        "design-handoff-mcp",
+        "component-generator-mcp"
+      ],
+      "required_integrations": [
+        "figma"
+      ],
+      "frameworks": [
+        "all"
+      ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
+      "name": "asset-manager",
+      "description": "Organize, optimize, and manage design assets at scale. Use when setting up asset libraries, implementing CDN strategies, managing design system assets, or optimizing images and fonts for production.",
+      "triggers": [
+        "asset-manager",
+        "asset manager",
+        "design assets",
+        "asset management"
+      ],
+      "tags": [
+        "design",
+        "optimization"
+      ],
+      "category": "specialized",
+      "difficulty": "intermediate",
+      "estimated_time": "2-4 hours",
+      "path": "/SKILLS/asset-manager/",
+      "status": "active",
+      "prerequisites": [],
+      "related_skills": [
+        "performance-optimizer",
+        "visual-designer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "asset-library-mcp",
+        "asset-optimizer-mcp"
+      ],
+      "required_integrations": [
+        "cloudinary",
+        "imgix"
+      ],
+      "frameworks": [
+        "all"
+      ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
+      "name": "prototype-designer",
+      "description": "Create interactive prototypes for user testing and validation. Use when building click-through prototypes, setting up user testing workflows, creating interactive demos, or validating UX concepts before development.",
+      "triggers": [
+        "prototype-designer",
+        "prototype designer",
+        "prototyping",
+        "interactive prototype"
+      ],
+      "tags": [
+        "design",
+        "ux"
+      ],
+      "category": "specialized",
+      "difficulty": "intermediate",
+      "estimated_time": "2-4 hours",
+      "path": "/SKILLS/prototype-designer/",
+      "status": "active",
+      "prerequisites": [],
+      "related_skills": [
+        "ux-designer",
+        "visual-designer",
+        "user-researcher"
+      ],
+      "supports_mcps": [
+        "wireframe-generator-mcp",
+        "figma-sync-mcp"
+      ],
+      "required_integrations": [
+        "figma",
+        "adobe-xd"
       ],
       "frameworks": [
         "all"

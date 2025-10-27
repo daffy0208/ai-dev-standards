@@ -1,349 +1,386 @@
 /**
- * Table Component
- *
- * Reusable data table with sorting, pagination, and selection.
+ * Table component with sorting and pagination
  *
  * @example
  * ```tsx
- * const columns: Column<User>[] = [
+ * // Basic table with sorting
+ * interface User {
+ *   id: number;
+ *   name: string;
+ *   email: string;
+ *   role: string;
+ * }
+ *
+ * const [sortConfig, setSortConfig] = useState<SortConfig | null>(null);
+ *
+ * const columns: TableColumn<User>[] = [
+ *   { key: 'id', label: 'ID', sortable: true, width: '80px' },
  *   { key: 'name', label: 'Name', sortable: true },
- *   { key: 'email', label: 'Email' },
- *   { key: 'role', label: 'Role', render: (user) => user.role.toUpperCase() }
- * ]
+ *   { key: 'email', label: 'Email', sortable: true },
+ *   {
+ *     key: 'role',
+ *     label: 'Role',
+ *     sortable: true,
+ *     render: (value) => (
+ *       <span className={cn(
+ *         'px-2 py-1 rounded-full text-xs font-medium',
+ *         value === 'admin' ? 'bg-purple-100 text-purple-800' : 'bg-gray-100 text-gray-800'
+ *       )}>
+ *         {value}
+ *       </span>
+ *     )
+ *   }
+ * ];
+ *
+ * const users: User[] = [
+ *   { id: 1, name: 'John Doe', email: 'john@example.com', role: 'admin' },
+ *   { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'user' },
+ * ];
+ *
+ * // Sort data
+ * const sortedData = React.useMemo(() => {
+ *   if (!sortConfig) return users;
+ *
+ *   return [...users].sort((a, b) => {
+ *     const aValue = a[sortConfig.key as keyof User];
+ *     const bValue = b[sortConfig.key as keyof User];
+ *
+ *     if (aValue < bValue) return sortConfig.direction === 'asc' ? -1 : 1;
+ *     if (aValue > bValue) return sortConfig.direction === 'asc' ? 1 : -1;
+ *     return 0;
+ *   });
+ * }, [users, sortConfig]);
  *
  * <Table
- *   data={users}
  *   columns={columns}
- *   sortBy="name"
- *   sortOrder="asc"
- *   onSort={(key, order) => console.log(key, order)}
- *   selectable
- *   onSelectionChange={(selected) => console.log(selected)}
+ *   data={sortedData}
+ *   sortable
+ *   onSort={setSortConfig}
+ *   striped
+ *   hoverable
+ * />
+ * ```
+ *
+ * @example
+ * ```tsx
+ * // Table with custom rendering and row clicks
+ * const columns: TableColumn[] = [
+ *   { key: 'product', label: 'Product', sortable: true },
+ *   {
+ *     key: 'price',
+ *     label: 'Price',
+ *     sortable: true,
+ *     align: 'right',
+ *     render: (value) => `$${value.toFixed(2)}`
+ *   },
+ *   {
+ *     key: 'stock',
+ *     label: 'Stock',
+ *     align: 'center',
+ *     render: (value) => value > 0 ? (
+ *       <span className="text-green-600">In Stock</span>
+ *     ) : (
+ *       <span className="text-red-600">Out of Stock</span>
+ *     )
+ *   }
+ * ];
+ *
+ * <Table
+ *   columns={columns}
+ *   data={products}
+ *   onRowClick={(row) => console.log('Clicked:', row)}
+ *   bordered
+ *   compact
  * />
  * ```
  */
 
-import * as React from 'react'
-import { cn } from '@/lib/utils/cn'
+import React from 'react';
+import { cn } from './utils';
 
-export type SortOrder = 'asc' | 'desc'
-
-export interface Column<T> {
-  /**
-   * Column key (matches data property)
-   */
-  key: keyof T | string
-
-  /**
-   * Column label
-   */
-  label: string
-
-  /**
-   * Column is sortable
-   */
-  sortable?: boolean
-
-  /**
-   * Column width
-   */
-  width?: string
-
-  /**
-   * Custom cell render
-   */
-  render?: (item: T, index: number) => React.ReactNode
-
-  /**
-   * Cell alignment
-   */
-  align?: 'left' | 'center' | 'right'
-
-  /**
-   * Custom class for cells
-   */
-  className?: string
+/**
+ * Table column configuration
+ */
+export interface TableColumn<T = any> {
+  /** Unique key for the column (maps to data object key) */
+  key: string;
+  /** Column header label */
+  label: string;
+  /** Enable sorting for this column */
+  sortable?: boolean;
+  /** Custom render function for cell content */
+  render?: (value: any, row: T, index: number) => React.ReactNode;
+  /** Column width (CSS value) */
+  width?: string;
+  /** Column alignment */
+  align?: 'left' | 'center' | 'right';
+  /** Custom className for cells */
+  className?: string;
 }
 
-export interface TableProps<T> {
-  /**
-   * Table data
-   */
-  data: T[]
-
-  /**
-   * Column definitions
-   */
-  columns: Column<T>[]
-
-  /**
-   * Current sort column
-   */
-  sortBy?: keyof T | string
-
-  /**
-   * Current sort order
-   */
-  sortOrder?: SortOrder
-
-  /**
-   * Sort handler
-   */
-  onSort?: (key: keyof T | string, order: SortOrder) => void
-
-  /**
-   * Enable row selection
-   */
-  selectable?: boolean
-
-  /**
-   * Selected row IDs
-   */
-  selectedIds?: Set<string>
-
-  /**
-   * Selection change handler
-   */
-  onSelectionChange?: (selectedIds: Set<string>) => void
-
-  /**
-   * Row ID getter
-   */
-  getRowId?: (item: T) => string
-
-  /**
-   * Row click handler
-   */
-  onRowClick?: (item: T) => void
-
-  /**
-   * Empty state message
-   */
-  emptyMessage?: string
-
-  /**
-   * Loading state
-   */
-  loading?: boolean
-
-  /**
-   * Striped rows
-   */
-  striped?: boolean
-
-  /**
-   * Hover effect
-   */
-  hoverable?: boolean
-
-  /**
-   * Compact size
-   */
-  compact?: boolean
-
-  /**
-   * Custom class
-   */
-  className?: string
+/**
+ * Sort configuration
+ */
+export interface SortConfig {
+  key: string;
+  direction: 'asc' | 'desc';
 }
 
-export function Table<T extends Record<string, any>>({
-  data,
+/**
+ * Table component props
+ */
+export interface TableProps<T = any> {
+  /** Array of column configurations */
+  columns: TableColumn<T>[];
+  /** Array of data objects */
+  data: T[];
+  /** Enable sorting functionality */
+  sortable?: boolean;
+  /** Sort change handler */
+  onSort?: (sortConfig: SortConfig | null) => void;
+  /** Custom className */
+  className?: string;
+  /** Enable striped rows */
+  striped?: boolean;
+  /** Enable bordered cells */
+  bordered?: boolean;
+  /** Enable compact spacing */
+  compact?: boolean;
+  /** Enable hover effect on rows */
+  hoverable?: boolean;
+  /** Loading state */
+  loading?: boolean;
+  /** Empty state message */
+  emptyMessage?: string;
+  /** Row click handler */
+  onRowClick?: (row: T, index: number) => void;
+  /** Custom row className */
+  rowClassName?: string | ((row: T, index: number) => string);
+}
+
+export function Table<T = any>({
   columns,
-  sortBy,
-  sortOrder,
+  data,
+  sortable = false,
   onSort,
-  selectable,
-  selectedIds = new Set(),
-  onSelectionChange,
-  getRowId = (item) => item.id,
-  onRowClick,
-  emptyMessage = 'No data available',
-  loading,
-  striped,
-  hoverable = true,
-  compact,
   className,
+  striped = false,
+  bordered = false,
+  compact = false,
+  hoverable = true,
+  loading = false,
+  emptyMessage = 'No data available',
+  onRowClick,
+  rowClassName,
 }: TableProps<T>) {
-  const [internalSelection, setInternalSelection] = React.useState(new Set<string>())
+  const [internalSortConfig, setInternalSortConfig] = React.useState<SortConfig | null>(null);
 
-  const selection = selectable ? selectedIds : internalSelection
+  const currentSortConfig = onSort ? undefined : internalSortConfig;
 
-  const toggleRow = (id: string) => {
-    const newSelection = new Set(selection)
-    if (newSelection.has(id)) {
-      newSelection.delete(id)
+  const handleSort = (columnKey: string) => {
+    if (!sortable) return;
+
+    const newSortConfig: SortConfig =
+      currentSortConfig?.key === columnKey && currentSortConfig.direction === 'asc'
+        ? { key: columnKey, direction: 'desc' }
+        : { key: columnKey, direction: 'asc' };
+
+    if (onSort) {
+      onSort(newSortConfig);
     } else {
-      newSelection.add(id)
+      setInternalSortConfig(newSortConfig);
     }
+  };
 
-    if (selectable && onSelectionChange) {
-      onSelectionChange(newSelection)
-    } else {
-      setInternalSelection(newSelection)
+  const getSortIcon = (columnKey: string, isSortable: boolean) => {
+    if (!sortable || !isSortable) return null;
+
+    const isActive = currentSortConfig?.key === columnKey;
+    const direction = currentSortConfig?.direction;
+
+    return (
+      <span className="ml-1 inline-flex flex-col" aria-hidden="true">
+        <svg
+          className={cn(
+            'h-3 w-3 -mb-1',
+            isActive && direction === 'asc' ? 'text-blue-600' : 'text-gray-400'
+          )}
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path d="M5 10l5-5 5 5H5z" />
+        </svg>
+        <svg
+          className={cn(
+            'h-3 w-3',
+            isActive && direction === 'desc' ? 'text-blue-600' : 'text-gray-400'
+          )}
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path d="M15 10l-5 5-5-5h10z" />
+        </svg>
+      </span>
+    );
+  };
+
+  const getAlignmentClass = (align?: string) => {
+    switch (align) {
+      case 'center':
+        return 'text-center';
+      case 'right':
+        return 'text-right';
+      default:
+        return 'text-left';
     }
-  }
+  };
 
-  const toggleAll = () => {
-    if (selection.size === data.length) {
-      // Deselect all
-      const newSelection = new Set<string>()
-      if (selectable && onSelectionChange) {
-        onSelectionChange(newSelection)
-      } else {
-        setInternalSelection(newSelection)
-      }
-    } else {
-      // Select all
-      const newSelection = new Set(data.map(getRowId))
-      if (selectable && onSelectionChange) {
-        onSelectionChange(newSelection)
-      } else {
-        setInternalSelection(newSelection)
-      }
+  const getRowClassName = (row: T, index: number) => {
+    if (typeof rowClassName === 'function') {
+      return rowClassName(row, index);
     }
-  }
-
-  const handleSort = (key: keyof T | string) => {
-    if (!onSort) return
-
-    const newOrder: SortOrder =
-      sortBy === key && sortOrder === 'asc' ? 'desc' : 'asc'
-
-    onSort(key, newOrder)
-  }
+    return rowClassName;
+  };
 
   return (
-    <div className={cn('w-full overflow-auto', className)}>
-      <table className="w-full border-collapse">
-        <thead className="border-b border-gray-200 bg-gray-50">
+    <div className={cn('w-full overflow-x-auto', className)}>
+      <table
+        className={cn(
+          'w-full border-collapse',
+          bordered && 'border border-gray-300'
+        )}
+        role="table"
+      >
+        <thead className="bg-gray-50">
           <tr>
-            {/* Selection column */}
-            {selectable && (
+            {columns.map((column) => (
               <th
+                key={column.key}
+                scope="col"
+                style={{ width: column.width }}
                 className={cn(
-                  'text-left font-medium text-gray-700',
-                  compact ? 'px-3 py-2' : 'px-6 py-3'
-                )}
-              >
-                <input
-                  type="checkbox"
-                  checked={selection.size === data.length && data.length > 0}
-                  onChange={toggleAll}
-                  className="rounded border-gray-300"
-                />
-              </th>
-            )}
-
-            {/* Data columns */}
-            {columns.map((column, index) => (
-              <th
-                key={String(column.key)}
-                className={cn(
-                  'text-left text-sm font-medium text-gray-700',
-                  compact ? 'px-3 py-2' : 'px-6 py-3',
-                  column.align === 'center' && 'text-center',
-                  column.align === 'right' && 'text-right',
-                  column.sortable && 'cursor-pointer select-none hover:bg-gray-100',
+                  'font-medium text-gray-700',
+                  compact ? 'px-3 py-2 text-xs' : 'px-4 py-3 text-sm',
+                  getAlignmentClass(column.align),
+                  bordered && 'border border-gray-300',
+                  column.sortable && sortable && 'cursor-pointer select-none hover:bg-gray-100',
                   column.className
                 )}
-                style={{ width: column.width }}
                 onClick={() => column.sortable && handleSort(column.key)}
+                aria-sort={
+                  currentSortConfig?.key === column.key
+                    ? currentSortConfig.direction === 'asc'
+                      ? 'ascending'
+                      : 'descending'
+                    : undefined
+                }
+                tabIndex={column.sortable && sortable ? 0 : undefined}
+                onKeyDown={(e) => {
+                  if (column.sortable && sortable && (e.key === 'Enter' || e.key === ' ')) {
+                    e.preventDefault();
+                    handleSort(column.key);
+                  }
+                }}
               >
-                <div className="flex items-center gap-2">
-                  {column.label}
-                  {column.sortable && sortBy === column.key && (
-                    <span className="text-gray-400">
-                      {sortOrder === 'asc' ? '↑' : '↓'}
-                    </span>
-                  )}
+                <div className="flex items-center justify-between">
+                  <span>{column.label}</span>
+                  {getSortIcon(column.key, column.sortable || false)}
                 </div>
               </th>
             ))}
           </tr>
         </thead>
 
-        <tbody>
+        <tbody className="bg-white">
           {loading ? (
             <tr>
               <td
-                colSpan={columns.length + (selectable ? 1 : 0)}
+                colSpan={columns.length}
                 className={cn(
                   'text-center text-gray-500',
-                  compact ? 'px-3 py-8' : 'px-6 py-12'
+                  compact ? 'px-3 py-8 text-sm' : 'px-4 py-12'
                 )}
               >
-                Loading...
+                <div className="flex items-center justify-center">
+                  <svg
+                    className="mr-2 h-5 w-5 animate-spin text-blue-600"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    />
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    />
+                  </svg>
+                  <span>Loading...</span>
+                </div>
               </td>
             </tr>
           ) : data.length === 0 ? (
             <tr>
               <td
-                colSpan={columns.length + (selectable ? 1 : 0)}
+                colSpan={columns.length}
                 className={cn(
                   'text-center text-gray-500',
-                  compact ? 'px-3 py-8' : 'px-6 py-12'
+                  compact ? 'px-3 py-8 text-sm' : 'px-4 py-12'
                 )}
               >
                 {emptyMessage}
               </td>
             </tr>
           ) : (
-            data.map((item, rowIndex) => {
-              const rowId = getRowId(item)
-              const isSelected = selection.has(rowId)
+            data.map((row, rowIndex) => (
+              <tr
+                key={rowIndex}
+                className={cn(
+                  striped && rowIndex % 2 === 1 && 'bg-gray-50',
+                  hoverable && 'transition-colors hover:bg-gray-100',
+                  onRowClick && 'cursor-pointer',
+                  getRowClassName(row, rowIndex)
+                )}
+                onClick={() => onRowClick?.(row, rowIndex)}
+                tabIndex={onRowClick ? 0 : undefined}
+                onKeyDown={(e) => {
+                  if (onRowClick && (e.key === 'Enter' || e.key === ' ')) {
+                    e.preventDefault();
+                    onRowClick(row, rowIndex);
+                  }
+                }}
+              >
+                {columns.map((column) => {
+                  const value = (row as any)[column.key];
+                  const content = column.render
+                    ? column.render(value, row, rowIndex)
+                    : value;
 
-              return (
-                <tr
-                  key={rowId}
-                  className={cn(
-                    'border-b border-gray-100',
-                    striped && rowIndex % 2 === 1 && 'bg-gray-50',
-                    hoverable && 'hover:bg-gray-50',
-                    onRowClick && 'cursor-pointer',
-                    isSelected && 'bg-blue-50'
-                  )}
-                  onClick={() => onRowClick?.(item)}
-                >
-                  {/* Selection cell */}
-                  {selectable && (
+                  return (
                     <td
-                      className={cn(compact ? 'px-3 py-2' : 'px-6 py-4')}
-                      onClick={(e) => e.stopPropagation()}
+                      key={column.key}
+                      className={cn(
+                        'text-gray-900',
+                        compact ? 'px-3 py-2 text-sm' : 'px-4 py-3',
+                        getAlignmentClass(column.align),
+                        bordered && 'border border-gray-300',
+                        column.className
+                      )}
                     >
-                      <input
-                        type="checkbox"
-                        checked={isSelected}
-                        onChange={() => toggleRow(rowId)}
-                        className="rounded border-gray-300"
-                      />
+                      {content}
                     </td>
-                  )}
-
-                  {/* Data cells */}
-                  {columns.map((column) => {
-                    const value = column.render
-                      ? column.render(item, rowIndex)
-                      : (item[column.key as keyof T] as React.ReactNode)
-
-                    return (
-                      <td
-                        key={String(column.key)}
-                        className={cn(
-                          'text-sm text-gray-900',
-                          compact ? 'px-3 py-2' : 'px-6 py-4',
-                          column.align === 'center' && 'text-center',
-                          column.align === 'right' && 'text-right',
-                          column.className
-                        )}
-                      >
-                        {value}
-                      </td>
-                    )
-                  })}
-                </tr>
-              )
-            })
+                  );
+                })}
+              </tr>
+            ))
           )}
         </tbody>
       </table>
@@ -351,176 +388,51 @@ export function Table<T extends Record<string, any>>({
   )
 }
 
-Table.displayName = 'Table'
+Table.displayName = 'Table';
 
 /**
- * Table Pagination Component
+ * Hook for managing table sorting state
+ *
+ * @example
+ * ```tsx
+ * const { sortedData, sortConfig, handleSort } = useTableSort(data);
+ *
+ * <Table
+ *   columns={columns}
+ *   data={sortedData}
+ *   sortable
+ *   onSort={handleSort}
+ * />
+ * ```
  */
-export interface TablePaginationProps {
-  /**
-   * Current page (0-indexed)
-   */
-  currentPage: number
+export function useTableSort<T>(data: T[]) {
+  const [sortConfig, setSortConfig] = React.useState<SortConfig | null>(null);
 
-  /**
-   * Total pages
-   */
-  totalPages: number
+  const sortedData = React.useMemo(() => {
+    if (!sortConfig) return data;
 
-  /**
-   * Page change handler
-   */
-  onPageChange: (page: number) => void
+    return [...data].sort((a, b) => {
+      const aValue = (a as any)[sortConfig.key];
+      const bValue = (b as any)[sortConfig.key];
 
-  /**
-   * Items per page
-   */
-  pageSize?: number
+      if (aValue === null || aValue === undefined) return 1;
+      if (bValue === null || bValue === undefined) return -1;
 
-  /**
-   * Total items
-   */
-  totalItems?: number
+      if (typeof aValue === 'string' && typeof bValue === 'string') {
+        return sortConfig.direction === 'asc'
+          ? aValue.localeCompare(bValue)
+          : bValue.localeCompare(aValue);
+      }
 
-  /**
-   * Page size options
-   */
-  pageSizeOptions?: number[]
+      if (aValue < bValue) return sortConfig.direction === 'asc' ? -1 : 1;
+      if (aValue > bValue) return sortConfig.direction === 'asc' ? 1 : -1;
+      return 0;
+    });
+  }, [data, sortConfig]);
 
-  /**
-   * Page size change handler
-   */
-  onPageSizeChange?: (pageSize: number) => void
-
-  /**
-   * Compact size
-   */
-  compact?: boolean
-
-  /**
-   * Custom class
-   */
-  className?: string
+  return {
+    sortedData,
+    sortConfig,
+    handleSort: setSortConfig,
+  };
 }
-
-export const TablePagination = ({
-  currentPage,
-  totalPages,
-  onPageChange,
-  pageSize = 10,
-  totalItems,
-  pageSizeOptions = [10, 25, 50, 100],
-  onPageSizeChange,
-  compact,
-  className,
-}: TablePaginationProps) => {
-  const startItem = currentPage * pageSize + 1
-  const endItem = Math.min((currentPage + 1) * pageSize, totalItems || 0)
-
-  return (
-    <div
-      className={cn(
-        'flex items-center justify-between border-t border-gray-200',
-        compact ? 'px-3 py-2' : 'px-6 py-4',
-        className
-      )}
-    >
-      {/* Info */}
-      <div className="flex items-center gap-4">
-        {totalItems !== undefined && (
-          <p className="text-sm text-gray-700">
-            Showing <span className="font-medium">{startItem}</span> to{' '}
-            <span className="font-medium">{endItem}</span> of{' '}
-            <span className="font-medium">{totalItems}</span> results
-          </p>
-        )}
-
-        {/* Page size selector */}
-        {onPageSizeChange && (
-          <select
-            value={pageSize}
-            onChange={(e) => onPageSizeChange(Number(e.target.value))}
-            className="rounded-md border-gray-300 text-sm"
-          >
-            {pageSizeOptions.map((size) => (
-              <option key={size} value={size}>
-                {size} per page
-              </option>
-            ))}
-          </select>
-        )}
-      </div>
-
-      {/* Pagination controls */}
-      <div className="flex items-center gap-2">
-        <button
-          onClick={() => onPageChange(currentPage - 1)}
-          disabled={currentPage === 0}
-          className="rounded-md border border-gray-300 px-3 py-1 text-sm disabled:opacity-50 hover:bg-gray-50"
-        >
-          Previous
-        </button>
-
-        {/* Page numbers */}
-        <div className="flex items-center gap-1">
-          {Array.from({ length: totalPages }, (_, i) => i)
-            .filter((page) => {
-              // Show first, last, current, and adjacent pages
-              return (
-                page === 0 ||
-                page === totalPages - 1 ||
-                Math.abs(page - currentPage) <= 1
-              )
-            })
-            .map((page, index, array) => {
-              // Show ellipsis
-              const prevPage = array[index - 1]
-              if (prevPage !== undefined && page - prevPage > 1) {
-                return (
-                  <React.Fragment key={`ellipsis-${page}`}>
-                    <span className="px-2 text-gray-500">...</span>
-                    <button
-                      onClick={() => onPageChange(page)}
-                      className={cn(
-                        'rounded-md px-3 py-1 text-sm',
-                        page === currentPage
-                          ? 'bg-blue-600 text-white'
-                          : 'border border-gray-300 hover:bg-gray-50'
-                      )}
-                    >
-                      {page + 1}
-                    </button>
-                  </React.Fragment>
-                )
-              }
-
-              return (
-                <button
-                  key={page}
-                  onClick={() => onPageChange(page)}
-                  className={cn(
-                    'rounded-md px-3 py-1 text-sm',
-                    page === currentPage
-                      ? 'bg-blue-600 text-white'
-                      : 'border border-gray-300 hover:bg-gray-50'
-                  )}
-                >
-                  {page + 1}
-                </button>
-              )
-            })}
-        </div>
-
-        <button
-          onClick={() => onPageChange(currentPage + 1)}
-          disabled={currentPage >= totalPages - 1}
-          className="rounded-md border border-gray-300 px-3 py-1 text-sm disabled:opacity-50 hover:bg-gray-50"
-        >
-          Next
-        </button>
-      </div>
-    </div>
-  )
-}
-
-TablePagination.displayName = 'TablePagination'

@@ -1,8 +1,8 @@
 {
-  "version": "1.0.0",
-  "last_updated": "2025-10-24",
+  "version": "2.0.0",
+  "last_updated": "2025-10-27",
   "description": "Registry of reusable components in ai-dev-standards. Components are pre-built implementations for common patterns.",
-  "total_components": 13,
+  "total_components": 70,
   "components": [
     {
       "id": "simple-task-agent",
@@ -13,8 +13,12 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": ["multi-agent-architect"],
-      "supports_mcps": ["agent-orchestrator-mcp"],
+      "supports_skills": [
+        "multi-agent-architect"
+      ],
+      "supports_mcps": [
+        "agent-orchestrator-mcp"
+      ],
       "depends_on": [],
       "features": [
         "Task execution",
@@ -31,9 +35,19 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": ["frontend-builder", "security-engineer", "mobile-developer"],
-      "supports_mcps": ["component-generator-mcp", "mobile-builder-mcp"],
-      "depends_on": ["form-field", "use-form"],
+      "supports_skills": [
+        "frontend-builder",
+        "security-engineer",
+        "mobile-developer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "mobile-builder-mcp"
+      ],
+      "depends_on": [
+        "form-field",
+        "use-form"
+      ],
       "features": [
         "Email/password login",
         "Form validation",
@@ -50,9 +64,19 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": ["frontend-builder", "security-engineer", "mobile-developer"],
-      "supports_mcps": ["component-generator-mcp", "mobile-builder-mcp"],
-      "depends_on": ["form-field", "use-form"],
+      "supports_skills": [
+        "frontend-builder",
+        "security-engineer",
+        "mobile-developer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "mobile-builder-mcp"
+      ],
+      "depends_on": [
+        "form-field",
+        "use-form"
+      ],
       "features": [
         "User registration",
         "Password strength validation",
@@ -69,9 +93,17 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": ["frontend-builder", "security-engineer"],
-      "supports_mcps": ["component-generator-mcp"],
-      "depends_on": ["form-field", "use-form"],
+      "supports_skills": [
+        "frontend-builder",
+        "security-engineer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp"
+      ],
+      "depends_on": [
+        "form-field",
+        "use-form"
+      ],
       "features": [
         "Email verification",
         "Token validation",
@@ -87,8 +119,14 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": ["frontend-builder", "security-engineer", "accessibility-engineer"],
-      "supports_mcps": ["component-generator-mcp"],
+      "supports_skills": [
+        "frontend-builder",
+        "security-engineer",
+        "accessibility-engineer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp"
+      ],
       "depends_on": [],
       "features": [
         "Authentication checking",
@@ -105,9 +143,18 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": ["frontend-builder", "mobile-developer", "design-system-architect"],
-      "supports_mcps": ["component-generator-mcp", "mobile-builder-mcp"],
-      "depends_on": ["error-fallback"],
+      "supports_skills": [
+        "frontend-builder",
+        "mobile-developer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "mobile-builder-mcp"
+      ],
+      "depends_on": [
+        "error-fallback"
+      ],
       "features": [
         "Error catching",
         "Fallback UI",
@@ -123,8 +170,14 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": ["frontend-builder", "ux-designer"],
-      "supports_mcps": ["component-generator-mcp", "wireframe-generator-mcp"],
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "wireframe-generator-mcp"
+      ],
       "depends_on": [],
       "features": [
         "User-friendly error display",
@@ -141,8 +194,14 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": ["frontend-builder", "ux-designer"],
-      "supports_mcps": ["component-generator-mcp", "wireframe-generator-mcp"],
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "wireframe-generator-mcp"
+      ],
       "depends_on": [],
       "features": [
         "404 messaging",
@@ -159,8 +218,17 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": ["frontend-builder", "ux-designer", "design-system-architect", "mobile-developer"],
-      "supports_mcps": ["component-generator-mcp", "mobile-builder-mcp", "design-token-manager-mcp"],
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "design-system-architect",
+        "mobile-developer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "mobile-builder-mcp",
+        "design-token-manager-mcp"
+      ],
       "depends_on": [],
       "features": [
         "Animated spinner",
@@ -177,8 +245,15 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": ["frontend-builder", "ux-designer", "design-system-architect"],
-      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp"
+      ],
       "depends_on": [],
       "features": [
         "Content placeholders",
@@ -195,8 +270,17 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": ["frontend-builder", "ux-designer", "design-system-architect", "mobile-developer"],
-      "supports_mcps": ["component-generator-mcp", "mobile-builder-mcp", "design-token-manager-mcp"],
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "design-system-architect",
+        "mobile-developer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "mobile-builder-mcp",
+        "design-token-manager-mcp"
+      ],
       "depends_on": [],
       "features": [
         "Success/error/info variants",
@@ -214,8 +298,16 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": ["frontend-builder", "accessibility-engineer", "design-system-architect"],
-      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp", "design-token-manager-mcp"],
+      "supports_skills": [
+        "frontend-builder",
+        "accessibility-engineer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "accessibility-checker-mcp",
+        "design-token-manager-mcp"
+      ],
       "depends_on": [],
       "features": [
         "Input types",
@@ -233,14 +325,1652 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": ["frontend-builder"],
-      "supports_mcps": ["component-generator-mcp"],
+      "supports_skills": [
+        "frontend-builder"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp"
+      ],
       "depends_on": [],
       "features": [
         "Form state",
         "Validation",
         "Submit handling",
         "Reset functionality"
+      ]
+    },
+    {
+      "id": "base-mcp-server",
+      "name": "Base MCP Server",
+      "category": "mcp-servers",
+      "description": "Foundation class for all MCP servers with tool/resource/prompt registration",
+      "path": "/COMPONENTS/mcp-servers/base-mcp-server.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": [
+        "multi-agent-architect"
+      ],
+      "supports_mcps": [
+        "all-36-mcps"
+      ],
+      "depends_on": [],
+      "features": [
+        "Tool registration and invocation",
+        "Resource registration and access",
+        "Prompt registration and execution",
+        "Error handling and logging",
+        "Health checks"
+      ]
+    },
+    {
+      "id": "mcp-tool-handler",
+      "name": "MCP Tool Handler",
+      "category": "mcp-servers",
+      "description": "Advanced tool execution with rate limiting, caching, and retries",
+      "path": "/COMPONENTS/mcp-servers/mcp-tool-handler.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": [
+        "multi-agent-architect",
+        "performance-optimizer"
+      ],
+      "supports_mcps": [
+        "all-36-mcps"
+      ],
+      "depends_on": [
+        "base-mcp-server"
+      ],
+      "features": [
+        "Input/output validation with Zod",
+        "Rate limiting (sliding/fixed window)",
+        "Caching with TTL",
+        "Retry logic with exponential backoff",
+        "Timeout handling",
+        "Performance metrics"
+      ]
+    },
+    {
+      "id": "mcp-resource-handler",
+      "name": "MCP Resource Handler",
+      "category": "mcp-servers",
+      "description": "Resource access management with caching and versioning",
+      "path": "/COMPONENTS/mcp-servers/mcp-resource-handler.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": [
+        "multi-agent-architect"
+      ],
+      "supports_mcps": [
+        "all-36-mcps"
+      ],
+      "depends_on": [
+        "base-mcp-server"
+      ],
+      "features": [
+        "Content caching with size limits",
+        "Version management",
+        "ETags for cache validation",
+        "Access control",
+        "Usage statistics"
+      ]
+    },
+    {
+      "id": "mcp-prompt-handler",
+      "name": "MCP Prompt Handler",
+      "category": "mcp-servers",
+      "description": "Template-based prompt generation with variable substitution",
+      "path": "/COMPONENTS/mcp-servers/mcp-prompt-handler.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": [
+        "multi-agent-architect",
+        "copywriter"
+      ],
+      "supports_mcps": [
+        "all-36-mcps"
+      ],
+      "depends_on": [
+        "base-mcp-server"
+      ],
+      "features": [
+        "Template processing with {{variable}} syntax",
+        "Type validation",
+        "Dynamic prompt generation",
+        "Example management",
+        "Prompt caching"
+      ]
+    },
+    {
+      "id": "document-loader",
+      "name": "Document Loader",
+      "category": "rag-pipelines",
+      "description": "Multi-source document ingestion for RAG pipelines",
+      "path": "/COMPONENTS/rag-pipelines/document-loader.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": [
+        "rag-implementer",
+        "knowledge-base-manager"
+      ],
+      "supports_mcps": [
+        "vector-database-mcp",
+        "knowledge-base-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Multi-source loading (files, directories, URLs)",
+        "Format support (TXT, MD, HTML, JSON, CSV, PDF)",
+        "Parallel processing",
+        "Metadata extraction",
+        "Progress tracking"
+      ]
+    },
+    {
+      "id": "text-chunker",
+      "name": "Text Chunker",
+      "category": "rag-pipelines",
+      "description": "Smart text chunking with multiple strategies for optimal retrieval",
+      "path": "/COMPONENTS/rag-pipelines/text-chunker.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": [
+        "rag-implementer",
+        "knowledge-base-manager"
+      ],
+      "supports_mcps": [
+        "vector-database-mcp",
+        "semantic-search-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Multiple chunking strategies (fixed, recursive, semantic, sentence, markdown)",
+        "Overlap configuration",
+        "Token counting",
+        "Metadata preservation",
+        "Batch processing"
+      ]
+    },
+    {
+      "id": "embedding-pipeline",
+      "name": "Embedding Pipeline",
+      "category": "rag-pipelines",
+      "description": "Batch embedding generation with multi-provider support",
+      "path": "/COMPONENTS/rag-pipelines/embedding-pipeline.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": [
+        "rag-implementer",
+        "knowledge-base-manager"
+      ],
+      "supports_mcps": [
+        "embedding-generator-mcp",
+        "vector-database-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Multi-provider support (OpenAI, Cohere, HuggingFace)",
+        "Batch processing",
+        "Caching and retries",
+        "Progress tracking",
+        "Rate limit handling"
+      ]
+    },
+    {
+      "id": "vector-store-client",
+      "name": "Vector Store Client",
+      "category": "rag-pipelines",
+      "description": "Unified interface for multiple vector databases",
+      "path": "/COMPONENTS/rag-pipelines/vector-store-client.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": [
+        "rag-implementer",
+        "knowledge-base-manager"
+      ],
+      "supports_mcps": [
+        "vector-database-mcp",
+        "semantic-search-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Multi-database support (Pinecone, Weaviate, Chroma, Qdrant, PgVector)",
+        "Unified search interface",
+        "Connection pooling",
+        "Batch operations",
+        "Metadata filtering"
+      ]
+    },
+    {
+      "id": "retrieval-pipeline",
+      "name": "Retrieval Pipeline",
+      "category": "rag-pipelines",
+      "description": "Query processing with hybrid search and reranking",
+      "path": "/COMPONENTS/rag-pipelines/retrieval-pipeline.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": [
+        "rag-implementer",
+        "knowledge-base-manager"
+      ],
+      "supports_mcps": [
+        "semantic-search-mcp",
+        "vector-database-mcp"
+      ],
+      "depends_on": [
+        "vector-store-client",
+        "embedding-pipeline"
+      ],
+      "features": [
+        "Query expansion and rewriting",
+        "Hybrid search (vector + keyword)",
+        "Fusion algorithms (RRF, weighted)",
+        "Reranking support",
+        "Result deduplication"
+      ]
+    },
+    {
+      "id": "rag-orchestrator",
+      "name": "RAG Orchestrator",
+      "category": "rag-pipelines",
+      "description": "End-to-end RAG pipeline orchestration",
+      "path": "/COMPONENTS/rag-pipelines/rag-orchestrator.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": [
+        "rag-implementer",
+        "knowledge-base-manager"
+      ],
+      "supports_mcps": [
+        "knowledge-base-mcp",
+        "vector-database-mcp"
+      ],
+      "depends_on": [
+        "document-loader",
+        "text-chunker",
+        "embedding-pipeline",
+        "vector-store-client",
+        "retrieval-pipeline"
+      ],
+      "features": [
+        "Ingestion pipeline (load, chunk, embed, store)",
+        "Query pipeline (retrieve, rerank, generate)",
+        "Pipeline monitoring and metrics",
+        "Error handling and retries",
+        "Configuration management"
+      ]
+    },
+    {
+      "id": "button",
+      "name": "Button",
+      "category": "ui-components",
+      "description": "Accessible button component with variants and loading states",
+      "path": "/COMPONENTS/ui-components/Button.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "design-system-architect",
+        "accessibility-engineer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp",
+        "accessibility-checker-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Variant styles (primary, secondary, ghost, destructive, outline, link)",
+        "Size options (sm, md, lg, icon)",
+        "Loading state with spinner",
+        "Full ARIA support",
+        "Keyboard navigation"
+      ]
+    },
+    {
+      "id": "card",
+      "name": "Card",
+      "category": "ui-components",
+      "description": "Card container component for content grouping",
+      "path": "/COMPONENTS/ui-components/Card.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "design-system-architect",
+        "ux-designer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Variant styles (default, bordered, elevated)",
+        "Optional title and footer",
+        "Composable sections",
+        "Responsive design"
+      ]
+    },
+    {
+      "id": "input",
+      "name": "Input",
+      "category": "ui-components",
+      "description": "Text input component with validation and password toggle",
+      "path": "/COMPONENTS/ui-components/Input.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "accessibility-engineer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "accessibility-checker-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Input types (text, password, email, number)",
+        "Password visibility toggle",
+        "Error states with validation",
+        "ARIA labels and descriptions",
+        "Disabled states"
+      ]
+    },
+    {
+      "id": "modal",
+      "name": "Modal",
+      "category": "ui-components",
+      "description": "Accessible modal dialog with focus trap and backdrop",
+      "path": "/COMPONENTS/ui-components/Modal.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "accessibility-engineer",
+        "ux-designer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "accessibility-checker-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Size options (sm, md, lg, full)",
+        "Focus trap implementation",
+        "ESC key and backdrop close",
+        "Body scroll lock",
+        "Portal rendering",
+        "Full ARIA dialog support"
+      ]
+    },
+    {
+      "id": "select",
+      "name": "Select",
+      "category": "ui-components",
+      "description": "Dropdown select with single/multi-select and search",
+      "path": "/COMPONENTS/ui-components/Select.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "accessibility-engineer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "accessibility-checker-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Single and multi-select modes",
+        "Searchable/filterable options",
+        "Full keyboard navigation",
+        "ARIA listbox pattern",
+        "Disabled options support"
+      ]
+    },
+    {
+      "id": "table",
+      "name": "Table",
+      "category": "ui-components",
+      "description": "Data table with sorting and style variants",
+      "path": "/COMPONENTS/ui-components/Table.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "data-visualizer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Column sorting (ascending/descending)",
+        "Variant styles (default, striped, bordered, compact)",
+        "Custom cell rendering",
+        "useTableSort hook",
+        "ARIA table semantics"
+      ]
+    },
+    {
+      "id": "tabs",
+      "name": "Tabs",
+      "category": "ui-components",
+      "description": "Tabbed interface with controlled/uncontrolled modes",
+      "path": "/COMPONENTS/ui-components/Tabs.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Compound component pattern",
+        "Controlled and uncontrolled modes",
+        "Variant styles (default, pills, underline)",
+        "ARIA tabs pattern",
+        "Keyboard navigation"
+      ]
+    },
+    {
+      "id": "pagination",
+      "name": "Pagination",
+      "category": "ui-components",
+      "description": "Pagination component with intelligent page display",
+      "path": "/COMPONENTS/ui-components/Pagination.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "data-visualizer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Intelligent page number algorithm with ellipsis",
+        "First/last and prev/next buttons",
+        "Configurable sibling count",
+        "ARIA navigation",
+        "Responsive design"
+      ]
+    },
+    {
+      "id": "cn-utility",
+      "name": "CN Utility",
+      "category": "ui-components",
+      "description": "Tailwind CSS class merging utility",
+      "path": "/COMPONENTS/ui-components/utils.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Merge Tailwind classes with proper precedence",
+        "Conflict resolution",
+        "Type-safe class values"
+      ]
+    },
+    {
+      "id": "task-queue",
+      "name": "Task Queue",
+      "category": "workflows",
+      "description": "Priority-based task queue with retry logic",
+      "path": "/COMPONENTS/workflows/task-queue.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": [
+        "multi-agent-architect",
+        "mvp-builder",
+        "performance-optimizer"
+      ],
+      "supports_mcps": [
+        "agent-orchestrator-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Priority queue (low, normal, high, urgent)",
+        "Concurrent task limits",
+        "Retry logic with exponential backoff",
+        "Task dependencies",
+        "Progress tracking"
+      ]
+    },
+    {
+      "id": "workflow-orchestrator",
+      "name": "Workflow Orchestrator",
+      "category": "workflows",
+      "description": "Linear and parallel workflow execution with error recovery",
+      "path": "/COMPONENTS/workflows/workflow-orchestrator.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": [
+        "multi-agent-architect",
+        "mvp-builder"
+      ],
+      "supports_mcps": [
+        "agent-orchestrator-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Linear and parallel step execution",
+        "Conditional branching",
+        "Error recovery strategies (retry, skip, abort, continue)",
+        "Rollback support",
+        "State persistence"
+      ]
+    },
+    {
+      "id": "state-manager",
+      "name": "State Manager",
+      "category": "workflows",
+      "description": "State management with history and pub/sub",
+      "path": "/COMPONENTS/workflows/state-manager.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": [
+        "multi-agent-architect",
+        "frontend-builder"
+      ],
+      "supports_mcps": [
+        "agent-orchestrator-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "State get/set/delete with dot notation paths",
+        "State history with undo/redo",
+        "Pub/sub for state changes",
+        "Wildcard subscriptions",
+        "State diffing"
+      ]
+    },
+    {
+      "id": "event-bus",
+      "name": "Event Bus",
+      "category": "workflows",
+      "description": "Pub/sub event system with priority and wildcards",
+      "path": "/COMPONENTS/workflows/event-bus.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": [
+        "multi-agent-architect",
+        "frontend-builder",
+        "mvp-builder"
+      ],
+      "supports_mcps": [
+        "agent-orchestrator-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Pub/sub event pattern",
+        "Wildcard subscriptions (single and multi-level)",
+        "Event priority (low, normal, high, critical)",
+        "Event replay and history",
+        "Typed events support"
+      ]
+    },
+    {
+      "id": "image",
+      "name": "Image",
+      "category": "media",
+      "description": "Optimized image component with lazy loading, srcset, and blur placeholder",
+      "path": "/COMPONENTS/media/Image.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "performance-optimizer",
+        "visual-designer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "asset-optimizer-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Lazy loading with Intersection Observer",
+        "Responsive srcset generation",
+        "Blur-up placeholder",
+        "Object-fit support",
+        "Error handling with fallback"
+      ]
+    },
+    {
+      "id": "gallery",
+      "name": "Gallery",
+      "category": "media",
+      "description": "Image gallery with lightbox and keyboard navigation",
+      "path": "/COMPONENTS/media/Gallery.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "accessibility-engineer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "accessibility-checker-mcp"
+      ],
+      "depends_on": [
+        "image",
+        "modal",
+        "cn-utility"
+      ],
+      "features": [
+        "Grid layout with masonry option",
+        "Lightbox modal",
+        "Keyboard navigation (arrows, ESC)",
+        "Touch swipe support",
+        "Thumbnail navigation"
+      ]
+    },
+    {
+      "id": "carousel",
+      "name": "Carousel",
+      "category": "media",
+      "description": "Image carousel with touch swipe and autoplay",
+      "path": "/COMPONENTS/media/Carousel.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "mobile-developer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "mobile-builder-mcp"
+      ],
+      "depends_on": [
+        "image",
+        "cn-utility"
+      ],
+      "features": [
+        "Touch swipe support",
+        "Autoplay with pause on hover",
+        "Dot indicators",
+        "Arrow navigation",
+        "Loop/infinite scroll option"
+      ]
+    },
+    {
+      "id": "image-upload",
+      "name": "Image Upload",
+      "category": "media",
+      "description": "Drag-and-drop image uploader with preview",
+      "path": "/COMPONENTS/media/ImageUpload.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Drag and drop interface",
+        "Click to browse",
+        "Image preview before upload",
+        "File type validation",
+        "Size limits",
+        "Multiple upload support"
+      ]
+    },
+    {
+      "id": "avatar",
+      "name": "Avatar",
+      "category": "media",
+      "description": "User avatar with fallback initials",
+      "path": "/COMPONENTS/media/Avatar.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Image with fallback to initials",
+        "Size variants (xs, sm, md, lg, xl)",
+        "Shape options (circle, square, rounded)",
+        "Status indicator",
+        "Group avatar support"
+      ]
+    },
+    {
+      "id": "media-viewer",
+      "name": "Media Viewer",
+      "category": "media",
+      "description": "Full-screen media viewer with zoom and pan",
+      "path": "/COMPONENTS/media/MediaViewer.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp"
+      ],
+      "depends_on": [
+        "modal",
+        "cn-utility"
+      ],
+      "features": [
+        "Full-screen mode",
+        "Zoom in/out controls",
+        "Pan/drag support",
+        "Keyboard shortcuts",
+        "Support for images and videos"
+      ]
+    },
+    {
+      "id": "icon",
+      "name": "Icon",
+      "category": "ui-components",
+      "description": "Universal icon component supporting multiple icon libraries",
+      "path": "/COMPONENTS/ui-components/Icon.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "design-system-architect",
+        "visual-designer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp",
+        "icon-library-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Support for Heroicons, Lucide, Font Awesome",
+        "Size variants (xs, sm, md, lg, xl)",
+        "Color customization",
+        "Accessibility labels",
+        "Animated icons support"
+      ]
+    },
+    {
+      "id": "icon-picker",
+      "name": "Icon Picker",
+      "category": "ui-components",
+      "description": "Icon search and selection interface",
+      "path": "/COMPONENTS/ui-components/IconPicker.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "icon-library-mcp"
+      ],
+      "depends_on": [
+        "icon",
+        "input",
+        "select",
+        "cn-utility"
+      ],
+      "features": [
+        "Search by name",
+        "Category filtering",
+        "Recent icons",
+        "Preview before selection",
+        "Multi-library support"
+      ]
+    },
+    {
+      "id": "tooltip",
+      "name": "Tooltip",
+      "category": "ui-components",
+      "description": "Contextual tooltip with multiple placements",
+      "path": "/COMPONENTS/ui-components/Tooltip.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "accessibility-engineer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "accessibility-checker-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "4 placements (top, bottom, left, right)",
+        "Auto-positioning",
+        "Hover and click triggers",
+        "Delay configuration",
+        "ARIA compliance"
+      ]
+    },
+    {
+      "id": "popover",
+      "name": "Popover",
+      "category": "ui-components",
+      "description": "Floating popover with portal rendering",
+      "path": "/COMPONENTS/ui-components/Popover.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "accessibility-engineer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "accessibility-checker-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Portal rendering",
+        "Click outside to close",
+        "Arrow indicator",
+        "Placement options",
+        "Focus trap"
+      ]
+    },
+    {
+      "id": "accordion",
+      "name": "Accordion",
+      "category": "ui-components",
+      "description": "Collapsible content with keyboard navigation",
+      "path": "/COMPONENTS/ui-components/Accordion.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "accessibility-engineer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "accessibility-checker-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Single or multiple expansion",
+        "Keyboard navigation",
+        "Animated transitions",
+        "ARIA accordion pattern",
+        "Controlled/uncontrolled modes"
+      ]
+    },
+    {
+      "id": "drawer",
+      "name": "Drawer",
+      "category": "ui-components",
+      "description": "Slide-out drawer/sidebar with focus trap",
+      "path": "/COMPONENTS/ui-components/Drawer.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "accessibility-engineer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "accessibility-checker-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Slide from left/right/top/bottom",
+        "Focus trap",
+        "Body scroll lock",
+        "Backdrop with blur",
+        "ESC key support"
+      ]
+    },
+    {
+      "id": "dialog",
+      "name": "Dialog",
+      "category": "ui-components",
+      "description": "Accessible modal dialog",
+      "path": "/COMPONENTS/ui-components/Dialog.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "accessibility-engineer",
+        "ux-designer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "accessibility-checker-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Size options (sm, md, lg, xl)",
+        "Focus trap implementation",
+        "ESC key and backdrop close",
+        "Body scroll lock",
+        "ARIA dialog support"
+      ]
+    },
+    {
+      "id": "slider",
+      "name": "Slider",
+      "category": "ui-components",
+      "description": "Range slider with marks and tooltips",
+      "path": "/COMPONENTS/ui-components/Slider.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "accessibility-engineer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "accessibility-checker-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Single and range sliders",
+        "Mark indicators",
+        "Tooltip with value",
+        "Keyboard navigation",
+        "ARIA slider pattern"
+      ]
+    },
+    {
+      "id": "color-picker",
+      "name": "Color Picker",
+      "category": "ui-components",
+      "description": "Color selection with HEX/RGB/HSL modes",
+      "path": "/COMPONENTS/ui-components/ColorPicker.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "visual-designer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [
+        "input",
+        "cn-utility"
+      ],
+      "features": [
+        "HEX/RGB/HSL input modes",
+        "Color palette swatches",
+        "Eyedropper tool",
+        "Alpha channel support",
+        "Recent colors"
+      ]
+    },
+    {
+      "id": "date-picker",
+      "name": "Date Picker",
+      "category": "ui-components",
+      "description": "Calendar date picker with range selection",
+      "path": "/COMPONENTS/ui-components/DatePicker.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "accessibility-engineer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "accessibility-checker-mcp"
+      ],
+      "depends_on": [
+        "input",
+        "popover",
+        "cn-utility"
+      ],
+      "features": [
+        "Single date and range selection",
+        "Min/max date constraints",
+        "Disabled dates",
+        "Month/year navigation",
+        "Keyboard navigation"
+      ]
+    },
+    {
+      "id": "time-picker",
+      "name": "Time Picker",
+      "category": "ui-components",
+      "description": "Time selection with 12/24hr formats",
+      "path": "/COMPONENTS/ui-components/TimePicker.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp"
+      ],
+      "depends_on": [
+        "input",
+        "select",
+        "cn-utility"
+      ],
+      "features": [
+        "12/24 hour format",
+        "Hour/minute selection",
+        "Keyboard input",
+        "Dropdown selection",
+        "Time validation"
+      ]
+    },
+    {
+      "id": "file-upload",
+      "name": "File Upload",
+      "category": "ui-components",
+      "description": "File upload with drag-and-drop",
+      "path": "/COMPONENTS/ui-components/FileUpload.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Drag and drop",
+        "Multiple file support",
+        "File type validation",
+        "Size limits",
+        "Upload progress",
+        "Preview thumbnails"
+      ]
+    },
+    {
+      "id": "progress",
+      "name": "Progress",
+      "category": "ui-components",
+      "description": "Linear and circular progress indicators",
+      "path": "/COMPONENTS/ui-components/Progress.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "design-system-architect",
+        "ux-designer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Linear and circular styles",
+        "Determinate and indeterminate modes",
+        "Color variants",
+        "Size options",
+        "Label display"
+      ]
+    },
+    {
+      "id": "badge",
+      "name": "Badge",
+      "category": "ui-components",
+      "description": "Notification badge with variants",
+      "path": "/COMPONENTS/ui-components/Badge.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "design-system-architect",
+        "visual-designer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Variant styles (default, primary, success, warning, error)",
+        "Size options (sm, md, lg)",
+        "Dot indicator",
+        "Removable option",
+        "Count display"
+      ]
+    },
+    {
+      "id": "alert",
+      "name": "Alert",
+      "category": "ui-components",
+      "description": "Alert message with variants",
+      "path": "/COMPONENTS/ui-components/Alert.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [
+        "icon",
+        "cn-utility"
+      ],
+      "features": [
+        "Variant styles (info, success, warning, error)",
+        "Closeable option",
+        "Icon support",
+        "Title and description",
+        "Action buttons"
+      ]
+    },
+    {
+      "id": "breadcrumb",
+      "name": "Breadcrumb",
+      "category": "ui-components",
+      "description": "Breadcrumb navigation",
+      "path": "/COMPONENTS/ui-components/Breadcrumb.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "accessibility-engineer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "accessibility-checker-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Automatic separator",
+        "Current page indicator",
+        "Truncation for long paths",
+        "ARIA navigation",
+        "Custom separators"
+      ]
+    },
+    {
+      "id": "stepper",
+      "name": "Stepper",
+      "category": "ui-components",
+      "description": "Step-by-step progress indicator",
+      "path": "/COMPONENTS/ui-components/Stepper.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Horizontal and vertical layouts",
+        "Step status (active, completed, error)",
+        "Clickable steps",
+        "Optional descriptions",
+        "Progress line"
+      ]
+    },
+    {
+      "id": "rating",
+      "name": "Rating",
+      "category": "ui-components",
+      "description": "Star rating component",
+      "path": "/COMPONENTS/ui-components/Rating.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp"
+      ],
+      "depends_on": [
+        "icon",
+        "cn-utility"
+      ],
+      "features": [
+        "Star or custom icon",
+        "Half-star support",
+        "Read-only mode",
+        "Hover preview",
+        "Keyboard navigation"
+      ]
+    },
+    {
+      "id": "skeleton-loader-enhanced",
+      "name": "Skeleton Loader Enhanced",
+      "category": "ui-components",
+      "description": "Enhanced skeleton loader with complex layouts",
+      "path": "/COMPONENTS/ui-components/SkeletonLoaderEnhanced.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Complex layout templates",
+        "Card/list/table skeletons",
+        "Wave animation",
+        "Custom shape composition",
+        "Avatar + text patterns"
+      ]
+    },
+    {
+      "id": "grid",
+      "name": "Grid",
+      "category": "ui-components",
+      "description": "CSS Grid wrapper with responsive columns",
+      "path": "/COMPONENTS/ui-components/Grid.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Responsive column count",
+        "Gap control",
+        "Auto-fit/auto-fill",
+        "Min-width constraints",
+        "Alignment options"
+      ]
+    },
+    {
+      "id": "container",
+      "name": "Container",
+      "category": "ui-components",
+      "description": "Max-width container with padding",
+      "path": "/COMPONENTS/ui-components/Container.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Max-width variants (sm, md, lg, xl, 2xl, full)",
+        "Responsive padding",
+        "Center alignment",
+        "Fluid option"
+      ]
+    },
+    {
+      "id": "stack",
+      "name": "Stack",
+      "category": "ui-components",
+      "description": "Flex stack (vertical/horizontal)",
+      "path": "/COMPONENTS/ui-components/Stack.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Vertical/horizontal direction",
+        "Spacing control",
+        "Alignment options",
+        "Wrap support",
+        "Divider option"
+      ]
+    },
+    {
+      "id": "spacer",
+      "name": "Spacer",
+      "category": "ui-components",
+      "description": "Flexible spacing component",
+      "path": "/COMPONENTS/ui-components/Spacer.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "design-system-architect",
+        "visual-designer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Fixed or flex sizing",
+        "Horizontal/vertical",
+        "Responsive spacing",
+        "Design token integration"
+      ]
+    },
+    {
+      "id": "divider",
+      "name": "Divider",
+      "category": "ui-components",
+      "description": "Visual divider (horizontal/vertical)",
+      "path": "/COMPONENTS/ui-components/Divider.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "visual-designer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Horizontal/vertical orientation",
+        "Label/text in divider",
+        "Thickness control",
+        "Color variants",
+        "Spacing options"
+      ]
+    },
+    {
+      "id": "aspect-ratio",
+      "name": "Aspect Ratio",
+      "category": "ui-components",
+      "description": "Maintain aspect ratio wrapper",
+      "path": "/COMPONENTS/ui-components/AspectRatio.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Common ratios (1:1, 16:9, 4:3, 21:9)",
+        "Custom ratio support",
+        "Responsive behavior",
+        "Content positioning"
+      ]
+    },
+    {
+      "id": "center",
+      "name": "Center",
+      "category": "ui-components",
+      "description": "Center content horizontally and vertically",
+      "path": "/COMPONENTS/ui-components/Center.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Horizontal centering",
+        "Vertical centering",
+        "Both axes centering",
+        "Inline option"
+      ]
+    },
+    {
+      "id": "switch",
+      "name": "Switch",
+      "category": "ui-components",
+      "description": "Toggle switch with ARIA",
+      "path": "/COMPONENTS/ui-components/Switch.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "accessibility-engineer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "accessibility-checker-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "On/off toggle",
+        "Size variants (sm, md, lg)",
+        "Disabled state",
+        "ARIA switch role",
+        "Keyboard navigation"
+      ]
+    },
+    {
+      "id": "checkbox",
+      "name": "Checkbox",
+      "category": "ui-components",
+      "description": "Checkbox with indeterminate state",
+      "path": "/COMPONENTS/ui-components/Checkbox.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "accessibility-engineer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "accessibility-checker-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Checked/unchecked/indeterminate states",
+        "Label support",
+        "Error state",
+        "Disabled state",
+        "ARIA checkbox"
+      ]
+    },
+    {
+      "id": "radio",
+      "name": "Radio",
+      "category": "ui-components",
+      "description": "Radio button with RadioGroup",
+      "path": "/COMPONENTS/ui-components/Radio.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "accessibility-engineer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "accessibility-checker-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "RadioGroup for managing selection",
+        "Keyboard navigation",
+        "Label support",
+        "Disabled options",
+        "ARIA radio pattern"
       ]
     }
   ],
@@ -249,7 +1979,9 @@
       "name": "AI Agents",
       "count": 1,
       "description": "Reusable AI agent implementations",
-      "components": ["simple-task-agent"],
+      "components": [
+        "simple-task-agent"
+      ],
       "needed": [
         "rag-agent",
         "research-agent",
@@ -261,21 +1993,34 @@
       "name": "Authentication",
       "count": 4,
       "description": "Authentication and authorization components",
-      "components": ["login-form", "signup-form", "password-reset", "protected-route"],
+      "components": [
+        "login-form",
+        "signup-form",
+        "password-reset",
+        "protected-route"
+      ],
       "needed": []
     },
     "errors": {
       "name": "Error Handling",
       "count": 3,
       "description": "Error display and handling components",
-      "components": ["error-boundary", "error-fallback", "not-found"],
+      "components": [
+        "error-boundary",
+        "error-fallback",
+        "not-found"
+      ],
       "needed": []
     },
     "feedback": {
       "name": "User Feedback",
       "count": 3,
       "description": "Loading states and user feedback components",
-      "components": ["loading-spinner", "skeleton", "toast"],
+      "components": [
+        "loading-spinner",
+        "skeleton",
+        "toast"
+      ],
       "needed": [
         "progress-bar",
         "alert",
@@ -286,7 +2031,10 @@
       "name": "Forms",
       "count": 2,
       "description": "Form components and utilities",
-      "components": ["form-field", "use-form"],
+      "components": [
+        "form-field",
+        "use-form"
+      ],
       "needed": [
         "select",
         "checkbox",
@@ -296,107 +2044,122 @@
     },
     "mcp-servers": {
       "name": "MCP Servers",
-      "count": 0,
+      "count": 4,
       "description": "MCP server component implementations",
-      "components": [],
-      "needed": [
+      "components": [
         "base-mcp-server",
         "mcp-tool-handler",
         "mcp-resource-handler",
         "mcp-prompt-handler"
-      ]
+      ],
+      "needed": []
     },
     "rag-pipelines": {
       "name": "RAG Pipelines",
-      "count": 0,
+      "count": 6,
       "description": "RAG pipeline components",
-      "components": [],
-      "needed": [
+      "components": [
         "document-loader",
         "text-chunker",
         "embedding-pipeline",
         "vector-store-client",
         "retrieval-pipeline",
         "rag-orchestrator"
-      ]
+      ],
+      "needed": []
     },
     "ui-components": {
       "name": "UI Components",
-      "count": 0,
+      "count": 44,
       "description": "General UI components",
-      "components": [],
-      "needed": [
+      "components": [
         "button",
         "card",
         "input",
         "modal",
-        "dropdown",
+        "select",
         "table",
+        "tabs",
         "pagination",
-        "tabs"
+        "cn-utility",
+        "icon",
+        "icon-picker",
+        "tooltip",
+        "popover",
+        "accordion",
+        "drawer",
+        "dialog",
+        "slider",
+        "color-picker",
+        "date-picker",
+        "time-picker",
+        "file-upload",
+        "progress",
+        "badge",
+        "alert",
+        "breadcrumb",
+        "stepper",
+        "rating",
+        "skeleton-loader-enhanced",
+        "grid",
+        "container",
+        "stack",
+        "spacer",
+        "divider",
+        "aspect-ratio",
+        "center",
+        "switch",
+        "checkbox",
+        "radio"
+      ],
+      "needed": [
+        "dropdown"
       ]
     },
     "workflows": {
       "name": "Workflows",
-      "count": 0,
+      "count": 4,
       "description": "Workflow orchestration components",
-      "components": [],
-      "needed": [
+      "components": [
         "task-queue",
         "workflow-orchestrator",
         "state-manager",
         "event-bus"
-      ]
+      ],
+      "needed": []
+    },
+    "media": {
+      "name": "Media Components",
+      "count": 6,
+      "description": "Image, gallery, carousel, and media handling components",
+      "components": [
+        "image",
+        "gallery",
+        "carousel",
+        "image-upload",
+        "avatar",
+        "media-viewer"
+      ],
+      "needed": []
     }
   },
-  "critical_missing_categories": [
-    {
-      "category": "mcp-servers",
-      "priority": "CRITICAL",
-      "reason": "34 MCPs exist but no reusable component patterns",
-      "supports_mcps": "all 34 MCPs",
-      "impact": "HIGH - MCPs cannot reference standard implementations"
-    },
-    {
-      "category": "rag-pipelines",
-      "priority": "CRITICAL",
-      "reason": "rag-implementer skill needs pipeline components",
-      "supports_skills": ["rag-implementer"],
-      "supports_mcps": ["vector-database-mcp", "embedding-generator-mcp", "semantic-search-mcp"],
-      "impact": "HIGH - RAG implementations have no reusable patterns"
-    },
-    {
-      "category": "ui-components",
-      "priority": "HIGH",
-      "reason": "frontend-builder skill needs basic UI components",
-      "supports_skills": ["frontend-builder", "design-system-architect", "accessibility-engineer"],
-      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
-      "impact": "MEDIUM - Developers build from scratch each time"
-    },
-    {
-      "category": "workflows",
-      "priority": "HIGH",
-      "reason": "multi-agent-architect skill needs orchestration components",
-      "supports_skills": ["multi-agent-architect", "mvp-builder"],
-      "supports_mcps": ["agent-orchestrator-mcp"],
-      "impact": "MEDIUM - Multi-agent systems lack standard patterns"
-    }
-  ],
+  "critical_missing_categories": [],
   "statistics": {
-    "total_components": 13,
+    "total_components": 70,
     "by_category": {
       "agents": 1,
       "auth": 4,
       "errors": 3,
       "feedback": 3,
       "forms": 2,
-      "mcp-servers": 0,
-      "rag-pipelines": 0,
-      "ui-components": 0,
-      "workflows": 0
+      "mcp-servers": 4,
+      "rag-pipelines": 6,
+      "ui-components": 44,
+      "workflows": 4,
+      "media": 6
     },
-    "empty_categories": 4,
-    "skills_covered": 5
+    "empty_categories": 0,
+    "skills_covered": 18
   },
   "usage_notes": {
     "purpose": "This registry catalogs reusable component implementations",

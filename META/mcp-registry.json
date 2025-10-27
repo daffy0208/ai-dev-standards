@@ -2,7 +2,7 @@
   "version": "1.0.1",
   "last_updated": "2025-10-27",
   "description": "Registry of all MCP servers in ai-dev-standards. MCPs (Model Context Protocol servers) provide tools, resources, and prompts that skills can use to execute tasks.",
-  "total_mcps": 34,
+  "total_mcps": 48,
   "coverage": "92% (31/37 skills have MCP support)",
   "mcps": [
     {
@@ -804,6 +804,328 @@
         "Export to Figma",
         "Responsive layouts"
       ]
+    },
+    {
+      "id": "icon-library-mcp",
+      "name": "Icon Library MCP",
+      "description": "Search, manage, and integrate icons from multiple libraries",
+      "category": "design",
+      "supports_skills": [
+        "frontend-builder",
+        "visual-designer",
+        "design-system-architect"
+      ],
+      "features": [
+        "tools",
+        "resources"
+      ],
+      "path": "/MCP-SERVERS/icon-library-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Multi-library search (Heroicons, Lucide, Font Awesome)",
+        "Icon metadata and tags",
+        "SVG optimization",
+        "React/Vue component generation"
+      ]
+    },
+    {
+      "id": "font-optimizer-mcp",
+      "name": "Font Optimizer MCP",
+      "description": "Optimize and subset web fonts for performance",
+      "category": "design",
+      "supports_skills": [
+        "performance-optimizer",
+        "frontend-builder",
+        "visual-designer"
+      ],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/font-optimizer-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Font subsetting",
+        "WOFF2 conversion",
+        "Variable font optimization",
+        "Preload generation"
+      ]
+    },
+    {
+      "id": "image-generator-mcp",
+      "name": "Image Generator MCP",
+      "description": "AI image generation (DALL-E, Midjourney, Stable Diffusion)",
+      "category": "design",
+      "supports_skills": [
+        "visual-designer",
+        "brand-designer",
+        "copywriter"
+      ],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/image-generator-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Multi-provider support",
+        "Prompt engineering",
+        "Style presets",
+        "Batch generation"
+      ]
+    },
+    {
+      "id": "svg-generator-mcp",
+      "name": "SVG Generator MCP",
+      "description": "Programmatic SVG generation and manipulation",
+      "category": "design",
+      "supports_skills": [
+        "frontend-builder",
+        "visual-designer"
+      ],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/svg-generator-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Programmatic SVG creation",
+        "Shape primitives",
+        "Path manipulation",
+        "SVG optimization"
+      ]
+    },
+    {
+      "id": "illustration-generator-mcp",
+      "name": "Illustration Generator MCP",
+      "description": "Generate illustrations with AI (patterns, backgrounds, graphics)",
+      "category": "design",
+      "supports_skills": [
+        "visual-designer",
+        "brand-designer"
+      ],
+      "features": [
+        "tools",
+        "resources"
+      ],
+      "path": "/MCP-SERVERS/illustration-generator-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Pattern generation",
+        "Background creation",
+        "Style customization",
+        "SVG/PNG export"
+      ]
+    },
+    {
+      "id": "figma-sync-mcp",
+      "name": "Figma Sync MCP",
+      "description": "Automated Figma-to-code workflows and synchronization",
+      "category": "design",
+      "supports_skills": [
+        "figma-developer",
+        "frontend-builder",
+        "design-system-architect"
+      ],
+      "features": [
+        "tools",
+        "resources"
+      ],
+      "path": "/MCP-SERVERS/figma-sync-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Component extraction",
+        "Design token sync",
+        "Code generation",
+        "Asset export automation"
+      ]
+    },
+    {
+      "id": "design-handoff-mcp",
+      "name": "Design Handoff MCP",
+      "description": "Automate design-to-development handoff",
+      "category": "design",
+      "supports_skills": [
+        "ux-designer",
+        "visual-designer",
+        "frontend-builder"
+      ],
+      "features": [
+        "tools",
+        "resources"
+      ],
+      "path": "/MCP-SERVERS/design-handoff-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Spec generation",
+        "Asset export",
+        "Component documentation",
+        "Developer notes"
+      ]
+    },
+    {
+      "id": "theme-builder-mcp",
+      "name": "Theme Builder MCP",
+      "description": "Automated theme generation and customization",
+      "category": "design",
+      "supports_skills": [
+        "design-system-architect",
+        "visual-designer"
+      ],
+      "features": [
+        "tools",
+        "resources"
+      ],
+      "path": "/MCP-SERVERS/theme-builder-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Theme generation from seed colors",
+        "Light/dark mode variants",
+        "CSS variable output",
+        "Tailwind config generation"
+      ]
+    },
+    {
+      "id": "dark-mode-converter-mcp",
+      "name": "Dark Mode Converter MCP",
+      "description": "Convert light mode designs to dark mode",
+      "category": "design",
+      "supports_skills": [
+        "visual-designer",
+        "design-system-architect"
+      ],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/dark-mode-converter-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Automatic color inversion",
+        "Contrast adjustment",
+        "WCAG compliance checking",
+        "CSS custom property generation"
+      ]
+    },
+    {
+      "id": "storybook-generator-mcp",
+      "name": "Storybook Generator MCP",
+      "description": "Automated Storybook story generation",
+      "category": "design",
+      "supports_skills": [
+        "design-system-architect",
+        "frontend-builder"
+      ],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/storybook-generator-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Auto-generate stories from components",
+        "Props documentation",
+        "Variant generation",
+        "Accessibility addon integration"
+      ]
+    },
+    {
+      "id": "props-documenter-mcp",
+      "name": "Props Documenter MCP",
+      "description": "Automated component props documentation",
+      "category": "design",
+      "supports_skills": [
+        "technical-writer",
+        "frontend-builder",
+        "design-system-architect"
+      ],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/props-documenter-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "TypeScript prop extraction",
+        "JSDoc parsing",
+        "Markdown generation",
+        "Example generation"
+      ]
+    },
+    {
+      "id": "typography-analyzer-mcp",
+      "name": "Typography Analyzer MCP",
+      "description": "Analyze and optimize typography systems",
+      "category": "design",
+      "supports_skills": [
+        "visual-designer",
+        "design-system-architect"
+      ],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/typography-analyzer-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Type scale analysis",
+        "Line height optimization",
+        "Reading comfort metrics",
+        "Font pairing suggestions"
+      ]
+    },
+    {
+      "id": "asset-library-mcp",
+      "name": "Asset Library MCP",
+      "description": "Centralized design asset library management",
+      "category": "design",
+      "supports_skills": [
+        "asset-manager",
+        "visual-designer",
+        "design-system-architect"
+      ],
+      "features": [
+        "tools",
+        "resources"
+      ],
+      "path": "/MCP-SERVERS/asset-library-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Asset organization and tagging",
+        "Version control",
+        "Usage tracking",
+        "CDN integration"
+      ]
+    },
+    {
+      "id": "responsive-preview-mcp",
+      "name": "Responsive Preview MCP",
+      "description": "Multi-device preview and screenshot generation",
+      "category": "design",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "mobile-developer"
+      ],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/responsive-preview-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Multi-device screenshots",
+        "Breakpoint testing",
+        "Visual regression",
+        "Device frame overlays"
+      ]
     }
   ],
   "categories": {
@@ -881,10 +1203,24 @@
     },
     "design": {
       "name": "Design Tools",
-      "count": 2,
+      "count": 16,
       "mcps": [
         "design-token-manager-mcp",
-        "wireframe-generator-mcp"
+        "wireframe-generator-mcp",
+        "icon-library-mcp",
+        "font-optimizer-mcp",
+        "image-generator-mcp",
+        "svg-generator-mcp",
+        "illustration-generator-mcp",
+        "figma-sync-mcp",
+        "design-handoff-mcp",
+        "theme-builder-mcp",
+        "dark-mode-converter-mcp",
+        "storybook-generator-mcp",
+        "props-documenter-mcp",
+        "typography-analyzer-mcp",
+        "asset-library-mcp",
+        "responsive-preview-mcp"
       ]
     },
     "security": {
@@ -970,9 +1306,9 @@
       "description": "Primary development phase"
     },
     "phase_3": {
-      "name": "High Priority",
-      "count": 5,
-      "description": "Critical capability expansion"
+      "name": "Phase 3: Design Resources",
+      "count": 14,
+      "description": "Design tools, automation, and asset management"
     },
     "phase_4": {
       "name": "Specialized",
@@ -986,11 +1322,11 @@
     }
   },
   "statistics": {
-    "total_mcps": 34,
+    "total_mcps": 48,
     "with_tests": 4,
-    "skills_covered": 31,
+    "skills_covered": 35,
     "skills_without_mcps": 6,
-    "coverage_percentage": 84,
+    "coverage_percentage": 85,
     "ratio": "1.1:1"
   },
   "skills_without_mcps": [
@@ -1009,5 +1345,5 @@
     ],
     "integration": "MCPs are referenced in skill documentation and playbooks"
   },
-  "total": 36
+  "total": 48
 }
