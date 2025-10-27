@@ -1,5 +1,5 @@
 const prettier = require('prettier')
-const { sanitizeName, validateIdentifier } = require('../utils/validation')
+const { sanitizeName, validateIdentifier, toPascalCase } = require('../utils/validation')
 
 /**
  * Integration Generator
@@ -24,22 +24,25 @@ class IntegrationGenerator {
     // Validate and sanitize integration name (SECURITY: prevent path traversal)
     const sanitizedName = sanitizeName(name, 'integration')
 
-    // Validate integration identifier
-    validateIdentifier(sanitizedName, 'integration name')
+    // Integration names are used in class names, so validate as identifier
+    // Convert to PascalCase and validate
+    const integrationIdentifier = toPascalCase(sanitizedName)
+    validateIdentifier(integrationIdentifier, 'integration class name')
 
     const files = []
 
     // Client file
+    // Use sanitizedName for file path, integrationIdentifier for code
     files.push({
       path: `integrations/${sanitizedName}/${sanitizedName}-client.ts`,
-      content: await this.formatCode(this.generateClient(sanitizedName, provider, withAuth))
+      content: await this.formatCode(this.generateClient(integrationIdentifier, provider, withAuth))
     })
 
     // Types file
     if (withTypes) {
       files.push({
         path: `integrations/${sanitizedName}/types.ts`,
-        content: await this.formatCode(this.generateTypes(sanitizedName, provider))
+        content: await this.formatCode(this.generateTypes(integrationIdentifier, provider))
       })
     }
 

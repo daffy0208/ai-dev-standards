@@ -1,5 +1,5 @@
 const prettier = require('prettier')
-const { sanitizeName, validateIdentifier, validatePythonIdentifier, validateFramework } = require('../utils/validation')
+const { sanitizeName, validateIdentifier, validatePythonIdentifier, validateFramework, toPascalCase, toSnakeCase } = require('../utils/validation')
 
 /**
  * Tool Generator
@@ -19,11 +19,17 @@ class ToolGenerator {
     // Validate framework
     const validFramework = validateFramework(framework, ['langchain', 'crewai', 'custom'])
 
-    // Validate tool identifier based on language
+    // Convert to appropriate identifier format and validate
+    // Tool names are used in code, so must be valid identifiers
+    let toolIdentifier
     if (validFramework === 'crewai') {
-      validatePythonIdentifier(sanitizedName, 'tool name')
+      // Python uses snake_case
+      toolIdentifier = toSnakeCase(sanitizedName)
+      validatePythonIdentifier(toolIdentifier, 'tool name')
     } else {
-      validateIdentifier(sanitizedName, 'tool name')
+      // JavaScript/TypeScript uses PascalCase for classes
+      toolIdentifier = toPascalCase(sanitizedName)
+      validateIdentifier(toolIdentifier, 'tool name')
     }
 
     // Determine file extension based on framework (SECURITY FIX: CrewAI uses Python)
@@ -32,9 +38,10 @@ class ToolGenerator {
     const files = []
 
     // Tool implementation
+    // Use sanitizedName for file path, toolIdentifier for code
     files.push({
       path: `tools/${validFramework}-tools/${sanitizedName}-tool${fileExtension}`,
-      content: await this.formatCode(this.generateTool(sanitizedName, validFramework, category))
+      content: await this.formatCode(this.generateTool(toolIdentifier, validFramework, category))
     })
 
     // README

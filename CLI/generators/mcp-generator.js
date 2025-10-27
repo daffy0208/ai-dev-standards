@@ -15,10 +15,9 @@ class McpGenerator {
     const { name, template = 'custom', description = '', features = ['tools'] } = config
 
     // Validate and sanitize MCP name (SECURITY: prevent path traversal)
+    // Note: MCP names are used as directory names, not JS identifiers
+    // So we only need sanitizeName, not validateIdentifier
     const sanitizedName = sanitizeName(name, 'MCP server')
-
-    // Validate MCP identifier
-    validateIdentifier(sanitizedName, 'MCP name')
 
     const files = []
 
