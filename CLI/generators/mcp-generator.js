@@ -1,4 +1,5 @@
 const prettier = require('prettier')
+const { sanitizeName, validateIdentifier } = require('../utils/validation')
 
 /**
  * MCP Server Generator
@@ -13,30 +14,36 @@ class McpGenerator {
   async generate(config) {
     const { name, template = 'custom', description = '', features = ['tools'] } = config
 
+    // Validate and sanitize MCP name (SECURITY: prevent path traversal)
+    const sanitizedName = sanitizeName(name, 'MCP server')
+
+    // Validate MCP identifier
+    validateIdentifier(sanitizedName, 'MCP name')
+
     const files = []
 
     // index.js - Main server implementation
     files.push({
-      path: `MCP-SERVERS/${name}-mcp/index.js`,
-      content: await this.formatCode(this.generateServerCode(name, description, features))
+      path: `MCP-SERVERS/${sanitizedName}-mcp/index.js`,
+      content: await this.formatCode(this.generateServerCode(sanitizedName, description, features))
     })
 
     // package.json
     files.push({
-      path: `MCP-SERVERS/${name}-mcp/package.json`,
-      content: this.generatePackageJson(name, description)
+      path: `MCP-SERVERS/${sanitizedName}-mcp/package.json`,
+      content: this.generatePackageJson(sanitizedName, description)
     })
 
     // README.md
     files.push({
-      path: `MCP-SERVERS/${name}-mcp/README.md`,
-      content: this.generateReadme(name, description, features)
+      path: `MCP-SERVERS/${sanitizedName}-mcp/README.md`,
+      content: this.generateReadme(sanitizedName, description, features)
     })
 
     // .env.example
     files.push({
-      path: `MCP-SERVERS/${name}-mcp/.env.example`,
-      content: this.generateEnvExample(name)
+      path: `MCP-SERVERS/${sanitizedName}-mcp/.env.example`,
+      content: this.generateEnvExample(sanitizedName)
     })
 
     return files
@@ -116,7 +123,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
   try {
     if (name === '${name}_action') {
-      const { input } = args
+      // FIX: Handle missing arguments
+      const { input } = args ?? {}
 
       // Implement your tool logic here
       const result = await perform${name.charAt(0).toUpperCase() + name.slice(1)}Action(input)
@@ -231,7 +239,8 @@ server.setRequestHandler(GetPromptRequestSchema, async (request) => {
   const { name, arguments: args } = request.params
 
   if (name === '${name}_prompt') {
-    const { context } = args
+    // FIX: Handle missing arguments
+    const { context } = args ?? {}
 
     return {
       messages: [

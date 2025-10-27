@@ -11,6 +11,40 @@ const IntegrationGenerator = require('../generators/integration-generator')
 const ToolGenerator = require('../generators/tool-generator')
 
 /**
+ * Helper: Write files with overwrite protection (SECURITY FIX)
+ */
+async function writeFilesWithCheck(files) {
+  const writeSpinner = ora('Writing files...').start()
+
+  for (const file of files) {
+    await fs.ensureDir(path.dirname(file.path))
+
+    // Check if file exists (prevent silent overwrites)
+    if (await fs.pathExists(file.path)) {
+      writeSpinner.stop()
+      const overwrite = await inquirer.prompt([{
+        type: 'confirm',
+        name: 'overwrite',
+        message: `File ${file.path} already exists. Overwrite?`,
+        default: false
+      }])
+
+      if (!overwrite.overwrite) {
+        console.log(chalk.yellow(`  Skipped: ${file.path}`))
+        writeSpinner.start()
+        continue
+      }
+      writeSpinner.start()
+    }
+
+    await fs.writeFile(file.path, file.content)
+    console.log(chalk.gray(`  Created: ${file.path}`))
+  }
+
+  writeSpinner.succeed('Files written')
+}
+
+/**
  * Add Command
  *
  * Generates new code artifacts:
@@ -107,14 +141,8 @@ async function addComponent(name, options) {
 
   spinner.succeed('Component generated')
 
-  // Write files
-  const writeSpinner = ora('Writing files...').start()
-  for (const file of files) {
-    await fs.ensureDir(path.dirname(file.path))
-    await fs.writeFile(file.path, file.content)
-    console.log(chalk.gray(`  Created: ${file.path}`))
-  }
-  writeSpinner.succeed('Files written')
+  // Write files with overwrite protection
+  await writeFilesWithCheck(files)
 }
 
 /**

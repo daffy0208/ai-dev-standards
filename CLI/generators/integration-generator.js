@@ -1,4 +1,5 @@
 const prettier = require('prettier')
+const { sanitizeName, validateIdentifier } = require('../utils/validation')
 
 /**
  * Integration Generator
@@ -20,40 +21,46 @@ class IntegrationGenerator {
       withEnv = true
     } = config
 
+    // Validate and sanitize integration name (SECURITY: prevent path traversal)
+    const sanitizedName = sanitizeName(name, 'integration')
+
+    // Validate integration identifier
+    validateIdentifier(sanitizedName, 'integration name')
+
     const files = []
 
     // Client file
     files.push({
-      path: `integrations/${name}/${name}-client.ts`,
-      content: await this.formatCode(this.generateClient(name, provider, withAuth))
+      path: `integrations/${sanitizedName}/${sanitizedName}-client.ts`,
+      content: await this.formatCode(this.generateClient(sanitizedName, provider, withAuth))
     })
 
     // Types file
     if (withTypes) {
       files.push({
-        path: `integrations/${name}/types.ts`,
-        content: await this.formatCode(this.generateTypes(name, provider))
+        path: `integrations/${sanitizedName}/types.ts`,
+        content: await this.formatCode(this.generateTypes(sanitizedName, provider))
       })
     }
 
     // .env.example
     if (withEnv) {
       files.push({
-        path: `integrations/${name}/.env.example`,
-        content: this.generateEnvExample(name, provider)
+        path: `integrations/${sanitizedName}/.env.example`,
+        content: this.generateEnvExample(sanitizedName, provider)
       })
     }
 
     // Index file
     files.push({
-      path: `integrations/${name}/index.ts`,
-      content: this.generateIndex(name, withTypes)
+      path: `integrations/${sanitizedName}/index.ts`,
+      content: this.generateIndex(sanitizedName, withTypes)
     })
 
     // README
     files.push({
-      path: `integrations/${name}/README.md`,
-      content: this.generateReadme(name, provider, withAuth, withRag)
+      path: `integrations/${sanitizedName}/README.md`,
+      content: this.generateReadme(sanitizedName, provider, withAuth, withRag)
     })
 
     return files
@@ -103,6 +110,11 @@ export class ${className} {
       throw new Error(\`${name} API error: \${error.message}\`)
     }
 
+    // FIX: Handle 204 No Content responses
+    if (response.status === 204 || response.headers.get('content-length') === '0') {
+      return null
+    }
+
     return response.json()
   }
 
@@ -137,7 +149,8 @@ export class ${className} {
    * Example DELETE method
    */
   async deleteData(id: string): Promise<void> {
-    await this.request<void>(\`/data/\${id}\`, {
+    // FIX: DELETE may return null for 204 responses
+    await this.request<void | null>(\`/data/\${id}\`, {
       method: 'DELETE'
     })
   }
@@ -228,8 +241,9 @@ ${prefix}_API_URL=https://api.${name}.com
   generateIndex(name, withTypes) {
     const className = name.charAt(0).toUpperCase() + name.slice(1) + 'Client'
 
+    // FIX: Only export types if withTypes=true AND types file exists
     return `export { ${className}, ${name}Client } from './${name}-client'
-${withTypes ? `export type * from './types'` : ''}
+${withTypes ? `export type * from './types'` : '// Types not generated'}
 `
   }
 

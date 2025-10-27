@@ -1,4 +1,5 @@
 const prettier = require('prettier')
+const { sanitizeName, validateIdentifier, validatePythonIdentifier, validateFramework } = require('../utils/validation')
 
 /**
  * Tool Generator
@@ -12,18 +13,34 @@ class ToolGenerator {
   async generate(config) {
     const { name, framework = 'custom', category = 'custom' } = config
 
+    // Validate and sanitize tool name (SECURITY: prevent path traversal)
+    const sanitizedName = sanitizeName(name, 'tool')
+
+    // Validate framework
+    const validFramework = validateFramework(framework, ['langchain', 'crewai', 'custom'])
+
+    // Validate tool identifier based on language
+    if (validFramework === 'crewai') {
+      validatePythonIdentifier(sanitizedName, 'tool name')
+    } else {
+      validateIdentifier(sanitizedName, 'tool name')
+    }
+
+    // Determine file extension based on framework (SECURITY FIX: CrewAI uses Python)
+    const fileExtension = validFramework === 'crewai' ? '.py' : '.ts'
+
     const files = []
 
     // Tool implementation
     files.push({
-      path: `tools/${framework}-tools/${name}-tool.ts`,
-      content: await this.formatCode(this.generateTool(name, framework, category))
+      path: `tools/${validFramework}-tools/${sanitizedName}-tool${fileExtension}`,
+      content: await this.formatCode(this.generateTool(sanitizedName, validFramework, category))
     })
 
     // README
     files.push({
-      path: `tools/${framework}-tools/${name}-tool.md`,
-      content: this.generateReadme(name, framework, category)
+      path: `tools/${validFramework}-tools/${sanitizedName}-tool.md`,
+      content: this.generateReadme(sanitizedName, validFramework, category)
     })
 
     return files
@@ -110,6 +127,7 @@ export const ${toolName}Tool = new ${className}Tool()
     return `from crewai_tools import BaseTool
 from typing import Type, Any
 from pydantic import BaseModel, Field
+from datetime import datetime
 
 class ${className}Input(BaseModel):
     """Input schema for ${className}."""

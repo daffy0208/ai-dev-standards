@@ -2,6 +2,7 @@ const Handlebars = require('handlebars')
 const path = require('path')
 const fs = require('fs-extra')
 const prettier = require('prettier')
+const { sanitizeName, validateComponentName, validateIdentifier } = require('../utils/validation')
 
 /**
  * Component Generator
@@ -41,33 +42,41 @@ class ComponentGenerator {
   async generate(config) {
     const { name, props = {}, withTests = true, withStorybook = false, template = 'default' } = config
 
+    // Validate and sanitize component name (SECURITY: prevent path traversal)
+    const sanitizedName = validateComponentName(name)
+
+    // Validate identifiers in props (SECURITY: prevent code injection)
+    for (const propName of Object.keys(props)) {
+      validateIdentifier(propName, `prop name "${propName}"`)
+    }
+
     const files = []
 
     // Component file
     files.push({
-      path: `components/${name}/${name}.tsx`,
-      content: await this.formatCode(this.generateComponent(name, props))
+      path: `components/${sanitizedName}/${sanitizedName}.tsx`,
+      content: await this.formatCode(this.generateComponent(sanitizedName, props))
     })
 
     // Index file
     files.push({
-      path: `components/${name}/index.ts`,
-      content: this.generateIndex(name)
+      path: `components/${sanitizedName}/index.ts`,
+      content: this.generateIndex(sanitizedName)
     })
 
     // Test file
     if (withTests) {
       files.push({
-        path: `components/${name}/${name}.test.tsx`,
-        content: await this.formatCode(this.generateTest(name, props))
+        path: `components/${sanitizedName}/${sanitizedName}.test.tsx`,
+        content: await this.formatCode(this.generateTest(sanitizedName, props))
       })
     }
 
     // Storybook file
     if (withStorybook) {
       files.push({
-        path: `components/${name}/${name}.stories.tsx`,
-        content: await this.formatCode(this.generateStory(name, props))
+        path: `components/${sanitizedName}/${sanitizedName}.stories.tsx`,
+        content: await this.formatCode(this.generateStory(sanitizedName, props))
       })
     }
 
@@ -139,12 +148,9 @@ describe('${name}', () => {
     expect(screen.getByText('${name}')).toBeInTheDocument()
   })
 
-  it('applies custom className', () => {
-    const { container } = render(
-      <${name}${Object.keys(props).length > 0 ? ' {...mockProps}' : ''} className="custom-class" />
-    )
-    expect(container.firstChild).toHaveClass('custom-class')
-  })
+  // FIX: Only test className if component actually supports it
+  // This test is removed because generated components don't accept className prop
+  // Add className to your component props if you want to test it
 })
 
 ${Object.keys(props).length > 0 ? `const mockProps = {

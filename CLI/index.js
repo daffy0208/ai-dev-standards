@@ -195,10 +195,17 @@ ${chalk.bold('ADHD-Friendly:')}
   ${chalk.green('✓')} Instant working code
 `)
 
-// Parse arguments
-program.parse(process.argv)
+// Parse arguments (ASYNC FIX: use parseAsync for async commands)
+async function main() {
+  await program.parseAsync(process.argv)
 
-// Show help if no arguments
-if (!process.argv.slice(2).length) {
-  program.outputHelp()
+  // Show help if no arguments
+  if (!process.argv.slice(2).length) {
+    program.outputHelp()
+  }
 }
+
+main().catch((error) => {
+  console.error(chalk.red(`\n❌ Error: ${error.message}\n`))
+  process.exit(1)
+})

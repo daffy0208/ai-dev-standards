@@ -1,6 +1,7 @@
 const fs = require('fs-extra')
 const path = require('path')
 const prettier = require('prettier')
+const { sanitizeName, validateIdentifier, validateProjectType } = require('../utils/validation')
 
 /**
  * Project Generator
@@ -16,38 +17,47 @@ class ProjectGenerator {
   async generate(config) {
     const { type, name, ...options } = config
 
-    const projectPath = path.join(process.cwd(), name)
+    // Validate and sanitize project name (SECURITY: prevent path traversal)
+    const sanitizedName = sanitizeName(name, 'project')
+
+    // Validate project type
+    const validType = validateProjectType(type, ['saas-starter', 'saas', 'rag-system', 'rag', 'api-service', 'api', 'dashboard', 'mobile-app', 'mobile'])
+
+    // Validate project identifier
+    validateIdentifier(sanitizedName, 'project name')
+
+    const projectPath = path.join(process.cwd(), sanitizedName)
 
     // Create project directory
     await fs.ensureDir(projectPath)
 
-    switch (type) {
+    switch (validType) {
       case 'saas-starter':
       case 'saas':
-        await this.generateSaasStarter(projectPath, name, options)
+        await this.generateSaasStarter(projectPath, sanitizedName, options)
         break
 
       case 'rag-system':
       case 'rag':
-        await this.generateRagSystem(projectPath, name, options)
+        await this.generateRagSystem(projectPath, sanitizedName, options)
         break
 
       case 'api-service':
       case 'api':
-        await this.generateApiService(projectPath, name, options)
+        await this.generateApiService(projectPath, sanitizedName, options)
         break
 
       case 'dashboard':
-        await this.generateDashboard(projectPath, name, options)
+        await this.generateDashboard(projectPath, sanitizedName, options)
         break
 
       case 'mobile-app':
       case 'mobile':
-        await this.generateMobileApp(projectPath, name, options)
+        await this.generateMobileApp(projectPath, sanitizedName, options)
         break
 
       default:
-        throw new Error(`Unknown project type: ${type}`)
+        throw new Error(`Unknown project type: ${validType}`)
     }
 
     return projectPath
