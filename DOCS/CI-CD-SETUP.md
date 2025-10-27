@@ -48,7 +48,18 @@ Complete guide for the automated CI/CD pipeline.
    - Runs `npm audit`
    - Checks for known vulnerabilities
 
-6. **Status Check**
+6. **Registry Validation**
+   - Verifies all skills are registered
+   - Checks CLI uses registry data
+   - Validates README accuracy
+
+7. **Codex Code Review** (PR only)
+   - Automatically reviews changed code
+   - Detects bugs, security vulnerabilities
+   - Posts review comments on PR
+   - Fails CI on HIGH/CRITICAL issues
+
+8. **Status Check**
    - Aggregates all job results
    - Fails if any job fails
 
@@ -56,7 +67,71 @@ Complete guide for the automated CI/CD pipeline.
 
 ---
 
-### 2. Coverage Workflow (`.github/workflows/coverage.yml`)
+### 2. Codex Automated Code Review (`.github/workflows/codex-review.yml`)
+
+**Triggers:**
+- Pull requests (opened, synchronized, reopened)
+
+**Scope:**
+- Reviews only changed files in:
+  - `CLI/commands/**/*.js`
+  - `scripts/brain/**/*.ts`
+  - `scripts/**/*.js`
+  - `src/**/*.js` and `src/**/*.ts`
+
+**Process:**
+1. Detects changed files in PR
+2. Runs Codex CLI review in read-only sandbox
+3. Analyzes for:
+   - Logic errors and edge cases
+   - Security vulnerabilities (SQL injection, XSS, etc.)
+   - Error handling gaps
+   - Resource leaks
+   - Race conditions
+   - Type safety violations
+4. Categorizes findings by severity:
+   - **CRITICAL**: Security vulnerabilities, hardcoded secrets
+   - **HIGH**: Logic errors, missing error handling
+   - **MEDIUM**: Code quality issues
+   - **LOW**: Minor improvements
+5. Posts results as PR comment
+6. Fails CI if HIGH or CRITICAL issues found
+
+**Requirements:**
+- Codex CLI v0.50.0+
+- Completes in <5 minutes
+- GitHub token needs `comments:write` permission
+
+**Helper Script:**
+- `scripts/ci/codex-review.sh`
+- Takes file list as arguments
+- Outputs structured JSON
+- Exit code 1 for HIGH/CRITICAL issues
+
+**Example Output:**
+```json
+{
+  "summary": {
+    "files_reviewed": 3,
+    "high_critical": 2,
+    "medium": 1,
+    "low": 0
+  },
+  "findings": [
+    {
+      "file": "CLI/commands/sync.js",
+      "severity": "HIGH_CRITICAL",
+      "issue": "CRITICAL: SQL injection vulnerability on line 45"
+    }
+  ]
+}
+```
+
+**Status:** ⚠️ PR fails if HIGH or CRITICAL issues found
+
+---
+
+### 3. Coverage Workflow (`.github/workflows/coverage.yml`)
 
 **Triggers:**
 - Push to `main`
@@ -82,7 +157,7 @@ Complete guide for the automated CI/CD pipeline.
 
 ---
 
-### 3. Release Workflow (`.github/workflows/release.yml`)
+### 4. Release Workflow (`.github/workflows/release.yml`)
 
 **Triggers:**
 - Push to `main` (after PR merge)
@@ -217,6 +292,8 @@ Navigate to: **Settings → Secrets and variables → Actions**
    - ✅ Lint
    - ✅ Type Check
    - ✅ Build
+   - ✅ Codex Code Review (PR only)
+   - ✅ Registry Validation
 
 2. **Require pull request reviews**
    - Minimum: 1 approval
@@ -247,7 +324,7 @@ Navigate to: **Settings → Secrets and variables → Actions**
 |-------|-----------|
 | Push to `main` | CI, Coverage, Release |
 | Push to `develop` | CI |
-| Pull Request | CI, Coverage |
+| Pull Request | CI, Coverage, Codex Review |
 | Schedule (daily) | Security Audit |
 
 ### Manual Triggers
@@ -350,6 +427,47 @@ npm run test:coverage
 # View detailed HTML report
 open coverage/index.html
 ```
+
+**Codex review failures:**
+```bash
+# Test locally before pushing
+chmod +x scripts/ci/codex-review.sh
+./scripts/ci/codex-review.sh CLI/commands/sync.js
+
+# Run on multiple files
+./scripts/ci/codex-review.sh $(git diff --name-only main... | grep -E '\.(js|ts)$')
+
+# Check results
+cat codex-review-results.json | jq '.'
+```
+
+---
+
+### Testing Codex Review Locally
+
+Before creating a PR, test the review workflow:
+
+```bash
+# 1. Install Codex CLI if not already installed
+npm install -g @anthropics/codex-cli@latest
+
+# 2. Make your changes to code files
+vim CLI/commands/my-command.js
+
+# 3. Run review on changed files
+./scripts/ci/codex-review.sh CLI/commands/my-command.js
+
+# 4. Review the findings
+cat codex-review-results.json | jq '.summary'
+
+# 5. Fix HIGH/CRITICAL issues before committing
+# (MEDIUM and LOW issues are warnings only)
+```
+
+**Expected Results:**
+- Exit code 0: No HIGH/CRITICAL issues
+- Exit code 1: HIGH/CRITICAL issues found (CI will fail)
+- Exit code 2: Script error (check Codex installation)
 
 ---
 
@@ -520,4 +638,4 @@ Before first contribution:
 
 ---
 
-**Updated:** 2025-10-22
+**Updated:** 2025-10-27

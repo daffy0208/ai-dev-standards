@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+
+# Pre-commit hook for ai-dev-standards
+# Validates documentation consistency, lints code, and runs type checking
+#
+# To skip validation in emergency (use sparingly):
+#   git commit -m "your message [skip-validation]"
+
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# Check if we should skip validation
+COMMIT_MSG_FILE=".git/COMMIT_EDITMSG"
+if [ -f "$COMMIT_MSG_FILE" ]; then
+    if grep -q "\[skip-validation\]" "$COMMIT_MSG_FILE" 2>/dev/null; then
+        echo -e "${YELLOW}⚠️  Skipping validation (found [skip-validation] in commit message)${NC}"
+        exit 0
+    fi
+fi
+
+# Check for skip flag in environment (for emergency use)
+if [ "$SKIP_VALIDATION" = "1" ]; then
+    echo -e "${YELLOW}⚠️  Skipping validation (SKIP_VALIDATION=1)${NC}"
+    exit 0
+fi
+
+echo -e "${GREEN}🔍 Running pre-commit checks...${NC}"
+echo ""
+
+# Track overall status
+VALIDATION_FAILED=0
+
+# 1. Validate documentation consistency
+echo -e "${GREEN}📚 Validating documentation consistency...${NC}"
+if npm run validate:docs --silent; then
+    echo -e "${GREEN}✓ Documentation validation passed${NC}"
+else
+    echo -e "${RED}✗ Documentation validation failed${NC}"
+    echo -e "${YELLOW}💡 Tip: Run 'npm run validate:fix' to auto-fix many issues${NC}"
+    VALIDATION_FAILED=1
+fi
+echo ""
+
+# 2. Run linting
+echo -e "${GREEN}🔧 Running ESLint...${NC}"
+if npm run lint --silent; then
+    echo -e "${GREEN}✓ Linting passed${NC}"
+else
+    echo -e "${RED}✗ Linting failed${NC}"
+    echo -e "${YELLOW}💡 Tip: Run 'npm run lint:fix' to auto-fix many issues${NC}"
+    VALIDATION_FAILED=1
+fi
+echo ""
+
+# 3. Run type checking
+echo -e "${GREEN}📘 Running TypeScript type checking...${NC}"
+if npm run typecheck --silent; then
+    echo -e "${GREEN}✓ Type checking passed${NC}"
+else
+    echo -e "${RED}✗ Type checking failed${NC}"
+    VALIDATION_FAILED=1
+fi
+echo ""
+
+# Final result
+if [ $VALIDATION_FAILED -eq 1 ]; then
+    echo -e "${RED}❌ Pre-commit checks failed!${NC}"
+    echo ""
+    echo -e "${YELLOW}Please fix the issues above before committing.${NC}"
+    echo ""
+    echo -e "To skip validation in an emergency (use sparingly):"
+    echo -e "  git commit -m \"your message [skip-validation]\""
+    echo -e "  OR"
+    echo -e "  SKIP_VALIDATION=1 git commit -m \"your message\""
+    echo ""
+    exit 1
+else
+    echo -e "${GREEN}✨ All pre-commit checks passed!${NC}"
+    exit 0
+fi

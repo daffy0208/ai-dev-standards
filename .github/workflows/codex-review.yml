@@ -1,0 +1,170 @@
+name: Codex Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'CLI/commands/**/*.js'
+      - 'scripts/brain/**/*.ts'
+      - 'scripts/**/*.js'
+      - 'src/**/*.js'
+      - 'src/**/*.ts'
+
+# Limit concurrent workflow runs
+concurrency:
+  group: codex-review-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  codex-review:
+    name: Codex Automated Code Review
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    # Only run on PRs (not on push to main)
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for better context
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Install Codex CLI
+        run: npm install -g @anthropics/codex-cli@latest
+
+      - name: Verify Codex installation
+        run: |
+          codex --version
+          echo "Codex CLI installed successfully"
+
+      - name: Get changed files
+        id: changed-files
+        run: |
+          # Get list of changed files in this PR
+          git fetch origin ${{ github.base_ref }}
+
+          # Filter for JS and TS files in target directories
+          CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRT origin/${{ github.base_ref }}...HEAD | \
+            grep -E '^(CLI/commands/.*\.js|scripts/brain/.*\.ts|scripts/.*\.js|src/.*\.(js|ts))$' || true)
+
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No relevant files changed"
+            echo "files_changed=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "files_changed=true" >> $GITHUB_OUTPUT
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
+
+          # Save to file for next step
+          echo "$CHANGED_FILES" > changed-files.txt
+
+      - name: Run Codex review
+        id: codex-review
+        if: steps.changed-files.outputs.files_changed == 'true'
+        run: |
+          # Make script executable
+          chmod +x ./scripts/ci/codex-review.sh
+
+          # Read changed files
+          FILES=$(cat changed-files.txt | tr '\n' ' ')
+
+          # Run review script
+          if ./scripts/ci/codex-review.sh $FILES; then
+            echo "review_passed=true" >> $GITHUB_OUTPUT
+          else
+            echo "review_passed=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+      - name: Upload review results
+        if: always() && steps.changed-files.outputs.files_changed == 'true'
+        uses: actions/upload-artifact@v3
+        with:
+          name: codex-review-results
+          path: codex-review-results.json
+          retention-days: 30
+
+      - name: Post PR comment with results
+        if: always() && steps.changed-files.outputs.files_changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+
+            // Read results file
+            let results;
+            try {
+              results = JSON.parse(fs.readFileSync('codex-review-results.json', 'utf8'));
+            } catch (error) {
+              console.log('Could not read results file');
+              return;
+            }
+
+            // Build comment body
+            let commentBody = '## Codex Automated Code Review\n\n';
+            commentBody += '### Summary\n';
+            commentBody += `- Files reviewed: ${results.summary.files_reviewed}\n`;
+            commentBody += `- HIGH/CRITICAL issues: ${results.summary.high_critical}\n`;
+            commentBody += `- MEDIUM issues: ${results.summary.medium}\n`;
+            commentBody += `- LOW issues: ${results.summary.low}\n\n`;
+
+            if (results.summary.high_critical > 0) {
+              commentBody += '### Critical Issues Found\n\n';
+              commentBody += 'The following HIGH or CRITICAL issues were found:\n\n';
+
+              for (const finding of results.findings) {
+                if (finding.severity === 'HIGH_CRITICAL') {
+                  commentBody += `- **${finding.file}**: ${finding.issue}\n`;
+                }
+              }
+
+              commentBody += '\n**Action required**: Please address these issues before merging.\n';
+            } else {
+              commentBody += '### No Critical Issues Found\n\n';
+              commentBody += 'No HIGH or CRITICAL issues detected. ';
+
+              if (results.summary.medium > 0 || results.summary.low > 0) {
+                commentBody += 'However, there are some lower-severity issues to consider:\n\n';
+
+                for (const finding of results.findings) {
+                  if (finding.severity === 'MEDIUM') {
+                    commentBody += `- ${finding.file}: ${finding.issue}\n`;
+                  }
+                }
+              } else {
+                commentBody += 'Code looks clean!\n';
+              }
+            }
+
+            commentBody += '\n---\n';
+            commentBody += '*Automated review by Codex CLI*';
+
+            // Post comment
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: commentBody
+            });
+
+      - name: Fail if HIGH/CRITICAL issues found
+        if: steps.codex-review.outputs.review_passed == 'false'
+        run: |
+          echo "FAIL: HIGH or CRITICAL issues found in code review"
+          exit 1
+
+      - name: Success summary
+        if: steps.codex-review.outputs.review_passed == 'true'
+        run: |
+          echo "SUCCESS: Code review passed"
+          echo "No HIGH or CRITICAL issues found"

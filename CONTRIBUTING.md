@@ -114,6 +114,99 @@ npm run update:all
 
 **Important:** Always run `npm run validate` before committing. The pre-commit hook will block commits if validation fails.
 
+### 7. Pre-Commit Hooks
+
+The repository uses automated pre-commit hooks to maintain code quality and documentation consistency.
+
+#### Installation
+
+The hooks are automatically installed when you run `npm install` (via postinstall script).
+
+To manually install or reinstall hooks:
+
+```bash
+npm run install-hooks
+```
+
+#### What the Pre-Commit Hook Does
+
+The pre-commit hook runs automatically before each commit and performs:
+
+1. **Documentation Validation** - Checks consistency across all documentation files
+2. **ESLint** - Ensures code quality and style guidelines
+3. **TypeScript Type Checking** - Validates type safety
+
+If any check fails, the commit will be blocked with clear error messages.
+
+#### Auto-Fixing Issues
+
+Many validation and linting issues can be automatically fixed:
+
+```bash
+# Fix documentation issues
+npm run validate:fix
+
+# Fix linting issues
+npm run lint:fix
+
+# Run both
+npm run validate:fix && npm run lint:fix
+```
+
+#### Skipping Validation (Emergency Use Only)
+
+In emergencies, you can skip validation using either method:
+
+**Method 1: In commit message**
+```bash
+git commit -m "emergency fix [skip-validation]"
+```
+
+**Method 2: Environment variable**
+```bash
+SKIP_VALIDATION=1 git commit -m "emergency fix"
+```
+
+**Warning:** Use skip validation sparingly. Skipped validations can introduce inconsistencies that may require manual fixes later.
+
+#### Hook Execution Time
+
+The pre-commit hook is optimized to run in under 5 seconds on most systems:
+- Documentation validation: ~1-2 seconds
+- ESLint: ~1-2 seconds
+- TypeScript checking: ~1-2 seconds
+
+#### Uninstalling Hooks
+
+To remove the pre-commit hook:
+
+```bash
+rm .git/hooks/pre-commit
+```
+
+To restore it later:
+
+```bash
+npm run install-hooks
+```
+
+#### Troubleshooting
+
+**Hook not running:**
+- Ensure the hook is executable: `chmod +x .git/hooks/pre-commit`
+- Check that you're in the repository root
+- Try reinstalling: `npm run install-hooks`
+
+**Hook too slow:**
+- The hook should complete in under 5 seconds
+- If slower, check for large file changes or network issues
+- Consider using `[skip-validation]` for large refactors, then fix separately
+
+**Existing custom hooks:**
+- The installer detects existing hooks and offers to merge or backup
+- Your custom hooks are backed up with timestamp: `.git/hooks/pre-commit.backup-YYYYMMDD-HHMMSS`
+- You can manually merge hooks if needed
+
 ---
 
 ## 🔀 Branching Strategy
