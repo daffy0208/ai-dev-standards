@@ -26,13 +26,13 @@ bash ~/ai-dev-standards/setup-project.sh
 ## What You Get
 
 ```
-✓ 39 Skills - Specialized methodologies
+✓ 41 Skills - Specialized methodologies
 ✓ 36 MCPs - Automation tools
 ✓ 9 Tools + 4 Scripts
 ✓ 13 Components
 ✓ 6 Integrations
 
-= 107 Total Resources
+= 109 Total Resources
 ```
 
 Plus:

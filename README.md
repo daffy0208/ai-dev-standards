@@ -8,13 +8,13 @@
 
 **Version 1.4.0** | **Last Updated:** 2025-10-24
 
-103 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
+109 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
 
 ## What This Repository Does
 
 Think of this as a **shared brain** between you and Claude:
 
-- **38 Specialized Skills** - Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, and more)
+- **41 Specialized Skills** - Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, and more)
 - **36 MCP Servers** - Executable development tools providing 92% skill coverage (1.1:1 ratio)
 - **9 Tools + 4 Scripts** - LangChain, CrewAI, and custom automation utilities
 - **13 Reusable Components** - React components for common patterns (auth, forms, errors, feedback)
@@ -24,7 +24,7 @@ Think of this as a **shared brain** between you and Claude:
 - **Decision Frameworks** - Clear guidance for choosing technologies
 - **Validation & Trust** - Automated testing ensures all resources are discoverable and accessible
 
-**Total Resources:** 105 (39 skills + 36 MCPs + 9 tools + 4 scripts + 13 components + 6 integrations)
+**Total Resources:** 109 (41 skills + 36 MCPs + 9 tools + 4 scripts + 13 components + 6 integrations)
 
 **Resource Coverage:** 100% discoverability • 92% skill-to-MCP coverage • Complete dependency mapping
 
@@ -48,7 +48,7 @@ The tool automatically:
 - ✅ Installs everything needed
 - ✅ Analyzes your repository
 - ✅ Recommends where to start
-- ✅ Syncs all 103 resources
+- ✅ Syncs all 109 resources
 
 **Works for:**
 - New projects, existing projects
@@ -57,9 +57,9 @@ The tool automatically:
 - Local or freshly cloned from GitHub
 
 **After 2 minutes, you have:**
-- 39 skills
+- 41 skills
 - 36 MCP servers
-- 107 total resources
+- 109 total resources
 - Project analysis with recommendations
 - Exact roadmap for where to start
 
@@ -118,12 +118,12 @@ ai-dev-standards/
 
 ## 🧠 Repository Brain
 
-The **Repository Brain** is an intelligence system that manages, understands, and orchestrates all 108 resources.
+The **Repository Brain** is an intelligence system that manages, understands, and orchestrates all 109 resources.
 
 ### What It Does
 
 ```bash
-brain status                    # Current state (40 skills, 36 MCPs, 108 resources)
+brain status                    # Current state (41 skills, 36 MCPs, 109 resources)
 brain search "authentication"   # Search across all resources
 brain decide "add new skill"    # Get workflow recommendations
 brain select-skills "build MVP" # Get skill recommendations
