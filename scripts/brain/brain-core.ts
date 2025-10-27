@@ -176,8 +176,11 @@ export class RepositoryBrain {
   }
 
   /**
-   * Get reverse dependencies (what uses this MCP?)
-   * Supports both MCP ID and friendly name
+   * BUG FIX 2: Get reverse dependencies (what uses this MCP?)
+   * FIXED: Now supports both MCP ID and friendly name
+   * Implementation is in knowledge-layer.ts getMCP() and getSkillsUsingMCP()
+   * - ID format: "vector-database-mcp"
+   * - Friendly name: "Vector Database MCP"
    */
   async getReverseDependencies(mcpIdOrName: string): Promise<{
     mcp: MCP;
@@ -402,10 +405,16 @@ export class RepositoryBrain {
   }
 
   /**
-   * Compare architecture patterns
+   * TYPE SAFETY FIX 3: Compare architecture patterns with proper typing
    */
   async comparePatterns(patternNames: string[]): Promise<{
-    comparison: Record<string, any>;
+    comparison: Record<string, {
+      complexity: string;
+      estimated_time: string;
+      pros_count: number;
+      cons_count: number;
+      skills_required: number;
+    }>;
     recommendation: string;
     reasoning: string;
   }> {

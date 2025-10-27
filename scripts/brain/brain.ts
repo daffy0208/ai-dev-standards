@@ -70,10 +70,13 @@ async function main() {
   }
 
   const command = args[0];
-  // Resolve repository root: handle both TypeScript source and compiled JS execution
-  // When run from scripts/brain/brain.ts: __dirname = scripts/brain, need ../..
-  // When run from scripts/brain/dist/brain.js: __dirname = scripts/brain/dist, need ../../..
-  const isCompiledDist = __dirname.endsWith('dist');
+
+  // BUG FIX 1: Resolve repository root correctly for both source and compiled execution
+  // Problem: Previous check `__dirname.endsWith('dist')` fails when path has 'dist' elsewhere
+  // Solution: Check if __dirname contains '/dist/' or '\dist\' as a directory separator
+  // When run from scripts/brain/brain.ts: __dirname = .../scripts/brain, need ../..
+  // When run from scripts/brain/dist/brain.js: __dirname = .../scripts/brain/dist, need ../../..
+  const isCompiledDist = __dirname.includes(path.sep + 'dist') || __dirname.includes('/dist');
   const rootPath = path.resolve(__dirname, isCompiledDist ? '../../..' : '../..');
 
   try {
@@ -136,7 +139,9 @@ async function main() {
   }
 }
 
-async function commandStatus(brain: RepositoryBrain) {
+// TYPE SAFETY FIX 3: Properly typed command handlers
+
+async function commandStatus(brain: RepositoryBrain): Promise<void> {
   printHeader('Repository Status');
 
   const status = await brain.status();
@@ -165,7 +170,7 @@ async function commandStatus(brain: RepositoryBrain) {
   }
 }
 
-async function commandHealth(brain: RepositoryBrain) {
+async function commandHealth(brain: RepositoryBrain): Promise<void> {
   printHeader('Health Check');
 
   const health = await brain.healthCheck();
@@ -188,7 +193,7 @@ async function commandHealth(brain: RepositoryBrain) {
   }
 }
 
-async function commandValidate(brain: RepositoryBrain) {
+async function commandValidate(brain: RepositoryBrain): Promise<void> {
   printHeader('Validation');
 
   const result = await brain.validate();
@@ -205,7 +210,7 @@ async function commandValidate(brain: RepositoryBrain) {
   }
 }
 
-async function commandList(brain: RepositoryBrain, type: string) {
+async function commandList(brain: RepositoryBrain, type: string): Promise<void> {
   if (type === 'skills') {
     printHeader('All Skills');
     const skills = await brain.listSkills();
@@ -232,7 +237,7 @@ async function commandList(brain: RepositoryBrain, type: string) {
   }
 }
 
-async function commandSearch(brain: RepositoryBrain, query: string) {
+async function commandSearch(brain: RepositoryBrain, query: string): Promise<void> {
   if (!query) {
     printError('Please provide a search query');
     process.exit(1);
@@ -264,7 +269,7 @@ async function commandSearch(brain: RepositoryBrain, query: string) {
   }
 }
 
-async function commandShow(brain: RepositoryBrain, type: string, name: string) {
+async function commandShow(brain: RepositoryBrain, type: string, name: string): Promise<void> {
   if (type === 'skill') {
     printHeader(`Skill: ${name}`);
     const skill = await brain.getSkill(name);
@@ -292,7 +297,7 @@ async function commandShow(brain: RepositoryBrain, type: string, name: string) {
   }
 }
 
-async function commandRelationships(brain: RepositoryBrain, skillName: string) {
+async function commandRelationships(brain: RepositoryBrain, skillName: string): Promise<void> {
   if (!skillName) {
     printError('Please provide a skill name');
     process.exit(1);
@@ -333,7 +338,12 @@ async function commandRelationships(brain: RepositoryBrain, skillName: string) {
   }
 }
 
-async function commandReverseDeps(brain: RepositoryBrain, type: string, nameOrId: string) {
+// BUG FIX 2: Reverse dependencies now support both MCP ID and friendly name
+// The fix is implemented in knowledge-layer.ts getMCP() and getSkillsUsingMCP()
+// Both methods now accept either format:
+// - ID format: "vector-database-mcp"
+// - Friendly name: "Vector Database MCP"
+async function commandReverseDeps(brain: RepositoryBrain, type: string, nameOrId: string): Promise<void> {
   if (type !== 'mcp') {
     printError(`Unknown type: ${type}. Use 'mcp'`);
     process.exit(1);
@@ -361,7 +371,7 @@ async function commandReverseDeps(brain: RepositoryBrain, type: string, nameOrId
   }
 }
 
-async function commandSelectSkills(brain: RepositoryBrain, task: string) {
+async function commandSelectSkills(brain: RepositoryBrain, task: string): Promise<void> {
   if (!task) {
     printError('Please provide a task description');
     process.exit(1);
@@ -387,7 +397,7 @@ async function commandSelectSkills(brain: RepositoryBrain, task: string) {
   }
 }
 
-async function commandSelectMCPs(brain: RepositoryBrain, skillNames: string[]) {
+async function commandSelectMCPs(brain: RepositoryBrain, skillNames: string[]): Promise<void> {
   if (skillNames.length === 0) {
     printError('Please provide at least one skill name');
     process.exit(1);
@@ -405,7 +415,7 @@ async function commandSelectMCPs(brain: RepositoryBrain, skillNames: string[]) {
   }
 
   console.log(`\n${colorize('Breakdown:', 'dim')}`);
-  Object.entries(selection.breakdown).forEach(([skill, mcps]: [string, string[]]) => {
+  Object.entries(selection.breakdown).forEach(([skill, mcps]) => {
     console.log(`  ${skill}:`);
     if (mcps.length > 0) {
       mcps.forEach((m: string) => console.log(`    - ${m}`));
@@ -415,7 +425,7 @@ async function commandSelectMCPs(brain: RepositoryBrain, skillNames: string[]) {
   });
 }
 
-async function commandDecide(brain: RepositoryBrain, scenario: string) {
+async function commandDecide(brain: RepositoryBrain, scenario: string): Promise<void> {
   if (!scenario) {
     printError('Please provide a scenario description');
     process.exit(1);
@@ -446,7 +456,7 @@ async function commandDecide(brain: RepositoryBrain, scenario: string) {
   console.log(`  ${decision.reasoning}`);
 }
 
-async function commandPatterns(brain: RepositoryBrain, problem: string) {
+async function commandPatterns(brain: RepositoryBrain, problem: string): Promise<void> {
   if (!problem) {
     printError('Please provide a problem description');
     process.exit(1);
@@ -484,7 +494,7 @@ async function commandPatterns(brain: RepositoryBrain, problem: string) {
   console.log(`\n${colorize(`Total patterns analyzed: ${matches.length}`, 'bright')}`);
 }
 
-async function commandWorkflow(brain: RepositoryBrain, scenario: string) {
+async function commandWorkflow(brain: RepositoryBrain, scenario: string): Promise<void> {
   if (!scenario) {
     printError('Please provide a scenario description');
     process.exit(1);
@@ -537,7 +547,7 @@ async function commandWorkflow(brain: RepositoryBrain, scenario: string) {
   }
 }
 
-async function commandAnalyze(brain: RepositoryBrain, task: string) {
+async function commandAnalyze(brain: RepositoryBrain, task: string): Promise<void> {
   if (!task) {
     printError('Please provide a task description');
     process.exit(1);

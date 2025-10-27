@@ -348,7 +348,7 @@ ai-dev config reset
 ai-dev config set preferences.autoApprove true
 
 # Change sync frequency
-ai-dev config set frequency "daily"
+ai-dev config set frequency "manual"
 
 # Change what gets tracked
 ai-dev config set tracking "skills,mcps"
@@ -362,7 +362,7 @@ ai-dev config show
 
 **Config keys:**
 - `tracking` - What to sync (skills, mcps, cursorrules, gitignore, tools)
-- `frequency` - How often (git-hook, daily, weekly, manual)
+- `frequency` - When to sync (git-hook, manual)
 - `preferences.autoApprove` - Skip confirmation prompts
 - `preferences.notifications` - Show update notifications
 - `preferences.backupBeforeSync` - Backup files before updating

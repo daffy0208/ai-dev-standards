@@ -24,6 +24,17 @@ export interface MCPIntegration {
   warnings: string[];
 }
 
+// TYPE SAFETY FIX 3: Define proper relationship mapping interface
+interface RelationshipMapping {
+  skills: Record<string, {
+    required_mcps: string[];
+    required_tools: string[];
+    required_integrations: string[];
+    required_components?: string[];
+    supporting_scripts?: string[];
+  }>;
+}
+
 export class MCPIntegrator {
   private mcps: MCP[];
   private relationshipMapping: Record<string, {
@@ -32,7 +43,7 @@ export class MCPIntegrator {
     required_integrations: string[];
   }>;
 
-  constructor(mcps: MCP[], relationshipMapping: any) {
+  constructor(mcps: MCP[], relationshipMapping: RelationshipMapping) {
     this.mcps = mcps;
     this.relationshipMapping = relationshipMapping.skills || {};
   }
