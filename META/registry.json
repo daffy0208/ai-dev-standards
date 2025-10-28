@@ -1,6 +1,6 @@
 {
-  "version": "1.1.0",
-  "lastUpdated": "2025-10-28T03:10:35.005Z",
+  "version": "1.2.0",
+  "lastUpdated": "2025-10-28T16:25:35.950660Z",
   "description": "Central registry of all ai-dev-standards resources",
   "skills": [
     {
@@ -108,6 +108,17 @@
         "design"
       ],
       "category": "design"
+    },
+    {
+      "name": "capability-graph-builder",
+      "version": "1.0.0",
+      "description": "Build queryable capability graphs from manifests using Codex for relationship inference",
+      "path": "SKILLS/capability-graph-builder/SKILL.md",
+      "tags": [
+        "orchestration",
+        "codex-powered"
+      ],
+      "category": "orchestration"
     },
     {
       "name": "codex-review-workflow",
@@ -336,6 +347,17 @@
       "category": "engineering"
     },
     {
+      "name": "manifest-generator",
+      "version": "1.0.0",
+      "description": "Auto-generate capability manifests from skill/MCP descriptions using Codex",
+      "path": "SKILLS/manifest-generator/SKILL.md",
+      "tags": [
+        "orchestration",
+        "codex-powered"
+      ],
+      "category": "meta"
+    },
+    {
       "name": "mobile-developer",
       "version": "1.0.0",
       "description": "Expert in React Native, Expo, and cross-platform mobile development",
@@ -368,6 +390,17 @@
         "api"
       ],
       "category": "product"
+    },
+    {
+      "name": "orchestration-planner",
+      "version": "1.0.0",
+      "description": "Plan multi-step workflows using capability graph and Codex-powered goal decomposition",
+      "path": "SKILLS/orchestration-planner/SKILL.md",
+      "tags": [
+        "orchestration",
+        "codex-powered"
+      ],
+      "category": "orchestration"
     },
     {
       "name": "performance-optimizer",
@@ -511,6 +544,17 @@
       "category": "backend"
     },
     {
+      "name": "skill-validator",
+      "version": "1.0.0",
+      "description": "Validate implementations match manifests using Codex for semantic comparison",
+      "path": "SKILLS/skill-validator/SKILL.md",
+      "tags": [
+        "orchestration",
+        "codex-powered"
+      ],
+      "category": "meta"
+    },
+    {
       "name": "spatial-developer",
       "version": "1.0.0",
       "description": "Expert in AR/VR, WebXR, and spatial computing for Vision Pro and web",
@@ -528,6 +572,17 @@
         "design"
       ],
       "category": "ai"
+    },
+    {
+      "name": "system-diagnostician",
+      "version": "1.0.0",
+      "description": "Analyze project health and recommend capabilities using Codex-powered system understanding",
+      "path": "SKILLS/system-diagnostician/SKILL.md",
+      "tags": [
+        "orchestration",
+        "codex-powered"
+      ],
+      "category": "meta"
     },
     {
       "name": "task-breakdown-specialist",
@@ -1939,7 +1994,7 @@
     {
       "name": "validation-first-development",
       "title": "Validation-First Development Playbook",
-      "description": "## 🎯 Core Principle",
+      "description": "## \ud83c\udfaf Core Principle",
       "use_when": "Use when validation first development",
       "category": "development",
       "difficulty": "advanced",
@@ -4392,6 +4447,19 @@
       ]
     },
     {
+      "name": "capability-manifest",
+      "version": "1.0.0",
+      "description": "JSON schema for validating capability manifest files for orchestration system",
+      "path": "SCHEMAS/capability-manifest.schema.json",
+      "validates": [
+        "*/manifest.yaml"
+      ],
+      "tags": [
+        "orchestration",
+        "manifest"
+      ]
+    },
+    {
       "name": "component.schema",
       "title": "Component.schema",
       "description": "YAML schema for validating component structure and metadata. Defines required fields, dependencies, props, and documentation for React components.",
@@ -4552,12 +4620,12 @@
   ],
   "scripts": [
     {
-      "name": "update-registry",
+      "name": "add-component-dependencies",
       "version": "1.0.0",
-      "description": "Automatically sync META/registry.json with filesystem resources",
-      "path": "scripts/update-registry.js",
-      "purpose": "Maintain registry accuracy",
-      "usage": "node scripts/update-registry.js or npm run update-registry"
+      "description": "Add dependencies field to components listing their integration, util, and component requirements",
+      "path": "scripts/add-component-dependencies.js",
+      "purpose": "Phase 2 relationship metadata",
+      "usage": "node scripts/add-component-dependencies.js"
     },
     {
       "name": "add-skill-requirements",
@@ -4568,12 +4636,22 @@
       "usage": "node scripts/add-skill-requirements.js"
     },
     {
-      "name": "add-component-dependencies",
+      "name": "regenerate-relationships",
       "version": "1.0.0",
-      "description": "Add dependencies field to components listing their integration, util, and component requirements",
-      "path": "scripts/add-component-dependencies.js",
-      "purpose": "Phase 2 relationship metadata",
-      "usage": "node scripts/add-component-dependencies.js"
+      "description": "Regenerate relationship mappings between skills, MCPs, tools, and components",
+      "path": "scripts/regenerate-relationships.ts",
+      "tags": [
+        "relationships",
+        "automation"
+      ]
+    },
+    {
+      "name": "update-registry",
+      "version": "1.0.0",
+      "description": "Automatically sync META/registry.json with filesystem resources",
+      "path": "scripts/update-registry.js",
+      "purpose": "Maintain registry accuracy",
+      "usage": "node scripts/update-registry.js or npm run update-registry"
     }
   ],
   "changeLog": [
