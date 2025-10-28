@@ -42,10 +42,24 @@ export class MCPIntegrator {
     required_tools: string[];
     required_integrations: string[];
   }>;
+  private mcpIdSet: Set<string>;
+  private mcpById: Map<string, MCP>;
+  private mcpNameMap: Map<string, MCP>;
+  private mcpLabelMap: Map<string, string>;
 
   constructor(mcps: MCP[], relationshipMapping: RelationshipMapping) {
     this.mcps = mcps;
     this.relationshipMapping = relationshipMapping.skills || {};
+    this.mcpById = new Map(mcps.map(m => [m.id, m]));
+    this.mcpIdSet = new Set(this.mcpById.keys());
+    this.mcpNameMap = new Map(mcps.map(m => [m.name.toLowerCase(), m]));
+    this.mcpLabelMap = new Map();
+
+    for (const mcp of mcps) {
+      const label = `${mcp.name} (${mcp.id})`;
+      this.mcpLabelMap.set(mcp.id, label);
+      this.mcpLabelMap.set(mcp.name.toLowerCase(), label);
+    }
   }
 
   /**
@@ -223,9 +237,8 @@ export class MCPIntegrator {
 
     // Check if any MCPs are missing
     for (const mcp of mcps) {
-      const mcpExists = this.mcps.some(m => m.name === mcp);
-      if (!mcpExists) {
-        warnings.push(`MCP '${mcp}' is required but not yet implemented`);
+      if (!this.hasMCP(mcp)) {
+        warnings.push(`MCP '${this.getMCPLabel(mcp)}' is required but not yet implemented`);
       }
     }
 
@@ -254,7 +267,7 @@ export class MCPIntegrator {
    * Get MCP status (official, community, custom)
    */
   getMCPStatus(mcpName: string): 'official' | 'community' | 'custom' | 'not-found' {
-    const mcp = this.mcps.find(m => m.name === mcpName);
+    const mcp = this.resolveMCP(mcpName);
     if (!mcp) return 'not-found';
 
     // Check status field
@@ -298,7 +311,7 @@ export class MCPIntegrator {
     const steps: string[] = [];
 
     for (const mcpName of mcps) {
-      const mcp = this.mcps.find(m => m.name === mcpName);
+      const mcp = this.resolveMCP(mcpName);
       if (!mcp) continue;
 
       // Estimate based on MCP type
@@ -340,14 +353,36 @@ export class MCPIntegrator {
    */
   findSkillsForMCP(mcpName: string): string[] {
     const skills: string[] = [];
+    const resolvedMCP = this.resolveMCP(mcpName);
+    const id = resolvedMCP ? resolvedMCP.id : mcpName;
 
     for (const [skill, deps] of Object.entries(this.relationshipMapping)) {
-      if (deps.required_mcps && deps.required_mcps.includes(mcpName)) {
+      if (deps.required_mcps && deps.required_mcps.includes(id)) {
         skills.push(skill);
       }
     }
 
     return skills;
+  }
+
+  private hasMCP(identifier: string): boolean {
+    if (this.mcpIdSet.has(identifier)) {
+      return true;
+    }
+    const byName = this.mcpNameMap.get(identifier.toLowerCase());
+    return Boolean(byName);
+  }
+
+  private getMCPLabel(identifier: string): string {
+    return this.mcpLabelMap.get(identifier) || this.mcpLabelMap.get(identifier.toLowerCase()) || identifier;
+  }
+
+  private resolveMCP(identifier: string): MCP | null {
+    if (this.mcpIdSet.has(identifier)) {
+      return this.mcpById.get(identifier) || null;
+    }
+    const byName = this.mcpNameMap.get(identifier.toLowerCase());
+    return byName || null;
   }
 
   /**

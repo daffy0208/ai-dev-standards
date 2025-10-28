@@ -81,9 +81,15 @@ export class RepositoryBrain {
     state: {
       skills: number;
       mcps: number;
+      components: number;
+      tools: number;
+      integrations: number;
       totalResources: number;
       skillRegistryVersion: string;
       mcpRegistryVersion: string;
+      componentRegistryVersion: string;
+      toolRegistryVersion: string;
+      integrationRegistryVersion: string;
       relationshipVersion: string;
       lastUpdated: string;
     };

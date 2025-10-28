@@ -192,12 +192,18 @@ async function commandStatus(brain: RepositoryBrain): Promise<void> {
   console.log(colorize('State:', 'bright'));
   console.log(`  Skills: ${colorize(status.state.skills.toString(), 'cyan')}`);
   console.log(`  MCPs: ${colorize(status.state.mcps.toString(), 'cyan')}`);
+  console.log(`  Components: ${colorize(status.state.components.toString(), 'cyan')}`);
+  console.log(`  Tools: ${colorize(status.state.tools.toString(), 'cyan')}`);
+  console.log(`  Integrations: ${colorize(status.state.integrations.toString(), 'cyan')}`);
   console.log(`  Total Resources: ${colorize(status.state.totalResources.toString(), 'cyan')}`);
   console.log(`  Last Updated: ${colorize(status.state.lastUpdated, 'dim')}`);
 
   console.log(`\n${colorize('Versions:', 'bright')}`);
   console.log(`  Skill Registry: ${status.state.skillRegistryVersion}`);
   console.log(`  MCP Registry: ${status.state.mcpRegistryVersion}`);
+  console.log(`  Component Registry: ${status.state.componentRegistryVersion}`);
+  console.log(`  Tool Registry: ${status.state.toolRegistryVersion}`);
+  console.log(`  Integration Registry: ${status.state.integrationRegistryVersion}`);
   console.log(`  Relationships: ${status.state.relationshipVersion}`);
 
   console.log(`\n${colorize('Health:', 'bright')}`);

@@ -55,6 +55,59 @@ interface MCPRegistry {
   categories: any[];
 }
 
+export interface ComponentResource {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  path: string;
+  status: string;
+  language?: string;
+  framework?: string;
+}
+
+interface ComponentRegistry {
+  version: string;
+  last_updated: string;
+  description: string;
+  components: ComponentResource[];
+}
+
+export interface ToolResource {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  path: string;
+  status: string;
+  language?: string;
+  framework?: string;
+}
+
+interface ToolRegistry {
+  version: string;
+  last_updated: string;
+  description: string;
+  tools: ToolResource[];
+}
+
+export interface IntegrationResource {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  path: string;
+  status: string;
+  authentication?: string;
+}
+
+interface IntegrationRegistry {
+  version: string;
+  last_updated: string;
+  description: string;
+  integrations: IntegrationResource[];
+}
+
 interface RelationshipMapping {
   version: string;
   last_updated: string;
@@ -72,6 +125,9 @@ export class KnowledgeLayer {
   private rootPath: string;
   private skillRegistry: SkillRegistry | null = null;
   private mcpRegistry: MCPRegistry | null = null;
+  private componentRegistry: ComponentRegistry | null = null;
+  private toolRegistry: ToolRegistry | null = null;
+  private integrationRegistry: IntegrationRegistry | null = null;
   private relationshipMapping: RelationshipMapping | null = null;
 
   constructor(rootPath: string) {
@@ -91,6 +147,18 @@ export class KnowledgeLayer {
     // Load MCP registry
     const mcpRegistryPath = path.join(metaPath, 'mcp-registry.json');
     this.mcpRegistry = JSON.parse(fs.readFileSync(mcpRegistryPath, 'utf-8'));
+
+    // Load component registry
+    const componentRegistryPath = path.join(metaPath, 'component-registry.json');
+    this.componentRegistry = JSON.parse(fs.readFileSync(componentRegistryPath, 'utf-8'));
+
+    // Load tool registry
+    const toolRegistryPath = path.join(metaPath, 'tool-registry.json');
+    this.toolRegistry = JSON.parse(fs.readFileSync(toolRegistryPath, 'utf-8'));
+
+    // Load integration registry
+    const integrationRegistryPath = path.join(metaPath, 'integration-registry.json');
+    this.integrationRegistry = JSON.parse(fs.readFileSync(integrationRegistryPath, 'utf-8'));
 
     // Load relationship mapping
     const relationshipPath = path.join(metaPath, 'relationship-mapping.json');
@@ -203,6 +271,80 @@ export class KnowledgeLayer {
     return this.mcpRegistry.mcps;
   }
 
+  // ============================================
+  // COMPONENT QUERIES
+  // ============================================
+
+  getComponentCount(): number {
+    if (!this.componentRegistry) throw new Error('Registries not loaded');
+    return this.componentRegistry.components.length;
+  }
+
+  getComponent(idOrName: string): ComponentResource | null {
+    if (!this.componentRegistry) throw new Error('Registries not loaded');
+    const byId = this.componentRegistry.components.find(component => component.id === idOrName);
+    if (byId) {
+      return byId;
+    }
+    const lower = idOrName.toLowerCase();
+    return this.componentRegistry.components.find(component => component.name.toLowerCase() === lower) || null;
+  }
+
+  getAllComponents(): ComponentResource[] {
+    if (!this.componentRegistry) throw new Error('Registries not loaded');
+    return this.componentRegistry.components;
+  }
+
+  // ============================================
+  // TOOL QUERIES
+  // ============================================
+
+  getToolCount(): number {
+    if (!this.toolRegistry) throw new Error('Registries not loaded');
+    return this.toolRegistry.tools.length;
+  }
+
+  getTool(idOrName: string): ToolResource | null {
+    if (!this.toolRegistry) throw new Error('Registries not loaded');
+    const byId = this.toolRegistry.tools.find(tool => tool.id === idOrName);
+    if (byId) {
+      return byId;
+    }
+    const lower = idOrName.toLowerCase();
+    return this.toolRegistry.tools.find(tool => tool.name.toLowerCase() === lower) || null;
+  }
+
+  getAllTools(): ToolResource[] {
+    if (!this.toolRegistry) throw new Error('Registries not loaded');
+    return this.toolRegistry.tools;
+  }
+
+  // ============================================
+  // INTEGRATION QUERIES
+  // ============================================
+
+  getIntegrationCount(): number {
+    if (!this.integrationRegistry) throw new Error('Registries not loaded');
+    return this.integrationRegistry.integrations.length;
+  }
+
+  getIntegration(idOrName: string): IntegrationResource | null {
+    if (!this.integrationRegistry) throw new Error('Registries not loaded');
+    const byId = this.integrationRegistry.integrations.find(integration => integration.id === idOrName);
+    if (byId) {
+      return byId;
+    }
+    const lower = idOrName.toLowerCase();
+    return (
+      this.integrationRegistry.integrations.find(integration => integration.name.toLowerCase() === lower) || null
+    );
+  }
+
+  getAllIntegrations(): IntegrationResource[] {
+    if (!this.integrationRegistry) throw new Error('Registries not loaded');
+    return this.integrationRegistry.integrations;
+  }
+
   /**
    * Search MCPs by keyword
    */
@@ -309,22 +451,47 @@ export class KnowledgeLayer {
   getRepositoryState(): {
     skills: number;
     mcps: number;
+    components: number;
+    tools: number;
+    integrations: number;
     totalResources: number;
     skillRegistryVersion: string;
     mcpRegistryVersion: string;
+    componentRegistryVersion: string;
+    toolRegistryVersion: string;
+    integrationRegistryVersion: string;
     relationshipVersion: string;
     lastUpdated: string;
   } {
-    if (!this.skillRegistry || !this.mcpRegistry || !this.relationshipMapping) {
+    if (
+      !this.skillRegistry ||
+      !this.mcpRegistry ||
+      !this.componentRegistry ||
+      !this.toolRegistry ||
+      !this.integrationRegistry ||
+      !this.relationshipMapping
+    ) {
       throw new Error('Registries not loaded');
     }
 
+    const skills = this.getSkillCount();
+    const mcps = this.getMCPCount();
+    const components = this.getComponentCount();
+    const tools = this.getToolCount();
+    const integrations = this.getIntegrationCount();
+
     return {
-      skills: this.getSkillCount(),
-      mcps: this.getMCPCount(),
-      totalResources: this.getSkillCount() + this.getMCPCount() + 13 + 9 + 6, // + components + tools + integrations
+      skills,
+      mcps,
+      components,
+      tools,
+      integrations,
+      totalResources: skills + mcps + components + tools + integrations,
       skillRegistryVersion: this.skillRegistry.version,
       mcpRegistryVersion: this.mcpRegistry.version,
+      componentRegistryVersion: this.componentRegistry.version,
+      toolRegistryVersion: this.toolRegistry.version,
+      integrationRegistryVersion: this.integrationRegistry.version,
       relationshipVersion: this.relationshipMapping.version,
       lastUpdated: this.skillRegistry.last_updated
     };
@@ -347,7 +514,14 @@ export class KnowledgeLayer {
   } {
     const errors: string[] = [];
 
-    if (!this.skillRegistry || !this.mcpRegistry || !this.relationshipMapping) {
+    if (
+      !this.skillRegistry ||
+      !this.mcpRegistry ||
+      !this.componentRegistry ||
+      !this.toolRegistry ||
+      !this.integrationRegistry ||
+      !this.relationshipMapping
+    ) {
       errors.push('Registries not loaded');
       return { valid: false, errors };
     }
@@ -373,6 +547,24 @@ export class KnowledgeLayer {
       for (const mcpName of deps.required_mcps) {
         if (!this.getMCP(mcpName)) {
           errors.push(`Required MCP '${mcpName}' for skill '${skillName}' not found`);
+        }
+      }
+
+      for (const toolId of deps.required_tools || []) {
+        if (!this.getTool(toolId)) {
+          errors.push(`Required tool '${toolId}' for skill '${skillName}' not found`);
+        }
+      }
+
+      for (const componentId of deps.required_components || []) {
+        if (!this.getComponent(componentId)) {
+          errors.push(`Required component '${componentId}' for skill '${skillName}' not found`);
+        }
+      }
+
+      for (const integrationId of deps.required_integrations || []) {
+        if (!this.getIntegration(integrationId)) {
+          errors.push(`Required integration '${integrationId}' for skill '${skillName}' not found`);
         }
       }
     }
