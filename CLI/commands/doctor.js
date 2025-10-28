@@ -221,7 +221,7 @@ async function checkDependencies(verbose) {
   // Check for outdated packages
   try {
     const { stdout } = await execa('npm', ['outdated', '--json'])
-    const outdated = JSON.parse(stdout)
+    const outdated = JSON.parse(stdout || '{}')
     const count = Object.keys(outdated).length
 
     if (count > 0) {
@@ -233,7 +233,25 @@ async function checkDependencies(verbose) {
       }
     }
   } catch (error) {
-    // npm outdated returns non-zero when packages are outdated
+    // npm outdated returns exit code 1 when packages are outdated
+    // Parse the stdout even when error occurs
+    if (error.stdout) {
+      try {
+        const outdated = JSON.parse(error.stdout)
+        const count = Object.keys(outdated).length
+
+        if (count > 0) {
+          return {
+            name: 'Dependencies',
+            status: 'warning',
+            message: `${count} outdated packages`,
+            fix: 'Run: npm update'
+          }
+        }
+      } catch (parseError) {
+        // If parsing fails, continue to return OK status
+      }
+    }
   }
 
   return {

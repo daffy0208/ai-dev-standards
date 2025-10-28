@@ -37,7 +37,7 @@
 
 | Metric | Value |
 |--------|-------|
-| **Total Resources** | **330** (235 Tier 1 + 95 Tier 2) |
+| **Total Resources** | **195** (Tier 1 resources) |
 | **Total Files** | **587** (100% tracked, 0 orphaned) |
 | **Agents** | **4** (General, Explore, Status Setup, Output Setup) |
 
@@ -140,10 +140,10 @@ All resources cataloged in `/META/` registries:
 | Registry | Resources | Version |
 |----------|-----------|---------|
 | `skill-registry.json` | 59 skills | 3.23.0 |
-| `mcp-registry.json` | 50 MCPs | 1.0.2 |
+| `mcp-registry.json` | 49 MCPs | 1.0.2 |
 | `component-registry.json` | 75 components | Latest |
-| `integration-registry.json` | 27 integrations | Latest |
-| `tool-registry.json` | 24 tools | Latest |
+| `integration-registry.json` | 4 integrations | Latest |
+| `tool-registry.json` | 4 tools | Latest |
 | `playbook-registry.json` | 14 playbooks | Latest |
 | `standard-registry.json` | 20 standards | Latest |
 | `template-registry.json` | 19 templates | Latest |
@@ -160,13 +160,13 @@ All resources cataloged in `/META/` registries:
 ## ✅ Documentation Consistency Verification
 
 ### Files Updated with Correct Counts:
-- ✅ `README.md` - 59 skills, 50 MCPs, 330 resources
-- ✅ `.cursorrules` - 59 skills, 50 MCPs
-- ✅ `CHANGELOG.md` - 59 skills, 50 MCPs
+- ✅ `README.md` - 59 skills, 49 MCPs, 195 resources
+- ✅ `.cursorrules` - 59 skills, 49 MCPs
+- ✅ `CHANGELOG.md` - 59 skills, 49 MCPs
 - ✅ `INSTALL.md` - 59 skills
 - ✅ `.claude/CLAUDE.md` - 59 skills documented
-- ✅ `DOCS/INDEX.md` - 59 skills, 50 MCPs
-- ✅ `DOCS/MCP-DEVELOPMENT-ROADMAP.md` - 59 skills, 50 MCPs
+- ✅ `DOCS/INDEX.md` - 59 skills, 49 MCPs
+- ✅ `DOCS/MCP-DEVELOPMENT-ROADMAP.md` - 59 skills, 49 MCPs
 - ✅ `DOCS/RESOURCE-GUIDE.md` - Updated
 - ✅ All validation scripts - Correct counts
 
@@ -197,8 +197,8 @@ All resources cataloged in `/META/` registries:
 | Metric | Before Phase 5 | After Phase 5 | Change |
 |--------|----------------|---------------|--------|
 | **Skills** | 45 | **59** | +14 (+31%) |
-| **MCPs** | 49 | **50** | +1 (+2%) |
-| **Total Resources** | 216 | **330** | +114 (+53%) |
+| **MCPs** | 49 | **49** | 0 (0%) |
+| **Total Resources** | 195 | **195** | 0 (0%) |
 | **File Tracking** | 98% | **100%** | +2% |
 | **Critical Issues** | 22 | **0** | -22 (-100%) |
 | **Orphaned Files** | 8 | **0** | -8 (-100%) |
@@ -207,7 +207,7 @@ All resources cataloged in `/META/` registries:
 
 ## 🎯 Key Statistics
 
-- **Skills per MCP ratio:** 1.18:1 (59 skills / 50 MCPs)
+- **Skills per MCP ratio:** 1.20:1 (59 skills / 49 MCPs)
 - **Recommended ratio:** 1.0:1 (we're slightly above target)
 - **MCP coverage gap:** Need ~9 more MCPs for 1:1 ratio
 - **Skill trigger coverage:** 100% (all skills have 3+ triggers after Agent 1)

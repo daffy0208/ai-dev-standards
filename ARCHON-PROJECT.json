@@ -1,6 +1,6 @@
 {
   "project_name": "ai-dev-standards",
-  "description": "Comprehensive development standards with 39 skills, 36 MCPs, and proven Archon integration framework",
+  "description": "Comprehensive development standards with 59 skills, 49 MCPs, and proven Archon integration framework",
   "version": "1.6.0",
   "current_phase": "Phase 2: Knowledge Base & Integration Enhancements",
   "rci_score": 70,
@@ -15,9 +15,9 @@
   },
   "phase_1_complete": {
     "delivered": [
-      "39 specialized skills",
-      "36 MCP servers (92% skill coverage)",
-      "107 total resources",
+      "59 specialized skills",
+      "49 MCP servers (76% skill coverage)",
+      "195 total resources",
       "CLI tool (ai-dev sync)",
       "Setup automation (setup-project.sh)",
       "Auto-analysis with START-HERE.md",
@@ -235,7 +235,7 @@
     {
       "id": "P1-4",
       "title": "Comprehensive MCP testing suite",
-      "description": "Build automated testing for all 34 MCP servers. Validates tools work correctly, handles errors properly, and integrates with skills as expected. Critical for maintaining 92% skill-to-MCP parity.",
+      "description": "Build automated testing for all 49 MCP servers. Validates tools work correctly, handles errors properly, and integrates with skills as expected. Critical for maintaining 76% skill-to-MCP coverage.",
       "priority": "P1",
       "status": "todo",
       "skills_to_use": ["testing-strategist", "quality-auditor"],
@@ -249,7 +249,7 @@
         "MCP health dashboard"
       ],
       "acceptance_criteria": [
-        "Tests for all 34 MCP servers",
+        "Tests for all 49 MCP servers",
         "Validates tool signatures and responses",
         "Error handling coverage",
         "Performance benchmarks",

@@ -96,7 +96,6 @@ program
   .command('analyze')
   .description('Analyze your project and suggest improvements')
   .option('-d, --directory <dir>', 'Directory to analyze', '.')
-  .option('--fix', 'Auto-fix issues')
   .option('--report <file>', 'Save report to file')
   .action(analyzeCommand)
 

@@ -2,7 +2,7 @@
 
 **Complete guide to connecting ai-dev-standards to any project**
 
-This guide will help you set up ai-dev-standards in any new or existing project, giving you access to 37 skills, 34 MCPs, 9 tools, 13 components, and 6 integrations.
+This guide will help you set up ai-dev-standards in any new or existing project, giving you access to 59 skills, 49 MCPs, 4 tools, 75 components, and 4 integrations.
 
 ---
 
@@ -751,11 +751,11 @@ cursorrules-quick-test.md        # Quick testing
 # All registries in ai-dev-standards
 ~/ai-dev-standards/META/
 
-skill-registry.json              # 37 skills
-mcp-registry.json                # 34 MCPs
-tool-registry.json               # 9 tools + 4 scripts
-component-registry.json          # 13 components
-integration-registry.json        # 6 integrations
+skill-registry.json              # 59 skills
+mcp-registry.json                # 49 MCPs
+tool-registry.json               # 4 tools + 3 scripts
+component-registry.json          # 75 components
+integration-registry.json        # 4 integrations
 relationship-mapping.json        # Complete dependency graph
 ```
 
