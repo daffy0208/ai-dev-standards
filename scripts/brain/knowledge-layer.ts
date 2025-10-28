@@ -517,23 +517,28 @@ export class KnowledgeLayer {
     }
 
     // Check that all skills in relationship mapping exist in skill registry
-    for (const skillName of Object.keys(this.relationshipMapping.skills)) {
-      if (!this.getSkill(skillName)) {
-        errors.push(`Skill '${skillName}' in relationship mapping not found in skill registry`);
+    if (this.relationshipMapping?.skills) {
+      for (const skillName of Object.keys(this.relationshipMapping.skills)) {
+        if (!this.getSkill(skillName)) {
+          errors.push(`Skill '${skillName}' in relationship mapping not found in skill registry`);
+        }
       }
     }
 
     // Check that all related_skills exist
-    for (const skill of this.skillRegistry.skills) {
-      for (const relatedSkill of skill.related_skills) {
-        if (!this.getSkill(relatedSkill)) {
-          errors.push(`Related skill '${relatedSkill}' for '${skill.name}' not found`);
+    if (this.skillRegistry?.skills) {
+      for (const skill of this.skillRegistry.skills) {
+        for (const relatedSkill of skill.related_skills) {
+          if (!this.getSkill(relatedSkill)) {
+            errors.push(`Related skill '${relatedSkill}' for '${skill.name}' not found`);
+          }
         }
       }
     }
 
     // Check that all required MCPs exist
-    for (const [skillName, deps] of Object.entries(this.relationshipMapping.skills)) {
+    if (this.relationshipMapping?.skills) {
+      for (const [skillName, deps] of Object.entries(this.relationshipMapping.skills)) {
       for (const mcpName of deps.required_mcps) {
         if (!this.getMCP(mcpName)) {
           errors.push(`Required MCP '${mcpName}' for skill '${skillName}' not found in MCP registry`);
@@ -557,6 +562,7 @@ export class KnowledgeLayer {
           errors.push(`Required integration '${integrationName}' for skill '${skillName}' not found in integration registry`);
         }
       }
+    }
     }
 
     return {

@@ -445,8 +445,7 @@
     },
     "forensic-data-engineer": {
       "required_mcps": [
-        "database-migration-mcp",
-        "monitoring-mcp"
+        "database-migration-mcp"
       ],
       "required_tools": [
         "database-query-tool",
@@ -1172,8 +1171,7 @@
     },
     "performance-optimizer": {
       "required_mcps": [
-        "performance-profiler-mcp",
-        "monitoring-mcp"
+        "performance-profiler-mcp"
       ],
       "required_tools": [
         "code-analyzer-tool",
@@ -2093,10 +2091,7 @@
       ]
     },
     "quality-assurance": {
-      "required_mcps": [
-        "test-coverage-mcp",
-        "code-quality-mcp"
-      ],
+      "required_mcps": [],
       "required_tools": [
         "filesystem-tool"
       ],
@@ -2481,8 +2476,7 @@
     },
     "release-manager": {
       "required_mcps": [
-        "deployment-orchestrator-mcp",
-        "monitoring-mcp"
+        "deployment-orchestrator-mcp"
       ],
       "required_tools": [],
       "required_components": [],
@@ -2542,6 +2536,196 @@
         "cursorrules-minimal.md"
       ],
       "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
+    },
+    "capability-graph-builder": {
+      "required_mcps": [],
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": [],
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [
+        "capability-manifest.schema.json"
+      ],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
+    },
+    "manifest-generator": {
+      "required_mcps": [],
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": [],
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [
+        "capability-manifest.schema.json"
+      ],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
+    },
+    "orchestration-planner": {
+      "required_mcps": [],
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": [],
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [
+        "capability-manifest.schema.json"
+      ],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
+    },
+    "skill-validator": {
+      "required_mcps": [],
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": [],
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [
+        "capability-manifest.schema.json"
+      ],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
+    },
+    "system-diagnostician": {
+      "required_mcps": [],
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": [],
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [
+        "capability-manifest.schema.json"
+      ],
       "related_utils": [
         "logger"
       ],
