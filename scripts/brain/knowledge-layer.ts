@@ -37,6 +37,30 @@ export interface MCP {
   supports_skills?: string[];
 }
 
+interface Tool {
+  id: string;
+  name: string;
+  description?: string;
+  category?: string;
+  [key: string]: any;
+}
+
+interface Component {
+  id: string;
+  name: string;
+  description?: string;
+  category?: string;
+  [key: string]: any;
+}
+
+interface Integration {
+  id: string;
+  name: string;
+  description?: string;
+  category?: string;
+  [key: string]: any;
+}
+
 interface SkillRegistry {
   version: string;
   last_updated: string;
@@ -53,6 +77,31 @@ interface MCPRegistry {
   description: string;
   mcps: MCP[];
   categories: any[];
+}
+
+interface ToolRegistry {
+  version: string;
+  last_updated: string;
+  description: string;
+  tools: Tool[];
+  total_tools?: number;
+  total_scripts?: number;
+}
+
+interface ComponentRegistry {
+  version: string;
+  last_updated: string;
+  description: string;
+  components: Component[];
+  total_components?: number;
+}
+
+interface IntegrationRegistry {
+  version: string;
+  last_updated: string;
+  description: string;
+  integrations: Integration[];
+  total_integrations?: number;
 }
 
 interface RelationshipMapping {
@@ -72,6 +121,9 @@ export class KnowledgeLayer {
   private rootPath: string;
   private skillRegistry: SkillRegistry | null = null;
   private mcpRegistry: MCPRegistry | null = null;
+  private toolRegistry: ToolRegistry | null = null;
+  private componentRegistry: ComponentRegistry | null = null;
+  private integrationRegistry: IntegrationRegistry | null = null;
   private relationshipMapping: RelationshipMapping | null = null;
 
   constructor(rootPath: string) {
@@ -91,6 +143,18 @@ export class KnowledgeLayer {
     // Load MCP registry
     const mcpRegistryPath = path.join(metaPath, 'mcp-registry.json');
     this.mcpRegistry = JSON.parse(fs.readFileSync(mcpRegistryPath, 'utf-8'));
+
+    // Load tool registry
+    const toolRegistryPath = path.join(metaPath, 'tool-registry.json');
+    this.toolRegistry = JSON.parse(fs.readFileSync(toolRegistryPath, 'utf-8'));
+
+    // Load component registry
+    const componentRegistryPath = path.join(metaPath, 'component-registry.json');
+    this.componentRegistry = JSON.parse(fs.readFileSync(componentRegistryPath, 'utf-8'));
+
+    // Load integration registry
+    const integrationRegistryPath = path.join(metaPath, 'integration-registry.json');
+    this.integrationRegistry = JSON.parse(fs.readFileSync(integrationRegistryPath, 'utf-8'));
 
     // Load relationship mapping
     const relationshipPath = path.join(metaPath, 'relationship-mapping.json');
@@ -216,6 +280,75 @@ export class KnowledgeLayer {
   }
 
   // ============================================
+  // TOOL QUERIES
+  // ============================================
+
+  /**
+   * Get total count of tools
+   */
+  getToolCount(): number {
+    if (!this.toolRegistry) throw new Error('Registries not loaded');
+    return this.toolRegistry.tools.length;
+  }
+
+  /**
+   * Get specific tool by ID or name
+   */
+  getTool(idOrName: string): Tool | null {
+    if (!this.toolRegistry) throw new Error('Registries not loaded');
+    const lowerQuery = idOrName.toLowerCase();
+    return this.toolRegistry.tools.find(tool =>
+      tool.id === idOrName || tool.name?.toLowerCase() === lowerQuery
+    ) || null;
+  }
+
+  // ============================================
+  // COMPONENT QUERIES
+  // ============================================
+
+  /**
+   * Get total count of components
+   */
+  getComponentCount(): number {
+    if (!this.componentRegistry) throw new Error('Registries not loaded');
+    return this.componentRegistry.components.length;
+  }
+
+  /**
+   * Get specific component by ID or name
+   */
+  getComponent(idOrName: string): Component | null {
+    if (!this.componentRegistry) throw new Error('Registries not loaded');
+    const lowerQuery = idOrName.toLowerCase();
+    return this.componentRegistry.components.find(component =>
+      component.id === idOrName || component.name?.toLowerCase() === lowerQuery
+    ) || null;
+  }
+
+  // ============================================
+  // INTEGRATION QUERIES
+  // ============================================
+
+  /**
+   * Get total count of integrations
+   */
+  getIntegrationCount(): number {
+    if (!this.integrationRegistry) throw new Error('Registries not loaded');
+    return this.integrationRegistry.integrations.length;
+  }
+
+  /**
+   * Get specific integration by ID or name
+   */
+  getIntegration(idOrName: string): Integration | null {
+    if (!this.integrationRegistry) throw new Error('Registries not loaded');
+    const lowerQuery = idOrName.toLowerCase();
+    return this.integrationRegistry.integrations.find(integration =>
+      integration.id === idOrName || integration.name?.toLowerCase() === lowerQuery
+    ) || null;
+  }
+
+  // ============================================
   // RELATIONSHIP QUERIES
   // ============================================
 
@@ -315,14 +448,27 @@ export class KnowledgeLayer {
     relationshipVersion: string;
     lastUpdated: string;
   } {
-    if (!this.skillRegistry || !this.mcpRegistry || !this.relationshipMapping) {
+    if (
+      !this.skillRegistry ||
+      !this.mcpRegistry ||
+      !this.toolRegistry ||
+      !this.componentRegistry ||
+      !this.integrationRegistry ||
+      !this.relationshipMapping
+    ) {
       throw new Error('Registries not loaded');
     }
 
+    const skillCount = this.getSkillCount();
+    const mcpCount = this.getMCPCount();
+    const toolCount = this.getToolCount();
+    const componentCount = this.getComponentCount();
+    const integrationCount = this.getIntegrationCount();
+
     return {
-      skills: this.getSkillCount(),
-      mcps: this.getMCPCount(),
-      totalResources: this.getSkillCount() + this.getMCPCount() + 13 + 9 + 6, // + components + tools + integrations
+      skills: skillCount,
+      mcps: mcpCount,
+      totalResources: skillCount + mcpCount + toolCount + componentCount + integrationCount,
       skillRegistryVersion: this.skillRegistry.version,
       mcpRegistryVersion: this.mcpRegistry.version,
       relationshipVersion: this.relationshipMapping.version,
@@ -347,8 +493,26 @@ export class KnowledgeLayer {
   } {
     const errors: string[] = [];
 
-    if (!this.skillRegistry || !this.mcpRegistry || !this.relationshipMapping) {
-      errors.push('Registries not loaded');
+    if (!this.skillRegistry) {
+      errors.push('Skill registry not loaded');
+    }
+    if (!this.mcpRegistry) {
+      errors.push('MCP registry not loaded');
+    }
+    if (!this.toolRegistry) {
+      errors.push('Tool registry not loaded');
+    }
+    if (!this.componentRegistry) {
+      errors.push('Component registry not loaded');
+    }
+    if (!this.integrationRegistry) {
+      errors.push('Integration registry not loaded');
+    }
+    if (!this.relationshipMapping) {
+      errors.push('Relationship mapping not loaded');
+    }
+
+    if (errors.length > 0) {
       return { valid: false, errors };
     }
 
@@ -372,7 +536,25 @@ export class KnowledgeLayer {
     for (const [skillName, deps] of Object.entries(this.relationshipMapping.skills)) {
       for (const mcpName of deps.required_mcps) {
         if (!this.getMCP(mcpName)) {
-          errors.push(`Required MCP '${mcpName}' for skill '${skillName}' not found`);
+          errors.push(`Required MCP '${mcpName}' for skill '${skillName}' not found in MCP registry`);
+        }
+      }
+
+      for (const toolName of deps.required_tools) {
+        if (!this.getTool(toolName)) {
+          errors.push(`Required tool '${toolName}' for skill '${skillName}' not found in tool registry`);
+        }
+      }
+
+      for (const componentName of deps.required_components) {
+        if (!this.getComponent(componentName)) {
+          errors.push(`Required component '${componentName}' for skill '${skillName}' not found in component registry`);
+        }
+      }
+
+      for (const integrationName of deps.required_integrations) {
+        if (!this.getIntegration(integrationName)) {
+          errors.push(`Required integration '${integrationName}' for skill '${skillName}' not found in integration registry`);
         }
       }
     }

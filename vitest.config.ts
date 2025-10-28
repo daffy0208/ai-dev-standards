@@ -45,7 +45,8 @@ export default defineConfig({
     // Test patterns
     include: [
       'tests/**/*.test.ts',
-      'tests/**/*.spec.ts'
+      'tests/**/*.spec.ts',
+      'scripts/brain/**/*.test.ts'
     ],
 
     // Timeout for tests
