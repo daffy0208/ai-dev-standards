@@ -1,8 +1,8 @@
 {
   "version": "2.0.0",
-  "last_updated": "2025-10-27",
+  "last_updated": "2025-10-28",
   "description": "Registry of reusable components in ai-dev-standards. Components are pre-built implementations for common patterns.",
-  "total_components": 70,
+  "total_components": 74,
   "components": [
     {
       "id": "simple-task-agent",
@@ -1972,6 +1972,127 @@
         "Disabled options",
         "ARIA radio pattern"
       ]
+    },
+    {
+      "id": "dropdown",
+      "name": "Dropdown",
+      "category": "ui-components",
+      "description": "Accessible dropdown menu with keyboard navigation",
+      "path": "/COMPONENTS/ui-components/Dropdown.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "accessibility-engineer",
+        "ux-designer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "accessibility-checker-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Compound component pattern (DropdownTrigger, DropdownMenu, DropdownItem)",
+        "Portal rendering",
+        "Keyboard navigation (arrows, Home, End)",
+        "Click outside to close",
+        "ARIA menu pattern",
+        "Destructive and disabled item support"
+      ]
+    },
+    {
+      "id": "skeleton-ui",
+      "name": "Skeleton (UI Components)",
+      "category": "ui-components",
+      "description": "Loading skeleton screens with multiple variants",
+      "path": "/COMPONENTS/ui-components/Skeleton.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [
+        "cn-utility"
+      ],
+      "features": [
+        "Multiple variants (text, circle, rectangle)",
+        "Size options (sm, md, lg, xl)",
+        "Animation options (pulse, wave, none)",
+        "Multi-line support",
+        "Pre-built compositions (SkeletonAvatar, SkeletonCard, SkeletonTableRow, SkeletonListItem)",
+        "Shimmer animation"
+      ]
+    },
+    {
+      "id": "icon-media",
+      "name": "Icon (Media)",
+      "category": "media",
+      "description": "Universal icon component supporting Heroicons, Lucide, Font Awesome",
+      "path": "/COMPONENTS/media/Icon.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "visual-designer",
+        "brand-designer",
+        "design-system-architect"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "icon-library-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Multi-library support (Heroicons, Lucide, Font Awesome)",
+        "Size variants (xs, sm, md, lg, xl, 2xl)",
+        "Color customization",
+        "Stroke width control (Lucide)",
+        "Loading and error states",
+        "Full ARIA support",
+        "CDN-based icon loading"
+      ]
+    },
+    {
+      "id": "icon-picker-media",
+      "name": "IconPicker (Media)",
+      "category": "media",
+      "description": "Icon selection UI with search and preview",
+      "path": "/COMPONENTS/media/IconPicker.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "visual-designer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "icon-library-mcp"
+      ],
+      "depends_on": [
+        "icon-media"
+      ],
+      "features": [
+        "Search icons by name",
+        "Tag-based filtering",
+        "Multi-library support",
+        "Icon preview grid",
+        "Copy code to clipboard",
+        "Selected icon details view",
+        "Configurable max results"
+      ]
     }
   ],
   "categories": {
@@ -2070,7 +2191,7 @@
     },
     "ui-components": {
       "name": "UI Components",
-      "count": 44,
+      "count": 46,
       "description": "General UI components",
       "components": [
         "button",
@@ -2110,11 +2231,11 @@
         "center",
         "switch",
         "checkbox",
-        "radio"
+        "radio",
+        "dropdown",
+        "skeleton-ui"
       ],
-      "needed": [
-        "dropdown"
-      ]
+      "needed": []
     },
     "workflows": {
       "name": "Workflows",
@@ -2130,22 +2251,24 @@
     },
     "media": {
       "name": "Media Components",
-      "count": 6,
-      "description": "Image, gallery, carousel, and media handling components",
+      "count": 8,
+      "description": "Image, gallery, carousel, icon, and media handling components",
       "components": [
         "image",
         "gallery",
         "carousel",
         "image-upload",
         "avatar",
-        "media-viewer"
+        "media-viewer",
+        "icon-media",
+        "icon-picker-media"
       ],
       "needed": []
     }
   },
   "critical_missing_categories": [],
   "statistics": {
-    "total_components": 70,
+    "total_components": 74,
     "by_category": {
       "agents": 1,
       "auth": 4,
@@ -2154,9 +2277,9 @@
       "forms": 2,
       "mcp-servers": 4,
       "rag-pipelines": 6,
-      "ui-components": 44,
+      "ui-components": 46,
       "workflows": 4,
-      "media": 6
+      "media": 8
     },
     "empty_categories": 0,
     "skills_covered": 18
