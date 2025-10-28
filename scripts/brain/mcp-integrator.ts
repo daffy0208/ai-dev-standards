@@ -37,6 +37,9 @@ interface RelationshipMapping {
 
 export class MCPIntegrator {
   private mcps: MCP[];
+  private readonly mcpIds: Set<string>;
+  private readonly mcpsById: Map<string, MCP>;
+  private readonly mcpsByName: Map<string, MCP>;
   private relationshipMapping: Record<string, {
     required_mcps: string[];
     required_tools: string[];
@@ -45,6 +48,9 @@ export class MCPIntegrator {
 
   constructor(mcps: MCP[], relationshipMapping: RelationshipMapping) {
     this.mcps = mcps;
+    this.mcpIds = new Set(mcps.map(mcp => mcp.id));
+    this.mcpsById = new Map(mcps.map(mcp => [mcp.id, mcp]));
+    this.mcpsByName = new Map(mcps.map(mcp => [mcp.name.toLowerCase(), mcp]));
     this.relationshipMapping = relationshipMapping.skills || {};
   }
 
@@ -221,33 +227,72 @@ export class MCPIntegrator {
   private checkWarnings(skills: string[], mcps: string[]): string[] {
     const warnings: string[] = [];
 
-    // Check if any MCPs are missing
-    for (const mcp of mcps) {
-      const mcpExists = this.mcps.some(m => m.name === mcp);
-      if (!mcpExists) {
-        warnings.push(`MCP '${mcp}' is required but not yet implemented`);
+    const resolvedMCPs = mcps.map(requested => ({
+      requested,
+      id: this.resolveMCPId(requested)
+    }));
+
+    for (const entry of resolvedMCPs) {
+      if (!entry.id) {
+        warnings.push(`MCP '${this.formatMCPName(entry.requested)}' is required but not yet implemented`);
       }
     }
 
+    const knownIds = new Set(resolvedMCPs.filter(entry => entry.id).map(entry => entry.id as string));
+
     // Check for conflicting MCPs
-    if (mcps.includes('vector-database-mcp') && mcps.includes('graph-database-mcp')) {
-      warnings.push('Both vector and graph databases required - ensure sufficient resources');
+    if (knownIds.has('vector-database-mcp') && knownIds.has('graph-database-mcp')) {
+      warnings.push(`Both ${this.formatMCPName('vector-database-mcp')} and ${this.formatMCPName('graph-database-mcp')} are required - ensure sufficient resources`);
     }
 
     // Check if skills need official MCPs
     if (skills.includes('rag-implementer')) {
-      const hasVectorDB = mcps.includes('vector-database-mcp');
-      const hasEmbedding = mcps.includes('embedding-generator-mcp');
+      const hasVectorDB = knownIds.has('vector-database-mcp');
+      const hasEmbedding = knownIds.has('embedding-generator-mcp');
 
       if (!hasVectorDB) {
-        warnings.push('RAG implementation typically requires vector-database-mcp');
+        warnings.push(`RAG implementation typically requires ${this.formatMCPName('vector-database-mcp')}`);
       }
       if (!hasEmbedding) {
-        warnings.push('RAG implementation typically requires embedding-generator-mcp');
+        warnings.push(`RAG implementation typically requires ${this.formatMCPName('embedding-generator-mcp')}`);
       }
     }
 
     return warnings;
+  }
+
+  private resolveMCPId(identifier: string): string | null {
+    if (this.mcpIds.has(identifier)) {
+      return identifier;
+    }
+
+    const mcp = this.mcpsByName.get(identifier.toLowerCase());
+    return mcp ? mcp.id : null;
+  }
+
+  private formatMCPName(identifier: string): string {
+    const byId = this.mcpsById.get(identifier);
+    if (byId) {
+      return byId.name;
+    }
+
+    const byName = this.mcpsByName.get(identifier.toLowerCase());
+    if (byName) {
+      return byName.name;
+    }
+
+    const words = identifier
+      .replace(/[-_]+/g, ' ')
+      .split(' ')
+      .filter(Boolean)
+      .map(word => {
+        if (word.toLowerCase() === 'mcp') {
+          return 'MCP';
+        }
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      });
+
+    return words.length > 0 ? words.join(' ') : identifier;
   }
 
   /**
