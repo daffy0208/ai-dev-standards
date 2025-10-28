@@ -1,7 +1,7 @@
 {
   "version": "2.0.0",
-  "last_updated": "2025-10-27",
-  "description": "Registry of executable tools in ai-dev-standards. Tools are standalone utilities that can be invoked by skills, MCPs, or directly by developers.",
+  "last_updated": "2025-10-28",
+  "description": "Registry of executable tools in ai-dev-standards. Tools are standalone utilities that can be invoked by skills, MCPs, or directly by developers. Note: TOOLS/tool-registry.json is deprecated and superseded by this registry.",
   "total_tools": 24,
   "total_scripts": 4,
   "tools": [
@@ -243,6 +243,13 @@
       "category": "observability",
       "description": "Structured logging with multiple outputs and severity levels",
       "path": "/TOOLS/observability/logger-tool.ts",
+      "additional_files": [
+        "/TOOLS/observability/index.ts",
+        "/TOOLS/observability/example.ts",
+        "/TOOLS/observability/ARCHITECTURE.md",
+        "/TOOLS/observability/SUMMARY.md",
+        "/TOOLS/tool-registry.json"
+      ],
       "status": "active",
       "language": "typescript",
       "framework": "custom",
@@ -250,7 +257,8 @@
         "performance-optimizer",
         "security-engineer",
         "deployment-advisor",
-        "multi-agent-architect"
+        "multi-agent-architect",
+        "forensic-data-engineer"
       ],
       "supports_mcps": [
         "monitoring-mcp",

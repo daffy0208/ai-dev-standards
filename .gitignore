@@ -75,3 +75,13 @@ yarn.lock
 
 # Keep .gitkeep files
 !.gitkeep
+
+# Build outputs and reports
+html/
+portal/
+test-output/
+REPORTS/
+*.report.json
+*-REPORT.json
+*-SUMMARY.md
+verification-*.md

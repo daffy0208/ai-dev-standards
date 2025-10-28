@@ -1,8 +1,8 @@
 {
   "version": "2.0.0",
-  "last_updated": "2025-10-27",
+  "last_updated": "2025-10-28",
   "description": "Registry of third-party integrations available in ai-dev-standards. Integrations provide pre-configured code for connecting to external services.",
-  "total_integrations": 25,
+  "total_integrations": 27,
   "integrations": [
     {
       "id": "openai",
@@ -58,15 +58,42 @@
       "documentation_url": "https://docs.anthropic.com"
     },
     {
+      "id": "cohere",
+      "name": "Cohere",
+      "category": "ai-providers",
+      "description": "Cohere API integration for embeddings, reranking, and language models",
+      "path": "/INTEGRATIONS/ai-providers/cohere/client.ts",
+      "status": "active",
+      "supports_skills": [
+        "rag-implementer",
+        "knowledge-base-manager",
+        "multi-agent-architect"
+      ],
+      "supports_mcps": [
+        "embedding-generator-mcp",
+        "semantic-search-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Text embeddings (embed-english-v3.0, embed-multilingual-v3.0)",
+        "Reranking for search results",
+        "Chat and generation",
+        "Classification",
+        "Batch embedding support"
+      ],
+      "authentication": "API key",
+      "documentation_url": "https://docs.cohere.com/"
+    },
+    {
       "id": "supabase",
       "name": "Supabase",
       "category": "platforms",
       "description": "Supabase backend-as-a-service integration",
       "path": "/INTEGRATIONS/platforms/supabase/client.ts",
       "additional_files": [
-        "server.ts",
-        "hooks.tsx",
-        "README.md"
+        "/INTEGRATIONS/platforms/supabase/server.ts",
+        "/INTEGRATIONS/platforms/supabase/hooks.tsx",
+        "/INTEGRATIONS/platforms/supabase/README.md"
       ],
       "status": "active",
       "supports_skills": [
@@ -101,8 +128,8 @@
       "description": "Stripe payment processing integration",
       "path": "/INTEGRATIONS/platforms/stripe/client.ts",
       "additional_files": [
-        "webhooks.ts",
-        "README.md"
+        "/INTEGRATIONS/platforms/stripe/webhooks.ts",
+        "/INTEGRATIONS/platforms/stripe/README.md"
       ],
       "status": "active",
       "supports_skills": [
@@ -291,6 +318,38 @@
       ],
       "authentication": "API key (optional)",
       "documentation_url": "https://qdrant.tech/documentation/"
+    },
+    {
+      "id": "pgvector",
+      "name": "PgVector",
+      "category": "vector-databases",
+      "description": "PostgreSQL vector extension for similarity search",
+      "path": "/INTEGRATIONS/vector-databases/pgvector/client.ts",
+      "additional_files": [
+        "README.md"
+      ],
+      "status": "active",
+      "supports_skills": [
+        "rag-implementer",
+        "knowledge-base-manager",
+        "data-engineer"
+      ],
+      "supports_mcps": [
+        "vector-database-mcp",
+        "semantic-search-mcp",
+        "database-migration-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "PostgreSQL native vector support",
+        "Cosine, L2, and inner product distance metrics",
+        "HNSW and IVFFlat indexing",
+        "SQL-based queries",
+        "Metadata filtering with standard SQL",
+        "ACID transactions"
+      ],
+      "authentication": "PostgreSQL credentials",
+      "documentation_url": "https://github.com/pgvector/pgvector"
     },
     {
       "id": "vercel",
@@ -708,9 +767,19 @@
         "anthropic"
       ],
       "needed": [
-        "cohere",
         "together-ai",
         "huggingface"
+      ]
+    },
+    "ai-providers": {
+      "name": "AI Providers",
+      "count": 1,
+      "description": "AI service providers for embeddings, reranking, and specialized tasks",
+      "integrations": [
+        "cohere"
+      ],
+      "needed": [
+        "huggingface-inference"
       ]
     },
     "platforms": {
@@ -740,17 +809,16 @@
     },
     "vector-databases": {
       "name": "Vector Databases",
-      "count": 4,
+      "count": 5,
       "description": "Vector database integrations for RAG and semantic search",
       "integrations": [
         "pinecone",
         "weaviate",
         "chroma",
-        "qdrant"
-      ],
-      "needed": [
+        "qdrant",
         "pgvector"
-      ]
+      ],
+      "needed": []
     },
     "graph-databases": {
       "name": "Graph Databases",
@@ -820,28 +888,15 @@
       "needed": []
     }
   },
-  "missing_high_priority": [
-    {
-      "id": "cohere",
-      "name": "Cohere",
-      "category": "llm-providers",
-      "reason": "Embedding models for RAG",
-      "priority": "MEDIUM",
-      "supports_skills": [
-        "rag-implementer"
-      ],
-      "supports_mcps": [
-        "embedding-generator-mcp"
-      ]
-    }
-  ],
+  "missing_high_priority": [],
   "statistics": {
-    "total_integrations": 25,
+    "total_integrations": 27,
     "by_category": {
       "llm-providers": 2,
+      "ai-providers": 1,
       "platforms": 3,
       "deployment-platforms": 3,
-      "vector-databases": 4,
+      "vector-databases": 5,
       "graph-databases": 1,
       "framework-adapters": 0,
       "media-services": 3,
@@ -849,7 +904,7 @@
       "font-services": 2,
       "design-tools": 4
     },
-    "missing_critical": 1,
+    "missing_critical": 0,
     "skills_covered": 22
   },
   "usage_notes": {

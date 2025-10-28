@@ -1,0 +1,71 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-10-28",
+  "description": "Registry of all code examples. Now includes 3 examples.",
+  "examples": [
+    {
+      "name": "archon-workflow-example",
+      "title": "Archon Workflow Example",
+      "description": "Example demonstrating archon workflow example",
+      "category": "workflows",
+      "language": "markdown",
+      "path": "/EXAMPLES/archon-workflow-example.md",
+      "status": "active",
+      "complexity": "intermediate",
+      "related_skills": [],
+      "tags": [
+        "archon",
+        "workflows"
+      ]
+    },
+    {
+      "name": "simple-rag-pipeline",
+      "title": "Simple Rag Pipeline",
+      "description": "Example demonstrating simple rag pipeline",
+      "category": "code",
+      "language": "typescript",
+      "path": "/EXAMPLES/mini-examples/simple-rag-pipeline.ts",
+      "status": "active",
+      "complexity": "intermediate",
+      "related_skills": [],
+      "tags": [
+        "simple",
+        "code"
+      ]
+    },
+    {
+      "name": "sample-project-cursorrules",
+      "title": "Sample Project Cursorrules",
+      "description": "Example demonstrating sample project cursorrules",
+      "category": "configuration",
+      "language": "markdown",
+      "path": "/EXAMPLES/sample-project-cursorrules.md",
+      "status": "active",
+      "complexity": "intermediate",
+      "related_skills": [],
+      "tags": [
+        "sample",
+        "configuration"
+      ]
+    }
+  ],
+  "categories": {
+    "workflows": {
+      "description": "End-to-end workflow examples",
+      "count": 1
+    },
+    "configuration": {
+      "description": "Configuration examples",
+      "count": 1
+    },
+    "code": {
+      "description": "Code implementation examples",
+      "count": 1
+    }
+  },
+  "statistics": {
+    "total_examples": 3,
+    "categories_count": 3,
+    "active_examples": 3
+  }
+}

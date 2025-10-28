@@ -1,0 +1,334 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-10-28",
+  "description": "Registry of all development standards in ai-dev-standards. Standards define best practices, coding conventions, architecture patterns, and project structure guidelines. Now includes 20 standards covering architecture patterns, best practices, coding conventions, and project structure.",
+  "standards": [
+    {
+      "name": "authentication-patterns",
+      "title": "Authentication Patterns",
+      "description": "## Overview",
+      "category": "architecture-patterns",
+      "difficulty": "advanced",
+      "path": "/STANDARDS/architecture-patterns/authentication-patterns.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "authentication",
+        "architecture-patterns"
+      ]
+    },
+    {
+      "name": "database-design-patterns",
+      "title": "Database Design Patterns",
+      "description": "## Overview",
+      "category": "architecture-patterns",
+      "difficulty": "intermediate",
+      "path": "/STANDARDS/architecture-patterns/database-design-patterns.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "database",
+        "architecture-patterns"
+      ]
+    },
+    {
+      "name": "error-tracking",
+      "title": "Error Tracking",
+      "description": "## Overview",
+      "category": "architecture-patterns",
+      "difficulty": "intermediate",
+      "path": "/STANDARDS/architecture-patterns/error-tracking.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "error",
+        "architecture-patterns"
+      ]
+    },
+    {
+      "name": "event-driven-architecture",
+      "title": "Event-Driven Architecture Pattern",
+      "description": "## When to Use",
+      "category": "architecture-patterns",
+      "difficulty": "advanced",
+      "path": "/STANDARDS/architecture-patterns/event-driven-architecture.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "event",
+        "architecture-patterns"
+      ]
+    },
+    {
+      "name": "logging-strategy",
+      "title": "Logging Strategy",
+      "description": "## Overview",
+      "category": "architecture-patterns",
+      "difficulty": "intermediate",
+      "path": "/STANDARDS/architecture-patterns/logging-strategy.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "logging",
+        "architecture-patterns"
+      ]
+    },
+    {
+      "name": "microservices-pattern",
+      "title": "Microservices Architecture Pattern",
+      "description": "## When to Use",
+      "category": "architecture-patterns",
+      "difficulty": "advanced",
+      "path": "/STANDARDS/architecture-patterns/microservices-pattern.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "microservices",
+        "architecture-patterns"
+      ]
+    },
+    {
+      "name": "monitoring-and-alerting",
+      "title": "Monitoring & Alerting",
+      "description": "## Overview",
+      "category": "architecture-patterns",
+      "difficulty": "intermediate",
+      "path": "/STANDARDS/architecture-patterns/monitoring-and-alerting.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "monitoring",
+        "architecture-patterns"
+      ]
+    },
+    {
+      "name": "rag-pattern",
+      "title": "RAG Architecture Pattern",
+      "description": "## Pattern Overview",
+      "category": "architecture-patterns",
+      "difficulty": "beginner",
+      "path": "/STANDARDS/architecture-patterns/rag-pattern.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "rag",
+        "architecture-patterns"
+      ]
+    },
+    {
+      "name": "real-time-systems",
+      "title": "Real-Time Systems Pattern",
+      "description": "## When to Use",
+      "category": "architecture-patterns",
+      "difficulty": "intermediate",
+      "path": "/STANDARDS/architecture-patterns/real-time-systems.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "real",
+        "architecture-patterns"
+      ]
+    },
+    {
+      "name": "serverless-pattern",
+      "title": "Serverless Architecture Pattern",
+      "description": "## When to Use",
+      "category": "architecture-patterns",
+      "difficulty": "advanced",
+      "path": "/STANDARDS/architecture-patterns/serverless-pattern.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "serverless",
+        "architecture-patterns"
+      ]
+    },
+    {
+      "name": "database-best-practices",
+      "title": "Database Best Practices",
+      "description": "## Overview",
+      "category": "best-practices",
+      "difficulty": "intermediate",
+      "path": "/STANDARDS/best-practices/database-best-practices.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "database",
+        "best-practices"
+      ]
+    },
+    {
+      "name": "security-best-practices",
+      "title": "Security Best Practices",
+      "description": "## Overview",
+      "category": "best-practices",
+      "difficulty": "intermediate",
+      "path": "/STANDARDS/best-practices/security-best-practices.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "security",
+        "best-practices"
+      ]
+    },
+    {
+      "name": "testing-best-practices",
+      "title": "Testing Best Practices",
+      "description": "## Overview",
+      "category": "best-practices",
+      "difficulty": "intermediate",
+      "path": "/STANDARDS/best-practices/testing-best-practices.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "testing",
+        "best-practices"
+      ]
+    },
+    {
+      "name": "naming-conventions",
+      "title": "Naming Conventions",
+      "description": "Comprehensive naming conventions for files, variables, functions, classes, and more.",
+      "category": "coding-conventions",
+      "difficulty": "beginner",
+      "path": "/STANDARDS/coding-conventions/naming-conventions.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "naming",
+        "coding-conventions"
+      ]
+    },
+    {
+      "name": "python-style-guide",
+      "title": "Python Style Guide",
+      "description": "## Quick Reference",
+      "category": "coding-conventions",
+      "difficulty": "intermediate",
+      "path": "/STANDARDS/coding-conventions/python-style-guide.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "python",
+        "coding-conventions"
+      ]
+    },
+    {
+      "name": "react-patterns",
+      "title": "React Patterns and Best Practices",
+      "description": "## Table of Contents",
+      "category": "coding-conventions",
+      "difficulty": "intermediate",
+      "path": "/STANDARDS/coding-conventions/react-patterns.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "react",
+        "coding-conventions"
+      ]
+    },
+    {
+      "name": "typescript-style-guide",
+      "title": "TypeScript Style Guide",
+      "description": "## Table of Contents",
+      "category": "coding-conventions",
+      "difficulty": "intermediate",
+      "path": "/STANDARDS/coding-conventions/typescript-style-guide.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "typescript",
+        "coding-conventions"
+      ]
+    },
+    {
+      "name": "code-organization",
+      "title": "Code Organization Best Practices",
+      "description": "Guidelines for organizing code at the file, directory, and module level.",
+      "category": "project-structure",
+      "difficulty": "intermediate",
+      "path": "/STANDARDS/project-structure/code-organization.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "code",
+        "project-structure"
+      ]
+    },
+    {
+      "name": "fastapi-project-structure",
+      "title": "FastAPI Project Structure",
+      "description": "Standard project structure for FastAPI applications with best practices.",
+      "category": "project-structure",
+      "difficulty": "intermediate",
+      "path": "/STANDARDS/project-structure/fastapi-project-structure.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "fastapi",
+        "project-structure"
+      ]
+    },
+    {
+      "name": "nextjs-app-structure",
+      "title": "Next.js App Structure (App Router)",
+      "description": "## Directory Structure",
+      "category": "project-structure",
+      "difficulty": "intermediate",
+      "path": "/STANDARDS/project-structure/nextjs-app-structure.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "nextjs",
+        "project-structure"
+      ]
+    }
+  ],
+  "categories": {
+    "architecture-patterns": {
+      "description": "High-level architectural patterns and system design standards",
+      "count": 10
+    },
+    "best-practices": {
+      "description": "General best practices for development, security, testing, and operations",
+      "count": 3
+    },
+    "coding-conventions": {
+      "description": "Language-specific coding style guides and conventions",
+      "count": 4
+    },
+    "project-structure": {
+      "description": "Recommended project organization and folder structures",
+      "count": 3
+    }
+  },
+  "statistics": {
+    "total_standards": 20,
+    "categories_count": 4,
+    "active_standards": 20,
+    "planned_standards": 0,
+    "beginner_count": 2,
+    "intermediate_count": 14,
+    "advanced_count": 4
+  }
+}

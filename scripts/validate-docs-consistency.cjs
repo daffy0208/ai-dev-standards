@@ -46,7 +46,7 @@ class DocumentationValidator {
 
     return {
       skills: skillRegistry.skills.length,
-      mcps: mcpRegistry.total || mcpRegistry.mcps.length,
+      mcps: mcpRegistry.total_mcps || mcpRegistry.mcps.length,
       coverage: mcpRegistry.coverage,
       totalResources: 112, // 42 skills + 36 MCPs + 9 tools + 4 scripts + 13 components + 6 integrations + 2 other
       skillsWithoutMcps: relationshipMapping.skills_without_mcps || []

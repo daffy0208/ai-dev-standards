@@ -1,8 +1,8 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.2",
   "last_updated": "2025-10-27",
   "description": "Registry of all MCP servers in ai-dev-standards. MCPs (Model Context Protocol servers) provide tools, resources, and prompts that skills can use to execute tasks.",
-  "total_mcps": 48,
+  "total_mcps": 50,
   "coverage": "92% (31/37 skills have MCP support)",
   "mcps": [
     {

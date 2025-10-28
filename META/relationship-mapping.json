@@ -1,7 +1,7 @@
 {
-  "version": "2.3.0",
-  "last_updated": "2025-10-27",
-  "description": "Complete mapping of skills and MCPs to their required resources (tools, components, integrations, scripts). This is the single source of truth for resource dependencies.",
+  "version": "3.2.0",
+  "last_updated": "2025-10-28",
+  "description": "Complete mapping of skills and MCPs to ALL resources (Tier 1: tools, components, integrations, scripts | Tier 2: playbooks, standards, templates, schemas, utils, examples, installers, docs). This is the single source of truth for resource dependencies and discovery.",
   "skills": {
     "3d-visualizer": {
       "required_mcps": [
@@ -12,11 +12,41 @@
       ],
       "required_components": [],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows",
+        "optimize-bundle-size"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS",
+        "component-library"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "accessibility-engineer": {
       "required_mcps": [
-        "accessibility-checker-mcp"
+        "accessibility-checker-mcp",
+        "responsive-preview-mcp"
       ],
       "required_tools": [],
       "required_components": [
@@ -24,7 +54,31 @@
         "protected-route"
       ],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "testing-new-feature",
+        "testing-strategy"
+      ],
+      "related_standards": [
+        "component-library",
+        "clean-code",
+        "react"
+      ],
+      "related_templates": [
+        "eslintrc.js"
+      ],
+      "related_schemas": [
+        "component.schema"
+      ],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "integration-guide",
+        "troubleshooting"
+      ]
     },
     "animation-designer": {
       "required_mcps": [
@@ -33,7 +87,35 @@
       "required_tools": [],
       "required_components": [],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows",
+        "optimize-bundle-size"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "api-designer": {
       "required_mcps": [
@@ -48,7 +130,36 @@
         "supabase",
         "stripe"
       ],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "testing-new-feature",
+        "debug-production-incident"
+      ],
+      "related_standards": [
+        "api-design",
+        "rest-api",
+        "error-handling",
+        "ERROR-RESPONSE-FORMAT",
+        "security-first"
+      ],
+      "related_templates": [
+        "api-config.json",
+        "env.example"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "errorHandler",
+        "logger",
+        "validateEnv",
+        "schemas"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "api/readme",
+        "security",
+        "integration-guide"
+      ]
     },
     "audio-producer": {
       "required_mcps": [
@@ -59,16 +170,79 @@
       ],
       "required_components": [],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "brand-designer": {
-      "required_mcps": [],
+      "required_mcps": [
+        "icon-library-mcp",
+        "font-optimizer-mcp",
+        "image-generator-mcp",
+        "svg-generator-mcp",
+        "illustration-generator-mcp",
+        "typography-analyzer-mcp"
+      ],
       "required_tools": [
         "filesystem-tool"
       ],
-      "required_components": [],
+      "required_components": [
+        "icon-media"
+      ],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "context-preserver": {
       "required_mcps": [],
@@ -77,7 +251,34 @@
       ],
       "required_components": [],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "codex-review-workflow": {
       "required_mcps": [],
@@ -90,11 +291,39 @@
       "external_dependencies": [
         "Codex CLI (OpenAI)",
         "Git"
+      ],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
       ]
     },
     "copywriter": {
       "required_mcps": [
-        "seo-analyzer-mcp"
+        "seo-analyzer-mcp",
+        "image-generator-mcp"
       ],
       "required_tools": [],
       "required_components": [],
@@ -102,7 +331,34 @@
         "openai",
         "anthropic"
       ],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "dark-matter-analyzer": {
       "required_mcps": [
@@ -114,7 +370,35 @@
       ],
       "required_components": [],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows",
+        "repository-health-check"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "data-engineer": {
       "required_mcps": [
@@ -131,20 +415,94 @@
       "supporting_scripts": [
         "db-backup",
         "db-migrate"
+      ],
+      "related_playbooks": [
+        "setup-monitoring",
+        "debug-production-incident"
+      ],
+      "related_standards": [
+        "database-design",
+        "error-handling",
+        "typescript"
+      ],
+      "related_templates": [
+        "database-config.json",
+        "env.example"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "db-backup",
+        "db-migrate",
+        "logger",
+        "errorHandler"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "integration-guide",
+        "security"
       ]
     },
     "forensic-data-engineer": {
       "required_mcps": [
-        "database-migration-mcp"
+        "database-migration-mcp",
+        "monitoring-mcp"
       ],
       "required_tools": [
-        "database-query-tool"
+        "database-query-tool",
+        "logger-tool",
+        "metrics-tool",
+        "tracer-tool",
+        "error-tracker-tool"
       ],
       "required_components": [],
       "required_integrations": [
-        "supabase"
+        "supabase",
+        "pgvector"
       ],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows",
+        "debug-production-incident",
+        "setup-monitoring",
+        "INCIDENT-RESPONSE",
+        "automation-first"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS",
+        "api-design",
+        "database-design",
+        "error-handling",
+        "typescript"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "database-config.json",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger",
+        "errorHandler",
+        "validateEnv",
+        "db-backup",
+        "db-migrate",
+        "schemas"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start",
+        "integration-guide"
+      ]
     },
     "data-visualizer": {
       "required_mcps": [
@@ -155,7 +513,50 @@
       ],
       "required_components": [],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows",
+        "debug-production-incident",
+        "optimize-bundle-size",
+        "setup-monitoring",
+        "automation-first"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS",
+        "api-design",
+        "database-design",
+        "error-handling",
+        "component-library",
+        "typescript"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "database-config.json",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger",
+        "errorHandler",
+        "validateEnv",
+        "db-backup",
+        "db-migrate",
+        "schemas"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start",
+        "integration-guide"
+      ]
     },
     "deployment-advisor": {
       "required_mcps": [
@@ -168,11 +569,42 @@
       ],
       "supporting_scripts": [
         "deploy"
+      ],
+      "related_playbooks": [
+        "setup-monitoring",
+        "debug-production-incident",
+        "INCIDENT-RESPONSE"
+      ],
+      "related_standards": [
+        "serverless",
+        "microservices",
+        "security-first"
+      ],
+      "related_templates": [
+        "env.example"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "deploy",
+        "logger",
+        "validateEnv"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "deployment",
+        "ci-cd-setup",
+        "security"
       ]
     },
     "design-system-architect": {
       "required_mcps": [
-        "design-token-manager-mcp"
+        "design-token-manager-mcp",
+        "theme-builder-mcp",
+        "dark-mode-converter-mcp",
+        "storybook-generator-mcp",
+        "props-documenter-mcp",
+        "typography-analyzer-mcp"
       ],
       "required_tools": [],
       "required_components": [
@@ -183,18 +615,81 @@
         "form-field"
       ],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "team-onboarding",
+        "FEATURE-LIFECYCLE"
+      ],
+      "related_standards": [
+        "component-library",
+        "clean-code",
+        "react",
+        "typescript"
+      ],
+      "related_templates": [
+        "eslintrc.js",
+        "prettierrc.json",
+        "tsconfig.json"
+      ],
+      "related_schemas": [
+        "component.schema"
+      ],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "integration-guide",
+        "system-overview"
+      ]
     },
     "focus-session-manager": {
       "required_mcps": [],
       "required_tools": [],
       "required_components": [],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows",
+        "adhd-getting-unstuck",
+        "adhd-hyperfocus-session"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "frontend-builder": {
       "required_mcps": [
-        "component-generator-mcp"
+        "component-generator-mcp",
+        "font-optimizer-mcp",
+        "svg-generator-mcp",
+        "theme-builder-mcp",
+        "dark-mode-converter-mcp",
+        "storybook-generator-mcp",
+        "props-documenter-mcp",
+        "responsive-preview-mcp"
       ],
       "required_tools": [
         "api-caller-tool"
@@ -209,9 +704,13 @@
         "not-found",
         "loading-spinner",
         "skeleton",
+        "skeleton-ui",
         "toast",
         "form-field",
-        "use-form"
+        "use-form",
+        "dropdown",
+        "icon-media",
+        "icon-picker-media"
       ],
       "required_integrations": [
         "supabase",
@@ -220,6 +719,42 @@
       ],
       "supporting_scripts": [
         "deploy"
+      ],
+      "related_playbooks": [
+        "testing-new-feature",
+        "optimize-bundle-size"
+      ],
+      "related_standards": [
+        "component-library",
+        "react",
+        "typescript",
+        "clean-code"
+      ],
+      "related_templates": [
+        "cursorrules-saas.md",
+        "next-config.placeholder.js",
+        "vite-config.placeholder.js",
+        "eslintrc.js",
+        "prettierrc.json"
+      ],
+      "related_schemas": [
+        "component.schema"
+      ],
+      "related_utils": [
+        "logger",
+        "errorHandler",
+        "deploy"
+      ],
+      "related_examples": [
+        "sample-project-cursorrules"
+      ],
+      "related_installers": [
+        "create-saas"
+      ],
+      "related_docs": [
+        "cli-quickstart",
+        "deployment",
+        "integration-guide"
       ]
     },
     "go-to-market-planner": {
@@ -231,7 +766,34 @@
       ],
       "required_components": [],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "iot-developer": {
       "required_mcps": [
@@ -240,7 +802,34 @@
       "required_tools": [],
       "required_components": [],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "knowledge-base-manager": {
       "required_mcps": [
@@ -271,7 +860,40 @@
         "qdrant",
         "neo4j"
       ],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-ai-rag.md",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [
+        "archon-workflow-example",
+        "simple-rag-pipeline"
+      ],
+      "related_installers": [
+        "create-rag-system"
+      ],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "knowledge-graph-builder": {
       "required_mcps": [
@@ -285,7 +907,40 @@
       "required_integrations": [
         "neo4j"
       ],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-ai-rag.md",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [
+        "archon-workflow-example",
+        "simple-rag-pipeline"
+      ],
+      "related_installers": [
+        "create-rag-system"
+      ],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "livestream-engineer": {
       "required_mcps": [
@@ -294,7 +949,34 @@
       "required_tools": [],
       "required_components": [],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "localization-engineer": {
       "required_mcps": [
@@ -305,7 +987,34 @@
       ],
       "required_components": [],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "mobile-developer": {
       "required_mcps": [
@@ -324,6 +1033,35 @@
       ],
       "supporting_scripts": [
         "deploy"
+      ],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS",
+        "react"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger",
+        "deploy"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
       ]
     },
     "multi-agent-architect": {
@@ -342,7 +1080,34 @@
         "openai",
         "anthropic"
       ],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "mvp-builder": {
       "required_mcps": [
@@ -367,18 +1132,88 @@
       ],
       "supporting_scripts": [
         "deploy"
+      ],
+      "related_playbooks": [
+        "testing-new-feature",
+        "FEATURE-LIFECYCLE",
+        "team-onboarding"
+      ],
+      "related_standards": [
+        "folder-structure",
+        "clean-code",
+        "typescript",
+        "react"
+      ],
+      "related_templates": [
+        "cursorrules-saas.md",
+        "package.placeholder.json",
+        "env.example"
+      ],
+      "related_schemas": [
+        "component.schema"
+      ],
+      "related_utils": [
+        "logger",
+        "validateEnv",
+        "deploy"
+      ],
+      "related_examples": [
+        "sample-project-cursorrules"
+      ],
+      "related_installers": [
+        "bootstrap",
+        "create-saas"
+      ],
+      "related_docs": [
+        "quick-start",
+        "cli-quickstart",
+        "deployment"
       ]
     },
     "performance-optimizer": {
       "required_mcps": [
-        "performance-profiler-mcp"
+        "performance-profiler-mcp",
+        "monitoring-mcp"
       ],
       "required_tools": [
-        "code-analyzer-tool"
+        "code-analyzer-tool",
+        "logger-tool",
+        "metrics-tool",
+        "tracer-tool"
       ],
       "required_components": [],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows",
+        "debug-production-incident",
+        "optimize-bundle-size",
+        "setup-monitoring"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "product-strategist": {
       "required_mcps": [
@@ -390,7 +1225,40 @@
       ],
       "required_components": [],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows",
+        "FEATURE-LIFECYCLE"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-saas.md",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [
+        "sample-project-cursorrules"
+      ],
+      "related_installers": [
+        "create-saas"
+      ],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "quality-auditor": {
       "required_mcps": [
@@ -405,6 +1273,37 @@
       "required_integrations": [],
       "supporting_scripts": [
         "test-runner"
+      ],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows",
+        "repository-health-check",
+        "testing-new-feature",
+        "testing-strategy"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger",
+        "test-runner"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
       ]
     },
     "rag-implementer": {
@@ -429,13 +1328,48 @@
       "required_integrations": [
         "openai",
         "anthropic",
+        "cohere",
         "pinecone",
         "weaviate",
         "chroma",
         "qdrant",
+        "pgvector",
         "neo4j"
       ],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "testing-new-feature",
+        "setup-monitoring"
+      ],
+      "related_standards": [
+        "api-design",
+        "error-handling",
+        "typescript"
+      ],
+      "related_templates": [
+        "cursorrules-ai-rag.md",
+        "env.example"
+      ],
+      "related_schemas": [
+        "component.schema"
+      ],
+      "related_utils": [
+        "errorHandler",
+        "logger",
+        "validateEnv"
+      ],
+      "related_examples": [
+        "simple-rag-pipeline",
+        "archon-workflow-example"
+      ],
+      "related_installers": [
+        "create-rag-system"
+      ],
+      "related_docs": [
+        "getting-started",
+        "integration-guide",
+        "api/readme"
+      ]
     },
     "security-engineer": {
       "required_mcps": [
@@ -453,37 +1387,149 @@
       "required_integrations": [
         "supabase"
       ],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "debug-production-incident",
+        "INCIDENT-RESPONSE",
+        "setup-monitoring"
+      ],
+      "related_standards": [
+        "security-first",
+        "error-handling",
+        "ERROR-RESPONSE-FORMAT"
+      ],
+      "related_templates": [
+        "env.example"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "errorHandler",
+        "validateEnv",
+        "logger",
+        "schemas"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "security",
+        "api/readme",
+        "troubleshooting"
+      ]
     },
     "spatial-developer": {
       "required_mcps": [],
       "required_tools": [],
       "required_components": [],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "task-breakdown-specialist": {
       "required_mcps": [],
       "required_tools": [],
       "required_components": [],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows",
+        "adhd-getting-unstuck"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "technical-writer": {
       "required_mcps": [
-        "doc-generator-mcp"
+        "doc-generator-mcp",
+        "props-documenter-mcp"
       ],
       "required_tools": [
         "filesystem-tool"
       ],
       "required_components": [],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows",
+        "team-onboarding"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "testing-strategist": {
       "required_mcps": [
         "test-runner-mcp",
-        "screenshot-testing-mcp"
+        "screenshot-testing-mcp",
+        "storybook-generator-mcp"
       ],
       "required_tools": [
         "test-generator-tool",
@@ -493,6 +1539,31 @@
       "required_integrations": [],
       "supporting_scripts": [
         "test-runner"
+      ],
+      "related_playbooks": [
+        "testing-new-feature",
+        "testing-strategy",
+        "automation-first"
+      ],
+      "related_standards": [
+        "TEST-NAMING",
+        "clean-code"
+      ],
+      "related_templates": [
+        "testing-setup-jest.js",
+        "testing-setup-vitest.js",
+        "testing-setup-playwright.js"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "test-runner",
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "cli-reference",
+        "troubleshooting"
       ]
     },
     "user-researcher": {
@@ -504,11 +1575,40 @@
       ],
       "required_components": [],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "ux-designer": {
       "required_mcps": [
-        "wireframe-generator-mcp"
+        "wireframe-generator-mcp",
+        "illustration-generator-mcp",
+        "responsive-preview-mcp"
       ],
       "required_tools": [],
       "required_components": [
@@ -516,10 +1616,41 @@
         "not-found",
         "loading-spinner",
         "skeleton",
-        "toast"
+        "skeleton-ui",
+        "toast",
+        "dropdown",
+        "icon-picker-media"
       ],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS",
+        "component-library"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "video-producer": {
       "required_mcps": [
@@ -530,19 +1661,86 @@
       ],
       "required_components": [],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "visual-designer": {
       "required_mcps": [
         "asset-optimizer-mcp",
-        "design-token-manager-mcp"
+        "design-token-manager-mcp",
+        "icon-library-mcp",
+        "font-optimizer-mcp",
+        "image-generator-mcp",
+        "svg-generator-mcp",
+        "illustration-generator-mcp",
+        "theme-builder-mcp",
+        "dark-mode-converter-mcp",
+        "typography-analyzer-mcp"
       ],
       "required_tools": [
         "filesystem-tool"
       ],
-      "required_components": [],
+      "required_components": [
+        "icon-media",
+        "icon-picker-media"
+      ],
       "required_integrations": [],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows",
+        "optimize-bundle-size"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS",
+        "component-library"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "voice-interface-builder": {
       "required_mcps": [],
@@ -551,7 +1749,34 @@
       "required_integrations": [
         "openai"
       ],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "archon-manager": {
       "required_mcps": [
@@ -563,7 +1788,29 @@
         "supabase",
         "openai"
       ],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "FEATURE-LIFECYCLE",
+        "team-onboarding"
+      ],
+      "related_standards": [
+        "COMMIT-CONVENTIONS",
+        "clean-code"
+      ],
+      "related_templates": [],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [
+        "archon-workflow-example"
+      ],
+      "related_installers": [],
+      "related_docs": [
+        "archon-integration",
+        "getting-started"
+      ]
     },
     "asset-manager": {
       "required_mcps": [
@@ -578,7 +1825,34 @@
         "cloudinary",
         "imgix"
       ],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "figma-developer": {
       "required_mcps": [
@@ -592,7 +1866,34 @@
       "required_integrations": [
         "figma"
       ],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "prototype-designer": {
       "required_mcps": [
@@ -606,7 +1907,34 @@
       "required_integrations": [
         "figma"
       ],
-      "supporting_scripts": []
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
     },
     "supabase-developer": {
       "required_mcps": [
@@ -627,6 +1955,603 @@
       "supporting_scripts": [
         "db-backup",
         "db-migrate"
+      ],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS",
+        "database-design"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "database-config.json",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger",
+        "db-backup",
+        "db-migrate"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
+    },
+    "bmad-method": {
+      "required_mcps": [],
+      "required_tools": [],
+      "required_components": [],
+      "required_integrations": [],
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
+    },
+    "framework-orchestrator": {
+      "required_mcps": [],
+      "required_tools": [],
+      "required_components": [],
+      "required_integrations": [],
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
+    },
+    "prp-generator": {
+      "required_mcps": [],
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": [],
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
+    },
+    "quality-assurance": {
+      "required_mcps": [
+        "test-coverage-mcp",
+        "code-quality-mcp"
+      ],
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": [],
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows",
+        "repository-health-check",
+        "testing-new-feature",
+        "testing-strategy"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger",
+        "test-runner"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
+    },
+    "security-architect": {
+      "required_mcps": [
+        "security-scanner-mcp"
+      ],
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [
+        "protected-route",
+        "error-boundary"
+      ],
+      "required_integrations": [
+        "supabase",
+        "stripe"
+      ],
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows",
+        "debug-production-incident",
+        "setup-monitoring",
+        "INCIDENT-RESPONSE"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS",
+        "error-handling",
+        "security-first"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger",
+        "errorHandler",
+        "validateEnv",
+        "schemas"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start",
+        "security"
+      ]
+    },
+    "api-integration-builder": {
+      "required_mcps": [
+        "api-validator-mcp",
+        "openapi-generator-mcp"
+      ],
+      "required_tools": [
+        "api-caller-tool",
+        "web-scraper-tool"
+      ],
+      "required_components": [],
+      "required_integrations": [
+        "stripe",
+        "resend"
+      ],
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows",
+        "testing-new-feature"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS",
+        "api-design",
+        "rest-api",
+        "error-handling",
+        "security-first",
+        "microservices",
+        "serverless",
+        "typescript"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "api-config.json",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger",
+        "errorHandler",
+        "validateEnv",
+        "schemas"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start",
+        "api/readme"
+      ]
+    },
+    "customer-feedback-analyzer": {
+      "required_mcps": [
+        "user-insight-analyzer-mcp"
+      ],
+      "required_tools": [
+        "web-scraper-tool"
+      ],
+      "required_components": [],
+      "required_integrations": [],
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
+    },
+    "customer-support-builder": {
+      "required_mcps": [
+        "knowledge-base-mcp"
+      ],
+      "required_tools": [],
+      "required_components": [
+        "toast",
+        "form-field"
+      ],
+      "required_integrations": [],
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
+    },
+    "growth-experimenter": {
+      "required_mcps": [],
+      "required_tools": [
+        "api-caller-tool",
+        "database-query-tool"
+      ],
+      "required_components": [],
+      "required_integrations": [],
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
+    },
+    "pricing-strategist": {
+      "required_mcps": [],
+      "required_tools": [],
+      "required_components": [],
+      "required_integrations": [
+        "stripe"
+      ],
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
+    },
+    "product-analyst": {
+      "required_mcps": [],
+      "required_tools": [
+        "database-query-tool"
+      ],
+      "required_components": [],
+      "required_integrations": [],
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows",
+        "FEATURE-LIFECYCLE"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-saas.md",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [
+        "sample-project-cursorrules"
+      ],
+      "related_installers": [
+        "create-saas"
+      ],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
+    },
+    "product-analytics": {
+      "required_mcps": [],
+      "required_tools": [
+        "api-caller-tool",
+        "database-query-tool"
+      ],
+      "required_components": [],
+      "required_integrations": [],
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows",
+        "FEATURE-LIFECYCLE"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-saas.md",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [
+        "sample-project-cursorrules"
+      ],
+      "related_installers": [
+        "create-saas"
+      ],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
+    },
+    "release-manager": {
+      "required_mcps": [
+        "deployment-orchestrator-mcp",
+        "monitoring-mcp"
+      ],
+      "required_tools": [],
+      "required_components": [],
+      "required_integrations": [
+        "supabase"
+      ],
+      "supporting_scripts": [
+        "deploy"
+      ],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
+      ]
+    },
+    "usability-tester": {
+      "required_mcps": [],
+      "required_tools": [],
+      "required_components": [],
+      "required_integrations": [],
+      "supporting_scripts": [],
+      "related_playbooks": [
+        "TASK-MANAGEMENT",
+        "git-workflows"
+      ],
+      "related_standards": [
+        "clean-code",
+        "COMMIT-CONVENTIONS",
+        "LOGGING-CONVENTIONS"
+      ],
+      "related_templates": [
+        "env.example",
+        "gitignore.placeholder",
+        "cursorrules-full.md",
+        "cursorrules-minimal.md"
+      ],
+      "related_schemas": [],
+      "related_utils": [
+        "logger"
+      ],
+      "related_examples": [],
+      "related_installers": [],
+      "related_docs": [
+        "getting-started",
+        "troubleshooting",
+        "cheat-sheet",
+        "quick-start"
       ]
     }
   },
@@ -656,7 +2581,9 @@
       ]
     },
     "animation-library-mcp": {
-      "required_tools": [],
+      "required_tools": [
+        "filesystem-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
@@ -753,7 +2680,9 @@
       ]
     },
     "feature-prioritizer-mcp": {
-      "required_tools": [],
+      "required_tools": [
+        "database-query-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
@@ -775,7 +2704,10 @@
       "required_integrations": []
     },
     "iot-device-manager-mcp": {
-      "required_tools": [],
+      "required_tools": [
+        "api-caller-tool",
+        "database-query-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
@@ -881,7 +2813,9 @@
       "required_integrations": []
     },
     "streaming-setup-mcp": {
-      "required_tools": [],
+      "required_tools": [
+        "api-caller-tool"
+      ],
       "required_components": [],
       "required_integrations": []
     },
@@ -937,6 +2871,112 @@
         "supabase",
         "openai"
       ]
+    },
+    "font-optimizer-mcp": {
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": []
+    },
+    "image-generator-mcp": {
+      "required_tools": [],
+      "required_components": [],
+      "required_integrations": [
+        "openai",
+        "anthropic"
+      ]
+    },
+    "svg-generator-mcp": {
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": []
+    },
+    "illustration-generator-mcp": {
+      "required_tools": [],
+      "required_components": [],
+      "required_integrations": [
+        "openai"
+      ]
+    },
+    "theme-builder-mcp": {
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": []
+    },
+    "dark-mode-converter-mcp": {
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": []
+    },
+    "storybook-generator-mcp": {
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": []
+    },
+    "props-documenter-mcp": {
+      "required_tools": [
+        "filesystem-tool",
+        "code-analyzer-tool"
+      ],
+      "required_components": [],
+      "required_integrations": []
+    },
+    "typography-analyzer-mcp": {
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": []
+    },
+    "responsive-preview-mcp": {
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": []
+    },
+    "icon-library-mcp": {
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [
+        "icon-media"
+      ],
+      "required_integrations": []
+    },
+    "figma-sync-mcp": {
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": [
+        "figma"
+      ]
+    },
+    "design-handoff-mcp": {
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": [
+        "figma"
+      ]
+    },
+    "asset-library-mcp": {
+      "required_tools": [
+        "filesystem-tool"
+      ],
+      "required_components": [],
+      "required_integrations": []
     }
   },
   "file_dependencies": {
@@ -1171,10 +3211,10 @@
     }
   },
   "statistics": {
-    "total_skills": 39,
+    "total_skills": 48,
     "total_mcps": 36,
-    "skills_with_mcps": 33,
-    "skills_without_mcps": 6,
+    "skills_with_mcps": 39,
+    "skills_without_mcps": 9,
     "most_used_tools": [
       {
         "tool": "filesystem-tool",
@@ -1293,7 +3333,8 @@
         "3d-asset-manager-mcp"
       ],
       "accessibility-engineer": [
-        "accessibility-checker-mcp"
+        "accessibility-checker-mcp",
+        "responsive-preview-mcp"
       ],
       "animation-designer": [
         "animation-library-mcp"
@@ -1305,11 +3346,19 @@
       "audio-producer": [
         "audio-processor-mcp"
       ],
-      "brand-designer": [],
+      "brand-designer": [
+        "icon-library-mcp",
+        "font-optimizer-mcp",
+        "image-generator-mcp",
+        "svg-generator-mcp",
+        "illustration-generator-mcp",
+        "typography-analyzer-mcp"
+      ],
       "context-preserver": [],
       "codex-review-workflow": [],
       "copywriter": [
-        "seo-analyzer-mcp"
+        "seo-analyzer-mcp",
+        "image-generator-mcp"
       ],
       "dark-matter-analyzer": [
         "dark-matter-analyzer-mcp"
@@ -1327,11 +3376,23 @@
         "deployment-orchestrator-mcp"
       ],
       "design-system-architect": [
-        "design-token-manager-mcp"
+        "design-token-manager-mcp",
+        "theme-builder-mcp",
+        "dark-mode-converter-mcp",
+        "storybook-generator-mcp",
+        "props-documenter-mcp",
+        "typography-analyzer-mcp"
       ],
       "focus-session-manager": [],
       "frontend-builder": [
-        "component-generator-mcp"
+        "component-generator-mcp",
+        "font-optimizer-mcp",
+        "svg-generator-mcp",
+        "theme-builder-mcp",
+        "dark-mode-converter-mcp",
+        "storybook-generator-mcp",
+        "props-documenter-mcp",
+        "responsive-preview-mcp"
       ],
       "go-to-market-planner": [
         "market-analyzer-mcp"
@@ -1386,24 +3447,36 @@
       "spatial-developer": [],
       "task-breakdown-specialist": [],
       "technical-writer": [
-        "doc-generator-mcp"
+        "doc-generator-mcp",
+        "props-documenter-mcp"
       ],
       "testing-strategist": [
         "test-runner-mcp",
-        "screenshot-testing-mcp"
+        "screenshot-testing-mcp",
+        "storybook-generator-mcp"
       ],
       "user-researcher": [
         "user-insight-analyzer-mcp"
       ],
       "ux-designer": [
-        "wireframe-generator-mcp"
+        "wireframe-generator-mcp",
+        "illustration-generator-mcp",
+        "responsive-preview-mcp"
       ],
       "video-producer": [
         "video-optimizer-mcp"
       ],
       "visual-designer": [
         "asset-optimizer-mcp",
-        "design-token-manager-mcp"
+        "design-token-manager-mcp",
+        "icon-library-mcp",
+        "font-optimizer-mcp",
+        "image-generator-mcp",
+        "svg-generator-mcp",
+        "illustration-generator-mcp",
+        "theme-builder-mcp",
+        "dark-mode-converter-mcp",
+        "typography-analyzer-mcp"
       ],
       "voice-interface-builder": [],
       "archon-manager": [

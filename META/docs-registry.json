@@ -1,0 +1,462 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-10-28",
+  "description": "Registry of all documentation files. Now includes 26 documentation files.",
+  "docs": [
+    {
+      "name": "agent-skill-integration",
+      "title": "Agent Skill Integration",
+      "description": "Documentation for agent skill integration",
+      "category": "integration",
+      "path": "/DOCS/AGENT-SKILL-INTEGRATION.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "agent",
+        "integration"
+      ]
+    },
+    {
+      "name": "agents-guide",
+      "title": "Agents Guide",
+      "description": "Documentation for agents guide",
+      "category": "system",
+      "path": "/DOCS/AGENTS-GUIDE.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "agents",
+        "system"
+      ]
+    },
+    {
+      "name": "archon-integration",
+      "title": "Archon Integration",
+      "description": "Documentation for archon integration",
+      "category": "integration",
+      "path": "/DOCS/ARCHON-INTEGRATION.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "archon",
+        "integration"
+      ]
+    },
+    {
+      "name": "audit-system",
+      "title": "Audit System",
+      "description": "Documentation for audit system",
+      "category": "system",
+      "path": "/DOCS/AUDIT-SYSTEM.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "audit",
+        "system"
+      ]
+    },
+    {
+      "name": "auto-sync-guide",
+      "title": "Auto Sync Guide",
+      "description": "Documentation for auto sync guide",
+      "category": "system",
+      "path": "/DOCS/AUTO-SYNC-GUIDE.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "auto",
+        "system"
+      ]
+    },
+    {
+      "name": "bootstrap",
+      "title": "Bootstrap",
+      "description": "Documentation for bootstrap",
+      "category": "getting-started",
+      "path": "/DOCS/BOOTSTRAP.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "bootstrap",
+        "getting-started"
+      ]
+    },
+    {
+      "name": "cheat-sheet",
+      "title": "Cheat Sheet",
+      "description": "Documentation for cheat sheet",
+      "category": "reference",
+      "path": "/DOCS/CHEAT-SHEET.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "cheat",
+        "reference"
+      ]
+    },
+    {
+      "name": "ci-cd-setup",
+      "title": "Ci Cd Setup",
+      "description": "Documentation for ci cd setup",
+      "category": "deployment",
+      "path": "/DOCS/CI-CD-SETUP.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "ci",
+        "deployment"
+      ]
+    },
+    {
+      "name": "claude-code-agents",
+      "title": "Claude Code Agents",
+      "description": "Documentation for claude code agents",
+      "category": "system",
+      "path": "/DOCS/CLAUDE-CODE-AGENTS.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "claude",
+        "system"
+      ]
+    },
+    {
+      "name": "cli-quickstart",
+      "title": "Cli Quickstart",
+      "description": "Documentation for cli quickstart",
+      "category": "cli",
+      "path": "/DOCS/CLI-QUICKSTART.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "cli",
+        "cli"
+      ]
+    },
+    {
+      "name": "cli-reference",
+      "title": "Cli Reference",
+      "description": "Documentation for cli reference",
+      "category": "cli",
+      "path": "/DOCS/CLI-REFERENCE.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "cli",
+        "cli"
+      ]
+    },
+    {
+      "name": "deployment",
+      "title": "Deployment",
+      "description": "Documentation for deployment",
+      "category": "deployment",
+      "path": "/DOCS/DEPLOYMENT.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "deployment",
+        "deployment"
+      ]
+    },
+    {
+      "name": "existing-projects",
+      "title": "Existing Projects",
+      "description": "Documentation for existing projects",
+      "category": "integration",
+      "path": "/DOCS/EXISTING-PROJECTS.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "existing",
+        "integration"
+      ]
+    },
+    {
+      "name": "getting-started",
+      "title": "Getting Started",
+      "description": "Documentation for getting started",
+      "category": "getting-started",
+      "path": "/DOCS/GETTING-STARTED.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "getting",
+        "getting-started"
+      ]
+    },
+    {
+      "name": "index",
+      "title": "Index",
+      "description": "Documentation for index",
+      "category": "reference",
+      "path": "/DOCS/INDEX.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "index",
+        "reference"
+      ]
+    },
+    {
+      "name": "integration-guide",
+      "title": "Integration Guide",
+      "description": "Documentation for integration guide",
+      "category": "integration",
+      "path": "/DOCS/INTEGRATION-GUIDE.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "integration",
+        "integration"
+      ]
+    },
+    {
+      "name": "mcp-development-roadmap",
+      "title": "Mcp Development Roadmap",
+      "description": "Documentation for mcp development roadmap",
+      "category": "planning",
+      "path": "/DOCS/MCP-DEVELOPMENT-ROADMAP.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "mcp",
+        "planning"
+      ]
+    },
+    {
+      "name": "quick-start",
+      "title": "Quick Start",
+      "description": "Documentation for quick start",
+      "category": "getting-started",
+      "path": "/DOCS/QUICK-START.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "quick",
+        "getting-started"
+      ]
+    },
+    {
+      "name": "readme",
+      "title": "Readme",
+      "description": "Documentation for readme",
+      "category": "reference",
+      "path": "/DOCS/README.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "readme",
+        "reference"
+      ]
+    },
+    {
+      "name": "resource-guide",
+      "title": "Resource Guide",
+      "description": "Documentation for resource guide",
+      "category": "system",
+      "path": "/DOCS/RESOURCE-GUIDE.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "resource",
+        "system"
+      ]
+    },
+    {
+      "name": "security",
+      "title": "Security",
+      "description": "Documentation for security",
+      "category": "security",
+      "path": "/DOCS/SECURITY.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "security",
+        "security"
+      ]
+    },
+    {
+      "name": "system-overview",
+      "title": "System Overview",
+      "description": "Documentation for system overview",
+      "category": "system",
+      "path": "/DOCS/SYSTEM-OVERVIEW.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "system",
+        "system"
+      ]
+    },
+    {
+      "name": "troubleshooting",
+      "title": "Troubleshooting",
+      "description": "Documentation for troubleshooting",
+      "category": "system",
+      "path": "/DOCS/TROUBLESHOOTING.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "troubleshooting",
+        "system"
+      ]
+    },
+    {
+      "name": "readme",
+      "title": "Readme",
+      "description": "Documentation for readme",
+      "category": "reference",
+      "path": "/DOCS/api/README.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "readme",
+        "reference"
+      ]
+    },
+    {
+      "name": "readme",
+      "title": "Readme",
+      "description": "Documentation for readme",
+      "category": "reference",
+      "path": "/DOCS/concepts/README.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "readme",
+        "reference"
+      ]
+    },
+    {
+      "name": "readme",
+      "title": "Readme",
+      "description": "Documentation for readme",
+      "category": "reference",
+      "path": "/DOCS/guides/README.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "readme",
+        "reference"
+      ]
+    }
+  ],
+  "categories": {
+    "getting-started": {
+      "description": "Getting started guides",
+      "count": 3
+    },
+    "cli": {
+      "description": "CLI documentation",
+      "count": 2
+    },
+    "deployment": {
+      "description": "Deployment guides",
+      "count": 2
+    },
+    "integration": {
+      "description": "Integration guides",
+      "count": 4
+    },
+    "system": {
+      "description": "System documentation",
+      "count": 7
+    },
+    "reference": {
+      "description": "Reference documentation",
+      "count": 6
+    },
+    "planning": {
+      "description": "Planning documents",
+      "count": 1
+    },
+    "security": {
+      "description": "Security documentation",
+      "count": 1
+    }
+  },
+  "statistics": {
+    "total_docs": 26,
+    "categories_count": 8,
+    "active_docs": 26
+  }
+}

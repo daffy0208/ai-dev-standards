@@ -5,7 +5,7 @@
 This is the **AI Dev Standards** repository - a complete system for maintaining AI development standards with automatic installation and syncing.
 
 **Key Components:**
-- **SKILLS/** - 45 specialized skills (mvp-builder, rag-implementer, data-visualizer, etc.)
+- **SKILLS/** - 59 specialized skills (mvp-builder, rag-implementer, data-visualizer, etc.)
 - **MCP-SERVERS/** - 49 MCP server implementations (executable tools)
 - **TOOLS/** - 9 LangChain/CrewAI tools + 4 supporting scripts
 - **COMPONENTS/** - 13 reusable React components and patterns
@@ -375,9 +375,9 @@ Third-party service integrations. See `META/integration-registry.json`:
 
 ### 📊 Resource Statistics
 
-- **Total Resources:** 105 (39 skills + 36 MCPs + 9 tools + 4 scripts + 13 components + 6 integrations)
+- **Total Resources:** 105 (59 skills + 50 MCPs + 9 tools + 4 scripts + 13 components + 6 integrations)
 - **Skill Coverage:** 100% (all skills have at least one supporting resource)
-- **MCP Coverage:** 92% (35/39 skills have MCP support)
+- **MCP Coverage:** 92% (35/59 skills have MCP support)
 - **Most Used Tool:** filesystem-tool (20 usages)
 - **Most Used Component:** loading-spinner (5 usages)
 - **Most Used Integration:** supabase (9 usages)

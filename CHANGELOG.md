@@ -9,10 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### [2.0.0] - 2025-10-27
 
-### Phase 3 Complete - Design System (75 resources, 48 MCPs, 216 total)
+### Phase 3 Complete - Design System (75 resources, 50 MCPs, 216 total)
 
 - Version bump to 2.0.0
-- Phase 3 Complete - Design System (75 resources, 48 MCPs, 216 total)
+- Phase 3 Complete - Design System (75 resources, 50 MCPs, 216 total)
 
 ---
 
@@ -68,7 +68,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Checks skill counts, MCP counts, coverage percentages
   - Integrated into npm scripts and pre-commit hooks
   - Fixed: supabase-developer skill missing from registry
-  - Updated: All 8 locations in README with correct counts (42 skills)
+  - Updated: All 8 locations in README with correct counts (59 skills)
 
 #### Updated Documentation
 - **CONTRIBUTING.md** - Added Section 7 on pre-commit hooks
@@ -226,7 +226,7 @@ Complete AI Dev Standards system with automatic installation and syncing.
 ### Added
 
 #### Core Repository
-- **45 Specialized Skills** - Complete skill library
+- **59 Specialized Skills** - Complete skill library
   - Product: mvp-builder, product-strategist, go-to-market-planner
   - AI/Data: rag-implementer, knowledge-graph-builder, data-engineer, data-visualizer
   - Frontend: frontend-builder, ux-designer, visual-designer, animation-designer

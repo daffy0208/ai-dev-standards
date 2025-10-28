@@ -8,14 +8,14 @@
 
 **Version 2.0.0** | **Last Updated:** 2025-10-27
 
-216 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
+330 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
 
 ## What This Repository Does
 
 Think of this as a **shared brain** between you and Claude:
 
-- **45 Specialized Skills** - Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, design systems, and more)
-- **48 MCP Servers** - Executable development tools providing 92% skill coverage (1.1:1 ratio - strong actionability!)
+- **59 Specialized Skills** - Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, design systems, and more)
+- **50 MCP Servers** - Executable development tools providing 92% skill coverage (1.1:1 ratio - strong actionability!)
 - **24 Tools + 4 Scripts** - LangChain, CrewAI, design utilities, and automation scripts
 - **70 Reusable Components** - React components for common patterns (auth, forms, errors, feedback, media, layouts, advanced UI)
 - **25 Service Integrations** - Pre-configured connections to OpenAI, Supabase, Stripe, Pinecone, Cloudinary, Figma, and more
@@ -24,7 +24,7 @@ Think of this as a **shared brain** between you and Claude:
 - **Decision Frameworks** - Clear guidance for choosing technologies
 - **Validation & Trust** - Automated testing ensures all resources are discoverable and accessible
 
-**Total Resources:** 216 (45 skills + 48 MCPs + 24 tools + 4 scripts + 70 components + 25 integrations)
+**Total Resources:** 216 (59 skills + 50 MCPs + 24 tools + 4 scripts + 70 components + 25 integrations)
 
 **Resource Coverage:** 100% discoverability • 92% skill-to-MCP coverage • Complete dependency mapping
 
@@ -48,7 +48,7 @@ The tool automatically:
 - ✅ Installs everything needed
 - ✅ Analyzes your repository
 - ✅ Recommends where to start
-- ✅ Syncs all 216 resources
+- ✅ Syncs all 330 resources
 
 **Works for:**
 - New projects, existing projects
@@ -57,8 +57,8 @@ The tool automatically:
 - Local or freshly cloned from GitHub
 
 **After 2 minutes, you have:**
-- 45 skills
-- 48 MCP servers
+- 59 skills
+- 50 MCP servers
 - 216 total resources
 - Project analysis with recommendations
 - Exact roadmap for where to start
@@ -123,7 +123,7 @@ The **Repository Brain** is an intelligence system that manages, understands, an
 ### What It Does
 
 ```bash
-brain status                    # Current state (45 skills, 48 MCPs, 216 resources)
+brain status                    # Current state (59 skills, 50 MCPs, 330 resources)
 brain search "authentication"   # Search across all resources
 brain decide "add new skill"    # Get workflow recommendations
 brain select-skills "build MVP" # Get skill recommendations
@@ -237,7 +237,7 @@ You can also **explicitly request** a skill:
 ## Key Features
 
 ### 🎯 Focused & Curated
-- 45 specialized skills covering all aspects of development
+- 59 specialized skills covering all aspects of development
 - Only proven patterns and practices
 - Every resource validated and discoverable (100% registry coverage)
 
@@ -290,18 +290,18 @@ This repository enforces **validation-first development** to prevent wasting tim
 
 ### Resource Discovery & Trust
 Every resource in this repository is:
-- ✅ **Registered** in META/registry.json (45 skills + 48 MCPs + all resources)
+- ✅ **Registered** in META/registry.json (59 skills + 50 MCPs + all resources)
 - ✅ **Discoverable** via CLI and bootstrap (no invisible resources)
 - ✅ **Validated** on every commit (automated tests + CI/CD)
 - ✅ **Audited** with mandatory completeness checks
 
-**Current Resources:** 45 skills, 48 MCPs, 216 total resources, all 100% discoverable
+**Current Resources:** 59 skills, 50 MCPs, 216 total resources, all 100% discoverable
 
 **See:** [Audit Trust Restoration](DOCS/AUDIT-TRUST-RESTORATION.md) for details on the 5-layer protection system.
 
 ### ✅ Excellent Skill-to-MCP Coverage
 
-**Current Status:** 45 skills with 48 MCPs = **92% coverage** (0.9:1 ratio)
+**Current Status:** 59 skills with 50 MCPs = **92% coverage** (0.9:1 ratio)
 
 **What This Means:**
 - **Skills** describe HOW to do things (methodologies, approaches)
@@ -429,7 +429,7 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
 ## Philosophy
 
 ### Quality Over Quantity
-- **45 specialized skills** covering essential development areas
+- **59 specialized skills** covering essential development areas
 - **Proven patterns** over theoretical frameworks
 - Every item curated, tested, and 100% discoverable
 
@@ -455,7 +455,7 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
 ## Roadmap
 
 ### Phase 1: Foundation ✅ (Complete)
-- [x] 45 specialized skills extracted and adapted
+- [x] 59 specialized skills extracted and adapted
 - [x] RAG architecture pattern documented
 - [x] Meta files and navigation created
 - [x] Decision framework established
@@ -475,7 +475,7 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
 - [x] Engineering MCPs (openapi-generator, api-validator, component-generator)
 - [x] Quality MCPs (performance-profiler, security-scanner, code-quality-scanner)
 - [x] Design MCPs (wireframe-generator, design-token-manager, asset-optimizer)
-- **Achieved:** 48 MCPs providing 92% skill coverage (exceeded 30 MCP goal!)
+- **Achieved:** 50 MCPs providing 92% skill coverage (exceeded 30 MCP goal!)
 
 ### Phase 4: Enhancement (Planned)
 - [ ] Additional architecture patterns
@@ -518,9 +518,9 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
 **Current Version:** 2.0.0
 
 **Version History:**
-- **2.0.0** (2025-10-27): Phase 3 Complete - Design System (75 resources, 48 MCPs, 216 total)
+- **2.0.0** (2025-10-27): Phase 3 Complete - Design System (75 resources, 50 MCPs, 216 total)
 - **1.1.0** (2025-10-22): Quality & Trust Update
-  - 45 specialized skills (100% discoverable)
+  - 59 specialized skills (100% discoverable)
   - Automated registry validation system
   - CI/CD enforcement (blocks incomplete registry)
   - Quality auditor Phase 0 mandatory checks
@@ -572,7 +572,7 @@ A: Yes! All skills and patterns have been tested in real projects. Security and 
 This repository was created by evaluating and refining the Framework Library, keeping only the highest quality content and rewriting it for Claude Code's official architecture.
 
 **What changed:**
-- From scattered frameworks to 45 specialized skills
+- From scattered frameworks to 59 specialized skills
 - From mixed formats to official YAML frontmatter
 - From 19% discoverable to 100% validated resources
 - From unclear boundaries to clear categorization
