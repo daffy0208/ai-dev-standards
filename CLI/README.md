@@ -4,6 +4,20 @@
 
 No more copy-pasting. No more manual setup. Just instant, working code.
 
+---
+
+## 🔒 Security Update (v3.0.0)
+
+**CRITICAL SECURITY FIX:** v3.0.0 fixes a cross-project data exposure vulnerability.
+
+All versions < 3.0.0 synced from a shared GitHub repository, creating privacy and security risks.
+**v3.0.0 uses local-first architecture** - complete project isolation, 10x faster, works offline.
+
+✅ **Recommended:** Update to v3.0.0 immediately
+📖 **Details:** See `SECURITY.md` and `SECURITY-FIX-CROSS-PROJECT-ISOLATION.md`
+
+---
+
 ## 🎯 What This Does
 
 The `ai-dev` CLI automatically generates:
