@@ -1,0 +1,89 @@
+name: multi-agent-architect
+kind: skill
+description: Design and orchestrate multi-agent systems with coordinated, role-based agents to solve complex problems.
+inputs_schema:
+  type: object
+  required:
+  - objectives
+  - tasks
+  properties:
+    objectives:
+      type: string
+      description: High-level goals driving the multi-agent solution.
+    tasks:
+      type: array
+      items:
+        type: string
+      description: Decomposed tasks that require specialized agents.
+    constraints:
+      type: array
+      items:
+        type: string
+      description: Operational, compliance, or cost constraints the architecture must respect.
+    existing_tools:
+      type: array
+      items:
+        type: string
+      description: Agent frameworks, orchestration platforms, or toolchains already available.
+preconditions:
+- check: file_exists('docs/problem_statement.md')
+  description: Problem statement captures the complex objectives motivating a multi-agent design.
+- check: file_exists('docs/workflow_requirements.md')
+  description: Workflow requirements outline dependencies, decision points, and success criteria.
+- check: has_dependency('crewai')
+  description: CrewAI installed to support role-based agent orchestration patterns.
+  required: false
+- check: has_dependency('langgraph')
+  description: LangGraph available for state-machine-based agent coordination.
+  required: false
+effects:
+- creates_multi_agent_architecture_plan
+- defines_agent_roles_matrix
+- configures_agent_communication_channels
+- documents_execution_and_observability_workflows
+domains:
+- orchestration
+- multi-agent
+- architecture
+- ai_systems
+cost: medium
+latency: slow
+risk_level: medium
+side_effects:
+- modifies_design_docs
+- standardizes_agent_interfaces
+idempotent: false
+success_signal: architecture_review_signoff_received('multi_agent_system')
+failure_signals:
+- undefined_agent_roles_detected
+- coordination_bottleneck_unresolved
+compatibility:
+  requires:
+  - requirements-elicitor
+  conflicts_with:
+  - single-agent-optimizer
+  composes_with:
+  - rag-implementer
+  - knowledge-graph-builder
+  - api-designer
+  enables:
+  - deploy-multi-agent-system
+  - debug-agent-workflows
+observability:
+  logs:
+  - multi_agent.architecture.decisions
+  - multi_agent.workflow.handoffs
+  metrics:
+  - agent.count
+  - handoff.latency
+  - token.cost.per_run
+metadata:
+  version: 1.0.0
+  author: AI Standards Team
+  tags:
+  - multi-agent
+  - architecture
+  - coordination
+  examples:
+  - Design a multi-agent research-analysis-writing workflow for technical reports.
+  - Architect a hierarchical agent system for comprehensive market intelligence gathering.

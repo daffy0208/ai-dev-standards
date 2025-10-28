@@ -1,0 +1,76 @@
+name: archon-manager
+kind: skill
+description: "Strategic orchestration layer for coordinating projects, tasks, and knowledge operations via Archon MCP."
+preconditions:
+  - check: "service_available('archon-mcp')"
+    description: "Archon MCP server endpoint is reachable for orchestration."
+  - check: "database_schema_initialized('archon')"
+    description: "Supabase instance has Archon migrations applied."
+  - check: "env_var_set('SUPABASE_URL')"
+    description: "Supabase API base URL is configured."
+  - check: "env_var_set('SUPABASE_SERVICE_ROLE_KEY')"
+    description: "Supabase service role key is available."
+  - check: "env_var_set('OPENAI_API_KEY')"
+    description: "LLM provider credentials are configured."
+  - check: "docker_service_running('archon-stack')"
+    description: "Archon Docker services are active."
+    required: false
+effects:
+  - updates_project_backlog
+  - updates_task_statuses
+  - configures_two_layer_workflow
+  - adds_knowledge_sources
+  - updates_project_metrics
+domains:
+  - project-management
+  - knowledge-management
+  - rag
+  - task-tracking
+  - strategic-planning
+  - multi-agent
+cost: medium
+latency: fast
+risk_level: low
+side_effects:
+  - modifies_database
+  - makes_api_calls
+  - modifies_project_state
+idempotent: false
+success_signal: "archon:get_project_metrics returns current task and knowledge counts."
+failure_signals:
+  - "archon-mcp_unreachable"
+  - "task_update_failed"
+  - "rag_query_returns_empty_without_sources"
+compatibility:
+  requires:
+    - archon-mcp
+    - supabase-integration
+    - openai-integration
+  composes_with:
+    - rag-implementer
+    - knowledge-base-manager
+    - mvp-builder
+    - product-strategist
+    - multi-agent-architect
+  enables:
+    - two-layer-orchestration
+    - project-velocity-tracking
+observability:
+  logs:
+    - archon_manager.task_transition
+    - archon_manager.rag_query
+    - archon_manager.project_sync
+  metrics:
+    - archon.tasks.in_progress
+    - archon.tasks.completed
+    - archon.knowledge.sources_count
+    - archon.velocity.weekly
+metadata:
+  version: "1.0.0"
+  author: "Archon Team"
+  tags:
+    - project-management
+    - knowledge-management
+    - task-tracking
+    - rag
+    - strategic-planning

@@ -1,0 +1,103 @@
+name: testing-strategist
+kind: skill
+description: Design and implement comprehensive testing strategies with unit tests, integration tests, E2E tests, and test-driven development
+
+preconditions:
+  - check: file_exists('package.json') or file_exists('requirements.txt')
+    description: Project initialized with package manager
+    required: true
+  - check: has_source_code_to_test()
+    description: Application code exists to test
+    required: true
+  - check: not file_exists('jest.config.js') and not file_exists('vitest.config.ts')
+    description: Testing framework not already configured
+    required: false
+
+effects:
+  - configures_testing_framework
+  - creates_unit_tests
+  - creates_integration_tests
+  - creates_e2e_tests
+  - implements_test_coverage
+  - adds_ci_test_pipeline
+  - creates_test_fixtures
+  - implements_mocking_strategy
+  - adds_test_documentation
+
+domains:
+  - testing
+  - quality-assurance
+  - tdd
+  - unit-testing
+  - integration-testing
+  - e2e-testing
+  - ci-cd
+
+cost: low
+latency: fast
+risk_level: safe
+
+side_effects:
+  - modifies_files
+  - installs_test_dependencies
+  - creates_test_files
+  - configures_ci_pipeline
+
+idempotent: false
+
+success_signal: "Tests run successfully, coverage meets targets (70%+), CI pipeline passes, test suite is maintainable"
+
+failure_signals:
+  - "Tests fail to run"
+  - "Coverage below targets"
+  - "Flaky tests"
+  - "Tests too slow"
+  - "Mocking issues"
+
+compatibility:
+  requires:
+    - testing-framework
+    - source-code
+  conflicts_with:
+    - incompatible-test-framework
+  composes_with:
+    - frontend-builder
+    - api-designer
+    - security-engineer
+    - performance-optimizer
+    - ci-cd-pipeline
+  enables:
+    - continuous-integration
+    - test-driven-development
+    - regression-prevention
+    - code-quality-monitoring
+
+observability:
+  logs:
+    - "Configuring {testing_framework} for {project_type}"
+    - "Creating test suite for {module_name}"
+    - "Running {test_count} tests..."
+    - "Coverage: {coverage_percent}% ({lines_covered}/{lines_total} lines)"
+  metrics:
+    - test_count
+    - test_pass_rate
+    - test_execution_time_ms
+    - code_coverage_percent
+    - flaky_test_count
+
+metadata:
+  version: "1.0.0"
+  created_at: "2025-10-28"
+  tags:
+    - testing
+    - jest
+    - playwright
+    - tdd
+    - quality
+    - ci-cd
+    - coverage
+  examples:
+    - "Set up Jest for React testing"
+    - "Implement TDD workflow"
+    - "Create E2E tests with Playwright"
+    - "Configure coverage reporting in CI"

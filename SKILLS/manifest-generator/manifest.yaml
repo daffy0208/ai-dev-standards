@@ -1,0 +1,95 @@
+name: manifest-generator
+kind: skill
+description: "Generates capability manifests for skills and MCP resources by analyzing descriptions and validating output against the capability manifest schema using Codex."
+inputs_schema:
+  type: object
+  required:
+    - skill_path
+    - resource_type
+    - description_file
+  properties:
+    skill_path:
+      type: string
+      description: "Path to the resource directory (e.g., SKILLS/rag-implementer)."
+    resource_type:
+      type: string
+      enum:
+        - skill
+        - mcp
+        - tool
+        - component
+        - integration
+      description: "Kind of resource being analyzed."
+    description_file:
+      type: string
+      description: "Primary description document, typically SKILL.md or README.md."
+    implementation_file:
+      type: string
+      description: "Optional implementation file for additional context."
+    output_path:
+      type: string
+      description: "Destination for the generated manifest.yaml."
+preconditions:
+  - check: "env_var_set('OPENAI_API_KEY')"
+    description: "Codex access requires a configured OpenAI API key."
+    required: true
+  - check: "command_exists('codex')"
+    description: "Codex CLI must be available to execute the generation prompt."
+    required: true
+  - check: "file_exists('SCHEMAS/capability-manifest.schema.json')"
+    description: "Capability manifest schema is needed to structure and validate output."
+    required: true
+  - check: "file_exists(description_file)"
+    description: "The provided resource description file must exist for analysis."
+    required: true
+effects:
+  - generates_capability_manifest
+  - validates_manifest_against_schema
+  - writes_manifest_to_output_path
+  - updates_existing_manifest_if_present
+domains:
+  - ai
+  - automation
+  - documentation
+  - orchestration
+cost: medium
+latency: fast
+risk_level: low
+side_effects:
+  - modifies_files
+  - makes_api_calls
+  - overwrites_manifest_files
+idempotent: false
+success_signal: "Generated manifest passes schema validation and is written to output_path."
+failure_signals:
+  - "Codex generation failed."
+  - "Schema validation errors reported."
+compatibility:
+  requires:
+    - openai-integration
+    - schema-registry
+  conflicts_with: []
+  composes_with:
+    - capability-graph-builder
+    - skill-validator
+    - orchestration-planner
+  enables:
+    - capability-graph-builder
+    - skill-validator
+    - orchestration-planner
+observability:
+  logs:
+    - "Generating capability manifest for {resource_type}:{skill_path}"
+    - "Validating generated manifest against schema"
+  metrics:
+    - manifest_generation_duration_ms
+    - manifest_validation_failures
+metadata:
+  tags:
+    - manifests
+    - codex
+    - automation
+  examples:
+    - "Bootstrap manifests for all skills and MCP servers"
+    - "Regenerate manifest after updating SKILL.md"
+    - "Validate manifests for drift detection workflows"

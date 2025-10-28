@@ -321,6 +321,187 @@ Total Estimated Time: 6 hours
 Overall Confidence: 100%
 ```
 
+## Phase 3 - Orchestration System
+
+Phase 3 introduces meta-skills that use Codex to generate and manage capability manifests, build capability graphs, plan workflows, validate implementations, and diagnose project health.
+
+### Example 9: Generate Capability Manifest
+
+```bash
+$ brain generate-manifest --path SKILLS/rag-implementer
+
+━━━ Generate Manifest ━━━
+
+→ Resource: SKILLS/rag-implementer
+→ Type: skill
+→ Running manifest generator...
+
+Generating manifest for rag-implementer...
+✅ Manifest generated: SKILLS/rag-implementer/manifest.yaml
+✓ Manifest generation complete!
+```
+
+### Example 10: Build Capability Graph
+
+```bash
+$ brain build-graph --validate --infer-missing
+
+━━━ Build Capability Graph ━━━
+
+→ Validation: enabled
+→ Inference: enabled
+→ Building capability graph...
+
+Loading manifests...
+  - SKILLS/rag-implementer/manifest.yaml
+  - SKILLS/api-designer/manifest.yaml
+  - MCP-SERVERS/vector-database-mcp/manifest.yaml
+  ... (106 more)
+
+Building graph structure...
+  Nodes: 109
+  Edges: 287
+
+Validating relationships...
+  ✓ No circular dependencies
+  ✓ All bidirectional relationships consistent
+
+Inferring missing relationships...
+  Added 15 inferred relationships
+
+Writing graph to META/capability-graph.json...
+✓ Capability graph build complete!
+```
+
+### Example 11: Plan Workflow
+
+```bash
+$ brain plan "implement authentication system"
+
+━━━ Plan Workflow: "implement authentication system" ━━━
+
+→ Planning workflow...
+
+Goal Analysis:
+  Required Effects: adds_auth_middleware, creates_jwt_tokens, implements_login_api
+  Domains: auth, security, api
+
+Capability Matching:
+  Found 8 candidate capabilities
+  5 preconditions satisfied
+  3 blocked (missing dependencies)
+
+HTN Plan:
+  Step 1: security-engineer
+    Effect: adds_auth_middleware
+    Alternatives: api-designer
+    Dependencies: []
+    Status: Ready
+
+  Step 2: jwt-manager-mcp
+    Effect: creates_jwt_tokens
+    Alternatives: custom-jwt-implementation
+    Dependencies: [1]
+    Status: Ready
+
+  Step 3: api-designer
+    Effect: implements_login_api
+    Alternatives: frontend-builder
+    Dependencies: [1, 2]
+    Status: Ready
+
+Scoring:
+  Utility: 0.78
+  Cost: medium
+  Latency: fast
+  Risk: low
+
+✓ Workflow planning complete!
+```
+
+### Example 12: Validate Skill
+
+```bash
+$ brain validate-skill SKILLS/rag-implementer
+
+━━━ Validate Skill: rag-implementer ━━━
+
+→ Resource: SKILLS/rag-implementer
+→ Running validation...
+
+Description Validation:
+  Accuracy Score: 0.90
+  ✓ Description matches implementation
+
+Precondition Validation:
+  Coverage Score: 0.80
+  ✓ file_exists('package.json') - enforced at validateProject:12
+  ✓ env_var_set('OPENAI_API_KEY') - enforced at setupEmbeddings:45
+
+Effect Validation:
+  Coverage Score: 0.85
+  ✓ creates_vector_index - implemented at createIndex:120
+  ✓ adds_embedding_pipeline - implemented at setupPipeline:85
+  ℹ Extra effect found: optimizes_vector_queries (not in manifest)
+
+Overall Score: 0.85
+Issues Found: 1 (low severity)
+
+✓ Validation complete!
+```
+
+### Example 13: Diagnose Project
+
+```bash
+$ brain diagnose --focus security,performance
+
+━━━ Project Health Diagnostic ━━━
+
+→ Project: /current/directory
+→ Focus: security,performance
+→ Analyzing project health...
+
+Project Discovery:
+  Type: nodejs
+  Framework: nextjs
+  Files: 247 total, 156 code files, 12 test files
+
+Health Assessment:
+
+  Testing: 0.40 (needs_improvement)
+    ℹ Only 15% test coverage
+    ℹ No E2E tests
+
+  Security: 0.50 (critical)
+    ⚠ No input validation on API routes
+    ⚠ CORS configured too permissively
+
+  Performance: 0.70 (good)
+    ℹ Could optimize image loading
+    ✓ Good caching strategy
+
+  Overall Health: 0.68
+
+Recommendations (by priority):
+
+  1. [High Impact, Medium Effort] Add input validation
+     Suggested: security-engineer, api-designer
+     Priority: 0.48
+
+  2. [High Impact, High Effort] Improve test coverage
+     Suggested: testing-strategist
+     Priority: 0.24
+
+Quick Wins:
+
+  1. Add README documentation (low effort, medium impact)
+     Suggested: technical-writer
+
+Critical Issues: 1
+
+✓ Diagnostic complete!
+```
+
 ## API Usage
 
 You can also use the brain programmatically:
@@ -477,13 +658,22 @@ The decision layer consists of 4 specialized engines working together:
 - [x] CLI commands: patterns, workflow, analyze
 - [x] Decision rules documentation
 
-### 📋 Phase 3: Enforcement (Planned)
+### ✅ Phase 3: Orchestration System (Complete)
+- [x] Manifest generator (generate-manifest command)
+- [x] Capability graph builder (build-graph command)
+- [x] Orchestration planner (plan command)
+- [x] Skill validator (validate-skill command)
+- [x] System diagnostician (diagnose command)
+- [x] CLI integration for all meta-skills
+- [x] Documentation and examples
+
+### 📋 Phase 4: Enforcement (Planned)
 - [ ] Validation scripts
 - [ ] Git hooks
 - [ ] CI/CD integration
 - [ ] Auto-fix capabilities
 
-### 🎯 Phase 4: Management (Planned)
+### 🎯 Phase 5: Management (Planned)
 - [ ] Full Archon integration
 - [ ] RAG queries
 - [ ] Task orchestration
@@ -507,6 +697,6 @@ For issues or questions about the brain:
 
 ---
 
-**Status**: Phase 2 Complete (Knowledge + Decision Layers) ✅
-**Features**: 15 commands, 4 engines, 8 architecture patterns, 15 workflow types
-**Next**: Phase 3 (Enforcement Layer) 📋
+**Status**: Phase 3 Complete (Knowledge + Decision + Orchestration) ✅
+**Features**: 20 commands, 4 engines + 5 meta-skills, 8 architecture patterns, 15 workflow types
+**Next**: Phase 4 (Enforcement Layer) 📋

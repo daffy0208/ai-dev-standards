@@ -25,6 +25,13 @@
 import * as path from 'path';
 import { createBrain, RepositoryBrain, Skill, MCP, WorkflowStep, PatternMatch } from './brain-core';
 
+// Import orchestration system commands
+import * as generateManifestCmd from './commands/generate-manifest';
+import * as buildGraphCmd from './commands/build-graph';
+import * as planCmd from './commands/plan';
+import * as validateSkillCmd from './commands/validate-skill';
+import * as diagnoseCmd from './commands/diagnose';
+
 const COLORS = {
   reset: '\x1b[0m',
   bright: '\x1b[1m',
@@ -59,6 +66,27 @@ function printWarning(text: string) {
 
 function printInfo(text: string) {
   console.log(colorize(`→ ${text}`, 'cyan'));
+}
+
+// Orchestration system command wrappers
+async function commandGenerateManifest(args: string[], rootPath: string): Promise<void> {
+  await generateManifestCmd.execute(args, rootPath);
+}
+
+async function commandBuildGraph(args: string[], rootPath: string): Promise<void> {
+  await buildGraphCmd.execute(args, rootPath);
+}
+
+async function commandPlan(args: string[], rootPath: string): Promise<void> {
+  await planCmd.execute(args, rootPath);
+}
+
+async function commandValidateSkill(args: string[], rootPath: string): Promise<void> {
+  await validateSkillCmd.execute(args, rootPath);
+}
+
+async function commandDiagnose(args: string[], rootPath: string): Promise<void> {
+  await diagnoseCmd.execute(args, rootPath);
 }
 
 async function main() {
@@ -126,6 +154,21 @@ async function main() {
         break;
       case 'analyze':
         await commandAnalyze(brain, args.slice(1).join(' '));
+        break;
+      case 'generate-manifest':
+        await commandGenerateManifest(args.slice(1), rootPath);
+        break;
+      case 'build-graph':
+        await commandBuildGraph(args.slice(1), rootPath);
+        break;
+      case 'plan':
+        await commandPlan(args.slice(1), rootPath);
+        break;
+      case 'validate-skill':
+        await commandValidateSkill(args.slice(1), rootPath);
+        break;
+      case 'diagnose':
+        await commandDiagnose(args.slice(1), rootPath);
         break;
       default:
         printError(`Unknown command: ${command}`);
@@ -653,6 +696,13 @@ ${colorize('Phase 2 - Advanced Intelligence:', 'magenta')}
   workflow <scenario>         Get detailed workflow with steps
   analyze <task>              Comprehensive analysis (all engines)
 
+${colorize('Phase 3 - Orchestration System:', 'magenta')}
+  generate-manifest <path>    Generate capability manifest using Codex
+  build-graph                 Build capability graph from manifests
+  plan <goal>                 Plan multi-step workflows
+  validate-skill <path>       Validate implementation matches manifest
+  diagnose [project]          Analyze project health and recommend capabilities
+
 ${colorize('Examples:', 'bright')}
   brain status
   brain search "authentication"
@@ -662,6 +712,11 @@ ${colorize('Examples:', 'bright')}
   brain patterns "need knowledge base with search"
   brain workflow "implement RAG system"
   brain analyze "build AI chatbot with custom knowledge"
+  brain generate-manifest --path SKILLS/rag-implementer
+  brain build-graph --validate
+  brain plan "implement authentication system"
+  brain validate-skill SKILLS/api-designer
+  brain diagnose --focus security,performance
 `);
 }
 
