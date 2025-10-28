@@ -1,0 +1,106 @@
+name: api-designer
+kind: skill
+description: Design REST and GraphQL APIs with proper authentication, versioning, documentation, and best practices
+
+preconditions:
+  - check: file_exists('package.json') or file_exists('requirements.txt')
+    description: Backend project initialized
+    required: true
+  - check: not file_exists('app/api/') and not file_exists('src/routes/')
+    description: No existing API structure
+    required: false
+  - check: has_backend_framework('express') or has_backend_framework('fastapi') or has_backend_framework('nextjs')
+    description: Backend framework available
+    required: true
+
+effects:
+  - creates_api_routes
+  - implements_authentication
+  - adds_rate_limiting
+  - configures_cors
+  - implements_pagination
+  - adds_input_validation
+  - creates_error_handling
+  - generates_openapi_spec
+  - implements_versioning
+  - adds_api_documentation
+
+domains:
+  - api
+  - rest
+  - graphql
+  - backend
+  - authentication
+  - security
+  - documentation
+  - versioning
+
+cost: free
+latency: fast
+risk_level: medium
+
+side_effects:
+  - modifies_files
+  - creates_api_endpoints
+  - configures_authentication
+  - exposes_public_endpoints
+
+idempotent: false
+
+success_signal: "API endpoints respond correctly, authentication works, documentation generated, OpenAPI spec validates, rate limiting functional"
+
+failure_signals:
+  - "Routes not accessible"
+  - "Authentication fails"
+  - "CORS errors"
+  - "Rate limiting not working"
+  - "Input validation missing"
+  - "Documentation incomplete"
+
+compatibility:
+  requires:
+    - backend-framework
+    - database-connection
+  conflicts_with:
+    - incompatible-api-version
+  composes_with:
+    - frontend-builder
+    - security-engineer
+    - testing-strategist
+    - deployment-advisor
+    - performance-optimizer
+  enables:
+    - client-server-communication
+    - third-party-integration
+    - mobile-app-backend
+    - microservices-architecture
+
+observability:
+  logs:
+    - "Creating API route: {method} {path}"
+    - "Configuring authentication with {strategy}"
+    - "Setting up rate limit: {requests} per {window}"
+    - "Generating OpenAPI specification"
+  metrics:
+    - api_request_count
+    - api_latency_ms
+    - api_error_rate
+    - rate_limit_hits
+    - endpoint_count
+
+metadata:
+  version: "1.0.0"
+  created_at: "2025-10-28"
+  tags:
+    - api
+    - rest
+    - graphql
+    - authentication
+    - security
+    - documentation
+    - backend
+  examples:
+    - "Design REST API for user management"
+    - "Implement GraphQL API with pagination"
+    - "Add JWT authentication to existing API"
+    - "Create OpenAPI specification"

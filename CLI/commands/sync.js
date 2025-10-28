@@ -367,6 +367,7 @@ async function applyUpdate(projectPath, update, config) {
 
 /**
  * Add skill to claude.md
+ * SECURITY FIX: Now references LOCAL file paths instead of remote GitHub URLs
  */
 async function addSkillToProject(projectPath, skill) {
   const claudeMdPath = path.join(projectPath, '.claude/claude.md')
@@ -386,11 +387,13 @@ async function addSkillToProject(projectPath, skill) {
     skillPath = `${skillPath}SKILL.md`
   }
 
-  const githubBaseUrl = 'https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main'
-  const fullPath = `${githubBaseUrl}${skillPath}`
+  // SECURITY FIX: Use local file path instead of GitHub URL
+  // This ensures project isolation and prevents cross-project data exposure
+  const { getAbsolutePath } = require('../utils/local-fetch')
+  const localPath = getAbsolutePath(skillPath)
 
-  // Add skill reference
-  const skillReference = `\n### ${skill.name}\n\n${skill.description}\n\n**Location:** \`${fullPath}\`\n`
+  // Add skill reference with local path
+  const skillReference = `\n### ${skill.name}\n\n${skill.description}\n\n**Location:** \`${localPath}\`\n`
 
   if (!content.includes(skill.name)) {
     content += skillReference
@@ -439,14 +442,15 @@ function normalizeRegistryPath(registryPath) {
 
 /**
  * Add tool to project
+ * SECURITY FIX: Now reads from LOCAL files instead of GitHub
  */
 async function addToolToProject(projectPath, tool) {
-  // Fetch and copy tool file to project
+  // Copy tool file to project from local installation
   const toolsDir = path.join(projectPath, 'tools')
   await fs.ensureDir(toolsDir)
 
-  // Fetch tool file from GitHub
-  const { fetchText } = require('../utils/github-fetch')
+  // SECURITY FIX: Read from local file system instead of GitHub
+  const { fetchText } = require('../utils/local-fetch')
   const content = await fetchText(normalizeRegistryPath(tool.path))
 
   const toolFile = path.basename(tool.path)
@@ -455,13 +459,15 @@ async function addToolToProject(projectPath, tool) {
 
 /**
  * Add script to project
+ * SECURITY FIX: Now reads from LOCAL files instead of GitHub
  */
 async function addScriptToProject(projectPath, script) {
-  // Copy script to scripts directory
+  // Copy script to scripts directory from local installation
   const scriptsDir = path.join(projectPath, 'scripts')
   await fs.ensureDir(scriptsDir)
 
-  const { fetchText } = require('../utils/github-fetch')
+  // SECURITY FIX: Read from local file system instead of GitHub
+  const { fetchText } = require('../utils/local-fetch')
   const content = await fetchText(normalizeRegistryPath(script.path))
 
   const scriptFile = path.basename(script.path)
@@ -471,14 +477,15 @@ async function addScriptToProject(projectPath, script) {
 
 /**
  * Add component to project
+ * SECURITY FIX: Now reads from LOCAL files instead of GitHub
  */
 async function addComponentToProject(projectPath, component) {
-  // Copy component to components directory
+  // Copy component to components directory from local installation
   const componentsDir = path.join(projectPath, 'components', component.category)
   await fs.ensureDir(componentsDir)
 
-  // Fetch component file from GitHub
-  const { fetchText } = require('../utils/github-fetch')
+  // SECURITY FIX: Read from local file system instead of GitHub
+  const { fetchText } = require('../utils/local-fetch')
   const content = await fetchText(normalizeRegistryPath(component.path))
 
   const componentFile = path.basename(component.path)
@@ -487,14 +494,15 @@ async function addComponentToProject(projectPath, component) {
 
 /**
  * Add integration to project
+ * SECURITY FIX: Now reads from LOCAL files instead of GitHub
  */
 async function addIntegrationToProject(projectPath, integration) {
-  // Copy integration to lib directory
+  // Copy integration to lib directory from local installation
   const integrationsDir = path.join(projectPath, 'lib', 'integrations', integration.category)
   await fs.ensureDir(integrationsDir)
 
-  // Fetch integration file from GitHub
-  const { fetchText } = require('../utils/github-fetch')
+  // SECURITY FIX: Read from local file system instead of GitHub
+  const { fetchText } = require('../utils/local-fetch')
   const content = await fetchText(normalizeRegistryPath(integration.path))
 
   const integrationFile = path.basename(integration.path)
@@ -710,18 +718,20 @@ ai-dev sync --yes --silent
 }
 
 /**
- * Fetch latest standards from GitHub
+ * Fetch latest standards from LOCAL installation
+ * SECURITY FIX: Now reads from local file system instead of GitHub
  */
 async function fetchLatestStandards() {
-  const { fetchAllStandards } = require('../utils/github-fetch')
+  const { fetchAllStandards } = require('../utils/local-fetch')
   return await fetchAllStandards()
 }
 
 /**
- * Get latest version from GitHub
+ * Get latest version from LOCAL installation
+ * SECURITY FIX: Now reads from local file system instead of GitHub
  */
 async function getLatestVersion() {
-  const { fetchVersion } = require('../utils/github-fetch')
+  const { fetchVersion } = require('../utils/local-fetch')
   return await fetchVersion()
 }
 

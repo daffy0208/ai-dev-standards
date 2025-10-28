@@ -1,9 +1,9 @@
 {
-  "version": "2.0.0",
+  "version": "2.1.0",
   "last_updated": "2025-10-28",
   "description": "Registry of executable tools in ai-dev-standards. Tools are standalone utilities that can be invoked by skills, MCPs, or directly by developers. Note: TOOLS/tool-registry.json is deprecated and superseded by this registry.",
   "total_tools": 24,
-  "total_scripts": 4,
+  "total_scripts": 5,
   "tools": [
     {
       "id": "api-caller-tool",
@@ -639,6 +639,30 @@
   ],
   "supporting_scripts": [
     {
+      "id": "bootstrap-manifests",
+      "name": "Bootstrap Manifests Script",
+      "category": "orchestration",
+      "description": "Generate capability manifests for all skills, MCPs, tools, and components using manifest-generator skill",
+      "path": "/scripts/bootstrap-manifests.sh",
+      "status": "active",
+      "language": "bash",
+      "supports_skills": [
+        "manifest-generator",
+        "capability-graph-builder",
+        "orchestration-planner"
+      ],
+      "supports_mcps": [],
+      "features": [
+        "Batch manifest generation",
+        "Codex-powered capability extraction",
+        "Validates against capability-manifest schema",
+        "Supports all resource types"
+      ],
+      "depends_on": [
+        "manifest-generator"
+      ]
+    },
+    {
       "id": "db-backup",
       "name": "Database Backup Script",
       "category": "utilities",
@@ -780,6 +804,14 @@
         "error-tracker-tool"
       ]
     },
+    "orchestration": {
+      "name": "Orchestration Scripts",
+      "count": 1,
+      "description": "Scripts for orchestration system setup and management",
+      "scripts": [
+        "bootstrap-manifests"
+      ]
+    },
     "utilities": {
       "name": "Utility Scripts",
       "count": 4,
@@ -819,18 +851,19 @@
   },
   "statistics": {
     "total_tools": 24,
-    "total_scripts": 4,
+    "total_scripts": 5,
     "by_category": {
       "custom-tools": 4,
       "crewai-tools": 2,
       "langchain-tools": 2,
       "mcp-tools": 1,
       "observability": 4,
+      "orchestration": 1,
       "utilities": 4,
       "media-tools": 3,
       "design-tools": 8
     },
-    "skills_covered": 24,
+    "skills_covered": 27,
     "mcps_covered": 20
   },
   "usage_notes": {

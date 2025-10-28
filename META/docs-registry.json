@@ -1,8 +1,30 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "last_updated": "2025-10-28",
-  "description": "Registry of all documentation files. Now includes 26 documentation files.",
+  "description": "Registry of all documentation files. Now includes 27 documentation files.",
   "docs": [
+    {
+      "name": "agent-definitions",
+      "title": "Agent Definitions",
+      "description": "Comprehensive guide to agents: what they are, types, architecture, and when to use them. Explains the relationship between agents, skills, and MCPs.",
+      "category": "system",
+      "path": "/AGENTS/AGENT.md",
+      "status": "active",
+      "audience": [
+        "developers",
+        "architects"
+      ],
+      "related_skills": [
+        "multi-agent-architect",
+        "archon-manager"
+      ],
+      "tags": [
+        "agent",
+        "architecture",
+        "system",
+        "fundamentals"
+      ]
+    },
     {
       "name": "agent-skill-integration",
       "title": "Agent Skill Integration",
@@ -455,8 +477,8 @@
     }
   },
   "statistics": {
-    "total_docs": 26,
+    "total_docs": 27,
     "categories_count": 8,
-    "active_docs": 26
+    "active_docs": 27
   }
 }

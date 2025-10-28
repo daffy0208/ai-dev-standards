@@ -1,0 +1,73 @@
+name: 3d-visualizer
+kind: skill
+description: Expert guidance for building interactive Three.js scenes and React Three Fiber visualizations.
+preconditions:
+  - check: "file_exists('package.json')"
+    description: Node-based project scaffold is present to manage Three.js dependencies.
+    required: true
+  - check: "has_dependency('three')"
+    description: Three.js runtime is installed to render WebGL scenes.
+    required: true
+  - check: "has_dependency('@react-three/fiber')"
+    description: React Three Fiber is available for React-based scene composition.
+    required: false
+  - check: "has_dependency('@react-three/drei')"
+    description: Drei helpers can be used to speed up common 3D tasks.
+    required: false
+  - check: "file_exists('public/models')"
+    description: 3D assets directory exists for loading GLB/GLTF models.
+    required: false
+effects:
+  - creates_three_js_scene
+  - adds_interactive_3d_visualization
+  - configures_react_three_fiber_canvas
+  - optimizes_three_js_performance
+domains:
+  - threejs
+  - webgl
+  - react
+  - data-visualization
+  - frontend
+cost: medium
+latency: slow
+risk_level: medium
+side_effects:
+  - modifies_frontend_components
+  - adds_large_static_assets
+  - increases_bundle_size
+idempotent: false
+success_signal: 3D scene loads interactively in the browser without console errors.
+failure_signals:
+  - three_js_runtime_errors
+  - webgl_context_not_available
+  - model_asset_load_failure
+compatibility:
+  requires:
+    - frontend-build-pipeline
+  composes_with:
+    - ui-design-system
+    - analytics-dashboard
+  enables:
+    - immersive-product-experiences
+    - advanced-data-visualization
+observability:
+  logs:
+    - scene_render_started
+    - model_asset_loaded
+    - orbit_controls_engaged
+  metrics:
+    - frame_rate_fps
+    - scene_initial_load_ms
+    - gpu_memory_usage_mb
+metadata:
+  version: 1.0.0
+  tags:
+    - three-js
+    - 3d
+    - webgl
+    - react-three-fiber
+    - visualization
+  examples:
+    - Build an interactive 3D product configurator.
+    - Create animated scientific visualizations.
+    - Render performance-optimized particle systems.

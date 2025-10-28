@@ -1,7 +1,7 @@
 {
-  "version": "3.25.0",
+  "version": "3.26.0",
   "last_updated": "2025-10-28",
-  "description": "Registry of all available skills in ai-dev-standards. Skills are model-invoked capabilities that Claude activates based on context. Now includes 59 active skills covering product development, AI systems, technical implementation, infrastructure, UX design, ADHD support, repository analysis, project management, data forensics, automated code review workflows, design automation, API integrations, customer support, growth experimentation, pricing strategy, product analytics, release management, usability testing, business model architecture, framework orchestration, requirements generation, quality assurance, and security architecture.",
+  "description": "Registry of all available skills in ai-dev-standards. Skills are model-invoked capabilities that Claude activates based on context. Now includes 64 active skills covering product development, AI systems, technical implementation, infrastructure, UX design, ADHD support, repository analysis, project management, data forensics, automated code review workflows, design automation, API integrations, customer support, growth experimentation, pricing strategy, product analytics, release management, usability testing, business model architecture, framework orchestration, requirements generation, quality assurance, security architecture, and orchestration meta-skills.",
   "skills": [
     {
       "name": "3d-visualizer",
@@ -246,6 +246,37 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
+      "frameworks": [
+        "all"
+      ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
+      "name": "capability-graph-builder",
+      "description": "Build queryable capability graphs from manifests using Codex for relationship inference",
+      "triggers": [
+        "capability-graph-builder",
+        "capability graph builder",
+        "build capability graph",
+        "graph builder"
+      ],
+      "tags": [
+        "orchestration",
+        "codex-powered"
+      ],
+      "category": "orchestration",
+      "difficulty": "advanced",
+      "estimated_time": "2-4 hours",
+      "path": "/SKILLS/capability-graph-builder/",
+      "status": "active",
+      "prerequisites": [],
+      "related_skills": [
+        "manifest-generator",
+        "orchestration-planner",
+        "skill-validator"
+      ],
       "frameworks": [
         "all"
       ],
@@ -791,6 +822,37 @@
       ]
     },
     {
+      "name": "manifest-generator",
+      "description": "Auto-generate capability manifests from skill/MCP descriptions using Codex",
+      "triggers": [
+        "manifest-generator",
+        "manifest generator",
+        "generate manifest",
+        "create manifest"
+      ],
+      "tags": [
+        "orchestration",
+        "codex-powered"
+      ],
+      "category": "meta",
+      "difficulty": "advanced",
+      "estimated_time": "2-4 hours",
+      "path": "/SKILLS/manifest-generator/",
+      "status": "active",
+      "prerequisites": [],
+      "related_skills": [
+        "capability-graph-builder",
+        "skill-validator",
+        "orchestration-planner"
+      ],
+      "frameworks": [
+        "all"
+      ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
       "name": "mobile-developer",
       "description": "Expert in React Native, Expo, and cross-platform mobile development",
       "triggers": [
@@ -855,6 +917,37 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
+      "frameworks": [
+        "all"
+      ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
+      "name": "orchestration-planner",
+      "description": "Plan multi-step workflows using capability graph and Codex-powered goal decomposition",
+      "triggers": [
+        "orchestration-planner",
+        "orchestration planner",
+        "plan workflow",
+        "decompose goal"
+      ],
+      "tags": [
+        "orchestration",
+        "codex-powered"
+      ],
+      "category": "orchestration",
+      "difficulty": "advanced",
+      "estimated_time": "2-4 hours",
+      "path": "/SKILLS/orchestration-planner/",
+      "status": "active",
+      "prerequisites": [],
+      "related_skills": [
+        "capability-graph-builder",
+        "manifest-generator",
+        "system-diagnostician"
+      ],
       "frameworks": [
         "all"
       ],
@@ -1193,6 +1286,37 @@
       ]
     },
     {
+      "name": "skill-validator",
+      "description": "Validate implementations match manifests using Codex for semantic comparison",
+      "triggers": [
+        "skill-validator",
+        "skill validator",
+        "validate skill",
+        "check implementation"
+      ],
+      "tags": [
+        "orchestration",
+        "codex-powered"
+      ],
+      "category": "meta",
+      "difficulty": "advanced",
+      "estimated_time": "2-4 hours",
+      "path": "/SKILLS/skill-validator/",
+      "status": "active",
+      "prerequisites": [],
+      "related_skills": [
+        "manifest-generator",
+        "capability-graph-builder",
+        "system-diagnostician"
+      ],
+      "frameworks": [
+        "all"
+      ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
       "name": "spatial-developer",
       "description": "Expert in AR/VR, WebXR, and spatial computing for Vision Pro and web",
       "triggers": [
@@ -1239,6 +1363,37 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
+      "frameworks": [
+        "all"
+      ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
+      "name": "system-diagnostician",
+      "description": "Analyze project health and recommend capabilities using Codex-powered system understanding",
+      "triggers": [
+        "system-diagnostician",
+        "system diagnostician",
+        "diagnose project",
+        "health check"
+      ],
+      "tags": [
+        "orchestration",
+        "codex-powered"
+      ],
+      "category": "meta",
+      "difficulty": "advanced",
+      "estimated_time": "2-4 hours",
+      "path": "/SKILLS/system-diagnostician/",
+      "status": "active",
+      "prerequisites": [],
+      "related_skills": [
+        "orchestration-planner",
+        "skill-validator",
+        "capability-graph-builder"
+      ],
       "frameworks": [
         "all"
       ],

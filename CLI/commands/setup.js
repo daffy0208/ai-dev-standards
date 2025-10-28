@@ -4,6 +4,7 @@ const inquirer = require('inquirer')
 const fs = require('fs-extra')
 const path = require('path')
 const execa = require('execa')
+const { validateEnvPath, validateServiceURL } = require('../utils/path-validation')
 
 /**
  * Setup Command
@@ -89,7 +90,14 @@ async function setupSupabase(options) {
       type: 'input',
       name: 'url',
       message: 'Supabase Project URL:',
-      validate: (input) => input.includes('supabase.co') || 'Invalid Supabase URL'
+      validate: (input) => {
+        try {
+          validateServiceURL(input, 'Supabase', ['supabase.co', '.supabase.co'])
+          return true
+        } catch (error) {
+          return error.message
+        }
+      }
     },
     {
       type: 'password',
@@ -128,7 +136,8 @@ NEXT_PUBLIC_SUPABASE_URL=${answers.url}
 NEXT_PUBLIC_SUPABASE_ANON_KEY=${answers.anonKey}
 `
 
-  await fs.appendFile(options.env, envContent)
+  const validatedEnvPath = validateEnvPath(options.env)
+  await fs.appendFile(validatedEnvPath, envContent)
   console.log(chalk.gray(`  Updated: ${options.env}`))
 
   // Setup auth if requested
@@ -240,9 +249,11 @@ export async function createCheckoutSession(priceId: string, userId: string) {
 # Stripe
 STRIPE_SECRET_KEY=${answers.secretKey}
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=${answers.publicKey}
+NEXT_PUBLIC_URL=http://localhost:3000
 `
 
-  await fs.appendFile(options.env, envContent)
+  const validatedEnvPath = validateEnvPath(options.env)
+  await fs.appendFile(validatedEnvPath, envContent)
   console.log(chalk.gray(`  Updated: ${options.env}`))
 }
 
@@ -332,7 +343,8 @@ PINECONE_ENVIRONMENT=${answers.environment}
 PINECONE_INDEX_NAME=${answers.indexName}
 `
 
-  await fs.appendFile(options.env, envContent)
+  const validatedEnvPath = validateEnvPath(options.env)
+  await fs.appendFile(validatedEnvPath, envContent)
   console.log(chalk.gray(`  Updated: ${options.env}`))
 }
 
@@ -383,7 +395,8 @@ WEAVIATE_URL=${answers.url}
 ${answers.apiKey ? `WEAVIATE_API_KEY=${answers.apiKey}` : ''}
 `
 
-  await fs.appendFile(options.env, envContent)
+  const validatedEnvPath = validateEnvPath(options.env)
+  await fs.appendFile(validatedEnvPath, envContent)
   console.log(chalk.gray(`  Updated: ${options.env}`))
 }
 
@@ -440,7 +453,8 @@ export async function sendEmail({
 RESEND_API_KEY=${answers.apiKey}
 `
 
-  await fs.appendFile(options.env, envContent)
+  const validatedEnvPath = validateEnvPath(options.env)
+  await fs.appendFile(validatedEnvPath, envContent)
   console.log(chalk.gray(`  Updated: ${options.env}`))
 }
 
@@ -488,7 +502,8 @@ export async function generateCompletion(prompt: string) {
 OPENAI_API_KEY=${answers.apiKey}
 `
 
-  await fs.appendFile(options.env, envContent)
+  const validatedEnvPath = validateEnvPath(options.env)
+  await fs.appendFile(validatedEnvPath, envContent)
   console.log(chalk.gray(`  Updated: ${options.env}`))
 }
 
@@ -537,7 +552,8 @@ export async function generateMessage(prompt: string) {
 ANTHROPIC_API_KEY=${answers.apiKey}
 `
 
-  await fs.appendFile(options.env, envContent)
+  const validatedEnvPath = validateEnvPath(options.env)
+  await fs.appendFile(validatedEnvPath, envContent)
   console.log(chalk.gray(`  Updated: ${options.env}`))
 }
 

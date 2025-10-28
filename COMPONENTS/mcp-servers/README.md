@@ -351,7 +351,7 @@ await server.shutdown();
 
 ## Supported Skills
 
-These components support all 36 MCPs in the ai-dev-standards repository:
+These components support all 49 MCPs in the ai-dev-standards repository:
 - accessibility-checker-mcp
 - agent-orchestrator-mcp
 - api-validator-mcp

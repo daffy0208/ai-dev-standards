@@ -1,0 +1,71 @@
+name: knowledge-base-manager
+kind: skill
+description: Design, build, and maintain curated knowledge bases that integrate document (RAG) and entity (graph) systems for high-quality, governable knowledge access.
+preconditions:
+  - check: "file_exists('knowledge_sources/inventory.yaml')"
+    description: Curated inventory of internal, external, and SME knowledge sources is documented.
+  - check: "file_exists('knowledge_base/schema.json')"
+    description: Knowledge schema or ontology (documents, entities, relationships, metadata) is defined and validated with stakeholders.
+  - check: "has_dependency('vector-database-mcp')"
+    description: Vector database tooling is available for document-based retrieval workflows.
+    required: false
+  - check: "has_dependency('graph-database-mcp')"
+    description: Graph database tooling is available for entity and relationship modeling.
+    required: false
+effects:
+  - creates_knowledge_architecture
+  - configures_ingestion_pipeline
+  - adds_provenance_tracking
+  - establishes_quality_controls
+  - implements_versioning_process
+  - updates_governance_framework
+domains:
+  - rag
+  - knowledge-graph
+  - data-engineering
+  - governance
+  - observability
+cost: high
+latency: slow
+risk_level: medium
+side_effects:
+  - modifies_files
+  - modifies_database
+  - makes_api_calls
+idempotent: false
+success_signal: kb_health_metrics_meet_targets
+failure_signals:
+  - quality_metrics_below_threshold
+  - provenance_records_missing
+  - stale_knowledge_detected
+compatibility:
+  requires: []
+  conflicts_with: []
+  composes_with:
+    - rag-implementer
+    - knowledge-graph-builder
+    - data-engineer
+    - quality-auditor
+    - technical-writer
+  enables:
+    - knowledge-base-mcp
+    - semantic-search-mcp
+observability:
+  logs:
+    - knowledge_base_manager.phase
+    - knowledge_base_manager.ingestion
+  metrics:
+    - kb.health.accuracy
+    - kb.health.coverage
+    - kb.health.freshness
+    - kb.operations.update_frequency
+metadata:
+  version: 1.0.0
+  author: ai-dev-standards
+  tags:
+    - knowledge-base
+    - governance
+    - curation
+  examples:
+    - Build enterprise hybrid knowledge base combining policies, FAQs, and organizational graph.
+    - Implement knowledge governance with accuracy, freshness, and provenance monitoring dashboards.

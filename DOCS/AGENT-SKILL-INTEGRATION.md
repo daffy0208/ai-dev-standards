@@ -13,9 +13,9 @@ How agents and skills work together to deliver powerful development capabilities
 **Total Resources:**
 - **10 Agents** (4 built-in + 6 skill-based)
 - **59 Skills** (specialized capabilities)
-- **36 MCPs** (executable servers)
-- **24 Tools** (LangChain/CrewAI)
-- **13 Components** (React components)
+- **49 MCPs** (executable servers)
+- **4 Tools** (registered)
+- **75 Components** (React components)
 
 ---
 

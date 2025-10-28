@@ -3,6 +3,7 @@ const ora = require('ora')
 const fs = require('fs-extra')
 const path = require('path')
 const { glob } = require('glob')
+const { validateReportPath } = require('../utils/path-validation')
 
 /**
  * Analyze Command
@@ -168,7 +169,8 @@ async function analyzeCommand(options) {
         warnings,
         recommendations
       }
-      await fs.writeJson(options.report, report, { spaces: 2 })
+      const validatedReportPath = validateReportPath(options.report)
+      await fs.writeJson(validatedReportPath, report, { spaces: 2 })
       console.log(chalk.gray(`\n📄 Report saved to: ${options.report}`))
     }
 

@@ -59,9 +59,9 @@ $ bash ~/ai-dev-standards/setup-project.sh
   Added to .gitignore: .ai-dev-cache/
 
 🔄 Syncing resources...
-✅ 39 skills synced
-✅ 36 MCPs configured
-✅ 107 total resources available
+✅ 59 skills synced
+✅ 49 MCPs configured
+✅ 195 total resources available
 
 🔍 Analyzing your project...
 

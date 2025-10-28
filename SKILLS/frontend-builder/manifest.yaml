@@ -1,0 +1,105 @@
+name: frontend-builder
+kind: skill
+description: Build modern React/Next.js frontends with proper component architecture, state management, and performance optimization
+
+preconditions:
+  - check: file_exists('package.json')
+    description: Node.js project initialized
+    required: true
+  - check: not file_exists('app/') and not file_exists('src/')
+    description: No existing frontend structure
+    required: false
+  - check: has_dependency('react') or ready_to_install('react')
+    description: React framework available
+    required: true
+
+effects:
+  - creates_component_architecture
+  - configures_nextjs_app_router
+  - implements_state_management
+  - adds_form_validation
+  - configures_tailwind_css
+  - implements_data_fetching
+  - adds_error_boundaries
+  - optimizes_performance
+  - configures_typescript
+
+domains:
+  - frontend
+  - react
+  - nextjs
+  - ui
+  - component-architecture
+  - state-management
+  - typescript
+  - tailwindcss
+
+cost: low
+latency: fast
+risk_level: low
+
+side_effects:
+  - modifies_files
+  - installs_dependencies
+  - creates_folder_structure
+  - configures_build_tools
+
+idempotent: false
+
+success_signal: "Next.js/React app builds successfully, components render correctly, tests pass, TypeScript compiles without errors"
+
+failure_signals:
+  - "Build fails with TypeScript errors"
+  - "Components fail to render"
+  - "State management issues"
+  - "Performance issues (slow rendering)"
+  - "Dependency conflicts"
+
+compatibility:
+  requires:
+    - node-js
+    - npm-or-yarn
+  conflicts_with:
+    - vue-frontend
+    - angular-frontend
+  composes_with:
+    - api-designer
+    - design-system-architect
+    - ux-designer
+    - testing-strategist
+    - performance-optimizer
+  enables:
+    - interactive-ui
+    - client-side-routing
+    - server-side-rendering
+    - static-site-generation
+
+observability:
+  logs:
+    - "Building Next.js app..."
+    - "Creating component: {component_name}"
+    - "Configuring state management with {library}"
+    - "Installing dependencies: {packages}"
+  metrics:
+    - build_time_ms
+    - bundle_size_kb
+    - component_count
+    - render_performance_ms
+    - lighthouse_score
+
+metadata:
+  version: "1.0.0"
+  created_at: "2025-10-28"
+  tags:
+    - frontend
+    - react
+    - nextjs
+    - components
+    - ui
+    - typescript
+    - tailwind
+  examples:
+    - "Build Next.js app with App Router"
+    - "Create component library with TypeScript"
+    - "Implement state management with Zustand"
+    - "Build responsive UI with Tailwind CSS"

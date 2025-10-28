@@ -1,0 +1,107 @@
+name: orchestration-planner
+kind: skill
+description: >
+  Decomposes user goals into executable multi-step workflows by analyzing capability
+  graphs, validating preconditions, generating hierarchical task networks, and logging
+  planning decisions using Codex-assisted reasoning.
+inputs_schema:
+  type: object
+  required: [goal, project_state, capability_graph]
+  properties:
+    goal:
+      type: string
+      description: High-level objective the user wants to achieve.
+    project_state:
+      type: object
+      description: Snapshot of current project files, dependencies, and environment variables.
+    capability_graph:
+      type: string
+      description: Path to the capability graph JSON file.
+    preferences:
+      type: object
+      description: Optional weights for scoring cost, latency, risk, and diversity.
+      properties:
+        cost_weight:
+          type: number
+          minimum: 0
+        latency_weight:
+          type: number
+          minimum: 0
+        risk_tolerance:
+          type: string
+        diversity_weight:
+          type: number
+          minimum: 0
+    context:
+      type: array
+      description: Recently used capabilities to enforce cooldown heuristics.
+      items:
+        type: string
+preconditions:
+  - check: "file_exists('META/capability-graph.json')"
+    description: Capability graph must exist to resolve effects and relationships.
+    required: true
+  - check: "env_var_set('CODEX_API_KEY')"
+    description: Codex API key is required for goal analysis and HTN synthesis.
+    required: true
+  - check: "has_dependency('python3')"
+    description: Python runtime must be available for candidate validation scripts.
+    required: true
+  - check: "env_var_set('WORKDIR')"
+    description: Working directory context for evaluating project state.
+    required: false
+effects:
+  - analyzes_goal_effects
+  - validates_capability_preconditions
+  - generates_htn_plan
+  - scores_plan_alternatives
+  - produces_decision_log
+domains:
+  - planning
+  - orchestration
+  - ai
+cost: medium
+latency: slow
+risk_level: low
+side_effects:
+  - writes_temp_files
+  - invokes_llm_api
+  - reads_project_state_files
+idempotent: false
+success_signal: plan-scored.json contains a utility score and ordered HTN steps for the goal.
+failure_signals:
+  - goal analysis missing required_effects
+  - capability graph query returns no candidates
+  - Codex plan generation returns invalid JSON
+compatibility:
+  requires:
+    - capability-graph-builder
+    - manifest-generator
+  conflicts_with:
+    - manual-planning-only
+  composes_with:
+    - repository-brain
+    - system-diagnostician
+  enables:
+    - system-diagnostician
+observability:
+  logs:
+    - goal_analysis_extracted
+    - candidates_validated
+    - htn_plan_created
+  metrics:
+    - plan_utility_score
+    - blocked_capabilities_count
+    - alternative_paths_generated
+metadata:
+  version: 1.0.0
+  author: ai-dev-standards
+  created_at: 2024-03-01T00:00:00Z
+  updated_at: 2024-06-15T00:00:00Z
+  tags:
+    - planning
+    - orchestration
+    - codex
+  examples:
+    - Build RAG system for documentation search
+    - Plan multi-agent workflow for codebase refactor

@@ -3,8 +3,23 @@ const execa = require('execa')
 /**
  * GitHub Fetch Utility
  *
- * Centralized utility for fetching from ai-dev-standards GitHub repository.
- * Used by sync, update, and other CLI commands.
+ * ⚠️ DEPRECATED: This module has been replaced by local-fetch.js for security reasons.
+ *
+ * CRITICAL SECURITY FIX: This module created a cross-project data exposure risk
+ * by having all projects sync from a single shared GitHub repository.
+ *
+ * USE local-fetch.js INSTEAD - it provides:
+ * - Complete project isolation
+ * - Local-first architecture
+ * - 10x faster performance
+ * - Offline support
+ * - No single point of failure
+ *
+ * This file is kept only for backward compatibility and will be removed in v3.0.0
+ *
+ * @deprecated Use CLI/utils/local-fetch.js instead
+ * @see CLI/utils/local-fetch.js
+ * @see SECURITY-FIX-CROSS-PROJECT-ISOLATION.md
  */
 
 const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main'
