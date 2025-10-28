@@ -695,7 +695,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "3d-visualizer skill\n-"
+        "3d-visualizer"
       ],
       "status": "active"
     },
@@ -741,7 +741,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "multi-agent-architect skill\n-"
+        "multi-agent-architect"
       ],
       "status": "active"
     },
@@ -764,7 +764,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "animation-designer skill\n-"
+        "animation-designer"
       ],
       "status": "active"
     },
@@ -831,7 +831,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "visual-designer skill\n-"
+        "visual-designer"
       ],
       "status": "active"
     },
@@ -854,7 +854,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "audio-producer skill\n-"
+        "audio-producer"
       ],
       "status": "active"
     },
@@ -878,7 +878,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "data-visualizer skill\n-"
+        "data-visualizer"
       ],
       "status": "active"
     },
@@ -903,7 +903,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "quality-auditor skill\n-"
+        "quality-auditor"
       ],
       "status": "active"
     },
@@ -991,7 +991,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "data-engineer skill\n-"
+        "data-engineer"
       ],
       "status": "active"
     },
@@ -1015,7 +1015,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "deployment-advisor skill\n-"
+        "deployment-advisor"
       ],
       "status": "active"
     },
@@ -1054,7 +1054,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "design-system-architect skill\n-"
+        "design-system-architect"
       ],
       "status": "active"
     },
@@ -1079,7 +1079,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "technical-writer skill\n-"
+        "technical-writer"
       ],
       "status": "active"
     },
@@ -1179,7 +1179,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "knowledge-graph-builder skill\n-"
+        "knowledge-graph-builder"
       ],
       "status": "active"
     },
@@ -1202,7 +1202,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "localization-engineer skill\n-"
+        "localization-engineer"
       ],
       "status": "active"
     },
@@ -1274,7 +1274,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "iot-developer skill\n-"
+        "iot-developer"
       ],
       "status": "active"
     },
@@ -1318,7 +1318,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "go-to-market-planner skill\n-"
+        "go-to-market-planner"
       ],
       "status": "active"
     },
@@ -1343,7 +1343,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "mobile-developer skill\n-"
+        "mobile-developer"
       ],
       "status": "active"
     },
@@ -1368,7 +1368,7 @@
         "swagger-parser": "^10.0.3"
       },
       "enables": [
-        "api-designer skill\r\n-"
+        "api-designer"
       ],
       "status": "active"
     },
@@ -1392,7 +1392,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "performance-optimizer skill\n-"
+        "performance-optimizer"
       ],
       "status": "active"
     },
@@ -1484,7 +1484,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "security-engineer skill\n-"
+        "security-engineer"
       ],
       "status": "active"
     },
@@ -1508,7 +1508,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "`rag-implementer` skill\r\n-"
+        "rag-implementer"
       ],
       "status": "active"
     },
@@ -1531,7 +1531,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "copywriter skill\n-"
+        "copywriter"
       ],
       "status": "active"
     },
@@ -1575,7 +1575,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "livestream-engineer skill\n-"
+        "livestream-engineer"
       ],
       "status": "active"
     },
@@ -1616,7 +1616,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "testing-strategist skill\n-"
+        "testing-strategist"
       ],
       "status": "active"
     },
@@ -1678,7 +1678,7 @@
       },
       "enables": [
         "product-strategist",
-        "user-researcher skills\r\n-"
+        "user-researcher"
       ],
       "status": "active"
     },
@@ -1728,7 +1728,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "video-producer skill\n-"
+        "video-producer"
       ],
       "status": "active"
     },
@@ -1751,7 +1751,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "ux-designer skill\n-"
+        "ux-designer"
       ],
       "status": "active"
     }
@@ -1994,7 +1994,7 @@
     {
       "name": "validation-first-development",
       "title": "Validation-First Development Playbook",
-      "description": "## \ud83c\udfaf Core Principle",
+      "description": "## 🎯 Core Principle",
       "use_when": "Use when validation first development",
       "category": "development",
       "difficulty": "advanced",
