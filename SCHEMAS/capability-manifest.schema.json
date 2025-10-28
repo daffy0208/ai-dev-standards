@@ -1,0 +1,166 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ai-dev-standards.com/schemas/capability-manifest.schema.json",
+  "title": "Capability Manifest Schema",
+  "description": "Schema for describing capability manifests used in orchestration planning",
+  "type": "object",
+  "required": ["name", "kind", "preconditions", "effects", "domains"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique identifier for this capability"
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["tool", "skill", "mcp", "agent", "component", "integration"],
+      "description": "Type of capability"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of what this capability does"
+    },
+    "inputs_schema": {
+      "type": "object",
+      "description": "JSON Schema describing expected inputs"
+    },
+    "preconditions": {
+      "type": "array",
+      "description": "Conditions that must be true before this capability can be used",
+      "items": {
+        "type": "object",
+        "required": ["check", "description"],
+        "properties": {
+          "check": {
+            "type": "string",
+            "description": "Predicate expression to evaluate (e.g., 'file_exists(package.json)')"
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable explanation of this precondition"
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether this precondition is required (true) or optional (false)",
+            "default": true
+          }
+        }
+      }
+    },
+    "effects": {
+      "type": "array",
+      "description": "State changes produced by using this capability",
+      "items": {
+        "type": "string",
+        "description": "Effect description (e.g., 'creates_vector_index', 'adds_auth', 'updates_tests')"
+      }
+    },
+    "domains": {
+      "type": "array",
+      "description": "Technical domains this capability operates in",
+      "items": {
+        "type": "string",
+        "examples": ["rag", "auth", "nextjs", "react", "api", "database", "testing", "security"]
+      }
+    },
+    "cost": {
+      "type": "string",
+      "enum": ["free", "low", "medium", "high"],
+      "description": "Resource cost (compute, API calls, time)",
+      "default": "medium"
+    },
+    "latency": {
+      "type": "string",
+      "enum": ["instant", "fast", "slow"],
+      "description": "Expected execution time",
+      "default": "fast"
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": ["safe", "low", "medium", "high", "critical"],
+      "description": "Risk level of side effects",
+      "default": "low"
+    },
+    "side_effects": {
+      "type": "array",
+      "description": "Side effects that may occur",
+      "items": {
+        "type": "string",
+        "examples": ["modifies_files", "makes_api_calls", "modifies_database", "sends_email"]
+      }
+    },
+    "idempotent": {
+      "type": "boolean",
+      "description": "Whether running multiple times has the same effect as running once",
+      "default": false
+    },
+    "success_signal": {
+      "type": "string",
+      "description": "What to look for to verify success (e.g., 'tests pass', 'file exists', 'HTTP 200')"
+    },
+    "failure_signals": {
+      "type": "array",
+      "description": "Signals that indicate failure",
+      "items": {
+        "type": "string"
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "properties": {
+        "requires": {
+          "type": "array",
+          "description": "Capabilities that must be present",
+          "items": {"type": "string"}
+        },
+        "conflicts_with": {
+          "type": "array",
+          "description": "Capabilities that cannot coexist",
+          "items": {"type": "string"}
+        },
+        "composes_with": {
+          "type": "array",
+          "description": "Capabilities that work well together",
+          "items": {"type": "string"}
+        },
+        "enables": {
+          "type": "array",
+          "description": "Capabilities this unlocks",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "observability": {
+      "type": "object",
+      "properties": {
+        "logs": {
+          "type": "array",
+          "description": "Log patterns to emit",
+          "items": {"type": "string"}
+        },
+        "metrics": {
+          "type": "array",
+          "description": "Metrics to track",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "version": {"type": "string"},
+        "author": {"type": "string"},
+        "created_at": {"type": "string", "format": "date-time"},
+        "updated_at": {"type": "string", "format": "date-time"},
+        "tags": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "examples": {
+          "type": "array",
+          "description": "Example use cases",
+          "items": {"type": "string"}
+        }
+      }
+    }
+  }
+}
