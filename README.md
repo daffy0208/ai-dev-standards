@@ -6,9 +6,9 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
 [![Node](https://img.shields.io/badge/Node-%3E%3D18.0.0-green.svg)](https://nodejs.org/)
 
-**Version 2.0.0** | **Last Updated:** 2025-10-29
+**Version 2.1.0** | **Last Updated:** 2025-10-29
 
-240 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
+237 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
 
 ## What This Repository Does
 
@@ -24,7 +24,7 @@ Think of this as a **shared brain** between you and Claude:
 - **Decision Frameworks** - Clear guidance for choosing technologies
 - **Validation & Trust** - Automated testing ensures all resources are discoverable and accessible
 
-**Total Resources:** 240 (64 skills + 50 MCPs + 24 tools + 75 components + 27 integrations)
+**Total Resources:** 237 (64 skills + 50 MCPs + 24 tools + 72 components + 27 integrations)
 
 **Resource Coverage:** Core resources 100% discoverable (skills, MCPs, components) • 85% skill-to-MCP coverage • Complete dependency mapping
 
@@ -48,7 +48,7 @@ The tool automatically:
 - ✅ Installs everything needed
 - ✅ Analyzes your repository
 - ✅ Recommends where to start
-- ✅ Syncs all 240 resources
+- ✅ Syncs all 237 resources
 
 **Works for:**
 - New projects, existing projects
@@ -59,7 +59,7 @@ The tool automatically:
 **After 2 minutes, you have:**
 - 64 skills
 - 50 MCP servers
-- 240 total resources
+- 237 total resources
 - Project analysis with recommendations
 - Exact roadmap for where to start
 
@@ -110,7 +110,7 @@ ai-dev-standards/
 │
 ├── PLAYBOOKS/                      # Operational procedures (7+ playbooks)
 ├── TEMPLATES/                      # Project starters (cursorrules templates)
-├── COMPONENTS/                     # Reusable implementations (75 components)
+├── COMPONENTS/                     # Reusable implementations (72 components)
 └── EXAMPLES/                       # Reference implementations (sample projects)
 ```
 
@@ -118,12 +118,12 @@ ai-dev-standards/
 
 ## 🧠 Repository Brain
 
-The **Repository Brain** is an intelligence system that manages, understands, and orchestrates all 240 resources.
+The **Repository Brain** is an intelligence system that manages, understands, and orchestrates all 237 resources.
 
 ### What It Does
 
 ```bash
-brain status                    # Current state (64 skills, 50 MCPs, 240 resources)
+brain status                    # Current state (64 skills, 50 MCPs, 237 resources)
 brain search "authentication"   # Search across all resources
 brain decide "add new skill"    # Get workflow recommendations
 brain select-skills "build MVP" # Get skill recommendations
@@ -296,7 +296,7 @@ Every resource in this repository is:
 - ✅ **Validated** on every commit (automated tests + CI/CD)
 - ✅ **Audited** with mandatory completeness checks
 
-**Current Resources:** 64 skills, 50 MCPs, 240 total resources, core resources fully discoverable
+**Current Resources:** 64 skills, 50 MCPs, 237 total resources, core resources fully discoverable
 
 **See:** [Audit Trust Restoration](DOCS/AUDIT-TRUST-RESTORATION.md) for details on the 5-layer protection system.
 
@@ -524,9 +524,14 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
 
 ## Versioning
 
-**Current Version:** 2.0.0
+**Current Version:** 2.1.0
 
 **Version History:**
+- **2.1.0** (2025-10-29): Validation & Orchestration Update
+  - Added comprehensive validation system (`validate-complete-system.cjs`)
+  - Implemented Claude Code orchestration infrastructure (zero-cost alternative to OpenAI Codex)
+  - Registry cleanup and consistency fixes (72 components, 237 total resources)
+  - 100% registry consistency achieved with bidirectional validation
 - **2.0.0** (2025-10-27): Phase 3 Complete - Design System (75 components, 50 MCPs, 240 total resources)
 - **1.1.0** (2025-10-22): Quality & Trust Update
   - 64 specialized skills (100% discoverable)
