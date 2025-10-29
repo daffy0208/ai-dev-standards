@@ -85,3 +85,12 @@ REPORTS/
 *-REPORT.json
 *-SUMMARY.md
 verification-*.md
+
+# Orchestration system (keep structure, ignore active requests/results)
+orchestration-requests/pending/*.json
+orchestration-requests/in-progress/*.json
+orchestration-requests/completed/*.json
+orchestration-requests/failed/*.json
+orchestration-results/*.json
+!orchestration-requests/**/.gitkeep
+!orchestration-results/.gitkeep
