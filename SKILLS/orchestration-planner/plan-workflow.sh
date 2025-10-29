@@ -3,14 +3,50 @@
 
 set -e
 
-# Parse arguments
-GOAL="$1"
-PROJECT_STATE="${2:-project-state.json}"
-GRAPH_PATH="${3:-META/capability-graph.json}"
+# Parse named arguments
+GOAL=""
+PROJECT_STATE="project-state.json"
+GRAPH_PATH="META/capability-graph.json"
+COST_WEIGHT="0.3"
+RISK_WEIGHT="0.3"
+OUTPUT_PATH=""
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --goal)
+      GOAL="$2"
+      shift 2
+      ;;
+    --project)
+      PROJECT_STATE="$2"
+      shift 2
+      ;;
+    --graph)
+      GRAPH_PATH="$2"
+      shift 2
+      ;;
+    --cost-weight)
+      COST_WEIGHT="$2"
+      shift 2
+      ;;
+    --risk-weight)
+      RISK_WEIGHT="$2"
+      shift 2
+      ;;
+    --output)
+      OUTPUT_PATH="$2"
+      shift 2
+      ;;
+    *)
+      echo "Unknown option: $1"
+      exit 1
+      ;;
+  esac
+done
 
 if [ -z "$GOAL" ]; then
-  echo "Usage: $0 '<goal>' [project-state.json] [capability-graph.json]"
-  echo "Example: $0 'implement RAG system' project-state.json META/capability-graph.json"
+  echo "Usage: $0 --goal '<goal>' [--project project-state.json] [--graph capability-graph.json]"
+  echo "Example: $0 --goal 'implement RAG system' --graph META/capability-graph.json"
   exit 1
 fi
 

@@ -78,6 +78,7 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.17.0",
+    "@modelcontextprotocol/sdk": "^1.20.2",
     "@pinecone-database/pinecone": "^2.0.0",
     "@supabase/supabase-js": "^2.38.4",
     "glob": "^10.3.10",

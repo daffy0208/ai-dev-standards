@@ -48,23 +48,37 @@ export class ValidationError extends ApiError {
   }
 }
 
-export class UnauthorizedError extends ApiError {
+export class AuthenticationError extends ApiError {
   constructor(message: string = 'Unauthorized') {
-    super(401, message, 'UNAUTHORIZED')
+    super(401, message, 'AUTHENTICATION_ERROR')
+    this.name = 'AuthenticationError'
+  }
+}
+
+export class UnauthorizedError extends AuthenticationError {
+  constructor(message: string = 'Unauthorized') {
+    super(message)
     this.name = 'UnauthorizedError'
   }
 }
 
-export class ForbiddenError extends ApiError {
+export class AuthorizationError extends ApiError {
   constructor(message: string = 'Forbidden') {
-    super(403, message, 'FORBIDDEN')
+    super(403, message, 'AUTHORIZATION_ERROR')
+    this.name = 'AuthorizationError'
+  }
+}
+
+export class ForbiddenError extends AuthorizationError {
+  constructor(message: string = 'Forbidden') {
+    super(message)
     this.name = 'ForbiddenError'
   }
 }
 
 export class NotFoundError extends ApiError {
-  constructor(resource: string = 'Resource') {
-    super(404, `${resource} not found`, 'NOT_FOUND')
+  constructor(resource: string = 'Resource', customMessage?: string) {
+    super(404, customMessage || `${resource} not found`, 'NOT_FOUND')
     this.name = 'NotFoundError'
   }
 }
@@ -77,15 +91,27 @@ export class ConflictError extends ApiError {
 }
 
 export class RateLimitError extends ApiError {
-  constructor(message: string = 'Too many requests') {
-    super(429, message, 'RATE_LIMIT_EXCEEDED')
+  constructor(retryAfter: number) {
+    super(
+      429,
+      `Too many requests. Please try again in ${retryAfter} seconds.`,
+      'RATE_LIMIT_EXCEEDED',
+      { retryAfter }
+    )
     this.name = 'RateLimitError'
   }
 }
 
-export class InternalServerError extends ApiError {
+export class ServerError extends ApiError {
   constructor(message: string = 'Internal server error') {
-    super(500, message, 'INTERNAL_SERVER_ERROR')
+    super(500, message, 'SERVER_ERROR')
+    this.name = 'ServerError'
+  }
+}
+
+export class InternalServerError extends ServerError {
+  constructor(message: string = 'Internal server error') {
+    super(message)
     this.name = 'InternalServerError'
   }
 }
@@ -117,6 +143,13 @@ export function handleApiError(error: unknown): Response {
 
   // Handle ApiError instances
   if (error instanceof ApiError) {
+    const headers = new Headers()
+
+    // Add Retry-After header for RateLimitError
+    if (error instanceof RateLimitError && error.details?.retryAfter) {
+      headers.set('Retry-After', String(error.details.retryAfter))
+    }
+
     return Response.json(
       {
         error: {
@@ -127,7 +160,7 @@ export function handleApiError(error: unknown): Response {
           ...(process.env.NODE_ENV === 'development' && { stack: error.stack })
         }
       } as ErrorResponse,
-      { status: error.statusCode }
+      { status: error.statusCode, headers }
     )
   }
 
@@ -170,7 +203,7 @@ export function handleApiError(error: unknown): Response {
   return Response.json(
     {
       error: {
-        message: 'An unexpected error occurred',
+        message: 'Internal server error',
         code: 'UNKNOWN_ERROR',
         statusCode: 500
       }

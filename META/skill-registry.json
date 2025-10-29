@@ -1,5 +1,5 @@
 {
-  "version": "3.26.0",
+  "version": "3.28.0",
   "last_updated": "2025-10-28",
   "description": "Registry of all available skills in ai-dev-standards. Skills are model-invoked capabilities that Claude activates based on context. Now includes 64 active skills covering product development, AI systems, technical implementation, infrastructure, UX design, ADHD support, repository analysis, project management, data forensics, automated code review workflows, design automation, API integrations, customer support, growth experimentation, pricing strategy, product analytics, release management, usability testing, business model architecture, framework orchestration, requirements generation, quality assurance, security architecture, and orchestration meta-skills.",
   "skills": [
@@ -255,28 +255,23 @@
     },
     {
       "name": "capability-graph-builder",
-      "description": "Build queryable capability graphs from manifests using Codex for relationship inference",
+      "description": "Build queryable capability graphs from manifests using Codex for relationship inference between skills, resources, and capabilities.",
       "triggers": [
         "capability-graph-builder",
-        "capability graph builder",
-        "build capability graph",
-        "graph builder"
+        "capability graph builder"
       ],
       "tags": [
-        "orchestration",
-        "codex-powered"
+        "graph",
+        "codex",
+        "orchestration"
       ],
-      "category": "orchestration",
-      "difficulty": "advanced",
-      "estimated_time": "2-4 hours",
+      "category": "ai-native",
+      "difficulty": "intermediate",
+      "estimated_time": "1-3 hours",
       "path": "/SKILLS/capability-graph-builder/",
       "status": "active",
       "prerequisites": [],
-      "related_skills": [
-        "manifest-generator",
-        "orchestration-planner",
-        "skill-validator"
-      ],
+      "related_skills": [],
       "frameworks": [
         "all"
       ],
@@ -823,28 +818,23 @@
     },
     {
       "name": "manifest-generator",
-      "description": "Auto-generate capability manifests from skill/MCP descriptions using Codex",
+      "description": "Auto-generate capability manifests from skill/MCP descriptions using Codex-powered semantic analysis and structured extraction.",
       "triggers": [
         "manifest-generator",
-        "manifest generator",
-        "generate manifest",
-        "create manifest"
+        "manifest generator"
       ],
       "tags": [
-        "orchestration",
-        "codex-powered"
+        "codex",
+        "automation",
+        "manifest"
       ],
-      "category": "meta",
-      "difficulty": "advanced",
-      "estimated_time": "2-4 hours",
+      "category": "ai-native",
+      "difficulty": "intermediate",
+      "estimated_time": "1-3 hours",
       "path": "/SKILLS/manifest-generator/",
       "status": "active",
       "prerequisites": [],
-      "related_skills": [
-        "capability-graph-builder",
-        "skill-validator",
-        "orchestration-planner"
-      ],
+      "related_skills": [],
       "frameworks": [
         "all"
       ],
@@ -926,28 +916,24 @@
     },
     {
       "name": "orchestration-planner",
-      "description": "Plan multi-step workflows using capability graph and Codex-powered goal decomposition",
+      "description": "Plan multi-step workflows using capability graph and Codex-powered goal decomposition with HTN-style hierarchical task planning.",
       "triggers": [
         "orchestration-planner",
-        "orchestration planner",
-        "plan workflow",
-        "decompose goal"
+        "orchestration planner"
       ],
       "tags": [
+        "codex",
+        "planning",
         "orchestration",
-        "codex-powered"
+        "htn"
       ],
-      "category": "orchestration",
-      "difficulty": "advanced",
-      "estimated_time": "2-4 hours",
+      "category": "ai-native",
+      "difficulty": "intermediate",
+      "estimated_time": "1-3 hours",
       "path": "/SKILLS/orchestration-planner/",
       "status": "active",
       "prerequisites": [],
-      "related_skills": [
-        "capability-graph-builder",
-        "manifest-generator",
-        "system-diagnostician"
-      ],
+      "related_skills": [],
       "frameworks": [
         "all"
       ],
@@ -1287,28 +1273,23 @@
     },
     {
       "name": "skill-validator",
-      "description": "Validate implementations match manifests using Codex for semantic comparison",
+      "description": "Validates that a skill or MCP implementation matches its manifest by running Codex-powered semantic comparisons across descriptions, preconditions, effects, and API surface.",
       "triggers": [
         "skill-validator",
-        "skill validator",
-        "validate skill",
-        "check implementation"
+        "skill validator"
       ],
       "tags": [
-        "orchestration",
-        "codex-powered"
+        "codex",
+        "validation",
+        "quality"
       ],
-      "category": "meta",
-      "difficulty": "advanced",
-      "estimated_time": "2-4 hours",
+      "category": "testing",
+      "difficulty": "intermediate",
+      "estimated_time": "1-3 hours",
       "path": "/SKILLS/skill-validator/",
       "status": "active",
       "prerequisites": [],
-      "related_skills": [
-        "manifest-generator",
-        "capability-graph-builder",
-        "system-diagnostician"
-      ],
+      "related_skills": [],
       "frameworks": [
         "all"
       ],
@@ -1372,28 +1353,23 @@
     },
     {
       "name": "system-diagnostician",
-      "description": "Analyze project health and recommend capabilities using Codex-powered system understanding",
+      "description": "Performs Codex-assisted project health diagnostics, identifies capability gaps, and produces prioritized improvement plans.",
       "triggers": [
         "system-diagnostician",
-        "system diagnostician",
-        "diagnose project",
-        "health check"
+        "system diagnostician"
       ],
       "tags": [
-        "orchestration",
-        "codex-powered"
+        "diagnostics",
+        "capability-planning",
+        "project-health"
       ],
-      "category": "meta",
-      "difficulty": "advanced",
-      "estimated_time": "2-4 hours",
+      "category": "analysis",
+      "difficulty": "intermediate",
+      "estimated_time": "1-3 hours",
       "path": "/SKILLS/system-diagnostician/",
       "status": "active",
       "prerequisites": [],
-      "related_skills": [
-        "orchestration-planner",
-        "skill-validator",
-        "capability-graph-builder"
-      ],
+      "related_skills": [],
       "frameworks": [
         "all"
       ],

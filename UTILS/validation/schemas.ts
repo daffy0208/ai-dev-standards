@@ -28,9 +28,9 @@ import { z } from 'zod'
  */
 export const emailSchema = z
   .string()
+  .trim()
   .email('Invalid email address')
   .toLowerCase()
-  .trim()
 
 export const passwordSchema = z
   .string()
@@ -50,7 +50,7 @@ export const urlSchema = z
 
 export const phoneSchema = z
   .string()
-  .regex(/^\+?[1-9]\d{1,14}$/, 'Invalid phone number (E.164 format)')
+  .regex(/^\+?[1-9]\d{9,14}$/, 'Invalid phone number (E.164 format)')
 
 export const slugSchema = z
   .string()

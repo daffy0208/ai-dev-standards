@@ -1,3 +1,14 @@
+---
+name: Manifest Generator
+description: Auto-generate capability manifests from skill/MCP descriptions using Codex-powered semantic analysis and structured extraction.
+version: 1.0.0
+category: ai-native
+tags:
+  - codex
+  - automation
+  - manifest
+---
+
 # Manifest Generator
 
 **Auto-generate capability manifests from skill/MCP descriptions using Codex**

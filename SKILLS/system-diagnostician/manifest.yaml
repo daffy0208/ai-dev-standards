@@ -1,0 +1,99 @@
+name: system-diagnostician
+kind: skill
+description: Performs Codex-assisted project health diagnostics, identifies capability gaps, and produces prioritized improvement plans.
+inputs_schema:
+  type: object
+  properties:
+    project_path:
+      type: string
+      description: Path to the project directory to analyze.
+    capability_graph:
+      type: string
+      description: Path to capability-graph.json describing available capabilities.
+    focus_areas:
+      type: array
+      description: Optional focus areas to emphasize in the assessment.
+      items:
+        type: string
+    include_metrics:
+      type: boolean
+      description: Include detailed metric outputs in the report (default false).
+  required:
+    - project_path
+    - capability_graph
+preconditions:
+  - check: directory_exists(inputs.project_path)
+    description: Project directory must exist and be readable.
+    required: true
+  - check: file_exists(inputs.capability_graph)
+    description: Capability graph JSON must be present for gap analysis.
+    required: true
+  - check: command_available('codex')
+    description: Codex CLI must be installed to perform AI-assisted assessments.
+    required: true
+  - check: command_available('jq')
+    description: jq executable needed to inspect JSON project metadata.
+    required: true
+  - check: command_available('python3')
+    description: Python 3 runtime required to score and prioritize recommendations.
+    required: true
+  - check: writable_path('/tmp')
+    description: Temporary directory must allow writing intermediate diagnostic files.
+    required: true
+effects:
+  - creates_project_state_snapshot
+  - creates_health_assessment_report
+  - creates_capability_gap_analysis
+  - creates_prioritized_action_plan
+  - updates_project_health_metrics
+domains:
+  - analysis
+  - security
+  - testing
+  - performance
+  - documentation
+  - architecture
+  - dependencies
+  - ci_cd
+cost: medium
+latency: slow
+risk_level: safe
+side_effects:
+  - reads_repository
+  - scans_dependencies
+  - makes_api_calls
+idempotent: true
+success_signal: diagnostic-report.json generated with non-empty recommendations and critical_issues arrays.
+failure_signals:
+  - codex execution returns an error or invalid JSON payload.
+  - capability graph file missing or unreadable.
+  - health assessment JSON fails schema validation.
+compatibility:
+  requires:
+    - capability-graph-builder
+  composes_with:
+    - repository-brain
+    - skill-validator
+  enables:
+    - orchestration-planner
+observability:
+  logs:
+    - system_diagnostician.discovery
+    - system_diagnostician.codex_assessment
+    - system_diagnostician.action_plan
+  metrics:
+    - system_diagnostician.overall_health_score
+    - system_diagnostician.recommendation_priority_score
+metadata:
+  version: 1.0.0
+  author: codex
+  created_at: "2025-01-01T00:00:00Z"
+  updated_at: "2025-01-01T00:00:00Z"
+  tags:
+    - diagnostics
+    - capability-planning
+    - project-health
+  examples:
+    - Assess a newly onboarded repository to determine missing capabilities.
+    - Run a quarterly health check to identify critical security or testing gaps.
+    - Produce prioritized improvement roadmap for performance audit findings.

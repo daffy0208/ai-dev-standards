@@ -1,3 +1,15 @@
+---
+name: Orchestration Planner
+description: Plan multi-step workflows using capability graph and Codex-powered goal decomposition with HTN-style hierarchical task planning.
+version: 1.0.0
+category: ai-native
+tags:
+  - codex
+  - planning
+  - orchestration
+  - htn
+---
+
 # Orchestration Planner
 
 **Plan multi-step workflows using capability graph and Codex-powered goal decomposition**

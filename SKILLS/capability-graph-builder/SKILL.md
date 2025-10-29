@@ -1,3 +1,14 @@
+---
+name: Capability Graph Builder
+description: Build queryable capability graphs from manifests using Codex for relationship inference between skills, resources, and capabilities.
+version: 1.0.0
+category: ai-native
+tags:
+  - graph
+  - codex
+  - orchestration
+---
+
 # Capability Graph Builder
 
 **Build queryable capability graphs from manifests using Codex for relationship inference**

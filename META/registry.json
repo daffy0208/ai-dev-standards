@@ -695,7 +695,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "3d-visualizer skill"
+        "3d-visualizer"
       ],
       "status": "active"
     },
@@ -719,7 +719,9 @@
         "@modelcontextprotocol/sdk": "^0.5.0",
         "axe-core": "^4.8.0"
       },
-      "enables": [],
+      "enables": [
+        "accessibility-engineer"
+      ],
       "status": "active"
     },
     {

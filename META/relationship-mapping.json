@@ -2571,9 +2571,7 @@
         "cursorrules-full.md",
         "cursorrules-minimal.md"
       ],
-      "related_schemas": [
-        "capability-manifest.schema.json"
-      ],
+      "related_schemas": [],
       "related_utils": [
         "logger"
       ],
@@ -2609,9 +2607,7 @@
         "cursorrules-full.md",
         "cursorrules-minimal.md"
       ],
-      "related_schemas": [
-        "capability-manifest.schema.json"
-      ],
+      "related_schemas": [],
       "related_utils": [
         "logger"
       ],
@@ -2647,9 +2643,7 @@
         "cursorrules-full.md",
         "cursorrules-minimal.md"
       ],
-      "related_schemas": [
-        "capability-manifest.schema.json"
-      ],
+      "related_schemas": [],
       "related_utils": [
         "logger"
       ],
@@ -2685,9 +2679,7 @@
         "cursorrules-full.md",
         "cursorrules-minimal.md"
       ],
-      "related_schemas": [
-        "capability-manifest.schema.json"
-      ],
+      "related_schemas": [],
       "related_utils": [
         "logger"
       ],
@@ -2723,9 +2715,7 @@
         "cursorrules-full.md",
         "cursorrules-minimal.md"
       ],
-      "related_schemas": [
-        "capability-manifest.schema.json"
-      ],
+      "related_schemas": [],
       "related_utils": [
         "logger"
       ],

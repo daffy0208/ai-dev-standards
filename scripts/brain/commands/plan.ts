@@ -121,9 +121,8 @@ export async function execute(args: string[], rootPath: string): Promise<void> {
         return;
       default:
         if (!args[i].startsWith('--')) {
-          // Collect all non-flag arguments as the goal
-          goal = args.slice(i).filter(arg => !arg.startsWith('--')).join(' ');
-          break;
+          // First non-flag argument is the goal (only take this one argument)
+          goal = args[i];
         } else {
           printError(`Unknown option: ${args[i]}`);
           printUsage();

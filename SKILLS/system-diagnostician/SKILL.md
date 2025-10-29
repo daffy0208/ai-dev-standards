@@ -1,3 +1,14 @@
+---
+name: System Diagnostician
+description: Performs Codex-assisted project health diagnostics, identifies capability gaps, and produces prioritized improvement plans.
+version: 1.0.0
+category: analysis
+tags:
+  - diagnostics
+  - capability-planning
+  - project-health
+---
+
 # System Diagnostician
 
 **Analyze project health and recommend capabilities using Codex-powered system understanding**

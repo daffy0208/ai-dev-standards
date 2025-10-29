@@ -37,7 +37,7 @@
  * const files = await fs.listDirectory('/path/to/project')
  *
  * // Search files
- * const matches = await fs.searchFiles('/path/to/project', '**/*.ts')
+ * const matches = await fs.searchFiles('/path/to/project', '**' + '/*.ts')
  * ```
  */
 

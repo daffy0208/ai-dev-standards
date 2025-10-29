@@ -1,3 +1,14 @@
+---
+name: Skill Validator
+description: Validates that a skill or MCP implementation matches its manifest by running Codex-powered semantic comparisons across descriptions, preconditions, effects, and API surface.
+version: 0.1.0
+category: testing
+tags:
+  - codex
+  - validation
+  - quality
+---
+
 # Skill Validator
 
 **Validate implementations match manifests using Codex for semantic comparison**

@@ -1,0 +1,80 @@
+name: skill-validator
+kind: skill
+description: Validates that a skill or MCP implementation matches its manifest by running Codex-powered semantic comparisons across descriptions, preconditions, effects, and API surface.
+inputs_schema:
+  type: object
+  properties:
+    resource_path:
+      type: string
+      description: Absolute or relative path to the skill/MCP directory to validate.
+    manifest_path:
+      type: string
+      description: Optional override path to manifest.yaml; defaults to resource_path/manifest.yaml.
+    implementation_path:
+      type: string
+      description: Optional override path to the implementation entrypoint; defaults to index.js or index.ts within the resource path.
+    strict_mode:
+      type: boolean
+      description: When true, treat warnings as failures and exit non-zero.
+  required:
+    - resource_path
+preconditions:
+  - check: command_available('codex')
+    description: Codex CLI must be installed and accessible on PATH to perform semantic analysis.
+    required: true
+  - check: runtime_available('python3')
+    description: Python 3 runtime must be available for JSON aggregation and manifest parsing.
+    required: true
+  - check: file_exists(manifest_path)
+    description: Target manifest file must exist at the provided or default path.
+    required: true
+  - check: writable_directory('/tmp')
+    description: Temporary directory access is needed to write intermediate validation artifacts.
+    required: true
+  - check: file_exists(implementation_path)
+    description: Implementation entrypoint should exist when validating code-backed skills; declarative-only skills may skip this.
+    required: false
+effects:
+  - creates_description_validation_json
+  - creates_precondition_validation_json
+  - creates_effect_validation_json
+  - creates_validation_report_json
+  - creates_api_surface_validation_json
+domains:
+  - testing
+  - qa
+  - governance
+cost: medium
+latency: slow
+risk_level: low
+side_effects:
+  - makes_api_calls
+  - writes_temp_files
+idempotent: true
+success_signal: /tmp/validation-report.json exists and reports overall_score >= 0 with validation status output.
+failure_signals:
+  - Manifest not found at provided path
+  - Codex execution failed
+  - Status: ❌ FAILED
+compatibility:
+  composes_with:
+    - manifest-generator
+    - capability-graph-builder
+  enables:
+    - system-diagnostician
+observability:
+  logs:
+    - Validation Score:*
+    - Issues Found:*
+    - Status:*
+  metrics:
+    - validation.overall_score
+    - validation.issue_count
+metadata:
+  version: 0.1.0
+  tags:
+    - codex
+    - validation
+    - quality
+  examples:
+    - Validate updated skill manifests before release to ensure descriptions match implementations.
