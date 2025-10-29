@@ -6,7 +6,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
 [![Node](https://img.shields.io/badge/Node-%3E%3D18.0.0-green.svg)](https://nodejs.org/)
 
-**Version 2.0.0** | **Last Updated:** 2025-10-27
+**Version 2.0.0** | **Last Updated:** 2025-10-29
 
 240 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
 
@@ -262,11 +262,12 @@ You can also **explicitly request** a skill:
 - Clear examples and anti-patterns
 
 ### 🛡️ Quality & Trust Built-In
-- **5-layer validation system** ensures all resources are discoverable
+- **Comprehensive validation system** ensures 100% registry consistency (bidirectional validation)
 - **Automated tests** catch issues before they reach projects (81% invisible resources → 0%)
 - **CI/CD enforcement** blocks incomplete registry merges
 - **Quality audits** must validate resource discovery before scoring
 - **Cost efficiency guardrails** prevent analysis paralysis and premature building
+- **`validate-complete-system.cjs`** - Validates all registries, relationships, and cross-registry consistency
 
 ---
 
