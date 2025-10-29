@@ -7,6 +7,49 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.1.0] - 2025-10-28
+
+### Added
+- **Orchestration Infrastructure Complete** - Added 5 orchestration skills bringing total from 59→64 skills
+- `SKILLS/skill-validator/manifest.yaml` - Codex-powered validation of implementations against manifests (v0.1.0)
+- `SKILLS/system-diagnostician/manifest.yaml` - Project health diagnostics and capability gap analysis (v1.0.0)
+- YAML frontmatter to all 5 orchestration skills for registry discovery
+- `.env.local` template for OPENAI_API_KEY configuration
+- MCP SDK dependency: `@modelcontextprotocol/sdk@1.20.2` (58 packages)
+- `WORK-SUMMARY-2025-10-28.md` - Comprehensive work session documentation
+
+### Changed
+- **Skill Registry Updated**: 59→64 skills (v3.27.0→v3.28.0)
+- **Relationship Mapping**: Updated with all 64 skills (v3.2.0)
+- **Test Suite**: 156→166 passing tests (98.2% success rate)
+- Updated frontmatter for orchestration skills:
+  - `capability-graph-builder/SKILL.md`
+  - `manifest-generator/SKILL.md`
+  - `orchestration-planner/SKILL.md`
+  - `skill-validator/SKILL.md`
+  - `system-diagnostician/SKILL.md`
+
+### Fixed
+- Registry completeness: All skills now discoverable via skill-registry.json
+- Relationship Tier 2 mappings for all 64 skills
+- Documentation accuracy: README correctly states 64 skills
+
+### Technical Details
+- **Cost**: $0.20 (2 Codex manifest generations)
+- **Savings**: $1.50+ (deferred capability graph rebuild per YAGNI principle)
+- **Test Improvements**: +10 tests passing after MCP SDK installation
+- **Files Modified**: 15 files (10 modified, 5 created)
+- **Known Issues**: 3 BaseMCPServer tests failing (SDK API changes), 1 timeout test skipped
+
+### Deferred (Future Releases)
+- Capability graph rebuild with all 5 orchestration skills (requires OPENAI_API_KEY)
+- E2E orchestration workflow validation
+- Archon MCP integration with Brain commands
+- BaseMCPServer compatibility fixes for SDK v1.20.2
+- Timeout test implementation
+
+---
+
 ## [3.0.0] - 2025-10-28
 
 ### 🚨 CRITICAL SECURITY FIX - Cross-Project Data Isolation

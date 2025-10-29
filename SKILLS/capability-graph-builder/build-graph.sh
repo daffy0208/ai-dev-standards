@@ -45,10 +45,10 @@ with open('$manifest_path') as f:
 ")
 
     # Append to manifests array
-    MANIFESTS_JSON=$(python3 -c "
+    MANIFESTS_JSON=$(echo "$MANIFESTS_JSON" | python3 -c "
 import json, sys
-manifests = json.loads('''$MANIFESTS_JSON''')
-new_manifest = json.loads('''$MANIFEST_JSON''')
+manifests = json.load(sys.stdin)
+new_manifest = $MANIFEST_JSON
 manifests.append(new_manifest)
 print(json.dumps(manifests))
 ")
