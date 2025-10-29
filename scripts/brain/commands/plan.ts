@@ -2,8 +2,8 @@
 /**
  * BRAIN COMMAND: plan
  *
- * Plan multi-step workflows using capability graph and Codex
- * Wrapper for SKILLS/orchestration-planner/plan-workflow.sh
+ * Plan multi-step workflows using Claude Code orchestration
+ * Creates orchestration request for Claude Code to execute
  */
 
 import * as path from 'path';
@@ -43,17 +43,14 @@ function printInfo(text: string) {
 
 export function printUsage() {
   console.log(`
-${colorize('brain plan', 'bright')} - Plan multi-step workflows using capability graph
+${colorize('brain plan', 'bright')} - Create planning request for Claude Code orchestration
 
 ${colorize('Usage:', 'bright')}
   brain plan <goal> [options]
 
 ${colorize('Options:', 'bright')}
-  --graph <path>         Path to capability-graph.json (default: META/capability-graph.json)
   --project <path>       Project directory to analyze (default: current directory)
-  --cost-weight <n>      Weight for cost optimization 0.0-1.0 (default: 0.3)
-  --risk-weight <n>      Weight for risk minimization 0.0-1.0 (default: 0.3)
-  --output <path>        Output path for plan JSON (optional)
+  --priority <level>     Priority: low|medium|high|urgent (default: medium)
   --help, -h             Show this help message
 
 ${colorize('Arguments:', 'bright')}
@@ -63,57 +60,37 @@ ${colorize('Examples:', 'bright')}
   # Plan RAG system implementation
   brain plan "implement RAG system"
 
-  # Plan with custom weights (prioritize low risk)
-  brain plan "add authentication" --risk-weight 0.5 --cost-weight 0.2
+  # Plan with high priority
+  brain plan "add authentication" --priority high
 
   # Plan for specific project
   brain plan "optimize performance" --project /path/to/project
 
-  # Save plan to file
-  brain plan "build API" --output /tmp/api-plan.json
-
 ${colorize('Description:', 'bright')}
-  Uses Codex to decompose high-level goals into executable workflows by:
-  1. Analyzing the goal to identify required effects
-  2. Finding capabilities from the graph that produce those effects
-  3. Validating preconditions against current project state
-  4. Building a Hierarchical Task Network (HTN) with alternatives
-  5. Scoring and ranking plans by cost, latency, risk, and diversity
+  Creates an orchestration request for Claude Code to execute. Claude Code will:
+  1. Analyze the goal to identify required effects
+  2. Find capabilities from the graph that produce those effects
+  3. Validate preconditions against current project state
+  4. Build execution plan with dependencies
+  5. Provide detailed recommendations
 
-  The output includes:
-  - Ordered capability sequence with dependencies
-  - Alternative capabilities for each step
-  - Precondition checks and validation
-  - Cost/latency/risk estimates
-  - Detailed reasoning for each decision
+  After creating the request, you'll need to tell Claude Code to execute it.
 `);
 }
 
 export async function execute(args: string[], rootPath: string): Promise<void> {
   // Parse arguments
   let goal = '';
-  let graphPath = '';
   let projectPath = '';
-  let costWeight = '';
-  let riskWeight = '';
-  let outputPath = '';
+  let priority = 'medium';
 
   for (let i = 0; i < args.length; i++) {
     switch (args[i]) {
-      case '--graph':
-        graphPath = args[++i];
-        break;
       case '--project':
         projectPath = args[++i];
         break;
-      case '--cost-weight':
-        costWeight = args[++i];
-        break;
-      case '--risk-weight':
-        riskWeight = args[++i];
-        break;
-      case '--output':
-        outputPath = args[++i];
+      case '--priority':
+        priority = args[++i];
         break;
       case '--help':
       case '-h':
@@ -137,50 +114,28 @@ export async function execute(args: string[], rootPath: string): Promise<void> {
     process.exit(1);
   }
 
-  const scriptPath = path.resolve(rootPath, 'SKILLS/orchestration-planner/plan-workflow.sh');
+  const createRequestScript = path.resolve(rootPath, 'scripts/orchestration/create-request.sh');
 
-  printHeader(`Plan Workflow: "${goal}"`);
-  if (graphPath) {
-    printInfo(`Graph: ${graphPath}`);
-  }
+  printHeader(`Creating Planning Request: "${goal}"`);
   if (projectPath) {
     printInfo(`Project: ${projectPath}`);
   }
+  printInfo(`Priority: ${priority}`);
 
   try {
     // Build command
-    let cmd = `bash "${scriptPath}" --goal "${goal}"`;
-
-    if (graphPath) {
-      const fullGraphPath = path.isAbsolute(graphPath)
-        ? graphPath
-        : path.resolve(rootPath, graphPath);
-      cmd += ` --graph "${fullGraphPath}"`;
-    }
+    let cmd = `bash "${createRequestScript}" plan "${goal}" --priority ${priority}`;
 
     if (projectPath) {
       const fullProjectPath = path.isAbsolute(projectPath)
         ? projectPath
         : path.resolve(rootPath, projectPath);
-      cmd += ` --project "${fullProjectPath}"`;
+      cmd += ` --project-path "${fullProjectPath}"`;
+    } else {
+      cmd += ` --project-path "${rootPath}"`;
     }
 
-    if (costWeight) {
-      cmd += ` --cost-weight ${costWeight}`;
-    }
-
-    if (riskWeight) {
-      cmd += ` --risk-weight ${riskWeight}`;
-    }
-
-    if (outputPath) {
-      const fullOutputPath = path.isAbsolute(outputPath)
-        ? outputPath
-        : path.resolve(rootPath, outputPath);
-      cmd += ` --output "${fullOutputPath}"`;
-    }
-
-    printInfo('Planning workflow...\n');
+    printInfo('Creating orchestration request...\n');
 
     // Execute the script
     const { stdout, stderr } = await execAsync(cmd, {
@@ -195,10 +150,10 @@ export async function execute(args: string[], rootPath: string): Promise<void> {
       console.error(stderr);
     }
 
-    printSuccess('Workflow planning complete!');
+    printSuccess('Orchestration request created successfully!');
   } catch (error) {
     const err = error as any;
-    printError('Planning failed');
+    printError('Failed to create orchestration request');
     if (err.stdout) console.log(err.stdout);
     if (err.stderr) console.error(err.stderr);
     process.exit(1);

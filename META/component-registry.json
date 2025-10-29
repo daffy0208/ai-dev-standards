@@ -1143,67 +1143,6 @@
       ]
     },
     {
-      "id": "icon",
-      "name": "Icon",
-      "category": "ui-components",
-      "description": "Universal icon component supporting multiple icon libraries",
-      "path": "/COMPONENTS/ui-components/Icon.tsx",
-      "status": "active",
-      "language": "typescript",
-      "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "design-system-architect",
-        "visual-designer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "design-token-manager-mcp",
-        "icon-library-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
-      "features": [
-        "Support for Heroicons, Lucide, Font Awesome",
-        "Size variants (xs, sm, md, lg, xl)",
-        "Color customization",
-        "Accessibility labels",
-        "Animated icons support"
-      ]
-    },
-    {
-      "id": "icon-picker",
-      "name": "Icon Picker",
-      "category": "ui-components",
-      "description": "Icon search and selection interface",
-      "path": "/COMPONENTS/ui-components/IconPicker.tsx",
-      "status": "active",
-      "language": "typescript",
-      "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "icon-library-mcp"
-      ],
-      "depends_on": [
-        "icon",
-        "input",
-        "select",
-        "cn-utility"
-      ],
-      "features": [
-        "Search by name",
-        "Category filtering",
-        "Recent icons",
-        "Preview before selection",
-        "Multi-library support"
-      ]
-    },
-    {
       "id": "tooltip",
       "name": "Tooltip",
       "category": "ui-components",
@@ -1665,35 +1604,6 @@
         "Read-only mode",
         "Hover preview",
         "Keyboard navigation"
-      ]
-    },
-    {
-      "id": "skeleton-loader-enhanced",
-      "name": "Skeleton Loader Enhanced",
-      "category": "ui-components",
-      "description": "Enhanced skeleton loader with complex layouts",
-      "path": "/COMPONENTS/ui-components/SkeletonLoaderEnhanced.tsx",
-      "status": "active",
-      "language": "typescript",
-      "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "design-token-manager-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
-      "features": [
-        "Complex layout templates",
-        "Card/list/table skeletons",
-        "Wave animation",
-        "Custom shape composition",
-        "Avatar + text patterns"
       ]
     },
     {
