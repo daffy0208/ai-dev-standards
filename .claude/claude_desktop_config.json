@@ -1,0 +1,349 @@
+{
+  "mcpServers": {
+    "framework-content": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\00_Framework_Library\\mcp-servers\\framework-content\\build\\index.js"
+      ],
+      "env": {
+        "FRAMEWORK_ROOT": "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\00_Framework_Library"
+      }
+    },
+    "framework-orchestrator": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\00_Framework_Library\\mcp-servers\\framework-orchestrator\\build\\index.js"
+      ]
+    },
+    "3d-asset-manager-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\3d-asset-manager-mcp\\dist\\index.js"
+      ]
+    },
+    "accessibility-checker-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\accessibility-checker-mcp\\dist\\index.js"
+      ]
+    },
+    "agent-orchestrator-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\agent-orchestrator-mcp\\dist\\index.js"
+      ]
+    },
+    "animation-library-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\animation-library-mcp\\dist\\index.js"
+      ]
+    },
+    "api-validator-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\api-validator-mcp\\dist\\index.js"
+      ]
+    },
+    "asset-optimizer-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\asset-optimizer-mcp\\dist\\index.js"
+      ]
+    },
+    "audio-processor-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\audio-processor-mcp\\dist\\index.js"
+      ]
+    },
+    "chart-builder-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\chart-builder-mcp\\dist\\index.js"
+      ]
+    },
+    "code-quality-scanner-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\code-quality-scanner-mcp\\dist\\index.js"
+      ]
+    },
+    "component-generator-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\component-generator-mcp\\dist\\index.js"
+      ]
+    },
+    "dark-matter-analyzer-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\dark-matter-analyzer-mcp\\dist\\index.js"
+      ]
+    },
+    "database-migration-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\database-migration-mcp\\dist\\index.js"
+      ]
+    },
+    "deployment-orchestrator-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\deployment-orchestrator-mcp\\dist\\index.js"
+      ]
+    },
+    "design-token-manager-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\design-token-manager-mcp\\dist\\index.js"
+      ]
+    },
+    "doc-generator-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\doc-generator-mcp\\dist\\index.js"
+      ]
+    },
+    "embedding-generator-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\embedding-generator-mcp\\dist\\index.js"
+      ]
+    },
+    "feature-prioritizer-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\feature-prioritizer-mcp\\dist\\index.js"
+      ]
+    },
+    "graph-database-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\graph-database-mcp\\dist\\index.js"
+      ]
+    },
+    "i18n-manager-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\i18n-manager-mcp\\dist\\index.js"
+      ]
+    },
+    "iot-device-manager-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\iot-device-manager-mcp\\dist\\index.js"
+      ]
+    },
+    "market-analyzer-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\market-analyzer-mcp\\dist\\index.js"
+      ]
+    },
+    "mobile-builder-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\mobile-builder-mcp\\dist\\index.js"
+      ]
+    },
+    "openapi-generator-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\openapi-generator-mcp\\dist\\index.js"
+      ]
+    },
+    "performance-profiler-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\performance-profiler-mcp\\dist\\index.js"
+      ]
+    },
+    "screenshot-testing-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\screenshot-testing-mcp\\dist\\index.js"
+      ]
+    },
+    "security-scanner-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\security-scanner-mcp\\dist\\index.js"
+      ]
+    },
+    "semantic-search-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\semantic-search-mcp\\dist\\index.js"
+      ]
+    },
+    "seo-analyzer-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\seo-analyzer-mcp\\dist\\index.js"
+      ]
+    },
+    "streaming-setup-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\streaming-setup-mcp\\dist\\index.js"
+      ]
+    },
+    "test-runner-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\test-runner-mcp\\dist\\index.js"
+      ]
+    },
+    "user-insight-analyzer-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\user-insight-analyzer-mcp\\dist\\index.js"
+      ]
+    },
+    "vector-database-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\vector-database-mcp\\dist\\index.js"
+      ]
+    },
+    "video-optimizer-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\video-optimizer-mcp\\dist\\index.js"
+      ]
+    },
+    "wireframe-generator-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\wireframe-generator-mcp\\dist\\index.js"
+      ]
+    },
+    "asset-library-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\asset-library-mcp\\dist\\index.js"
+      ]
+    },
+    "dark-mode-converter-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\dark-mode-converter-mcp\\dist\\index.js"
+      ]
+    },
+    "design-handoff-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\design-handoff-mcp\\dist\\index.js"
+      ]
+    },
+    "figma-sync-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\figma-sync-mcp\\dist\\index.js"
+      ]
+    },
+    "font-optimizer-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\font-optimizer-mcp\\dist\\index.js"
+      ]
+    },
+    "icon-library-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\icon-library-mcp\\dist\\index.js"
+      ]
+    },
+    "illustration-generator-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\illustration-generator-mcp\\dist\\index.js"
+      ]
+    },
+    "image-generator-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\image-generator-mcp\\dist\\index.js"
+      ]
+    },
+    "knowledge-base-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\knowledge-base-mcp\\dist\\index.js"
+      ]
+    },
+    "props-documenter-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\props-documenter-mcp\\dist\\index.js"
+      ]
+    },
+    "responsive-preview-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\responsive-preview-mcp\\dist\\index.js"
+      ]
+    },
+    "storybook-generator-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\storybook-generator-mcp\\dist\\index.js"
+      ]
+    },
+    "svg-generator-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\svg-generator-mcp\\dist\\index.js"
+      ]
+    },
+    "theme-builder-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\theme-builder-mcp\\dist\\index.js"
+      ]
+    },
+    "typography-analyzer-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\typography-analyzer-mcp\\dist\\index.js"
+      ]
+    },
+    "domain-memory-agent": {
+      "command": "node",
+      "args": [
+        "/home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins/mcp/domain-memory-agent/dist/servers/knowledge-base.js"
+      ]
+    },
+    "project-health-auditor": {
+      "command": "node",
+      "args": [
+        "/home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins/mcp/project-health-auditor/dist/servers/code-metrics.js"
+      ]
+    },
+    "workflow-orchestrator": {
+      "command": "node",
+      "args": [
+        "/home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins/mcp/workflow-orchestrator/dist/servers/workflow-engine.js"
+      ]
+    }
+  },
+  "domain-memory-agent": {
+    "command": "node",
+    "args": [
+      "/home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins/mcp/domain-memory-agent/dist/servers/knowledge-base.js"
+    ]
+  },
+  "project-health-auditor": {
+    "command": "node",
+    "args": [
+      "/home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins/mcp/project-health-auditor/dist/servers/code-metrics.js"
+    ]
+  },
+  "workflow-orchestrator": {
+    "command": "node",
+    "args": [
+      "/home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins/mcp/workflow-orchestrator/dist/servers/workflow-engine.js"
+    ]
+  }
+}

@@ -6,15 +6,15 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
 [![Node](https://img.shields.io/badge/Node-%3E%3D18.0.0-green.svg)](https://nodejs.org/)
 
-**Version 2.1.0** | **Last Updated:** 2025-10-29
+**Version 3.0.0** | **Last Updated:** 2025-10-29
 
-237 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
+238 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
 
 ## What This Repository Does
 
 Think of this as a **shared brain** between you and Claude:
 
-- **64 Specialized Skills** - Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, design systems, and more)
+- **65 Specialized Skills** - Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, design systems, and more)
 - **50 MCP Servers** - Executable development tools providing 78% skill coverage (0.78:1 ratio - strong actionability!)
 - **24 Tools** - LangChain, CrewAI, design utilities, and automation scripts
 - **75 Reusable Components** - React components for common patterns (auth, forms, errors, feedback, media, layouts, advanced UI)
@@ -24,7 +24,7 @@ Think of this as a **shared brain** between you and Claude:
 - **Decision Frameworks** - Clear guidance for choosing technologies
 - **Validation & Trust** - Automated testing ensures all resources are discoverable and accessible
 
-**Total Resources:** 237 (64 skills + 50 MCPs + 24 tools + 72 components + 27 integrations)
+**Total Resources:** 238 (65 skills + 50 MCPs + 24 tools + 72 components + 27 integrations)
 
 **Resource Coverage:** Core resources 100% discoverable (skills, MCPs, components) • 85% skill-to-MCP coverage • Complete dependency mapping
 
