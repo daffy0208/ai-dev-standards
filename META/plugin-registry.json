@@ -1,0 +1,143 @@
+{
+  "plugins": [
+    {
+      "id": "ai-ml-engineering-pack",
+      "name": "AI/ML Engineering Pack",
+      "type": "ai-instruction",
+      "source": "claude-code-plugins-plus",
+      "description": "Prompt optimization patterns, LLM integration best practices, RAG architecture guidance, vector database patterns",
+      "category": "ai-ml",
+      "enhances_skills": ["rag-implementer", "knowledge-base-manager", "knowledge-graph-builder"],
+      "install_command": "/plugin install ai-ml-engineering-pack@claude-code-plugins-plus",
+      "status": "recommended"
+    },
+    {
+      "id": "skills-powerkit",
+      "name": "Skills Powerkit",
+      "type": "agent-skill",
+      "source": "claude-code-plugins-plus",
+      "description": "First Agent Skills plugin for automatic plugin management and self-invoked capabilities",
+      "category": "productivity",
+      "enhances_skills": ["all"],
+      "install_command": "/plugin install skills-powerkit@claude-code-plugins-plus",
+      "status": "recommended",
+      "auto_activates": true
+    },
+    {
+      "id": "devops-automation-pack",
+      "name": "DevOps Automation Pack",
+      "type": "ai-instruction",
+      "source": "claude-code-plugins-plus",
+      "description": "Git workflow automation, CI/CD best practices, Docker patterns, Kubernetes orchestration",
+      "category": "devops",
+      "enhances_skills": ["deployment-advisor"],
+      "install_command": "/plugin install devops-automation-pack@claude-code-plugins-plus",
+      "status": "recommended"
+    },
+    {
+      "id": "workflow-orchestrator",
+      "name": "Workflow Orchestrator",
+      "type": "mcp-server",
+      "source": "claude-code-plugins-plus",
+      "description": "DAG-based automation with task dependency management and executable workflows",
+      "category": "orchestration",
+      "enhances_skills": ["orchestration-planner", "multi-agent-architect"],
+      "install_command": "/plugin install workflow-orchestrator@claude-code-plugins-plus",
+      "status": "recommended",
+      "requires_node": true,
+      "mcp_server": true
+    },
+    {
+      "id": "project-health-auditor",
+      "name": "Project Health Auditor",
+      "type": "mcp-server",
+      "source": "claude-code-plugins-plus",
+      "description": "Code health analysis with quality metrics and automated health checks",
+      "category": "quality",
+      "enhances_skills": ["quality-auditor", "system-diagnostician"],
+      "install_command": "/plugin install project-health-auditor@claude-code-plugins-plus",
+      "status": "recommended",
+      "requires_node": true,
+      "mcp_server": true
+    },
+    {
+      "id": "domain-memory-agent",
+      "name": "Domain Memory Agent",
+      "type": "mcp-server",
+      "source": "claude-code-plugins-plus",
+      "description": "Knowledge base with semantic search using embeddings",
+      "category": "ai-ml",
+      "enhances_skills": ["rag-implementer", "knowledge-base-manager"],
+      "install_command": "/plugin install domain-memory-agent@claude-code-plugins-plus",
+      "status": "recommended",
+      "requires_node": true,
+      "mcp_server": true
+    },
+    {
+      "id": "security-pro-pack",
+      "name": "Security Pro Pack",
+      "type": "ai-instruction",
+      "source": "claude-code-plugins-plus",
+      "description": "OWASP auditing guidance, compliance checklists, threat modeling templates, security best practices",
+      "category": "security",
+      "enhances_skills": ["security-engineer"],
+      "install_command": "/plugin install security-pro-pack@claude-code-plugins-plus",
+      "status": "recommended"
+    },
+    {
+      "id": "agent-context-manager",
+      "name": "Agent Context Manager",
+      "type": "agent-skill",
+      "source": "claude-code-plugins-plus",
+      "description": "Automatic agent detection via AGENTS.md files with context management",
+      "category": "productivity",
+      "enhances_skills": ["context-preserver"],
+      "install_command": "/plugin install agent-context-manager@claude-code-plugins-plus",
+      "status": "recommended",
+      "auto_activates": true
+    },
+    {
+      "id": "fullstack-starter-pack",
+      "name": "Fullstack Starter Pack",
+      "type": "ai-instruction",
+      "source": "claude-code-plugins-plus",
+      "description": "React patterns, API scaffolding, database schema templates, frontend best practices",
+      "category": "fullstack",
+      "enhances_skills": ["frontend-builder", "api-designer"],
+      "install_command": "/plugin install fullstack-starter-pack@claude-code-plugins-plus",
+      "status": "recommended"
+    },
+    {
+      "id": "design-to-code",
+      "name": "Design to Code",
+      "type": "mcp-server",
+      "source": "claude-code-plugins-plus",
+      "description": "Convert designs to React/Vue/Svelte components with component generation",
+      "category": "frontend",
+      "enhances_skills": ["frontend-builder", "design-system-architect"],
+      "install_command": "/plugin install design-to-code@claude-code-plugins-plus",
+      "status": "optional",
+      "requires_node": true,
+      "mcp_server": true
+    }
+  ],
+  "metadata": {
+    "total_plugins": 10,
+    "mcp_servers": 4,
+    "ai_instructions": 4,
+    "agent_skills": 2,
+    "marketplace_source": "https://github.com/jeremylongshore/claude-code-plugins-plus",
+    "marketplace_url": "https://claudecodeplugins.io",
+    "last_updated": "2025-10-29"
+  },
+  "categories": {
+    "ai-ml": ["ai-ml-engineering-pack", "domain-memory-agent"],
+    "devops": ["devops-automation-pack"],
+    "orchestration": ["workflow-orchestrator"],
+    "quality": ["project-health-auditor"],
+    "security": ["security-pro-pack"],
+    "productivity": ["skills-powerkit", "agent-context-manager"],
+    "fullstack": ["fullstack-starter-pack"],
+    "frontend": ["design-to-code"]
+  }
+}

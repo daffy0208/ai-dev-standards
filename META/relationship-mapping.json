@@ -3672,5 +3672,87 @@
         "database-migration-mcp"
       ]
     }
+  },
+  "plugin_to_skill": {
+    "ai-ml-engineering-pack": [
+      "rag-implementer",
+      "knowledge-base-manager",
+      "knowledge-graph-builder"
+    ],
+    "skills-powerkit": [
+      "all"
+    ],
+    "devops-automation-pack": [
+      "deployment-advisor"
+    ],
+    "workflow-orchestrator": [
+      "orchestration-planner",
+      "multi-agent-architect"
+    ],
+    "project-health-auditor": [
+      "quality-auditor",
+      "system-diagnostician"
+    ],
+    "domain-memory-agent": [
+      "rag-implementer",
+      "knowledge-base-manager"
+    ],
+    "security-pro-pack": [
+      "security-engineer"
+    ],
+    "agent-context-manager": [
+      "context-preserver"
+    ],
+    "fullstack-starter-pack": [
+      "frontend-builder",
+      "api-designer"
+    ],
+    "design-to-code": [
+      "frontend-builder",
+      "design-system-architect"
+    ]
+  },
+  "plugin_to_mcp": {
+    "workflow-orchestrator": {
+      "type": "mcp-server",
+      "description": "DAG-based automation with task dependency management and executable workflows",
+      "enhances_skills": [
+        "orchestration-planner",
+        "multi-agent-architect"
+      ]
+    },
+    "project-health-auditor": {
+      "type": "mcp-server",
+      "description": "Code health analysis with quality metrics and automated health checks",
+      "enhances_skills": [
+        "quality-auditor",
+        "system-diagnostician"
+      ]
+    },
+    "domain-memory-agent": {
+      "type": "mcp-server",
+      "description": "Knowledge base with semantic search using embeddings",
+      "enhances_skills": [
+        "rag-implementer",
+        "knowledge-base-manager"
+      ]
+    },
+    "design-to-code": {
+      "type": "mcp-server",
+      "description": "Convert designs to React/Vue/Svelte components with component generation",
+      "enhances_skills": [
+        "frontend-builder",
+        "design-system-architect"
+      ]
+    }
+  },
+  "_metadata": {
+    "plugins": {
+      "total": 10,
+      "mcp_servers": 4,
+      "ai_instructions": 4,
+      "agent_skills": 2,
+      "last_updated": "2025-10-29"
+    }
   }
 }
