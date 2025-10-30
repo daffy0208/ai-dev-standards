@@ -6,25 +6,25 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
 [![Node](https://img.shields.io/badge/Node-%3E%3D18.0.0-green.svg)](https://nodejs.org/)
 
-**Version 3.0.0** | **Last Updated:** 2025-10-29
+**Version 3.0.0** | **Last Updated:** 2025-10-30
 
-238 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
+235 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
 
 ## What This Repository Does
 
 Think of this as a **shared brain** between you and Claude:
 
-- **65 Specialized Skills** - Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, design systems, and more)
-- **50 MCP Servers** - Executable development tools providing 78% skill coverage (0.78:1 ratio - strong actionability!)
+- **64 Specialized Skills** - Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, design systems, and more)
+- **50 MCP Servers** - Executable development tools including brain-mcp for intelligent orchestration (78% skill coverage - strong actionability!)
 - **24 Tools** - LangChain, CrewAI, design utilities, and automation scripts
-- **75 Reusable Components** - React components for common patterns (auth, forms, errors, feedback, media, layouts, advanced UI)
-- **27 Service Integrations** - Pre-configured connections to OpenAI, Supabase, Stripe, Pinecone, and more
+- **72 Reusable Components** - React components for common patterns (auth, forms, errors, feedback, media, layouts, advanced UI)
+- **25 Service Integrations** - Pre-configured connections to OpenAI, Supabase, Stripe, Pinecone, and more
 - **Architecture Patterns** - Proven approaches for complex systems (RAG, multi-agent, knowledge graphs, design systems)
 - **Best Practices** - Security, performance, accessibility, and quality standards
 - **Decision Frameworks** - Clear guidance for choosing technologies
 - **Validation & Trust** - Automated testing ensures all resources are discoverable and accessible
 
-**Total Resources:** 238 (65 skills + 50 MCPs + 24 tools + 72 components + 27 integrations)
+**Total Resources:** 235 (64 skills + 50 MCPs + 24 tools + 72 components + 25 integrations)
 
 **Resource Coverage:** Core resources 100% discoverable (skills, MCPs, components) • 85% skill-to-MCP coverage • Complete dependency mapping
 
@@ -58,8 +58,8 @@ The tool automatically:
 
 **After 2 minutes, you have:**
 - 64 skills
-- 50 MCP servers
-- 237 total resources
+- 50 MCP servers (including brain-mcp for intelligent orchestration)
+- 235 total resources
 - Project analysis with recommendations
 - Exact roadmap for where to start
 
@@ -89,7 +89,7 @@ ai-dev-standards/
 │   ├── DECISION-FRAMEWORK.md       # Technology decision guidance
 │   └── skill-registry.json         # Searchable skill catalog
 │
-├── SKILLS/                         # Specialized methodologies (64 total)
+├── SKILLS/                         # Specialized methodologies (64 skills)
 │   ├── mvp-builder/                # MVP development and feature prioritization
 │   ├── rag-implementer/            # Retrieval-augmented generation systems
 │   ├── product-strategist/         # Product-market fit validation
@@ -100,7 +100,7 @@ ai-dev-standards/
 │   ├── security-auditor/           # Security assessment and hardening
 │   ├── performance-optimizer/      # Performance and scalability
 │   ├── multi-agent-architect/      # Multi-agent system orchestration
-│   └── [31 more skills...]         # See META/registry.json for complete list
+│   └── [54 more skills...]         # See META/skill-registry.json for complete list
 │
 ├── STANDARDS/
 │   ├── architecture-patterns/      # System design patterns
@@ -123,7 +123,7 @@ The **Repository Brain** is an intelligence system that manages, understands, an
 ### What It Does
 
 ```bash
-brain status                    # Current state (64 skills, 50 MCPs, 237 resources)
+brain status                    # Current state (64 skills, 50 MCPs, 235 resources)
 brain search "authentication"   # Search across all resources
 brain decide "add new skill"    # Get workflow recommendations
 brain select-skills "build MVP" # Get skill recommendations

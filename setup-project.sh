@@ -103,6 +103,58 @@ else
     echo -e "${GREEN}✅ Setup complete!${NC}\n"
 fi
 
+# Configure brain-mcp in .claude/mcp-settings.json
+echo -e "${BLUE}🧠 Configuring brain-mcp...${NC}"
+
+# Create .claude directory if it doesn't exist
+mkdir -p .claude
+
+# Path to brain-mcp
+BRAIN_MCP_PATH="$AI_DEV_STANDARDS_DIR/MCP-SERVERS/brain-mcp/dist/index.js"
+
+# Check if mcp-settings.json exists
+if [ -f ".claude/mcp-settings.json" ]; then
+    # File exists, check if brain-mcp is already configured
+    if grep -q '"brain-mcp"' .claude/mcp-settings.json; then
+        echo -e "${GREEN}✅ brain-mcp already configured${NC}"
+    else
+        # Add brain-mcp to existing configuration
+        echo -e "${YELLOW}⚠️  Adding brain-mcp to existing mcp-settings.json${NC}"
+
+        # Backup existing file
+        cp .claude/mcp-settings.json .claude/mcp-settings.json.backup
+
+        # Use jq if available, otherwise manual edit
+        if command -v jq &> /dev/null; then
+            jq --arg brain_path "$BRAIN_MCP_PATH" --arg root_path "$AI_DEV_STANDARDS_DIR" \
+               '.mcpServers["brain-mcp"] = {"command": "node", "args": [$brain_path], "env": {"AI_DEV_STANDARDS_ROOT": $root_path}}' \
+               .claude/mcp-settings.json.backup > .claude/mcp-settings.json
+            echo -e "${GREEN}✅ brain-mcp added to mcp-settings.json${NC}"
+        else
+            echo -e "${YELLOW}⚠️  jq not installed, skipping automatic brain-mcp configuration${NC}"
+            echo -e "${GRAY}  Please manually add brain-mcp to .claude/mcp-settings.json${NC}"
+        fi
+    fi
+else
+    # Create new mcp-settings.json with brain-mcp
+    cat > .claude/mcp-settings.json << EOF
+{
+  "mcpServers": {
+    "brain-mcp": {
+      "command": "node",
+      "args": ["$BRAIN_MCP_PATH"],
+      "env": {
+        "AI_DEV_STANDARDS_ROOT": "$AI_DEV_STANDARDS_DIR"
+      }
+    }
+  }
+}
+EOF
+    echo -e "${GREEN}✅ Created .claude/mcp-settings.json with brain-mcp${NC}"
+fi
+
+echo ""
+
 # Run project analysis
 echo -e "${BLUE}🔍 Analyzing your project...${NC}\n"
 if [ -x "$AI_DEV_STANDARDS_DIR/scripts/analyze-project.sh" ]; then
@@ -140,4 +192,5 @@ echo ""
 echo -e "${YELLOW}  👉 Open START-HERE.md and follow the instructions${NC}"
 echo -e "${GRAY}     It contains your personalized roadmap and exact prompt for Claude${NC}"
 echo ""
-echo -e "${GREEN}✅ All 37 skills, 34 MCPs, and 103 resources are now available!${NC}\n"
+echo -e "${GREEN}✅ All 64 skills, 50 MCPs, and 235 resources are now available!${NC}"
+echo -e "${GREEN}🧠 Brain-MCP configured for intelligent skill recommendations!${NC}\n"

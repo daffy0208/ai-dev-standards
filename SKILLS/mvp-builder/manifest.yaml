@@ -1,0 +1,94 @@
+name: mvp-builder
+kind: skill
+description: Rapid MVP development and feature prioritization for fast product validation, avoiding over-engineering
+
+preconditions:
+  - check: has_product_idea or has_feature_request
+    description: Clear product idea or feature to validate
+    required: true
+  - check: not file_exists('FEATURE_COMPLETE.md')
+    description: Not in feature-complete production phase
+    required: false
+
+effects:
+  - defines_mvp_scope
+  - prioritizes_features_p0_p1_p2
+  - creates_validation_metrics
+  - identifies_riskiest_assumptions
+  - defines_success_criteria
+  - prevents_over_engineering
+  - enables_fast_iteration
+  - creates_feature_roadmap
+
+domains:
+  - product-development
+  - mvp
+  - validation
+  - prioritization
+  - lean-startup
+  - agile
+
+cost: low
+latency: fast
+risk_level: low
+
+side_effects:
+  - creates_documentation
+  - defines_scope
+  - may_defer_features
+
+idempotent: true
+
+success_signal: "MVP scope defined with P0 features, validation metrics set, team aligned on what to build now vs later"
+
+failure_signals:
+  - "Scope includes too many features for MVP"
+  - "No clear validation metrics defined"
+  - "P0 features take >2 weeks to build"
+  - "Riskiest assumption not identified"
+  - "Feature prioritization unclear"
+
+compatibility:
+  requires: []
+  conflicts_with:
+    - feature-complete-mentality
+    - premature-optimization
+  composes_with:
+    - product-strategist
+    - user-researcher
+    - frontend-builder
+    - api-designer
+    - testing-strategist
+  enables:
+    - fast-validation
+    - lean-development
+    - iterative-improvement
+    - user-feedback-loops
+
+observability:
+  logs:
+    - "MVP pattern selected: {pattern_name}"
+    - "P0 features: {p0_count}, estimated time: {time_estimate}"
+    - "Riskiest assumption: {assumption}"
+    - "Validation metrics: {metrics}"
+  metrics:
+    - p0_feature_count
+    - estimated_mvp_time_weeks
+    - feature_prioritization_score
+    - scope_creep_prevented
+
+metadata:
+  version: "1.0.0"
+  created_at: "2025-10-29"
+  tags:
+    - mvp
+    - lean-startup
+    - prioritization
+    - validation
+    - product-development
+    - agile
+  examples:
+    - "Build task management MVP in 1 week"
+    - "Validate SaaS idea with landing page MVP"
+    - "Prioritize features for marketplace platform"
+    - "Scope fintech app MVP avoiding over-engineering"

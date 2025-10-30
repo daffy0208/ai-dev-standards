@@ -9,6 +9,48 @@ For projects using RAG (Retrieval-Augmented Generation) or other AI features.
 Repository: ~/ai-dev-standards/
 Status: Active
 
+### ⚡ CRITICAL: Brain-First Development (MANDATORY)
+
+**YOU MUST use brain-mcp tools PROACTIVELY for EVERY task.**
+
+**Workflow for Every Task:**
+
+1. **BEFORE starting ANY task, query the brain:**
+   - Use `brain_search` with relevant keywords
+   - OR use `graph_query_by_domain` if you know the domain
+   - OR use `graph_query_by_effect` if you know what effect is needed
+
+2. **Show me what you found:**
+   - List the skills/MCPs the brain recommended
+   - Explain why they're relevant
+
+3. **Check dependencies:**
+   - Use `graph_get_dependencies` for each skill
+
+4. **Then implement using those skills**
+
+**Example:**
+```
+Task: "Add user authentication"
+Step 1: Use graph_query_by_effect("implements_authentication")
+Step 2: Returns: security-engineer, api-designer
+Step 3: Use graph_get_dependencies("security-engineer")
+Step 4: Implement using security-engineer skill
+```
+
+**Brain-MCP Tools Available:**
+- brain_search, brain_show_skill, brain_relationships
+- graph_query_by_domain, graph_query_by_effect
+- graph_get_dependencies, graph_composition_chains
+
+**Rules:**
+1. ✅ ALWAYS query brain FIRST
+2. ✅ ALWAYS show what you found
+3. ✅ ALWAYS check dependencies
+4. ❌ NEVER skip the brain
+
+---
+
 ### Instructions for Claude Code
 
 **Always load on session start:**
@@ -25,11 +67,11 @@ Status: Active
 
 ### Available Resources
 This project has access to:
-- **39 Skills** - Including rag-implementer, knowledge-base-manager, knowledge-graph-builder, data-engineer
-- **36 MCPs** - Including knowledge-base-mcp, vector-database-mcp, embedding-generator-mcp, semantic-search-mcp
-- **9 Tools + 4 Scripts** - vector-search-tool, embedding-tool, web-scraper-tool
-- **13 Components** - Including simple-task-agent for agent implementations
-- **6 Integrations** - OpenAI, Anthropic, Pinecone (vector DB)
+- **64 Skills** - Including rag-implementer, knowledge-base-manager, knowledge-graph-builder, data-engineer, and more
+- **50 MCPs** - Including knowledge-base-mcp, vector-database-mcp, embedding-generator-mcp, semantic-search-mcp
+- **15 Workflow Types** - Automated templates for RAG, testing, deployment, architecture, and more
+- **Multiple Registries** - Components, integrations, tools, standards, templates
+- **Brain-MCP Integration** - Intelligent skill selection and orchestration
 
 See `META/relationship-mapping.json` for RAG-specific resource dependencies.
 

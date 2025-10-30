@@ -1,0 +1,52 @@
+name: knowledge-graph-builder
+kind: skill
+description: Design and build knowledge graphs. Use when modeling complex relationships,
+  building semantic search, or creating knowledge bases. Covers schema design, entity
+  relationships, and graph database selection.
+preconditions:
+- check: project_initialized
+  description: Project environment is set up
+  required: true
+effects:
+- builds_knowledge
+- designs_and
+domains: &id001
+- ai
+- rag
+- api
+- frontend
+- backend
+- security
+- devops
+- testing
+- product
+- design
+- data
+cost: medium
+latency: medium
+risk_level: low
+side_effects:
+- modifies_files
+- creates_artifacts
+idempotent: false
+success_signal: knowledge-graph-builder capability successfully applied
+failure_signals:
+- Prerequisites not met
+- Configuration error
+compatibility:
+  requires: []
+  conflicts_with: []
+  composes_with: []
+  enables: []
+observability:
+  logs:
+  - Applying knowledge-graph-builder...
+  - knowledge-graph-builder completed
+  metrics:
+  - execution_time_ms
+  - success_rate
+metadata:
+  version: 1.0.0
+  created_at: '2025-10-30'
+  tags: *id001
+  examples: []

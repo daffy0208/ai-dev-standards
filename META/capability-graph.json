@@ -1,12 +1,6120 @@
 {
-  "version": "1.0.0",
-  "generated_at": "2025-10-29T21:04:19.653453Z",
-  "node_count": 0,
-  "edge_count": 0,
+  "version": "2.0.0",
+  "generated_at": "2025-10-30T14:13:59.173798Z",
+  "node_count": 114,
+  "edge_count": 178,
   "graph": {
-    "nodes": [],
-    "edges": [],
-    "domains": {},
-    "effects": {}
+    "nodes": [
+      {
+        "id": "3d-asset-manager-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "frontend",
+          "backend",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "accessibility-checker-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_the",
+          "validates_color",
+          "validates_alt"
+        ],
+        "domains": [
+          "ai",
+          "backend",
+          "testing"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "agent-orchestrator-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "backend",
+          "product",
+          "design",
+          "data",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "animation-library-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "frontend",
+          "backend",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "api-validator-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "adds_to",
+          "validates_json",
+          "validates_api"
+        ],
+        "domains": [
+          "ai",
+          "api",
+          "frontend",
+          "backend",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "asset-library-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "adds_assets",
+          "adds_asset",
+          "designs_assets"
+        ],
+        "domains": [
+          "frontend",
+          "backend",
+          "security",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "asset-optimizer-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "designs_assets"
+        ],
+        "domains": [
+          "frontend",
+          "backend",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "audio-processor-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "frontend",
+          "backend",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "brain-mcp",
+        "kind": "mcp",
+        "description": "MCP server that exposes ai-dev-standards brain and capability graph to Claude Code for intelligent skill/MCP recommendations and orchestration",
+        "preconditions": [
+          {
+            "check": "file_exists('META/capability-graph.json')",
+            "description": "Capability graph exists",
+            "required": true
+          },
+          {
+            "check": "file_exists('scripts/brain/brain.ts')",
+            "description": "Brain CLI exists",
+            "required": true
+          },
+          {
+            "check": "file_exists('scripts/graph-query-tool.py')",
+            "description": "Graph query tool exists",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_brain_access",
+          "enables_intelligent_recommendations",
+          "queries_capability_graph",
+          "shows_skill_relationships",
+          "finds_dependencies",
+          "validates_graph_consistency",
+          "exposes_orchestration_intelligence"
+        ],
+        "domains": [
+          "ai",
+          "orchestration",
+          "brain",
+          "meta",
+          "intelligence",
+          "capability-graph",
+          "decision-support"
+        ],
+        "cost": "low",
+        "latency": "low",
+        "risk_level": "low"
+      },
+      {
+        "id": "chart-builder-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_charts",
+          "creates_bar"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "backend",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "code-quality-scanner-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "backend",
+          "testing",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "component-generator-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_typescript",
+          "creates_test",
+          "creates_mcp",
+          "adds_prop"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "backend",
+          "testing",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "dark-matter-analyzer-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "frontend",
+          "backend",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "dark-mode-converter-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "designs_to"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "frontend",
+          "backend",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "database-migration-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_migration",
+          "validates_schema"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "backend",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "deployment-orchestrator-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "deploys_applications",
+          "deploys_to"
+        ],
+        "domains": [
+          "ai",
+          "api",
+          "frontend",
+          "backend",
+          "devops",
+          "design",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "design-handoff-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "designs_handoff",
+          "designs_files",
+          "designs_file"
+        ],
+        "domains": [
+          "ai",
+          "api",
+          "frontend",
+          "backend",
+          "devops",
+          "testing",
+          "product",
+          "design",
+          "data",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "design-token-manager-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "designs_token",
+          "designs_tokens",
+          "designs_system"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "backend",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "doc-generator-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_diagrams",
+          "creates_mermaid",
+          "builds_changelogs"
+        ],
+        "domains": [
+          "ai",
+          "api",
+          "frontend",
+          "backend",
+          "design",
+          "data",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "embedding-generator-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "testing",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "feature-prioritizer-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "adds_features",
+          "adds_login"
+        ],
+        "domains": [
+          "frontend",
+          "backend",
+          "security",
+          "testing",
+          "product",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "figma-sync-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "designs_with",
+          "designs_tokens",
+          "designs_file"
+        ],
+        "domains": [
+          "ai",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "devops",
+          "testing",
+          "product",
+          "design",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "font-optimizer-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_font",
+          "creates_a"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "backend",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "graph-database-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "frontend",
+          "backend",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "i18n-manager-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "frontend",
+          "backend",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "icon-library-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "frontend",
+          "backend",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "illustration-generator-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "image-generator-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "api",
+          "frontend",
+          "backend",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "iot-device-manager-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "frontend",
+          "backend",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "knowledge-base-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "testing",
+          "product",
+          "design",
+          "data",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "market-analyzer-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "frontend",
+          "backend",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "mobile-builder-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "frontend",
+          "backend",
+          "security",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "openapi-generator-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_openapi",
+          "configures_authentication",
+          "validates_openapi"
+        ],
+        "domains": [
+          "ai",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "performance-profiler-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "backend",
+          "testing",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "props-documenter-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "adds_jsdoc"
+        ],
+        "domains": [
+          "api",
+          "frontend",
+          "backend",
+          "testing",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "responsive-preview-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "designs_across"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "backend",
+          "testing",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "screenshot-testing-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_mcp",
+          "validates_dark"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "backend",
+          "devops",
+          "testing",
+          "product",
+          "design",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "security-scanner-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "devops",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "semantic-search-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "seo-analyzer-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "frontend",
+          "backend",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "storybook-generator-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "designs_system"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "backend",
+          "testing",
+          "design",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "streaming-setup-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "frontend",
+          "backend",
+          "testing",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "svg-generator-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "backend",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "test-runner-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "devops",
+          "testing",
+          "product",
+          "design",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "theme-builder-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "designs_system"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "backend",
+          "testing",
+          "product",
+          "design",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "typography-analyzer-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "frontend",
+          "backend",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "user-insight-analyzer-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_data"
+        ],
+        "domains": [
+          "ai",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "testing",
+          "product",
+          "design",
+          "data",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "vector-database-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "testing",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "video-optimizer-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "backend",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "wireframe-generator-mcp",
+        "kind": "mcp",
+        "description": "",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "frontend",
+          "backend",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "3d-visualizer",
+        "kind": "skill",
+        "description": "Expert guidance for building interactive Three.js scenes and React Three Fiber visualizations.",
+        "preconditions": [
+          {
+            "check": "file_exists('package.json')",
+            "description": "Node-based project scaffold is present to manage Three.js dependencies.",
+            "required": true
+          },
+          {
+            "check": "has_dependency('three')",
+            "description": "Three.js runtime is installed to render WebGL scenes.",
+            "required": true
+          },
+          {
+            "check": "has_dependency('@react-three/fiber')",
+            "description": "React Three Fiber is available for React-based scene composition.",
+            "required": false
+          },
+          {
+            "check": "has_dependency('@react-three/drei')",
+            "description": "Drei helpers can be used to speed up common 3D tasks.",
+            "required": false
+          },
+          {
+            "check": "file_exists('public/models')",
+            "description": "3D assets directory exists for loading GLB/GLTF models.",
+            "required": false
+          }
+        ],
+        "effects": [
+          "creates_three_js_scene",
+          "adds_interactive_3d_visualization",
+          "configures_react_three_fiber_canvas",
+          "optimizes_three_js_performance"
+        ],
+        "domains": [
+          "threejs",
+          "webgl",
+          "react",
+          "data-visualization",
+          "frontend"
+        ],
+        "cost": "medium",
+        "latency": "slow",
+        "risk_level": "medium"
+      },
+      {
+        "id": "accessibility-engineer",
+        "kind": "skill",
+        "description": "Implement accessibility (a11y) best practices to make applications usable by everyone. Use when building UIs, conducting accessibility audits, or ensuring WCAG compliance. Covers screen readers, keyboard navigation, ARIA attributes, and inclusive design patterns.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "implements_accessibility",
+          "designs_patterns"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "animation-designer",
+        "kind": "skill",
+        "description": "Expert in web animations, transitions, and motion design using Framer Motion and CSS",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_smooth",
+          "designs_using"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "frontend",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "api-designer",
+        "kind": "skill",
+        "description": "Design REST and GraphQL APIs with proper authentication, versioning, documentation, and best practices",
+        "preconditions": [
+          {
+            "check": "file_exists('package.json') or file_exists('requirements.txt')",
+            "description": "Backend project initialized",
+            "required": true
+          },
+          {
+            "check": "not file_exists('app/api/') and not file_exists('src/routes/')",
+            "description": "No existing API structure",
+            "required": false
+          },
+          {
+            "check": "has_backend_framework('express') or has_backend_framework('fastapi') or has_backend_framework('nextjs')",
+            "description": "Backend framework available",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_api_routes",
+          "implements_authentication",
+          "adds_rate_limiting",
+          "configures_cors",
+          "implements_pagination",
+          "adds_input_validation",
+          "creates_error_handling",
+          "generates_openapi_spec",
+          "implements_versioning",
+          "adds_api_documentation"
+        ],
+        "domains": [
+          "api",
+          "rest",
+          "graphql",
+          "backend",
+          "authentication",
+          "security",
+          "documentation",
+          "versioning"
+        ],
+        "cost": "free",
+        "latency": "fast",
+        "risk_level": "medium"
+      },
+      {
+        "id": "api-integration-builder",
+        "kind": "skill",
+        "description": "Build reliable third-party API integrations including OAuth, webhooks, rate limiting, error handling, and data sync. Use when integrating with external services (Slack, Stripe, Gmail, etc.), building API connections, handling webhooks, or implementing OAuth flows.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "builds_reliable"
+        ],
+        "domains": [
+          "ai",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "archon-manager",
+        "kind": "skill",
+        "description": "Strategic orchestration layer for coordinating projects, tasks, and knowledge operations via Archon MCP.",
+        "preconditions": [
+          {
+            "check": "service_available('archon-mcp')",
+            "description": "Archon MCP server endpoint is reachable for orchestration."
+          },
+          {
+            "check": "database_schema_initialized('archon')",
+            "description": "Supabase instance has Archon migrations applied."
+          },
+          {
+            "check": "env_var_set('SUPABASE_URL')",
+            "description": "Supabase API base URL is configured."
+          },
+          {
+            "check": "env_var_set('SUPABASE_SERVICE_ROLE_KEY')",
+            "description": "Supabase service role key is available."
+          },
+          {
+            "check": "env_var_set('OPENAI_API_KEY')",
+            "description": "LLM provider credentials are configured."
+          },
+          {
+            "check": "docker_service_running('archon-stack')",
+            "description": "Archon Docker services are active.",
+            "required": false
+          }
+        ],
+        "effects": [
+          "updates_project_backlog",
+          "updates_task_statuses",
+          "configures_two_layer_workflow",
+          "adds_knowledge_sources",
+          "updates_project_metrics"
+        ],
+        "domains": [
+          "project-management",
+          "knowledge-management",
+          "rag",
+          "task-tracking",
+          "strategic-planning",
+          "multi-agent"
+        ],
+        "cost": "medium",
+        "latency": "fast",
+        "risk_level": "low"
+      },
+      {
+        "id": "asset-manager",
+        "kind": "skill",
+        "description": "Organize design assets, optimize images and fonts, maintain brand asset libraries, implement version control for assets, and enforce naming conventions. Keep design assets organized and production-ready.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "implements_version",
+          "designs_assets"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "audio-producer",
+        "kind": "skill",
+        "description": "Expert in web audio, audio processing, and interactive sound design",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_interactive",
+          "builds_audio",
+          "designs_version"
+        ],
+        "domains": [
+          "ai",
+          "api",
+          "frontend",
+          "backend",
+          "testing",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "bmad-method",
+        "kind": "skill",
+        "description": "Business Model and Architecture Design methodology for aligning technical architecture with business model sustainability and scalability",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "designs_methodology"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "devops",
+          "product",
+          "design",
+          "data",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "brand-designer",
+        "kind": "skill",
+        "description": "Expert in brand identity, logo design, and visual brand systems",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_cohesive",
+          "designs_and"
+        ],
+        "domains": [
+          "ai",
+          "api",
+          "frontend",
+          "backend",
+          "product",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "capability-graph-builder",
+        "kind": "skill",
+        "description": "Builds a queryable capability graph from manifests, infers missing relationships with Codex, and validates compatibility consistency for orchestration planning.",
+        "preconditions": [
+          {
+            "check": "directory_exists(inputs.manifest_dir)",
+            "description": "Capability manifests must be available for ingestion.",
+            "required": true
+          },
+          {
+            "check": "file_glob_exists(inputs.manifest_dir, '**/manifest.yaml')",
+            "description": "At least one manifest.yaml must be present to populate the graph.",
+            "required": true
+          },
+          {
+            "check": "env_var_set('OPENAI_API_KEY')",
+            "description": "Codex access requires a configured OpenAI API key.",
+            "required": true
+          },
+          {
+            "check": "tool_available('codex')",
+            "description": "Codex CLI must be installed to perform relationship inference.",
+            "required": true
+          },
+          {
+            "check": "path_writable(inputs.output_path)",
+            "description": "Output location must be writable to persist the graph artifact.",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_capability_graph_json",
+          "adds_domain_index",
+          "adds_effect_index",
+          "updates_manifest_relationships",
+          "generates_consistency_report"
+        ],
+        "domains": [
+          "knowledge-graph",
+          "ai",
+          "orchestration",
+          "validation"
+        ],
+        "cost": "medium",
+        "latency": "slow",
+        "risk_level": "low"
+      },
+      {
+        "id": "codex-review-workflow",
+        "kind": "skill",
+        "description": "Automated code review workflow using OpenAI Codex CLI. Implements iterative fix-and-review cycles until code passes validation or reaches iteration limit. Use when building features requiring automated code validation, security checks, or quality assurance through Codex CLI.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "implements_iterative"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "security",
+          "testing",
+          "product",
+          "design",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "context-preserver",
+        "kind": "skill",
+        "description": "Automatically save and restore development context to minimize cognitive load when resuming work. Use when switching tasks, taking breaks, or returning after interruptions. Captures mental state, file locations, and next steps. Designed for ADHD developers with high context-switching costs.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "testing",
+          "product",
+          "design",
+          "data",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "copywriter",
+        "kind": "skill",
+        "description": "Expert in writing compelling copy for web, marketing, and product",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "frontend",
+          "security",
+          "devops",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "customer-feedback-analyzer",
+        "kind": "skill",
+        "description": "Synthesize user feedback from multiple channels and identify patterns to inform product decisions. Use when analyzing feedback, prioritizing feature requests, conducting NPS surveys, or understanding user sentiment. Covers feedback collection, categorization, prioritization frameworks, and closing the feedback loop.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "security",
+          "testing",
+          "product",
+          "design",
+          "data",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "customer-support-builder",
+        "kind": "skill",
+        "description": "Build scalable customer support systems including help centers, chatbots, ticketing systems, and self-service knowledge bases. Use when designing support infrastructure, reducing support load, improving customer satisfaction, or scaling support without linear hiring.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "builds_scalable"
+        ],
+        "domains": [
+          "ai",
+          "api",
+          "frontend",
+          "backend",
+          "testing",
+          "product",
+          "design",
+          "data",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "dark-matter-analyzer",
+        "kind": "skill",
+        "description": "Analyze repositories to reveal unseen patterns, strategic drift, and organizational health. Use when assessing repository coherence, diagnosing project issues, identifying documentation inflation, or understanding why a codebase feels misaligned with its stated goals.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "data-engineer",
+        "kind": "skill",
+        "description": "Expert in data pipelines, ETL processes, and data infrastructure",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "builds_robust"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "data-visualizer",
+        "kind": "skill",
+        "description": "Expert in creating charts, dashboards, and data visualizations using modern libraries",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "builds_beautiful"
+        ],
+        "domains": [
+          "ai",
+          "api",
+          "frontend",
+          "backend",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "deployment-advisor",
+        "kind": "skill",
+        "description": "Choose deployment strategy and infrastructure for applications including Vercel, Railway, AWS, Docker, and CI/CD setup",
+        "preconditions": [
+          {
+            "check": "file_exists('package.json') or file_exists('Dockerfile') or application_ready",
+            "description": "Application ready for deployment",
+            "required": true
+          },
+          {
+            "check": "not deployed_to_production",
+            "description": "Not yet deployed to production",
+            "required": false
+          }
+        ],
+        "effects": [
+          "configures_deployment_pipeline",
+          "sets_up_cicd",
+          "configures_environment_variables",
+          "implements_zero_downtime_deployment",
+          "configures_monitoring",
+          "sets_up_logging",
+          "configures_auto_scaling",
+          "implements_rollback_strategy",
+          "configures_dns_ssl",
+          "sets_up_database_migrations"
+        ],
+        "domains": [
+          "deployment",
+          "devops",
+          "cicd",
+          "infrastructure",
+          "cloud",
+          "containers"
+        ],
+        "cost": "low_to_high",
+        "latency": "medium",
+        "risk_level": "medium"
+      },
+      {
+        "id": "design-system-architect",
+        "kind": "skill",
+        "description": "Build scalable, maintainable design systems that unify product experiences. Use when creating component libraries, design tokens, or establishing design standards. Covers atomic design, Storybook, theming, and design system governance.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "builds_scalable",
+          "designs_systems",
+          "designs_tokens",
+          "designs_standards"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "testing",
+          "product",
+          "design",
+          "data",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "figma-developer",
+        "kind": "skill",
+        "description": "Extract components from Figma, convert designs to React components, sync design tokens, and generate code from designs. Bridge the gap between design and code with automated workflows.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "designs_to",
+          "designs_tokens",
+          "designs_and"
+        ],
+        "domains": [
+          "ai",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "testing",
+          "product",
+          "design",
+          "data",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "focus-session-manager",
+        "kind": "skill",
+        "description": "Automatically manage focus sessions, breaks, and hyperfocus protection. Uses ADHD-optimized Pomodoro technique with flexible timers, health reminders, and gentle interruptions. Protects against hyperfocus burnout while maximizing productive time.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "testing",
+          "product",
+          "design",
+          "data",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "forensic-data-engineer",
+        "kind": "skill",
+        "description": "Expert in data forensics, anomaly detection, audit trail analysis, fraud detection, and breach investigation",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "testing",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "framework-orchestrator",
+        "kind": "skill",
+        "description": "Meta-skill that coordinates all frameworks and skills throughout the project lifecycle, providing intelligent sequencing based on project patterns",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "devops",
+          "testing",
+          "product",
+          "design",
+          "data",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "frontend-builder",
+        "kind": "skill",
+        "description": "Build modern React/Next.js frontends with proper component architecture, state management, and performance optimization",
+        "preconditions": [
+          {
+            "check": "file_exists('package.json')",
+            "description": "Node.js project initialized",
+            "required": true
+          },
+          {
+            "check": "not file_exists('app/') and not file_exists('src/')",
+            "description": "No existing frontend structure",
+            "required": false
+          },
+          {
+            "check": "has_dependency('react') or ready_to_install('react')",
+            "description": "React framework available",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_component_architecture",
+          "configures_nextjs_app_router",
+          "implements_state_management",
+          "adds_form_validation",
+          "configures_tailwind_css",
+          "implements_data_fetching",
+          "adds_error_boundaries",
+          "optimizes_performance",
+          "configures_typescript"
+        ],
+        "domains": [
+          "frontend",
+          "react",
+          "nextjs",
+          "ui",
+          "component-architecture",
+          "state-management",
+          "typescript",
+          "tailwindcss"
+        ],
+        "cost": "low",
+        "latency": "fast",
+        "risk_level": "low"
+      },
+      {
+        "id": "go-to-market-planner",
+        "kind": "skill",
+        "description": "Plan product launches and go-to-market strategy. Use when launching products, entering new markets, or planning marketing campaigns. Covers positioning, channels, messaging, and launch execution.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "security",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "growth-experimenter",
+        "kind": "skill",
+        "description": "Run systematic growth experiments to increase acquisition, activation, retention, and revenue. Use when optimizing conversion funnels, running A/B tests, improving metrics, or when users mention growth, experimentation, optimization, or scaling user acquisition.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "frontend",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "iot-developer",
+        "kind": "skill",
+        "description": "Expert in IoT development, microcontrollers, sensors, and MQTT protocols",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_smart",
+          "builds_iot"
+        ],
+        "domains": [
+          "api",
+          "frontend",
+          "backend",
+          "design",
+          "data",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "knowledge-base-manager",
+        "kind": "skill",
+        "description": "Design, build, and maintain curated knowledge bases that integrate document (RAG) and entity (graph) systems for high-quality, governable knowledge access.",
+        "preconditions": [
+          {
+            "check": "file_exists('knowledge_sources/inventory.yaml')",
+            "description": "Curated inventory of internal, external, and SME knowledge sources is documented."
+          },
+          {
+            "check": "file_exists('knowledge_base/schema.json')",
+            "description": "Knowledge schema or ontology (documents, entities, relationships, metadata) is defined and validated with stakeholders."
+          },
+          {
+            "check": "has_dependency('vector-database-mcp')",
+            "description": "Vector database tooling is available for document-based retrieval workflows.",
+            "required": false
+          },
+          {
+            "check": "has_dependency('graph-database-mcp')",
+            "description": "Graph database tooling is available for entity and relationship modeling.",
+            "required": false
+          }
+        ],
+        "effects": [
+          "creates_knowledge_architecture",
+          "configures_ingestion_pipeline",
+          "adds_provenance_tracking",
+          "establishes_quality_controls",
+          "implements_versioning_process",
+          "updates_governance_framework"
+        ],
+        "domains": [
+          "rag",
+          "knowledge-graph",
+          "data-engineering",
+          "governance",
+          "observability"
+        ],
+        "cost": "high",
+        "latency": "slow",
+        "risk_level": "medium"
+      },
+      {
+        "id": "knowledge-graph-builder",
+        "kind": "skill",
+        "description": "Design and build knowledge graphs. Use when modeling complex relationships, building semantic search, or creating knowledge bases. Covers schema design, entity relationships, and graph database selection.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "builds_knowledge",
+          "designs_and"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "devops",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "livestream-engineer",
+        "kind": "skill",
+        "description": "Expert in live streaming, WebRTC, and real-time video/audio",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_real",
+          "implements_webrtc",
+          "builds_live"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "backend",
+          "testing",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "localization-engineer",
+        "kind": "skill",
+        "description": "Expert in internationalization (i18n), multi-language support, and localization",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "builds_multilingual"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "manifest-generator",
+        "kind": "skill",
+        "description": "Generates capability manifests for skills and MCP resources by analyzing descriptions and validating output against the capability manifest schema using Codex.",
+        "preconditions": [
+          {
+            "check": "env_var_set('OPENAI_API_KEY')",
+            "description": "Codex access requires a configured OpenAI API key.",
+            "required": true
+          },
+          {
+            "check": "command_exists('codex')",
+            "description": "Codex CLI must be available to execute the generation prompt.",
+            "required": true
+          },
+          {
+            "check": "file_exists('SCHEMAS/capability-manifest.schema.json')",
+            "description": "Capability manifest schema is needed to structure and validate output.",
+            "required": true
+          },
+          {
+            "check": "file_exists(description_file)",
+            "description": "The provided resource description file must exist for analysis.",
+            "required": true
+          }
+        ],
+        "effects": [
+          "generates_capability_manifest",
+          "validates_manifest_against_schema",
+          "writes_manifest_to_output_path",
+          "updates_existing_manifest_if_present"
+        ],
+        "domains": [
+          "ai",
+          "automation",
+          "documentation",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "fast",
+        "risk_level": "low"
+      },
+      {
+        "id": "mobile-developer",
+        "kind": "skill",
+        "description": "Expert in React Native, Expo, and cross-platform mobile development",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "builds_cross"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "multi-agent-architect",
+        "kind": "skill",
+        "description": "Design and orchestrate multi-agent systems with coordinated, role-based agents to solve complex problems.",
+        "preconditions": [
+          {
+            "check": "file_exists('docs/problem_statement.md')",
+            "description": "Problem statement captures the complex objectives motivating a multi-agent design."
+          },
+          {
+            "check": "file_exists('docs/workflow_requirements.md')",
+            "description": "Workflow requirements outline dependencies, decision points, and success criteria."
+          },
+          {
+            "check": "has_dependency('crewai')",
+            "description": "CrewAI installed to support role-based agent orchestration patterns.",
+            "required": false
+          },
+          {
+            "check": "has_dependency('langgraph')",
+            "description": "LangGraph available for state-machine-based agent coordination.",
+            "required": false
+          }
+        ],
+        "effects": [
+          "creates_multi_agent_architecture_plan",
+          "defines_agent_roles_matrix",
+          "configures_agent_communication_channels",
+          "documents_execution_and_observability_workflows"
+        ],
+        "domains": [
+          "orchestration",
+          "multi-agent",
+          "architecture",
+          "ai_systems"
+        ],
+        "cost": "medium",
+        "latency": "slow",
+        "risk_level": "medium"
+      },
+      {
+        "id": "mvp-builder",
+        "kind": "skill",
+        "description": "Rapid MVP development and feature prioritization for fast product validation, avoiding over-engineering",
+        "preconditions": [
+          {
+            "check": "has_product_idea or has_feature_request",
+            "description": "Clear product idea or feature to validate",
+            "required": true
+          },
+          {
+            "check": "not file_exists('FEATURE_COMPLETE.md')",
+            "description": "Not in feature-complete production phase",
+            "required": false
+          }
+        ],
+        "effects": [
+          "defines_mvp_scope",
+          "prioritizes_features_p0_p1_p2",
+          "creates_validation_metrics",
+          "identifies_riskiest_assumptions",
+          "defines_success_criteria",
+          "prevents_over_engineering",
+          "enables_fast_iteration",
+          "creates_feature_roadmap"
+        ],
+        "domains": [
+          "product-development",
+          "mvp",
+          "validation",
+          "prioritization",
+          "lean-startup",
+          "agile"
+        ],
+        "cost": "low",
+        "latency": "fast",
+        "risk_level": "low"
+      },
+      {
+        "id": "orchestration-planner",
+        "kind": "skill",
+        "description": "Decomposes user goals into executable multi-step workflows by analyzing capability graphs, validating preconditions, generating hierarchical task networks, and logging planning decisions using Codex-assisted reasoning.\n",
+        "preconditions": [
+          {
+            "check": "file_exists('META/capability-graph.json')",
+            "description": "Capability graph must exist to resolve effects and relationships.",
+            "required": true
+          },
+          {
+            "check": "env_var_set('CODEX_API_KEY')",
+            "description": "Codex API key is required for goal analysis and HTN synthesis.",
+            "required": true
+          },
+          {
+            "check": "has_dependency('python3')",
+            "description": "Python runtime must be available for candidate validation scripts.",
+            "required": true
+          },
+          {
+            "check": "env_var_set('WORKDIR')",
+            "description": "Working directory context for evaluating project state.",
+            "required": false
+          }
+        ],
+        "effects": [
+          "analyzes_goal_effects",
+          "validates_capability_preconditions",
+          "generates_htn_plan",
+          "scores_plan_alternatives",
+          "produces_decision_log"
+        ],
+        "domains": [
+          "planning",
+          "orchestration",
+          "ai"
+        ],
+        "cost": "medium",
+        "latency": "slow",
+        "risk_level": "low"
+      },
+      {
+        "id": "performance-optimizer",
+        "kind": "skill",
+        "description": "Optimize application performance and scalability. Use when investigating slow applications, scaling bottlenecks, or improving response times. Covers profiling, caching, database optimization, and frontend performance.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "devops",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "pricing-strategist",
+        "kind": "skill",
+        "description": "Design and optimize pricing strategies for SaaS products including tiering, packaging, value metrics, and experimentation. Use when setting initial pricing, optimizing conversion, expanding revenue, or when users ask about pricing strategy, monetization, or revenue optimization.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "designs_and"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "product-analyst",
+        "kind": "skill",
+        "description": "Track user metrics and provide data-driven insights for product decisions. Use when measuring product health, analyzing user behavior, conducting cohort analysis, or optimizing key metrics. Covers acquisition, engagement, retention, revenue metrics, and data-driven decision making.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "frontend",
+          "backend",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "product-analytics",
+        "kind": "skill",
+        "description": "Measure what matters with proper event tracking, funnels, cohorts, and metrics. Use when setting up analytics, tracking features, or understanding behavior.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "frontend",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "product-strategist",
+        "kind": "skill",
+        "description": "Validate product-market fit and strategic direction through discovery, validation, and prioritization before development",
+        "preconditions": [
+          {
+            "check": "has_product_idea or has_problem_statement",
+            "description": "Product idea or problem to solve",
+            "required": true
+          },
+          {
+            "check": "not validated_with_users",
+            "description": "Not yet validated with target users",
+            "required": false
+          }
+        ],
+        "effects": [
+          "validates_problem_solution_fit",
+          "defines_target_market",
+          "creates_user_personas",
+          "validates_product_market_fit",
+          "prioritizes_features",
+          "defines_value_proposition",
+          "identifies_competitive_advantage",
+          "creates_go_to_market_strategy",
+          "defines_success_metrics",
+          "prevents_building_wrong_product"
+        ],
+        "domains": [
+          "product-management",
+          "strategy",
+          "validation",
+          "market-research",
+          "discovery",
+          "lean-startup"
+        ],
+        "cost": "low",
+        "latency": "fast",
+        "risk_level": "low"
+      },
+      {
+        "id": "prototype-designer",
+        "kind": "skill",
+        "description": "Create interactive prototypes, design user flows, implement prototype testing strategies, and manage handoff to development. Validate ideas before building.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_interactive",
+          "implements_prototype",
+          "designs_user",
+          "validates_ideas"
+        ],
+        "domains": [
+          "ai",
+          "frontend",
+          "backend",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "prp-generator",
+        "kind": "skill",
+        "description": "Guides creation of Product Requirements Prompts (PRPs) - comprehensive requirement documents that serve as the foundation for AI-assisted development",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_prp"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "devops",
+          "testing",
+          "product",
+          "design",
+          "data",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "quality-assurance",
+        "kind": "skill",
+        "description": "Comprehensive quality assurance combining testing strategy, code quality enforcement, and validation gates. Consolidated from testing-strategist, code-quality-enforcer, and validation-gate-checker.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "devops",
+          "testing",
+          "product",
+          "design",
+          "data",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "quality-auditor",
+        "kind": "skill",
+        "description": "Comprehensive quality auditing and evaluation of tools, frameworks, and systems against industry best practices with detailed scoring across 12 critical dimensions",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "devops",
+          "testing",
+          "product",
+          "design",
+          "data",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "rag-implementer",
+        "kind": "skill",
+        "description": "Implement retrieval-augmented generation systems with vector databases, embedding pipelines, and retrieval strategies",
+        "preconditions": [
+          {
+            "check": "file_exists('package.json')",
+            "description": "Node.js/TypeScript project with package.json",
+            "required": true
+          },
+          {
+            "check": "not file_exists('.vector-index') or not file_exists('vectordb/')",
+            "description": "Vector database not already configured",
+            "required": false
+          },
+          {
+            "check": "env_var_set('OPENAI_API_KEY') or env_var_set('ANTHROPIC_API_KEY')",
+            "description": "LLM API key for embeddings and generation",
+            "required": true
+          },
+          {
+            "check": "has_dependency('langchain') or has_dependency('@langchain/core')",
+            "description": "LangChain or similar RAG framework",
+            "required": false
+          }
+        ],
+        "effects": [
+          "creates_vector_index",
+          "adds_embedding_pipeline",
+          "configures_retrieval_api",
+          "implements_hybrid_search",
+          "adds_rag_evaluation_metrics",
+          "implements_context_assembly",
+          "adds_source_attribution",
+          "configures_vector_database"
+        ],
+        "domains": [
+          "rag",
+          "ai",
+          "search",
+          "embeddings",
+          "vector-database",
+          "knowledge-management",
+          "nlp"
+        ],
+        "cost": "medium",
+        "latency": "slow",
+        "risk_level": "low"
+      },
+      {
+        "id": "release-manager",
+        "kind": "skill",
+        "description": "Ship features safely with progressive rollouts, feature flags, and canary deployments. Use when deploying risky features or need gradual rollouts.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "backend",
+          "devops",
+          "testing",
+          "product",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "security-architect",
+        "kind": "skill",
+        "description": "Comprehensive security architecture combining threat modeling, security-first design, secure coding review, and compliance validation. Consolidated from threat-modeling, security-first-design, secure-coding-review, and compliance-validator.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "devops",
+          "testing",
+          "product",
+          "design",
+          "data",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "security-engineer",
+        "kind": "skill",
+        "description": "Implement security best practices across the application stack including authentication, authorization, input validation, and OWASP Top 10 prevention",
+        "preconditions": [
+          {
+            "check": "file_exists('package.json') or file_exists('requirements.txt') or file_exists('pom.xml')",
+            "description": "Application codebase exists",
+            "required": true
+          },
+          {
+            "check": "not has_security_review_passed",
+            "description": "Security review not yet completed",
+            "required": false
+          }
+        ],
+        "effects": [
+          "implements_authentication",
+          "implements_authorization",
+          "adds_input_validation",
+          "prevents_sql_injection",
+          "prevents_xss_attacks",
+          "prevents_csrf_attacks",
+          "implements_rate_limiting",
+          "adds_security_headers",
+          "implements_encryption",
+          "adds_audit_logging",
+          "configures_cors_properly",
+          "implements_secrets_management"
+        ],
+        "domains": [
+          "security",
+          "authentication",
+          "authorization",
+          "owasp",
+          "encryption",
+          "compliance",
+          "appsec"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "critical"
+      },
+      {
+        "id": "skill-validator",
+        "kind": "skill",
+        "description": "Validates that a skill or MCP implementation matches its manifest by running Codex-powered semantic comparisons across descriptions, preconditions, effects, and API surface.",
+        "preconditions": [
+          {
+            "check": "command_available('codex')",
+            "description": "Codex CLI must be installed and accessible on PATH to perform semantic analysis.",
+            "required": true
+          },
+          {
+            "check": "runtime_available('python3')",
+            "description": "Python 3 runtime must be available for JSON aggregation and manifest parsing.",
+            "required": true
+          },
+          {
+            "check": "file_exists(manifest_path)",
+            "description": "Target manifest file must exist at the provided or default path.",
+            "required": true
+          },
+          {
+            "check": "writable_directory('/tmp')",
+            "description": "Temporary directory access is needed to write intermediate validation artifacts.",
+            "required": true
+          },
+          {
+            "check": "file_exists(implementation_path)",
+            "description": "Implementation entrypoint should exist when validating code-backed skills; declarative-only skills may skip this.",
+            "required": false
+          }
+        ],
+        "effects": [
+          "creates_description_validation_json",
+          "creates_precondition_validation_json",
+          "creates_effect_validation_json",
+          "creates_validation_report_json",
+          "creates_api_surface_validation_json"
+        ],
+        "domains": [
+          "testing",
+          "qa",
+          "governance"
+        ],
+        "cost": "medium",
+        "latency": "slow",
+        "risk_level": "low"
+      },
+      {
+        "id": "spatial-developer",
+        "kind": "skill",
+        "description": "Expert in AR/VR, WebXR, and spatial computing for Vision Pro and web",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "builds_ar"
+        ],
+        "domains": [
+          "rag",
+          "frontend",
+          "testing",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "supabase-developer",
+        "kind": "skill",
+        "description": "Build full-stack applications with Supabase (PostgreSQL, Auth, Storage, Real-time, Edge Functions). Use when implementing authentication, database design with RLS, file storage, real-time features, or serverless functions.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "builds_full",
+          "designs_with"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "devops",
+          "testing",
+          "product",
+          "design",
+          "data",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "system-diagnostician",
+        "kind": "skill",
+        "description": "Performs Codex-assisted project health diagnostics, identifies capability gaps, and produces prioritized improvement plans.",
+        "preconditions": [
+          {
+            "check": "directory_exists(inputs.project_path)",
+            "description": "Project directory must exist and be readable.",
+            "required": true
+          },
+          {
+            "check": "file_exists(inputs.capability_graph)",
+            "description": "Capability graph JSON must be present for gap analysis.",
+            "required": true
+          },
+          {
+            "check": "command_available('codex')",
+            "description": "Codex CLI must be installed to perform AI-assisted assessments.",
+            "required": true
+          },
+          {
+            "check": "command_available('jq')",
+            "description": "jq executable needed to inspect JSON project metadata.",
+            "required": true
+          },
+          {
+            "check": "command_available('python3')",
+            "description": "Python 3 runtime required to score and prioritize recommendations.",
+            "required": true
+          },
+          {
+            "check": "writable_path('/tmp')",
+            "description": "Temporary directory must allow writing intermediate diagnostic files.",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_project_state_snapshot",
+          "creates_health_assessment_report",
+          "creates_capability_gap_analysis",
+          "creates_prioritized_action_plan",
+          "updates_project_health_metrics"
+        ],
+        "domains": [
+          "analysis",
+          "security",
+          "testing",
+          "performance",
+          "documentation",
+          "architecture",
+          "dependencies",
+          "ci_cd"
+        ],
+        "cost": "medium",
+        "latency": "slow",
+        "risk_level": "safe"
+      },
+      {
+        "id": "task-breakdown-specialist",
+        "kind": "skill",
+        "description": "Break large tasks into ADHD-friendly micro-tasks that minimize activation energy and maximize momentum. Use when feeling overwhelmed, can't start a task, or need to make progress visible. Optimized for ADHD developers with 15-minute task chunking and dopamine-driven ordering.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "testing",
+          "product",
+          "design",
+          "data",
+          "orchestration"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "technical-writer",
+        "kind": "skill",
+        "description": "Create clear, comprehensive technical documentation for developers and users. Use when documenting APIs, writing user guides, creating tutorials, or setting up documentation sites. Covers API docs, user guides, architecture documentation, and documentation best practices.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_clear"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "api",
+          "frontend",
+          "backend",
+          "security",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "testing-strategist",
+        "kind": "skill",
+        "description": "Design and implement comprehensive testing strategies with unit tests, integration tests, E2E tests, and test-driven development",
+        "preconditions": [
+          {
+            "check": "file_exists('package.json') or file_exists('requirements.txt')",
+            "description": "Project initialized with package manager",
+            "required": true
+          },
+          {
+            "check": "has_source_code_to_test()",
+            "description": "Application code exists to test",
+            "required": true
+          },
+          {
+            "check": "not file_exists('jest.config.js') and not file_exists('vitest.config.ts')",
+            "description": "Testing framework not already configured",
+            "required": false
+          }
+        ],
+        "effects": [
+          "configures_testing_framework",
+          "creates_unit_tests",
+          "creates_integration_tests",
+          "creates_e2e_tests",
+          "implements_test_coverage",
+          "adds_ci_test_pipeline",
+          "creates_test_fixtures",
+          "implements_mocking_strategy",
+          "adds_test_documentation"
+        ],
+        "domains": [
+          "testing",
+          "quality-assurance",
+          "tdd",
+          "unit-testing",
+          "integration-testing",
+          "e2e-testing",
+          "ci-cd"
+        ],
+        "cost": "low",
+        "latency": "fast",
+        "risk_level": "safe"
+      },
+      {
+        "id": "usability-tester",
+        "kind": "skill",
+        "description": "Conduct usability tests and identify UX issues through systematic observation. Use when testing user flows, validating designs, identifying friction points, or ensuring users can complete core tasks. Covers test planning, think-aloud protocol, task scenarios, and severity rating.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "provides_capability"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "frontend",
+          "testing",
+          "product",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "user-researcher",
+        "kind": "skill",
+        "description": "Conduct user research and validation through interviews, surveys, and analysis to understand user needs and pain points",
+        "preconditions": [
+          {
+            "check": "has_research_questions or has_hypotheses",
+            "description": "Clear research questions or hypotheses to test",
+            "required": true
+          },
+          {
+            "check": "has_target_users_identified",
+            "description": "Target user segment identified",
+            "required": true
+          }
+        ],
+        "effects": [
+          "conducts_user_interviews",
+          "creates_user_personas",
+          "identifies_pain_points",
+          "validates_assumptions",
+          "maps_user_journeys",
+          "synthesizes_insights",
+          "prioritizes_needs",
+          "identifies_opportunities",
+          "creates_research_artifacts"
+        ],
+        "domains": [
+          "user-research",
+          "ux",
+          "validation",
+          "discovery",
+          "interviews",
+          "ethnography"
+        ],
+        "cost": "low",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "ux-designer",
+        "kind": "skill",
+        "description": "Design user experiences and interfaces including user journeys, wireframes, prototypes, and information architecture",
+        "preconditions": [
+          {
+            "check": "has_user_research or has_personas",
+            "description": "User research or personas available",
+            "required": false
+          },
+          {
+            "check": "has_feature_requirements",
+            "description": "Feature requirements defined",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_user_flows",
+          "designs_wireframes",
+          "creates_prototypes",
+          "defines_information_architecture",
+          "designs_interaction_patterns",
+          "ensures_accessibility",
+          "optimizes_user_journey",
+          "reduces_friction",
+          "improves_conversion",
+          "creates_design_specifications"
+        ],
+        "domains": [
+          "ux",
+          "design",
+          "user-experience",
+          "wireframes",
+          "prototypes",
+          "information-architecture",
+          "interaction-design"
+        ],
+        "cost": "low",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "video-producer",
+        "kind": "skill",
+        "description": "Expert in video playback, streaming, and video player customization",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "creates_engaging",
+          "builds_video"
+        ],
+        "domains": [
+          "ai",
+          "api",
+          "frontend",
+          "backend",
+          "testing",
+          "design",
+          "data"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "visual-designer",
+        "kind": "skill",
+        "description": "Design beautiful, consistent user interfaces with proper color theory, typography, spacing, and visual hierarchy. Use when creating design systems, choosing colors and fonts, or establishing visual direction. Covers color theory, typography scales, spacing systems, and design principles.",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "designs_beautiful",
+          "designs_systems",
+          "designs_principles"
+        ],
+        "domains": [
+          "ai",
+          "rag",
+          "frontend",
+          "testing",
+          "product",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      },
+      {
+        "id": "voice-interface-builder",
+        "kind": "skill",
+        "description": "Expert in building voice interfaces, speech recognition, and text-to-speech systems",
+        "preconditions": [
+          {
+            "check": "project_initialized",
+            "description": "Project environment is set up",
+            "required": true
+          }
+        ],
+        "effects": [
+          "builds_voice"
+        ],
+        "domains": [
+          "ai",
+          "api",
+          "frontend",
+          "backend",
+          "testing",
+          "design"
+        ],
+        "cost": "medium",
+        "latency": "medium",
+        "risk_level": "low"
+      }
+    ],
+    "edges": [
+      {
+        "from": "brain-mcp",
+        "to": "capability-graph",
+        "type": "requires"
+      },
+      {
+        "from": "brain-mcp",
+        "to": "brain-cli",
+        "type": "requires"
+      },
+      {
+        "from": "brain-mcp",
+        "to": "graph-query-tool",
+        "type": "requires"
+      },
+      {
+        "from": "brain-mcp",
+        "to": "intelligent-orchestration",
+        "type": "enables"
+      },
+      {
+        "from": "brain-mcp",
+        "to": "skill-discovery",
+        "type": "enables"
+      },
+      {
+        "from": "brain-mcp",
+        "to": "mcp-selection",
+        "type": "enables"
+      },
+      {
+        "from": "brain-mcp",
+        "to": "dependency-resolution",
+        "type": "enables"
+      },
+      {
+        "from": "brain-mcp",
+        "to": "all-skills",
+        "type": "composes_with"
+      },
+      {
+        "from": "brain-mcp",
+        "to": "all-mcps",
+        "type": "composes_with"
+      },
+      {
+        "from": "3d-visualizer",
+        "to": "frontend-build-pipeline",
+        "type": "requires"
+      },
+      {
+        "from": "3d-visualizer",
+        "to": "immersive-product-experiences",
+        "type": "enables"
+      },
+      {
+        "from": "3d-visualizer",
+        "to": "advanced-data-visualization",
+        "type": "enables"
+      },
+      {
+        "from": "3d-visualizer",
+        "to": "ui-design-system",
+        "type": "composes_with"
+      },
+      {
+        "from": "3d-visualizer",
+        "to": "analytics-dashboard",
+        "type": "composes_with"
+      },
+      {
+        "from": "api-designer",
+        "to": "backend-framework",
+        "type": "requires"
+      },
+      {
+        "from": "api-designer",
+        "to": "database-connection",
+        "type": "requires"
+      },
+      {
+        "from": "api-designer",
+        "to": "client-server-communication",
+        "type": "enables"
+      },
+      {
+        "from": "api-designer",
+        "to": "third-party-integration",
+        "type": "enables"
+      },
+      {
+        "from": "api-designer",
+        "to": "mobile-app-backend",
+        "type": "enables"
+      },
+      {
+        "from": "api-designer",
+        "to": "microservices-architecture",
+        "type": "enables"
+      },
+      {
+        "from": "api-designer",
+        "to": "frontend-builder",
+        "type": "composes_with"
+      },
+      {
+        "from": "api-designer",
+        "to": "security-engineer",
+        "type": "composes_with"
+      },
+      {
+        "from": "api-designer",
+        "to": "testing-strategist",
+        "type": "composes_with"
+      },
+      {
+        "from": "api-designer",
+        "to": "deployment-advisor",
+        "type": "composes_with"
+      },
+      {
+        "from": "api-designer",
+        "to": "performance-optimizer",
+        "type": "composes_with"
+      },
+      {
+        "from": "api-designer",
+        "to": "incompatible-api-version",
+        "type": "conflicts_with"
+      },
+      {
+        "from": "archon-manager",
+        "to": "archon-mcp",
+        "type": "requires"
+      },
+      {
+        "from": "archon-manager",
+        "to": "supabase-integration",
+        "type": "requires"
+      },
+      {
+        "from": "archon-manager",
+        "to": "openai-integration",
+        "type": "requires"
+      },
+      {
+        "from": "archon-manager",
+        "to": "two-layer-orchestration",
+        "type": "enables"
+      },
+      {
+        "from": "archon-manager",
+        "to": "project-velocity-tracking",
+        "type": "enables"
+      },
+      {
+        "from": "archon-manager",
+        "to": "rag-implementer",
+        "type": "composes_with"
+      },
+      {
+        "from": "archon-manager",
+        "to": "knowledge-base-manager",
+        "type": "composes_with"
+      },
+      {
+        "from": "archon-manager",
+        "to": "mvp-builder",
+        "type": "composes_with"
+      },
+      {
+        "from": "archon-manager",
+        "to": "product-strategist",
+        "type": "composes_with"
+      },
+      {
+        "from": "archon-manager",
+        "to": "multi-agent-architect",
+        "type": "composes_with"
+      },
+      {
+        "from": "capability-graph-builder",
+        "to": "manifest-generator",
+        "type": "requires"
+      },
+      {
+        "from": "capability-graph-builder",
+        "to": "openai-integration",
+        "type": "requires"
+      },
+      {
+        "from": "capability-graph-builder",
+        "to": "orchestration-planner",
+        "type": "enables"
+      },
+      {
+        "from": "capability-graph-builder",
+        "to": "capability-query-api",
+        "type": "enables"
+      },
+      {
+        "from": "capability-graph-builder",
+        "to": "skill-validator",
+        "type": "enables"
+      },
+      {
+        "from": "capability-graph-builder",
+        "to": "skill-validator",
+        "type": "composes_with"
+      },
+      {
+        "from": "capability-graph-builder",
+        "to": "orchestration-planner",
+        "type": "composes_with"
+      },
+      {
+        "from": "capability-graph-builder",
+        "to": "capability-graph-visualizer",
+        "type": "composes_with"
+      },
+      {
+        "from": "deployment-advisor",
+        "to": "application-ready",
+        "type": "requires"
+      },
+      {
+        "from": "deployment-advisor",
+        "to": "production-deployment",
+        "type": "enables"
+      },
+      {
+        "from": "deployment-advisor",
+        "to": "continuous-deployment",
+        "type": "enables"
+      },
+      {
+        "from": "deployment-advisor",
+        "to": "auto-scaling",
+        "type": "enables"
+      },
+      {
+        "from": "deployment-advisor",
+        "to": "zero-downtime-updates",
+        "type": "enables"
+      },
+      {
+        "from": "deployment-advisor",
+        "to": "frontend-builder",
+        "type": "composes_with"
+      },
+      {
+        "from": "deployment-advisor",
+        "to": "api-designer",
+        "type": "composes_with"
+      },
+      {
+        "from": "deployment-advisor",
+        "to": "security-engineer",
+        "type": "composes_with"
+      },
+      {
+        "from": "deployment-advisor",
+        "to": "testing-strategist",
+        "type": "composes_with"
+      },
+      {
+        "from": "deployment-advisor",
+        "to": "performance-optimizer",
+        "type": "composes_with"
+      },
+      {
+        "from": "deployment-advisor",
+        "to": "manual-deployment-only",
+        "type": "conflicts_with"
+      },
+      {
+        "from": "frontend-builder",
+        "to": "node-js",
+        "type": "requires"
+      },
+      {
+        "from": "frontend-builder",
+        "to": "npm-or-yarn",
+        "type": "requires"
+      },
+      {
+        "from": "frontend-builder",
+        "to": "interactive-ui",
+        "type": "enables"
+      },
+      {
+        "from": "frontend-builder",
+        "to": "client-side-routing",
+        "type": "enables"
+      },
+      {
+        "from": "frontend-builder",
+        "to": "server-side-rendering",
+        "type": "enables"
+      },
+      {
+        "from": "frontend-builder",
+        "to": "static-site-generation",
+        "type": "enables"
+      },
+      {
+        "from": "frontend-builder",
+        "to": "api-designer",
+        "type": "composes_with"
+      },
+      {
+        "from": "frontend-builder",
+        "to": "design-system-architect",
+        "type": "composes_with"
+      },
+      {
+        "from": "frontend-builder",
+        "to": "ux-designer",
+        "type": "composes_with"
+      },
+      {
+        "from": "frontend-builder",
+        "to": "testing-strategist",
+        "type": "composes_with"
+      },
+      {
+        "from": "frontend-builder",
+        "to": "performance-optimizer",
+        "type": "composes_with"
+      },
+      {
+        "from": "frontend-builder",
+        "to": "vue-frontend",
+        "type": "conflicts_with"
+      },
+      {
+        "from": "frontend-builder",
+        "to": "angular-frontend",
+        "type": "conflicts_with"
+      },
+      {
+        "from": "knowledge-base-manager",
+        "to": "knowledge-base-mcp",
+        "type": "enables"
+      },
+      {
+        "from": "knowledge-base-manager",
+        "to": "semantic-search-mcp",
+        "type": "enables"
+      },
+      {
+        "from": "knowledge-base-manager",
+        "to": "rag-implementer",
+        "type": "composes_with"
+      },
+      {
+        "from": "knowledge-base-manager",
+        "to": "knowledge-graph-builder",
+        "type": "composes_with"
+      },
+      {
+        "from": "knowledge-base-manager",
+        "to": "data-engineer",
+        "type": "composes_with"
+      },
+      {
+        "from": "knowledge-base-manager",
+        "to": "quality-auditor",
+        "type": "composes_with"
+      },
+      {
+        "from": "knowledge-base-manager",
+        "to": "technical-writer",
+        "type": "composes_with"
+      },
+      {
+        "from": "manifest-generator",
+        "to": "openai-integration",
+        "type": "requires"
+      },
+      {
+        "from": "manifest-generator",
+        "to": "schema-registry",
+        "type": "requires"
+      },
+      {
+        "from": "manifest-generator",
+        "to": "capability-graph-builder",
+        "type": "enables"
+      },
+      {
+        "from": "manifest-generator",
+        "to": "skill-validator",
+        "type": "enables"
+      },
+      {
+        "from": "manifest-generator",
+        "to": "orchestration-planner",
+        "type": "enables"
+      },
+      {
+        "from": "manifest-generator",
+        "to": "capability-graph-builder",
+        "type": "composes_with"
+      },
+      {
+        "from": "manifest-generator",
+        "to": "skill-validator",
+        "type": "composes_with"
+      },
+      {
+        "from": "manifest-generator",
+        "to": "orchestration-planner",
+        "type": "composes_with"
+      },
+      {
+        "from": "multi-agent-architect",
+        "to": "requirements-elicitor",
+        "type": "requires"
+      },
+      {
+        "from": "multi-agent-architect",
+        "to": "deploy-multi-agent-system",
+        "type": "enables"
+      },
+      {
+        "from": "multi-agent-architect",
+        "to": "debug-agent-workflows",
+        "type": "enables"
+      },
+      {
+        "from": "multi-agent-architect",
+        "to": "rag-implementer",
+        "type": "composes_with"
+      },
+      {
+        "from": "multi-agent-architect",
+        "to": "knowledge-graph-builder",
+        "type": "composes_with"
+      },
+      {
+        "from": "multi-agent-architect",
+        "to": "api-designer",
+        "type": "composes_with"
+      },
+      {
+        "from": "multi-agent-architect",
+        "to": "single-agent-optimizer",
+        "type": "conflicts_with"
+      },
+      {
+        "from": "mvp-builder",
+        "to": "fast-validation",
+        "type": "enables"
+      },
+      {
+        "from": "mvp-builder",
+        "to": "lean-development",
+        "type": "enables"
+      },
+      {
+        "from": "mvp-builder",
+        "to": "iterative-improvement",
+        "type": "enables"
+      },
+      {
+        "from": "mvp-builder",
+        "to": "user-feedback-loops",
+        "type": "enables"
+      },
+      {
+        "from": "mvp-builder",
+        "to": "product-strategist",
+        "type": "composes_with"
+      },
+      {
+        "from": "mvp-builder",
+        "to": "user-researcher",
+        "type": "composes_with"
+      },
+      {
+        "from": "mvp-builder",
+        "to": "frontend-builder",
+        "type": "composes_with"
+      },
+      {
+        "from": "mvp-builder",
+        "to": "api-designer",
+        "type": "composes_with"
+      },
+      {
+        "from": "mvp-builder",
+        "to": "testing-strategist",
+        "type": "composes_with"
+      },
+      {
+        "from": "mvp-builder",
+        "to": "feature-complete-mentality",
+        "type": "conflicts_with"
+      },
+      {
+        "from": "mvp-builder",
+        "to": "premature-optimization",
+        "type": "conflicts_with"
+      },
+      {
+        "from": "orchestration-planner",
+        "to": "capability-graph-builder",
+        "type": "requires"
+      },
+      {
+        "from": "orchestration-planner",
+        "to": "manifest-generator",
+        "type": "requires"
+      },
+      {
+        "from": "orchestration-planner",
+        "to": "system-diagnostician",
+        "type": "enables"
+      },
+      {
+        "from": "orchestration-planner",
+        "to": "repository-brain",
+        "type": "composes_with"
+      },
+      {
+        "from": "orchestration-planner",
+        "to": "system-diagnostician",
+        "type": "composes_with"
+      },
+      {
+        "from": "orchestration-planner",
+        "to": "manual-planning-only",
+        "type": "conflicts_with"
+      },
+      {
+        "from": "product-strategist",
+        "to": "validated-product-direction",
+        "type": "enables"
+      },
+      {
+        "from": "product-strategist",
+        "to": "informed-feature-prioritization",
+        "type": "enables"
+      },
+      {
+        "from": "product-strategist",
+        "to": "clear-value-proposition",
+        "type": "enables"
+      },
+      {
+        "from": "product-strategist",
+        "to": "market-fit",
+        "type": "enables"
+      },
+      {
+        "from": "product-strategist",
+        "to": "user-researcher",
+        "type": "composes_with"
+      },
+      {
+        "from": "product-strategist",
+        "to": "mvp-builder",
+        "type": "composes_with"
+      },
+      {
+        "from": "product-strategist",
+        "to": "product-analyst",
+        "type": "composes_with"
+      },
+      {
+        "from": "product-strategist",
+        "to": "go-to-market-planner",
+        "type": "composes_with"
+      },
+      {
+        "from": "product-strategist",
+        "to": "build-first-validate-later",
+        "type": "conflicts_with"
+      },
+      {
+        "from": "rag-implementer",
+        "to": "openai-integration",
+        "type": "requires"
+      },
+      {
+        "from": "rag-implementer",
+        "to": "pinecone-mcp",
+        "type": "requires"
+      },
+      {
+        "from": "rag-implementer",
+        "to": "embedding-generator-mcp",
+        "type": "requires"
+      },
+      {
+        "from": "rag-implementer",
+        "to": "semantic-search",
+        "type": "enables"
+      },
+      {
+        "from": "rag-implementer",
+        "to": "document-qa",
+        "type": "enables"
+      },
+      {
+        "from": "rag-implementer",
+        "to": "knowledge-retrieval",
+        "type": "enables"
+      },
+      {
+        "from": "rag-implementer",
+        "to": "context-aware-generation",
+        "type": "enables"
+      },
+      {
+        "from": "rag-implementer",
+        "to": "vector-database-mcp",
+        "type": "composes_with"
+      },
+      {
+        "from": "rag-implementer",
+        "to": "semantic-search-mcp",
+        "type": "composes_with"
+      },
+      {
+        "from": "rag-implementer",
+        "to": "knowledge-graph-builder",
+        "type": "composes_with"
+      },
+      {
+        "from": "rag-implementer",
+        "to": "multi-agent-architect",
+        "type": "composes_with"
+      },
+      {
+        "from": "rag-implementer",
+        "to": "existing-incompatible-search-system",
+        "type": "conflicts_with"
+      },
+      {
+        "from": "security-engineer",
+        "to": "application-codebase",
+        "type": "requires"
+      },
+      {
+        "from": "security-engineer",
+        "to": "secure-authentication",
+        "type": "enables"
+      },
+      {
+        "from": "security-engineer",
+        "to": "secure-api",
+        "type": "enables"
+      },
+      {
+        "from": "security-engineer",
+        "to": "compliance-readiness",
+        "type": "enables"
+      },
+      {
+        "from": "security-engineer",
+        "to": "production-deployment",
+        "type": "enables"
+      },
+      {
+        "from": "security-engineer",
+        "to": "api-designer",
+        "type": "composes_with"
+      },
+      {
+        "from": "security-engineer",
+        "to": "frontend-builder",
+        "type": "composes_with"
+      },
+      {
+        "from": "security-engineer",
+        "to": "deployment-advisor",
+        "type": "composes_with"
+      },
+      {
+        "from": "security-engineer",
+        "to": "testing-strategist",
+        "type": "composes_with"
+      },
+      {
+        "from": "security-engineer",
+        "to": "insecure-legacy-patterns",
+        "type": "conflicts_with"
+      },
+      {
+        "from": "skill-validator",
+        "to": "system-diagnostician",
+        "type": "enables"
+      },
+      {
+        "from": "skill-validator",
+        "to": "manifest-generator",
+        "type": "composes_with"
+      },
+      {
+        "from": "skill-validator",
+        "to": "capability-graph-builder",
+        "type": "composes_with"
+      },
+      {
+        "from": "system-diagnostician",
+        "to": "capability-graph-builder",
+        "type": "requires"
+      },
+      {
+        "from": "system-diagnostician",
+        "to": "orchestration-planner",
+        "type": "enables"
+      },
+      {
+        "from": "system-diagnostician",
+        "to": "repository-brain",
+        "type": "composes_with"
+      },
+      {
+        "from": "system-diagnostician",
+        "to": "skill-validator",
+        "type": "composes_with"
+      },
+      {
+        "from": "testing-strategist",
+        "to": "testing-framework",
+        "type": "requires"
+      },
+      {
+        "from": "testing-strategist",
+        "to": "source-code",
+        "type": "requires"
+      },
+      {
+        "from": "testing-strategist",
+        "to": "continuous-integration",
+        "type": "enables"
+      },
+      {
+        "from": "testing-strategist",
+        "to": "test-driven-development",
+        "type": "enables"
+      },
+      {
+        "from": "testing-strategist",
+        "to": "regression-prevention",
+        "type": "enables"
+      },
+      {
+        "from": "testing-strategist",
+        "to": "code-quality-monitoring",
+        "type": "enables"
+      },
+      {
+        "from": "testing-strategist",
+        "to": "frontend-builder",
+        "type": "composes_with"
+      },
+      {
+        "from": "testing-strategist",
+        "to": "api-designer",
+        "type": "composes_with"
+      },
+      {
+        "from": "testing-strategist",
+        "to": "security-engineer",
+        "type": "composes_with"
+      },
+      {
+        "from": "testing-strategist",
+        "to": "performance-optimizer",
+        "type": "composes_with"
+      },
+      {
+        "from": "testing-strategist",
+        "to": "ci-cd-pipeline",
+        "type": "composes_with"
+      },
+      {
+        "from": "testing-strategist",
+        "to": "incompatible-test-framework",
+        "type": "conflicts_with"
+      },
+      {
+        "from": "user-researcher",
+        "to": "target-users-access",
+        "type": "requires"
+      },
+      {
+        "from": "user-researcher",
+        "to": "user-validated-decisions",
+        "type": "enables"
+      },
+      {
+        "from": "user-researcher",
+        "to": "persona-driven-design",
+        "type": "enables"
+      },
+      {
+        "from": "user-researcher",
+        "to": "empathy-based-development",
+        "type": "enables"
+      },
+      {
+        "from": "user-researcher",
+        "to": "evidence-based-prioritization",
+        "type": "enables"
+      },
+      {
+        "from": "user-researcher",
+        "to": "product-strategist",
+        "type": "composes_with"
+      },
+      {
+        "from": "user-researcher",
+        "to": "ux-designer",
+        "type": "composes_with"
+      },
+      {
+        "from": "user-researcher",
+        "to": "mvp-builder",
+        "type": "composes_with"
+      },
+      {
+        "from": "user-researcher",
+        "to": "usability-tester",
+        "type": "composes_with"
+      },
+      {
+        "from": "user-researcher",
+        "to": "assumption-driven-development",
+        "type": "conflicts_with"
+      },
+      {
+        "from": "ux-designer",
+        "to": "user-centered-design",
+        "type": "enables"
+      },
+      {
+        "from": "ux-designer",
+        "to": "validated-interfaces",
+        "type": "enables"
+      },
+      {
+        "from": "ux-designer",
+        "to": "clear-development-specs",
+        "type": "enables"
+      },
+      {
+        "from": "ux-designer",
+        "to": "improved-usability",
+        "type": "enables"
+      },
+      {
+        "from": "ux-designer",
+        "to": "user-researcher",
+        "type": "composes_with"
+      },
+      {
+        "from": "ux-designer",
+        "to": "visual-designer",
+        "type": "composes_with"
+      },
+      {
+        "from": "ux-designer",
+        "to": "frontend-builder",
+        "type": "composes_with"
+      },
+      {
+        "from": "ux-designer",
+        "to": "usability-tester",
+        "type": "composes_with"
+      },
+      {
+        "from": "ux-designer",
+        "to": "accessibility-engineer",
+        "type": "composes_with"
+      },
+      {
+        "from": "ux-designer",
+        "to": "design-system-architect",
+        "type": "composes_with"
+      },
+      {
+        "from": "ux-designer",
+        "to": "design-after-development",
+        "type": "conflicts_with"
+      }
+    ],
+    "domains": {
+      "frontend": [
+        "3d-asset-manager-mcp",
+        "agent-orchestrator-mcp",
+        "animation-library-mcp",
+        "api-validator-mcp",
+        "asset-library-mcp",
+        "asset-optimizer-mcp",
+        "audio-processor-mcp",
+        "chart-builder-mcp",
+        "code-quality-scanner-mcp",
+        "component-generator-mcp",
+        "dark-matter-analyzer-mcp",
+        "dark-mode-converter-mcp",
+        "database-migration-mcp",
+        "deployment-orchestrator-mcp",
+        "design-handoff-mcp",
+        "design-token-manager-mcp",
+        "doc-generator-mcp",
+        "embedding-generator-mcp",
+        "feature-prioritizer-mcp",
+        "figma-sync-mcp",
+        "font-optimizer-mcp",
+        "graph-database-mcp",
+        "i18n-manager-mcp",
+        "icon-library-mcp",
+        "illustration-generator-mcp",
+        "image-generator-mcp",
+        "iot-device-manager-mcp",
+        "knowledge-base-mcp",
+        "market-analyzer-mcp",
+        "mobile-builder-mcp",
+        "openapi-generator-mcp",
+        "performance-profiler-mcp",
+        "props-documenter-mcp",
+        "responsive-preview-mcp",
+        "screenshot-testing-mcp",
+        "security-scanner-mcp",
+        "semantic-search-mcp",
+        "seo-analyzer-mcp",
+        "storybook-generator-mcp",
+        "streaming-setup-mcp",
+        "svg-generator-mcp",
+        "test-runner-mcp",
+        "theme-builder-mcp",
+        "typography-analyzer-mcp",
+        "user-insight-analyzer-mcp",
+        "vector-database-mcp",
+        "video-optimizer-mcp",
+        "wireframe-generator-mcp",
+        "3d-visualizer",
+        "accessibility-engineer",
+        "animation-designer",
+        "api-integration-builder",
+        "asset-manager",
+        "audio-producer",
+        "bmad-method",
+        "brand-designer",
+        "codex-review-workflow",
+        "context-preserver",
+        "copywriter",
+        "customer-feedback-analyzer",
+        "customer-support-builder",
+        "dark-matter-analyzer",
+        "data-engineer",
+        "data-visualizer",
+        "design-system-architect",
+        "figma-developer",
+        "focus-session-manager",
+        "forensic-data-engineer",
+        "framework-orchestrator",
+        "frontend-builder",
+        "go-to-market-planner",
+        "growth-experimenter",
+        "iot-developer",
+        "knowledge-graph-builder",
+        "livestream-engineer",
+        "localization-engineer",
+        "mobile-developer",
+        "performance-optimizer",
+        "pricing-strategist",
+        "product-analyst",
+        "product-analytics",
+        "prototype-designer",
+        "prp-generator",
+        "quality-assurance",
+        "quality-auditor",
+        "security-architect",
+        "spatial-developer",
+        "supabase-developer",
+        "task-breakdown-specialist",
+        "technical-writer",
+        "usability-tester",
+        "video-producer",
+        "visual-designer",
+        "voice-interface-builder"
+      ],
+      "backend": [
+        "3d-asset-manager-mcp",
+        "accessibility-checker-mcp",
+        "agent-orchestrator-mcp",
+        "animation-library-mcp",
+        "api-validator-mcp",
+        "asset-library-mcp",
+        "asset-optimizer-mcp",
+        "audio-processor-mcp",
+        "chart-builder-mcp",
+        "code-quality-scanner-mcp",
+        "component-generator-mcp",
+        "dark-matter-analyzer-mcp",
+        "dark-mode-converter-mcp",
+        "database-migration-mcp",
+        "deployment-orchestrator-mcp",
+        "design-handoff-mcp",
+        "design-token-manager-mcp",
+        "doc-generator-mcp",
+        "embedding-generator-mcp",
+        "feature-prioritizer-mcp",
+        "figma-sync-mcp",
+        "font-optimizer-mcp",
+        "graph-database-mcp",
+        "i18n-manager-mcp",
+        "icon-library-mcp",
+        "illustration-generator-mcp",
+        "image-generator-mcp",
+        "iot-device-manager-mcp",
+        "knowledge-base-mcp",
+        "market-analyzer-mcp",
+        "mobile-builder-mcp",
+        "openapi-generator-mcp",
+        "performance-profiler-mcp",
+        "props-documenter-mcp",
+        "responsive-preview-mcp",
+        "screenshot-testing-mcp",
+        "security-scanner-mcp",
+        "semantic-search-mcp",
+        "seo-analyzer-mcp",
+        "storybook-generator-mcp",
+        "streaming-setup-mcp",
+        "svg-generator-mcp",
+        "test-runner-mcp",
+        "theme-builder-mcp",
+        "typography-analyzer-mcp",
+        "user-insight-analyzer-mcp",
+        "vector-database-mcp",
+        "video-optimizer-mcp",
+        "wireframe-generator-mcp",
+        "api-designer",
+        "api-integration-builder",
+        "audio-producer",
+        "bmad-method",
+        "brand-designer",
+        "context-preserver",
+        "customer-support-builder",
+        "dark-matter-analyzer",
+        "data-engineer",
+        "data-visualizer",
+        "design-system-architect",
+        "figma-developer",
+        "focus-session-manager",
+        "forensic-data-engineer",
+        "framework-orchestrator",
+        "iot-developer",
+        "knowledge-graph-builder",
+        "livestream-engineer",
+        "localization-engineer",
+        "mobile-developer",
+        "performance-optimizer",
+        "pricing-strategist",
+        "product-analyst",
+        "prototype-designer",
+        "prp-generator",
+        "quality-assurance",
+        "quality-auditor",
+        "release-manager",
+        "security-architect",
+        "supabase-developer",
+        "task-breakdown-specialist",
+        "technical-writer",
+        "video-producer",
+        "voice-interface-builder"
+      ],
+      "design": [
+        "3d-asset-manager-mcp",
+        "agent-orchestrator-mcp",
+        "animation-library-mcp",
+        "api-validator-mcp",
+        "asset-library-mcp",
+        "asset-optimizer-mcp",
+        "audio-processor-mcp",
+        "chart-builder-mcp",
+        "code-quality-scanner-mcp",
+        "component-generator-mcp",
+        "dark-matter-analyzer-mcp",
+        "dark-mode-converter-mcp",
+        "database-migration-mcp",
+        "deployment-orchestrator-mcp",
+        "design-handoff-mcp",
+        "design-token-manager-mcp",
+        "doc-generator-mcp",
+        "embedding-generator-mcp",
+        "feature-prioritizer-mcp",
+        "figma-sync-mcp",
+        "font-optimizer-mcp",
+        "graph-database-mcp",
+        "i18n-manager-mcp",
+        "icon-library-mcp",
+        "illustration-generator-mcp",
+        "image-generator-mcp",
+        "iot-device-manager-mcp",
+        "knowledge-base-mcp",
+        "market-analyzer-mcp",
+        "mobile-builder-mcp",
+        "openapi-generator-mcp",
+        "performance-profiler-mcp",
+        "props-documenter-mcp",
+        "responsive-preview-mcp",
+        "screenshot-testing-mcp",
+        "security-scanner-mcp",
+        "semantic-search-mcp",
+        "seo-analyzer-mcp",
+        "storybook-generator-mcp",
+        "streaming-setup-mcp",
+        "svg-generator-mcp",
+        "test-runner-mcp",
+        "theme-builder-mcp",
+        "typography-analyzer-mcp",
+        "user-insight-analyzer-mcp",
+        "vector-database-mcp",
+        "video-optimizer-mcp",
+        "wireframe-generator-mcp",
+        "accessibility-engineer",
+        "animation-designer",
+        "api-integration-builder",
+        "asset-manager",
+        "audio-producer",
+        "bmad-method",
+        "brand-designer",
+        "codex-review-workflow",
+        "context-preserver",
+        "copywriter",
+        "customer-feedback-analyzer",
+        "customer-support-builder",
+        "dark-matter-analyzer",
+        "data-engineer",
+        "data-visualizer",
+        "design-system-architect",
+        "figma-developer",
+        "focus-session-manager",
+        "forensic-data-engineer",
+        "framework-orchestrator",
+        "go-to-market-planner",
+        "growth-experimenter",
+        "iot-developer",
+        "knowledge-graph-builder",
+        "livestream-engineer",
+        "localization-engineer",
+        "mobile-developer",
+        "performance-optimizer",
+        "pricing-strategist",
+        "product-analyst",
+        "product-analytics",
+        "prototype-designer",
+        "prp-generator",
+        "quality-assurance",
+        "quality-auditor",
+        "security-architect",
+        "spatial-developer",
+        "supabase-developer",
+        "task-breakdown-specialist",
+        "technical-writer",
+        "usability-tester",
+        "ux-designer",
+        "video-producer",
+        "visual-designer",
+        "voice-interface-builder"
+      ],
+      "ai": [
+        "accessibility-checker-mcp",
+        "agent-orchestrator-mcp",
+        "api-validator-mcp",
+        "brain-mcp",
+        "chart-builder-mcp",
+        "code-quality-scanner-mcp",
+        "component-generator-mcp",
+        "dark-matter-analyzer-mcp",
+        "dark-mode-converter-mcp",
+        "database-migration-mcp",
+        "deployment-orchestrator-mcp",
+        "design-handoff-mcp",
+        "design-token-manager-mcp",
+        "doc-generator-mcp",
+        "embedding-generator-mcp",
+        "figma-sync-mcp",
+        "font-optimizer-mcp",
+        "icon-library-mcp",
+        "illustration-generator-mcp",
+        "image-generator-mcp",
+        "knowledge-base-mcp",
+        "openapi-generator-mcp",
+        "performance-profiler-mcp",
+        "responsive-preview-mcp",
+        "screenshot-testing-mcp",
+        "security-scanner-mcp",
+        "semantic-search-mcp",
+        "storybook-generator-mcp",
+        "svg-generator-mcp",
+        "test-runner-mcp",
+        "theme-builder-mcp",
+        "user-insight-analyzer-mcp",
+        "vector-database-mcp",
+        "video-optimizer-mcp",
+        "accessibility-engineer",
+        "animation-designer",
+        "api-integration-builder",
+        "asset-manager",
+        "audio-producer",
+        "bmad-method",
+        "brand-designer",
+        "capability-graph-builder",
+        "codex-review-workflow",
+        "context-preserver",
+        "copywriter",
+        "customer-feedback-analyzer",
+        "customer-support-builder",
+        "dark-matter-analyzer",
+        "data-engineer",
+        "data-visualizer",
+        "design-system-architect",
+        "figma-developer",
+        "focus-session-manager",
+        "forensic-data-engineer",
+        "framework-orchestrator",
+        "go-to-market-planner",
+        "growth-experimenter",
+        "knowledge-graph-builder",
+        "livestream-engineer",
+        "localization-engineer",
+        "manifest-generator",
+        "mobile-developer",
+        "orchestration-planner",
+        "performance-optimizer",
+        "pricing-strategist",
+        "product-analyst",
+        "product-analytics",
+        "prototype-designer",
+        "prp-generator",
+        "quality-assurance",
+        "quality-auditor",
+        "rag-implementer",
+        "release-manager",
+        "security-architect",
+        "supabase-developer",
+        "task-breakdown-specialist",
+        "technical-writer",
+        "usability-tester",
+        "video-producer",
+        "visual-designer",
+        "voice-interface-builder"
+      ],
+      "testing": [
+        "accessibility-checker-mcp",
+        "api-validator-mcp",
+        "code-quality-scanner-mcp",
+        "component-generator-mcp",
+        "dark-matter-analyzer-mcp",
+        "dark-mode-converter-mcp",
+        "design-handoff-mcp",
+        "embedding-generator-mcp",
+        "feature-prioritizer-mcp",
+        "figma-sync-mcp",
+        "illustration-generator-mcp",
+        "image-generator-mcp",
+        "knowledge-base-mcp",
+        "openapi-generator-mcp",
+        "performance-profiler-mcp",
+        "props-documenter-mcp",
+        "responsive-preview-mcp",
+        "screenshot-testing-mcp",
+        "security-scanner-mcp",
+        "semantic-search-mcp",
+        "storybook-generator-mcp",
+        "streaming-setup-mcp",
+        "svg-generator-mcp",
+        "test-runner-mcp",
+        "theme-builder-mcp",
+        "user-insight-analyzer-mcp",
+        "vector-database-mcp",
+        "accessibility-engineer",
+        "api-integration-builder",
+        "asset-manager",
+        "audio-producer",
+        "codex-review-workflow",
+        "context-preserver",
+        "copywriter",
+        "customer-feedback-analyzer",
+        "customer-support-builder",
+        "dark-matter-analyzer",
+        "data-engineer",
+        "data-visualizer",
+        "design-system-architect",
+        "figma-developer",
+        "focus-session-manager",
+        "forensic-data-engineer",
+        "framework-orchestrator",
+        "go-to-market-planner",
+        "growth-experimenter",
+        "knowledge-graph-builder",
+        "livestream-engineer",
+        "localization-engineer",
+        "mobile-developer",
+        "performance-optimizer",
+        "pricing-strategist",
+        "product-analyst",
+        "product-analytics",
+        "prototype-designer",
+        "prp-generator",
+        "quality-assurance",
+        "quality-auditor",
+        "release-manager",
+        "security-architect",
+        "skill-validator",
+        "spatial-developer",
+        "supabase-developer",
+        "system-diagnostician",
+        "task-breakdown-specialist",
+        "technical-writer",
+        "testing-strategist",
+        "usability-tester",
+        "video-producer",
+        "visual-designer",
+        "voice-interface-builder"
+      ],
+      "product": [
+        "agent-orchestrator-mcp",
+        "api-validator-mcp",
+        "dark-matter-analyzer-mcp",
+        "dark-mode-converter-mcp",
+        "design-handoff-mcp",
+        "feature-prioritizer-mcp",
+        "figma-sync-mcp",
+        "illustration-generator-mcp",
+        "image-generator-mcp",
+        "knowledge-base-mcp",
+        "openapi-generator-mcp",
+        "screenshot-testing-mcp",
+        "security-scanner-mcp",
+        "semantic-search-mcp",
+        "svg-generator-mcp",
+        "test-runner-mcp",
+        "theme-builder-mcp",
+        "user-insight-analyzer-mcp",
+        "accessibility-engineer",
+        "api-integration-builder",
+        "asset-manager",
+        "bmad-method",
+        "brand-designer",
+        "codex-review-workflow",
+        "context-preserver",
+        "copywriter",
+        "customer-feedback-analyzer",
+        "customer-support-builder",
+        "dark-matter-analyzer",
+        "data-engineer",
+        "data-visualizer",
+        "design-system-architect",
+        "figma-developer",
+        "focus-session-manager",
+        "framework-orchestrator",
+        "go-to-market-planner",
+        "growth-experimenter",
+        "knowledge-graph-builder",
+        "localization-engineer",
+        "mobile-developer",
+        "performance-optimizer",
+        "pricing-strategist",
+        "product-analyst",
+        "product-analytics",
+        "prototype-designer",
+        "prp-generator",
+        "quality-assurance",
+        "quality-auditor",
+        "release-manager",
+        "security-architect",
+        "supabase-developer",
+        "task-breakdown-specialist",
+        "technical-writer",
+        "usability-tester",
+        "visual-designer"
+      ],
+      "data": [
+        "agent-orchestrator-mcp",
+        "api-validator-mcp",
+        "asset-library-mcp",
+        "audio-processor-mcp",
+        "chart-builder-mcp",
+        "code-quality-scanner-mcp",
+        "dark-matter-analyzer-mcp",
+        "dark-mode-converter-mcp",
+        "database-migration-mcp",
+        "design-handoff-mcp",
+        "design-token-manager-mcp",
+        "doc-generator-mcp",
+        "graph-database-mcp",
+        "icon-library-mcp",
+        "illustration-generator-mcp",
+        "image-generator-mcp",
+        "knowledge-base-mcp",
+        "openapi-generator-mcp",
+        "performance-profiler-mcp",
+        "security-scanner-mcp",
+        "semantic-search-mcp",
+        "svg-generator-mcp",
+        "typography-analyzer-mcp",
+        "user-insight-analyzer-mcp",
+        "vector-database-mcp",
+        "accessibility-engineer",
+        "api-integration-builder",
+        "asset-manager",
+        "audio-producer",
+        "bmad-method",
+        "context-preserver",
+        "copywriter",
+        "customer-feedback-analyzer",
+        "customer-support-builder",
+        "dark-matter-analyzer",
+        "data-engineer",
+        "data-visualizer",
+        "design-system-architect",
+        "figma-developer",
+        "focus-session-manager",
+        "forensic-data-engineer",
+        "framework-orchestrator",
+        "go-to-market-planner",
+        "growth-experimenter",
+        "iot-developer",
+        "knowledge-graph-builder",
+        "livestream-engineer",
+        "localization-engineer",
+        "mobile-developer",
+        "performance-optimizer",
+        "pricing-strategist",
+        "product-analyst",
+        "product-analytics",
+        "prototype-designer",
+        "prp-generator",
+        "quality-assurance",
+        "quality-auditor",
+        "release-manager",
+        "security-architect",
+        "supabase-developer",
+        "task-breakdown-specialist",
+        "technical-writer",
+        "usability-tester",
+        "video-producer"
+      ],
+      "orchestration": [
+        "agent-orchestrator-mcp",
+        "brain-mcp",
+        "deployment-orchestrator-mcp",
+        "design-handoff-mcp",
+        "doc-generator-mcp",
+        "figma-sync-mcp",
+        "knowledge-base-mcp",
+        "screenshot-testing-mcp",
+        "storybook-generator-mcp",
+        "test-runner-mcp",
+        "theme-builder-mcp",
+        "user-insight-analyzer-mcp",
+        "bmad-method",
+        "capability-graph-builder",
+        "codex-review-workflow",
+        "context-preserver",
+        "customer-feedback-analyzer",
+        "customer-support-builder",
+        "design-system-architect",
+        "figma-developer",
+        "focus-session-manager",
+        "framework-orchestrator",
+        "iot-developer",
+        "manifest-generator",
+        "multi-agent-architect",
+        "orchestration-planner",
+        "prp-generator",
+        "quality-assurance",
+        "quality-auditor",
+        "security-architect",
+        "supabase-developer",
+        "task-breakdown-specialist"
+      ],
+      "api": [
+        "api-validator-mcp",
+        "deployment-orchestrator-mcp",
+        "design-handoff-mcp",
+        "doc-generator-mcp",
+        "embedding-generator-mcp",
+        "figma-sync-mcp",
+        "illustration-generator-mcp",
+        "image-generator-mcp",
+        "knowledge-base-mcp",
+        "openapi-generator-mcp",
+        "props-documenter-mcp",
+        "security-scanner-mcp",
+        "semantic-search-mcp",
+        "test-runner-mcp",
+        "user-insight-analyzer-mcp",
+        "vector-database-mcp",
+        "api-designer",
+        "api-integration-builder",
+        "audio-producer",
+        "bmad-method",
+        "brand-designer",
+        "context-preserver",
+        "customer-support-builder",
+        "dark-matter-analyzer",
+        "data-engineer",
+        "data-visualizer",
+        "design-system-architect",
+        "figma-developer",
+        "focus-session-manager",
+        "forensic-data-engineer",
+        "framework-orchestrator",
+        "iot-developer",
+        "knowledge-graph-builder",
+        "localization-engineer",
+        "mobile-developer",
+        "performance-optimizer",
+        "pricing-strategist",
+        "prp-generator",
+        "quality-assurance",
+        "quality-auditor",
+        "security-architect",
+        "supabase-developer",
+        "task-breakdown-specialist",
+        "technical-writer",
+        "video-producer",
+        "voice-interface-builder"
+      ],
+      "security": [
+        "asset-library-mcp",
+        "feature-prioritizer-mcp",
+        "figma-sync-mcp",
+        "illustration-generator-mcp",
+        "knowledge-base-mcp",
+        "mobile-builder-mcp",
+        "openapi-generator-mcp",
+        "security-scanner-mcp",
+        "test-runner-mcp",
+        "user-insight-analyzer-mcp",
+        "api-designer",
+        "api-integration-builder",
+        "bmad-method",
+        "codex-review-workflow",
+        "context-preserver",
+        "copywriter",
+        "customer-feedback-analyzer",
+        "data-engineer",
+        "figma-developer",
+        "forensic-data-engineer",
+        "framework-orchestrator",
+        "go-to-market-planner",
+        "knowledge-graph-builder",
+        "localization-engineer",
+        "mobile-developer",
+        "performance-optimizer",
+        "pricing-strategist",
+        "prp-generator",
+        "quality-assurance",
+        "quality-auditor",
+        "security-architect",
+        "security-engineer",
+        "supabase-developer",
+        "system-diagnostician",
+        "task-breakdown-specialist",
+        "technical-writer"
+      ],
+      "brain": [
+        "brain-mcp"
+      ],
+      "meta": [
+        "brain-mcp"
+      ],
+      "intelligence": [
+        "brain-mcp"
+      ],
+      "capability-graph": [
+        "brain-mcp"
+      ],
+      "decision-support": [
+        "brain-mcp"
+      ],
+      "rag": [
+        "dark-matter-analyzer-mcp",
+        "dark-mode-converter-mcp",
+        "embedding-generator-mcp",
+        "icon-library-mcp",
+        "illustration-generator-mcp",
+        "knowledge-base-mcp",
+        "security-scanner-mcp",
+        "semantic-search-mcp",
+        "test-runner-mcp",
+        "vector-database-mcp",
+        "animation-designer",
+        "archon-manager",
+        "bmad-method",
+        "copywriter",
+        "dark-matter-analyzer",
+        "data-engineer",
+        "design-system-architect",
+        "focus-session-manager",
+        "forensic-data-engineer",
+        "framework-orchestrator",
+        "growth-experimenter",
+        "knowledge-base-manager",
+        "knowledge-graph-builder",
+        "localization-engineer",
+        "mobile-developer",
+        "pricing-strategist",
+        "product-analyst",
+        "product-analytics",
+        "prp-generator",
+        "quality-assurance",
+        "quality-auditor",
+        "rag-implementer",
+        "security-architect",
+        "spatial-developer",
+        "supabase-developer",
+        "task-breakdown-specialist",
+        "technical-writer",
+        "usability-tester",
+        "visual-designer"
+      ],
+      "devops": [
+        "deployment-orchestrator-mcp",
+        "design-handoff-mcp",
+        "figma-sync-mcp",
+        "screenshot-testing-mcp",
+        "security-scanner-mcp",
+        "test-runner-mcp",
+        "bmad-method",
+        "copywriter",
+        "deployment-advisor",
+        "framework-orchestrator",
+        "knowledge-graph-builder",
+        "performance-optimizer",
+        "prp-generator",
+        "quality-assurance",
+        "quality-auditor",
+        "release-manager",
+        "security-architect",
+        "supabase-developer"
+      ],
+      "threejs": [
+        "3d-visualizer"
+      ],
+      "webgl": [
+        "3d-visualizer"
+      ],
+      "react": [
+        "3d-visualizer",
+        "frontend-builder"
+      ],
+      "data-visualization": [
+        "3d-visualizer"
+      ],
+      "rest": [
+        "api-designer"
+      ],
+      "graphql": [
+        "api-designer"
+      ],
+      "authentication": [
+        "api-designer",
+        "security-engineer"
+      ],
+      "documentation": [
+        "api-designer",
+        "manifest-generator",
+        "system-diagnostician"
+      ],
+      "versioning": [
+        "api-designer"
+      ],
+      "project-management": [
+        "archon-manager"
+      ],
+      "knowledge-management": [
+        "archon-manager",
+        "rag-implementer"
+      ],
+      "task-tracking": [
+        "archon-manager"
+      ],
+      "strategic-planning": [
+        "archon-manager"
+      ],
+      "multi-agent": [
+        "archon-manager",
+        "multi-agent-architect"
+      ],
+      "knowledge-graph": [
+        "capability-graph-builder",
+        "knowledge-base-manager"
+      ],
+      "validation": [
+        "capability-graph-builder",
+        "mvp-builder",
+        "product-strategist",
+        "user-researcher"
+      ],
+      "deployment": [
+        "deployment-advisor"
+      ],
+      "cicd": [
+        "deployment-advisor"
+      ],
+      "infrastructure": [
+        "deployment-advisor"
+      ],
+      "cloud": [
+        "deployment-advisor"
+      ],
+      "containers": [
+        "deployment-advisor"
+      ],
+      "nextjs": [
+        "frontend-builder"
+      ],
+      "ui": [
+        "frontend-builder"
+      ],
+      "component-architecture": [
+        "frontend-builder"
+      ],
+      "state-management": [
+        "frontend-builder"
+      ],
+      "typescript": [
+        "frontend-builder"
+      ],
+      "tailwindcss": [
+        "frontend-builder"
+      ],
+      "data-engineering": [
+        "knowledge-base-manager"
+      ],
+      "governance": [
+        "knowledge-base-manager",
+        "skill-validator"
+      ],
+      "observability": [
+        "knowledge-base-manager"
+      ],
+      "automation": [
+        "manifest-generator"
+      ],
+      "architecture": [
+        "multi-agent-architect",
+        "system-diagnostician"
+      ],
+      "ai_systems": [
+        "multi-agent-architect"
+      ],
+      "product-development": [
+        "mvp-builder"
+      ],
+      "mvp": [
+        "mvp-builder"
+      ],
+      "prioritization": [
+        "mvp-builder"
+      ],
+      "lean-startup": [
+        "mvp-builder",
+        "product-strategist"
+      ],
+      "agile": [
+        "mvp-builder"
+      ],
+      "planning": [
+        "orchestration-planner"
+      ],
+      "product-management": [
+        "product-strategist"
+      ],
+      "strategy": [
+        "product-strategist"
+      ],
+      "market-research": [
+        "product-strategist"
+      ],
+      "discovery": [
+        "product-strategist",
+        "user-researcher"
+      ],
+      "search": [
+        "rag-implementer"
+      ],
+      "embeddings": [
+        "rag-implementer"
+      ],
+      "vector-database": [
+        "rag-implementer"
+      ],
+      "nlp": [
+        "rag-implementer"
+      ],
+      "authorization": [
+        "security-engineer"
+      ],
+      "owasp": [
+        "security-engineer"
+      ],
+      "encryption": [
+        "security-engineer"
+      ],
+      "compliance": [
+        "security-engineer"
+      ],
+      "appsec": [
+        "security-engineer"
+      ],
+      "qa": [
+        "skill-validator"
+      ],
+      "analysis": [
+        "system-diagnostician"
+      ],
+      "performance": [
+        "system-diagnostician"
+      ],
+      "dependencies": [
+        "system-diagnostician"
+      ],
+      "ci_cd": [
+        "system-diagnostician"
+      ],
+      "quality-assurance": [
+        "testing-strategist"
+      ],
+      "tdd": [
+        "testing-strategist"
+      ],
+      "unit-testing": [
+        "testing-strategist"
+      ],
+      "integration-testing": [
+        "testing-strategist"
+      ],
+      "e2e-testing": [
+        "testing-strategist"
+      ],
+      "ci-cd": [
+        "testing-strategist"
+      ],
+      "user-research": [
+        "user-researcher"
+      ],
+      "ux": [
+        "user-researcher",
+        "ux-designer"
+      ],
+      "interviews": [
+        "user-researcher"
+      ],
+      "ethnography": [
+        "user-researcher"
+      ],
+      "user-experience": [
+        "ux-designer"
+      ],
+      "wireframes": [
+        "ux-designer"
+      ],
+      "prototypes": [
+        "ux-designer"
+      ],
+      "information-architecture": [
+        "ux-designer"
+      ],
+      "interaction-design": [
+        "ux-designer"
+      ]
+    },
+    "effects": {
+      "provides_capability": [
+        "3d-asset-manager-mcp",
+        "agent-orchestrator-mcp",
+        "animation-library-mcp",
+        "audio-processor-mcp",
+        "code-quality-scanner-mcp",
+        "dark-matter-analyzer-mcp",
+        "embedding-generator-mcp",
+        "graph-database-mcp",
+        "i18n-manager-mcp",
+        "icon-library-mcp",
+        "illustration-generator-mcp",
+        "image-generator-mcp",
+        "iot-device-manager-mcp",
+        "knowledge-base-mcp",
+        "market-analyzer-mcp",
+        "mobile-builder-mcp",
+        "performance-profiler-mcp",
+        "security-scanner-mcp",
+        "semantic-search-mcp",
+        "seo-analyzer-mcp",
+        "streaming-setup-mcp",
+        "svg-generator-mcp",
+        "test-runner-mcp",
+        "typography-analyzer-mcp",
+        "vector-database-mcp",
+        "video-optimizer-mcp",
+        "wireframe-generator-mcp",
+        "context-preserver",
+        "copywriter",
+        "customer-feedback-analyzer",
+        "dark-matter-analyzer",
+        "focus-session-manager",
+        "forensic-data-engineer",
+        "framework-orchestrator",
+        "go-to-market-planner",
+        "growth-experimenter",
+        "performance-optimizer",
+        "product-analyst",
+        "product-analytics",
+        "quality-assurance",
+        "quality-auditor",
+        "release-manager",
+        "security-architect",
+        "task-breakdown-specialist",
+        "usability-tester"
+      ],
+      "creates_the": [
+        "accessibility-checker-mcp"
+      ],
+      "validates_color": [
+        "accessibility-checker-mcp"
+      ],
+      "validates_alt": [
+        "accessibility-checker-mcp"
+      ],
+      "adds_to": [
+        "api-validator-mcp"
+      ],
+      "validates_json": [
+        "api-validator-mcp"
+      ],
+      "validates_api": [
+        "api-validator-mcp"
+      ],
+      "adds_assets": [
+        "asset-library-mcp"
+      ],
+      "adds_asset": [
+        "asset-library-mcp"
+      ],
+      "designs_assets": [
+        "asset-library-mcp",
+        "asset-optimizer-mcp",
+        "asset-manager"
+      ],
+      "provides_brain_access": [
+        "brain-mcp"
+      ],
+      "enables_intelligent_recommendations": [
+        "brain-mcp"
+      ],
+      "queries_capability_graph": [
+        "brain-mcp"
+      ],
+      "shows_skill_relationships": [
+        "brain-mcp"
+      ],
+      "finds_dependencies": [
+        "brain-mcp"
+      ],
+      "validates_graph_consistency": [
+        "brain-mcp"
+      ],
+      "exposes_orchestration_intelligence": [
+        "brain-mcp"
+      ],
+      "creates_charts": [
+        "chart-builder-mcp"
+      ],
+      "creates_bar": [
+        "chart-builder-mcp"
+      ],
+      "creates_typescript": [
+        "component-generator-mcp"
+      ],
+      "creates_test": [
+        "component-generator-mcp"
+      ],
+      "creates_mcp": [
+        "component-generator-mcp",
+        "screenshot-testing-mcp"
+      ],
+      "adds_prop": [
+        "component-generator-mcp"
+      ],
+      "designs_to": [
+        "dark-mode-converter-mcp",
+        "figma-developer"
+      ],
+      "creates_migration": [
+        "database-migration-mcp"
+      ],
+      "validates_schema": [
+        "database-migration-mcp"
+      ],
+      "deploys_applications": [
+        "deployment-orchestrator-mcp"
+      ],
+      "deploys_to": [
+        "deployment-orchestrator-mcp"
+      ],
+      "designs_handoff": [
+        "design-handoff-mcp"
+      ],
+      "designs_files": [
+        "design-handoff-mcp"
+      ],
+      "designs_file": [
+        "design-handoff-mcp",
+        "figma-sync-mcp"
+      ],
+      "designs_token": [
+        "design-token-manager-mcp"
+      ],
+      "designs_tokens": [
+        "design-token-manager-mcp",
+        "figma-sync-mcp",
+        "design-system-architect",
+        "figma-developer"
+      ],
+      "designs_system": [
+        "design-token-manager-mcp",
+        "storybook-generator-mcp",
+        "theme-builder-mcp"
+      ],
+      "creates_diagrams": [
+        "doc-generator-mcp"
+      ],
+      "creates_mermaid": [
+        "doc-generator-mcp"
+      ],
+      "builds_changelogs": [
+        "doc-generator-mcp"
+      ],
+      "adds_features": [
+        "feature-prioritizer-mcp"
+      ],
+      "adds_login": [
+        "feature-prioritizer-mcp"
+      ],
+      "designs_with": [
+        "figma-sync-mcp",
+        "supabase-developer"
+      ],
+      "creates_font": [
+        "font-optimizer-mcp"
+      ],
+      "creates_a": [
+        "font-optimizer-mcp"
+      ],
+      "creates_openapi": [
+        "openapi-generator-mcp"
+      ],
+      "configures_authentication": [
+        "openapi-generator-mcp"
+      ],
+      "validates_openapi": [
+        "openapi-generator-mcp"
+      ],
+      "adds_jsdoc": [
+        "props-documenter-mcp"
+      ],
+      "designs_across": [
+        "responsive-preview-mcp"
+      ],
+      "validates_dark": [
+        "screenshot-testing-mcp"
+      ],
+      "creates_data": [
+        "user-insight-analyzer-mcp"
+      ],
+      "creates_three_js_scene": [
+        "3d-visualizer"
+      ],
+      "adds_interactive_3d_visualization": [
+        "3d-visualizer"
+      ],
+      "configures_react_three_fiber_canvas": [
+        "3d-visualizer"
+      ],
+      "optimizes_three_js_performance": [
+        "3d-visualizer"
+      ],
+      "implements_accessibility": [
+        "accessibility-engineer"
+      ],
+      "designs_patterns": [
+        "accessibility-engineer"
+      ],
+      "creates_smooth": [
+        "animation-designer"
+      ],
+      "designs_using": [
+        "animation-designer"
+      ],
+      "creates_api_routes": [
+        "api-designer"
+      ],
+      "implements_authentication": [
+        "api-designer",
+        "security-engineer"
+      ],
+      "adds_rate_limiting": [
+        "api-designer"
+      ],
+      "configures_cors": [
+        "api-designer"
+      ],
+      "implements_pagination": [
+        "api-designer"
+      ],
+      "adds_input_validation": [
+        "api-designer",
+        "security-engineer"
+      ],
+      "creates_error_handling": [
+        "api-designer"
+      ],
+      "generates_openapi_spec": [
+        "api-designer"
+      ],
+      "implements_versioning": [
+        "api-designer"
+      ],
+      "adds_api_documentation": [
+        "api-designer"
+      ],
+      "builds_reliable": [
+        "api-integration-builder"
+      ],
+      "updates_project_backlog": [
+        "archon-manager"
+      ],
+      "updates_task_statuses": [
+        "archon-manager"
+      ],
+      "configures_two_layer_workflow": [
+        "archon-manager"
+      ],
+      "adds_knowledge_sources": [
+        "archon-manager"
+      ],
+      "updates_project_metrics": [
+        "archon-manager"
+      ],
+      "implements_version": [
+        "asset-manager"
+      ],
+      "creates_interactive": [
+        "audio-producer",
+        "prototype-designer"
+      ],
+      "builds_audio": [
+        "audio-producer"
+      ],
+      "designs_version": [
+        "audio-producer"
+      ],
+      "designs_methodology": [
+        "bmad-method"
+      ],
+      "creates_cohesive": [
+        "brand-designer"
+      ],
+      "designs_and": [
+        "brand-designer",
+        "figma-developer",
+        "knowledge-graph-builder",
+        "pricing-strategist"
+      ],
+      "creates_capability_graph_json": [
+        "capability-graph-builder"
+      ],
+      "adds_domain_index": [
+        "capability-graph-builder"
+      ],
+      "adds_effect_index": [
+        "capability-graph-builder"
+      ],
+      "updates_manifest_relationships": [
+        "capability-graph-builder"
+      ],
+      "generates_consistency_report": [
+        "capability-graph-builder"
+      ],
+      "implements_iterative": [
+        "codex-review-workflow"
+      ],
+      "builds_scalable": [
+        "customer-support-builder",
+        "design-system-architect"
+      ],
+      "builds_robust": [
+        "data-engineer"
+      ],
+      "builds_beautiful": [
+        "data-visualizer"
+      ],
+      "configures_deployment_pipeline": [
+        "deployment-advisor"
+      ],
+      "sets_up_cicd": [
+        "deployment-advisor"
+      ],
+      "configures_environment_variables": [
+        "deployment-advisor"
+      ],
+      "implements_zero_downtime_deployment": [
+        "deployment-advisor"
+      ],
+      "configures_monitoring": [
+        "deployment-advisor"
+      ],
+      "sets_up_logging": [
+        "deployment-advisor"
+      ],
+      "configures_auto_scaling": [
+        "deployment-advisor"
+      ],
+      "implements_rollback_strategy": [
+        "deployment-advisor"
+      ],
+      "configures_dns_ssl": [
+        "deployment-advisor"
+      ],
+      "sets_up_database_migrations": [
+        "deployment-advisor"
+      ],
+      "designs_systems": [
+        "design-system-architect",
+        "visual-designer"
+      ],
+      "designs_standards": [
+        "design-system-architect"
+      ],
+      "creates_component_architecture": [
+        "frontend-builder"
+      ],
+      "configures_nextjs_app_router": [
+        "frontend-builder"
+      ],
+      "implements_state_management": [
+        "frontend-builder"
+      ],
+      "adds_form_validation": [
+        "frontend-builder"
+      ],
+      "configures_tailwind_css": [
+        "frontend-builder"
+      ],
+      "implements_data_fetching": [
+        "frontend-builder"
+      ],
+      "adds_error_boundaries": [
+        "frontend-builder"
+      ],
+      "optimizes_performance": [
+        "frontend-builder"
+      ],
+      "configures_typescript": [
+        "frontend-builder"
+      ],
+      "creates_smart": [
+        "iot-developer"
+      ],
+      "builds_iot": [
+        "iot-developer"
+      ],
+      "creates_knowledge_architecture": [
+        "knowledge-base-manager"
+      ],
+      "configures_ingestion_pipeline": [
+        "knowledge-base-manager"
+      ],
+      "adds_provenance_tracking": [
+        "knowledge-base-manager"
+      ],
+      "establishes_quality_controls": [
+        "knowledge-base-manager"
+      ],
+      "implements_versioning_process": [
+        "knowledge-base-manager"
+      ],
+      "updates_governance_framework": [
+        "knowledge-base-manager"
+      ],
+      "builds_knowledge": [
+        "knowledge-graph-builder"
+      ],
+      "creates_real": [
+        "livestream-engineer"
+      ],
+      "implements_webrtc": [
+        "livestream-engineer"
+      ],
+      "builds_live": [
+        "livestream-engineer"
+      ],
+      "builds_multilingual": [
+        "localization-engineer"
+      ],
+      "generates_capability_manifest": [
+        "manifest-generator"
+      ],
+      "validates_manifest_against_schema": [
+        "manifest-generator"
+      ],
+      "writes_manifest_to_output_path": [
+        "manifest-generator"
+      ],
+      "updates_existing_manifest_if_present": [
+        "manifest-generator"
+      ],
+      "builds_cross": [
+        "mobile-developer"
+      ],
+      "creates_multi_agent_architecture_plan": [
+        "multi-agent-architect"
+      ],
+      "defines_agent_roles_matrix": [
+        "multi-agent-architect"
+      ],
+      "configures_agent_communication_channels": [
+        "multi-agent-architect"
+      ],
+      "documents_execution_and_observability_workflows": [
+        "multi-agent-architect"
+      ],
+      "defines_mvp_scope": [
+        "mvp-builder"
+      ],
+      "prioritizes_features_p0_p1_p2": [
+        "mvp-builder"
+      ],
+      "creates_validation_metrics": [
+        "mvp-builder"
+      ],
+      "identifies_riskiest_assumptions": [
+        "mvp-builder"
+      ],
+      "defines_success_criteria": [
+        "mvp-builder"
+      ],
+      "prevents_over_engineering": [
+        "mvp-builder"
+      ],
+      "enables_fast_iteration": [
+        "mvp-builder"
+      ],
+      "creates_feature_roadmap": [
+        "mvp-builder"
+      ],
+      "analyzes_goal_effects": [
+        "orchestration-planner"
+      ],
+      "validates_capability_preconditions": [
+        "orchestration-planner"
+      ],
+      "generates_htn_plan": [
+        "orchestration-planner"
+      ],
+      "scores_plan_alternatives": [
+        "orchestration-planner"
+      ],
+      "produces_decision_log": [
+        "orchestration-planner"
+      ],
+      "validates_problem_solution_fit": [
+        "product-strategist"
+      ],
+      "defines_target_market": [
+        "product-strategist"
+      ],
+      "creates_user_personas": [
+        "product-strategist",
+        "user-researcher"
+      ],
+      "validates_product_market_fit": [
+        "product-strategist"
+      ],
+      "prioritizes_features": [
+        "product-strategist"
+      ],
+      "defines_value_proposition": [
+        "product-strategist"
+      ],
+      "identifies_competitive_advantage": [
+        "product-strategist"
+      ],
+      "creates_go_to_market_strategy": [
+        "product-strategist"
+      ],
+      "defines_success_metrics": [
+        "product-strategist"
+      ],
+      "prevents_building_wrong_product": [
+        "product-strategist"
+      ],
+      "implements_prototype": [
+        "prototype-designer"
+      ],
+      "designs_user": [
+        "prototype-designer"
+      ],
+      "validates_ideas": [
+        "prototype-designer"
+      ],
+      "creates_prp": [
+        "prp-generator"
+      ],
+      "creates_vector_index": [
+        "rag-implementer"
+      ],
+      "adds_embedding_pipeline": [
+        "rag-implementer"
+      ],
+      "configures_retrieval_api": [
+        "rag-implementer"
+      ],
+      "implements_hybrid_search": [
+        "rag-implementer"
+      ],
+      "adds_rag_evaluation_metrics": [
+        "rag-implementer"
+      ],
+      "implements_context_assembly": [
+        "rag-implementer"
+      ],
+      "adds_source_attribution": [
+        "rag-implementer"
+      ],
+      "configures_vector_database": [
+        "rag-implementer"
+      ],
+      "implements_authorization": [
+        "security-engineer"
+      ],
+      "prevents_sql_injection": [
+        "security-engineer"
+      ],
+      "prevents_xss_attacks": [
+        "security-engineer"
+      ],
+      "prevents_csrf_attacks": [
+        "security-engineer"
+      ],
+      "implements_rate_limiting": [
+        "security-engineer"
+      ],
+      "adds_security_headers": [
+        "security-engineer"
+      ],
+      "implements_encryption": [
+        "security-engineer"
+      ],
+      "adds_audit_logging": [
+        "security-engineer"
+      ],
+      "configures_cors_properly": [
+        "security-engineer"
+      ],
+      "implements_secrets_management": [
+        "security-engineer"
+      ],
+      "creates_description_validation_json": [
+        "skill-validator"
+      ],
+      "creates_precondition_validation_json": [
+        "skill-validator"
+      ],
+      "creates_effect_validation_json": [
+        "skill-validator"
+      ],
+      "creates_validation_report_json": [
+        "skill-validator"
+      ],
+      "creates_api_surface_validation_json": [
+        "skill-validator"
+      ],
+      "builds_ar": [
+        "spatial-developer"
+      ],
+      "builds_full": [
+        "supabase-developer"
+      ],
+      "creates_project_state_snapshot": [
+        "system-diagnostician"
+      ],
+      "creates_health_assessment_report": [
+        "system-diagnostician"
+      ],
+      "creates_capability_gap_analysis": [
+        "system-diagnostician"
+      ],
+      "creates_prioritized_action_plan": [
+        "system-diagnostician"
+      ],
+      "updates_project_health_metrics": [
+        "system-diagnostician"
+      ],
+      "creates_clear": [
+        "technical-writer"
+      ],
+      "configures_testing_framework": [
+        "testing-strategist"
+      ],
+      "creates_unit_tests": [
+        "testing-strategist"
+      ],
+      "creates_integration_tests": [
+        "testing-strategist"
+      ],
+      "creates_e2e_tests": [
+        "testing-strategist"
+      ],
+      "implements_test_coverage": [
+        "testing-strategist"
+      ],
+      "adds_ci_test_pipeline": [
+        "testing-strategist"
+      ],
+      "creates_test_fixtures": [
+        "testing-strategist"
+      ],
+      "implements_mocking_strategy": [
+        "testing-strategist"
+      ],
+      "adds_test_documentation": [
+        "testing-strategist"
+      ],
+      "conducts_user_interviews": [
+        "user-researcher"
+      ],
+      "identifies_pain_points": [
+        "user-researcher"
+      ],
+      "validates_assumptions": [
+        "user-researcher"
+      ],
+      "maps_user_journeys": [
+        "user-researcher"
+      ],
+      "synthesizes_insights": [
+        "user-researcher"
+      ],
+      "prioritizes_needs": [
+        "user-researcher"
+      ],
+      "identifies_opportunities": [
+        "user-researcher"
+      ],
+      "creates_research_artifacts": [
+        "user-researcher"
+      ],
+      "creates_user_flows": [
+        "ux-designer"
+      ],
+      "designs_wireframes": [
+        "ux-designer"
+      ],
+      "creates_prototypes": [
+        "ux-designer"
+      ],
+      "defines_information_architecture": [
+        "ux-designer"
+      ],
+      "designs_interaction_patterns": [
+        "ux-designer"
+      ],
+      "ensures_accessibility": [
+        "ux-designer"
+      ],
+      "optimizes_user_journey": [
+        "ux-designer"
+      ],
+      "reduces_friction": [
+        "ux-designer"
+      ],
+      "improves_conversion": [
+        "ux-designer"
+      ],
+      "creates_design_specifications": [
+        "ux-designer"
+      ],
+      "creates_engaging": [
+        "video-producer"
+      ],
+      "builds_video": [
+        "video-producer"
+      ],
+      "designs_beautiful": [
+        "visual-designer"
+      ],
+      "designs_principles": [
+        "visual-designer"
+      ],
+      "builds_voice": [
+        "voice-interface-builder"
+      ]
+    }
   }
 }

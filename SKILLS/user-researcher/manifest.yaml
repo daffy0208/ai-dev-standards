@@ -1,0 +1,94 @@
+name: user-researcher
+kind: skill
+description: Conduct user research and validation through interviews, surveys, and analysis to understand user needs and pain points
+
+preconditions:
+  - check: has_research_questions or has_hypotheses
+    description: Clear research questions or hypotheses to test
+    required: true
+  - check: has_target_users_identified
+    description: Target user segment identified
+    required: true
+
+effects:
+  - conducts_user_interviews
+  - creates_user_personas
+  - identifies_pain_points
+  - validates_assumptions
+  - maps_user_journeys
+  - synthesizes_insights
+  - prioritizes_needs
+  - identifies_opportunities
+  - creates_research_artifacts
+
+domains:
+  - user-research
+  - ux
+  - validation
+  - discovery
+  - interviews
+  - ethnography
+
+cost: low
+latency: medium
+risk_level: low
+
+side_effects:
+  - creates_documentation
+  - may_invalidate_assumptions
+  - requires_user_coordination
+
+idempotent: true
+
+success_signal: "User interviews completed, pain points identified, personas created, insights synthesized, assumptions validated or invalidated"
+
+failure_signals:
+  - "Cannot recruit target users"
+  - "Interview questions too leading"
+  - "Sample size too small for insights"
+  - "Bias in user selection"
+  - "No clear patterns emerge from research"
+
+compatibility:
+  requires:
+    - target-users-access
+  conflicts_with:
+    - assumption-driven-development
+  composes_with:
+    - product-strategist
+    - ux-designer
+    - mvp-builder
+    - usability-tester
+  enables:
+    - user-validated-decisions
+    - persona-driven-design
+    - empathy-based-development
+    - evidence-based-prioritization
+
+observability:
+  logs:
+    - "Interviews conducted: {count} with {segment}"
+    - "Pain points identified: {pain_points}"
+    - "Personas created: {personas}"
+    - "Key insights: {insights}"
+  metrics:
+    - interviews_completed
+    - pain_points_identified
+    - personas_created
+    - insights_confidence_level
+
+metadata:
+  version: "1.0.0"
+  created_at: "2025-10-29"
+  tags:
+    - user-research
+    - interviews
+    - discovery
+    - validation
+    - personas
+    - ux-research
+  examples:
+    - "Interview 10 target users about workflow pain points"
+    - "Create personas for B2B SaaS product"
+    - "Validate feature need through user research"
+    - "Map customer journey for onboarding"

@@ -183,6 +183,63 @@ export class WorkflowEngine {
         { order: 4, action: 'Implement Agents', description: 'Implement individual agents', estimatedTime: '2 hours', requiredSkills: ['multi-agent-architect'], optional: false },
         { order: 5, action: 'Orchestration', description: 'Implement orchestration layer', estimatedTime: '1.5 hours', requiredSkills: ['multi-agent-architect'], optional: false },
         { order: 6, action: 'Test', description: 'Test agent coordination', estimatedTime: '45 min', requiredSkills: ['testing-strategist'], optional: false }
+      ],
+      'documentation': [
+        { order: 1, action: 'Analyze', description: 'Analyze code to document', estimatedTime: '20 min', requiredSkills: [], optional: false },
+        { order: 2, action: 'Outline', description: 'Create documentation outline', estimatedTime: '15 min', requiredSkills: ['technical-writer'], optional: false },
+        { order: 3, action: 'Write', description: 'Write comprehensive documentation', estimatedTime: '1.5 hours', requiredSkills: ['technical-writer'], optional: false },
+        { order: 4, action: 'Examples', description: 'Add code examples and use cases', estimatedTime: '45 min', requiredSkills: ['technical-writer'], optional: false },
+        { order: 5, action: 'Review', description: 'Review and polish documentation', estimatedTime: '20 min', requiredSkills: ['technical-writer'], optional: false },
+        { order: 6, action: 'Deploy', description: 'Deploy to documentation site', estimatedTime: '15 min', requiredSkills: [], optional: false }
+      ],
+      'testing': [
+        { order: 1, action: 'Plan', description: 'Plan test coverage and strategy', estimatedTime: '20 min', requiredSkills: ['testing-strategist'], optional: false },
+        { order: 2, action: 'Unit Tests', description: 'Write unit tests', estimatedTime: '1 hour', requiredSkills: ['testing-strategist'], optional: false },
+        { order: 3, action: 'Integration Tests', description: 'Write integration tests', estimatedTime: '1 hour', requiredSkills: ['testing-strategist'], optional: false },
+        { order: 4, action: 'E2E Tests', description: 'Write end-to-end tests', estimatedTime: '1.5 hours', requiredSkills: ['testing-strategist'], optional: true },
+        { order: 5, action: 'Coverage', description: 'Measure code coverage', estimatedTime: '15 min', requiredSkills: [], optional: false },
+        { order: 6, action: 'Run Tests', description: 'Run full test suite', estimatedTime: '10 min', requiredSkills: [], optional: false }
+      ],
+      'deployment': [
+        { order: 1, action: 'Prepare', description: 'Prepare code for production', estimatedTime: '20 min', requiredSkills: [], optional: false },
+        { order: 2, action: 'Choose Infrastructure', description: 'Select deployment infrastructure', estimatedTime: '30 min', requiredSkills: ['deployment-advisor'], optional: false },
+        { order: 3, action: 'Setup CI/CD', description: 'Configure CI/CD pipeline', estimatedTime: '45 min', requiredSkills: ['deployment-advisor'], optional: false },
+        { order: 4, action: 'Database Setup', description: 'Provision and configure database', estimatedTime: '45 min', requiredSkills: [], optional: false },
+        { order: 5, action: 'Security', description: 'Configure security and secrets', estimatedTime: '30 min', requiredSkills: ['security-engineer'], optional: false },
+        { order: 6, action: 'Deploy', description: 'Deploy to production', estimatedTime: '20 min', requiredSkills: ['deployment-advisor'], optional: false },
+        { order: 7, action: 'Verify', description: 'Verify deployment success', estimatedTime: '15 min', requiredSkills: [], optional: false }
+      ],
+      'architecture': [
+        { order: 1, action: 'Assess', description: 'Assess current architecture', estimatedTime: '30 min', requiredSkills: [], optional: false },
+        { order: 2, action: 'Design', description: 'Design new architecture', estimatedTime: '1.5 hours', requiredSkills: [], optional: false },
+        { order: 3, action: 'Document', description: 'Document architecture patterns', estimatedTime: '45 min', requiredSkills: ['technical-writer'], optional: false },
+        { order: 4, action: 'Identify Components', description: 'Identify major components and interfaces', estimatedTime: '30 min', requiredSkills: [], optional: false },
+        { order: 5, action: 'Implementation Plan', description: 'Create implementation roadmap', estimatedTime: '30 min', requiredSkills: [], optional: false },
+        { order: 6, action: 'Review', description: 'Get architecture review', estimatedTime: '20 min', requiredSkills: [], optional: true }
+      ],
+      'integration': [
+        { order: 1, action: 'Analyze', description: 'Analyze external service API', estimatedTime: '30 min', requiredSkills: ['api-designer'], optional: false },
+        { order: 2, action: 'Design', description: 'Design integration approach', estimatedTime: '30 min', requiredSkills: ['api-designer', 'api-integration-builder'], optional: false },
+        { order: 3, action: 'Implement', description: 'Implement integration', estimatedTime: '1.5 hours', requiredSkills: ['api-integration-builder'], optional: false },
+        { order: 4, action: 'Error Handling', description: 'Add error handling and retry logic', estimatedTime: '45 min', requiredSkills: [], optional: false },
+        { order: 5, action: 'Test', description: 'Test integration flow', estimatedTime: '30 min', requiredSkills: ['testing-strategist'], optional: false },
+        { order: 6, action: 'Monitor', description: 'Setup integration monitoring', estimatedTime: '20 min', requiredSkills: [], optional: true }
+      ],
+      'security': [
+        { order: 1, action: 'Threat Model', description: 'Identify threats and attack vectors', estimatedTime: '45 min', requiredSkills: ['security-architect'], optional: false },
+        { order: 2, action: 'Review Code', description: 'Conduct security code review', estimatedTime: '1 hour', requiredSkills: ['security-engineer'], optional: false },
+        { order: 3, action: 'Implement Fixes', description: 'Implement security improvements', estimatedTime: '1.5 hours', requiredSkills: ['security-engineer'], optional: false },
+        { order: 4, action: 'Add Tests', description: 'Add security tests', estimatedTime: '45 min', requiredSkills: ['testing-strategist'], optional: false },
+        { order: 5, action: 'Audit', description: 'Run security audit tools', estimatedTime: '20 min', requiredSkills: [], optional: false },
+        { order: 6, action: 'Document', description: 'Document security measures', estimatedTime: '20 min', requiredSkills: ['technical-writer'], optional: true }
+      ],
+      'general': [
+        { order: 1, action: 'Clarify', description: 'Clarify task requirements', estimatedTime: '15 min', requiredSkills: [], optional: false },
+        { order: 2, action: 'Plan', description: 'Create high-level plan', estimatedTime: '20 min', requiredSkills: [], optional: false },
+        { order: 3, action: 'Execute', description: 'Execute task', estimatedTime: '2 hours', requiredSkills: [], optional: false },
+        { order: 4, action: 'Test', description: 'Test results', estimatedTime: '30 min', requiredSkills: [], optional: false },
+        { order: 5, action: 'Document', description: 'Document changes', estimatedTime: '20 min', requiredSkills: ['technical-writer'], optional: true },
+        { order: 6, action: 'Commit', description: 'Commit changes', estimatedTime: '5 min', requiredSkills: [], optional: false }
       ]
     };
 

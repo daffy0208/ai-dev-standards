@@ -1,0 +1,104 @@
+name: security-engineer
+kind: skill
+description: Implement security best practices across the application stack including authentication, authorization, input validation, and OWASP Top 10 prevention
+
+preconditions:
+  - check: file_exists('package.json') or file_exists('requirements.txt') or file_exists('pom.xml')
+    description: Application codebase exists
+    required: true
+  - check: not has_security_review_passed
+    description: Security review not yet completed
+    required: false
+
+effects:
+  - implements_authentication
+  - implements_authorization
+  - adds_input_validation
+  - prevents_sql_injection
+  - prevents_xss_attacks
+  - prevents_csrf_attacks
+  - implements_rate_limiting
+  - adds_security_headers
+  - implements_encryption
+  - adds_audit_logging
+  - configures_cors_properly
+  - implements_secrets_management
+
+domains:
+  - security
+  - authentication
+  - authorization
+  - owasp
+  - encryption
+  - compliance
+  - appsec
+
+cost: medium
+latency: medium
+risk_level: critical
+
+side_effects:
+  - modifies_code
+  - adds_dependencies
+  - modifies_configuration
+  - creates_security_policies
+  - may_break_insecure_features
+
+idempotent: false
+
+success_signal: "Security measures implemented, OWASP Top 10 mitigated, authentication/authorization working, security tests passing"
+
+failure_signals:
+  - "SQL injection vulnerabilities remain"
+  - "Passwords stored in plain text"
+  - "No rate limiting on API endpoints"
+  - "CORS configured with wildcard origins"
+  - "Secrets hardcoded in code"
+  - "No input validation on user inputs"
+  - "Authentication bypass possible"
+
+compatibility:
+  requires:
+    - application-codebase
+  conflicts_with:
+    - insecure-legacy-patterns
+  composes_with:
+    - api-designer
+    - frontend-builder
+    - deployment-advisor
+    - testing-strategist
+  enables:
+    - secure-authentication
+    - secure-api
+    - compliance-readiness
+    - production-deployment
+
+observability:
+  logs:
+    - "Implementing authentication for {routes_count} routes"
+    - "Adding input validation for {fields_count} input fields"
+    - "Configuring security headers: {headers}"
+    - "Security scan found {vulnerabilities_count} issues"
+  metrics:
+    - security_vulnerabilities_fixed
+    - authentication_coverage_percent
+    - input_validation_coverage_percent
+    - security_test_pass_rate
+    - owasp_coverage_score
+
+metadata:
+  version: "1.0.0"
+  created_at: "2025-10-29"
+  tags:
+    - security
+    - owasp
+    - authentication
+    - authorization
+    - encryption
+    - appsec
+    - compliance
+  examples:
+    - "Implement OAuth2 authentication for SaaS app"
+    - "Add input validation to prevent SQL injection"
+    - "Configure CORS and security headers"
+    - "Implement role-based access control (RBAC)"

@@ -1,0 +1,118 @@
+name: brain-mcp
+kind: mcp
+description: MCP server that exposes ai-dev-standards brain and capability graph to Claude Code for intelligent skill/MCP recommendations and orchestration
+
+preconditions:
+  - check: file_exists('META/capability-graph.json')
+    description: Capability graph exists
+    required: true
+  - check: file_exists('scripts/brain/brain.ts')
+    description: Brain CLI exists
+    required: true
+  - check: file_exists('scripts/graph-query-tool.py')
+    description: Graph query tool exists
+    required: true
+
+effects:
+  - provides_brain_access
+  - enables_intelligent_recommendations
+  - queries_capability_graph
+  - shows_skill_relationships
+  - finds_dependencies
+  - validates_graph_consistency
+  - exposes_orchestration_intelligence
+
+domains:
+  - ai
+  - orchestration
+  - brain
+  - meta
+  - intelligence
+  - capability-graph
+  - decision-support
+
+cost: low
+latency: low
+risk_level: low
+
+side_effects: []
+
+idempotent: true
+
+success_signal: "Brain MCP tools accessible, capability graph queries working, intelligent recommendations provided"
+
+failure_signals:
+  - "Brain CLI not found"
+  - "Capability graph missing"
+  - "Graph query tool not executable"
+  - "MCP server connection failed"
+
+compatibility:
+  requires:
+    - capability-graph
+    - brain-cli
+    - graph-query-tool
+  conflicts_with: []
+  composes_with:
+    - all-skills
+    - all-mcps
+  enables:
+    - intelligent-orchestration
+    - skill-discovery
+    - mcp-selection
+    - dependency-resolution
+
+observability:
+  logs:
+    - "Brain MCP server started"
+    - "Tool invoked: {tool_name}"
+    - "Graph query: {query_type} {query}"
+    - "Brain command: {command} {args}"
+  metrics:
+    - tool_invocation_count
+    - query_response_time
+    - recommendation_accuracy
+    - graph_query_performance
+
+metadata:
+  version: "1.0.0"
+  created_at: "2025-10-30"
+  tags:
+    - brain
+    - orchestration
+    - capability-graph
+    - mcp
+    - intelligence
+    - recommendations
+    - meta
+  examples:
+    - "brain_search('authentication') - Find auth-related skills/MCPs"
+    - "brain_select_skills('implement RAG') - Get skill recommendations"
+    - "graph_query_by_effect('implements_authentication') - Find auth capabilities"
+    - "graph_get_dependencies('rag-implementer') - Show RAG dependencies"
+    - "graph_composition_chains('security-engineer') - Show what works well together"
+  tools:
+    - name: brain_search
+      description: Search all resources by keyword
+    - name: brain_select_skills
+      description: Get skill recommendations for task
+    - name: brain_show_skill
+      description: Get detailed skill information
+    - name: brain_relationships
+      description: Show skill relationships
+    - name: graph_query_by_domain
+      description: Query graph by domain
+    - name: graph_query_by_effect
+      description: Query graph by effect
+    - name: graph_get_dependencies
+      description: Get capability dependencies
+    - name: graph_find_path
+      description: Find path between capabilities
+    - name: graph_composition_chains
+      description: Get composition chains
+    - name: graph_stats
+      description: Get graph statistics
+    - name: graph_validate
+      description: Validate graph consistency
+    - name: brain_status
+      description: Get repository status

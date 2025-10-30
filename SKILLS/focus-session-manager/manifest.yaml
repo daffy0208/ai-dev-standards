@@ -1,0 +1,51 @@
+name: focus-session-manager
+kind: skill
+description: Automatically manage focus sessions, breaks, and hyperfocus protection.
+  Uses ADHD-optimized Pomodoro technique with flexible timers, health reminders, and
+  gentle interruptions. Protects against hyperfocus burnout while maximizing productive
+  time.
+preconditions:
+- check: project_initialized
+  description: Project environment is set up
+  required: true
+effects:
+- provides_capability
+domains: &id001
+- ai
+- rag
+- api
+- frontend
+- backend
+- testing
+- product
+- design
+- data
+- orchestration
+cost: medium
+latency: medium
+risk_level: low
+side_effects:
+- modifies_files
+- creates_artifacts
+idempotent: false
+success_signal: focus-session-manager capability successfully applied
+failure_signals:
+- Prerequisites not met
+- Configuration error
+compatibility:
+  requires: []
+  conflicts_with: []
+  composes_with: []
+  enables: []
+observability:
+  logs:
+  - Applying focus-session-manager...
+  - focus-session-manager completed
+  metrics:
+  - execution_time_ms
+  - success_rate
+metadata:
+  version: 1.0.0
+  created_at: '2025-10-30'
+  tags: *id001
+  examples: []

@@ -1,0 +1,42 @@
+name: spatial-developer
+kind: skill
+description: Expert in AR/VR, WebXR, and spatial computing for Vision Pro and web
+preconditions:
+- check: project_initialized
+  description: Project environment is set up
+  required: true
+effects:
+- builds_ar
+domains: &id001
+- rag
+- frontend
+- testing
+- design
+cost: medium
+latency: medium
+risk_level: low
+side_effects:
+- modifies_files
+- creates_artifacts
+idempotent: false
+success_signal: spatial-developer capability successfully applied
+failure_signals:
+- Prerequisites not met
+- Configuration error
+compatibility:
+  requires: []
+  conflicts_with: []
+  composes_with: []
+  enables: []
+observability:
+  logs:
+  - Applying spatial-developer...
+  - spatial-developer completed
+  metrics:
+  - execution_time_ms
+  - success_rate
+metadata:
+  version: 1.0.0
+  created_at: '2025-10-30'
+  tags: *id001
+  examples: []

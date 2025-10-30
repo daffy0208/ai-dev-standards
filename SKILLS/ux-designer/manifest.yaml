@@ -1,0 +1,99 @@
+name: ux-designer
+kind: skill
+description: Design user experiences and interfaces including user journeys, wireframes, prototypes, and information architecture
+
+preconditions:
+  - check: has_user_research or has_personas
+    description: User research or personas available
+    required: false
+  - check: has_feature_requirements
+    description: Feature requirements defined
+    required: true
+
+effects:
+  - creates_user_flows
+  - designs_wireframes
+  - creates_prototypes
+  - defines_information_architecture
+  - designs_interaction_patterns
+  - ensures_accessibility
+  - optimizes_user_journey
+  - reduces_friction
+  - improves_conversion
+  - creates_design_specifications
+
+domains:
+  - ux
+  - design
+  - user-experience
+  - wireframes
+  - prototypes
+  - information-architecture
+  - interaction-design
+
+cost: low
+latency: medium
+risk_level: low
+
+side_effects:
+  - creates_design_files
+  - may_change_requirements
+  - influences_development
+
+idempotent: true
+
+success_signal: "User flows mapped, wireframes created, prototypes validated with users, design specifications ready for development"
+
+failure_signals:
+  - "User flow has dead ends"
+  - "Wireframes unclear for developers"
+  - "Prototype fails usability testing"
+  - "Navigation structure confusing"
+  - "Accessibility requirements not met"
+
+compatibility:
+  requires: []
+  conflicts_with:
+    - design-after-development
+  composes_with:
+    - user-researcher
+    - visual-designer
+    - frontend-builder
+    - usability-tester
+    - accessibility-engineer
+    - design-system-architect
+  enables:
+    - user-centered-design
+    - validated-interfaces
+    - clear-development-specs
+    - improved-usability
+
+observability:
+  logs:
+    - "User flows created: {flows_count}"
+    - "Wireframes: {screens_count} screens"
+    - "Prototype tested with {users_count} users"
+    - "Accessibility: WCAG {level} compliance"
+  metrics:
+    - user_flows_count
+    - wireframes_count
+    - prototype_iterations
+    - usability_score
+    - accessibility_score
+
+metadata:
+  version: "1.0.0"
+  created_at: "2025-10-29"
+  tags:
+    - ux
+    - design
+    - wireframes
+    - prototypes
+    - user-flows
+    - accessibility
+    - usability
+  examples:
+    - "Design onboarding flow for SaaS product"
+    - "Create wireframes for dashboard"
+    - "Map user journey for checkout process"
+    - "Design mobile app navigation structure"

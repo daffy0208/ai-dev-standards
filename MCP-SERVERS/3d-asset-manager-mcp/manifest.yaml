@@ -1,0 +1,41 @@
+name: 3d-asset-manager-mcp
+kind: mcp
+description: ''
+preconditions:
+- check: project_initialized
+  description: Project environment is set up
+  required: true
+effects:
+- provides_capability
+domains: &id001
+- frontend
+- backend
+- design
+cost: medium
+latency: medium
+risk_level: low
+side_effects:
+- modifies_files
+- creates_artifacts
+idempotent: false
+success_signal: 3d-asset-manager-mcp capability successfully applied
+failure_signals:
+- Prerequisites not met
+- Configuration error
+compatibility:
+  requires: []
+  conflicts_with: []
+  composes_with: []
+  enables: []
+observability:
+  logs:
+  - Applying 3d-asset-manager-mcp...
+  - 3d-asset-manager-mcp completed
+  metrics:
+  - execution_time_ms
+  - success_rate
+metadata:
+  version: 1.0.0
+  created_at: '2025-10-30'
+  tags: *id001
+  examples: []

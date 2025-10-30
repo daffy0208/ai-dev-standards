@@ -1,0 +1,52 @@
+name: quality-auditor
+kind: skill
+description: Comprehensive quality auditing and evaluation of tools, frameworks, and
+  systems against industry best practices with detailed scoring across 12 critical
+  dimensions
+preconditions:
+- check: project_initialized
+  description: Project environment is set up
+  required: true
+effects:
+- provides_capability
+domains: &id001
+- ai
+- rag
+- api
+- frontend
+- backend
+- security
+- devops
+- testing
+- product
+- design
+- data
+- orchestration
+cost: medium
+latency: medium
+risk_level: low
+side_effects:
+- modifies_files
+- creates_artifacts
+idempotent: false
+success_signal: quality-auditor capability successfully applied
+failure_signals:
+- Prerequisites not met
+- Configuration error
+compatibility:
+  requires: []
+  conflicts_with: []
+  composes_with: []
+  enables: []
+observability:
+  logs:
+  - Applying quality-auditor...
+  - quality-auditor completed
+  metrics:
+  - execution_time_ms
+  - success_rate
+metadata:
+  version: 1.0.0
+  created_at: '2025-10-30'
+  tags: *id001
+  examples: []

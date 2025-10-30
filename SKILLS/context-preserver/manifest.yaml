@@ -1,0 +1,51 @@
+name: context-preserver
+kind: skill
+description: Automatically save and restore development context to minimize cognitive
+  load when resuming work. Use when switching tasks, taking breaks, or returning after
+  interruptions. Captures mental state, file locations, and next steps. Designed for
+  ADHD developers with high context-switching costs.
+preconditions:
+- check: project_initialized
+  description: Project environment is set up
+  required: true
+effects:
+- provides_capability
+domains: &id001
+- ai
+- api
+- frontend
+- backend
+- security
+- testing
+- product
+- design
+- data
+- orchestration
+cost: medium
+latency: medium
+risk_level: low
+side_effects:
+- modifies_files
+- creates_artifacts
+idempotent: false
+success_signal: context-preserver capability successfully applied
+failure_signals:
+- Prerequisites not met
+- Configuration error
+compatibility:
+  requires: []
+  conflicts_with: []
+  composes_with: []
+  enables: []
+observability:
+  logs:
+  - Applying context-preserver...
+  - context-preserver completed
+  metrics:
+  - execution_time_ms
+  - success_rate
+metadata:
+  version: 1.0.0
+  created_at: '2025-10-30'
+  tags: *id001
+  examples: []

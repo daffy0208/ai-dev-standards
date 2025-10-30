@@ -1,0 +1,582 @@
+# AI Assistant Rules for ai-dev-standards
+
+## Project Overview
+
+This is the **AI Dev Standards** repository - a complete system for maintaining AI development standards with automatic installation and syncing.
+
+**Key Components:**
+- **SKILLS/** - 59 specialized skills (mvp-builder, rag-implementer, data-visualizer, etc.)
+- **MCP-SERVERS/** - 49 MCP server implementations (executable tools)
+- **TOOLS/** - 9 LangChain/CrewAI tools + 4 supporting scripts
+- **COMPONENTS/** - 13 reusable React components and patterns
+- **INTEGRATIONS/** - 6 third-party service integrations (OpenAI, Supabase, etc.)
+- **TEMPLATES/** - Config file templates (.cursorrules, .gitignore, etc.)
+- **CLI/** - Command-line tool for automatic installation and syncing
+- **INSTALLERS/bootstrap/** - Auto-bootstrap system (`npx @ai-dev-standards/bootstrap`)
+- **DOCS/** - Complete documentation (2500+ lines)
+
+**Current Status:** ✅ Production Ready (v1.3.0)
+**Coverage:** 92% skill-to-MCP parity (1.1:1 ratio) • 107 total resources
+
+---
+
+## Critical: Load Context First
+
+Before performing ANY task in this repository or in projects referencing it:
+
+1. ✅ Check if `ai-dev-standards/` is accessible
+2. ✅ Read `META/PROJECT-CONTEXT.md` (understand the system)
+3. ✅ Read `META/HOW-TO-USE.md` (learn navigation)
+4. ✅ Review `META/DECISION-FRAMEWORK.md` (when making technology choices)
+5. ✅ Review `DOCS/SYSTEM-OVERVIEW.md` (understand the complete architecture)
+
+**Time investment:** 3-5 minutes
+**Value:** Prevents mistakes, enables effective use, ensures consistency
+
+---
+
+## Core Principles
+
+### 1. Check Before Creating
+
+**ALWAYS** search for existing solutions before building new:
+- Search `META/skill-registry.json` for relevant skills
+- Check `STANDARDS/architecture-patterns/` for design approaches
+- Review `PLAYBOOKS/` for operational procedures
+- Look in `COMPONENTS/` for reusable implementations
+- Consult `EXAMPLES/` for reference code
+
+**Never invent when a standard exists.**
+
+### 2. Follow Standards Always
+
+**ALL code must follow:**
+- Conventions in `STANDARDS/coding-conventions/` (when created)
+- Best practices in `STANDARDS/best-practices/`
+- Patterns in `STANDARDS/architecture-patterns/`
+- Security guidelines (never compromise)
+
+**No exceptions without documented reasoning.**
+
+### 3. Use Skills for Guidance
+
+For specialized tasks:
+- Skills activate automatically based on context
+- Can explicitly request: "Use the [skill-name] skill to..."
+- Skills provide methodology, not rigid rules
+- Adapt guidance to specific context
+
+**Let skills augment capabilities.**
+
+### 4. Apply Decision Framework
+
+For ANY architectural or technical decision:
+- Consult `META/DECISION-FRAMEWORK.md`
+- List requirements and constraints
+- Consider trade-offs
+- Document decision with reasoning
+- Reference framework sections
+
+**Document decisions, don't just make them.**
+
+### 5. Use Playbooks for Procedures
+
+Check `PLAYBOOKS/` for step-by-step guides:
+- Deployment procedures
+- Release management
+- Operational tasks
+- Common workflows
+
+**Follow playbooks when they exist.**
+
+---
+
+## Task Priority Order
+
+When given any task:
+
+```
+1. Load Context
+   └─ Read META files (PROJECT-CONTEXT, HOW-TO-USE, DECISION-FRAMEWORK)
+
+2. Check PLAYBOOKS
+   └─ Is there an existing procedure for this exact task?
+
+3. Identify SKILLS
+   └─ Search META/skill-registry.json for relevant methodologies
+
+4. Search COMPONENTS
+   └─ Can I reuse existing code?
+
+5. Review PATTERNS
+   └─ What architectural approach fits?
+
+6. Apply STANDARDS
+   └─ What conventions must I follow?
+
+7. Reference EXAMPLES
+   └─ Are there similar implementations?
+
+8. Implement
+   └─ Build following guidance from above
+
+9. Document
+   └─ Record decisions and reference sources
+```
+
+---
+
+## File Reference Format
+
+When mentioning files from ai-dev-standards:
+
+**Good examples:**
+- "Based on SKILLS/mvp-builder/SKILL.md, the P0/P1/P2 matrix..."
+- "Following STANDARDS/architecture-patterns/rag-pattern.md:45-67..."
+- "As outlined in META/DECISION-FRAMEWORK.md:123, RAG is appropriate when..."
+
+**Include:**
+- Relative path from repository root
+- Specific line numbers when referencing details
+- Clear connection to current task
+
+---
+
+## Communication Style
+
+### When Starting a Task
+
+**Say:**
+```
+"I'll [task description]. Let me check our standards repository first...
+
+✓ Loaded META/PROJECT-CONTEXT.md
+✓ Checked PLAYBOOKS/ for existing procedures
+✓ Identified relevant skill: [skill-name]
+
+[Proceed with explanation of approach based on guidance]"
+```
+
+### When Making Decisions
+
+**Say:**
+```
+"Based on META/DECISION-FRAMEWORK.md ([section-name]), I recommend [choice] because:
+
+Requirements:
+- [requirement 1]
+- [requirement 2]
+
+Decision: [Choice]
+
+Reasoning:
+- [reason 1 citing framework]
+- [reason 2 citing framework]
+
+Trade-offs:
+- [trade-off 1]
+- [trade-off 2]"
+```
+
+### When Using Skills
+
+**Say:**
+```
+"I'm using the [skill-name] skill (SKILLS/[skill-name]/SKILL.md) which provides [key methodology].
+
+[Apply skill guidance to specific task]"
+```
+
+### When Creating Something New
+
+**Say:**
+```
+"I didn't find an existing [component/pattern] for this in:
+- COMPONENTS/ (checked)
+- STANDARDS/architecture-patterns/ (checked)
+- PLAYBOOKS/ (checked)
+
+I'll create one following:
+- STANDARDS/coding-conventions/[relevant].md
+- STANDARDS/best-practices/[relevant].md
+
+This could be added to ai-dev-standards as [suggestion]."
+```
+
+---
+
+## Quality Gates
+
+Before presenting any code or solution:
+
+- [ ] Follows coding conventions (if standards exist)
+- [ ] Includes error handling
+- [ ] Has proper logging (where appropriate)
+- [ ] Includes tests (for production code)
+- [ ] Has documentation
+- [ ] Matches patterns from repository
+- [ ] Uses available components
+- [ ] Security guidelines followed
+- [ ] Decisions documented with reasoning
+
+---
+
+## Prohibited Actions
+
+**❌ NEVER:**
+- Invent patterns that already exist in STANDARDS/
+- Skip loading context from META files
+- Violate security guidelines in STANDARDS/best-practices/
+- Ignore decision framework when making choices
+- Duplicate existing components
+- Create skills/patterns/playbooks that overlap with existing ones
+- Compromise on security or quality for speed
+
+---
+
+## Required Actions
+
+**✅ ALWAYS:**
+- Load META/PROJECT-CONTEXT.md every session
+- Search for existing solutions before creating new
+- Reference specific files and line numbers
+- Explain trade-offs when making decisions
+- Document reasoning for architectural choices
+- Apply security best practices
+- Suggest improvements to repository when gaps found
+
+---
+
+## When to Ask User
+
+**ASK when:**
+- Multiple valid approaches exist with significant trade-offs
+- Business decision needed (not technical)
+- Missing critical information for decision
+- Security or privacy implications unclear
+- Creating something not covered by existing standards
+
+**DON'T ASK when:**
+- Standards provide clear guidance
+- Pattern exists for this use case
+- Decision framework covers the choice
+- Playbook documents the procedure
+- It's a technical decision with clear best practice
+
+---
+
+## Error Handling
+
+**If ai-dev-standards is not accessible:**
+1. Inform user immediately
+2. Ask for repository location
+3. Proceed with general best practices
+4. Note lack of standards explicitly
+5. Suggest setting up reference
+
+**If standards conflict with project requirements:**
+1. Note the conflict explicitly
+2. Explain the standard and why it exists
+3. Document the deviation with reasoning
+4. Get user approval for deviation
+5. Mark deviation clearly in code/docs
+
+---
+
+## Continuous Improvement
+
+**After completing tasks:**
+- Identify gaps in standards
+- Suggest new skills for common patterns
+- Recommend new playbooks for repeated procedures
+- Note unclear or outdated guidance
+- Propose improvements to decision framework
+
+**Help the repository evolve.**
+
+---
+
+## Available Resources
+
+This project has access to a comprehensive resource system:
+
+### 📋 Resource Registries
+
+All resources are cataloged in `/META/` registries:
+- **`skill-registry.json`** - All 38 specialized skills
+- **`mcp-registry.json`** - All 36 MCP servers
+- **`tool-registry.json`** - All 9 tools + 4 scripts
+- **`component-registry.json`** - All 13 components
+- **`integration-registry.json`** - All 6 integrations
+- **`relationship-mapping.json`** - Complete dependency graph
+
+### 🎯 Skills (37 total)
+
+Skills activate automatically based on context. See `META/skill-registry.json` for complete list:
+
+**Product & Strategy:**
+- mvp-builder, product-strategist, go-to-market-planner, user-researcher
+
+**AI & Data:**
+- rag-implementer, knowledge-graph-builder, multi-agent-architect, data-engineer, data-visualizer
+
+**Frontend:**
+- frontend-builder, ux-designer, visual-designer, animation-designer, design-system-architect, accessibility-engineer
+
+**Backend & Infrastructure:**
+- api-designer, deployment-advisor, performance-optimizer, security-engineer, data-engineer
+
+**Testing & Quality:**
+- testing-strategist, quality-auditor
+
+**Content & Design:**
+- technical-writer, copywriter, brand-designer
+
+**Specialized:**
+- dark-matter-analyzer, 3d-visualizer, spatial-developer, voice-interface-builder, mobile-developer, iot-developer, livestream-engineer, video-producer, audio-producer
+
+**ADHD Support:**
+- context-preserver, focus-session-manager, task-breakdown-specialist
+
+### 🔧 MCP Servers (34 total)
+
+Executable tools for common development tasks. See `META/mcp-registry.json`:
+- **AI/RAG:** embedding-generator-mcp, vector-database-mcp, semantic-search-mcp, agent-orchestrator-mcp
+- **Development:** component-generator-mcp, test-runner-mcp, code-reviewer-mcp, api-validator-mcp
+- **Design:** wireframe-generator-mcp, design-token-manager-mcp, accessibility-checker-mcp
+- **Infrastructure:** deployment-orchestrator-mcp, database-migration-mcp, docker-manager-mcp
+- **Analysis:** dark-matter-analyzer-mcp, performance-profiler-mcp, security-scanner-mcp
+- And 17 more...
+
+### 🛠️ Tools (9 tools + 4 scripts)
+
+LangChain, CrewAI, and custom tools. See `META/tool-registry.json`:
+- **Core:** filesystem-tool, code-analyzer-tool, api-caller-tool, database-query-tool
+- **Data:** web-scraper-tool, vector-search-tool, embedding-tool
+- **Testing:** test-generator-tool
+- **Media:** image-processor-tool
+- **Scripts:** db-backup, db-migrate, test-runner, deploy
+
+### 🧩 Components (13 total)
+
+Reusable React components and patterns. See `META/component-registry.json`:
+- **Agents:** simple-task-agent
+- **Auth:** login-form, signup-form, password-reset, protected-route
+- **Errors:** error-boundary, error-fallback, not-found
+- **Feedback:** loading-spinner, skeleton, toast
+- **Forms:** form-field, use-form
+
+### 🔌 Integrations (6 total)
+
+Third-party service integrations. See `META/integration-registry.json`:
+- **LLM Providers:** openai, anthropic
+- **Platforms:** supabase, stripe, resend
+- **Vector DBs:** pinecone
+
+### 📊 Resource Statistics
+
+- **Total Resources:** 105 (59 skills + 50 MCPs + 9 tools + 4 scripts + 13 components + 6 integrations)
+- **Skill Coverage:** 100% (all skills have at least one supporting resource)
+- **MCP Coverage:** 92% (35/59 skills have MCP support)
+- **Most Used Tool:** filesystem-tool (20 usages)
+- **Most Used Component:** loading-spinner (5 usages)
+- **Most Used Integration:** supabase (9 usages)
+
+### 🔗 Resource Dependencies
+
+Use `META/relationship-mapping.json` to:
+- Find which MCPs support a specific skill
+- Discover which tools a component depends on
+- Identify required integrations for a feature
+- Track file dependencies on registries
+
+---
+
+## Skill Activation
+
+Skills will activate automatically based on:
+- Skill descriptions (YAML frontmatter)
+- Trigger keywords
+- Task context
+
+**To explicitly activate a skill:** "Use the [skill-name] skill to..."
+
+---
+
+## Special Instructions
+
+### For New Projects
+
+When user starts a new project and wants to use ai-dev-standards:
+
+**RECOMMEND THE AUTO-BOOTSTRAP SYSTEM:**
+
+```bash
+npx @ai-dev-standards/bootstrap
+```
+
+This automatically:
+- ✅ Installs the ai-dev CLI
+- ✅ Creates .ai-dev.json configuration
+- ✅ Sets up .claude/ directory with skills
+- ✅ Configures MCPs in mcp-settings.json
+- ✅ Updates .cursorrules, .gitignore, .env.example
+- ✅ Sets up git hooks for auto-sync
+- ✅ Runs initial sync
+
+**See:** `DOCS/BOOTSTRAP.md` for complete guide.
+
+**Alternative (manual setup):** Provide sample `.cursorrules` content:
+
+```markdown
+# Project: [Project Name]
+
+## Standards Repository
+Located at: ~/ai-dev-standards/
+
+## Instructions for AI Assistant
+1. Before any task, read: ai-dev-standards/META/HOW-TO-USE.md
+2. Follow standards in: ai-dev-standards/STANDARDS/
+3. Use skills from: ai-dev-standards/SKILLS/
+4. Reference patterns in: ai-dev-standards/STANDARDS/architecture-patterns/
+5. Apply decision framework: ai-dev-standards/META/DECISION-FRAMEWORK.md
+
+## Project-Specific Context
+[Project-specific information here]
+```
+
+### For Reviewing Existing Projects
+
+When reviewing/auditing existing code:
+
+1. Load ai-dev-standards context
+2. Check project against `STANDARDS/best-practices/`
+3. Review architecture against relevant patterns
+4. Identify gaps or improvements
+5. Prioritize recommendations using mvp-builder P0/P1/P2 logic
+6. Suggest refactoring with specific pattern references
+
+### For MCP Development
+
+When building MCP servers:
+
+1. Use `STANDARDS/architecture-patterns/mcp-integration-pattern.md` (when created)
+2. Follow MCP specification exactly
+3. Include security considerations
+4. Document tool designs clearly
+5. Provide usage examples
+
+### For Multi-Agent Systems
+
+When designing agent systems:
+
+1. Use `multi-agent-architect` skill
+2. Consult `STANDARDS/architecture-patterns/multi-agent-pattern.md` (when created)
+3. Consider single vs multi-agent (decision framework)
+4. Define clear roles and communication patterns
+5. Plan state management approach
+
+### For RAG Implementation
+
+When implementing RAG:
+
+1. Use `rag-implementer` skill
+2. Check `STANDARDS/architecture-patterns/rag-pattern.md` (when created)
+3. Decide on vector database (decision framework)
+4. Plan evaluation metrics upfront
+5. Consider security and data privacy
+
+---
+
+## Example Workflow
+
+**User:** "Help me build an MVP for a task management app"
+
+**AI Response:**
+```
+"I'll help build an MVP for a task management app. Let me load context from ai-dev-standards first...
+
+✓ Loaded META/PROJECT-CONTEXT.md
+✓ Loaded META/HOW-TO-USE.md
+✓ Activated mvp-builder skill (SKILLS/mvp-builder/SKILL.md)
+
+Using the mvp-builder methodology:
+
+1. First, let's identify your riskiest assumption using the P0/P1/P2 matrix:
+   - P0 (Must have): Core task CRUD, user auth, basic list view
+   - P1 (Important but can wait): Due dates, priorities, notifications
+   - P2 (Nice to have): Team collaboration, file attachments
+
+2. For MVP pattern, I recommend the Single-Feature MVP approach:
+   - Build just task creation/completion/viewing
+   - Validate that users actually want another task manager
+   - Timeline: 1-2 weeks
+
+3. Tech stack (from META/DECISION-FRAMEWORK.md, Archetype B):
+   - Frontend: Next.js + Tailwind + shadcn/ui
+   - Backend: Next.js API Routes
+   - Database: Supabase (PostgreSQL + Auth)
+   - Hosting: Vercel
+
+Should I proceed with this approach?"
+```
+
+---
+
+## Repository Boundaries
+
+**This repository provides:**
+- ✅ Methodology (skills)
+- ✅ Architecture guidance (patterns)
+- ✅ Quality standards (best practices)
+- ✅ Decision frameworks (choices)
+- ✅ Operational procedures (playbooks)
+- ✅ **CLI tool for automatic installation and syncing**
+- ✅ **Auto-bootstrap system (zero-config setup)**
+- ✅ **Config file management with auto-updates**
+
+**This repository does NOT provide:**
+- ❌ Complete project templates (use TEMPLATES/ when available)
+- ❌ Full code implementations (see EXAMPLES/ for references)
+- ❌ Project-specific decisions (apply framework to context)
+- ❌ Rigid rules (guidelines that adapt to context)
+
+---
+
+## Success Indicators
+
+You're using ai-dev-standards correctly when:
+
+**For AI Assistants:**
+- ✅ META files loaded every session
+- ✅ Skills referenced with file paths
+- ✅ Decisions cite decision framework
+- ✅ Trade-offs explained clearly
+- ✅ Sources always referenced
+- ✅ Patterns applied appropriately
+
+**For Code Quality:**
+- ✅ Consistent conventions across projects
+- ✅ Security best practices never skipped
+- ✅ Architecture patterns followed
+- ✅ Documentation included
+- ✅ Tests included (when appropriate)
+
+**For User Experience:**
+- ✅ Faster project starts
+- ✅ Higher quality code
+- ✅ Clear decision rationale
+- ✅ Consistent approaches
+- ✅ Predictable results
+
+---
+
+## Remember
+
+This repository is a **tool for excellence**, not a constraint.
+
+**Use it to build better, faster, and more consistently.**
+
+If something doesn't make sense or standards conflict with requirements, document the deviation and explain why. Standards should serve the project, not constrain it unnecessarily.
+
+**When in doubt, ask questions and document decisions.**

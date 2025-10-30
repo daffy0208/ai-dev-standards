@@ -31,11 +31,12 @@ export class SkillSelector {
 
   /**
    * Select skills for a task with detailed scoring
+   * Enhanced to use semantic matching and common patterns
    */
   select(taskDescription: string): SkillSelection {
     const lowerTask = taskDescription.toLowerCase();
 
-    // Score all skills
+    // Score all skills with enhanced keyword matching
     const scored = this.scoreAllSkills(lowerTask);
 
     // Sort by score
@@ -43,7 +44,7 @@ export class SkillSelector {
 
     // Categorize skills
     const primary = scored
-      .filter(s => s.score >= 15 && s.confidence === 'high')
+      .filter(s => s.score >= 8 && s.confidence === 'high') // Lowered threshold from 15 to 8
       .slice(0, 3)
       .map(s => s.skill);
 
@@ -88,6 +89,16 @@ export class SkillSelector {
   private scoreSkill(skill: Skill, taskDescription: string): SkillScore {
     let score = 0;
     const matchReasons: string[] = [];
+
+    // Rule 0: Common pattern matching (NEW - highest priority)
+    const patterns = this.getCommonPatterns();
+    for (const pattern of patterns) {
+      const matchedKeywords = pattern.keywords.filter(k => taskDescription.includes(k));
+      if (matchedKeywords.length > 0 && pattern.skills.includes(skill.name)) {
+        score += 15 * matchedKeywords.length; // Multiply by number of keyword matches
+        matchReasons.push(`Pattern: ${pattern.name} (${matchedKeywords.length} keywords)`);
+      }
+    }
 
     // Rule 1: Trigger matching (highest priority)
     for (const trigger of skill.triggers) {
@@ -172,11 +183,73 @@ export class SkillSelector {
   }
 
   /**
-   * Fuzzy string matching
+   * Get common task patterns for semantic matching
+   */
+  private getCommonPatterns() {
+    return [
+      {
+        name: 'Frontend UI Development',
+        keywords: ['ui', 'component', 'layout', 'page', 'screen', 'view', 'skeleton', 'loading', 'button', 'form', 'modal', 'navigation'],
+        skills: ['frontend-builder', 'visual-designer', 'ux-designer', 'design-system-architect', 'animation-designer']
+      },
+      {
+        name: 'Authentication & Security',
+        keywords: ['auth', 'login', 'signup', 'password', 'security', 'permission', 'role', 'jwt', 'oauth', 'session'],
+        skills: ['security-engineer', 'api-designer', 'supabase-developer']
+      },
+      {
+        name: 'API Development',
+        keywords: ['api', 'endpoint', 'route', 'rest', 'graphql', 'backend', 'server'],
+        skills: ['api-designer', 'supabase-developer']
+      },
+      {
+        name: 'Database & Data',
+        keywords: ['database', 'schema', 'table', 'query', 'data', 'model', 'postgres', 'sql'],
+        skills: ['supabase-developer', 'data-engineer', 'api-designer']
+      },
+      {
+        name: 'RAG & AI',
+        keywords: ['rag', 'vector', 'embedding', 'semantic', 'search', 'ai', 'llm', 'knowledge'],
+        skills: ['rag-implementer', 'knowledge-base-manager', 'multi-agent-architect']
+      },
+      {
+        name: 'Testing & Quality',
+        keywords: ['test', 'testing', 'quality', 'coverage', 'unit', 'integration', 'e2e'],
+        skills: ['testing-strategist', 'quality-assurance']
+      },
+      {
+        name: 'Performance',
+        keywords: ['performance', 'optimization', 'optimize', 'slow', 'speed', 'cache', 'latency'],
+        skills: ['performance-optimizer']
+      },
+      {
+        name: 'Deployment & DevOps',
+        keywords: ['deploy', 'deployment', 'cicd', 'pipeline', 'docker', 'production', 'hosting'],
+        skills: ['deployment-advisor', 'quality-assurance']
+      },
+      {
+        name: 'Animations & Transitions',
+        keywords: ['animation', 'transition', 'motion', 'animate', 'smooth', 'fade', 'slide'],
+        skills: ['animation-designer', 'frontend-builder']
+      },
+      {
+        name: 'Accessibility',
+        keywords: ['accessibility', 'a11y', 'wcag', 'aria', 'screen reader', 'keyboard'],
+        skills: ['accessibility-engineer', 'ux-designer']
+      }
+    ];
+  }
+
+  /**
+   * Fuzzy string matching with word boundaries to prevent false positives
    */
   private fuzzyMatch(text: string, pattern: string): boolean {
     const words = pattern.split(/[\s-]+/);
-    return words.every(word => text.includes(word));
+    // Use word boundaries to match whole words only, preventing "ai" from matching "maintain"
+    return words.every(word => {
+      const regex = new RegExp(`\\b${word}\\b`, 'i');
+      return regex.test(text);
+    });
   }
 
   /**

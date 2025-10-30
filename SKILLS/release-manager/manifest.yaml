@@ -1,0 +1,45 @@
+name: release-manager
+kind: skill
+description: Ship features safely with progressive rollouts, feature flags, and canary
+  deployments. Use when deploying risky features or need gradual rollouts.
+preconditions:
+- check: project_initialized
+  description: Project environment is set up
+  required: true
+effects:
+- provides_capability
+domains: &id001
+- ai
+- backend
+- devops
+- testing
+- product
+- data
+cost: medium
+latency: medium
+risk_level: low
+side_effects:
+- modifies_files
+- creates_artifacts
+idempotent: false
+success_signal: release-manager capability successfully applied
+failure_signals:
+- Prerequisites not met
+- Configuration error
+compatibility:
+  requires: []
+  conflicts_with: []
+  composes_with: []
+  enables: []
+observability:
+  logs:
+  - Applying release-manager...
+  - release-manager completed
+  metrics:
+  - execution_time_ms
+  - success_rate
+metadata:
+  version: 1.0.0
+  created_at: '2025-10-30'
+  tags: *id001
+  examples: []

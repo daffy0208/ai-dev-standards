@@ -23,6 +23,48 @@ cp ~/ai-dev-standards/TEMPLATES/cursorrules-existing-project.md .cursorrules
 Repository: ~/ai-dev-standards/
 Status: Active (Existing Project)
 
+### ⚡ CRITICAL: Brain-First Development (MANDATORY)
+
+**YOU MUST use brain-mcp tools PROACTIVELY for EVERY task.**
+
+**Workflow for Every Task:**
+
+1. **BEFORE starting ANY task, query the brain:**
+   - Use `brain_search` with relevant keywords
+   - OR use `graph_query_by_domain` if you know the domain
+   - OR use `graph_query_by_effect` if you know what effect is needed
+
+2. **Show me what you found:**
+   - List the skills/MCPs the brain recommended
+   - Explain why they're relevant
+
+3. **Check dependencies:**
+   - Use `graph_get_dependencies` for each skill
+
+4. **Then implement using those skills**
+
+**Example:**
+```
+Task: "Add user authentication"
+Step 1: Use graph_query_by_effect("implements_authentication")
+Step 2: Returns: security-engineer, api-designer
+Step 3: Use graph_get_dependencies("security-engineer")
+Step 4: Implement using security-engineer skill
+```
+
+**Brain-MCP Tools Available:**
+- brain_search, brain_show_skill, brain_relationships
+- graph_query_by_domain, graph_query_by_effect
+- graph_get_dependencies, graph_composition_chains
+
+**Rules:**
+1. ✅ ALWAYS query brain FIRST
+2. ✅ ALWAYS show what you found
+3. ✅ ALWAYS check dependencies
+4. ❌ NEVER skip the brain
+
+---
+
 ### Instructions for Claude Code
 
 **ALWAYS load on session start:**

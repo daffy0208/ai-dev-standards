@@ -1,5 +1,14 @@
 {
   "mcpServers": {
+    "brain-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\brain-mcp\\dist\\index.js"
+      ],
+      "env": {
+        "AI_DEV_STANDARDS_ROOT": "C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards"
+      }
+    },
     "framework-content": {
       "command": "node",
       "args": [
@@ -326,6 +335,356 @@
       "args": [
         "/home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins/mcp/workflow-orchestrator/dist/servers/workflow-engine.js"
       ]
+    },
+    "3D Asset Manager MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/3d-asset-manager-mcp"
+      ],
+      "env": {}
+    },
+    "Accessibility Checker MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/accessibility-checker-mcp"
+      ],
+      "env": {}
+    },
+    "Agent Orchestrator MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/agent-orchestrator-mcp"
+      ],
+      "env": {}
+    },
+    "Animation Library MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/animation-library-mcp"
+      ],
+      "env": {}
+    },
+    "API Validator MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/api-validator-mcp"
+      ],
+      "env": {}
+    },
+    "Archon MCP": {
+      "command": "node",
+      "args": [
+        "https://github.com/coleam00/Archon"
+      ],
+      "env": {}
+    },
+    "Asset Optimizer MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/asset-optimizer-mcp"
+      ],
+      "env": {}
+    },
+    "Audio Processor MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/audio-processor-mcp"
+      ],
+      "env": {}
+    },
+    "Chart Builder MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/chart-builder-mcp"
+      ],
+      "env": {}
+    },
+    "Code Quality Scanner MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/code-quality-scanner-mcp"
+      ],
+      "env": {}
+    },
+    "Component Generator MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/component-generator-mcp"
+      ],
+      "env": {}
+    },
+    "Dark Matter Analyzer MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/dark-matter-analyzer-mcp"
+      ],
+      "env": {}
+    },
+    "Database Migration MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/database-migration-mcp"
+      ],
+      "env": {}
+    },
+    "Deployment Orchestrator MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/deployment-orchestrator-mcp"
+      ],
+      "env": {}
+    },
+    "Design Token Manager MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/design-token-manager-mcp"
+      ],
+      "env": {}
+    },
+    "Documentation Generator MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/doc-generator-mcp"
+      ],
+      "env": {}
+    },
+    "Embedding Generator MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/embedding-generator-mcp"
+      ],
+      "env": {}
+    },
+    "Feature Prioritizer MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/feature-prioritizer-mcp"
+      ],
+      "env": {}
+    },
+    "Graph Database MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/graph-database-mcp"
+      ],
+      "env": {}
+    },
+    "Internationalization Manager MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/i18n-manager-mcp"
+      ],
+      "env": {}
+    },
+    "IoT Device Manager MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/iot-device-manager-mcp"
+      ],
+      "env": {}
+    },
+    "Knowledge Base MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/knowledge-base-mcp"
+      ],
+      "env": {}
+    },
+    "Market Analyzer MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/market-analyzer-mcp"
+      ],
+      "env": {}
+    },
+    "Mobile Builder MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/mobile-builder-mcp"
+      ],
+      "env": {}
+    },
+    "OpenAPI Generator MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/openapi-generator-mcp"
+      ],
+      "env": {}
+    },
+    "Performance Profiler MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/performance-profiler-mcp"
+      ],
+      "env": {}
+    },
+    "Screenshot Testing MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/screenshot-testing-mcp"
+      ],
+      "env": {}
+    },
+    "Security Scanner MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/security-scanner-mcp"
+      ],
+      "env": {}
+    },
+    "Semantic Search MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/semantic-search-mcp"
+      ],
+      "env": {}
+    },
+    "SEO Analyzer MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/seo-analyzer-mcp"
+      ],
+      "env": {}
+    },
+    "Streaming Setup MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/streaming-setup-mcp"
+      ],
+      "env": {}
+    },
+    "Test Runner MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/test-runner-mcp"
+      ],
+      "env": {}
+    },
+    "User Insight Analyzer MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/user-insight-analyzer-mcp"
+      ],
+      "env": {}
+    },
+    "Vector Database MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/vector-database-mcp"
+      ],
+      "env": {}
+    },
+    "Video Optimizer MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/video-optimizer-mcp"
+      ],
+      "env": {}
+    },
+    "Wireframe Generator MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/wireframe-generator-mcp"
+      ],
+      "env": {}
+    },
+    "Icon Library MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/icon-library-mcp"
+      ],
+      "env": {}
+    },
+    "Font Optimizer MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/font-optimizer-mcp"
+      ],
+      "env": {}
+    },
+    "Image Generator MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/image-generator-mcp"
+      ],
+      "env": {}
+    },
+    "SVG Generator MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/svg-generator-mcp"
+      ],
+      "env": {}
+    },
+    "Illustration Generator MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/illustration-generator-mcp"
+      ],
+      "env": {}
+    },
+    "Figma Sync MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/figma-sync-mcp"
+      ],
+      "env": {}
+    },
+    "Design Handoff MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/design-handoff-mcp"
+      ],
+      "env": {}
+    },
+    "Theme Builder MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/theme-builder-mcp"
+      ],
+      "env": {}
+    },
+    "Dark Mode Converter MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/dark-mode-converter-mcp"
+      ],
+      "env": {}
+    },
+    "Storybook Generator MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/storybook-generator-mcp"
+      ],
+      "env": {}
+    },
+    "Props Documenter MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/props-documenter-mcp"
+      ],
+      "env": {}
+    },
+    "Typography Analyzer MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/typography-analyzer-mcp"
+      ],
+      "env": {}
+    },
+    "Asset Library MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/asset-library-mcp"
+      ],
+      "env": {}
+    },
+    "Responsive Preview MCP": {
+      "command": "node",
+      "args": [
+        "/MCP-SERVERS/responsive-preview-mcp"
+      ],
+      "env": {}
     }
   }
 }

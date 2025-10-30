@@ -1,0 +1,94 @@
+name: product-strategist
+kind: skill
+description: Validate product-market fit and strategic direction through discovery, validation, and prioritization before development
+
+preconditions:
+  - check: has_product_idea or has_problem_statement
+    description: Product idea or problem to solve
+    required: true
+  - check: not validated_with_users
+    description: Not yet validated with target users
+    required: false
+
+effects:
+  - validates_problem_solution_fit
+  - defines_target_market
+  - creates_user_personas
+  - validates_product_market_fit
+  - prioritizes_features
+  - defines_value_proposition
+  - identifies_competitive_advantage
+  - creates_go_to_market_strategy
+  - defines_success_metrics
+  - prevents_building_wrong_product
+
+domains:
+  - product-management
+  - strategy
+  - validation
+  - market-research
+  - discovery
+  - lean-startup
+
+cost: low
+latency: fast
+risk_level: low
+
+side_effects:
+  - creates_documentation
+  - may_invalidate_assumptions
+  - may_pivot_direction
+
+idempotent: true
+
+success_signal: "Problem validated with target users, value proposition clear, success metrics defined, feature prioritization complete"
+
+failure_signals:
+  - "Users don't experience stated problem"
+  - "Solution doesn't solve problem"
+  - "Market size too small"
+  - "Competition too strong without differentiation"
+  - "No clear monetization strategy"
+
+compatibility:
+  requires: []
+  conflicts_with:
+    - build-first-validate-later
+  composes_with:
+    - user-researcher
+    - mvp-builder
+    - product-analyst
+    - go-to-market-planner
+  enables:
+    - validated-product-direction
+    - informed-feature-prioritization
+    - clear-value-proposition
+    - market-fit
+
+observability:
+  logs:
+    - "Problem validation: {users_interviewed} users"
+    - "Market size: {tam} TAM, {sam} SAM, {som} SOM"
+    - "Value proposition: {proposition}"
+    - "Success metrics: {metrics}"
+  metrics:
+    - problem_validation_score
+    - market_size_estimate
+    - competitive_analysis_completeness
+    - feature_prioritization_confidence
+
+metadata:
+  version: "1.0.0"
+  created_at: "2025-10-29"
+  tags:
+    - product-strategy
+    - validation
+    - market-research
+    - discovery
+    - lean-startup
+    - product-market-fit
+  examples:
+    - "Validate SaaS product idea before building"
+    - "Research market for new feature"
+    - "Define product strategy for marketplace"
+    - "Prioritize roadmap for existing product"

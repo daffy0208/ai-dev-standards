@@ -1,5 +1,82 @@
 # Claude Configuration
 
+## ⚡ CRITICAL: Brain-First Development (ALWAYS FOLLOW)
+
+**YOU MUST use brain-mcp tools PROACTIVELY for EVERY task. This is MANDATORY.**
+
+### Workflow for Every Task:
+
+1. **BEFORE starting ANY task, query the brain:**
+   ```
+   Use brain_search with relevant keywords
+   OR
+   Use graph_query_by_domain if you know the domain
+   OR
+   Use graph_query_by_effect if you know what effect is needed
+   ```
+
+2. **Show the user what you found:**
+   ```
+   "I queried the brain and found these relevant skills:
+   - skill-name: description
+   - skill-name: description"
+   ```
+
+3. **Check dependencies:**
+   ```
+   Use graph_get_dependencies for each skill
+   ```
+
+4. **Then implement using those skills**
+
+### Examples:
+
+**Task: "Add authentication"**
+```
+Step 1: Use graph_query_by_effect with "implements_authentication"
+Step 2: Returns: security-engineer, api-designer
+Step 3: Use graph_get_dependencies for security-engineer
+Step 4: Implement using security-engineer skill
+```
+
+**Task: "Build RAG system"**
+```
+Step 1: Use brain_search with "rag"
+Step 2: Returns: rag-implementer, knowledge-base-manager, etc.
+Step 3: Use graph_composition_chains to see what works together
+Step 4: Implement with recommended skills
+```
+
+**Task: "Add loading skeleton"**
+```
+Step 1: Use graph_query_by_domain with "frontend"
+Step 2: Returns: frontend-builder, visual-designer, animation-designer
+Step 3: Use graph_relationships to check available components
+Step 4: Implement using frontend-builder
+```
+
+### Brain-MCP Tools Available:
+
+- **brain_search** - Search all skills/MCPs/tools by keyword
+- **brain_show_skill** - Get detailed skill information
+- **brain_relationships** - Show skill dependencies (MCPs, tools, components)
+- **graph_query_by_domain** - Find capabilities by domain (ai, frontend, backend, security, etc.)
+- **graph_query_by_effect** - Find by effect (implements_authentication, creates_vector_index, etc.)
+- **graph_get_dependencies** - Get capability dependencies
+- **graph_composition_chains** - See what works well together
+- **graph_stats** - Get graph statistics
+- **brain_status** - Get repository status
+
+### IMPORTANT Rules:
+
+1. ✅ **ALWAYS query brain FIRST** - Never start coding without checking the brain
+2. ✅ **ALWAYS show what you found** - Tell the user what the brain recommended
+3. ✅ **ALWAYS check dependencies** - Use graph_get_dependencies before using a skill
+4. ✅ **ALWAYS explain your reasoning** - Why you chose those skills
+5. ❌ **NEVER skip the brain** - Even for "simple" tasks, query the brain
+
+---
+
 ## Skills
 
 
@@ -357,3 +434,32 @@ Expert in building voice interfaces, speech recognition, and text-to-speech syst
 
 **Location:** `/SKILLS/voice-interface-builder/SKILL.md`
 - yes
+### capability-graph-builder
+
+Build queryable capability graphs from manifests using Codex for relationship inference between skills, resources, and capabilities.
+
+**Location:** `/mnt/c/Users/david/OneDrive - Qolcom/AI/AI_Development_Projects/ai-dev-standards/SKILLS/capability-graph-builder/SKILL.md`
+
+### manifest-generator
+
+Auto-generate capability manifests from skill/MCP descriptions using Codex-powered semantic analysis and structured extraction.
+
+**Location:** `/mnt/c/Users/david/OneDrive - Qolcom/AI/AI_Development_Projects/ai-dev-standards/SKILLS/manifest-generator/SKILL.md`
+
+### orchestration-planner
+
+Plan multi-step workflows using capability graph and Codex-powered goal decomposition with HTN-style hierarchical task planning.
+
+**Location:** `/mnt/c/Users/david/OneDrive - Qolcom/AI/AI_Development_Projects/ai-dev-standards/SKILLS/orchestration-planner/SKILL.md`
+
+### skill-validator
+
+Validates that a skill or MCP implementation matches its manifest by running Codex-powered semantic comparisons across descriptions, preconditions, effects, and API surface.
+
+**Location:** `/mnt/c/Users/david/OneDrive - Qolcom/AI/AI_Development_Projects/ai-dev-standards/SKILLS/skill-validator/SKILL.md`
+
+### system-diagnostician
+
+Performs Codex-assisted project health diagnostics, identifies capability gaps, and produces prioritized improvement plans.
+
+**Location:** `/mnt/c/Users/david/OneDrive - Qolcom/AI/AI_Development_Projects/ai-dev-standards/SKILLS/system-diagnostician/SKILL.md`

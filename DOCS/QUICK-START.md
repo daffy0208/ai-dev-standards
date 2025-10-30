@@ -88,7 +88,7 @@ Recommended Skills:
 ✅ Setup Complete!
 
 You now have access to:
-  • 39 skills
+  • 64 skills
   • 36 MCP servers
   • 107 total resources
   • Project-specific recommendations
@@ -127,7 +127,7 @@ Open your project in Claude Code and ask:
 You: "What skills are available from ai-dev-standards?"
 ```
 
-**Expected:** Claude lists all 39 skills:
+**Expected:** Claude lists all 64 skills:
 - mvp-builder, rag-implementer, product-strategist, multi-agent-architect
 - api-designer, frontend-builder, deployment-advisor, security-engineer
 - data-engineer, data-visualizer, knowledge-graph-builder, performance-optimizer
@@ -373,7 +373,7 @@ ai-dev info skill mvp-builder
 cat .claude/skills/mvp-builder/README.md
 ```
 
-**All 39 skills available:**
+**All 64 skills available:**
 
 **Product & Strategy:**
 - mvp-builder, product-strategist, go-to-market-planner, user-researcher
@@ -558,7 +558,7 @@ mv .cursorrules.backup .cursorrules
 ## 🎉 You're Ready!
 
 **What you have now:**
-- ✅ All 39 skills available to Claude
+- ✅ All 64 skills available to Claude
 - ✅ 36 MCP servers (92% skill coverage)
 - ✅ 9 tools + 4 scripts for automation
 - ✅ 13 reusable components

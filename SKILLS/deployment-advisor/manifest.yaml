@@ -1,0 +1,99 @@
+name: deployment-advisor
+kind: skill
+description: Choose deployment strategy and infrastructure for applications including Vercel, Railway, AWS, Docker, and CI/CD setup
+
+preconditions:
+  - check: file_exists('package.json') or file_exists('Dockerfile') or application_ready
+    description: Application ready for deployment
+    required: true
+  - check: not deployed_to_production
+    description: Not yet deployed to production
+    required: false
+
+effects:
+  - configures_deployment_pipeline
+  - sets_up_cicd
+  - configures_environment_variables
+  - implements_zero_downtime_deployment
+  - configures_monitoring
+  - sets_up_logging
+  - configures_auto_scaling
+  - implements_rollback_strategy
+  - configures_dns_ssl
+  - sets_up_database_migrations
+
+domains:
+  - deployment
+  - devops
+  - cicd
+  - infrastructure
+  - cloud
+  - containers
+
+cost: low_to_high
+latency: medium
+risk_level: medium
+
+side_effects:
+  - creates_cloud_resources
+  - incurs_hosting_costs
+  - modifies_configuration
+  - creates_deployment_scripts
+
+idempotent: true
+
+success_signal: "Application deployed to production, CI/CD pipeline operational, monitoring and logging configured, SSL enabled"
+
+failure_signals:
+  - "Build fails on deployment platform"
+  - "Environment variables missing"
+  - "Database migrations fail"
+  - "SSL certificate not configured"
+  - "No health check endpoint"
+  - "Deployment rollback fails"
+
+compatibility:
+  requires:
+    - application-ready
+  conflicts_with:
+    - manual-deployment-only
+  composes_with:
+    - frontend-builder
+    - api-designer
+    - security-engineer
+    - testing-strategist
+    - performance-optimizer
+  enables:
+    - production-deployment
+    - continuous-deployment
+    - auto-scaling
+    - zero-downtime-updates
+
+observability:
+  logs:
+    - "Deploying to {platform} in {region}"
+    - "CI/CD pipeline: {pipeline_stages}"
+    - "Environment: {env_vars_count} variables configured"
+    - "SSL certificate: {status}"
+  metrics:
+    - deployment_success_rate
+    - deployment_duration_seconds
+    - rollback_count
+    - uptime_percentage
+    - build_success_rate
+
+metadata:
+  version: "1.0.0"
+  created_at: "2025-10-29"
+  tags:
+    - deployment
+    - devops
+    - cicd
+    - infrastructure
+    - cloud
+    - docker
+  examples:
+    - "Deploy Next.js app to Vercel with CI/CD"
+    - "Set up Railway deployment for Node.js API"
+    - "Configure AWS ECS deployment with Docker"
+    - "Implement blue-green deployment strategy"
