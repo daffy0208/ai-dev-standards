@@ -18,6 +18,7 @@ const MCP_DIR = path.join(ROOT, 'MCP-SERVERS');
 
 const GREEN = '\x1b[32m';
 const YELLOW = '\x1b[33m';
+const RED = '\x1b[31m';
 const RESET = '\x1b[0m';
 
 console.log(`\n${GREEN}🔄 Updating All Files from Source of Truth${RESET}\n`);
@@ -64,6 +65,10 @@ function updateREADME() {
 // Update BUILD_FOCUS.md
 function updateBUILDFOCUS() {
   const focusPath = path.join(ROOT, 'BUILD_FOCUS.md');
+  if (!fs.existsSync(focusPath)) {
+    console.log(`${YELLOW}⚠${RESET} BUILD_FOCUS.md not found, skipping`);
+    return;
+  }
   let content = fs.readFileSync(focusPath, 'utf-8');
 
   // Update current skill count
@@ -205,6 +210,25 @@ function updateClaudeMd() {
   console.log(`${GREEN}✅${RESET} Updated .claude/claude.md (${registry.skills.length} skills)`);
 }
 
+// Update .codex/codex.md
+function updateCodexMd() {
+  const codexPath = path.join(ROOT, '.codex', 'codex.md');
+  const registryPath = path.join(ROOT, 'META', 'skill-registry.json');
+
+  const registry = JSON.parse(fs.readFileSync(registryPath, 'utf-8'));
+
+  let content = '# Codex Configuration\n\n## Skills\n\n';
+
+  registry.skills.forEach(skill => {
+    content += `\n### ${skill.name}\n\n`;
+    content += `${skill.description}\n\n`;
+    content += `**Location:** \`${skill.path}SKILL.md\`\n`;
+  });
+
+  fs.writeFileSync(codexPath, content);
+  console.log(`${GREEN}✅${RESET} Updated .codex/codex.md (${registry.skills.length} skills)`);
+}
+
 // Run all updates
 try {
   updateREADME();
@@ -214,6 +238,7 @@ try {
   updateCURSORRULES();
   updateCHANGELOG();
   updateClaudeMd();
+  updateCodexMd();
 
   console.log(`\n${GREEN}✅ All files updated successfully!${RESET}`);
   console.log(`\n${YELLOW}Next step: Run validation${RESET}`);

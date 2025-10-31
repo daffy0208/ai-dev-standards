@@ -1,0 +1,23 @@
+{
+  "name": "@framework-library/framework-content",
+  "version": "1.0.0",
+  "description": "MCP server for serving framework content as resources",
+  "type": "module",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc && chmod +x build/index.js",
+    "watch": "tsc --watch",
+    "clean": "rm -rf build",
+    "test": "echo 'Tests not yet implemented' && exit 0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.20.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

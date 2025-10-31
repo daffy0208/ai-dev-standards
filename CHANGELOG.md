@@ -319,14 +319,14 @@ Complete AI Dev Standards system with automatic installation and syncing.
 ### Added
 
 #### Core Repository
-- **59 Specialized Skills** - Complete skill library
+- **64 Specialized Skills** - Complete skill library
   - Product: mvp-builder, product-strategist, go-to-market-planner
   - AI/Data: rag-implementer, knowledge-graph-builder, data-engineer, data-visualizer
   - Frontend: frontend-builder, ux-designer, visual-designer, animation-designer
   - Backend: api-designer, deployment-advisor, performance-optimizer, security-engineer
   - Testing: testing-strategist, quality-auditor, dark-matter-analyzer
   - And 19 more specialized skills
-- **49 MCP Servers** - 4 active, 3 planned
+- **50 MCP Servers** - 4 active, 3 planned
   - Active: dark-matter-analyzer, embedding-generator, feature-prioritizer, vector-database
   - Planned: accessibility-checker, component-generator, screenshot-testing
 - **7 Config Templates** - Auto-updated configuration files

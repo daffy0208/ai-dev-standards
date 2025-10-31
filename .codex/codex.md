@@ -1,4 +1,4 @@
-# Claude Configuration
+# Codex Configuration
 
 ## Skills
 

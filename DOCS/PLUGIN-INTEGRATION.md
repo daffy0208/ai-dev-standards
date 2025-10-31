@@ -219,9 +219,9 @@ With plugins integrated, total resources are now:
 - **64 skills** (unchanged)
 - **50 MCPs** (unchanged)
 - **72 components** (unchanged)
-- **27 integrations** (unchanged)
+- **28 integrations** (baseline)
 - **10 plugins** (NEW)
-- **247 total resources** (237 + 10 plugins)
+- **248 total resources** (238 + 10 plugins)
 
 ## Troubleshooting
 

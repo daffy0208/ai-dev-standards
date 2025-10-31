@@ -28,6 +28,32 @@
       ]
     },
     {
+      "id": "brain-mcp",
+      "name": "Brain MCP",
+      "description": "Expose the ai-dev-standards brain and capability graph for intelligent skill discovery, dependency analysis, and orchestration support.",
+      "category": "orchestration",
+      "supports_skills": [
+        "archon-manager",
+        "multi-agent-architect",
+        "capability-graph-builder",
+        "framework-orchestrator",
+        "orchestration-planner",
+        "codex-review-workflow"
+      ],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/brain-mcp",
+      "status": "active",
+      "phase": 5,
+      "capabilities": [
+        "Intelligent skill recommendations",
+        "Capability graph queries",
+        "Relationship mapping",
+        "Brain status reporting"
+      ]
+    },
+    {
       "id": "accessibility-checker-mcp",
       "name": "Accessibility Checker MCP",
       "description": "WCAG compliance checking and accessibility auditing",

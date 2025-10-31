@@ -3,6 +3,8 @@ const ora = require('ora')
 const fs = require('fs-extra')
 const path = require('path')
 const inquirer = require('inquirer')
+const localFetch = require('../utils/local-fetch')
+const githubFetch = require('../utils/github-fetch')
 // BUG FIX #5: Removed unused 'execa' import (line 5 in original code)
 
 /**
@@ -366,38 +368,41 @@ async function applyUpdate(projectPath, update, config) {
 }
 
 /**
- * Add skill to claude.md
+ * Add skill to client configuration files
  * SECURITY FIX: Now references LOCAL file paths instead of remote GitHub URLs
  */
 async function addSkillToProject(projectPath, skill) {
-  const claudeMdPath = path.join(projectPath, '.claude/claude.md')
+  const clientConfigs = [
+    { dir: '.claude', file: 'claude.md', header: '# Claude Configuration\n\n## Skills\n\n' },
+    { dir: '.codex', file: 'codex.md', header: '# Codex Configuration\n\n## Skills\n\n' }
+  ]
 
-  if (!await fs.pathExists(claudeMdPath)) {
-    await fs.ensureDir(path.dirname(claudeMdPath))
-    await fs.writeFile(claudeMdPath, '# Claude Configuration\n\n## Skills\n\n')
-  }
+  for (const client of clientConfigs) {
+    const configPath = path.join(projectPath, `${client.dir}/${client.file}`)
 
-  let content = await fs.readFile(claudeMdPath, 'utf8')
+    if (!await fs.pathExists(configPath)) {
+      await fs.ensureDir(path.dirname(configPath))
+      await fs.writeFile(configPath, client.header)
+    }
 
-  // Use the skill path from the registry, or construct it
-  let skillPath = skill.path || `/SKILLS/${skill.id}/SKILL.md`
+    let content = await fs.readFile(configPath, 'utf8')
 
-  // If path ends with /, append SKILL.md
-  if (skillPath.endsWith('/')) {
-    skillPath = `${skillPath}SKILL.md`
-  }
+    let skillPath = skill.path || `/SKILLS/${skill.id}/`
+    if (!skillPath.toLowerCase().endsWith('skill.md')) {
+      if (!skillPath.endsWith('/')) {
+        skillPath = `${skillPath}/`
+      }
+      skillPath = `${skillPath}SKILL.md`
+    }
 
-  // SECURITY FIX: Use local file path instead of GitHub URL
-  // This ensures project isolation and prevents cross-project data exposure
-  const { getAbsolutePath } = require('../utils/local-fetch')
-  const localPath = getAbsolutePath(skillPath)
+    const localPath = localFetch.getAbsolutePath(skillPath)
 
-  // Add skill reference with local path
-  const skillReference = `\n### ${skill.name}\n\n${skill.description}\n\n**Location:** \`${localPath}\`\n`
+    const skillReference = `\n### ${skill.name}\n\n${skill.description}\n\n**Location:** \`${localPath}\`\n`
 
-  if (!content.includes(skill.name)) {
-    content += skillReference
-    await fs.writeFile(claudeMdPath, content)
+    if (!content.includes(`### ${skill.name}`)) {
+      content += skillReference
+      await fs.writeFile(configPath, content)
+    }
   }
 }
 
@@ -405,26 +410,29 @@ async function addSkillToProject(projectPath, skill) {
  * Add MCP to project config
  */
 async function addMcpToProject(projectPath, mcp) {
-  // Add to Claude Code MCP settings
-  const settingsPath = path.join(projectPath, '.claude', 'mcp-settings.json')
+  const clientDirs = ['.claude', '.codex']
 
-  let settings = {}
-  if (await fs.pathExists(settingsPath)) {
-    settings = await fs.readJson(settingsPath)
+  for (const dir of clientDirs) {
+    const settingsPath = path.join(projectPath, dir, 'mcp-settings.json')
+
+    let settings = {}
+    if (await fs.pathExists(settingsPath)) {
+      settings = await fs.readJson(settingsPath)
+    }
+
+    if (!settings.mcpServers) {
+      settings.mcpServers = {}
+    }
+
+    settings.mcpServers[mcp.name] = {
+      command: 'node',
+      args: [mcp.path],
+      env: mcp.env || {}
+    }
+
+    await fs.ensureDir(path.dirname(settingsPath))
+    await fs.writeJson(settingsPath, settings, { spaces: 2 })
   }
-
-  if (!settings.mcpServers) {
-    settings.mcpServers = {}
-  }
-
-  settings.mcpServers[mcp.name] = {
-    command: 'node',
-    args: [mcp.path],
-    env: mcp.env || {}
-  }
-
-  await fs.ensureDir(path.dirname(settingsPath))
-  await fs.writeJson(settingsPath, settings, { spaces: 2 })
 }
 
 /**
@@ -450,8 +458,7 @@ async function addToolToProject(projectPath, tool) {
   await fs.ensureDir(toolsDir)
 
   // SECURITY FIX: Read from local file system instead of GitHub
-  const { fetchText } = require('../utils/local-fetch')
-  const content = await fetchText(normalizeRegistryPath(tool.path))
+  const content = await localFetch.fetchText(normalizeRegistryPath(tool.path))
 
   const toolFile = path.basename(tool.path)
   await fs.writeFile(path.join(toolsDir, toolFile), content)
@@ -467,8 +474,7 @@ async function addScriptToProject(projectPath, script) {
   await fs.ensureDir(scriptsDir)
 
   // SECURITY FIX: Read from local file system instead of GitHub
-  const { fetchText } = require('../utils/local-fetch')
-  const content = await fetchText(normalizeRegistryPath(script.path))
+  const content = await localFetch.fetchText(normalizeRegistryPath(script.path))
 
   const scriptFile = path.basename(script.path)
   const scriptPath = path.join(scriptsDir, scriptFile)
@@ -485,8 +491,7 @@ async function addComponentToProject(projectPath, component) {
   await fs.ensureDir(componentsDir)
 
   // SECURITY FIX: Read from local file system instead of GitHub
-  const { fetchText } = require('../utils/local-fetch')
-  const content = await fetchText(normalizeRegistryPath(component.path))
+  const content = await localFetch.fetchText(normalizeRegistryPath(component.path))
 
   const componentFile = path.basename(component.path)
   await fs.writeFile(path.join(componentsDir, componentFile), content)
@@ -502,8 +507,7 @@ async function addIntegrationToProject(projectPath, integration) {
   await fs.ensureDir(integrationsDir)
 
   // SECURITY FIX: Read from local file system instead of GitHub
-  const { fetchText } = require('../utils/local-fetch')
-  const content = await fetchText(normalizeRegistryPath(integration.path))
+  const content = await localFetch.fetchText(normalizeRegistryPath(integration.path))
 
   const integrationFile = path.basename(integration.path)
   await fs.writeFile(path.join(integrationsDir, integrationFile), content)
@@ -722,8 +726,12 @@ ai-dev sync --yes --silent
  * SECURITY FIX: Now reads from local file system instead of GitHub
  */
 async function fetchLatestStandards() {
-  const { fetchAllStandards } = require('../utils/local-fetch')
-  return await fetchAllStandards()
+  try {
+    return await localFetch.fetchAllStandards()
+  } catch (error) {
+    console.warn(chalk.yellow(`[sync] Local standards fetch failed, falling back to GitHub: ${error.message}`))
+    return await githubFetch.fetchAllStandards()
+  }
 }
 
 /**
@@ -731,8 +739,12 @@ async function fetchLatestStandards() {
  * SECURITY FIX: Now reads from local file system instead of GitHub
  */
 async function getLatestVersion() {
-  const { fetchVersion } = require('../utils/local-fetch')
-  return await fetchVersion()
+  try {
+    return await localFetch.fetchVersion()
+  } catch (error) {
+    console.warn(chalk.yellow(`[sync] Local version lookup failed, falling back to GitHub: ${error.message}`))
+    return await githubFetch.fetchVersion()
+  }
 }
 
 /**

@@ -1,5 +1,7 @@
 # MCP Configuration Guide
 
+> Maintain identical entries in `.codex/mcp-settings.json` so Codex CLI mirrors the Claude configuration.
+
 ## Overview
 
 This guide explains how to configure and enable all MCP (Model Context Protocol) servers in the ai-dev-standards repository.
@@ -14,7 +16,7 @@ This guide explains how to configure and enable all MCP (Model Context Protocol)
 
 ### 1. Project-Level Configuration
 
-**File:** `.claude/mcp-settings.json`
+**Files:** `.claude/mcp-settings.json` and `.codex/mcp-settings.json`
 **Purpose:** Project-specific MCP configuration for Claude Code
 **MCPs Configured:** 49 local MCPs
 
@@ -129,7 +131,7 @@ After restarting Claude Desktop, MCP tools will be automatically available:
 When working in the ai-dev-standards directory:
 
 ```bash
-# MCPs are automatically loaded from .claude/mcp-settings.json
+# MCPs are automatically loaded from .claude/mcp-settings.json (and mirrored to .codex/mcp-settings.json)
 # No additional configuration needed
 ```
 
@@ -225,7 +227,7 @@ When working in the ai-dev-standards directory:
 **Solutions:**
 
 1. **Update Paths in Config**
-   - Edit `.claude/mcp-settings.json`
+   - Edit `.claude/mcp-settings.json` (and `.codex/mcp-settings.json`)
    - Use absolute paths
    - Use Windows path format (`C:\\Users\\...`)
 
@@ -290,7 +292,7 @@ npm init -y
 
 ### 3. Add to Configuration
 
-Add to `.claude/mcp-settings.json`:
+Add to `.claude/mcp-settings.json` (and `.codex/mcp-settings.json`):
 
 ```json
 {
@@ -336,7 +338,7 @@ Close and reopen Claude Desktop to load the new MCP.
 
 ### Project-Level Configuration
 
-**Location:** `.claude/mcp-settings.json`
+**Location:** `.claude/mcp-settings.json` / `.codex/mcp-settings.json`
 
 ```json
 {
@@ -471,7 +473,7 @@ To reduce resource usage, comment out unused MCPs:
 ## Summary
 
 ✅ **34 MCP servers configured and enabled**
-✅ **Project-level configuration created** (`.claude/mcp-settings.json`)
+✅ **Project-level configuration created** (`.claude/mcp-settings.json` / `.codex/mcp-settings.json`)
 ✅ **Global configuration updated** (`claude_desktop_config.json`)
 ✅ **All configurations use absolute Windows paths**
 ✅ **Backup of original configuration created**

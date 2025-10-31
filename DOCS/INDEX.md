@@ -47,7 +47,7 @@ Complete guide to all documentation in the ai-dev-standards framework.
 ## Skills & Tools
 
 ### Skills Documentation
-Navigate to `/SKILLS/` directory to explore 59 specialized AI agent skills:
+Navigate to `/SKILLS/` directory to explore 64 specialized AI agent skills:
 - Each skill has a `SKILL.md` (detailed specification)
 - Each skill has a `README.md` (user-friendly guide)
 - Use the [Skill Registry](../META/skill-registry.json) for a complete list
@@ -144,4 +144,4 @@ When adding new documentation:
 
 *Last Updated: 2025-10-23*
 *Total Documentation Files: 18 active, 20+ legacy*
-*Skills: 59 | MCPs: 49 | Skill-to-Tool Ratio: 1.2:1*
+*Skills: 64 | MCPs: 50 | Skill-to-Tool Ratio: 1.3:1*

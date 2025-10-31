@@ -16,6 +16,9 @@ Platform integrations for Vercel, AWS, Supabase, Firebase, etc.
 ### 4. Vector Databases (`vector-databases/`)
 Integration code for Pinecone, Weaviate, Qdrant, Chroma, and more.
 
+### 5. Framework Library (`framework-library/`)
+MCP integrations that expose the curated AI operational and build frameworks for planning and orchestration workflows.
+
 ## Usage
 
 Install integrations with:
@@ -44,6 +47,7 @@ Integration code is copied to `.ai-dev/integrations/` in your project.
 | Vector DB | Pinecone | Vector database |
 | LLM | OpenAI | GPT models |
 | LLM | Anthropic | Claude models |
+| Framework | AI Framework Library | MCP-driven access to 52 AI frameworks |
 
 ## Adding Custom Integrations
 

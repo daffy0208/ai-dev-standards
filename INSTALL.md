@@ -91,6 +91,22 @@ The analysis recommended focusing on [the priority tasks shown]."
 
 Claude will know exactly what to do.
 
+### Prefer Codex or Gemini?
+
+Run the dedicated setup scripts once per machine:
+
+```bash
+# Connect Codex CLI to the brain
+./setup-codex-cli.sh
+
+# Or configure Gemini CLI
+./setup-gemini-cli.sh
+```
+
+Each script adds `brain-mcp` to the respective CLI and populates `.codex/` or `.gemini/` with quick-start guides and configuration you can copy into your home directory.
+
+Want to confirm everything works later? Run `node scripts/tests/brain-mcp-smoke.cjs` to verify the Brain CLI can execute even on systems without `/bin/bash`.
+
 ---
 
 ## Troubleshooting

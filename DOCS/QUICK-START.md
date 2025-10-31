@@ -258,6 +258,29 @@ Design REST and GraphQL APIs
 
 ---
 
+### `.codex/codex.md` - Skills for Codex
+```markdown
+# Codex Configuration
+
+## Skills
+
+### mvp-builder
+Rapid MVP development with P0/P1/P2 prioritization
+
+**Location:** `/path/to/ai-dev-standards/SKILLS/mvp-builder/SKILL.md`
+
+### api-designer
+Design REST and GraphQL APIs
+...
+```
+**Purpose:** Mirrors the Claude catalog so Codex CLI has identical guidance
+
+---
+
+👉 See `.codex/README.md` for a full end-to-end Codex workflow, and use `node scripts/tests/brain-mcp-smoke.cjs` any time you want to confirm the Brain CLI still runs locally.
+
+---
+
 ### `.claude/mcp-settings.json` - MCPs
 ```json
 {
@@ -273,6 +296,24 @@ Design REST and GraphQL APIs
 }
 ```
 **Purpose:** Configures MCP servers for Claude
+
+---
+
+### `.codex/mcp-settings.json` - MCPs for Codex
+```json
+{
+  "mcpServers": {
+    "supabase-manager": {
+      "command": "npx",
+      "args": ["-y", "@ai-dev-standards/mcp-supabase"],
+      "env": {
+        "SUPABASE_URL": "${SUPABASE_URL}"
+      }
+    }
+  }
+}
+```
+**Purpose:** Keeps Codex CLI in sync with the same MCP servers
 
 ---
 

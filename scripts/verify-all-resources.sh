@@ -93,7 +93,22 @@ check_file "$REPO_ROOT/.claude/agents/multi-agent-patterns.md" "Multi-agent patt
 echo "" >> "$REPORT_FILE"
 echo ""
 
-echo "## 2. Agent Registry Verification" >> "$REPORT_FILE"
+echo "## 2. Codex Configuration Verification" >> "$REPORT_FILE"
+echo "" >> "$REPORT_FILE"
+echo -e "${YELLOW}=== Verifying Codex Configuration ===${NC}"
+
+check_file "$REPO_ROOT/.codex/README.md" "Codex README"
+check_file "$REPO_ROOT/.codex/QUICK-START.md" "Codex Quick Start"
+check_file "$REPO_ROOT/.codex/SETUP-COMPLETE.md" "Codex Setup Complete"
+check_file "$REPO_ROOT/.codex/CLAUDE-VS-CODEX.md" "Claude vs Codex"
+check_file "$REPO_ROOT/.codex/mcp-servers.json" "Codex MCP servers"
+check_file "$REPO_ROOT/.codex/settings.json" "Codex settings"
+check_file "$REPO_ROOT/.codex/codex.md" "Codex skill catalog"
+
+echo "" >> "$REPORT_FILE"
+echo ""
+
+echo "## 3. Agent Registry Verification" >> "$REPORT_FILE"
 echo "" >> "$REPORT_FILE"
 echo -e "${YELLOW}=== Verifying Agent Registry ===${NC}"
 
@@ -105,7 +120,7 @@ fi
 echo "" >> "$REPORT_FILE"
 echo ""
 
-echo "## 3. Skill Verification" >> "$REPORT_FILE"
+echo "## 4. Skill Verification" >> "$REPORT_FILE"
 echo "" >> "$REPORT_FILE"
 echo -e "${YELLOW}=== Verifying Skills ===${NC}"
 
@@ -140,7 +155,7 @@ fi
 echo "" >> "$REPORT_FILE"
 echo ""
 
-echo "## 4. MCP Verification" >> "$REPORT_FILE"
+echo "## 5. MCP Verification" >> "$REPORT_FILE"
 echo "" >> "$REPORT_FILE"
 echo -e "${YELLOW}=== Verifying MCPs ===${NC}"
 
@@ -157,7 +172,7 @@ fi
 echo "" >> "$REPORT_FILE"
 echo ""
 
-echo "## 5. Documentation Verification" >> "$REPORT_FILE"
+echo "## 6. Documentation Verification" >> "$REPORT_FILE"
 echo "" >> "$REPORT_FILE"
 echo -e "${YELLOW}=== Verifying Documentation ===${NC}"
 
@@ -171,7 +186,7 @@ check_file "$REPO_ROOT/README.md" "Main README"
 echo "" >> "$REPORT_FILE"
 echo ""
 
-echo "## 6. Registry Files Verification" >> "$REPORT_FILE"
+echo "## 7. Registry Files Verification" >> "$REPORT_FILE"
 echo "" >> "$REPORT_FILE"
 echo -e "${YELLOW}=== Verifying Registry Files ===${NC}"
 
@@ -186,7 +201,7 @@ check_file "$REPO_ROOT/META/agent-registry.json" "Agent registry"
 echo "" >> "$REPORT_FILE"
 echo ""
 
-echo "## 7. Tools & Scripts Verification" >> "$REPORT_FILE"
+echo "## 8. Tools & Scripts Verification" >> "$REPORT_FILE"
 echo "" >> "$REPORT_FILE"
 echo -e "${YELLOW}=== Verifying Tools & Scripts ===${NC}"
 
@@ -209,7 +224,7 @@ fi
 echo "" >> "$REPORT_FILE"
 echo ""
 
-echo "## 8. Components Verification" >> "$REPORT_FILE"
+echo "## 9. Components Verification" >> "$REPORT_FILE"
 echo "" >> "$REPORT_FILE"
 echo -e "${YELLOW}=== Verifying Components ===${NC}"
 

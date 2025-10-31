@@ -8,7 +8,7 @@
 
 **Version 3.0.0** | **Last Updated:** 2025-10-30
 
-235 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
+238 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
 
 ## What This Repository Does
 
@@ -18,13 +18,13 @@ Think of this as a **shared brain** between you and Claude:
 - **50 MCP Servers** - Executable development tools including brain-mcp for intelligent orchestration (78% skill coverage - strong actionability!)
 - **24 Tools** - LangChain, CrewAI, design utilities, and automation scripts
 - **72 Reusable Components** - React components for common patterns (auth, forms, errors, feedback, media, layouts, advanced UI)
-- **25 Service Integrations** - Pre-configured connections to OpenAI, Supabase, Stripe, Pinecone, and more
+- **28 Service Integrations** - Pre-configured connections to OpenAI, Supabase, Stripe, Pinecone, and more
 - **Architecture Patterns** - Proven approaches for complex systems (RAG, multi-agent, knowledge graphs, design systems)
 - **Best Practices** - Security, performance, accessibility, and quality standards
 - **Decision Frameworks** - Clear guidance for choosing technologies
 - **Validation & Trust** - Automated testing ensures all resources are discoverable and accessible
 
-**Total Resources:** 235 (64 skills + 50 MCPs + 24 tools + 72 components + 25 integrations)
+**Total Resources:** 238 (64 skills + 50 MCPs + 24 tools + 72 components + 28 integrations)
 
 **Resource Coverage:** Core resources 100% discoverable (skills, MCPs, components) • 85% skill-to-MCP coverage • Complete dependency mapping
 
@@ -48,7 +48,7 @@ The tool automatically:
 - ✅ Installs everything needed
 - ✅ Analyzes your repository
 - ✅ Recommends where to start
-- ✅ Syncs all 237 resources
+- ✅ Syncs all 238 resources
 
 **Works for:**
 - New projects, existing projects
@@ -58,10 +58,14 @@ The tool automatically:
 
 **After 2 minutes, you have:**
 - 64 skills
-- 50 MCP servers (including brain-mcp for intelligent orchestration)
-- 235 total resources
+- 50 MCP Tools (including brain-mcp for intelligent orchestration)
+- 238 total resources
 - Project analysis with recommendations
 - Exact roadmap for where to start
+
+**Codex & Gemini CLI Support:**
+- `./setup-codex-cli.sh` connects Codex CLI to brain-mcp and populates `.codex/`
+- `./setup-gemini-cli.sh` does the same for Gemini CLI via `.gemini/`
 
 **See:** [INSTALL.md](INSTALL.md) for complete setup guide or [DOCS/TROUBLESHOOTING.md](DOCS/TROUBLESHOOTING.md) if you have connection issues.
 
@@ -118,12 +122,12 @@ ai-dev-standards/
 
 ## 🧠 Repository Brain
 
-The **Repository Brain** is an intelligence system that manages, understands, and orchestrates all 237 resources.
+The **Repository Brain** is an intelligence system that manages, understands, and orchestrates all 238 resources.
 
 ### What It Does
 
 ```bash
-brain status                    # Current state (64 skills, 50 MCPs, 235 resources)
+brain status                    # Current state (64 skills, 50 MCPs, 238 resources)
 brain search "authentication"   # Search across all resources
 brain decide "add new skill"    # Get workflow recommendations
 brain select-skills "build MVP" # Get skill recommendations
@@ -296,7 +300,7 @@ Every resource in this repository is:
 - ✅ **Validated** on every commit (automated tests + CI/CD)
 - ✅ **Audited** with mandatory completeness checks
 
-**Current Resources:** 64 skills, 50 MCPs, 237 total resources, core resources fully discoverable
+**Current Resources:** 64 skills, 50 MCPs, 238 total resources, core resources fully discoverable
 
 **See:** [Audit Trust Restoration](DOCS/AUDIT-TRUST-RESTORATION.md) for details on the 5-layer protection system.
 
@@ -530,7 +534,7 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
 - **2.1.0** (2025-10-29): Validation & Orchestration Update
   - Added comprehensive validation system (`validate-complete-system.cjs`)
   - Implemented Claude Code orchestration infrastructure (zero-cost alternative to OpenAI Codex)
-  - Registry cleanup and consistency fixes (72 components, 237 total resources)
+  - Registry cleanup and consistency fixes (72 components, 238 total resources)
   - 100% registry consistency achieved with bidirectional validation
 - **2.0.0** (2025-10-27): Phase 3 Complete - Design System (75 components, 50 MCPs, 240 total resources)
 - **1.1.0** (2025-10-22): Quality & Trust Update

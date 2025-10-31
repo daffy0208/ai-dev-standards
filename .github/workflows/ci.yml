@@ -116,7 +116,48 @@ jobs:
           npm ci
           npm run build || echo "No build script defined"
 
-  # Job 5: Security Audit
+  # Job 5: Codex Brain Smoke Test
+  codex-smoke:
+    name: Codex Brain Smoke Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Install brain CLI dependencies
+        run: |
+          cd scripts/brain
+          npm ci
+
+      - name: Build brain CLI
+        run: |
+          cd scripts/brain
+          npm run build
+
+      - name: Install brain MCP dependencies
+        run: |
+          cd MCP-SERVERS/brain-mcp
+          npm ci
+
+      - name: Build brain MCP
+        run: |
+          cd MCP-SERVERS/brain-mcp
+          npm run build
+
+      - name: Run brain MCP smoke test
+        run: node scripts/tests/brain-mcp-smoke.cjs
+
+  # Job 6: Security Audit
   security:
     name: Security Audit
     runs-on: ubuntu-latest
@@ -135,7 +176,7 @@ jobs:
         run: npm audit --audit-level=moderate
         continue-on-error: true
 
-  # Job 6: Registry Validation - CRITICAL
+  # Job 7: Registry Validation - CRITICAL
   registry-validation:
     name: Registry Completeness Check
     runs-on: ubuntu-latest
@@ -153,8 +194,36 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install brain CLI dependencies
+        run: |
+          cd scripts/brain
+          npm ci
+
+      - name: Build brain CLI
+        run: |
+          cd scripts/brain
+          npm run build
+
+      - name: Install brain MCP dependencies
+        run: |
+          cd MCP-SERVERS/brain-mcp
+          npm ci
+
+      - name: Build brain MCP
+        run: |
+          cd MCP-SERVERS/brain-mcp
+          npm run build
+
+      - name: Build brain CLI
+        run: |
+          cd scripts/brain
+          npm run build
+
       - name: Run registry validation tests
         run: npm run test:registry
+
+      - name: Ensure relationship mapping is current
+        run: npm run relationships:check
 
       - name: Verify all skills are registered
         run: |

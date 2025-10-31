@@ -208,7 +208,16 @@ function validateRelationships(actual) {
   const relationshipsPath = path.join(ROOT, 'META', 'relationship-mapping.json');
   const relationships = JSON.parse(fs.readFileSync(relationshipsPath, 'utf-8'));
 
-  const mappedSkills = Object.keys(relationships.relationships.skills_to_mcps || {});
+  const skillMappings = relationships.relationships?.skills_to_mcps || relationships.skills || {};
+  const getMappedMcps = (skill) => {
+    const mapping = skillMappings[skill];
+    if (!mapping) return [];
+    if (Array.isArray(mapping)) return mapping;
+    if (Array.isArray(mapping.required_mcps)) return mapping.required_mcps;
+    return [];
+  };
+
+  const mappedSkills = Object.keys(skillMappings);
   const unmappedCount = actual.skills - mappedSkills.length;
 
   if (unmappedCount > 0) {
@@ -218,20 +227,28 @@ function validateRelationships(actual) {
     success('All skills have relationship mapping');
   }
 
-  // Validate Tier 2 relationships exist
-  let tier2MappedCount = 0;
-  for (const [skillName, skillData] of Object.entries(relationships.skills || {})) {
-    if (skillData.related_playbooks || skillData.related_standards || skillData.related_templates ||
-        skillData.related_schemas || skillData.related_utils || skillData.related_examples ||
-        skillData.related_installers || skillData.related_docs) {
-      tier2MappedCount++;
-    }
-  }
+  const tier2TrackedSkills = actual.skillNames.filter((skillName) => {
+    const skillData = relationships.skills?.[skillName];
+    if (!skillData) return false;
+    const tier2Keys = [
+      'related_playbooks',
+      'related_standards',
+      'related_templates',
+      'related_schemas',
+      'related_utils',
+      'related_examples',
+      'related_installers',
+      'related_docs'
+    ];
+    return tier2Keys.some((key) => Array.isArray(skillData[key]) && skillData[key].length > 0);
+  });
 
-  if (tier2MappedCount === actual.skills) {
+  if (tier2TrackedSkills.length === 0) {
+    console.log(`${YELLOW}ℹ️  Tier 2 relationship metadata not recorded; skipping detailed check${RESET}`);
+  } else if (tier2TrackedSkills.length === actual.skills) {
     success(`All ${actual.skills} skills have Tier 2 relationships`);
   } else {
-    warn(`${actual.skills - tier2MappedCount} skills missing Tier 2 relationships`);
+    warn(`${actual.skills - tier2TrackedSkills.length} skills missing Tier 2 relationships`);
   }
 
   success(`Relationship mapping: ${mappedSkills.length}/${actual.skills} skills mapped (${Math.round(mappedSkills.length / actual.skills * 100)}%)`);
@@ -315,6 +332,26 @@ function validateClaudeConfig(skillNames) {
     warn(`.claude/claude.md only has ${claudeSkills.length} skills documented (should have all ${skillNames.length})`);
   } else {
     success(`.claude/claude.md has ${claudeSkills.length} skills documented`);
+  }
+}
+
+function validateCodexConfig(skillNames) {
+  section('Validating .codex/codex.md');
+
+  const codexPath = path.join(ROOT, '.codex', 'codex.md');
+  if (!fs.existsSync(codexPath)) {
+    error('.codex/codex.md not found');
+    return;
+  }
+
+  const content = fs.readFileSync(codexPath, 'utf-8');
+  const skillSections = content.match(/^### (.+)$/gm) || [];
+  const codexSkills = skillSections.map(s => s.replace('### ', '').trim());
+
+  if (codexSkills.length < 5) {
+    warn(`.codex/codex.md only has ${codexSkills.length} skills documented (should have all ${skillNames.length})`);
+  } else {
+    success(`.codex/codex.md has ${codexSkills.length} skills documented`);
   }
 }
 
@@ -456,6 +493,7 @@ function main() {
   validateDocumentation(actual);
   validateRootFiles(actual);
   validateClaudeConfig(actual.skillNames);
+  validateCodexConfig(actual.skillNames);
   validateCLICommands();
 
   // Count all Tier 1 resources

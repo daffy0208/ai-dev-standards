@@ -17,6 +17,9 @@ import {
 import { execFileSync } from 'child_process';
 import * as path from 'path';
 import * as fs from 'fs';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 // Get AI Dev Standards root from environment
 const AI_DEV_STANDARDS_ROOT = process.env.AI_DEV_STANDARDS_ROOT ||
@@ -25,15 +28,55 @@ const AI_DEV_STANDARDS_ROOT = process.env.AI_DEV_STANDARDS_ROOT ||
 const BRAIN_CLI_PATH = path.join(AI_DEV_STANDARDS_ROOT, 'scripts', 'brain');
 const GRAPH_QUERY_TOOL = path.join(AI_DEV_STANDARDS_ROOT, 'scripts', 'graph-query-tool.py');
 const CAPABILITY_GRAPH = path.join(AI_DEV_STANDARDS_ROOT, 'META', 'capability-graph.json');
+function resolveBinary(baseName: string): string | null {
+  const candidates = process.platform === 'win32'
+    ? [ `${baseName}.cmd`, `${baseName}.exe`, baseName ]
+    : [ baseName ];
+
+  for (const candidate of candidates) {
+    try {
+      const resolved = require.resolve(candidate, { paths: [process.cwd()] });
+      if (fs.existsSync(resolved)) {
+        return resolved;
+      }
+    } catch {
+      // ignore
+    }
+
+    const pathCandidate = path.join(process.cwd(), 'node_modules', '.bin', candidate);
+    if (fs.existsSync(pathCandidate)) {
+      return pathCandidate;
+    }
+
+    const globalCandidate = path.join(AI_DEV_STANDARDS_ROOT, 'node_modules', '.bin', candidate);
+    if (fs.existsSync(globalCandidate)) {
+      return globalCandidate;
+    }
+  }
+
+  return null;
+}
 
 // Helper to execute brain CLI commands (FIXED: use execFileSync to prevent shell injection)
 function executeBrainCommand(command: string, args: string[] = []): string {
   try {
-    const commandArgs = ['-c', 'npx', 'ts-node', 'brain.ts', command, ...args];
-    return execFileSync('bash', ['-c', `cd "${BRAIN_CLI_PATH}" && npx ts-node brain.ts ${command} ${args.map(a => `'${a.replace(/'/g, "'\\''")}'`).join(' ')}`], {
+    const compiledCli = path.join(BRAIN_CLI_PATH, 'dist', 'brain.js');
+
+    if (fs.existsSync(compiledCli)) {
+      return execFileSync(process.execPath, [compiledCli, command, ...args], {
+        cwd: BRAIN_CLI_PATH,
+        encoding: 'utf-8',
+        maxBuffer: 10 * 1024 * 1024
+      });
+    }
+
+    const binary = resolveBinary('npx') || 'npx';
+    const execArgs = ['ts-node', 'brain.ts', command, ...args];
+
+    return execFileSync(binary, execArgs, {
+      cwd: BRAIN_CLI_PATH,
       encoding: 'utf-8',
-      maxBuffer: 10 * 1024 * 1024, // 10MB
-      cwd: BRAIN_CLI_PATH
+      maxBuffer: 10 * 1024 * 1024
     });
   } catch (error: any) {
     throw new Error(`Brain CLI error: ${error.message}`);
@@ -43,17 +86,16 @@ function executeBrainCommand(command: string, args: string[] = []): string {
 // Helper to execute graph query tool (FIXED: use execFileSync to prevent shell injection)
 function executeGraphQuery(queryType: string, query?: string): string {
   try {
-    const args = ['python3', GRAPH_QUERY_TOOL, queryType];
+    const binary = resolveBinary('python3') || resolveBinary('python') || 'python3';
+    const execArgs = [GRAPH_QUERY_TOOL, queryType];
     if (query) {
-      args.push(query);
+      execArgs.push(query);
     }
-    // Safely construct command with proper escaping
-    const escapedQuery = query ? `'${query.replace(/'/g, "'\\''")}'` : '';
-    const cmd = `python3 "${GRAPH_QUERY_TOOL}" ${queryType} ${escapedQuery}`;
-    return execFileSync('bash', ['-c', cmd], {
+
+    return execFileSync(binary, execArgs, {
+      cwd: AI_DEV_STANDARDS_ROOT,
       encoding: 'utf-8',
-      maxBuffer: 10 * 1024 * 1024,
-      cwd: AI_DEV_STANDARDS_ROOT
+      maxBuffer: 10 * 1024 * 1024
     });
   } catch (error: any) {
     throw new Error(`Graph query error: ${error.message}`);

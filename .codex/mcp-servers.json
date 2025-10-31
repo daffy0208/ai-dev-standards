@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "brain-mcp": {
+      "command": "node",
+      "args": [
+        "/mnt/c/Users/david/OneDrive - Qolcom/AI/AI_Development_Projects/ai-dev-standards/MCP-SERVERS/brain-mcp/dist/index.js"
+      ],
+      "env": {
+        "AI_DEV_STANDARDS_ROOT": "/mnt/c/Users/david/OneDrive - Qolcom/AI/AI_Development_Projects/ai-dev-standards"
+      },
+      "description": "Brain MCP for querying skills, MCPs, and capabilities in ai-dev-standards",
+      "timeout": 30000
+    }
+  }
+}

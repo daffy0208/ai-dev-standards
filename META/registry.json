@@ -861,6 +861,31 @@
       "status": "active"
     },
     {
+      "name": "brain",
+      "version": "1.0.0",
+      "description": "MCP server that exposes the ai-dev-standards brain for skill discovery, capability graph queries, and orchestration intelligence.",
+      "path": "MCP-SERVERS/brain-mcp",
+      "tags": [
+        "mcp",
+        "brain",
+        "orchestration",
+        "graph",
+        "recommendations"
+      ],
+      "features": [
+        "tools"
+      ],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [
+        "archon-manager skill",
+        "multi-agent-architect skill",
+        "codex-review-workflow skill"
+      ],
+      "status": "active"
+    },
+    {
       "name": "chart-builder",
       "version": "1.0.0",
       "description": "MCP server for creating charts and data visualizations programmatically",
@@ -2138,12 +2163,18 @@
     }
   },
   "integrations": [
-    {
-      "category": "framework-adapters",
-      "description": "Framework integration adapters",
-      "path": "INTEGRATIONS/framework-adapters",
-      "alwaysUpdate": false
-    },
+  {
+    "category": "framework-adapters",
+    "description": "Framework integration adapters",
+    "path": "INTEGRATIONS/framework-adapters",
+    "alwaysUpdate": false
+  },
+  {
+    "category": "framework-library",
+    "description": "AI framework content and orchestration MCP integrations",
+    "path": "INTEGRATIONS/framework-library",
+    "alwaysUpdate": false
+  },
     {
       "category": "llm-providers",
       "description": "LLM provider integrations",
@@ -4669,7 +4700,7 @@
       ]
     }
   ],
-  "total_skills": 59,
+  "total_skills": 64,
   "mcps": [
     {
       "id": "3d-asset-manager-mcp",
@@ -4854,6 +4885,29 @@
         "Level normalization",
         "Format conversion",
         "Audio analysis"
+      ]
+    },
+    {
+      "id": "brain-mcp",
+      "name": "Brain MCP",
+      "description": "Expose the ai-dev-standards brain and capability graph for intelligent skill discovery, dependency analysis, and orchestration support.",
+      "category": "orchestration",
+      "supports_skills": [
+        "archon-manager",
+        "multi-agent-architect",
+        "codex-review-workflow"
+      ],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/brain-mcp",
+      "status": "active",
+      "phase": 5,
+      "capabilities": [
+        "Intelligent skill recommendations",
+        "Capability graph queries",
+        "Relationship mapping",
+        "Brain status reporting"
       ]
     },
     {

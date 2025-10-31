@@ -1,8 +1,8 @@
 {
   "version": "2.0.0",
-  "last_updated": "2025-10-28",
+  "last_updated": "2025-10-30",
   "description": "Registry of third-party integrations available in ai-dev-standards. Integrations provide pre-configured code for connecting to external services.",
-  "total_integrations": 27,
+  "total_integrations": 28,
   "integrations": [
     {
       "id": "openai",
@@ -755,6 +755,29 @@
       ],
       "authentication": "API key",
       "documentation_url": "https://www.canva.dev/docs/connect/"
+    },
+    {
+      "id": "framework-library",
+      "name": "AI Framework Library",
+      "category": "framework-adapters",
+      "description": "Integration MCPs that expose the curated AI operational and build frameworks for assistants.",
+      "path": "/INTEGRATIONS/framework-library/README.md",
+      "status": "beta",
+      "supports_skills": [
+        "orchestration-planner",
+        "system-diagnostician",
+        "multi-agent-architect"
+      ],
+      "supports_mcps": [],
+      "depends_on": [],
+      "features": [
+        "Resource index of 52 AI frameworks",
+        "Keyword search and metadata lookups",
+        "Project pattern analysis",
+        "Framework-driven manifest generation"
+      ],
+      "authentication": "None",
+      "documentation_url": "INTEGRATIONS/framework-library/README.md"
     }
   ],
   "categories": {
@@ -833,9 +856,11 @@
     },
     "framework-adapters": {
       "name": "Framework Adapters",
-      "count": 0,
-      "description": "Integrations for web frameworks",
-      "integrations": [],
+      "count": 1,
+      "description": "Integrations for web and AI frameworks",
+      "integrations": [
+        "framework-library"
+      ],
       "needed": [
         "nextjs",
         "remix",
@@ -890,7 +915,7 @@
   },
   "missing_high_priority": [],
   "statistics": {
-    "total_integrations": 27,
+    "total_integrations": 28,
     "by_category": {
       "llm-providers": 2,
       "ai-providers": 1,
@@ -898,7 +923,7 @@
       "deployment-platforms": 3,
       "vector-databases": 5,
       "graph-databases": 1,
-      "framework-adapters": 0,
+      "framework-adapters": 1,
       "media-services": 3,
       "icon-libraries": 3,
       "font-services": 2,

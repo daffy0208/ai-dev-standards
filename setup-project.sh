@@ -104,7 +104,7 @@ else
 fi
 
 # Configure brain-mcp in .claude/mcp-settings.json
-echo -e "${BLUE}🧠 Configuring brain-mcp...${NC}"
+echo -e "${BLUE}🧠 Configuring brain-mcp for Claude...${NC}"
 
 # Create .claude directory if it doesn't exist
 mkdir -p .claude
@@ -151,6 +151,49 @@ else
 }
 EOF
     echo -e "${GREEN}✅ Created .claude/mcp-settings.json with brain-mcp${NC}"
+fi
+
+echo ""
+
+# Configure brain-mcp in .codex/mcp-settings.json
+echo -e "${BLUE}🧠 Configuring brain-mcp for Codex...${NC}"
+
+# Create .codex directory if it doesn't exist
+mkdir -p .codex
+
+# Check if codex mcp-settings exists
+if [ -f ".codex/mcp-settings.json" ]; then
+    if grep -q '"brain-mcp"' .codex/mcp-settings.json; then
+        echo -e "${GREEN}✅ brain-mcp already configured for Codex${NC}"
+    else
+        echo -e "${YELLOW}⚠️  Adding brain-mcp to Codex mcp-settings.json${NC}"
+        cp .codex/mcp-settings.json .codex/mcp-settings.json.backup
+
+        if command -v jq &> /dev/null; then
+            jq --arg brain_path "$BRAIN_MCP_PATH" --arg root_path "$AI_DEV_STANDARDS_DIR" \
+               '.mcpServers["brain-mcp"] = {"command": "node", "args": [$brain_path], "env": {"AI_DEV_STANDARDS_ROOT": $root_path}}' \
+               .codex/mcp-settings.json.backup > .codex/mcp-settings.json
+            echo -e "${GREEN}✅ brain-mcp added to Codex mcp-settings.json${NC}"
+        else
+            echo -e "${YELLOW}⚠️  jq not installed, skipping automatic Codex configuration${NC}"
+            echo -e "${GRAY}  Please manually add brain-mcp to .codex/mcp-settings.json${NC}"
+        fi
+    fi
+else
+    cat > .codex/mcp-settings.json << EOF
+{
+  "mcpServers": {
+    "brain-mcp": {
+      "command": "node",
+      "args": ["$BRAIN_MCP_PATH"],
+      "env": {
+        "AI_DEV_STANDARDS_ROOT": "$AI_DEV_STANDARDS_DIR"
+      }
+    }
+  }
+}
+EOF
+    echo -e "${GREEN}✅ Created .codex/mcp-settings.json with brain-mcp${NC}"
 fi
 
 echo ""

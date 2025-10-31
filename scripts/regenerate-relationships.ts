@@ -15,10 +15,20 @@
  * ```
  */
 
-import { readFileSync, writeFileSync } from 'fs'
-import { join } from 'path'
+import { readFileSync, writeFileSync, existsSync } from 'fs'
+import { join, resolve } from 'path'
+import { fileURLToPath } from 'url'
 
-const META_DIR = join(__dirname, '..', 'META')
+declare const __filename: string | undefined
+
+const resolvedFilename = typeof __filename === 'string'
+  ? __filename
+  : fileURLToPath(import.meta.url)
+const repoRoot = process.env.AI_DEV_STANDARDS_ROOT
+  ? resolve(process.env.AI_DEV_STANDARDS_ROOT)
+  : process.cwd()
+
+const META_DIR = join(repoRoot, 'META')
 
 interface Registry {
   [key: string]: any
@@ -30,12 +40,42 @@ interface SkillMapping {
   required_components: string[]
   required_integrations: string[]
   supporting_scripts: string[]
+  related_playbooks?: string[]
+  related_standards?: string[]
+  related_templates?: string[]
+  related_schemas?: string[]
+  related_utils?: string[]
+  related_examples?: string[]
+  related_installers?: string[]
+  related_docs?: string[]
 }
 
 interface McpMapping {
   required_tools: string[]
   required_components: string[]
   required_integrations: string[]
+}
+
+const MANUAL_SKILL_MCP_OVERRIDES: Record<string, string[]> = {
+  'api-integration-builder': ['api-validator-mcp', 'openapi-generator-mcp'],
+  'bmad-method': ['market-analyzer-mcp', 'feature-prioritizer-mcp'],
+  'capability-graph-builder': ['graph-database-mcp', 'brain-mcp'],
+  'customer-feedback-analyzer': ['user-insight-analyzer-mcp', 'semantic-search-mcp'],
+  'customer-support-builder': ['knowledge-base-mcp', 'vector-database-mcp'],
+  'framework-orchestrator': ['agent-orchestrator-mcp', 'brain-mcp'],
+  'growth-experimenter': ['market-analyzer-mcp', 'user-insight-analyzer-mcp'],
+  'manifest-generator': ['doc-generator-mcp'],
+  'orchestration-planner': ['agent-orchestrator-mcp', 'brain-mcp'],
+  'pricing-strategist': ['market-analyzer-mcp', 'feature-prioritizer-mcp'],
+  'product-analyst': ['user-insight-analyzer-mcp', 'market-analyzer-mcp'],
+  'product-analytics': ['user-insight-analyzer-mcp', 'semantic-search-mcp'],
+  'prp-generator': ['doc-generator-mcp'],
+  'quality-assurance': ['code-quality-scanner-mcp', 'test-runner-mcp', 'screenshot-testing-mcp'],
+  'release-manager': ['deployment-orchestrator-mcp', 'test-runner-mcp'],
+  'security-architect': ['security-scanner-mcp', 'api-validator-mcp'],
+  'skill-validator': ['code-quality-scanner-mcp', 'test-runner-mcp'],
+  'system-diagnostician': ['dark-matter-analyzer-mcp', 'code-quality-scanner-mcp'],
+  'usability-tester': ['responsive-preview-mcp', 'screenshot-testing-mcp']
 }
 
 interface FileDependency {
@@ -105,22 +145,36 @@ function extractSkillRelationships(
   mcpRegistry: Registry,
   toolRegistry: Registry,
   componentRegistry: Registry,
-  integrationRegistry: Registry
+  integrationRegistry: Registry,
+  skillRegistry: Registry
 ): Record<string, SkillMapping> {
   const skillMappings: Record<string, SkillMapping> = {}
+
+  function ensureSkill(skill: string) {
+    if (!skillMappings[skill]) {
+      skillMappings[skill] = {
+        required_mcps: [],
+        required_tools: [],
+        required_components: [],
+        required_integrations: [],
+        supporting_scripts: []
+      }
+    }
+  }
+
+  const definedSkills = new Set<string>()
+
+  skillRegistry.skills?.forEach((skill: any) => {
+    if (skill?.name) {
+      definedSkills.add(skill.name)
+      ensureSkill(skill.name)
+    }
+  })
 
   // Initialize from MCPs
   mcpRegistry.mcps?.forEach((mcp: any) => {
     mcp.supports_skills?.forEach((skill: string) => {
-      if (!skillMappings[skill]) {
-        skillMappings[skill] = {
-          required_mcps: [],
-          required_tools: [],
-          required_components: [],
-          required_integrations: [],
-          supporting_scripts: [],
-        }
-      }
+      ensureSkill(skill)
       if (!skillMappings[skill].required_mcps.includes(mcp.id)) {
         skillMappings[skill].required_mcps.push(mcp.id)
       }
@@ -131,15 +185,7 @@ function extractSkillRelationships(
   toolRegistry.tools?.forEach((tool: any) => {
     tool.supports_skills?.forEach((skill: string) => {
       if (skill === 'all') return // Skip generic "all" references
-      if (!skillMappings[skill]) {
-        skillMappings[skill] = {
-          required_mcps: [],
-          required_tools: [],
-          required_components: [],
-          required_integrations: [],
-          supporting_scripts: [],
-        }
-      }
+      ensureSkill(skill)
       if (!skillMappings[skill].required_tools.includes(tool.id)) {
         skillMappings[skill].required_tools.push(tool.id)
       }
@@ -149,15 +195,7 @@ function extractSkillRelationships(
   // Add from scripts
   toolRegistry.supporting_scripts?.forEach((script: any) => {
     script.supports_skills?.forEach((skill: string) => {
-      if (!skillMappings[skill]) {
-        skillMappings[skill] = {
-          required_mcps: [],
-          required_tools: [],
-          required_components: [],
-          required_integrations: [],
-          supporting_scripts: [],
-        }
-      }
+      ensureSkill(skill)
       if (!skillMappings[skill].supporting_scripts.includes(script.id)) {
         skillMappings[skill].supporting_scripts.push(script.id)
       }
@@ -167,15 +205,7 @@ function extractSkillRelationships(
   // Add from components
   componentRegistry.components?.forEach((component: any) => {
     component.supports_skills?.forEach((skill: string) => {
-      if (!skillMappings[skill]) {
-        skillMappings[skill] = {
-          required_mcps: [],
-          required_tools: [],
-          required_components: [],
-          required_integrations: [],
-          supporting_scripts: [],
-        }
-      }
+      ensureSkill(skill)
       if (!skillMappings[skill].required_components.includes(component.id)) {
         skillMappings[skill].required_components.push(component.id)
       }
@@ -185,19 +215,37 @@ function extractSkillRelationships(
   // Add from integrations
   integrationRegistry.integrations?.forEach((integration: any) => {
     integration.supports_skills?.forEach((skill: string) => {
-      if (!skillMappings[skill]) {
-        skillMappings[skill] = {
-          required_mcps: [],
-          required_tools: [],
-          required_components: [],
-          required_integrations: [],
-          supporting_scripts: [],
-        }
-      }
+      ensureSkill(skill)
       if (!skillMappings[skill].required_integrations.includes(integration.id)) {
         skillMappings[skill].required_integrations.push(integration.id)
       }
     })
+  })
+
+  Object.entries(MANUAL_SKILL_MCP_OVERRIDES).forEach(([skill, mcps]) => {
+    if (!definedSkills.has(skill)) {
+      return
+    }
+    ensureSkill(skill)
+    mcps.forEach((mcp) => {
+      if (!skillMappings[skill].required_mcps.includes(mcp)) {
+        skillMappings[skill].required_mcps.push(mcp)
+      }
+    })
+  })
+
+  Object.values(skillMappings).forEach((mapping) => {
+    mapping.required_mcps.sort()
+    mapping.required_tools.sort()
+    mapping.required_components.sort()
+    mapping.required_integrations.sort()
+    mapping.supporting_scripts.sort()
+  })
+
+  Object.keys(skillMappings).forEach((skill) => {
+    if (!definedSkills.has(skill)) {
+      delete skillMappings[skill]
+    }
   })
 
   return skillMappings
@@ -460,7 +508,7 @@ function calculateStatistics(
 /**
  * Main regeneration function
  */
-async function regenerateRelationships() {
+async function regenerateRelationships(options: { checkOnly?: boolean } = {}) {
   console.log('Reading registry files...')
 
   const skillRegistry = readRegistry('skill-registry.json')
@@ -475,7 +523,8 @@ async function regenerateRelationships() {
     mcpRegistry,
     toolRegistry,
     componentRegistry,
-    integrationRegistry
+    integrationRegistry,
+    skillRegistry
   )
 
   const mcpMappings = extractMcpRelationships(
@@ -487,18 +536,45 @@ async function regenerateRelationships() {
 
   console.log('Getting file dependencies...')
 
-  const fileDependencies = getFileDependencies()
+  const outputPath = join(META_DIR, 'relationship-mapping.json')
+  const existingMapping = existsSync(outputPath)
+    ? JSON.parse(readFileSync(outputPath, 'utf-8'))
+    : null
+
+  const fileDependencies = existingMapping?.file_dependencies || getFileDependencies()
 
   console.log('Calculating statistics...')
 
   const statistics = calculateStatistics(skillMappings, mcpMappings, skillRegistry, fileDependencies)
+
+  const existingSkills = existingMapping?.skills || {}
+
+  const mergedSkills: Record<string, SkillMapping> = {}
+  Object.entries(skillMappings).forEach(([skill, mapping]) => {
+    const existing = existingSkills[skill] || {}
+    mergedSkills[skill] = {
+      required_mcps: mapping.required_mcps,
+      required_tools: mapping.required_tools,
+      required_components: mapping.required_components,
+      required_integrations: mapping.required_integrations,
+      supporting_scripts: mapping.supporting_scripts,
+      related_playbooks: existing.related_playbooks || [],
+      related_standards: existing.related_standards || [],
+      related_templates: existing.related_templates || [],
+      related_schemas: existing.related_schemas || [],
+      related_utils: existing.related_utils || [],
+      related_examples: existing.related_examples || [],
+      related_installers: existing.related_installers || [],
+      related_docs: existing.related_docs || []
+    }
+  })
 
   const relationshipMapping: RelationshipMapping = {
     version: '2.0.0',
     last_updated: new Date().toISOString().split('T')[0],
     description:
       'Complete mapping of skills and MCPs to their required resources (tools, components, integrations, scripts). This is the single source of truth for resource dependencies.',
-    skills: skillMappings,
+    skills: mergedSkills,
     mcps: mcpMappings,
     file_dependencies: fileDependencies,
     statistics,
@@ -523,22 +599,47 @@ async function regenerateRelationships() {
     },
   }
 
-  const outputPath = join(META_DIR, 'relationship-mapping.json')
+  const outputJson = JSON.stringify(relationshipMapping, null, 2) + '\n'
+
+  if (options.checkOnly) {
+    if (!existsSync(outputPath)) {
+      console.error('❌ relationship-mapping.json is missing. Regenerate it with npm run relationships:regen')
+      throw new Error('relationship-mapping.json missing')
+    }
+
+    const existing = readFileSync(outputPath, 'utf-8')
+
+    if (existing.trim() === outputJson.trim()) {
+      console.log('✅ relationship-mapping.json is up to date')
+      console.log(`  Total skills: ${statistics.total_skills}`)
+      console.log(`  Total MCPs: ${statistics.total_mcps}`)
+      console.log(`  Skills with MCPs: ${statistics.skills_with_mcps}`)
+      console.log(`  Skills without MCPs: ${statistics.skills_without_mcps}`)
+      return
+    }
+
+    console.error('❌ relationship-mapping.json is out of date. Run npm run relationships:regen')
+    throw new Error('relationship-mapping.json out of date')
+  }
 
   console.log('Writing relationship-mapping.json...')
 
-  writeFileSync(outputPath, JSON.stringify(relationshipMapping, null, 2), 'utf-8')
+  writeFileSync(outputPath, outputJson, 'utf-8')
 
-  console.log('✓ Relationship mapping regenerated successfully!')
+  console.log('✅ Relationship mapping regenerated successfully!')
   console.log(`  Total skills: ${statistics.total_skills}`)
   console.log(`  Total MCPs: ${statistics.total_mcps}`)
   console.log(`  Skills with MCPs: ${statistics.skills_with_mcps}`)
   console.log(`  Skills without MCPs: ${statistics.skills_without_mcps}`)
 }
 
+const invokedDirectly = process.argv[1] ? resolve(process.argv[1]) === resolvedFilename : false
+
 // Run if executed directly
-if (require.main === module) {
-  regenerateRelationships().catch((error) => {
+if (invokedDirectly) {
+  const checkOnly = process.argv.includes('--check')
+
+  regenerateRelationships({ checkOnly }).catch((error) => {
     console.error('Failed to regenerate relationships:', error)
     process.exit(1)
   })

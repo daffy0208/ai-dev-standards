@@ -31,6 +31,7 @@ CRITICAL_FILES=(
     "SETUP.txt"
     "DOCS/QUICK-START.md"
     ".claude/CLAUDE.md"
+    ".codex/codex.md"
 )
 
 TEMPLATE_FILES=(

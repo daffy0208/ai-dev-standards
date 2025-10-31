@@ -91,6 +91,8 @@ npm install
 npm run build
 ```
 
+> `./setup-codex-cli.sh` runs these commands automatically so Codex stays in sync.
+
 ### 2. Configure Claude Code
 
 Add to your project's `.claude/mcp-settings.json`:

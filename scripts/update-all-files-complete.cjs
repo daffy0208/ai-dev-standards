@@ -144,6 +144,21 @@ safeUpdate(path.join(ROOT, '.claude', 'claude.md'), (file) => {
   fs.writeFileSync(file, content);
 }, '.claude/claude.md');
 
+// .codex/codex.md - Auto-generate from skill-registry.json
+safeUpdate(path.join(ROOT, '.codex', 'codex.md'), (file) => {
+  const registryPath = path.join(ROOT, 'META', 'skill-registry.json');
+  const registry = JSON.parse(fs.readFileSync(registryPath, 'utf-8'));
+
+  let content = '# Codex Configuration\n\n## Skills\n\n';
+  registry.skills.forEach(skill => {
+    content += `\n### ${skill.name}\n\n`;
+    content += `${skill.description}\n\n`;
+    content += `**Location:** \`${skill.path}SKILL.md\`\n`;
+  });
+
+  fs.writeFileSync(file, content);
+}, '.codex/codex.md');
+
 // SUMMARY
 console.log(`\n${GREEN}=== UPDATE COMPLETE ===${RESET}\n`);
 console.log(`${GREEN}✅ Updated: ${updateCount} files${RESET}`);

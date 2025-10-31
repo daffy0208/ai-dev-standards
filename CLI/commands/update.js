@@ -166,28 +166,35 @@ async function updateMcpServers(projectPath, options) {
     return
   }
 
-  // Add to MCP settings
-  const settingsPath = path.join(projectPath, '.claude', 'mcp-settings.json')
-  let settings = {}
-
-  if (await fs.pathExists(settingsPath)) {
-    settings = await fs.readJson(settingsPath)
-  }
-
-  if (!settings.mcpServers) settings.mcpServers = {}
+  const CLIENT_MCP_DIRS = ['.claude', '.codex']
 
   for (const mcpName of selected) {
     const mcp = newMcps.find(m => m.name === mcpName)
-    settings.mcpServers[mcpName] = {
-      command: 'node',
-      args: [mcp.path],
-      env: mcp.env || {}
-    }
-    installed.push(mcpName)
-  }
 
-  await fs.ensureDir(path.dirname(settingsPath))
-  await fs.writeJson(settingsPath, settings, { spaces: 2 })
+    for (const clientDir of CLIENT_MCP_DIRS) {
+      const settingsPath = path.join(projectPath, clientDir, 'mcp-settings.json')
+      let settings = {}
+
+      if (await fs.pathExists(settingsPath)) {
+        settings = await fs.readJson(settingsPath)
+      }
+
+      if (!settings.mcpServers) settings.mcpServers = {}
+
+      settings.mcpServers[mcpName] = {
+        command: 'node',
+        args: [mcp.path],
+        env: mcp.env || {}
+      }
+
+      await fs.ensureDir(path.dirname(settingsPath))
+      await fs.writeJson(settingsPath, settings, { spaces: 2 })
+    }
+
+    if (!installed.includes(mcpName)) {
+      installed.push(mcpName)
+    }
+  }
 
   // Update config
   if (!config.installed) config.installed = {}
@@ -418,24 +425,40 @@ coverage/
 `
 }
 
+const CLIENT_SKILL_DOCS = [
+  {
+    dir: '.claude',
+    file: 'claude.md',
+    header: '# Claude Configuration\n\n## Skills\n\n',
+    locationLabel: '**Location:**'
+  },
+  {
+    dir: '.codex',
+    file: 'codex.md',
+    header: '# Codex Configuration\n\n## Skills\n\n',
+    locationLabel: '**Location:**'
+  }
+]
+
 /**
- * Add skill reference to claude.md
+ * Add skill reference to client configuration files
  */
 async function addSkillReference(projectPath, skill) {
-  const claudeMdPath = path.join(projectPath, '.claude', 'claude.md')
+  for (const client of CLIENT_SKILL_DOCS) {
+    const targetPath = path.join(projectPath, client.dir, client.file)
+    await fs.ensureDir(path.dirname(targetPath))
 
-  await fs.ensureDir(path.dirname(claudeMdPath))
+    let content = ''
+    if (await fs.pathExists(targetPath)) {
+      content = await fs.readFile(targetPath, 'utf8')
+    } else {
+      content = client.header
+    }
 
-  let content = ''
-  if (await fs.pathExists(claudeMdPath)) {
-    content = await fs.readFile(claudeMdPath, 'utf8')
-  } else {
-    content = '# Claude Configuration\n\n## Skills\n\n'
-  }
-
-  if (!content.includes(skill.name)) {
-    content += `\n### ${skill.name}\n\n${skill.description}\n\n**Path:** \`SKILLS/${skill.name}/SKILL.md\`\n`
-    await fs.writeFile(claudeMdPath, content)
+    if (!content.includes(`### ${skill.name}`)) {
+      content += `\n### ${skill.name}\n\n${skill.description}\n\n${client.locationLabel} \`SKILLS/${skill.name}/SKILL.md\`\n`
+      await fs.writeFile(targetPath, content)
+    }
   }
 }
 
