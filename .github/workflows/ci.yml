@@ -214,11 +214,6 @@ jobs:
           cd MCP-SERVERS/brain-mcp
           npm run build
 
-      - name: Build brain CLI
-        run: |
-          cd scripts/brain
-          npm run build
-
       - name: Run registry validation tests
         run: npm run test:registry
 

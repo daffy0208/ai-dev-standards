@@ -3,7 +3,7 @@
     "brain-mcp": {
       "command": "node",
       "args": [
-        "/mnt/c/Users/david/OneDrive - Qolcom/AI/AI_Development_Projects/ai-dev-standards/MCP-SERVERS/brain-mcp/dist/index.js"
+        "/home/david/projects/ai-dev-standards/MCP-SERVERS/brain-mcp/dist/index.js"
       ]
     }
   }

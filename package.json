@@ -84,6 +84,7 @@
     "@pinecone-database/pinecone": "^2.0.0",
     "@supabase/supabase-js": "^2.38.4",
     "glob": "^10.3.10",
+    "global": "^4.4.0",
     "marked": "^11.1.0",
     "mysql2": "^3.6.5",
     "openai": "^4.24.0",
