@@ -3,10 +3,10 @@
     "brain-mcp": {
       "command": "node",
       "args": [
-        "/home/david/projects/ai-dev-standards/MCP-SERVERS/brain-mcp/dist/index.js"
+        "/home/runner/work/ai-dev-standards/ai-dev-standards/MCP-SERVERS/brain-mcp/dist/index.js"
       ],
       "env": {
-        "AI_DEV_STANDARDS_ROOT": "/home/david/projects/ai-dev-standards"
+        "AI_DEV_STANDARDS_ROOT": "/home/runner/work/ai-dev-standards/ai-dev-standards"
       }
     },
     "framework-content": {
