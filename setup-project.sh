@@ -202,8 +202,11 @@ echo ""
 echo -e "${BLUE}🏗️  Building brain-mcp...${NC}"
 if [ -x "$AI_DEV_STANDARDS_DIR/scripts/configure-mcp-paths.sh" ]; then
     cd "$AI_DEV_STANDARDS_DIR"
-    ./scripts/configure-mcp-paths.sh > /dev/null 2>&1
-    echo -e "${GREEN}✅ Brain-mcp built and configured${NC}"
+    if ./scripts/configure-mcp-paths.sh; then
+        echo -e "${GREEN}✅ Brain-mcp built and configured${NC}"
+    else
+        echo -e "${YELLOW}⚠️  Brain-mcp configuration had issues, but continuing...${NC}"
+    fi
 else
     echo -e "${YELLOW}⚠️  Building brain-mcp manually...${NC}"
     cd "$AI_DEV_STANDARDS_DIR/MCP-SERVERS/brain-mcp"

@@ -68,7 +68,7 @@ update_codex_config() {
         echo "  ✅ Updated brain-mcp configuration using jq"
     else
         sed -i.bak \
-            -e "s|\"args\": \[\"[^\"]*MCP-SERVERS/brain-mcp/dist/index.js\"|\"args\": [\"$REPO_ROOT/MCP-SERVERS/brain-mcp/dist/index.js\"|g" \
+            -e "s|\"args\": \\[\"[^\"]*MCP-SERVERS/brain-mcp/dist/index.js\"|\"args\": [\"$REPO_ROOT/MCP-SERVERS/brain-mcp/dist/index.js\"|g" \
             -e "s|\"AI_DEV_STANDARDS_ROOT\": \"[^\"]*\"|\"AI_DEV_STANDARDS_ROOT\": \"$REPO_ROOT\"|g" \
             "$config_file"
         echo "  ✅ Updated brain-mcp configuration using sed"
@@ -144,16 +144,22 @@ EOF
 # Main execution
 echo "🏗️  Building brain-mcp server..."
 cd "$REPO_ROOT/MCP-SERVERS/brain-mcp"
-npm install --silent 2>&1 | grep -v "npm WARN" || true
-npm run build 2>&1 | grep -v "npm WARN" || true
-echo "  ✅ Brain MCP built successfully"
+if npm install --silent 2>/dev/null && npm run build --silent 2>/dev/null; then
+    echo "  ✅ Brain MCP built successfully"
+else
+    echo "  ⚠️  Brain MCP build had issues, trying verbose build..."
+    npm install && npm run build
+fi
 echo ""
 
 echo "🏗️  Building brain CLI..."
 cd "$REPO_ROOT/scripts/brain"
-npm install --silent 2>&1 | grep -v "npm WARN" || true
-npm run build 2>&1 | grep -v "npm WARN" || true
-echo "  ✅ Brain CLI built successfully"
+if npm install --silent 2>/dev/null && npm run build --silent 2>/dev/null; then
+    echo "  ✅ Brain CLI built successfully"
+else
+    echo "  ⚠️  Brain CLI build had issues, trying verbose build..."
+    npm install && npm run build
+fi
 echo ""
 
 # Create configs if missing
