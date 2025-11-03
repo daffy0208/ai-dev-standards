@@ -210,10 +210,12 @@ If the brain isn't working:
 **Common Issue**: Hardcoded paths in config files (e.g., `/home/david/projects/...`) - Run the configuration script to fix.
 
 **See:** 
-- `scripts/brain/README.md` for CLI documentation
-- `MCP-SERVERS/brain-mcp/README.md` for MCP documentation
-- `DOCS/BRAIN-ORCHESTRATOR-TROUBLESHOOTING.md` for troubleshooting
-- `META/REPOSITORY-BRAIN.md` for architecture details
+- **[Quick Reference](DOCS/BRAIN-QUICK-REFERENCE.md)** - Common workflows, examples, cheat sheet
+- **[Troubleshooting](DOCS/BRAIN-ORCHESTRATOR-TROUBLESHOOTING.md)** - Fix common issues
+- **[Project Template](TEMPLATES/claude-instructions-with-brain.md)** - Enable automatic brain usage
+- `scripts/brain/README.md` - CLI documentation
+- `MCP-SERVERS/brain-mcp/README.md` - MCP documentation
+- `META/REPOSITORY-BRAIN.md` - Architecture details
 
 ---
 
