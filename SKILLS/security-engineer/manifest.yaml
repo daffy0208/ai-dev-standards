@@ -73,6 +73,18 @@ compatibility:
     - compliance-readiness
     - production-deployment
 
+dependencies:
+  mcps:
+    - auth-mcp
+    - jwt-handler-mcp
+    - encryption-mcp
+  tools:
+    - password-hasher-tool
+    - security-scanner-tool
+  skills:
+    - api-designer
+    - testing-strategist
+
 observability:
   logs:
     - "Implementing authentication for {routes_count} routes"

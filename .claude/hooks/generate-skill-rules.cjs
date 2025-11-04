@@ -36,20 +36,42 @@ registry.skills.forEach(skill => {
   const description = skill.description || '';
   const lowerDesc = description.toLowerCase();
   
-  // Add category-specific keywords
+  // Add category-specific keywords (more specific, less generic)
   const categoryKeywords = {
-    'frontend': ['react', 'component', 'ui', 'interface', 'frontend', 'client'],
-    'backend': ['api', 'server', 'backend', 'database', 'endpoint'],
-    'ai': ['ai', 'ml', 'machine learning', 'rag', 'vector', 'embedding', 'llm'],
-    'devops': ['deploy', 'ci', 'cd', 'docker', 'kubernetes', 'infrastructure'],
-    'design': ['design', 'ui', 'ux', 'style', 'brand', 'visual'],
-    'testing': ['test', 'qa', 'quality', 'validation'],
-    'security': ['security', 'auth', 'authentication', 'authorization', 'encryption']
+    'frontend': ['react', 'vue', 'angular', 'component', 'jsx', 'tsx', 'frontend', 'client-side'],
+    'backend': ['api', 'server', 'backend', 'database', 'endpoint', 'rest', 'graphql'],
+    'ai': ['ai', 'ml', 'machine learning', 'RAG', 'retrieval augmented generation', 'vector', 'embedding', 'llm', 'semantic search'],
+    'devops': ['deploy', 'deployment', 'ci/cd', 'docker', 'kubernetes', 'infrastructure', 'aws', 'azure'],
+    'design': ['design system', 'branding', 'visual identity', 'typography', 'color palette'],
+    'testing': ['unit test', 'integration test', 'e2e', 'test coverage', 'qa', 'jest', 'vitest', 'playwright', 'cypress'],
+    'security': ['security', 'authentication', 'authorization', 'jwt', 'oauth', 'encryption', 'owasp', 'vulnerability'],
+    'accessibility': ['accessibility', 'a11y', 'wcag', 'screen reader', 'keyboard navigation', 'aria', 'contrast ratio']
   };
   
-  // Add keywords based on skill description
+  // Add skill-specific optimized keywords (from AUTO-ACTIVATION-OPTIMIZATION-GUIDE.md)
+  const skillSpecificKeywords = {
+    'accessibility-engineer': ['accessibility', 'a11y', 'wcag', 'screen reader', 'keyboard navigation', 'aria', 'contrast ratio'],
+    'rag-implementer': ['RAG', 'retrieval augmented generation', 'semantic search', 'vector database', 'document retrieval', 'knowledge base', 'embedding'],
+    'security-engineer': ['authentication', 'authorization', 'jwt', 'oauth', 'encryption', 'owasp', 'vulnerability', 'security audit'],
+    'testing-strategist': ['test', 'testing', 'qa', 'quality assurance', 'unit test', 'integration test', 'e2e', 'jest', 'vitest', 'playwright', 'cypress'],
+    'api-designer': ['api', 'rest', 'graphql', 'endpoint', 'swagger', 'openapi'],
+    'frontend-builder': ['react', 'component', 'frontend', 'ui', 'interface', 'state management'],
+    'database-architect': ['database', 'sql', 'nosql', 'schema', 'migration', 'orm', 'prisma', 'sequelize']
+  };
+  
+  // Add skill-specific keywords first
+  if (skillSpecificKeywords[skillName]) {
+    promptTriggers.push(...skillSpecificKeywords[skillName]);
+  }
+  
+  // Add keywords based on skill description (only if not too generic)
   Object.entries(categoryKeywords).forEach(([category, keywords]) => {
     keywords.forEach(keyword => {
+      // Skip overly generic single words like 'ui', 'design', 'code'
+      const genericWords = ['ui', 'design', 'code'];
+      if (genericWords.includes(keyword.toLowerCase())) {
+        return;
+      }
       if (lowerDesc.includes(keyword) && !promptTriggers.includes(keyword)) {
         promptTriggers.push(keyword);
       }
@@ -59,19 +81,20 @@ registry.skills.forEach(skill => {
   // Determine file path patterns based on skill name and category
   const pathPatterns = [];
   
-  // Map skills to likely file paths
+  // Map skills to likely file paths (optimized based on AUTO-ACTIVATION-OPTIMIZATION-GUIDE.md)
   const pathMappings = {
-    'api-designer': ['**/api/**/*.{ts,js}', '**/routes/**/*.{ts,js}', '**/controllers/**/*.{ts,js}'],
-    'frontend-builder': ['**/components/**/*.{tsx,jsx}', '**/pages/**/*.{tsx,jsx}', '**/app/**/*.{tsx,jsx}'],
-    'rag-implementer': ['**/rag/**/*', '**/vector/**/*', '**/search/**/*', '**/embeddings/**/*'],
-    'security-engineer': ['**/auth/**/*', '**/security/**/*', '**/middleware/**/*'],
-    'database-architect': ['**/models/**/*', '**/schema/**/*', '**/migrations/**/*'],
-    'deployment-advisor': ['**/deploy/**/*', '**/infrastructure/**/*', '.github/workflows/**/*', 'Dockerfile', 'docker-compose.yml'],
-    'performance-optimizer': ['**/optimization/**/*', '**/cache/**/*', '**/performance/**/*'],
-    'testing-strategist': ['**/*.test.{ts,js,tsx,jsx}', '**/*.spec.{ts,js,tsx,jsx}', '**/tests/**/*'],
+    'api-designer': ['**/api/**/*.{ts,js}', '**/routes/**/*.{ts,js}', '**/controllers/**/*.{ts,js}', '**/endpoints/**/*'],
+    'frontend-builder': ['**/components/**/*.{tsx,jsx}', '**/pages/**/*.{tsx,jsx}', '**/app/**/*.{tsx,jsx}', '**/src/**/*.{tsx,jsx}'],
+    'rag-implementer': ['**/rag/**/*', '**/vector/**/*', '**/search/**/*', '**/embeddings/**/*', '**/retrieval/**/*'],
+    'security-engineer': ['**/auth/**/*', '**/security/**/*', '**/middleware/**/*', '**/guards/**/*', '**/permissions/**/*', '**/.env*'],
+    'database-architect': ['**/models/**/*', '**/schema/**/*', '**/migrations/**/*', '**/database/**/*', '**/prisma/**/*'],
+    'deployment-advisor': ['**/deploy/**/*', '**/infrastructure/**/*', '.github/workflows/**/*', 'Dockerfile', 'docker-compose.yml', '**/k8s/**/*', '**/terraform/**/*'],
+    'performance-optimizer': ['**/optimization/**/*', '**/cache/**/*', '**/performance/**/*', '**/webpack.config.*', '**/vite.config.*'],
+    'testing-strategist': ['**/*.test.{ts,js,tsx,jsx}', '**/*.spec.{ts,js,tsx,jsx}', '**/tests/**/*', '**/__tests__/**/*', '**/e2e/**/*', '**/jest.config.*', '**/vitest.config.*', '**/playwright.config.*', '**/cypress.config.*'],
     'mvp-builder': ['**/features/**/*', '**/product/**/*'],
-    'documentation-writer': ['**/*.md', '**/docs/**/*'],
-    'error-tracker': ['**/error/**/*', '**/logging/**/*', '**/monitoring/**/*']
+    'documentation-writer': ['**/*.md', '**/docs/**/*', '**/README*'],
+    'error-tracker': ['**/error/**/*', '**/logging/**/*', '**/monitoring/**/*', '**/sentry/**/*'],
+    'accessibility-engineer': ['**/components/**/*.{tsx,jsx}', '**/a11y/**/*', '**/*.accessibility.test.*', '**/ui/**/*']
   };
   
   // Add skill-specific path patterns

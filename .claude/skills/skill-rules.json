@@ -2,8 +2,7 @@
   "3d-visualizer": {
     "promptTriggers": [
       "3d-visualizer",
-      "3d visualizer",
-      "visual"
+      "3d visualizer"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -15,11 +14,20 @@
     "promptTriggers": [
       "accessibility-engineer",
       "accessibility engineer",
-      "ui",
-      "design"
+      "accessibility",
+      "a11y",
+      "wcag",
+      "screen reader",
+      "keyboard navigation",
+      "aria",
+      "contrast ratio"
     ],
     "fileTriggers": {
       "pathPatterns": [
+        "**/components/**/*.{tsx,jsx}",
+        "**/a11y/**/*",
+        "**/*.accessibility.test.*",
+        "**/ui/**/*",
         "**/accessibility-engineer/**/*"
       ]
     }
@@ -27,8 +35,7 @@
   "animation-designer": {
     "promptTriggers": [
       "animation-designer",
-      "animation designer",
-      "design"
+      "animation designer"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -41,10 +48,12 @@
       "api-designer",
       "api designer",
       "api",
-      "backend",
+      "rest",
+      "graphql",
       "endpoint",
-      "design",
-      "auth",
+      "swagger",
+      "openapi",
+      "backend",
       "authentication"
     ],
     "fileTriggers": {
@@ -52,6 +61,7 @@
         "**/api/**/*.{ts,js}",
         "**/routes/**/*.{ts,js}",
         "**/controllers/**/*.{ts,js}",
+        "**/endpoints/**/*",
         "**/api-designer/**/*"
       ]
     }
@@ -60,10 +70,9 @@
     "promptTriggers": [
       "api-integration-builder",
       "api integration builder",
-      "ui",
       "api",
       "ai",
-      "auth"
+      "oauth"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -90,9 +99,7 @@
     "promptTriggers": [
       "asset-manager",
       "asset manager",
-      "ai",
-      "design",
-      "brand"
+      "ai"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -103,8 +110,7 @@
   "audio-producer": {
     "promptTriggers": [
       "audio-producer",
-      "audio producer",
-      "design"
+      "audio producer"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -120,8 +126,7 @@
       "\"business architecture design\"",
       "\"align architecture with business model\"",
       "bmad method",
-      "ai",
-      "design"
+      "ai"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -132,10 +137,7 @@
   "brand-designer": {
     "promptTriggers": [
       "brand-designer",
-      "brand designer",
-      "design",
-      "brand",
-      "visual"
+      "brand designer"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -146,8 +148,7 @@
   "capability-graph-builder": {
     "promptTriggers": [
       "capability-graph-builder",
-      "capability graph builder",
-      "ui"
+      "capability graph builder"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -163,10 +164,7 @@
       "\"validate with codex\"",
       "\"codex cli\"",
       "codex review workflow",
-      "ui",
       "ai",
-      "quality",
-      "validation",
       "security"
     ],
     "fileTriggers": {
@@ -179,7 +177,7 @@
     "promptTriggers": [
       "context-preserver",
       "context preserver",
-      "design"
+      "rest"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -200,8 +198,7 @@
   "customer-feedback-analyzer": {
     "promptTriggers": [
       "customer-feedback-analyzer",
-      "customer feedback analyzer",
-      "ci"
+      "customer feedback analyzer"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -213,10 +210,7 @@
     "promptTriggers": [
       "customer-support-builder",
       "customer support builder",
-      "ui",
-      "ci",
-      "infrastructure",
-      "design"
+      "infrastructure"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -250,8 +244,7 @@
   "data-visualizer": {
     "promptTriggers": [
       "data-visualizer",
-      "data visualizer",
-      "visual"
+      "data visualizer"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -265,10 +258,11 @@
       "deployment advisor",
       "ai",
       "deploy",
-      "ci",
-      "cd",
+      "deployment",
+      "ci/cd",
       "docker",
-      "infrastructure"
+      "infrastructure",
+      "aws"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -277,6 +271,8 @@
         ".github/workflows/**/*",
         "Dockerfile",
         "docker-compose.yml",
+        "**/k8s/**/*",
+        "**/terraform/**/*",
         "**/deployment-advisor/**/*"
       ]
     }
@@ -286,9 +282,8 @@
       "design-system-architect",
       "design system architect",
       "component",
-      "ui",
       "ai",
-      "design"
+      "design system"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -301,8 +296,7 @@
       "figma-developer",
       "figma developer",
       "react",
-      "component",
-      "design"
+      "component"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -341,8 +335,7 @@
       "\"orchestrate frameworks\"",
       "\"coordinate skills\"",
       "\"project orchestration\"",
-      "framework orchestrator",
-      "ci"
+      "framework orchestrator"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -356,17 +349,18 @@
       "frontend builder",
       "react",
       "component",
-      "ui",
       "frontend",
-      "ai",
-      "design",
-      "ux"
+      "ui",
+      "interface",
+      "state management",
+      "ai"
     ],
     "fileTriggers": {
       "pathPatterns": [
         "**/components/**/*.{tsx,jsx}",
         "**/pages/**/*.{tsx,jsx}",
         "**/app/**/*.{tsx,jsx}",
+        "**/src/**/*.{tsx,jsx}",
         "**/frontend-builder/**/*"
       ]
     }
@@ -386,9 +380,7 @@
   "growth-experimenter": {
     "promptTriggers": [
       "growth-experimenter",
-      "growth experimenter",
-      "ui",
-      "test"
+      "growth experimenter"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -411,10 +403,7 @@
     "promptTriggers": [
       "knowledge-base-manager",
       "knowledge base manager",
-      "ui",
-      "ai",
-      "rag",
-      "design"
+      "ai"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -426,9 +415,8 @@
     "promptTriggers": [
       "knowledge-graph-builder",
       "knowledge graph builder",
-      "ui",
       "database",
-      "design"
+      "semantic search"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -486,10 +474,7 @@
     "promptTriggers": [
       "multi-agent-architect",
       "multi agent architect",
-      "ui",
-      "ai",
-      "ci",
-      "design"
+      "ai"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -501,9 +486,7 @@
     "promptTriggers": [
       "mvp-builder",
       "mvp builder",
-      "ui",
-      "api",
-      "validation"
+      "api"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -516,8 +499,7 @@
   "orchestration-planner": {
     "promptTriggers": [
       "orchestration-planner",
-      "orchestration planner",
-      "style"
+      "orchestration planner"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -537,6 +519,8 @@
         "**/optimization/**/*",
         "**/cache/**/*",
         "**/performance/**/*",
+        "**/webpack.config.*",
+        "**/vite.config.*",
         "**/performance-optimizer/**/*"
       ]
     }
@@ -544,9 +528,7 @@
   "pricing-strategist": {
     "promptTriggers": [
       "pricing-strategist",
-      "pricing strategist",
-      "ci",
-      "design"
+      "pricing strategist"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -557,9 +539,7 @@
   "product-analyst": {
     "promptTriggers": [
       "product-analyst",
-      "product analyst",
-      "ui",
-      "ci"
+      "product analyst"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -581,10 +561,7 @@
   "product-strategist": {
     "promptTriggers": [
       "product-strategist",
-      "product strategist",
-      "ui",
-      "ci",
-      "validation"
+      "product strategist"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -595,10 +572,7 @@
   "prototype-designer": {
     "promptTriggers": [
       "prototype-designer",
-      "prototype designer",
-      "ui",
-      "design",
-      "test"
+      "prototype designer"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -614,7 +588,6 @@
       "\"create prp\"",
       "\"generate requirements\"",
       "prp generator",
-      "ui",
       "ai"
     ],
     "fileTriggers": {
@@ -631,10 +604,7 @@
       "\"testing strategy\"",
       "\"code quality\"",
       "\"validation gates\"",
-      "quality assurance",
-      "test",
-      "quality",
-      "validation"
+      "quality assurance"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -654,8 +624,7 @@
       "appraise",
       "measure against standards",
       "quality auditor",
-      "ai",
-      "quality"
+      "ai"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -667,9 +636,14 @@
     "promptTriggers": [
       "rag-implementer",
       "rag implementer",
-      "ui",
-      "vector",
+      "RAG",
+      "retrieval augmented generation",
+      "semantic search",
+      "vector database",
+      "document retrieval",
+      "knowledge base",
       "embedding",
+      "vector",
       "llm"
     ],
     "fileTriggers": {
@@ -678,6 +652,7 @@
         "**/vector/**/*",
         "**/search/**/*",
         "**/embeddings/**/*",
+        "**/retrieval/**/*",
         "**/rag-implementer/**/*"
       ]
     }
@@ -686,7 +661,8 @@
     "promptTriggers": [
       "release-manager",
       "release manager",
-      "deploy"
+      "deploy",
+      "deployment"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -703,8 +679,6 @@
       "\"secure coding\"",
       "\"compliance validation\"",
       "security architect",
-      "design",
-      "validation",
       "security"
     ],
     "fileTriggers": {
@@ -717,18 +691,25 @@
     "promptTriggers": [
       "security-engineer",
       "security engineer",
-      "api",
-      "validation",
-      "security",
-      "auth",
       "authentication",
-      "encryption"
+      "authorization",
+      "jwt",
+      "oauth",
+      "encryption",
+      "owasp",
+      "vulnerability",
+      "security audit",
+      "api",
+      "security"
     ],
     "fileTriggers": {
       "pathPatterns": [
         "**/auth/**/*",
         "**/security/**/*",
         "**/middleware/**/*",
+        "**/guards/**/*",
+        "**/permissions/**/*",
+        "**/.env*",
         "**/security-engineer/**/*"
       ]
     }
@@ -762,12 +743,8 @@
       "supabase-developer",
       "supabase developer",
       "supabase dev",
-      "ui",
       "server",
       "database",
-      "rag",
-      "design",
-      "auth",
       "authentication"
     ],
     "fileTriggers": {
@@ -802,7 +779,6 @@
     "promptTriggers": [
       "technical-writer",
       "technical writer",
-      "ui",
       "api"
     ],
     "fileTriggers": {
@@ -815,15 +791,29 @@
     "promptTriggers": [
       "testing-strategist",
       "testing strategist",
-      "design",
       "test",
-      "quality"
+      "testing",
+      "qa",
+      "quality assurance",
+      "unit test",
+      "integration test",
+      "e2e",
+      "jest",
+      "vitest",
+      "playwright",
+      "cypress"
     ],
     "fileTriggers": {
       "pathPatterns": [
         "**/*.test.{ts,js,tsx,jsx}",
         "**/*.spec.{ts,js,tsx,jsx}",
         "**/tests/**/*",
+        "**/__tests__/**/*",
+        "**/e2e/**/*",
+        "**/jest.config.*",
+        "**/vitest.config.*",
+        "**/playwright.config.*",
+        "**/cypress.config.*",
         "**/testing-strategist/**/*"
       ]
     }
@@ -831,10 +821,7 @@
   "usability-tester": {
     "promptTriggers": [
       "usability-tester",
-      "usability tester",
-      "design",
-      "ux",
-      "test"
+      "usability tester"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -846,8 +833,7 @@
     "promptTriggers": [
       "user-researcher",
       "user researcher",
-      "ai",
-      "validation"
+      "ai"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -859,8 +845,7 @@
     "promptTriggers": [
       "ux-designer",
       "ux designer",
-      "interface",
-      "design"
+      "accessibility"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -883,10 +868,8 @@
     "promptTriggers": [
       "visual-designer",
       "visual designer",
-      "interface",
-      "ci",
-      "design",
-      "visual"
+      "design system",
+      "typography"
     ],
     "fileTriggers": {
       "pathPatterns": [
@@ -897,9 +880,7 @@
   "voice-interface-builder": {
     "promptTriggers": [
       "voice-interface-builder",
-      "voice interface builder",
-      "ui",
-      "interface"
+      "voice interface builder"
     ],
     "fileTriggers": {
       "pathPatterns": [

@@ -75,6 +75,18 @@ compatibility:
     - knowledge-retrieval
     - context-aware-generation
 
+dependencies:
+  mcps:
+    - vector-database-mcp
+    - embedding-generator-mcp
+    - document-parser-mcp
+  tools:
+    - similarity-search-tool
+    - embedding-tool
+  skills:
+    - knowledge-base-manager
+    - performance-optimizer
+
 observability:
   logs:
     - "Embedding {count} documents in batches of {batch_size}"
