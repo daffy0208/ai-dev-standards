@@ -28,6 +28,7 @@ const syncCommand = require('./commands/sync')
 const updateCommand = require('./commands/update')
 const checkUpdatesCommand = require('./commands/check-updates')
 const selfUpdateCommand = require('./commands/self-update')
+const contextCommand = require('./commands/context')
 
 const program = new Command()
 
@@ -158,6 +159,24 @@ program
   .description('Update ai-dev-standards to the latest version')
   .option('--force', 'Force update even with local changes')
   .action(selfUpdateCommand)
+
+// ===========================
+// CONTEXT COMMAND (Phase 4)
+// ===========================
+program
+  .command('context <action>')
+  .description('Manage session context (show, history, clear, restore, stats)')
+  .option('--limit <number>', 'Limit number of results', '10')
+  .option('--older-than <days>', 'Clear data older than N days', '30')
+  .option('--session-id <id>', 'Session ID for restore action')
+  .action((action, options) => {
+    const opts = {
+      limit: parseInt(options.limit, 10),
+      olderThan: parseInt(options.olderThan, 10),
+      sessionId: options.sessionId
+    };
+    contextCommand(action, opts);
+  })
 
 // ===========================
 // HELP EXAMPLES

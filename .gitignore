@@ -98,3 +98,6 @@ orchestration-results/*.json
 # Hooks dependencies
 .claude/hooks/node_modules/
 .claude/hooks/package-lock.json
+
+# Claude context data (local session tracking)
+.claude/context/

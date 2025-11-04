@@ -12,6 +12,7 @@ Complete guide to all documentation in the ai-dev-standards framework.
 - **🆕 [Skill Auto-Activation](SKILL-AUTO-ACTIVATION.md)** - How skills activate automatically based on context (Phase 1)
 - **🆕 [Modular Skills Guide](MODULAR-SKILLS-GUIDE.md)** - Progressive disclosure pattern for large skills (Phase 2)
 - **🆕 [Specialized Agents Guide](AGENTS-GUIDE.md)** - Autonomous agents for complex tasks (Phase 3)
+- **🆕 [File Tracking & Context Retention](FILE-TRACKING-GUIDE.md)** - Context retention across sessions (Phase 4)
 
 ## Core Documentation
 
