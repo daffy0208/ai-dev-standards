@@ -75,11 +75,14 @@ The tool automatically:
 
 When working in a project using this repository:
 
-1. Read `META/PROJECT-CONTEXT.md` - Understand repository structure and philosophy
-2. Read `META/HOW-TO-USE.md` - Navigation and usage guide
-3. Read `META/DECISION-FRAMEWORK.md` - Technology decision guidance
-4. Search `META/skill-registry.json` - Find relevant skills
-5. Reference appropriate standards and patterns as needed
+1. Read `claude_custom_instructions.md` - **Start here!** Comprehensive guide to understanding and using this repository
+2. Read `META/PROJECT-CONTEXT.md` - Understand repository structure and philosophy
+3. Read `META/HOW-TO-USE.md` - Navigation and usage guide
+4. Read `META/DECISION-FRAMEWORK.md` - Technology decision guidance
+5. Search `META/skill-registry.json` - Find relevant skills
+6. Reference appropriate standards and patterns as needed
+
+**New:** See `DOCS/CLAUDE-CODE-KNOWLEDGE-SOURCE.md` for a complete guide on using this repository as a knowledge source for Claude Code.
 
 ---
 
@@ -633,11 +636,14 @@ This repository was created by evaluating and refining the Framework Library, ke
 - [Decision Framework](META/DECISION-FRAMEWORK.md)
 - [Skill Registry](META/skill-registry.json)
 
-**For AI Assistants:**
-- [Project Context](META/PROJECT-CONTEXT.md) - Read this first!
-- [Navigation Guide](META/HOW-TO-USE.md)
-- [All Skills](SKILLS/)
-- [Architecture Patterns](STANDARDS/architecture-patterns/)
+**For AI Assistants (Claude Code):**
+- **[Claude Custom Instructions](claude_custom_instructions.md)** - **Start here!** Complete guide
+- **[Claude Code Knowledge Source Guide](DOCS/CLAUDE-CODE-KNOWLEDGE-SOURCE.md)** - How to use as knowledge source
+- [Project Context](META/PROJECT-CONTEXT.md) - Repository structure
+- [Navigation Guide](META/HOW-TO-USE.md) - How to navigate
+- [Configuration](.clauderc) - Claude Code configuration
+- [All Skills](SKILLS/) - Available skills
+- [Architecture Patterns](STANDARDS/architecture-patterns/) - Design patterns
 
 ---
 

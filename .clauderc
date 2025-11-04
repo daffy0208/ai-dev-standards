@@ -1,0 +1,275 @@
+{
+  "repository": {
+    "name": "ai-dev-standards",
+    "version": "3.0.0",
+    "type": "knowledge-base",
+    "description": "Comprehensive knowledge base for AI-assisted software development with 238 curated resources"
+  },
+  "knowledge_sources": {
+    "primary": "claude_custom_instructions.md",
+    "meta": [
+      "META/PROJECT-CONTEXT.md",
+      "META/HOW-TO-USE.md",
+      "META/DECISION-FRAMEWORK.md",
+      "META/REPOSITORY-BRAIN.md"
+    ],
+    "registries": [
+      "META/skill-registry.json",
+      "META/mcp-registry.json",
+      "META/component-registry.json",
+      "META/tool-registry.json",
+      "META/integration-registry.json",
+      "META/relationship-mapping.json",
+      "META/capability-graph.json"
+    ],
+    "documentation": [
+      "README.md",
+      "DOCS/GETTING-STARTED.md",
+      "DOCS/INTEGRATION-GUIDE.md",
+      "DOCS/QUICK-START.md",
+      "DOCS/CLAUDE-CODE-ORCHESTRATION.md",
+      "DOCS/BRAIN-MCP-INTEGRATION.md"
+    ]
+  },
+  "context_loading_order": [
+    "claude_custom_instructions.md",
+    "META/PROJECT-CONTEXT.md",
+    "META/HOW-TO-USE.md",
+    "META/skill-registry.json",
+    "README.md"
+  ],
+  "resources": {
+    "skills": {
+      "location": "SKILLS/",
+      "count": 64,
+      "registry": "META/skill-registry.json",
+      "format": "YAML frontmatter + Markdown"
+    },
+    "mcp_servers": {
+      "location": "MCP-SERVERS/",
+      "count": 50,
+      "registry": "META/mcp-registry.json",
+      "brain_mcp": "MCP-SERVERS/brain-mcp/"
+    },
+    "tools": {
+      "location": "TOOLS/",
+      "count": 24,
+      "registry": "META/tool-registry.json"
+    },
+    "components": {
+      "location": "COMPONENTS/",
+      "count": 72,
+      "registry": "META/component-registry.json"
+    },
+    "integrations": {
+      "location": "INTEGRATIONS/",
+      "count": 28,
+      "registry": "META/integration-registry.json"
+    },
+    "standards": {
+      "location": "STANDARDS/",
+      "architecture_patterns": "STANDARDS/architecture-patterns/",
+      "best_practices": "STANDARDS/best-practices/"
+    },
+    "playbooks": {
+      "location": "PLAYBOOKS/",
+      "operational_procedures": true
+    }
+  },
+  "development": {
+    "commands": {
+      "validate": "npm run validate",
+      "test": "npm test",
+      "lint": "npm run lint",
+      "fix": "npm run validate:fix && npm run lint:fix",
+      "sync": "npm run sync",
+      "ci": "npm run ci"
+    },
+    "pre_commit_checks": [
+      "npm run validate",
+      "npm run lint",
+      "npm run typecheck"
+    ],
+    "validation_scripts": {
+      "all": "scripts/validate-all.cjs",
+      "docs": "scripts/validate-docs-consistency.cjs",
+      "registries": "scripts/sync-*-registry.cjs"
+    }
+  },
+  "brain_mcp": {
+    "enabled": true,
+    "location": "MCP-SERVERS/brain-mcp/",
+    "commands": {
+      "search": "brain_search",
+      "recommend": "brain_select_skills",
+      "show": "brain_show_skill",
+      "relationships": "brain_relationships",
+      "status": "brain_status"
+    },
+    "graph_queries": {
+      "by_domain": "graph_query_by_domain",
+      "by_effect": "graph_query_by_effect",
+      "dependencies": "graph_get_dependencies",
+      "find_path": "graph_find_path",
+      "composition": "graph_composition_chains",
+      "stats": "graph_stats",
+      "validate": "graph_validate"
+    }
+  },
+  "orchestration": {
+    "enabled": true,
+    "requests_dir": "orchestration-requests/",
+    "results_dir": "orchestration-results/",
+    "types": ["plan", "validate", "diagnose", "generate_manifest", "build_capability_graph", "analyze_project"],
+    "documentation": "DOCS/CLAUDE-CODE-ORCHESTRATION.md"
+  },
+  "conventions": {
+    "skills": {
+      "format": "YAML frontmatter + Markdown",
+      "required_files": ["SKILL.md", "README.md"],
+      "naming": "kebab-case"
+    },
+    "mcps": {
+      "format": "TypeScript MCP Server",
+      "required_files": ["README.md", "manifest.yaml", "src/index.ts", "package.json", "tsconfig.json"],
+      "naming": "kebab-case with -mcp suffix"
+    },
+    "components": {
+      "format": "TypeScript React",
+      "naming": "PascalCase for component, kebab-case for file",
+      "categories": ["auth", "forms", "layouts", "media", "feedback", "advanced"]
+    }
+  },
+  "best_practices": {
+    "always": [
+      "Read META/PROJECT-CONTEXT.md first",
+      "Keep registries in sync with npm run validate:fix",
+      "Follow existing patterns for consistency",
+      "Test changes with npm test before committing",
+      "Document thoroughly with examples",
+      "Use brain-mcp for intelligent recommendations",
+      "Validate security with proper input sanitization",
+      "Maintain quality over quantity"
+    ],
+    "never": [
+      "Commit without running validation",
+      "Create files without updating registries",
+      "Trust user input without validation",
+      "Expose sensitive data in logs",
+      "Break existing patterns without good reason",
+      "Skip documentation for new resources"
+    ]
+  },
+  "common_tasks": {
+    "add_skill": {
+      "steps": [
+        "Create SKILLS/[skill-name]/ directory",
+        "Create SKILL.md with YAML frontmatter",
+        "Create comprehensive README.md",
+        "Run npm run sync:skills",
+        "Verify in META/skill-registry.json",
+        "Test with Claude"
+      ]
+    },
+    "add_mcp": {
+      "steps": [
+        "Create MCP-SERVERS/[mcp-name]/ directory",
+        "Create package.json, tsconfig.json, src/index.ts",
+        "Implement MCP protocol",
+        "Create README.md and manifest.yaml",
+        "Run npm install && npm run build",
+        "Run npm run sync:mcps",
+        "Configure in .claude/mcp-settings.json"
+      ]
+    },
+    "fix_registry": {
+      "steps": [
+        "Run npm run validate to detect issues",
+        "Run npm run validate:fix to auto-fix",
+        "Run npm run validate to verify",
+        "Commit changes if validated"
+      ]
+    },
+    "update_docs": {
+      "steps": [
+        "Update primary source file",
+        "Run npm run validate:docs",
+        "Update related files if needed",
+        "Verify counts and references",
+        "Test links and examples"
+      ]
+    }
+  },
+  "troubleshooting": {
+    "registry_out_of_sync": {
+      "symptoms": ["Resource counts don't match", "CLI can't find resources", "Validation tests fail"],
+      "solution": "npm run validate:fix && npm run validate"
+    },
+    "mcp_not_working": {
+      "symptoms": ["Brain commands fail", "MCP not listed", "Connection errors"],
+      "solution": "cd MCP-SERVERS/[mcp-name] && npm install && npm run build"
+    },
+    "skills_not_activating": {
+      "symptoms": ["Claude doesn't use skills", "Skills not in .claude/claude.md"],
+      "solution": "Check SKILL.md YAML, verify registry, ensure .claude/claude.md updated, restart Claude"
+    },
+    "tests_failing": {
+      "symptoms": ["npm test fails", "CI/CD pipeline fails"],
+      "solution": "npm run lint:fix && npm run typecheck && npm run validate:fix && npm test"
+    }
+  },
+  "helpful_queries": {
+    "finding_resources": [
+      "What skills are available for [topic]?",
+      "Show me MCPs related to [functionality]",
+      "Which components can I use for [use case]?",
+      "What integrations exist for [service]?"
+    ],
+    "understanding_relationships": [
+      "What does [skill-name] depend on?",
+      "Which MCPs work with [skill-name]?",
+      "Show me the capability path from [A] to [B]",
+      "What skills can be composed together?"
+    ],
+    "maintenance": [
+      "Check repository health",
+      "Validate all registries",
+      "Find inconsistencies in documentation",
+      "Show outdated resource counts"
+    ],
+    "development": [
+      "Help me create a new skill for [purpose]",
+      "Guide me through adding an MCP for [functionality]",
+      "How do I fix [specific issue]?",
+      "What's the best way to implement [feature]?"
+    ]
+  },
+  "metrics": {
+    "total_resources": 238,
+    "skill_coverage": "64 specialized skills covering all aspects of development",
+    "mcp_coverage": "50 MCPs providing 85% skill-to-tool alignment",
+    "component_library": "72 reusable React components across 6 categories",
+    "integration_support": "28 pre-configured service integrations",
+    "documentation_completeness": "41/64 skills have comprehensive READMEs (64%)",
+    "registry_consistency": "100% (bidirectional validation)",
+    "test_coverage": "Core resources validated and discoverable"
+  },
+  "version_history": {
+    "3.0.0": {
+      "date": "2025-10-30",
+      "changes": ["Security fixes", "Cross-project isolation", "Registry cleanup"]
+    },
+    "2.1.0": {
+      "date": "2025-10-29",
+      "changes": ["Validation system", "Orchestration infrastructure", "100% registry consistency"]
+    },
+    "2.0.0": {
+      "date": "2025-10-27",
+      "changes": ["Design system complete", "75 components", "50 MCPs", "240 total resources"]
+    },
+    "1.1.0": {
+      "date": "2025-10-22",
+      "changes": ["Quality & trust update", "Automated validation", "CI/CD enforcement"]
+    }
+  }
+}

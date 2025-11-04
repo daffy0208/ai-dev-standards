@@ -9,6 +9,13 @@ Complete guide to all documentation in the ai-dev-standards framework.
 - [Cheat Sheet](CHEAT-SHEET.md) - Quick reference for common tasks
 - [System Overview](SYSTEM-OVERVIEW.md) - Understanding the framework architecture
 
+## For AI Assistants (Claude Code)
+
+- **[Claude Code Knowledge Source Guide](CLAUDE-CODE-KNOWLEDGE-SOURCE.md)** - **Essential!** How to use this repo as a knowledge source
+- [Claude Code Orchestration](CLAUDE-CODE-ORCHESTRATION.md) - Orchestration system
+- [Claude Code Agents](CLAUDE-CODE-AGENTS.md) - Agent integration
+- [Brain MCP Integration](BRAIN-MCP-INTEGRATION.md) - Intelligent orchestration
+
 ## Core Documentation
 
 ### CLI Tools
