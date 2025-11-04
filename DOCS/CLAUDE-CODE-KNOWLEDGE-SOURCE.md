@@ -45,7 +45,9 @@ Create a `claude_custom_instructions.md` file in your repository root (this has 
 
 ```bash
 # Copy the custom instructions template
-cp /path/to/ai-dev-standards/claude_custom_instructions.md ./
+cp $AI_DEV_STANDARDS_ROOT/claude_custom_instructions.md ./
+# Or use absolute path
+cp ~/ai-dev-standards/claude_custom_instructions.md ./
 ```
 
 Or reference it directly:
@@ -557,7 +559,7 @@ Let's start implementing...
 ```
 Let me scan the repository for current counts...
 
-Current Counts:
+Current Counts (as of this example):
 - Skills: 64 (from SKILLS/ directory)
 - MCPs: 50 (from MCP-SERVERS/ directory)
 - Tools: 24 (from META/tool-registry.json)
@@ -565,12 +567,15 @@ Current Counts:
 - Integrations: 28 (from META/integration-registry.json)
 Total: 238 resources
 
+Note: These are example counts for demonstration.
+Always verify actual counts from registries.
+
 Checking documentation for discrepancies...
 
-Files to Update:
-1. README.md - Claims 330, should be 238
-2. DOCS/GETTING-STARTED.md - Claims 195, should be 238
-3. DOCS/QUICK-START.md - Outdated counts
+Hypothetical Files to Update (example only):
+1. README.md - If outdated, update to match registry
+2. DOCS/GETTING-STARTED.md - If outdated, update to match registry
+3. DOCS/QUICK-START.md - Check for consistency
 
 Updating files...
 [Makes precise changes to each file]

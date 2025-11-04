@@ -494,7 +494,7 @@ npm run test:registry   # Validate in tests
 
 **Solution:**
 ```bash
-npm run validate:fix    # Regenerate all registries
+npm run validate:fix    # Auto-fix registry inconsistencies and missing entries
 npm run validate        # Verify consistency
 ```
 
