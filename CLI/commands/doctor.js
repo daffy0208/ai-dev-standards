@@ -13,6 +13,8 @@ const execa = require('execa')
  * - Outdated packages
  * - Configuration issues
  * - Environment setup
+ * - ai-dev-standards installation
+ * - Hooks configuration
  */
 async function doctorCommand(options) {
   console.log(chalk.blue('\n🏥 Running project health check...\n'))
@@ -54,6 +56,18 @@ async function doctorCommand(options) {
     // 8. Check linting
     const lintCheck = await checkLinting()
     checks.push(lintCheck)
+
+    // 9. Check ai-dev-standards installation
+    const aiDevCheck = await checkAiDevStandards()
+    checks.push(aiDevCheck)
+
+    // 10. Check hooks installation
+    const hooksCheck = await checkHooks()
+    checks.push(hooksCheck)
+
+    // 11. Check skill-rules.json
+    const skillRulesCheck = await checkSkillRules()
+    checks.push(skillRulesCheck)
 
     // Display results
     console.log(chalk.bold('📋 Health Check Results:\n'))
@@ -397,6 +411,162 @@ async function checkLinting() {
 }
 
 /**
+ * Check ai-dev-standards installation
+ */
+async function checkAiDevStandards() {
+  const configPath = path.join(process.cwd(), '.ai-dev.json')
+  
+  if (!await fs.pathExists(configPath)) {
+    return {
+      name: 'ai-dev-standards',
+      status: 'warning',
+      message: 'Not initialized in this project',
+      fix: 'Run: bash /path/to/ai-dev-standards/setup-project.sh'
+    }
+  }
+
+  try {
+    const config = await fs.readJson(configPath)
+    
+    // Check if version is tracked
+    if (!config.version) {
+      return {
+        name: 'ai-dev-standards',
+        status: 'warning',
+        message: 'Version not tracked (old installation)',
+        fix: 'Re-run setup-project.sh to update'
+      }
+    }
+
+    // Check if location is tracked
+    if (!config.aiDevStandardsRoot) {
+      return {
+        name: 'ai-dev-standards',
+        status: 'warning',
+        message: 'Installation path not tracked',
+        fix: 'Add aiDevStandardsRoot to .ai-dev.json'
+      }
+    }
+
+    return {
+      name: 'ai-dev-standards',
+      status: 'ok',
+      message: `Version ${config.version} installed`
+    }
+  } catch (error) {
+    return {
+      name: 'ai-dev-standards',
+      status: 'error',
+      message: 'Invalid .ai-dev.json',
+      fix: 'Fix syntax errors or re-run setup-project.sh'
+    }
+  }
+}
+
+/**
+ * Check hooks installation
+ */
+async function checkHooks() {
+  const hooksDir = path.join(process.cwd(), '.claude/hooks')
+  const settingsFile = path.join(process.cwd(), '.claude/settings.json')
+  
+  if (!await fs.pathExists(hooksDir)) {
+    return {
+      name: 'Skill activation hooks',
+      status: 'warning',
+      message: 'Hooks not installed',
+      fix: 'Run setup-project.sh to install hooks'
+    }
+  }
+
+  // Check if hooks are executable
+  const hookScript = path.join(hooksDir, 'skill-activation-prompt.sh')
+  if (await fs.pathExists(hookScript)) {
+    try {
+      const stats = await fs.stat(hookScript)
+      const isExecutable = (stats.mode & parseInt('111', 8)) !== 0
+      
+      if (!isExecutable) {
+        return {
+          name: 'Skill activation hooks',
+          status: 'warning',
+          message: 'Hooks not executable',
+          fix: 'Run: chmod +x .claude/hooks/*.sh'
+        }
+      }
+    } catch (error) {
+      // Ignore stat errors
+    }
+  }
+
+  // Check settings.json configuration
+  if (await fs.pathExists(settingsFile)) {
+    try {
+      const settings = await fs.readJson(settingsFile)
+      if (settings.hooks && settings.hooks.UserPromptSubmit) {
+        return {
+          name: 'Skill activation hooks',
+          status: 'ok',
+          message: 'Hooks installed and configured'
+        }
+      }
+    } catch (error) {
+      // Ignore JSON errors
+    }
+  }
+
+  return {
+    name: 'Skill activation hooks',
+    status: 'warning',
+    message: 'Hooks installed but not configured',
+    fix: 'Check .claude/settings.json configuration'
+  }
+}
+
+/**
+ * Check skill-rules.json
+ */
+async function checkSkillRules() {
+  const skillRulesPath = path.join(process.cwd(), '.claude/skills/skill-rules.json')
+  
+  if (!await fs.pathExists(skillRulesPath)) {
+    return {
+      name: 'Skill activation rules',
+      status: 'warning',
+      message: 'skill-rules.json not found',
+      fix: 'Run: cd .claude/hooks && node generate-skill-rules.cjs'
+    }
+  }
+
+  try {
+    const skillRules = await fs.readJson(skillRulesPath)
+    const skillCount = Object.keys(skillRules).length
+    
+    if (skillCount === 0) {
+      return {
+        name: 'Skill activation rules',
+        status: 'warning',
+        message: 'No skills configured',
+        fix: 'Run: cd .claude/hooks && node generate-skill-rules.cjs'
+      }
+    }
+
+    return {
+      name: 'Skill activation rules',
+      status: 'ok',
+      message: `${skillCount} skills configured`
+    }
+  } catch (error) {
+    return {
+      name: 'Skill activation rules',
+      status: 'error',
+      message: 'Invalid skill-rules.json',
+      fix: 'Run: cd .claude/hooks && node generate-skill-rules.cjs'
+    }
+  }
+}
+
+/**
  * Auto-fix all issues
  */
 async function autoFixAll(checks) {
@@ -417,6 +587,14 @@ async function autoFixAll(checks) {
           console.log(chalk.green('    ✓ Git initialized'))
         } catch (error) {
           console.log(chalk.red('    ✗ Failed to initialize git'))
+        }
+      } else if (check.name === 'Skill activation hooks' && check.message.includes('not executable')) {
+        console.log(chalk.cyan('  • Making hooks executable...'))
+        try {
+          await execa('chmod', ['+x', '.claude/hooks/*.sh'])
+          console.log(chalk.green('    ✓ Hooks made executable'))
+        } catch (error) {
+          console.log(chalk.red('    ✗ Failed to make hooks executable'))
         }
       }
     }

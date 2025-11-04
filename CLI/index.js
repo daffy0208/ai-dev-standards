@@ -26,6 +26,8 @@ const doctorCommand = require('./commands/doctor')
 const setupCommand = require('./commands/setup')
 const syncCommand = require('./commands/sync')
 const updateCommand = require('./commands/update')
+const checkUpdatesCommand = require('./commands/check-updates')
+const selfUpdateCommand = require('./commands/self-update')
 
 const program = new Command()
 
@@ -140,6 +142,24 @@ program
   .action(updateCommand)
 
 // ===========================
+// CHECK UPDATES COMMAND
+// ===========================
+program
+  .command('check-updates')
+  .description('Check if ai-dev-standards has updates available')
+  .option('--silent', 'Minimal output')
+  .action(checkUpdatesCommand)
+
+// ===========================
+// SELF UPDATE COMMAND
+// ===========================
+program
+  .command('self-update')
+  .description('Update ai-dev-standards to the latest version')
+  .option('--force', 'Force update even with local changes')
+  .action(selfUpdateCommand)
+
+// ===========================
 // HELP EXAMPLES
 // ===========================
 program.addHelpText('after', `
@@ -183,6 +203,11 @@ ${chalk.bold('Examples:')}
   $ ai-dev sync
   $ ai-dev update skills
   $ ai-dev update all
+
+  ${chalk.cyan('# Check for updates')}
+  $ ai-dev check-updates
+  $ ai-dev self-update
+  $ ai-dev doctor
 
 ${chalk.bold('Documentation:')}
   https://github.com/ai-dev-standards/cli
