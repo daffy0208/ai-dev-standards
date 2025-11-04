@@ -120,9 +120,16 @@ async function selfUpdateCommand(options) {
 
     console.log(chalk.green('\n✅ Update complete!\n'))
 
-    // Suggest running sync
-    console.log(chalk.cyan('💡 Consider running:'))
-    console.log(chalk.gray('   cd <your-project> && ai-dev sync\n'))
+    // Run health check to analyze repository
+    console.log(chalk.blue('🏥 Running health check on your repository...\n'))
+    
+    try {
+      // Import and run doctor command
+      const doctorCommand = require('./doctor')
+      await doctorCommand({ verbose: false })
+    } catch (error) {
+      console.log(chalk.yellow('\n⚠️  Health check failed, you can run it manually with: ai-dev doctor\n'))
+    }
 
   } catch (error) {
     console.error(chalk.red(`\n❌ Error: ${error.message}\n`))
