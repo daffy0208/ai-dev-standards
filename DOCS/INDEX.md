@@ -8,6 +8,7 @@ Complete guide to all documentation in the ai-dev-standards framework.
 - [Bootstrap Guide](BOOTSTRAP.md) - Setting up new projects
 - [Cheat Sheet](CHEAT-SHEET.md) - Quick reference for common tasks
 - [System Overview](SYSTEM-OVERVIEW.md) - Understanding the framework architecture
+- **🆕 [Skill Auto-Activation](SKILL-AUTO-ACTIVATION.md)** - How skills activate automatically based on context
 
 ## Core Documentation
 

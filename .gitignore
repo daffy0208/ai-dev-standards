@@ -94,3 +94,7 @@ orchestration-requests/failed/*.json
 orchestration-results/*.json
 !orchestration-requests/**/.gitkeep
 !orchestration-results/.gitkeep
+
+# Hooks dependencies
+.claude/hooks/node_modules/
+.claude/hooks/package-lock.json

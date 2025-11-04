@@ -14,7 +14,7 @@
 
 Think of this as a **shared brain** between you and Claude:
 
-- **64 Specialized Skills** - Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, design systems, and more)
+- **64 Specialized Skills** - Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, design systems, and more) **🆕 Now with auto-activation!**
 - **50 MCP Servers** - Executable development tools including brain-mcp for intelligent orchestration (78% skill coverage - strong actionability!)
 - **24 Tools** - LangChain, CrewAI, design utilities, and automation scripts
 - **72 Reusable Components** - React components for common patterns (auth, forms, errors, feedback, media, layouts, advanced UI)
@@ -23,6 +23,7 @@ Think of this as a **shared brain** between you and Claude:
 - **Best Practices** - Security, performance, accessibility, and quality standards
 - **Decision Frameworks** - Clear guidance for choosing technologies
 - **Validation & Trust** - Automated testing ensures all resources are discoverable and accessible
+- **🆕 Skill Auto-Activation** - Skills activate automatically based on your prompts and file context (no more remembering skill names!)
 
 **Total Resources:** 238 (64 skills + 50 MCPs + 24 tools + 72 components + 28 integrations)
 
@@ -57,11 +58,12 @@ The tool automatically:
 - Local or freshly cloned from GitHub
 
 **After 2 minutes, you have:**
-- 64 skills
+- 64 skills with **automatic activation** based on context
 - 50 MCP Tools (including brain-mcp for intelligent orchestration)
 - 238 total resources
 - Project analysis with recommendations
 - Exact roadmap for where to start
+- Skills that activate when you need them, not when you remember them
 
 **Codex & Gemini CLI Support:**
 - `./setup-codex-cli.sh` connects Codex CLI to brain-mcp and populates `.codex/`
