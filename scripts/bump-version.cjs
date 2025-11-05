@@ -72,6 +72,12 @@ readme = readme.replace(
   `**Version ${newVersion}**`
 );
 
+// Update "Last Updated" date in header
+readme = readme.replace(
+  /\*\*Last Updated:\*\* \d{4}-\d{2}-\d{2}/,
+  `**Last Updated:** ${date}`
+);
+
 // Update "Current Version" in Versioning section
 readme = readme.replace(
   /\*\*Current Version:\*\* \d+\.\d+\.\d+/,
