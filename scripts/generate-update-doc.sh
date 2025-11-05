@@ -18,9 +18,17 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
+# Default resource counts (fallback if .ai-dev.json is not available)
+DEFAULT_SKILLS_COUNT=64
+DEFAULT_MCPS_COUNT=50
+DEFAULT_COMPONENTS_COUNT=72
+DEFAULT_INTEGRATIONS_COUNT=28
+DEFAULT_TOOLS_COUNT=24
+
 # Get project name
 PROJECT_NAME="${1:-My Project}"
 DATE=$(date +%Y-%m-%d)
+# AI_DEV_VERSION will be read from .ai-dev.json or default to 3.0.0
 AI_DEV_VERSION="3.0.0"
 
 # Get current directory
@@ -36,37 +44,34 @@ fi
 
 # Read stats from .ai-dev.json if available
 if [ -f ".ai-dev.json" ]; then
-    # Get counts using grep and wc
-    SKILLS_COUNT=$(grep -o '"skills"' .ai-dev.json | wc -l)
-    MCPS_COUNT=$(grep -o '"mcps"' .ai-dev.json | wc -l)
-    COMPONENTS_COUNT=$(grep -o '"components"' .ai-dev.json | wc -l)
-    INTEGRATIONS_COUNT=$(grep -o '"integrations"' .ai-dev.json | wc -l)
-    TOOLS_COUNT=$(grep -o '"tools"' .ai-dev.json | wc -l)
-    
     # Get actual counts from array lengths if jq is available
     if command -v jq &> /dev/null; then
-        SKILLS_COUNT=$(jq '.installed.skills | length' .ai-dev.json 2>/dev/null || echo "64")
-        MCPS_COUNT=$(jq '.installed.mcps | length' .ai-dev.json 2>/dev/null || echo "50")
-        COMPONENTS_COUNT=$(jq '.installed.components | length' .ai-dev.json 2>/dev/null || echo "72")
-        INTEGRATIONS_COUNT=$(jq '.installed.integrations | length' .ai-dev.json 2>/dev/null || echo "28")
-        TOOLS_COUNT=$(jq '.installed.tools | length' .ai-dev.json 2>/dev/null || echo "24")
+        SKILLS_COUNT=$(jq '.installed.skills | length' .ai-dev.json 2>/dev/null || echo "$DEFAULT_SKILLS_COUNT")
+        MCPS_COUNT=$(jq '.installed.mcps | length' .ai-dev.json 2>/dev/null || echo "$DEFAULT_MCPS_COUNT")
+        COMPONENTS_COUNT=$(jq '.installed.components | length' .ai-dev.json 2>/dev/null || echo "$DEFAULT_COMPONENTS_COUNT")
+        INTEGRATIONS_COUNT=$(jq '.installed.integrations | length' .ai-dev.json 2>/dev/null || echo "$DEFAULT_INTEGRATIONS_COUNT")
+        TOOLS_COUNT=$(jq '.installed.tools | length' .ai-dev.json 2>/dev/null || echo "$DEFAULT_TOOLS_COUNT")
+        LAST_SYNC=$(jq -r '.lastSync' .ai-dev.json 2>/dev/null || echo "$DATE")
+        AI_DEV_VERSION=$(jq -r '.version' .ai-dev.json 2>/dev/null || echo "3.0.0")
     else
-        # Fallback to defaults
-        SKILLS_COUNT=64
-        MCPS_COUNT=50
-        COMPONENTS_COUNT=72
-        INTEGRATIONS_COUNT=28
-        TOOLS_COUNT=24
+        # Fallback to defaults if jq is not available
+        echo -e "${YELLOW}⚠️  jq not installed, using default resource counts${NC}"
+        SKILLS_COUNT=$DEFAULT_SKILLS_COUNT
+        MCPS_COUNT=$DEFAULT_MCPS_COUNT
+        COMPONENTS_COUNT=$DEFAULT_COMPONENTS_COUNT
+        INTEGRATIONS_COUNT=$DEFAULT_INTEGRATIONS_COUNT
+        TOOLS_COUNT=$DEFAULT_TOOLS_COUNT
+        # Try to extract values with grep as fallback (less reliable)
+        LAST_SYNC=$(grep -o '"lastSync": "[^"]*"' .ai-dev.json 2>/dev/null | head -1 | cut -d'"' -f4 || echo "$DATE")
+        AI_DEV_VERSION=$(grep -o '"version": "[^"]*"' .ai-dev.json 2>/dev/null | head -1 | cut -d'"' -f4 || echo "3.0.0")
     fi
-    
-    LAST_SYNC=$(grep -o '"lastSync": "[^"]*"' .ai-dev.json | cut -d'"' -f4)
-    AI_DEV_VERSION=$(grep -o '"version": "[^"]*"' .ai-dev.json | cut -d'"' -f4)
 else
-    SKILLS_COUNT=64
-    MCPS_COUNT=50
-    COMPONENTS_COUNT=72
-    INTEGRATIONS_COUNT=28
-    TOOLS_COUNT=24
+    # Use defaults when .ai-dev.json doesn't exist
+    SKILLS_COUNT=$DEFAULT_SKILLS_COUNT
+    MCPS_COUNT=$DEFAULT_MCPS_COUNT
+    COMPONENTS_COUNT=$DEFAULT_COMPONENTS_COUNT
+    INTEGRATIONS_COUNT=$DEFAULT_INTEGRATIONS_COUNT
+    TOOLS_COUNT=$DEFAULT_TOOLS_COUNT
     LAST_SYNC="$DATE"
 fi
 
@@ -204,7 +209,9 @@ With brain-mcp configured, Claude can now:
 
 ### Required: Build brain-mcp (First Time Only)
 
-If this is your first time setting up, you need to build the brain-mcp MCP server:
+If this is your first time setting up, you need to build the brain-mcp MCP server.
+
+**Note:** Replace \`~/ai-dev-standards\` with your actual ai-dev-standards installation path if different.
 
 \`\`\`bash
 cd ~/ai-dev-standards/MCP-SERVERS/brain-mcp
