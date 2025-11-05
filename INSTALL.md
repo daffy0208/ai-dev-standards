@@ -109,6 +109,22 @@ Want to confirm everything works later? Run `node scripts/tests/brain-mcp-smoke.
 
 ---
 
+## Post-Setup: Build brain-mcp
+
+**Important:** After first-time setup, you need to build the brain-mcp MCP server:
+
+```bash
+cd ~/ai-dev-standards/MCP-SERVERS/brain-mcp
+npm install
+npm run build
+```
+
+This creates the `dist/index.js` file that Claude uses for intelligent skill recommendations.
+
+**You only need to do this once** (or when brain-mcp is updated). The setup script configures everything to point to this location automatically.
+
+---
+
 ## Troubleshooting
 
 **"bash: setup-project.sh: command not found"**
@@ -129,6 +145,17 @@ cd ~/ai-dev-standards/CLI
 npm install
 npm link
 ```
+
+**"brain-mcp not working in Claude"**
+
+Build the brain-mcp MCP server:
+```bash
+cd ~/ai-dev-standards/MCP-SERVERS/brain-mcp
+npm install
+npm run build
+```
+
+Then restart Claude to pick up the changes.
 
 ---
 

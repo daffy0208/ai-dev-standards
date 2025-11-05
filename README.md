@@ -67,7 +67,10 @@ The tool automatically:
 - `./setup-codex-cli.sh` connects Codex CLI to brain-mcp and populates `.codex/`
 - `./setup-gemini-cli.sh` does the same for Gemini CLI via `.gemini/`
 
-**See:** [INSTALL.md](INSTALL.md) for complete setup guide or [DOCS/TROUBLESHOOTING.md](DOCS/TROUBLESHOOTING.md) if you have connection issues.
+**See:** 
+- [INSTALL.md](INSTALL.md) - Complete setup guide for new projects
+- [UPDATE-GUIDE.md](UPDATE-GUIDE.md) - How to update existing projects
+- [DOCS/TROUBLESHOOTING.md](DOCS/TROUBLESHOOTING.md) - Connection and setup issues
 
 ---
 
