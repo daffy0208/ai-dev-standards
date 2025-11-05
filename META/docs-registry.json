@@ -1,30 +1,8 @@
 {
-  "version": "1.1.0",
-  "last_updated": "2025-10-28",
-  "description": "Registry of all documentation files. Now includes 27 documentation files.",
+  "version": "1.0.0",
+  "last_updated": "2025-11-05",
+  "description": "Registry of all documentation files. Now includes 35 documentation files.",
   "docs": [
-    {
-      "name": "agent-definitions",
-      "title": "Agent Definitions",
-      "description": "Comprehensive guide to agents: what they are, types, architecture, and when to use them. Explains the relationship between agents, skills, and MCPs.",
-      "category": "system",
-      "path": "/AGENTS/AGENT.md",
-      "status": "active",
-      "audience": [
-        "developers",
-        "architects"
-      ],
-      "related_skills": [
-        "multi-agent-architect",
-        "archon-manager"
-      ],
-      "tags": [
-        "agent",
-        "architecture",
-        "system",
-        "fundamentals"
-      ]
-    },
     {
       "name": "agent-skill-integration",
       "title": "Agent Skill Integration",
@@ -122,6 +100,22 @@
       ]
     },
     {
+      "name": "brain-mcp-integration",
+      "title": "Brain Mcp Integration",
+      "description": "Documentation for brain mcp integration",
+      "category": "integration",
+      "path": "/DOCS/BRAIN-MCP-INTEGRATION.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "brain",
+        "integration"
+      ]
+    },
+    {
       "name": "cheat-sheet",
       "title": "Cheat Sheet",
       "description": "Documentation for cheat sheet",
@@ -170,6 +164,22 @@
       ]
     },
     {
+      "name": "claude-code-orchestration",
+      "title": "Claude Code Orchestration",
+      "description": "Documentation for claude code orchestration",
+      "category": "system",
+      "path": "/DOCS/CLAUDE-CODE-ORCHESTRATION.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "claude",
+        "system"
+      ]
+    },
+    {
       "name": "cli-quickstart",
       "title": "Cli Quickstart",
       "description": "Documentation for cli quickstart",
@@ -199,6 +209,22 @@
       "tags": [
         "cli",
         "cli"
+      ]
+    },
+    {
+      "name": "configuration-audit",
+      "title": "Configuration Audit",
+      "description": "Documentation for configuration audit",
+      "category": "system",
+      "path": "/DOCS/CONFIGURATION-AUDIT.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "configuration",
+        "system"
       ]
     },
     {
@@ -282,6 +308,54 @@
       ]
     },
     {
+      "name": "marketplace-installation-guide",
+      "title": "Marketplace Installation Guide",
+      "description": "Documentation for marketplace installation guide",
+      "category": "system",
+      "path": "/DOCS/MARKETPLACE-INSTALLATION-GUIDE.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "marketplace",
+        "system"
+      ]
+    },
+    {
+      "name": "marketplace-recommendations",
+      "title": "Marketplace Recommendations",
+      "description": "Documentation for marketplace recommendations",
+      "category": "system",
+      "path": "/DOCS/MARKETPLACE-RECOMMENDATIONS.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "marketplace",
+        "system"
+      ]
+    },
+    {
+      "name": "mcp-configuration-guide",
+      "title": "Mcp Configuration Guide",
+      "description": "Documentation for mcp configuration guide",
+      "category": "system",
+      "path": "/DOCS/MCP-CONFIGURATION-GUIDE.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "mcp",
+        "system"
+      ]
+    },
+    {
       "name": "mcp-development-roadmap",
       "title": "Mcp Development Roadmap",
       "description": "Documentation for mcp development roadmap",
@@ -295,6 +369,38 @@
       "tags": [
         "mcp",
         "planning"
+      ]
+    },
+    {
+      "name": "mcp-powered-health-check",
+      "title": "Mcp Powered Health Check",
+      "description": "Documentation for mcp powered health check",
+      "category": "system",
+      "path": "/DOCS/MCP-POWERED-HEALTH-CHECK.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "mcp",
+        "system"
+      ]
+    },
+    {
+      "name": "plugin-integration",
+      "title": "Plugin Integration",
+      "description": "Documentation for plugin integration",
+      "category": "integration",
+      "path": "/DOCS/PLUGIN-INTEGRATION.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "plugin",
+        "integration"
       ]
     },
     {
@@ -367,6 +473,22 @@
       "description": "Documentation for system overview",
       "category": "system",
       "path": "/DOCS/SYSTEM-OVERVIEW.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "system",
+        "system"
+      ]
+    },
+    {
+      "name": "system-status-2025-10-29",
+      "title": "System Status 2025 10 29",
+      "description": "Documentation for system status 2025 10 29",
+      "category": "system",
+      "path": "/DOCS/SYSTEM-STATUS-2025-10-29.md",
       "status": "active",
       "audience": [
         "developers"
@@ -457,11 +579,11 @@
     },
     "integration": {
       "description": "Integration guides",
-      "count": 4
+      "count": 6
     },
     "system": {
       "description": "System documentation",
-      "count": 7
+      "count": 14
     },
     "reference": {
       "description": "Reference documentation",
@@ -477,8 +599,8 @@
     }
   },
   "statistics": {
-    "total_docs": 27,
+    "total_docs": 35,
     "categories_count": 8,
-    "active_docs": 27
+    "active_docs": 35
   }
 }

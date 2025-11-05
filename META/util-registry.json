@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "last_updated": "2025-10-28",
-  "description": "Registry of all utility modules in ai-dev-standards. Utilities provide reusable functions for error handling, logging, validation, and automation. Now includes 8 utilities covering API, CLI, environment, scripts, and validation.",
+  "last_updated": "2025-11-05",
+  "description": "Registry of all utility modules in ai-dev-standards. Utilities provide reusable functions for error handling, logging, validation, and automation. Now includes 7 utilities covering API, CLI, environment, scripts, and validation.",
   "utilities": [
     {
       "name": "errorHandler",
@@ -14,9 +14,9 @@
       "exports": [
         "ApiError",
         "ValidationError",
+        "AuthenticationError",
         "UnauthorizedError",
-        "ForbiddenError",
-        "NotFoundError"
+        "AuthorizationError"
       ],
       "dependencies": [],
       "related_skills": [],
@@ -50,31 +50,6 @@
       "tags": [
         "logger",
         "cli",
-        "typescript"
-      ]
-    },
-    {
-      "name": "validateEnv",
-      "title": "ValidateEnv",
-      "description": "Environment Variable Validator",
-      "category": "env",
-      "language": "typescript",
-      "path": "/UTILS/env/validateEnv.ts",
-      "status": "active",
-      "exports": [
-        "EnvType",
-        "EnvVarConfig",
-        "EnvSchema",
-        "EnvValidationError",
-        "validateEnv"
-      ],
-      "dependencies": [],
-      "related_skills": [],
-      "related_playbooks": [],
-      "related_standards": [],
-      "tags": [
-        "validateEnv",
-        "env",
         "typescript"
       ]
     },
@@ -232,7 +207,7 @@
     },
     "env": {
       "description": "Environment configuration and validation utilities",
-      "count": 1
+      "count": 0
     },
     "scripts": {
       "description": "Automation scripts for database operations, deployment, and testing",
@@ -244,11 +219,11 @@
     }
   },
   "statistics": {
-    "total_utilities": 8,
-    "categories_count": 5,
-    "active_utilities": 8,
+    "total_utilities": 7,
+    "categories_count": 4,
+    "active_utilities": 7,
     "planned_utilities": 0,
-    "typescript_count": 8,
+    "typescript_count": 7,
     "average_exports": 5
   }
 }

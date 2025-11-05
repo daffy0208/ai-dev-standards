@@ -1,6 +1,6 @@
 {
   "version": "1.2.0",
-  "lastUpdated": "2025-10-28T16:25:35.950660Z",
+  "lastUpdated": "2025-11-05T16:02:39.499Z",
   "description": "Central registry of all ai-dev-standards resources",
   "skills": [
     {
@@ -695,7 +695,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "3d-visualizer"
+        "3d-visualizer skill\n-"
       ],
       "status": "active"
     },
@@ -719,9 +719,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0",
         "axe-core": "^4.8.0"
       },
-      "enables": [
-        "accessibility-engineer"
-      ],
+      "enables": [],
       "status": "active"
     },
     {
@@ -743,7 +741,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "multi-agent-architect skill"
+        "multi-agent-architect skill\n-"
       ],
       "status": "active"
     },
@@ -766,7 +764,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "animation-designer skill"
+        "animation-designer skill\n-"
       ],
       "status": "active"
     },
@@ -833,7 +831,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "visual-designer skill"
+        "visual-designer skill\n-"
       ],
       "status": "active"
     },
@@ -856,21 +854,21 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "audio-producer skill"
+        "audio-producer skill\n-"
       ],
       "status": "active"
     },
     {
       "name": "brain",
       "version": "1.0.0",
-      "description": "MCP server that exposes the ai-dev-standards brain for skill discovery, capability graph queries, and orchestration intelligence.",
+      "description": "MCP server that exposes ai-dev-standards brain and capability graph to Claude Code",
       "path": "MCP-SERVERS/brain-mcp",
       "tags": [
         "mcp",
         "brain",
         "orchestration",
-        "graph",
-        "recommendations"
+        "capability-graph",
+        "ai-dev-standards"
       ],
       "features": [
         "tools"
@@ -878,11 +876,7 @@
       "dependencies": {
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
-      "enables": [
-        "archon-manager skill",
-        "multi-agent-architect skill",
-        "codex-review-workflow skill"
-      ],
+      "enables": [],
       "status": "active"
     },
     {
@@ -905,7 +899,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "data-visualizer skill"
+        "data-visualizer skill\n-"
       ],
       "status": "active"
     },
@@ -930,7 +924,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "quality-auditor skill"
+        "quality-auditor skill\n-"
       ],
       "status": "active"
     },
@@ -1018,7 +1012,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "data-engineer skill"
+        "data-engineer skill\n-"
       ],
       "status": "active"
     },
@@ -1042,7 +1036,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "deployment-advisor skill"
+        "deployment-advisor skill\n-"
       ],
       "status": "active"
     },
@@ -1081,7 +1075,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "design-system-architect skill"
+        "design-system-architect skill\n-"
       ],
       "status": "active"
     },
@@ -1106,7 +1100,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "technical-writer skill"
+        "technical-writer skill\n-"
       ],
       "status": "active"
     },
@@ -1206,7 +1200,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "knowledge-graph-builder skill"
+        "knowledge-graph-builder skill\n-"
       ],
       "status": "active"
     },
@@ -1229,7 +1223,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "localization-engineer skill"
+        "localization-engineer skill\n-"
       ],
       "status": "active"
     },
@@ -1301,7 +1295,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "iot-developer skill"
+        "iot-developer skill\n-"
       ],
       "status": "active"
     },
@@ -1345,7 +1339,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "go-to-market-planner skill"
+        "go-to-market-planner skill\n-"
       ],
       "status": "active"
     },
@@ -1370,7 +1364,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "mobile-developer skill"
+        "mobile-developer skill\n-"
       ],
       "status": "active"
     },
@@ -1395,7 +1389,7 @@
         "swagger-parser": "^10.0.3"
       },
       "enables": [
-        "api-designer skill"
+        "api-designer skill\r\n-"
       ],
       "status": "active"
     },
@@ -1419,7 +1413,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "performance-optimizer skill"
+        "performance-optimizer skill\n-"
       ],
       "status": "active"
     },
@@ -1511,7 +1505,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "security-engineer skill"
+        "security-engineer skill\n-"
       ],
       "status": "active"
     },
@@ -1535,7 +1529,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "`rag-implementer` skill"
+        "`rag-implementer` skill\r\n-"
       ],
       "status": "active"
     },
@@ -1558,7 +1552,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "copywriter skill"
+        "copywriter skill\n-"
       ],
       "status": "active"
     },
@@ -1602,7 +1596,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "livestream-engineer skill"
+        "livestream-engineer skill\n-"
       ],
       "status": "active"
     },
@@ -1643,7 +1637,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "testing-strategist skill"
+        "testing-strategist skill\n-"
       ],
       "status": "active"
     },
@@ -1705,7 +1699,7 @@
       },
       "enables": [
         "product-strategist",
-        "user-researcher skills"
+        "user-researcher skills\r\n-"
       ],
       "status": "active"
     },
@@ -1755,7 +1749,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "video-producer skill"
+        "video-producer skill\n-"
       ],
       "status": "active"
     },
@@ -1778,7 +1772,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "ux-designer skill"
+        "ux-designer skill\n-"
       ],
       "status": "active"
     }
@@ -2021,7 +2015,7 @@
     {
       "name": "validation-first-development",
       "title": "Validation-First Development Playbook",
-      "description": "## \ud83c\udfaf Core Principle",
+      "description": "## 🎯 Core Principle",
       "use_when": "Use when validation first development",
       "category": "development",
       "difficulty": "advanced",
@@ -2163,18 +2157,18 @@
     }
   },
   "integrations": [
-  {
-    "category": "framework-adapters",
-    "description": "Framework integration adapters",
-    "path": "INTEGRATIONS/framework-adapters",
-    "alwaysUpdate": false
-  },
-  {
-    "category": "framework-library",
-    "description": "AI framework content and orchestration MCP integrations",
-    "path": "INTEGRATIONS/framework-library",
-    "alwaysUpdate": false
-  },
+    {
+      "category": "framework-adapters",
+      "description": "Framework integration adapters",
+      "path": "INTEGRATIONS/framework-adapters",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "framework-library",
+      "description": "AI framework content and orchestration MCP integrations",
+      "path": "INTEGRATIONS/framework-library",
+      "alwaysUpdate": false
+    },
     {
       "category": "llm-providers",
       "description": "LLM provider integrations",
