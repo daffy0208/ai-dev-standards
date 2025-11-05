@@ -6,7 +6,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
 [![Node](https://img.shields.io/badge/Node-%3E%3D18.0.0-green.svg)](https://nodejs.org/)
 
-**Version 3.0.0** | **Last Updated:** 2025-10-30
+**Version 3.0.1** | **Last Updated:** 2025-11-05
 
 238 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
 
@@ -67,7 +67,10 @@ The tool automatically:
 - `./setup-codex-cli.sh` connects Codex CLI to brain-mcp and populates `.codex/`
 - `./setup-gemini-cli.sh` does the same for Gemini CLI via `.gemini/`
 
-**See:** [INSTALL.md](INSTALL.md) for complete setup guide or [DOCS/TROUBLESHOOTING.md](DOCS/TROUBLESHOOTING.md) if you have connection issues.
+**See:** 
+- [INSTALL.md](INSTALL.md) - Complete setup guide for new projects
+- [UPDATE-GUIDE.md](UPDATE-GUIDE.md) - How to update existing projects
+- [DOCS/TROUBLESHOOTING.md](DOCS/TROUBLESHOOTING.md) - Connection and setup issues
 
 ---
 
@@ -528,9 +531,10 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
 
 ## Versioning
 
-**Current Version:** 2.1.0
+**Current Version:** 3.0.1
 
 **Version History:**
+- **3.0.1** (2025-11-05): Documentation and automation improvements for self-update workflow
 - **2.1.0** (2025-10-29): Validation & Orchestration Update
   - Added comprehensive validation system (`validate-complete-system.cjs`)
   - Implemented Claude Code orchestration infrastructure (zero-cost alternative to OpenAI Codex)

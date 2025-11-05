@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "last_updated": "2025-10-28",
+  "last_updated": "2025-11-05",
   "description": "Registry of all development standards in ai-dev-standards. Standards define best practices, coding conventions, architecture patterns, and project structure guidelines. Now includes 20 standards covering architecture patterns, best practices, coding conventions, and project structure.",
   "standards": [
     {

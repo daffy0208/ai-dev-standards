@@ -7,7 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [3.1.0] - 2025-10-28
+### [3.0.1] - 2025-11-05
+
+### Documentation and automation improvements for self-update workflow
+
+- Version bump to 3.0.1
+- Documentation and automation improvements for self-update workflow
+
+---
+
+# [3.1.0] - 2025-10-28
 
 ### Added
 - **Orchestration Infrastructure Complete** - Added 5 orchestration skills bringing total from 59→64 skills

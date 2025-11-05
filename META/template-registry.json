@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "last_updated": "2025-10-28",
-  "description": "Registry of all project templates in ai-dev-standards. Templates provide ready-to-use configuration files, cursorrules variants, project examples, and testing setups. Now includes 19 templates covering config files, cursorrules, project initialization, and testing.",
+  "last_updated": "2025-11-05",
+  "description": "Registry of all project templates in ai-dev-standards. Templates provide ready-to-use configuration files, cursorrules variants, project examples, and testing setups. Now includes 20 templates covering config files, cursorrules, project initialization, and testing.",
   "templates": [
     {
       "name": "ai-dev.json.example",
@@ -15,6 +15,21 @@
       "related_skills": [],
       "tags": [
         "ai",
+        "project-config"
+      ]
+    },
+    {
+      "name": "AI-DEV-STANDARDS-UPDATE-TEMPLATE",
+      "title": "AI-Dev-Standards Update Documentation",
+      "description": "## Executive Summary",
+      "category": "project-config",
+      "file_type": "markdown",
+      "path": "/TEMPLATES/AI-DEV-STANDARDS-UPDATE-TEMPLATE.md",
+      "status": "active",
+      "use_case": "Setting up AI DEV STANDARDS UPDATE TEMPLATE",
+      "related_skills": [],
+      "tags": [
+        "AI",
         "project-config"
       ]
     },
@@ -292,7 +307,7 @@
   "categories": {
     "project-config": {
       "description": "Project-level configuration files for ai-dev-standards and Archon",
-      "count": 2
+      "count": 3
     },
     "config-files": {
       "description": "Standard configuration files for linting, formatting, environment, and tooling",
@@ -320,11 +335,11 @@
     }
   },
   "statistics": {
-    "total_templates": 19,
+    "total_templates": 20,
     "categories_count": 7,
-    "active_templates": 16,
+    "active_templates": 17,
     "planned_templates": 3,
-    "config_files_count": 9,
+    "config_files_count": 10,
     "cursorrules_variants_count": 5,
     "testing_templates_count": 2
   }
