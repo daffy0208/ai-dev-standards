@@ -1,6 +1,6 @@
 {
   "name": "ai-dev-standards",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Curated knowledge base for AI-assisted software development",
   "type": "module",
   "scripts": {
