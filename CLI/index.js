@@ -26,6 +26,9 @@ const doctorCommand = require('./commands/doctor')
 const setupCommand = require('./commands/setup')
 const syncCommand = require('./commands/sync')
 const updateCommand = require('./commands/update')
+const checkUpdatesCommand = require('./commands/check-updates')
+const selfUpdateCommand = require('./commands/self-update')
+const contextCommand = require('./commands/context')
 
 const program = new Command()
 
@@ -140,6 +143,42 @@ program
   .action(updateCommand)
 
 // ===========================
+// CHECK UPDATES COMMAND
+// ===========================
+program
+  .command('check-updates')
+  .description('Check if ai-dev-standards has updates available')
+  .option('--silent', 'Minimal output')
+  .action(checkUpdatesCommand)
+
+// ===========================
+// SELF UPDATE COMMAND
+// ===========================
+program
+  .command('self-update')
+  .description('Update ai-dev-standards to the latest version')
+  .option('--force', 'Force update even with local changes')
+  .action(selfUpdateCommand)
+
+// ===========================
+// CONTEXT COMMAND (Phase 4)
+// ===========================
+program
+  .command('context <action>')
+  .description('Manage session context (show, history, clear, restore, stats)')
+  .option('--limit <number>', 'Limit number of results', '10')
+  .option('--older-than <days>', 'Clear data older than N days', '30')
+  .option('--session-id <id>', 'Session ID for restore action')
+  .action((action, options) => {
+    const opts = {
+      limit: parseInt(options.limit, 10),
+      olderThan: parseInt(options.olderThan, 10),
+      sessionId: options.sessionId
+    };
+    contextCommand(action, opts);
+  })
+
+// ===========================
 // HELP EXAMPLES
 // ===========================
 program.addHelpText('after', `
@@ -183,6 +222,11 @@ ${chalk.bold('Examples:')}
   $ ai-dev sync
   $ ai-dev update skills
   $ ai-dev update all
+
+  ${chalk.cyan('# Check for updates')}
+  $ ai-dev check-updates
+  $ ai-dev self-update
+  $ ai-dev doctor
 
 ${chalk.bold('Documentation:')}
   https://github.com/ai-dev-standards/cli

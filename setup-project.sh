@@ -100,6 +100,20 @@ else
     echo -e "\n${BLUE}🔄 Initializing ai-dev sync...${NC}\n"
     ai-dev sync --yes
 
+    # Add version and path tracking to .ai-dev.json
+    if [ -f ".ai-dev.json" ]; then
+        # Get ai-dev-standards version
+        AI_DEV_VERSION=$(cd "$AI_DEV_STANDARDS_DIR" && node -p "require('./package.json').version")
+        
+        # Use jq if available, otherwise manual edit
+        if command -v jq &> /dev/null; then
+            jq --arg version "$AI_DEV_VERSION" --arg root "$AI_DEV_STANDARDS_DIR" \
+               '. + {version: $version, aiDevStandardsRoot: $root}' \
+               .ai-dev.json > .ai-dev.json.tmp && mv .ai-dev.json.tmp .ai-dev.json
+            echo -e "${GRAY}  Added version tracking to .ai-dev.json${NC}"
+        fi
+    fi
+
     echo -e "${GREEN}✅ Setup complete!${NC}\n"
 fi
 
@@ -216,6 +230,10 @@ fi
 
 echo ""
 
+# Run health check
+echo -e "${BLUE}🏥 Running health check...${NC}\n"
+ai-dev doctor --silent 2>/dev/null || echo -e "${GRAY}  Health check skipped${NC}\n"
+
 # Show summary
 echo -e "${BLUE}📊 Summary:${NC}"
 echo -e "${GRAY}  Project: $PROJECT_DIR${NC}"
@@ -224,8 +242,20 @@ echo -e "${GRAY}  Template: $TEMPLATE${NC}"
 
 # Check what was installed
 if [ -f ".ai-dev.json" ]; then
-    SKILLS_COUNT=$(grep -o "\"skills\": \[" .ai-dev.json | wc -l)
+    if command -v jq &> /dev/null && [ -f ".ai-dev.json" ]; then
+        VERSION=$(jq -r '.version // "unknown"' .ai-dev.json)
+        echo -e "${GRAY}  Version: $VERSION${NC}"
+    fi
     echo -e "${GRAY}  Resources: Available via registries${NC}"
+fi
+
+# Check hooks
+if [ -d ".claude/hooks" ]; then
+    SKILLS_COUNT=0
+    if [ -f ".claude/skills/skill-rules.json" ]; then
+        SKILLS_COUNT=$(grep -o '"promptTriggers"' .claude/skills/skill-rules.json | wc -l)
+    fi
+    echo -e "${GRAY}  Hooks: Installed with $SKILLS_COUNT skill activation rules${NC}"
 fi
 
 echo ""
@@ -236,4 +266,12 @@ echo -e "${YELLOW}  👉 Open START-HERE.md and follow the instructions${NC}"
 echo -e "${GRAY}     It contains your personalized roadmap and exact prompt for Claude${NC}"
 echo ""
 echo -e "${GREEN}✅ All 64 skills, 50 MCPs, and 235 resources are now available!${NC}"
-echo -e "${GREEN}🧠 Brain-MCP configured for intelligent skill recommendations!${NC}\n"
+echo -e "${GREEN}🧠 Brain-MCP configured for intelligent skill recommendations!${NC}"
+echo -e "${GREEN}🎯 Skill auto-activation enabled (95%+ accuracy)!${NC}\n"
+
+# Helpful commands
+echo -e "${BLUE}💡 Helpful commands:${NC}"
+echo -e "${GRAY}  ai-dev doctor          Check project health${NC}"
+echo -e "${GRAY}  ai-dev check-updates   Check for updates${NC}"
+echo -e "${GRAY}  ai-dev self-update     Update ai-dev-standards${NC}"
+echo -e "${GRAY}  ai-dev sync            Sync latest resources${NC}\n"

@@ -1,0 +1,270 @@
+{
+  "registry-validator-agent": {
+    "description": "Validate registry consistency and auto-fix issues",
+    "contextTriggers": [
+      "after adding new skill",
+      "after modifying registry",
+      "before release",
+      "maintenance tasks"
+    ],
+    "promptTriggers": [
+      "validate registry",
+      "check consistency",
+      "fix registries",
+      "registry issues",
+      "verify registries"
+    ],
+    "automaticTriggers": {
+      "afterFileChange": [
+        "META/skill-registry.json",
+        "META/mcp-registry.json",
+        "META/component-registry.json",
+        "META/integration-registry.json",
+        "META/tool-registry.json"
+      ],
+      "beforeCommand": ["npm run release", "npm run publish"]
+    },
+    "priority": "high",
+    "autoSuggest": true
+  },
+  
+  "code-architecture-reviewer": {
+    "description": "Review code architectural consistency",
+    "contextTriggers": [
+      "after implementing feature",
+      "before merge",
+      "code review requested"
+    ],
+    "promptTriggers": [
+      "review code",
+      "check architecture",
+      "validate design",
+      "architectural review",
+      "code review"
+    ],
+    "automaticTriggers": {
+      "afterFileChange": ["**/*.{ts,js,tsx,jsx}"],
+      "minFilesChanged": 5
+    },
+    "priority": "medium",
+    "autoSuggest": true
+  },
+  
+  "skill-tester-agent": {
+    "description": "Test skill auto-activation patterns",
+    "contextTriggers": [
+      "after modifying skill-rules.json",
+      "after adding skills",
+      "testing phase"
+    ],
+    "promptTriggers": [
+      "test skills",
+      "verify activation",
+      "check skill triggers",
+      "skill testing",
+      "test auto-activation"
+    ],
+    "automaticTriggers": {
+      "afterFileChange": [
+        ".claude/skills/skill-rules.json",
+        "SKILLS/*/SKILL.md",
+        "SKILLS/*/manifest.yaml"
+      ]
+    },
+    "priority": "high",
+    "autoSuggest": true
+  },
+  
+  "mcp-builder-agent": {
+    "description": "Build new MCP servers following TypeScript patterns",
+    "contextTriggers": [
+      "creating new MCP",
+      "scaffolding MCP server",
+      "adding tools"
+    ],
+    "promptTriggers": [
+      "create mcp",
+      "build mcp server",
+      "new mcp",
+      "mcp builder",
+      "scaffold mcp"
+    ],
+    "automaticTriggers": {
+      "afterFileChange": ["MCP-SERVERS/*/"],
+      "minFilesChanged": 3
+    },
+    "priority": "medium",
+    "autoSuggest": false
+  },
+  
+  "documentation-architect": {
+    "description": "Generate comprehensive documentation",
+    "contextTriggers": [
+      "after feature completion",
+      "documentation update needed",
+      "API changes"
+    ],
+    "promptTriggers": [
+      "generate documentation",
+      "update docs",
+      "document api",
+      "create readme",
+      "documentation needed"
+    ],
+    "automaticTriggers": {
+      "afterFileChange": ["**/*.md"],
+      "minFilesChanged": 3
+    },
+    "priority": "low",
+    "autoSuggest": true
+  },
+  
+  "code-refactor-master": {
+    "description": "Plan and execute refactoring",
+    "contextTriggers": [
+      "code smells detected",
+      "technical debt",
+      "refactoring needed"
+    ],
+    "promptTriggers": [
+      "refactor code",
+      "clean up",
+      "improve code quality",
+      "refactoring",
+      "code cleanup"
+    ],
+    "automaticTriggers": {
+      "afterFileChange": ["**/*.{ts,js,tsx,jsx}"],
+      "minFilesChanged": 10
+    },
+    "priority": "low",
+    "autoSuggest": false
+  },
+  
+  "frontend-error-fixer": {
+    "description": "Debug frontend issues",
+    "contextTriggers": [
+      "frontend error",
+      "component not rendering",
+      "UI bug"
+    ],
+    "promptTriggers": [
+      "fix frontend error",
+      "debug component",
+      "ui bug",
+      "frontend issue",
+      "react error"
+    ],
+    "automaticTriggers": {
+      "afterFileChange": ["**/*.{tsx,jsx}"]
+    },
+    "priority": "high",
+    "autoSuggest": false
+  },
+  
+  "auto-error-resolver": {
+    "description": "Resolve common errors automatically",
+    "contextTriggers": [
+      "build error",
+      "test failure",
+      "common error"
+    ],
+    "promptTriggers": [
+      "fix error",
+      "resolve issue",
+      "debug error",
+      "error resolver"
+    ],
+    "automaticTriggers": {
+      "afterCommand": ["npm run build", "npm test", "npm run lint"]
+    },
+    "priority": "high",
+    "autoSuggest": true
+  },
+  
+  "plan-reviewer": {
+    "description": "Review implementation plans",
+    "contextTriggers": [
+      "planning phase",
+      "before implementation"
+    ],
+    "promptTriggers": [
+      "review plan",
+      "validate approach",
+      "check plan",
+      "plan review"
+    ],
+    "automaticTriggers": {},
+    "priority": "medium",
+    "autoSuggest": false
+  },
+  
+  "refactor-planner": {
+    "description": "Create refactoring plans",
+    "contextTriggers": [
+      "before refactoring",
+      "planning refactor"
+    ],
+    "promptTriggers": [
+      "plan refactor",
+      "refactoring strategy",
+      "create refactor plan"
+    ],
+    "automaticTriggers": {},
+    "priority": "low",
+    "autoSuggest": false
+  },
+  
+  "auth-route-debugger": {
+    "description": "Debug authentication issues",
+    "contextTriggers": [
+      "auth error",
+      "authentication failing"
+    ],
+    "promptTriggers": [
+      "debug auth",
+      "fix authentication",
+      "auth issue",
+      "login not working"
+    ],
+    "automaticTriggers": {
+      "afterFileChange": ["**/auth/**/*", "**/authentication/**/*"]
+    },
+    "priority": "high",
+    "autoSuggest": false
+  },
+  
+  "auth-route-tester": {
+    "description": "Test authenticated routes",
+    "contextTriggers": [
+      "testing auth routes",
+      "verifying authentication"
+    ],
+    "promptTriggers": [
+      "test auth routes",
+      "verify authentication",
+      "test login",
+      "auth testing"
+    ],
+    "automaticTriggers": {},
+    "priority": "medium",
+    "autoSuggest": false
+  },
+  
+  "web-research-specialist": {
+    "description": "Research best practices",
+    "contextTriggers": [
+      "need best practices",
+      "research needed"
+    ],
+    "promptTriggers": [
+      "research",
+      "best practices",
+      "industry standards",
+      "what's the best way"
+    ],
+    "automaticTriggers": {},
+    "priority": "low",
+    "autoSuggest": false
+  }
+}

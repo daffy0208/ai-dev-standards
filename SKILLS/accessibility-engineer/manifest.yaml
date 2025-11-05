@@ -32,8 +32,20 @@ failure_signals:
 compatibility:
   requires: []
   conflicts_with: []
-  composes_with: []
+  composes_with:
+    - frontend-builder
+    - design-system-architect
+    - testing-strategist
   enables: []
+
+dependencies:
+  mcps:
+    - accessibility-checker-mcp
+  tools:
+    - contrast-checker-tool
+  skills:
+    - frontend-builder
+    - testing-strategist
 observability:
   logs:
   - Applying accessibility-engineer...

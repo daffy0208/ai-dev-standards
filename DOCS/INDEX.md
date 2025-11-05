@@ -8,12 +8,18 @@ Complete guide to all documentation in the ai-dev-standards framework.
 - [Bootstrap Guide](BOOTSTRAP.md) - Setting up new projects
 - [Cheat Sheet](CHEAT-SHEET.md) - Quick reference for common tasks
 - [System Overview](SYSTEM-OVERVIEW.md) - Understanding the framework architecture
+- **🆕 [Installation & Updates](INSTALLATION-AND-UPDATES.md)** - Complete guide to installation, updates, and maintenance
+- **🆕 [Skill Auto-Activation](SKILL-AUTO-ACTIVATION.md)** - How skills activate automatically based on context (Phase 1)
+- **🆕 [Modular Skills Guide](MODULAR-SKILLS-GUIDE.md)** - Progressive disclosure pattern for large skills (Phase 2)
+- **🆕 [Specialized Agents Guide](AGENTS-GUIDE.md)** - Autonomous agents for complex tasks (Phase 3)
+- **🆕 [File Tracking & Context Retention](FILE-TRACKING-GUIDE.md)** - Context retention across sessions (Phase 4)
 
 ## Core Documentation
 
 ### CLI Tools
 - [CLI Quick Start](CLI-QUICKSTART.md) - Command-line interface basics
 - [CLI Reference](CLI-REFERENCE.md) - Complete CLI command reference
+- **🆕 [Installation & Updates](INSTALLATION-AND-UPDATES.md)** - Installation, version tracking, and update management
 
 ### Integration & Deployment
 - [Integration Guide](INTEGRATION-GUIDE.md) - Integrating with existing projects
