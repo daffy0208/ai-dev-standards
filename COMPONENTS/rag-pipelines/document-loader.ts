@@ -83,7 +83,7 @@ export class DocumentLoader {
   ): Promise<Document[]> {
     const ext = extname(filePath).toLowerCase()
 
-    if (!this.isSupported Ext(ext, options)) {
+    if (!this.isSupportedExt(ext, options)) {
       throw new Error(`Unsupported file type: ${ext}`)
     }
 
