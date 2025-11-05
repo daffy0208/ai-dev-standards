@@ -10,6 +10,8 @@
 
 238 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
 
+> **🎉 Brain/Orchestrator Now Working!** The intelligent skill discovery system is now fully configured and documented. Run `./scripts/configure-mcp-paths.sh` for one-command setup, then use `brain_select_skills` to automatically find the right skills for any task. See [Brain Quick Start](#-repository-brain--orchestrator) or [Complete Solution](BRAIN-ORCHESTRATOR-SOLUTION.md).
+
 ## What This Repository Does
 
 Think of this as a **shared brain** between you and Claude:
@@ -125,19 +127,68 @@ ai-dev-standards/
 
 ---
 
-## 🧠 Repository Brain
+## 🧠 Repository Brain & Orchestrator
 
-The **Repository Brain** is an intelligence system that manages, understands, and orchestrates all 238 resources.
+The **Repository Brain** is an intelligence system that manages, understands, and orchestrates all 238 resources. It helps Claude automatically discover and use the right skills, MCPs, and tools for any task.
 
-### What It Does
+### Quick Setup
 
 ```bash
-brain status                    # Current state (64 skills, 50 MCPs, 238 resources)
-brain search "authentication"   # Search across all resources
-brain decide "add new skill"    # Get workflow recommendations
+# One command to configure everything
+./scripts/configure-mcp-paths.sh
+```
+
+This will:
+- ✅ Build brain-mcp server and CLI
+- ✅ Configure paths for your system
+- ✅ Enable intelligent skill/MCP selection
+
+### How It Works
+
+The brain operates through **MCP tools** that Claude can invoke:
+
+```
+Claude asks: "What skills for building an MVP?"
+    ↓
+Uses: brain_select_skills(taskDescription: "build MVP")
+    ↓
+Brain returns: mvp-builder, product-strategist, frontend-builder
+    ↓
+Claude reads those skill files and applies their methodologies
+```
+
+### Available Brain Tools
+
+**Discovery:**
+- `brain_search` - Search all skills, MCPs, tools by keyword
+- `brain_select_skills` - Get skill recommendations for a task
+- `brain_show_skill` - Get detailed skill information
+
+**Relationships:**
+- `brain_relationships` - Show skill dependencies (MCPs, tools, components)
+- `graph_query_by_domain` - Find capabilities by domain (ai, security, etc.)
+- `graph_query_by_effect` - Find capabilities by effect (implements_auth, etc.)
+
+**Status:**
+- `brain_status` - Repository status (64 skills, 51 MCPs, 239 resources)
+
+### Using the Brain
+
+**Option 1: Through Claude (Recommended)**
+```
+Ask: "Use brain_select_skills to find skills for building a RAG system"
+Ask: "Use brain_relationships to show dependencies for rag-implementer"
+Ask: "Use brain_search to find authentication resources"
+```
+
+**Option 2: Through CLI**
+```bash
+brain status                    # Current state
+brain search "authentication"   # Search resources
 brain select-skills "build MVP" # Get skill recommendations
 brain relationships rag-implementer # Show dependencies
-brain validate                  # Validate registries
+brain patterns "need knowledge base" # Match architecture patterns
+brain workflow "implement RAG"  # Get detailed workflow
 ```
 
 ### Architecture (4 Layers)
@@ -147,18 +198,31 @@ brain validate                  # Validate registries
 3. **Layer 3: Decision** - Intelligent workflow and tool selection
 4. **Layer 4: Management** - Strategic planning via Archon MCP
 
-### Installation & Usage
+### Enabling Automatic Selection
 
-```bash
-cd scripts/brain
-npm install
-npm run build
-npm run brain -- status
-```
+Add project instructions to help Claude use brain tools automatically:
 
-**See:** `scripts/brain/README.md` for complete documentation
+1. Copy `TEMPLATES/claude-instructions-with-brain.md` to your project
+2. Rename to `.claude/instructions.md`
+3. Claude will now follow the skill discovery workflow automatically
 
-**Design:** `META/REPOSITORY-BRAIN.md` for architecture details
+### Troubleshooting
+
+If the brain isn't working:
+1. Run `./scripts/configure-mcp-paths.sh` to fix configuration
+2. Check `.claude/mcp-settings.json` has correct paths (not hardcoded to another user)
+3. Restart Claude Code / Codex CLI
+4. See `DOCS/BRAIN-ORCHESTRATOR-TROUBLESHOOTING.md` for detailed help
+
+**Common Issue**: Hardcoded paths in config files (e.g., `/home/david/projects/...`) - Run the configuration script to fix.
+
+**See:** 
+- **[Quick Reference](DOCS/BRAIN-QUICK-REFERENCE.md)** - Common workflows, examples, cheat sheet
+- **[Troubleshooting](DOCS/BRAIN-ORCHESTRATOR-TROUBLESHOOTING.md)** - Fix common issues
+- **[Project Template](TEMPLATES/claude-instructions-with-brain.md)** - Enable automatic brain usage
+- `scripts/brain/README.md` - CLI documentation
+- `MCP-SERVERS/brain-mcp/README.md` - MCP documentation
+- `META/REPOSITORY-BRAIN.md` - Architecture details
 
 ---
 

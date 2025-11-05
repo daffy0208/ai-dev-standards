@@ -212,6 +212,29 @@ fi
 
 echo ""
 
+# Build brain-mcp to ensure it's ready
+echo -e "${BLUE}🏗️  Building brain-mcp...${NC}"
+if [ -x "$AI_DEV_STANDARDS_DIR/scripts/configure-mcp-paths.sh" ]; then
+    cd "$AI_DEV_STANDARDS_DIR"
+    if ./scripts/configure-mcp-paths.sh; then
+        echo -e "${GREEN}✅ Brain-mcp built and configured${NC}"
+    else
+        echo -e "${YELLOW}⚠️  Brain-mcp configuration had issues, but continuing...${NC}"
+    fi
+else
+    echo -e "${YELLOW}⚠️  Building brain-mcp manually...${NC}"
+    cd "$AI_DEV_STANDARDS_DIR/MCP-SERVERS/brain-mcp"
+    npm install --silent > /dev/null 2>&1
+    npm run build --silent > /dev/null 2>&1
+    cd "$AI_DEV_STANDARDS_DIR/scripts/brain"
+    npm install --silent > /dev/null 2>&1
+    npm run build --silent > /dev/null 2>&1
+    echo -e "${GREEN}✅ Brain-mcp built${NC}"
+fi
+cd "$PROJECT_DIR"
+
+echo ""
+
 # Run project analysis
 echo -e "${BLUE}🔍 Analyzing your project...${NC}\n"
 if [ -x "$AI_DEV_STANDARDS_DIR/scripts/analyze-project.sh" ]; then
