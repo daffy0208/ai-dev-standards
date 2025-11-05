@@ -36,7 +36,7 @@ describe('BaseMCPServer', () => {
       handler: async (args: any) => ({ echo: args.message })
     };
 
-    // @ts-ignore - accessing protected method for testing
+    // @ts-expect-error - accessing protected method for testing
     server.addTool(mockTool);
 
     const result = await server.invokeTool('test_tool', { message: 'hello' });

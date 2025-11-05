@@ -332,7 +332,7 @@ export class StateManager {
    * Restore state from snapshot
    */
   async restore(snapshot?: StateSnapshot): Promise<void> {
-    let targetSnapshot: StateSnapshot | undefined = snapshot
+    const targetSnapshot: StateSnapshot | undefined = snapshot
 
     if (!targetSnapshot) {
       // Restore from persistence

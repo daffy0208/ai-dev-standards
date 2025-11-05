@@ -144,6 +144,31 @@ function main() {
 
   console.log(`\n${GREEN}✓ Synced ${utilities.length} utilities to util-registry.json${RESET}`);
   console.log(`${YELLOW}  Categories: ${Object.keys(categoryCounts).join(', ')}${RESET}\n`);
+
+  // Also update main registry.json with category-level entries
+  const MAIN_REGISTRY_PATH = path.join(ROOT, 'META', 'registry.json');
+  if (fs.existsSync(MAIN_REGISTRY_PATH)) {
+    const mainRegistry = JSON.parse(fs.readFileSync(MAIN_REGISTRY_PATH, 'utf-8'));
+    
+    // Build category-level entries for main registry
+    const categoryDescriptions = {
+      'api': 'API client utilities and HTTP helpers',
+      'cli': 'CLI utilities and command-line helpers',
+      'scripts': 'Development scripts and automation',
+      'validation': 'Data validation utilities and schema validators'
+    };
+    
+    mainRegistry.utils = Object.keys(categoryCounts).map(category => ({
+      category,
+      description: categoryDescriptions[category] || `${category} utilities`,
+      path: `UTILS/${category}`,
+      alwaysUpdate: false
+    }));
+    
+    mainRegistry.lastUpdated = new Date().toISOString();
+    fs.writeFileSync(MAIN_REGISTRY_PATH, JSON.stringify(mainRegistry, null, 2) + '\n');
+    console.log(`${GREEN}✓ Updated utils in main registry.json${RESET}\n`);
+  }
 }
 
 if (require.main === module) {

@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "last_updated": "2025-11-05",
-  "description": "Registry of all project templates in ai-dev-standards. Templates provide ready-to-use configuration files, cursorrules variants, project examples, and testing setups. Now includes 20 templates covering config files, cursorrules, project initialization, and testing.",
+  "description": "Registry of all project templates in ai-dev-standards. Templates provide ready-to-use configuration files, cursorrules variants, project examples, and testing setups. Now includes 21 templates covering config files, cursorrules, project initialization, and testing.",
   "templates": [
     {
       "name": "ai-dev.json.example",
@@ -61,6 +61,21 @@
       "tags": [
         "ci-cd",
         "planned"
+      ]
+    },
+    {
+      "name": "claude-instructions-with-brain",
+      "title": "Claude Project Instructions",
+      "description": "## Overview",
+      "category": "project-config",
+      "file_type": "markdown",
+      "path": "/TEMPLATES/claude-instructions-with-brain.md",
+      "status": "active",
+      "use_case": "Setting up claude instructions with brain",
+      "related_skills": [],
+      "tags": [
+        "claude",
+        "project-config"
       ]
     },
     {
@@ -307,7 +322,7 @@
   "categories": {
     "project-config": {
       "description": "Project-level configuration files for ai-dev-standards and Archon",
-      "count": 3
+      "count": 4
     },
     "config-files": {
       "description": "Standard configuration files for linting, formatting, environment, and tooling",
@@ -335,11 +350,11 @@
     }
   },
   "statistics": {
-    "total_templates": 20,
+    "total_templates": 21,
     "categories_count": 7,
-    "active_templates": 17,
+    "active_templates": 18,
     "planned_templates": 3,
-    "config_files_count": 10,
+    "config_files_count": 11,
     "cursorrules_variants_count": 5,
     "testing_templates_count": 2
   }

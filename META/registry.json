@@ -1,6 +1,6 @@
 {
   "version": "1.2.0",
-  "lastUpdated": "2025-11-05T16:02:39.499Z",
+  "lastUpdated": "2025-11-05T17:16:20.360Z",
   "description": "Central registry of all ai-dev-standards resources",
   "skills": [
     {
@@ -112,13 +112,10 @@
     {
       "name": "capability-graph-builder",
       "version": "1.0.0",
-      "description": "Build queryable capability graphs from manifests using Codex for relationship inference",
+      "description": "Build queryable capability graphs from manifests using Codex for relationship inference between skills, resources, and capabilities.",
       "path": "SKILLS/capability-graph-builder/SKILL.md",
-      "tags": [
-        "orchestration",
-        "codex-powered"
-      ],
-      "category": "orchestration"
+      "tags": [],
+      "category": "general"
     },
     {
       "name": "codex-review-workflow",
@@ -349,13 +346,10 @@
     {
       "name": "manifest-generator",
       "version": "1.0.0",
-      "description": "Auto-generate capability manifests from skill/MCP descriptions using Codex",
+      "description": "Auto-generate capability manifests from skill/MCP descriptions using Codex-powered semantic analysis and structured extraction.",
       "path": "SKILLS/manifest-generator/SKILL.md",
-      "tags": [
-        "orchestration",
-        "codex-powered"
-      ],
-      "category": "meta"
+      "tags": [],
+      "category": "general"
     },
     {
       "name": "mobile-developer",
@@ -394,13 +388,10 @@
     {
       "name": "orchestration-planner",
       "version": "1.0.0",
-      "description": "Plan multi-step workflows using capability graph and Codex-powered goal decomposition",
+      "description": "Plan multi-step workflows using capability graph and Codex-powered goal decomposition with HTN-style hierarchical task planning.",
       "path": "SKILLS/orchestration-planner/SKILL.md",
-      "tags": [
-        "orchestration",
-        "codex-powered"
-      ],
-      "category": "orchestration"
+      "tags": [],
+      "category": "specialized"
     },
     {
       "name": "performance-optimizer",
@@ -545,14 +536,13 @@
     },
     {
       "name": "skill-validator",
-      "version": "1.0.0",
-      "description": "Validate implementations match manifests using Codex for semantic comparison",
+      "version": "0.1.0",
+      "description": "Validates that a skill or MCP implementation matches its manifest by running Codex-powered semantic comparisons across descriptions, preconditions, effects, and API surface.",
       "path": "SKILLS/skill-validator/SKILL.md",
       "tags": [
-        "orchestration",
-        "codex-powered"
+        "api"
       ],
-      "category": "meta"
+      "category": "backend"
     },
     {
       "name": "spatial-developer",
@@ -576,13 +566,10 @@
     {
       "name": "system-diagnostician",
       "version": "1.0.0",
-      "description": "Analyze project health and recommend capabilities using Codex-powered system understanding",
+      "description": "Performs Codex-assisted project health diagnostics, identifies capability gaps, and produces prioritized improvement plans.",
       "path": "SKILLS/system-diagnostician/SKILL.md",
-      "tags": [
-        "orchestration",
-        "codex-powered"
-      ],
-      "category": "meta"
+      "tags": [],
+      "category": "general"
     },
     {
       "name": "task-breakdown-specialist",
@@ -695,7 +682,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "3d-visualizer skill\n-"
+        "3d-visualizer"
       ],
       "status": "active"
     },
@@ -741,7 +728,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "multi-agent-architect skill\n-"
+        "multi-agent-architect"
       ],
       "status": "active"
     },
@@ -764,7 +751,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "animation-designer skill\n-"
+        "animation-designer"
       ],
       "status": "active"
     },
@@ -831,7 +818,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "visual-designer skill\n-"
+        "visual-designer"
       ],
       "status": "active"
     },
@@ -854,7 +841,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "audio-producer skill\n-"
+        "audio-producer"
       ],
       "status": "active"
     },
@@ -899,7 +886,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "data-visualizer skill\n-"
+        "data-visualizer"
       ],
       "status": "active"
     },
@@ -924,7 +911,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "quality-auditor skill\n-"
+        "quality-auditor"
       ],
       "status": "active"
     },
@@ -1012,7 +999,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "data-engineer skill\n-"
+        "data-engineer"
       ],
       "status": "active"
     },
@@ -1036,7 +1023,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "deployment-advisor skill\n-"
+        "deployment-advisor"
       ],
       "status": "active"
     },
@@ -1075,7 +1062,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "design-system-architect skill\n-"
+        "design-system-architect"
       ],
       "status": "active"
     },
@@ -1100,7 +1087,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "technical-writer skill\n-"
+        "technical-writer"
       ],
       "status": "active"
     },
@@ -1200,7 +1187,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "knowledge-graph-builder skill\n-"
+        "knowledge-graph-builder"
       ],
       "status": "active"
     },
@@ -1223,7 +1210,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "localization-engineer skill\n-"
+        "localization-engineer"
       ],
       "status": "active"
     },
@@ -1295,7 +1282,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "iot-developer skill\n-"
+        "iot-developer"
       ],
       "status": "active"
     },
@@ -1339,7 +1326,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "go-to-market-planner skill\n-"
+        "go-to-market-planner"
       ],
       "status": "active"
     },
@@ -1364,7 +1351,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "mobile-developer skill\n-"
+        "mobile-developer"
       ],
       "status": "active"
     },
@@ -1389,7 +1376,7 @@
         "swagger-parser": "^10.0.3"
       },
       "enables": [
-        "api-designer skill\r\n-"
+        "api-designer"
       ],
       "status": "active"
     },
@@ -1413,7 +1400,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "performance-optimizer skill\n-"
+        "performance-optimizer"
       ],
       "status": "active"
     },
@@ -1505,7 +1492,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "security-engineer skill\n-"
+        "security-engineer"
       ],
       "status": "active"
     },
@@ -1529,7 +1516,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "`rag-implementer` skill\r\n-"
+        "rag-implementer"
       ],
       "status": "active"
     },
@@ -1552,7 +1539,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "copywriter skill\n-"
+        "copywriter"
       ],
       "status": "active"
     },
@@ -1596,7 +1583,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "livestream-engineer skill\n-"
+        "livestream-engineer"
       ],
       "status": "active"
     },
@@ -1637,7 +1624,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "testing-strategist skill\n-"
+        "testing-strategist"
       ],
       "status": "active"
     },
@@ -1699,7 +1686,7 @@
       },
       "enables": [
         "product-strategist",
-        "user-researcher skills\r\n-"
+        "user-researcher"
       ],
       "status": "active"
     },
@@ -1749,7 +1736,7 @@
         "execa": "^8.0.1"
       },
       "enables": [
-        "video-producer skill\n-"
+        "video-producer"
       ],
       "status": "active"
     },
@@ -1772,7 +1759,7 @@
         "@modelcontextprotocol/sdk": "^0.5.0"
       },
       "enables": [
-        "ux-designer skill\n-"
+        "ux-designer"
       ],
       "status": "active"
     }
@@ -4325,6 +4312,12 @@
   ],
   "utils": [
     {
+      "category": "api",
+      "description": "API client utilities and HTTP helpers",
+      "path": "UTILS/api",
+      "alwaysUpdate": false
+    },
+    {
       "category": "cli",
       "description": "CLI utilities and command-line helpers",
       "path": "UTILS/cli",
@@ -4334,18 +4327,6 @@
       "category": "scripts",
       "description": "Development scripts and automation",
       "path": "UTILS/scripts",
-      "alwaysUpdate": false
-    },
-    {
-      "category": "api",
-      "description": "API client utilities and HTTP helpers",
-      "path": "UTILS/api",
-      "alwaysUpdate": false
-    },
-    {
-      "category": "env",
-      "description": "Environment variable management and configuration",
-      "path": "UTILS/env",
       "alwaysUpdate": false
     },
     {
@@ -4474,16 +4455,20 @@
       ]
     },
     {
-      "name": "capability-manifest",
+      "name": "capability-manifest.schema",
+      "title": "Capability Manifest.schema",
+      "description": "Schema for validating capability manifest.schema",
+      "format": "json-schema",
       "version": "1.0.0",
-      "description": "JSON schema for validating capability manifest files for orchestration system",
-      "path": "SCHEMAS/capability-manifest.schema.json",
-      "validates": [
-        "*/manifest.yaml"
-      ],
+      "path": "/SCHEMAS/capability-manifest.schema.json",
+      "status": "active",
+      "validates": [],
+      "related_skills": [],
+      "related_components": [],
       "tags": [
-        "orchestration",
-        "manifest"
+        "schema",
+        "validation",
+        "capability"
       ]
     },
     {
@@ -4522,6 +4507,40 @@
         "schema",
         "validation",
         "mcp"
+      ]
+    },
+    {
+      "name": "orchestration-request.schema",
+      "title": "Orchestration Request.schema",
+      "description": "Schema for validating orchestration request.schema",
+      "format": "json-schema",
+      "version": "1.0.0",
+      "path": "/SCHEMAS/orchestration-request.schema.json",
+      "status": "active",
+      "validates": [],
+      "related_skills": [],
+      "related_components": [],
+      "tags": [
+        "schema",
+        "validation",
+        "orchestration"
+      ]
+    },
+    {
+      "name": "orchestration-result.schema",
+      "title": "Orchestration Result.schema",
+      "description": "Schema for validating orchestration result.schema",
+      "format": "json-schema",
+      "version": "1.0.0",
+      "path": "/SCHEMAS/orchestration-result.schema.json",
+      "status": "active",
+      "validates": [],
+      "related_skills": [],
+      "related_components": [],
+      "tags": [
+        "schema",
+        "validation",
+        "orchestration"
       ]
     },
     {
@@ -4649,36 +4668,95 @@
     {
       "name": "add-component-dependencies",
       "version": "1.0.0",
-      "description": "Add dependencies field to components listing their integration, util, and component requirements",
+      "description": "Script for add component dependencies",
       "path": "scripts/add-component-dependencies.js",
-      "purpose": "Phase 2 relationship metadata",
+      "tags": [
+        "database",
+        "registry"
+      ],
       "usage": "node scripts/add-component-dependencies.js"
     },
     {
       "name": "add-skill-requirements",
       "version": "1.0.0",
-      "description": "Add requires field to skills with their MCP, component, integration, and standard dependencies",
+      "description": "Script for add skill requirements",
       "path": "scripts/add-skill-requirements.js",
-      "purpose": "Phase 2 relationship metadata",
+      "tags": [
+        "database",
+        "deployment",
+        "testing",
+        "registry"
+      ],
       "usage": "node scripts/add-skill-requirements.js"
+    },
+    {
+      "name": "db-backup",
+      "version": "1.0.0",
+      "description": "Database Backup Script",
+      "path": "scripts/db-backup.ts",
+      "tags": [
+        "database"
+      ],
+      "usage": "node scripts/db-backup.ts"
+    },
+    {
+      "name": "db-migrate",
+      "version": "1.0.0",
+      "description": "Database Migration Script",
+      "path": "scripts/db-migrate.ts",
+      "tags": [
+        "database"
+      ],
+      "usage": "node scripts/db-migrate.ts"
+    },
+    {
+      "name": "deploy",
+      "version": "1.0.0",
+      "description": "Deployment Script",
+      "path": "scripts/deploy.ts",
+      "tags": [
+        "deployment",
+        "registry"
+      ],
+      "usage": "node scripts/deploy.ts"
     },
     {
       "name": "regenerate-relationships",
       "version": "1.0.0",
-      "description": "Regenerate relationship mappings between skills, MCPs, tools, and components",
+      "description": "Regenerate relationship-mapping.json from individual registries",
       "path": "scripts/regenerate-relationships.ts",
       "tags": [
+        "database",
+        "deployment",
+        "testing",
+        "registry",
         "relationships",
         "automation"
-      ]
+      ],
+      "usage": "node scripts/regenerate-relationships.ts"
+    },
+    {
+      "name": "test-runner",
+      "version": "1.0.0",
+      "description": "Test Runner Script",
+      "path": "scripts/test-runner.ts",
+      "tags": [
+        "testing"
+      ],
+      "usage": "node scripts/test-runner.ts"
     },
     {
       "name": "update-registry",
       "version": "1.0.0",
-      "description": "Automatically sync META/registry.json with filesystem resources",
+      "description": "Update Registry Script",
       "path": "scripts/update-registry.js",
-      "purpose": "Maintain registry accuracy",
-      "usage": "node scripts/update-registry.js or npm run update-registry"
+      "tags": [
+        "database",
+        "deployment",
+        "testing",
+        "registry"
+      ],
+      "usage": "node scripts/update-registry.js"
     }
   ],
   "changeLog": [

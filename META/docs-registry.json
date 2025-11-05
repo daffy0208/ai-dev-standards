@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "last_updated": "2025-11-05",
-  "description": "Registry of all documentation files. Now includes 35 documentation files.",
+  "description": "Registry of all documentation files. Now includes 44 documentation files.",
   "docs": [
     {
       "name": "agent-skill-integration",
@@ -68,6 +68,22 @@
       ]
     },
     {
+      "name": "auto-activation-optimization-guide",
+      "title": "Auto Activation Optimization Guide",
+      "description": "Documentation for auto activation optimization guide",
+      "category": "system",
+      "path": "/DOCS/AUTO-ACTIVATION-OPTIMIZATION-GUIDE.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "auto",
+        "system"
+      ]
+    },
+    {
       "name": "auto-sync-guide",
       "title": "Auto Sync Guide",
       "description": "Documentation for auto sync guide",
@@ -113,6 +129,38 @@
       "tags": [
         "brain",
         "integration"
+      ]
+    },
+    {
+      "name": "brain-orchestrator-troubleshooting",
+      "title": "Brain Orchestrator Troubleshooting",
+      "description": "Documentation for brain orchestrator troubleshooting",
+      "category": "system",
+      "path": "/DOCS/BRAIN-ORCHESTRATOR-TROUBLESHOOTING.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "brain",
+        "system"
+      ]
+    },
+    {
+      "name": "brain-quick-reference",
+      "title": "Brain Quick Reference",
+      "description": "Documentation for brain quick reference",
+      "category": "getting-started",
+      "path": "/DOCS/BRAIN-QUICK-REFERENCE.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "brain",
+        "getting-started"
       ]
     },
     {
@@ -260,6 +308,22 @@
       ]
     },
     {
+      "name": "file-tracking-guide",
+      "title": "File Tracking Guide",
+      "description": "Documentation for file tracking guide",
+      "category": "system",
+      "path": "/DOCS/FILE-TRACKING-GUIDE.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "file",
+        "system"
+      ]
+    },
+    {
       "name": "getting-started",
       "title": "Getting Started",
       "description": "Documentation for getting started",
@@ -289,6 +353,22 @@
       "tags": [
         "index",
         "reference"
+      ]
+    },
+    {
+      "name": "installation-and-updates",
+      "title": "Installation And Updates",
+      "description": "Documentation for installation and updates",
+      "category": "system",
+      "path": "/DOCS/INSTALLATION-AND-UPDATES.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "installation",
+        "system"
       ]
     },
     {
@@ -388,6 +468,54 @@
       ]
     },
     {
+      "name": "modular-skills-guide",
+      "title": "Modular Skills Guide",
+      "description": "Documentation for modular skills guide",
+      "category": "system",
+      "path": "/DOCS/MODULAR-SKILLS-GUIDE.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "modular",
+        "system"
+      ]
+    },
+    {
+      "name": "optimization-implementation-complete",
+      "title": "Optimization Implementation Complete",
+      "description": "Documentation for optimization implementation complete",
+      "category": "system",
+      "path": "/DOCS/OPTIMIZATION-IMPLEMENTATION-COMPLETE.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "optimization",
+        "system"
+      ]
+    },
+    {
+      "name": "phase-2-3-complete",
+      "title": "Phase 2 3 Complete",
+      "description": "Documentation for phase 2 3 complete",
+      "category": "system",
+      "path": "/DOCS/PHASE-2-3-COMPLETE.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "phase",
+        "system"
+      ]
+    },
+    {
       "name": "plugin-integration",
       "title": "Plugin Integration",
       "description": "Documentation for plugin integration",
@@ -465,6 +593,22 @@
       "tags": [
         "security",
         "security"
+      ]
+    },
+    {
+      "name": "skill-auto-activation",
+      "title": "Skill Auto Activation",
+      "description": "Documentation for skill auto activation",
+      "category": "system",
+      "path": "/DOCS/SKILL-AUTO-ACTIVATION.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "skill",
+        "system"
       ]
     },
     {
@@ -567,7 +711,7 @@
   "categories": {
     "getting-started": {
       "description": "Getting started guides",
-      "count": 3
+      "count": 4
     },
     "cli": {
       "description": "CLI documentation",
@@ -583,7 +727,7 @@
     },
     "system": {
       "description": "System documentation",
-      "count": 14
+      "count": 22
     },
     "reference": {
       "description": "Reference documentation",
@@ -599,8 +743,8 @@
     }
   },
   "statistics": {
-    "total_docs": 35,
+    "total_docs": 44,
     "categories_count": 8,
-    "active_docs": 35
+    "active_docs": 44
   }
 }

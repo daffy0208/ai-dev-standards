@@ -762,7 +762,7 @@ describe('Phase 2: Relationship Validation', () => {
 
   it('should have MCP enables reference existing skills', () => {
     const skillNames = registry.skills.map((s: any) => s.name)
-    let invalidReferences = []
+    const invalidReferences = []
 
     for (const mcp of registry.mcpServers) {
       const skillsField = mcp.enables || mcp.supports_skills || []

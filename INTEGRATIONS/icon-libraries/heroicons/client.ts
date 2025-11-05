@@ -76,7 +76,7 @@ export class HeroiconsClient {
     const metadata = await this.getIconMetadata()
 
     // Filter by query
-    let results = metadata.filter(icon => {
+    const results = metadata.filter(icon => {
       const nameMatch = icon.name.toLowerCase().includes(normalizedQuery)
       const tagMatch = icon.tags.some(tag => tag.toLowerCase().includes(normalizedQuery))
       return nameMatch || tagMatch

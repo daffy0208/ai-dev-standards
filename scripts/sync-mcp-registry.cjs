@@ -45,9 +45,20 @@ function extractMCPMetadata(mcpFolder) {
     }
 
     // Try to extract which skills this enables
-    const enablesMatch = readme.match(/Enables:\s*\*\*([^*]+)\*\*/);
+    // Format: - **Enables:** skill-name skill, other-skill skills
+    const enablesMatch = readme.match(/\*\*Enables:\*\*\s+(.+)/);
     if (enablesMatch) {
-      enables = enablesMatch[1].split(',').map(s => s.trim());
+      // Split by comma and clean up each skill name
+      enables = enablesMatch[1]
+        .split(',')
+        .map(s => {
+          // Remove "skill" or "skills" suffix and clean whitespace/special chars
+          return s.trim()
+            .replace(/\s+skills?$/i, '')  // Remove " skill" or " skills" at end
+            .replace(/`/g, '')              // Remove backticks
+            .trim();
+        })
+        .filter(s => s.length > 0);
     }
   }
 
