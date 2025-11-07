@@ -7,6 +7,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+### [3.0.2] - 2025-11-07
+
+### Documentation, Configuration, and Repository Maintenance
+
+#### Added
+- **Automation Tools** - Branch cleanup and repository maintenance tools (PR #16)
+  - `scripts/cleanup-merged-branches.sh` - Interactive script to safely delete merged branches
+  - `.github/workflows/branch-cleanup-reminder.yml` - Weekly automated monitoring workflow
+  - `BRANCH-REVIEW-REPORT.md` - Comprehensive branch analysis and recommendations
+  - `REPO-CLEANUP-GUIDE.md` - Step-by-step cleanup and maintenance guide
+
+- **MCP Code Execution Documentation** (PR #17)
+  - `DOCS/MCP-CODE-EXECUTION-GUIDE.md` - Step-by-step implementation guide with TypeScript examples
+  - `DOCS/ANTHROPIC-CODE-EXECUTION-REVIEW.md` - Analysis of Anthropic's code execution article
+  - Updated `DOCS/MCP-DEVELOPMENT-ROADMAP.md` to v1.2.0 with code execution insights
+
+#### Changed
+- **Registry Improvements** (PR #15)
+  - Fixed MCP enables field parsing (removed `\n-` artifacts from skill references)
+  - Added `scripts/sync-script-registry.cjs` for registry consolidation
+  - Enhanced registry validation tests - all passing
+  - Reduced TypeScript compilation errors from 140 → 23
+  - Added `tsconfig.json` with appropriate compiler options
+
+- **Version Consistency**
+  - Updated version references across repository from 3.0.1 to 3.0.2
+  - Ensured README, package.json, and CHANGELOG are synchronized
+  - Last Updated date reflects latest changes (2025-11-07)
+
+#### Fixed
+- Repository health check and maintenance workflows
+- Registry synchronization and bidirectional validation
+- TypeScript syntax errors in multiple component files
+- Documentation consistency across repository
+
+---
+
 ### [3.0.1] - 2025-11-07
 
 ### Documentation and Best Practices Updates

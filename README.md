@@ -6,9 +6,9 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
 [![Node](https://img.shields.io/badge/Node-%3E%3D18.0.0-green.svg)](https://nodejs.org/)
 
-**Version 3.0.1** | **Last Updated:** 2025-11-07
+**Version 3.0.2** | **Last Updated:** 2025-11-07
 
-238 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
+199 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
 
 > **🎉 Brain/Orchestrator Now Working!** The intelligent skill discovery system is now fully configured and documented. Run `./scripts/configure-mcp-paths.sh` for one-command setup, then use `brain_select_skills` to automatically find the right skills for any task. See [Brain Quick Start](#-repository-brain--orchestrator) or [Complete Solution](BRAIN-ORCHESTRATOR-SOLUTION.md).
 
@@ -17,17 +17,17 @@
 Think of this as a **shared brain** between you and Claude:
 
 - **64 Specialized Skills** - Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, design systems, and more) **🆕 Now with auto-activation!**
-- **50 MCP Servers** - Executable development tools including brain-mcp for intelligent orchestration (78% skill coverage - strong actionability!)
-- **24 Tools** - LangChain, CrewAI, design utilities, and automation scripts
-- **72 Reusable Components** - React components for common patterns (auth, forms, errors, feedback, media, layouts, advanced UI)
-- **28 Service Integrations** - Pre-configured connections to OpenAI, Supabase, Stripe, Pinecone, and more
+- **51 MCP Servers** - Executable development tools including brain-mcp for intelligent orchestration (80% skill coverage - strong actionability!)
+- **4 Tools** - Essential development utilities and automation scripts
+- **75 Reusable Components** - React components for common patterns (auth, forms, errors, feedback, media, layouts, advanced UI)
+- **5 Service Integrations** - Pre-configured connections to OpenAI, Supabase, and other essential services
 - **Architecture Patterns** - Proven approaches for complex systems (RAG, multi-agent, knowledge graphs, design systems)
 - **Best Practices** - Security, performance, accessibility, and quality standards
 - **Decision Frameworks** - Clear guidance for choosing technologies
 - **Validation & Trust** - Automated testing ensures all resources are discoverable and accessible
 - **🆕 Skill Auto-Activation** - Skills activate automatically based on your prompts and file context (no more remembering skill names!)
 
-**Total Resources:** 238 (64 skills + 50 MCPs + 24 tools + 72 components + 28 integrations)
+**Total Resources:** 199 (64 skills + 51 MCPs + 4 tools + 75 components + 5 integrations)
 
 **Resource Coverage:** Core resources 100% discoverable (skills, MCPs, components) • 85% skill-to-MCP coverage • Complete dependency mapping
 
@@ -51,7 +51,7 @@ The tool automatically:
 - ✅ Installs everything needed
 - ✅ Analyzes your repository
 - ✅ Recommends where to start
-- ✅ Syncs all 238 resources
+- ✅ Syncs all 199 resources
 
 **Works for:**
 - New projects, existing projects
@@ -62,7 +62,7 @@ The tool automatically:
 **After 2 minutes, you have:**
 - 64 skills with **automatic activation** based on context
 - 50 MCP Tools (including brain-mcp for intelligent orchestration)
-- 238 total resources
+- 199 total resources
 - Project analysis with recommendations
 - Exact roadmap for where to start
 - Skills that activate when you need them, not when you remember them
@@ -130,7 +130,7 @@ ai-dev-standards/
 
 ## 🧠 Repository Brain & Orchestrator
 
-The **Repository Brain** is an intelligence system that manages, understands, and orchestrates all 238 resources. It helps Claude automatically discover and use the right skills, MCPs, and tools for any task.
+The **Repository Brain** is an intelligence system that manages, understands, and orchestrates all 199 resources. It helps Claude automatically discover and use the right skills, MCPs, and tools for any task.
 
 ### Quick Setup
 
@@ -171,7 +171,7 @@ Claude reads those skill files and applies their methodologies
 - `graph_query_by_effect` - Find capabilities by effect (implements_auth, etc.)
 
 **Status:**
-- `brain_status` - Repository status (64 skills, 50 MCPs, 239 resources)
+- `brain_status` - Repository status (64 skills, 51 MCPs, 199 resources)
 
 ### Using the Brain
 
@@ -370,7 +370,7 @@ Every resource in this repository is:
 - ✅ **Validated** on every commit (automated tests + CI/CD)
 - ✅ **Audited** with mandatory completeness checks
 
-**Current Resources:** 64 skills, 50 MCPs, 238 total resources, core resources fully discoverable
+**Current Resources:** 64 skills, 51 MCPs, 199 total resources, core resources fully discoverable
 
 **See:** [Audit Trust Restoration](DOCS/AUDIT-TRUST-RESTORATION.md) for details on the 5-layer protection system.
 
@@ -608,16 +608,22 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
 
 ## Versioning
 
-**Current Version:** 3.0.1
+**Current Version:** 3.0.2
 
 **Version History:**
+- **3.0.2** (2025-11-07): Repository maintenance and documentation updates
+  - Added MCP code execution best practices and implementation guides (PR #17, #18)
+  - Branch cleanup automation tools and workflows (PR #16)
+  - Registry synchronization and validation improvements (PR #15)
+  - Updated resource counts to match registry (64 skills, 51 MCPs, 199 total resources)
+  - Version consistency across all documentation
 - **3.0.1** (2025-11-05): Documentation and automation improvements for self-update workflow
 - **2.1.0** (2025-10-29): Validation & Orchestration Update
   - Added comprehensive validation system (`validate-complete-system.cjs`)
   - Implemented Claude Code orchestration infrastructure (zero-cost alternative to OpenAI Codex)
-  - Registry cleanup and consistency fixes (72 components, 238 total resources)
+  - Registry cleanup and consistency fixes
   - 100% registry consistency achieved with bidirectional validation
-- **2.0.0** (2025-10-27): Phase 3 Complete - Design System (75 components, 50 MCPs, 240 total resources)
+- **2.0.0** (2025-10-27): Phase 3 Complete - Design System
 - **1.1.0** (2025-10-22): Quality & Trust Update
   - 64 specialized skills (100% discoverable)
   - Automated registry validation system
