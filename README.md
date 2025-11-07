@@ -170,7 +170,7 @@ Claude reads those skill files and applies their methodologies
 - `graph_query_by_effect` - Find capabilities by effect (implements_auth, etc.)
 
 **Status:**
-- `brain_status` - Repository status (64 skills, 51 MCPs, 239 resources)
+- `brain_status` - Repository status (64 skills, 50 MCPs, 239 resources)
 
 ### Using the Brain
 

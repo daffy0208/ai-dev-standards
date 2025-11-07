@@ -19,7 +19,7 @@ const ToolGenerator = require('./generators/tool-generator')
 const chalk = require('chalk')
 
 // Test results
-let testResults = []
+const testResults = []
 
 function runTest(testName, testFn) {
   console.log(chalk.blue(`\n🧪 ${testName}`))

@@ -177,7 +177,7 @@ export class FontAwesomeClient {
         throw new Error(`Icon not found: ${name} (${style})`)
       }
 
-      let svg = await response.text()
+      const svg = await response.text()
 
       // Cache the result
       this.iconCache.set(cacheKey, svg)

@@ -117,6 +117,16 @@ function main() {
 
   console.log(`\n${GREEN}✓ Synced ${schemas.length} schemas to schema-registry.json${RESET}`);
   console.log(`${YELLOW}  Formats: JSON (${formatCounts['json-schema']}), YAML (${formatCounts['yaml-schema']})${RESET}\n`);
+
+  // Also update main registry.json
+  const MAIN_REGISTRY_PATH = path.join(ROOT, 'META', 'registry.json');
+  if (fs.existsSync(MAIN_REGISTRY_PATH)) {
+    const mainRegistry = JSON.parse(fs.readFileSync(MAIN_REGISTRY_PATH, 'utf-8'));
+    mainRegistry.schemas = schemas;
+    mainRegistry.lastUpdated = new Date().toISOString();
+    fs.writeFileSync(MAIN_REGISTRY_PATH, JSON.stringify(mainRegistry, null, 2) + '\n');
+    console.log(`${GREEN}✓ Updated schemas in main registry.json${RESET}\n`);
+  }
 }
 
 if (require.main === module) {

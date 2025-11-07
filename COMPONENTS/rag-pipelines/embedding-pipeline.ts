@@ -366,7 +366,7 @@ export class SimilarityCalculator {
       centroids.push([...shuffled[i]])
     }
 
-    let labels = new Array(n).fill(0)
+    const labels = new Array(n).fill(0)
     let changed = true
     let iterations = 0
 

@@ -66,7 +66,7 @@ export class FrameworkIndex {
     const frameworks = await this.getAllFrameworks();
     const lowerQuery = query.toLowerCase();
 
-    let filtered = frameworks.filter((fw) => {
+    const filtered = frameworks.filter((fw) => {
       // Category filter
       if (category !== "all" && fw.category !== category) {
         return false;

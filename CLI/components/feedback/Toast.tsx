@@ -341,7 +341,7 @@ export function ToastExamples() {
       </button>
 
       <button
-        onClick={() => toast.info('New features available!', 'Check out what's new')}
+        onClick={() => toast.info('New features available!', 'Check out what\'s new')}
         className="px-4 py-2 bg-blue-600 text-white rounded"
       >
         Show Info Toast

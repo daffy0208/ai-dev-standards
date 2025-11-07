@@ -54,7 +54,7 @@ Returns suggested heading and body font combinations with explanations.`
    * Generate font pairings for a given font
    */
   private generatePairings(fontName: string): FontPairingResult {
-    const font = this.getFont Information(fontName)
+    const font = this.getFontInformation(fontName)
 
     const pairings: FontPairing[] = []
 
