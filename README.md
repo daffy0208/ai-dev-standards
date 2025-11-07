@@ -6,7 +6,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
 [![Node](https://img.shields.io/badge/Node-%3E%3D18.0.0-green.svg)](https://nodejs.org/)
 
-**Version 3.0.1** | **Last Updated:** 2025-11-05
+**Version 3.0.1** | **Last Updated:** 2025-11-07
 
 238 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
 
@@ -117,6 +117,7 @@ ai-dev-standards/
 │   ├── architecture-patterns/      # System design patterns
 │   │   └── rag-pattern.md          # RAG architecture styles and components
 │   ├── best-practices/             # Quality and security standards
+│   │   └── mcp-code-execution-best-practices.md  # MCP code execution guidelines
 │   └── [future standards]/
 │
 ├── PLAYBOOKS/                      # Operational procedures (7+ playbooks)
@@ -505,6 +506,16 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
 - Logging and monitoring
 - Testing strategy (unit, integration, e2e)
 - Documentation for complex logic
+
+### MCP Code Execution
+- Secure sandbox environments for code execution (4GB RAM, 15-minute timeout)
+- Context-efficient tool access via code composition
+- Proper permission management and security controls
+- Structured task decomposition with validation
+- Multi-agent orchestration patterns (Hierarchical, Collaborative, Pipeline)
+- Integration with existing development tools (git, npm, testing frameworks)
+- Robust error handling and recovery strategies
+- See [MCP Code Execution Best Practices](STANDARDS/best-practices/mcp-code-execution-best-practices.md) for detailed guidance
 
 ---
 

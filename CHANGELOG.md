@@ -7,10 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-### [3.0.1] - 2025-11-05
+### [3.0.1] - 2025-11-07
 
-### Documentation and automation improvements for self-update workflow
+### Documentation and Best Practices Updates
 
+#### Added
+- **MCP Code Execution Best Practices** - Comprehensive guide based on Anthropic Engineering article
+  - `STANDARDS/best-practices/mcp-code-execution-best-practices.md`
+  - Security patterns for sandboxed code execution
+  - Context-efficient tool access strategies
+  - Multi-agent orchestration patterns
+  - Migration guide from tool calls to code execution
+  - Performance optimization strategies
+
+#### Changed
+- Updated README.md with MCP Code Execution best practices section
+- Updated "Last Updated" date to 2025-11-07
+- Enhanced repository structure documentation to include new best practices
+
+#### Documentation
 - Version bump to 3.0.1
 - Documentation and automation improvements for self-update workflow
 
