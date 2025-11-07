@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "last_updated": "2025-11-05",
-  "description": "Registry of all development standards in ai-dev-standards. Standards define best practices, coding conventions, architecture patterns, and project structure guidelines. Now includes 20 standards covering architecture patterns, best practices, coding conventions, and project structure.",
+  "last_updated": "2025-11-07",
+  "description": "Registry of all development standards in ai-dev-standards. Standards define best practices, coding conventions, architecture patterns, and project structure guidelines. Now includes 21 standards covering architecture patterns, best practices, coding conventions, and project structure.",
   "standards": [
     {
       "name": "authentication-patterns",
@@ -169,6 +169,21 @@
       ]
     },
     {
+      "name": "mcp-code-execution-best-practices",
+      "title": "MCP Code Execution Best Practices",
+      "description": "## Overview",
+      "category": "best-practices",
+      "difficulty": "intermediate",
+      "path": "/STANDARDS/best-practices/mcp-code-execution-best-practices.md",
+      "status": "active",
+      "related_skills": [],
+      "related_playbooks": [],
+      "tags": [
+        "mcp",
+        "best-practices"
+      ]
+    },
+    {
       "name": "security-best-practices",
       "title": "Security Best Practices",
       "description": "## Overview",
@@ -311,7 +326,7 @@
     },
     "best-practices": {
       "description": "General best practices for development, security, testing, and operations",
-      "count": 3
+      "count": 4
     },
     "coding-conventions": {
       "description": "Language-specific coding style guides and conventions",
@@ -323,12 +338,12 @@
     }
   },
   "statistics": {
-    "total_standards": 20,
+    "total_standards": 21,
     "categories_count": 4,
-    "active_standards": 20,
+    "active_standards": 21,
     "planned_standards": 0,
     "beginner_count": 2,
-    "intermediate_count": 14,
+    "intermediate_count": 15,
     "advanced_count": 4
   }
 }
