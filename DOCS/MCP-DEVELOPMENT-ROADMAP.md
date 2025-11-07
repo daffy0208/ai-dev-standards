@@ -1,9 +1,24 @@
 # MCP Development Roadmap
 
-**Version:** 1.1.0
-**Date:** 2025-10-23
+**Version:** 1.2.0
+**Date:** 2025-11-07
 **Status:** 🚧 **ACTIVE DEVELOPMENT**
 **Priority:** HIGH - Closing the skill-to-MCP gap
+
+---
+
+## 🆕 New Insights: Code Execution with MCP
+
+Based on Anthropic's engineering guidance, we've identified key improvements for MCP development:
+
+1. **Context-Efficient Tool Access:** Design MCPs that enable agents to write code calling tools directly, reducing context usage
+2. **Code Execution Patterns:** Implement secure sandboxing for executing Python/JavaScript within MCPs
+3. **Multi-Agent Orchestration:** Structure MCPs to support hierarchical, collaborative, and pipeline agent patterns
+4. **Enhanced Security:** Follow SOC 2 compliance patterns with resource limits (4GB RAM, 15min timeout)
+
+**New Documentation:**
+- [MCP Code Execution Best Practices](../STANDARDS/best-practices/mcp-code-execution-best-practices.md)
+- [MCP Code Execution Implementation Guide](./MCP-CODE-EXECUTION-GUIDE.md)
 
 ---
 
@@ -13,6 +28,8 @@
 
 **Current:** 64 skills, 50 MCPs (1.3:1 ratio - 78% actionable)
 **Target:** 64 skills, 50 MCPs (0.9:1 ratio - 94% actionable)
+
+**New Focus:** Incorporate code execution capabilities where appropriate to improve efficiency and reduce context usage.
 
 ---
 
@@ -478,6 +495,40 @@ For each MCP, follow this structure:
 
 ---
 
+## 🔒 Code Execution Security Considerations
+
+When implementing MCPs with code execution capabilities, follow these guidelines:
+
+### Sandbox Requirements
+- **Memory Limit:** 4GB RAM maximum per execution
+- **Timeout:** 15 minutes (900 seconds) maximum
+- **Network Access:** Restricted to approved endpoints only
+- **File System:** Limited to workspace directory only
+- **Process Isolation:** Full isolation from host system
+
+### Security Checklist
+- [ ] Code validation for dangerous patterns (eval, exec, system calls)
+- [ ] Resource limits enforced (memory, CPU, timeout)
+- [ ] Sandbox environment properly configured
+- [ ] Input/output sanitization implemented
+- [ ] Execution logs captured for audit
+- [ ] Error handling prevents information leakage
+- [ ] SOC 2 compliance requirements met
+
+### When to Use Code Execution
+- ✅ Multi-step operations requiring tool composition
+- ✅ Complex data transformation pipelines
+- ✅ Dynamic workflows based on runtime conditions
+- ❌ Simple single-operation tool calls
+- ❌ High-risk operations without proper isolation
+- ❌ Operations requiring strict guarantees
+
+### References
+- [MCP Code Execution Best Practices](../STANDARDS/best-practices/mcp-code-execution-best-practices.md)
+- [MCP Code Execution Implementation Guide](./MCP-CODE-EXECUTION-GUIDE.md)
+
+---
+
 ## ✅ Definition of Done
 
 For each MCP:
@@ -489,7 +540,7 @@ For each MCP:
 - [ ] Error handling implemented
 - [ ] Logging added
 - [ ] Cost tracking (if applicable)
-- [ ] Security review passed
+- [ ] Security review passed (including code execution if applicable)
 - [ ] Performance tested
 - [ ] Integrated with corresponding skill
 - [ ] Added to META/registry.json
@@ -560,6 +611,8 @@ To contribute an MCP:
 
 ## 🔗 Related Documents
 
+- **Code Execution Best Practices:** `STANDARDS/best-practices/mcp-code-execution-best-practices.md` 🆕
+- **Code Execution Implementation Guide:** `DOCS/MCP-CODE-EXECUTION-GUIDE.md` 🆕
 - **Gap Analysis:** `DOCS/SKILL-MCP-GAP-ANALYSIS.md`
 - **Audit Checklist:** `DOCS/AUDIT-VALIDATION-CHECKLIST.md`
 - **Resource Index:** `DOCS/RESOURCE-INDEX.md`
@@ -567,6 +620,6 @@ To contribute an MCP:
 
 ---
 
-**Last Updated:** 2025-10-22
+**Last Updated:** 2025-11-07
 **Next Review:** Weekly during active development
 **Status:** 🚧 Phase 1 (RAG & Product) starting Week 1

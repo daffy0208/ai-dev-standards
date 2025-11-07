@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "last_updated": "2025-11-05",
-  "description": "Registry of all documentation files. Now includes 44 documentation files.",
+  "last_updated": "2025-11-07",
+  "description": "Registry of all documentation files. Now includes 46 documentation files.",
   "docs": [
     {
       "name": "agent-skill-integration",
@@ -32,6 +32,22 @@
       "related_skills": [],
       "tags": [
         "agents",
+        "system"
+      ]
+    },
+    {
+      "name": "anthropic-code-execution-review",
+      "title": "Anthropic Code Execution Review",
+      "description": "Documentation for anthropic code execution review",
+      "category": "system",
+      "path": "/DOCS/ANTHROPIC-CODE-EXECUTION-REVIEW.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "anthropic",
         "system"
       ]
     },
@@ -420,6 +436,22 @@
       ]
     },
     {
+      "name": "mcp-code-execution-guide",
+      "title": "Mcp Code Execution Guide",
+      "description": "Documentation for mcp code execution guide",
+      "category": "system",
+      "path": "/DOCS/MCP-CODE-EXECUTION-GUIDE.md",
+      "status": "active",
+      "audience": [
+        "developers"
+      ],
+      "related_skills": [],
+      "tags": [
+        "mcp",
+        "system"
+      ]
+    },
+    {
       "name": "mcp-configuration-guide",
       "title": "Mcp Configuration Guide",
       "description": "Documentation for mcp configuration guide",
@@ -727,7 +759,7 @@
     },
     "system": {
       "description": "System documentation",
-      "count": 22
+      "count": 24
     },
     "reference": {
       "description": "Reference documentation",
@@ -743,8 +775,8 @@
     }
   },
   "statistics": {
-    "total_docs": 44,
+    "total_docs": 46,
     "categories_count": 8,
-    "active_docs": 44
+    "active_docs": 46
   }
 }
