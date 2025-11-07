@@ -157,26 +157,51 @@ Generated: November 7, 2025
 
 ---
 
-## Git Commands for Cleanup
+## Cleanup Resources
 
-### To delete merged remote branches:
+### 🚀 Quick Start - Automated Cleanup
+
+Use the provided cleanup script:
+
 ```bash
-# Delete all merged branches (EXCEPT main and current)
-git branch -r --merged origin/main | grep -v 'main\|copilot/review-existing-branches' | sed 's/origin\///' | xargs -I {} git push origin --delete {}
+bash scripts/cleanup-merged-branches.sh
 ```
 
-### To delete specific branches:
+This interactive script will:
+- List all branches to be deleted
+- Ask for confirmation
+- Delete each branch safely
+- Provide a summary report
+
+### 📚 Detailed Guide
+
+See **[REPO-CLEANUP-GUIDE.md](./REPO-CLEANUP-GUIDE.md)** for:
+- Step-by-step cleanup instructions
+- How to enable automatic branch deletion in GitHub
+- Visual guides with screenshots
+- Troubleshooting tips
+- Maintenance best practices
+
+### 🤖 Automated Monitoring
+
+A GitHub Actions workflow (`.github/workflows/branch-cleanup-reminder.yml`) will:
+- Run weekly to check for merged branches
+- Create an issue if cleanup is needed
+- Provide cleanup instructions in the issue
+
+### Manual Cleanup Commands
+
+If you prefer manual cleanup:
+
 ```bash
-git push origin --delete codex/add-registry-fields-and-updates
-git push origin --delete codex/update-mcp-integrator-warning-checks
-git push origin --delete copilot/fix-207889146-1081173453-7fbabeed-c905-4af8-9c56-b050c92658cd
-git push origin --delete copilot/fix-linting-errors-and-review
-git push origin --delete copilot/improve-repo-functionality
-git push origin --delete copilot/update-vivantio-repo
-git push origin --delete feat/post-phase2-improvements
-git push origin --delete security/critical-project-isolation-v3.0.0
-git push origin --delete test/codex-review-workflow
+# Delete all merged branches at once
+git branch -r --merged origin/main | \
+  grep -v 'main\|copilot/review-existing-branches' | \
+  sed 's/origin\///' | \
+  xargs -I {} git push origin --delete {}
 ```
+
+Or delete specific branches individually - see [REPO-CLEANUP-GUIDE.md](./REPO-CLEANUP-GUIDE.md) for the full list.
 
 ---
 
