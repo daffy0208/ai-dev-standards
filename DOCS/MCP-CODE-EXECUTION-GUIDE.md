@@ -490,15 +490,16 @@ class ExecutionMetrics {
 
 ## Example: Complete MCP Server
 
-See [EXAMPLES/code-executor-mcp/](../../EXAMPLES/code-executor-mcp/) for a complete implementation including:
+A complete reference implementation is planned for future addition to the EXAMPLES directory. In the meantime, this guide provides all the code snippets and patterns needed to build a working MCP server with code execution capabilities.
 
-- Full server setup
-- Multiple language support (JavaScript, Python)
-- Comprehensive security measures
-- Resource monitoring
-- Error handling
-- Unit and integration tests
-- Performance optimizations
+Key components covered in this guide:
+- Server setup and configuration
+- Secure code execution implementation
+- Tool registration and handling
+- Security validation and sandboxing
+- Testing strategies
+- Performance optimization
+- Monitoring and debugging
 
 ---
 
@@ -635,11 +636,11 @@ See [EXAMPLES/code-executor-mcp/](../../EXAMPLES/code-executor-mcp/) for a compl
 
 ## Next Steps
 
-1. **Review:** [MCP Code Execution Best Practices](../../STANDARDS/best-practices/mcp-code-execution-best-practices.md)
-2. **Study:** [Example Implementation](../../EXAMPLES/code-executor-mcp/)
-3. **Practice:** Build a simple MCP server with code execution
-4. **Test:** Write comprehensive tests for security and functionality
-5. **Deploy:** Follow deployment guidelines in [MCP Development Roadmap](./MCP-DEVELOPMENT-ROADMAP.md)
+1. **Review:** [MCP Code Execution Best Practices](../STANDARDS/best-practices/mcp-code-execution-best-practices.md)
+2. **Practice:** Build a simple MCP server with code execution using the patterns in this guide
+3. **Test:** Write comprehensive tests for security and functionality
+4. **Deploy:** Follow deployment guidelines in [MCP Development Roadmap](./MCP-DEVELOPMENT-ROADMAP.md)
+5. **Reference:** Check existing MCPs in the repository for additional implementation examples
 
 ---
 
