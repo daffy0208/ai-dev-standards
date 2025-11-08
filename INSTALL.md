@@ -1,5 +1,13 @@
 # Install ai-dev-standards
 
+> **📢 DEPRECATED:** This file is maintained for backward compatibility. 
+> 
+> **Please use:** [INTEGRATION-USAGE.md](INTEGRATION-USAGE.md) for complete integration documentation.
+>
+> The new guide consolidates INSTALL.md, UPDATE-GUIDE.md, and AUTO-SYNC-GUIDE.md into a single, comprehensive resource with update checking and troubleshooting.
+
+---
+
 ## One Command. Any Project.
 
 ```bash

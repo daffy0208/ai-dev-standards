@@ -1,5 +1,13 @@
 # Updating Your Project with ai-dev-standards
 
+> **📢 DEPRECATED:** This file is maintained for backward compatibility. 
+> 
+> **Please use:** [INTEGRATION-USAGE.md](INTEGRATION-USAGE.md) for complete integration and update documentation.
+>
+> The new guide consolidates INSTALL.md, UPDATE-GUIDE.md, and AUTO-SYNC-GUIDE.md with improved update checking via `./scripts/check-updates.sh`.
+
+---
+
 **Quick Reference:** How to sync your project with the latest ai-dev-standards resources.
 
 ---

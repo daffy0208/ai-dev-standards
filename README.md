@@ -71,9 +71,52 @@ The tool automatically:
 - `./setup-codex-cli.sh` connects Codex CLI to brain-mcp and populates `.codex/`
 - `./setup-gemini-cli.sh` does the same for Gemini CLI via `.gemini/`
 
-**See:** 
-- [INSTALL.md](INSTALL.md) - Complete setup guide for new projects
-- [UPDATE-GUIDE.md](UPDATE-GUIDE.md) - How to update existing projects
+---
+
+## 📖 How to Use This Repository
+
+Choose your usage method:
+
+### 1. 🔗 [Integration Usage](INTEGRATION-USAGE.md) (Recommended)
+**Integrate ai-dev-standards into your projects** for automatic skill activation, resource syncing, and AI assistant integration. One command sets up everything.
+
+- ✅ **Best for:** Active development, new and existing projects
+- ✅ **Features:** Auto-sync, automatic skill activation, brain-MCP integration, project analysis
+- ✅ **Setup time:** 2 minutes
+- ✅ **Updates:** Automatic via git hooks
+
+```bash
+cd /your/project
+bash ~/ai-dev-standards/setup-project.sh
+```
+
+### 2. 📚 [Standalone Usage](STANDALONE-USAGE.md)
+**Use ai-dev-standards as a reference library** without integrating it into your projects. Browse and manually reference resources.
+
+- ✅ **Best for:** Learning, exploring, manual reference
+- ✅ **Features:** Browse skills, explore components, use brain CLI for discovery
+- ✅ **Setup time:** 1 minute (just clone)
+- ✅ **Updates:** Manual via git pull
+
+```bash
+cd ~/ai-dev-standards
+./scripts/check-updates.sh  # Check for updates
+```
+
+### 🔄 Checking for Updates
+
+Both usage modes support automatic update checking:
+
+```bash
+# From ai-dev-standards directory or any project
+./scripts/check-updates.sh
+```
+
+Shows what's new, version changes, and provides update instructions for your usage mode.
+
+**See also:** 
+- [INSTALL.md](INSTALL.md) - Legacy setup guide (use INTEGRATION-USAGE.md instead)
+- [UPDATE-GUIDE.md](UPDATE-GUIDE.md) - Legacy update guide (use INTEGRATION-USAGE.md instead)
 - [DOCS/TROUBLESHOOTING.md](DOCS/TROUBLESHOOTING.md) - Connection and setup issues
 
 ---
