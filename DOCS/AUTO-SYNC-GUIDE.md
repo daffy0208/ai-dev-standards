@@ -1,5 +1,13 @@
 # Auto-Sync System Guide
 
+> **📢 DEPRECATED:** This file is maintained for backward compatibility. 
+> 
+> **Please use:** [INTEGRATION-USAGE.md](INTEGRATION-USAGE.md) for complete auto-sync documentation.
+>
+> The new guide provides comprehensive coverage of auto-sync functionality with the new `./scripts/check-updates.sh` script for update checking.
+
+---
+
 **Last Updated:** 2025-10-22
 **Status:** Partially Implemented
 **Next Phase:** MCP auto-update integration
