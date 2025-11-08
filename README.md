@@ -8,7 +8,7 @@
 
 **Version 3.0.2** | **Last Updated:** 2025-11-07
 
-199 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
+198 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
 
 > **🎉 Brain/Orchestrator Now Working!** The intelligent skill discovery system is now fully configured and documented. Run `./scripts/configure-mcp-paths.sh` for one-command setup, then use `brain_select_skills` to automatically find the right skills for any task. See [Brain Quick Start](#-repository-brain--orchestrator) or [Complete Solution](BRAIN-ORCHESTRATOR-SOLUTION.md).
 
@@ -17,7 +17,7 @@
 Think of this as a **shared brain** between you and Claude:
 
 - **64 Specialized Skills** - Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, design systems, and more) **🆕 Now with auto-activation!**
-- **51 MCP Servers** - Executable development tools including brain-mcp for intelligent orchestration (80% skill coverage - strong actionability!)
+- **50 MCP Servers** - Executable development tools including brain-mcp for intelligent orchestration (80% skill coverage - strong actionability!)
 - **4 Tools** - Essential development utilities and automation scripts
 - **75 Reusable Components** - React components for common patterns (auth, forms, errors, feedback, media, layouts, advanced UI)
 - **5 Service Integrations** - Pre-configured connections to OpenAI, Supabase, and other essential services
@@ -27,7 +27,7 @@ Think of this as a **shared brain** between you and Claude:
 - **Validation & Trust** - Automated testing ensures all resources are discoverable and accessible
 - **🆕 Skill Auto-Activation** - Skills activate automatically based on your prompts and file context (no more remembering skill names!)
 
-**Total Resources:** 199 (64 skills + 51 MCPs + 4 tools + 75 components + 5 integrations)
+**Total Resources:** 198 (64 skills + 50 MCPs + 4 tools + 75 components + 5 integrations)
 
 **Resource Coverage:** Core resources 100% discoverable (skills, MCPs, components) • 85% skill-to-MCP coverage • Complete dependency mapping
 
@@ -51,7 +51,7 @@ The tool automatically:
 - ✅ Installs everything needed
 - ✅ Analyzes your repository
 - ✅ Recommends where to start
-- ✅ Syncs all 199 resources
+- ✅ Syncs all 198 resources
 
 **Works for:**
 - New projects, existing projects
@@ -130,7 +130,7 @@ ai-dev-standards/
 
 ## 🧠 Repository Brain & Orchestrator
 
-The **Repository Brain** is an intelligence system that manages, understands, and orchestrates all 199 resources. It helps Claude automatically discover and use the right skills, MCPs, and tools for any task.
+The **Repository Brain** is an intelligence system that manages, understands, and orchestrates all 198 resources. It helps Claude automatically discover and use the right skills, MCPs, and tools for any task.
 
 ### Quick Setup
 
@@ -171,7 +171,7 @@ Claude reads those skill files and applies their methodologies
 - `graph_query_by_effect` - Find capabilities by effect (implements_auth, etc.)
 
 **Status:**
-- `brain_status` - Repository status (64 skills, 51 MCPs, 199 resources)
+- `brain_status` - Repository status (64 skills, 50 MCPs, 198 resources)
 
 ### Using the Brain
 
@@ -370,7 +370,7 @@ Every resource in this repository is:
 - ✅ **Validated** on every commit (automated tests + CI/CD)
 - ✅ **Audited** with mandatory completeness checks
 
-**Current Resources:** 64 skills, 51 MCPs, 199 total resources, core resources fully discoverable
+**Current Resources:** 64 skills, 50 MCPs, 198 total resources, core resources fully discoverable
 
 **See:** [Audit Trust Restoration](DOCS/AUDIT-TRUST-RESTORATION.md) for details on the 5-layer protection system.
 
@@ -615,7 +615,7 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
   - Added MCP code execution best practices and implementation guides (PR #17, #18)
   - Branch cleanup automation tools and workflows (PR #16)
   - Registry synchronization and validation improvements (PR #15)
-  - Updated resource counts to match registry (64 skills, 51 MCPs, 199 total resources)
+  - Updated resource counts to match registry (64 skills, 50 MCPs, 198 total resources)
   - Version consistency across all documentation
 - **3.0.1** (2025-11-05): Documentation and automation improvements for self-update workflow
 - **2.1.0** (2025-10-29): Validation & Orchestration Update
