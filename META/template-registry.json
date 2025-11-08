@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "last_updated": "2025-11-05",
+  "last_updated": "2025-11-08",
   "description": "Registry of all project templates in ai-dev-standards. Templates provide ready-to-use configuration files, cursorrules variants, project examples, and testing setups. Now includes 21 templates covering config files, cursorrules, project initialization, and testing.",
   "templates": [
     {

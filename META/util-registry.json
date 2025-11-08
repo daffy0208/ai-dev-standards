@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "last_updated": "2025-11-05",
+  "last_updated": "2025-11-08",
   "description": "Registry of all utility modules in ai-dev-standards. Utilities provide reusable functions for error handling, logging, validation, and automation. Now includes 7 utilities covering API, CLI, environment, scripts, and validation.",
   "utilities": [
     {

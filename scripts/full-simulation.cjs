@@ -244,7 +244,7 @@ function simulateMCPServers() {
     });
     
     // Test 3: Brain MCP Special Check
-    const brainMCP = mcpRegistry.mcps.find(m => m.name === 'brain-mcp');
+    const brainMCP = mcpRegistry.mcps.find(m => m.id === 'brain-mcp' || m.name === 'Brain MCP' || m.name === 'brain-mcp');
     if (brainMCP) {
       recordResult('mcps', 'Brain MCP Orchestrator', 'passed', {
         message: `Found with ${brainMCP.tools?.length || 0} orchestration tools`
@@ -275,7 +275,7 @@ function simulateMCPServers() {
     ];
     
     operations.forEach(({ name, mcp: mcpName, category }) => {
-      const mcp = mcpRegistry.mcps.find(m => m.name === mcpName);
+      const mcp = mcpRegistry.mcps.find(m => m.name === mcpName || m.id === mcpName);
       const hasTool = mcp?.tools?.some(t => t.name === name);
       
       recordResult('mcps', `Tool Simulation: ${name}`, hasTool ? 'passed' : 'warnings', {

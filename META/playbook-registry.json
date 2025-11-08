@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "last_updated": "2025-11-05",
+  "last_updated": "2025-11-08",
   "description": "Registry of all operational playbooks in ai-dev-standards. Playbooks are step-by-step guides for critical operations, incident response, deployment procedures, and development workflows. Now includes 14 playbooks covering ADHD support, deployment, incidents, development workflows, and system reliability.",
   "playbooks": [
     {
