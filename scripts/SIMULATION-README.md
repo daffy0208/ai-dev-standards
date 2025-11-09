@@ -35,7 +35,7 @@ Complete JSON report with all test results:
 ```json
 {
   "timestamp": "2025-11-08T16:27:16.407Z",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "sections": { ... },
   "summary": {
     "total_tests": 96,

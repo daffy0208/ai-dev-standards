@@ -654,8 +654,8 @@ Development utilities and automation scripts.
 
 ---
 
-**Last Updated:** 2025-11-08
-**Version:** 3.0.2
+**Last Updated:** 2025-11-09
+**Version:** 3.0.3
 
 ---
 
