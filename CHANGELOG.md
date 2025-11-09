@@ -7,6 +7,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+### [3.0.3] - 2025-11-09
+
+### Documentation Consolidation and Usage Mode Improvements
+
+#### Added
+- **Usage Mode Documentation** (PR #22) - Comprehensive guides for different usage patterns
+  - `INTEGRATION-USAGE.md` - Complete guide for integrating ai-dev-standards into projects
+    - One-command setup workflow
+    - Automatic skill activation
+    - Auto-sync via git hooks
+    - Brain-MCP integration
+    - Project analysis and recommendations
+  - `STANDALONE-USAGE.md` - Guide for using as a reference library
+    - Browse-only mode without project integration
+    - Brain CLI for resource discovery
+    - Manual reference workflows
+    - Learning and exploration use cases
+  - `scripts/check-updates.sh` - Automated update checking across both usage modes
+    - Shows what's new in latest version
+    - Displays version changes
+    - Provides usage-specific update instructions
+
+#### Changed
+- **Documentation Organization** (PR #22)
+  - Consolidated setup documentation into clear usage modes
+  - Updated README.md to prominently feature integration vs standalone choice
+  - Marked `INSTALL.md` and `UPDATE-GUIDE.md` as legacy (superseded by new guides)
+  - Improved navigation with clear decision points for users
+  - Enhanced cross-referencing between documentation files
+
+- **Version Updates**
+  - Updated version from 3.0.2 to 3.0.3
+  - Updated "Last Updated" date from 2025-11-07 to 2025-11-09
+  - Ensured consistency across README, package.json, and CHANGELOG
+
+#### Improved
+- User experience with clearer documentation structure
+- Onboarding flow with explicit usage mode selection
+- Update management across both integration and standalone modes
+
+---
+
 ### [3.0.2] - 2025-11-07
 
 ### Documentation, Configuration, and Repository Maintenance
@@ -111,7 +153,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [3.0.0] - 2025-10-28
+### [3.0.3] - 2025-11-09
+
+### Documentation consolidation and usage mode improvements (PR #22)
+
+- Version bump to 3.0.3
+- Documentation consolidation and usage mode improvements (PR #22)
+
+---
+
+# [3.0.0] - 2025-10-28
 
 ### 🚨 CRITICAL SECURITY FIX - Cross-Project Data Isolation
 

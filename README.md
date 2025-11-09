@@ -6,7 +6,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
 [![Node](https://img.shields.io/badge/Node-%3E%3D18.0.0-green.svg)](https://nodejs.org/)
 
-**Version 3.0.2** | **Last Updated:** 2025-11-07
+**Version 3.0.3** | **Last Updated:** 2025-11-09
 
 198 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
 
@@ -415,8 +415,6 @@ Every resource in this repository is:
 
 **Current Resources:** 64 skills, 50 MCPs, 198 total resources, core resources fully discoverable
 
-**See:** [Audit Trust Restoration](DOCS/AUDIT-TRUST-RESTORATION.md) for details on the 5-layer protection system.
-
 ### ✅ Strong Skill-to-MCP Coverage
 
 **Current Status:** 64 skills with 50 MCPs = **92% coverage** (0.92:1 ratio)
@@ -651,9 +649,10 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
 
 ## Versioning
 
-**Current Version:** 3.0.2
+**Current Version:** 3.0.3
 
 **Version History:**
+- **3.0.3** (2025-11-09): Documentation consolidation and usage mode improvements (PR #22)
 - **3.0.2** (2025-11-07): Repository maintenance and documentation updates
   - Added MCP code execution best practices and implementation guides (PR #17, #18)
   - Branch cleanup automation tools and workflows (PR #16)
