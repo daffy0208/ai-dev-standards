@@ -8,7 +8,7 @@
 
 **Version 3.0.3** | **Last Updated:** 2025-11-09
 
-198 resources for AI-assisted development. One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
+198 core resources for AI-assisted development (from a living catalog of 329 total repository resources). One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
 
 > **🎉 Brain/Orchestrator Now Working!** The intelligent skill discovery system is now fully configured and documented. Run `./scripts/configure-mcp-paths.sh` for one-command setup, then use `brain_select_skills` to automatically find the right skills for any task. See [Brain Quick Start](#-repository-brain--orchestrator) or [Complete Solution](BRAIN-ORCHESTRATOR-SOLUTION.md).
 
@@ -16,20 +16,29 @@
 
 Think of this as a **shared brain** between you and Claude:
 
-- **64 Specialized Skills** - Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, design systems, and more) **🆕 Now with auto-activation!**
-- **50 MCP Servers** - Executable development tools including brain-mcp for intelligent orchestration (80% skill coverage - strong actionability!)
-- **4 Tools** - Essential development utilities and automation scripts
-- **75 Reusable Components** - React components for common patterns (auth, forms, errors, feedback, media, layouts, advanced UI)
-- **5 Service Integrations** - Pre-configured connections to OpenAI, Supabase, and other essential services
-- **Architecture Patterns** - Proven approaches for complex systems (RAG, multi-agent, knowledge graphs, design systems)
-- **Best Practices** - Security, performance, accessibility, and quality standards
-- **Decision Frameworks** - Clear guidance for choosing technologies
-- **Validation & Trust** - Automated testing ensures all resources are discoverable and accessible
-- **🆕 Skill Auto-Activation** - Skills activate automatically based on your prompts and file context (no more remembering skill names!)
+- **64 Specialized Skills** – Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, design systems, and more) **🆕 Now with auto-activation!**
+- **50 MCP Servers** – Executable development tools including brain-mcp for intelligent orchestration (strong skill coverage and actionability)
+- **4 Core Tools (Project Install Set)** – Essential development utilities and automation scripts that are synced into your projects
+- **75 Reusable Components** – React components for common patterns (auth, forms, errors, feedback, media, layouts, advanced UI)
+- **5 Service Integrations (Project Install Set)** – Pre-configured connections to OpenAI, Supabase, Stripe/Resend/analytics and other essential services
+- **Architecture Patterns** – Proven approaches for complex systems (RAG, multi-agent, knowledge graphs, design systems)
+- **Best Practices** – Security, performance, accessibility, and quality standards
+- **Decision Frameworks** – Clear guidance for choosing technologies
+- **Validation & Trust** – Automated testing ensures all core resources are discoverable and accessible
+- **🆕 Skill Auto-Activation** – Skills activate automatically based on your prompts and file context (no more remembering skill names!)
 
-**Total Resources:** 198 (64 skills + 50 MCPs + 4 tools + 75 components + 5 integrations)
+**Project Install Set (what gets synced into your repo):**  
+**198 resources** (64 skills + 50 MCPs + 4 tools + 75 components + 5 integrations)
 
-**Resource Coverage:** Core resources 100% discoverable (skills, MCPs, components) • 85% skill-to-MCP coverage • Complete dependency mapping
+**Repository Inventory (complete catalog, for AI discovery):**  
+**329 resources** (Tier 1: 238 executable/core resources • Tier 2: 91 supporting resources like docs, templates, playbooks, standards, schemas, utilities, examples)
+
+**Resource Coverage (from latest simulation):**
+
+- 100% of core registries are discoverable (skills, MCPs, components)
+- **55 of 64 skills (85.9%)** have MCP support
+- **119 MCP relationships** (average **1.9 MCPs per skill**)
+- Complete dependency mapping and relationship validation across the core system
 
 **Core Philosophy:** Quality over quantity. Every resource has been carefully curated, tested, and documented for its specific purpose.
 
@@ -51,7 +60,7 @@ The tool automatically:
 - ✅ Installs everything needed
 - ✅ Analyzes your repository
 - ✅ Recommends where to start
-- ✅ Syncs all 198 resources
+- ✅ Syncs all **198 core resources** into your project (from the larger 329-resource catalog)
 
 **Works for:**
 - New projects, existing projects
@@ -59,10 +68,10 @@ The tool automatically:
 - Empty repos to large codebases
 - Local or freshly cloned from GitHub
 
-**After 2 minutes, you have:**
+**After ~2 minutes, you have:**
 - 64 skills with **automatic activation** based on context
-- 50 MCP Tools (including brain-mcp for intelligent orchestration)
-- 199 total resources
+- 50 MCP servers (including brain-mcp for intelligent orchestration)
+- **198 project-installed resources** (skills, MCPs, components, integrations, tools)
 - Project analysis with recommendations
 - Exact roadmap for where to start
 - Skills that activate when you need them, not when you remember them
@@ -165,7 +174,7 @@ ai-dev-standards/
 │
 ├── PLAYBOOKS/                      # Operational procedures (7+ playbooks)
 ├── TEMPLATES/                      # Project starters (cursorrules templates)
-├── COMPONENTS/                     # Reusable implementations (72 components)
+├── COMPONENTS/                     # Reusable implementations (72 components in current catalog)
 └── EXAMPLES/                       # Reference implementations (sample projects)
 ```
 
@@ -173,7 +182,7 @@ ai-dev-standards/
 
 ## 🧠 Repository Brain & Orchestrator
 
-The **Repository Brain** is an intelligence system that manages, understands, and orchestrates all 198 resources. It helps Claude automatically discover and use the right skills, MCPs, and tools for any task.
+The **Repository Brain** is an intelligence system that manages, understands, and orchestrates the **core install set of 198 resources inside your project**, backed by the full **329-resource repository catalog**. It helps Claude automatically discover and use the right skills, MCPs, tools, and components for any task.
 
 ### Quick Setup
 
@@ -214,7 +223,7 @@ Claude reads those skill files and applies their methodologies
 - `graph_query_by_effect` - Find capabilities by effect (implements_auth, etc.)
 
 **Status:**
-- `brain_status` - Repository status (64 skills, 50 MCPs, 198 resources)
+- `brain_status` – Core resource status for your project (64 skills, 50 MCPs, 198 installed resources; 329 total resources available in the repository)
 
 ### Using the Brain
 
@@ -407,47 +416,32 @@ This repository enforces **validation-first development** to prevent wasting tim
 **See:** [Validation-First Development Playbook](PLAYBOOKS/validation-first-development.md) for the complete 5-phase workflow.
 
 ### Resource Discovery & Trust
-Every resource in this repository is:
-- ✅ **Registered** in META/registry.json (64 skills + 50 MCPs + all resources)
+Every core resource in this system is:
+- ✅ **Registered** in the registry system under META/ (64 skills + 50 MCPs + all core resources)
 - ✅ **Discoverable** via CLI and bootstrap (no invisible resources)
 - ✅ **Validated** on every commit (automated tests + CI/CD)
 - ✅ **Audited** with mandatory completeness checks
 
-**Current Resources:** 64 skills, 50 MCPs, 198 total resources, core resources fully discoverable
+**Current Core Resources (Project Install Set):**  
+64 skills, 50 MCP servers, 198 total installed resources – all fully registered and discoverable.
 
-### ✅ Strong Skill-to-MCP Coverage
+### ✅ Strong Skill-to-MCP Coverage (from latest simulation)
 
-**Current Status:** 64 skills with 50 MCPs = **92% coverage** (0.92:1 ratio)
+**Current Status (Simulation Report):**
+- **55 of 64 skills** have MCP support
+- **85.9% skill-to-MCP coverage**
+- **119 MCP relationships**, averaging **1.9 MCPs per skill**
 
 **What This Means:**
-- **Skills** describe HOW to do things (methodologies, approaches)
-- **MCPs** actually DO things (tools, actions, automation)
-- **76% coverage** means strong skill-to-tool alignment
+- **Skills** describe **how** to do things (methodologies, approaches).
+- **MCPs** actually **do** things (tools, actions, automation).
+- High coverage means most skills are executable, not just advisory – AI can both advise **and** act.
 
-**Coverage Breakdown:**
-- ✅ **45 skills** have MCP support (fully actionable)
-- ⚠️ **14 skills** without dedicated MCPs (methodology-focused):
-  - bmad-method
-  - brand-designer
-  - context-preserver
-  - focus-session-manager
-  - framework-orchestrator
-  - growth-experimenter
-  - pricing-strategist
-  - product-analyst
-  - product-analytics
-  - prp-generator
-  - spatial-developer
-  - task-breakdown-specialist
-  - usability-tester
-  - voice-interface-builder
+For exact mappings (which skills are backed by which MCPs), see:
 
-**Why This Matters:**
-- Users can execute most methodologies automatically
-- AI can both advise AND act
-- Strong automation value throughout the system
-
-**See:** `META/mcp-registry.json` for complete MCP catalog and coverage details
+- `META/mcp-registry.json` – MCP catalog and supported skills
+- `META/relationship-mapping.json` – Detailed skill ↔ MCP ↔ component relationships
+- `SIMULATION-EXECUTIVE-SUMMARY.md` – Latest coverage and validation breakdown
 
 ---
 
