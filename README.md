@@ -415,8 +415,6 @@ Every resource in this repository is:
 
 **Current Resources:** 64 skills, 50 MCPs, 198 total resources, core resources fully discoverable
 
-**See:** [Audit Trust Restoration](DOCS/AUDIT-TRUST-RESTORATION.md) for details on the 5-layer protection system.
-
 ### ✅ Strong Skill-to-MCP Coverage
 
 **Current Status:** 64 skills with 50 MCPs = **92% coverage** (0.92:1 ratio)
