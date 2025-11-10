@@ -184,6 +184,6 @@ This security policy is licensed under the same terms as the ai-dev-standards pr
 
 ---
 
-**Last Updated:** 2025-10-28
-**Current Secure Version:** 3.0.0
+**Last Updated:** 2025-11-10
+**Current Secure Version:** 3.0.3
 **Deprecated Versions:** All versions < 3.0.0

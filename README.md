@@ -8,7 +8,7 @@
 
 **Version 3.0.3** | **Last Updated:** 2025-11-09
 
-198 core resources for AI-assisted development (from a living catalog of 329 total repository resources). One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
+238 core resources for AI-assisted development (from a living catalog of 360 total repository resources). One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
 
 > **🎉 Brain/Orchestrator Now Working!** The intelligent skill discovery system is now fully configured and documented. Run `./scripts/configure-mcp-paths.sh` for one-command setup, then use `brain_select_skills` to automatically find the right skills for any task. See [Brain Quick Start](#-repository-brain--orchestrator) or [Complete Solution](BRAIN-ORCHESTRATOR-SOLUTION.md).
 
@@ -18,20 +18,23 @@ Think of this as a **shared brain** between you and Claude:
 
 - **64 Specialized Skills** – Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, design systems, and more) **🆕 Now with auto-activation!**
 - **50 MCP Servers** – Executable development tools including brain-mcp for intelligent orchestration (strong skill coverage and actionability)
-- **4 Core Tools (Project Install Set)** – Essential development utilities and automation scripts that are synced into your projects
-- **75 Reusable Components** – React components for common patterns (auth, forms, errors, feedback, media, layouts, advanced UI)
-- **5 Service Integrations (Project Install Set)** – Pre-configured connections to OpenAI, Supabase, Stripe/Resend/analytics and other essential services
+- **24 Core Tools** – Essential development utilities and automation scripts that are synced into your projects
+- **72 Reusable Components** – React components for common patterns (auth, forms, errors, feedback, media, layouts, advanced UI)
+- **28 Service Integrations** – Pre-configured connections to OpenAI, Supabase, Stripe, and other essential services
 - **Architecture Patterns** – Proven approaches for complex systems (RAG, multi-agent, knowledge graphs, design systems)
 - **Best Practices** – Security, performance, accessibility, and quality standards
 - **Decision Frameworks** – Clear guidance for choosing technologies
 - **Validation & Trust** – Automated testing ensures all core resources are discoverable and accessible
 - **🆕 Skill Auto-Activation** – Skills activate automatically based on your prompts and file context (no more remembering skill names!)
 
-**Project Install Set (what gets synced into your repo):**  
-**198 resources** (64 skills + 50 MCPs + 4 tools + 75 components + 5 integrations)
+**Core Resources (Tier 1 - Executable):**  
+**238 resources** (64 skills + 50 MCPs + 24 tools + 72 components + 28 integrations)
 
-**Repository Inventory (complete catalog, for AI discovery):**  
-**329 resources** (Tier 1: 238 executable/core resources • Tier 2: 91 supporting resources like docs, templates, playbooks, standards, schemas, utilities, examples)
+**Supporting Resources (Tier 2):**  
+**122 resources** (14 playbooks + 20 standards + 19 templates + 4 schemas + 8 utilities + 3 examples + 3 installers + 24 docs)
+
+**Total Repository Inventory:**  
+**360 resources** (238 core + 122 supporting)
 
 **Resource Coverage (from latest simulation):**
 
@@ -60,7 +63,7 @@ The tool automatically:
 - ✅ Installs everything needed
 - ✅ Analyzes your repository
 - ✅ Recommends where to start
-- ✅ Syncs all **198 core resources** into your project (from the larger 329-resource catalog)
+- ✅ Syncs all **238 core resources** into your project (from the full 360-resource catalog)
 
 **Works for:**
 - New projects, existing projects
@@ -71,7 +74,7 @@ The tool automatically:
 **After ~2 minutes, you have:**
 - 64 skills with **automatic activation** based on context
 - 50 MCP servers (including brain-mcp for intelligent orchestration)
-- **198 project-installed resources** (skills, MCPs, components, integrations, tools)
+- **238 core resources** (skills, MCPs, components, integrations, tools)
 - Project analysis with recommendations
 - Exact roadmap for where to start
 - Skills that activate when you need them, not when you remember them
@@ -182,7 +185,7 @@ ai-dev-standards/
 
 ## 🧠 Repository Brain & Orchestrator
 
-The **Repository Brain** is an intelligence system that manages, understands, and orchestrates the **core install set of 198 resources inside your project**, backed by the full **329-resource repository catalog**. It helps Claude automatically discover and use the right skills, MCPs, tools, and components for any task.
+The **Repository Brain** is an intelligence system that manages, understands, and orchestrates the **238 core resources inside your project**, backed by the full **360-resource repository catalog** (238 core + 122 supporting resources). It helps Claude automatically discover and use the right skills, MCPs, tools, and components for any task.
 
 ### Quick Setup
 
@@ -223,7 +226,7 @@ Claude reads those skill files and applies their methodologies
 - `graph_query_by_effect` - Find capabilities by effect (implements_auth, etc.)
 
 **Status:**
-- `brain_status` – Core resource status for your project (64 skills, 50 MCPs, 198 installed resources; 329 total resources available in the repository)
+- `brain_status` – Core resource status for your project (64 skills, 50 MCPs, 238 core resources; 360 total resources available in the repository)
 
 ### Using the Brain
 
@@ -422,8 +425,8 @@ Every core resource in this system is:
 - ✅ **Validated** on every commit (automated tests + CI/CD)
 - ✅ **Audited** with mandatory completeness checks
 
-**Current Core Resources (Project Install Set):**  
-64 skills, 50 MCP servers, 198 total installed resources – all fully registered and discoverable.
+**Current Core Resources:**  
+64 skills, 50 MCP servers, 238 total core resources – all fully registered and discoverable.
 
 ### ✅ Strong Skill-to-MCP Coverage (from latest simulation)
 
@@ -651,7 +654,7 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
   - Added MCP code execution best practices and implementation guides (PR #17, #18)
   - Branch cleanup automation tools and workflows (PR #16)
   - Registry synchronization and validation improvements (PR #15)
-  - Updated resource counts to match registry (64 skills, 50 MCPs, 198 total resources)
+  - Updated resource counts to match registry (64 skills, 50 MCPs, 238 total core resources)
   - Version consistency across all documentation
 - **3.0.1** (2025-11-05): Documentation and automation improvements for self-update workflow
 - **2.1.0** (2025-10-29): Validation & Orchestration Update
