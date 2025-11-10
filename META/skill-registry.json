@@ -1,7 +1,8 @@
 {
-  "version": "3.32.0",
-  "last_updated": "2025-11-08",
+  "version": "3.33.0",
+  "last_updated": "2025-11-10",
   "description": "Registry of all available skills in ai-dev-standards. Skills are model-invoked capabilities that Claude activates based on context. Now includes 64 active skills covering product development, AI systems, technical implementation, infrastructure, UX design, ADHD support, repository analysis, project management, data forensics, automated code review workflows, design automation, API integrations, customer support, growth experimentation, pricing strategy, product analytics, release management, usability testing, business model architecture, framework orchestration, requirements generation, quality assurance, security architecture, and orchestration meta-skills.",
+  "total_skills": 64,
   "skills": [
     {
       "name": "3d-visualizer",
@@ -1593,61 +1594,5 @@
         "all"
       ]
     }
-  ],
-  "categories": [
-    {
-      "id": "product-development",
-      "name": "Product Development",
-      "description": "Skills for product strategy, validation, and MVP building"
-    },
-    {
-      "id": "ai-native",
-      "name": "AI-Native Development",
-      "description": "Skills for building AI systems (RAG, agents, knowledge graphs)"
-    },
-    {
-      "id": "technical",
-      "name": "Technical Development",
-      "description": "Skills for API design, frontend development, and technical implementation"
-    },
-    {
-      "id": "infrastructure",
-      "name": "Infrastructure & DevOps",
-      "description": "Skills for deployment, performance, and operational excellence"
-    },
-    {
-      "id": "ux-design",
-      "name": "UX & Design",
-      "description": "Skills for user research, UX design, and usability"
-    },
-    {
-      "id": "adhd-support",
-      "name": "ADHD Support & Productivity",
-      "description": "Skills optimized for ADHD developers - task breakdown, context preservation, focus management, and workflow optimization"
-    }
-  ],
-  "difficulty_levels": [
-    {
-      "id": "beginner",
-      "name": "Beginner",
-      "description": "No prerequisites, suitable for anyone"
-    },
-    {
-      "id": "intermediate",
-      "name": "Intermediate",
-      "description": "Requires some domain knowledge or prerequisites"
-    },
-    {
-      "id": "advanced",
-      "name": "Advanced",
-      "description": "Requires significant experience and multiple prerequisites"
-    }
-  ],
-  "usage_notes": {
-    "searching": "Search by triggers, tags, category, or name to find relevant skills",
-    "activation": "Skills activate automatically based on context and description",
-    "explicit_request": "Can explicitly request: 'Use the [skill-name] skill to...'",
-    "prerequisites": "Check prerequisites before using advanced skills",
-    "status": "planned = not yet created, active = ready to use"
-  }
+  ]
 }

@@ -34,7 +34,7 @@ bash ~/ai-dev-standards/setup-project.sh
 ## What You Get
 
 ```
-✓ 64 Skills - Specialized methodologies
+✓ <!-- AUTO-GEN:START:skills -->64<!-- AUTO-GEN:END:skills --> Skills - Specialized methodologies
 ✓ 48 MCPs - Automation tools
 ✓ 9 Tools + 4 Scripts
 ✓ 13 Components
@@ -99,21 +99,20 @@ The analysis recommended focusing on [the priority tasks shown]."
 
 Claude will know exactly what to do.
 
-### Prefer Codex or Gemini?
+### Prefer Codex CLI?
 
-Run the dedicated setup scripts once per machine:
+Run the dedicated setup script once per machine:
 
 ```bash
 # Connect Codex CLI to the brain
 ./setup-codex-cli.sh
-
-# Or configure Gemini CLI
-./setup-gemini-cli.sh
 ```
 
-Each script adds `brain-mcp` to the respective CLI and populates `.codex/` or `.gemini/` with quick-start guides and configuration you can copy into your home directory.
+This adds `brain-mcp` to Codex CLI and populates `.codex/` with quick-start guides and configuration you can copy into your home directory.
 
-Want to confirm everything works later? Run `node scripts/tests/brain-mcp-smoke.cjs` to verify the Brain CLI can execute even on systems without `/bin/bash`.
+**Note:** Gemini CLI support is planned but not yet available.
+
+Want to confirm everything works? Run `node scripts/tests/brain-mcp-smoke.cjs` to verify the Brain CLI can execute even on systems without `/bin/bash`.
 
 ---
 
