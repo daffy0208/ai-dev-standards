@@ -6,27 +6,93 @@ Thank you for your interest in contributing! This document provides guidelines a
 
 ## 🎯 Quick Start
 
+**One-Command Setup:**
+
+```bash
+./scripts/setup-dev-environment.sh
+```
+
+This automatically:
+- Installs all dependencies
+- Sets up Git hooks for automation
+- Validates your environment
+- Runs initial generation
+- You're ready to contribute!
+
+**Manual Setup:**
+
 1. **Fork the repository**
 2. **Clone your fork**
    ```bash
    git clone https://github.com/YOUR_USERNAME/ai-dev-standards.git
    cd ai-dev-standards
    ```
-3. **Install dependencies**
+3. **Run setup script**
    ```bash
-   npm install
+   ./scripts/setup-dev-environment.sh
    ```
 4. **Create a branch**
    ```bash
    git checkout -b feat/your-feature-name
    ```
-5. **Make your changes**
-6. **Run tests**
-   ```bash
-   npm test
-   ```
-7. **Commit and push**
-8. **Create a Pull Request**
+5. **Make your changes** (documentation auto-updates on commit!)
+6. **Commit and push** (automation runs automatically)
+7. **Create a Pull Request**
+
+---
+
+## 🤖 Automation System
+
+**IMPORTANT:** This repository has full automation for documentation and registry maintenance.
+
+### What Gets Auto-Updated
+
+On every commit, the pre-commit hook automatically:
+
+1. **Regenerates registries** from directory structure
+   - Scans `SKILLS/`, `MCP-SERVERS/`, `TOOLS/`, etc.
+   - Updates all `META/*.json` files
+
+2. **Updates documentation** from registry data
+   - Updates counts in README.md, INSTALL.md, etc.
+   - Uses AUTO-GEN markers to identify sections
+   - Stages updated files to your commit
+
+3. **Validates everything** is in sync
+   - Checks registries match directories
+   - Checks documentation matches registries
+   - Runs linting and type checking
+
+### Key Rules
+
+✅ **DO:**
+- Add new skills to `SKILLS/` directory
+- Add new MCPs to `MCP-SERVERS/` directory
+- Let automation update documentation
+
+❌ **DON'T:**
+- Manually edit resource counts in documentation
+- Manually edit registry files in `META/`
+- Skip automation (except emergencies)
+
+**Result:** Documentation can NEVER drift - it's automatically maintained!
+
+### Manual Automation Commands
+
+```bash
+# Regenerate everything
+npm run generate:all
+
+# Just registries
+npm run generate:registries
+
+# Just documentation
+npm run generate:docs
+
+# Validate sync
+npm run validate:registries
+npm run validate:docs
+```
 
 ---
 

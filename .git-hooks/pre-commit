@@ -50,6 +50,23 @@ echo ""
 # Track overall status
 VALIDATION_FAILED=0
 
+# 0. Auto-generate registries and documentation
+echo -e "${GREEN}🔄 Auto-generating registries and documentation...${NC}"
+if npm run generate:all --silent; then
+    echo -e "${GREEN}✓ Auto-generation completed${NC}"
+    
+    # Stage updated files
+    git add META/*.json 2>/dev/null || true
+    git add README.md INSTALL.md INTEGRATION-USAGE.md STANDALONE-USAGE.md 2>/dev/null || true
+    git add FINAL-RESOURCE-COUNTS.md .claude/CLAUDE.md DOCS/INDEX.md 2>/dev/null || true
+    
+    echo -e "${GREEN}✓ Updated files staged${NC}"
+else
+    echo -e "${RED}✗ Auto-generation failed${NC}"
+    VALIDATION_FAILED=1
+fi
+echo ""
+
 # 1. Validate documentation consistency
 echo -e "${GREEN}📚 Validating documentation consistency...${NC}"
 if npm run validate:docs --silent; then
