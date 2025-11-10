@@ -81,8 +81,23 @@ grep -r "search term" .archive/
 cat .archive/audits/COMPREHENSIVE-AUDIT-REPORT.json
 
 # List all archived files
-find .archive -type f
+find .archive -type f -name "*.md"
+
+# Count archived files
+find .archive -type f | wc -l
 ```
+
+### Notable Historical Documents
+
+**For Understanding Evolution:**
+- `audits/COMPREHENSIVE-AUDIT-REPORT.json` - Complete repository assessment
+- `planning/MASTER-ROADMAP.md` - Original vision and goals
+- `legacy/DOCS-LEGACY/` - Superseded documentation versions
+
+**For Decision Context:**
+- `audits/GAP-ANALYSIS.md` - Feature gap identification
+- `planning/VALIDATION-SYSTEM-PROOF.md` - Validation system design
+- `sessions/` - Development session contexts
 
 ## Should I Add New Files Here?
 
@@ -92,12 +107,13 @@ find .archive -type f
 - Planning → Use GitHub Projects/Issues
 - Reports → Generate on-demand, don't commit
 
-## Related Changes
+## Related Documentation
 
-**Commit:** Repository cleanup - move 74 working documents to .archive
-**Date:** 2025-10-27
-**Version:** 1.0.1
+- [DOCUMENTATION-REVIEW-FINDINGS.md](../DOCUMENTATION-REVIEW-FINDINGS.md) - 2025 documentation audit
+- [CHANGELOG.md](../CHANGELOG.md) - Complete version history
+- [META/RESOURCE-TAXONOMY.md](../META/RESOURCE-TAXONOMY.md) - Resource counting methodology
 
 ---
 
-**Archived for posterity, cleaned for clarity** 📦
+**Archived for posterity, cleaned for clarity** 📦  
+**Last Updated:** 2025-11-10
