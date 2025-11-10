@@ -76,9 +76,10 @@ The tool automatically:
 - Exact roadmap for where to start
 - Skills that activate when you need them, not when you remember them
 
-**Codex & Gemini CLI Support:**
-- `./setup-codex-cli.sh` connects Codex CLI to brain-mcp and populates `.codex/`
-- `./setup-gemini-cli.sh` does the same for Gemini CLI via `.gemini/`
+**Supported CLI Tools:**
+- ✅ **Claude Code** - Native integration (recommended)
+- ✅ **Codex CLI** - Run `./setup-codex-cli.sh`
+- 🚧 **Gemini CLI** - Planned (see roadmap)
 
 ---
 
