@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "last_updated": "2025-10-28",
   "description": "Registry of reusable components in ai-dev-standards. Components are pre-built implementations for common patterns.",
-  "total_components": 74,
+  "total_components": 72,
   "components": [
     {
       "id": "simple-task-agent",
@@ -2178,7 +2178,7 @@
   },
   "critical_missing_categories": [],
   "statistics": {
-    "total_components": 74,
+    "total_components": 72,
     "by_category": {
       "agents": 1,
       "auth": 4,
