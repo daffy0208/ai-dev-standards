@@ -22,6 +22,8 @@
     "generate:all": "npm run generate:registries && npm run generate:docs",
     "validate:registries": "tsx scripts/validate-registries.ts",
     "validate:docs": "tsx scripts/validate-docs.ts",
+    "mcp:render": "tsx scripts/render-mcp-settings.ts",
+    "mcp:validate": "tsx scripts/validate-mcp-settings.ts",
     "update-registry": "node scripts/update-registry.js",
     "validate": "node scripts/validate-all.cjs && node scripts/validate-docs-consistency.cjs",
     "validate:fix": "node scripts/sync-skill-registry.cjs && node scripts/sync-mcp-registry.cjs && node scripts/sync-playbook-registry.cjs && node scripts/sync-standard-registry.cjs && node scripts/sync-template-registry.cjs && node scripts/sync-schema-registry.cjs && node scripts/sync-util-registry.cjs && node scripts/sync-example-registry.cjs && node scripts/sync-installer-registry.cjs && node scripts/sync-docs-registry.cjs && node scripts/map-tier2-relationships.cjs && node scripts/update-all-files-complete.cjs",

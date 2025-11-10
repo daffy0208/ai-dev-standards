@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "brain-mcp": {
+      "command": "node",
+      "args": [
+        "{{AI_DEV_ROOT}}/MCP-SERVERS/brain-mcp/dist/index.js"
+      ],
+      "env": {
+        "AI_DEV_STANDARDS_ROOT": "{{AI_DEV_ROOT}}"
+      }
+    }
+  }
+}
