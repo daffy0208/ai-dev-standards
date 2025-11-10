@@ -16,10 +16,10 @@
 
 Think of this as a **shared brain** between you and Claude:
 
-- **64 Specialized Skills** – Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, design systems, and more) **🆕 Now with auto-activation!**
-- **50 MCP Servers** – Executable development tools including brain-mcp for intelligent orchestration (strong skill coverage and actionability)
+- **<!-- AUTO-GEN:START:skills -->64<!-- AUTO-GEN:END:skills --> Specialized Skills** – Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, design systems, and more) **🆕 Now with auto-activation!**
+- **<!-- AUTO-GEN:START:mcps -->50<!-- AUTO-GEN:END:mcps --> MCP Servers** – Executable development tools including brain-mcp for intelligent orchestration (strong skill coverage and actionability)
 - **4 Core Tools (Project Install Set)** – Essential development utilities and automation scripts that are synced into your projects
-- **75 Reusable Components** – React components for common patterns (auth, forms, errors, feedback, media, layouts, advanced UI)
+- **<!-- AUTO-GEN:START:components -->72<!-- AUTO-GEN:END:components --> Reusable Components** – React components for common patterns (auth, forms, errors, feedback, media, layouts, advanced UI)
 - **5 Service Integrations (Project Install Set)** – Pre-configured connections to OpenAI, Supabase, Stripe/Resend/analytics and other essential services
 - **Architecture Patterns** – Proven approaches for complex systems (RAG, multi-agent, knowledge graphs, design systems)
 - **Best Practices** – Security, performance, accessibility, and quality standards
@@ -28,7 +28,7 @@ Think of this as a **shared brain** between you and Claude:
 - **🆕 Skill Auto-Activation** – Skills activate automatically based on your prompts and file context (no more remembering skill names!)
 
 **Project Install Set (what gets synced into your repo):**  
-**198 resources** (64 skills + 50 MCPs + 4 tools + 75 components + 5 integrations)
+**<!-- AUTO-GEN:START:total-resources -->238<!-- AUTO-GEN:END:total-resources --> resources** (64 skills + 50 MCPs + 4 tools + 75 components + 5 integrations)
 
 **Repository Inventory (complete catalog, for AI discovery):**  
 **329 resources** (Tier 1: 238 executable/core resources • Tier 2: 91 supporting resources like docs, templates, playbooks, standards, schemas, utilities, examples)

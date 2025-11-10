@@ -34,7 +34,7 @@ bash ~/ai-dev-standards/setup-project.sh
 ## What You Get
 
 ```
-✓ 64 Skills - Specialized methodologies
+✓ <!-- AUTO-GEN:START:skills -->64<!-- AUTO-GEN:END:skills --> Skills - Specialized methodologies
 ✓ 48 MCPs - Automation tools
 ✓ 9 Tools + 4 Scripts
 ✓ 13 Components
