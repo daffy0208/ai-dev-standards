@@ -12,7 +12,7 @@ In standalone mode, you use ai-dev-standards as a **reference library** and **kn
 
 - Browse 64 specialized skills for methodologies and best practices
 - Explore 50 MCP servers for automation ideas
-- Reference 75 components for implementation patterns
+- Reference 72 components for implementation patterns
 - Use the brain CLI to discover relevant resources
 - Manually copy/adapt resources into your projects
 
@@ -387,7 +387,7 @@ Automation tools for:
 - Quality (performance profiling, security scanning, code quality)
 - Design (wireframes, design tokens, asset optimization)
 
-### 75 Components
+### 72 Components
 
 React components for:
 - Authentication and authorization
@@ -397,14 +397,18 @@ React components for:
 - Layouts and navigation
 - Advanced UI patterns
 
-### 5 Service Integrations
+### 28 Service Integrations
 
 Pre-configured connections to:
 - OpenAI (AI/ML services)
 - Supabase (database and auth)
 - Stripe (payments)
-- Resend (email)
-- Analytics services
+- Authentication services
+- Analytics and monitoring
+
+### 24 Tools
+
+Development utilities and automation scripts.
 
 ---
 

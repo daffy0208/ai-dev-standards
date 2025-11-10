@@ -21,7 +21,7 @@ In integration mode, ai-dev-standards becomes part of your project:
 - Want AI assistants to automatically use best practices
 - Need automatic updates when standards evolve
 - Building new features and want guided workflows
-- Want the full power of 198 resources at your fingertips
+- Want the full power of 238 core resources at your fingertips
 
 ---
 
@@ -37,7 +37,7 @@ bash ~/ai-dev-standards/setup-project.sh
 **That's it!** The script automatically:
 1. Detects your project type (Next.js, React, Node.js, etc.)
 2. Installs the ai-dev CLI globally
-3. Syncs all 198 resources
+3. Syncs all 238 core resources
 4. Configures brain-mcp for intelligent orchestration
 5. Analyzes your project and provides recommendations
 6. Sets up auto-sync via git hooks
@@ -214,7 +214,7 @@ AI assistants can invoke these tools automatically:
 - `graph_query_by_effect` - Find capabilities by effect (implements_auth, etc.)
 
 **Status:**
-- `brain_status` - Repository status (64 skills, 50 MCPs, 198 resources)
+- `brain_status` - Repository status (64 skills, 50 MCPs, 238 core resources)
 
 ### Using with Claude
 
@@ -593,8 +593,10 @@ cat > AI-DEV-STANDARDS-SETUP.md << 'EOF'
 ## Resources Installed
 - Skills: 64
 - MCPs: 50
-- Components: 75
-- Total: 198
+- Components: 72
+- Integrations: 28
+- Tools: 24
+- Total: 238 core resources
 
 ## Team Guidelines
 [Add your team's specific guidelines here]
@@ -621,7 +623,7 @@ EOF
 
 ---
 
-## 📊 What You Get (198 Total Resources)
+## 📊 What You Get (238 Core Resources)
 
 ### 64 Specialized Skills
 Methodologies covering product development, AI development, technical development, infrastructure, and UX/design.
@@ -629,13 +631,13 @@ Methodologies covering product development, AI development, technical developmen
 ### 50 MCP Servers
 Automation tools for AI/ML, product management, engineering, quality, and design.
 
-### 75 Components
+### 72 Components
 React components for auth, forms, errors, feedback, media, layouts, and advanced UI.
 
-### 5 Service Integrations
-Pre-configured connections to OpenAI, Supabase, Stripe, Resend, and analytics.
+### 28 Service Integrations
+Pre-configured connections to OpenAI, Supabase, Stripe, and other essential services.
 
-### 4 Essential Tools
+### 24 Essential Tools
 Development utilities and automation scripts.
 
 ---
