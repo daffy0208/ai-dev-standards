@@ -1,0 +1,119 @@
+name: Validate Documentation Sync
+
+on:
+  push:
+    branches: [ main, develop, 'feat/**', 'fix/**', 'chore/**' ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  validate-sync:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Generate registries from directories
+        run: npm run generate:registries
+      
+      - name: Generate documentation from registries
+        run: npm run generate:docs
+      
+      - name: Check for uncommitted changes
+        run: |
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "❌ ERROR: Documentation is out of sync!"
+            echo ""
+            echo "Files need updating:"
+            git status --porcelain
+            echo ""
+            echo "The following files have changes:"
+            git diff --stat
+            echo ""
+            echo "To fix locally:"
+            echo "  npm run generate:all"
+            echo "  git add ."
+            echo "  git commit --amend --no-edit"
+            echo "  git push --force-with-lease"
+            echo ""
+            echo "Detailed diff:"
+            git diff
+            exit 1
+          fi
+          echo "✅ Documentation is in sync"
+      
+      - name: Validate registries
+        run: npm run validate:registries
+      
+      - name: Validate documentation
+        run: npm run validate:docs
+
+  test-generators:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Test registry generator
+        run: |
+          echo "Testing registry generation..."
+          npm run generate:registries
+          
+          # Verify files were created
+          test -f META/skill-registry.json || { echo "skill-registry.json not generated"; exit 1; }
+          test -f META/mcp-registry.json || { echo "mcp-registry.json not generated"; exit 1; }
+          
+          echo "✅ Registry generator works"
+      
+      - name: Test documentation generator
+        run: |
+          echo "Testing documentation generation..."
+          npm run generate:docs
+          
+          echo "✅ Documentation generator works"
+      
+      - name: Test idempotency
+        run: |
+          echo "Testing that generation is idempotent..."
+          
+          # Generate once
+          npm run generate:all
+          
+          # Commit any changes
+          git add -A
+          git config user.name "CI Test"
+          git config user.email "ci@test.com"
+          git diff --staged --quiet || git commit -m "First generation"
+          
+          # Generate again
+          npm run generate:all
+          
+          # Should have no changes
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "❌ ERROR: Generation is not idempotent!"
+            git status --porcelain
+            git diff
+            exit 1
+          fi
+          
+          echo "✅ Generation is idempotent"
