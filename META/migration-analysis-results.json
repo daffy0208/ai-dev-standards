@@ -1,0 +1,104 @@
+{
+  "timestamp": "2025-11-14T17:46:50.914Z",
+  "total_mcps": 50,
+  "current_tier_1": [
+    "agent-orchestrator-mcp",
+    "deployment-orchestrator-mcp",
+    "market-analyzer-mcp",
+    "semantic-search-mcp",
+    "user-insight-analyzer-mcp"
+  ],
+  "proposed_tier_1": [
+    "3d-asset-manager-mcp",
+    "accessibility-checker-mcp",
+    "agent-orchestrator-mcp",
+    "animation-library-mcp",
+    "api-validator-mcp"
+  ],
+  "proposed_tier_2": [
+    "asset-library-mcp",
+    "asset-optimizer-mcp",
+    "audio-processor-mcp",
+    "brain-mcp",
+    "chart-builder-mcp"
+  ],
+  "pilot_recommendation": "3d-asset-manager-mcp",
+  "top_10": [
+    {
+      "id": "3d-asset-manager-mcp",
+      "score": 3.0000000000000004,
+      "complexity": 3,
+      "tools": 2,
+      "tokens": 2000
+    },
+    {
+      "id": "accessibility-checker-mcp",
+      "score": 3.0000000000000004,
+      "complexity": 3,
+      "tools": 2,
+      "tokens": 2000
+    },
+    {
+      "id": "agent-orchestrator-mcp",
+      "score": 3.0000000000000004,
+      "complexity": 3,
+      "tools": 2,
+      "tokens": 2000
+    },
+    {
+      "id": "animation-library-mcp",
+      "score": 3.0000000000000004,
+      "complexity": 3,
+      "tools": 2,
+      "tokens": 2000
+    },
+    {
+      "id": "api-validator-mcp",
+      "score": 3.0000000000000004,
+      "complexity": 3,
+      "tools": 2,
+      "tokens": 2000
+    },
+    {
+      "id": "asset-library-mcp",
+      "score": 3.0000000000000004,
+      "complexity": 3,
+      "tools": 2,
+      "tokens": 2000
+    },
+    {
+      "id": "asset-optimizer-mcp",
+      "score": 3.0000000000000004,
+      "complexity": 3,
+      "tools": 2,
+      "tokens": 2000
+    },
+    {
+      "id": "audio-processor-mcp",
+      "score": 3.0000000000000004,
+      "complexity": 3,
+      "tools": 2,
+      "tokens": 2000
+    },
+    {
+      "id": "brain-mcp",
+      "score": 3.0000000000000004,
+      "complexity": 3,
+      "tools": 2,
+      "tokens": 2000
+    },
+    {
+      "id": "chart-builder-mcp",
+      "score": 3.0000000000000004,
+      "complexity": 3,
+      "tools": 2,
+      "tokens": 2000
+    }
+  ],
+  "findings": {
+    "high_complexity_count": 0,
+    "high_tools_count": 0,
+    "high_tokens_count": 0,
+    "improvement_percentage": 0
+  }
+}

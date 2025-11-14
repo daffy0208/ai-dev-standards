@@ -12,38 +12,74 @@ const { sanitizeName, validateIdentifier } = require('../utils/validation')
  */
 class McpGenerator {
   async generate(config) {
-    const { name, template = 'custom', description = '', features = ['tools'] } = config
+    const { name, template = 'custom', description = '', features = ['tools'], pattern = 'direct' } = config
 
     // Validate and sanitize MCP name (SECURITY: prevent path traversal)
     // Note: MCP names are used as directory names, not JS identifiers
     // So we only need sanitizeName, not validateIdentifier
     const sanitizedName = sanitizeName(name, 'MCP server')
 
+    // Validate pattern
+    if (!['direct', 'code-execution'].includes(pattern)) {
+      throw new Error(`Invalid pattern: ${pattern}. Must be 'direct' or 'code-execution'`)
+    }
+
     const files = []
 
-    // index.js - Main server implementation
-    files.push({
-      path: `MCP-SERVERS/${sanitizedName}-mcp/index.js`,
-      content: await this.formatCode(this.generateServerCode(sanitizedName, description, features))
-    })
+    // Generate based on pattern
+    if (pattern === 'direct') {
+      // Direct MCP: Traditional structure
+      files.push({
+        path: `MCP-SERVERS/${sanitizedName}-mcp/index.js`,
+        content: await this.formatCode(this.generateServerCode(sanitizedName, description, features))
+      })
 
-    // package.json
-    files.push({
-      path: `MCP-SERVERS/${sanitizedName}-mcp/package.json`,
-      content: this.generatePackageJson(sanitizedName, description)
-    })
+      files.push({
+        path: `MCP-SERVERS/${sanitizedName}-mcp/package.json`,
+        content: this.generatePackageJson(sanitizedName, description)
+      })
 
-    // README.md
-    files.push({
-      path: `MCP-SERVERS/${sanitizedName}-mcp/README.md`,
-      content: this.generateReadme(sanitizedName, description, features)
-    })
+      files.push({
+        path: `MCP-SERVERS/${sanitizedName}-mcp/README.md`,
+        content: this.generateReadme(sanitizedName, description, features, pattern)
+      })
 
-    // .env.example
-    files.push({
-      path: `MCP-SERVERS/${sanitizedName}-mcp/.env.example`,
-      content: this.generateEnvExample(sanitizedName)
-    })
+      files.push({
+        path: `MCP-SERVERS/${sanitizedName}-mcp/.env.example`,
+        content: this.generateEnvExample(sanitizedName)
+      })
+    } else {
+      // Code Execution: Advanced structure with /servers/ and /skills/
+      files.push({
+        path: `MCP-SERVERS/${sanitizedName}-mcp/servers/${sanitizedName}/README.md`,
+        content: this.generateCodeExecutionReadme(sanitizedName, description, features)
+      })
+
+      files.push({
+        path: `MCP-SERVERS/${sanitizedName}-mcp/servers/${sanitizedName}/tool_list.txt`,
+        content: this.generateToolList(sanitizedName, features)
+      })
+
+      files.push({
+        path: `MCP-SERVERS/${sanitizedName}-mcp/servers/${sanitizedName}/tools/example_tool.py`,
+        content: this.generateToolFile(sanitizedName, 'example_tool')
+      })
+
+      files.push({
+        path: `MCP-SERVERS/${sanitizedName}-mcp/skills/.gitkeep`,
+        content: '# Skills directory for persistent skill files\n'
+      })
+
+      files.push({
+        path: `MCP-SERVERS/${sanitizedName}-mcp/README.md`,
+        content: this.generateReadme(sanitizedName, description, features, pattern)
+      })
+
+      files.push({
+        path: `MCP-SERVERS/${sanitizedName}-mcp/.env.example`,
+        content: this.generateEnvExample(sanitizedName)
+      })
+    }
 
     return files
   }
@@ -156,7 +192,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
  * Implement your tool logic
  */
 async function perform${name.charAt(0).toUpperCase() + name.slice(1)}Action(input) {
-  // TODO: Implement your logic here
+  // IMPLEMENTATION NOTE: Replace with real business logic for this MCP action
   return {
     success: true,
     result: \`Processed: \${input}\`
@@ -203,7 +239,7 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
 })
 
 async function get${name.charAt(0).toUpperCase() + name.slice(1)}Data() {
-  // TODO: Implement your data fetching logic
+  // IMPLEMENTATION NOTE: Replace with real data fetching logic
   return {
     items: [],
     total: 0
@@ -306,30 +342,36 @@ main().catch((error) => {
   /**
    * Generate README
    */
-  generateReadme(name, description, features) {
+  generateReadme(name, description, features, pattern = 'direct') {
+    const patternInfo = pattern === 'code-execution'
+      ? `\n**Pattern:** Code Execution (Advanced)\n**Progressive Discovery:** Enabled\n**Skills Support:** Yes\n`
+      : `\n**Pattern:** Direct MCP (Traditional)\n`
+
     return `# ${name.charAt(0).toUpperCase() + name.slice(1)} MCP Server
 
 ${description}
-
+${patternInfo}
 ## What This MCP Does
 
 ${features.includes('tools') ? '- 🛠️ Provides tools for ' + name + ' operations' : ''}
 ${features.includes('resources') ? '- 📦 Exposes ' + name + ' resources' : ''}
 ${features.includes('prompts') ? '- 💬 Includes prompt templates' : ''}
+${pattern === 'code-execution' ? '- 🔄 Progressive discovery with tool file navigation' : ''}
+${pattern === 'code-execution' ? '- 💾 Persistent skill library support' : ''}
 
 ## Installation
 
 \`\`\`bash
 # Install dependencies
 cd MCP-SERVERS/${name}-mcp
-npm install
+${pattern === 'direct' ? 'npm install' : '# Code Execution pattern uses tool files - no npm install needed'}
 \`\`\`
 
 ## Setup
 
 Add to your Claude Code MCP settings:
 
-\`\`\`json
+${pattern === 'direct' ? `\`\`\`json
 {
   "mcpServers": {
     "${name}": {
@@ -341,7 +383,19 @@ Add to your Claude Code MCP settings:
     }
   }
 }
-\`\`\`
+\`\`\`` : `\`\`\`json
+{
+  "mcpServers": {
+    "${name}": {
+      "command": "mcp-code-execution",
+      "args": ["--servers-path", "${process.cwd()}/MCP-SERVERS/${name}-mcp/servers"],
+      "env": {
+        "SKILLS_PATH": "${process.cwd()}/MCP-SERVERS/${name}-mcp/skills"
+      }
+    }
+  }
+}
+\`\`\``}
 
 ## Usage
 
@@ -414,6 +468,119 @@ MIT
 # Example:
 # API_KEY=your-api-key-here
 # API_URL=https://api.example.com
+`
+  }
+
+  /**
+   * Generate Code Execution pattern README
+   */
+  generateCodeExecutionReadme(name, description, features) {
+    return `# ${name.charAt(0).toUpperCase() + name.slice(1)} Server
+
+${description}
+
+## Pattern: Code Execution (Advanced)
+
+This server uses the Code Execution pattern with progressive discovery.
+
+## Features
+
+- **Progressive Discovery**: Tools are discovered on-demand through file navigation
+- **Skill Library**: Reusable code artifacts persist across sessions
+- **Token Efficiency**: Only load tool definitions when needed
+- **IPython Integration**: Tools execute in sandboxed Python environment
+
+## Directory Structure
+
+\`\`\`
+${name}-mcp/
+├── servers/${name}/
+│   ├── README.md           # This file
+│   ├── tool_list.txt       # List of available tools
+│   └── tools/              # Tool implementations
+│       └── example_tool.py
+└── skills/                 # Persistent skill library
+\`\`\`
+
+## Available Tools
+
+See \`tool_list.txt\` for the complete list of available tools.
+
+## Usage
+
+1. Agent reads \`README.md\` to understand the server
+2. Agent reads \`tool_list.txt\` to see available tools
+3. Agent reads specific tool files from \`tools/\` as needed
+4. Agent generates skills that persist in \`skills/\`
+
+## Adding New Tools
+
+1. Create a new Python file in \`tools/\`
+2. Add the tool name to \`tool_list.txt\`
+3. Document the tool in this README
+
+## Security
+
+- Tools execute in sandboxed environment
+- PII is automatically tokenized
+- Skills are stored in isolated directory
+`
+  }
+
+  /**
+   * Generate tool list file
+   */
+  generateToolList(name, features) {
+    return `# Available Tools for ${name.charAt(0).toUpperCase() + name.slice(1)}
+
+## Core Tools
+
+- example_tool: Example tool demonstrating the pattern
+
+## Instructions
+
+Add new tools to this list as you implement them.
+Each line should contain:
+- tool_name: Brief description
+`
+  }
+
+  /**
+   * Generate tool file (Python)
+   */
+  generateToolFile(serverName, toolName) {
+    return `"""
+${toolName} Tool
+
+Example tool implementation for ${serverName} server.
+"""
+
+def ${toolName}(input_data: str, options: dict = None) -> dict:
+    """
+    Execute the ${toolName} operation.
+
+    Args:
+        input_data: Input data for the tool
+        options: Optional parameters
+
+    Returns:
+        dict: Result of the operation
+    """
+    # IMPLEMENTATION NOTE: Replace with actual tool logic
+
+    result = {
+        "success": True,
+        "result": f"Processed: {input_data}",
+        "tool": "${toolName}"
+    }
+
+    return result
+
+
+# Example usage
+if __name__ == "__main__":
+    test_result = ${toolName}("test input", {"verbose": True})
+    print(test_result)
 `
   }
 

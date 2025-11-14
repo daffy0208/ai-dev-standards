@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "layers": {
+    "sandbox": {
+      "enabled": false,
+      "type": "docker",
+      "config": {
+        "memory_limit": "512m",
+        "cpu_limit": "1.0",
+        "network": "none",
+        "readonly_root": true
+      }
+    },
+    "pii_tokenization": {
+      "enabled": false,
+      "patterns": [
+        "email",
+        "phone",
+        "ssn",
+        "credit_card"
+      ],
+      "log_detections": true
+    },
+    "access_control": {
+      "enabled": false,
+      "type": "rbac",
+      "default_level": "authenticated"
+    },
+    "monitoring": {
+      "enabled": false,
+      "log_all_executions": true,
+      "alert_on_errors": true
+    }
+  }
+}

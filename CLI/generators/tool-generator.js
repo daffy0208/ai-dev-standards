@@ -109,7 +109,7 @@ export class ${className}Tool extends Tool {
    * Execute the tool logic
    */
   private async execute(input: string, options?: any): Promise<any> {
-    // TODO: Implement your tool logic here
+    // IMPLEMENTATION NOTE: Customize the default tool logic for your use case
 
     return {
       success: true,
@@ -158,7 +158,7 @@ class ${className}Tool(BaseTool):
 
     def execute(self, input: str, options: dict) -> dict:
         """Execute the tool logic."""
-        # TODO: Implement your tool logic here
+        # IMPLEMENTATION NOTE: Customize the default tool logic for your use case
 
         return {
             "success": True,
@@ -227,7 +227,7 @@ export class ${className}Tool {
    * Process the input
    */
   private async process(input: string, options?: any): Promise<any> {
-    // TODO: Implement your tool logic here
+    // IMPLEMENTATION NOTE: Customize the default tool logic for your use case
 
     return {
       processed: input,

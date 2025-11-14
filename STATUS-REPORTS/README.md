@@ -22,6 +22,9 @@ Status reports document the repository's state at specific moments in time. They
 ### Historical Reports (Moved Here from Root)
 These reports have been moved from the root directory to reduce clutter while preserving historical information.
 
+### Archived Reports
+- See `.archive/status-reports/` for snapshots that predate the 3.x refresh (for example `REPOSITORY-STATUS-REPORT.md` and `FINAL-RESOURCE-COUNTS.md`). These documents are retained for historical context but are no longer authoritative.
+
 ---
 
 ## 🔗 Related Documentation

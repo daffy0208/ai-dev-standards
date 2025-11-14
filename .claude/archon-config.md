@@ -78,7 +78,9 @@ mcp__archon__find_projects({ project_id: "d1376a0f-5584-4570-ac1b-0f981ecd3629" 
 **AI-Dev-Standards ONLY:**
 - ID: `81cd7f96-b5c8-4be9-9107-9e2736984636`
 - Status: Active
-- Phase: 4 (Repository Audit & Remediation)
+- Phase: 4 (Repository Audit & Remediation - In Progress)
+- Current Version: 1.7.0
+- Resources: 64 skills, 50 MCPs, 238 core resources (360 total)
 
 **Other Projects (DO NOT QUERY):**
 - SI Systems: `d1376a0f-5584-4570-ac1b-0f981ecd3629` ❌ IGNORE

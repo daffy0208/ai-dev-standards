@@ -1,0 +1,17 @@
+# Available Tools for Semantic-search
+
+## Core Tools
+
+- vector_embed: Convert text into vector embeddings (supports sentence-transformers, openai, cohere)
+- similarity_search: Find similar documents using cosine similarity and other metrics
+- index_documents: Index documents for semantic search with embeddings and metadata
+
+## Example Tools
+
+- example_tool: Example tool demonstrating the pattern
+
+## Instructions
+
+Each tool is a Python file in the tools/ directory.
+Add new tools to this list as you implement them.
+Format: tool_name: Brief description

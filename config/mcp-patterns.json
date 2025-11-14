@@ -1,0 +1,59 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-11-14",
+  "default_pattern": "code-execution",
+  "auto_select_enabled": false,
+  "brain_orchestrator": {
+    "enabled": true,
+    "complexity_threshold": 7,
+    "tools_threshold": 5,
+    "data_size_threshold_kb": 10
+  },
+  "patterns": {
+    "direct": {
+      "enabled": true,
+      "description": "Traditional MCP pattern - all tools loaded upfront"
+    },
+    "code-execution": {
+      "enabled": true,
+      "description": "Advanced pattern with progressive discovery",
+      "config": {
+        "servers_path": "/MCP-SERVERS",
+        "skills_path": "/home/david/projects/ai-dev-standards/skills",
+        "sandbox": {
+          "type": "docker",
+          "memory": "512m",
+          "cpus": "1.0",
+          "network": "none"
+        },
+        "security": {
+          "layers_enabled": [
+            "sandbox"
+          ],
+          "pii_tokenization": false,
+          "access_control": false,
+          "monitoring": false
+        }
+      }
+    }
+  },
+  "implementation": {
+    "strategy": "code-execution-from-start",
+    "pilot_mcp": "semantic-search-mcp",
+    "priority_candidates": [
+      "semantic-search-mcp",
+      "vector-database-mcp",
+      "api-validator-mcp",
+      "deployment-orchestrator-mcp",
+      "brain-mcp"
+    ],
+    "expected_timeline_months": "6-12",
+    "infrastructure_status": {
+      "docker_sandbox": "ready",
+      "skills_storage": "ready",
+      "ipython_environment": "ready",
+      "configuration": "enabled"
+    },
+    "notes": "All 50 MCPs are placeholders - implementing with Code Execution pattern from start (no migration needed)"
+  }
+}

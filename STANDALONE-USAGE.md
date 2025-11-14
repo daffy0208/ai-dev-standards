@@ -62,21 +62,26 @@ cd ../..
 
 ```
 ai-dev-standards/
-├── SKILLS/                         # 64 specialized methodologies
+├── SKILLS/                         # <!-- AUTO-GEN:START:skills -->64<!-- AUTO-GEN:END:skills --> specialized methodologies
 │   ├── mvp-builder/                # MVP development patterns
 │   ├── rag-implementer/            # RAG implementation guide
 │   ├── api-designer/               # API design principles
 │   └── [61 more skills...]
 │
-├── MCP-SERVERS/                    # 50 automation tools
+├── MCP-SERVERS/                    # <!-- AUTO-GEN:START:mcps -->50<!-- AUTO-GEN:END:mcps --> automation tools
 │   ├── brain-mcp/                  # Intelligent orchestration
 │   ├── feature-prioritizer/        # Feature prioritization
 │   └── [48 more MCPs...]
 │
-├── COMPONENTS/                     # 75 React components
+├── COMPONENTS/                     # <!-- AUTO-GEN:START:components -->72<!-- AUTO-GEN:END:components --> React components
 │   ├── auth/                       # Authentication components
 │   ├── forms/                      # Form components
 │   └── [more categories...]
+│
+├── INTEGRATIONS/                   # <!-- AUTO-GEN:START:integrations -->28<!-- AUTO-GEN:END:integrations --> service integrations
+│   ├── openai/                     # AI service providers
+│   ├── supabase/                   # Database & auth
+│   └── [more providers...]
 │
 ├── STANDARDS/                      # Architecture patterns & best practices
 │   ├── architecture-patterns/      # System design patterns

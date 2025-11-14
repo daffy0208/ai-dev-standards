@@ -1,7 +1,7 @@
 # Resource Guide
 
-**Last Updated:** 2025-10-22
-**Version:** 1.1.0
+**Last Updated:** 2025-11-12
+**Version:** 1.7.0
 **Status:** ✅ 100% Discoverable
 
 ---
@@ -18,21 +18,25 @@ Quick reference for all ai-dev-standards resources. Everything listed here is re
 
 | Category | Count | Purpose | Auto-Update |
 |----------|-------|---------|-------------|
-| **Skills** | 36 | AI methodologies (HOW to build) | ✅ Yes |
-| **MCPs** | 3 | Tools (DO things) | ✅ Yes |
-| **Components** | 9 | Reusable code patterns | 📦 On-request |
-| **Integrations** | 4+ | Third-party service connectors | 📦 On-request |
-| **Standards** | 14 | Architecture patterns & best practices | ✅ Yes |
-| **Playbooks** | 7 | Step-by-step procedures | ✅ Yes |
-| **Utils** | 5 | Utility functions | 📦 On-request |
-| **Tools** | 4+ | Development tools | 📦 On-request |
-| **Examples** | 2+ | Sample code | 📦 On-request |
-| **Templates** | 10+ | Project starters | 📦 On-request |
-| **Schemas** | 2 | Data validation schemas | ✅ Yes |
+| **Skills** | 64 | AI methodologies (HOW to build) | ✅ Yes |
+| **MCPs** | 50 | Tools (DO things) | ✅ Yes |
+| **Components** | 72 | Reusable code patterns | 📦 On-request |
+| **Integrations** | 28 | Third-party service connectors | 📦 On-request |
+| **Tools** | 24 | Development tools | ✅ Yes |
+| **Standards** | 20 | Architecture patterns & best practices | ✅ Yes |
+| **Playbooks** | 14 | Step-by-step procedures | ✅ Yes |
+| **Templates** | 19 | Project starters | 📦 On-request |
+| **Utils** | 8 | Utility functions | 📦 On-request |
+| **Schemas** | 4 | Data validation schemas | ✅ Yes |
+| **Examples** | 3 | Sample code | 📦 On-request |
 | **Installers** | 3 | Setup automation scripts | ✅ Yes |
-| **Scripts** | 3 | Build/maintenance scripts | ✅ Yes |
+| **Scripts** | Various | Build/maintenance scripts | ✅ Yes |
 
-**Total:** 100+ resources across 13 categories
+**Core Resources (Tier 1):** 238 resources (64 skills + 50 MCPs + 24 tools + 72 components + 28 integrations)
+
+**Supporting Resources (Tier 2):** 122 resources (14 playbooks + 20 standards + 19 templates + 4 schemas + 8 utilities + 3 examples + 3 installers + 24 docs)
+
+**Total:** 360 resources across all categories
 
 ---
 
@@ -48,11 +52,17 @@ Quick reference for all ai-dev-standards resources. Everything listed here is re
 [See complete skill list in META/registry.json]
 
 ### MCPs (Tools)
-1. **accessibility-checker** — WCAG compliance checking
-2. **component-generator** — React component generation with tests
-3. **screenshot-testing** — Visual regression testing
+**50 total MCP servers** providing executable development tools including:
+- **brain-mcp** — Intelligent skill discovery and orchestration
+- **accessibility-checker-mcp** — WCAG compliance checking
+- **component-generator-mcp** — React component generation with tests
+- **screenshot-testing-mcp** — Visual regression testing
+- **knowledge-base-mcp** — Knowledge base management (CRUD, versioning, validation)
+- **graph-database-mcp** — Neo4j operations and Cypher queries
+- **vector-database-mcp** — Vector database operations (Pinecone, Weaviate, Chroma)
+- And 43 more specialized servers covering API design, security, performance, testing, deployment, and more
 
-**⚠️ Gap:** ---14 more MCPs needed to match skill count. See BUILD_FOCUS.md for roadmap.
+**Coverage:** 55 of 64 skills (85.9%) have MCP support with 119 skill-to-MCP relationships
 
 ### Key Standards
 - **rag-pattern.md** — RAG architecture

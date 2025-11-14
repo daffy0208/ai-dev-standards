@@ -2,6 +2,20 @@
 
 **Making the brain accessible to Claude Code in any project**
 
+---
+
+> **📚 Enhanced! MCP Pattern Selection**
+>
+> The Brain MCP now supports automatic pattern selection between Direct MCP and Code Execution:
+>
+> - **[Brain Orchestrator Integration](./mcp-patterns/09-brain-orchestrator-mcp-integration.md)** - Automatic pattern selection
+> - **[Decision Framework](./mcp-patterns/01-mcp-decision-framework.md)** - Pattern decision criteria
+> - **[Implementation Roadmap](./mcp-patterns/10-mcp-implementation-roadmap.md)** - Enhancement plan (Phase 3)
+>
+> **↓ This guide: Brain MCP setup and tool usage**
+
+---
+
 ## Problem Solved
 
 Previously, the ai-dev-standards brain was only accessible via CLI in the ai-dev-standards repository. When working in other projects, Claude Code couldn't:

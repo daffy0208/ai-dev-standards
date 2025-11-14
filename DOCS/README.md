@@ -1,6 +1,6 @@
 # Documentation Index
 
-**AI Development Standards v1.1.0** | **Last Updated:** 2025-10-22
+**AI Development Standards v3.0.3** | **Last Updated:** 2025-11-09
 
 Complete documentation for the ai-dev-standards repository with automated quality validation and cost efficiency guardrails.
 
@@ -21,7 +21,7 @@ Complete documentation for the ai-dev-standards repository with automated qualit
 
 ### For Developers
 - **[README.md](../README.md)** - Main repository documentation
-- **[Resource Index](RESOURCE-INDEX.md)** - Complete inventory of all resources (36 skills, 3 MCPs, 7 playbooks)
+- **[Resource Guide](RESOURCE-GUIDE.md)** - Complete inventory of all 360 resources (64 skills, 50 MCPs, 24 tools, 72 components, 28 integrations)
 - **[Decision Framework](../META/DECISION-FRAMEWORK.md)** - Technology decisions with validation-first approach
 - **[System Overview](SYSTEM-OVERVIEW.md)** - Architecture and system design
 

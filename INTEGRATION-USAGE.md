@@ -185,13 +185,13 @@ bash ~/ai-dev-standards/setup-project.sh
 ### What Gets Updated
 
 The sync updates:
-- **Skills** (SKILLS/) - 64 specialized methodologies
-- **MCP Servers** (MCP-SERVERS/) - 50 automation tools
+- **Skills** (SKILLS/) - <!-- AUTO-GEN:START:skills -->64<!-- AUTO-GEN:END:skills --> specialized methodologies
+- **MCP Servers** (MCP-SERVERS/) - <!-- AUTO-GEN:START:mcps -->50<!-- AUTO-GEN:END:mcps --> automation tools
 - **Configuration** (.cursorrules, .gitignore, etc.)
 - **Standards** (STANDARDS/) - Best practices and patterns
-- **Tools** (TOOLS/) - Development utilities
-- **Components** (COMPONENTS/) - 75 React components
-- **Integrations** (INTEGRATIONS/) - 5 service integrations
+- **Components** (COMPONENTS/) - <!-- AUTO-GEN:START:components -->72<!-- AUTO-GEN:END:components --> React components
+- **Integrations** (INTEGRATIONS/) - <!-- AUTO-GEN:START:integrations -->28<!-- AUTO-GEN:END:integrations --> service integrations
+- **Tools** (TOOLS/) - <!-- AUTO-GEN:START:tools -->24<!-- AUTO-GEN:END:tools --> development tools
 
 Your customizations in other directories are preserved.
 

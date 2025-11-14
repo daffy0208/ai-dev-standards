@@ -25,11 +25,15 @@ DEFAULT_COMPONENTS_COUNT=72
 DEFAULT_INTEGRATIONS_COUNT=28
 DEFAULT_TOOLS_COUNT=24
 
+# Resolve repository root (handles running from anywhere)
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+REPO_ROOT="$( cd "$SCRIPT_DIR/.." && pwd )"
+
 # Get project name
 PROJECT_NAME="${1:-My Project}"
 DATE=$(date +%Y-%m-%d)
-# AI_DEV_VERSION will be read from .ai-dev.json or default to 3.0.0
-AI_DEV_VERSION="3.0.0"
+# AI_DEV_VERSION will be read from .ai-dev.json or default to repo package.json version
+AI_DEV_VERSION=$(node -p "require('$REPO_ROOT/package.json').version" 2>/dev/null || echo "3.0.3")
 
 # Get current directory
 PROJECT_DIR="$(pwd)"

@@ -228,6 +228,9 @@ function updateINTEGRATIONUSAGE(counts: RegistryCounts): void {
   // Update all AUTO-GEN sections
   content = updateAutoGenSection(content, 'skills', counts.skills.toString());
   content = updateAutoGenSection(content, 'mcps', counts.mcps.toString());
+  content = updateAutoGenSection(content, 'components', counts.components.toString());
+  content = updateAutoGenSection(content, 'integrations', counts.integrations.toString());
+  content = updateAutoGenSection(content, 'tools', counts.tools.toString());
   content = updateAutoGenSection(content, 'total-resources', counts.total.toString());
 
   fs.writeFileSync(filePath, content);
@@ -253,6 +256,8 @@ function updateSTANDALONEUSAGE(counts: RegistryCounts): void {
   // Update all AUTO-GEN sections
   content = updateAutoGenSection(content, 'skills', counts.skills.toString());
   content = updateAutoGenSection(content, 'mcps', counts.mcps.toString());
+  content = updateAutoGenSection(content, 'components', counts.components.toString());
+  content = updateAutoGenSection(content, 'integrations', counts.integrations.toString());
 
   fs.writeFileSync(filePath, content);
 
@@ -314,10 +319,15 @@ function updateDOCSINDEX(counts: RegistryCounts): void {
 function updateFINALRESOURCECOUNTS(counts: RegistryCounts): void {
   console.log(`${BLUE}📝 Updating FINAL-RESOURCE-COUNTS.md${RESET}`);
 
-  const filePath = path.join(ROOT, 'FINAL-RESOURCE-COUNTS.md');
+  const candidatePaths = [
+    path.join(ROOT, 'STATUS-REPORTS', 'FINAL-RESOURCE-COUNTS.md'),
+    path.join(ROOT, 'FINAL-RESOURCE-COUNTS.md')
+  ];
+
+  const filePath = candidatePaths.find(fs.existsSync);
   
-  if (!fs.existsSync(filePath)) {
-    console.warn(`${YELLOW}⚠️  FINAL-RESOURCE-COUNTS.md not found${RESET}`);
+  if (!filePath) {
+    console.log(`${YELLOW}ℹ️  FINAL-RESOURCE-COUNTS.md not found in active locations; skipping${RESET}`);
     return;
   }
 

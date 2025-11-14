@@ -1,14 +1,30 @@
 # MCP Code Execution Implementation Guide
 
-**Version:** 1.0.0
-**Date:** 2025-11-07
+**Version:** 1.1.0
+**Date:** 2025-11-14
 **Audience:** MCP Developers, AI Engineers
+
+---
+
+> **📚 New! Comprehensive MCP Patterns Documentation**
+>
+> This guide focuses on **implementing** code execution in MCP servers. For strategic guidance on **when** and **how** to adopt MCP patterns:
+>
+> - **[MCP Patterns Overview](./mcp-patterns/README.md)** - Master index for all pattern documentation
+> - **[Decision Framework](./mcp-patterns/01-mcp-decision-framework.md)** - Choose between Direct MCP and Code Execution
+> - **[Code Execution Pattern](./mcp-patterns/03-mcp-code-execution-pattern.md)** - Comprehensive pattern guide
+> - **[Migration Guide](./mcp-patterns/04-mcp-migration-guide.md)** - Convert Direct MCP to Code Execution
+> - **[Implementation Roadmap](./mcp-patterns/10-mcp-implementation-roadmap.md)** - ai-dev-standards custom plan
+>
+> **↓ This guide: Technical implementation details for building MCP servers with code execution**
 
 ---
 
 ## Overview
 
 This guide helps you implement Model Context Protocol (MCP) servers with code execution capabilities, following best practices from Anthropic's engineering team and production experience.
+
+**Note**: This focuses on **server-side implementation**. For **agent-side patterns** (progressive discovery, skills, etc.), see the [MCP Patterns documentation](./mcp-patterns/).
 
 ---
 
@@ -636,23 +652,47 @@ Key components covered in this guide:
 
 ## Next Steps
 
-1. **Review:** [MCP Code Execution Best Practices](../STANDARDS/best-practices/mcp-code-execution-best-practices.md)
-2. **Practice:** Build a simple MCP server with code execution using the patterns in this guide
-3. **Test:** Write comprehensive tests for security and functionality
-4. **Deploy:** Follow deployment guidelines in [MCP Development Roadmap](./MCP-DEVELOPMENT-ROADMAP.md)
-5. **Reference:** Check existing MCPs in the repository for additional implementation examples
+1. **Strategic Planning:**
+   - [Decision Framework](./mcp-patterns/01-mcp-decision-framework.md) - Choose pattern for your use case
+   - [Implementation Roadmap](./mcp-patterns/10-mcp-implementation-roadmap.md) - Custom ai-dev-standards plan
+   - [Migration Guide](./mcp-patterns/04-mcp-migration-guide.md) - Convert existing MCPs
+
+2. **Technical Implementation:**
+   - [MCP Code Execution Best Practices](../STANDARDS/best-practices/mcp-code-execution-best-practices.md)
+   - Build a simple MCP server with code execution using the patterns in this guide
+   - Write comprehensive tests for security and functionality
+
+3. **Security & Performance:**
+   - [Security Best Practices](./mcp-patterns/07-mcp-security-privacy-best-practices.md) - 4-layer security model
+   - [Performance Benchmarking](./mcp-patterns/08-mcp-performance-benchmarking-guide.md) - Validation framework
+
+4. **Deployment:**
+   - [MCP Development Roadmap](./MCP-DEVELOPMENT-ROADMAP.md)
+   - Check existing MCPs in the repository for additional implementation examples
 
 ---
 
 ## References
 
-- [MCP Code Execution Best Practices](../../STANDARDS/best-practices/mcp-code-execution-best-practices.md)
-- [Security Best Practices](../../STANDARDS/best-practices/security-best-practices.md)
+### MCP Patterns Documentation (New!)
+- [MCP Patterns Overview](./mcp-patterns/README.md) - Master index
+- [Direct MCP Pattern](./mcp-patterns/02-mcp-direct-pattern.md) - Current implementation
+- [Code Execution Pattern](./mcp-patterns/03-mcp-code-execution-pattern.md) - Advanced pattern
+- [Filesystem Structure](./mcp-patterns/05-mcp-filesystem-structure.md) - Tool organization
+- [Progressive Discovery](./mcp-patterns/06-mcp-progressive-discovery-patterns.md) - Scaling to 1000+ tools
+- [Brain Integration](./mcp-patterns/09-brain-orchestrator-mcp-integration.md) - Automatic pattern selection
+
+### Implementation Guides
+- [MCP Code Execution Best Practices](../STANDARDS/best-practices/mcp-code-execution-best-practices.md)
+- [Security Best Practices](../STANDARDS/best-practices/security-best-practices.md)
 - [MCP Development Roadmap](./MCP-DEVELOPMENT-ROADMAP.md)
+
+### External Resources
 - [Anthropic Engineering: Code Execution with MCP](https://www.anthropic.com/engineering/code-execution-with-mcp)
 
 ---
 
 ## Version History
 
+- **1.1.0** (2025-11-14): Added comprehensive MCP patterns documentation cross-references
 - **1.0.0** (2025-11-07): Initial guide based on Anthropic best practices

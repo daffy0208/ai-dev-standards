@@ -1,0 +1,659 @@
+{
+  "version": "1.0.3",
+  "last_updated": "2025-11-10",
+  "description": "Registry of all MCP servers in ai-dev-standards. MCPs (Model Context Protocol servers) provide tools, resources, and prompts that skills can use to execute tasks.",
+  "total_mcps": 50,
+  "coverage": "Coverage tracked via relationship-mapping.json",
+  "mcps": [
+    {
+      "id": "3d-asset-manager-mcp",
+      "name": "@ai Dev Standards/3d Asset Manager MCP",
+      "description": "MCP server for loading, optimizing, and managing 3D models and textures",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/3d-asset-manager-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "accessibility-checker-mcp",
+      "name": "@ai Dev Standards/accessibility Checker MCP",
+      "description": "MCP server for automated WCAG compliance checking",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/accessibility-checker-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "agent-orchestrator-mcp",
+      "name": "@ai Dev Standards/agent Orchestrator MCP",
+      "description": "MCP server for coordinating multi-agent workflows and communication",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/agent-orchestrator-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "animation-library-mcp",
+      "name": "@ai Dev Standards/animation Library MCP",
+      "description": "MCP server for Framer Motion animation presets and configurations",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/animation-library-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "api-validator-mcp",
+      "name": "@ai Dev Standards/api Validator MCP",
+      "description": "MCP server for validating API requests and responses against schemas",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/api-validator-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "asset-library-mcp",
+      "name": "@ai Dev Standards/asset Library MCP",
+      "description": "MCP server for managing design assets and generating variants",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/asset-library-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "asset-optimizer-mcp",
+      "name": "@ai Dev Standards/asset Optimizer MCP",
+      "description": "MCP server for optimizing images, generating color palettes, and managing assets",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/asset-optimizer-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "audio-processor-mcp",
+      "name": "@ai Dev Standards/audio Processor MCP",
+      "description": "MCP server for audio optimization, format conversion, and processing",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/audio-processor-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "brain-mcp",
+      "name": "@ai Dev Standards/brain MCP",
+      "description": "MCP server that exposes ai-dev-standards brain and capability graph to Claude Code",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/brain-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "chart-builder-mcp",
+      "name": "@ai Dev Standards/chart Builder MCP",
+      "description": "MCP server for creating charts and data visualizations programmatically",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/chart-builder-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "code-quality-scanner-mcp",
+      "name": "@ai Dev Standards/code Quality Scanner MCP",
+      "description": "MCP server for scanning code quality, complexity, and technical debt",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/code-quality-scanner-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "component-generator-mcp",
+      "name": "@ai Dev Standards/component Generator MCP",
+      "description": "MCP server for intelligent React/Next.js component scaffolding",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/component-generator-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "dark-matter-analyzer-mcp",
+      "name": "@ai Dev Standards/dark Matter Analyzer MCP",
+      "description": "MCP server for repository coherence analysis and organizational health insights",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/dark-matter-analyzer-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "dark-mode-converter-mcp",
+      "name": "Dark Mode Converter MCP Server",
+      "description": "MCP server for dark-mode-converter",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/dark-mode-converter-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "database-migration-mcp",
+      "name": "@ai Dev Standards/database Migration MCP",
+      "description": "MCP server for generating and running database migrations with Prisma and Drizzle",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/database-migration-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "deployment-orchestrator-mcp",
+      "name": "@ai Dev Standards/deployment Orchestrator MCP",
+      "description": "MCP server for orchestrating deployments to Vercel, Railway, AWS, and other platforms",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/deployment-orchestrator-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "design-handoff-mcp",
+      "name": "Design Handoff MCP Server",
+      "description": "MCP server for design-handoff",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/design-handoff-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "design-token-manager-mcp",
+      "name": "@ai Dev Standards/design Token Manager MCP",
+      "description": "MCP server for managing design tokens and generating theme configurations",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/design-token-manager-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "doc-generator-mcp",
+      "name": "@ai Dev Standards/doc Generator MCP",
+      "description": "MCP server for generating documentation from code, diagrams, and changelogs",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/doc-generator-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "embedding-generator-mcp",
+      "name": "@ai Dev Standards/embedding Generator MCP",
+      "description": "MCP server for generating embeddings with OpenAI and Cohere",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/embedding-generator-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "feature-prioritizer-mcp",
+      "name": "@ai Dev Standards/feature Prioritizer MCP",
+      "description": "MCP server for feature prioritization using P0/P1/P2 framework",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/feature-prioritizer-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "figma-sync-mcp",
+      "name": "Figma Sync MCP Server",
+      "description": "MCP server for figma-sync",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/figma-sync-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "font-optimizer-mcp",
+      "name": "Font Optimizer MCP Server",
+      "description": "MCP server for font-optimizer",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/font-optimizer-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "graph-database-mcp",
+      "name": "@ai Dev Standards/graph Database MCP",
+      "description": "MCP server for Neo4j operations, Cypher queries, and graph visualization",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/graph-database-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "i18n-manager-mcp",
+      "name": "@ai Dev Standards/i18n Manager MCP",
+      "description": "MCP server for managing translations, extracting strings, and locale files",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/i18n-manager-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "icon-library-mcp",
+      "name": "Icon Library MCP Server",
+      "description": "MCP server for icon-library",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/icon-library-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "illustration-generator-mcp",
+      "name": "Illustration Generator MCP Server",
+      "description": "MCP server for illustration-generator",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/illustration-generator-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "image-generator-mcp",
+      "name": "Image Generator MCP Server",
+      "description": "MCP server for image-generator",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/image-generator-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "iot-device-manager-mcp",
+      "name": "@ai Dev Standards/iot Device Manager MCP",
+      "description": "MCP server for IoT device management, MQTT operations, and firmware updates",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/iot-device-manager-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "knowledge-base-mcp",
+      "name": "@ai Dev Standards/mcp Knowledge Base MCP",
+      "description": "MCP server for knowledge base management - CRUD operations, versioning, validation, and curation",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/knowledge-base-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "market-analyzer-mcp",
+      "name": "@ai Dev Standards/market Analyzer MCP",
+      "description": "MCP server for market analysis, sizing, and competitor tracking",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/market-analyzer-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "mobile-builder-mcp",
+      "name": "@ai Dev Standards/mobile Builder MCP",
+      "description": "MCP server for generating React Native and Expo mobile projects",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/mobile-builder-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "openapi-generator-mcp",
+      "name": "@ai Dev Standards/openapi Generator MCP",
+      "description": "MCP server for generating OpenAPI/Swagger specifications from code",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/openapi-generator-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "performance-profiler-mcp",
+      "name": "@ai Dev Standards/performance Profiler MCP",
+      "description": "MCP server for profiling application performance and identifying bottlenecks",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/performance-profiler-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "props-documenter-mcp",
+      "name": "@ai Dev Standards/props Documenter MCP",
+      "description": "MCP server for documenting React component props",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/props-documenter-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "responsive-preview-mcp",
+      "name": "@ai Dev Standards/responsive Preview MCP",
+      "description": "MCP server for responsive design preview and testing",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/responsive-preview-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "screenshot-testing-mcp",
+      "name": "@ai Dev Standards/screenshot Testing MCP",
+      "description": "MCP server for visual regression testing",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/screenshot-testing-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "security-scanner-mcp",
+      "name": "@ai Dev Standards/security Scanner MCP",
+      "description": "MCP server for scanning security vulnerabilities, dependencies, and secrets",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/security-scanner-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "semantic-search-mcp",
+      "name": "@ai Dev Standards/semantic Search MCP",
+      "description": "MCP server for semantic search with query embedding, similarity search, and re-ranking",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/semantic-search-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "seo-analyzer-mcp",
+      "name": "@ai Dev Standards/seo Analyzer MCP",
+      "description": "MCP server for SEO analysis, readability scoring, and keyword analysis",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/seo-analyzer-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "storybook-generator-mcp",
+      "name": "@ai Dev Standards/storybook Generator MCP",
+      "description": "MCP server for generating Storybook stories from React components",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/storybook-generator-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "streaming-setup-mcp",
+      "name": "@ai Dev Standards/streaming Setup MCP",
+      "description": "MCP server for WebRTC configuration and live streaming setup",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/streaming-setup-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "svg-generator-mcp",
+      "name": "SVG Generator MCP Server",
+      "description": "MCP server for svg-generator",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/svg-generator-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "test-runner-mcp",
+      "name": "@ai Dev Standards/test Runner MCP",
+      "description": "MCP server for running tests, parsing results, and generating coverage reports",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/test-runner-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "theme-builder-mcp",
+      "name": "Theme Builder MCP Server",
+      "description": "MCP server for theme-builder",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/theme-builder-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "typography-analyzer-mcp",
+      "name": "@ai Dev Standards/typography Analyzer MCP",
+      "description": "MCP server for typography analysis and type scale generation",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/typography-analyzer-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "user-insight-analyzer-mcp",
+      "name": "@ai Dev Standards/user Insight Analyzer MCP",
+      "description": "MCP server for analyzing user feedback and extracting patterns, pain points, and insights",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/user-insight-analyzer-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "vector-database-mcp",
+      "name": "@ai Dev Standards/vector Database MCP",
+      "description": "MCP server for vector database operations (Pinecone, Weaviate, Chroma)",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/vector-database-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "video-optimizer-mcp",
+      "name": "@ai Dev Standards/video Optimizer MCP",
+      "description": "MCP server for video compression, format conversion, and streaming setup",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/video-optimizer-mcp",
+      "status": "active",
+      "phase": 5
+    },
+    {
+      "id": "wireframe-generator-mcp",
+      "name": "@ai Dev Standards/wireframe Generator MCP",
+      "description": "MCP server for generating wireframes and user flow diagrams",
+      "category": "general",
+      "supports_skills": [],
+      "features": [
+        "tools"
+      ],
+      "path": "/MCP-SERVERS/wireframe-generator-mcp",
+      "status": "active",
+      "phase": 5
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "timestamp": "2025-11-14T17:47:34.454Z",
+  "analyses": [
+    {
+      "id": "semantic-search-mcp",
+      "exists": true,
+      "files": [
+        "package.json",
+        "README.md"
+      ],
+      "actual_complexity": 0,
+      "actual_tools": 0,
+      "actual_loc": 0,
+      "has_tests": false,
+      "has_docs": true
+    },
+    {
+      "id": "market-analyzer-mcp",
+      "exists": true,
+      "files": [
+        "package.json",
+        "README.md"
+      ],
+      "actual_complexity": 0,
+      "actual_tools": 0,
+      "actual_loc": 0,
+      "has_tests": false,
+      "has_docs": true
+    },
+    {
+      "id": "user-insight-analyzer-mcp",
+      "exists": true,
+      "files": [
+        "package.json",
+        "README.md"
+      ],
+      "actual_complexity": 0,
+      "actual_tools": 0,
+      "actual_loc": 0,
+      "has_tests": false,
+      "has_docs": true
+    },
+    {
+      "id": "deployment-orchestrator-mcp",
+      "exists": true,
+      "files": [
+        "package.json",
+        "README.md"
+      ],
+      "actual_complexity": 0,
+      "actual_tools": 0,
+      "actual_loc": 0,
+      "has_tests": false,
+      "has_docs": true
+    },
+    {
+      "id": "agent-orchestrator-mcp",
+      "exists": true,
+      "files": [
+        "package.json",
+        "README.md"
+      ],
+      "actual_complexity": 0,
+      "actual_tools": 0,
+      "actual_loc": 0,
+      "has_tests": false,
+      "has_docs": true
+    }
+  ]
+}

@@ -123,6 +123,82 @@
           }
         }
       }
+    },
+    "pattern": {
+      "type": "string",
+      "enum": ["direct", "code-execution"],
+      "default": "direct",
+      "description": "MCP execution pattern: 'direct' for traditional loading all tools, 'code-execution' for progressive discovery"
+    },
+    "migration_metadata": {
+      "type": "object",
+      "description": "Metadata for migration to Code Execution pattern",
+      "properties": {
+        "is_migration_candidate": {
+          "type": "boolean",
+          "description": "Whether this MCP is a candidate for Code Execution pattern migration"
+        },
+        "complexity_score": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 10,
+          "description": "Complexity score (1-10) for pattern selection"
+        },
+        "estimated_tools_count": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Estimated number of tools provided by this MCP"
+        },
+        "estimated_token_usage": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Estimated token usage when using Direct MCP pattern"
+        },
+        "migration_priority": {
+          "type": "string",
+          "enum": ["high", "medium", "low", "not-evaluated"],
+          "description": "Priority for migration (Tier 1 = high, Tier 2 = medium)"
+        },
+        "migration_tier": {
+          "type": "integer",
+          "enum": [1, 2, 3],
+          "description": "Migration tier (1 = pilot + first wave, 2 = second wave, 3 = future consideration)"
+        },
+        "expected_token_savings_percent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Expected token savings percentage if migrated to Code Execution"
+        }
+      }
+    },
+    "security_config": {
+      "type": "object",
+      "description": "Security configuration for Code Execution pattern",
+      "properties": {
+        "layers_enabled": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["sandbox", "pii-tokenization", "access-control", "monitoring"]
+          },
+          "description": "Security layers enabled for this MCP"
+        },
+        "sandbox_type": {
+          "type": "string",
+          "enum": ["docker", "gvisor", "e2b", "none"],
+          "description": "Sandbox isolation type (only for code-execution pattern)"
+        },
+        "requires_pii_tokenization": {
+          "type": "boolean",
+          "description": "Whether this MCP handles PII and requires tokenization"
+        },
+        "access_control_level": {
+          "type": "string",
+          "enum": ["public", "authenticated", "restricted", "admin"],
+          "description": "Access control level required"
+        }
+      }
     }
   },
   "examples": [

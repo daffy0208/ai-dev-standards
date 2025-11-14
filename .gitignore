@@ -29,6 +29,17 @@ build/
 *.dylib
 *.dll
 
+# TypeScript build artifacts (compiled from .ts sources)
+*.js.map
+*.d.ts
+*.d.ts.map
+# But keep specific JS files that are source
+!CLI/**/*.js
+!scripts/**/*.cjs
+!scripts/**/*.js
+!*.config.js
+!*.config.cjs
+
 # Logs
 *.log
 logs/
@@ -60,6 +71,7 @@ tmp/
 Thumbs.db
 .Spotlight-V100
 .Trashes
+*:Zone.Identifier
 
 # AI Dev CLI files (created during testing)
 .ai-dev.json
@@ -86,6 +98,10 @@ REPORTS/
 *-SUMMARY.md
 verification-*.md
 
+# Allow archived status reports to be tracked
+!.archive/status-reports/
+!.archive/status-reports/**
+
 # Orchestration system (keep structure, ignore active requests/results)
 orchestration-requests/pending/*.json
 orchestration-requests/in-progress/*.json
@@ -104,3 +120,11 @@ orchestration-results/*.json
 
 # Generated MCP settings (environment-specific)
 .claude/mcp-settings.json
+
+# MCP Code Execution - Skills Storage
+# Ignore generated skill files but keep structure and README
+skills/*.py
+skills/*.txt
+skills/*.json
+!skills/
+!skills/README.md
