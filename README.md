@@ -90,6 +90,25 @@ The tool automatically:
 
 ---
 
+## 🎯 Current Focus: CLI + Semantic Search MVP
+
+We are actively building toward a **minimal viable release** that proves the end-to-end workflow for:
+
+- **Project setup & diagnostics** – `setup`, `doctor`, `analyze`, and the shared auth/feedback components.
+- **Semantic Search MCP pilot** – The first code-execution MCP (tools + docs) validated in the Docker sandbox.
+- **Brain & registry reliability** – Keeping the orchestrator scripts and registry validation tests green in CI.
+
+Everything else (additional MCPs, advanced RAG pipelines, extra design system work, etc.) is temporarily paused so we can finish, document, and test this slice to production quality. Once the MVP is solid—tests, lint, docs, and CI all green—we will expand back out to the rest of the catalog.
+
+### Roadmap / Deferred Work
+
+1. **CI hardening** – Enforce `npm run lint`, `npm run typecheck`, `npm test`, and `repolinter` on every PR (in-progress).
+2. **Code-execution MCP catalog** – After the semantic-search pilot is verified, resume the backlog of MCP generators (vector-database, api-validator, deployment-orchestrator, brain).
+3. **RAG pipeline + examples** – Finish the TypeScript RAG components with integration tests and sample repos.
+4. **Template/installer refresh** – Revisit the project templates once the CLI commands have automated coverage.
+
+---
+
 ## 📖 How to Use This Repository
 
 Choose your usage method:
@@ -647,6 +666,16 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
 3. Test changes with Claude Code
 4. Update version numbers and changelog
 
+### Testing CLI Commands
+
+- Run `npm run test:cli` to execute the full CLI + semantic-search MCP suite (doctor, analyze, setup, sync, init, context, update, etc.).
+- Run `npm run test:semantic-search:docker` to execute the code-execution docker smoke test (requires Docker and builds the `mcp-sandbox` image on first run).
+- Run `npm run demo:semantic-search` for a quick index+search walkthrough without setting up an MCP client yet.
+- When adding CLI tests, import the relevant `create*Command` factory (e.g., `createUpdateCommand`) and inject mocked dependencies (`fs`, `path`, `chalk`, `ora`, `inquirer`) plus a custom `cwd()` to keep tests sandboxed.
+- Use temporary directories (see `tests/cli/update-command.test.ts`) to create `.ai-dev.json`, `.claude/`, `.codex/`, and other artifacts without polluting the repo.
+- Avoid calling `process.chdir` inside tests—pass paths through injection or helper arguments instead.
+- See the detailed guidance in `CONTRIBUTING.md` (Testing CLI Commands) for reusable helpers and patterns.
+
 ---
 
 ## Versioning
@@ -763,6 +792,7 @@ This repository was created by evaluating and refining the Framework Library, ke
 - [How to Use This Repository](META/HOW-TO-USE.md)
 - [Decision Framework](META/DECISION-FRAMEWORK.md)
 - [Skill Registry](META/skill-registry.json)
+- [Semantic Search MCP Usage](DOCS/SEMANTIC-SEARCH-USAGE.md)
 
 **For AI Assistants:**
 - [Project Context](META/PROJECT-CONTEXT.md) - Read this first!

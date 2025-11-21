@@ -1,6 +1,6 @@
 {
   "version": "1.2.0",
-  "lastUpdated": "2025-11-08T16:43:28.203Z",
+  "lastUpdated": "2025-11-15T23:25:15.057Z",
   "description": "Central registry of all ai-dev-standards resources",
   "skills": [
     {
@@ -4721,6 +4721,30 @@
       "usage": "node scripts/deploy.ts"
     },
     {
+      "name": "generate-docs",
+      "version": "1.0.0",
+      "description": "Generate documentation from registry data using AUTO-GEN markers",
+      "path": "scripts/generate-docs.ts",
+      "tags": [
+        "documentation",
+        "registry",
+        "automation"
+      ],
+      "usage": "node scripts/generate-docs.ts"
+    },
+    {
+      "name": "generate-registries",
+      "version": "1.0.0",
+      "description": "Scan repository resources and regenerate all registry JSON files",
+      "path": "scripts/generate-registries.ts",
+      "tags": [
+        "registry",
+        "automation",
+        "validation"
+      ],
+      "usage": "node scripts/generate-registries.ts"
+    },
+    {
       "name": "regenerate-relationships",
       "version": "1.0.0",
       "description": "Regenerate relationship-mapping.json from individual registries",
@@ -4736,6 +4760,18 @@
       "usage": "node scripts/regenerate-relationships.ts"
     },
     {
+      "name": "render-mcp-settings",
+      "version": "1.0.0",
+      "description": "Render .claude/mcp-settings.json from templates and registry metadata",
+      "path": "scripts/render-mcp-settings.ts",
+      "tags": [
+        "mcp",
+        "configuration",
+        "automation"
+      ],
+      "usage": "node scripts/render-mcp-settings.ts"
+    },
+    {
       "name": "test-runner",
       "version": "1.0.0",
       "description": "Test Runner Script",
@@ -4744,6 +4780,41 @@
         "testing"
       ],
       "usage": "node scripts/test-runner.ts"
+    },
+    {
+      "name": "validate-docs",
+      "version": "1.0.0",
+      "description": "Validate documentation consistency with current registry data",
+      "path": "scripts/validate-docs.ts",
+      "tags": [
+        "documentation",
+        "validation"
+      ],
+      "usage": "node scripts/validate-docs.ts"
+    },
+    {
+      "name": "validate-mcp-settings",
+      "version": "1.0.0",
+      "description": "Validate MCP settings against registry definitions and local environments",
+      "path": "scripts/validate-mcp-settings.ts",
+      "tags": [
+        "mcp",
+        "validation",
+        "configuration"
+      ],
+      "usage": "node scripts/validate-mcp-settings.ts"
+    },
+    {
+      "name": "validate-registries",
+      "version": "1.0.0",
+      "description": "Validate generated registries for completeness and schema accuracy",
+      "path": "scripts/validate-registries.ts",
+      "tags": [
+        "registry",
+        "validation",
+        "testing"
+      ],
+      "usage": "node scripts/validate-registries.ts"
     },
     {
       "name": "update-registry",

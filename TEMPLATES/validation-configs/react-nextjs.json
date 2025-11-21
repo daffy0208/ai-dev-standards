@@ -1,0 +1,82 @@
+{
+  "projectType": "react-nextjs",
+  "description": "Validation configuration for React/Next.js projects",
+  "packageJson": {
+    "scripts": {
+      "lint": "next lint",
+      "typecheck": "tsc --noEmit",
+      "format": "prettier --write .",
+      "format:check": "prettier --check .",
+      "test": "vitest run",
+      "test:coverage": "vitest run --coverage",
+      "test:e2e": "playwright test"
+    },
+    "devDependencies": {
+      "eslint": "^8.0.0",
+      "eslint-config-next": "latest",
+      "@typescript-eslint/eslint-plugin": "^6.0.0",
+      "@typescript-eslint/parser": "^6.0.0",
+      "prettier": "^3.0.0",
+      "vitest": "^1.0.0",
+      "@vitest/ui": "^1.0.0",
+      "@vitest/coverage-v8": "^1.0.0",
+      "@testing-library/react": "^14.0.0",
+      "@testing-library/jest-dom": "^6.0.0",
+      "@playwright/test": "^1.40.0"
+    }
+  },
+  "eslintrc": {
+    "extends": ["next/core-web-vitals", "prettier"],
+    "rules": {
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { "argsIgnorePattern": "^_" }
+      ]
+    }
+  },
+  "tsconfig": {
+    "compilerOptions": {
+      "target": "ES2020",
+      "lib": ["ES2020", "DOM", "DOM.Iterable"],
+      "jsx": "preserve",
+      "module": "ESNext",
+      "moduleResolution": "bundler",
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "paths": {
+        "@/*": ["./src/*"]
+      }
+    },
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+    "exclude": ["node_modules", ".next", "out"]
+  },
+  "vitestConfig": {
+    "test": {
+      "globals": true,
+      "environment": "jsdom",
+      "setupFiles": ["./tests/setup.ts"],
+      "coverage": {
+        "provider": "v8",
+        "reporter": ["text", "json", "html"],
+        "lines": 80,
+        "functions": 80,
+        "branches": 75,
+        "statements": 80,
+        "exclude": [
+          "**/*.config.*",
+          "**/dist/**",
+          "**/.next/**"
+        ]
+      }
+    }
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "printWidth": 100,
+    "tabWidth": 2,
+    "trailingComma": "es5"
+  }
+}

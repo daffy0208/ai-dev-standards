@@ -2922,7 +2922,7 @@
             "required": true
           },
           {
-            "check": "has_dependency('langchain') or has_dependency('@langchain/core')",
+            "check": "has_dependency('langchain') or has_dependency('@langchain/core') or has_dependency('@langchain/community')",
             "description": "LangChain or similar RAG framework",
             "required": false
           }

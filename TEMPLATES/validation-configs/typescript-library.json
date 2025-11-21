@@ -1,0 +1,96 @@
+{
+  "projectType": "typescript-library",
+  "description": "Validation configuration for TypeScript libraries",
+  "packageJson": {
+    "scripts": {
+      "lint": "eslint src --ext .ts",
+      "typecheck": "tsc --noEmit",
+      "format": "prettier --write \"src/**/*.ts\"",
+      "format:check": "prettier --check \"src/**/*.ts\"",
+      "test": "vitest run",
+      "test:coverage": "vitest run --coverage",
+      "build": "tsc",
+      "prepublishOnly": "npm run lint && npm run typecheck && npm run test && npm run build"
+    },
+    "devDependencies": {
+      "eslint": "^8.0.0",
+      "@typescript-eslint/eslint-plugin": "^6.0.0",
+      "@typescript-eslint/parser": "^6.0.0",
+      "prettier": "^3.0.0",
+      "vitest": "^1.0.0",
+      "@vitest/coverage-v8": "^1.0.0",
+      "typescript": "^5.0.0"
+    }
+  },
+  "eslintrc": {
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/recommended-requiring-type-checking",
+      "prettier"
+    ],
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "rules": {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { "argsIgnorePattern": "^_" }
+      ],
+      "@typescript-eslint/explicit-function-return-type": "error",
+      "@typescript-eslint/explicit-module-boundary-types": "error",
+      "@typescript-eslint/no-explicit-any": "error"
+    }
+  },
+  "tsconfig": {
+    "compilerOptions": {
+      "target": "ES2020",
+      "module": "ESNext",
+      "lib": ["ES2020"],
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "declaration": true,
+      "declarationMap": true,
+      "sourceMap": true,
+      "moduleResolution": "node",
+      "strict": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "noImplicitReturns": true,
+      "noFallthroughCasesInSwitch": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist", "tests"]
+  },
+  "vitestConfig": {
+    "test": {
+      "globals": true,
+      "environment": "node",
+      "coverage": {
+        "provider": "v8",
+        "reporter": ["text", "json", "html", "lcov"],
+        "lines": 90,
+        "functions": 90,
+        "branches": 85,
+        "statements": 90,
+        "exclude": [
+          "**/*.config.*",
+          "**/dist/**",
+          "**/tests/**"
+        ]
+      }
+    }
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 100,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "arrowParens": "always"
+  }
+}

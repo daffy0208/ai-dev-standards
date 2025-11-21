@@ -47,7 +47,71 @@ your-project/
 
 ---
 
-### 2. create-rag-system
+### 2. install-validation-system
+
+**Purpose:** Deploy the validation system to any repository
+
+**What It Installs:**
+- ✅ Validation command (`.claude/commands/validate.md`)
+- ✅ HTML Dashboard generation
+- ✅ Historical metrics tracking
+- ✅ Self-correction mechanisms
+- ✅ 5-phase validation pipeline (Lint, TypeCheck, Format, Unit Tests, E2E)
+- ✅ Development dependencies (ESLint, TypeScript, Prettier, Vitest)
+- ✅ Configuration files (if missing)
+
+**When to Use:**
+- Ensuring code quality across repositories
+- Setting up CI/CD validation
+- Tracking code health over time
+- Deploying consistent standards
+
+**Usage:**
+```bash
+# One-line install (recommended)
+curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/ai-dev-standards/main/INSTALLERS/install-validation-system.sh | bash
+
+# Or with custom GitHub org/repo
+export VALIDATION_GITHUB_ORG="your-org"
+export VALIDATION_GITHUB_REPO="your-repo"
+curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/ai-dev-standards/main/INSTALLERS/install-validation-system.sh | bash
+```
+
+**What It Creates:**
+```
+your-project/
+├── .claude/commands/
+│   └── validate.md          # Downloaded from GitHub
+├── .validation-history/     # Metrics storage
+├── .eslintrc.json          # Created if missing
+├── tsconfig.json           # Created if missing
+├── .prettierrc             # Created if missing
+├── vitest.config.ts        # Created if missing
+└── .gitignore              # Updated
+```
+
+**Enables:**
+- `/validate` command in Claude Code
+- HTML dashboard with real-time metrics
+- Historical trend tracking
+- Self-correction for common issues
+- CI/CD integration ready
+
+**Time:** ~1-2 minutes
+
+**Documentation:**
+- Quick Start: `DOCS/VALIDATION-QUICK-START.md`
+- Full Guide: `DOCS/VALIDATION-DEPLOYMENT-GUIDE.md`
+- Templates: `TEMPLATES/validation-configs/`
+
+**Environment Variables:**
+- `VALIDATION_GITHUB_ORG` - GitHub organization (default: YOUR_ORG)
+- `VALIDATION_GITHUB_REPO` - Repository name (default: ai-dev-standards)
+- `VALIDATION_GITHUB_BRANCH` - Branch (default: main)
+
+---
+
+### 3. create-rag-system
 **Purpose:** Set up complete RAG system from scratch
 
 **What It Installs:**
@@ -221,16 +285,18 @@ your-saas-project/
 
 ## Comparison Table
 
-| Feature | bootstrap | create-rag-system | create-saas |
-|---------|-----------|-------------------|-------------|
-| **Skills** | All 36 | RAG-specific (1) | Product/Dev (5) |
-| **Setup Time** | 2-3 min | 5 min | 10 min |
-| **Project Type** | Any | AI/RAG | SaaS |
-| **Integrations** | Optional | Required | Required |
-| **Cost (Dev)** | $0 | $0 | $0 |
-| **Cost (Prod)** | Varies | $70-500/mo | $50-300/mo |
-| **Complexity** | Low | Medium | High |
-| **Production-Ready** | With config | With API keys | Yes |
+| Feature | bootstrap | install-validation | create-rag-system | create-saas |
+|---------|-----------|-------------------|-------------------|-------------|
+| **Purpose** | Full setup | Quality/CI | AI/RAG | SaaS product |
+| **Skills** | All 36 | None | RAG-specific (1) | Product/Dev (5) |
+| **Setup Time** | 2-3 min | 1-2 min | 5 min | 10 min |
+| **Project Type** | Any | Any | AI/RAG | SaaS |
+| **Integrations** | Optional | None | Required | Required |
+| **Cost (Dev)** | $0 | $0 | $0 | $0 |
+| **Cost (Prod)** | Varies | $0 | $70-500/mo | $50-300/mo |
+| **Complexity** | Low | Very Low | Medium | High |
+| **Production-Ready** | With config | Yes | With API keys | Yes |
+| **CI/CD Ready** | No | Yes | No | Yes |
 
 ---
 

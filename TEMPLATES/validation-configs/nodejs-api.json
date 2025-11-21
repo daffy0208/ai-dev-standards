@@ -1,0 +1,91 @@
+{
+  "projectType": "nodejs-api",
+  "description": "Validation configuration for Node.js API projects",
+  "packageJson": {
+    "scripts": {
+      "lint": "eslint src --ext .ts",
+      "typecheck": "tsc --noEmit",
+      "format": "prettier --write \"src/**/*.ts\"",
+      "format:check": "prettier --check \"src/**/*.ts\"",
+      "test": "vitest run",
+      "test:coverage": "vitest run --coverage",
+      "test:integration": "vitest run --config vitest.integration.config.ts",
+      "test:e2e": "vitest run --config vitest.e2e.config.ts"
+    },
+    "devDependencies": {
+      "eslint": "^8.0.0",
+      "@typescript-eslint/eslint-plugin": "^6.0.0",
+      "@typescript-eslint/parser": "^6.0.0",
+      "prettier": "^3.0.0",
+      "vitest": "^1.0.0",
+      "@vitest/coverage-v8": "^1.0.0",
+      "supertest": "^6.0.0",
+      "@types/supertest": "^2.0.0"
+    }
+  },
+  "eslintrc": {
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "prettier"
+    ],
+    "env": {
+      "node": true,
+      "es2021": true
+    },
+    "rules": {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { "argsIgnorePattern": "^_" }
+      ],
+      "@typescript-eslint/explicit-function-return-type": "warn"
+    }
+  },
+  "tsconfig": {
+    "compilerOptions": {
+      "target": "ES2020",
+      "module": "ESNext",
+      "lib": ["ES2020"],
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "moduleResolution": "node",
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "resolveJsonModule": true,
+      "declaration": true,
+      "declarationMap": true,
+      "sourceMap": true
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist", "tests"]
+  },
+  "vitestConfig": {
+    "test": {
+      "globals": true,
+      "environment": "node",
+      "coverage": {
+        "provider": "v8",
+        "reporter": ["text", "json", "html", "lcov"],
+        "lines": 85,
+        "functions": 85,
+        "branches": 80,
+        "statements": 85,
+        "exclude": [
+          "**/*.config.*",
+          "**/dist/**",
+          "**/tests/**"
+        ]
+      }
+    }
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 100,
+    "tabWidth": 2,
+    "trailingComma": "es5"
+  }
+}
