@@ -69,12 +69,12 @@ your-project/
 **Usage:**
 ```bash
 # One-line install (recommended)
-curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/ai-dev-standards/main/INSTALLERS/install-validation-system.sh | bash
+curl -fsSL https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main/INSTALLERS/install-validation-system.sh | bash
 
 # Or with custom GitHub org/repo
 export VALIDATION_GITHUB_ORG="your-org"
 export VALIDATION_GITHUB_REPO="your-repo"
-curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/ai-dev-standards/main/INSTALLERS/install-validation-system.sh | bash
+curl -fsSL https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main/INSTALLERS/install-validation-system.sh | bash
 ```
 
 **What It Creates:**
@@ -105,7 +105,7 @@ your-project/
 - Templates: `TEMPLATES/validation-configs/`
 
 **Environment Variables:**
-- `VALIDATION_GITHUB_ORG` - GitHub organization (default: YOUR_ORG)
+- `VALIDATION_GITHUB_ORG` - GitHub organization (default: daffy0208)
 - `VALIDATION_GITHUB_REPO` - Repository name (default: ai-dev-standards)
 - `VALIDATION_GITHUB_BRANCH` - Branch (default: main)
 

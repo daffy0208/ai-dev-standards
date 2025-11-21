@@ -76,7 +76,7 @@ echo ""
 echo -e "${BLUE}📄 Downloading validation command...${NC}"
 
 # Default to GitHub (change this to your organization/repo)
-GITHUB_ORG="${VALIDATION_GITHUB_ORG:-YOUR_ORG}"
+GITHUB_ORG="${VALIDATION_GITHUB_ORG:-daffy0208}"
 GITHUB_REPO="${VALIDATION_GITHUB_REPO:-ai-dev-standards}"
 GITHUB_BRANCH="${VALIDATION_GITHUB_BRANCH:-main}"
 

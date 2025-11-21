@@ -264,6 +264,6 @@ Add deployment validation:
 
 ## Support
 
-- **Issues:** [GitHub Issues](https://github.com/YOUR_ORG/ai-dev-standards/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/YOUR_ORG/ai-dev-standards/discussions)
+- **Issues:** [GitHub Issues](https://github.com/daffy0208/ai-dev-standards/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/daffy0208/ai-dev-standards/discussions)
 - **Docs:** [Deployment Guide](../../DOCS/VALIDATION-DEPLOYMENT-GUIDE.md)

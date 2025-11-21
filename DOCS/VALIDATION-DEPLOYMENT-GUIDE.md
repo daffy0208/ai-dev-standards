@@ -20,7 +20,7 @@ mkdir -p .claude/commands
 
 # Copy the validation command
 curl -o .claude/commands/validate.md \
-  https://raw.githubusercontent.com/YOUR_ORG/ai-dev-standards/main/.claude/commands/validate.md
+  https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main/.claude/commands/validate.md
 ```
 
 ### 2. Install Required Dependencies
@@ -431,8 +431,8 @@ chmod 755 .validation-history
 ## Support
 
 For issues, questions, or contributions:
-- GitHub Issues: https://github.com/YOUR_ORG/ai-dev-standards/issues
-- Documentation: https://github.com/YOUR_ORG/ai-dev-standards/docs
+- GitHub Issues: https://github.com/daffy0208/ai-dev-standards/issues
+- Documentation: https://github.com/daffy0208/ai-dev-standards/docs
 
 ## Version Compatibility
 

@@ -6,10 +6,10 @@
 
 ```bash
 # Option 1: One-line install (recommended)
-curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/ai-dev-standards/main/INSTALLERS/install-validation-system.sh | bash
+curl -fsSL https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main/INSTALLERS/install-validation-system.sh | bash
 
 # Option 2: Download and run
-curl -O https://raw.githubusercontent.com/YOUR_ORG/ai-dev-standards/main/INSTALLERS/install-validation-system.sh
+curl -O https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main/INSTALLERS/install-validation-system.sh
 chmod +x install-validation-system.sh
 ./install-validation-system.sh
 
@@ -17,7 +17,7 @@ chmod +x install-validation-system.sh
 export VALIDATION_GITHUB_ORG="your-org"
 export VALIDATION_GITHUB_REPO="your-repo"
 export VALIDATION_GITHUB_BRANCH="main"
-curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/ai-dev-standards/main/INSTALLERS/install-validation-system.sh | bash
+curl -fsSL https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main/INSTALLERS/install-validation-system.sh | bash
 ```
 
 ### Run
@@ -141,6 +141,6 @@ validate:
 
 ## Support
 
-- 📝 [GitHub Issues](https://github.com/YOUR_ORG/ai-dev-standards/issues)
+- 📝 [GitHub Issues](https://github.com/daffy0208/ai-dev-standards/issues)
 - 📚 [Full Documentation](./VALIDATION-DEPLOYMENT-GUIDE.md)
-- 💬 [Discussions](https://github.com/YOUR_ORG/ai-dev-standards/discussions)
+- 💬 [Discussions](https://github.com/daffy0208/ai-dev-standards/discussions)

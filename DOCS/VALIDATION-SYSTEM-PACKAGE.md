@@ -25,14 +25,14 @@ The ai-dev-standards validation system is now ready for deployment to any reposi
 ### Option 1: One-Line Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/ai-dev-standards/main/INSTALLERS/install-validation-system.sh | bash
+curl -fsSL https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main/INSTALLERS/install-validation-system.sh | bash
 ```
 
 ### Option 2: Manual Install
 
 ```bash
 # 1. Download installer
-curl -O https://raw.githubusercontent.com/YOUR_ORG/ai-dev-standards/main/INSTALLERS/install-validation-system.sh
+curl -O https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main/INSTALLERS/install-validation-system.sh
 
 # 2. Make executable
 chmod +x install-validation-system.sh
@@ -287,14 +287,14 @@ Create a release with:
 ### Option 3: Git Submodule
 
 ```bash
-git submodule add https://github.com/YOUR_ORG/ai-dev-standards.git vendor/validation
+git submodule add https://github.com/daffy0208/ai-dev-standards.git vendor/validation
 ./vendor/validation/INSTALLERS/install-validation-system.sh
 ```
 
 ### Option 4: Direct Download
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/ai-dev-standards/main/INSTALLERS/install-validation-system.sh | bash
+curl -fsSL https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main/INSTALLERS/install-validation-system.sh | bash
 ```
 
 ## 📝 License
@@ -307,9 +307,9 @@ Contributions welcome! See `CONTRIBUTING.md` for guidelines.
 
 ## 📞 Support
 
-- **Issues:** https://github.com/YOUR_ORG/ai-dev-standards/issues
-- **Discussions:** https://github.com/YOUR_ORG/ai-dev-standards/discussions
-- **Documentation:** https://github.com/YOUR_ORG/ai-dev-standards/docs
+- **Issues:** https://github.com/daffy0208/ai-dev-standards/issues
+- **Discussions:** https://github.com/daffy0208/ai-dev-standards/discussions
+- **Documentation:** https://github.com/daffy0208/ai-dev-standards/docs
 
 ## ✅ Checklist: Ready for Deployment
 
