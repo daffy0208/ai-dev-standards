@@ -1,6 +1,6 @@
 {
   "version": "3.33.0",
-  "last_updated": "2025-11-21",
+  "last_updated": "2025-11-23",
   "description": "Registry of all available skills in ai-dev-standards. Skills are model-invoked capabilities that Claude activates based on context. Now includes 64 active skills covering product development, AI systems, technical implementation, infrastructure, UX design, ADHD support, repository analysis, project management, data forensics, automated code review workflows, design automation, API integrations, customer support, growth experimentation, pricing strategy, product analytics, release management, usability testing, business model architecture, framework orchestration, requirements generation, quality assurance, security architecture, and orchestration meta-skills.",
   "total_skills": 64,
   "skills": [

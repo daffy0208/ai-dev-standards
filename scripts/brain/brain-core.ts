@@ -13,6 +13,7 @@ import { WorkflowEngine, WorkflowDecision, WorkflowStep } from './workflow-engin
 import { SkillSelector, SkillSelection } from './skill-selector';
 import { MCPIntegrator, MCPIntegration } from './mcp-integrator';
 import { PatternMatcher, ArchitecturePattern, PatternMatch } from './pattern-matcher';
+import { PatternRouter, RoutingResult, patternRouter } from './pattern-router';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -21,6 +22,7 @@ export { WorkflowDecision, WorkflowStep } from './workflow-engine';
 export { SkillSelection } from './skill-selector';
 export { MCPIntegration } from './mcp-integrator';
 export { ArchitecturePattern, PatternMatch } from './pattern-matcher';
+export { RoutingResult } from './pattern-router';
 
 export class RepositoryBrain {
   private knowledge: KnowledgeLayer;
@@ -28,6 +30,7 @@ export class RepositoryBrain {
   private skillSelector: SkillSelector | null = null;
   private mcpIntegrator: MCPIntegrator | null = null;
   private patternMatcher: PatternMatcher;
+  private patternRouter: PatternRouter;
   private rootPath: string;
   private initialized: boolean = false;
 
@@ -36,6 +39,7 @@ export class RepositoryBrain {
     this.knowledge = new KnowledgeLayer(rootPath);
     this.workflowEngine = new WorkflowEngine();
     this.patternMatcher = new PatternMatcher();
+    this.patternRouter = patternRouter;
   }
 
   /**
@@ -420,6 +424,29 @@ export class RepositoryBrain {
   }> {
     this.ensureInitialized();
     return this.patternMatcher.comparePatterns(patternNames);
+  }
+
+  // ============================================
+  // ROUTING & EXECUTION (PHASE 3)
+  // ============================================
+
+  /**
+   * Route a task to the appropriate MCP pattern (Direct vs Code Execution)
+   */
+  async routeTask(taskDescription: string, options?: {
+    isRealtime?: boolean;
+    frequency?: 'once' | 'occasional' | 'frequent' | 'continuous';
+    hasPii?: boolean;
+    dataSizeKb?: number;
+  }): Promise<RoutingResult> {
+    this.ensureInitialized();
+    return this.patternRouter.route({
+      task_description: taskDescription,
+      is_realtime: options?.isRealtime,
+      expected_frequency: options?.frequency,
+      has_pii: options?.hasPii,
+      data_size_estimate_kb: options?.dataSizeKb
+    });
   }
 
   // ============================================

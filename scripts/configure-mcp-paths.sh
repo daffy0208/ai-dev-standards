@@ -75,6 +75,36 @@ update_codex_config() {
     fi
 }
 
+# Function to update .gemini/mcp-settings.json
+update_gemini_config() {
+    local config_file="$REPO_ROOT/.gemini/mcp-settings.json"
+    
+    if [ ! -f "$config_file" ]; then
+        echo "⚠️  Warning: .gemini/mcp-settings.json not found"
+        return
+    fi
+    
+    echo "📝 Updating .gemini/mcp-settings.json..."
+    
+    # Backup original
+    cp "$config_file" "$config_file.backup"
+    
+    # Update brain-mcp path
+    if command -v jq &> /dev/null; then
+        jq --arg repo_root "$REPO_ROOT" \
+           '.mcpServers."brain-mcp".args[0] = ($repo_root + "/MCP-SERVERS/brain-mcp/dist/index.js") | 
+            .mcpServers."brain-mcp".env.AI_DEV_STANDARDS_ROOT = $repo_root' \
+           "$config_file.backup" > "$config_file"
+        echo "  ✅ Updated brain-mcp configuration using jq"
+    else
+        sed -i.bak \
+            -e "s|\"args\": \\[\"[^\"]*MCP-SERVERS/brain-mcp/dist/index.js\"|\"args\": [\"$REPO_ROOT/MCP-SERVERS/brain-mcp/dist/index.js\"|g" \
+            -e "s|\"AI_DEV_STANDARDS_ROOT\": \"[^\"]*\"|\"AI_DEV_STANDARDS_ROOT\": \"$REPO_ROOT\"|g" \
+            "$config_file"
+        echo "  ✅ Updated brain-mcp configuration using sed"
+    fi
+}
+
 # Function to create claude config from template if it doesn't exist
 create_claude_config_if_missing() {
     local config_file="$REPO_ROOT/.claude/mcp-settings.json"
@@ -141,6 +171,39 @@ EOF
     echo "  ✅ Created .codex/mcp-servers.json"
 }
 
+# Function to create gemini config from template if it doesn't exist
+create_gemini_config_if_missing() {
+    local config_file="$REPO_ROOT/.gemini/mcp-settings.json"
+    
+    if [ -f "$config_file" ]; then
+        return
+    fi
+    
+    echo "📝 Creating .gemini/mcp-settings.json from template..."
+    
+    mkdir -p "$REPO_ROOT/.gemini"
+    
+    cat > "$config_file" << EOF
+{
+  "mcpServers": {
+    "brain-mcp": {
+      "command": "node",
+      "args": [
+        "$REPO_ROOT/MCP-SERVERS/brain-mcp/dist/index.js"
+      ],
+      "env": {
+        "AI_DEV_STANDARDS_ROOT": "$REPO_ROOT"
+      },
+      "description": "Brain MCP for querying skills, MCPs, and capabilities in ai-dev-standards",
+      "timeout": 30000
+    }
+  }
+}
+EOF
+    
+    echo "  ✅ Created .gemini/mcp-settings.json"
+}
+
 # Main execution
 echo "🏗️  Building brain-mcp server..."
 cd "$REPO_ROOT/MCP-SERVERS/brain-mcp"
@@ -165,10 +228,12 @@ echo ""
 # Create configs if missing
 create_claude_config_if_missing
 create_codex_config_if_missing
+create_gemini_config_if_missing
 
 # Update existing configs
 update_claude_config
 update_codex_config
+update_gemini_config
 
 echo ""
 echo "✅ MCP Server configuration complete!"
