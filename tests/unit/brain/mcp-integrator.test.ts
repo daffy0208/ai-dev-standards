@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { MCPIntegrator } from '../../../scripts/brain/mcp-integrator'
-import { MCP } from '../../../scripts/brain/knowledge-layer'
+import { MCPIntegrator } from '../../../scripts/brain/mcp-integrator.js'
+import { MCP } from '../../../scripts/brain/knowledge-layer.js'
 
 const baseRelationship = {
   skills: {

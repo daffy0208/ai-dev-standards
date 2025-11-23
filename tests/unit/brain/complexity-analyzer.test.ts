@@ -3,7 +3,7 @@
  */
 
 import { describe, it, expect, beforeEach } from 'vitest'
-import { ComplexityAnalyzer } from '../../../scripts/brain/complexity-analyzer'
+import { ComplexityAnalyzer } from '../../../scripts/brain/complexity-analyzer.js'
 
 describe('ComplexityAnalyzer', () => {
   let analyzer: ComplexityAnalyzer

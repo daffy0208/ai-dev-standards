@@ -192,7 +192,7 @@ export function withAuth<P extends object>(
  */
 export function useRequireAuth(requiredRole?: string) {
   const router = useRouter()
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<unknown>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -283,7 +283,7 @@ export function ProfilePage() {
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Profile</h1>
-      <p>Email: {user?.email}</p>
+      <p>Email: {(user as any)?.email}</p>
     </div>
   )
 }

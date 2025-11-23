@@ -35,7 +35,7 @@ export interface AgentConfig {
 
 export interface TaskInput {
   task: string
-  context?: Record<string, any>
+  context?: Record<string, unknown>
   conversationHistory?: Array<{ role: string; content: string }>
 }
 
@@ -119,7 +119,7 @@ export class SimpleTaskAgent {
     throw new Error('Unexpected execution path')
   }
 
-  private buildPrompt(task: string, context?: Record<string, any>): string {
+  private buildPrompt(task: string, context?: Record<string, unknown>): string {
     let prompt = task
 
     if (context && Object.keys(context).length > 0) {
@@ -131,7 +131,7 @@ export class SimpleTaskAgent {
   }
 
   private async callLLM(
-    messages: Array<{ role: string; content: string }>
+    _messages: Array<{ role: string; content: string }>
   ): Promise<{ content: string; tokensUsed: number }> {
     // Placeholder - integrate with OpenAI, Anthropic, or other LLM provider
     // Example with OpenAI:

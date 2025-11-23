@@ -366,7 +366,7 @@ export function SkeletonExamples() {
         <h3 className="font-medium mb-4">With Shimmer</h3>
         <SkeletonWithShimmer height={100} width={300} />
         {/* eslint-disable-next-line react/no-unknown-property */}
-        {/* @ts-ignore */}
+        {/* @ts-expect-error */}
         <style jsx global>{`
           @keyframes shimmer {
             100% {

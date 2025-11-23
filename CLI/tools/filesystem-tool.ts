@@ -126,7 +126,7 @@ export class FileSystemTool {
   /**
    * Read file
    */
-  async readFile(filePath: string, options: ReadOptions = {}): Promise<string | Buffer | any> {
+  async readFile(filePath: string, options: ReadOptions = {}): Promise<string | unknown> {
     const validPath = this.validatePath(filePath)
 
     const content = await fs.readFile(validPath, options.encoding || 'utf-8')
@@ -143,7 +143,7 @@ export class FileSystemTool {
    */
   async writeFile(
     filePath: string,
-    content: string | Buffer | any,
+    content: string | unknown,
     options: WriteOptions = {}
   ): Promise<void> {
     const validPath = this.validatePath(filePath)
@@ -395,9 +395,9 @@ export class FileSystemTool {
   /**
    * Read directory tree as object
    */
-  async readTree(dirPath: string): Promise<any> {
+  async readTree(dirPath: string): Promise<unknown> {
     const validPath = this.validatePath(dirPath)
-    const tree: any = {}
+    const tree: Record<string, unknown> = {}
 
     const entries = await fs.readdir(validPath, { withFileTypes: true })
 
@@ -474,7 +474,10 @@ export const fileSystemToolDefinition = {
 /**
  * Execute tool (for AI frameworks)
  */
-export async function executeFileSystemTool(args: any, config: FileSystemConfig): Promise<any> {
+export async function executeFileSystemTool(
+  args: Record<string, any>,
+  config: FileSystemConfig
+): Promise<unknown> {
   const fs = new FileSystemTool(config)
 
   switch (args.action) {

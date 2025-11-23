@@ -634,13 +634,8 @@ async function handleVersionKnowledge(args: any): Promise<any> {
         }))
       }
 
-<<<<<<< HEAD
     case 'get': {
       const version = versions.find(v => v.version === args.version)
-=======
-    case "get": {
-      const version = versions.find(v => v.version === args.version);
->>>>>>> origin/main
       if (!version) {
         return {
           success: false,
@@ -650,19 +645,11 @@ async function handleVersionKnowledge(args: any): Promise<any> {
       return {
         success: true,
         version
-<<<<<<< HEAD
       }
     }
 
     case 'revert': {
       const revertTo = versions.find(v => v.version === args.version)
-=======
-      };
-    }
-
-    case "revert": {
-      const revertTo = versions.find(v => v.version === args.version);
->>>>>>> origin/main
       if (!revertTo) {
         return {
           success: false,
@@ -689,11 +676,7 @@ async function handleVersionKnowledge(args: any): Promise<any> {
         success: true,
         message: `Reverted to version ${args.version}`,
         entry: reverted
-<<<<<<< HEAD
       }
-=======
-      };
->>>>>>> origin/main
     }
 
     default:

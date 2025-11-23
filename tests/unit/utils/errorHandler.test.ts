@@ -5,18 +5,7 @@
  */
 
 import { describe, it, expect } from 'vitest'
-import {
-  ApiError,
-  ValidationError,
-  AuthenticationError,
-  AuthorizationError,
-  NotFoundError,
-  ConflictError,
-  RateLimitError,
-  ServerError,
-  handleApiError,
-  isApiError
-} from '../../../UTILS/api/errorHandler'
+import { ApiError, ValidationError, AuthenticationError, AuthorizationError, NotFoundError, ConflictError, RateLimitError, ServerError, handleApiError, isApiError } from '../../../UTILS/api/errorHandler.js'
 
 describe('ApiError Classes', () => {
   describe('ApiError', () => {

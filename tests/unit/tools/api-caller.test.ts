@@ -308,10 +308,11 @@ describe('ApiCallerTool', () => {
     it('should fail after max retries', async () => {
       global.fetch = vi.fn().mockRejectedValue(new Error('Network error'))
 
-      // Should fail
-      await expect(api.get('https://api.example.com/failing', {
+      const promise = api.get('https://api.example.com/failing', {
         retry: { attempts: 2, delayMs: 1 }
-      })).rejects.toThrow('Network error')
+      })
+
+      await expect(promise).rejects.toThrow('Network error')
 
       expect(global.fetch).toHaveBeenCalledTimes(2)
     })
@@ -326,9 +327,11 @@ describe('ApiCallerTool', () => {
         return Promise.reject(new Error('Fail'))
       })
 
-      await expect(api.get('https://api.example.com/failing', {
+      const promise = api.get('https://api.example.com/failing', {
         retry: { attempts: 3, delayMs: 10, exponentialBackoff: true }
-      })).rejects.toThrow('Fail')
+      })
+
+      await expect(promise).rejects.toThrow('Fail')
 
       expect(attempts).toBe(3)
       // Check timing roughly (1st immediate, 2nd ~10ms, 3rd ~20ms)
