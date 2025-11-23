@@ -46,16 +46,9 @@ describe('ApproachSelector', () => {
         data_size_estimate_kb: 50
       })
 
-<<<<<<< HEAD
       expect(decision.pattern).toBe('code-execution')
       expect(decision.reasoning).toContain(expect.stringMatching(/large data/i))
     })
-=======
-            expect(decision.pattern).toBe('code-execution');
-            const hasLargeData = decision.reasoning.some(r => /large data/i.test(r));
-            expect(hasLargeData).toBe(true);
-        });
->>>>>>> origin/main
 
     it('should select Code Execution when PII is present', async () => {
       const customSelector = createApproachSelector({ 
@@ -66,16 +59,9 @@ describe('ApproachSelector', () => {
         has_pii: true
       })
 
-<<<<<<< HEAD
       expect(decision.pattern).toBe('code-execution')
       expect(decision.reasoning).toContain(expect.stringMatching(/pii/i))
     })
-=======
-            expect(decision.pattern).toBe('code-execution');
-            const hasPii = decision.reasoning.some(r => /pii/i.test(r));
-            expect(hasPii).toBe(true);
-        });
->>>>>>> origin/main
 
     it('should select Code Execution for repeated workflows', async () => {
       const customSelector = createApproachSelector({ 
@@ -202,7 +188,6 @@ describe('ApproachSelector', () => {
       expect(typeof decision.reasoning[0]).toBe('string')
     })
 
-<<<<<<< HEAD
     it('should explain complexity scores', async () => {
       const customSelector = createApproachSelector({ force_direct_for_single_tool: false })
       const decision = await customSelector.selectApproach('Complex workflow')
@@ -212,20 +197,6 @@ describe('ApproachSelector', () => {
       )
       expect(hasComplexityExplanation).toBe(true)
     })
-=======
-        it('should explain complexity scores', async () => {
-            const decision = await selector.selectApproach(
-                'Complex workflow with multiple tools'
-            );
-
-            // console.log('DEBUG REASONING:', decision.reasoning);
-
-            const hasComplexityExplanation = decision.reasoning.some(r =>
-                r.includes('complexity') || r.includes('score')
-            );
-            expect(hasComplexityExplanation).toBe(true);
-        });
->>>>>>> origin/main
 
     it('should explain tool requirements', async () => {
       const decision = await selector.selectApproach('Integrate Salesforce with Notion')

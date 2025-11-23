@@ -313,15 +313,6 @@ describe('ApiCallerTool', () => {
         retry: { attempts: 2, delayMs: 1 }
       })).rejects.toThrow('Network error')
 
-<<<<<<< HEAD
-=======
-      // Attach a catch handler to avoid "Unhandled Rejection" warnings during timer execution
-      promise.catch(() => {})
-
-      await vi.runAllTimersAsync()
-
-      await expect(promise).rejects.toThrow('Network error')
->>>>>>> origin/main
       expect(global.fetch).toHaveBeenCalledTimes(2)
     })
 
@@ -335,28 +326,9 @@ describe('ApiCallerTool', () => {
         return Promise.reject(new Error('Fail'))
       })
 
-<<<<<<< HEAD
       await expect(api.get('https://api.example.com/failing', {
         retry: { attempts: 3, delayMs: 10, exponentialBackoff: true }
       })).rejects.toThrow('Fail')
-=======
-      const promise = api.get('https://api.example.com/failing', {
-        retry: { attempts: 3, delayMs: 100, exponentialBackoff: true }
-      })
-
-      // Attach a catch handler to avoid "Unhandled Rejection" warnings during timer execution
-      promise.catch(() => {})
-
-      // 1st attempt happens immediately
-      await vi.advanceTimersByTimeAsync(100) // Trigger 2nd attempt
-      await vi.advanceTimersByTimeAsync(200) // Trigger 3rd attempt
-      
-      try {
-        await promise
-      } catch (e) {
-        // Expected error
-      }
->>>>>>> origin/main
 
       expect(attempts).toBe(3)
       // Check timing roughly (1st immediate, 2nd ~10ms, 3rd ~20ms)

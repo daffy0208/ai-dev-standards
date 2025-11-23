@@ -70,7 +70,6 @@ export class ComplexityAnalyzer {
       reasoning.push(`Data complexity: ${dataAnalysis.complexity}`)
     }
 
-<<<<<<< HEAD
     if (logicAnalysis.has_conditionals) {
       reasoning.push('Conditional logic detected')
     }
@@ -81,154 +80,6 @@ export class ComplexityAnalyzer {
 
     if (logicAnalysis.has_error_handling) {
       reasoning.push('Error handling required')
-=======
-    /**
-     * Analyze number and types of tools needed
-     */
-    private analyzeToolsNeeded(text: string): { count: number; tools: string[] } {
-        const tools: string[] = [];
-
-        // Look for explicit tool/system mentions
-        const systemPatterns = [
-            { pattern: /google\s+(drive|docs?|sheets?)/i, tool: 'google-drive' },
-            { pattern: /notion/i, tool: 'notion' },
-            { pattern: /salesforce/i, tool: 'salesforce' },
-            { pattern: /slack/i, tool: 'slack' },
-            { pattern: /github/i, tool: 'github' },
-            { pattern: /jira/i, tool: 'jira' },
-            { pattern: /database|sql|postgres/i, tool: 'database' },
-            { pattern: /api|endpoint|http/i, tool: 'api-client' },
-            { pattern: /email/i, tool: 'email' },
-            { pattern: /calendar/i, tool: 'calendar' },
-            { pattern: /chart|graph|visualization/i, tool: 'chart-builder' },
-            { pattern: /search|query|find/i, tool: 'search' },
-            { pattern: /analyze|analysis/i, tool: 'analyzer' },
-        ];
-
-        for (const { pattern, tool } of systemPatterns) {
-            if (pattern.test(text) && !tools.includes(tool)) {
-                tools.push(tool);
-            }
-        }
-
-        // Look for action verbs that suggest multiple operations
-        const multiToolVerbs = [
-            /copy.*from.*to/i,
-            /migrate.*from.*to/i,
-            /sync.*with/i,
-            /integrate.*with/i,
-            /combine.*and/i,
-        ];
-
-        const hasMultiToolOperation = multiToolVerbs.some(pattern => pattern.test(text));
-
-        // If no specific tools identified but multi-tool operation, estimate minimum 2
-        let count = tools.length || 1;
-        if (hasMultiToolOperation && count < 2) {
-            count = 2;
-            if (tools.length === 0) {
-                tools.push('tool-1', 'tool-2');
-            }
-        }
-
-        // Check for words suggesting multiple data sources
-        if (/(multiple|several|various)\s+(sources?|systems?|platforms?|tools?)/i.test(text)) {
-            count = Math.max(count, 3);
-        }
-
-        return { count, tools };
-    }
-
-    /**
-     * Analyze number of steps required
-     */
-    private analyzeSteps(text: string): { count: number; is_sequential: boolean } {
-        // Count step indicators
-        let stepCount = 0;
-
-        // Look for explicit step markers
-        const stepMarkers = text.match(/\b(first|then|next|after|finally|lastly|followed by|and then)\b/gi);
-        if (stepMarkers) {
-            stepCount = stepMarkers.length + (text.match(/\bfirst\b/i) ? 0 : 1); // +1 for initial step unless 'first' is present
-        }
-
-        // Look for numbered/bulleted lists
-        const numberedSteps = text.match(/\b[0-9]+\.\s+/g);
-        if (numberedSteps && numberedSteps.length > stepCount) {
-            stepCount = numberedSteps.length;
-        }
-
-        // Look for action verbs (each suggests a step)
-        const actionVerbs = text.match(/\b(get|fetch|create|make|update|delete|remove|send|post|analyze|transform|process|validate|check|verify|generate|build|save|store|copy|move|read|write|upload|download)\b/gi);
-        if (actionVerbs && actionVerbs.length > stepCount) {
-            stepCount = Math.min(actionVerbs.length, 10); // Cap at 10
-        }
-
-        // Default to 1 if no steps detected
-        stepCount = Math.max(stepCount, 1);
-
-        // Check if steps are sequential
-        const isSequential = /(then|next|after|followed by|sequential|step-by-step)/i.test(text);
-
-        return { count: stepCount, is_sequential: isSequential };
-    }
-
-    /**
-     * Analyze data complexity
-     */
-    private analyzeDataComplexity(text: string): {
-        complexity: 'simple' | 'moderate' | 'complex';
-        size_mentioned: boolean;
-        transformation_needed: boolean;
-    } {
-        let complexity: 'simple' | 'moderate' | 'complex' = 'simple';
-        let sizeMentioned = false;
-        let transformationNeeded = false;
-
-        // Check for size indicators
-        const sizePatterns = [
-            /\b(large|big|massive|extensive)\b/i,
-            /\b\d+\s*(mb|gb|kb|thousand|million)\b/i,
-            /\bmultiple\s+(files?|documents?|records?)\b/i,
-        ];
-
-        if (sizePatterns.some(p => p.test(text))) {
-            complexity = 'moderate';
-            // Upgrade to complex for explicit large sizes
-            if (/\b\d+\s*(mb|gb|million)\b/i.test(text) || /\b(massive|extensive)\b/i.test(text)) {
-                complexity = 'complex';
-            }
-            sizeMentioned = true;
-        }
-
-        // Check for transformation indicators
-        const transformPatterns = [
-            /\b(transform|convert|parse|format|restructure|normalize)\b/i,
-            /\b(extract|filter|aggregate|merge|join|combine)\b/i,
-            /\b(clean|sanitize|validate|process|analyze|visualize|chart|graph)\b/i,
-        ];
-
-        if (transformPatterns.some(p => p.test(text))) {
-            transformationNeeded = true;
-            if (complexity === 'simple') {
-                complexity = 'moderate';
-            }
-        }
-
-        // Check for complex data operations
-        const complexPatterns = [
-            /\b(pipeline|workflow|batch|bulk)\b/i,
-            /\b(complex|sophisticated|advanced)\b.*\b(processing|analysis|transformation)\b/i,
-            /\bmultiple\s+transformations?\b/i,
-            /\b(visualization|chart|graph)s?\b/i,
-        ];
-
-        if (complexPatterns.some(p => p.test(text))) {
-            complexity = 'complex';
-        }
-
-        return { complexity, size_mentioned: sizeMentioned, transformation_needed: transformationNeeded };
->>>>>>> origin/main
     }
 
     return {
@@ -279,7 +130,6 @@ export class ComplexityAnalyzer {
       }
     }
 
-<<<<<<< HEAD
     // Look for action verbs that suggest multiple operations
     const multiToolVerbs = [
       /copy.*from.*to/i,
@@ -303,31 +153,6 @@ export class ComplexityAnalyzer {
     // Check for words suggesting multiple data sources
     if (/(multiple|several|various)\s+(sources?|systems?|platforms?)/i.test(text)) {
       count = Math.max(count, 3)
-=======
-    /**
-     * Calculate tools score (1-10)
-     */
-    private calculateToolsScore(toolCount: number): number {
-        // 1 tool = 2, 2 tools = 4, 3 tools = 6, 4 tools = 8, 5+ tools = 10
-        if (toolCount === 1) return 2;
-        if (toolCount === 2) return 4;
-        if (toolCount === 3) return 6;
-        if (toolCount === 4) return 8;
-        if (toolCount >= 5) return 10;
-        return 1;
-    }
-
-    /**
-     * Calculate steps score (1-10)
-     */
-    private calculateStepsScore(stepCount: number): number {
-        // 1 step = 2, 2 steps = 4, 3 steps = 6, 4 steps = 8, 5+ = 10
-        if (stepCount === 1) return 2;
-        if (stepCount === 2) return 4;
-        if (stepCount === 3) return 6;
-        if (stepCount === 4) return 8;
-        return Math.min(8 + stepCount - 4, 10);
->>>>>>> origin/main
     }
 
     return { count, tools }
