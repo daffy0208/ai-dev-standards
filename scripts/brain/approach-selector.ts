@@ -129,7 +129,9 @@ export class ApproachSelector {
           `Multiple tools needed: ${factors.estimated_tools}`,
           factors.has_pii ? 'PII present - benefits from security layers' : null,
           factors.is_repeated ? 'Repeated execution - skills will optimize' : null,
-          factors.data_size_kb > 10 ? `Large data payload: ${factors.data_size_kb}KB` : null
+          factors.data_size_kb > this.config.data_size_threshold_kb
+            ? `Large data payload: ${factors.data_size_kb}KB`
+            : null
         ].filter(Boolean) as string[]
       )
     } else {
@@ -141,7 +143,9 @@ export class ApproachSelector {
           `Low to medium complexity: ${factors.complexity_score}/10`,
           `Few tools needed: ${factors.estimated_tools}`,
           'Direct MCP is simpler and more reliable',
-          factors.data_size_kb <= 10 ? 'Small data payload' : null
+          factors.data_size_kb <= this.config.data_size_threshold_kb
+            ? 'Small data payload'
+            : null
         ].filter(Boolean) as string[]
       )
     }

@@ -87,11 +87,18 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.17.0",
+    "@apidevtools/swagger-parser": "^12.1.0",
     "@langchain/community": "^1.0.4",
     "@langchain/core": "^1.0.6",
     "@modelcontextprotocol/sdk": "^1.20.2",
     "@pinecone-database/pinecone": "^2.0.0",
+    "@qdrant/js-client-rest": "^1.16.0",
+    "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "^2.38.4",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "chromadb": "^3.1.6",
+    "cohere-ai": "^7.19.0",
     "glob": "^10.3.10",
     "global": "^4.4.0",
     "langchain": "^1.0.6",
@@ -109,6 +116,7 @@
     "stripe": "^14.9.0",
     "tiktoken": "^1.0.22",
     "turndown": "^7.1.2",
+    "weaviate-ts-client": "^2.2.0",
     "zod": "^3.22.4"
   },
   "engines": {

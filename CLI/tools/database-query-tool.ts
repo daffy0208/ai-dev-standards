@@ -73,11 +73,11 @@ export interface DatabaseConfig {
 }
 
 export interface QueryOptions {
-  params?: any[]
+  params?: unknown[]
   timeout?: number
 }
 
-export interface QueryResult<T = any> {
+export interface QueryResult<T = unknown> {
   rows: T[]
   rowCount: number
   fields?: string[]
@@ -85,7 +85,7 @@ export interface QueryResult<T = any> {
 }
 
 export interface TransactionFn {
-  query<T = any>(sql: string, params?: any[]): Promise<QueryResult<T>>
+  query<T = unknown>(sql: string, params?: unknown[]): Promise<QueryResult<T>>
 }
 
 export class DatabaseQueryTool {
@@ -189,13 +189,13 @@ export class DatabaseQueryTool {
   /**
    * Execute query (PostgreSQL)
    */
-  private async queryPostgres<T = any>(sql: string, params?: any[]): Promise<QueryResult<T>> {
+  private async queryPostgres<T = unknown>(sql: string, params?: unknown[]): Promise<QueryResult<T>> {
     if (!this.pgPool) {
       throw new Error('PostgreSQL pool not initialized')
     }
 
     const startTime = Date.now()
-    const result = await this.pgPool.query(sql, params)
+    const result = await this.pgPool.query(sql, params as any[])
     const executionTime = Date.now() - startTime
 
     return {
@@ -209,7 +209,7 @@ export class DatabaseQueryTool {
   /**
    * Execute query (MySQL)
    */
-  private async queryMysql<T = any>(sql: string, params?: any[]): Promise<QueryResult<T>> {
+  private async queryMysql<T = unknown>(sql: string, params?: unknown[]): Promise<QueryResult<T>> {
     if (!this.mysqlPool) {
       throw new Error('MySQL pool not initialized')
     }
@@ -229,7 +229,7 @@ export class DatabaseQueryTool {
   /**
    * Execute query (SQLite)
    */
-  private async querySqlite<T = any>(sql: string, params?: any[]): Promise<QueryResult<T>> {
+  private async querySqlite<T = unknown>(sql: string, params?: unknown[]): Promise<QueryResult<T>> {
     if (!this.sqliteDb) {
       throw new Error('SQLite database not initialized')
     }
@@ -261,7 +261,7 @@ export class DatabaseQueryTool {
   /**
    * Execute SQL query
    */
-  async query<T = any>(sql: string, params?: any[]): Promise<QueryResult<T>> {
+  async query<T = unknown>(sql: string, params?: unknown[]): Promise<QueryResult<T>> {
     // Validate query
     this.validateQuery(sql)
 
@@ -284,7 +284,7 @@ export class DatabaseQueryTool {
   /**
    * Execute multiple queries in transaction
    */
-  async transaction<T = any>(fn: (tx: TransactionFn) => Promise<T>): Promise<T> {
+  async transaction<T = unknown>(fn: (tx: TransactionFn) => Promise<T>): Promise<T> {
     if (this.readOnly) {
       throw new Error('Transactions not allowed in read-only mode')
     }
@@ -318,10 +318,10 @@ export class DatabaseQueryTool {
       await client.query('BEGIN')
 
       const tx: TransactionFn = {
-        query: async <R = any>(sql: string, params?: any[]) => {
+        query: async <R = unknown>(sql: string, params?: unknown[]) => {
           this.validateQuery(sql)
           const startTime = Date.now()
-          const result = await client.query(sql, params)
+          const result = await client.query(sql, params as any[])
           const executionTime = Date.now() - startTime
 
           return {
@@ -359,7 +359,7 @@ export class DatabaseQueryTool {
       await connection.beginTransaction()
 
       const tx: TransactionFn = {
-        query: async <R = any>(sql: string, params?: any[]) => {
+        query: async <R = unknown>(sql: string, params?: unknown[]) => {
           this.validateQuery(sql)
           const startTime = Date.now()
           const [rows, fields] = await connection.execute(sql, params)
@@ -398,7 +398,7 @@ export class DatabaseQueryTool {
       await this.sqliteDb.exec('BEGIN TRANSACTION')
 
       const tx: TransactionFn = {
-        query: async <R = any>(sql: string, params?: any[]) => {
+        query: async <R = unknown>(sql: string, params?: unknown[]) => {
           this.validateQuery(sql)
           const startTime = Date.now()
 
@@ -437,7 +437,7 @@ export class DatabaseQueryTool {
   /**
    * Get table schema
    */
-  async getTableSchema(tableName: string): Promise<any> {
+  async getTableSchema(tableName: string): Promise<unknown> {
     switch (this.type) {
       case 'postgres':
         return this.query(
@@ -555,7 +555,10 @@ export const databaseQueryToolDefinition = {
 /**
  * Execute tool (for AI frameworks)
  */
-export async function executeDatabaseQueryTool(args: any, config: DatabaseConfig): Promise<any> {
+export async function executeDatabaseQueryTool(
+  args: Record<string, any>,
+  config: DatabaseConfig
+): Promise<unknown> {
   const db = new DatabaseQueryTool(config)
 
   try {

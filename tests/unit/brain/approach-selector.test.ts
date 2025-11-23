@@ -47,7 +47,7 @@ describe('ApproachSelector', () => {
       })
 
       expect(decision.pattern).toBe('code-execution')
-      expect(decision.reasoning).toContain(expect.stringMatching(/large data/i))
+      expect(decision.reasoning.some(r => /large data/i.test(r))).toBe(true)
     })
 
     it('should select Code Execution when PII is present', async () => {
@@ -60,7 +60,7 @@ describe('ApproachSelector', () => {
       })
 
       expect(decision.pattern).toBe('code-execution')
-      expect(decision.reasoning).toContain(expect.stringMatching(/pii/i))
+      expect(decision.reasoning.some(r => /pii/i.test(r))).toBe(true)
     })
 
     it('should select Code Execution for repeated workflows', async () => {
