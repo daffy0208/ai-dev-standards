@@ -50,26 +50,26 @@ echo "🔎 Checking critical files..."
 for file in "${CRITICAL_FILES[@]}"; do
     if [ ! -f "$file" ]; then
         echo -e "${RED}✗${NC} $file - FILE NOT FOUND"
-        ((ERRORS++))
+        ((ERRORS+=1))
         continue
     fi
 
     # Check for old skill counts (previous was 37, now should match SKILL_COUNT)
     if grep -q "37 skills\|37 Skills" "$file" && [ "$SKILL_COUNT" -ne 37 ]; then
         echo -e "${RED}✗${NC} $file - Contains '37 skills' but should be '$SKILL_COUNT skills'"
-        ((ERRORS++))
+        ((ERRORS+=1))
     fi
 
     # Check for old MCP counts (previous was 34, now should match MCP_COUNT)
     if grep -q "34 MCPs\|34 MCP" "$file" && [ "$MCP_COUNT" -ne 34 ]; then
         echo -e "${RED}✗${NC} $file - Contains '34 MCPs' but should be '$MCP_COUNT MCPs'"
-        ((ERRORS++))
+        ((ERRORS+=1))
     fi
 
     # Check for old total counts (previous was 103, now should match TOTAL_RESOURCES)
     if grep -q "103 total\|103 Total" "$file" && [ "$TOTAL_RESOURCES" -ne 103 ]; then
         echo -e "${RED}✗${NC} $file - Contains '103 total' but should be '$TOTAL_RESOURCES total'"
-        ((ERRORS++))
+        ((ERRORS+=1))
     fi
 
     # Verify current counts are present
@@ -85,7 +85,7 @@ echo "🔎 Checking template files..."
 for file in "${TEMPLATE_FILES[@]}"; do
     if [ ! -f "$file" ]; then
         echo -e "${RED}✗${NC} $file - FILE NOT FOUND"
-        ((ERRORS++))
+        ((ERRORS+=1))
         continue
     fi
 
@@ -93,7 +93,7 @@ for file in "${TEMPLATE_FILES[@]}"; do
     if grep -q "37 Skills\|34 MCPs" "$file"; then
         if [ "$SKILL_COUNT" -ne 37 ] || [ "$MCP_COUNT" -ne 34 ]; then
             echo -e "${RED}✗${NC} $file - Contains old stats"
-            ((ERRORS++))
+            ((ERRORS+=1))
         fi
     fi
 done
@@ -106,12 +106,12 @@ MAPPING_MCPS=$(jq '.statistics.total_mcps' META/relationship-mapping.json)
 
 if [ "$MAPPING_SKILLS" -ne "$SKILL_COUNT" ]; then
     echo -e "${RED}✗${NC} META/relationship-mapping.json - skill count mismatch (has $MAPPING_SKILLS, should be $SKILL_COUNT)"
-    ((ERRORS++))
+    ((ERRORS+=1))
 fi
 
 if [ "$MAPPING_MCPS" -ne "$MCP_COUNT" ]; then
     echo -e "${RED}✗${NC} META/relationship-mapping.json - MCP count mismatch (has $MAPPING_MCPS, should be $MCP_COUNT)"
-    ((ERRORS++))
+    ((ERRORS+=1))
 fi
 
 # Summary
