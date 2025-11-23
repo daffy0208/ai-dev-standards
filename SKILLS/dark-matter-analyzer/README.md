@@ -28,6 +28,7 @@ Dark Matter Mode goes beyond traditional code quality metrics to reveal:
 ## When to Use
 
 ### Perfect For:
+
 - Repository feels "off" but you can't articulate why
 - Extensive documentation but team still confused
 - High velocity but low coherence
@@ -35,6 +36,7 @@ Dark Matter Mode goes beyond traditional code quality metrics to reveal:
 - Regular health checks (quarterly recommended)
 
 ### Not Needed For:
+
 - Simple bug fixes
 - Standard code reviews
 - Feature additions
@@ -62,32 +64,37 @@ Dark Matter Mode goes beyond traditional code quality metrics to reveal:
 
 ## Understanding Your RCI Score
 
-| Score | Status | What It Means |
-|-------|--------|---------------|
-| **85-100** | ✅ Coherent | Healthy, aligned, sustainable |
-| **70-84** | 🟡 Monitor | Early drift, watch for patterns |
-| **50-69** | 🟠 Misaligned | Intent and reality diverging |
-| **<50** | 🔴 Incoherent | Major realignment needed |
+| Score      | Status        | What It Means                   |
+| ---------- | ------------- | ------------------------------- |
+| **85-100** | ✅ Coherent   | Healthy, aligned, sustainable   |
+| **70-84**  | 🟡 Monitor    | Early drift, watch for patterns |
+| **50-69**  | 🟠 Misaligned | Intent and reality diverging    |
+| **<50**    | 🔴 Incoherent | Major realignment needed        |
 
 ## Common Patterns Detected
 
 ### Strategic Drift
+
 **Signal:** README doesn't match commit activity
 **Meaning:** Vision disconnection or premature pivoting
 
 ### Documentation Inflation
+
 **Signal:** Many similar .md files created rapidly
 **Meaning:** Over-planning; avoidance through writing
 
 ### Execution Deficit
+
 **Signal:** Much more documentation than implementation
 **Meaning:** Hope-driven development instead of execution-driven
 
 ### Task-Reality Desync
+
 **Signal:** Tests pass but features incomplete
 **Meaning:** Validating structure, not actual utility
 
 ### Suppression Pattern
+
 **Signal:** Many `eslint-disable` or `@ts-ignore` comments
 **Meaning:** Time pressure, fatigue, or technical debt accumulation
 
@@ -136,18 +143,21 @@ dark-matter watch --interval 7d
 ## Real-World Example
 
 A repository had:
+
 - 36 documented skills
 - Only 3 implementation tools
 - 30 documentation files (16,302 lines)
 - All tests passing
 
 **Dark Matter Revealed:**
+
 - 12:1 skill-to-tool gap (execution deficit)
 - Documentation inflation (543 lines avg per doc)
 - Task-reality desync (tests validated structure, not utility)
 - RCI Score: 72/100 (MONITOR status)
 
 **Recommended Actions:**
+
 1. 🔴 HOLD: Freeze new skills until tools catch up
 2. 🔴 HOLD: Consolidate docs (30 → 15 target)
 3. 🟡 REVIEW: Gather external user feedback
@@ -158,6 +168,7 @@ A repository had:
 ## Complementary Skills
 
 Use Dark Matter Analyzer with:
+
 - **mvp-builder** - Shift to execution-driven development
 - **quality-auditor** - Technical quality after organizational health
 - **product-strategist** - Strategic realignment
@@ -189,6 +200,7 @@ Simply ask Claude:
 ```
 
 Claude will:
+
 1. Scan your repository
 2. Detect patterns
 3. Generate insights
@@ -197,6 +209,6 @@ Claude will:
 
 ---
 
-**Remember:** *"Every repo is a psyche made visible."*
+**Remember:** _"Every repo is a psyche made visible."_
 
 The patterns in your code reveal the patterns in your team. Dark Matter Mode helps you see them clearly so you can improve with intention.

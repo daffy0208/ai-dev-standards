@@ -64,7 +64,7 @@ Options can be passed as JSON string after color (optional):
       let options: ColorPaletteOptions = {
         generateShades: true,
         checkContrast: true,
-        includeMeta: true,
+        includeMeta: true
       }
 
       // Parse options if provided
@@ -101,14 +101,14 @@ Options can be passed as JSON string after color (optional):
 
     const palette: ColorPalette = {
       baseColor,
-      schemes: [],
+      schemes: []
     }
 
     // Generate color schemes
     palette.schemes.push({
       name: 'Complementary',
       colors: [baseColor, this.hslToHex((hsl.h + 180) % 360, hsl.s, hsl.l)],
-      description: 'Colors opposite on the color wheel',
+      description: 'Colors opposite on the color wheel'
     })
 
     palette.schemes.push({
@@ -116,9 +116,9 @@ Options can be passed as JSON string after color (optional):
       colors: [
         this.hslToHex((hsl.h - 30 + 360) % 360, hsl.s, hsl.l),
         baseColor,
-        this.hslToHex((hsl.h + 30) % 360, hsl.s, hsl.l),
+        this.hslToHex((hsl.h + 30) % 360, hsl.s, hsl.l)
       ],
-      description: 'Colors adjacent on the color wheel',
+      description: 'Colors adjacent on the color wheel'
     })
 
     palette.schemes.push({
@@ -126,9 +126,9 @@ Options can be passed as JSON string after color (optional):
       colors: [
         baseColor,
         this.hslToHex((hsl.h + 120) % 360, hsl.s, hsl.l),
-        this.hslToHex((hsl.h + 240) % 360, hsl.s, hsl.l),
+        this.hslToHex((hsl.h + 240) % 360, hsl.s, hsl.l)
       ],
-      description: 'Colors evenly spaced on the color wheel',
+      description: 'Colors evenly spaced on the color wheel'
     })
 
     palette.schemes.push({
@@ -137,9 +137,9 @@ Options can be passed as JSON string after color (optional):
         baseColor,
         this.hslToHex((hsl.h + 90) % 360, hsl.s, hsl.l),
         this.hslToHex((hsl.h + 180) % 360, hsl.s, hsl.l),
-        this.hslToHex((hsl.h + 270) % 360, hsl.s, hsl.l),
+        this.hslToHex((hsl.h + 270) % 360, hsl.s, hsl.l)
       ],
-      description: 'Two complementary color pairs',
+      description: 'Two complementary color pairs'
     })
 
     // Generate shades if requested
@@ -172,7 +172,7 @@ Options can be passed as JSON string after color (optional):
         shade,
         hex: shadeHex,
         rgb: shadeRgb,
-        hsl: { h: hsl.h, s: hsl.s, l: lightness },
+        hsl: { h: hsl.h, s: hsl.s, l: lightness }
       })
     }
 
@@ -185,7 +185,7 @@ Options can be passed as JSON string after color (optional):
 
     return {
       white: this.getContrastRatio(baseColor, white),
-      black: this.getContrastRatio(baseColor, black),
+      black: this.getContrastRatio(baseColor, black)
     }
   }
 
@@ -219,9 +219,11 @@ Options can be passed as JSON string after color (optional):
 
   private getLuminance(hex: string): number {
     const rgb = this.hexToRgb(hex)
-    const [r, g, b] = [rgb.r, rgb.g, rgb.b].map((val) => {
+    const [r, g, b] = [rgb.r, rgb.g, rgb.b].map(val => {
       const normalized = val / 255
-      return normalized <= 0.03928 ? normalized / 12.92 : Math.pow((normalized + 0.055) / 1.055, 2.4)
+      return normalized <= 0.03928
+        ? normalized / 12.92
+        : Math.pow((normalized + 0.055) / 1.055, 2.4)
     })
 
     return 0.2126 * r + 0.7152 * g + 0.0722 * b
@@ -235,7 +237,7 @@ Options can be passed as JSON string after color (optional):
     return {
       r: parseInt(result[1], 16),
       g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16),
+      b: parseInt(result[3], 16)
     }
   }
 
@@ -270,7 +272,7 @@ Options can be passed as JSON string after color (optional):
     return {
       h: Math.round(h * 360),
       s: Math.round(s * 100),
-      l: Math.round(l * 100),
+      l: Math.round(l * 100)
     }
   }
 

@@ -31,9 +31,9 @@ npm install && npm run build
 ## Usage Example
 
 ```javascript
-await deployer.configure({ platform: 'vercel', apiKey: 'xxx' });
-const deployment = await deployer.deploy({ project: './my-app' });
-console.log(`Deployed to: ${deployment.url}`);
+await deployer.configure({ platform: 'vercel', apiKey: 'xxx' })
+const deployment = await deployer.deploy({ project: './my-app' })
+console.log(`Deployed to: ${deployment.url}`)
 ```
 
 ## Related

@@ -110,22 +110,22 @@
         "requires": {
           "type": "array",
           "description": "Capabilities that must be present",
-          "items": {"type": "string"}
+          "items": { "type": "string" }
         },
         "conflicts_with": {
           "type": "array",
           "description": "Capabilities that cannot coexist",
-          "items": {"type": "string"}
+          "items": { "type": "string" }
         },
         "composes_with": {
           "type": "array",
           "description": "Capabilities that work well together",
-          "items": {"type": "string"}
+          "items": { "type": "string" }
         },
         "enables": {
           "type": "array",
           "description": "Capabilities this unlocks",
-          "items": {"type": "string"}
+          "items": { "type": "string" }
         }
       }
     },
@@ -135,30 +135,30 @@
         "logs": {
           "type": "array",
           "description": "Log patterns to emit",
-          "items": {"type": "string"}
+          "items": { "type": "string" }
         },
         "metrics": {
           "type": "array",
           "description": "Metrics to track",
-          "items": {"type": "string"}
+          "items": { "type": "string" }
         }
       }
     },
     "metadata": {
       "type": "object",
       "properties": {
-        "version": {"type": "string"},
-        "author": {"type": "string"},
-        "created_at": {"type": "string", "format": "date-time"},
-        "updated_at": {"type": "string", "format": "date-time"},
+        "version": { "type": "string" },
+        "author": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" },
         "tags": {
           "type": "array",
-          "items": {"type": "string"}
+          "items": { "type": "string" }
         },
         "examples": {
           "type": "array",
           "description": "Example use cases",
-          "items": {"type": "string"}
+          "items": { "type": "string" }
         }
       }
     }

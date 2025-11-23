@@ -4,12 +4,12 @@ description: Comprehensive quality assurance combining testing strategy, code qu
 version: 1.0.0
 category: quality
 triggers:
-  - "quality-assurance"
-  - "quality assurance"
-  - "qa strategy"
-  - "testing strategy"
-  - "code quality"
-  - "validation gates"
+  - 'quality-assurance'
+  - 'quality assurance'
+  - 'qa strategy'
+  - 'testing strategy'
+  - 'code quality'
+  - 'validation gates'
 dependencies:
   required_mcps: []
   required_tools: []
@@ -23,6 +23,7 @@ dependencies:
 Quality Assurance is a consolidated skill that combines three critical quality dimensions: comprehensive testing strategy, code quality enforcement, and phase-gate validation. It ensures your code is tested, maintainable, and ready for production at every stage.
 
 **Consolidated from:**
+
 - **testing-strategist** - Test pyramid and comprehensive testing
 - **code-quality-enforcer** - Code standards and best practices
 - **validation-gate-checker** - Phase transition validation
@@ -30,6 +31,7 @@ Quality Assurance is a consolidated skill that combines three critical quality d
 ## When to Use This Skill
 
 Use Quality Assurance when:
+
 - Setting up testing infrastructure for a project
 - Conducting code reviews
 - Validating readiness to move between project phases
@@ -41,6 +43,7 @@ Use Quality Assurance when:
 ## Key Capabilities
 
 ### Testing Strategy (from testing-strategist)
+
 - Design test pyramid with optimal coverage
 - Define unit, integration, and E2E test strategies
 - Set coverage targets and quality metrics
@@ -48,6 +51,7 @@ Use Quality Assurance when:
 - Plan test automation and CI/CD integration
 
 ### Code Quality (from code-quality-enforcer)
+
 - Enforce coding standards and best practices
 - Review code for readability and maintainability
 - Identify security vulnerabilities and anti-patterns
@@ -55,6 +59,7 @@ Use Quality Assurance when:
 - Refactor code to improve quality scores
 
 ### Validation Gates (from validation-gate-checker)
+
 - Define phase transition criteria
 - Validate readiness for next phase
 - Ensure deliverables are complete
@@ -68,6 +73,7 @@ Use Quality Assurance when:
 #### The Test Pyramid
 
 **Structure:**
+
 ```
         /\
        /E2E\      10% - End-to-End (Critical user flows)
@@ -79,6 +85,7 @@ Use Quality Assurance when:
 ```
 
 **Rationale:**
+
 - **Unit tests** are fast, isolated, cheap to maintain
 - **Integration tests** catch component interaction issues
 - **E2E tests** validate critical user workflows, but are slow and brittle
@@ -88,11 +95,13 @@ Use Quality Assurance when:
 #### Unit Tests (70% of tests)
 
 **Coverage Targets:**
+
 - Critical code (auth, payments, security): 100%
 - Business logic: >90%
 - Overall codebase: >85%
 
 **What to Test:**
+
 - Pure functions and business logic
 - Edge cases and error conditions
 - Input validation
@@ -100,6 +109,7 @@ Use Quality Assurance when:
 - Utility functions
 
 **Best Practices:**
+
 - One test file per source file
 - Fast execution (<1ms per test)
 - No external dependencies (mock/stub)
@@ -107,23 +117,24 @@ Use Quality Assurance when:
 - AAA pattern (Arrange, Act, Assert)
 
 **Example:**
+
 ```javascript
 // Good: Fast, isolated, clear
 describe('calculateDiscount', () => {
   it('applies 10% discount for orders over $100', () => {
-    const result = calculateDiscount(150);
-    expect(result).toBe(15);
-  });
+    const result = calculateDiscount(150)
+    expect(result).toBe(15)
+  })
 
   it('returns 0 for orders under $100', () => {
-    const result = calculateDiscount(50);
-    expect(result).toBe(0);
-  });
+    const result = calculateDiscount(50)
+    expect(result).toBe(0)
+  })
 
   it('throws error for negative amounts', () => {
-    expect(() => calculateDiscount(-10)).toThrow();
-  });
-});
+    expect(() => calculateDiscount(-10)).toThrow()
+  })
+})
 ```
 
 ---
@@ -131,6 +142,7 @@ describe('calculateDiscount', () => {
 #### Integration Tests (20% of tests)
 
 **What to Test:**
+
 - API endpoints with real database
 - Multiple components working together
 - Third-party service integrations (with mocks)
@@ -138,6 +150,7 @@ describe('calculateDiscount', () => {
 - File system operations
 
 **Best Practices:**
+
 - Test database setup/teardown
 - Use test database or transactions
 - Mock external services
@@ -145,35 +158,36 @@ describe('calculateDiscount', () => {
 - <5 seconds per test
 
 **Example:**
+
 ```javascript
 // Good: Real database, tests integration
 describe('POST /api/users', () => {
   beforeEach(async () => {
-    await db.users.deleteMany({});
-  });
+    await db.users.deleteMany({})
+  })
 
   it('creates user and returns 201', async () => {
     const response = await request(app)
       .post('/api/users')
-      .send({ email: 'test@example.com', name: 'Test' });
+      .send({ email: 'test@example.com', name: 'Test' })
 
-    expect(response.status).toBe(201);
-    expect(response.body.email).toBe('test@example.com');
+    expect(response.status).toBe(201)
+    expect(response.body.email).toBe('test@example.com')
 
-    const user = await db.users.findOne({ email: 'test@example.com' });
-    expect(user).toBeDefined();
-  });
+    const user = await db.users.findOne({ email: 'test@example.com' })
+    expect(user).toBeDefined()
+  })
 
   it('returns 400 for duplicate email', async () => {
-    await db.users.create({ email: 'test@example.com' });
+    await db.users.create({ email: 'test@example.com' })
 
     const response = await request(app)
       .post('/api/users')
-      .send({ email: 'test@example.com', name: 'Test' });
+      .send({ email: 'test@example.com', name: 'Test' })
 
-    expect(response.status).toBe(400);
-  });
-});
+    expect(response.status).toBe(400)
+  })
+})
 ```
 
 ---
@@ -181,12 +195,14 @@ describe('POST /api/users', () => {
 #### E2E Tests (10% of tests)
 
 **What to Test:**
+
 - Critical user workflows (signup, checkout, etc.)
 - Multi-page user journeys
 - UI interactions with backend
 - Cross-browser compatibility (if needed)
 
 **Best Practices:**
+
 - Only test critical paths
 - Use page object pattern
 - Run in CI/CD before deployment
@@ -194,20 +210,21 @@ describe('POST /api/users', () => {
 - Use headless browsers in CI
 
 **Example:**
+
 ```javascript
 // Good: Tests complete user flow
 describe('User Signup Flow', () => {
   it('allows new user to signup and access dashboard', async () => {
-    await page.goto('/signup');
+    await page.goto('/signup')
 
-    await page.fill('input[name="email"]', 'newuser@example.com');
-    await page.fill('input[name="password"]', 'SecurePass123!');
-    await page.click('button[type="submit"]');
+    await page.fill('input[name="email"]', 'newuser@example.com')
+    await page.fill('input[name="password"]', 'SecurePass123!')
+    await page.click('button[type="submit"]')
 
-    await page.waitForURL('/dashboard');
-    expect(await page.textContent('h1')).toContain('Welcome');
-  });
-});
+    await page.waitForURL('/dashboard')
+    expect(await page.textContent('h1')).toContain('Welcome')
+  })
+})
 ```
 
 ---
@@ -215,16 +232,19 @@ describe('User Signup Flow', () => {
 #### Testing Tools Recommendations
 
 **JavaScript/TypeScript:**
+
 - Unit: Jest or Vitest
 - Integration: Supertest (API) + Jest
 - E2E: Playwright or Cypress
 
 **Python:**
+
 - Unit: pytest
 - Integration: pytest with fixtures
 - E2E: Selenium or Playwright
 
 **General:**
+
 - Coverage: Istanbul (JS), Coverage.py (Python)
 - CI/CD: GitHub Actions, CircleCI, GitLab CI
 - Mocking: Jest (JS), unittest.mock (Python)
@@ -236,23 +256,27 @@ describe('User Signup Flow', () => {
 #### Code Quality Principles
 
 **1. Readability**
+
 - Descriptive variable and function names
 - Single Responsibility Principle
 - Clear, consistent formatting
 - Comments for "why", not "what"
 
 **2. Maintainability**
+
 - DRY (Don't Repeat Yourself)
 - SOLID principles
 - Type safety (TypeScript, type hints)
 - Error handling everywhere
 
 **3. Testing**
+
 - Unit tests for all functions
 - Edge cases covered
 - Test names describe behavior
 
 **4. Security**
+
 - No hardcoded secrets
 - Input validation
 - SQL injection prevention
@@ -263,6 +287,7 @@ describe('User Signup Flow', () => {
 #### Code Quality Checklist
 
 **Before Code Review:**
+
 - [ ] No hardcoded secrets or API keys
 - [ ] Functions <50 lines (split if longer)
 - [ ] Error handling present (try/catch, null checks)
@@ -281,6 +306,7 @@ describe('User Signup Flow', () => {
 **What to Look For:**
 
 **Critical Issues (Must Fix):**
+
 - Security vulnerabilities (SQL injection, XSS, secrets)
 - Breaking changes without migration
 - Missing error handling
@@ -288,6 +314,7 @@ describe('User Signup Flow', () => {
 - Performance bottlenecks
 
 **Important Issues (Should Fix):**
+
 - Code duplication (DRY violations)
 - Poor naming or structure
 - Missing tests for new code
@@ -295,6 +322,7 @@ describe('User Signup Flow', () => {
 - Inconsistent formatting
 
 **Minor Issues (Nice to Fix):**
+
 - Style inconsistencies
 - Over-commenting
 - Optimization opportunities
@@ -307,25 +335,30 @@ describe('User Signup Flow', () => {
 **Scoring System (0-100):**
 
 **Security (30 points):**
+
 - No secrets in code (10 pts)
 - Input validation (10 pts)
 - Error handling (10 pts)
 
 **Readability (25 points):**
+
 - Descriptive names (10 pts)
 - Clear structure (10 pts)
 - Appropriate comments (5 pts)
 
 **Testing (25 points):**
+
 - Unit test coverage >85% (15 pts)
 - Tests for edge cases (10 pts)
 
 **Maintainability (20 points):**
+
 - DRY compliance (10 pts)
 - Function size <50 lines (5 pts)
 - Type safety (5 pts)
 
 **Grading:**
+
 - 90-100: Excellent
 - 80-89: Good
 - 70-79: Acceptable
@@ -340,6 +373,7 @@ Validation gates ensure each phase is complete before moving to the next.
 #### Phase 1 → Phase 2 (Discovery → Design)
 
 **Gate Criteria:**
+
 - [ ] PRP document complete and reviewed
 - [ ] Problem statement validated with users
 - [ ] Success criteria defined and measurable
@@ -348,11 +382,13 @@ Validation gates ensure each phase is complete before moving to the next.
 - [ ] Open questions documented with owners
 
 **Deliverables:**
+
 - Product Requirements Prompt (PRP)
 - User research summary
 - Success metrics dashboard
 
 **Review Questions:**
+
 - Do we understand the user problem?
 - Can we measure success?
 - Is scope clear and agreed upon?
@@ -362,6 +398,7 @@ Validation gates ensure each phase is complete before moving to the next.
 #### Phase 2 → Phase 3 (Design → Development)
 
 **Gate Criteria:**
+
 - [ ] Architecture documented (system diagram)
 - [ ] Data model designed (ERD or schema)
 - [ ] API contracts defined (if applicable)
@@ -371,6 +408,7 @@ Validation gates ensure each phase is complete before moving to the next.
 - [ ] Infrastructure plan documented
 
 **Deliverables:**
+
 - Architecture document
 - Data model / ERD
 - API specification (OpenAPI/Swagger)
@@ -378,6 +416,7 @@ Validation gates ensure each phase is complete before moving to the next.
 - Infrastructure diagram
 
 **Review Questions:**
+
 - Is architecture sound and scalable?
 - Are security threats mitigated?
 - Do we have required infrastructure access?
@@ -387,6 +426,7 @@ Validation gates ensure each phase is complete before moving to the next.
 #### Phase 3 → Phase 4 (Development → Testing)
 
 **Gate Criteria:**
+
 - [ ] All P0 features complete
 - [ ] Unit test coverage >80%
 - [ ] Code review completed
@@ -396,12 +436,14 @@ Validation gates ensure each phase is complete before moving to the next.
 - [ ] Logging and monitoring in place
 
 **Deliverables:**
+
 - Working software (all P0 features)
 - Test coverage report
 - Code review sign-off
 - SAST scan results
 
 **Review Questions:**
+
 - Are all MVP features complete?
 - Is code quality acceptable?
 - Are critical bugs resolved?
@@ -411,6 +453,7 @@ Validation gates ensure each phase is complete before moving to the next.
 #### Phase 4 → Phase 5 (Testing → Deployment)
 
 **Gate Criteria:**
+
 - [ ] All tests passing (unit, integration, E2E)
 - [ ] Test coverage >90%
 - [ ] User acceptance testing (UAT) completed
@@ -421,6 +464,7 @@ Validation gates ensure each phase is complete before moving to the next.
 - [ ] Deployment runbook ready
 
 **Deliverables:**
+
 - Test results (all green)
 - UAT sign-off
 - Security test report
@@ -428,6 +472,7 @@ Validation gates ensure each phase is complete before moving to the next.
 - Deployment runbook
 
 **Review Questions:**
+
 - Are we confident in quality?
 - Can we roll back if needed?
 - Is production infrastructure ready?
@@ -443,12 +488,14 @@ Validation gates ensure each phase is complete before moving to the next.
 **Test Plan:**
 
 **Unit Tests (70%):**
+
 - Business logic (validation, permissions)
 - Data transformations
 - Utility functions
 - Error handling logic
 
 **Integration Tests (20%):**
+
 - POST /users (creates user in DB)
 - GET /users/:id (retrieves from DB)
 - PUT /users/:id (updates in DB)
@@ -457,11 +504,13 @@ Validation gates ensure each phase is complete before moving to the next.
 - Error responses (400, 401, 404, 500)
 
 **E2E Tests (10%):**
+
 - Full signup flow (create user → verify email → login)
 - Password reset flow
 - Profile update flow
 
 **Tools:**
+
 - Jest (unit)
 - Supertest (integration)
 - Playwright (E2E)
@@ -473,23 +522,26 @@ Validation gates ensure each phase is complete before moving to the next.
 ### Example 2: Code Quality Review
 
 **Before (Poor Quality - Score: 55/100):**
+
 ```javascript
 // Bad: Hardcoded secret, no error handling, poor naming
 function getData(x) {
   const result = fetch('https://api.example.com/data', {
-    headers: { 'Authorization': 'Bearer sk_live_abc123' }
-  });
-  return result.json();
+    headers: { Authorization: 'Bearer sk_live_abc123' }
+  })
+  return result.json()
 }
 ```
 
 **Issues:**
+
 - Security: Hardcoded API key (-10 pts)
 - Error handling: None (-10 pts)
 - Naming: Poor variable names (-10 pts)
 - Testing: No tests (-15 pts)
 
 **After (Good Quality - Score: 95/100):**
+
 ```javascript
 // Good: Secure, robust, clear
 async function fetchUserData(userId: string): Promise<UserData> {
@@ -535,6 +587,7 @@ describe('fetchUserData', () => {
 **Validation Check:**
 
 **Requirements:**
+
 - ✅ All P0 features complete (chat UI, AI responses, escalation)
 - ✅ Unit test coverage: 87%
 - ✅ Code review: Approved (2 reviewers)
@@ -545,6 +598,7 @@ describe('fetchUserData', () => {
 **Decision:** GATE FAILED - Must fix SAST issues before proceeding
 
 **Action Items:**
+
 1. Fix 3 medium severity issues (input validation)
 2. Re-run SAST scan
 3. Re-review gate criteria
@@ -556,6 +610,7 @@ describe('fetchUserData', () => {
 ## Best Practices
 
 ### Testing
+
 1. **Write tests first (TDD)** - Clarifies requirements
 2. **Keep tests independent** - No shared state
 3. **Test behavior, not implementation** - Refactor-safe tests
@@ -563,6 +618,7 @@ describe('fetchUserData', () => {
 5. **Fail fast** - Run fast tests first
 
 ### Code Quality
+
 1. **Automate quality checks** - ESLint, Prettier, type checking
 2. **Review your own code first** - Catch obvious issues
 3. **Small, focused PRs** - Easier to review thoroughly
@@ -570,6 +626,7 @@ describe('fetchUserData', () => {
 5. **Refactor continuously** - Don't accumulate tech debt
 
 ### Validation Gates
+
 1. **Document criteria upfront** - No surprises
 2. **Be strict on critical gates** - Security, production readiness
 3. **Flexible on nice-to-haves** - Don't block progress
@@ -581,24 +638,29 @@ describe('fetchUserData', () => {
 ## Common Pitfalls
 
 ### 1. Testing the Wrong Things
+
 **Antipattern:** Test implementation details (private methods)
 **Better:** Test public API and behavior
 
 ### 2. Insufficient Coverage of Edge Cases
+
 **Antipattern:** Only test happy path
 **Better:** Test nulls, empty arrays, errors, boundaries
 
 ### 3. Skipping Phase Gates
+
 **Antipattern:** "We'll fix it after shipping"
 **Result:** Production bugs, security issues
 
 **Better:** Enforce gates, delay if needed
 
 ### 4. Over-Engineering Quality
+
 **Antipattern:** 100% coverage on everything, perfection paralysis
 **Better:** Pragmatic quality aligned with risk
 
 ### 5. Manual Quality Checks
+
 **Antipattern:** Remember to run linter before commit
 **Better:** Automate in pre-commit hooks + CI/CD
 
@@ -647,6 +709,7 @@ When using Quality Assurance, produce:
 ## Success Metrics
 
 Quality Assurance is working when:
+
 - Test coverage consistently >85%
 - Production bugs <1% of releases
 - Code reviews catch issues before merge

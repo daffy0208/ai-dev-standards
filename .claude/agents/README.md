@@ -5,9 +5,11 @@ Claude Code provides specialized agent types that optimize for different develop
 ## Available Agent Types
 
 ### General-Purpose Agent (Default)
+
 The standard Claude Code agent for most development tasks.
 
 **Use Cases:**
+
 - Code search and analysis
 - Multi-step research tasks
 - Complex codebase exploration
@@ -15,12 +17,14 @@ The standard Claude Code agent for most development tasks.
 - General development assistance
 
 **Strengths:**
+
 - Searching for code, configurations, and patterns across large codebases
 - Analyzing multiple files to understand system architecture
 - Investigating complex questions requiring exploration of many files
 - Performing multi-step research tasks
 
 **When to Use:**
+
 - Default choice for most development tasks
 - When you need comprehensive analysis
 - When task involves multiple files or complex relationships
@@ -30,20 +34,24 @@ The standard Claude Code agent for most development tasks.
 ---
 
 ### Explore Agent
+
 Fast codebase exploration with configurable thoroughness levels.
 
 **Use Cases:**
+
 - Initial repository assessment
 - Architecture understanding
 - Rapid codebase familiarization
 - Pattern discovery
 
 **Modes:**
+
 - **Quick:** Fast overview, minimal depth
 - **Medium:** Balanced exploration (default)
 - **Very Thorough:** Deep analysis, maximum detail
 
 **When to Use:**
+
 - Starting work on unfamiliar codebase
 - Need architectural overview
 - Searching for patterns or conventions
@@ -54,14 +62,17 @@ Fast codebase exploration with configurable thoroughness levels.
 ---
 
 ### Status Line Setup Agent
+
 Configure status line display settings for Claude Code.
 
 **Use Cases:**
+
 - Customize CLI output format
 - Configure status indicators
 - Set up display preferences
 
 **When to Use:**
+
 - Initial setup
 - Customizing CLI experience
 - Adjusting output verbosity
@@ -69,14 +80,17 @@ Configure status line display settings for Claude Code.
 ---
 
 ### Output Style Setup Agent
+
 Create and manage output style configurations.
 
 **Use Cases:**
+
 - Customize output formatting
 - Set up color schemes
 - Configure display styles
 
 **When to Use:**
+
 - Personalizing CLI appearance
 - Team standardization
 - Accessibility adjustments
@@ -103,13 +117,13 @@ Create and manage output style configurations.
 
 ## Performance Characteristics
 
-| Agent Type | Speed | Depth | Best For |
-|------------|-------|-------|----------|
-| Explore (Quick) | Fast | Low | Quick overviews |
-| Explore (Medium) | Medium | Medium | Balanced exploration |
-| Explore (Very Thorough) | Slow | High | Deep analysis |
-| General-Purpose | Variable | High | Most tasks |
-| Setup Agents | Fast | N/A | Configuration |
+| Agent Type              | Speed    | Depth  | Best For             |
+| ----------------------- | -------- | ------ | -------------------- |
+| Explore (Quick)         | Fast     | Low    | Quick overviews      |
+| Explore (Medium)        | Medium   | Medium | Balanced exploration |
+| Explore (Very Thorough) | Slow     | High   | Deep analysis        |
+| General-Purpose         | Variable | High   | Most tasks           |
+| Setup Agents            | Fast     | N/A    | Configuration        |
 
 ---
 
@@ -156,6 +170,7 @@ See `.claude/CLAUDE.md` for complete skill inventory.
 ## Support
 
 For questions or issues with agents:
+
 1. Check agent-specific documentation
 2. Review usage examples
 3. Consult skill documentation for related capabilities

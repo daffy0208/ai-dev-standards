@@ -12,18 +12,21 @@ I help you build video players, handle video streaming, and create engaging vide
 ## What I Do
 
 **Video Playback:**
+
 - Custom video players with controls
 - Adaptive bitrate streaming (HLS, DASH)
 - Picture-in-picture mode
 - Fullscreen support
 
 **Video Features:**
+
 - Subtitles and captions
 - Quality selection
 - Playback speed control
 - Thumbnail previews
 
 **Streaming:**
+
 - Live video streaming
 - Video on demand (VOD)
 - Progressive download
@@ -570,6 +573,7 @@ export function VideoUpload() {
 ## When to Use Me
 
 **Perfect for:**
+
 - Building video platforms
 - Adding video content
 - Implementing video streaming
@@ -577,6 +581,7 @@ export function VideoUpload() {
 - Building video players
 
 **I'll help you:**
+
 - Build custom video players
 - Implement HLS streaming
 - Add subtitles/captions

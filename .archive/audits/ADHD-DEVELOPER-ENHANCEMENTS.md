@@ -17,34 +17,42 @@ ADHD presents unique challenges in software development: time blindness, task in
 ## ADHD Challenges in Development
 
 ### Challenge 1: Task Initiation (Activation Energy)
+
 **Problem:** Difficulty starting tasks, especially large or ambiguous ones
 **Impact:** Procrastination, anxiety, missed deadlines
 
 ### Challenge 2: Time Blindness
+
 **Problem:** Poor time estimation, losing track of time during hyperfocus
 **Impact:** Missed meetings, scope creep, burnout
 
 ### Challenge 3: Working Memory Limitations
+
 **Problem:** Difficulty holding context in mind while coding
 **Impact:** Losing train of thought, re-reading code repeatedly
 
 ### Challenge 4: Context Switching
+
 **Problem:** High cost of switching between tasks or projects
 **Impact:** Lost productivity, difficulty resuming work
 
 ### Challenge 5: Hyperfocus (Double-Edged Sword)
+
 **Problem:** Getting stuck optimizing wrong thing, ignoring breaks
 **Impact:** Wasted time, health issues, tunnel vision
 
 ### Challenge 6: Completion Difficulty
+
 **Problem:** Losing interest near finish line, "90% done" syndrome
 **Impact:** Abandonware, unfinished projects
 
 ### Challenge 7: Organization & Prioritization
+
 **Problem:** Everything feels urgent, difficulty choosing what to work on
 **Impact:** Thrashing, paralysis, important work neglected
 
 ### Challenge 8: Dopamine-Seeking
+
 **Problem:** Seeking novel/interesting work over important work
 **Impact:** Side quests, shiny object syndrome
 
@@ -59,6 +67,7 @@ ADHD presents unique challenges in software development: time blindness, task in
 **Purpose:** Break large tasks into tiny, achievable micro-tasks
 
 **Key Features:**
+
 - Automatic task decomposition
 - 15-minute task chunking (ADHD-friendly)
 - Progress visualization
@@ -66,12 +75,14 @@ ADHD presents unique challenges in software development: time blindness, task in
 - Momentum building (small → medium → large)
 
 **Example Output:**
+
 ```markdown
 # Build Login Page
 
 ❌ Too big: "Build login page" (feels overwhelming)
 
 ✅ ADHD-friendly breakdown:
+
 1. [ ] Create login.tsx file (2 min) 🟢 Quick win!
 2. [ ] Add basic form HTML (5 min) 🟢
 3. [ ] Style with Tailwind (10 min) 🟢
@@ -87,6 +98,7 @@ Total: ~90 min (estimated with ADHD tax: 2 hours)
 ```
 
 **File Structure:**
+
 ```
 SKILLS/task-breakdown-specialist/
   ├── SKILL.md
@@ -100,6 +112,7 @@ SKILLS/task-breakdown-specialist/
 **Purpose:** Manage hyperfocus, breaks, and context switching
 
 **Key Features:**
+
 - Pomodoro integration with ADHD tweaks
 - Hyperfocus detection and breaks
 - Context saving before breaks
@@ -107,6 +120,7 @@ SKILLS/task-breakdown-specialist/
 - Body doubling suggestions
 
 **Example Output:**
+
 ```markdown
 # Focus Session Started: API Integration
 
@@ -119,6 +133,7 @@ SKILLS/task-breakdown-specialist/
 🎉 Session Complete! Time for 5-min break.
 
 Before you break:
+
 - [x] Commit current work (autosaved)
 - [x] Write next step: "Add error toast for failed login"
 - [ ] Stand up and move (important!)
@@ -135,6 +150,7 @@ Next session preview:
 You've been coding for 90 minutes without a break!
 
 Health check:
+
 - [ ] Drink water
 - [ ] Stretch/move
 - [ ] Look away from screen (20-20-20 rule)
@@ -144,6 +160,7 @@ Resume in 10 minutes.
 ```
 
 **File Structure:**
+
 ```
 SKILLS/focus-session-manager/
   ├── SKILL.md
@@ -157,6 +174,7 @@ SKILLS/focus-session-manager/
 **Purpose:** Minimize cognitive load when resuming work
 
 **Key Features:**
+
 - Automatic context notes
 - Mental state capture
 - Quick restart documentation
@@ -164,45 +182,56 @@ SKILLS/focus-session-manager/
 - Breadcrumb trail
 
 **Example Output:**
-```markdown
+
+````markdown
 # Work Context Saved - 2025-10-22 14:35
 
 ## What You Were Doing
+
 Building authentication flow for login page
 
 ## Exact Location
+
 File: `src/components/login.tsx`
 Line: 42
 Function: `handleSubmit()`
 
 ## Mental State
+
 - ✅ Completed: Email validation
 - 🔄 In Progress: Adding API call to /auth/login
 - 📋 Next: Error handling for 401/500
 - 💭 Note: Considering adding loading state to button
 
 ## Variables to Remember
+
 - `API_URL` is defined in .env.local
 - Using fetch (not axios) per team standard
 - Error format: `{ error: string, code: number }`
 
 ## Quick Restart Commands
+
 ```bash
 cd ~/project
 code src/components/login.tsx:42
 npm run dev
 ```
+````
 
 ## Estimated Time to Resume
+
 5 minutes (context is fresh)
+
 ```
 
 **File Structure:**
 ```
+
 SKILLS/context-preserver/
-  ├── SKILL.md
-  └── README.md
-```
+├── SKILL.md
+└── README.md
+
+````
 
 ---
 
@@ -222,17 +251,19 @@ SKILLS/context-preserver/
 # ADHD-Optimized Workflow for Your Project
 
 ## Project Structure (Cognitive Load Reduction)
-```
+````
+
 project/
 ├── .adhd/
-│   ├── current-task.md        # ONE task, visible always
-│   ├── context-notes.md       # Auto-updated mental state
-│   ├── wins.md                # Dopamine log
-│   └── resume-quick.sh        # One-command restart
+│ ├── current-task.md # ONE task, visible always
+│ ├── context-notes.md # Auto-updated mental state
+│ ├── wins.md # Dopamine log
+│ └── resume-quick.sh # One-command restart
 ├── src/
-│   └── [your code]
-└── README.md                  # Quick-start (no decisions)
-```
+│ └── [your code]
+└── README.md # Quick-start (no decisions)
+
+````
 
 ## Daily Workflow
 1. ☀️ Morning: Run `./start-work.sh` (zero decisions)
@@ -253,9 +284,10 @@ git commit -m "WIP: Added email validation (15min)"
 # - Easy to resume
 # - Dopamine hits
 # - Reduces "perfect commit" paralysis
-```
+````
 
 ## Progress Visualization
+
 ```markdown
 ## Login Feature Progress: ████████░░ 80%
 
@@ -271,6 +303,7 @@ Next micro-task: Add fetch call to /auth/login (5 min)
 ```
 
 **File Structure:**
+
 ```
 SKILLS/adhd-workflow-architect/
   ├── SKILL.md
@@ -284,6 +317,7 @@ SKILLS/adhd-workflow-architect/
 **Purpose:** Help finish projects and avoid abandonware
 
 **Key Features:**
+
 - Detect "90% done" syndrome
 - Motivation strategies
 - Minimum viable completion
@@ -291,6 +325,7 @@ SKILLS/adhd-workflow-architect/
 - Celebration automation
 
 **Example Output:**
+
 ```markdown
 # Project Completion Analysis
 
@@ -301,7 +336,9 @@ Your project is 87% complete but hasn't been touched in 5 days.
 **Classic ADHD Pattern:** Lost interest near finish line.
 
 ## What's Left (Realistic Assessment)
+
 ### To Ship MVP:
+
 - [ ] Fix password reset bug (30 min) 🟡
 - [ ] Write deployment docs (15 min) 🟢
 - [ ] Deploy to production (20 min) 🟡
@@ -309,19 +346,23 @@ Your project is 87% complete but hasn't been touched in 5 days.
 **Total:** ~90 minutes to DONE ✅
 
 ### Can Skip for MVP:
+
 - Email templates (nice-to-have)
 - Admin dashboard (future)
 - Analytics (later)
 
 ## Motivation Boost
+
 **You're so close!** 90 minutes = SHIPPED PROJECT = Résumé line + Portfolio piece
 
 **Tomorrow:** Block 2 hours, finish this, then start something new.
 
 ## Minimum Viable Completion
+
 If 90 min feels overwhelming:
 
 **30-Minute Version:**
+
 - [ ] Fix critical bug (30 min)
 - [ ] Deploy as-is
 - [ ] Done!
@@ -329,13 +370,16 @@ If 90 min feels overwhelming:
 Ship now, polish later. Shipping > Perfect.
 
 ## Reward
+
 When deployed, treat yourself to:
+
 - [ ] Your favorite snack
 - [ ] 30 min guilt-free gaming
 - [ ] Tell someone about it
 ```
 
 **File Structure:**
+
 ```
 SKILLS/completion-coach/
   ├── SKILL.md
@@ -351,6 +395,7 @@ SKILLS/completion-coach/
 **Purpose:** Automatically break down large tasks into ADHD-friendly micro-tasks
 
 **Key Features:**
+
 - Natural language task input
 - 15-minute task chunking
 - Time estimation with "ADHD tax" multiplier (1.5-2x)
@@ -358,6 +403,7 @@ SKILLS/completion-coach/
 - Quick wins prioritization
 
 **Example Usage:**
+
 ```bash
 # Input
 claude-mcp adhd-task-breaker "Build user authentication system"
@@ -388,6 +434,7 @@ Phase 3: Polish & Testing 🎨
 ```
 
 **Implementation:**
+
 ```python
 # MCP-SERVERS/adhd-task-breaker-mcp/server.py
 from mcp import MCPServer
@@ -421,6 +468,7 @@ class ADHDTaskBreakerMCP:
 ```
 
 **File Structure:**
+
 ```
 MCP-SERVERS/adhd-task-breaker-mcp/
   ├── server.py
@@ -436,6 +484,7 @@ MCP-SERVERS/adhd-task-breaker-mcp/
 **Purpose:** Automatically save and restore work context
 
 **Key Features:**
+
 - Auto-save mental state every 15 minutes
 - Git integration (auto-commit WIP)
 - Current file/line tracking
@@ -443,6 +492,7 @@ MCP-SERVERS/adhd-task-breaker-mcp/
 - One-command resume
 
 **Example Usage:**
+
 ```bash
 # Auto-save (runs every 15 min)
 context-saver save
@@ -478,6 +528,7 @@ Commands run:
 ```
 
 **Implementation:**
+
 ```python
 # MCP-SERVERS/context-saver-mcp/server.py
 import os
@@ -519,6 +570,7 @@ class ContextSaverMCP:
 **Purpose:** Protect health during hyperfocus sessions
 
 **Key Features:**
+
 - Track coding time continuously
 - Break reminders (dismissable but persistent)
 - Health checks (water, movement, eyes)
@@ -526,6 +578,7 @@ class ContextSaverMCP:
 - Gentle interruption system
 
 **Example Usage:**
+
 ```bash
 # Start tracking
 hyperfocus-guardian start
@@ -562,6 +615,7 @@ hyperfocus-guardian start
 **Purpose:** Track progress and provide motivation
 
 **Key Features:**
+
 - Log completed tasks automatically
 - Visualize progress (graphs, streaks)
 - Celebrate wins (big and small)
@@ -569,6 +623,7 @@ hyperfocus-guardian start
 - Achievements/badges
 
 **Example Usage:**
+
 ```bash
 # Auto-log when tasks complete
 dopamine-tracker log "Implemented login form"
@@ -605,6 +660,7 @@ Friday:    ✅✅ (2 tasks) ← TODAY
 **Purpose:** Help choose what to work on (reduce decision paralysis)
 
 **Key Features:**
+
 - Analyze task urgency/importance
 - Consider energy levels
 - Factor in deadlines
@@ -612,6 +668,7 @@ Friday:    ✅✅ (2 tasks) ← TODAY
 - Remove decision-making friction
 
 **Example Usage:**
+
 ```bash
 # Show what to work on now
 priority-decider what-now
@@ -646,35 +703,39 @@ Confidence: 95%
 **File:** `STANDARDS/architecture-patterns/adhd-project-structure.md`
 
 **Content:**
+
 ```markdown
 # ADHD-Optimized Project Structure
 
 ## Core Principle
+
 Reduce cognitive load, enable quick re-entry, make progress visible.
 
 ## Standard Structure
 ```
+
 project/
-├── .adhd/                       # ADHD support files
-│   ├── current-task.md          # ONE active task (always visible)
-│   ├── context-notes.md         # Mental state auto-saved
-│   ├── wins.md                  # Dopamine log
-│   ├── tasks-backlog.md         # Future tasks (out of sight)
-│   ├── resume-quick.sh          # One-command start
-│   └── focus-session.json       # Current session state
+├── .adhd/ # ADHD support files
+│ ├── current-task.md # ONE active task (always visible)
+│ ├── context-notes.md # Mental state auto-saved
+│ ├── wins.md # Dopamine log
+│ ├── tasks-backlog.md # Future tasks (out of sight)
+│ ├── resume-quick.sh # One-command start
+│ └── focus-session.json # Current session state
 │
-├── README-ADHD.md               # Quick-start (zero decisions)
-│   # - One command to start
-│   # - Current task highlighted
-│   # - No lengthy explanations
+├── README-ADHD.md # Quick-start (zero decisions)
+│ # - One command to start
+│ # - Current task highlighted
+│ # - No lengthy explanations
 │
-├── src/                         # Your code
-│   └── [organized by feature]   # Not by type (easier mental model)
+├── src/ # Your code
+│ └── [organized by feature] # Not by type (easier mental model)
 │
-├── .env.example                 # Clear, commented
+├── .env.example # Clear, commented
 ├── package.json
 └── .gitignore
-```
+
+````
 
 ## Key Files
 
@@ -701,32 +762,39 @@ Users can reset password via email link
 
 ## Next
 After this: Work on admin dashboard
-```
+````
 
 ### README-ADHD.md
-```markdown
+
+````markdown
 # Quick Start (ADHD Edition)
 
 ## ONE Command to Start
+
 ```bash
 npm run dev:adhd
 ```
+````
 
 This runs:
+
 - Install deps (if needed)
 - Start dev server
 - Open current task in editor
 - Show focus timer
 
 ## Current Task
+
 See: `.adhd/current-task.md`
 
 ## Resume After Break
+
 ```bash
 ./resume.sh
 ```
 
 That's it! No decisions needed.
+
 ```
 
 ## Benefits
@@ -744,20 +812,24 @@ That's it! No decisions needed.
 **File:** `STANDARDS/architecture-patterns/micro-commit-workflow.md`
 
 **Content:**
-```markdown
+
+````markdown
 # Micro-Commit Workflow (ADHD-Optimized)
 
 ## Problem
+
 - Traditional commit: Wait until "done" (never happens)
 - ADHD brain: Needs frequent dopamine hits
 - Context loss: Interruptions lose progress
 
 ## Solution
+
 Commit every 15 minutes, even if incomplete.
 
 ## Pattern
 
 ### Every 15 Minutes
+
 ```bash
 git add .
 git commit -m "WIP: [what you just did] (15min)"
@@ -767,8 +839,10 @@ git commit -m "WIP: Added email validation (15min)"
 git commit -m "WIP: Styling login form (10min)"
 git commit -m "WIP: Debugging token issue (15min)"
 ```
+````
 
 ### Before Break/Interruption
+
 ```bash
 git add .
 git commit -m "PAUSE: [where you left off]"
@@ -778,6 +852,7 @@ git commit -m "PAUSE: About to add error handling for 401"
 ```
 
 ### When Complete
+
 ```bash
 # Option 1: Squash WIP commits (if you care about history)
 git rebase -i HEAD~5  # Squash last 5 WIP commits
@@ -790,6 +865,7 @@ git commit -m "✅ COMPLETE: Login form with validation"
 ```
 
 ## Benefits
+
 - ✅ Dopamine hit every 15 min
 - ✅ Never lose progress
 - ✅ Easy to resume ("where was I?")
@@ -797,6 +873,7 @@ git commit -m "✅ COMPLETE: Login form with validation"
 - ✅ Reduces "perfect commit" paralysis
 
 ## Git Aliases (Add to ~/.gitconfig)
+
 ```ini
 [alias]
   wip = !git add . && git commit -m \"WIP: $(date '+%H:%M')\"
@@ -805,12 +882,14 @@ git commit -m "✅ COMPLETE: Login form with validation"
 ```
 
 Usage:
+
 ```bash
 git wip           # Quick WIP commit with timestamp
 git pause         # Save before break
 git resume        # See last commit message
 ```
-```
+
+````
 
 ---
 
@@ -841,15 +920,17 @@ One-sentence description.
 ## Quick Start
 ```bash
 npm install && npm run dev
-```
+````
 
 Open: http://localhost:3000
 
 ## Current Task
+
 See: `.adhd/current-task.md`
 
 **Done reading? Start coding! ↓**
-```
+
+````
 
 ### Level 2: Essential Info (2 minutes)
 ```markdown
@@ -865,17 +946,20 @@ See: `.adhd/current-task.md`
 - `npm run build` - Production build
 
 ## Project Structure
-```
+````
+
 src/
-  components/  - React components
-  api/        - API routes
-  utils/      - Helper functions
+components/ - React components
+api/ - API routes
+utils/ - Helper functions
+
 ```
 
 </details>
 ```
 
 ### Level 3: Deep Dive (10+ minutes)
+
 ```markdown
 <details>
 <summary>🔬 Advanced: Architecture & Design Decisions</summary>
@@ -886,12 +970,14 @@ src/
 ```
 
 ## Benefits
+
 - ✅ No overwhelm
 - ✅ Get started immediately
 - ✅ Details available when needed
 - ✅ Respects working memory limits
 
 ## Anti-Patterns
+
 ❌ Long README with no structure
 ❌ "Read this first" (never read)
 ❌ No quick start
@@ -900,6 +986,7 @@ src/
 ## Real Example
 
 ### ❌ Bad (ADHD-hostile)
+
 ```markdown
 # My Project
 
@@ -913,7 +1000,8 @@ validation. The project structure follows a feature-based architecture where...
 ```
 
 ### ✅ Good (ADHD-friendly)
-```markdown
+
+````markdown
 # My Project
 
 A task management app.
@@ -921,16 +1009,19 @@ A task management app.
 ```bash
 npm install && npm run dev
 ```
+````
 
 <details>
 <summary>Need more info?</summary>
 
 ## Tech Stack
+
 - Next.js 14
 - PostgreSQL + Prisma
 - NextAuth
 
 [More details...]
+
 </details>
 ```
 ```
@@ -944,11 +1035,14 @@ npm install && npm run dev
 **File:** `PLAYBOOKS/adhd-getting-unstuck.md`
 
 **Content:**
-```markdown
+
+````markdown
 # Getting Unstuck (ADHD Edition)
 
 ## Situation
+
 You're stuck and frustrated. Could be:
+
 - Can't start task (activation energy)
 - Lost in details (hyperfocus on wrong thing)
 - Don't know what to do next (decision paralysis)
@@ -957,11 +1051,13 @@ You're stuck and frustrated. Could be:
 ## Playbook
 
 ### Step 1: STOP (1 min)
+
 - [ ] Take 3 deep breaths
 - [ ] Stand up and stretch
 - [ ] Acknowledge you're stuck (no shame!)
 
 ### Step 2: IDENTIFY (2 min)
+
 What kind of stuck?
 
 **A) Can't Start**
@@ -985,6 +1081,7 @@ What kind of stuck?
 **Solution: Lower Activation Energy**
 
 ### Micro-Start (5 min)
+
 Don't commit to finishing. Just start SOMETHING tiny.
 
 ```bash
@@ -999,9 +1096,12 @@ export function login() {}
 
 # Done! You started. Dopamine! Now keep going or stop.
 ```
+````
 
 ### Accountability Trick
+
 Tell someone: "I'm going to work on X for 10 minutes."
+
 - Tweet it
 - Message a friend
 - Tell Rubber Duck
@@ -1017,6 +1117,7 @@ Tell someone: "I'm going to work on X for 10 minutes."
 **Solution: Redirect Hyperfocus**
 
 ### Reality Check (2 min)
+
 ```markdown
 ## Hyperfocus Checklist
 
@@ -1024,6 +1125,7 @@ Current task: [What you're actually doing]
 Original goal: [What you should be doing]
 
 Questions:
+
 1. Is this task P0 for shipping? YES / NO
 2. Will users care about this? YES / NO
 3. Can this be done later? YES / NO
@@ -1032,14 +1134,18 @@ If 2+ "NO" answers: Stop and refocus.
 ```
 
 ### Refocus Technique
+
 1. **Commit current work** (even if incomplete)
+
    ```bash
    git add . && git commit -m "WIP: CSS polish (pausing)"
    ```
 
 2. **Write next step for later**
+
    ```markdown
    ## Resume CSS Polish Later
+
    - File: src/components/button.css
    - Line: 42
    - Next: Add hover animations
@@ -1062,11 +1168,13 @@ If 2+ "NO" answers: Stop and refocus.
 ### Quick Decision Matrix (3 min)
 
 List all tasks:
+
 1. Task A
 2. Task B
 3. Task C
 
 For each task:
+
 - Urgency (1-5): How soon is deadline?
 - Impact (1-5): How much does it matter?
 - Energy (1-5): How much energy do I have now?
@@ -1074,6 +1182,7 @@ For each task:
 **Pick highest score = START THAT ONE**
 
 Example:
+
 ```
 Task: Fix login bug
 - Urgency: 5 (blocking users)
@@ -1099,10 +1208,12 @@ Task: Build admin dashboard
 **Solution: Brain Dump + Triage**
 
 ### Brain Dump (5 min)
+
 Write EVERYTHING down (get it out of your head):
 
 ```markdown
 ## Everything I Think I Should Do
+
 - Fix bug in login
 - Build admin dashboard
 - Write documentation
@@ -1115,25 +1226,30 @@ Write EVERYTHING down (get it out of your head):
 ```
 
 ### Triage (10 min)
+
 Sort into buckets:
 
 ```markdown
 ## Do Today (MAX 3 items)
+
 - [ ] Fix bug in login
 - [ ] Deploy to staging
 - [ ] Reply to urgent email
 
 ## Do This Week
+
 - [ ] Build admin dashboard
 - [ ] Add tests
 - [ ] Write documentation
 
 ## Someday/Maybe
+
 - [ ] Learn new framework
 - [ ] Clean up code
 ```
 
 ### Execute
+
 **ONLY work on "Do Today" list.**
 Ignore everything else (seriously).
 
@@ -1144,15 +1260,19 @@ Ignore everything else (seriously).
 Still stuck after all this?
 
 ### Option 1: Change Tasks
+
 Work on something else for 30 min, then return.
 
 ### Option 2: Rubber Duck
+
 Explain problem out loud (to duck, plant, or friend).
 
 ### Option 3: Take Real Break
+
 20-minute walk, no phone. Fresh perspective.
 
 ### Option 4: Ask for Help
+
 Message teammate: "Hey, I'm stuck on X. Can you pair for 10 min?"
 
 ---
@@ -1160,18 +1280,22 @@ Message teammate: "Hey, I'm stuck on X. Can you pair for 10 min?"
 ## Prevention
 
 ### Daily Prevention (5 min/day)
+
 Morning:
+
 - [ ] Check `.adhd/current-task.md`
 - [ ] One task only for today
 - [ ] Set up focus session
 
 Evening:
+
 - [ ] Save context
 - [ ] Write tomorrow's ONE task
 - [ ] Log wins
 
 You got this! 💪
-```
+
+````
 
 ---
 
@@ -1211,7 +1335,7 @@ Use these skills actively:
 - focus-session-manager
 - context-preserver
 - completion-coach
-```
+````
 
 ### Integration 2: ADHD Hooks
 
@@ -1233,22 +1357,26 @@ Add to Claude Code settings:
 ## Implementation Priority
 
 ### Phase 1: MVP (Week 1) - Highest Impact
+
 1. **task-breakdown-specialist skill** (2 days)
 2. **context-preserver skill** (2 days)
 3. **ADHD project structure pattern** (1 day)
 
 ### Phase 2: Core Tools (Week 2)
+
 4. **adhd-task-breaker-mcp** (2 days)
 5. **context-saver-mcp** (2 days)
 6. **Getting Unstuck playbook** (1 day)
 
 ### Phase 3: Optimization (Week 3)
+
 7. **focus-session-manager skill** (2 days)
 8. **hyperfocus-guardian-mcp** (1 day)
 9. **Resuming Work playbook** (1 day)
 10. **Micro-commit workflow pattern** (1 day)
 
 ### Phase 4: Motivation & Completion (Week 4)
+
 11. **completion-coach skill** (2 days)
 12. **dopamine-tracker-mcp** (2 days)
 13. **priority-decider-mcp** (1 day)
@@ -1259,18 +1387,22 @@ Add to Claude Code settings:
 ## Success Metrics
 
 ### Week 1
+
 - [ ] Can break down tasks easily (no overwhelm)
 - [ ] Can resume work after breaks < 5 min
 
 ### Week 2
+
 - [ ] Context never lost (saved automatically)
 - [ ] Reduced decision fatigue (clear next steps)
 
 ### Week 3
+
 - [ ] Managing hyperfocus better (regular breaks)
 - [ ] More completed micro-tasks (dopamine++)
 
 ### Week 4
+
 - [ ] Finishing projects (not abandoning at 90%)
 - [ ] Feeling in control (not overwhelmed)
 
@@ -1281,12 +1413,14 @@ Add to Claude Code settings:
 Want to start building these ADHD enhancements NOW?
 
 ### Fastest Path
+
 1. Build task-breakdown-specialist skill (2 days)
 2. Test it on a real project
 3. Iterate based on what helps most
 4. Build next most useful tool
 
 ### Questions to Answer First
+
 1. Which ADHD challenge affects you most?
 2. What would you use every day?
 3. What's missing from this plan?
@@ -1294,6 +1428,7 @@ Want to start building these ADHD enhancements NOW?
 ---
 
 **This plan itself is ADHD-friendly!**
+
 - Clear sections
 - Actionable steps
 - Progressive disclosure

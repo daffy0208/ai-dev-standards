@@ -12,17 +12,20 @@ I help you build beautiful, interactive data visualizations and dashboards.
 ## What I Do
 
 **Chart Creation:**
+
 - Line charts, bar charts, pie charts
 - Area charts, scatter plots, heatmaps
 - Complex visualizations (Sankey, treemaps, network graphs)
 
 **Dashboard Building:**
+
 - KPI cards and metrics
 - Real-time data dashboards
 - Interactive filters and drill-downs
 - Responsive layouts
 
 **Data Presentation:**
+
 - Data storytelling
 - Color schemes and accessibility
 - Animation and interactions
@@ -33,12 +36,14 @@ I help you build beautiful, interactive data visualizations and dashboards.
 ### Recharts (Recommended for React)
 
 **Best for:**
+
 - Quick, simple charts
 - React/Next.js projects
 - Standard chart types
 - Responsive design
 
 **Example:**
+
 ```typescript
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts'
 
@@ -68,12 +73,14 @@ function RevenueChart() {
 ### Chart.js (Recommended for Vue/Angular)
 
 **Best for:**
+
 - Framework-agnostic
 - Simple API
 - Good documentation
 - Standard chart types
 
 **Example:**
+
 ```typescript
 import { Chart } from 'chart.js/auto'
 
@@ -82,11 +89,13 @@ const chart = new Chart(ctx, {
   type: 'bar',
   data: {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-    datasets: [{
-      label: 'Sales',
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: 'rgba(54, 162, 235, 0.5)'
-    }]
+    datasets: [
+      {
+        label: 'Sales',
+        data: [12, 19, 3, 5, 2, 3],
+        backgroundColor: 'rgba(54, 162, 235, 0.5)'
+      }
+    ]
   },
   options: {
     responsive: true,
@@ -103,41 +112,44 @@ const chart = new Chart(ctx, {
 ### D3.js (Advanced)
 
 **Best for:**
+
 - Custom visualizations
 - Complex interactions
 - Full control over rendering
 - Data-driven documents
 
 **When to use:**
+
 - Need custom chart type
 - Complex data transformations
 - Advanced interactions
 - Publication-quality graphics
 
 **Example:**
+
 ```typescript
 import * as d3 from 'd3'
 
-function createBarChart(data: Array<{name: string, value: number}>) {
+function createBarChart(data: Array<{ name: string; value: number }>) {
   const width = 600
   const height = 400
   const margin = { top: 20, right: 20, bottom: 30, left: 40 }
 
-  const svg = d3.select('#chart')
-    .append('svg')
-    .attr('width', width)
-    .attr('height', height)
+  const svg = d3.select('#chart').append('svg').attr('width', width).attr('height', height)
 
-  const x = d3.scaleBand()
+  const x = d3
+    .scaleBand()
     .domain(data.map(d => d.name))
     .range([margin.left, width - margin.right])
     .padding(0.1)
 
-  const y = d3.scaleLinear()
+  const y = d3
+    .scaleLinear()
     .domain([0, d3.max(data, d => d.value)])
     .range([height - margin.bottom, margin.top])
 
-  svg.selectAll('rect')
+  svg
+    .selectAll('rect')
     .data(data)
     .join('rect')
     .attr('x', d => x(d.name))
@@ -147,13 +159,12 @@ function createBarChart(data: Array<{name: string, value: number}>) {
     .attr('fill', 'steelblue')
 
   // Add axes
-  svg.append('g')
+  svg
+    .append('g')
     .attr('transform', `translate(0,${height - margin.bottom})`)
     .call(d3.axisBottom(x))
 
-  svg.append('g')
-    .attr('transform', `translate(${margin.left},0)`)
-    .call(d3.axisLeft(y))
+  svg.append('g').attr('transform', `translate(${margin.left},0)`).call(d3.axisLeft(y))
 }
 ```
 
@@ -300,7 +311,7 @@ export async function GET(req: Request) {
     headers: {
       'Content-Type': 'text/event-stream',
       'Cache-Control': 'no-cache',
-      'Connection': 'keep-alive'
+      Connection: 'keep-alive'
     }
   })
 }
@@ -393,6 +404,7 @@ function useSalesData({ period, region }: { period: Period, region: Region }) {
 ## Chart Types Guide
 
 ### Line Chart
+
 **Best for:** Trends over time, continuous data
 
 ```typescript
@@ -402,6 +414,7 @@ function useSalesData({ period, region }: { period: Period, region: Region }) {
 ```
 
 **Use when:**
+
 - Stock prices, temperature, website traffic
 - Showing change over time
 - Multiple data series comparison
@@ -409,6 +422,7 @@ function useSalesData({ period, region }: { period: Period, region: Region }) {
 ---
 
 ### Bar Chart
+
 **Best for:** Comparing categories
 
 ```typescript
@@ -418,6 +432,7 @@ function useSalesData({ period, region }: { period: Period, region: Region }) {
 ```
 
 **Use when:**
+
 - Sales by product, users by country
 - Discrete categories
 - Ranking/comparison
@@ -425,6 +440,7 @@ function useSalesData({ period, region }: { period: Period, region: Region }) {
 ---
 
 ### Pie/Donut Chart
+
 **Best for:** Part-to-whole relationships
 
 ```typescript
@@ -434,17 +450,20 @@ function useSalesData({ period, region }: { period: Period, region: Region }) {
 ```
 
 **Use when:**
+
 - Market share, budget allocation
 - Proportions (max 5-7 slices)
 - Simple percentages
 
 ⚠️ **Avoid when:**
+
 - Too many categories (> 7)
 - Precise comparison needed (use bar chart)
 
 ---
 
 ### Area Chart
+
 **Best for:** Volume over time
 
 ```typescript
@@ -454,6 +473,7 @@ function useSalesData({ period, region }: { period: Period, region: Region }) {
 ```
 
 **Use when:**
+
 - Cumulative totals
 - Filled regions show magnitude
 - Stacked categories
@@ -461,6 +481,7 @@ function useSalesData({ period, region }: { period: Period, region: Region }) {
 ---
 
 ### Scatter Plot
+
 **Best for:** Correlation between variables
 
 ```typescript
@@ -470,6 +491,7 @@ function useSalesData({ period, region }: { period: Period, region: Region }) {
 ```
 
 **Use when:**
+
 - Finding correlations
 - Outlier detection
 - Distribution analysis
@@ -477,20 +499,22 @@ function useSalesData({ period, region }: { period: Period, region: Region }) {
 ---
 
 ### Heatmap
+
 **Best for:** Intensity across two dimensions
 
 ```typescript
 // Using D3
-const colorScale = d3.scaleSequential(d3.interpolateBlues)
-  .domain([0, d3.max(data)])
+const colorScale = d3.scaleSequential(d3.interpolateBlues).domain([0, d3.max(data)])
 
-svg.selectAll('rect')
+svg
+  .selectAll('rect')
   .data(data)
   .join('rect')
   .attr('fill', d => colorScale(d.value))
 ```
 
 **Use when:**
+
 - Time-based patterns (day/hour)
 - Geographic intensity
 - Matrix data
@@ -541,10 +565,10 @@ export default function ResponsiveChart({ data }) {
 // colors.ts
 export const chartColors = {
   // WCAG AA compliant
-  primary: '#0066CC',    // Blue
-  success: '#007A3D',    // Green
-  warning: '#C87000',    // Orange
-  danger: '#D32F2F',     // Red
+  primary: '#0066CC', // Blue
+  success: '#007A3D', // Green
+  warning: '#C87000', // Orange
+  danger: '#D32F2F', // Red
 
   // Multi-series (colorblind-safe)
   series: [
@@ -552,7 +576,7 @@ export const chartColors = {
     '#CC6600', // Orange
     '#7A00CC', // Purple
     '#00CC66', // Green
-    '#CC0066', // Magenta
+    '#CC0066' // Magenta
   ]
 }
 ```
@@ -566,7 +590,7 @@ const colorblindSafe = [
   '#E69F00', // Orange
   '#56B4E9', // Sky Blue
   '#009E73', // Green
-  '#F0E442', // Yellow
+  '#F0E442' // Yellow
 ]
 ```
 
@@ -800,6 +824,7 @@ export default function DrillDownChart() {
 ## When to Use Me
 
 **Perfect for:**
+
 - Building analytics dashboards
 - Creating interactive charts
 - Data storytelling
@@ -807,6 +832,7 @@ export default function DrillDownChart() {
 - Visualizing complex datasets
 
 **I'll help you:**
+
 - Choose the right chart type
 - Implement responsive layouts
 - Add interactivity

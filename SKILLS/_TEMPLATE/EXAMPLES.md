@@ -9,16 +9,19 @@ This file contains concrete, real-world examples of using this skill.
 **Goal:** [What you're trying to achieve]
 
 **Input:**
+
 ```
 [Starting point, requirements, or constraints]
 ```
 
 **Process:**
+
 1. [Quick step]
 2. [Quick step]
 3. [Quick step]
 
 **Output:**
+
 ```
 [Result achieved]
 ```
@@ -34,6 +37,7 @@ This file contains concrete, real-world examples of using this skill.
 **Context:** [Brief background]
 
 **Approach:**
+
 ```
 [Step-by-step or code example]
 ```
@@ -56,11 +60,13 @@ This file contains concrete, real-world examples of using this skill.
 [Full context - who, what, why]
 
 **Requirements:**
+
 - Requirement 1
 - Requirement 2
 - Requirement 3
 
 **Constraints:**
+
 - Constraint 1
 - Constraint 2
 
@@ -75,11 +81,13 @@ This file contains concrete, real-world examples of using this skill.
 [Rationale]
 
 **Code/Output:**
+
 ```
 [Example if applicable]
 ```
 
 **Decisions made:**
+
 - Decision 1 and reasoning
 - Decision 2 and reasoning
 
@@ -95,6 +103,7 @@ This file contains concrete, real-world examples of using this skill.
 [What was achieved, metrics if applicable]
 
 **Retrospective:**
+
 - What went well
 - What we'd do differently
 - Key takeaways
@@ -120,11 +129,13 @@ This file contains concrete, real-world examples of using this skill.
 [How to handle this edge case]
 
 **Example:**
+
 ```
 [Concrete example]
 ```
 
 **Lessons:**
+
 - Lesson 1
 - Lesson 2
 
@@ -163,22 +174,27 @@ This file contains concrete, real-world examples of using this skill.
 **Scenario:** [Common situation]
 
 **Without Skill Guidance:**
+
 ```
 [What typically happens - mistakes, inefficiencies]
 ```
+
 - Problem 1
 - Problem 2
 - Problem 3
 
 **With Skill Guidance:**
+
 ```
 [Improved approach and results]
 ```
+
 - Benefit 1
 - Benefit 2
 - Benefit 3
 
 **Metrics:**
+
 - Time saved: [X]
 - Quality improvement: [Y]
 - Issues avoided: [Z]
@@ -198,11 +214,13 @@ This file contains concrete, real-world examples of using this skill.
 **Purpose:** [What this template is for]
 
 **Template:**
+
 ```
 [Filled-in template ready to customize]
 ```
 
 **Customization Points:**
+
 - [What to change]
 - [What to adapt]
 - [What to add]
@@ -231,11 +249,13 @@ This file contains concrete, real-world examples of using this skill.
 **Example Comparison:**
 
 ❌ **Wrong:**
+
 ```
 [Bad example]
 ```
 
 ✅ **Right:**
+
 ```
 [Good example]
 ```
@@ -257,6 +277,7 @@ This file contains concrete, real-world examples of using this skill.
 **Approach:** [How they used this skill]
 
 **Results:**
+
 - Result 1
 - Result 2
 - Result 3
@@ -280,6 +301,7 @@ This file contains concrete, real-world examples of using this skill.
 **Scenario:** [Setup]
 
 **Task:**
+
 1. [What to do]
 2. [What to do]
 3. [What to do]
@@ -287,6 +309,7 @@ This file contains concrete, real-world examples of using this skill.
 **Expected Outcome:** [What success looks like]
 
 **Solution:**
+
 <details>
 <summary>Click to reveal solution</summary>
 

@@ -13,10 +13,7 @@
       "status": "active",
       "complexity": "intermediate",
       "related_skills": [],
-      "tags": [
-        "archon",
-        "workflows"
-      ]
+      "tags": ["archon", "workflows"]
     },
     {
       "name": "simple-rag-pipeline",
@@ -28,10 +25,7 @@
       "status": "active",
       "complexity": "intermediate",
       "related_skills": [],
-      "tags": [
-        "simple",
-        "code"
-      ]
+      "tags": ["simple", "code"]
     },
     {
       "name": "sample-project-cursorrules",
@@ -43,10 +37,7 @@
       "status": "active",
       "complexity": "intermediate",
       "related_skills": [],
-      "tags": [
-        "sample",
-        "configuration"
-      ]
+      "tags": ["sample", "configuration"]
     }
   ],
   "categories": {

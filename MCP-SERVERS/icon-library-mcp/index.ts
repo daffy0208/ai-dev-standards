@@ -17,7 +17,11 @@
  * ```
  */
 
-import { BaseMCPServer, validateArgs, createErrorResponse } from '../../COMPONENTS/mcp-servers/base-mcp-server'
+import {
+  BaseMCPServer,
+  validateArgs,
+  createErrorResponse
+} from '../../COMPONENTS/mcp-servers/base-mcp-server'
 
 interface SearchIconsArgs {
   query: string
@@ -43,7 +47,8 @@ class IconLibraryMCPServer extends BaseMCPServer {
     // Search icons tool
     this.addTool({
       name: 'searchIcons',
-      description: 'Search for icons by name across icon libraries. Supports Heroicons, Lucide, and Font Awesome.',
+      description:
+        'Search for icons by name across icon libraries. Supports Heroicons, Lucide, and Font Awesome.',
       inputSchema: {
         type: 'object',
         properties: {
@@ -193,34 +198,38 @@ class IconLibraryMCPServer extends BaseMCPServer {
       description: 'List of all available icon libraries with metadata',
       mimeType: 'application/json',
       handler: async () => {
-        return JSON.stringify({
-          libraries: [
-            {
-              id: 'heroicons',
-              name: 'Heroicons',
-              description: 'Beautiful hand-crafted SVG icons by Tailwind CSS',
-              count: 200,
-              variants: ['outline', 'solid', 'mini'],
-              url: 'https://heroicons.com/'
-            },
-            {
-              id: 'lucide',
-              name: 'Lucide',
-              description: 'Beautiful & consistent icon toolkit with 1000+ icons',
-              count: 1000,
-              variants: ['default'],
-              url: 'https://lucide.dev/'
-            },
-            {
-              id: 'font-awesome',
-              name: 'Font Awesome',
-              description: 'The web\'s most popular icon set',
-              count: 2000,
-              variants: ['solid', 'regular', 'brands'],
-              url: 'https://fontawesome.com/'
-            }
-          ]
-        }, null, 2)
+        return JSON.stringify(
+          {
+            libraries: [
+              {
+                id: 'heroicons',
+                name: 'Heroicons',
+                description: 'Beautiful hand-crafted SVG icons by Tailwind CSS',
+                count: 200,
+                variants: ['outline', 'solid', 'mini'],
+                url: 'https://heroicons.com/'
+              },
+              {
+                id: 'lucide',
+                name: 'Lucide',
+                description: 'Beautiful & consistent icon toolkit with 1000+ icons',
+                count: 1000,
+                variants: ['default'],
+                url: 'https://lucide.dev/'
+              },
+              {
+                id: 'font-awesome',
+                name: 'Font Awesome',
+                description: "The web's most popular icon set",
+                count: 2000,
+                variants: ['solid', 'regular', 'brands'],
+                url: 'https://fontawesome.com/'
+              }
+            ]
+          },
+          null,
+          2
+        )
       }
     })
   }
@@ -228,10 +237,26 @@ class IconLibraryMCPServer extends BaseMCPServer {
   // Search implementations
   private searchHeroicons(query: string): any[] {
     const icons = [
-      'arrow-right', 'arrow-left', 'arrow-up', 'arrow-down',
-      'check', 'x-mark', 'plus', 'minus', 'heart', 'star',
-      'home', 'user', 'users', 'cog-6-tooth', 'magnifying-glass',
-      'bell', 'envelope', 'folder', 'document', 'trash'
+      'arrow-right',
+      'arrow-left',
+      'arrow-up',
+      'arrow-down',
+      'check',
+      'x-mark',
+      'plus',
+      'minus',
+      'heart',
+      'star',
+      'home',
+      'user',
+      'users',
+      'cog-6-tooth',
+      'magnifying-glass',
+      'bell',
+      'envelope',
+      'folder',
+      'document',
+      'trash'
     ]
 
     return icons
@@ -241,9 +266,24 @@ class IconLibraryMCPServer extends BaseMCPServer {
 
   private searchLucide(query: string): any[] {
     const icons = [
-      'arrow-right', 'arrow-left', 'check', 'x', 'plus', 'minus',
-      'heart', 'star', 'home', 'user', 'users', 'settings',
-      'search', 'bell', 'mail', 'folder', 'file', 'trash-2'
+      'arrow-right',
+      'arrow-left',
+      'check',
+      'x',
+      'plus',
+      'minus',
+      'heart',
+      'star',
+      'home',
+      'user',
+      'users',
+      'settings',
+      'search',
+      'bell',
+      'mail',
+      'folder',
+      'file',
+      'trash-2'
     ]
 
     return icons
@@ -253,9 +293,24 @@ class IconLibraryMCPServer extends BaseMCPServer {
 
   private searchFontAwesome(query: string): any[] {
     const icons = [
-      'arrow-right', 'arrow-left', 'check', 'xmark', 'plus', 'minus',
-      'heart', 'star', 'house', 'user', 'users', 'gear',
-      'magnifying-glass', 'bell', 'envelope', 'folder', 'file', 'trash'
+      'arrow-right',
+      'arrow-left',
+      'check',
+      'xmark',
+      'plus',
+      'minus',
+      'heart',
+      'star',
+      'house',
+      'user',
+      'users',
+      'gear',
+      'magnifying-glass',
+      'bell',
+      'envelope',
+      'folder',
+      'file',
+      'trash'
     ]
 
     return icons

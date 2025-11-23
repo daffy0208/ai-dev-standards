@@ -133,8 +133,9 @@ export class OpenAIClient {
       const usage = completion.usage!
 
       // Calculate cost
-      const pricing = OpenAIClient.PRICING[model as keyof typeof OpenAIClient.PRICING] ||
-                     OpenAIClient.PRICING['gpt-4-turbo-preview']
+      const pricing =
+        OpenAIClient.PRICING[model as keyof typeof OpenAIClient.PRICING] ||
+        OpenAIClient.PRICING['gpt-4-turbo-preview']
 
       const cost = {
         prompt: (usage.prompt_tokens / 1000) * pricing.prompt,
@@ -356,28 +357,21 @@ export async function examples() {
   // Streaming chat
   console.log('\nStreaming response:')
   for await (const chunk of client.chatStream({
-    messages: [
-      { role: 'user', content: 'Count from 1 to 5' }
-    ]
+    messages: [{ role: 'user', content: 'Count from 1 to 5' }]
   })) {
     process.stdout.write(chunk)
   }
   console.log()
 
   // Embeddings
-  const embeddings = await client.embed([
-    'The quick brown fox',
-    'jumps over the lazy dog'
-  ])
+  const embeddings = await client.embed(['The quick brown fox', 'jumps over the lazy dog'])
 
   console.log('\nEmbeddings:', embeddings.length, 'vectors')
   console.log('Vector dimension:', embeddings[0].embedding.length)
 
   // Function calling
   const functionResponse = await client.callFunction(
-    [
-      { role: 'user', content: 'What is the weather in San Francisco?' }
-    ],
+    [{ role: 'user', content: 'What is the weather in San Francisco?' }],
     [
       {
         name: 'get_weather',

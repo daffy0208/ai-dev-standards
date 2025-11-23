@@ -6,12 +6,12 @@ Comprehensive test coverage for ai-dev-standards.
 
 **Current Coverage:** ~75% (Target: 80%)
 
-| Category | Coverage | Status |
-|----------|----------|--------|
-| **Utils** | 95% | ✅ Excellent |
-| **Tools** | 85% | ✅ Very Good |
-| **Components** | 60% | ⚠️ Good |
-| **Integrations** | 50% | ⚠️ Acceptable |
+| Category         | Coverage | Status        |
+| ---------------- | -------- | ------------- |
+| **Utils**        | 95%      | ✅ Excellent  |
+| **Tools**        | 85%      | ✅ Very Good  |
+| **Components**   | 60%      | ⚠️ Good       |
+| **Integrations** | 50%      | ⚠️ Acceptable |
 
 ---
 
@@ -74,6 +74,7 @@ tests/
 ### Utils (95% coverage)
 
 #### Validation Schemas (`validation.test.ts`)
+
 - ✅ Email validation (lowercase, trim, format)
 - ✅ Password schemas (regular, strong)
 - ✅ URL validation
@@ -88,6 +89,7 @@ tests/
 **74 tests** covering all validation patterns
 
 #### Error Handler (`errorHandler.test.ts`)
+
 - ✅ Error classes (ApiError, ValidationError, etc.)
 - ✅ HTTP status code mapping
 - ✅ Error serialization
@@ -100,6 +102,7 @@ tests/
 ### Tools (85% coverage)
 
 #### API Caller (`api-caller.test.ts`)
+
 - ✅ GET/POST/PUT/PATCH/DELETE requests
 - ✅ Query parameters
 - ✅ Authentication (Bearer, API Key, Basic)
@@ -113,6 +116,7 @@ tests/
 **32 tests** covering all HTTP operations
 
 #### File System (`filesystem.test.ts`)
+
 - ✅ Path validation & security
 - ✅ Read operations (text, JSON)
 - ✅ Write operations (with directory creation)
@@ -131,12 +135,14 @@ tests/
 ## 🔜 Coming Soon
 
 ### Components (In Progress)
+
 - `useForm.test.ts` - Form hook tests
 - `auth/LoginForm.test.ts` - Login component
 - `auth/SignupForm.test.ts` - Signup component
 - `errors/ErrorBoundary.test.ts` - Error boundary
 
 ### Integrations (Planned)
+
 - `supabase.test.ts` - Auth & database operations
 - `openai.test.ts` - Chat completions & embeddings
 - `stripe.test.ts` - Payment processing
@@ -144,6 +150,7 @@ tests/
 - `resend.test.ts` - Email sending
 
 ### Tools (Planned)
+
 - `web-scraper.test.ts` - Web scraping with Playwright
 - `database-query.test.ts` - SQL query execution
 
@@ -266,6 +273,7 @@ Tests will fail if coverage drops below these thresholds.
 ### GitHub Actions
 
 Tests run automatically on:
+
 - Every push to `main`
 - Every pull request
 - Scheduled daily builds
@@ -295,6 +303,7 @@ jobs:
 ### 1. Test Naming
 
 ✅ **Good:**
+
 ```typescript
 it('should validate email and return lowercase')
 it('should throw ValidationError when password is too short')
@@ -302,6 +311,7 @@ it('should retry 3 times before failing')
 ```
 
 ❌ **Bad:**
+
 ```typescript
 it('works')
 it('test email')
@@ -317,6 +327,7 @@ it('should work correctly')
 ### 3. Assertions
 
 ✅ **Good:**
+
 ```typescript
 expect(result).toBe(expected)
 expect(result).toEqual(expectedObject)
@@ -325,6 +336,7 @@ expect(() => fn()).toThrow('error')
 ```
 
 ❌ **Bad:**
+
 ```typescript
 expect(result).toBeTruthy() // Too vague
 expect(result == expected).toBe(true) // Use toBe directly
@@ -387,11 +399,13 @@ Add to `.vscode/launch.json`:
 ## 🎯 Goals
 
 ### Short-term (Current Sprint)
+
 - [ ] Reach 80% code coverage
 - [ ] Add component tests
 - [ ] Add integration tests
 
 ### Long-term (v1.0)
+
 - [ ] 90% code coverage
 - [ ] E2E tests for CLI
 - [ ] Performance benchmarks

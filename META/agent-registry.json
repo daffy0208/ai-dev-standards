@@ -183,12 +183,7 @@
           "archon-skills-architecture",
           "task-coordination"
         ],
-        "triggers": [
-          "archon-manager",
-          "archon",
-          "project management mcp",
-          "task tracking"
-        ],
+        "triggers": ["archon-manager", "archon", "project management mcp", "task tracking"],
         "documentation": "/SKILLS/archon-manager/SKILL.md"
       },
       {
@@ -229,10 +224,7 @@
           "collaborative-problem-solving",
           "scalable-agent-architectures"
         ],
-        "triggers": [
-          "multi-agent-architect",
-          "multi agent architect"
-        ],
+        "triggers": ["multi-agent-architect", "multi agent architect"],
         "documentation": "/SKILLS/multi-agent-architect/SKILL.md"
       },
       {
@@ -259,12 +251,7 @@
         "autonomy_level": "very-high",
         "decision_scope": "meta-strategic",
         "coordination_role": "orchestrator",
-        "works_with": [
-          "all-skills",
-          "all-agents",
-          "archon-manager",
-          "multi-agent-architect"
-        ],
+        "works_with": ["all-skills", "all-agents", "archon-manager", "multi-agent-architect"],
         "best_for": [
           "complex-multi-framework-projects",
           "project-lifecycle-automation",
@@ -306,11 +293,7 @@
         "decision_scope": "operational",
         "coordination_role": "enforcer",
         "external_tool": "openai-codex-cli",
-        "works_with": [
-          "quality-assurance",
-          "security-architect",
-          "testing-strategist"
-        ],
+        "works_with": ["quality-assurance", "security-architect", "testing-strategist"],
         "best_for": [
           "automated-code-validation",
           "ci-cd-integration",
@@ -351,11 +334,7 @@
         "autonomy_level": "medium",
         "decision_scope": "tactical",
         "coordination_role": "architect",
-        "works_with": [
-          "visual-designer",
-          "frontend-builder",
-          "figma-developer"
-        ],
+        "works_with": ["visual-designer", "frontend-builder", "figma-developer"],
         "best_for": [
           "building-design-systems",
           "component-library-creation",
@@ -363,10 +342,7 @@
           "design-standardization",
           "ui-consistency"
         ],
-        "triggers": [
-          "design-system-architect",
-          "design system architect"
-        ],
+        "triggers": ["design-system-architect", "design system architect"],
         "documentation": "/SKILLS/design-system-architect/SKILL.md"
       },
       {
@@ -399,11 +375,7 @@
           "NIST-Cybersecurity-Framework",
           "CIS-Controls"
         ],
-        "works_with": [
-          "security-engineer",
-          "codex-review-workflow",
-          "quality-assurance"
-        ],
+        "works_with": ["security-engineer", "codex-review-workflow", "quality-assurance"],
         "best_for": [
           "security-architecture-design",
           "threat-modeling",
@@ -424,71 +396,26 @@
     ]
   },
   "agent_hierarchy": {
-    "meta_strategic": [
-      "framework-orchestrator"
-    ],
-    "strategic": [
-      "archon-manager"
-    ],
-    "tactical": [
-      "multi-agent-architect",
-      "security-architect",
-      "design-system-architect"
-    ],
-    "operational": [
-      "general-purpose",
-      "codex-review-workflow"
-    ],
-    "discovery": [
-      "explore"
-    ],
-    "configuration": [
-      "statusline-setup",
-      "output-style-setup"
-    ]
+    "meta_strategic": ["framework-orchestrator"],
+    "strategic": ["archon-manager"],
+    "tactical": ["multi-agent-architect", "security-architect", "design-system-architect"],
+    "operational": ["general-purpose", "codex-review-workflow"],
+    "discovery": ["explore"],
+    "configuration": ["statusline-setup", "output-style-setup"]
   },
   "coordination_roles": {
-    "orchestrator": [
-      "framework-orchestrator",
-      "multi-agent-architect"
-    ],
-    "manager": [
-      "archon-manager"
-    ],
-    "architect": [
-      "design-system-architect",
-      "security-architect"
-    ],
-    "enforcer": [
-      "codex-review-workflow",
-      "security-architect"
-    ],
-    "worker": [
-      "general-purpose",
-      "explore"
-    ]
+    "orchestrator": ["framework-orchestrator", "multi-agent-architect"],
+    "manager": ["archon-manager"],
+    "architect": ["design-system-architect", "security-architect"],
+    "enforcer": ["codex-review-workflow", "security-architect"],
+    "worker": ["general-purpose", "explore"]
   },
   "autonomy_levels": {
-    "very_high": [
-      "framework-orchestrator"
-    ],
-    "high": [
-      "archon-manager",
-      "multi-agent-architect"
-    ],
-    "medium_high": [
-      "codex-review-workflow",
-      "security-architect"
-    ],
-    "medium": [
-      "design-system-architect"
-    ],
-    "low": [
-      "general-purpose",
-      "explore",
-      "statusline-setup",
-      "output-style-setup"
-    ]
+    "very_high": ["framework-orchestrator"],
+    "high": ["archon-manager", "multi-agent-architect"],
+    "medium_high": ["codex-review-workflow", "security-architect"],
+    "medium": ["design-system-architect"],
+    "low": ["general-purpose", "explore", "statusline-setup", "output-style-setup"]
   },
   "documentation": {
     "agent_types": ".claude/agents/agent-types.md",

@@ -13,10 +13,7 @@
       "status": "active",
       "use_case": "Setting up ai dev.json.example",
       "related_skills": [],
-      "tags": [
-        "ai",
-        "project-config"
-      ]
+      "tags": ["ai", "project-config"]
     },
     {
       "name": "AI-DEV-STANDARDS-UPDATE-TEMPLATE",
@@ -28,10 +25,7 @@
       "status": "active",
       "use_case": "Setting up AI DEV STANDARDS UPDATE TEMPLATE",
       "related_skills": [],
-      "tags": [
-        "AI",
-        "project-config"
-      ]
+      "tags": ["AI", "project-config"]
     },
     {
       "name": "archon-project-template",
@@ -43,10 +37,7 @@
       "status": "active",
       "use_case": "Setting up archon project template",
       "related_skills": [],
-      "tags": [
-        "archon",
-        "project-config"
-      ]
+      "tags": ["archon", "project-config"]
     },
     {
       "name": "ci-cd-placeholder",
@@ -58,10 +49,7 @@
       "status": "planned",
       "use_case": "Setting up ci cd",
       "related_skills": [],
-      "tags": [
-        "ci-cd",
-        "planned"
-      ]
+      "tags": ["ci-cd", "planned"]
     },
     {
       "name": "claude-instructions-with-brain",
@@ -73,10 +61,7 @@
       "status": "active",
       "use_case": "Setting up claude instructions with brain",
       "related_skills": [],
-      "tags": [
-        "claude",
-        "project-config"
-      ]
+      "tags": ["claude", "project-config"]
     },
     {
       "name": "cursorrules",
@@ -88,10 +73,7 @@
       "status": "active",
       "use_case": "Setting up cursorrules",
       "related_skills": [],
-      "tags": [
-        "cursorrules",
-        "config-files"
-      ]
+      "tags": ["cursorrules", "config-files"]
     },
     {
       "name": "env.example",
@@ -103,10 +85,7 @@
       "status": "active",
       "use_case": "Setting up env.example",
       "related_skills": [],
-      "tags": [
-        "env.example",
-        "config-files"
-      ]
+      "tags": ["env.example", "config-files"]
     },
     {
       "name": "eslintrc.json",
@@ -118,10 +97,7 @@
       "status": "active",
       "use_case": "Setting up eslintrc.json",
       "related_skills": [],
-      "tags": [
-        "eslintrc.json",
-        "config-files"
-      ]
+      "tags": ["eslintrc.json", "config-files"]
     },
     {
       "name": "gitignore",
@@ -133,10 +109,7 @@
       "status": "active",
       "use_case": "Setting up gitignore",
       "related_skills": [],
-      "tags": [
-        "gitignore",
-        "config-files"
-      ]
+      "tags": ["gitignore", "config-files"]
     },
     {
       "name": "prettierrc",
@@ -148,10 +121,7 @@
       "status": "active",
       "use_case": "Setting up prettierrc",
       "related_skills": [],
-      "tags": [
-        "prettierrc",
-        "config-files"
-      ]
+      "tags": ["prettierrc", "config-files"]
     },
     {
       "name": "tailwind.config.js",
@@ -163,10 +133,7 @@
       "status": "active",
       "use_case": "Setting up tailwind.config.js",
       "related_skills": [],
-      "tags": [
-        "tailwind.config.js",
-        "config-files"
-      ]
+      "tags": ["tailwind.config.js", "config-files"]
     },
     {
       "name": "tsconfig.json",
@@ -178,10 +145,7 @@
       "status": "active",
       "use_case": "Setting up tsconfig.json",
       "related_skills": [],
-      "tags": [
-        "tsconfig.json",
-        "config-files"
-      ]
+      "tags": ["tsconfig.json", "config-files"]
     },
     {
       "name": "cursorrules-ai-rag",
@@ -193,10 +157,7 @@
       "status": "active",
       "use_case": "Setting up cursorrules ai rag",
       "related_skills": [],
-      "tags": [
-        "cursorrules",
-        "cursorrules-variants"
-      ]
+      "tags": ["cursorrules", "cursorrules-variants"]
     },
     {
       "name": "cursorrules-existing-project",
@@ -208,10 +169,7 @@
       "status": "active",
       "use_case": "Setting up cursorrules existing project",
       "related_skills": [],
-      "tags": [
-        "cursorrules",
-        "cursorrules-variants"
-      ]
+      "tags": ["cursorrules", "cursorrules-variants"]
     },
     {
       "name": "cursorrules-minimal",
@@ -223,10 +181,7 @@
       "status": "active",
       "use_case": "Setting up cursorrules minimal",
       "related_skills": [],
-      "tags": [
-        "cursorrules",
-        "cursorrules-variants"
-      ]
+      "tags": ["cursorrules", "cursorrules-variants"]
     },
     {
       "name": "cursorrules-quick-test",
@@ -238,10 +193,7 @@
       "status": "active",
       "use_case": "Setting up cursorrules quick test",
       "related_skills": [],
-      "tags": [
-        "cursorrules",
-        "cursorrules-variants"
-      ]
+      "tags": ["cursorrules", "cursorrules-variants"]
     },
     {
       "name": "cursorrules-saas",
@@ -253,10 +205,7 @@
       "status": "active",
       "use_case": "Setting up cursorrules saas",
       "related_skills": [],
-      "tags": [
-        "cursorrules",
-        "cursorrules-variants"
-      ]
+      "tags": ["cursorrules", "cursorrules-variants"]
     },
     {
       "name": "deployment-placeholder",
@@ -268,10 +217,7 @@
       "status": "planned",
       "use_case": "Setting up deployment",
       "related_skills": [],
-      "tags": [
-        "deployment",
-        "planned"
-      ]
+      "tags": ["deployment", "planned"]
     },
     {
       "name": "project-starters-placeholder",
@@ -283,10 +229,7 @@
       "status": "planned",
       "use_case": "Setting up project starters",
       "related_skills": [],
-      "tags": [
-        "project-starters",
-        "planned"
-      ]
+      "tags": ["project-starters", "planned"]
     },
     {
       "name": "jest-nextjs-setup",
@@ -298,10 +241,7 @@
       "status": "active",
       "use_case": "Setting up jest nextjs setup",
       "related_skills": [],
-      "tags": [
-        "jest",
-        "testing-setup"
-      ]
+      "tags": ["jest", "testing-setup"]
     },
     {
       "name": "playwright-e2e-setup",
@@ -313,10 +253,7 @@
       "status": "active",
       "use_case": "Setting up playwright e2e setup",
       "related_skills": [],
-      "tags": [
-        "playwright",
-        "testing-setup"
-      ]
+      "tags": ["playwright", "testing-setup"]
     }
   ],
   "categories": {

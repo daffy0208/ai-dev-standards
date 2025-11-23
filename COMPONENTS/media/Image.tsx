@@ -145,8 +145,8 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     useEffect(() => {
       if (loading === 'lazy' && imgRef.current && !shouldLoad) {
         observerRef.current = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
+          entries => {
+            entries.forEach(entry => {
               if (entry.isIntersecting) {
                 setShouldLoad(true)
                 observerRef.current?.disconnect()
@@ -154,7 +154,7 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
             })
           },
           {
-            rootMargin: '50px', // Start loading 50px before entering viewport
+            rootMargin: '50px' // Start loading 50px before entering viewport
           }
         )
 
@@ -198,7 +198,7 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       aspectRatio,
       opacity: loaded ? 1 : 0,
       transition: 'opacity 0.3s ease-in-out',
-      ...style,
+      ...style
     }
 
     const wrapperStyle: React.CSSProperties = {
@@ -206,7 +206,7 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       width: width ? `${width}px` : '100%',
       height: height ? `${height}px` : 'auto',
       aspectRatio: aspectRatio || (width && height ? `${width}/${height}` : undefined),
-      overflow: 'hidden',
+      overflow: 'hidden'
     }
 
     return (
@@ -226,7 +226,7 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
               objectFit,
               objectPosition,
               filter: 'blur(10px)',
-              transform: 'scale(1.1)', // Slightly larger to hide blur edges
+              transform: 'scale(1.1)' // Slightly larger to hide blur edges
             }}
           />
         )}
@@ -263,7 +263,7 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
               alignItems: 'center',
               justifyContent: 'center',
               backgroundColor: '#f3f4f6',
-              color: '#6b7280',
+              color: '#6b7280'
             }}
             role="img"
             aria-label={alt}
@@ -293,7 +293,7 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
             style={{
               width: '100%',
               height: '100%',
-              backgroundColor: '#f3f4f6',
+              backgroundColor: '#f3f4f6'
             }}
             aria-hidden="true"
           />

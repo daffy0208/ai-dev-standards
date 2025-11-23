@@ -72,9 +72,9 @@ const jsEmbed = fonts.getJsEmbedCode('abc123')
 ```typescript
 const font = await fonts.getFontFamily('proxima-nova')
 
-console.log(font.displayName)    // "Proxima Nova"
-console.log(font.foundry)        // "Mark Simonson"
-console.log(font.variations)     // Array of weights and styles
+console.log(font.displayName) // "Proxima Nova"
+console.log(font.foundry) // "Mark Simonson"
+console.log(font.variations) // Array of weights and styles
 ```
 
 ## API Reference
@@ -114,17 +114,20 @@ Generate @import statement.
 ## Popular Adobe Fonts
 
 ### Sans-Serif
+
 - Proxima Nova - Modern geometric-humanist hybrid
 - Futura PT - Classic geometric sans
 - Myriad Pro - Adobe's brand font
 - Source Sans Pro - Adobe's first open source font
 
 ### Serif
+
 - Adobe Garamond - Classic old-style serif
 - Minion Pro - Elegant book typeface
 - Adobe Caslon Pro - Transitional serif
 
 ### Display
+
 - Trajan Pro - Classical inscriptional capitals
 - Bodoni - High contrast modern serif
 
@@ -142,7 +145,7 @@ Generate @import statement.
 
 ```html
 <!-- Add to <head> -->
-<link rel="stylesheet" href="https://use.typekit.net/abc123.css">
+<link rel="stylesheet" href="https://use.typekit.net/abc123.css" />
 ```
 
 ### 3. Use in CSS

@@ -15,11 +15,11 @@ const fs = require('fs')
 const path = require('path')
 
 const chalk = {
-  blue: (text) => `\x1b[34m${text}\x1b[0m`,
-  green: (text) => `\x1b[32m${text}\x1b[0m`,
-  yellow: (text) => `\x1b[33m${text}\x1b[0m`,
-  red: (text) => `\x1b[31m${text}\x1b[0m`,
-  gray: (text) => `\x1b[90m${text}\x1b[0m`,
+  blue: text => `\x1b[34m${text}\x1b[0m`,
+  green: text => `\x1b[32m${text}\x1b[0m`,
+  yellow: text => `\x1b[33m${text}\x1b[0m`,
+  red: text => `\x1b[31m${text}\x1b[0m`,
+  gray: text => `\x1b[90m${text}\x1b[0m`
 }
 
 console.log(chalk.blue('\n🚀 AI Dev Standards Bootstrap\n'))
@@ -55,7 +55,6 @@ async function main() {
       // Run sync to check for updates
       console.log(chalk.blue('🔄 Checking for updates...\n'))
       execSync('ai-dev sync --yes', { stdio: 'inherit' })
-
     } else {
       console.log(chalk.yellow('📋 Project not initialized. Setting up auto-sync...\n'))
 
@@ -67,7 +66,6 @@ async function main() {
 
     // 4. Show next steps
     showNextSteps()
-
   } catch (error) {
     console.error(chalk.red(`\n❌ Error: ${error.message}\n`))
     process.exit(1)
@@ -114,13 +112,13 @@ async function initializeProject() {
     version: '1.0.0',
     lastSync: new Date().toISOString(),
     tracking: [
-      'skills',           // AI development skills
-      'mcps',             // MCP server configurations
-      'tools',            // Development tools
-      'components',       // Reusable code components
-      'integrations',     // Third-party integrations
-      'cursorrules',      // Cursor IDE rules
-      'gitignore'         // Git ignore patterns
+      'skills', // AI development skills
+      'mcps', // MCP server configurations
+      'tools', // Development tools
+      'components', // Reusable code components
+      'integrations', // Third-party integrations
+      'cursorrules', // Cursor IDE rules
+      'gitignore' // Git ignore patterns
     ],
     frequency: 'git-hook',
     installed: {

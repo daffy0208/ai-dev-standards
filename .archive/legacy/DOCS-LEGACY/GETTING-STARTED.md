@@ -16,6 +16,7 @@ npx @ai-dev-standards/bootstrap
 ### 2. That's It!
 
 You now have:
+
 - ✅ All 12 skills available to Claude
 - ✅ MCPs configured
 - ✅ Best practices enforced
@@ -70,6 +71,7 @@ git pull
 ```
 
 **Expected:**
+
 ```
 🔄 Auto-syncing with ai-dev-standards...
 ✅ Sync complete!
@@ -168,28 +170,36 @@ ai-dev --help
 Choose based on your needs:
 
 ### Quick Start (5 min)
+
 **[DOCS/QUICK-START.md](./DOCS/QUICK-START.md)**
+
 - Complete walkthrough
 - Verification tests
 - Real-world examples
 - Troubleshooting
 
 ### Existing Projects (10 min)
+
 **[DOCS/EXISTING-PROJECTS.md](./DOCS/EXISTING-PROJECTS.md)**
+
 - Safety features
 - What gets changed
 - Use cases
 - Customization
 
 ### Bootstrap Details (15 min)
+
 **[DOCS/BOOTSTRAP.md](./DOCS/BOOTSTRAP.md)**
+
 - All installation methods
 - Configuration options
 - Advanced usage
 - Complete reference
 
 ### CLI Reference (Full)
+
 **[DOCS/CLI-REFERENCE.md](./DOCS/CLI-REFERENCE.md)**
+
 - Every command
 - All options
 - Common workflows
@@ -200,6 +210,7 @@ Choose based on your needs:
 ## Key Features
 
 ### ADHD-Friendly
+
 - ✅ One command setup
 - ✅ Fully automatic
 - ✅ Zero maintenance
@@ -207,12 +218,14 @@ Choose based on your needs:
 - ✅ No decisions
 
 ### Safe for Existing Projects
+
 - ✅ Non-destructive
 - ✅ Auto-backup
 - ✅ Reversible
 - ✅ Never touches source code
 
 ### Keeps Everything Current
+
 - ✅ Auto-sync on git pull
 - ✅ Skills always latest
 - ✅ MCPs always configured
@@ -255,11 +268,13 @@ Open an issue: [GitHub Issues](https://github.com/your-org/ai-dev-standards/issu
 ## Bottom Line
 
 ### For New Projects:
+
 ```bash
 npx @ai-dev-standards/bootstrap
 ```
 
 ### For Existing Projects:
+
 ```bash
 npx @ai-dev-standards/bootstrap
 ```

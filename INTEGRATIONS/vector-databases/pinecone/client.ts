@@ -109,17 +109,16 @@ export class PineconeClient {
         }))
       )
 
-      console.log(`Upserted batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(records.length / batchSize)}`)
+      console.log(
+        `Upserted batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(records.length / batchSize)}`
+      )
     }
   }
 
   /**
    * Query vectors (similarity search)
    */
-  async query(
-    vector: number[],
-    options: QueryOptions = {}
-  ): Promise<QueryResult[]> {
+  async query(vector: number[], options: QueryOptions = {}): Promise<QueryResult[]> {
     const index = this.getIndex()
 
     const response = await index.namespace(options.namespace || '').query({
@@ -335,7 +334,9 @@ export async function examples() {
   // Upsert batch
   const vectors: VectorRecord[] = Array.from({ length: 100 }, (_, i) => ({
     id: `vec${i}`,
-    values: Array(1536).fill(0).map(() => Math.random()),
+    values: Array(1536)
+      .fill(0)
+      .map(() => Math.random()),
     metadata: {
       index: i,
       category: 'test'
@@ -345,7 +346,9 @@ export async function examples() {
   await pinecone.upsertBatch(vectors, 'my-namespace')
 
   // Query similar vectors
-  const queryVector = Array(1536).fill(0).map(() => Math.random())
+  const queryVector = Array(1536)
+    .fill(0)
+    .map(() => Math.random())
   const results = await pinecone.query(queryVector, {
     topK: 5,
     filter: { category: 'documentation' },
@@ -372,7 +375,9 @@ export async function examples() {
   console.log('Index stats:', stats)
 
   // Chunk text
-  const chunks = chunkText('This is a long document that needs to be split into chunks for embedding.')
+  const chunks = chunkText(
+    'This is a long document that needs to be split into chunks for embedding.'
+  )
   console.log('Chunks:', chunks)
 }
 

@@ -31,7 +31,7 @@ await db.account.update({
 })
 
 // ✅ Good: Wrapped in transaction
-await db.$transaction(async (tx) => {
+await db.$transaction(async tx => {
   await tx.account.update({
     where: { id: sourceId },
     data: { balance: { decrement: amount } }
@@ -227,7 +227,7 @@ CREATE INDEX idx_users_created ON users(created_at); // Used for sorting
 
 ## Query Optimization Best Practices
 
-### Avoid SELECT *
+### Avoid SELECT \*
 
 ```typescript
 // ❌ Bad: Fetches all columns (wasteful)
@@ -287,7 +287,7 @@ const orders = await db.order.findMany({
 ```typescript
 import DataLoader from 'dataloader'
 
-const userLoader = new DataLoader(async (ids) => {
+const userLoader = new DataLoader(async ids => {
   const users = await db.user.findMany({
     where: { id: { in: ids } }
   })
@@ -619,22 +619,26 @@ CREATE TABLE audit_log (
 ## Database Maintenance Checklist
 
 ### Daily
+
 - [ ] Verify backups completed successfully
 - [ ] Check for connection pool exhaustion
 - [ ] Review error logs
 
 ### Weekly
+
 - [ ] Analyze slow queries
 - [ ] Check disk space
 - [ ] Review index usage
 
 ### Monthly
+
 - [ ] VACUUM and ANALYZE tables (PostgreSQL)
 - [ ] Review and optimize top slow queries
 - [ ] Test backup restore process
 - [ ] Review and remove unused indexes
 
 ### Quarterly
+
 - [ ] Review schema for optimization opportunities
 - [ ] Update database statistics
 - [ ] Review security permissions
@@ -687,18 +691,21 @@ CREATE INDEX idx_orders_status_created ON orders(status, created_at DESC);
 ## Tool Recommendations
 
 ### ORMs
+
 - **Prisma** - TypeScript, great DX, type-safe
 - **Drizzle** - Lightweight, SQL-like, type-safe
 - **TypeORM** - Mature, decorators
 - **Sequelize** - Popular, battle-tested
 
 ### Migration Tools
+
 - **Prisma Migrate** - Integrated with Prisma
 - **Knex** - Flexible, SQL migrations
 - **Flyway** - Java-based, version control
 - **Alembic** - Python, SQLAlchemy
 
 ### Monitoring
+
 - **Datadog** - Full observability
 - **New Relic** - APM with DB monitoring
 - **PgHero** - PostgreSQL insights
@@ -709,14 +716,17 @@ CREATE INDEX idx_orders_status_created ON orders(status, created_at DESC);
 ## Related Resources
 
 **Skills:**
+
 - `/SKILLS/api-designer/` - API database integration
 - `/SKILLS/performance-optimizer/` - Query optimization
 - `/SKILLS/security-engineer/` - SQL injection prevention
 
 **Patterns:**
+
 - `/STANDARDS/architecture-patterns/database-design-patterns.md`
 
 **External:**
+
 - [Prisma Best Practices](https://www.prisma.io/docs/guides/performance-and-optimization)
 - [PostgreSQL Performance](https://wiki.postgresql.org/wiki/Performance_Optimization)
 - [MySQL Best Practices](https://dev.mysql.com/doc/refman/8.0/en/optimization.html)

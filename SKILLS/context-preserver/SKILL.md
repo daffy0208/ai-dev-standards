@@ -19,6 +19,7 @@ ADHD brains have high context-switching costs and limited working memory. Every 
 ## The Context Problem
 
 ### Problem 1: High Context-Switching Cost
+
 **Issue:** After breaks, spend 15-30 min remembering what you were doing
 **Result:** Lost productivity, frustration, avoidance of breaks
 
@@ -27,10 +28,12 @@ ADHD brains have high context-switching costs and limited working memory. Every 
 **Result:** Constant re-reading code, forgetting next steps
 
 ### Problem 3: Interruption Anxiety
+
 **Issue:** Fear of losing place prevents taking needed breaks
 **Result:** Burnout, health issues, reduced quality
 
 ### Problem 4: "Where Was I?" Syndrome
+
 **Issue:** Return to work with no idea what you were doing
 **Result:** Thrashing, starting over, wasted time
 
@@ -41,24 +44,28 @@ ADHD brains have high context-switching costs and limited working memory. Every 
 ### What Gets Saved (Auto-Every 15 Minutes)
 
 **File Context:**
+
 - Current file path
 - Line number and function
 - Related files (imports, dependencies)
 - Git branch
 
 **Mental State:**
+
 - What you were thinking
 - What you just finished
 - What you're about to do
 - Blockers or questions
 
 **Environment:**
+
 - Dev server status
 - Open terminals
 - Database state
 - API keys loaded
 
 **Time Context:**
+
 - When you started
 - How long you've been working
 - When you plan to stop
@@ -66,10 +73,12 @@ ADHD brains have high context-switching costs and limited working memory. Every 
 ### Automated Saves
 
 #### Trigger 1: Every 15 Minutes (Background)
+
 ```markdown
 [15:30] Auto-save triggered
 
 Context saved:
+
 - File: src/components/login.tsx:42
 - Function: handleSubmit()
 - Status: Adding API call
@@ -81,6 +90,7 @@ Context saved:
 ```
 
 #### Trigger 2: Before Breaks (Manual Command)
+
 ```bash
 # You run: ./save-context.sh --break lunch
 
@@ -95,10 +105,12 @@ Context saved for lunch break:
 ```
 
 #### Trigger 3: On Claude Session End (Auto)
+
 ```markdown
 [Session ending]
 
 Preserving your context:
+
 - Saved current task
 - Created WIP commit
 - Noted next 3 steps
@@ -109,11 +121,13 @@ Context will load automatically
 ```
 
 #### Trigger 4: On Interruption (Auto-Detect)
+
 ```markdown
 [No activity detected for 10 min]
 
 Looks like you got interrupted!
 Auto-saved context:
+
 - Last active: 10 min ago
 - Working on: Dashboard layout
 - File: src/pages/dashboard.tsx:125
@@ -145,10 +159,7 @@ When you return: Context ready to resume
       "function": "handleSubmit",
       "content_preview": "async function handleSubmit(e: FormEvent) {"
     },
-    "related": [
-      "src/api/auth.ts",
-      "src/types/user.ts"
-    ]
+    "related": ["src/api/auth.ts", "src/types/user.ts"]
   },
   "mental_state": {
     "doing": "Adding API call to /auth/login endpoint",
@@ -158,9 +169,7 @@ When you return: Context ready to resume
       "Handle 401/500 errors",
       "Add loading state to button"
     ],
-    "blockers": [
-      "Need to check API error format"
-    ],
+    "blockers": ["Need to check API error format"],
     "notes": "Using fetch (not axios) per team standard"
   },
   "environment": {
@@ -185,6 +194,7 @@ When you return: Context ready to resume
 ### Quick Resume (< 5 Minutes)
 
 #### One-Command Resume
+
 ```bash
 # You run: ./resume.sh
 
@@ -229,20 +239,21 @@ Claude: Welcome back! I see you were working on authentication flow.
 Let me catch you up:
 
 📍 Last Location:
-  File: src/components/login.tsx:42
-  Function: handleSubmit()
+File: src/components/login.tsx:42
+Function: handleSubmit()
 
 💭 Mental State (from 1 hour ago):
-  - You were adding API call to /auth/login
-  - Email validation is done ✅
-  - Next: Handle 401/500 errors
+
+- You were adding API call to /auth/login
+- Email validation is done ✅
+- Next: Handle 401/500 errors
 
 📊 Progress: 60% complete (Phase 2/3)
 
 🎯 Quick options:
-  A) Resume where you left off (add fetch call)
-  B) See full context (detailed notes)
-  C) Start something new
+A) Resume where you left off (add fetch call)
+B) See full context (detailed notes)
+C) Start something new
 
 What would you like to do?
 ```
@@ -263,9 +274,11 @@ Every 30 minutes, Claude asks:
 To help you resume later:
 
 1. What are you working on right now?
+
    > Adding password reset functionality
 
 2. What's the next small step?
+
    > Test email delivery locally
 
 3. Any blockers or questions?
@@ -288,6 +301,7 @@ To help you resume later:
 [Break]
 
 Resume thoughts:
+
 - Was about to test email delivery
 - SendGrid configured, key in .env
 - Next: Trigger reset email from form
@@ -322,6 +336,7 @@ You're making great progress! 🎉
 ⏸️ Taking a break soon?
 
 Quick save checklist:
+
 - [ ] Commit current work (WIP okay!)
 - [ ] Write next step (one sentence)
 - [ ] Note any blockers
@@ -408,10 +423,12 @@ WIP: Testing password reset flow [15:45]
 ### Types of Interruptions
 
 #### Type 1: Meetings (Scheduled)
+
 ```markdown
 [14:45] Meeting in 15 minutes
 
 Auto-save triggering:
+
 - Current work committed
 - Context snapshot created
 - Resume script generated
@@ -421,6 +438,7 @@ Estimated resume time: 5 minutes
 ```
 
 #### Type 2: Urgent Bug (Unplanned)
+
 ```markdown
 You: "Urgent bug in production, need to switch"
 
@@ -436,6 +454,7 @@ Resume command: ./resume-auth-work.sh
 ```
 
 #### Type 3: Loss of Focus (ADHD Wander)
+
 ```markdown
 [You've been browsing docs for 20 min]
 
@@ -473,9 +492,11 @@ Send this to teammate for pairing:
 
 ```markdown
 # View past contexts
+
 ./context-history.sh
 
 Recent Work Sessions:
+
 1. 2025-10-22 14:00 - Auth flow (90 min) ✅ Completed
 2. 2025-10-22 10:30 - Dashboard UI (2 hours) 🔄 In progress
 3. 2025-10-21 15:00 - Bug fix #234 (45 min) ✅ Completed
@@ -489,6 +510,7 @@ Recent Work Sessions:
 [Starting new session]
 
 Claude: I notice you often work on:
+
 - Authentication (70% of time)
 - Dashboard UI (20%)
 - Bug fixes (10%)
@@ -516,6 +538,7 @@ Context snapshots: On demand
 
 [Session End]
 Final save includes:
+
 - Total focus time
 - Tasks completed
 - Progress made
@@ -528,11 +551,13 @@ Final save includes:
 Project A → Project B
 
 Auto-stash Project A:
+
 - Commit WIP
 - Save context
 - Close related tabs
 
 Load Project B:
+
 - Restore last context
 - Open relevant files
 - Show next task
@@ -544,11 +569,13 @@ Switch time: < 5 minutes
 
 ```markdown
 Before pairing:
+
 - Export current context
 - Share with partner
 - They see exactly what you're doing
 
 After pairing:
+
 - Update context with decisions made
 - Log next steps
 - Easy solo resume
@@ -597,16 +624,19 @@ chmod +x .adhd/*.sh
 ## Anti-Patterns
 
 ### ❌ Manual Context Notes
+
 **Bad:** Expecting yourself to manually write notes
 **Why:** ADHD brain won't do it consistently
 **Good:** Automated saves every 15 min
 
 ### ❌ Perfect Documentation
+
 **Bad:** Writing detailed status reports
 **Why:** Wastes time, won't be maintained
 **Good:** Stream-of-consciousness quick notes
 
 ### ❌ Single Context File
+
 **Bad:** Overwriting same context file
 **Why:** Loses history, can't go back
 **Good:** Timestamped history, can browse past contexts
@@ -616,6 +646,7 @@ chmod +x .adhd/*.sh
 ## Success Metrics
 
 You're using this skill well when:
+
 - ✅ Resume time < 5 minutes (from 30 minutes before)
 - ✅ Never ask "where was I?"
 - ✅ Take breaks without anxiety

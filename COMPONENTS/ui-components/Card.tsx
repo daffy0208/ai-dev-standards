@@ -27,19 +27,19 @@
  * ```
  */
 
-import * as React from 'react';
-import { cn } from './utils';
+import * as React from 'react'
+import { cn } from './utils'
 
 export interface CardProps extends React.HTMLAttributes<HTMLElement> {
   /**
    * Card title displayed in the header
    */
-  title?: string;
+  title?: string
 
   /**
    * Footer content (buttons, actions, etc.)
    */
-  footer?: React.ReactNode;
+  footer?: React.ReactNode
 
   /**
    * Card variant
@@ -47,17 +47,17 @@ export interface CardProps extends React.HTMLAttributes<HTMLElement> {
    * - bordered: white background with prominent border
    * - elevated: white background with strong shadow effect
    */
-  variant?: 'default' | 'bordered' | 'elevated';
+  variant?: 'default' | 'bordered' | 'elevated'
 
   /**
    * Additional CSS classes for the card
    */
-  className?: string;
+  className?: string
 
   /**
    * Card body content
    */
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 /**
@@ -81,16 +81,12 @@ export const Card = React.forwardRef<HTMLElement, CardProps>(
         {/* Header */}
         {title && (
           <header className="px-6 py-4 border-b border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900 leading-none">
-              {title}
-            </h3>
+            <h3 className="text-lg font-semibold text-gray-900 leading-none">{title}</h3>
           </header>
         )}
 
         {/* Body */}
-        <section className="px-6 py-4">
-          {children}
-        </section>
+        <section className="px-6 py-4">{children}</section>
 
         {/* Footer */}
         {footer && (
@@ -99,8 +95,8 @@ export const Card = React.forwardRef<HTMLElement, CardProps>(
           </footer>
         )}
       </article>
-    );
+    )
   }
-);
+)
 
-Card.displayName = 'Card';
+Card.displayName = 'Card'

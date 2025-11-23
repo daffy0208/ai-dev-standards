@@ -4,10 +4,7 @@
     {
       "id": "semantic-search-mcp",
       "exists": true,
-      "files": [
-        "package.json",
-        "README.md"
-      ],
+      "files": ["package.json", "README.md"],
       "actual_complexity": 0,
       "actual_tools": 0,
       "actual_loc": 0,
@@ -17,10 +14,7 @@
     {
       "id": "market-analyzer-mcp",
       "exists": true,
-      "files": [
-        "package.json",
-        "README.md"
-      ],
+      "files": ["package.json", "README.md"],
       "actual_complexity": 0,
       "actual_tools": 0,
       "actual_loc": 0,
@@ -30,10 +24,7 @@
     {
       "id": "user-insight-analyzer-mcp",
       "exists": true,
-      "files": [
-        "package.json",
-        "README.md"
-      ],
+      "files": ["package.json", "README.md"],
       "actual_complexity": 0,
       "actual_tools": 0,
       "actual_loc": 0,
@@ -43,10 +34,7 @@
     {
       "id": "deployment-orchestrator-mcp",
       "exists": true,
-      "files": [
-        "package.json",
-        "README.md"
-      ],
+      "files": ["package.json", "README.md"],
       "actual_complexity": 0,
       "actual_tools": 0,
       "actual_loc": 0,
@@ -56,10 +44,7 @@
     {
       "id": "agent-orchestrator-mcp",
       "exists": true,
-      "files": [
-        "package.json",
-        "README.md"
-      ],
+      "files": ["package.json", "README.md"],
       "actual_complexity": 0,
       "actual_tools": 0,
       "actual_loc": 0,

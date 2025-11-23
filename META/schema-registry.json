@@ -11,16 +11,10 @@
       "version": "1.0.0",
       "path": "/SCHEMAS/ai-dev.config.schema.yaml",
       "status": "active",
-      "validates": [
-        ".ai-dev.json"
-      ],
+      "validates": [".ai-dev.json"],
       "related_skills": [],
       "related_components": [],
-      "tags": [
-        "schema",
-        "validation",
-        "ai"
-      ]
+      "tags": ["schema", "validation", "ai"]
     },
     {
       "name": "capability-manifest.schema",
@@ -33,11 +27,7 @@
       "validates": [],
       "related_skills": [],
       "related_components": [],
-      "tags": [
-        "schema",
-        "validation",
-        "capability"
-      ]
+      "tags": ["schema", "validation", "capability"]
     },
     {
       "name": "component.schema",
@@ -47,16 +37,10 @@
       "version": "1.0.0",
       "path": "/SCHEMAS/component.schema.yaml",
       "status": "active",
-      "validates": [
-        "COMPONENTS/*"
-      ],
+      "validates": ["COMPONENTS/*"],
       "related_skills": [],
       "related_components": [],
-      "tags": [
-        "schema",
-        "validation",
-        "component.schema"
-      ]
+      "tags": ["schema", "validation", "component.schema"]
     },
     {
       "name": "mcp-server.schema",
@@ -66,16 +50,10 @@
       "version": "1.0.0",
       "path": "/SCHEMAS/mcp-server.schema.json",
       "status": "active",
-      "validates": [
-        "MCP-SERVERS/*"
-      ],
+      "validates": ["MCP-SERVERS/*"],
       "related_skills": [],
       "related_components": [],
-      "tags": [
-        "schema",
-        "validation",
-        "mcp"
-      ]
+      "tags": ["schema", "validation", "mcp"]
     },
     {
       "name": "orchestration-request.schema",
@@ -88,11 +66,7 @@
       "validates": [],
       "related_skills": [],
       "related_components": [],
-      "tags": [
-        "schema",
-        "validation",
-        "orchestration"
-      ]
+      "tags": ["schema", "validation", "orchestration"]
     },
     {
       "name": "orchestration-result.schema",
@@ -105,11 +79,7 @@
       "validates": [],
       "related_skills": [],
       "related_components": [],
-      "tags": [
-        "schema",
-        "validation",
-        "orchestration"
-      ]
+      "tags": ["schema", "validation", "orchestration"]
     },
     {
       "name": "skill.schema",
@@ -119,16 +89,10 @@
       "version": "1.0.0",
       "path": "/SCHEMAS/skill.schema.json",
       "status": "active",
-      "validates": [
-        "SKILLS/*/SKILL.md"
-      ],
+      "validates": ["SKILLS/*/SKILL.md"],
       "related_skills": [],
       "related_components": [],
-      "tags": [
-        "schema",
-        "validation",
-        "skill.schema"
-      ]
+      "tags": ["schema", "validation", "skill.schema"]
     }
   ],
   "formats": {

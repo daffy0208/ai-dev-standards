@@ -12,7 +12,13 @@ const { sanitizeName, validateIdentifier } = require('../utils/validation')
  */
 class McpGenerator {
   async generate(config) {
-    const { name, template = 'custom', description = '', features = ['tools'], pattern = 'direct' } = config
+    const {
+      name,
+      template = 'custom',
+      description = '',
+      features = ['tools'],
+      pattern = 'direct'
+    } = config
 
     // Validate and sanitize MCP name (SECURITY: prevent path traversal)
     // Note: MCP names are used as directory names, not JS identifiers
@@ -31,7 +37,9 @@ class McpGenerator {
       // Direct MCP: Traditional structure
       files.push({
         path: `MCP-SERVERS/${sanitizedName}-mcp/index.js`,
-        content: await this.formatCode(this.generateServerCode(sanitizedName, description, features))
+        content: await this.formatCode(
+          this.generateServerCode(sanitizedName, description, features)
+        )
       })
 
       files.push({
@@ -125,7 +133,9 @@ const server = new Server(
   }
 )
 
-${hasTools ? `
+${
+  hasTools
+    ? `
 // ===========================
 // TOOLS
 // ===========================
@@ -198,9 +208,13 @@ async function perform${name.charAt(0).toUpperCase() + name.slice(1)}Action(inpu
     result: \`Processed: \${input}\`
   }
 }
-` : ''}
+`
+    : ''
+}
 
-${hasResources ? `
+${
+  hasResources
+    ? `
 // ===========================
 // RESOURCES
 // ===========================
@@ -245,9 +259,13 @@ async function get${name.charAt(0).toUpperCase() + name.slice(1)}Data() {
     total: 0
   }
 }
-` : ''}
+`
+    : ''
+}
 
-${hasPrompts ? `
+${
+  hasPrompts
+    ? `
 // ===========================
 // PROMPTS
 // ===========================
@@ -292,7 +310,9 @@ server.setRequestHandler(GetPromptRequestSchema, async (request) => {
 
   throw new Error(\`Unknown prompt: \${name}\`)
 })
-` : ''}
+`
+    : ''
+}
 
 // ===========================
 // START SERVER
@@ -316,36 +336,41 @@ main().catch((error) => {
    * Generate package.json
    */
   generatePackageJson(name, description) {
-    return JSON.stringify({
-      "name": `${name}-mcp`,
-      "version": "1.0.0",
-      "description": description || `MCP server for ${name}`,
-      "type": "commonjs",
-      "main": "index.js",
-      "bin": {
-        [`${name}-mcp`]: "./index.js"
+    return JSON.stringify(
+      {
+        name: `${name}-mcp`,
+        version: '1.0.0',
+        description: description || `MCP server for ${name}`,
+        type: 'commonjs',
+        main: 'index.js',
+        bin: {
+          [`${name}-mcp`]: './index.js'
+        },
+        scripts: {
+          start: 'node index.js',
+          test: 'echo "No tests yet" && exit 0'
+        },
+        keywords: ['mcp', 'server', name],
+        dependencies: {
+          '@modelcontextprotocol/sdk': '^0.5.0'
+        },
+        engines: {
+          node: '>=18.0.0'
+        }
       },
-      "scripts": {
-        "start": "node index.js",
-        "test": "echo \"No tests yet\" && exit 0"
-      },
-      "keywords": ["mcp", "server", name],
-      "dependencies": {
-        "@modelcontextprotocol/sdk": "^0.5.0"
-      },
-      "engines": {
-        "node": ">=18.0.0"
-      }
-    }, null, 2)
+      null,
+      2
+    )
   }
 
   /**
    * Generate README
    */
   generateReadme(name, description, features, pattern = 'direct') {
-    const patternInfo = pattern === 'code-execution'
-      ? `\n**Pattern:** Code Execution (Advanced)\n**Progressive Discovery:** Enabled\n**Skills Support:** Yes\n`
-      : `\n**Pattern:** Direct MCP (Traditional)\n`
+    const patternInfo =
+      pattern === 'code-execution'
+        ? `\n**Pattern:** Code Execution (Advanced)\n**Progressive Discovery:** Enabled\n**Skills Support:** Yes\n`
+        : `\n**Pattern:** Direct MCP (Traditional)\n`
 
     return `# ${name.charAt(0).toUpperCase() + name.slice(1)} MCP Server
 
@@ -371,7 +396,9 @@ ${pattern === 'direct' ? 'npm install' : '# Code Execution pattern uses tool fil
 
 Add to your Claude Code MCP settings:
 
-${pattern === 'direct' ? `\`\`\`json
+${
+  pattern === 'direct'
+    ? `\`\`\`json
 {
   "mcpServers": {
     "${name}": {
@@ -383,7 +410,8 @@ ${pattern === 'direct' ? `\`\`\`json
     }
   }
 }
-\`\`\`` : `\`\`\`json
+\`\`\``
+    : `\`\`\`json
 {
   "mcpServers": {
     "${name}": {
@@ -395,11 +423,14 @@ ${pattern === 'direct' ? `\`\`\`json
     }
   }
 }
-\`\`\``}
+\`\`\``
+}
 
 ## Usage
 
-${features.includes('tools') ? `
+${
+  features.includes('tools')
+    ? `
 ### Tools
 
 \`\`\`javascript
@@ -408,18 +439,26 @@ await ${name}_action({
   input: 'your-input-here'
 })
 \`\`\`
-` : ''}
+`
+    : ''
+}
 
-${features.includes('resources') ? `
+${
+  features.includes('resources')
+    ? `
 ### Resources
 
 \`\`\`javascript
 // Access ${name} data
 const data = await read('${name}://data')
 \`\`\`
-` : ''}
+`
+    : ''
+}
 
-${features.includes('prompts') ? `
+${
+  features.includes('prompts')
+    ? `
 ### Prompts
 
 \`\`\`javascript
@@ -428,7 +467,9 @@ await ${name}_prompt({
   context: 'your-context'
 })
 \`\`\`
-` : ''}
+`
+    : ''
+}
 
 ## Configuration
 

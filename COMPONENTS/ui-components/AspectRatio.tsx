@@ -1,6 +1,6 @@
-import React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from './utils';
+import React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from './utils'
 
 const aspectRatioVariants = cva('relative w-full overflow-hidden', {
   variants: {
@@ -12,19 +12,19 @@ const aspectRatioVariants = cva('relative w-full overflow-hidden', {
       '2/1': 'aspect-[2/1]',
       '21/9': 'aspect-[21/9]',
       '9/16': 'aspect-[9/16]',
-      '3/4': 'aspect-[3/4]',
-    },
+      '3/4': 'aspect-[3/4]'
+    }
   },
   defaultVariants: {
-    ratio: 'video',
-  },
-});
+    ratio: 'video'
+  }
+})
 
 export interface AspectRatioProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof aspectRatioVariants> {
   /** Custom aspect ratio (e.g., '16/9' or 1.7778) */
-  customRatio?: string | number;
+  customRatio?: string | number
 }
 
 const AspectRatio = React.forwardRef<HTMLDivElement, AspectRatioProps>(
@@ -33,10 +33,9 @@ const AspectRatio = React.forwardRef<HTMLDivElement, AspectRatioProps>(
     const customStyle = customRatio
       ? {
           ...style,
-          aspectRatio:
-            typeof customRatio === 'number' ? String(customRatio) : customRatio,
+          aspectRatio: typeof customRatio === 'number' ? String(customRatio) : customRatio
         }
-      : style;
+      : style
 
     return (
       <div
@@ -51,10 +50,10 @@ const AspectRatio = React.forwardRef<HTMLDivElement, AspectRatioProps>(
       >
         <div className="absolute inset-0">{children}</div>
       </div>
-    );
+    )
   }
-);
+)
 
-AspectRatio.displayName = 'AspectRatio';
+AspectRatio.displayName = 'AspectRatio'
 
-export { AspectRatio, aspectRatioVariants };
+export { AspectRatio, aspectRatioVariants }

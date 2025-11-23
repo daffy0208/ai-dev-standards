@@ -59,7 +59,7 @@ async function fetchJSON(relativePath) {
     const standardsPath = getStandardsPath()
     const fullPath = path.join(standardsPath, relativePath)
 
-    if (!await fs.pathExists(fullPath)) {
+    if (!(await fs.pathExists(fullPath))) {
       throw new Error(`File not found: ${relativePath}`)
     }
 
@@ -78,7 +78,7 @@ async function fetchText(relativePath) {
     const standardsPath = getStandardsPath()
     const fullPath = path.join(standardsPath, relativePath)
 
-    if (!await fs.pathExists(fullPath)) {
+    if (!(await fs.pathExists(fullPath))) {
       throw new Error(`File not found: ${relativePath}`)
     }
 

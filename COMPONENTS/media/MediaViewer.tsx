@@ -112,7 +112,7 @@ export const MediaViewer: React.FC<MediaViewerProps> = ({
   className,
   maxZoom = 5,
   minZoom = 1,
-  onClose,
+  onClose
 }) => {
   const [zoom, setZoom] = useState(1)
   const [position, setPosition] = useState({ x: 0, y: 0 })
@@ -127,11 +127,11 @@ export const MediaViewer: React.FC<MediaViewerProps> = ({
   }, [src])
 
   const handleZoomIn = () => {
-    setZoom((z) => Math.min(z + 0.5, maxZoom))
+    setZoom(z => Math.min(z + 0.5, maxZoom))
   }
 
   const handleZoomOut = () => {
-    setZoom((z) => {
+    setZoom(z => {
       const newZoom = Math.max(z - 0.5, minZoom)
       if (newZoom === minZoom) {
         setPosition({ x: 0, y: 0 })
@@ -144,7 +144,7 @@ export const MediaViewer: React.FC<MediaViewerProps> = ({
     if (type === 'image') {
       e.preventDefault()
       const delta = e.deltaY > 0 ? -0.2 : 0.2
-      setZoom((z) => {
+      setZoom(z => {
         const newZoom = Math.max(minZoom, Math.min(z + delta, maxZoom))
         if (newZoom === minZoom) {
           setPosition({ x: 0, y: 0 })
@@ -159,7 +159,7 @@ export const MediaViewer: React.FC<MediaViewerProps> = ({
       setIsDragging(true)
       dragStart.current = {
         x: e.clientX - position.x,
-        y: e.clientY - position.y,
+        y: e.clientY - position.y
       }
     }
   }
@@ -168,7 +168,7 @@ export const MediaViewer: React.FC<MediaViewerProps> = ({
     if (isDragging && zoom > minZoom) {
       setPosition({
         x: e.clientX - dragStart.current.x,
-        y: e.clientY - dragStart.current.y,
+        y: e.clientY - dragStart.current.y
       })
     }
   }
@@ -243,7 +243,7 @@ export const MediaViewer: React.FC<MediaViewerProps> = ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        overflow: 'hidden',
+        overflow: 'hidden'
       }}
       onWheel={handleWheel}
       onMouseDown={handleMouseDown}
@@ -261,7 +261,7 @@ export const MediaViewer: React.FC<MediaViewerProps> = ({
           right: '16px',
           display: 'flex',
           gap: '8px',
-          zIndex: 10,
+          zIndex: 10
         }}
       >
         {/* Zoom controls (images only) */}
@@ -279,7 +279,7 @@ export const MediaViewer: React.FC<MediaViewerProps> = ({
                 color: '#000',
                 fontSize: '20px',
                 cursor: zoom <= minZoom ? 'not-allowed' : 'pointer',
-                opacity: zoom <= minZoom ? 0.5 : 1,
+                opacity: zoom <= minZoom ? 0.5 : 1
               }}
               aria-label="Zoom out"
             >
@@ -297,7 +297,7 @@ export const MediaViewer: React.FC<MediaViewerProps> = ({
                 color: '#000',
                 fontSize: '20px',
                 cursor: zoom >= maxZoom ? 'not-allowed' : 'pointer',
-                opacity: zoom >= maxZoom ? 0.5 : 1,
+                opacity: zoom >= maxZoom ? 0.5 : 1
               }}
               aria-label="Zoom in"
             >
@@ -320,7 +320,7 @@ export const MediaViewer: React.FC<MediaViewerProps> = ({
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'center'
             }}
             aria-label="Download"
           >
@@ -353,7 +353,7 @@ export const MediaViewer: React.FC<MediaViewerProps> = ({
               backgroundColor: 'rgba(255, 255, 255, 0.9)',
               color: '#000',
               fontSize: '24px',
-              cursor: 'pointer',
+              cursor: 'pointer'
             }}
             aria-label="Close"
           >
@@ -367,11 +367,7 @@ export const MediaViewer: React.FC<MediaViewerProps> = ({
         style={{
           maxWidth: '100%',
           maxHeight: '100%',
-          cursor: isDragging
-            ? 'grabbing'
-            : zoom > minZoom && type === 'image'
-              ? 'grab'
-              : 'default',
+          cursor: isDragging ? 'grabbing' : zoom > minZoom && type === 'image' ? 'grab' : 'default'
         }}
       >
         {type === 'image' ? (
@@ -384,7 +380,7 @@ export const MediaViewer: React.FC<MediaViewerProps> = ({
               transform: `scale(${zoom}) translate(${position.x / zoom}px, ${position.y / zoom}px)`,
               transition: isDragging ? 'none' : 'transform 0.3s ease',
               display: 'block',
-              userSelect: 'none',
+              userSelect: 'none'
             }}
             draggable={false}
           />
@@ -398,7 +394,7 @@ export const MediaViewer: React.FC<MediaViewerProps> = ({
             style={{
               maxWidth: '100%',
               maxHeight: '100%',
-              display: 'block',
+              display: 'block'
             }}
           >
             Your browser does not support the video tag.
@@ -420,7 +416,7 @@ export const MediaViewer: React.FC<MediaViewerProps> = ({
             borderRadius: '8px',
             maxWidth: '80%',
             textAlign: 'center',
-            fontSize: '14px',
+            fontSize: '14px'
           }}
         >
           {title}
@@ -439,7 +435,7 @@ export const MediaViewer: React.FC<MediaViewerProps> = ({
             padding: '4px 12px',
             borderRadius: '8px',
             fontSize: '12px',
-            fontWeight: 600,
+            fontWeight: 600
           }}
           aria-live="polite"
         >
@@ -459,7 +455,7 @@ export const MediaViewer: React.FC<MediaViewerProps> = ({
             padding: '8px 12px',
             borderRadius: '8px',
             fontSize: '12px',
-            opacity: 0.7,
+            opacity: 0.7
           }}
         >
           {zoom > minZoom ? 'Drag to pan' : 'Scroll or use +/- to zoom'}

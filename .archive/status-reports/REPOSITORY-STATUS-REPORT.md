@@ -1,4 +1,5 @@
 # Repository Status Report
+
 **Generated:** $(date)
 **Branch:** main
 **Version:** 3.0.0
@@ -68,6 +69,7 @@ The ai-dev-standards repository is in **GOOD WORKING CONDITION** with some minor
 ## Resource Inventory
 
 ### Tier 1 Resources (238 total)
+
 - **Skills:** 64 specialized methodologies
 - **MCP Servers:** 50 executable tools
 - **Components:** 72 reusable React components
@@ -75,6 +77,7 @@ The ai-dev-standards repository is in **GOOD WORKING CONDITION** with some minor
 - **Tools:** 24 development tools
 
 ### Tier 2 Resources (91 total)
+
 - **Playbooks:** 14 operational procedures
 - **Standards:** 20 architecture patterns and best practices
 - **Templates:** 19 project starters
@@ -133,6 +136,7 @@ The ai-dev-standards repository is in **GOOD WORKING CONDITION** with some minor
 ## Recent Changes (Git Status)
 
 ### Staged Changes (36 files)
+
 - New Codex CLI integration (8 files in .codex/)
 - Updated brain-mcp orchestration
 - Documentation updates
@@ -140,6 +144,7 @@ The ai-dev-standards repository is in **GOOD WORKING CONDITION** with some minor
 - Updated registries and relationship mappings
 
 ### Unstaged Changes (26 files)
+
 - Modified .codex/ configuration files
 - Modified brain-mcp implementation
 - Some MCP server file deletions
@@ -151,17 +156,21 @@ The ai-dev-standards repository is in **GOOD WORKING CONDITION** with some minor
 ### Immediate Actions
 
 1. **Install Dependencies**:
+
    ```bash
    npm install
    ```
+
    - Fixes UNMET DEPENDENCY warnings
    - Enables test suite
    - Ensures all tools work correctly
 
 2. **Fix Registry Count**:
+
    ```bash
    npm run sync:mcps
    ```
+
    - Synchronizes MCP registry
    - Resolves 50 vs 51 count mismatch
 
@@ -170,17 +179,20 @@ The ai-dev-standards repository is in **GOOD WORKING CONDITION** with some minor
    git status
    git commit -m "feat: Add Codex CLI integration and brain-mcp updates"
    ```
+
    - Saves new Codex integration
    - Records brain-mcp improvements
 
 ### Optional Actions
 
 1. **Run Full Validation**:
+
    ```bash
    npm run validate
    ```
 
 2. **Run Health Check**:
+
    ```bash
    bash scripts/health-check.sh
    ```

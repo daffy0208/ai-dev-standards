@@ -23,6 +23,7 @@ Copy this template into `.cursorrules`:
 # Project: [Your Project Name]
 
 ## AI Development Standards Integration
+
 Repository: ~/ai-dev-standards/
 Status: Active
 
@@ -46,20 +47,24 @@ Status: Active
 ### Project-Specific Context
 
 **Tech Stack:**
+
 - Frontend: [e.g., Next.js 14, React, TypeScript]
 - Backend: [e.g., Node.js, Express, PostgreSQL]
 - AI/LLM: [e.g., OpenAI GPT-4, Claude, LangChain]
 - Deployment: [e.g., Vercel, Railway, AWS]
 
 **Current Phase:**
+
 - [x] MVP Development
 - [ ] Feature Expansion
 - [ ] Production Launch
 
 **Key Requirements:**
+
 - [List specific requirements or constraints]
 
 **Code Conventions:**
+
 - [Any project-specific conventions not in ai-dev-standards]
 
 ---
@@ -86,21 +91,25 @@ That's it! Now when you work with Claude in your project:
 **Project:** Task management SaaS for small teams
 
 **.cursorrules:**
+
 ```markdown
 # Project: TaskFlow - Team Task Management SaaS
 
 ## AI Development Standards Integration
+
 Repository: ~/ai-dev-standards/
 Status: Active
 
 ### Instructions for Claude Code
 
 **Load on every session:**
+
 1. ~/ai-dev-standards/META/PROJECT-CONTEXT.md
 2. ~/ai-dev-standards/META/HOW-TO-USE.md
 3. ~/ai-dev-standards/META/DECISION-FRAMEWORK.md
 
 **Primary Skills:**
+
 - mvp-builder (feature prioritization)
 - product-strategist (market validation)
 - frontend-builder (React/Next.js)
@@ -110,6 +119,7 @@ Status: Active
 ### Project Context
 
 **Tech Stack:**
+
 - Frontend: Next.js 14, TypeScript, Tailwind CSS, shadcn/ui
 - Backend: Next.js API routes, Prisma ORM
 - Database: PostgreSQL (Railway)
@@ -119,23 +129,27 @@ Status: Active
 **Current Phase:** MVP Development
 
 **Riskiest Assumptions to Validate:**
+
 1. Teams want real-time collaboration (not just async updates)
 2. Visual timeline view is more valuable than list view
 3. Mobile app needed vs responsive web sufficient
 
 **P0 Features (Launch Blockers):**
+
 - User authentication
 - Create/edit/delete tasks
 - Assign tasks to team members
 - Basic notifications
 
 **P1 Features (Nice to Have):**
+
 - Real-time updates
 - File attachments
 - Task comments
 - Email notifications
 
 **Code Conventions:**
+
 - Use server components by default (Next.js 14 App Router)
 - Client components marked with 'use client'
 - API routes in /app/api/
@@ -144,6 +158,7 @@ Status: Active
 ```
 
 **Usage Example:**
+
 ```
 You: "I need to decide on real-time updates for task changes"
 
@@ -174,20 +189,24 @@ This validates the assumption before investing in complex real-time infrastructu
 **Project:** AI search for company documentation
 
 **.cursorrules:**
+
 ```markdown
 # Project: DocuMind - AI-Powered Knowledge Base
 
 ## AI Development Standards Integration
+
 Repository: ~/ai-dev-standards/
 
 ### Instructions for Claude Code
 
 **Always load:**
+
 1. ~/ai-dev-standards/META/PROJECT-CONTEXT.md
 2. ~/ai-dev-standards/META/HOW-TO-USE.md
 3. ~/ai-dev-standards/STANDARDS/architecture-patterns/rag-pattern.md
 
 **Primary Skills:**
+
 - rag-implementer (core feature)
 - api-designer (search API)
 - performance-optimizer (query speed)
@@ -195,6 +214,7 @@ Repository: ~/ai-dev-standards/
 ### Project Context
 
 **Tech Stack:**
+
 - Vector DB: Pinecone
 - Embeddings: OpenAI text-embedding-3-large
 - LLM: GPT-4 Turbo
@@ -202,29 +222,34 @@ Repository: ~/ai-dev-standards/
 - Frontend: Next.js 14
 
 **RAG Architecture:** Advanced RAG
+
 - Hybrid retrieval (semantic + keyword)
 - Re-ranking with Cohere
 - Context compression with LLMLingua
 
 **Data Sources:**
+
 - Confluence (10k+ pages)
 - Google Docs (5k+ docs)
 - Internal wiki (2k+ articles)
 - Slack history (last 2 years)
 
 **Requirements:**
+
 - Response time: <3 seconds
 - Source attribution: Always required
 - Hallucination prevention: Critical
 - Security: Role-based access to documents
 
 **Code Conventions:**
+
 - API versioning: /v1/, /v2/
 - All responses include source citations
 - Log all queries for analysis
 ```
 
 **Usage Example:**
+
 ```
 You: "Design the retrieval pipeline for our documentation search"
 
@@ -275,19 +300,23 @@ I recommend Advanced RAG architecture:
 **Project:** Online marketplace for handmade goods
 
 **.cursorrules:**
+
 ```markdown
 # Project: CraftMarket - Handmade Goods Marketplace
 
 ## AI Development Standards Integration
+
 Repository: ~/ai-dev-standards/
 
 ### Instructions for Claude Code
 
 **Load context:**
+
 1. ~/ai-dev-standards/META/PROJECT-CONTEXT.md
 2. ~/ai-dev-standards/META/HOW-TO-USE.md
 
 **Relevant Skills:**
+
 - mvp-builder (MVP scope)
 - frontend-builder (product pages, checkout)
 - api-designer (marketplace API)
@@ -297,6 +326,7 @@ Repository: ~/ai-dev-standards/
 ### Project Context
 
 **Tech Stack:**
+
 - Frontend: Next.js 14, TypeScript, Tailwind
 - Backend: Next.js API + Supabase
 - Database: PostgreSQL (Supabase)
@@ -307,11 +337,13 @@ Repository: ~/ai-dev-standards/
 **Current Phase:** Pre-Launch (Week 8 of 12)
 
 **Business Model:**
+
 - Sellers pay 5% commission per sale
 - Free listing for first 10 products
 - Premium tier: $10/mo for analytics
 
 **P0 Features (Launch):**
+
 - Seller registration
 - Product listing (photos, price, description)
 - Search and browse
@@ -320,18 +352,21 @@ Repository: ~/ai-dev-standards/
 - Order management
 
 **Security Requirements:**
+
 - PCI compliance (Stripe handles)
 - Seller/buyer data separation
 - Image upload validation
 - Rate limiting on API
 
 **Performance Targets:**
+
 - Product page load: <2s
 - Search results: <1s
 - Checkout flow: <5s total
 ```
 
 **Usage Example:**
+
 ```
 You: "We're 4 weeks from launch. Should we add AI-powered product recommendations?"
 
@@ -381,15 +416,18 @@ Would you like me to help with the go-to-market plan for your 4-week launch?"
 ### Method 1: .cursorrules Only (Simplest)
 
 **Setup:**
+
 - Add `.cursorrules` to project root
 - Reference ai-dev-standards paths
 
 **Pros:**
+
 - ✅ Fastest setup (5 minutes)
 - ✅ Works immediately
 - ✅ Portable (move .cursorrules to any project)
 
 **Cons:**
+
 - ❌ Must remember to load context manually if Claude doesn't auto-load
 - ❌ No local customization of skills
 
@@ -400,6 +438,7 @@ Would you like me to help with the go-to-market plan for your 4-week launch?"
 ### Method 2: .cursorrules + Local .claude/ Directory
 
 **Setup:**
+
 ```bash
 mkdir .claude
 mkdir .claude/skills
@@ -408,6 +447,7 @@ mkdir .claude/skills
 Create project-specific skills in `.claude/skills/` that extend or override ai-dev-standards.
 
 **Example .claude/skills/my-project-skill.md:**
+
 ```yaml
 ---
 name: CraftMarket Domain Expert
@@ -439,24 +479,29 @@ version: 1.0.0
 ```
 
 **.cursorrules:**
+
 ```markdown
 # Project: CraftMarket
 
 ## AI Development Standards
+
 Global: ~/ai-dev-standards/
 Local: ./.claude/skills/
 
 **Load order:**
+
 1. Global standards first
 2. Local project skills override if conflicts
 ```
 
 **Pros:**
+
 - ✅ Global standards + project-specific knowledge
 - ✅ Can override skills for special cases
 - ✅ Version control project-specific skills
 
 **Cons:**
+
 - ❌ More setup
 - ❌ Need to maintain local skills
 
@@ -467,27 +512,32 @@ Local: ./.claude/skills/
 ### Method 3: Git Submodule (Advanced)
 
 **Setup:**
+
 ```bash
 cd /path/to/your/project
 git submodule add <ai-dev-standards-repo-url> .ai-dev-standards
 ```
 
 **.cursorrules:**
+
 ```markdown
 # Project: [Name]
 
 ## AI Development Standards
+
 Repository: ./.ai-dev-standards/
 
 [Reference skills from .ai-dev-standards/SKILLS/...]
 ```
 
 **Pros:**
+
 - ✅ ai-dev-standards versioned with project
 - ✅ Can pin to specific version
 - ✅ Updates controlled via git submodule update
 
 **Cons:**
+
 - ❌ More complex git workflow
 - ❌ Team needs to init submodules
 
@@ -500,6 +550,7 @@ Repository: ./.ai-dev-standards/
 ### Scenario 1: Starting a New Project
 
 **Step 1: Project Setup**
+
 ```bash
 mkdir my-saas-app
 cd my-saas-app
@@ -526,6 +577,7 @@ EOF
 ```
 
 **Step 2: Start Conversation**
+
 ```
 You: "I want to build a SaaS app for small businesses to manage customer feedback"
 
@@ -568,21 +620,27 @@ validation plan using the product-strategist skill?"
 **You want:** Add RAG-powered documentation search
 
 **Step 1: Add .cursorrules**
+
 ```markdown
 # Project: MyExistingApp
 
 ## AI Development Standards
+
 Repository: ~/ai-dev-standards/
 
 ### New Feature: AI Documentation Search
+
 Skills needed:
+
 - rag-implementer
 - api-designer (new /search endpoint)
 
 Patterns:
+
 - ~/ai-dev-standards/STANDARDS/architecture-patterns/rag-pattern.md
 
 ### Existing Stack
+
 - Backend: Express.js, TypeScript
 - Frontend: React, TypeScript
 - Database: MongoDB
@@ -590,6 +648,7 @@ Patterns:
 ```
 
 **Step 2: Ask for Architecture**
+
 ```
 You: "Design RAG architecture for our docs (1000 pages, needs <3s response)"
 
@@ -641,37 +700,44 @@ Want me to start with Phase 1 implementation?"
 **Setup (Team Lead):**
 
 1. **Add to project:**
+
 ```bash
 git submodule add <repo-url> .ai-dev-standards
 ```
 
 2. **Create team .cursorrules:**
+
 ```markdown
 # Project: TeamProject
 
 ## AI Development Standards
+
 Repository: ./.ai-dev-standards/
 Version: 1.0.0
 
 ### Team Guidelines
 
 **Every developer:**
+
 1. Run: git submodule update --init --recursive
 2. Ensure Claude loads: .ai-dev-standards/META/PROJECT-CONTEXT.md
 
 **Skills used in this project:**
+
 - frontend-builder (React components)
 - api-designer (REST API)
 - rag-implementer (AI search feature)
 
 **Code review checklist:**
+
 - [ ] Follows patterns from .ai-dev-standards/STANDARDS/
 - [ ] Security checks per best-practices/
 - [ ] Performance meets targets
 ```
 
 3. **Team onboarding doc:**
-```markdown
+
+````markdown
 # Using AI Development Standards
 
 ## Setup (One-time)
@@ -682,6 +748,7 @@ Version: 1.0.0
    cd project
    git submodule update --init --recursive
    ```
+````
 
 2. Install Cursor/Claude Code
 
@@ -692,12 +759,14 @@ Version: 1.0.0
 When working with Claude:
 
 "Use the [skill-name] skill to..."
+
 - mvp-builder: Feature prioritization
 - frontend-builder: React components
 - api-designer: New endpoints
 - rag-implementer: AI search features
 
 Claude will follow our team's standards automatically.
+
 ```
 
 ---
@@ -707,6 +776,7 @@ Claude will follow our team's standards automatically.
 ### Test 1: Ask Claude About Standards
 
 ```
+
 You: "What skills are available?"
 
 Claude: "Let me check the skill registry...
@@ -714,12 +784,14 @@ Claude: "Let me check the skill registry...
 [Reads ~/ai-dev-standards/META/skill-registry.json]
 
 Available skills:
+
 1. mvp-builder - MVP development and feature prioritization
 2. rag-implementer - RAG system implementation
 3. product-strategist - Product-market fit validation
-... [lists all 12]
+   ... [lists all 12]
 
 Which task are you working on?"
+
 ```
 
 **✅ If Claude lists skills → Working correctly**
@@ -730,6 +802,7 @@ Which task are you working on?"
 ### Test 2: Request Specific Skill
 
 ```
+
 You: "Use the mvp-builder skill to help prioritize features"
 
 Claude: "I'll use the mvp-builder skill.
@@ -739,9 +812,11 @@ Claude: "I'll use the mvp-builder skill.
 Let's use the P0/P1/P2 matrix to prioritize:
 
 **P0 (Must Have - Launch Blockers):**
+
 - Features that validate your riskiest assumption
 - Minimum path to deliver core value
-...
+  ...
+
 ```
 
 **✅ If Claude references skill concepts (P0/P1/P2, etc.) → Working**
@@ -752,6 +827,7 @@ Let's use the P0/P1/P2 matrix to prioritize:
 ### Test 3: Architecture Decision
 
 ```
+
 You: "Should I use RAG or fine-tuning for our docs?"
 
 Claude: "Let me consult the decision framework and RAG pattern.
@@ -759,6 +835,7 @@ Claude: "Let me consult the decision framework and RAG pattern.
 [Reads DECISION-FRAMEWORK.md and rag-pattern.md]
 
 Based on your use case:
+
 - Documentation: 1000 pages
 - Updates: Weekly
 - Need source citations
@@ -766,10 +843,12 @@ Based on your use case:
 **Recommendation: RAG**
 
 Reasons:
+
 1. Docs change frequently (RAG stays current, fine-tuning needs retraining)
 2. Source attribution required (RAG provides citations, fine-tuning doesn't)
 3. Smaller dataset (fine-tuning needs 1000s of examples)
-...
+   ...
+
 ```
 
 **✅ If Claude references patterns and frameworks → Working well**
@@ -793,12 +872,14 @@ Reasons:
 ### 2. Be Explicit When Learning
 
 ```
+
 ❌ Bad: "Build a feature"
 ✅ Good: "Use the mvp-builder skill to evaluate if this feature is P0"
 
 ❌ Bad: "Add search"
 ✅ Good: "Use rag-implementer skill and rag-pattern.md to design search"
-```
+
+````
 
 ### 3. Update .cursorrules as Project Evolves
 
@@ -813,7 +894,7 @@ Primary skills: frontend-builder, api-designer, rag-implementer
 
 **Next (Week 9-12):**
 Primary skills: deployment-advisor, performance-optimizer
-```
+````
 
 ### 4. Share Learnings
 
@@ -833,6 +914,7 @@ cd ~/ai-dev-standards
 ### Issue: Claude Doesn't Load Context
 
 **Solution:**
+
 ```markdown
 # In .cursorrules, make paths absolute:
 
@@ -848,11 +930,13 @@ or
 
 **Solution:**
 Be explicit:
+
 ```
 You: "Use the mvp-builder skill to help me prioritize"
 ```
 
 Or verify in .cursorrules:
+
 ```markdown
 ### Instructions for Claude Code
 
@@ -860,6 +944,7 @@ Or verify in .cursorrules:
 ~/ai-dev-standards/META/skill-registry.json
 
 **When user mentions:**
+
 - MVP, features, priorities → mvp-builder
 - RAG, search, embeddings → rag-implementer
 - API, endpoints, REST → api-designer
@@ -871,6 +956,7 @@ Or verify in .cursorrules:
 
 **Solution:**
 Set precedence in .cursorrules:
+
 ```markdown
 ## Precedence Order
 
@@ -905,10 +991,12 @@ Set precedence in .cursorrules:
 ## Templates
 
 ### Minimal .cursorrules
+
 ```markdown
 # Project: [Name]
 
 ## AI Standards
+
 Repository: ~/ai-dev-standards/
 
 Load: META/PROJECT-CONTEXT.md, META/HOW-TO-USE.md
@@ -917,6 +1005,7 @@ Skills: mvp-builder, frontend-builder, api-designer
 ```
 
 ### Full .cursorrules
+
 See examples above for SaaS, AI Knowledge Base, E-commerce
 
 ---

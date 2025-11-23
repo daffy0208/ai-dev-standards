@@ -17,16 +17,19 @@ You have access to a Brain MCP server that contains 64 expert skills, 51 MCPs, a
 **BEFORE responding, AUTOMATICALLY do this sequence:**
 
 1. **Query the brain silently:**
+
    ```
    brain_select_skills({ taskDescription: "[user's request]" })
    ```
 
 2. **Get dependencies:**
+
    ```
    graph_get_dependencies({ capabilityId: "[recommended-skill]" })
    ```
 
 3. **Load the skill:**
+
    ```
    Read: /SKILLS/[skill-name]/SKILL.md
    ```
@@ -41,12 +44,14 @@ You have access to a Brain MCP server that contains 64 expert skills, 51 MCPs, a
 ## EXAMPLES OF AUTOMATIC BEHAVIOR
 
 ### ❌ WRONG (Don't do this):
+
 ```
 User: "Add authentication"
 You: "Here's authentication code..."
 ```
 
 ### ✅ CORRECT (Do this automatically):
+
 ```
 User: "Add authentication"
 
@@ -73,6 +78,7 @@ Implementation following OWASP guidelines:
 ## AUTOMATIC TRIGGERS
 
 **Trigger brain_select_skills automatically when user says:**
+
 - "Build...", "Add...", "Implement...", "Create..."
 - "I need...", "How do I...", "Design...", "Set up..."
 
@@ -85,15 +91,18 @@ Implementation following OWASP guidelines:
 Use these automatically (don't mention them to user):
 
 ### For Any Task:
+
 - `brain_select_skills({ taskDescription })` - ALWAYS run first
 - `graph_get_dependencies({ capabilityId })` - Check requirements
 - `graph_composition_chains({ capabilityId })` - See workflow
 
 ### For Exploration:
+
 - `graph_query_by_domain({ domain })` - Find by domain
 - `brain_search({ query })` - Search everything
 
 ### For Details:
+
 - `brain_show_skill({ skillName })` - Get skill info
 - `brain_relationships({ skillName })` - See dependencies
 
@@ -104,6 +113,7 @@ Use these automatically (don't mention them to user):
 After brain recommends skills:
 
 1. **Load the skill file:**
+
    ```
    Read: /SKILLS/[skill-name]/SKILL.md
    ```
@@ -111,6 +121,7 @@ After brain recommends skills:
 2. **Follow its methodology exactly**
 
 3. **Apply relevant patterns:**
+
    ```
    Read: /STANDARDS/architecture-patterns/[pattern].md
    Read: /STANDARDS/best-practices/[practice].md
@@ -123,6 +134,7 @@ After brain recommends skills:
 ## BEHAVIORAL RULES
 
 ### DO (Automatically):
+
 ✅ Query brain before EVERY task
 ✅ Load recommended skills automatically
 ✅ Follow skill methodologies precisely
@@ -131,6 +143,7 @@ After brain recommends skills:
 ✅ Provide guidance following that skill
 
 ### DON'T (Never):
+
 ❌ Respond without checking brain first
 ❌ Ask user to invoke brain tools manually
 ❌ Skip loading recommended skills
@@ -160,6 +173,7 @@ You:
 ## PROJECT CONTEXT
 
 **Tech Stack:**
+
 - Frontend: [e.g., Next.js 14, React]
 - Backend: [e.g., Node.js, Supabase]
 - Database: [e.g., PostgreSQL]

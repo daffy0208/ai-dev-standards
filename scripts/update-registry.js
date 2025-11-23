@@ -170,7 +170,13 @@ function determineCategory(name, description) {
   }
 
   // Design
-  if (lower.includes('design') || lower.includes('ux') || lower.includes('visual') || lower.includes('brand') || lower.includes('animation')) {
+  if (
+    lower.includes('design') ||
+    lower.includes('ux') ||
+    lower.includes('visual') ||
+    lower.includes('brand') ||
+    lower.includes('animation')
+  ) {
     return 'design'
   }
 
@@ -195,22 +201,44 @@ function determineCategory(name, description) {
   }
 
   // Content
-  if (lower.includes('writer') || lower.includes('copy') || lower.includes('content') || lower.includes('audio') || lower.includes('video')) {
+  if (
+    lower.includes('writer') ||
+    lower.includes('copy') ||
+    lower.includes('content') ||
+    lower.includes('audio') ||
+    lower.includes('video')
+  ) {
     return 'content'
   }
 
   // Engineering
-  if (lower.includes('security') || lower.includes('performance') || lower.includes('testing') || lower.includes('engineer')) {
+  if (
+    lower.includes('security') ||
+    lower.includes('performance') ||
+    lower.includes('testing') ||
+    lower.includes('engineer')
+  ) {
     return 'engineering'
   }
 
   // Specialized
-  if (lower.includes('iot') || lower.includes('spatial') || lower.includes('3d') || lower.includes('ar') || lower.includes('vr')) {
+  if (
+    lower.includes('iot') ||
+    lower.includes('spatial') ||
+    lower.includes('3d') ||
+    lower.includes('ar') ||
+    lower.includes('vr')
+  ) {
     return 'specialized'
   }
 
   // Productivity
-  if (lower.includes('adhd') || lower.includes('focus') || lower.includes('task') || lower.includes('context')) {
+  if (
+    lower.includes('adhd') ||
+    lower.includes('focus') ||
+    lower.includes('task') ||
+    lower.includes('context')
+  ) {
     return 'productivity'
   }
 

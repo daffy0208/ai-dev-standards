@@ -9,6 +9,7 @@ Verify feature-prioritizer-mcp integrates with mvp-builder skill for feature pri
 ### Setup
 
 1. Start feature-prioritizer-mcp server:
+
 ```bash
 cd MCP-SERVERS/feature-prioritizer-mcp
 npm start
@@ -21,6 +22,7 @@ npm start
 **Tool**: `add_feature`
 
 **Input (Feature 1 - High impact, low effort)**:
+
 ```json
 {
   "id": "feat-auth",
@@ -34,6 +36,7 @@ npm start
 ```
 
 **Input (Feature 2 - High impact, medium effort)**:
+
 ```json
 {
   "id": "feat-dashboard",
@@ -47,6 +50,7 @@ npm start
 ```
 
 **Input (Feature 3 - Medium impact, high effort)**:
+
 ```json
 {
   "id": "feat-analytics",
@@ -60,6 +64,7 @@ npm start
 ```
 
 **Input (Feature 4 - Quick win)**:
+
 ```json
 {
   "id": "feat-profile",
@@ -83,6 +88,7 @@ npm start
 **Tool**: `prioritize_features`
 
 **Input**:
+
 ```json
 {
   "methodology": "impact-effort"
@@ -90,6 +96,7 @@ npm start
 ```
 
 **Expected Output**:
+
 ```json
 {
   "methodology": "impact-effort",
@@ -150,6 +157,7 @@ npm start
 **Tool**: `calculate_rice_score`
 
 **Input**:
+
 ```json
 {
   "featureId": "feat-auth"
@@ -157,6 +165,7 @@ npm start
 ```
 
 **Expected Output**:
+
 ```json
 {
   "featureId": "feat-auth",
@@ -182,6 +191,7 @@ npm start
 **Input**: `{}`
 
 **Expected Output**:
+
 ```json
 {
   "mvpFeatures": [
@@ -227,6 +237,7 @@ npm start
 **Input**: `{}`
 
 **Expected Output**:
+
 ```json
 {
   "features": [
@@ -238,7 +249,7 @@ npm start
       "effort": 2,
       "reach": 1000,
       "confidence": 90
-    },
+    }
     // ... other features
   ],
   "count": 4
@@ -256,6 +267,7 @@ npm start
 **Input**: `{}`
 
 **Expected Output**:
+
 ```
 ✅ Cleared all features from backlog
 ```
@@ -292,12 +304,14 @@ mvp-builder workflow → feature-prioritizer-mcp tools
 ### mvp-builder Usage Example
 
 **From mvp-builder SKILL.md:266-267:**
+
 ```
 - [ ] Categorize features (P0/P1/P2/Out of Scope)
 - [ ] Build P0 only (1-2 weeks max)
 ```
 
 **Using feature-prioritizer-mcp:**
+
 ```
 1. Add all brainstormed features via add_feature
 2. Run prioritize_features to get P0/P1/P2/P3 classification
@@ -309,14 +323,14 @@ mvp-builder workflow → feature-prioritizer-mcp tools
 
 ## Test Results Summary
 
-| Test Step | Status | Notes |
-|-----------|--------|-------|
-| Add feature | ✅ PASS | All fields captured correctly |
+| Test Step                    | Status  | Notes                               |
+| ---------------------------- | ------- | ----------------------------------- |
+| Add feature                  | ✅ PASS | All fields captured correctly       |
 | Impact-Effort prioritization | ✅ PASS | P0/P1/P2/P3 classification accurate |
-| RICE scoring | ✅ PASS | Formula: (R × I × C) / E |
-| Get MVP features | ✅ PASS | Returns P0 + top 3 P1 |
-| List features | ✅ PASS | Returns all features with metadata |
-| Clear features | ✅ PASS | Cleanup successful |
+| RICE scoring                 | ✅ PASS | Formula: (R × I × C) / E            |
+| Get MVP features             | ✅ PASS | Returns P0 + top 3 P1               |
+| List features                | ✅ PASS | Returns all features with metadata  |
+| Clear features               | ✅ PASS | Cleanup successful                  |
 
 ## Validation
 
@@ -335,6 +349,7 @@ mvp-builder workflow → feature-prioritizer-mcp tools
 **Status**: Pending - Requires user to test with real product features
 
 **Next Steps**:
+
 1. User adds real product features to backlog
 2. User runs prioritization with Impact-Effort matrix
 3. User compares with RICE scoring methodology

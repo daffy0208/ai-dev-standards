@@ -224,6 +224,7 @@ await apiValidator.register_schema({
 ### Format Validation
 
 Supports standard JSON Schema formats:
+
 - `email` - Email addresses
 - `uuid` - UUIDs
 - `date` - Dates (YYYY-MM-DD)
@@ -241,13 +242,13 @@ import { test, expect } from 'vitest'
 test('API returns valid response', async () => {
   const response = await fetch('/api/users/123')
   const data = await response.json()
-  
+
   const validation = await apiValidator.validate_response({
     schemaId: 'user-response',
     statusCode: response.status,
     data
   })
-  
+
   expect(validation.valid).toBe(true)
 })
 ```
@@ -291,4 +292,3 @@ test('API returns valid response', async () => {
 - **backend-builder** - Build validated APIs
 
 Let's build robust APIs with automatic validation!
-

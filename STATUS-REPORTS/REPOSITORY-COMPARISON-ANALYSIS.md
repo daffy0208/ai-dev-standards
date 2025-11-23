@@ -21,6 +21,7 @@ After reviewing both repositories, **claude-code-infrastructure-showcase offers 
 ### ai-dev-standards Strengths
 
 ✅ **Breadth of Resources**
+
 - 64 specialized skills covering all aspects of development
 - 50 MCP servers for executable tools
 - 72 React components
@@ -28,12 +29,14 @@ After reviewing both repositories, **claude-code-infrastructure-showcase offers 
 - Comprehensive documentation and decision frameworks
 
 ✅ **Complete System**
+
 - Brain MCP for intelligent orchestration
 - Registry system with 100% consistency
 - Validation and CI/CD enforcement
 - Setup scripts for quick integration
 
 ✅ **Production Scale**
+
 - 238 total resources (337 including Tier 2)
 - Well-organized directory structure
 - Complete dependency mapping
@@ -42,24 +45,28 @@ After reviewing both repositories, **claude-code-infrastructure-showcase offers 
 ### claude-code-infrastructure-showcase Strengths
 
 ✅ **Auto-Activation Infrastructure** ⭐ **CRITICAL MISSING PIECE**
+
 - Hooks system that makes skills activate automatically
 - `skill-rules.json` configuration for trigger patterns
 - UserPromptSubmit hook analyzes prompts and suggests skills
 - File-based triggers (pathPatterns)
 
 ✅ **Production-Tested Patterns**
+
 - 6 months of real-world use on complex microservices
 - 50,000+ lines of TypeScript in production
 - Battle-tested hook implementations
 - Proven modular skill pattern (500-line rule)
 
 ✅ **Developer Experience**
+
 - Progressive disclosure pattern
 - Comprehensive integration guides
 - Tech stack compatibility checking
 - Specialized agents for complex tasks
 
 ✅ **Lightweight & Focused**
+
 - Reference library, not a full system
 - Easy to cherry-pick components
 - Clear integration instructions for Claude
@@ -74,6 +81,7 @@ After reviewing both repositories, **claude-code-infrastructure-showcase offers 
 #### 1. **Skill Auto-Activation System** 🚨 HIGH PRIORITY
 
 **Problem:** ai-dev-standards has 64 excellent skills, but they rely on:
+
 - Users remembering to mention them
 - Claude deciding to use them
 - Manual invocation
@@ -81,24 +89,25 @@ After reviewing both repositories, **claude-code-infrastructure-showcase offers 
 **Impact:** Skills don't get used when they should.
 
 **Solution from showcase:**
+
 ```
 .claude/hooks/skill-activation-prompt.ts
 .claude/skills/skill-rules.json
 ```
 
 This infrastructure:
+
 - Analyzes user prompts automatically
 - Checks which files are being worked on
 - Suggests relevant skills before Claude responds
 - Makes skills activate based on context
 
 **Example:**
+
 ```json
 {
   "rag-implementer": {
-    "promptTriggers": [
-      "search", "vector database", "embeddings", "RAG"
-    ],
+    "promptTriggers": ["search", "vector database", "embeddings", "RAG"],
     "fileTriggers": {
       "pathPatterns": ["**/vector/**", "**/search/**", "**/rag/**"]
     }
@@ -111,11 +120,13 @@ When user works on a file in `MCP-SERVERS/vector-database-mcp/` and mentions "se
 #### 2. **Modular Skill Pattern** 📚 MEDIUM PRIORITY
 
 **Problem:** Some ai-dev-standards skills are quite large, which can:
+
 - Hit context limits
 - Be harder to maintain
 - Require loading everything even when user needs specific guidance
 
 **Solution from showcase:**
+
 ```
 skill-name/
   SKILL.md                    # <500 lines, high-level
@@ -130,6 +141,7 @@ Progressive disclosure - load main SKILL.md first, reference resources as needed
 #### 3. **Specialized Agents** 🤖 MEDIUM PRIORITY
 
 **Problem:** Some tasks are too complex for inline skill guidance:
+
 - Comprehensive code reviews
 - Large-scale refactoring
 - Documentation generation
@@ -137,6 +149,7 @@ Progressive disclosure - load main SKILL.md first, reference resources as needed
 
 **Solution from showcase:**
 10 production-tested agents:
+
 - `code-architecture-reviewer.md` - Review for consistency
 - `code-refactor-master.md` - Plan and execute refactoring
 - `documentation-architect.md` - Generate comprehensive docs
@@ -150,6 +163,7 @@ These run as autonomous sub-tasks, not inline guidance.
 **Problem:** Claude loses context across sessions about what files have been modified.
 
 **Solution from showcase:**
+
 ```
 .claude/hooks/post-tool-use-tracker.sh
 ```
@@ -167,6 +181,7 @@ Tracks file changes to maintain context, auto-detects project structure.
 **Steps:**
 
 1. **Add Hooks System**
+
    ```bash
    cp showcase/.claude/hooks/skill-activation-prompt.ts ai-dev-standards/.claude/hooks/
    cp showcase/.claude/hooks/skill-activation-prompt.sh ai-dev-standards/.claude/hooks/
@@ -188,6 +203,7 @@ Tracks file changes to maintain context, auto-detects project structure.
    - Update README with benefits
 
 **Expected Impact:**
+
 - 64 skills activate automatically based on context
 - Users don't need to remember skill names
 - Significantly improved developer experience
@@ -206,6 +222,7 @@ Tracks file changes to maintain context, auto-detects project structure.
    - Prioritize skills with multiple concerns
 
 2. **Apply Modular Pattern**
+
    ```
    SKILLS/rag-implementer/
      SKILL.md                  # Core methodology (400 lines)
@@ -220,6 +237,7 @@ Tracks file changes to maintain context, auto-detects project structure.
    - Update file structure
 
 **Expected Impact:**
+
 - Reduced context window usage
 - Faster skill loading
 - Better maintainability
@@ -234,6 +252,7 @@ Tracks file changes to maintain context, auto-detects project structure.
 **Steps:**
 
 1. **Copy Generic Agents**
+
    ```bash
    cp showcase/.claude/agents/code-architecture-reviewer.md ai-dev-standards/.claude/agents/
    cp showcase/.claude/agents/documentation-architect.md ai-dev-standards/.claude/agents/
@@ -251,6 +270,7 @@ Tracks file changes to maintain context, auto-detects project structure.
    - Include examples in README
 
 **Expected Impact:**
+
 - Better handling of complex tasks
 - Autonomous validation and testing
 - Reduced cognitive load for users
@@ -265,6 +285,7 @@ Tracks file changes to maintain context, auto-detects project structure.
 **Steps:**
 
 1. **Add Post-Tool-Use Hook**
+
    ```bash
    cp showcase/.claude/hooks/post-tool-use-tracker.sh ai-dev-standards/.claude/hooks/
    ```
@@ -274,6 +295,7 @@ Tracks file changes to maintain context, auto-detects project structure.
    - Configure tracking parameters
 
 **Expected Impact:**
+
 - Better context retention
 - Improved session continuity
 
@@ -284,23 +306,23 @@ Tracks file changes to maintain context, auto-detects project structure.
 
 ## Detailed Comparison Matrix
 
-| Feature | ai-dev-standards | showcase | Integration Value |
-|---------|-----------------|----------|-------------------|
-| **Skills** | 64 specialized | 5 specific | HIGH - Need auto-activation |
-| **Auto-activation** | ❌ Manual | ✅ Hooks | 🚨 CRITICAL |
-| **MCP Servers** | 50 servers | None | N/A |
-| **Components** | 72 React | None | N/A |
-| **Integrations** | 28 services | None | N/A |
-| **Hooks System** | ❌ Missing | ✅ Full | 🚨 CRITICAL |
-| **Agents** | Basic | 10 specialized | MEDIUM |
-| **Modular Skills** | ❌ Monolithic | ✅ 500-line rule | MEDIUM |
-| **File Tracking** | ❌ Missing | ✅ Automated | LOW |
-| **Registry System** | ✅ Complete | N/A | N/A |
-| **Brain MCP** | ✅ Intelligent | N/A | N/A |
-| **Validation** | ✅ 100% | N/A | N/A |
-| **Tech Stack** | Generic | React/Express | N/A |
-| **Production Use** | New | 6 months | N/A |
-| **Integration Guide** | ✅ Complete | ✅ For Claude | HIGH |
+| Feature               | ai-dev-standards | showcase         | Integration Value           |
+| --------------------- | ---------------- | ---------------- | --------------------------- |
+| **Skills**            | 64 specialized   | 5 specific       | HIGH - Need auto-activation |
+| **Auto-activation**   | ❌ Manual        | ✅ Hooks         | 🚨 CRITICAL                 |
+| **MCP Servers**       | 50 servers       | None             | N/A                         |
+| **Components**        | 72 React         | None             | N/A                         |
+| **Integrations**      | 28 services      | None             | N/A                         |
+| **Hooks System**      | ❌ Missing       | ✅ Full          | 🚨 CRITICAL                 |
+| **Agents**            | Basic            | 10 specialized   | MEDIUM                      |
+| **Modular Skills**    | ❌ Monolithic    | ✅ 500-line rule | MEDIUM                      |
+| **File Tracking**     | ❌ Missing       | ✅ Automated     | LOW                         |
+| **Registry System**   | ✅ Complete      | N/A              | N/A                         |
+| **Brain MCP**         | ✅ Intelligent   | N/A              | N/A                         |
+| **Validation**        | ✅ 100%          | N/A              | N/A                         |
+| **Tech Stack**        | Generic          | React/Express    | N/A                         |
+| **Production Use**    | New              | 6 months         | N/A                         |
+| **Integration Guide** | ✅ Complete      | ✅ For Claude    | HIGH                        |
 
 ---
 
@@ -309,12 +331,14 @@ Tracks file changes to maintain context, auto-detects project structure.
 ### 1. Different Philosophies
 
 **ai-dev-standards:**
+
 - Comprehensive knowledge base
 - One-stop shop for all resources
 - Registry-driven architecture
 - Validation and consistency enforced
 
 **showcase:**
+
 - Reference library
 - Pick what you need
 - Lightweight and modular
@@ -325,6 +349,7 @@ Tracks file changes to maintain context, auto-detects project structure.
 ### 2. Skill Format Differences
 
 **ai-dev-standards:**
+
 ```yaml
 ---
 name: skill-name
@@ -337,11 +362,13 @@ triggers:
 ```
 
 **showcase:**
+
 - Uses skill-rules.json for triggers
 - Modular resources pattern
 - Progressive disclosure
 
-**Resolution:** 
+**Resolution:**
+
 - Keep existing YAML frontmatter
 - Add skill-rules.json for auto-activation
 - Optionally adopt modular pattern for large skills
@@ -351,6 +378,7 @@ triggers:
 **Challenge:** Adding hooks and agents increases maintenance complexity.
 
 **Mitigation:**
+
 - Start with essential hooks (auto-activation)
 - Document thoroughly
 - Add validation to CI/CD
@@ -361,6 +389,7 @@ triggers:
 **Challenge:** Two similar but different systems might confuse users.
 
 **Mitigation:**
+
 - Clear documentation on when to use what
 - Integration guide specifically for ai-dev-standards
 - Maintain distinction: ai-dev-standards = resources, showcase infrastructure = activation
@@ -459,6 +488,7 @@ triggers:
 ### Recommendation
 
 **Proceed with Phase 1 integration immediately:**
+
 - Add skill auto-activation hooks
 - Create skill-rules.json for 64 skills
 - Document for users

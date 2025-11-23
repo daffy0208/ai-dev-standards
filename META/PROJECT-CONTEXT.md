@@ -23,23 +23,27 @@ This is the **AI Development Standards Repository** - a curated knowledge base f
 This repository leverages Claude Code's official extension architecture:
 
 **Skills (SKILLS/ directory)**
+
 - Model-invoked capabilities that Claude activates automatically
 - Format: YAML frontmatter + Markdown instructions
 - Purpose: Provide specialized methodologies and expertise
 - Example: `mvp-builder` activates when discussing MVP development
 
 **Architecture Patterns (STANDARDS/architecture-patterns/)**
+
 - Reference documentation for system design
 - NOT skills - these are materials to consult
 - Purpose: Document proven architectural approaches
 - Example: RAG implementation patterns, multi-agent orchestration
 
 **Best Practices (STANDARDS/best-practices/)**
+
 - Guidelines for security, performance, testing
 - Purpose: Ensure consistent quality standards
 - Example: Security governance, testing strategies
 
 **Playbooks (PLAYBOOKS/)**
+
 - Step-by-step operational procedures
 - Purpose: Standardize common workflows
 - Example: Deployment procedures, release management
@@ -51,18 +55,21 @@ This repository leverages Claude Code's official extension architecture:
 ### Skills vs Standards vs Playbooks
 
 **Skills are executable methodologies:**
+
 - Claude follows these as instructions
 - Invoked automatically based on context
 - Provide step-by-step guidance
 - Example: "Use mvp-builder skill to prioritize features"
 
 **Standards are reference documentation:**
+
 - Claude consults these for information
 - Not automatically invoked
 - Provide patterns and principles
 - Example: "Review RAG architecture pattern for design guidance"
 
 **Playbooks are operational procedures:**
+
 - Step-by-step checklists for specific tasks
 - Used when following a defined process
 - Include prerequisites and success criteria
@@ -70,13 +77,13 @@ This repository leverages Claude Code's official extension architecture:
 
 ### When to Use What
 
-| Need | Solution | Location |
-|------|----------|----------|
-| Specialized methodology | Skill | SKILLS/ |
-| Architectural guidance | Pattern | STANDARDS/architecture-patterns/ |
-| Quality standards | Best Practice | STANDARDS/best-practices/ |
-| Operational procedure | Playbook | PLAYBOOKS/ |
-| Technology decision | Decision Framework | META/DECISION-FRAMEWORK.md |
+| Need                    | Solution           | Location                         |
+| ----------------------- | ------------------ | -------------------------------- |
+| Specialized methodology | Skill              | SKILLS/                          |
+| Architectural guidance  | Pattern            | STANDARDS/architecture-patterns/ |
+| Quality standards       | Best Practice      | STANDARDS/best-practices/        |
+| Operational procedure   | Playbook           | PLAYBOOKS/                       |
+| Technology decision     | Decision Framework | META/DECISION-FRAMEWORK.md       |
 
 ---
 
@@ -127,6 +134,7 @@ ai-dev-standards/
 ### 1. Curated, Not Comprehensive
 
 This repository prioritizes **quality over quantity**:
+
 - ✅ 12 excellent skills > 50 mediocre ones
 - ✅ 10 proven patterns > 60 theoretical frameworks
 - ✅ Clear boundaries > everything-is-a-framework confusion
@@ -134,6 +142,7 @@ This repository prioritizes **quality over quantity**:
 ### 2. Purpose-Built Formats
 
 Each type of content follows its **official format**:
+
 - Skills follow Claude Code's YAML frontmatter specification
 - Patterns follow problem→solution→trade-offs structure
 - Playbooks follow checklist-based procedures
@@ -142,6 +151,7 @@ Each type of content follows its **official format**:
 ### 3. Rewritten, Not Copied
 
 All content has been **adapted for its purpose**:
+
 - Skills condensed to focused instructions (150-250 lines)
 - Patterns restructured from frameworks
 - Playbooks created from procedural skills
@@ -150,6 +160,7 @@ All content has been **adapted for its purpose**:
 ### 4. Best Tool for the Job
 
 No framework favoritism - recommendations based on:
+
 - Problem requirements
 - Team capabilities
 - Project constraints
@@ -158,6 +169,7 @@ No framework favoritism - recommendations based on:
 ### 5. Living System
 
 This repository evolves through:
+
 - Learnings from projects
 - New patterns discovered
 - Skills improved based on usage
@@ -196,6 +208,7 @@ When given a task:
 ### Critical Rules
 
 **NEVER:**
+
 - ❌ Invent patterns when standard ones exist
 - ❌ Skip loading context from META files
 - ❌ Violate coding conventions in STANDARDS
@@ -203,6 +216,7 @@ When given a task:
 - ❌ Ignore security guidelines
 
 **ALWAYS:**
+
 - ✅ Check for existing solutions first
 - ✅ Follow standards consistently
 - ✅ Document decisions and reasoning
@@ -250,12 +264,14 @@ This repository was built by evaluating the Framework Library and making these i
 ### What Changed
 
 **From Framework Library:**
+
 - 60 "frameworks" (mostly reference docs)
 - 25 "skills" (mixed formats and purposes)
 - Unclear boundaries between types
 - 75% redundancy and low quality
 
 **To ai-dev-standards:**
+
 - 12 focused skills (official format)
 - 10 architecture patterns (properly categorized)
 - 8 operational playbooks (clear procedures)
@@ -265,17 +281,20 @@ This repository was built by evaluating the Framework Library and making these i
 ### Why It's Better
 
 **Clear Categorization:**
+
 - Skills are skills (model-invoked capabilities)
 - Patterns are patterns (reference documentation)
 - Playbooks are playbooks (procedures)
 - No confusion about what's what
 
 **Official Formats:**
+
 - Skills follow Claude Code YAML specification
 - Patterns follow problem-solution structure
 - Everything properly formatted for its purpose
 
 **Quality Focus:**
+
 - Only excellent or good-quality content
 - Rewritten for clarity and utility
 - Redundancy eliminated
@@ -288,18 +307,21 @@ This repository was built by evaluating the Framework Library and making these i
 ### When to Add Content
 
 **Add a Skill when:**
+
 - Proven methodology not covered by existing skills
 - Specialized expertise Claude doesn't have natively
 - Will be used repeatedly across projects
 - Can be expressed as focused instructions (150-250 lines)
 
 **Add a Pattern when:**
+
 - Architectural approach proven in production
 - Solves complex design problems
 - Not covered by existing patterns
 - Includes clear trade-offs and alternatives
 
 **Add a Playbook when:**
+
 - Common operational procedure standardized
 - Step-by-step process reduces errors
 - Team repeatedly performs this task
@@ -308,6 +330,7 @@ This repository was built by evaluating the Framework Library and making these i
 ### When to Update Content
 
 **Update when:**
+
 - Learnings from projects improve approaches
 - Tools or frameworks evolve
 - Better practices discovered
@@ -316,6 +339,7 @@ This repository was built by evaluating the Framework Library and making these i
 ### When to Remove Content
 
 **Remove when:**
+
 - No longer relevant (tool deprecated)
 - Better alternative exists
 - Not being used (no value)
@@ -328,30 +352,36 @@ This repository was built by evaluating the Framework Library and making these i
 ### In New Projects
 
 **Setup:**
+
 1. Create `.claude/` directory in project
 2. Add `.cursorrules` file pointing to ai-dev-standards
 3. Optionally add project-specific skills in `.claude/skills/`
 
 **Example .cursorrules:**
+
 ```markdown
 # Project: My Application
 
 ## Standards Repository
+
 Located at: ~/ai-dev-standards/
 
 ## Instructions for AI Assistant
+
 1. Before any task, read: ai-dev-standards/META/HOW-TO-USE.md
 2. Follow standards in: ai-dev-standards/STANDARDS/
 3. Use skills from: ai-dev-standards/SKILLS/
 4. Reference patterns in: ai-dev-standards/STANDARDS/architecture-patterns/
 
 ## Project-Specific Context
+
 [Your project-specific information]
 ```
 
 ### For Reviewing/Fixing Existing Projects
 
 When reviewing existing codebases:
+
 1. Load context from META files
 2. Check project against STANDARDS/best-practices/
 3. Use relevant review skills (if created as subagents)
@@ -365,6 +395,7 @@ When reviewing existing codebases:
 You're using this repository effectively when:
 
 **For AI Assistants:**
+
 - ✅ Skills activate automatically when relevant
 - ✅ Consistent code quality across projects
 - ✅ Clear decisions with documented reasoning
@@ -372,6 +403,7 @@ You're using this repository effectively when:
 - ✅ Following playbooks for operational tasks
 
 **For Users:**
+
 - ✅ Projects start faster with better quality
 - ✅ Fewer bugs from established patterns
 - ✅ Easier to review AI-generated code
@@ -386,6 +418,7 @@ You're using this repository effectively when:
 **Last Updated:** 2025-10-21
 
 **Version History:**
+
 - 1.0.0 (2025-10-21): Initial release with 12 skills, 10 patterns, 5 best practices, 8 playbooks
 
 ---
@@ -422,6 +455,7 @@ A: Standards are guidelines, not laws. Document why you're deviating and ensure 
 7. ✅ Document decisions and reference sources
 
 **Remember:**
+
 - Skills provide methodology
 - Patterns provide architecture
 - Standards provide quality

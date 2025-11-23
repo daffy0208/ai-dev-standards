@@ -31,26 +31,31 @@ EOF
 ## 💡 Essential Prompts
 
 ### When Starting Any Feature:
+
 ```
 Use brain_select_skills to recommend skills for: [describe your task]
 ```
 
 ### Explore What's Available:
+
 ```
 Use graph_query_by_domain to show capabilities in: [ai|security|frontend|backend|etc]
 ```
 
 ### Check What You Need:
+
 ```
 Use graph_get_dependencies for: [skill-name]
 ```
 
 ### Find What Works Together:
+
 ```
 Use graph_composition_chains for: [skill-name]
 ```
 
 ### Search Everything:
+
 ```
 Use brain_search to find: [keyword]
 ```
@@ -59,20 +64,20 @@ Use brain_search to find: [keyword]
 
 ## 🛠️ All Brain MCP Tools
 
-| Tool | Purpose | Example |
-|------|---------|---------|
-| `brain_select_skills` | Get skill recommendations | "implement RAG system" |
-| `brain_search` | Search all resources | "authentication" |
-| `brain_show_skill` | Get skill details | "rag-implementer" |
-| `brain_relationships` | Show dependencies | "security-engineer" |
-| `brain_status` | Repository health | (no args) |
-| `graph_query_by_domain` | Find by domain | "ai", "security" |
-| `graph_query_by_effect` | Find by effect | "implements_auth" |
-| `graph_get_dependencies` | Get dependencies | "rag-implementer" |
-| `graph_composition_chains` | Find compositions | "api-designer" |
-| `graph_find_path` | Path between skills | from/to |
-| `graph_stats` | Graph statistics | (no args) |
-| `graph_validate` | Validate graph | (no args) |
+| Tool                       | Purpose                   | Example                |
+| -------------------------- | ------------------------- | ---------------------- |
+| `brain_select_skills`      | Get skill recommendations | "implement RAG system" |
+| `brain_search`             | Search all resources      | "authentication"       |
+| `brain_show_skill`         | Get skill details         | "rag-implementer"      |
+| `brain_relationships`      | Show dependencies         | "security-engineer"    |
+| `brain_status`             | Repository health         | (no args)              |
+| `graph_query_by_domain`    | Find by domain            | "ai", "security"       |
+| `graph_query_by_effect`    | Find by effect            | "implements_auth"      |
+| `graph_get_dependencies`   | Get dependencies          | "rag-implementer"      |
+| `graph_composition_chains` | Find compositions         | "api-designer"         |
+| `graph_find_path`          | Path between skills       | from/to                |
+| `graph_stats`              | Graph statistics          | (no args)              |
+| `graph_validate`           | Validate graph            | (no args)              |
 
 ---
 
@@ -105,18 +110,21 @@ Expected:
 ## 🚨 Quick Fixes
 
 **"MCP not found"**
+
 ```bash
 cd /path/to/ai-dev-standards/MCP-SERVERS/brain-mcp
 npm install && npm run build
 ```
 
 **"Brain CLI not found"**
+
 ```bash
 cd /path/to/ai-dev-standards/scripts/brain
 npm install && npm run build
 ```
 
 **"Can't find tools"**
+
 - Check paths in `.claude/mcp-settings.json` are absolute
 - Restart Claude Code
 
@@ -160,6 +168,7 @@ Claude:
 ---
 
 **Resources:**
+
 - 64 Skills
 - 51 MCPs
 - 113 Capabilities

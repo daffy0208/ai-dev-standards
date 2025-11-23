@@ -13,7 +13,14 @@
     "start": "node dist/index.js",
     "test": "vitest"
   },
-  "keywords": ["mcp", "database", "migrations", "prisma", "drizzle", "schema"],
+  "keywords": [
+    "mcp",
+    "database",
+    "migrations",
+    "prisma",
+    "drizzle",
+    "schema"
+  ],
   "author": "ai-dev-standards",
   "license": "MIT",
   "dependencies": {

@@ -246,21 +246,25 @@ describe('ApiCallerTool', () => {
       // TODO: Timeout implementation needs to be fixed to properly abort fetch
       // Currently the fetch completes before the timeout triggers
       global.fetch = vi.fn().mockImplementation(() => {
-        return new Promise((resolve) => {
-          setTimeout(() => resolve({
-            ok: true,
-            status: 200,
-            statusText: 'OK',
-            json: async () => ({}),
-            headers: new Headers(),
-            url: 'https://api.example.com/slow'
-          }), 5000)
+        return new Promise(resolve => {
+          setTimeout(
+            () =>
+              resolve({
+                ok: true,
+                status: 200,
+                statusText: 'OK',
+                json: async () => ({}),
+                headers: new Headers(),
+                url: 'https://api.example.com/slow'
+              }),
+            5000
+          )
         })
       })
 
-      await expect(
-        api.get('https://api.example.com/slow', { timeout: 100 })
-      ).rejects.toThrow('timeout')
+      await expect(api.get('https://api.example.com/slow', { timeout: 100 })).rejects.toThrow(
+        'timeout'
+      )
     }, 10000)
   })
 
@@ -296,7 +300,7 @@ describe('ApiCallerTool', () => {
       })
 
       await vi.runAllTimersAsync()
-      
+
       const result = await promise
 
       expect(attempts).toBe(3)
@@ -333,10 +337,12 @@ describe('ApiCallerTool', () => {
       // 1st attempt happens immediately
       await vi.advanceTimersByTimeAsync(100) // Trigger 2nd attempt
       await vi.advanceTimersByTimeAsync(200) // Trigger 3rd attempt
-      
+
       try {
         await promise
-      } catch (e) {}
+      } catch (e) {
+        // ignore expected error
+      }
 
       expect(attempts).toBe(3)
     })
@@ -344,7 +350,7 @@ describe('ApiCallerTool', () => {
 
   describe('Batch requests', () => {
     it('should execute multiple requests in parallel', async () => {
-      global.fetch = vi.fn().mockImplementation((url) => {
+      global.fetch = vi.fn().mockImplementation(url => {
         return Promise.resolve({
           ok: true,
           status: 200,
@@ -411,17 +417,15 @@ describe('ApiCallerTool', () => {
         statusText: 'Internal Server Error'
       })
 
-      await expect(
-        api.get('https://api.example.com/error')
-      ).rejects.toThrow('HTTP 500: Internal Server Error')
+      await expect(api.get('https://api.example.com/error')).rejects.toThrow(
+        'HTTP 500: Internal Server Error'
+      )
     })
 
     it('should throw on network error', async () => {
       global.fetch = vi.fn().mockRejectedValue(new Error('Network failed'))
 
-      await expect(
-        api.get('https://api.example.com/unreachable')
-      ).rejects.toThrow('Network failed')
+      await expect(api.get('https://api.example.com/unreachable')).rejects.toThrow('Network failed')
     })
   })
 })

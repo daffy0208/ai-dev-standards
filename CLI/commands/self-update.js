@@ -16,9 +16,12 @@ async function selfUpdateCommand(options) {
   try {
     // Get ai-dev-standards root directory from config
     const config = await loadProjectConfig()
-    const aiDevRoot = config.aiDevStandardsRoot || process.env.AI_DEV_STANDARDS_ROOT || path.join(require('os').homedir(), 'ai-dev-standards')
+    const aiDevRoot =
+      config.aiDevStandardsRoot ||
+      process.env.AI_DEV_STANDARDS_ROOT ||
+      path.join(require('os').homedir(), 'ai-dev-standards')
 
-    if (!await fs.pathExists(aiDevRoot)) {
+    if (!(await fs.pathExists(aiDevRoot))) {
       console.log(chalk.red('❌ ai-dev-standards directory not found'))
       console.log(chalk.gray(`   Expected location: ${aiDevRoot}`))
       console.log(chalk.yellow('\n💡 Run setup-project.sh to install ai-dev-standards'))
@@ -27,14 +30,16 @@ async function selfUpdateCommand(options) {
 
     // Check for uncommitted changes
     const spinner = ora('Checking for local changes...').start()
-    
+
     try {
       const { stdout } = await execa('git', ['status', '--porcelain'], { cwd: aiDevRoot })
       if (stdout.trim().length > 0 && !options.force) {
         spinner.fail('Local changes detected')
         console.log(chalk.yellow('\n⚠️  You have uncommitted changes in ai-dev-standards'))
         console.log(chalk.gray('   Commit or stash your changes before updating'))
-        console.log(chalk.cyan(`\n💡 Use ${chalk.bold('--force')} to update anyway (stashes changes)\n`))
+        console.log(
+          chalk.cyan(`\n💡 Use ${chalk.bold('--force')} to update anyway (stashes changes)\n`)
+        )
         return
       }
       spinner.succeed('No local changes')
@@ -60,16 +65,16 @@ async function selfUpdateCommand(options) {
 
     // Pull latest
     const pullSpinner = ora('Pulling latest changes...').start()
-    
+
     try {
       const { stdout } = await execa('git', ['pull', 'origin', 'main'], { cwd: aiDevRoot })
-      
+
       if (stdout.includes('Already up to date')) {
         pullSpinner.succeed('Already up to date')
         console.log(chalk.green('\n✅ No updates available\n'))
         return
       }
-      
+
       pullSpinner.succeed('Pulled latest changes')
     } catch (error) {
       pullSpinner.fail('Failed to pull changes')
@@ -83,7 +88,7 @@ async function selfUpdateCommand(options) {
 
     // Re-install CLI
     const installSpinner = ora('Re-installing CLI...').start()
-    
+
     try {
       const cliPath = path.join(aiDevRoot, 'CLI')
       await execa('npm', ['install'], { cwd: cliPath })
@@ -97,7 +102,7 @@ async function selfUpdateCommand(options) {
     const hooksPath = path.join(aiDevRoot, '.claude/hooks')
     if (await fs.pathExists(hooksPath)) {
       const hooksSpinner = ora('Updating hooks...').start()
-      
+
       try {
         const hookPackageJson = path.join(hooksPath, 'package.json')
         if (await fs.pathExists(hookPackageJson)) {
@@ -112,7 +117,7 @@ async function selfUpdateCommand(options) {
     }
 
     // Show what changed
-    console.log(chalk.bold('\n📝 What\'s new:\n'))
+    console.log(chalk.bold("\n📝 What's new:\n"))
     const changes = await getChangesSince(aiDevRoot, beforeVersion.commit)
     changes.forEach(change => {
       console.log(chalk.gray(`  • ${change}`))
@@ -122,15 +127,16 @@ async function selfUpdateCommand(options) {
 
     // Run health check to analyze repository
     console.log(chalk.blue('🏥 Running health check on your repository...\n'))
-    
+
     try {
       // Import and run doctor command
       const doctorCommand = require('./doctor')
       await doctorCommand({ verbose: false })
     } catch (error) {
-      console.log(chalk.yellow('\n⚠️  Health check failed, you can run it manually with: ai-dev doctor\n'))
+      console.log(
+        chalk.yellow('\n⚠️  Health check failed, you can run it manually with: ai-dev doctor\n')
+      )
     }
-
   } catch (error) {
     console.error(chalk.red(`\n❌ Error: ${error.message}\n`))
     process.exit(1)
@@ -143,9 +149,11 @@ async function selfUpdateCommand(options) {
 async function getLocalVersion(aiDevRoot) {
   const packageJsonPath = path.join(aiDevRoot, 'package.json')
   const packageJson = await fs.readJson(packageJsonPath)
-  
-  const { stdout: commit } = await execa('git', ['rev-parse', '--short', 'HEAD'], { cwd: aiDevRoot })
-  
+
+  const { stdout: commit } = await execa('git', ['rev-parse', '--short', 'HEAD'], {
+    cwd: aiDevRoot
+  })
+
   return {
     version: packageJson.version,
     commit: commit.trim()
@@ -157,14 +165,12 @@ async function getLocalVersion(aiDevRoot) {
  */
 async function getChangesSince(aiDevRoot, since) {
   try {
-    const { stdout } = await execa('git', [
-      'log',
-      '--oneline',
-      '--no-decorate',
-      `-n5`,
-      `${since}..HEAD`
-    ], { cwd: aiDevRoot })
-    
+    const { stdout } = await execa(
+      'git',
+      ['log', '--oneline', '--no-decorate', `-n5`, `${since}..HEAD`],
+      { cwd: aiDevRoot }
+    )
+
     const lines = stdout.split('\n').filter(line => line.trim().length > 0)
     return lines.length > 0 ? lines : ['No recent changes']
   } catch (error) {
@@ -177,11 +183,11 @@ async function getChangesSince(aiDevRoot, since) {
  */
 async function loadProjectConfig() {
   const configPath = path.join(process.cwd(), '.ai-dev.json')
-  
-  if (!await fs.pathExists(configPath)) {
+
+  if (!(await fs.pathExists(configPath))) {
     return {}
   }
-  
+
   return await fs.readJson(configPath)
 }
 

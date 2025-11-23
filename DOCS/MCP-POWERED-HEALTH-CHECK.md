@@ -17,6 +17,7 @@
 ### Phase 1: Code Health Analysis
 
 #### Use project-health-auditor MCP
+
 ```
 "Use project-health-auditor to analyze the entire repository and provide:
 1. Code complexity metrics for all directories
@@ -27,6 +28,7 @@
 ```
 
 Expected output:
+
 - Complexity metrics per directory
 - High-churn files that need attention
 - Files needing tests
@@ -37,6 +39,7 @@ Expected output:
 ### Phase 2: Repository Analysis
 
 #### Use dark-matter-analyzer-mcp
+
 ```
 "Use dark-matter-analyzer-mcp to analyze this repository and identify:
 1. Strategic drift (misalignment between goals and reality)
@@ -47,6 +50,7 @@ Expected output:
 ```
 
 Expected output:
+
 - Strategic coherence score
 - Documentation-to-code ratio
 - Dead code candidates
@@ -57,6 +61,7 @@ Expected output:
 ### Phase 3: Code Quality Scan
 
 #### Use code-quality-scanner-mcp
+
 ```
 "Use code-quality-scanner-mcp to scan the codebase and report:
 1. Code style violations
@@ -67,6 +72,7 @@ Expected output:
 ```
 
 Expected output:
+
 - Total issues found
 - Issues by severity (critical/warning/info)
 - Files needing attention
@@ -77,6 +83,7 @@ Expected output:
 ### Phase 4: Security Audit
 
 #### Use security-scanner-mcp
+
 ```
 "Use security-scanner-mcp to scan for:
 1. Dependency vulnerabilities
@@ -87,6 +94,7 @@ Expected output:
 ```
 
 Expected output:
+
 - Vulnerabilities by severity
 - Secrets detected
 - Security recommendations
@@ -97,6 +105,7 @@ Expected output:
 ### Phase 5: Documentation Health
 
 #### Use domain-memory-agent
+
 ```
 "Use domain-memory-agent to:
 1. Index all markdown files in DOCS/
@@ -106,6 +115,7 @@ Expected output:
 ```
 
 Expected output:
+
 - Total documents indexed
 - Missing documentation topics
 - Documentation completeness score
@@ -115,6 +125,7 @@ Expected output:
 ### Phase 6: MCP Registry Validation
 
 #### Use semantic-search-mcp
+
 ```
 "Use semantic-search-mcp to search META/mcp-registry.json and validate:
 1. All MCPs in MCP-SERVERS/ are registered
@@ -124,6 +135,7 @@ Expected output:
 ```
 
 Expected output:
+
 - Missing registrations
 - Incomplete metadata
 - Validation errors
@@ -133,6 +145,7 @@ Expected output:
 ### Phase 7: Workflow Orchestration Test
 
 #### Use workflow-orchestrator
+
 ```
 "Use workflow-orchestrator to create and execute a test workflow:
 1. List all MCP directories
@@ -143,6 +156,7 @@ Expected output:
 ```
 
 Expected output:
+
 - Workflow execution log
 - MCPs with missing files
 - Success/failure status
@@ -152,6 +166,7 @@ Expected output:
 ### Phase 8: Skill Validation
 
 #### Use framework-orchestrator (if available)
+
 ```
 "Analyze all 65 skills in SKILLS/ and validate:
 1. Each has SKILL.md
@@ -162,6 +177,7 @@ Expected output:
 ```
 
 Expected output:
+
 - Skills validation report
 - Missing components
 - Skill completeness score
@@ -171,6 +187,7 @@ Expected output:
 ### Phase 9: Vector Database Health
 
 #### Use vector-database-mcp
+
 ```
 "Use vector-database-mcp to:
 1. Initialize vector store for repository
@@ -180,6 +197,7 @@ Expected output:
 ```
 
 Expected output:
+
 - Documents indexed
 - Vector store size
 - Search test results
@@ -190,6 +208,7 @@ Expected output:
 ### Phase 10: Performance Profiling
 
 #### Use performance-profiler-mcp
+
 ```
 "Use performance-profiler-mcp to profile:
 1. MCP startup times
@@ -199,6 +218,7 @@ Expected output:
 ```
 
 Expected output:
+
 - Startup times per MCP
 - Slowest operations
 - Memory consumption
@@ -226,6 +246,7 @@ Overall Health = (
 ```
 
 **Rating Scale:**
+
 - 90-100: Excellent
 - 80-89: Very Good
 - 70-79: Good
@@ -306,17 +327,20 @@ Set up continuous health checks:
 Based on health check results:
 
 ### If Health Score < 70
+
 1. Address all critical issues immediately
 2. Create tasks for warnings
 3. Schedule remediation
 4. Re-run health check after fixes
 
 ### If Health Score 70-89
+
 1. Address critical issues
 2. Plan for warnings
 3. Continue regular monitoring
 
 ### If Health Score 90+
+
 1. Maintain current practices
 2. Regular monitoring
 3. Continuous improvement
@@ -337,18 +361,18 @@ This provides a basic health check using bash tools only.
 
 ## Comparison: Bash vs MCP Health Checks
 
-| Aspect | Bash Script | MCP-Powered |
-|--------|-------------|-------------|
-| **Code Complexity** | ❌ No | ✅ Yes (project-health-auditor) |
-| **Strategic Analysis** | ❌ No | ✅ Yes (dark-matter-analyzer) |
-| **Quality Metrics** | ❌ No | ✅ Yes (code-quality-scanner) |
-| **Security Audit** | ⚠️ Basic | ✅ Comprehensive (security-scanner) |
-| **Documentation** | ⚠️ File existence | ✅ Semantic analysis (domain-memory) |
-| **Performance** | ❌ No | ✅ Yes (performance-profiler) |
-| **Workflows** | ❌ No | ✅ Yes (workflow-orchestrator) |
-| **Vector DB** | ❌ No | ✅ Yes (vector-database) |
-| **Skills** | ⚠️ Basic | ✅ Deep analysis |
-| **Overall Score** | ❌ No | ✅ Weighted score |
+| Aspect                 | Bash Script       | MCP-Powered                          |
+| ---------------------- | ----------------- | ------------------------------------ |
+| **Code Complexity**    | ❌ No             | ✅ Yes (project-health-auditor)      |
+| **Strategic Analysis** | ❌ No             | ✅ Yes (dark-matter-analyzer)        |
+| **Quality Metrics**    | ❌ No             | ✅ Yes (code-quality-scanner)        |
+| **Security Audit**     | ⚠️ Basic          | ✅ Comprehensive (security-scanner)  |
+| **Documentation**      | ⚠️ File existence | ✅ Semantic analysis (domain-memory) |
+| **Performance**        | ❌ No             | ✅ Yes (performance-profiler)        |
+| **Workflows**          | ❌ No             | ✅ Yes (workflow-orchestrator)       |
+| **Vector DB**          | ❌ No             | ✅ Yes (vector-database)             |
+| **Skills**             | ⚠️ Basic          | ✅ Deep analysis                     |
+| **Overall Score**      | ❌ No             | ✅ Weighted score                    |
 
 **Recommendation:** Use MCP-powered health check for comprehensive analysis.
 
@@ -357,16 +381,19 @@ This provides a basic health check using bash tools only.
 ## Health Check Schedule
 
 **Daily:** Quick check (5 min)
+
 ```
 "Quick health check: project-health-auditor + security-scanner"
 ```
 
 **Weekly:** Comprehensive check (15 min)
+
 ```
 "Full MCP-powered health check with all tools"
 ```
 
 **Monthly:** Deep analysis (30 min)
+
 ```
 "Deep health check + trend analysis + recommendations"
 ```

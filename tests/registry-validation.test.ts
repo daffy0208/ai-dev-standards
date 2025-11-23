@@ -36,17 +36,13 @@ describe('Registry Completeness - CRITICAL', () => {
     // Get all skill directories
     const skillsPath = path.join(rootDir, 'SKILLS')
     const entries = await fs.readdir(skillsPath, { withFileTypes: true })
-    skillDirs = entries
-      .filter(e => e.isDirectory() && e.name !== '_TEMPLATE')
-      .map(e => e.name)
+    skillDirs = entries.filter(e => e.isDirectory() && e.name !== '_TEMPLATE').map(e => e.name)
 
     // Get all MCP directories
     try {
       const mcpPath = path.join(rootDir, 'MCP-SERVERS')
       const mcpEntries = await fs.readdir(mcpPath, { withFileTypes: true })
-      mcpDirs = mcpEntries
-        .filter(e => e.isDirectory())
-        .map(e => e.name)
+      mcpDirs = mcpEntries.filter(e => e.isDirectory()).map(e => e.name)
     } catch {
       mcpDirs = []
     }
@@ -94,7 +90,9 @@ describe('Registry Completeness - CRITICAL', () => {
       expect(skill.name, 'Skill missing name field').toBeTruthy()
       expect(skill.version, `Skill ${skill.name} missing version`).toBeTruthy()
       expect(skill.description, `Skill ${skill.name} missing description`).toBeTruthy()
-      expect(skill.description.length, `Skill ${skill.name} description too short`).toBeGreaterThan(20)
+      expect(skill.description.length, `Skill ${skill.name} description too short`).toBeGreaterThan(
+        20
+      )
       expect(skill.path, `Skill ${skill.name} missing path`).toBeTruthy()
       expect(skill.path, `Skill ${skill.name} path must start with SKILLS/`).toMatch(/^SKILLS\//)
       expect(skill.path, `Skill ${skill.name} path must end with SKILL.md`).toMatch(/SKILL\.md$/)
@@ -137,9 +135,7 @@ describe('Registry Completeness - CRITICAL', () => {
       return
     }
 
-    const registeredPlaybooks = registry.playbooks?.map((p: any) =>
-      path.basename(p.path)
-    ) || []
+    const registeredPlaybooks = registry.playbooks?.map((p: any) => path.basename(p.path)) || []
 
     for (const playbookFile of playbookFiles) {
       expect(
@@ -155,9 +151,8 @@ describe('Registry Completeness - CRITICAL', () => {
       return
     }
 
-    const registeredPatterns = registry.architecturePatterns?.map((p: any) =>
-      path.basename(p.path)
-    ) || []
+    const registeredPatterns =
+      registry.architecturePatterns?.map((p: any) => path.basename(p.path)) || []
 
     for (const patternFile of patternFiles) {
       expect(
@@ -174,7 +169,9 @@ describe('Registry Completeness - CRITICAL', () => {
       try {
         await fs.access(skillPath)
       } catch {
-        throw new Error(`Skill "${skill.name}" is registered but file doesn't exist at ${skill.path}`)
+        throw new Error(
+          `Skill "${skill.name}" is registered but file doesn't exist at ${skill.path}`
+        )
       }
     }
 
@@ -197,7 +194,9 @@ describe('Registry Completeness - CRITICAL', () => {
         try {
           await fs.access(playbookPath)
         } catch {
-          throw new Error(`Playbook "${playbook.name}" is registered but file doesn't exist at ${playbook.path}`)
+          throw new Error(
+            `Playbook "${playbook.name}" is registered but file doesn't exist at ${playbook.path}`
+          )
         }
       }
     }
@@ -277,9 +276,9 @@ describe('CLI Data Accuracy - CRITICAL', () => {
 
       expect(
         syncContent.includes('data-visualizer') &&
-        syncContent.includes('iot-developer') &&
-        syncContent.includes('spatial-developer') &&
-        !syncContent.includes('registry.json'),
+          syncContent.includes('iot-developer') &&
+          syncContent.includes('spatial-developer') &&
+          !syncContent.includes('registry.json'),
         'CLI sync.js appears to have hardcoded skill list instead of reading from registry!'
       ).toBe(false)
     } catch {
@@ -301,8 +300,8 @@ describe('CLI Data Accuracy - CRITICAL', () => {
 
       expect(
         updateContent.includes('data-visualizer') &&
-        updateContent.includes('iot-developer') &&
-        !updateContent.includes('registry.json'),
+          updateContent.includes('iot-developer') &&
+          !updateContent.includes('registry.json'),
         'CLI update.js appears to have hardcoded skill list instead of reading from registry!'
       ).toBe(false)
     } catch {
@@ -466,9 +465,7 @@ describe('New Categories - Phase 1 Complete', () => {
     try {
       const utilsPath = path.join(rootDir, 'UTILS')
       const entries = await fs.readdir(utilsPath, { withFileTypes: true })
-      utilDirs = entries
-        .filter(e => e.isDirectory() && e.name !== 'README.md')
-        .map(e => e.name)
+      utilDirs = entries.filter(e => e.isDirectory() && e.name !== 'README.md').map(e => e.name)
     } catch {
       utilDirs = []
     }
@@ -488,13 +485,10 @@ describe('New Categories - Phase 1 Complete', () => {
 
     for (const schema of schemaFiles) {
       const schemaName = schema.replace(/\.(yaml|json)$/, '').replace('.schema', '')
-      const found = registry.schemas.some((s: any) =>
-        s.path.includes(schema) || s.name === schemaName
+      const found = registry.schemas.some(
+        (s: any) => s.path.includes(schema) || s.name === schemaName
       )
-      expect(
-        found,
-        `Schema "${schema}" exists in SCHEMAS/ but NOT properly registered`
-      ).toBe(true)
+      expect(found, `Schema "${schema}" exists in SCHEMAS/ but NOT properly registered`).toBe(true)
     }
   })
 
@@ -530,10 +524,7 @@ describe('New Categories - Phase 1 Complete', () => {
 
     for (const scriptFile of scriptFiles) {
       const found = registry.scripts.some((s: any) => s.path.includes(scriptFile))
-      expect(
-        found,
-        `Script "${scriptFile}" exists in scripts/ but NOT in registry`
-      ).toBe(true)
+      expect(found, `Script "${scriptFile}" exists in scripts/ but NOT in registry`).toBe(true)
     }
   })
 
@@ -564,10 +555,7 @@ describe('New Categories - Phase 1 Complete', () => {
     const registeredUtils = registry.utils.map((u: any) => u.category)
 
     for (const util of utilDirs) {
-      expect(
-        registeredUtils,
-        `Util "${util}" exists in UTILS/ but NOT in registry`
-      ).toContain(util)
+      expect(registeredUtils, `Util "${util}" exists in UTILS/ but NOT in registry`).toContain(util)
     }
   })
 
@@ -580,10 +568,9 @@ describe('New Categories - Phase 1 Complete', () => {
     for (const playbookFile of playbookFiles) {
       const playbookName = playbookFile.replace('.md', '')
       const found = registry.playbooks.some((p: any) => p.name === playbookName)
-      expect(
-        found,
-        `Playbook "${playbookFile}" exists in PLAYBOOKS/ but NOT in registry`
-      ).toBe(true)
+      expect(found, `Playbook "${playbookFile}" exists in PLAYBOOKS/ but NOT in registry`).toBe(
+        true
+      )
     }
   })
 
@@ -594,9 +581,15 @@ describe('New Categories - Phase 1 Complete', () => {
       expect(installer.path, `Installer ${installer.name} missing path`).toBeTruthy()
       expect(installer.installs, `Installer ${installer.name} missing installs field`).toBeTruthy()
       // Phase 2: installs changed from array to structured object
-      expect(typeof installer.installs === 'object', `Installer ${installer.name} installs must be object`).toBe(true)
+      expect(
+        typeof installer.installs === 'object',
+        `Installer ${installer.name} installs must be object`
+      ).toBe(true)
       expect(installer.creates, `Installer ${installer.name} missing creates field`).toBeTruthy()
-      expect(Array.isArray(installer.creates), `Installer ${installer.name} creates must be array`).toBe(true)
+      expect(
+        Array.isArray(installer.creates),
+        `Installer ${installer.name} creates must be array`
+      ).toBe(true)
     }
   })
 
@@ -606,7 +599,9 @@ describe('New Categories - Phase 1 Complete', () => {
       expect(schema.description, `Schema ${schema.name} missing description`).toBeTruthy()
       expect(schema.path, `Schema ${schema.name} missing path`).toBeTruthy()
       expect(schema.validates, `Schema ${schema.name} missing validates field`).toBeTruthy()
-      expect(Array.isArray(schema.validates), `Schema ${schema.name} validates must be array`).toBe(true)
+      expect(Array.isArray(schema.validates), `Schema ${schema.name} validates must be array`).toBe(
+        true
+      )
     }
   })
 })
@@ -671,7 +666,9 @@ describe('Phase 2: Relationship Validation', () => {
 
     // Report but don't fail on empty enables arrays
     if (mcpsWithEmptyEnables > 0) {
-      console.log(`⚠️ Warning: ${mcpsWithEmptyEnables} MCPs have empty enables/supports_skills arrays. This should be fixed in the registry.`)
+      console.log(
+        `⚠️ Warning: ${mcpsWithEmptyEnables} MCPs have empty enables/supports_skills arrays. This should be fixed in the registry.`
+      )
     }
   })
 
@@ -693,17 +690,16 @@ describe('Phase 2: Relationship Validation', () => {
     const hasPhase2Metadata = registry.skills.some((s: any) => s.requires)
 
     if (!hasPhase2Metadata) {
-      console.log('⚠️ Phase 2 metadata (requires field) not yet implemented in skills. Skipping validation.')
+      console.log(
+        '⚠️ Phase 2 metadata (requires field) not yet implemented in skills. Skipping validation.'
+      )
       return // Skip this test if Phase 2 metadata isn't implemented yet
     }
 
     for (const skillName of highPrioritySkills) {
       const skill = registry.skills.find((s: any) => s.name === skillName)
 
-      expect(
-        skill,
-        `High-priority skill "${skillName}" not found in registry!`
-      ).toBeTruthy()
+      expect(skill, `High-priority skill "${skillName}" not found in registry!`).toBeTruthy()
 
       expect(
         skill.requires,
@@ -711,11 +707,26 @@ describe('Phase 2: Relationship Validation', () => {
       ).toBeTruthy()
 
       expect(skill.requires.mcps, `Skill "${skillName}" requires.mcps missing`).toBeTruthy()
-      expect(skill.requires.mcps.existing, `Skill "${skillName}" requires.mcps.existing missing`).toBeTruthy()
-      expect(skill.requires.mcps.planned, `Skill "${skillName}" requires.mcps.planned missing`).toBeTruthy()
-      expect(skill.requires.components, `Skill "${skillName}" requires.components missing`).toBeTruthy()
-      expect(skill.requires.integrations, `Skill "${skillName}" requires.integrations missing`).toBeTruthy()
-      expect(skill.requires.standards, `Skill "${skillName}" requires.standards missing`).toBeTruthy()
+      expect(
+        skill.requires.mcps.existing,
+        `Skill "${skillName}" requires.mcps.existing missing`
+      ).toBeTruthy()
+      expect(
+        skill.requires.mcps.planned,
+        `Skill "${skillName}" requires.mcps.planned missing`
+      ).toBeTruthy()
+      expect(
+        skill.requires.components,
+        `Skill "${skillName}" requires.components missing`
+      ).toBeTruthy()
+      expect(
+        skill.requires.integrations,
+        `Skill "${skillName}" requires.integrations missing`
+      ).toBeTruthy()
+      expect(
+        skill.requires.standards,
+        `Skill "${skillName}" requires.standards missing`
+      ).toBeTruthy()
     }
   })
 
@@ -724,7 +735,9 @@ describe('Phase 2: Relationship Validation', () => {
     const hasPhase2Metadata = registry.components.some((c: any) => c.dependencies)
 
     if (!hasPhase2Metadata) {
-      console.log('⚠️ Phase 2 metadata (dependencies field) not yet implemented in components. Skipping validation.')
+      console.log(
+        '⚠️ Phase 2 metadata (dependencies field) not yet implemented in components. Skipping validation.'
+      )
       return // Skip this test if Phase 2 metadata isn't implemented yet
     }
 
@@ -734,9 +747,18 @@ describe('Phase 2: Relationship Validation', () => {
         `Component "${component.category}" missing dependencies field! Phase 2 requires all components to declare dependencies.`
       ).toBeTruthy()
 
-      expect(component.dependencies.integrations, `Component "${component.category}" dependencies.integrations missing`).toBeTruthy()
-      expect(component.dependencies.utils, `Component "${component.category}" dependencies.utils missing`).toBeTruthy()
-      expect(component.dependencies.components, `Component "${component.category}" dependencies.components missing`).toBeTruthy()
+      expect(
+        component.dependencies.integrations,
+        `Component "${component.category}" dependencies.integrations missing`
+      ).toBeTruthy()
+      expect(
+        component.dependencies.utils,
+        `Component "${component.category}" dependencies.utils missing`
+      ).toBeTruthy()
+      expect(
+        component.dependencies.components,
+        `Component "${component.category}" dependencies.components missing`
+      ).toBeTruthy()
     }
   })
 
@@ -752,11 +774,26 @@ describe('Phase 2: Relationship Validation', () => {
         `Installer "${installer.name}" installs must be an object with keys: skills, mcps, components, integrations, standards`
       ).toBe(true)
 
-      expect(installer.installs.skills, `Installer "${installer.name}" installs.skills missing`).toBeTruthy()
-      expect(installer.installs.mcps, `Installer "${installer.name}" installs.mcps missing`).toBeTruthy()
-      expect(installer.installs.components, `Installer "${installer.name}" installs.components missing`).toBeTruthy()
-      expect(installer.installs.integrations, `Installer "${installer.name}" installs.integrations missing`).toBeTruthy()
-      expect(installer.installs.standards, `Installer "${installer.name}" installs.standards missing`).toBeTruthy()
+      expect(
+        installer.installs.skills,
+        `Installer "${installer.name}" installs.skills missing`
+      ).toBeTruthy()
+      expect(
+        installer.installs.mcps,
+        `Installer "${installer.name}" installs.mcps missing`
+      ).toBeTruthy()
+      expect(
+        installer.installs.components,
+        `Installer "${installer.name}" installs.components missing`
+      ).toBeTruthy()
+      expect(
+        installer.installs.integrations,
+        `Installer "${installer.name}" installs.integrations missing`
+      ).toBeTruthy()
+      expect(
+        installer.installs.standards,
+        `Installer "${installer.name}" installs.standards missing`
+      ).toBeTruthy()
     }
   })
 
@@ -778,7 +815,9 @@ describe('Phase 2: Relationship Validation', () => {
         if (!isValid) {
           invalidReferences.push({ mcp: mcp.name, skill: skillName, cleaned: cleanSkillName })
         } else if (skillName !== cleanSkillName && !skillNames.includes(skillName)) {
-          console.log(`⚠️ Warning: MCP "${mcp.name}" references "${skillName}" (should be "${cleanSkillName}")`)
+          console.log(
+            `⚠️ Warning: MCP "${mcp.name}" references "${skillName}" (should be "${cleanSkillName}")`
+          )
         }
       }
     }

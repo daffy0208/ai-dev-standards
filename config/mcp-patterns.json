@@ -27,9 +27,7 @@
           "network": "none"
         },
         "security": {
-          "layers_enabled": [
-            "sandbox"
-          ],
+          "layers_enabled": ["sandbox"],
           "pii_tokenization": false,
           "access_control": false,
           "monitoring": false

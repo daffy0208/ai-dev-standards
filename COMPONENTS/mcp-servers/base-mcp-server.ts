@@ -42,7 +42,7 @@ import {
   ListResourcesRequestSchema,
   ReadResourceRequestSchema,
   ListPromptsRequestSchema,
-  GetPromptRequestSchema,
+  GetPromptRequestSchema
 } from '@modelcontextprotocol/sdk/types.js'
 
 export interface MCPTool {
@@ -96,14 +96,14 @@ export abstract class BaseMCPServer {
     this.server = new Server(
       {
         name: serverName,
-        version: serverVersion,
+        version: serverVersion
       },
       {
         capabilities: {
           tools: {},
           resources: {},
-          prompts: {},
-        },
+          prompts: {}
+        }
       }
     )
 
@@ -119,11 +119,11 @@ export abstract class BaseMCPServer {
       tools: Array.from(this.tools.values()).map(tool => ({
         name: tool.name,
         description: tool.description,
-        inputSchema: tool.inputSchema,
-      })),
+        inputSchema: tool.inputSchema
+      }))
     }))
 
-    this.server.setRequestHandler(CallToolRequestSchema, async (request) => {
+    this.server.setRequestHandler(CallToolRequestSchema, async request => {
       const tool = this.tools.get(request.params.name)
       if (!tool) {
         throw new Error(`Unknown tool: ${request.params.name}`)
@@ -135,9 +135,9 @@ export abstract class BaseMCPServer {
           content: [
             {
               type: 'text',
-              text: JSON.stringify(result, null, 2),
-            },
-          ],
+              text: JSON.stringify(result, null, 2)
+            }
+          ]
         }
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : String(error)
@@ -145,10 +145,10 @@ export abstract class BaseMCPServer {
           content: [
             {
               type: 'text',
-              text: `Error: ${errorMessage}`,
-            },
+              text: `Error: ${errorMessage}`
+            }
           ],
-          isError: true,
+          isError: true
         }
       }
     })
@@ -159,11 +159,11 @@ export abstract class BaseMCPServer {
         uri: resource.uri,
         name: resource.name,
         description: resource.description,
-        mimeType: resource.mimeType,
-      })),
+        mimeType: resource.mimeType
+      }))
     }))
 
-    this.server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
+    this.server.setRequestHandler(ReadResourceRequestSchema, async request => {
       const resource = this.resources.get(request.params.uri)
       if (!resource) {
         throw new Error(`Unknown resource: ${request.params.uri}`)
@@ -176,9 +176,9 @@ export abstract class BaseMCPServer {
             {
               uri: resource.uri,
               mimeType: resource.mimeType,
-              text: content,
-            },
-          ],
+              text: content
+            }
+          ]
         }
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : String(error)
@@ -191,11 +191,11 @@ export abstract class BaseMCPServer {
       prompts: Array.from(this.prompts.values()).map(prompt => ({
         name: prompt.name,
         description: prompt.description,
-        arguments: prompt.arguments,
-      })),
+        arguments: prompt.arguments
+      }))
     }))
 
-    this.server.setRequestHandler(GetPromptRequestSchema, async (request) => {
+    this.server.setRequestHandler(GetPromptRequestSchema, async request => {
       const prompt = this.prompts.get(request.params.name)
       if (!prompt) {
         throw new Error(`Unknown prompt: ${request.params.name}`)
@@ -251,10 +251,7 @@ export abstract class BaseMCPServer {
 /**
  * Helper function to validate required arguments
  */
-export function validateArgs(
-  args: Record<string, any>,
-  required: string[]
-): void {
+export function validateArgs(args: Record<string, any>, required: string[]): void {
   for (const field of required) {
     if (!(field in args) || args[field] === undefined || args[field] === null) {
       throw new Error(`Missing required argument: ${field}`)
@@ -272,10 +269,10 @@ export function createErrorResponse(error: unknown): {
   if (error instanceof Error) {
     return {
       error: error.message,
-      details: error.stack,
+      details: error.stack
     }
   }
   return {
-    error: String(error),
+    error: String(error)
   }
 }

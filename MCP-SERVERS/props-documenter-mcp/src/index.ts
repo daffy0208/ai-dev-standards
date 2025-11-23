@@ -6,7 +6,7 @@ import {
   CallToolRequestSchema,
   ListResourcesRequestSchema,
   ListToolsRequestSchema,
-  ReadResourceRequestSchema,
+  ReadResourceRequestSchema
 } from '@modelcontextprotocol/sdk/types.js'
 import * as fs from 'fs'
 import * as path from 'path'
@@ -34,11 +34,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           componentPath: {
             type: 'string',
-            description: 'Path to the React component file',
-          },
+            description: 'Path to the React component file'
+          }
         },
-        required: ['componentPath'],
-      },
+        required: ['componentPath']
+      }
     },
     {
       name: 'generate_props_table',
@@ -48,15 +48,15 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           componentPath: {
             type: 'string',
-            description: 'Path to the React component file',
+            description: 'Path to the React component file'
           },
           outputPath: {
             type: 'string',
-            description: 'Path to save the markdown table',
-          },
+            description: 'Path to save the markdown table'
+          }
         },
-        required: ['componentPath'],
-      },
+        required: ['componentPath']
+      }
     },
     {
       name: 'add_jsdoc',
@@ -66,17 +66,17 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           componentPath: {
             type: 'string',
-            description: 'Path to the React component file',
+            description: 'Path to the React component file'
           },
           propDescriptions: {
             type: 'object',
-            description: 'Object mapping prop names to descriptions',
-          },
+            description: 'Object mapping prop names to descriptions'
+          }
         },
-        required: ['componentPath'],
-      },
-    },
-  ],
+        required: ['componentPath']
+      }
+    }
+  ]
 }))
 
 server.setRequestHandler(ListResourcesRequestSchema, async () => ({
@@ -85,12 +85,12 @@ server.setRequestHandler(ListResourcesRequestSchema, async () => ({
       uri: 'props://prop-type-definitions',
       name: 'Prop Type Definitions',
       description: 'Common TypeScript prop type patterns',
-      mimeType: 'application/json',
-    },
-  ],
+      mimeType: 'application/json'
+    }
+  ]
 }))
 
-server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
+server.setRequestHandler(ReadResourceRequestSchema, async request => {
   const uri = request.params.uri
 
   if (uri === 'props://prop-type-definitions') {
@@ -100,19 +100,19 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
         className: 'string',
         style: 'React.CSSProperties',
         onClick: '(event: React.MouseEvent) => void',
-        onChange: '(event: React.ChangeEvent<HTMLInputElement>) => void',
+        onChange: '(event: React.ChangeEvent<HTMLInputElement>) => void'
       },
       variants: {
         size: '"sm" | "md" | "lg"',
         variant: '"primary" | "secondary" | "outline"',
-        color: '"default" | "primary" | "secondary" | "success" | "warning" | "error"',
+        color: '"default" | "primary" | "secondary" | "success" | "warning" | "error"'
       },
       states: {
         disabled: 'boolean',
         loading: 'boolean',
         error: 'boolean',
-        required: 'boolean',
-      },
+        required: 'boolean'
+      }
     }
 
     return {
@@ -120,16 +120,16 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
         {
           uri,
           mimeType: 'application/json',
-          text: JSON.stringify(definitions, null, 2),
-        },
-      ],
+          text: JSON.stringify(definitions, null, 2)
+        }
+      ]
     }
   }
 
   throw new Error(`Unknown resource: ${uri}`)
 })
 
-server.setRequestHandler(CallToolRequestSchema, async (request) => {
+server.setRequestHandler(CallToolRequestSchema, async request => {
   const { name, arguments: args } = request.params
 
   try {
@@ -138,7 +138,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         const { componentPath } = args as { componentPath: string }
         const result = extractProps(componentPath)
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
         }
       }
 
@@ -149,7 +149,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         }
         const result = generatePropsTable(componentPath, outputPath)
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
         }
       }
 
@@ -160,7 +160,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         }
         const result = addJsDoc(componentPath, propDescriptions)
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
         }
       }
 
@@ -172,10 +172,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       content: [
         {
           type: 'text',
-          text: `Error: ${error instanceof Error ? error.message : String(error)}`,
-        },
+          text: `Error: ${error instanceof Error ? error.message : String(error)}`
+        }
       ],
-      isError: true,
+      isError: true
     }
   }
 })
@@ -196,7 +196,7 @@ function extractProps(componentPath: string): any {
     const [, interfaceName, propsBody] = match
 
     // Extract individual props
-    const propLines = propsBody.split('\n').filter((line) => line.trim())
+    const propLines = propsBody.split('\n').filter(line => line.trim())
 
     for (const line of propLines) {
       const propMatch = line.match(/^\s*(\w+)(\?)?:\s*([^;]+)/)
@@ -206,7 +206,7 @@ function extractProps(componentPath: string): any {
         props.push({
           name,
           type: type.trim(),
-          required: !optional,
+          required: !optional
         })
       }
     }
@@ -218,7 +218,7 @@ function extractProps(componentPath: string): any {
     success: true,
     componentName,
     props,
-    total: props.length,
+    total: props.length
   }
 }
 
@@ -240,7 +240,9 @@ function generatePropsTable(componentPath: string, outputPath?: string): any {
     const defaultValue = prop.defaultValue || '-'
     const description = prop.description || ''
 
-    lines.push(`| \`${prop.name}\` | \`${prop.type}\` | ${required} | ${defaultValue} | ${description} |`)
+    lines.push(
+      `| \`${prop.name}\` | \`${prop.type}\` | ${required} | ${defaultValue} | ${description} |`
+    )
   }
 
   const markdown = lines.join('\n')
@@ -251,14 +253,14 @@ function generatePropsTable(componentPath: string, outputPath?: string): any {
       success: true,
       outputPath,
       props: extracted.props,
-      markdown,
+      markdown
     }
   }
 
   return {
     success: true,
     props: extracted.props,
-    markdown,
+    markdown
   }
 }
 
@@ -303,7 +305,7 @@ function addJsDoc(componentPath: string, propDescriptions?: Record<string, strin
     success: true,
     componentPath,
     modified,
-    propsDocumented: extracted.props.length,
+    propsDocumented: extracted.props.length
   }
 }
 
@@ -313,7 +315,7 @@ async function main() {
   console.error('props-documenter-mcp running on stdio')
 }
 
-main().catch((error) => {
+main().catch(error => {
   console.error('Server error:', error)
   process.exit(1)
 })

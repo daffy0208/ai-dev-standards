@@ -16,14 +16,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "frontend",
-          "backend",
-          "design"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["frontend", "backend", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -39,16 +33,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "creates_the",
-          "validates_color",
-          "validates_alt"
-        ],
-        "domains": [
-          "ai",
-          "backend",
-          "testing"
-        ],
+        "effects": ["creates_the", "validates_color", "validates_alt"],
+        "domains": ["ai", "backend", "testing"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -64,18 +50,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "ai",
-          "frontend",
-          "backend",
-          "product",
-          "design",
-          "data",
-          "orchestration"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["ai", "frontend", "backend", "product", "design", "data", "orchestration"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -91,14 +67,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "frontend",
-          "backend",
-          "design"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["frontend", "backend", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -114,21 +84,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "adds_to",
-          "validates_json",
-          "validates_api"
-        ],
-        "domains": [
-          "ai",
-          "api",
-          "frontend",
-          "backend",
-          "testing",
-          "product",
-          "design",
-          "data"
-        ],
+        "effects": ["adds_to", "validates_json", "validates_api"],
+        "domains": ["ai", "api", "frontend", "backend", "testing", "product", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -144,18 +101,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "adds_assets",
-          "adds_asset",
-          "designs_assets"
-        ],
-        "domains": [
-          "frontend",
-          "backend",
-          "security",
-          "design",
-          "data"
-        ],
+        "effects": ["adds_assets", "adds_asset", "designs_assets"],
+        "domains": ["frontend", "backend", "security", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -171,14 +118,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "designs_assets"
-        ],
-        "domains": [
-          "frontend",
-          "backend",
-          "design"
-        ],
+        "effects": ["designs_assets"],
+        "domains": ["frontend", "backend", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -194,15 +135,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "frontend",
-          "backend",
-          "design",
-          "data"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["frontend", "backend", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -261,17 +195,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "creates_charts",
-          "creates_bar"
-        ],
-        "domains": [
-          "ai",
-          "frontend",
-          "backend",
-          "design",
-          "data"
-        ],
+        "effects": ["creates_charts", "creates_bar"],
+        "domains": ["ai", "frontend", "backend", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -287,17 +212,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "ai",
-          "frontend",
-          "backend",
-          "testing",
-          "design",
-          "data"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["ai", "frontend", "backend", "testing", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -313,19 +229,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "creates_typescript",
-          "creates_test",
-          "creates_mcp",
-          "adds_prop"
-        ],
-        "domains": [
-          "ai",
-          "frontend",
-          "backend",
-          "testing",
-          "design"
-        ],
+        "effects": ["creates_typescript", "creates_test", "creates_mcp", "adds_prop"],
+        "domains": ["ai", "frontend", "backend", "testing", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -341,19 +246,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "ai",
-          "rag",
-          "frontend",
-          "backend",
-          "testing",
-          "product",
-          "design",
-          "data"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["ai", "rag", "frontend", "backend", "testing", "product", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -369,19 +263,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "designs_to"
-        ],
-        "domains": [
-          "ai",
-          "rag",
-          "frontend",
-          "backend",
-          "testing",
-          "product",
-          "design",
-          "data"
-        ],
+        "effects": ["designs_to"],
+        "domains": ["ai", "rag", "frontend", "backend", "testing", "product", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -397,17 +280,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "creates_migration",
-          "validates_schema"
-        ],
-        "domains": [
-          "ai",
-          "frontend",
-          "backend",
-          "design",
-          "data"
-        ],
+        "effects": ["creates_migration", "validates_schema"],
+        "domains": ["ai", "frontend", "backend", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -423,19 +297,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "deploys_applications",
-          "deploys_to"
-        ],
-        "domains": [
-          "ai",
-          "api",
-          "frontend",
-          "backend",
-          "devops",
-          "design",
-          "orchestration"
-        ],
+        "effects": ["deploys_applications", "deploys_to"],
+        "domains": ["ai", "api", "frontend", "backend", "devops", "design", "orchestration"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -451,11 +314,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "designs_handoff",
-          "designs_files",
-          "designs_file"
-        ],
+        "effects": ["designs_handoff", "designs_files", "designs_file"],
         "domains": [
           "ai",
           "api",
@@ -483,18 +342,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "designs_token",
-          "designs_tokens",
-          "designs_system"
-        ],
-        "domains": [
-          "ai",
-          "frontend",
-          "backend",
-          "design",
-          "data"
-        ],
+        "effects": ["designs_token", "designs_tokens", "designs_system"],
+        "domains": ["ai", "frontend", "backend", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -510,20 +359,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "creates_diagrams",
-          "creates_mermaid",
-          "builds_changelogs"
-        ],
-        "domains": [
-          "ai",
-          "api",
-          "frontend",
-          "backend",
-          "design",
-          "data",
-          "orchestration"
-        ],
+        "effects": ["creates_diagrams", "creates_mermaid", "builds_changelogs"],
+        "domains": ["ai", "api", "frontend", "backend", "design", "data", "orchestration"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -539,18 +376,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "ai",
-          "rag",
-          "api",
-          "frontend",
-          "backend",
-          "testing",
-          "design"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["ai", "rag", "api", "frontend", "backend", "testing", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -566,18 +393,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "adds_features",
-          "adds_login"
-        ],
-        "domains": [
-          "frontend",
-          "backend",
-          "security",
-          "testing",
-          "product",
-          "design"
-        ],
+        "effects": ["adds_features", "adds_login"],
+        "domains": ["frontend", "backend", "security", "testing", "product", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -593,11 +410,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "designs_with",
-          "designs_tokens",
-          "designs_file"
-        ],
+        "effects": ["designs_with", "designs_tokens", "designs_file"],
         "domains": [
           "ai",
           "api",
@@ -625,16 +438,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "creates_font",
-          "creates_a"
-        ],
-        "domains": [
-          "ai",
-          "frontend",
-          "backend",
-          "design"
-        ],
+        "effects": ["creates_font", "creates_a"],
+        "domains": ["ai", "frontend", "backend", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -650,15 +455,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "frontend",
-          "backend",
-          "design",
-          "data"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["frontend", "backend", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -674,14 +472,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "frontend",
-          "backend",
-          "design"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["frontend", "backend", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -697,17 +489,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "ai",
-          "rag",
-          "frontend",
-          "backend",
-          "design",
-          "data"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["ai", "rag", "frontend", "backend", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -723,9 +506,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
+        "effects": ["provides_capability"],
         "domains": [
           "ai",
           "rag",
@@ -753,19 +534,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "ai",
-          "api",
-          "frontend",
-          "backend",
-          "testing",
-          "product",
-          "design",
-          "data"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["ai", "api", "frontend", "backend", "testing", "product", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -781,14 +551,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "frontend",
-          "backend",
-          "design"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["frontend", "backend", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -804,9 +568,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
+        "effects": ["provides_capability"],
         "domains": [
           "ai",
           "rag",
@@ -835,14 +597,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "frontend",
-          "backend",
-          "design"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["frontend", "backend", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -858,15 +614,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "frontend",
-          "backend",
-          "security",
-          "design"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["frontend", "backend", "security", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -882,11 +631,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "creates_openapi",
-          "configures_authentication",
-          "validates_openapi"
-        ],
+        "effects": ["creates_openapi", "configures_authentication", "validates_openapi"],
         "domains": [
           "ai",
           "api",
@@ -913,17 +658,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "ai",
-          "frontend",
-          "backend",
-          "testing",
-          "design",
-          "data"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["ai", "frontend", "backend", "testing", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -939,16 +675,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "adds_jsdoc"
-        ],
-        "domains": [
-          "api",
-          "frontend",
-          "backend",
-          "testing",
-          "design"
-        ],
+        "effects": ["adds_jsdoc"],
+        "domains": ["api", "frontend", "backend", "testing", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -964,16 +692,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "designs_across"
-        ],
-        "domains": [
-          "ai",
-          "frontend",
-          "backend",
-          "testing",
-          "design"
-        ],
+        "effects": ["designs_across"],
+        "domains": ["ai", "frontend", "backend", "testing", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -989,10 +709,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "creates_mcp",
-          "validates_dark"
-        ],
+        "effects": ["creates_mcp", "validates_dark"],
         "domains": [
           "ai",
           "frontend",
@@ -1018,9 +735,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
+        "effects": ["provides_capability"],
         "domains": [
           "ai",
           "rag",
@@ -1049,9 +764,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
+        "effects": ["provides_capability"],
         "domains": [
           "ai",
           "rag",
@@ -1078,14 +791,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "frontend",
-          "backend",
-          "design"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["frontend", "backend", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -1101,17 +808,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "designs_system"
-        ],
-        "domains": [
-          "ai",
-          "frontend",
-          "backend",
-          "testing",
-          "design",
-          "orchestration"
-        ],
+        "effects": ["designs_system"],
+        "domains": ["ai", "frontend", "backend", "testing", "design", "orchestration"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -1127,15 +825,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "frontend",
-          "backend",
-          "testing",
-          "design"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["frontend", "backend", "testing", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -1151,18 +842,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "ai",
-          "frontend",
-          "backend",
-          "testing",
-          "product",
-          "design",
-          "data"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["ai", "frontend", "backend", "testing", "product", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -1178,9 +859,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
+        "effects": ["provides_capability"],
         "domains": [
           "ai",
           "rag",
@@ -1209,18 +888,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "designs_system"
-        ],
-        "domains": [
-          "ai",
-          "frontend",
-          "backend",
-          "testing",
-          "product",
-          "design",
-          "orchestration"
-        ],
+        "effects": ["designs_system"],
+        "domains": ["ai", "frontend", "backend", "testing", "product", "design", "orchestration"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -1236,15 +905,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "frontend",
-          "backend",
-          "design",
-          "data"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["frontend", "backend", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -1260,9 +922,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "creates_data"
-        ],
+        "effects": ["creates_data"],
         "domains": [
           "ai",
           "api",
@@ -1290,19 +950,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "ai",
-          "rag",
-          "api",
-          "frontend",
-          "backend",
-          "testing",
-          "design",
-          "data"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["ai", "rag", "api", "frontend", "backend", "testing", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -1318,15 +967,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "ai",
-          "frontend",
-          "backend",
-          "design"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["ai", "frontend", "backend", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -1342,14 +984,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "frontend",
-          "backend",
-          "design"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["frontend", "backend", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -1391,13 +1027,7 @@
           "configures_react_three_fiber_canvas",
           "optimizes_three_js_performance"
         ],
-        "domains": [
-          "threejs",
-          "webgl",
-          "react",
-          "data-visualization",
-          "frontend"
-        ],
+        "domains": ["threejs", "webgl", "react", "data-visualization", "frontend"],
         "cost": "medium",
         "latency": "slow",
         "risk_level": "medium"
@@ -1413,18 +1043,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "implements_accessibility",
-          "designs_patterns"
-        ],
-        "domains": [
-          "ai",
-          "frontend",
-          "testing",
-          "product",
-          "design",
-          "data"
-        ],
+        "effects": ["implements_accessibility", "designs_patterns"],
+        "domains": ["ai", "frontend", "testing", "product", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -1440,16 +1060,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "creates_smooth",
-          "designs_using"
-        ],
-        "domains": [
-          "ai",
-          "rag",
-          "frontend",
-          "design"
-        ],
+        "effects": ["creates_smooth", "designs_using"],
+        "domains": ["ai", "rag", "frontend", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -1512,9 +1124,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "builds_reliable"
-        ],
+        "effects": ["builds_reliable"],
         "domains": [
           "ai",
           "api",
@@ -1591,18 +1201,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "implements_version",
-          "designs_assets"
-        ],
-        "domains": [
-          "ai",
-          "frontend",
-          "testing",
-          "product",
-          "design",
-          "data"
-        ],
+        "effects": ["implements_version", "designs_assets"],
+        "domains": ["ai", "frontend", "testing", "product", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -1618,20 +1218,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "creates_interactive",
-          "builds_audio",
-          "designs_version"
-        ],
-        "domains": [
-          "ai",
-          "api",
-          "frontend",
-          "backend",
-          "testing",
-          "design",
-          "data"
-        ],
+        "effects": ["creates_interactive", "builds_audio", "designs_version"],
+        "domains": ["ai", "api", "frontend", "backend", "testing", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -1647,9 +1235,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "designs_methodology"
-        ],
+        "effects": ["designs_methodology"],
         "domains": [
           "ai",
           "rag",
@@ -1678,18 +1264,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "creates_cohesive",
-          "designs_and"
-        ],
-        "domains": [
-          "ai",
-          "api",
-          "frontend",
-          "backend",
-          "product",
-          "design"
-        ],
+        "effects": ["creates_cohesive", "designs_and"],
+        "domains": ["ai", "api", "frontend", "backend", "product", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -1732,12 +1308,7 @@
           "updates_manifest_relationships",
           "generates_consistency_report"
         ],
-        "domains": [
-          "knowledge-graph",
-          "ai",
-          "orchestration",
-          "validation"
-        ],
+        "domains": ["knowledge-graph", "ai", "orchestration", "validation"],
         "cost": "medium",
         "latency": "slow",
         "risk_level": "low"
@@ -1753,18 +1324,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "implements_iterative"
-        ],
-        "domains": [
-          "ai",
-          "frontend",
-          "security",
-          "testing",
-          "product",
-          "design",
-          "orchestration"
-        ],
+        "effects": ["implements_iterative"],
+        "domains": ["ai", "frontend", "security", "testing", "product", "design", "orchestration"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -1780,9 +1341,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
+        "effects": ["provides_capability"],
         "domains": [
           "ai",
           "api",
@@ -1810,9 +1369,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
+        "effects": ["provides_capability"],
         "domains": [
           "ai",
           "rag",
@@ -1839,9 +1396,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
+        "effects": ["provides_capability"],
         "domains": [
           "ai",
           "frontend",
@@ -1867,9 +1422,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "builds_scalable"
-        ],
+        "effects": ["builds_scalable"],
         "domains": [
           "ai",
           "api",
@@ -1896,9 +1449,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
+        "effects": ["provides_capability"],
         "domains": [
           "ai",
           "rag",
@@ -1925,9 +1476,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "builds_robust"
-        ],
+        "effects": ["builds_robust"],
         "domains": [
           "ai",
           "rag",
@@ -1955,19 +1504,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "builds_beautiful"
-        ],
-        "domains": [
-          "ai",
-          "api",
-          "frontend",
-          "backend",
-          "testing",
-          "product",
-          "design",
-          "data"
-        ],
+        "effects": ["builds_beautiful"],
+        "domains": ["ai", "api", "frontend", "backend", "testing", "product", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -2000,14 +1538,7 @@
           "configures_dns_ssl",
           "sets_up_database_migrations"
         ],
-        "domains": [
-          "deployment",
-          "devops",
-          "cicd",
-          "infrastructure",
-          "cloud",
-          "containers"
-        ],
+        "domains": ["deployment", "devops", "cicd", "infrastructure", "cloud", "containers"],
         "cost": "low_to_high",
         "latency": "medium",
         "risk_level": "medium"
@@ -2023,12 +1554,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "builds_scalable",
-          "designs_systems",
-          "designs_tokens",
-          "designs_standards"
-        ],
+        "effects": ["builds_scalable", "designs_systems", "designs_tokens", "designs_standards"],
         "domains": [
           "ai",
           "rag",
@@ -2056,11 +1582,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "designs_to",
-          "designs_tokens",
-          "designs_and"
-        ],
+        "effects": ["designs_to", "designs_tokens", "designs_and"],
         "domains": [
           "ai",
           "api",
@@ -2088,9 +1610,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
+        "effects": ["provides_capability"],
         "domains": [
           "ai",
           "rag",
@@ -2118,9 +1638,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
+        "effects": ["provides_capability"],
         "domains": [
           "ai",
           "rag",
@@ -2147,9 +1665,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
+        "effects": ["provides_capability"],
         "domains": [
           "ai",
           "rag",
@@ -2225,18 +1741,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "ai",
-          "frontend",
-          "security",
-          "testing",
-          "product",
-          "design",
-          "data"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["ai", "frontend", "security", "testing", "product", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -2252,18 +1758,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "ai",
-          "rag",
-          "frontend",
-          "testing",
-          "product",
-          "design",
-          "data"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["ai", "rag", "frontend", "testing", "product", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -2279,18 +1775,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "creates_smart",
-          "builds_iot"
-        ],
-        "domains": [
-          "api",
-          "frontend",
-          "backend",
-          "design",
-          "data",
-          "orchestration"
-        ],
+        "effects": ["creates_smart", "builds_iot"],
+        "domains": ["api", "frontend", "backend", "design", "data", "orchestration"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -2327,13 +1813,7 @@
           "implements_versioning_process",
           "updates_governance_framework"
         ],
-        "domains": [
-          "rag",
-          "knowledge-graph",
-          "data-engineering",
-          "governance",
-          "observability"
-        ],
+        "domains": ["rag", "knowledge-graph", "data-engineering", "governance", "observability"],
         "cost": "high",
         "latency": "slow",
         "risk_level": "medium"
@@ -2349,10 +1829,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "builds_knowledge",
-          "designs_and"
-        ],
+        "effects": ["builds_knowledge", "designs_and"],
         "domains": [
           "ai",
           "rag",
@@ -2381,19 +1858,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "creates_real",
-          "implements_webrtc",
-          "builds_live"
-        ],
-        "domains": [
-          "ai",
-          "frontend",
-          "backend",
-          "testing",
-          "design",
-          "data"
-        ],
+        "effects": ["creates_real", "implements_webrtc", "builds_live"],
+        "domains": ["ai", "frontend", "backend", "testing", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -2409,9 +1875,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "builds_multilingual"
-        ],
+        "effects": ["builds_multilingual"],
         "domains": [
           "ai",
           "rag",
@@ -2460,12 +1924,7 @@
           "writes_manifest_to_output_path",
           "updates_existing_manifest_if_present"
         ],
-        "domains": [
-          "ai",
-          "automation",
-          "documentation",
-          "orchestration"
-        ],
+        "domains": ["ai", "automation", "documentation", "orchestration"],
         "cost": "medium",
         "latency": "fast",
         "risk_level": "low"
@@ -2481,9 +1940,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "builds_cross"
-        ],
+        "effects": ["builds_cross"],
         "domains": [
           "ai",
           "rag",
@@ -2530,12 +1987,7 @@
           "configures_agent_communication_channels",
           "documents_execution_and_observability_workflows"
         ],
-        "domains": [
-          "orchestration",
-          "multi-agent",
-          "architecture",
-          "ai_systems"
-        ],
+        "domains": ["orchestration", "multi-agent", "architecture", "ai_systems"],
         "cost": "medium",
         "latency": "slow",
         "risk_level": "medium"
@@ -2611,11 +2063,7 @@
           "scores_plan_alternatives",
           "produces_decision_log"
         ],
-        "domains": [
-          "planning",
-          "orchestration",
-          "ai"
-        ],
+        "domains": ["planning", "orchestration", "ai"],
         "cost": "medium",
         "latency": "slow",
         "risk_level": "low"
@@ -2631,9 +2079,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
+        "effects": ["provides_capability"],
         "domains": [
           "ai",
           "api",
@@ -2661,9 +2107,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "designs_and"
-        ],
+        "effects": ["designs_and"],
         "domains": [
           "ai",
           "rag",
@@ -2691,19 +2135,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "ai",
-          "rag",
-          "frontend",
-          "backend",
-          "testing",
-          "product",
-          "design",
-          "data"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["ai", "rag", "frontend", "backend", "testing", "product", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -2719,18 +2152,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "ai",
-          "rag",
-          "frontend",
-          "testing",
-          "product",
-          "design",
-          "data"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["ai", "rag", "frontend", "testing", "product", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -2792,15 +2215,7 @@
           "designs_user",
           "validates_ideas"
         ],
-        "domains": [
-          "ai",
-          "frontend",
-          "backend",
-          "testing",
-          "product",
-          "design",
-          "data"
-        ],
+        "domains": ["ai", "frontend", "backend", "testing", "product", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -2816,9 +2231,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "creates_prp"
-        ],
+        "effects": ["creates_prp"],
         "domains": [
           "ai",
           "rag",
@@ -2848,9 +2261,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
+        "effects": ["provides_capability"],
         "domains": [
           "ai",
           "rag",
@@ -2880,9 +2291,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
+        "effects": ["provides_capability"],
         "domains": [
           "ai",
           "rag",
@@ -2961,17 +2370,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "ai",
-          "backend",
-          "devops",
-          "testing",
-          "product",
-          "data"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["ai", "backend", "devops", "testing", "product", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -2987,9 +2387,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
+        "effects": ["provides_capability"],
         "domains": [
           "ai",
           "rag",
@@ -3089,11 +2487,7 @@
           "creates_validation_report_json",
           "creates_api_surface_validation_json"
         ],
-        "domains": [
-          "testing",
-          "qa",
-          "governance"
-        ],
+        "domains": ["testing", "qa", "governance"],
         "cost": "medium",
         "latency": "slow",
         "risk_level": "low"
@@ -3109,15 +2503,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "builds_ar"
-        ],
-        "domains": [
-          "rag",
-          "frontend",
-          "testing",
-          "design"
-        ],
+        "effects": ["builds_ar"],
+        "domains": ["rag", "frontend", "testing", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -3133,10 +2520,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "builds_full",
-          "designs_with"
-        ],
+        "effects": ["builds_full", "designs_with"],
         "domains": [
           "ai",
           "rag",
@@ -3223,9 +2607,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
+        "effects": ["provides_capability"],
         "domains": [
           "ai",
           "rag",
@@ -3254,9 +2636,7 @@
             "required": true
           }
         ],
-        "effects": [
-          "creates_clear"
-        ],
+        "effects": ["creates_clear"],
         "domains": [
           "ai",
           "rag",
@@ -3329,18 +2709,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "provides_capability"
-        ],
-        "domains": [
-          "ai",
-          "rag",
-          "frontend",
-          "testing",
-          "product",
-          "design",
-          "data"
-        ],
+        "effects": ["provides_capability"],
+        "domains": ["ai", "rag", "frontend", "testing", "product", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -3372,14 +2742,7 @@
           "identifies_opportunities",
           "creates_research_artifacts"
         ],
-        "domains": [
-          "user-research",
-          "ux",
-          "validation",
-          "discovery",
-          "interviews",
-          "ethnography"
-        ],
+        "domains": ["user-research", "ux", "validation", "discovery", "interviews", "ethnography"],
         "cost": "low",
         "latency": "medium",
         "risk_level": "low"
@@ -3436,19 +2799,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "creates_engaging",
-          "builds_video"
-        ],
-        "domains": [
-          "ai",
-          "api",
-          "frontend",
-          "backend",
-          "testing",
-          "design",
-          "data"
-        ],
+        "effects": ["creates_engaging", "builds_video"],
+        "domains": ["ai", "api", "frontend", "backend", "testing", "design", "data"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -3464,19 +2816,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "designs_beautiful",
-          "designs_systems",
-          "designs_principles"
-        ],
-        "domains": [
-          "ai",
-          "rag",
-          "frontend",
-          "testing",
-          "product",
-          "design"
-        ],
+        "effects": ["designs_beautiful", "designs_systems", "designs_principles"],
+        "domains": ["ai", "rag", "frontend", "testing", "product", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -3492,17 +2833,8 @@
             "required": true
           }
         ],
-        "effects": [
-          "builds_voice"
-        ],
-        "domains": [
-          "ai",
-          "api",
-          "frontend",
-          "backend",
-          "testing",
-          "design"
-        ],
+        "effects": ["builds_voice"],
+        "domains": ["ai", "api", "frontend", "backend", "testing", "design"],
         "cost": "medium",
         "latency": "medium",
         "risk_level": "low"
@@ -5076,21 +4408,11 @@
         "task-breakdown-specialist",
         "technical-writer"
       ],
-      "brain": [
-        "brain-mcp"
-      ],
-      "meta": [
-        "brain-mcp"
-      ],
-      "intelligence": [
-        "brain-mcp"
-      ],
-      "capability-graph": [
-        "brain-mcp"
-      ],
-      "decision-support": [
-        "brain-mcp"
-      ],
+      "brain": ["brain-mcp"],
+      "meta": ["brain-mcp"],
+      "intelligence": ["brain-mcp"],
+      "capability-graph": ["brain-mcp"],
+      "decision-support": ["brain-mcp"],
       "rag": [
         "dark-matter-analyzer-mcp",
         "dark-mode-converter-mcp",
@@ -5152,237 +4474,83 @@
         "security-architect",
         "supabase-developer"
       ],
-      "threejs": [
-        "3d-visualizer"
-      ],
-      "webgl": [
-        "3d-visualizer"
-      ],
-      "react": [
-        "3d-visualizer",
-        "frontend-builder"
-      ],
-      "data-visualization": [
-        "3d-visualizer"
-      ],
-      "rest": [
-        "api-designer"
-      ],
-      "graphql": [
-        "api-designer"
-      ],
-      "authentication": [
-        "api-designer",
-        "security-engineer"
-      ],
-      "documentation": [
-        "api-designer",
-        "manifest-generator",
-        "system-diagnostician"
-      ],
-      "versioning": [
-        "api-designer"
-      ],
-      "project-management": [
-        "archon-manager"
-      ],
-      "knowledge-management": [
-        "archon-manager",
-        "rag-implementer"
-      ],
-      "task-tracking": [
-        "archon-manager"
-      ],
-      "strategic-planning": [
-        "archon-manager"
-      ],
-      "multi-agent": [
-        "archon-manager",
-        "multi-agent-architect"
-      ],
-      "knowledge-graph": [
-        "capability-graph-builder",
-        "knowledge-base-manager"
-      ],
+      "threejs": ["3d-visualizer"],
+      "webgl": ["3d-visualizer"],
+      "react": ["3d-visualizer", "frontend-builder"],
+      "data-visualization": ["3d-visualizer"],
+      "rest": ["api-designer"],
+      "graphql": ["api-designer"],
+      "authentication": ["api-designer", "security-engineer"],
+      "documentation": ["api-designer", "manifest-generator", "system-diagnostician"],
+      "versioning": ["api-designer"],
+      "project-management": ["archon-manager"],
+      "knowledge-management": ["archon-manager", "rag-implementer"],
+      "task-tracking": ["archon-manager"],
+      "strategic-planning": ["archon-manager"],
+      "multi-agent": ["archon-manager", "multi-agent-architect"],
+      "knowledge-graph": ["capability-graph-builder", "knowledge-base-manager"],
       "validation": [
         "capability-graph-builder",
         "mvp-builder",
         "product-strategist",
         "user-researcher"
       ],
-      "deployment": [
-        "deployment-advisor"
-      ],
-      "cicd": [
-        "deployment-advisor"
-      ],
-      "infrastructure": [
-        "deployment-advisor"
-      ],
-      "cloud": [
-        "deployment-advisor"
-      ],
-      "containers": [
-        "deployment-advisor"
-      ],
-      "nextjs": [
-        "frontend-builder"
-      ],
-      "ui": [
-        "frontend-builder"
-      ],
-      "component-architecture": [
-        "frontend-builder"
-      ],
-      "state-management": [
-        "frontend-builder"
-      ],
-      "typescript": [
-        "frontend-builder"
-      ],
-      "tailwindcss": [
-        "frontend-builder"
-      ],
-      "data-engineering": [
-        "knowledge-base-manager"
-      ],
-      "governance": [
-        "knowledge-base-manager",
-        "skill-validator"
-      ],
-      "observability": [
-        "knowledge-base-manager"
-      ],
-      "automation": [
-        "manifest-generator"
-      ],
-      "architecture": [
-        "multi-agent-architect",
-        "system-diagnostician"
-      ],
-      "ai_systems": [
-        "multi-agent-architect"
-      ],
-      "product-development": [
-        "mvp-builder"
-      ],
-      "mvp": [
-        "mvp-builder"
-      ],
-      "prioritization": [
-        "mvp-builder"
-      ],
-      "lean-startup": [
-        "mvp-builder",
-        "product-strategist"
-      ],
-      "agile": [
-        "mvp-builder"
-      ],
-      "planning": [
-        "orchestration-planner"
-      ],
-      "product-management": [
-        "product-strategist"
-      ],
-      "strategy": [
-        "product-strategist"
-      ],
-      "market-research": [
-        "product-strategist"
-      ],
-      "discovery": [
-        "product-strategist",
-        "user-researcher"
-      ],
-      "search": [
-        "rag-implementer"
-      ],
-      "embeddings": [
-        "rag-implementer"
-      ],
-      "vector-database": [
-        "rag-implementer"
-      ],
-      "nlp": [
-        "rag-implementer"
-      ],
-      "authorization": [
-        "security-engineer"
-      ],
-      "owasp": [
-        "security-engineer"
-      ],
-      "encryption": [
-        "security-engineer"
-      ],
-      "compliance": [
-        "security-engineer"
-      ],
-      "appsec": [
-        "security-engineer"
-      ],
-      "qa": [
-        "skill-validator"
-      ],
-      "analysis": [
-        "system-diagnostician"
-      ],
-      "performance": [
-        "system-diagnostician"
-      ],
-      "dependencies": [
-        "system-diagnostician"
-      ],
-      "ci_cd": [
-        "system-diagnostician"
-      ],
-      "quality-assurance": [
-        "testing-strategist"
-      ],
-      "tdd": [
-        "testing-strategist"
-      ],
-      "unit-testing": [
-        "testing-strategist"
-      ],
-      "integration-testing": [
-        "testing-strategist"
-      ],
-      "e2e-testing": [
-        "testing-strategist"
-      ],
-      "ci-cd": [
-        "testing-strategist"
-      ],
-      "user-research": [
-        "user-researcher"
-      ],
-      "ux": [
-        "user-researcher",
-        "ux-designer"
-      ],
-      "interviews": [
-        "user-researcher"
-      ],
-      "ethnography": [
-        "user-researcher"
-      ],
-      "user-experience": [
-        "ux-designer"
-      ],
-      "wireframes": [
-        "ux-designer"
-      ],
-      "prototypes": [
-        "ux-designer"
-      ],
-      "information-architecture": [
-        "ux-designer"
-      ],
-      "interaction-design": [
-        "ux-designer"
-      ]
+      "deployment": ["deployment-advisor"],
+      "cicd": ["deployment-advisor"],
+      "infrastructure": ["deployment-advisor"],
+      "cloud": ["deployment-advisor"],
+      "containers": ["deployment-advisor"],
+      "nextjs": ["frontend-builder"],
+      "ui": ["frontend-builder"],
+      "component-architecture": ["frontend-builder"],
+      "state-management": ["frontend-builder"],
+      "typescript": ["frontend-builder"],
+      "tailwindcss": ["frontend-builder"],
+      "data-engineering": ["knowledge-base-manager"],
+      "governance": ["knowledge-base-manager", "skill-validator"],
+      "observability": ["knowledge-base-manager"],
+      "automation": ["manifest-generator"],
+      "architecture": ["multi-agent-architect", "system-diagnostician"],
+      "ai_systems": ["multi-agent-architect"],
+      "product-development": ["mvp-builder"],
+      "mvp": ["mvp-builder"],
+      "prioritization": ["mvp-builder"],
+      "lean-startup": ["mvp-builder", "product-strategist"],
+      "agile": ["mvp-builder"],
+      "planning": ["orchestration-planner"],
+      "product-management": ["product-strategist"],
+      "strategy": ["product-strategist"],
+      "market-research": ["product-strategist"],
+      "discovery": ["product-strategist", "user-researcher"],
+      "search": ["rag-implementer"],
+      "embeddings": ["rag-implementer"],
+      "vector-database": ["rag-implementer"],
+      "nlp": ["rag-implementer"],
+      "authorization": ["security-engineer"],
+      "owasp": ["security-engineer"],
+      "encryption": ["security-engineer"],
+      "compliance": ["security-engineer"],
+      "appsec": ["security-engineer"],
+      "qa": ["skill-validator"],
+      "analysis": ["system-diagnostician"],
+      "performance": ["system-diagnostician"],
+      "dependencies": ["system-diagnostician"],
+      "ci_cd": ["system-diagnostician"],
+      "quality-assurance": ["testing-strategist"],
+      "tdd": ["testing-strategist"],
+      "unit-testing": ["testing-strategist"],
+      "integration-testing": ["testing-strategist"],
+      "e2e-testing": ["testing-strategist"],
+      "ci-cd": ["testing-strategist"],
+      "user-research": ["user-researcher"],
+      "ux": ["user-researcher", "ux-designer"],
+      "interviews": ["user-researcher"],
+      "ethnography": ["user-researcher"],
+      "user-experience": ["ux-designer"],
+      "wireframes": ["ux-designer"],
+      "prototypes": ["ux-designer"],
+      "information-architecture": ["ux-designer"],
+      "interaction-design": ["ux-designer"]
     },
     "effects": {
       "provides_capability": [
@@ -5432,104 +4600,37 @@
         "task-breakdown-specialist",
         "usability-tester"
       ],
-      "creates_the": [
-        "accessibility-checker-mcp"
-      ],
-      "validates_color": [
-        "accessibility-checker-mcp"
-      ],
-      "validates_alt": [
-        "accessibility-checker-mcp"
-      ],
-      "adds_to": [
-        "api-validator-mcp"
-      ],
-      "validates_json": [
-        "api-validator-mcp"
-      ],
-      "validates_api": [
-        "api-validator-mcp"
-      ],
-      "adds_assets": [
-        "asset-library-mcp"
-      ],
-      "adds_asset": [
-        "asset-library-mcp"
-      ],
-      "designs_assets": [
-        "asset-library-mcp",
-        "asset-optimizer-mcp",
-        "asset-manager"
-      ],
-      "provides_brain_access": [
-        "brain-mcp"
-      ],
-      "enables_intelligent_recommendations": [
-        "brain-mcp"
-      ],
-      "queries_capability_graph": [
-        "brain-mcp"
-      ],
-      "shows_skill_relationships": [
-        "brain-mcp"
-      ],
-      "finds_dependencies": [
-        "brain-mcp"
-      ],
-      "validates_graph_consistency": [
-        "brain-mcp"
-      ],
-      "exposes_orchestration_intelligence": [
-        "brain-mcp"
-      ],
-      "creates_charts": [
-        "chart-builder-mcp"
-      ],
-      "creates_bar": [
-        "chart-builder-mcp"
-      ],
-      "creates_typescript": [
-        "component-generator-mcp"
-      ],
-      "creates_test": [
-        "component-generator-mcp"
-      ],
-      "creates_mcp": [
-        "component-generator-mcp",
-        "screenshot-testing-mcp"
-      ],
-      "adds_prop": [
-        "component-generator-mcp"
-      ],
-      "designs_to": [
-        "dark-mode-converter-mcp",
-        "figma-developer"
-      ],
-      "creates_migration": [
-        "database-migration-mcp"
-      ],
-      "validates_schema": [
-        "database-migration-mcp"
-      ],
-      "deploys_applications": [
-        "deployment-orchestrator-mcp"
-      ],
-      "deploys_to": [
-        "deployment-orchestrator-mcp"
-      ],
-      "designs_handoff": [
-        "design-handoff-mcp"
-      ],
-      "designs_files": [
-        "design-handoff-mcp"
-      ],
-      "designs_file": [
-        "design-handoff-mcp",
-        "figma-sync-mcp"
-      ],
-      "designs_token": [
-        "design-token-manager-mcp"
-      ],
+      "creates_the": ["accessibility-checker-mcp"],
+      "validates_color": ["accessibility-checker-mcp"],
+      "validates_alt": ["accessibility-checker-mcp"],
+      "adds_to": ["api-validator-mcp"],
+      "validates_json": ["api-validator-mcp"],
+      "validates_api": ["api-validator-mcp"],
+      "adds_assets": ["asset-library-mcp"],
+      "adds_asset": ["asset-library-mcp"],
+      "designs_assets": ["asset-library-mcp", "asset-optimizer-mcp", "asset-manager"],
+      "provides_brain_access": ["brain-mcp"],
+      "enables_intelligent_recommendations": ["brain-mcp"],
+      "queries_capability_graph": ["brain-mcp"],
+      "shows_skill_relationships": ["brain-mcp"],
+      "finds_dependencies": ["brain-mcp"],
+      "validates_graph_consistency": ["brain-mcp"],
+      "exposes_orchestration_intelligence": ["brain-mcp"],
+      "creates_charts": ["chart-builder-mcp"],
+      "creates_bar": ["chart-builder-mcp"],
+      "creates_typescript": ["component-generator-mcp"],
+      "creates_test": ["component-generator-mcp"],
+      "creates_mcp": ["component-generator-mcp", "screenshot-testing-mcp"],
+      "adds_prop": ["component-generator-mcp"],
+      "designs_to": ["dark-mode-converter-mcp", "figma-developer"],
+      "creates_migration": ["database-migration-mcp"],
+      "validates_schema": ["database-migration-mcp"],
+      "deploys_applications": ["deployment-orchestrator-mcp"],
+      "deploys_to": ["deployment-orchestrator-mcp"],
+      "designs_handoff": ["design-handoff-mcp"],
+      "designs_files": ["design-handoff-mcp"],
+      "designs_file": ["design-handoff-mcp", "figma-sync-mcp"],
+      "designs_token": ["design-token-manager-mcp"],
       "designs_tokens": [
         "design-token-manager-mcp",
         "figma-sync-mcp",
@@ -5541,580 +4642,199 @@
         "storybook-generator-mcp",
         "theme-builder-mcp"
       ],
-      "creates_diagrams": [
-        "doc-generator-mcp"
-      ],
-      "creates_mermaid": [
-        "doc-generator-mcp"
-      ],
-      "builds_changelogs": [
-        "doc-generator-mcp"
-      ],
-      "adds_features": [
-        "feature-prioritizer-mcp"
-      ],
-      "adds_login": [
-        "feature-prioritizer-mcp"
-      ],
-      "designs_with": [
-        "figma-sync-mcp",
-        "supabase-developer"
-      ],
-      "creates_font": [
-        "font-optimizer-mcp"
-      ],
-      "creates_a": [
-        "font-optimizer-mcp"
-      ],
-      "creates_openapi": [
-        "openapi-generator-mcp"
-      ],
-      "configures_authentication": [
-        "openapi-generator-mcp"
-      ],
-      "validates_openapi": [
-        "openapi-generator-mcp"
-      ],
-      "adds_jsdoc": [
-        "props-documenter-mcp"
-      ],
-      "designs_across": [
-        "responsive-preview-mcp"
-      ],
-      "validates_dark": [
-        "screenshot-testing-mcp"
-      ],
-      "creates_data": [
-        "user-insight-analyzer-mcp"
-      ],
-      "creates_three_js_scene": [
-        "3d-visualizer"
-      ],
-      "adds_interactive_3d_visualization": [
-        "3d-visualizer"
-      ],
-      "configures_react_three_fiber_canvas": [
-        "3d-visualizer"
-      ],
-      "optimizes_three_js_performance": [
-        "3d-visualizer"
-      ],
-      "implements_accessibility": [
-        "accessibility-engineer"
-      ],
-      "designs_patterns": [
-        "accessibility-engineer"
-      ],
-      "creates_smooth": [
-        "animation-designer"
-      ],
-      "designs_using": [
-        "animation-designer"
-      ],
-      "creates_api_routes": [
-        "api-designer"
-      ],
-      "implements_authentication": [
-        "api-designer",
-        "security-engineer"
-      ],
-      "adds_rate_limiting": [
-        "api-designer"
-      ],
-      "configures_cors": [
-        "api-designer"
-      ],
-      "implements_pagination": [
-        "api-designer"
-      ],
-      "adds_input_validation": [
-        "api-designer",
-        "security-engineer"
-      ],
-      "creates_error_handling": [
-        "api-designer"
-      ],
-      "generates_openapi_spec": [
-        "api-designer"
-      ],
-      "implements_versioning": [
-        "api-designer"
-      ],
-      "adds_api_documentation": [
-        "api-designer"
-      ],
-      "builds_reliable": [
-        "api-integration-builder"
-      ],
-      "updates_project_backlog": [
-        "archon-manager"
-      ],
-      "updates_task_statuses": [
-        "archon-manager"
-      ],
-      "configures_two_layer_workflow": [
-        "archon-manager"
-      ],
-      "adds_knowledge_sources": [
-        "archon-manager"
-      ],
-      "updates_project_metrics": [
-        "archon-manager"
-      ],
-      "implements_version": [
-        "asset-manager"
-      ],
-      "creates_interactive": [
-        "audio-producer",
-        "prototype-designer"
-      ],
-      "builds_audio": [
-        "audio-producer"
-      ],
-      "designs_version": [
-        "audio-producer"
-      ],
-      "designs_methodology": [
-        "bmad-method"
-      ],
-      "creates_cohesive": [
-        "brand-designer"
-      ],
+      "creates_diagrams": ["doc-generator-mcp"],
+      "creates_mermaid": ["doc-generator-mcp"],
+      "builds_changelogs": ["doc-generator-mcp"],
+      "adds_features": ["feature-prioritizer-mcp"],
+      "adds_login": ["feature-prioritizer-mcp"],
+      "designs_with": ["figma-sync-mcp", "supabase-developer"],
+      "creates_font": ["font-optimizer-mcp"],
+      "creates_a": ["font-optimizer-mcp"],
+      "creates_openapi": ["openapi-generator-mcp"],
+      "configures_authentication": ["openapi-generator-mcp"],
+      "validates_openapi": ["openapi-generator-mcp"],
+      "adds_jsdoc": ["props-documenter-mcp"],
+      "designs_across": ["responsive-preview-mcp"],
+      "validates_dark": ["screenshot-testing-mcp"],
+      "creates_data": ["user-insight-analyzer-mcp"],
+      "creates_three_js_scene": ["3d-visualizer"],
+      "adds_interactive_3d_visualization": ["3d-visualizer"],
+      "configures_react_three_fiber_canvas": ["3d-visualizer"],
+      "optimizes_three_js_performance": ["3d-visualizer"],
+      "implements_accessibility": ["accessibility-engineer"],
+      "designs_patterns": ["accessibility-engineer"],
+      "creates_smooth": ["animation-designer"],
+      "designs_using": ["animation-designer"],
+      "creates_api_routes": ["api-designer"],
+      "implements_authentication": ["api-designer", "security-engineer"],
+      "adds_rate_limiting": ["api-designer"],
+      "configures_cors": ["api-designer"],
+      "implements_pagination": ["api-designer"],
+      "adds_input_validation": ["api-designer", "security-engineer"],
+      "creates_error_handling": ["api-designer"],
+      "generates_openapi_spec": ["api-designer"],
+      "implements_versioning": ["api-designer"],
+      "adds_api_documentation": ["api-designer"],
+      "builds_reliable": ["api-integration-builder"],
+      "updates_project_backlog": ["archon-manager"],
+      "updates_task_statuses": ["archon-manager"],
+      "configures_two_layer_workflow": ["archon-manager"],
+      "adds_knowledge_sources": ["archon-manager"],
+      "updates_project_metrics": ["archon-manager"],
+      "implements_version": ["asset-manager"],
+      "creates_interactive": ["audio-producer", "prototype-designer"],
+      "builds_audio": ["audio-producer"],
+      "designs_version": ["audio-producer"],
+      "designs_methodology": ["bmad-method"],
+      "creates_cohesive": ["brand-designer"],
       "designs_and": [
         "brand-designer",
         "figma-developer",
         "knowledge-graph-builder",
         "pricing-strategist"
       ],
-      "creates_capability_graph_json": [
-        "capability-graph-builder"
-      ],
-      "adds_domain_index": [
-        "capability-graph-builder"
-      ],
-      "adds_effect_index": [
-        "capability-graph-builder"
-      ],
-      "updates_manifest_relationships": [
-        "capability-graph-builder"
-      ],
-      "generates_consistency_report": [
-        "capability-graph-builder"
-      ],
-      "implements_iterative": [
-        "codex-review-workflow"
-      ],
-      "builds_scalable": [
-        "customer-support-builder",
-        "design-system-architect"
-      ],
-      "builds_robust": [
-        "data-engineer"
-      ],
-      "builds_beautiful": [
-        "data-visualizer"
-      ],
-      "configures_deployment_pipeline": [
-        "deployment-advisor"
-      ],
-      "sets_up_cicd": [
-        "deployment-advisor"
-      ],
-      "configures_environment_variables": [
-        "deployment-advisor"
-      ],
-      "implements_zero_downtime_deployment": [
-        "deployment-advisor"
-      ],
-      "configures_monitoring": [
-        "deployment-advisor"
-      ],
-      "sets_up_logging": [
-        "deployment-advisor"
-      ],
-      "configures_auto_scaling": [
-        "deployment-advisor"
-      ],
-      "implements_rollback_strategy": [
-        "deployment-advisor"
-      ],
-      "configures_dns_ssl": [
-        "deployment-advisor"
-      ],
-      "sets_up_database_migrations": [
-        "deployment-advisor"
-      ],
-      "designs_systems": [
-        "design-system-architect",
-        "visual-designer"
-      ],
-      "designs_standards": [
-        "design-system-architect"
-      ],
-      "creates_component_architecture": [
-        "frontend-builder"
-      ],
-      "configures_nextjs_app_router": [
-        "frontend-builder"
-      ],
-      "implements_state_management": [
-        "frontend-builder"
-      ],
-      "adds_form_validation": [
-        "frontend-builder"
-      ],
-      "configures_tailwind_css": [
-        "frontend-builder"
-      ],
-      "implements_data_fetching": [
-        "frontend-builder"
-      ],
-      "adds_error_boundaries": [
-        "frontend-builder"
-      ],
-      "optimizes_performance": [
-        "frontend-builder"
-      ],
-      "configures_typescript": [
-        "frontend-builder"
-      ],
-      "creates_smart": [
-        "iot-developer"
-      ],
-      "builds_iot": [
-        "iot-developer"
-      ],
-      "creates_knowledge_architecture": [
-        "knowledge-base-manager"
-      ],
-      "configures_ingestion_pipeline": [
-        "knowledge-base-manager"
-      ],
-      "adds_provenance_tracking": [
-        "knowledge-base-manager"
-      ],
-      "establishes_quality_controls": [
-        "knowledge-base-manager"
-      ],
-      "implements_versioning_process": [
-        "knowledge-base-manager"
-      ],
-      "updates_governance_framework": [
-        "knowledge-base-manager"
-      ],
-      "builds_knowledge": [
-        "knowledge-graph-builder"
-      ],
-      "creates_real": [
-        "livestream-engineer"
-      ],
-      "implements_webrtc": [
-        "livestream-engineer"
-      ],
-      "builds_live": [
-        "livestream-engineer"
-      ],
-      "builds_multilingual": [
-        "localization-engineer"
-      ],
-      "generates_capability_manifest": [
-        "manifest-generator"
-      ],
-      "validates_manifest_against_schema": [
-        "manifest-generator"
-      ],
-      "writes_manifest_to_output_path": [
-        "manifest-generator"
-      ],
-      "updates_existing_manifest_if_present": [
-        "manifest-generator"
-      ],
-      "builds_cross": [
-        "mobile-developer"
-      ],
-      "creates_multi_agent_architecture_plan": [
-        "multi-agent-architect"
-      ],
-      "defines_agent_roles_matrix": [
-        "multi-agent-architect"
-      ],
-      "configures_agent_communication_channels": [
-        "multi-agent-architect"
-      ],
-      "documents_execution_and_observability_workflows": [
-        "multi-agent-architect"
-      ],
-      "defines_mvp_scope": [
-        "mvp-builder"
-      ],
-      "prioritizes_features_p0_p1_p2": [
-        "mvp-builder"
-      ],
-      "creates_validation_metrics": [
-        "mvp-builder"
-      ],
-      "identifies_riskiest_assumptions": [
-        "mvp-builder"
-      ],
-      "defines_success_criteria": [
-        "mvp-builder"
-      ],
-      "prevents_over_engineering": [
-        "mvp-builder"
-      ],
-      "enables_fast_iteration": [
-        "mvp-builder"
-      ],
-      "creates_feature_roadmap": [
-        "mvp-builder"
-      ],
-      "analyzes_goal_effects": [
-        "orchestration-planner"
-      ],
-      "validates_capability_preconditions": [
-        "orchestration-planner"
-      ],
-      "generates_htn_plan": [
-        "orchestration-planner"
-      ],
-      "scores_plan_alternatives": [
-        "orchestration-planner"
-      ],
-      "produces_decision_log": [
-        "orchestration-planner"
-      ],
-      "validates_problem_solution_fit": [
-        "product-strategist"
-      ],
-      "defines_target_market": [
-        "product-strategist"
-      ],
-      "creates_user_personas": [
-        "product-strategist",
-        "user-researcher"
-      ],
-      "validates_product_market_fit": [
-        "product-strategist"
-      ],
-      "prioritizes_features": [
-        "product-strategist"
-      ],
-      "defines_value_proposition": [
-        "product-strategist"
-      ],
-      "identifies_competitive_advantage": [
-        "product-strategist"
-      ],
-      "creates_go_to_market_strategy": [
-        "product-strategist"
-      ],
-      "defines_success_metrics": [
-        "product-strategist"
-      ],
-      "prevents_building_wrong_product": [
-        "product-strategist"
-      ],
-      "implements_prototype": [
-        "prototype-designer"
-      ],
-      "designs_user": [
-        "prototype-designer"
-      ],
-      "validates_ideas": [
-        "prototype-designer"
-      ],
-      "creates_prp": [
-        "prp-generator"
-      ],
-      "creates_vector_index": [
-        "rag-implementer"
-      ],
-      "adds_embedding_pipeline": [
-        "rag-implementer"
-      ],
-      "configures_retrieval_api": [
-        "rag-implementer"
-      ],
-      "implements_hybrid_search": [
-        "rag-implementer"
-      ],
-      "adds_rag_evaluation_metrics": [
-        "rag-implementer"
-      ],
-      "implements_context_assembly": [
-        "rag-implementer"
-      ],
-      "adds_source_attribution": [
-        "rag-implementer"
-      ],
-      "configures_vector_database": [
-        "rag-implementer"
-      ],
-      "implements_authorization": [
-        "security-engineer"
-      ],
-      "prevents_sql_injection": [
-        "security-engineer"
-      ],
-      "prevents_xss_attacks": [
-        "security-engineer"
-      ],
-      "prevents_csrf_attacks": [
-        "security-engineer"
-      ],
-      "implements_rate_limiting": [
-        "security-engineer"
-      ],
-      "adds_security_headers": [
-        "security-engineer"
-      ],
-      "implements_encryption": [
-        "security-engineer"
-      ],
-      "adds_audit_logging": [
-        "security-engineer"
-      ],
-      "configures_cors_properly": [
-        "security-engineer"
-      ],
-      "implements_secrets_management": [
-        "security-engineer"
-      ],
-      "creates_description_validation_json": [
-        "skill-validator"
-      ],
-      "creates_precondition_validation_json": [
-        "skill-validator"
-      ],
-      "creates_effect_validation_json": [
-        "skill-validator"
-      ],
-      "creates_validation_report_json": [
-        "skill-validator"
-      ],
-      "creates_api_surface_validation_json": [
-        "skill-validator"
-      ],
-      "builds_ar": [
-        "spatial-developer"
-      ],
-      "builds_full": [
-        "supabase-developer"
-      ],
-      "creates_project_state_snapshot": [
-        "system-diagnostician"
-      ],
-      "creates_health_assessment_report": [
-        "system-diagnostician"
-      ],
-      "creates_capability_gap_analysis": [
-        "system-diagnostician"
-      ],
-      "creates_prioritized_action_plan": [
-        "system-diagnostician"
-      ],
-      "updates_project_health_metrics": [
-        "system-diagnostician"
-      ],
-      "creates_clear": [
-        "technical-writer"
-      ],
-      "configures_testing_framework": [
-        "testing-strategist"
-      ],
-      "creates_unit_tests": [
-        "testing-strategist"
-      ],
-      "creates_integration_tests": [
-        "testing-strategist"
-      ],
-      "creates_e2e_tests": [
-        "testing-strategist"
-      ],
-      "implements_test_coverage": [
-        "testing-strategist"
-      ],
-      "adds_ci_test_pipeline": [
-        "testing-strategist"
-      ],
-      "creates_test_fixtures": [
-        "testing-strategist"
-      ],
-      "implements_mocking_strategy": [
-        "testing-strategist"
-      ],
-      "adds_test_documentation": [
-        "testing-strategist"
-      ],
-      "conducts_user_interviews": [
-        "user-researcher"
-      ],
-      "identifies_pain_points": [
-        "user-researcher"
-      ],
-      "validates_assumptions": [
-        "user-researcher"
-      ],
-      "maps_user_journeys": [
-        "user-researcher"
-      ],
-      "synthesizes_insights": [
-        "user-researcher"
-      ],
-      "prioritizes_needs": [
-        "user-researcher"
-      ],
-      "identifies_opportunities": [
-        "user-researcher"
-      ],
-      "creates_research_artifacts": [
-        "user-researcher"
-      ],
-      "creates_user_flows": [
-        "ux-designer"
-      ],
-      "designs_wireframes": [
-        "ux-designer"
-      ],
-      "creates_prototypes": [
-        "ux-designer"
-      ],
-      "defines_information_architecture": [
-        "ux-designer"
-      ],
-      "designs_interaction_patterns": [
-        "ux-designer"
-      ],
-      "ensures_accessibility": [
-        "ux-designer"
-      ],
-      "optimizes_user_journey": [
-        "ux-designer"
-      ],
-      "reduces_friction": [
-        "ux-designer"
-      ],
-      "improves_conversion": [
-        "ux-designer"
-      ],
-      "creates_design_specifications": [
-        "ux-designer"
-      ],
-      "creates_engaging": [
-        "video-producer"
-      ],
-      "builds_video": [
-        "video-producer"
-      ],
-      "designs_beautiful": [
-        "visual-designer"
-      ],
-      "designs_principles": [
-        "visual-designer"
-      ],
-      "builds_voice": [
-        "voice-interface-builder"
-      ]
+      "creates_capability_graph_json": ["capability-graph-builder"],
+      "adds_domain_index": ["capability-graph-builder"],
+      "adds_effect_index": ["capability-graph-builder"],
+      "updates_manifest_relationships": ["capability-graph-builder"],
+      "generates_consistency_report": ["capability-graph-builder"],
+      "implements_iterative": ["codex-review-workflow"],
+      "builds_scalable": ["customer-support-builder", "design-system-architect"],
+      "builds_robust": ["data-engineer"],
+      "builds_beautiful": ["data-visualizer"],
+      "configures_deployment_pipeline": ["deployment-advisor"],
+      "sets_up_cicd": ["deployment-advisor"],
+      "configures_environment_variables": ["deployment-advisor"],
+      "implements_zero_downtime_deployment": ["deployment-advisor"],
+      "configures_monitoring": ["deployment-advisor"],
+      "sets_up_logging": ["deployment-advisor"],
+      "configures_auto_scaling": ["deployment-advisor"],
+      "implements_rollback_strategy": ["deployment-advisor"],
+      "configures_dns_ssl": ["deployment-advisor"],
+      "sets_up_database_migrations": ["deployment-advisor"],
+      "designs_systems": ["design-system-architect", "visual-designer"],
+      "designs_standards": ["design-system-architect"],
+      "creates_component_architecture": ["frontend-builder"],
+      "configures_nextjs_app_router": ["frontend-builder"],
+      "implements_state_management": ["frontend-builder"],
+      "adds_form_validation": ["frontend-builder"],
+      "configures_tailwind_css": ["frontend-builder"],
+      "implements_data_fetching": ["frontend-builder"],
+      "adds_error_boundaries": ["frontend-builder"],
+      "optimizes_performance": ["frontend-builder"],
+      "configures_typescript": ["frontend-builder"],
+      "creates_smart": ["iot-developer"],
+      "builds_iot": ["iot-developer"],
+      "creates_knowledge_architecture": ["knowledge-base-manager"],
+      "configures_ingestion_pipeline": ["knowledge-base-manager"],
+      "adds_provenance_tracking": ["knowledge-base-manager"],
+      "establishes_quality_controls": ["knowledge-base-manager"],
+      "implements_versioning_process": ["knowledge-base-manager"],
+      "updates_governance_framework": ["knowledge-base-manager"],
+      "builds_knowledge": ["knowledge-graph-builder"],
+      "creates_real": ["livestream-engineer"],
+      "implements_webrtc": ["livestream-engineer"],
+      "builds_live": ["livestream-engineer"],
+      "builds_multilingual": ["localization-engineer"],
+      "generates_capability_manifest": ["manifest-generator"],
+      "validates_manifest_against_schema": ["manifest-generator"],
+      "writes_manifest_to_output_path": ["manifest-generator"],
+      "updates_existing_manifest_if_present": ["manifest-generator"],
+      "builds_cross": ["mobile-developer"],
+      "creates_multi_agent_architecture_plan": ["multi-agent-architect"],
+      "defines_agent_roles_matrix": ["multi-agent-architect"],
+      "configures_agent_communication_channels": ["multi-agent-architect"],
+      "documents_execution_and_observability_workflows": ["multi-agent-architect"],
+      "defines_mvp_scope": ["mvp-builder"],
+      "prioritizes_features_p0_p1_p2": ["mvp-builder"],
+      "creates_validation_metrics": ["mvp-builder"],
+      "identifies_riskiest_assumptions": ["mvp-builder"],
+      "defines_success_criteria": ["mvp-builder"],
+      "prevents_over_engineering": ["mvp-builder"],
+      "enables_fast_iteration": ["mvp-builder"],
+      "creates_feature_roadmap": ["mvp-builder"],
+      "analyzes_goal_effects": ["orchestration-planner"],
+      "validates_capability_preconditions": ["orchestration-planner"],
+      "generates_htn_plan": ["orchestration-planner"],
+      "scores_plan_alternatives": ["orchestration-planner"],
+      "produces_decision_log": ["orchestration-planner"],
+      "validates_problem_solution_fit": ["product-strategist"],
+      "defines_target_market": ["product-strategist"],
+      "creates_user_personas": ["product-strategist", "user-researcher"],
+      "validates_product_market_fit": ["product-strategist"],
+      "prioritizes_features": ["product-strategist"],
+      "defines_value_proposition": ["product-strategist"],
+      "identifies_competitive_advantage": ["product-strategist"],
+      "creates_go_to_market_strategy": ["product-strategist"],
+      "defines_success_metrics": ["product-strategist"],
+      "prevents_building_wrong_product": ["product-strategist"],
+      "implements_prototype": ["prototype-designer"],
+      "designs_user": ["prototype-designer"],
+      "validates_ideas": ["prototype-designer"],
+      "creates_prp": ["prp-generator"],
+      "creates_vector_index": ["rag-implementer"],
+      "adds_embedding_pipeline": ["rag-implementer"],
+      "configures_retrieval_api": ["rag-implementer"],
+      "implements_hybrid_search": ["rag-implementer"],
+      "adds_rag_evaluation_metrics": ["rag-implementer"],
+      "implements_context_assembly": ["rag-implementer"],
+      "adds_source_attribution": ["rag-implementer"],
+      "configures_vector_database": ["rag-implementer"],
+      "implements_authorization": ["security-engineer"],
+      "prevents_sql_injection": ["security-engineer"],
+      "prevents_xss_attacks": ["security-engineer"],
+      "prevents_csrf_attacks": ["security-engineer"],
+      "implements_rate_limiting": ["security-engineer"],
+      "adds_security_headers": ["security-engineer"],
+      "implements_encryption": ["security-engineer"],
+      "adds_audit_logging": ["security-engineer"],
+      "configures_cors_properly": ["security-engineer"],
+      "implements_secrets_management": ["security-engineer"],
+      "creates_description_validation_json": ["skill-validator"],
+      "creates_precondition_validation_json": ["skill-validator"],
+      "creates_effect_validation_json": ["skill-validator"],
+      "creates_validation_report_json": ["skill-validator"],
+      "creates_api_surface_validation_json": ["skill-validator"],
+      "builds_ar": ["spatial-developer"],
+      "builds_full": ["supabase-developer"],
+      "creates_project_state_snapshot": ["system-diagnostician"],
+      "creates_health_assessment_report": ["system-diagnostician"],
+      "creates_capability_gap_analysis": ["system-diagnostician"],
+      "creates_prioritized_action_plan": ["system-diagnostician"],
+      "updates_project_health_metrics": ["system-diagnostician"],
+      "creates_clear": ["technical-writer"],
+      "configures_testing_framework": ["testing-strategist"],
+      "creates_unit_tests": ["testing-strategist"],
+      "creates_integration_tests": ["testing-strategist"],
+      "creates_e2e_tests": ["testing-strategist"],
+      "implements_test_coverage": ["testing-strategist"],
+      "adds_ci_test_pipeline": ["testing-strategist"],
+      "creates_test_fixtures": ["testing-strategist"],
+      "implements_mocking_strategy": ["testing-strategist"],
+      "adds_test_documentation": ["testing-strategist"],
+      "conducts_user_interviews": ["user-researcher"],
+      "identifies_pain_points": ["user-researcher"],
+      "validates_assumptions": ["user-researcher"],
+      "maps_user_journeys": ["user-researcher"],
+      "synthesizes_insights": ["user-researcher"],
+      "prioritizes_needs": ["user-researcher"],
+      "identifies_opportunities": ["user-researcher"],
+      "creates_research_artifacts": ["user-researcher"],
+      "creates_user_flows": ["ux-designer"],
+      "designs_wireframes": ["ux-designer"],
+      "creates_prototypes": ["ux-designer"],
+      "defines_information_architecture": ["ux-designer"],
+      "designs_interaction_patterns": ["ux-designer"],
+      "ensures_accessibility": ["ux-designer"],
+      "optimizes_user_journey": ["ux-designer"],
+      "reduces_friction": ["ux-designer"],
+      "improves_conversion": ["ux-designer"],
+      "creates_design_specifications": ["ux-designer"],
+      "creates_engaging": ["video-producer"],
+      "builds_video": ["video-producer"],
+      "designs_beautiful": ["visual-designer"],
+      "designs_principles": ["visual-designer"],
+      "builds_voice": ["voice-interface-builder"]
     }
   }
 }

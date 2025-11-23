@@ -19,8 +19,7 @@ Examples:
   Spotify: Time Listening
   Shopify: GMV
 
-Your North Star should:
-  ✅ Represent customer value
+Your North Star should: ✅ Represent customer value
   ✅ Correlate with revenue
   ✅ Be measurable frequently
   ✅ Rally the team
@@ -114,31 +113,37 @@ Bad Retention:
 ## Key Metrics to Track
 
 ### Acquisition
+
 - Traffic sources (organic, paid, referral)
 - Cost per click (CPC)
 - Conversion rate (visitor → signup)
 
 ### Activation
+
 - Signup → first core action
 - Time to value
 - Onboarding completion rate
 
 ### Retention
+
 - DAU / MAU (stickiness)
 - Retention rate D1, D7, D30
 - Churn rate
 
 ### Revenue
+
 - MRR / ARR
 - ARPU (Average Revenue Per User)
 - LTV (Lifetime Value)
 - LTV:CAC ratio
 
 ### Referral
+
 - Viral coefficient
 - Referral signups
 - NPS (Net Promoter Score)
-```
+
+````
 
 ## Tools
 
@@ -157,7 +162,7 @@ A/B Testing:
   - Optimizely
   - VWO
   - Google Optimize (free)
-```
+````
 
 ## Dashboard Design
 
@@ -183,9 +188,9 @@ Marketing Dashboard:
 ## Summary
 
 Great analytics:
+
 - ✅ One North Star Metric
 - ✅ Track everything
 - ✅ Regular review (weekly)
 - ✅ Share insights widely
 - ✅ Act on data quickly
-

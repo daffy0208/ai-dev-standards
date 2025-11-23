@@ -12,18 +12,21 @@ I help you create 3D visualizations, interactive 3D graphics, and immersive web 
 ## What I Do
 
 **3D Graphics:**
+
 - 3D models and scenes
 - Materials and lighting
 - Animations and interactions
 - Camera controls
 
 **3D Data Visualization:**
+
 - 3D charts and graphs
 - Network visualizations
 - Geospatial data
 - Scientific visualization
 
 **Interactive 3D:**
+
 - Product viewers (360°)
 - Configurators
 - Interactive demos
@@ -419,6 +422,7 @@ export function Particles({ count = 1000 }: { count?: number }) {
 ## When to Use Me
 
 **Perfect for:**
+
 - Building 3D product viewers
 - Creating data visualizations
 - Interactive 3D experiences
@@ -426,6 +430,7 @@ export function Particles({ count = 1000 }: { count?: number }) {
 - 3D game prototypes
 
 **I'll help you:**
+
 - Set up Three.js projects
 - Load 3D models
 - Create interactive 3D

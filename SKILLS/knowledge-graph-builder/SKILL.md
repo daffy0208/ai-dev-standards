@@ -15,6 +15,7 @@ Build structured knowledge graphs for enhanced AI system performance through rel
 ## When to Use Knowledge Graphs
 
 ### Use Knowledge Graphs When:
+
 - ✅ Complex entity relationships are central to your domain
 - ✅ Need to verify AI-generated facts against structured knowledge
 - ✅ Semantic search and relationship traversal required
@@ -24,6 +25,7 @@ Build structured knowledge graphs for enhanced AI system performance through rel
 - ✅ Fraud detection or pattern recognition across connected data
 
 ### Don't Use Knowledge Graphs When:
+
 - ❌ Simple tabular data (use relational DB)
 - ❌ Purely document-based search (use RAG with vector DB)
 - ❌ No significant relationships between entities
@@ -39,18 +41,22 @@ Build structured knowledge graphs for enhanced AI system performance through rel
 **Goal**: Define entities, relationships, and properties for your domain
 
 **Entity Types** (Nodes):
+
 - Person, Organization, Location, Product, Concept, Event, Document
 
 **Relationship Types** (Edges):
+
 - Hierarchical: IS_A, PART_OF, REPORTS_TO
 - Associative: WORKS_FOR, LOCATED_IN, AUTHORED_BY, RELATED_TO
 - Temporal: CREATED_ON, OCCURRED_BEFORE, OCCURRED_AFTER
 
 **Properties** (Attributes):
+
 - Node properties: id, name, type, created_at, metadata
 - Edge properties: type, confidence, source, timestamp
 
 **Example Ontology**:
+
 ```turtle
 # RDF/Turtle format
 @prefix : <http://example.org/ontology#> .
@@ -68,6 +74,7 @@ Build structured knowledge graphs for enhanced AI system performance through rel
 ```
 
 **Validation**:
+
 - [ ] Entities cover all domain concepts
 - [ ] Relationships capture key connections
 - [ ] Ontology reviewed with domain experts
@@ -80,34 +87,40 @@ Build structured knowledge graphs for enhanced AI system performance through rel
 **Decision Matrix**:
 
 **Neo4j** (Recommended for most):
+
 - Pros: Mature, Cypher query language, graph algorithms, excellent visualization
 - Cons: Licensing costs for enterprise, scaling complexity
 - Use when: Complex queries, graph algorithms, team can learn Cypher
 
 **Amazon Neptune**:
+
 - Pros: Managed service, supports Gremlin and SPARQL, AWS integration
 - Cons: Vendor lock-in, more expensive than self-hosted
 - Use when: AWS infrastructure, need managed service, compliance requirements
 
 **ArangoDB**:
+
 - Pros: Multi-model (graph + document + key-value), JavaScript queries
 - Cons: Smaller community, fewer graph-specific features
 - Use when: Need document DB + graph in one system
 
 **TigerGraph**:
+
 - Pros: Best performance for deep traversals, parallel processing
 - Cons: Complex setup, higher learning curve
 - Use when: Massive graphs (billions of edges), real-time analytics
 
 **Technology Stack**:
+
 ```yaml
-graph_database: "Neo4j Community" # or Enterprise for production
-vector_integration: "Pinecone" # For hybrid search
-embeddings: "text-embedding-3-large" # OpenAI
-etl: "Apache Airflow" # For data pipelines
+graph_database: 'Neo4j Community' # or Enterprise for production
+vector_integration: 'Pinecone' # For hybrid search
+embeddings: 'text-embedding-3-large' # OpenAI
+etl: 'Apache Airflow' # For data pipelines
 ```
 
 **Neo4j Schema Setup**:
+
 ```cypher
 // Create constraints for uniqueness
 CREATE CONSTRAINT person_id IF NOT EXISTS
@@ -131,11 +144,13 @@ FOR ()-[r:RELATED_TO]-() ON (r.type, r.confidence);
 **Goal**: Extract entities and relationships from data sources
 
 **Data Sources**:
+
 - Structured: Databases, APIs, CSV files
 - Unstructured: Documents, web content, text files
 - Semi-structured: JSON, XML, knowledge bases
 
 **Entity Extraction Pipeline**:
+
 ```python
 class EntityExtractionPipeline:
     def __init__(self):
@@ -157,6 +172,7 @@ class EntityExtractionPipeline:
 ```
 
 **Relationship Extraction**:
+
 ```python
 class RelationshipExtractor:
     def extract_relationships(self, entities: List[Entity],
@@ -175,6 +191,7 @@ class RelationshipExtractor:
 ```
 
 **LLM-Based Extraction** (for complex relationships):
+
 ```python
 def extract_with_llm(text: str) -> List[Relationship]:
     prompt = f"""
@@ -191,6 +208,7 @@ def extract_with_llm(text: str) -> List[Relationship]:
 ```
 
 **Validation**:
+
 - [ ] Entity extraction accuracy >85%
 - [ ] Entity deduplication working
 - [ ] Relationships validated against ontology
@@ -203,6 +221,7 @@ def extract_with_llm(text: str) -> List[Relationship]:
 **Goal**: Combine structured graph with semantic vector search
 
 **Architecture**:
+
 ```python
 class HybridKnowledgeSystem:
     def __init__(self):
@@ -240,6 +259,7 @@ class HybridKnowledgeSystem:
 ```
 
 **Benefits of Hybrid Approach**:
+
 - Vector search: Semantic similarity, flexible queries
 - Graph traversal: Relationship-based reasoning, context expansion
 - Combined: Best of both worlds
@@ -251,12 +271,14 @@ class HybridKnowledgeSystem:
 **Common Query Patterns**:
 
 **1. Find Entity**:
+
 ```cypher
 MATCH (e:Entity {id: $entity_id})
 RETURN e
 ```
 
 **2. Find Relationships**:
+
 ```cypher
 MATCH (source:Entity {id: $entity_id})-[r]-(target)
 RETURN source, r, target
@@ -264,6 +286,7 @@ LIMIT 20
 ```
 
 **3. Path Between Entities**:
+
 ```cypher
 MATCH path = shortestPath(
   (source:Person {id: $source_id})-[*..5]-(target:Person {id: $target_id})
@@ -272,12 +295,14 @@ RETURN path
 ```
 
 **4. Multi-Hop Traversal**:
+
 ```cypher
 MATCH (p:Person {name: $name})-[:WORKS_FOR]->(o:Organization)-[:LOCATED_IN]->(l:Location)
 RETURN p.name, o.name, l.city
 ```
 
 **5. Recommendation Query**:
+
 ```cypher
 // Find people similar to this person based on shared organizations
 MATCH (p1:Person {id: $person_id})-[:WORKS_FOR]->(o:Organization)<-[:WORKS_FOR]-(p2:Person)
@@ -288,6 +313,7 @@ LIMIT 10
 ```
 
 **Knowledge Graph API**:
+
 ```python
 class KnowledgeGraphAPI:
     def __init__(self, graph_db):
@@ -336,6 +362,7 @@ class KnowledgeGraphAPI:
 **Goal**: Use knowledge graph to ground LLM responses and detect hallucinations
 
 **Knowledge Graph RAG**:
+
 ```python
 class KnowledgeGraphRAG:
     def __init__(self, kg_api, llm_client):
@@ -378,6 +405,7 @@ class KnowledgeGraphRAG:
 ```
 
 **Hallucination Detection**:
+
 ```python
 class HallucinationDetector:
     def __init__(self, knowledge_graph):
@@ -416,18 +444,23 @@ class HallucinationDetector:
 ## Key Principles
 
 ### 1. Start with Ontology
+
 Define your schema before ingesting data. Changing ontology later is expensive.
 
 ### 2. Entity Resolution is Critical
+
 Deduplicate entities aggressively. "Apple Inc", "Apple", "Apple Computer" → same entity.
 
 ### 3. Confidence Scores on Everything
+
 Every relationship should have a confidence score (0.0-1.0) and source.
 
 ### 4. Incremental Building
+
 Don't try to model entire domain at once. Start with core entities and expand.
 
 ### 5. Hybrid Architecture Wins
+
 Combine graph traversal (structured) with vector search (semantic) for best results.
 
 ---
@@ -435,26 +468,31 @@ Combine graph traversal (structured) with vector search (semantic) for best resu
 ## Common Use Cases
 
 **1. Question Answering**:
+
 - Extract entities from question
 - Traverse graph to find answer
 - Return path as explanation
 
 **2. Recommendation**:
+
 - Find similar entities via shared relationships
 - Rank by relationship strength
 - Return top-K recommendations
 
 **3. Fraud Detection**:
+
 - Model transactions as graph
 - Find suspicious patterns (cycles, anomalies)
 - Flag for review
 
 **4. Knowledge Discovery**:
+
 - Identify implicit relationships
 - Suggest missing connections
 - Validate with domain experts
 
 **5. Semantic Search**:
+
 - Hybrid vector + graph search
 - Expand context via relationships
 - Return rich connected results
@@ -464,18 +502,21 @@ Combine graph traversal (structured) with vector search (semantic) for best resu
 ## Technology Recommendations
 
 **For MVPs (<10K entities)**:
+
 - Neo4j Community Edition (free)
 - SQLite for metadata
 - OpenAI embeddings
 - FastAPI for API layer
 
 **For Production (10K-1M entities)**:
+
 - Neo4j Enterprise or ArangoDB
 - Pinecone for vector search
 - Airflow for ETL
 - GraphQL API
 
 **For Enterprise (1M+ entities)**:
+
 - Neo4j Enterprise or TigerGraph
 - Distributed vector DB (Pinecone, Weaviate)
 - Kafka for streaming
@@ -501,14 +542,17 @@ Combine graph traversal (structured) with vector search (semantic) for best resu
 ## Related Resources
 
 **Related Skills**:
+
 - `rag-implementer` - For hybrid KG+RAG systems
 - `multi-agent-architect` - For knowledge-graph-powered agents
 - `api-designer` - For KG API design
 
 **Related Patterns**:
+
 - `META/DECISION-FRAMEWORK.md` - Graph DB selection
 - `STANDARDS/architecture-patterns/knowledge-graph-pattern.md` - KG architectures (when created)
 
 **Related Playbooks**:
+
 - `PLAYBOOKS/deploy-neo4j.md` - Neo4j deployment (when created)
 - `PLAYBOOKS/build-kg-rag-system.md` - KG-RAG integration (when created)

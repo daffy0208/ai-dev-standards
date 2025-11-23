@@ -9,6 +9,7 @@
 ## When to Use
 
 ✅ **Use serverless when:**
+
 - Variable/unpredictable traffic (scale to zero)
 - Event-driven workloads (triggers, webhooks)
 - Rapid prototyping (no infrastructure setup)
@@ -17,6 +18,7 @@
 - Background jobs (image processing, emails)
 
 ❌ **Don't use when:**
+
 - Long-running tasks (> 15 min)
 - Stateful applications (need persistent connections)
 - Predictable high traffic (dedicated servers cheaper)
@@ -27,12 +29,12 @@
 
 ## Serverless Platforms Comparison
 
-| Platform | Best For | Runtime Limit | Cold Start | Pricing |
-|----------|----------|---------------|------------|---------|
-| **AWS Lambda** | Enterprise, complex workflows | 15 min | 100-1000ms | $0.20/1M requests |
-| **Vercel Functions** | Next.js, frontend devs | 60s (300s Pro) | 50-200ms | Free: 100GB-hrs |
-| **Cloudflare Workers** | Edge computing, global | 30s (no limit paid) | < 10ms | Free: 100K requests/day |
-| **Netlify Functions** | JAMstack, simple APIs | 10s (26s paid) | 100-500ms | Free: 125K reqs |
+| Platform               | Best For                      | Runtime Limit       | Cold Start | Pricing                 |
+| ---------------------- | ----------------------------- | ------------------- | ---------- | ----------------------- |
+| **AWS Lambda**         | Enterprise, complex workflows | 15 min              | 100-1000ms | $0.20/1M requests       |
+| **Vercel Functions**   | Next.js, frontend devs        | 60s (300s Pro)      | 50-200ms   | Free: 100GB-hrs         |
+| **Cloudflare Workers** | Edge computing, global        | 30s (no limit paid) | < 10ms     | Free: 100K requests/day |
+| **Netlify Functions**  | JAMstack, simple APIs         | 10s (26s paid)      | 100-500ms  | Free: 125K reqs         |
 
 ---
 
@@ -41,6 +43,7 @@
 ### Use Case: REST API
 
 **File Structure:**
+
 ```
 app/
 ├── api/
@@ -54,6 +57,7 @@ app/
 ```
 
 **Implementation:**
+
 ```typescript
 // app/api/users/route.ts
 import { NextRequest } from 'next/server'
@@ -108,6 +112,7 @@ export async function POST(req: NextRequest) {
 ```
 
 **Environment Variables:**
+
 ```bash
 # .env
 DATABASE_URL="postgresql://..."
@@ -121,6 +126,7 @@ JWT_SECRET="..."
 ### Use Case: Image Processing on Upload
 
 **Trigger: S3 Upload**
+
 ```typescript
 // lambda/image-processor.ts
 import { S3Event } from 'aws-lambda'
@@ -161,6 +167,7 @@ export async function handler(event: S3Event) {
 ```
 
 **Infrastructure (Terraform):**
+
 ```hcl
 resource "aws_lambda_function" "image_processor" {
   filename      = "lambda.zip"
@@ -196,6 +203,7 @@ resource "aws_s3_bucket_notification" "image_upload" {
 ### Use Case: Daily Database Cleanup
 
 **Vercel Cron:**
+
 ```json
 // vercel.json
 {
@@ -241,6 +249,7 @@ export async function GET(req: NextRequest) {
 ### Use Case: Global CDN with Dynamic Content
 
 **Ultra-low latency (runs at edge, near users):**
+
 ```typescript
 // worker.ts
 export default {
@@ -272,6 +281,7 @@ export default {
 ```
 
 **Use Cases for Edge:**
+
 - A/B testing
 - Geolocation routing
 - Bot detection
@@ -298,11 +308,7 @@ export async function POST(req: Request) {
   let event: Stripe.Event
 
   try {
-    event = stripe.webhooks.constructEvent(
-      body,
-      signature,
-      process.env.STRIPE_WEBHOOK_SECRET!
-    )
+    event = stripe.webhooks.constructEvent(body, signature, process.env.STRIPE_WEBHOOK_SECRET!)
   } catch (err) {
     return Response.json({ error: 'Invalid signature' }, { status: 400 })
   }
@@ -355,14 +361,19 @@ async function handlePaymentSuccess(paymentIntent: Stripe.PaymentIntent) {
 ### Solutions:
 
 **1. Keep Functions Warm (Pinging)**
+
 ```typescript
 // Ping every 5 minutes to keep warm
-setInterval(async () => {
-  await fetch('https://your-api.com/api/health')
-}, 5 * 60 * 1000)
+setInterval(
+  async () => {
+    await fetch('https://your-api.com/api/health')
+  },
+  5 * 60 * 1000
+)
 ```
 
 **2. Reduce Bundle Size**
+
 ```typescript
 // ❌ Bad: Import entire library
 import _ from 'lodash'
@@ -372,6 +383,7 @@ import debounce from 'lodash/debounce'
 ```
 
 **3. Use Edge Runtime (Vercel)**
+
 ```typescript
 // app/api/fast/route.ts
 export const runtime = 'edge' // Cold start < 50ms
@@ -382,19 +394,22 @@ export async function GET() {
 ```
 
 **4. Connection Pooling**
+
 ```typescript
 import { PrismaClient } from '@prisma/client'
 
 // Reuse client across invocations
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient }
 
-export const prisma = globalForPrisma.prisma || new PrismaClient({
-  datasources: {
-    db: {
-      url: process.env.DATABASE_URL + '?connection_limit=1'
+export const prisma =
+  globalForPrisma.prisma ||
+  new PrismaClient({
+    datasources: {
+      db: {
+        url: process.env.DATABASE_URL + '?connection_limit=1'
+      }
     }
-  }
-})
+  })
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
 ```
@@ -406,6 +421,7 @@ if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
 ### Strategies:
 
 **1. Cache Aggressively**
+
 ```typescript
 // Cache at CDN level
 export async function GET(req: Request) {
@@ -421,6 +437,7 @@ export async function GET(req: Request) {
 ```
 
 **2. Batch Operations**
+
 ```typescript
 // ❌ Bad: One function per email
 for (const user of users) {
@@ -432,9 +449,10 @@ await sendBatchEmails(users.map(u => u.email))
 ```
 
 **3. Use Appropriate Memory**
+
 ```typescript
 // AWS Lambda
-export const handler = async (event) => {
+export const handler = async event => {
   // Less memory = cheaper but slower
   // More memory = faster but expensive
   // Test to find sweet spot (usually 512MB-1024MB)
@@ -442,6 +460,7 @@ export const handler = async (event) => {
 ```
 
 **4. Choose Right Platform**
+
 ```
 Simple API + Next.js → Vercel (free tier generous)
 Edge computing → Cloudflare (100K free requests/day)
@@ -453,18 +472,22 @@ Complex workflows → AWS Lambda (mature ecosystem)
 ## Monitoring & Debugging
 
 ### Logging
+
 ```typescript
 // Structured logging
-console.log(JSON.stringify({
-  level: 'info',
-  message: 'Order processed',
-  orderId: order.id,
-  duration: Date.now() - startTime,
-  memory: process.memoryUsage().heapUsed / 1024 / 1024
-}))
+console.log(
+  JSON.stringify({
+    level: 'info',
+    message: 'Order processed',
+    orderId: order.id,
+    duration: Date.now() - startTime,
+    memory: process.memoryUsage().heapUsed / 1024 / 1024
+  })
+)
 ```
 
 ### Error Tracking
+
 ```typescript
 import * as Sentry from '@sentry/nextjs'
 
@@ -484,6 +507,7 @@ export async function POST(req: Request) {
 ```
 
 ### Performance Monitoring
+
 ```typescript
 const start = Date.now()
 
@@ -502,6 +526,7 @@ if (duration > 5000) {
 ## Best Practices
 
 ### 1. Idempotency
+
 ```typescript
 // Handle duplicate webhook deliveries
 async function processWebhook(webhookId: string, data: any) {
@@ -527,6 +552,7 @@ async function processWebhook(webhookId: string, data: any) {
 ```
 
 ### 2. Timeout Handling
+
 ```typescript
 // Set timeout lower than platform limit
 const TIMEOUT = 25000 // 25s (Vercel limit is 60s)
@@ -552,17 +578,20 @@ export async function GET() {
 ```
 
 ### 3. Environment Configuration
+
 ```typescript
 // Validate env vars at startup
-const config = z.object({
-  DATABASE_URL: z.string().url(),
-  JWT_SECRET: z.string().min(32),
-  STRIPE_KEY: z.string().startsWith('sk_')
-}).parse({
-  DATABASE_URL: process.env.DATABASE_URL,
-  JWT_SECRET: process.env.JWT_SECRET,
-  STRIPE_KEY: process.env.STRIPE_KEY
-})
+const config = z
+  .object({
+    DATABASE_URL: z.string().url(),
+    JWT_SECRET: z.string().min(32),
+    STRIPE_KEY: z.string().startsWith('sk_')
+  })
+  .parse({
+    DATABASE_URL: process.env.DATABASE_URL,
+    JWT_SECRET: process.env.JWT_SECRET,
+    STRIPE_KEY: process.env.STRIPE_KEY
+  })
 
 // Type-safe config available throughout function
 ```
@@ -572,6 +601,7 @@ const config = z.object({
 ## Trade-offs
 
 ### Pros
+
 - ✅ Auto-scaling (handle any load)
 - ✅ Pay per use (cost-effective for variable traffic)
 - ✅ No server management
@@ -579,6 +609,7 @@ const config = z.object({
 - ✅ Built-in high availability
 
 ### Cons
+
 - ❌ Cold starts (latency)
 - ❌ Stateless (can't maintain connections)
 - ❌ Vendor lock-in (platform-specific)
@@ -592,11 +623,13 @@ const config = z.object({
 ### From Traditional Server to Serverless
 
 **Step 1: Identify candidates**
+
 - API endpoints (good fit)
 - Background jobs (good fit)
 - Long-running processes (bad fit)
 
 **Step 2: Start small**
+
 ```
 Migrate webhooks first → Low risk, high value
 Then API endpoints → Medium complexity
@@ -604,6 +637,7 @@ Finally background jobs → May need refactoring
 ```
 
 **Step 3: Hybrid approach**
+
 ```
 API Gateway (serverless) → [Traditional servers, Serverless functions]
 Use best tool for each job

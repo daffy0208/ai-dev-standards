@@ -23,6 +23,7 @@ ai-dev sync
 ```
 
 The first time you run `sync`, it will ask:
+
 - What do you want to track? (skills, MCPs, cursorrules, etc.)
 - How often to sync? (on git pull, daily, weekly, manual)
 
@@ -63,13 +64,7 @@ Auto-sync creates `.ai-dev.json` in your project:
 {
   "version": "1.0.0",
   "lastSync": "2025-10-22T12:00:00Z",
-  "tracking": [
-    "skills",
-    "mcps",
-    "cursorrules",
-    "gitignore",
-    "tools"
-  ],
+  "tracking": ["skills", "mcps", "cursorrules", "gitignore", "tools"],
   "frequency": "git-hook",
   "installed": {
     "skills": ["mvp-builder", "rag-implementer"],
@@ -327,6 +322,7 @@ When versions mismatch, an update is available.
 ✅ **Always up-to-date** - Never behind on best practices
 
 **Example:**
+
 ```bash
 # Setup once
 ai-dev sync
@@ -379,7 +375,7 @@ name: Auto-sync ai-dev-standards
 
 on:
   schedule:
-    - cron: '0 9 * * *'  # Daily at 9 AM
+    - cron: '0 9 * * *' # Daily at 9 AM
 
 jobs:
   sync:

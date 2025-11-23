@@ -14,15 +14,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "api-designer",
-        "testing-strategist",
-        "frontend-builder"
-      ],
-      "supports_mcps": [
-        "api-validator-mcp",
-        "openapi-generator-mcp"
-      ],
+      "supports_skills": ["api-designer", "testing-strategist", "frontend-builder"],
+      "supports_mcps": ["api-validator-mcp", "openapi-generator-mcp"],
       "features": [
         "GET/POST/PUT/DELETE requests",
         "Header management",
@@ -40,14 +33,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "data-engineer",
-        "rag-implementer",
-        "backend-builder"
-      ],
-      "supports_mcps": [
-        "database-migration-mcp"
-      ],
+      "supports_skills": ["data-engineer", "rag-implementer", "backend-builder"],
+      "supports_mcps": ["database-migration-mcp"],
       "features": [
         "SQL query execution",
         "Transaction management",
@@ -65,18 +52,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "all"
-      ],
-      "supports_mcps": [
-        "all"
-      ],
-      "features": [
-        "File read/write",
-        "Directory operations",
-        "Path manipulation",
-        "File metadata"
-      ],
+      "supports_skills": ["all"],
+      "supports_mcps": ["all"],
+      "features": ["File read/write", "Directory operations", "Path manipulation", "File metadata"],
       "depends_on": []
     },
     {
@@ -88,21 +66,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "data-engineer",
-        "user-researcher",
-        "market-analyzer"
-      ],
-      "supports_mcps": [
-        "market-analyzer-mcp",
-        "user-insight-analyzer-mcp"
-      ],
-      "features": [
-        "HTML parsing",
-        "CSS selector support",
-        "JavaScript rendering",
-        "Rate limiting"
-      ],
+      "supports_skills": ["data-engineer", "user-researcher", "market-analyzer"],
+      "supports_mcps": ["market-analyzer-mcp", "user-insight-analyzer-mcp"],
+      "features": ["HTML parsing", "CSS selector support", "JavaScript rendering", "Rate limiting"],
       "depends_on": []
     },
     {
@@ -114,15 +80,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "crewai",
-      "supports_skills": [
-        "quality-auditor",
-        "security-engineer",
-        "performance-optimizer"
-      ],
-      "supports_mcps": [
-        "code-quality-scanner-mcp",
-        "security-scanner-mcp"
-      ],
+      "supports_skills": ["quality-auditor", "security-engineer", "performance-optimizer"],
+      "supports_mcps": ["code-quality-scanner-mcp", "security-scanner-mcp"],
       "features": [
         "Code smell detection",
         "Complexity metrics",
@@ -140,14 +99,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "crewai",
-      "supports_skills": [
-        "testing-strategist",
-        "quality-auditor"
-      ],
-      "supports_mcps": [
-        "test-runner-mcp",
-        "screenshot-testing-mcp"
-      ],
+      "supports_skills": ["testing-strategist", "quality-auditor"],
+      "supports_mcps": ["test-runner-mcp", "screenshot-testing-mcp"],
       "features": [
         "Unit test generation",
         "Integration test scaffolding",
@@ -165,24 +118,15 @@
       "status": "active",
       "language": "typescript",
       "framework": "langchain",
-      "supports_skills": [
-        "rag-implementer",
-        "semantic-search"
-      ],
-      "supports_mcps": [
-        "embedding-generator-mcp"
-      ],
+      "supports_skills": ["rag-implementer", "semantic-search"],
+      "supports_mcps": ["embedding-generator-mcp"],
       "features": [
         "Multiple embedding models",
         "Batch processing",
         "Caching",
         "Dimension reduction"
       ],
-      "depends_on": [
-        "openai",
-        "anthropic",
-        "cohere"
-      ]
+      "depends_on": ["openai", "anthropic", "cohere"]
     },
     {
       "id": "vector-search-tool",
@@ -193,26 +137,10 @@
       "status": "active",
       "language": "typescript",
       "framework": "langchain",
-      "supports_skills": [
-        "rag-implementer",
-        "knowledge-graph-builder"
-      ],
-      "supports_mcps": [
-        "vector-database-mcp",
-        "semantic-search-mcp"
-      ],
-      "features": [
-        "Similarity search",
-        "Metadata filtering",
-        "Hybrid search",
-        "Re-ranking"
-      ],
-      "depends_on": [
-        "pinecone",
-        "weaviate",
-        "chroma",
-        "qdrant"
-      ]
+      "supports_skills": ["rag-implementer", "knowledge-graph-builder"],
+      "supports_mcps": ["vector-database-mcp", "semantic-search-mcp"],
+      "features": ["Similarity search", "Metadata filtering", "Hybrid search", "Re-ranking"],
+      "depends_on": ["pinecone", "weaviate", "chroma", "qdrant"]
     },
     {
       "id": "mcp-client-tool",
@@ -223,12 +151,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "mcp",
-      "supports_skills": [
-        "all"
-      ],
-      "supports_mcps": [
-        "all"
-      ],
+      "supports_skills": ["all"],
+      "supports_mcps": ["all"],
       "features": [
         "MCP server connection",
         "Tool invocation",
@@ -260,10 +184,7 @@
         "multi-agent-architect",
         "forensic-data-engineer"
       ],
-      "supports_mcps": [
-        "monitoring-mcp",
-        "deployment-orchestrator-mcp"
-      ],
+      "supports_mcps": ["monitoring-mcp", "deployment-orchestrator-mcp"],
       "features": [
         "5 severity levels (debug, info, warn, error, fatal)",
         "Multiple outputs (Console, File, Remote)",
@@ -282,15 +203,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "performance-optimizer",
-        "deployment-advisor",
-        "data-engineer"
-      ],
-      "supports_mcps": [
-        "monitoring-mcp",
-        "deployment-orchestrator-mcp"
-      ],
+      "supports_skills": ["performance-optimizer", "deployment-advisor", "data-engineer"],
+      "supports_mcps": ["monitoring-mcp", "deployment-orchestrator-mcp"],
       "features": [
         "Counter, Gauge, Histogram, Timer metrics",
         "Metric labels/tags for dimensionality",
@@ -308,15 +222,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "performance-optimizer",
-        "security-engineer",
-        "multi-agent-architect"
-      ],
-      "supports_mcps": [
-        "monitoring-mcp",
-        "agent-orchestrator-mcp"
-      ],
+      "supports_skills": ["performance-optimizer", "security-engineer", "multi-agent-architect"],
+      "supports_mcps": ["monitoring-mcp", "agent-orchestrator-mcp"],
       "features": [
         "Span creation with parent/child relationships",
         "W3C Trace Context propagation",
@@ -335,15 +242,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "security-engineer",
-        "performance-optimizer",
-        "testing-strategist"
-      ],
-      "supports_mcps": [
-        "monitoring-mcp",
-        "error-tracking-mcp"
-      ],
+      "supports_skills": ["security-engineer", "performance-optimizer", "testing-strategist"],
+      "supports_mcps": ["monitoring-mcp", "error-tracking-mcp"],
       "features": [
         "Error capture with stack traces",
         "Automatic error grouping by fingerprint",
@@ -362,14 +262,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "performance-optimizer",
-        "frontend-builder",
-        "visual-designer"
-      ],
-      "supports_mcps": [
-        "asset-optimizer-mcp"
-      ],
+      "supports_skills": ["performance-optimizer", "frontend-builder", "visual-designer"],
+      "supports_mcps": ["asset-optimizer-mcp"],
       "features": [
         "Multiple format support (JPEG, PNG, WebP, AVIF)",
         "Compression with quality control",
@@ -388,13 +282,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "frontend-builder",
-        "performance-optimizer"
-      ],
-      "supports_mcps": [
-        "asset-optimizer-mcp"
-      ],
+      "supports_skills": ["frontend-builder", "performance-optimizer"],
+      "supports_mcps": ["asset-optimizer-mcp"],
       "features": [
         "Generate multiple image sizes",
         "Create srcset attributes",
@@ -413,13 +302,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "performance-optimizer",
-        "frontend-builder"
-      ],
-      "supports_mcps": [
-        "asset-optimizer-mcp"
-      ],
+      "supports_skills": ["performance-optimizer", "frontend-builder"],
+      "supports_mcps": ["asset-optimizer-mcp"],
       "features": [
         "Convert JPEG/PNG to WebP",
         "Quality control",
@@ -438,14 +322,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "visual-designer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "font-optimizer-mcp",
-        "design-token-manager-mcp"
-      ],
+      "supports_skills": ["visual-designer", "design-system-architect"],
+      "supports_mcps": ["font-optimizer-mcp", "design-token-manager-mcp"],
       "features": [
         "Font pairing suggestions",
         "Contrast analysis",
@@ -464,13 +342,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "visual-designer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "design-token-manager-mcp"
-      ],
+      "supports_skills": ["visual-designer", "design-system-architect"],
+      "supports_mcps": ["design-token-manager-mcp"],
       "features": [
         "Modular scale generation",
         "Custom ratio support",
@@ -489,15 +362,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "visual-designer",
-        "design-system-architect",
-        "brand-designer"
-      ],
-      "supports_mcps": [
-        "design-token-manager-mcp",
-        "theme-builder-mcp"
-      ],
+      "supports_skills": ["visual-designer", "design-system-architect", "brand-designer"],
+      "supports_mcps": ["design-token-manager-mcp", "theme-builder-mcp"],
       "features": [
         "Palette generation from seed color",
         "Harmony algorithms (complementary, triadic, etc.)",
@@ -516,13 +382,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "accessibility-engineer",
-        "visual-designer"
-      ],
-      "supports_mcps": [
-        "accessibility-checker-mcp"
-      ],
+      "supports_skills": ["accessibility-engineer", "visual-designer"],
+      "supports_mcps": ["accessibility-checker-mcp"],
       "features": [
         "WCAG AA/AAA compliance checking",
         "Color pair analysis",
@@ -541,14 +402,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "visual-designer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "design-token-manager-mcp",
-        "theme-builder-mcp"
-      ],
+      "supports_skills": ["visual-designer", "design-system-architect"],
+      "supports_mcps": ["design-token-manager-mcp", "theme-builder-mcp"],
       "features": [
         "Primary/secondary/accent colors",
         "Semantic color mapping",
@@ -567,14 +422,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "responsive-preview-mcp"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer", "design-system-architect"],
+      "supports_mcps": ["responsive-preview-mcp"],
       "features": [
         "Device distribution analysis",
         "Breakpoint recommendations",
@@ -593,13 +442,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "accessibility-engineer",
-        "visual-designer"
-      ],
-      "supports_mcps": [
-        "accessibility-checker-mcp"
-      ],
+      "supports_skills": ["accessibility-engineer", "visual-designer"],
+      "supports_mcps": ["accessibility-checker-mcp"],
       "features": [
         "Multiple CVD types (protanopia, deuteranopia, tritanopia)",
         "Severity simulation",
@@ -618,15 +462,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "accessibility-engineer",
-        "mobile-developer",
-        "ux-designer"
-      ],
-      "supports_mcps": [
-        "accessibility-checker-mcp",
-        "mobile-builder-mcp"
-      ],
+      "supports_skills": ["accessibility-engineer", "mobile-developer", "ux-designer"],
+      "supports_mcps": ["accessibility-checker-mcp", "mobile-builder-mcp"],
       "features": [
         "44x44px minimum validation",
         "Spacing analysis",
@@ -658,9 +495,7 @@
         "Validates against capability-manifest schema",
         "Supports all resource types"
       ],
-      "depends_on": [
-        "manifest-generator"
-      ]
+      "depends_on": ["manifest-generator"]
     },
     {
       "id": "db-backup",
@@ -670,13 +505,8 @@
       "path": "/UTILS/scripts/db-backup.ts",
       "status": "active",
       "language": "typescript",
-      "supports_skills": [
-        "data-engineer",
-        "deployment-advisor"
-      ],
-      "supports_mcps": [
-        "database-migration-mcp"
-      ],
+      "supports_skills": ["data-engineer", "deployment-advisor"],
+      "supports_mcps": ["database-migration-mcp"],
       "features": [
         "PostgreSQL/MySQL/MongoDB support",
         "Compression",
@@ -693,13 +523,8 @@
       "path": "/UTILS/scripts/db-migrate.ts",
       "status": "active",
       "language": "typescript",
-      "supports_skills": [
-        "data-engineer",
-        "backend-builder"
-      ],
-      "supports_mcps": [
-        "database-migration-mcp"
-      ],
+      "supports_skills": ["data-engineer", "backend-builder"],
+      "supports_mcps": ["database-migration-mcp"],
       "features": [
         "Migration execution",
         "Rollback support",
@@ -716,20 +541,9 @@
       "path": "/UTILS/scripts/test-runner.ts",
       "status": "active",
       "language": "typescript",
-      "supports_skills": [
-        "testing-strategist",
-        "quality-auditor"
-      ],
-      "supports_mcps": [
-        "test-runner-mcp",
-        "screenshot-testing-mcp"
-      ],
-      "features": [
-        "Jest/Vitest support",
-        "Coverage reporting",
-        "Parallel execution",
-        "Watch mode"
-      ],
+      "supports_skills": ["testing-strategist", "quality-auditor"],
+      "supports_mcps": ["test-runner-mcp", "screenshot-testing-mcp"],
+      "features": ["Jest/Vitest support", "Coverage reporting", "Parallel execution", "Watch mode"],
       "depends_on": []
     },
     {
@@ -740,12 +554,8 @@
       "path": "/UTILS/scripts/deploy.ts",
       "status": "active",
       "language": "typescript",
-      "supports_skills": [
-        "deployment-advisor"
-      ],
-      "supports_mcps": [
-        "deployment-orchestrator-mcp"
-      ],
+      "supports_skills": ["deployment-advisor"],
+      "supports_mcps": ["deployment-orchestrator-mcp"],
       "features": [
         "Multi-platform deployment",
         "Pre-deployment checks",
@@ -760,78 +570,49 @@
       "name": "Custom Tools",
       "count": 4,
       "description": "Custom-built tools for common operations",
-      "tools": [
-        "api-caller-tool",
-        "database-query-tool",
-        "filesystem-tool",
-        "web-scraper-tool"
-      ]
+      "tools": ["api-caller-tool", "database-query-tool", "filesystem-tool", "web-scraper-tool"]
     },
     "crewai-tools": {
       "name": "CrewAI Tools",
       "count": 2,
       "description": "Tools built with CrewAI framework",
-      "tools": [
-        "code-analyzer-tool",
-        "test-generator-tool"
-      ]
+      "tools": ["code-analyzer-tool", "test-generator-tool"]
     },
     "langchain-tools": {
       "name": "LangChain Tools",
       "count": 2,
       "description": "Tools built with LangChain framework",
-      "tools": [
-        "embedding-tool",
-        "vector-search-tool"
-      ]
+      "tools": ["embedding-tool", "vector-search-tool"]
     },
     "mcp-tools": {
       "name": "MCP Tools",
       "count": 1,
       "description": "Tools for MCP server integration",
-      "tools": [
-        "mcp-client-tool"
-      ]
+      "tools": ["mcp-client-tool"]
     },
     "observability": {
       "name": "Observability Tools",
       "count": 4,
       "description": "Logging, metrics, tracing, and error tracking",
-      "tools": [
-        "logger-tool",
-        "metrics-tool",
-        "tracer-tool",
-        "error-tracker-tool"
-      ]
+      "tools": ["logger-tool", "metrics-tool", "tracer-tool", "error-tracker-tool"]
     },
     "orchestration": {
       "name": "Orchestration Scripts",
       "count": 1,
       "description": "Scripts for orchestration system setup and management",
-      "scripts": [
-        "bootstrap-manifests"
-      ]
+      "scripts": ["bootstrap-manifests"]
     },
     "utilities": {
       "name": "Utility Scripts",
       "count": 4,
       "description": "Standalone utility scripts for common operations",
-      "scripts": [
-        "db-backup",
-        "db-migrate",
-        "test-runner",
-        "deploy"
-      ]
+      "scripts": ["db-backup", "db-migrate", "test-runner", "deploy"]
     },
     "media-tools": {
       "name": "Media Tools",
       "count": 3,
       "description": "Image optimization and processing tools",
-      "tools": [
-        "image-optimizer-tool",
-        "responsive-image-generator-tool",
-        "webp-converter-tool"
-      ]
+      "tools": ["image-optimizer-tool", "responsive-image-generator-tool", "webp-converter-tool"]
     },
     "design-tools": {
       "name": "Design Tools",

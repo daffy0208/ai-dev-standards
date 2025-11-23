@@ -25,15 +25,18 @@ One-paragraph explanation of what this skill accomplishes and why it exists.
 **Objective:** What this step achieves
 
 **Actions:**
+
 1. Specific action with clear outcome
 2. Specific action with clear outcome
 3. Specific action with clear outcome
 
 **Key Decisions:**
+
 - Decision point 1: [Options and criteria]
 - Decision point 2: [Options and criteria]
 
 **Common Pitfalls:**
+
 - ❌ Pitfall: Why it's wrong → ✅ Correct approach
 
 ### Step 2: [Phase Name]
@@ -41,11 +44,13 @@ One-paragraph explanation of what this skill accomplishes and why it exists.
 **Objective:** What this step achieves
 
 **Actions:**
+
 1. Action
 2. Action
 3. Action
 
 **Validation:**
+
 - [ ] Success criterion 1
 - [ ] Success criterion 2
 - [ ] Success criterion 3
@@ -68,10 +73,12 @@ One-paragraph explanation of what this skill accomplishes and why it exists.
 ## Decision Framework
 
 **When choosing [X vs Y]:**
+
 - Use X when: [Clear criteria]
 - Use Y when: [Clear criteria]
 
 **Template for decision:**
+
 ```
 If [condition], then [choice]
 If [condition], then [choice]
@@ -85,11 +92,13 @@ Otherwise, [default choice]
 **Scenario:** [Description of situation]
 
 **Approach:**
+
 1. [Step taken]
 2. [Step taken]
 3. [Outcome achieved]
 
 **Key Lessons:**
+
 - [Lesson learned]
 - [Lesson learned]
 
@@ -98,11 +107,13 @@ Otherwise, [default choice]
 **Scenario:** [Description of situation]
 
 **Approach:**
+
 1. [Step taken]
 2. [Step taken]
 3. [Outcome achieved]
 
 **Key Lessons:**
+
 - [Lesson learned]
 - [Lesson learned]
 
@@ -121,23 +132,28 @@ Otherwise, [default choice]
 ## Related Resources
 
 **Related Skills:**
+
 - `skill-name` - How it relates
 - `skill-name` - How it relates
 
 **Related Patterns:**
+
 - `STANDARDS/architecture-patterns/pattern-name.md` - How it relates
 
 **Related Playbooks:**
+
 - `PLAYBOOKS/playbook-name.md` - How it relates
 
 ## Troubleshooting
 
 **Issue:** [Common problem]
+
 - **Symptoms:** What you see
 - **Cause:** Why it happens
 - **Solution:** How to fix
 
 **Issue:** [Another common problem]
+
 - **Symptoms:** What you see
 - **Cause:** Why it happens
 - **Solution:** How to fix
@@ -145,6 +161,7 @@ Otherwise, [default choice]
 ## Quick Reference
 
 **Fast checklist for experienced users:**
+
 - [ ] Key step 1
 - [ ] Key step 2
 - [ ] Key step 3

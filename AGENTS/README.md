@@ -24,6 +24,7 @@ AGENTS/
 ### What is an Agent?
 
 An **agent** is an AI system that:
+
 1. **Perceives** - Understands context and inputs
 2. **Reasons** - Makes decisions based on goals and constraints
 3. **Acts** - Executes tools and invokes skills
@@ -46,13 +47,13 @@ An **agent** is an AI system that:
 
 **Key Differences:**
 
-| Aspect | Agent | Skill | MCP |
-|--------|-------|-------|-----|
-| **Purpose** | Execute workflows | Provide expertise | Provide tools |
-| **Autonomy** | High (makes decisions) | Medium (guides approach) | Low (executes commands) |
-| **State** | Stateful (tracks progress) | Stateless (pure knowledge) | Stateless (pure function) |
-| **Adaptability** | Adapts to results | Fixed methodology | Fixed interface |
-| **Invokes** | Skills + MCPs | MCPs + patterns | External systems |
+| Aspect           | Agent                      | Skill                      | MCP                       |
+| ---------------- | -------------------------- | -------------------------- | ------------------------- |
+| **Purpose**      | Execute workflows          | Provide expertise          | Provide tools             |
+| **Autonomy**     | High (makes decisions)     | Medium (guides approach)   | Low (executes commands)   |
+| **State**        | Stateful (tracks progress) | Stateless (pure knowledge) | Stateless (pure function) |
+| **Adaptability** | Adapts to results          | Fixed methodology          | Fixed interface           |
+| **Invokes**      | Skills + MCPs              | MCPs + patterns            | External systems          |
 
 ## Agent Types
 
@@ -61,6 +62,7 @@ An **agent** is an AI system that:
 **Purpose:** Execute specific, well-defined tasks
 
 **Examples:**
+
 - Code review agent
 - Documentation generator
 - Test creator
@@ -73,6 +75,7 @@ An **agent** is an AI system that:
 **Purpose:** Embody domain expertise for complex implementations
 
 **Examples:**
+
 - MVP builder agent (uses `mvp-builder` skill)
 - RAG implementer agent (uses `rag-implementer` skill)
 - Security auditor agent (uses `security-engineer` skill)
@@ -84,6 +87,7 @@ An **agent** is an AI system that:
 **Purpose:** Orchestrate multiple tools for complex operations
 
 **Examples:**
+
 - Database migration agent (uses database MCPs)
 - Deployment agent (uses CI/CD MCPs)
 - Monitoring agent (uses observability MCPs)
@@ -95,6 +99,7 @@ An **agent** is an AI system that:
 **Purpose:** Coordinate multiple specialized agents
 
 **Examples:**
+
 - Product team (strategist + designer + builder + tester)
 - CI/CD pipeline (linter + tester + builder + deployer)
 - Content pipeline (writer + editor + publisher + analyzer)
@@ -172,6 +177,7 @@ Iterative improvement cycle:
 ### Step 1: Define the Need
 
 Ask yourself:
+
 - **Problem:** What problem does this agent solve?
 - **Value:** Why is autonomous execution beneficial?
 - **Scope:** What is in/out of scope?
@@ -180,6 +186,7 @@ Ask yourself:
 ### Step 2: Choose Agent Type
 
 Select based on:
+
 - **Task-Oriented:** Single, specific purpose
 - **Skill-Based:** Requires domain methodology
 - **Tool-Powered:** Heavy tool orchestration
@@ -188,6 +195,7 @@ Select based on:
 ### Step 3: Design Architecture
 
 Identify:
+
 - **Required Skills:** Which domain expertise is needed?
 - **Required MCPs:** Which tools are necessary?
 - **Execution Pattern:** ReAct, Plan-Execute, Hierarchical, or Feedback Loop?
@@ -240,6 +248,7 @@ Register in `META/agent-registry.json`:
 ### Step 7: Update Relationships
 
 Update `META/relationship-mapping.json` to show:
+
 - Agent → Skill dependencies
 - Agent → MCP dependencies
 - Agent → Component usage
@@ -247,6 +256,7 @@ Update `META/relationship-mapping.json` to show:
 ### Step 8: Create Examples
 
 Add concrete examples showing:
+
 - Input format
 - Execution trace
 - Output format
@@ -258,11 +268,13 @@ Add concrete examples showing:
 ### 1. Single Responsibility
 
 **✅ Do:**
+
 - One clear purpose per agent
 - Compose agents for complex tasks
 - Keep agents focused and testable
 
 **❌ Don't:**
+
 - Create "god agents" that do everything
 - Mix unrelated responsibilities
 - Overload agents with too many skills
@@ -270,12 +282,14 @@ Add concrete examples showing:
 ### 2. Explicit Dependencies
 
 **✅ Do:**
+
 - Document all required skills
 - List all required MCPs
 - Specify minimum capabilities
 - Provide fallback strategies
 
 **❌ Don't:**
+
 - Assume tools are available
 - Hide dependencies
 - Fail silently when tools missing
@@ -283,12 +297,14 @@ Add concrete examples showing:
 ### 3. Graceful Degradation
 
 **✅ Do:**
+
 - Check tool availability before use
 - Provide fallback strategies
 - Return clear error messages
 - Log decision points
 
 **❌ Don't:**
+
 - Crash on missing dependencies
 - Fail without explanation
 - Leave agents in inconsistent state
@@ -296,12 +312,14 @@ Add concrete examples showing:
 ### 4. Observable Behavior
 
 **✅ Do:**
+
 - Log all major decisions
 - Track state transitions
 - Report progress incrementally
 - Enable debugging
 
 **❌ Don't:**
+
 - Operate as a black box
 - Hide internal state
 - Suppress error details
@@ -309,12 +327,14 @@ Add concrete examples showing:
 ### 5. Testability
 
 **✅ Do:**
+
 - Write unit tests for decision logic
 - Create integration tests with real tools
 - Test error scenarios
 - Validate against edge cases
 
 **❌ Don't:**
+
 - Skip testing complex logic
 - Test only happy paths
 - Ignore error conditions
@@ -337,6 +357,7 @@ mcps:
 ```
 
 **Flow:**
+
 1. Fetch code changes via `git-mcp`
 2. Analyze security with `security-engineer` skill
 3. Check test coverage with `testing-strategist` skill
@@ -359,6 +380,7 @@ mcps:
 ```
 
 **Flow:**
+
 1. Plan: Use `mvp-builder` to prioritize features
 2. Design: Use `api-designer` to define contracts
 3. Build Frontend: Use `frontend-builder` + `component-generator-mcp`
@@ -385,6 +407,7 @@ mcps:
 ```
 
 **Flow:**
+
 1. Orchestrator uses `rag-implementer` skill for strategy
 2. Delegates chunking to `document-chunker-agent`
 3. Parallel: Generate embeddings via `embedding-generator-agent`
@@ -439,19 +462,23 @@ AGENTS/
 ## Related Documentation
 
 **Fundamentals:**
+
 - `AGENTS/AGENT.md` - Complete agent guide
 - `DOCS/AGENTS-GUIDE.md` - Agent usage guide
 - `DOCS/AGENT-SKILL-INTEGRATION.md` - Integration patterns
 
 **Skills:**
+
 - `SKILLS/README.md` - Skill directory overview
 - `SKILLS/_TEMPLATE/SKILL.md` - Skill template
 
 **MCPs:**
+
 - `MCP-SERVERS/README.md` - MCP directory overview
 - `DOCS/MCP-DEVELOPMENT-ROADMAP.md` - MCP development guide
 
 **Playbooks:**
+
 - `PLAYBOOKS/multi-agent-systems.md` - Multi-agent orchestration
 - `PLAYBOOKS/deployment-checklist.md` - Agent deployment
 

@@ -12,12 +12,14 @@ I help you build live streaming features, implement WebRTC, and create real-time
 ## What I Do
 
 **Live Streaming:**
+
 - WebRTC peer-to-peer video
 - Live broadcasting
 - Screen sharing
 - Real-time chat
 
 **Streaming Platforms:**
+
 - Twitch-style streaming
 - Video conferencing
 - Live events
@@ -35,9 +37,7 @@ export class WebRTCConnection {
 
   constructor() {
     this.peerConnection = new RTCPeerConnection({
-      iceServers: [
-        { urls: 'stun:stun.l.google.com:19302' }
-      ]
+      iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
     })
   }
 
@@ -81,13 +81,13 @@ export class WebRTCConnection {
   }
 
   onTrack(callback: (stream: MediaStream) => void) {
-    this.peerConnection.ontrack = (event) => {
+    this.peerConnection.ontrack = event => {
       callback(event.streams[0])
     }
   }
 
   onIceCandidate(callback: (candidate: RTCIceCandidate) => void) {
-    this.peerConnection.onicecandidate = (event) => {
+    this.peerConnection.onicecandidate = event => {
       if (event.candidate) {
         callback(event.candidate)
       }
@@ -509,6 +509,7 @@ export function VideoConference() {
 ## When to Use Me
 
 **Perfect for:**
+
 - Building video call features
 - Creating livestream platforms
 - Implementing screen sharing
@@ -516,6 +517,7 @@ export function VideoConference() {
 - Creating video conferencing apps
 
 **I'll help you:**
+
 - Implement WebRTC
 - Build broadcast features
 - Add screen sharing

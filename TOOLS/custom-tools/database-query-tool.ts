@@ -165,22 +165,16 @@ export class DatabaseQueryTool {
         'REVOKE'
       ]
 
-      const hasWriteOp = writeOperations.some(op =>
-        normalizedSql.startsWith(op)
-      )
+      const hasWriteOp = writeOperations.some(op => normalizedSql.startsWith(op))
 
       if (hasWriteOp) {
-        throw new Error(
-          'Write operations not allowed in read-only mode'
-        )
+        throw new Error('Write operations not allowed in read-only mode')
       }
     }
 
     // Always block dangerous operations
     const dangerousOps = ['DROP DATABASE', 'DROP SCHEMA', 'TRUNCATE']
-    const hasDangerousOp = dangerousOps.some(op =>
-      normalizedSql.includes(op)
-    )
+    const hasDangerousOp = dangerousOps.some(op => normalizedSql.includes(op))
 
     if (hasDangerousOp) {
       throw new Error('Dangerous operations not allowed')
@@ -195,10 +189,7 @@ export class DatabaseQueryTool {
   /**
    * Execute query (PostgreSQL)
    */
-  private async queryPostgres<T = any>(
-    sql: string,
-    params?: any[]
-  ): Promise<QueryResult<T>> {
+  private async queryPostgres<T = any>(sql: string, params?: any[]): Promise<QueryResult<T>> {
     if (!this.pgPool) {
       throw new Error('PostgreSQL pool not initialized')
     }
@@ -218,10 +209,7 @@ export class DatabaseQueryTool {
   /**
    * Execute query (MySQL)
    */
-  private async queryMysql<T = any>(
-    sql: string,
-    params?: any[]
-  ): Promise<QueryResult<T>> {
+  private async queryMysql<T = any>(sql: string, params?: any[]): Promise<QueryResult<T>> {
     if (!this.mysqlPool) {
       throw new Error('MySQL pool not initialized')
     }
@@ -241,10 +229,7 @@ export class DatabaseQueryTool {
   /**
    * Execute query (SQLite)
    */
-  private async querySqlite<T = any>(
-    sql: string,
-    params?: any[]
-  ): Promise<QueryResult<T>> {
+  private async querySqlite<T = any>(sql: string, params?: any[]): Promise<QueryResult<T>> {
     if (!this.sqliteDb) {
       throw new Error('SQLite database not initialized')
     }
@@ -276,10 +261,7 @@ export class DatabaseQueryTool {
   /**
    * Execute SQL query
    */
-  async query<T = any>(
-    sql: string,
-    params?: any[]
-  ): Promise<QueryResult<T>> {
+  async query<T = any>(sql: string, params?: any[]): Promise<QueryResult<T>> {
     // Validate query
     this.validateQuery(sql)
 
@@ -302,9 +284,7 @@ export class DatabaseQueryTool {
   /**
    * Execute multiple queries in transaction
    */
-  async transaction<T = any>(
-    fn: (tx: TransactionFn) => Promise<T>
-  ): Promise<T> {
+  async transaction<T = any>(fn: (tx: TransactionFn) => Promise<T>): Promise<T> {
     if (this.readOnly) {
       throw new Error('Transactions not allowed in read-only mode')
     }
@@ -327,9 +307,7 @@ export class DatabaseQueryTool {
   /**
    * Transaction (PostgreSQL)
    */
-  private async transactionPostgres<T>(
-    fn: (tx: TransactionFn) => Promise<T>
-  ): Promise<T> {
+  private async transactionPostgres<T>(fn: (tx: TransactionFn) => Promise<T>): Promise<T> {
     if (!this.pgPool) {
       throw new Error('PostgreSQL pool not initialized')
     }
@@ -370,9 +348,7 @@ export class DatabaseQueryTool {
   /**
    * Transaction (MySQL)
    */
-  private async transactionMysql<T>(
-    fn: (tx: TransactionFn) => Promise<T>
-  ): Promise<T> {
+  private async transactionMysql<T>(fn: (tx: TransactionFn) => Promise<T>): Promise<T> {
     if (!this.mysqlPool) {
       throw new Error('MySQL pool not initialized')
     }
@@ -413,9 +389,7 @@ export class DatabaseQueryTool {
   /**
    * Transaction (SQLite)
    */
-  private async transactionSqlite<T>(
-    fn: (tx: TransactionFn) => Promise<T>
-  ): Promise<T> {
+  private async transactionSqlite<T>(fn: (tx: TransactionFn) => Promise<T>): Promise<T> {
     if (!this.sqliteDb) {
       throw new Error('SQLite database not initialized')
     }
@@ -466,20 +440,26 @@ export class DatabaseQueryTool {
   async getTableSchema(tableName: string): Promise<any> {
     switch (this.type) {
       case 'postgres':
-        return this.query(`
+        return this.query(
+          `
           SELECT column_name, data_type, is_nullable, column_default
           FROM information_schema.columns
           WHERE table_name = $1
           ORDER BY ordinal_position
-        `, [tableName])
+        `,
+          [tableName]
+        )
 
       case 'mysql':
-        return this.query(`
+        return this.query(
+          `
           SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE, COLUMN_DEFAULT
           FROM information_schema.COLUMNS
           WHERE TABLE_NAME = ?
           ORDER BY ORDINAL_POSITION
-        `, [tableName])
+        `,
+          [tableName]
+        )
 
       case 'sqlite':
         return this.query(`PRAGMA table_info(${tableName})`)
@@ -544,7 +524,8 @@ export class DatabaseQueryTool {
  */
 export const databaseQueryToolDefinition = {
   name: 'database_query',
-  description: 'Execute SQL queries on databases. Supports SELECT queries in read-only mode. Uses parameterized queries to prevent SQL injection.',
+  description:
+    'Execute SQL queries on databases. Supports SELECT queries in read-only mode. Uses parameterized queries to prevent SQL injection.',
   parameters: {
     type: 'object',
     properties: {
@@ -574,10 +555,7 @@ export const databaseQueryToolDefinition = {
 /**
  * Execute tool (for AI frameworks)
  */
-export async function executeDatabaseQueryTool(
-  args: any,
-  config: DatabaseConfig
-): Promise<any> {
+export async function executeDatabaseQueryTool(args: any, config: DatabaseConfig): Promise<any> {
   const db = new DatabaseQueryTool(config)
 
   try {
@@ -625,10 +603,10 @@ export async function examples() {
     console.log('Schema:', schema.rows)
 
     // Execute query with parameters
-    const users = await pgDb.query(
-      'SELECT * FROM users WHERE age > $1 AND status = $2',
-      [18, 'active']
-    )
+    const users = await pgDb.query('SELECT * FROM users WHERE age > $1 AND status = $2', [
+      18,
+      'active'
+    ])
     console.log(`Found ${users.rowCount} users`)
     console.log('Users:', users.rows)
 
@@ -656,16 +634,13 @@ export async function examples() {
 
   try {
     // Transaction example
-    await sqliteDb.transaction(async (tx) => {
-      await tx.query(
-        'INSERT INTO users (name, email) VALUES (?, ?)',
-        ['John Doe', 'john@example.com']
-      )
+    await sqliteDb.transaction(async tx => {
+      await tx.query('INSERT INTO users (name, email) VALUES (?, ?)', [
+        'John Doe',
+        'john@example.com'
+      ])
 
-      await tx.query(
-        'UPDATE accounts SET balance = balance + ?',
-        [100]
-      )
+      await tx.query('UPDATE accounts SET balance = balance + ?', [100])
     })
 
     console.log('Transaction completed')

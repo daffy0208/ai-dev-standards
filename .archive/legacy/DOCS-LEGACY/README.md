@@ -9,6 +9,7 @@ This directory contains historical documentation that has been archived but pres
 ## Purpose
 
 Documents are moved here when they:
+
 - Have been consolidated into newer, more comprehensive docs
 - Represent completed phases or initiatives
 - Contain historical context that may be useful for reference
@@ -24,6 +25,7 @@ evolution.
 ## Contents
 
 ### Dark Matter Documentation (Historical)
+
 - `DARK_MATTER_ACTIONS_COMPLETE.md` - Status report of Dark Matter recommendations implementation
 - `dark_matter_report.md` - Original Dark Matter Mode analysis (Oct 22, 2025)
 - `Run Dark Matter Mode (Repository Application Spec v1.2).md` - Original runner instructions
@@ -31,11 +33,13 @@ evolution.
 **Current Version:** See `/DARK-MATTER-SPECIFICATION.md` in root directory
 
 ### Documentation Archive (from DOCS/archive)
+
 Historical versions and iterations of various documentation files that have been superseded by consolidated versions.
 
 ## Usage
 
 These documents are preserved for:
+
 1. **Historical Reference** - Understanding how the project evolved
 2. **Context Recovery** - Recovering decisions and rationale from earlier phases
 3. **Pattern Recognition** - Identifying recurring themes across iterations
@@ -50,11 +54,12 @@ These documents are preserved for:
 ## Maintenance
 
 This folder is periodically reviewed to:
+
 - Ensure truly obsolete docs can be removed entirely
 - Verify nothing here should actually be in active docs
 - Update this README with new archived content
 
 ---
 
-*Archive Created: 2025-10-23*
-*Last Reviewed: 2025-10-23*
+_Archive Created: 2025-10-23_
+_Last Reviewed: 2025-10-23_

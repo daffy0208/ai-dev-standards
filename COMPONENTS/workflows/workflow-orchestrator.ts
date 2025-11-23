@@ -156,10 +156,18 @@ export interface WorkflowState {
  * Workflow Orchestrator
  */
 export class WorkflowOrchestrator {
-  private options: Required<Omit<WorkflowOptions,
-    'name' | 'onStepStart' | 'onStepComplete' | 'onStepError' |
-    'onWorkflowComplete' | 'onWorkflowError' | 'persistencePath'
-  >> & {
+  private options: Required<
+    Omit<
+      WorkflowOptions,
+      | 'name'
+      | 'onStepStart'
+      | 'onStepComplete'
+      | 'onStepError'
+      | 'onWorkflowComplete'
+      | 'onWorkflowError'
+      | 'persistencePath'
+    >
+  > & {
     name?: string
     persistencePath?: string
     onStepStart?: (step: WorkflowStep) => void | Promise<void>
@@ -195,7 +203,7 @@ export class WorkflowOrchestrator {
       onStepComplete: options.onStepComplete,
       onStepError: options.onStepError,
       onWorkflowComplete: options.onWorkflowComplete,
-      onWorkflowError: options.onWorkflowError,
+      onWorkflowError: options.onWorkflowError
     }
 
     // Try to restore state if persistence enabled
@@ -219,7 +227,7 @@ export class WorkflowOrchestrator {
       retryAttempts: step.retryAttempts ?? this.options.defaultRetryAttempts,
       retryDelay: step.retryDelay ?? this.options.defaultRetryDelay,
       timeout: step.timeout ?? this.options.defaultTimeout,
-      errorStrategy: step.errorStrategy ?? this.options.defaultErrorStrategy,
+      errorStrategy: step.errorStrategy ?? this.options.defaultErrorStrategy
     }
 
     this.steps.set(step.id, stepState)
@@ -335,10 +343,7 @@ export class WorkflowOrchestrator {
       }
 
       // Start new steps up to concurrency limit
-      while (
-        running.size < this.options.maxConcurrency &&
-        index < sortedSteps.length
-      ) {
+      while (running.size < this.options.maxConcurrency && index < sortedSteps.length) {
         const stepId = sortedSteps[index]
         const step = this.steps.get(stepId)!
 
@@ -402,7 +407,7 @@ export class WorkflowOrchestrator {
         step.result = {
           success: false,
           error: error as Error,
-          duration: Date.now() - step.startTime!,
+          duration: Date.now() - step.startTime!
         }
         await this.options.onStepError?.(step, error as Error)
         return
@@ -416,10 +421,7 @@ export class WorkflowOrchestrator {
 
       try {
         // Execute with timeout
-        const result = await this.executeWithTimeout(
-          step.execute(this.context),
-          step.timeout!
-        )
+        const result = await this.executeWithTimeout(step.execute(this.context), step.timeout!)
 
         // Success
         step.status = 'completed'
@@ -428,7 +430,7 @@ export class WorkflowOrchestrator {
           success: true,
           data: result,
           duration: step.endTime - step.startTime!,
-          attempts: step.attempts,
+          attempts: step.attempts
         }
 
         // Update context with result
@@ -464,7 +466,7 @@ export class WorkflowOrchestrator {
       success: false,
       error: lastError,
       duration: step.endTime - step.startTime!,
-      attempts: step.attempts,
+      attempts: step.attempts
     }
 
     await step.onError?.(lastError!, this.context)
@@ -538,7 +540,7 @@ export class WorkflowOrchestrator {
       currentStep: this.currentStep,
       startTime: this.startTime,
       endTime: this.endTime,
-      error: this.error,
+      error: this.error
     }
   }
 
@@ -571,10 +573,7 @@ export class WorkflowOrchestrator {
       if (step.dependsOn) {
         for (const depId of step.dependsOn) {
           if (!this.steps.has(depId)) {
-            throw new WorkflowError(
-              `Step ${stepId} depends on non-existent step ${depId}`,
-              stepId
-            )
+            throw new WorkflowError(`Step ${stepId} depends on non-existent step ${depId}`, stepId)
           }
         }
       }
@@ -651,15 +650,10 @@ export class WorkflowOrchestrator {
   /**
    * Execute with timeout
    */
-  private async executeWithTimeout<T>(
-    promise: Promise<T>,
-    timeout: number
-  ): Promise<T> {
+  private async executeWithTimeout<T>(promise: Promise<T>, timeout: number): Promise<T> {
     return Promise.race([
       promise,
-      new Promise<T>((_, reject) =>
-        setTimeout(() => reject(new Error('Step timeout')), timeout)
-      ),
+      new Promise<T>((_, reject) => setTimeout(() => reject(new Error('Step timeout')), timeout))
     ])
   }
 
@@ -672,7 +666,7 @@ export class WorkflowOrchestrator {
     const state = this.getState()
     const serialized = JSON.stringify({
       ...state,
-      steps: Array.from(state.steps.entries()),
+      steps: Array.from(state.steps.entries())
     })
 
     // In browser: localStorage
@@ -683,6 +677,7 @@ export class WorkflowOrchestrator {
     // In Node.js: file system (if path provided)
     if (this.options.persistencePath && typeof require !== 'undefined') {
       try {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
         const fs = require('fs').promises
         await fs.writeFile(this.options.persistencePath, serialized, 'utf8')
       } catch (error) {
@@ -705,6 +700,7 @@ export class WorkflowOrchestrator {
     // Try Node.js file system
     if (!serialized && this.options.persistencePath && typeof require !== 'undefined') {
       try {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
         const fs = require('fs')
         serialized = fs.readFileSync(this.options.persistencePath, 'utf8')
       } catch (error) {

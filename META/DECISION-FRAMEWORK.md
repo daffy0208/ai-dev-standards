@@ -75,6 +75,7 @@ User requests technical implementation (RAG, multi-agent, etc.)
 **Before implementing technical solutions, show users these alternatives:**
 
 #### RAG Implementation
+
 ```
 Before: RAG system (3-4 weeks, $200-500/month)
 Try First:
@@ -86,6 +87,7 @@ Only proceed with RAG if simpler options tested and insufficient.
 ```
 
 #### Multi-Agent System
+
 ```
 Before: Multi-agent architecture (4-6 weeks, $300-800/month)
 Try First:
@@ -96,6 +98,7 @@ Only proceed with multi-agent if parallelization validated as necessary.
 ```
 
 #### Custom Infrastructure
+
 ```
 Before: Custom AWS setup (6-8 weeks, $500+/month)
 Try First:
@@ -110,6 +113,7 @@ Only proceed with custom if scale/requirements validated.
 All projects should follow these phases with strict time limits:
 
 #### Phase 1: Problem Discovery (2 weeks MAX)
+
 - ⏰ **Time Limit:** 2 weeks
 - 💰 **Budget:** $0 (user interviews only)
 - ✅ **Exit Criteria:** 10+ interviews showing real problem
@@ -117,6 +121,7 @@ All projects should follow these phases with strict time limits:
 **If exceeds 2 weeks → STOP. Re-evaluate if problem is real.**
 
 #### Phase 2: Solution Validation (3 days MAX)
+
 - ⏰ **Time Limit:** 3 days
 - 💰 **Budget:** $0-50 (prototypes/mockups)
 - ✅ **Exit Criteria:** Users confirm they'd pay for solution
@@ -124,6 +129,7 @@ All projects should follow these phases with strict time limits:
 **If exceeds 3 days → STOP. Solution may be too complex.**
 
 #### Phase 3: MVP Build (2 weeks MAX)
+
 - ⏰ **Time Limit:** 2 weeks
 - 💰 **Budget:** <$200
 - ✅ **Exit Criteria:** Core value deliverable, testable
@@ -131,11 +137,13 @@ All projects should follow these phases with strict time limits:
 **If exceeds 2 weeks → STOP. Cut scope or validate assumptions.**
 
 #### Phase 4: Validated Learning (Ongoing)
+
 - 💰 **Budget:** <$1000/month
 - ✅ **Metrics:** Track usage, retention, feedback
 - 🎯 **Goal:** Prove product-market fit before scaling
 
 #### Phase 5: Scale Decision
+
 - Only proceed if Phase 4 metrics prove viability
 - This is when expensive technical solutions are justified
 
@@ -167,6 +175,7 @@ All projects should follow these phases with strict time limits:
 ### When to Use Which Agentic Framework
 
 **LangChain / LangGraph**
+
 - ✅ Complex, stateful workflows with cycles
 - ✅ RAG is primary use case
 - ✅ Need large ecosystem of integrations
@@ -178,6 +187,7 @@ All projects should follow these phases with strict time limits:
 **Use when:** Building knowledge-intensive applications with complex retrieval and reasoning chains.
 
 **CrewAI**
+
 - ✅ Role-based agent collaboration
 - ✅ Clear division of responsibilities (manager, worker, reviewer roles)
 - ✅ Content generation and research workflows
@@ -189,6 +199,7 @@ All projects should follow these phases with strict time limits:
 **Use when:** Building systems where agents have distinct roles and responsibilities.
 
 **AutoGen / AG2**
+
 - ✅ Conversational multi-agent systems
 - ✅ Research and experimental projects
 - ✅ Multi-turn reasoning with feedback loops
@@ -199,6 +210,7 @@ All projects should follow these phases with strict time limits:
 **Use when:** Building research tools or experimental systems with conversational interactions.
 
 **Semantic Kernel**
+
 - ✅ Enterprise/Microsoft ecosystem
 - ✅ .NET/C# applications
 - ✅ Strong governance requirements
@@ -210,6 +222,7 @@ All projects should follow these phases with strict time limits:
 **Use when:** Building enterprise applications in Microsoft stack.
 
 **LlamaIndex**
+
 - ✅ RAG is the ONLY focus
 - ✅ Document-heavy applications
 - ✅ Advanced retrieval strategies
@@ -221,6 +234,7 @@ All projects should follow these phases with strict time limits:
 **Use when:** Building pure document search and retrieval systems.
 
 **OpenAI Swarm**
+
 - ✅ Lightweight coordination needed
 - ✅ Simple handoffs between specialists
 - ✅ Minimal boilerplate desired
@@ -265,6 +279,7 @@ Primary use case?
 ### Single Agent vs Multi-Agent
 
 **Single Agent:**
+
 - Linear, sequential tasks
 - One clear objective
 - Minimal tool complexity
@@ -274,6 +289,7 @@ Primary use case?
 **Decision criteria:** Can this be accomplished in one coherent workflow?
 
 **Multi-Agent:**
+
 - Complex, multi-step workflows
 - Parallel processing beneficial
 - Different specializations required
@@ -287,6 +303,7 @@ Primary use case?
 ### RAG vs Fine-Tuning vs Prompt Engineering
 
 **Prompt Engineering Only:**
+
 - ✅ Task fits in context window
 - ✅ No specialized knowledge needed
 - ✅ One-time or ad-hoc queries
@@ -297,6 +314,7 @@ Primary use case?
 **Use when:** Information is small enough to include in prompt.
 
 **RAG (Retrieval-Augmented Generation):**
+
 - ✅ Large knowledge base (1000+ documents)
 - ✅ Frequently updated information
 - ✅ Context-specific responses needed
@@ -309,6 +327,7 @@ Primary use case?
 **Use when:** Dynamic knowledge base that updates regularly.
 
 **Fine-Tuning:**
+
 - ✅ Specific style/format needed
 - ✅ Behavior modification required
 - ✅ Latency critical (no retrieval overhead)
@@ -321,6 +340,7 @@ Primary use case?
 **Use when:** Knowledge is static and style/behavior customization critical.
 
 **Decision Tree:**
+
 ```
 Is information static or dynamic?
 │
@@ -339,6 +359,7 @@ Is information static or dynamic?
 ### MCP vs Direct Integration
 
 **Use MCP When:**
+
 - ✅ Multiple clients need same data/tools
 - ✅ Want standardized integration layer
 - ✅ Building for Claude ecosystem
@@ -348,6 +369,7 @@ Is information static or dynamic?
 - ❌ One-off simple integration
 
 **Use Direct Integration When:**
+
 - ✅ Simple, one-time integration
 - ✅ Performance critical (fewer abstraction layers)
 - ✅ MCP adds unnecessary complexity
@@ -356,6 +378,7 @@ Is information static or dynamic?
 - ❌ Will integrate with multiple AI systems
 
 **Decision Tree:**
+
 ```
 Will multiple applications use this tool/data?
 │
@@ -376,6 +399,7 @@ Will multiple applications use this tool/data?
 Use this decision matrix to choose optimal platform and stack.
 
 **Decision Matrix Scoring (1-5 scale, weighted):**
+
 - **Time-to-First-Value** (Weight: 5) - Speed to market
 - **Team Familiarity** (Weight: 5) - Current skill alignment
 - **SEO/SSR Requirements** (Weight: 4) - Organic traffic needs
@@ -392,10 +416,12 @@ Use this decision matrix to choose optimal platform and stack.
 ### Archetype A: Static/Content-Heavy Website
 
 **Scoring Profile:**
+
 - High: SEO/SSR (5), Time-to-Value (4-5)
 - Low: Real-time (1-2), Complexity (2)
 
 **Recommended Stack:**
+
 - **Frontend:** Astro or Next.js (SSG mode)
 - **CMS:** Headless CMS (Sanity, Contentful, Strapi)
 - **Hosting:** Vercel, Cloudflare Pages, Netlify
@@ -410,10 +436,12 @@ Use this decision matrix to choose optimal platform and stack.
 ### Archetype B: SaaS-Style Web Application
 
 **Scoring Profile:**
+
 - High: Extensibility (5), Data Compliance (4-5), Complexity (4)
 - Medium: Real-time (3), SEO (3)
 
 **Recommended Stack:**
+
 - **Frontend:** Next.js (App Router) or Remix
 - **Backend:** Next.js API Routes or separate FastAPI/Express
 - **Database:** PostgreSQL (Supabase, Neon, Railway)
@@ -430,10 +458,12 @@ Use this decision matrix to choose optimal platform and stack.
 ### Archetype C: Internal Tool/Admin Dashboard
 
 **Scoring Profile:**
+
 - High: Speed > Polish (5), Team Familiarity (5)
 - Low: SEO (1), Public accessibility (1)
 
 **Recommended Stack:**
+
 - **Option 1 (Custom):** Next.js + shadcn/ui + Supabase
 - **Option 2 (Low-code):** Retool, Internal, Airplane
 - **Database:** Supabase or existing company DB
@@ -448,10 +478,12 @@ Use this decision matrix to choose optimal platform and stack.
 ### Archetype D: Real-time/Live Dashboards
 
 **Scoring Profile:**
+
 - High: Real-time (5), Performance (5), Low-Latency (5)
 - Medium: Complexity (4)
 
 **Recommended Stack:**
+
 - **Frontend:** SvelteKit, Solid.js, or React with optimizations
 - **Real-time:** WebSockets, Server-Sent Events, or Supabase Realtime
 - **Database:** TimescaleDB (time-series), Redis (caching), PostgreSQL
@@ -467,10 +499,12 @@ Use this decision matrix to choose optimal platform and stack.
 ### Archetype E: AI-Native/Multi-Agent System
 
 **Scoring Profile:**
+
 - High: AI Complexity (5), Knowledge Requirements (5)
 - High: Extensibility (4), Data needs (4-5)
 
 **Recommended Stack:**
+
 - **Backend:** FastAPI (Python) or Express (TypeScript)
 - **AI Framework:** LangChain/LangGraph or CrewAI
 - **Vector DB:** Pinecone, Weaviate, or Chroma
@@ -488,10 +522,12 @@ Use this decision matrix to choose optimal platform and stack.
 ### Archetype F: Mobile Application
 
 **Scoring Profile:**
+
 - High: Mobile-First (5), Offline (4-5)
 - Medium: Performance (4)
 
 **Recommended Stack:**
+
 - **Framework:** React Native with Expo
 - **Local DB:** SQLite, WatermelonDB, or Turso (edge)
 - **Backend:** Supabase, Firebase, or custom API
@@ -507,10 +543,12 @@ Use this decision matrix to choose optimal platform and stack.
 ### Archetype G: Browser Extension/Overlay
 
 **Scoring Profile:**
+
 - High: Browser-specific (5)
 - Low: Backend complexity (1-2)
 
 **Recommended Stack:**
+
 - **Framework:** Plasmo Framework
 - **Storage:** Chrome Storage API, IndexedDB
 - **Backend:** Cloudflare Workers (if needed)
@@ -552,6 +590,7 @@ What's the primary workload?
 ### Choosing the Right Vector DB
 
 **Pinecone:**
+
 - ✅ Fully managed (no ops)
 - ✅ Auto-scaling
 - ✅ Best for production at scale
@@ -562,6 +601,7 @@ What's the primary workload?
 **Use when:** Production system, don't want to manage infrastructure, budget allows.
 
 **Weaviate:**
+
 - ✅ Open-source
 - ✅ Rich features (hybrid search, multi-tenancy)
 - ✅ Self-hosted or cloud
@@ -573,6 +613,7 @@ What's the primary workload?
 **Use when:** Want open-source, need hybrid search, okay with more setup.
 
 **Chroma:**
+
 - ✅ Embedded (no separate server)
 - ✅ Perfect for prototypes
 - ✅ Extremely simple to use
@@ -583,6 +624,7 @@ What's the primary workload?
 **Use when:** Prototyping, POC, local development, small datasets.
 
 **Qdrant:**
+
 - ✅ High performance (Rust-based)
 - ✅ Great filtering capabilities
 - ✅ Open-source with cloud option
@@ -593,6 +635,7 @@ What's the primary workload?
 **Use when:** Performance critical, need advanced filtering, okay with smaller ecosystem.
 
 **PostgreSQL + pgvector:**
+
 - ✅ Already using PostgreSQL
 - ✅ Mature, reliable infrastructure
 - ✅ No new databases to learn
@@ -633,6 +676,7 @@ Already using PostgreSQL?
 ### Where to Deploy?
 
 **Vercel:**
+
 - ✅ Next.js/React apps
 - ✅ Serverless by default
 - ✅ Excellent DX (git push = deploy)
@@ -644,6 +688,7 @@ Already using PostgreSQL?
 **Use when:** Next.js frontend, prioritize DX, rapid deployment needed.
 
 **Railway:**
+
 - ✅ Full-stack apps (frontend + backend + DB)
 - ✅ Database included
 - ✅ Simple pricing
@@ -655,6 +700,7 @@ Already using PostgreSQL?
 **Use when:** Full-stack app, want simplicity, database needed.
 
 **Fly.io:**
+
 - ✅ Run containers globally
 - ✅ Edge computing
 - ✅ Great for real-time/WebSockets
@@ -665,6 +711,7 @@ Already using PostgreSQL?
 **Use when:** Global distribution needed, WebSockets/real-time, edge computing.
 
 **AWS Lambda / Serverless:**
+
 - ✅ True serverless (pay per use)
 - ✅ Massive scale
 - ✅ Integration with AWS ecosystem
@@ -675,6 +722,7 @@ Already using PostgreSQL?
 **Use when:** Need AWS features, sporadic traffic, pay-per-use model preferred.
 
 **Cloudflare Workers:**
+
 - ✅ Edge computing (global)
 - ✅ Extremely fast (no cold starts)
 - ✅ Great for APIs and MCP servers
@@ -685,6 +733,7 @@ Already using PostgreSQL?
 **Use when:** Edge APIs, MCP servers, global distribution, cost-sensitive.
 
 **Docker + VPS (Hetzner, DigitalOcean, Linode):**
+
 - ✅ Full control
 - ✅ Predictable costs
 - ✅ Any stack/language
@@ -731,6 +780,7 @@ What's the primary workload?
 ### REST vs GraphQL
 
 **REST:**
+
 - ✅ Simple, well-understood
 - ✅ Great caching (HTTP caching)
 - ✅ Tooling everywhere
@@ -741,6 +791,7 @@ What's the primary workload?
 **Use when:** Simple CRUD, public APIs, caching important, team knows REST.
 
 **GraphQL:**
+
 - ✅ Client controls data shape (no over-fetching)
 - ✅ Single request for related data
 - ✅ Strong typing
@@ -758,6 +809,7 @@ What's the primary workload?
 ### How Much to Test?
 
 **Always Test:**
+
 - Core business logic
 - Security-critical code
 - Public APIs
@@ -766,6 +818,7 @@ What's the primary workload?
 - Auth/authorization
 
 **Can Skip Testing:**
+
 - Quick prototypes (< 1 week lifespan)
 - POCs not going to production
 - Generated UI code (can be visually tested)
@@ -774,17 +827,20 @@ What's the primary workload?
 **Test Distribution:**
 
 **Production Application:**
+
 - Unit tests: 70%
 - Integration tests: 20%
 - E2E tests: 10%
 - Target coverage: >80%
 
 **MVP/Prototype:**
+
 - Critical path tests only
 - Manual testing for UI
 - No coverage targets
 
 **Library/SDK:**
+
 - Unit tests: 90%
 - Integration tests: 10%
 - Target coverage: >95%
@@ -798,6 +854,7 @@ When facing any technical decision, follow this process:
 ### 1. Identify Decision Type
 
 Is this a decision about:
+
 - Framework/library selection?
 - Architecture pattern?
 - Platform/deployment?
@@ -807,11 +864,13 @@ Is this a decision about:
 ### 2. List Requirements & Constraints
 
 **Requirements:**
+
 - What must the solution provide?
 - What problems must it solve?
 - What features are needed?
 
 **Constraints:**
+
 - Time limitations
 - Budget restrictions
 - Team skill level
@@ -821,6 +880,7 @@ Is this a decision about:
 ### 3. Consult This Framework
 
 Find the relevant section above and review:
+
 - Decision criteria
 - Trade-offs
 - Decision trees
@@ -829,6 +889,7 @@ Find the relevant section above and review:
 ### 4. Check Architecture Patterns
 
 Review STANDARDS/architecture-patterns/ for:
+
 - Similar scenarios
 - Proven approaches
 - Implementation guidance
@@ -836,6 +897,7 @@ Review STANDARDS/architecture-patterns/ for:
 ### 5. Consider Trade-offs
 
 For each option:
+
 - **Pros:** What it does well
 - **Cons:** What it doesn't do well
 - **Risks:** What could go wrong
@@ -844,6 +906,7 @@ For each option:
 ### 6. Make & Document Decision
 
 **Document format:**
+
 ```markdown
 ## Decision: [Choice Made]
 
@@ -853,10 +916,12 @@ For each option:
 [Why this decision was needed]
 
 **Requirements:**
+
 - Requirement 1
 - Requirement 2
 
 **Options Considered:**
+
 1. Option A: [Brief description]
 2. Option B: [Brief description]
 3. Option C: [Brief description]
@@ -867,14 +932,17 @@ For each option:
 [Why this option was chosen, referencing decision framework]
 
 **Trade-offs Accepted:**
+
 - [Trade-off 1]
 - [Trade-off 2]
 
 **Re-evaluation Triggers:**
+
 - [Condition that would require revisiting this decision]
 - [Metric threshold that would indicate wrong choice]
 
 **References:**
+
 - META/DECISION-FRAMEWORK.md:[line-numbers]
 - STANDARDS/architecture-patterns/[pattern-name].md
 ```
@@ -882,6 +950,7 @@ For each option:
 ### 7. Explain to User
 
 When communicating the decision:
+
 - State the choice clearly
 - Explain the reasoning (reference this framework)
 - List trade-offs honestly
@@ -897,12 +966,14 @@ When communicating the decision:
 **Context:** RAG system for 100K documents, production use, need hybrid search
 
 **Requirements:**
+
 - Production-ready
 - Hybrid search (semantic + keyword)
 - Moderate budget
 - Updates daily
 
 **Options:**
+
 1. Pinecone (managed, expensive)
 2. Weaviate (hybrid search, moderate cost)
 3. Chroma (cheap, but not production-scale)
@@ -910,6 +981,7 @@ When communicating the decision:
 **Decision:** Weaviate Cloud
 
 **Reasoning:**
+
 - Hybrid search built-in (requirement met)
 - Managed service (production-ready)
 - Better pricing than Pinecone
@@ -917,10 +989,12 @@ When communicating the decision:
 - Meets all requirements
 
 **Trade-offs:**
+
 - Smaller ecosystem than Pinecone
 - Slightly more complex than Pinecone
 
 **Re-evaluation triggers:**
+
 - If costs exceed $X/month → consider self-hosting
 - If scale exceeds 10M vectors → benchmark performance
 - If Weaviate lacks critical feature → reconsider Pinecone
@@ -932,11 +1006,13 @@ When communicating the decision:
 **Context:** Building multi-agent code review system
 
 **Requirements:**
+
 - Specialized agent roles (syntax checker, security auditor, style enforcer)
 - Coordination between agents
 - Production system
 
 **Options:**
+
 1. LangGraph (complex but powerful)
 2. CrewAI (role-based, simpler)
 3. OpenAI Swarm (too simple for this)
@@ -944,16 +1020,19 @@ When communicating the decision:
 **Decision:** CrewAI
 
 **Reasoning:**
+
 - Role-based collaboration matches use case perfectly
 - Simpler than LangGraph (faster development)
 - Production-ready
 - Clear separation of concerns
 
 **Trade-offs:**
+
 - Less flexible than LangGraph for complex workflows
 - Smaller community than LangChain
 
 **Re-evaluation triggers:**
+
 - If workflow becomes cyclical → consider LangGraph
 - If need complex state management → consider LangGraph
 
@@ -963,17 +1042,18 @@ When communicating the decision:
 
 **When in doubt:**
 
-| Question | Answer |
-|----------|--------|
-| Which agentic framework? | Check: [Framework Selection](#framework--library-selection) |
-| RAG or fine-tuning? | Check: [RAG vs Fine-Tuning](#rag-vs-fine-tuning-vs-prompt-engineering) |
-| Which vector DB? | Check: [Vector DB Selection](#vector-database-selection) |
-| Where to deploy? | Check: [Deployment Strategy](#deployment-strategy) |
-| REST or GraphQL? | Check: [REST vs GraphQL](#rest-vs-graphql) |
-| MCP or direct? | Check: [MCP vs Direct Integration](#mcp-vs-direct-integration) |
-| How much testing? | Check: [Testing Strategy](#testing-strategy) |
+| Question                 | Answer                                                                 |
+| ------------------------ | ---------------------------------------------------------------------- |
+| Which agentic framework? | Check: [Framework Selection](#framework--library-selection)            |
+| RAG or fine-tuning?      | Check: [RAG vs Fine-Tuning](#rag-vs-fine-tuning-vs-prompt-engineering) |
+| Which vector DB?         | Check: [Vector DB Selection](#vector-database-selection)               |
+| Where to deploy?         | Check: [Deployment Strategy](#deployment-strategy)                     |
+| REST or GraphQL?         | Check: [REST vs GraphQL](#rest-vs-graphql)                             |
+| MCP or direct?           | Check: [MCP vs Direct Integration](#mcp-vs-direct-integration)         |
+| How much testing?        | Check: [Testing Strategy](#testing-strategy)                           |
 
 **Remember:**
+
 - Context matters more than rules
 - Document decisions with reasoning
 - Revisit decisions when context changes

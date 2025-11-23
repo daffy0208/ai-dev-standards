@@ -7,6 +7,7 @@ This directory contains point-in-time status reports and analyses of the ai-dev-
 ## 📊 What's Here
 
 Status reports document the repository's state at specific moments in time. They are useful for:
+
 - Understanding historical context
 - Tracking progress over time
 - Identifying when issues were discovered
@@ -17,12 +18,15 @@ Status reports document the repository's state at specific moments in time. They
 ## 📁 Current Reports
 
 ### Most Recent (Active Reference)
+
 - `../DOCUMENTATION-REVIEW-FINDINGS.md` (2025-11-10) - Current comprehensive documentation audit
 
 ### Historical Reports (Moved Here from Root)
+
 These reports have been moved from the root directory to reduce clutter while preserving historical information.
 
 ### Archived Reports
+
 - See `.archive/status-reports/` for snapshots that predate the 3.x refresh (for example `REPOSITORY-STATUS-REPORT.md` and `FINAL-RESOURCE-COUNTS.md`). These documents are retained for historical context but are no longer authoritative.
 
 ---

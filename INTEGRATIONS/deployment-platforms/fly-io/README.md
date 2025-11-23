@@ -251,9 +251,7 @@ for (const region of regions) {
 }
 
 // Find closest region
-const usRegions = regions.filter(r =>
-  ['iad', 'lax', 'ord', 'dfw', 'sea'].includes(r.code)
-)
+const usRegions = regions.filter(r => ['iad', 'lax', 'ord', 'dfw', 'sea'].includes(r.code))
 ```
 
 ### Volume Management
@@ -321,6 +319,7 @@ new FlyClient(options?: FlyClientOptions)
 ```
 
 Options:
+
 - `token` (string, optional): Fly.io API token. Defaults to `FLY_API_TOKEN` env var
 - `apiUrl` (string, optional): API base URL. Defaults to `https://api.fly.io/graphql`
 
@@ -453,7 +452,7 @@ async function deployGlobally(appName: string, image: string) {
       'syd', // Sydney
       'gru', // São Paulo
       'nrt', // Tokyo
-      'jnb'  // Johannesburg
+      'jnb' // Johannesburg
     ]
   })
 
@@ -605,6 +604,7 @@ primary_region = "iad"
 ## Error Handling
 
 The client includes automatic retry logic with exponential backoff for:
+
 - Rate limit errors (429)
 - Server errors (500+)
 - GraphQL errors
@@ -625,6 +625,7 @@ try {
 ## Rate Limits
 
 Fly.io API has rate limits:
+
 - 1000 requests per hour (per token)
 - GraphQL queries count based on complexity
 
@@ -646,6 +647,7 @@ The client automatically handles rate limits with exponential backoff.
 ## VM Sizes
 
 Available VM sizes:
+
 - `shared-cpu-1x`: 256MB RAM, shared CPU (default)
 - `shared-cpu-2x`: 512MB RAM, shared CPU
 - `shared-cpu-4x`: 1GB RAM, shared CPU
@@ -699,9 +701,7 @@ if (!app.deployed) {
 
 ```typescript
 const machines = await fly.getMachines('my-app')
-const problematic = machines.filter(m =>
-  ['stopping', 'stopped', 'destroyed'].includes(m.state)
-)
+const problematic = machines.filter(m => ['stopping', 'stopped', 'destroyed'].includes(m.state))
 
 if (problematic.length > 0) {
   console.warn('Problematic machines:', problematic)
@@ -721,6 +721,7 @@ const usRegions = regions.filter(r => r.code.startsWith('i') || r.code.startsWit
 ## Fly CLI Integration
 
 This client complements the Fly CLI. Use CLI for:
+
 - Initial app setup: `flyctl launch`
 - Local development: `flyctl dev`
 - SSH access: `flyctl ssh console`
@@ -728,6 +729,7 @@ This client complements the Fly CLI. Use CLI for:
 - Database management: `flyctl postgres`
 
 Use this client for:
+
 - Automated deployments
 - CI/CD pipelines
 - Programmatic management

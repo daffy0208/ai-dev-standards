@@ -93,7 +93,7 @@ export class DatabaseBackup {
       gcsBucket: options.gcsBucket,
       compress: options.compress ?? true,
       retentionDays: options.retentionDays || 7,
-      includeTimestamp: options.includeTimestamp ?? true,
+      includeTimestamp: options.includeTimestamp ?? true
     }
 
     // Create output directory if it doesn't exist
@@ -137,7 +137,7 @@ export class DatabaseBackup {
       return {
         success: true,
         path: finalPath,
-        message: 'Backup completed successfully',
+        message: 'Backup completed successfully'
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : String(error)
@@ -146,7 +146,7 @@ export class DatabaseBackup {
       return {
         success: false,
         path: '',
-        message: `Backup failed: ${errorMessage}`,
+        message: `Backup failed: ${errorMessage}`
       }
     }
   }
@@ -217,11 +217,7 @@ export class DatabaseBackup {
 
     console.log('Compressing backup...')
 
-    await pipeline(
-      createReadStream(inputPath),
-      createGzip(),
-      createWriteStream(outputPath)
-    )
+    await pipeline(createReadStream(inputPath), createGzip(), createWriteStream(outputPath))
 
     console.log('Compression complete')
     return outputPath
@@ -331,7 +327,7 @@ export async function runBackup(): Promise<void> {
     s3Bucket: process.env.S3_BACKUP_BUCKET,
     gcsBucket: process.env.GCS_BACKUP_BUCKET,
     compress: process.env.BACKUP_COMPRESS !== 'false',
-    retentionDays: parseInt(process.env.BACKUP_RETENTION_DAYS || '7'),
+    retentionDays: parseInt(process.env.BACKUP_RETENTION_DAYS || '7')
   })
 
   const result = await backup.backup()

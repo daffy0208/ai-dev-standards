@@ -40,7 +40,13 @@ class ToolFileGenerator {
     // Tool implementation file
     files.push({
       path: `MCP-SERVERS/${sanitizedServerName}-mcp/servers/${sanitizedServerName}/tools/${toolIdentifier}.py`,
-      content: this.generateToolFile(toolIdentifier, category, description, inputSchema, outputSchema)
+      content: this.generateToolFile(
+        toolIdentifier,
+        category,
+        description,
+        inputSchema,
+        outputSchema
+      )
     })
 
     // Update tool_list.txt
@@ -58,7 +64,10 @@ class ToolFileGenerator {
    */
   generateToolFile(toolName, category, description, inputSchema, outputSchema) {
     const functionName = toolName
-    const className = toolName.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('')
+    const className = toolName
+      .split('_')
+      .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+      .join('')
 
     // Extract input parameters from schema
     const inputParams = this.extractParameters(inputSchema)
@@ -103,10 +112,17 @@ ${inputParams.map(p => `        ${p.name}: ${p.description || `${p.name} paramet
         # IMPLEMENTATION NOTE: Replace with actual tool logic
 
         # Input validation
-        ${inputParams.map(p =>
-          p.optional ? '' : `if not ${p.name}:
+        ${
+          inputParams
+            .map(p =>
+              p.optional
+                ? ''
+                : `if not ${p.name}:
             raise ValueError("${p.name} is required")`
-        ).filter(Boolean).join('\n        ') || '# Add validation logic here'}
+            )
+            .filter(Boolean)
+            .join('\n        ') || '# Add validation logic here'
+        }
 
         # Execute core logic
         result = _execute_${functionName}(${inputParams.map(p => p.name).join(', ') || 'input_data'})
@@ -211,12 +227,28 @@ if __name__ == "__main__":
     print(f"Testing {TOOL_METADATA['name']} tool...")
 
     # Test case 1: Basic usage
-    test_result = ${functionName}(${inputParams[0]?.name || 'input_data'}="test input"${inputParams.length > 1 ? ', ' + inputParams.slice(1).map(p => `${p.name}=${p.optional ? 'None' : '"test"'}`).join(', ') : ''})
+    test_result = ${functionName}(${inputParams[0]?.name || 'input_data'}="test input"${
+      inputParams.length > 1
+        ? ', ' +
+          inputParams
+            .slice(1)
+            .map(p => `${p.name}=${p.optional ? 'None' : '"test"'}`)
+            .join(', ')
+        : ''
+    })
     print("Test 1:", json.dumps(test_result, indent=2))
 
     # Test case 2: Error handling
     try:
-        error_result = ${functionName}(${inputParams[0]?.name || 'input_data'}=""${inputParams.length > 1 ? ', ' + inputParams.slice(1).map(p => `${p.name}=None`).join(', ') : ''})
+        error_result = ${functionName}(${inputParams[0]?.name || 'input_data'}=""${
+          inputParams.length > 1
+            ? ', ' +
+              inputParams
+                .slice(1)
+                .map(p => `${p.name}=None`)
+                .join(', ')
+            : ''
+        })
         print("Test 2:", json.dumps(error_result, indent=2))
     except Exception as e:
         print(f"Test 2 (expected error): {e}")
@@ -267,13 +299,13 @@ if __name__ == "__main__":
    */
   jsonTypeToPython(type) {
     const typeMap = {
-      'string': 'str',
-      'number': 'float',
-      'integer': 'int',
-      'boolean': 'bool',
-      'array': 'List[Any]',
-      'object': 'Dict[str, Any]',
-      'null': 'None'
+      string: 'str',
+      number: 'float',
+      integer: 'int',
+      boolean: 'bool',
+      array: 'List[Any]',
+      object: 'Dict[str, Any]',
+      null: 'None'
     }
 
     return typeMap[type] || 'Any'

@@ -16,10 +16,7 @@
       "prerequisites": [],
       "related_playbooks": [],
       "related_skills": [],
-      "tags": [
-        "adhd",
-        "adhd-support"
-      ]
+      "tags": ["adhd", "adhd-support"]
     },
     {
       "name": "backup-and-restore",
@@ -34,10 +31,7 @@
       "prerequisites": [],
       "related_playbooks": [],
       "related_skills": [],
-      "tags": [
-        "backup",
-        "operations"
-      ]
+      "tags": ["backup", "operations"]
     },
     {
       "name": "component-development",
@@ -52,10 +46,7 @@
       "prerequisites": [],
       "related_playbooks": [],
       "related_skills": [],
-      "tags": [
-        "component",
-        "development"
-      ]
+      "tags": ["component", "development"]
     },
     {
       "name": "database-migration",
@@ -70,10 +61,7 @@
       "prerequisites": [],
       "related_playbooks": [],
       "related_skills": [],
-      "tags": [
-        "database",
-        "operations"
-      ]
+      "tags": ["database", "operations"]
     },
     {
       "name": "deployment-checklist",
@@ -88,10 +76,7 @@
       "prerequisites": [],
       "related_playbooks": [],
       "related_skills": [],
-      "tags": [
-        "deployment",
-        "operations"
-      ]
+      "tags": ["deployment", "operations"]
     },
     {
       "name": "incident-response",
@@ -106,10 +91,7 @@
       "prerequisites": [],
       "related_playbooks": [],
       "related_skills": [],
-      "tags": [
-        "incident",
-        "incident"
-      ]
+      "tags": ["incident", "incident"]
     },
     {
       "name": "mcp-development",
@@ -124,10 +106,7 @@
       "prerequisites": [],
       "related_playbooks": [],
       "related_skills": [],
-      "tags": [
-        "mcp",
-        "development"
-      ]
+      "tags": ["mcp", "development"]
     },
     {
       "name": "monitoring-setup",
@@ -142,10 +121,7 @@
       "prerequisites": [],
       "related_playbooks": [],
       "related_skills": [],
-      "tags": [
-        "monitoring",
-        "operations"
-      ]
+      "tags": ["monitoring", "operations"]
     },
     {
       "name": "multi-agent-systems",
@@ -160,10 +136,7 @@
       "prerequisites": [],
       "related_playbooks": [],
       "related_skills": [],
-      "tags": [
-        "multi",
-        "operations"
-      ]
+      "tags": ["multi", "operations"]
     },
     {
       "name": "performance-optimization",
@@ -178,10 +151,7 @@
       "prerequisites": [],
       "related_playbooks": [],
       "related_skills": [],
-      "tags": [
-        "performance",
-        "optimization"
-      ]
+      "tags": ["performance", "optimization"]
     },
     {
       "name": "rag-implementation",
@@ -196,10 +166,7 @@
       "prerequisites": [],
       "related_playbooks": [],
       "related_skills": [],
-      "tags": [
-        "rag",
-        "operations"
-      ]
+      "tags": ["rag", "operations"]
     },
     {
       "name": "rollback-procedure",
@@ -214,10 +181,7 @@
       "prerequisites": [],
       "related_playbooks": [],
       "related_skills": [],
-      "tags": [
-        "rollback",
-        "operations"
-      ]
+      "tags": ["rollback", "operations"]
     },
     {
       "name": "security-hardening",
@@ -232,10 +196,7 @@
       "prerequisites": [],
       "related_playbooks": [],
       "related_skills": [],
-      "tags": [
-        "security",
-        "security"
-      ]
+      "tags": ["security", "security"]
     },
     {
       "name": "validation-first-development",
@@ -250,10 +211,7 @@
       "prerequisites": [],
       "related_playbooks": [],
       "related_skills": [],
-      "tags": [
-        "validation",
-        "development"
-      ]
+      "tags": ["validation", "development"]
     }
   ],
   "categories": {

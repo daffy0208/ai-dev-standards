@@ -37,6 +37,7 @@ Add to your Claude MCP settings:
 ## Knowledge Types
 
 ### 1. Document-Based Knowledge (RAG)
+
 ```typescript
 {
   type: "document",
@@ -50,6 +51,7 @@ Add to your Claude MCP settings:
 ```
 
 ### 2. Entity-Based Knowledge (Graph)
+
 ```typescript
 {
   type: "entity",
@@ -65,6 +67,7 @@ Add to your Claude MCP settings:
 ```
 
 ### 3. Relationships
+
 ```typescript
 {
   type: "relationship",
@@ -85,6 +88,7 @@ Add to your Claude MCP settings:
 Create a new knowledge entry.
 
 **Parameters:**
+
 - `type` (required): "document" | "entity" | "relationship"
 - `content` (required): The knowledge content
 - `source` (required): Source reference (URL, document name, etc.)
@@ -95,6 +99,7 @@ Create a new knowledge entry.
 - `relationships` (optional): Array of relationships (for entities)
 
 **Example:**
+
 ```typescript
 {
   type: "document",
@@ -107,6 +112,7 @@ Create a new knowledge entry.
 ```
 
 **Returns:**
+
 ```json
 {
   "success": true,
@@ -123,12 +129,14 @@ Create a new knowledge entry.
 Update an existing entry. Creates new version while preserving history.
 
 **Parameters:**
+
 - `id` (required): Entry ID
 - `content` (optional): Updated content
 - `metadata` (optional): Updated metadata fields
 - `changelog` (required): Description of changes
 
 **Example:**
+
 ```typescript
 {
   id: "kb_1698765432_abc123",
@@ -138,6 +146,7 @@ Update an existing entry. Creates new version while preserving history.
 ```
 
 **Returns:**
+
 ```json
 {
   "success": true,
@@ -154,10 +163,12 @@ Update an existing entry. Creates new version while preserving history.
 Delete a knowledge entry.
 
 **Parameters:**
+
 - `id` (required): Entry ID
 - `hard_delete` (optional): Boolean - permanent delete vs soft delete
 
 **Example:**
+
 ```typescript
 {
   id: "kb_1698765432_abc123",
@@ -166,6 +177,7 @@ Delete a knowledge entry.
 ```
 
 **Returns:**
+
 ```json
 {
   "success": true,
@@ -181,6 +193,7 @@ Delete a knowledge entry.
 Query the knowledge base with filters.
 
 **Parameters:**
+
 - `query` (optional): Text search
 - `type` (optional): Filter by type
 - `category` (optional): Filter by category
@@ -188,6 +201,7 @@ Query the knowledge base with filters.
 - `limit` (optional): Max results (default: 10)
 
 **Example:**
+
 ```typescript
 {
   query: "authentication",
@@ -198,6 +212,7 @@ Query the knowledge base with filters.
 ```
 
 **Returns:**
+
 ```json
 {
   "success": true,
@@ -216,6 +231,7 @@ Query the knowledge base with filters.
 Validate knowledge for quality issues.
 
 **Parameters:**
+
 - `id` (optional): Validate specific entry (or all if omitted)
 - `checks` (optional): Array of checks to run
   - "duplicates" - Find similar entries
@@ -225,6 +241,7 @@ Validate knowledge for quality issues.
 - `duplicate_threshold` (optional): Similarity threshold 0-1 (default: 0.9)
 
 **Example:**
+
 ```typescript
 {
   checks: ["duplicates", "conflicts", "staleness"],
@@ -233,6 +250,7 @@ Validate knowledge for quality issues.
 ```
 
 **Returns:**
+
 ```json
 {
   "timestamp": "2025-10-24T...",
@@ -270,11 +288,13 @@ Validate knowledge for quality issues.
 Manage version history.
 
 **Parameters:**
+
 - `id` (required): Entry ID
 - `action` (required): "list" | "get" | "revert"
 - `version` (required for get/revert): Version number
 
 **Example (list):**
+
 ```typescript
 {
   id: "kb_1698765432_abc123",
@@ -283,6 +303,7 @@ Manage version history.
 ```
 
 **Returns:**
+
 ```json
 {
   "success": true,
@@ -296,6 +317,7 @@ Manage version history.
 ```
 
 **Example (revert):**
+
 ```typescript
 {
   id: "kb_1698765432_abc123",
@@ -311,12 +333,14 @@ Manage version history.
 Bulk import knowledge entries.
 
 **Parameters:**
+
 - `entries` (required): Array of knowledge entries
 - `options` (optional):
   - `skip_duplicates`: Boolean
   - `validate_before_import`: Boolean
 
 **Example:**
+
 ```typescript
 {
   entries: [
@@ -336,6 +360,7 @@ Bulk import knowledge entries.
 ```
 
 **Returns:**
+
 ```json
 {
   "success": true,
@@ -353,6 +378,7 @@ Bulk import knowledge entries.
 Export knowledge base or subset.
 
 **Parameters:**
+
 - `filters` (optional):
   - `type`: Filter by type
   - `category`: Filter by category
@@ -362,6 +388,7 @@ Export knowledge base or subset.
 - `format` (optional): "json" | "csv" (default: "json")
 
 **Example:**
+
 ```typescript
 {
   filters: {
@@ -374,6 +401,7 @@ Export knowledge base or subset.
 ```
 
 **Returns:**
+
 ```json
 {
   "success": true,
@@ -391,63 +419,66 @@ Export knowledge base or subset.
 ## Use Cases
 
 ### Use Case 1: Build RAG Knowledge Base
+
 ```typescript
 // 1. Import documents
 import_knowledge({
   entries: documents.map(doc => ({
-    type: "document",
+    type: 'document',
     content: doc.text,
     source: doc.url,
-    category: "documentation",
+    category: 'documentation',
     tags: doc.tags
   }))
-});
+})
 
 // 2. Validate for duplicates
-validate_knowledge({ checks: ["duplicates"] });
+validate_knowledge({ checks: ['duplicates'] })
 
 // 3. Query for relevant docs
-query_knowledge({ query: "authentication", category: "documentation" });
+query_knowledge({ query: 'authentication', category: 'documentation' })
 ```
 
 ### Use Case 2: Build Knowledge Graph
+
 ```typescript
 // 1. Create entities
 create_knowledge_entry({
-  type: "entity",
-  content: "John Doe - Senior Engineer",
-  source: "HR System",
+  type: 'entity',
+  content: 'John Doe - Senior Engineer',
+  source: 'HR System',
   relationships: [
-    { type: "WORKS_FOR", target_id: "company_123" },
-    { type: "MANAGES", target_id: "project_456" }
+    { type: 'WORKS_FOR', target_id: 'company_123' },
+    { type: 'MANAGES', target_id: 'project_456' }
   ]
-});
+})
 
 // 2. Query related entities
-query_knowledge({ type: "entity", tags: ["employee"] });
+query_knowledge({ type: 'entity', tags: ['employee'] })
 ```
 
 ### Use Case 3: Knowledge Curation Workflow
+
 ```typescript
 // 1. Validate all knowledge
 const report = validate_knowledge({
-  checks: ["duplicates", "conflicts", "staleness"]
-});
+  checks: ['duplicates', 'conflicts', 'staleness']
+})
 
 // 2. Review issues
 report.issues.forEach(issue => {
-  if (issue.type === "duplicate") {
+  if (issue.type === 'duplicate') {
     // Merge duplicates
-  } else if (issue.type === "staleness") {
+  } else if (issue.type === 'staleness') {
     // Update or archive
   }
-});
+})
 
 // 3. Export curated knowledge
 export_knowledge({
-  filters: { since_date: "2025-10-01" },
-  format: "json"
-});
+  filters: { since_date: '2025-10-01' },
+  format: 'json'
+})
 ```
 
 ---
@@ -469,6 +500,7 @@ This MCP enables the following skills:
 **Current Implementation:** In-memory storage (for development/testing)
 
 **Production:** Replace with actual databases:
+
 - Document KB: Pinecone, Weaviate, pgvector
 - Entity KB: Neo4j, ArangoDB
 - Metadata: PostgreSQL

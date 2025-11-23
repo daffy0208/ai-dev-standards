@@ -19,18 +19,22 @@ ADHD brains struggle with large, ambiguous tasks due to high activation energy. 
 ## The ADHD Task Problem
 
 ### Problem 1: Activation Energy
+
 **Issue:** "Build authentication system" feels overwhelming
 **Result:** Procrastination, anxiety, avoidance
 
 ### Problem 2: Time Blindness
+
 **Issue:** Can't estimate how long tasks take
 **Result:** Unrealistic plans, missed deadlines, frustration
 
 ### Problem 3: Working Memory
+
 **Issue:** Can't hold large task in mind while working
 **Result:** Losing track of what you're doing, constant re-reading
 
 ### Problem 4: Dopamine Deficit
+
 **Issue:** Big tasks provide no intermediate rewards
 **Result:** Motivation loss, task abandonment
 
@@ -44,18 +48,21 @@ ADHD brains struggle with large, ambiguous tasks due to high activation energy. 
 
 ```markdown
 ❌ Bad Task: "Build user authentication"
-  - Feels huge (overwhelm)
-  - Unclear start point (paralysis)
-  - No quick wins (no dopamine)
+
+- Feels huge (overwhelm)
+- Unclear start point (paralysis)
+- No quick wins (no dopamine)
 
 ✅ Good Breakdown:
 
 Quick Wins (Build Momentum) ⚡
+
 1. [ ] Create /auth folder (30 sec) 🟢
 2. [ ] Create auth.ts file (30 sec) 🟢
 3. [ ] Install bcrypt package (1 min) 🟢
 
 WHY START HERE:
+
 - Combined: 2 minutes total
 - Zero thinking required
 - 3 quick dopamine hits
@@ -91,6 +98,7 @@ Big Task: Build user dashboard with analytics
 
 ```markdown
 Questions:
+
 - What's the absolute minimum? (MVP)
 - What would "done" look like?
 - What can I skip for now?
@@ -105,16 +113,19 @@ Use this template:
 ## Big Task: Build User Dashboard
 
 ### P0 (Must Have - MVP)
+
 - Dashboard page exists
 - Shows user name
 - Shows one metric (login count)
 
 ### P1 (Should Have - Next)
+
 - Charts and graphs
 - Multiple metrics
 - Time range selector
 
 ### P2 (Nice to Have - Later)
+
 - Export data
 - Custom widgets
 - Real-time updates
@@ -126,28 +137,20 @@ Use this template:
 ## Building P0 Dashboard
 
 Phase 1: Quick Wins (Momentum) ⚡
+
 1. [ ] Create dashboard.tsx file (30 sec) 🟢
 2. [ ] Add to navigation menu (1 min) 🟢
 3. [ ] Add "Dashboard" heading (30 sec) 🟢
-   Total: 2 minutes
+       Total: 2 minutes
 
-Phase 2: Core Structure 🏗️
-4. [ ] Create dashboard layout (5 min) 🟢
-5. [ ] Add user name display (5 min) 🟢
-6. [ ] Style with Tailwind (10 min) 🟡
-   Total: 20 minutes
+Phase 2: Core Structure 🏗️ 4. [ ] Create dashboard layout (5 min) 🟢 5. [ ] Add user name display (5 min) 🟢 6. [ ] Style with Tailwind (10 min) 🟡
+Total: 20 minutes
 
-Phase 3: Data Integration 📊
-7. [ ] Fetch user data from API (15 min) 🟡
-8. [ ] Display login count (10 min) 🟡
-9. [ ] Add loading state (5 min) 🟢
-   Total: 30 minutes
+Phase 3: Data Integration 📊 7. [ ] Fetch user data from API (15 min) 🟡 8. [ ] Display login count (10 min) 🟡 9. [ ] Add loading state (5 min) 🟢
+Total: 30 minutes
 
-Phase 4: Polish & Ship ✨
-10. [ ] Handle error states (10 min) 🟡
-11. [ ] Test all paths (10 min) 🟡
-12. [ ] Deploy (5 min) 🟢
-    Total: 25 minutes
+Phase 4: Polish & Ship ✨ 10. [ ] Handle error states (10 min) 🟡 11. [ ] Test all paths (10 min) 🟡 12. [ ] Deploy (5 min) 🟢
+Total: 25 minutes
 
 Grand Total: ~75 minutes
 With ADHD tax (1.5x): ~110 minutes (2 hours)
@@ -162,6 +165,7 @@ With ADHD tax (1.5x): ~110 minutes (2 hours)
 Neurotypical estimate × 1.5-2 = ADHD estimate
 
 **Why:**
+
 - Task switching overhead
 - Distraction recovery time
 - Setup/teardown time
@@ -172,16 +176,16 @@ Neurotypical estimate × 1.5-2 = ADHD estimate
 
 ```markdown
 Simple task (5 min estimated):
-  → ADHD reality: 7-10 min (1.5x)
+→ ADHD reality: 7-10 min (1.5x)
 
 Medium task (30 min estimated):
-  → ADHD reality: 45-60 min (1.5-2x)
+→ ADHD reality: 45-60 min (1.5-2x)
 
 Complex task (2 hours estimated):
-  → ADHD reality: 3-4 hours (2x)
+→ ADHD reality: 3-4 hours (2x)
 
 New/Unknown task (?? estimated):
-  → ADHD reality: 3x whatever you think
+→ ADHD reality: 3x whatever you think
 ```
 
 ### Honest Task Sizing
@@ -192,6 +196,7 @@ New/Unknown task (?? estimated):
 Traditional estimate: 1 hour
 
 ADHD-honest estimate:
+
 - Setup email service (5 min → 10 min)
 - Generate reset token (10 min → 15 min)
 - Build reset form (20 min → 30 min)
@@ -199,8 +204,9 @@ ADHD-honest estimate:
 - Test flows (10 min → 20 min)
 
 Subtotal: 60 min → 100 min
-+ Buffer for interruptions: +20 min
-+ Debugging time: +30 min
+
+- Buffer for interruptions: +20 min
+- Debugging time: +30 min
 
 Real estimate: 2.5 hours
 
@@ -218,12 +224,14 @@ Real estimate: 2.5 hours
 
 ```markdown
 ❌ Logical Order (ADHD-hostile):
+
 1. Plan architecture (hard, no dopamine)
 2. Set up database (boring, no dopamine)
 3. Build API (complex, delayed dopamine)
 4. Build UI (fun but blocked by above)
 
 ✅ Momentum Order (ADHD-friendly):
+
 1. Build UI mockup (fun, instant visual) 🎨 Dopamine!
 2. Add fake data (easy, looks real) 🎯 Dopamine!
 3. Hook up API (has context now) 💪 Dopamine!
@@ -231,6 +239,7 @@ Real estimate: 2.5 hours
 5. Refine architecture (understand it now) 🚀 Done!
 
 Why this works:
+
 - Starts with fun (low activation energy)
 - Provides instant feedback (dopamine)
 - Builds understanding (easier to do hard parts)
@@ -245,16 +254,16 @@ Why this works:
 Session Plan (2 hours):
 
 00:00 - 00:10: Quick wins (3 easy tasks)
-  → Builds momentum
-  → Establishes "I'm productive" mindset
+→ Builds momentum
+→ Establishes "I'm productive" mindset
 
 00:10 - 01:30: Hard task (focus required)
-  → You have momentum now
-  → Feel accomplished from quick wins
+→ You have momentum now
+→ Feel accomplished from quick wins
 
 01:30 - 02:00: Easy task (cool down)
-  → End on high note
-  → Easy to resume tomorrow
+→ End on high note
+→ Easy to resume tomorrow
 ```
 
 ---
@@ -289,6 +298,7 @@ Next: Password reset form (15 min)
 ⏱️ Focus time: 45 min
 
 Morning Session (2 hours budgeted):
+
 - [x] Fix login bug (15 min) ✅ 12 min (faster!)
 - [x] Add loading spinner (5 min) ✅ 7 min
 - [x] Update tests (10 min) ✅ 15 min
@@ -329,29 +339,36 @@ Keep the streak alive!
 # Feature: Add dark mode
 
 ## Step 1: Identify Components
+
 What needs to change?
+
 - Colors
 - Component styles
 - Toggle button
 - Persistence
 
 ## Step 2: Break Down Each
+
 ### Colors (30 min total)
+
 - [ ] Define dark color palette (5 min) 🟢
 - [ ] Add CSS variables (10 min) 🟡
 - [ ] Test contrast ratios (15 min) 🟡
 
 ### Component Styles (45 min total)
+
 - [ ] Update Button component (10 min) 🟡
 - [ ] Update Card component (10 min) 🟡
 - [ ] Update Input component (10 min) 🟡
 - [ ] Update Header component (15 min) 🟡
 
 ### Toggle Button (20 min total)
+
 - [ ] Create ThemeToggle component (15 min) 🟡
 - [ ] Add to header (5 min) 🟢
 
 ### Persistence (15 min total)
+
 - [ ] Save preference to localStorage (10 min) 🟡
 - [ ] Load on app start (5 min) 🟢
 
@@ -364,24 +381,29 @@ Total: 110 min (2 hours realistic)
 # Bug: Users can't reset password
 
 ## Step 1: Reproduce (10 min)
+
 - [ ] Try reset flow locally (5 min) 🟢
 - [ ] Check error logs (5 min) 🟢
 
 ## Step 2: Investigate (20 min)
+
 - [ ] Find reset-password.ts file (1 min) 🟢
 - [ ] Read through code (5 min) 🟢
 - [ ] Identify issue (token expiry) (10 min) 🟡
 - [ ] Confirm root cause (4 min) 🟢
 
 ## Step 3: Fix (30 min)
+
 - [ ] Update token expiry logic (20 min) 🟡
 - [ ] Add better error message (10 min) 🟡
 
 ## Step 4: Test (15 min)
+
 - [ ] Test locally (10 min) 🟡
 - [ ] Test on staging (5 min) 🟢
 
 ## Step 5: Deploy (10 min)
+
 - [ ] Create PR (3 min) 🟢
 - [ ] Deploy to production (7 min) 🟢
 
@@ -398,16 +420,19 @@ Total: 85 min (1.5 hours)
 ✅ Good Breakdown:
 
 ## Phase 1: Overview (30 min)
+
 - [ ] Watch official intro video (15 min) 🟢
 - [ ] Read "Getting Started" docs (15 min) 🟢
 
 ## Phase 2: Hands-On (1 hour)
+
 - [ ] Create new Next.js project (5 min) 🟢
 - [ ] Build simple page (15 min) 🟡
 - [ ] Add dynamic route (20 min) 🟡
 - [ ] Try server components (20 min) 🟡
 
 ## Phase 3: Apply (2 hours)
+
 - [ ] Migrate one page in my project (30 min) 🟡
 - [ ] Test and debug (30 min) 🟡
 - [ ] Migrate second page (30 min) 🟡
@@ -426,11 +451,13 @@ Day 2: Phase 3 (2 hours)
 
 ```markdown
 Bad:
+
 - [ ] Research best authentication library (no time limit)
 - [ ] Compare 10 different approaches (rabbit hole)
 - [ ] Design perfect architecture (never starts)
 
 Good:
+
 - [ ] Choose auth library (10 min, use NextAuth)
 - [ ] Follow quickstart guide (30 min)
 - [ ] Ship MVP, iterate later
@@ -440,6 +467,7 @@ Good:
 
 ```markdown
 Bad:
+
 - [ ] Open VS Code (10 sec)
 - [ ] Navigate to file (10 sec)
 - [ ] Type 'import' (5 sec)
@@ -447,6 +475,7 @@ Bad:
 This is ridiculous. You'll spend more time reading the list.
 
 Good:
+
 - [ ] Add imports to auth.ts (2 min)
 ```
 
@@ -454,6 +483,7 @@ Good:
 
 ```markdown
 Bad:
+
 - [ ] Refactor authentication (2 hours)
 - [ ] Optimize database queries (3 hours)
 - [ ] Fix critical bug (2 hours)
@@ -461,6 +491,7 @@ Bad:
 No quick wins = No momentum = No dopamine = Procrastination
 
 Good:
+
 - [ ] Update README (5 min) 🟢 ← Start here!
 - [ ] Refactor one function (30 min) 🟡
 - [ ] Take break (5 min)
@@ -471,6 +502,7 @@ Good:
 
 ```markdown
 Bad:
+
 - [ ] Work on dashboard
 - [ ] Fix bugs
 - [ ] Improve performance
@@ -478,6 +510,7 @@ Bad:
 What does "done" mean? ADHD brain will wander.
 
 Good:
+
 - [ ] Add user stats to dashboard (15 min)
 - [ ] Fix login timeout bug (#123) (20 min)
 - [ ] Reduce API response time to < 200ms (1 hour)
@@ -492,11 +525,13 @@ Good:
 **5-Minute Breakdown Exercise:**
 
 1. **Write the overwhelming task:**
+
    ```
    _________________________________
    ```
 
 2. **What's the FIRST tiny action?** (< 2 min)
+
    ```
    _________________________________
    ```
@@ -504,6 +539,7 @@ Good:
 3. **Do ONLY that action. Nothing else.**
 
 4. **Dopamine hit! Now write next action:**
+
    ```
    _________________________________
    ```
@@ -511,6 +547,7 @@ Good:
 5. **Repeat.**
 
 **Example:**
+
 ```
 1. Overwhelming: "Build entire checkout flow"
 2. First tiny action: "Create checkout.tsx file"
@@ -547,24 +584,31 @@ Use this to validate your task breakdown:
 # Today: [Date]
 
 ## ONE Main Goal
+
 [The ONE thing that matters today]
 
 ## Morning Session (2 hours)
+
 Quick Wins:
+
 - [ ] Task 1 (2 min) 🟢
 - [ ] Task 2 (5 min) 🟢
 
 Main Work:
+
 - [ ] Task 3 (30 min) 🟡
 - [ ] Task 4 (45 min) 🟡
 
 Cool Down:
+
 - [ ] Task 5 (10 min) 🟢
 
 ## Afternoon Session (2 hours)
+
 [Same pattern]
 
 ## Wins Log
+
 [What you completed - for dopamine]
 ```
 
@@ -574,19 +618,25 @@ Cool Down:
 # Project: [Name]
 
 ## MVP Definition
+
 What's the absolute minimum to ship?
 
 ## Phases
+
 ### Phase 1: Foundation (Quick wins)
+
 - [ ] Tasks...
 
 ### Phase 2: Core Features
+
 - [ ] Tasks...
 
 ### Phase 3: Polish
+
 - [ ] Tasks...
 
 ## Time Estimate
+
 Naive: X hours
 ADHD-realistic: Y hours (1.5-2x)
 ```
@@ -605,6 +655,7 @@ ADHD-realistic: Y hours (1.5-2x)
 ## Success Metrics
 
 You're using this skill well when:
+
 - ✅ Starting tasks feels easy (low activation energy)
 - ✅ You see progress every 15 minutes
 - ✅ Time estimates are realistic

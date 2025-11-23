@@ -27,12 +27,14 @@ The Archon Manager skill teaches you how to use Archon MCP effectively as the **
 ## Key Features
 
 ### Strategic Layer (WHAT/WHEN)
+
 - **Task Management**: Get next priority task automatically
 - **Project Structure**: Hierarchical organization (projects → features → tasks)
 - **Priority System**: P0/P1/P2 for effective prioritization
 - **Status Tracking**: todo → doing → review → done
 
 ### Knowledge Layer (Context)
+
 - **RAG Queries**: Semantic search across documentation
 - **Web Crawling**: Automatic sitemap detection and scraping
 - **Document Processing**: PDFs with intelligent chunking
@@ -40,6 +42,7 @@ The Archon Manager skill teaches you how to use Archon MCP effectively as the **
 - **Version Control**: Track project documentation versions
 
 ### Integration Layer (Coordination)
+
 - **Multi-Client Support**: Claude Code, Cursor, Windsurf
 - **Real-Time Updates**: Socket.IO for live collaboration
 - **Unified Context**: Same knowledge base across all AI assistants
@@ -66,6 +69,7 @@ docker compose up --build -d
 ### 2. Connect to Claude Code
 
 Add to `.claude/mcp-settings.json`:
+
 ```json
 {
   "mcpServers": {
@@ -83,10 +87,10 @@ Add to `.claude/mcp-settings.json`:
 ### 3. Create Project
 
 ```typescript
-archon:create_project({
-  name: "My Application",
-  description: "Full-stack web app",
-  status: "active"
+archon: create_project({
+  name: 'My Application',
+  description: 'Full-stack web app',
+  status: 'active'
 })
 ```
 
@@ -94,10 +98,10 @@ archon:create_project({
 
 ```typescript
 // Crawl documentation
-archon:crawl_website({
-  url: "https://nextjs.org/docs",
+archon: crawl_website({
+  url: 'https://nextjs.org/docs',
   follow_sitemap: true,
-  tags: ["nextjs", "documentation"]
+  tags: ['nextjs', 'documentation']
 })
 ```
 
@@ -137,6 +141,7 @@ Context preservation         Quality standards
 ## Common Use Cases
 
 ### Solo Developer
+
 ```typescript
 // Morning: Get priority task
 const task = archon:get_next_task({project_id: "uuid"})
@@ -154,36 +159,40 @@ archon:update_task({task_id: task.id, status: "done"})
 ```
 
 ### Team Collaboration
+
 ```typescript
 // Lead creates structure
-archon:create_project({name: "Team Project"})
-archon:create_feature({name: "Backend", assigned_to: "dev-1"})
-archon:create_feature({name: "Frontend", assigned_to: "dev-2"})
+archon: create_project({ name: 'Team Project' })
+archon: create_feature({ name: 'Backend', assigned_to: 'dev-1' })
+archon: create_feature({ name: 'Frontend', assigned_to: 'dev-2' })
 
 // Everyone queries same knowledge base
 // Real-time sync across team
 ```
 
 ### Knowledge-Intensive Work
+
 ```typescript
 // Build comprehensive knowledge base
-archon:crawl_website({url: "https://docs.framework.com"})
-archon:add_document({file_path: "architecture-spec.pdf"})
-archon:extract_code_examples({source_url: "https://github.com/..."})
+archon: crawl_website({ url: 'https://docs.framework.com' })
+archon: add_document({ file_path: 'architecture-spec.pdf' })
+archon: extract_code_examples({ source_url: 'https://github.com/...' })
 
 // Query for any implementation question
-archon:perform_rag_query({query: "How to implement X"})
+archon: perform_rag_query({ query: 'How to implement X' })
 ```
 
 ## Archon MCP Tools
 
 ### Project Management
+
 - `create_project`, `list_projects`, `get_project`, `update_project`
 - `create_feature`, `list_features`, `update_feature`
 - `create_task`, `get_next_task`, `update_task`, `list_tasks`
 - `generate_tasks` (AI-assisted)
 
 ### Knowledge Management
+
 - `perform_rag_query` - Semantic search
 - `search_code_examples` - Find code snippets
 - `crawl_website` - Ingest web documentation
@@ -191,6 +200,7 @@ archon:perform_rag_query({query: "How to implement X"})
 - `extract_code_examples` - Pull from repos
 
 ### Metrics
+
 - `get_project_metrics` - Overview stats
 - `get_velocity` - Tasks per week
 - `get_burndown` - Sprint progress
@@ -198,6 +208,7 @@ archon:perform_rag_query({query: "How to implement X"})
 ## Best Practices
 
 ### 1. Clear Project Structure
+
 ```
 Project
 ├── Feature (P0): Core functionality
@@ -210,32 +221,37 @@ Project
 ```
 
 ### 2. Effective Prioritization
+
 - **P0**: Core value prop, blocks everything
 - **P1**: Important, high impact
 - **P2**: Enhancement, can wait
 
 ### 3. Status Discipline
+
 ```
 todo → doing → review → done
 ```
+
 Update immediately when changing state.
 
 ### 4. Rich Knowledge Base
+
 - Crawl all relevant documentation
 - Add architecture documents
 - Extract code examples
 - Tag consistently
 
 ### 5. Strategic Queries
+
 ```typescript
 // Before task: research
-archon:perform_rag_query({query: "How to implement " + task.title})
+archon: perform_rag_query({ query: 'How to implement ' + task.title })
 
 // During task: specific questions
-archon:perform_rag_query({query: "Edge case handling for X"})
+archon: perform_rag_query({ query: 'Edge case handling for X' })
 
 // Architecture: decision support
-archon:perform_rag_query({query: "Pattern A vs Pattern B for..."})
+archon: perform_rag_query({ query: 'Pattern A vs Pattern B for...' })
 ```
 
 ## Related Skills
@@ -249,6 +265,7 @@ archon:perform_rag_query({query: "Pattern A vs Pattern B for..."})
 ## MCP Support
 
 Works with **Archon MCP** (official, external):
+
 - Installation: https://github.com/coleam00/Archon
 - Port: http://localhost:8051
 - Services: API (8181), UI (3737), Agents (8052)
@@ -263,6 +280,7 @@ Works with **Archon MCP** (official, external):
 ## Architecture
 
 Archon uses microservices:
+
 - **Frontend**: React dashboard (port 3737)
 - **API**: FastAPI business logic (port 8181)
 - **MCP Server**: Protocol interface (port 8051)
@@ -273,6 +291,7 @@ All communicate via HTTP with Socket.IO for real-time updates.
 ## Success Criteria
 
 You're using Archon effectively when:
+
 - [ ] Project structure is hierarchical and organized
 - [ ] Always know what's next (get_next_task guides work)
 - [ ] RAG queries return relevant, useful results

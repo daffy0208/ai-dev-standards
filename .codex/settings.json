@@ -2,9 +2,7 @@
   "mcpServers": {
     "brain-mcp": {
       "command": "node",
-      "args": [
-        "/home/david/projects/ai-dev-standards/MCP-SERVERS/brain-mcp/dist/index.js"
-      ]
+      "args": ["/home/david/projects/ai-dev-standards/MCP-SERVERS/brain-mcp/dist/index.js"]
     }
   }
 }

@@ -31,9 +31,9 @@ npm install && npm run build
 ## Usage Example
 
 ```javascript
-await profiler.configure({ projectPath: './app' });
-const audit = await profiler.run_lighthouse({ url: 'http://localhost:3000' });
-console.log(`Performance score: ${audit.score}/100`);
+await profiler.configure({ projectPath: './app' })
+const audit = await profiler.run_lighthouse({ url: 'http://localhost:3000' })
+console.log(`Performance score: ${audit.score}/100`)
 ```
 
 ## Related

@@ -8,18 +8,18 @@ Last Updated: 2025-10-22
 
 ## 📊 Quick Stats
 
-| Category | Count | Discoverable | Validated | Status |
-|----------|-------|--------------|-----------|--------|
-| Skills | 36 | ✅ 100% | ✅ Automated | ✅ Ready |
-| MCPs | 3 | ✅ 100% | ✅ Automated | ✅ Ready |
-| Components | 5+ | ✅ 100% | ✅ Automated | ✅ Ready |
-| Integrations | 4+ | ✅ 100% | ✅ Automated | ✅ Ready |
-| Standards | 14 | ✅ 100% | ✅ Automated | ✅ Ready |
-| Playbooks | 7 | ✅ 100% | ✅ Automated | ✅ Ready |
-| Utils | 2+ | ✅ 100% | ✅ Automated | ✅ Ready |
-| Tools | 4+ | ✅ 100% | ✅ Automated | ✅ Ready |
-| Examples | 2+ | ✅ 100% | ✅ Automated | ✅ Ready |
-| Config Files | 7 | ✅ 100% | ✅ Automated | ✅ Ready |
+| Category     | Count | Discoverable | Validated    | Status   |
+| ------------ | ----- | ------------ | ------------ | -------- |
+| Skills       | 36    | ✅ 100%      | ✅ Automated | ✅ Ready |
+| MCPs         | 3     | ✅ 100%      | ✅ Automated | ✅ Ready |
+| Components   | 5+    | ✅ 100%      | ✅ Automated | ✅ Ready |
+| Integrations | 4+    | ✅ 100%      | ✅ Automated | ✅ Ready |
+| Standards    | 14    | ✅ 100%      | ✅ Automated | ✅ Ready |
+| Playbooks    | 7     | ✅ 100%      | ✅ Automated | ✅ Ready |
+| Utils        | 2+    | ✅ 100%      | ✅ Automated | ✅ Ready |
+| Tools        | 4+    | ✅ 100%      | ✅ Automated | ✅ Ready |
+| Examples     | 2+    | ✅ 100%      | ✅ Automated | ✅ Ready |
+| Config Files | 7     | ✅ 100%      | ✅ Automated | ✅ Ready |
 
 **Total:** 80+ resources across 10 categories
 **Registry Coverage:** 100% (all resources discoverable)
@@ -32,6 +32,7 @@ Last Updated: 2025-10-22
 AI development methodologies and specialized skills. **All 36 skills** are registered in META/registry.json and 100% discoverable.
 
 ### Featured Skills
+
 - **mvp-builder** - Rapid MVP development with P0/P1/P2 prioritization
 - **rag-implementer** - RAG systems with vector databases (with cost warnings)
 - **product-strategist** - Product-market fit validation
@@ -73,18 +74,23 @@ MCP server implementations and configurations.
 Reusable code components and patterns.
 
 ### Agents
+
 - **simple-task-agent.ts** - Task execution agent with context, retries, and history
 
 ### MCP Servers
+
 - (Placeholder - add custom MCP server components)
 
 ### RAG Pipelines
+
 - (Placeholder - add RAG pipeline components)
 
 ### UI Components
+
 - (Placeholder - add React/Next.js components)
 
 ### Workflows
+
 - (Placeholder - add automation workflows)
 
 **Usage:** `ai-dev sync components` or `ai-dev install component <name>`
@@ -96,16 +102,20 @@ Reusable code components and patterns.
 Third-party service integrations.
 
 ### Framework Adapters
+
 - (Placeholder - add Next.js, Remix, Astro adapters)
 
 ### LLM Providers
+
 - **anthropic-client.ts** - Claude API client with streaming and cost tracking
 - (Add: OpenAI, Together AI, etc.)
 
 ### Platforms
+
 - (Placeholder - add Vercel, AWS, Supabase, Firebase)
 
 ### Vector Databases
+
 - (Placeholder - add Pinecone, Weaviate, Qdrant, Chroma)
 
 **Usage:** `ai-dev setup <service>`
@@ -117,6 +127,7 @@ Third-party service integrations.
 Architecture patterns and best practices.
 
 ### Architecture Patterns (13 files)
+
 1. **rag-pattern.md** - RAG architecture
 2. **microservices-pattern.md** - Microservices design
 3. **serverless-pattern.md** - Serverless architecture
@@ -127,17 +138,20 @@ Architecture patterns and best practices.
 8. **error-tracking.md** - Error tracking strategy
 9. **logging-strategy.md** - Logging best practices
 10. **monitoring-and-alerting.md** - Monitoring setup
-11. *(+ 3 more patterns)*
+11. _(+ 3 more patterns)_
 
 ### Best Practices (3 files)
+
 1. **security-best-practices.md** - Security guidelines
 2. **testing-best-practices.md** - Testing strategy
 3. **database-best-practices.md** - Database optimization
 
 ### Coding Conventions
+
 - Code style and formatting standards
 
 ### Project Structure
+
 - Project organization patterns
 
 **Usage:** Automatically synced to `.ai-dev/standards/`
@@ -151,9 +165,11 @@ Architecture patterns and best practices.
 Utility functions and helper scripts.
 
 ### CLI
+
 - **logger.ts** - Colorful console logger with emoji, progress bars, spinners
 
 ### Scripts
+
 - (Placeholder - add db-backup, env-check, test-runner)
 
 **Usage:** `ai-dev sync utils` or `ai-dev get util <name>`
@@ -165,15 +181,19 @@ Utility functions and helper scripts.
 Development tools for AI frameworks.
 
 ### CrewAI Tools
+
 - (Placeholder - add CrewAI tool implementations)
 
 ### LangChain Tools
+
 - (Placeholder - add LangChain tools)
 
 ### MCP Tools
+
 - (Placeholder - add MCP tool implementations)
 
 ### Custom Tools
+
 - (Placeholder - add custom tools)
 
 **Registry:** `tool-registry.json`
@@ -187,9 +207,11 @@ Development tools for AI frameworks.
 Example implementations and sample code.
 
 ### Complete Projects
+
 - (Placeholder - add full project examples)
 
 ### Mini Examples
+
 - **simple-rag-pipeline.ts** - Working RAG pipeline with OpenAI
 - **sample-project-cursorrules.md** - Example .cursorrules file
 
@@ -236,6 +258,7 @@ Project configuration templates.
 ## 🛡️ Quality & Trust Systems (NEW)
 
 ### Automated Validation
+
 - **Registry Validation Tests** (`tests/registry-validation.test.ts`)
   - Validates all skills/MCPs/playbooks are registered
   - Checks CLI reads from registry (not mock data)
@@ -248,6 +271,7 @@ Project configuration templates.
   - Shows exact gaps in output
 
 ### Quality Audit Improvements
+
 - **Phase 0 Mandatory Checks** (`SKILLS/quality-auditor/SKILL.md`)
   - Resource completeness validated before scoring
   - Caps overall score at 6/10 if discovery < 5/10
@@ -259,6 +283,7 @@ Project configuration templates.
   - Remediation templates
 
 ### Cost Efficiency Guardrails
+
 - **Validation-First Playbook** (`PLAYBOOKS/validation-first-development.md`)
   - 5-phase workflow with time limits
   - Budget constraints per phase
@@ -278,6 +303,7 @@ Project configuration templates.
 ### The Problem
 
 **Current State:**
+
 - 36 skills (methodologies describing HOW to do things)
 - 3 MCPs (tools that actually DO things)
 - **Ratio:** 12:1 (should be <3:1)
@@ -288,30 +314,32 @@ Project configuration templates.
 **MCPs** = Actionable (AI can execute)
 
 Having skills without MCPs means:
+
 - AI can describe the approach but can't automate it
 - Users must manually implement what skills describe
 - Reduces automation value significantly
 
 ### Examples of the Gap
 
-| Skill | Needs MCP | Status |
-|-------|-----------|--------|
-| rag-implementer | vector-database-mcp, embedding-generator-mcp | ❌ Missing |
-| mvp-builder | feature-prioritizer-mcp, risk-analyzer-mcp | ❌ Missing |
-| product-strategist | interview-transcriber-mcp, user-insight-analyzer-mcp | ❌ Missing |
-| api-designer | openapi-generator-mcp, api-validator-mcp | ❌ Missing |
-| deployment-advisor | infra-provisioner-mcp, monitoring-setup-mcp | ❌ Missing |
-| performance-optimizer | performance-profiler-mcp, bundle-analyzer-mcp | ❌ Missing |
-| security-engineer | vulnerability-scanner-mcp, dependency-auditor-mcp | ❌ Missing |
-| accessibility-engineer | accessibility-checker-mcp | ✅ Has MCP |
-| frontend-builder | component-generator-mcp | ✅ Has MCP |
-| quality-auditor | screenshot-testing-mcp | ✅ Has MCP |
+| Skill                  | Needs MCP                                            | Status     |
+| ---------------------- | ---------------------------------------------------- | ---------- |
+| rag-implementer        | vector-database-mcp, embedding-generator-mcp         | ❌ Missing |
+| mvp-builder            | feature-prioritizer-mcp, risk-analyzer-mcp           | ❌ Missing |
+| product-strategist     | interview-transcriber-mcp, user-insight-analyzer-mcp | ❌ Missing |
+| api-designer           | openapi-generator-mcp, api-validator-mcp             | ❌ Missing |
+| deployment-advisor     | infra-provisioner-mcp, monitoring-setup-mcp          | ❌ Missing |
+| performance-optimizer  | performance-profiler-mcp, bundle-analyzer-mcp        | ❌ Missing |
+| security-engineer      | vulnerability-scanner-mcp, dependency-auditor-mcp    | ❌ Missing |
+| accessibility-engineer | accessibility-checker-mcp                            | ✅ Has MCP |
+| frontend-builder       | component-generator-mcp                              | ✅ Has MCP |
+| quality-auditor        | screenshot-testing-mcp                               | ✅ Has MCP |
 
 **33 of 36 skills (92%) lack corresponding MCPs**
 
 ### The Plan
 
 **Phase 1 (Weeks 1-4):** 6 high-priority MCPs
+
 - vector-database-mcp (RAG)
 - embedding-generator-mcp (RAG)
 - interview-transcriber-mcp (Product)
@@ -334,6 +362,7 @@ Having skills without MCPs means:
 ## 🔄 Auto-Sync Behavior
 
 ### Always Updated (on git pull)
+
 - ✅ Skills
 - ✅ MCPs
 - ✅ Standards (CRITICAL for security and quality)
@@ -341,6 +370,7 @@ Having skills without MCPs means:
 - ✅ Playbooks
 
 ### On-Request
+
 - 📦 Components
 - 📦 Integrations
 - 📦 Utils
@@ -373,6 +403,7 @@ tests/            1+ files (registry-validation.test.ts)
 **Total:** 190+ files and growing
 
 **Key Files:**
+
 - `META/registry.json` - Central source of truth (36 skills, 3 MCPs, 7 playbooks)
 - `tests/registry-validation.test.ts` - Automated validation
 - `.github/workflows/ci.yml` - CI/CD enforcement
@@ -385,12 +416,14 @@ tests/            1+ files (registry-validation.test.ts)
 ### Coming Soon
 
 **Components:**
+
 - UI component library (React, Tailwind)
 - MCP server templates
 - Advanced RAG pipelines
 - Workflow automation templates
 
 **Integrations:**
+
 - Supabase (auth + database)
 - Stripe (payments)
 - Resend (email)
@@ -398,17 +431,20 @@ tests/            1+ files (registry-validation.test.ts)
 - Additional LLM providers
 
 **Utils:**
+
 - Database backup scripts
 - Environment variable checker
 - Test runners
 - Deployment automation
 
 **Tools:**
+
 - Code generators
 - Testing utilities
 - Development helpers
 
 **Examples:**
+
 - Full SaaS starter
 - RAG system implementation
 - API design examples
@@ -418,22 +454,23 @@ tests/            1+ files (registry-validation.test.ts)
 
 ## 📊 Quality Metrics
 
-| Metric | Target | Current | Status |
-|--------|--------|---------|--------|
-| Skills | 36 | 36 | ✅ 100% |
-| MCPs | 10 | 3 | 🟡 30% |
-| Standards | 20 | 14 | 🟢 70% |
-| Playbooks | 10 | 6 | 🟢 60% |
-| Components | 50 | 5+ | 🟡 10% |
-| Integrations | 30 | 4+ | 🟡 13% |
-| Examples | 20 | 2+ | 🟡 10% |
-| **Registry Coverage** | 100% | 100% | ✅ **Complete** |
-| **CI/CD Validation** | Yes | Yes | ✅ **Active** |
-| **Audit Trust System** | Yes | Yes | ✅ **Implemented** |
+| Metric                 | Target | Current | Status             |
+| ---------------------- | ------ | ------- | ------------------ |
+| Skills                 | 36     | 36      | ✅ 100%            |
+| MCPs                   | 10     | 3       | 🟡 30%             |
+| Standards              | 20     | 14      | 🟢 70%             |
+| Playbooks              | 10     | 6       | 🟢 60%             |
+| Components             | 50     | 5+      | 🟡 10%             |
+| Integrations           | 30     | 4+      | 🟡 13%             |
+| Examples               | 20     | 2+      | 🟡 10%             |
+| **Registry Coverage**  | 100%   | 100%    | ✅ **Complete**    |
+| **CI/CD Validation**   | Yes    | Yes     | ✅ **Active**      |
+| **Audit Trust System** | Yes    | Yes     | ✅ **Implemented** |
 
 **Overall Progress:** 45% of planned resources
 
 **Quality Improvements (v1.1.0):**
+
 - ✅ 100% resource discoverability (up from 19%)
 - ✅ Automated validation system
 - ✅ CI/CD enforcement
@@ -456,6 +493,7 @@ tests/            1+ files (registry-validation.test.ts)
 ## 📖 Documentation
 
 ### Core Documentation
+
 - `README.md` - Main repository documentation
 - `DOCS/RESOURCE-INDEX.md` - This file (complete resource inventory)
 - `META/DECISION-FRAMEWORK.md` - Technology decision guidance (with validation-first)
@@ -463,12 +501,14 @@ tests/            1+ files (registry-validation.test.ts)
 - `META/HOW-TO-USE.md` - Navigation guide
 
 ### Getting Started
+
 - `DOCS/QUICK-START.md` - 5-minute quick start
 - `DOCS/BOOTSTRAP.md` - Bootstrap system guide
 - `DOCS/INTEGRATION-GUIDE.md` - Complete setup guide
 - `DOCS/EXISTING-PROJECTS.md` - Apply to existing codebases
 
 ### Quality & Trust (NEW)
+
 - `DOCS/AUDIT-TRUST-RESTORATION.md` - Complete trust restoration solution
 - `DOCS/AUDIT-VALIDATION-CHECKLIST.md` - Step-by-step audit guide
 - `DOCS/RESOURCE-DISCOVERY-ANALYSIS.md` - Discovery gap analysis
@@ -476,11 +516,13 @@ tests/            1+ files (registry-validation.test.ts)
 - `DOCS/QUALITY-AUDIT-REPORT.md` - Latest quality audit
 
 ### Cost Efficiency (NEW)
+
 - `DOCS/COST-EFFICIENCY-GUARDRAILS-ANALYSIS.md` - Problem analysis
 - `DOCS/COST-GUARDRAILS-IMPLEMENTATION-SUMMARY.md` - Solution summary
 - `PLAYBOOKS/validation-first-development.md` - 5-phase workflow
 
 ### System Documentation
+
 - `DOCS/SYSTEM-OVERVIEW.md` - System architecture
 - `DOCS/COMPREHENSIVE-AUTO-SYNC.md` - Auto-sync system
 - `DOCS/AUTO-SYNC.md` - Auto-sync details
@@ -488,6 +530,7 @@ tests/            1+ files (registry-validation.test.ts)
 - `DOCS/AUTO-UPDATE-FILES.md` - Auto-update behavior
 
 ### Build & CI/CD
+
 - `DOCS/BUILD-STATUS.md` - Build status
 - `DOCS/BUILD-PROGRESS.md` - Build progress
 - `DOCS/CI-CD-SETUP.md` - CI/CD configuration
@@ -495,10 +538,12 @@ tests/            1+ files (registry-validation.test.ts)
 - `DOCS/DEPLOYMENT.md` - Deployment guide
 
 ### CLI
+
 - `DOCS/CLI-QUICKSTART.md` - CLI quick start
 - `DOCS/CLI-REFERENCE.md` - CLI command reference
 
 ### Planning
+
 - `DOCS/RESOURCE-PRIORITY-PLAN.md` - Resource priorities
 - `DOCS/CHEAT-SHEET.md` - Quick reference
 

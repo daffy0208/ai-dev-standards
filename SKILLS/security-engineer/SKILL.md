@@ -24,6 +24,7 @@ Every feature, every endpoint, every data flow must consider security implicatio
 #### Authentication Strategies
 
 **JWT (JSON Web Tokens):**
+
 - **When:** Stateless APIs, mobile apps, microservices
 - **How:** Sign tokens with secret, store in httpOnly cookies or Authorization header
 - **Security:** Use RS256 (not HS256), short expiry (15min access, 7d refresh)
@@ -48,11 +49,13 @@ export async function verifyToken(token: string) {
 ```
 
 **Session-Based:**
+
 - **When:** Traditional web apps, server-side rendering
 - **How:** Server stores session ID in encrypted cookie
 - **Security:** HttpOnly, Secure, SameSite=Strict cookies
 
 **OAuth 2.0 / OIDC:**
+
 - **When:** Social login, third-party integrations
 - **How:** Use NextAuth.js, Passport.js, or Auth0
 - **Security:** Validate state parameter, use PKCE for mobile
@@ -60,6 +63,7 @@ export async function verifyToken(token: string) {
 #### Authorization Patterns
 
 **RBAC (Role-Based Access Control):**
+
 ```typescript
 // Define roles
 enum Role {
@@ -83,10 +87,12 @@ app.delete('/api/users/:id', requireRole([Role.ADMIN]), deleteUser)
 ```
 
 **ABAC (Attribute-Based):**
+
 - More granular: user can edit resource if they created it
 - Example: User can delete post only if post.authorId === user.id
 
 **Key Principles:**
+
 - ✅ Always verify authentication before authorization
 - ✅ Default deny (whitelist, not blacklist)
 - ✅ Check permissions on server, never trust client
@@ -101,6 +107,7 @@ app.delete('/api/users/:id', requireRole([Role.ADMIN]), deleteUser)
 #### Prevent SQL Injection
 
 **❌ Bad (Vulnerable):**
+
 ```javascript
 // DON'T DO THIS!
 const query = `SELECT * FROM users WHERE email = '${userInput}'`
@@ -108,6 +115,7 @@ db.query(query) // SQL injection vulnerability!
 ```
 
 **✅ Good (Parameterized Queries):**
+
 ```javascript
 // Always use parameterized queries
 const query = 'SELECT * FROM users WHERE email = ?'
@@ -122,19 +130,21 @@ const user = await prisma.user.findUnique({
 #### Prevent XSS (Cross-Site Scripting)
 
 **❌ Bad (Vulnerable):**
+
 ```jsx
 // DON'T DO THIS!
 <div dangerouslySetInnerHTML={{ __html: userInput }} />
 ```
 
 **✅ Good (Escaped):**
+
 ```jsx
 // React automatically escapes
-<div>{userInput}</div> // Safe
+;<div>{userInput}</div> // Safe
 
 // If you must render HTML, sanitize first
 import DOMPurify from 'isomorphic-dompurify'
-<div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(userInput) }} />
+;<div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(userInput) }} />
 ```
 
 #### Input Validation with Zod
@@ -165,7 +175,7 @@ import multer from 'multer'
 
 const upload = multer({
   limits: {
-    fileSize: 5 * 1024 * 1024, // 5MB max
+    fileSize: 5 * 1024 * 1024 // 5MB max
   },
   fileFilter: (req, file, cb) => {
     // Whitelist file types
@@ -182,6 +192,7 @@ const filename = crypto.randomUUID() + path.extname(file.originalname)
 ```
 
 **Key Principles:**
+
 - ✅ Validate on server (never trust client validation)
 - ✅ Use schema validation libraries (Zod, Yup, Joi)
 - ✅ Whitelist allowed values, don't blacklist
@@ -194,6 +205,7 @@ const filename = crypto.randomUUID() + path.extname(file.originalname)
 #### Environment Variables
 
 **Never commit secrets:**
+
 ```bash
 # .env (add to .gitignore!)
 DATABASE_URL="postgresql://user:pass@localhost:5432/db"
@@ -202,6 +214,7 @@ OPENAI_API_KEY="sk-..."
 ```
 
 **Access in code:**
+
 ```typescript
 // Validate env vars on startup
 if (!process.env.JWT_SECRET) {
@@ -215,6 +228,7 @@ const config = {
 ```
 
 **Secret Management (Production):**
+
 - AWS Secrets Manager
 - Vercel Environment Variables
 - HashiCorp Vault
@@ -253,17 +267,19 @@ export function middleware(request: NextRequest) {
 
 ```typescript
 // Configure CORS properly
-app.use(cors({
-  origin: process.env.NODE_ENV === 'production'
-    ? 'https://yourdomain.com'
-    : 'http://localhost:3000',
-  credentials: true, // Allow cookies
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}))
+app.use(
+  cors({
+    origin:
+      process.env.NODE_ENV === 'production' ? 'https://yourdomain.com' : 'http://localhost:3000',
+    credentials: true, // Allow cookies
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  })
+)
 ```
 
 **Key Principles:**
+
 - ✅ Use environment variables for all secrets
 - ✅ Different secrets per environment (dev, staging, prod)
 - ✅ Rotate secrets regularly
@@ -279,6 +295,7 @@ app.use(cors({
 **❌ Never store passwords in plain text or use MD5/SHA1!**
 
 **✅ Use bcrypt or argon2:**
+
 ```typescript
 import bcrypt from 'bcrypt'
 
@@ -301,6 +318,7 @@ if (!isValid) {
 #### Encryption at Rest
 
 **Sensitive data should be encrypted:**
+
 ```typescript
 import crypto from 'crypto'
 
@@ -320,11 +338,7 @@ function encrypt(text: string) {
 }
 
 function decrypt(encrypted: any) {
-  const decipher = crypto.createDecipheriv(
-    algorithm,
-    key,
-    Buffer.from(encrypted.iv, 'hex')
-  )
+  const decipher = crypto.createDecipheriv(algorithm, key, Buffer.from(encrypted.iv, 'hex'))
   decipher.setAuthTag(Buffer.from(encrypted.authTag, 'hex'))
   return decipher.update(encrypted.encryptedData, 'hex', 'utf8') + decipher.final('utf8')
 }
@@ -337,10 +351,12 @@ await db.user.update({ where: { id }, data: { ssnEncrypted: JSON.stringify(ssn) 
 #### Encryption in Transit
 
 **Always use HTTPS:**
+
 - Development: `mkcert` for local HTTPS
 - Production: Let's Encrypt, Cloudflare, Vercel (auto HTTPS)
 
 **Verify external API certificates:**
+
 ```typescript
 // Don't disable SSL verification in production!
 fetch(url, {
@@ -349,6 +365,7 @@ fetch(url, {
 ```
 
 **Key Principles:**
+
 - ✅ Hash passwords with bcrypt (12+ rounds) or argon2
 - ✅ Encrypt PII (SSN, credit cards, health data)
 - ✅ Use HTTPS everywhere (enforce with HSTS header)
@@ -361,6 +378,7 @@ fetch(url, {
 #### Rate Limiting
 
 **Prevent brute force and DDoS:**
+
 ```typescript
 import rateLimit from 'express-rate-limit'
 
@@ -384,6 +402,7 @@ app.post('/api/auth/login', authLimiter, loginHandler)
 #### Audit Logging
 
 **Log all security-relevant events:**
+
 ```typescript
 async function auditLog(event: {
   userId?: string
@@ -418,6 +437,7 @@ await auditLog({
 **Don't leak sensitive info in errors:**
 
 **❌ Bad:**
+
 ```typescript
 // Exposes database structure!
 catch (error) {
@@ -426,6 +446,7 @@ catch (error) {
 ```
 
 **✅ Good:**
+
 ```typescript
 catch (error) {
   // Log full error server-side
@@ -442,12 +463,14 @@ catch (error) {
 #### Security Monitoring
 
 **Tools to integrate:**
+
 - **Sentry:** Error tracking, security alerts
 - **Datadog:** APM, anomaly detection
 - **CloudWatch:** AWS infrastructure monitoring
 - **OWASP ZAP:** Automated security scans
 
 **Key Principles:**
+
 - ✅ Rate limit all public endpoints
 - ✅ Log authentication attempts, authorization failures
 - ✅ Never expose sensitive data in errors
@@ -458,24 +481,25 @@ catch (error) {
 
 ## OWASP Top 10 Quick Reference
 
-| # | Vulnerability | Prevention |
-|---|---------------|------------|
-| 1 | Broken Access Control | Verify permissions server-side, default deny |
-| 2 | Cryptographic Failures | Use TLS, hash passwords (bcrypt), encrypt PII |
-| 3 | Injection | Parameterized queries, input validation |
-| 4 | Insecure Design | Threat modeling, security requirements |
-| 5 | Security Misconfiguration | Secure defaults, remove unused features |
-| 6 | Vulnerable Components | Keep dependencies updated, use Dependabot |
-| 7 | Auth & Session Issues | Strong passwords, MFA, secure session mgmt |
-| 8 | Software & Data Integrity | Verify dependencies, sign releases |
-| 9 | Logging & Monitoring Failures | Log security events, set up alerts |
-| 10 | SSRF | Validate URLs, whitelist allowed domains |
+| #   | Vulnerability                 | Prevention                                    |
+| --- | ----------------------------- | --------------------------------------------- |
+| 1   | Broken Access Control         | Verify permissions server-side, default deny  |
+| 2   | Cryptographic Failures        | Use TLS, hash passwords (bcrypt), encrypt PII |
+| 3   | Injection                     | Parameterized queries, input validation       |
+| 4   | Insecure Design               | Threat modeling, security requirements        |
+| 5   | Security Misconfiguration     | Secure defaults, remove unused features       |
+| 6   | Vulnerable Components         | Keep dependencies updated, use Dependabot     |
+| 7   | Auth & Session Issues         | Strong passwords, MFA, secure session mgmt    |
+| 8   | Software & Data Integrity     | Verify dependencies, sign releases            |
+| 9   | Logging & Monitoring Failures | Log security events, set up alerts            |
+| 10  | SSRF                          | Validate URLs, whitelist allowed domains      |
 
 ---
 
 ## Security Checklist (Pre-Deployment)
 
 ### Authentication
+
 - [ ] Passwords hashed with bcrypt (12+ rounds)
 - [ ] JWT tokens use RS256, short expiry
 - [ ] Session cookies are HttpOnly, Secure, SameSite
@@ -483,18 +507,21 @@ catch (error) {
 - [ ] Password reset uses secure tokens (expires 1 hour)
 
 ### Authorization
+
 - [ ] All routes check authentication
 - [ ] Permissions verified server-side
 - [ ] Default deny (whitelist approach)
 - [ ] No sensitive operations allowed without re-authentication
 
 ### Input Validation
+
 - [ ] All user input validated with schema (Zod)
 - [ ] SQL queries use parameterized queries/ORM
 - [ ] File uploads whitelist types and size limits
 - [ ] Output escaped based on context
 
 ### Configuration
+
 - [ ] No secrets in code or version control
 - [ ] Environment variables for all config
 - [ ] Security headers set (CSP, HSTS, X-Frame-Options)
@@ -502,18 +529,21 @@ catch (error) {
 - [ ] HTTPS enforced in production
 
 ### Data Protection
+
 - [ ] PII encrypted at rest
 - [ ] TLS/HTTPS for all connections
 - [ ] Database backups encrypted
 - [ ] Secure secret management (Vault, AWS Secrets)
 
 ### Monitoring
+
 - [ ] Audit logging for security events
 - [ ] Error tracking configured (Sentry)
 - [ ] Rate limiting on all public endpoints
 - [ ] Alerts for failed login attempts, 5xx errors
 
 ### Dependencies
+
 - [ ] All dependencies up to date
 - [ ] Dependabot enabled
 - [ ] No known vulnerabilities (run `npm audit`)
@@ -524,13 +554,18 @@ catch (error) {
 ## Common Security Mistakes
 
 ### Mistake 1: Client-Side Authorization
+
 **❌ Wrong:**
+
 ```jsx
 // Hiding UI doesn't prevent access!
-{user.role === 'admin' && <DeleteButton />}
+{
+  user.role === 'admin' && <DeleteButton />
+}
 ```
 
 **✅ Right:**
+
 ```jsx
 // Always verify on server
 app.delete('/api/users/:id', requireAdmin, deleteUser)
@@ -539,7 +574,9 @@ app.delete('/api/users/:id', requireAdmin, deleteUser)
 ---
 
 ### Mistake 2: Trusting Client Data
+
 **❌ Wrong:**
+
 ```typescript
 // User can manipulate userId in request!
 const userId = req.body.userId
@@ -547,6 +584,7 @@ await db.order.create({ data: { userId } })
 ```
 
 **✅ Right:**
+
 ```typescript
 // Get userId from authenticated session
 const userId = req.user.id // From JWT/session
@@ -556,14 +594,18 @@ await db.order.create({ data: { userId } })
 ---
 
 ### Mistake 3: Weak Password Requirements
+
 **❌ Wrong:**
+
 ```typescript
 if (password.length < 6) throw new Error('Too short')
 ```
 
 **✅ Right:**
+
 ```typescript
-const passwordSchema = z.string()
+const passwordSchema = z
+  .string()
   .min(8, 'At least 8 characters')
   .regex(/[A-Z]/, 'Needs uppercase')
   .regex(/[a-z]/, 'Needs lowercase')
@@ -573,7 +615,9 @@ const passwordSchema = z.string()
 ---
 
 ### Mistake 4: Insecure Direct Object References
+
 **❌ Wrong:**
+
 ```typescript
 // User can access any document by changing ID!
 const doc = await db.document.findUnique({ where: { id: req.params.id } })
@@ -581,6 +625,7 @@ return res.json(doc)
 ```
 
 **✅ Right:**
+
 ```typescript
 // Verify ownership
 const doc = await db.document.findFirst({
@@ -598,6 +643,7 @@ return res.json(doc)
 ## Framework-Specific Guidance
 
 ### Next.js Security
+
 ```typescript
 // middleware.ts - Protect routes
 export function middleware(request: NextRequest) {
@@ -617,6 +663,7 @@ export const config = {
 ```
 
 ### Express Security
+
 ```typescript
 import helmet from 'helmet'
 import mongoSanitize from 'express-mongo-sanitize'
@@ -627,6 +674,7 @@ app.use(mongoSanitize()) // Prevent NoSQL injection
 ```
 
 ### FastAPI Security
+
 ```python
 from fastapi import Depends, HTTPException
 from fastapi.security import HTTPBearer
@@ -650,12 +698,14 @@ async def protected_route(user_id: str = Depends(get_current_user)):
 ## Security Testing
 
 ### Automated Tools
+
 - **OWASP ZAP:** Web vulnerability scanner
 - **Snyk:** Dependency vulnerability scanning
 - **npm audit:** Check for known vulnerabilities
 - **Lighthouse:** Security audit in Chrome DevTools
 
 ### Manual Testing
+
 1. **Try SQL injection:** `' OR '1'='1`
 2. **Try XSS:** `<script>alert('XSS')</script>`
 3. **Try CSRF:** Submit form from different origin
@@ -667,6 +717,7 @@ async def protected_route(user_id: str = Depends(get_current_user)):
 ## When to Use This Skill
 
 Use security-engineer skill when:
+
 - ✅ Implementing authentication/authorization
 - ✅ Building API endpoints
 - ✅ Handling sensitive data (PII, payments, health)
@@ -679,15 +730,18 @@ Use security-engineer skill when:
 ## Related Resources
 
 **Skills:**
+
 - `api-designer` - API design patterns (pairs with security)
 - `testing-strategist` - Security testing strategies
 - `deployment-advisor` - Production security configuration
 
 **Patterns:**
+
 - `/STANDARDS/architecture-patterns/authentication-patterns.md`
 - `/STANDARDS/best-practices/security-best-practices.md`
 
 **External:**
+
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 - [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/)
 - [Security Headers](https://securityheaders.com/)

@@ -24,6 +24,7 @@
 ### 5-Minute Fix
 
 **Step 1: Make it ridiculously small** (1 min)
+
 ```
 Instead of: "Build authentication system"
 Do this: "Create auth.ts file"
@@ -33,18 +34,21 @@ Difficulty: Trivial
 ```
 
 **Step 2: Just do that ONE thing** (30 sec)
+
 ```bash
 touch src/auth.ts
 code src/auth.ts
 ```
 
 **Step 3: Celebrate!** (10 sec)
+
 ```
 ✅ You started!
 Dopamine hit!
 ```
 
 **Step 4: What's next tiny thing?** (1 min)
+
 ```
 Next: "Add one import statement"
 Time: 10 seconds
@@ -54,13 +58,16 @@ Time: 10 seconds
 Momentum established. Each tiny win makes next one easier.
 
 ### Why This Works
+
 - Zero activation energy (30 sec task)
 - Immediate dopamine (quick win)
 - Momentum builds naturally
 - No overwhelm
 
 ### Alternative: The 2-Minute Rule
+
 "I'll just work for 2 minutes"
+
 - Set timer: 2 minutes
 - Start working
 - When timer ends: Usually want to continue
@@ -93,14 +100,17 @@ Momentum established. Each tiny win makes next one easier.
 ### Escape Plan (10 min)
 
 **Step 1: Commit current work**
+
 ```bash
 git add .
 git commit -m "WIP: CSS polish (pausing to focus on P0)"
 ```
 
 **Step 2: Write "finish later" note**
+
 ```markdown
 ## Resume CSS Polish Later
+
 - File: src/components/button.css:42
 - Next: Add hover animations
 - Priority: P2 (nice-to-have)
@@ -108,6 +118,7 @@ git commit -m "WIP: CSS polish (pausing to focus on P0)"
 ```
 
 **Step 3: Check original goal**
+
 ```bash
 cat .adhd/current-task.md
 # What SHOULD you be doing?
@@ -119,6 +130,7 @@ The thing you were actually supposed to build.
 ### Prevention
 
 Set time budgets BEFORE starting:
+
 ```
 CSS polish: 30 min max
 If not done → good enough, move on
@@ -134,6 +146,7 @@ If not done → good enough, move on
 
 **Step 1: Brain dump** (2 min)
 Write ALL tasks:
+
 ```
 - Fix login bug
 - Build dashboard
@@ -145,11 +158,13 @@ Write ALL tasks:
 **Step 2: Score each task** (2 min)
 
 For each task, rate 1-5:
+
 - Urgency: How soon needed?
 - Impact: How much does it matter?
 - Energy: Do I have energy for this now?
 
 Example:
+
 ```
 Fix login bug:      U:5, I:5, E:3 = 13
 Build dashboard:    U:2, I:3, E:4 = 9
@@ -159,6 +174,7 @@ Update docs:        U:1, I:2, E:5 = 8
 ```
 
 **Step 3: Pick highest score** (10 sec)
+
 ```
 → Fix login bug (score: 13)
 START THIS NOW
@@ -172,6 +188,7 @@ Close tabs, hide task list, focus on ONE thing.
 Too exhausted to decide?
 
 **Pick the 2-minute task**
+
 - Smallest task wins
 - Quick dopamine hit
 - Builds momentum
@@ -185,6 +202,7 @@ Too exhausted to decide?
 ### Emergency Protocol (10 min)
 
 **Step 1: STOP** (1 min)
+
 - Close laptop
 - Stand up
 - Take 3 deep breaths
@@ -192,6 +210,7 @@ Too exhausted to decide?
 
 **Step 2: Brain dump** (5 min)
 Write EVERYTHING that's stressing you:
+
 ```
 - Login bug blocking users
 - Boss wants dashboard by Friday
@@ -205,6 +224,7 @@ Write EVERYTHING that's stressing you:
 **Step 3: Triage buckets** (3 min)
 
 **Today (MAX 3 things):**
+
 ```
 - Fix login bug
 - Call mom
@@ -212,12 +232,14 @@ Write EVERYTHING that's stressing you:
 ```
 
 **This Week:**
+
 ```
 - Build dashboard
 - Reply important emails
 ```
 
 **Later/Maybe:**
+
 ```
 - Workout
 - Clean code
@@ -228,6 +250,7 @@ Write EVERYTHING that's stressing you:
 Everything else doesn't exist right now.
 
 **Step 5: Start with easiest** (Now!)
+
 ```
 Call mom (5 min)
 → Quick win
@@ -236,6 +259,7 @@ Call mom (5 min)
 ```
 
 ### Why This Works
+
 - Gets thoughts out of head (working memory freed)
 - Creates manageable scope (not infinite)
 - Priority becomes clear (not everything matters equally)
@@ -248,7 +272,9 @@ Call mom (5 min)
 **Still stuck after trying above?**
 
 ### Option 1: Change Tasks
+
 Work on ANYTHING else for 30 min.
+
 - Different task
 - Easy task
 - Fun task
@@ -256,7 +282,9 @@ Work on ANYTHING else for 30 min.
 Then return to stuck task with fresh perspective.
 
 ### Option 2: Rubber Duck
+
 Explain problem out loud:
+
 - To rubber duck
 - To plant
 - To yourself
@@ -265,6 +293,7 @@ Explain problem out loud:
 70% of time, explaining solves it.
 
 ### Option 3: Take Real Break
+
 - 20-minute walk
 - No phone
 - Outside if possible
@@ -273,7 +302,9 @@ Explain problem out loud:
 Come back with fresh energy.
 
 ### Option 4: Ask for Help
+
 Message someone:
+
 ```
 "Hey, I'm stuck on X. Can you pair for 10 min?"
 ```
@@ -282,7 +313,9 @@ Often just asking makes solution appear.
 If not, pairing helps.
 
 ### Option 5: Ship What You Have
+
 Maybe you're not stuck, maybe you're done?
+
 ```
 What's the MINIMUM to ship?
 Can you ship that NOW?
@@ -296,16 +329,19 @@ Polish later.
 **To avoid getting stuck:**
 
 ### Morning
+
 - [ ] Check .adhd/current-task.md (know what to do)
 - [ ] Pick ONE task for today (not five)
 - [ ] Start with 2-minute quick win (build momentum)
 
 ### During Work
+
 - [ ] Auto-save context every 15 min (never lose place)
 - [ ] Set time limits on tasks (prevent rabbit holes)
 - [ ] Take breaks every 45 min (prevent exhaustion)
 
 ### Evening
+
 - [ ] Write tomorrow's first task (easy start)
 - [ ] Log wins (dopamine, motivation)
 - [ ] Save context (easy resume)
@@ -315,18 +351,23 @@ Polish later.
 ## Mantras for Getting Unstuck
 
 **When can't start:**
+
 > "I'll just do 2 minutes. That's nothing."
 
 **When in rabbit hole:**
+
 > "Good enough to ship. Perfect is the enemy of done."
 
 **When deciding:**
+
 > "Pick the highest impact thing. Everything else can wait."
 
 **When overwhelmed:**
+
 > "I can only do one thing at a time. This one thing, right now."
 
 **When stuck generally:**
+
 > "Being stuck is temporary. I will get unstuck. I always do."
 
 ---
@@ -334,6 +375,7 @@ Polish later.
 ## Success Metrics
 
 You're managing stuck-ness well when:
+
 - ✅ Get unstuck in < 15 minutes
 - ✅ Start tasks easily (low activation energy)
 - ✅ Avoid rabbit holes (time-boxed tasks)

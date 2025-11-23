@@ -172,7 +172,7 @@ export class AdobeXDClient {
     this.options = {
       accessToken: options.accessToken || process.env.ADOBE_ACCESS_TOKEN || '',
       timeout: options.timeout || 30000,
-      baseUrl: options.baseUrl || 'https://cc-api-storage.adobe.io/v1/xd',
+      baseUrl: options.baseUrl || 'https://cc-api-storage.adobe.io/v1/xd'
     }
 
     if (!this.options.accessToken) {
@@ -201,7 +201,7 @@ export class AdobeXDClient {
    */
   async getArtboard(documentId: string, artboardId: string): Promise<XDArtboard | null> {
     const artboards = await this.getArtboards(documentId)
-    return artboards.find((a) => a.id === artboardId) || null
+    return artboards.find(a => a.id === artboardId) || null
   }
 
   /**
@@ -223,8 +223,8 @@ export class AdobeXDClient {
         body: JSON.stringify({
           type: format,
           scale,
-          quality,
-        }),
+          quality
+        })
       }
     )
 
@@ -234,7 +234,7 @@ export class AdobeXDClient {
       id: artboardId,
       name: artboard?.name || artboardId,
       url: response.rendition.href,
-      format,
+      format
     }
   }
 
@@ -300,13 +300,13 @@ export class AdobeXDClient {
       body: JSON.stringify({
         accessLevel: options.accessLevel || 'view',
         allowComments: options.allowComments ?? true,
-        expiresAt: options.expiresAt,
-      }),
+        expiresAt: options.expiresAt
+      })
     })
 
     return {
       url: response.url,
-      id: response.id,
+      id: response.id
     }
   }
 
@@ -328,15 +328,15 @@ export class AdobeXDClient {
     const colors = document.colors.map((color, index) => ({
       name: color.name || `color-${index}`,
       value: this.rgbaToHex(color),
-      rgba: color,
+      rgba: color
     }))
 
-    const typography = document.characterStyles.map((style) => ({
+    const typography = document.characterStyles.map(style => ({
       name: style.name,
       fontFamily: style.fontFamily,
       fontSize: style.fontSize,
       fontWeight: style.fontStyle,
-      lineHeight: style.lineSpacing,
+      lineHeight: style.lineSpacing
     }))
 
     return { colors, typography }
@@ -392,7 +392,7 @@ export class AdobeXDClient {
       artboards: data.artboards?.resources || [],
       colors: data.resources?.colors || [],
       characterStyles: data.resources?.characterStyles || [],
-      components: data.resources?.components || [],
+      components: data.resources?.components || []
     }
   }
 
@@ -432,12 +432,12 @@ export class AdobeXDClient {
     const response = await fetch(url, {
       ...options,
       headers: {
-        'Authorization': `Bearer ${this.options.accessToken}`,
+        Authorization: `Bearer ${this.options.accessToken}`,
         'Content-Type': 'application/json',
         'x-api-key': process.env.ADOBE_API_KEY || '',
-        ...options.headers,
+        ...options.headers
       },
-      signal: AbortSignal.timeout(this.options.timeout),
+      signal: AbortSignal.timeout(this.options.timeout)
     })
 
     if (!response.ok) {

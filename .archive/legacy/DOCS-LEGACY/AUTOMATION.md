@@ -10,6 +10,7 @@
 **You should NEVER manually update registry or documentation files.**
 
 The automation system ensures:
+
 - ✅ Single source of truth (`SKILLS/` and `MCP-SERVERS/` folders)
 - ✅ All files stay synchronized automatically
 - ✅ Validation blocks broken commits
@@ -20,20 +21,21 @@ The automation system ensures:
 
 ## 🚀 Quick Reference
 
-| Task | Command | What It Does |
-|------|---------|--------------|
-| **Validate everything** | `npm run validate` | Checks all counts and consistency |
-| **Fix all issues** | `npm run sync` | Fixes registries + updates docs + validates |
-| **Update docs only** | `npm run update:all` | Updates README, BUILD_FOCUS, etc. |
-| **Fix registries** | `npm run validate:fix` | Syncs registries + updates docs |
+| Task                    | Command                | What It Does                                |
+| ----------------------- | ---------------------- | ------------------------------------------- |
+| **Validate everything** | `npm run validate`     | Checks all counts and consistency           |
+| **Fix all issues**      | `npm run sync`         | Fixes registries + updates docs + validates |
+| **Update docs only**    | `npm run update:all`   | Updates README, BUILD_FOCUS, etc.           |
+| **Fix registries**      | `npm run validate:fix` | Syncs registries + updates docs             |
 
 ---
 
 ## 📋 Complete Automation Chain
 
-###  Adding a New Skill
+### Adding a New Skill
 
 **DO THIS:**
+
 ```bash
 # 1. Create the skill folder
 mkdir SKILLS/my-new-skill
@@ -60,6 +62,7 @@ npm run sync
 ```
 
 **What happens automatically:**
+
 ```
 npm run sync
   ├─ Runs fix-skill-registry.cjs
@@ -81,6 +84,7 @@ npm run sync
 ```
 
 **DON'T DO THIS:**
+
 ```bash
 # ❌ NEVER manually edit these files:
 META/skill-registry.json  # Auto-generated
@@ -95,6 +99,7 @@ DOCS/INDEX.md             # Auto-updated counts
 ### Adding a New MCP
 
 **DO THIS:**
+
 ```bash
 # 1. Create MCP folder
 mkdir MCP-SERVERS/my-mcp
@@ -109,6 +114,7 @@ npm run sync
 ```
 
 **What happens automatically:**
+
 - Scans MCP-SERVERS/ folder
 - Updates META/registry.json (MCP entry)
 - Updates all documentation with new MCP count
@@ -120,6 +126,7 @@ npm run sync
 ### Editing an Existing Skill
 
 **DO THIS:**
+
 ```bash
 # 1. Edit the SKILL.md file
 vim SKILLS/existing-skill/SKILL.md
@@ -132,6 +139,7 @@ npm run sync
 ```
 
 **What happens automatically:**
+
 - Re-extracts metadata from SKILL.md
 - Updates registries if metadata changed
 - Validates consistency
@@ -145,6 +153,7 @@ npm run sync
 The `validate-all.cjs` script checks:
 
 **1. Registry Consistency**
+
 - ✅ skill-registry.json count == SKILLS/ folder count
 - ✅ registry.json count == SKILLS/ folder count
 - ✅ registry.json MCP count == MCP-SERVERS/ folder count
@@ -152,10 +161,12 @@ The `validate-all.cjs` script checks:
 - ✅ No folders missing from registries
 
 **2. Metadata Completeness**
+
 - ✅ All skills have triggers defined
-- ⚠️  All skills should have relationship mapping (warns if missing)
+- ⚠️ All skills should have relationship mapping (warns if missing)
 
 **3. Documentation Consistency**
+
 - ✅ README.md skill count matches reality
 - ✅ README.md MCP count matches reality
 - ✅ BUILD_FOCUS.md counts match
@@ -163,7 +174,8 @@ The `validate-all.cjs` script checks:
 - ✅ DOCS/MCP-DEVELOPMENT-ROADMAP.md counts match
 
 **4. Configuration**
-- ⚠️  .claude/claude.md should document all skills
+
+- ⚠️ .claude/claude.md should document all skills
 
 ### Exit Codes
 
@@ -181,6 +193,7 @@ npm run validate
 **Location:** `.githooks/pre-commit`
 
 **What it does:**
+
 ```bash
 git commit -m "Add new skill"
   ↓
@@ -193,11 +206,13 @@ IF validation fails  → Commit blocked with error message
 ```
 
 **Enable the hook:**
+
 ```bash
 git config core.hooksPath .githooks
 ```
 
 **Bypass (NOT RECOMMENDED):**
+
 ```bash
 git commit --no-verify
 ```
@@ -211,6 +226,7 @@ git commit --no-verify
 **Purpose:** Check if everything is consistent
 
 **What it checks:**
+
 - Skill counts match across all files
 - MCP counts match across all files
 - All skills have registries
@@ -219,10 +235,12 @@ git commit --no-verify
 - Relationships exist (warns if missing)
 
 **Exit codes:**
+
 - 0 = All good
 - 1 = Errors found
 
 **Example output:**
+
 ```
 ✅ skill-registry.json count matches (37)
 ✅ registry.json skill count matches (37)
@@ -241,6 +259,7 @@ git commit --no-verify
 **Purpose:** Fix registry issues and update docs
 
 **What it does:**
+
 1. Scans SKILLS/ and MCP-SERVERS/ folders
 2. Syncs skill-registry.json
 3. Syncs registry.json
@@ -248,6 +267,7 @@ git commit --no-verify
 5. Does NOT validate (use `npm run sync` for that)
 
 **When to use:**
+
 - After adding/removing skills
 - After adding/removing MCPs
 - When counts are out of sync
@@ -259,12 +279,14 @@ git commit --no-verify
 **Purpose:** Update documentation files from registries
 
 **What it updates:**
+
 - README.md (counts, ratios)
 - BUILD_FOCUS.md (counts, ratios)
 - DOCS/INDEX.md (counts)
 - DOCS/MCP-DEVELOPMENT-ROADMAP.md (counts, percentages)
 
 **When to use:**
+
 - When registries are correct but docs are stale
 - After manual registry edits (not recommended!)
 
@@ -275,6 +297,7 @@ git commit --no-verify
 **Purpose:** Complete fix and validation (RECOMMENDED)
 
 **What it does:**
+
 ```
 npm run sync
   = npm run validate:fix && npm run validate
@@ -286,6 +309,7 @@ npm run sync
 4. Exits with error if validation fails
 
 **When to use:**
+
 - **Always** - This is the main command
 - After adding/editing skills or MCPs
 - When validation fails
@@ -320,6 +344,7 @@ git commit -m "Add new feature"
 ```
 
 **Fix:**
+
 ```bash
 npm run sync
 git add -A
@@ -336,6 +361,7 @@ git commit -m "Add new feature"
 ```
 
 **Fix:**
+
 ```bash
 npm run sync
 # Everything auto-updates
@@ -351,6 +377,7 @@ npm run validate
 ```
 
 **Fix:**
+
 ```bash
 npm run update:all
 npm run validate
@@ -367,11 +394,13 @@ npm run validate
 ```
 
 **This is OK (for now):**
+
 - System still works
 - Warning reminds you to add relationships
 - Not blocking (warnings don't prevent commits)
 
 **To fix eventually:**
+
 - Add relationship stubs to META/relationship-mapping.json
 - See [AUTOMATION-STATUS-REPORT.md](./AUTOMATION-STATUS-REPORT.md)
 
@@ -400,6 +429,7 @@ npm run validate
 ## 🔮 Future Automation
 
 **Coming Soon:**
+
 - `npm run add-skill [name]` - Creates full skill structure
 - `npm run add-mcp [name] [enables-skill]` - Creates MCP with links
 - Automatic relationship stub generation

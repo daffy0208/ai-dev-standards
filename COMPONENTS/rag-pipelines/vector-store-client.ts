@@ -273,7 +273,7 @@ export class VectorStoreClient {
     // Create target collection
     await targetClient.createCollection(collectionName, {
       dimension: info.dimension,
-      metric: info.metric,
+      metric: info.metric
     })
 
     // Migrate vectors in batches
@@ -522,6 +522,6 @@ export function createVectorStoreClient(
     apiKey: process.env.VECTOR_STORE_API_KEY,
     environment: process.env.VECTOR_STORE_ENVIRONMENT,
     url: process.env.VECTOR_STORE_URL,
-    ...options,
+    ...options
   })
 }

@@ -4,19 +4,20 @@ Comprehensive TypeScript components for building multi-agent workflow systems wi
 
 ## Components Overview
 
-| Component | Lines | Purpose |
-|-----------|-------|---------|
-| **task-queue.ts** | 370 | Priority-based task queue with retry logic and concurrency control |
-| **workflow-orchestrator.ts** | 744 | Step-by-step workflow execution with branching and rollback support |
-| **state-manager.ts** | 733 | Distributed state management with history and pub/sub |
-| **event-bus.ts** | 694 | Pub/sub event system for inter-agent communication |
-| **Total** | **2,541** | Complete workflow orchestration system |
+| Component                    | Lines     | Purpose                                                             |
+| ---------------------------- | --------- | ------------------------------------------------------------------- |
+| **task-queue.ts**            | 370       | Priority-based task queue with retry logic and concurrency control  |
+| **workflow-orchestrator.ts** | 744       | Step-by-step workflow execution with branching and rollback support |
+| **state-manager.ts**         | 733       | Distributed state management with history and pub/sub               |
+| **event-bus.ts**             | 694       | Pub/sub event system for inter-agent communication                  |
+| **Total**                    | **2,541** | Complete workflow orchestration system                              |
 
 ## 1. Task Queue (`task-queue.ts`)
 
 **370 lines** - Priority-based task queue with scheduling, retry logic, and concurrency control.
 
 ### Key Features
+
 - **Priority Levels**: low, normal, high, urgent (with automatic sorting)
 - **Concurrency Control**: Configurable max concurrent tasks
 - **Retry Logic**: Exponential backoff for failed tasks (configurable attempts)
@@ -27,6 +28,7 @@ Comprehensive TypeScript components for building multi-agent workflow systems wi
 - **Statistics**: Real-time queue stats and progress tracking
 
 ### Usage Example
+
 ```typescript
 import { TaskQueue } from './task-queue'
 
@@ -45,8 +47,8 @@ await queue.addTask({
     const data = await fetchAPI()
     return data
   },
-  onSuccess: (result) => console.log('Success:', result),
-  onError: (error) => console.error('Failed:', error)
+  onSuccess: result => console.log('Success:', result),
+  onError: error => console.error('Failed:', error)
 })
 
 // Monitor progress
@@ -55,6 +57,7 @@ console.log(`${stats.completed}/${stats.total} complete`)
 ```
 
 ### TypeScript Interfaces
+
 ```typescript
 interface Task<T> {
   id: string
@@ -73,6 +76,7 @@ interface Task<T> {
 **744 lines** - Advanced workflow execution with conditional branching, error recovery, and state persistence.
 
 ### Key Features
+
 - **Execution Modes**: Linear (sequential) or parallel execution
 - **Conditional Branching**: Skip steps based on runtime conditions
 - **Error Strategies**: retry, skip, abort, continue
@@ -83,6 +87,7 @@ interface Task<T> {
 - **Progress Tracking**: Monitor step execution in real-time
 
 ### Usage Example
+
 ```typescript
 import { WorkflowOrchestrator } from './workflow-orchestrator'
 
@@ -100,7 +105,7 @@ const orchestrator = new WorkflowOrchestrator({
 orchestrator
   .addStep({
     id: 'fetch',
-    execute: async (context) => {
+    execute: async context => {
       const data = await fetchData()
       return { data }
     },
@@ -109,21 +114,21 @@ orchestrator
   })
   .addStep({
     id: 'validate',
-    execute: async (context) => {
+    execute: async context => {
       const valid = validateData(context.fetch.data)
       return { valid }
     },
     dependsOn: ['fetch'],
-    condition: (context) => context.fetch.data.length > 0
+    condition: context => context.fetch.data.length > 0
   })
   .addStep({
     id: 'process',
-    execute: async (context) => {
+    execute: async context => {
       const processed = processData(context.fetch.data)
       return { processed }
     },
     dependsOn: ['validate'],
-    rollback: async (context) => {
+    rollback: async context => {
       await cleanupProcessing()
     }
   })
@@ -137,6 +142,7 @@ await orchestrator.resume()
 ```
 
 ### TypeScript Interfaces
+
 ```typescript
 interface WorkflowStep<T> {
   id: string
@@ -165,6 +171,7 @@ interface WorkflowState {
 **733 lines** - Distributed state management with snapshots, history, and pub/sub capabilities.
 
 ### Key Features
+
 - **Nested State Access**: Dot notation paths (e.g., 'user.profile.name')
 - **State History**: Undo/redo with configurable history size
 - **Snapshots**: Create and restore state snapshots
@@ -176,6 +183,7 @@ interface WorkflowState {
 - **Time Travel**: Full undo/redo support for debugging
 
 ### Usage Example
+
 ```typescript
 import { StateManager } from './state-manager'
 
@@ -184,7 +192,7 @@ const stateManager = new StateManager({
   persistence: true,
   maxHistory: 100,
   debounceMs: 100,
-  validation: (state) => {
+  validation: state => {
     if (!state.userId) throw new Error('userId required')
   }
 })
@@ -218,6 +226,7 @@ stateManager.dispose()
 ```
 
 ### TypeScript Interfaces
+
 ```typescript
 interface StateSnapshot {
   timestamp: number
@@ -233,11 +242,7 @@ interface StateChange {
   newValue?: any
 }
 
-type StateChangeListener<T> = (
-  newValue: T,
-  oldValue: T | undefined,
-  path: string
-) => void
+type StateChangeListener<T> = (newValue: T, oldValue: T | undefined, path: string) => void
 ```
 
 ## 4. Event Bus (`event-bus.ts`)
@@ -245,7 +250,8 @@ type StateChangeListener<T> = (
 **694 lines** - High-performance pub/sub event system with advanced features for agent communication.
 
 ### Key Features
-- **Wildcard Subscriptions**: Match multiple event types ('user.*', 'agent.**')
+
+- **Wildcard Subscriptions**: Match multiple event types ('user.\*', 'agent.\*\*')
 - **Event Priority**: critical, high, normal, low (sorted execution)
 - **Event Replay**: Replay historical events to new subscribers
 - **Typed Events**: TypeScript support with TypedEventBus
@@ -256,6 +262,7 @@ type StateChangeListener<T> = (
 - **Event History**: Configurable event history buffer
 
 ### Usage Example
+
 ```typescript
 import { createEventBus, createTypedEventBus } from './event-bus'
 
@@ -267,17 +274,17 @@ const eventBus = createEventBus({
 })
 
 // Subscribe to events
-const subId = eventBus.on('user.created', async (event) => {
+const subId = eventBus.on('user.created', async event => {
   console.log('User created:', event.data)
   await sendWelcomeEmail(event.data)
 })
 
 // Wildcard subscriptions
-eventBus.on('user.*', (event) => {
+eventBus.on('user.*', event => {
   console.log('User event:', event.type)
 })
 
-eventBus.on('agent.**', (event) => {
+eventBus.on('agent.**', event => {
   console.log('Agent event (multi-level):', event.type)
 })
 
@@ -311,13 +318,14 @@ interface AppEvents {
 
 const typedBus = createTypedEventBus<AppEvents>()
 
-typedBus.on('user.created', (event) => {
+typedBus.on('user.created', event => {
   // event.data is typed as { id: number; name: string }
   console.log(event.data.name)
 })
 ```
 
 ### TypeScript Interfaces
+
 ```typescript
 interface Event<T = any> {
   type: string
@@ -364,11 +372,11 @@ const orchestrator = new WorkflowOrchestrator({
 })
 
 // Setup event handlers
-eventBus.on('agent.task.started', async (event) => {
+eventBus.on('agent.task.started', async event => {
   await stateManager.set(`agents.${event.data.agentId}.status`, 'busy')
 })
 
-eventBus.on('agent.task.completed', async (event) => {
+eventBus.on('agent.task.completed', async event => {
   await stateManager.set(`agents.${event.data.agentId}.status`, 'idle')
   await stateManager.set(`results.${event.data.taskId}`, event.data.result)
 })
@@ -377,7 +385,7 @@ eventBus.on('agent.task.completed', async (event) => {
 orchestrator
   .addStep({
     id: 'distribute-tasks',
-    execute: async (context) => {
+    execute: async context => {
       const tasks = generateTasks()
 
       for (const task of tasks) {
@@ -407,9 +415,9 @@ orchestrator
   })
   .addStep({
     id: 'wait-for-completion',
-    execute: async (context) => {
+    execute: async context => {
       // Wait for all agents to be idle
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         const checkIdle = () => {
           const agents = stateManager.get('agents')
           const allIdle = Object.values(agents).every(a => a.status === 'idle')
@@ -427,7 +435,7 @@ orchestrator
   })
   .addStep({
     id: 'aggregate-results',
-    execute: async (context) => {
+    execute: async context => {
       const results = stateManager.get('results')
       const aggregated = aggregateResults(results)
 
@@ -461,22 +469,26 @@ console.log('Pipeline completed:', {
 ## Performance Characteristics
 
 ### Task Queue
+
 - **Throughput**: 1000+ tasks/sec with concurrency=10
 - **Memory**: ~100 bytes per queued task
 - **Overhead**: <1ms per task scheduling
 
 ### Workflow Orchestrator
+
 - **Throughput**: 100+ steps/sec (linear), 500+ steps/sec (parallel)
 - **Memory**: ~500 bytes per step
 - **Overhead**: <5ms per step (includes persistence)
 
 ### State Manager
+
 - **Read Performance**: ~0.1ms per get operation
 - **Write Performance**: ~1ms per set operation (with persistence)
 - **Memory**: ~200 bytes per state entry
 - **History**: ~100 bytes per change record
 
 ### Event Bus
+
 - **Throughput**: 10,000+ events/sec
 - **Memory**: ~150 bytes per event (with history)
 - **Handler Overhead**: <0.5ms per handler execution
@@ -556,24 +568,28 @@ expect(handler).toHaveBeenCalledTimes(1)
 ## Best Practices
 
 ### 1. Task Queue
+
 - Set appropriate concurrency limits based on resources
 - Use priority levels strategically (not everything is 'urgent')
 - Implement proper error handlers for failed tasks
 - Clean completed tasks periodically to prevent memory growth
 
 ### 2. Workflow Orchestrator
+
 - Break complex workflows into smaller, testable steps
 - Use conditional branching sparingly (prefer separate workflows)
 - Always provide rollback handlers for critical steps
 - Enable persistence for long-running workflows
 
 ### 3. State Manager
+
 - Use nested paths consistently (e.g., 'module.feature.property')
 - Subscribe to specific paths, not wildcards, when possible
 - Take snapshots before risky operations
 - Set appropriate history limits based on memory constraints
 
 ### 4. Event Bus
+
 - Use namespaced event types (e.g., 'module.action.result')
 - Handle errors in event handlers (don't let them propagate)
 - Use wildcard subscriptions sparingly (performance impact)
@@ -582,13 +598,14 @@ expect(handler).toHaveBeenCalledTimes(1)
 ## Advanced Patterns
 
 ### Pattern 1: Distributed Task Execution
+
 ```typescript
 // Multiple agents processing from shared queue
 const sharedQueue = new TaskQueue({ concurrency: 1000 })
 const eventBus = createEventBus()
 
 // Agent 1
-eventBus.on('task.created', async (event) => {
+eventBus.on('task.created', async event => {
   await sharedQueue.addTask(event.data.task)
 })
 
@@ -597,6 +614,7 @@ eventBus.on('task.created', async (event) => {
 ```
 
 ### Pattern 2: Workflow Composition
+
 ```typescript
 // Compose workflows from smaller workflows
 const subWorkflow1 = new WorkflowOrchestrator({ id: 'sub1' })
@@ -606,14 +624,14 @@ const mainWorkflow = new WorkflowOrchestrator({ id: 'main' })
 mainWorkflow
   .addStep({
     id: 'execute-sub1',
-    execute: async (context) => {
+    execute: async context => {
       const result = await subWorkflow1.execute(context)
       return result
     }
   })
   .addStep({
     id: 'execute-sub2',
-    execute: async (context) => {
+    execute: async context => {
       const result = await subWorkflow2.execute(context)
       return result
     },
@@ -622,13 +640,14 @@ mainWorkflow
 ```
 
 ### Pattern 3: Event Sourcing
+
 ```typescript
 // Use event bus + state manager for event sourcing
 const eventBus = createEventBus({ maxHistory: 10000 })
 const stateManager = new StateManager()
 
 // All state changes through events
-eventBus.on('state.**', async (event) => {
+eventBus.on('state.**', async event => {
   await stateManager.set(event.data.path, event.data.value)
 })
 
@@ -644,6 +663,7 @@ eventBus.replay('state.**')
 ```
 
 ### Pattern 4: Circuit Breaker
+
 ```typescript
 // Implement circuit breaker with task queue
 class CircuitBreaker {
@@ -681,6 +701,7 @@ MIT
 ## Contributing
 
 Contributions welcome! Please ensure:
+
 - TypeScript types are comprehensive
 - JSDoc comments for all public APIs
 - Error handling with custom error classes

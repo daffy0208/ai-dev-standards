@@ -11,6 +11,7 @@ Helps you build accessible applications that work for everyone, including users 
 ## When to Use
 
 Use this skill when you need to:
+
 - Build accessible UIs
 - Conduct accessibility audits
 - Fix WCAG violations
@@ -35,6 +36,7 @@ Use this skill when you need to:
 ## Success Criteria
 
 You've successfully used this skill when:
+
 - ✅ WCAG 2.1 AA compliant
 - ✅ All interactive elements keyboard accessible
 - ✅ Screen reader announces content correctly
@@ -46,17 +48,20 @@ You've successfully used this skill when:
 ## Key Concepts
 
 **WCAG Levels:**
+
 - A: Minimum (legal requirement)
 - AA: Industry standard (aim for this)
 - AAA: Gold standard (difficult)
 
 **Four Principles (POUR):**
+
 - **Perceivable:** Content can be seen/heard
 - **Operable:** Can be used with keyboard
 - **Understandable:** Clear and predictable
 - **Robust:** Works with assistive technology
 
 **Common Issues:**
+
 - Missing alt text
 - Poor color contrast
 - No keyboard access
@@ -66,6 +71,7 @@ You've successfully used this skill when:
 ## Quick Reference
 
 ### Semantic HTML
+
 ```jsx
 // ✅ Use proper elements
 <button>Click</button>
@@ -77,6 +83,7 @@ You've successfully used this skill when:
 ```
 
 ### Keyboard Navigation
+
 ```jsx
 // All interactive elements need keyboard access
 - Tab: Navigate forward
@@ -86,16 +93,18 @@ You've successfully used this skill when:
 ```
 
 ### ARIA Basics
+
 ```jsx
 // Only use ARIA when semantic HTML isn't enough
-aria-label // Accessible name
-aria-labelledby // References another element
-aria-describedby // Additional description
-aria-live // Announce dynamic changes
-aria-hidden // Hide from screen readers
+aria - label // Accessible name
+aria - labelledby // References another element
+aria - describedby // Additional description
+aria - live // Announce dynamic changes
+aria - hidden // Hide from screen readers
 ```
 
 ### Testing Tools
+
 - Lighthouse (Chrome DevTools)
 - axe DevTools (browser extension)
 - WAVE (online tool)

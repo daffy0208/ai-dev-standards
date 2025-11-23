@@ -10,10 +10,12 @@
 ### Task 1: Expand the Graph ✅
 
 **Generated 94 new manifests:**
+
 - ✅ **45 skill manifests** (100% coverage - 64/64 skills)
 - ✅ **49 MCP manifests** (100% coverage - 49/49 MCPs)
 
 **From → To:**
+
 - Skills: 19 → **64** (+45)
 - MCPs: 0 → **49** (+49)
 - **Total nodes: 19 → 113** (+94) 🎯
@@ -21,6 +23,7 @@
 ### Task 2: Add MCP Manifests ✅
 
 All 49 MCPs now have manifests, including:
+
 - 3d-asset-manager-mcp, accessibility-checker-mcp
 - agent-orchestrator-mcp, animation-library-mcp
 - vector-database-mcp, embedding-generator-mcp
@@ -30,6 +33,7 @@ All 49 MCPs now have manifests, including:
 ### Task 3: Enhanced Queries ✅
 
 Implemented 8 advanced query capabilities:
+
 1. **Path Finding** - Shortest path between capabilities
 2. **Dependency Analysis** - Transitive closure
 3. **Composition Chains** - Multi-hop compositions
@@ -75,12 +79,14 @@ Top Domains:
 **Purpose:** Automatically generate manifests from SKILL.md/README.md files
 
 **Features:**
+
 - Extracts frontmatter from markdown
 - Infers domains, effects, and compatibility
 - Handles both skills and MCPs
 - Skips existing manifests
 
 **Usage:**
+
 ```bash
 python3 scripts/generate-all-manifests.py
 ```
@@ -92,12 +98,14 @@ python3 scripts/generate-all-manifests.py
 **Commands:**
 
 #### Path Finding
+
 ```bash
 python3 scripts/graph-query-tool.py path rag-implementer frontend-builder
 # → rag-implementer → multi-agent-architect → api-designer → frontend-builder
 ```
 
 #### Dependency Analysis
+
 ```bash
 python3 scripts/graph-query-tool.py deps rag-implementer
 # Direct: openai-integration, pinecone-mcp, embedding-generator-mcp
@@ -105,6 +113,7 @@ python3 scripts/graph-query-tool.py deps rag-implementer
 ```
 
 #### Composition Chains
+
 ```bash
 python3 scripts/graph-query-tool.py chains api-designer
 # 1. api-designer → frontend-builder
@@ -114,12 +123,14 @@ python3 scripts/graph-query-tool.py chains api-designer
 ```
 
 #### Conflict Detection
+
 ```bash
 python3 scripts/graph-query-tool.py conflicts mvp-builder feature-complete-mentality
 # ⚠️  mvp-builder conflicts with feature-complete-mentality
 ```
 
 #### Query by Effect
+
 ```bash
 python3 scripts/graph-query-tool.py effect implements_authentication
 # • api-designer
@@ -127,6 +138,7 @@ python3 scripts/graph-query-tool.py effect implements_authentication
 ```
 
 #### Query by Domain
+
 ```bash
 python3 scripts/graph-query-tool.py domain ai
 # • archon-manager
@@ -136,6 +148,7 @@ python3 scripts/graph-query-tool.py domain ai
 ```
 
 #### Consistency Validation
+
 ```bash
 python3 scripts/graph-query-tool.py validate
 # ⚠️  Missing Nodes: 86
@@ -144,6 +157,7 @@ python3 scripts/graph-query-tool.py validate
 ```
 
 #### Relationship Inference
+
 ```bash
 python3 scripts/graph-query-tool.py infer
 # 3d-asset-manager-mcp → animation-library-mcp
@@ -152,6 +166,7 @@ python3 scripts/graph-query-tool.py infer
 ```
 
 #### Subgraph Extraction
+
 ```bash
 python3 scripts/graph-query-tool.py subgraph rag-implementer
 # Nodes: 15
@@ -160,6 +175,7 @@ python3 scripts/graph-query-tool.py subgraph rag-implementer
 ```
 
 #### Statistics
+
 ```bash
 python3 scripts/graph-query-tool.py stats
 # [Full statistics output]
@@ -203,6 +219,7 @@ brain workflow "build knowledge base"
 ### Graph Consistency Check
 
 **Issues Found:**
+
 - ⚠️ **86 missing nodes** - Abstract concepts referenced but not defined
 - ⚠️ **57 asymmetric relationships** - Enables without requires
 - ⚠️ **79 orphaned nodes** - MCPs not yet connected
@@ -212,6 +229,7 @@ brain workflow "build knowledge base"
 ### Suggestions for Improvement
 
 **The inference engine found 20+ potential relationships:**
+
 - MCPs that share domains should compose
 - Skills with similar effects should relate
 - Common patterns should be connected
@@ -220,14 +238,14 @@ brain workflow "build knowledge base"
 
 ## 📈 Before vs After
 
-| Metric | Before | After | Change |
-|--------|--------|-------|--------|
-| **Skill Manifests** | 19 | 64 | +237% |
-| **MCP Manifests** | 0 | 49 | +∞ |
-| **Total Nodes** | 19 | 113 | +495% |
-| **Domains** | 82 | 84 | +2 |
-| **Effects** | 135 | 215 | +59% |
-| **Query Types** | 4 | 8 | +100% |
+| Metric              | Before | After | Change |
+| ------------------- | ------ | ----- | ------ |
+| **Skill Manifests** | 19     | 64    | +237%  |
+| **MCP Manifests**   | 0      | 49    | +∞     |
+| **Total Nodes**     | 19     | 113   | +495%  |
+| **Domains**         | 82     | 84    | +2     |
+| **Effects**         | 135    | 215   | +59%   |
+| **Query Types**     | 4      | 8     | +100%  |
 
 ---
 
@@ -236,6 +254,7 @@ brain workflow "build knowledge base"
 ### 1. Intelligent Orchestration
 
 The orchestrator can now:
+
 - **Analyze goals** → Find required effects
 - **Match capabilities** → Query by effect
 - **Resolve dependencies** → Follow requires edges
@@ -245,6 +264,7 @@ The orchestrator can now:
 ### 2. Smart Recommendations
 
 The brain can now:
+
 - **Suggest skills** based on task description
 - **Recommend compositions** that work well together
 - **Warn about conflicts** before execution
@@ -253,6 +273,7 @@ The brain can now:
 ### 3. Graph-Based Planning
 
 HTN (Hierarchical Task Network) planning using:
+
 - **Effect matching** - Find capabilities by desired effects
 - **Precondition checking** - Validate dependencies
 - **Path finding** - Discover execution sequences
@@ -333,9 +354,10 @@ HTN (Hierarchical Task Network) planning using:
 
 ## 🎉 Conclusion
 
-**Mission Accomplished!** 
+**Mission Accomplished!**
 
 You now have a **fully populated capability graph** with:
+
 - ✅ 113 capabilities (64 skills + 49 MCPs)
 - ✅ 169 relationships
 - ✅ 215 unique effects

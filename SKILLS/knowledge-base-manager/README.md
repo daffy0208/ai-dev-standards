@@ -12,6 +12,7 @@ Provides comprehensive guidance for designing, building, and maintaining knowled
 ## When to Use This Skill
 
 Use this skill when you need to:
+
 - Build knowledge-intensive AI applications
 - Manage organizational knowledge systematically
 - Integrate multiple knowledge sources
@@ -69,11 +70,13 @@ Both?                  → Hybrid KB
 ## Prerequisites
 
 **Required Knowledge:**
+
 - Basic understanding of databases
 - Familiarity with search concepts
 - Understanding of data quality principles
 
 **Recommended Skills to Review First:**
+
 - `rag-implementer` - If using document-based KB
 - `knowledge-graph-builder` - If using entity-based KB
 - `data-engineer` - For ETL and data pipelines
@@ -89,18 +92,21 @@ Both?                  → Hybrid KB
 ## Common Use Cases
 
 ### Use Case 1: Company Documentation Search
+
 - **Type**: Document-Based KB (RAG)
 - **Time**: 2-3 weeks
 - **Skills**: `rag-implementer`, `knowledge-base-manager`
 - **Tools**: Pinecone + OpenAI embeddings
 
 ### Use Case 2: Product Catalog with Relationships
+
 - **Type**: Entity-Based KB (Graph)
 - **Time**: 3-4 weeks
 - **Skills**: `knowledge-graph-builder`, `knowledge-base-manager`
 - **Tools**: Neo4j + custom ontology
 
 ### Use Case 3: Enterprise Knowledge Hub
+
 - **Type**: Hybrid KB
 - **Time**: 6-8 weeks
 - **Skills**: `rag-implementer`, `knowledge-graph-builder`, `knowledge-base-manager`
@@ -132,12 +138,14 @@ Both?                  → Hybrid KB
 ## Tools & MCPs
 
 ### Required MCPs
+
 - `knowledge-base-mcp` - CRUD operations for knowledge entries (coming soon)
 - `vector-database-mcp` - For document-based KB
 - `graph-database-mcp` - For entity-based KB
 - `semantic-search-mcp` - For hybrid search
 
 ### Recommended Integrations
+
 - **Pinecone** - Vector database (`INTEGRATIONS/pinecone/`)
 - **Neo4j** - Graph database (`INTEGRATIONS/graph-databases/neo4j/`)
 - **OpenAI** - Embeddings (`INTEGRATIONS/openai/`)
@@ -145,11 +153,13 @@ Both?                  → Hybrid KB
 ## Resources
 
 ### In This Repository
+
 - **Skill**: `SKILLS/knowledge-base-manager/SKILL.md` (this file's full version)
 - **Pattern**: `STANDARDS/architecture-patterns/knowledge-base-pattern.md` (coming soon)
 - **Related Skills**: `rag-implementer`, `knowledge-graph-builder`, `data-engineer`
 
 ### External Resources
+
 - [The Knowledge Graph Cookbook](https://neo4j.com/knowledge-graph-book/)
 - [Building Knowledge Bases with LLMs](https://www.anthropic.com/knowledge-bases)
 - [RAG: Retrieval-Augmented Generation](https://arxiv.org/abs/2005.11401)
@@ -157,15 +167,19 @@ Both?                  → Hybrid KB
 ## Troubleshooting
 
 ### Problem: Don't know which KB type to choose
+
 **Solution**: Follow decision tree in SKILL.md. Start simple (document-based), add complexity only when needed.
 
 ### Problem: Knowledge quality is poor
+
 **Solution**: Implement Phase 4 (Quality Control). Create test question sets, run validation, fix issues.
 
 ### Problem: Knowledge becomes stale
+
 **Solution**: Implement Phase 6 (Maintenance). Set up automated freshness monitoring and scheduled updates.
 
 ### Problem: Users can't find information
+
 **Solution**: Check coverage metrics. Add missing knowledge, improve metadata, optimize search/query.
 
 ## Next Steps
@@ -179,6 +193,7 @@ Both?                  → Hybrid KB
 ## Support
 
 For questions or issues:
+
 - Review the comprehensive `SKILL.md` guide
 - Check related skills: `rag-implementer`, `knowledge-graph-builder`
 - Refer to architecture patterns (when available)

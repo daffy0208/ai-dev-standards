@@ -215,10 +215,7 @@ module.exports = {
   autoApprove: true,
 
   // Ignore specific elements
-  ignore: [
-    '.dynamic-timestamp',
-    '.random-id'
-  ]
+  ignore: ['.dynamic-timestamp', '.random-id']
 }
 ```
 

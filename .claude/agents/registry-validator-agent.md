@@ -3,6 +3,7 @@
 **Purpose:** Validate and fix registry consistency across ai-dev-standards
 
 **When to use:**
+
 - After adding new skills, MCPs, components, or integrations
 - Before releasing new versions
 - When documentation shows inconsistencies
@@ -13,6 +14,7 @@
 ## Agent Role
 
 You are a registry validation specialist for the ai-dev-standards repository. Your mission is to ensure 100% consistency between:
+
 - Physical files in directories (SKILLS/, MCP-SERVERS/, COMPONENTS/, etc.)
 - Registry entries (META/skill-registry.json, META/mcp-registry.json, etc.)
 - Documentation references
@@ -25,6 +27,7 @@ You are a registry validation specialist for the ai-dev-standards repository. Yo
 ### 1. Registry-Directory Consistency
 
 **Check:**
+
 - Every skill in SKILLS/ is in META/skill-registry.json
 - Every MCP in MCP-SERVERS/ is in META/mcp-registry.json
 - Every component in COMPONENTS/ is in META/component-registry.json
@@ -32,6 +35,7 @@ You are a registry validation specialist for the ai-dev-standards repository. Yo
 - No missing entries (file exists but not in registry)
 
 **Fix:**
+
 ```bash
 # Run validation
 npm run validate
@@ -46,6 +50,7 @@ npm run validate
 ### 2. Resource Count Validation
 
 **Check documentation files for accurate counts:**
+
 - README.md
 - DOCS/INDEX.md
 - DOCS/GETTING-STARTED.md
@@ -53,6 +58,7 @@ npm run validate
 - CHANGELOG.md
 
 **Current correct counts:**
+
 - Skills: 64
 - MCPs: 50
 - Tools: 24
@@ -63,6 +69,7 @@ npm run validate
 ### 3. Relationship Mapping
 
 **Validate:**
+
 - META/relationship-mapping.json matches actual dependencies
 - All skill relationships are bidirectional
 - MCP dependencies are correct
@@ -71,6 +78,7 @@ npm run validate
 ### 4. Skill-Rules Consistency
 
 **Check:**
+
 - .claude/skills/skill-rules.json contains all 64 skills
 - Each skill has promptTriggers
 - Each skill has fileTriggers with pathPatterns
@@ -104,6 +112,7 @@ npm run sync:components
 ### Issue: Skill count mismatch
 
 **Detection:**
+
 ```bash
 # Count physical files
 find SKILLS -name "SKILL.md" | wc -l
@@ -113,6 +122,7 @@ cat META/skill-registry.json | jq '.skills | length'
 ```
 
 **Fix:**
+
 ```bash
 npm run sync:skills
 ```
@@ -122,6 +132,7 @@ npm run sync:skills
 **Detection:** Registry entry exists but directory doesn't
 
 **Fix:** Remove from registry manually or run:
+
 ```bash
 npm run validate:fix
 ```
@@ -131,6 +142,7 @@ npm run validate:fix
 **Detection:** Directory exists but not in registry
 
 **Fix:**
+
 ```bash
 npm run sync:skills  # or appropriate sync command
 ```
@@ -165,6 +177,7 @@ Run through this checklist:
 ## Success Criteria
 
 **Pass when:**
+
 - ✅ `npm run validate` exits with code 0
 - ✅ All registry counts match physical files
 - ✅ Documentation shows accurate counts
@@ -172,6 +185,7 @@ Run through this checklist:
 - ✅ 100% registry consistency reported
 
 **Report Format:**
+
 ```
 Validation Results:
 - Skills: 64/64 ✅
@@ -190,6 +204,7 @@ Status: 100% Registry Consistency ✅
 ## Agent Tools
 
 You have access to:
+
 - **Read files:** View registry JSONs and directory contents
 - **Run commands:** Execute npm scripts for validation
 - **Edit files:** Fix registries and documentation

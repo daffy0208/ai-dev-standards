@@ -95,7 +95,9 @@ export interface DeployResult {
 }
 
 export class Deployment {
-  private options: Required<Omit<DeployOptions, 'tag' | 'customCommand' | 'project' | 'webhookUrl' | 'environment'>> & {
+  private options: Required<
+    Omit<DeployOptions, 'tag' | 'customCommand' | 'project' | 'webhookUrl' | 'environment'>
+  > & {
     tag?: string
     customCommand?: string
     project?: string
@@ -114,7 +116,7 @@ export class Deployment {
       dryRun: options.dryRun ?? false,
       customCommand: options.customCommand,
       env: options.env || {},
-      webhookUrl: options.webhookUrl,
+      webhookUrl: options.webhookUrl
     }
   }
 
@@ -157,7 +159,7 @@ export class Deployment {
         platform: this.options.platform,
         environment: this.options.environment,
         duration,
-        message: 'Deployment successful',
+        message: 'Deployment successful'
       }
 
       // Send notification
@@ -180,7 +182,7 @@ export class Deployment {
         platform: this.options.platform,
         environment: this.options.environment,
         duration,
-        message: `Deployment failed: ${errorMessage}`,
+        message: `Deployment failed: ${errorMessage}`
       }
 
       // Send notification
@@ -205,7 +207,7 @@ export class Deployment {
       { name: 'Git status', fn: () => this.checkGitStatus() },
       { name: 'Dependencies', fn: () => this.checkDependencies() },
       { name: 'Tests', fn: () => this.checkTests() },
-      { name: 'Environment variables', fn: () => this.checkEnvVars() },
+      { name: 'Environment variables', fn: () => this.checkEnvVars() }
     ]
 
     for (const check of checks) {
@@ -241,7 +243,8 @@ export class Deployment {
   /**
    * Check dependencies
    */
-  private checkDependencies(): void {{
+  private checkDependencies(): void {
+    {
       const packageJsonPath = join(process.cwd(), 'package.json')
       if (!existsSync(packageJsonPath)) {
         return
@@ -250,10 +253,10 @@ export class Deployment {
       const lockfilePath = existsSync(join(process.cwd(), 'package-lock.json'))
         ? 'package-lock.json'
         : existsSync(join(process.cwd(), 'yarn.lock'))
-        ? 'yarn.lock'
-        : existsSync(join(process.cwd(), 'pnpm-lock.yaml'))
-        ? 'pnpm-lock.yaml'
-        : null
+          ? 'yarn.lock'
+          : existsSync(join(process.cwd(), 'pnpm-lock.yaml'))
+            ? 'pnpm-lock.yaml'
+            : null
 
       if (!lockfilePath) {
         throw new Error('No lockfile found. Run npm install, yarn install, or pnpm install.')
@@ -292,7 +295,7 @@ export class Deployment {
   private checkEnvVars(): void {
     const requiredVars = this.getRequiredEnvVars()
 
-    const missing = requiredVars.filter((varName) => !process.env[varName])
+    const missing = requiredVars.filter(varName => !process.env[varName])
 
     if (missing.length > 0) {
       throw new Error(`Missing required environment variables: ${missing.join(', ')}`)
@@ -393,7 +396,10 @@ export class Deployment {
     const command = `railway up ${this.options.project ? `--project ${this.options.project}` : ''}`
 
     try {
-      execSync(command, { stdio: 'inherit', env: { ...process.env, RAILWAY_TOKEN: process.env.RAILWAY_TOKEN } })
+      execSync(command, {
+        stdio: 'inherit',
+        env: { ...process.env, RAILWAY_TOKEN: process.env.RAILWAY_TOKEN }
+      })
     } catch (error) {
       throw new Error('Railway deployment failed')
     }
@@ -421,7 +427,9 @@ export class Deployment {
 
       // Push to registry (if configured)
       if (process.env.DOCKER_REGISTRY) {
-        execSync(`docker push ${process.env.DOCKER_REGISTRY}/${project}:${tag}`, { stdio: 'inherit' })
+        execSync(`docker push ${process.env.DOCKER_REGISTRY}/${project}:${tag}`, {
+          stdio: 'inherit'
+        })
       }
     } catch (error) {
       throw new Error('Docker deployment failed')
@@ -457,8 +465,8 @@ export class Deployment {
           text: result.success
             ? `✓ Deployment to ${result.platform} successful`
             : `✗ Deployment to ${result.platform} failed`,
-          result,
-        }),
+          result
+        })
       })
     } catch (error) {
       console.error('Failed to send notification:', error)
@@ -491,7 +499,7 @@ export async function runDeploy(): Promise<void> {
     tag,
     skipChecks: args.includes('--skip-checks'),
     skipBuild: args.includes('--skip-build'),
-    dryRun: args.includes('--dry-run'),
+    dryRun: args.includes('--dry-run')
   })
 
   const result = await deployment.deploy()
@@ -503,7 +511,7 @@ export async function runDeploy(): Promise<void> {
 
 // Run if executed directly
 if (require.main === module) {
-  runDeploy().catch((error) => {
+  runDeploy().catch(error => {
     console.error('Deployment failed:', error)
     process.exit(1)
   })

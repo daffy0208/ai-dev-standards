@@ -5,73 +5,79 @@
  * Handles direct dependencies, transitive dependencies, and MCP recommendations.
  */
 
-import { MCP } from './knowledge-layer';
+import { MCP } from './knowledge-layer'
 
 export interface MCPDependency {
-  mcp: string;
-  requiredBy: string[];
-  reason: string;
-  priority: 'required' | 'recommended' | 'optional';
+  mcp: string
+  requiredBy: string[]
+  reason: string
+  priority: 'required' | 'recommended' | 'optional'
 }
 
 export interface MCPIntegration {
-  required: string[];
-  recommended: string[];
-  optional: string[];
-  dependencies: MCPDependency[];
-  tools: string[];
-  integrations: string[];
-  warnings: string[];
+  required: string[]
+  recommended: string[]
+  optional: string[]
+  dependencies: MCPDependency[]
+  tools: string[]
+  integrations: string[]
+  warnings: string[]
 }
 
 // TYPE SAFETY FIX 3: Define proper relationship mapping interface
 interface RelationshipMapping {
-  skills: Record<string, {
-    required_mcps: string[];
-    required_tools: string[];
-    required_integrations: string[];
-    required_components?: string[];
-    supporting_scripts?: string[];
-  }>;
+  skills: Record<
+    string,
+    {
+      required_mcps: string[]
+      required_tools: string[]
+      required_integrations: string[]
+      required_components?: string[]
+      supporting_scripts?: string[]
+    }
+  >
 }
 
 export class MCPIntegrator {
-  private mcps: MCP[];
-  private readonly mcpIds: Set<string>;
-  private readonly mcpsById: Map<string, MCP>;
-  private readonly mcpsByName: Map<string, MCP>;
-  private relationshipMapping: Record<string, {
-    required_mcps: string[];
-    required_tools: string[];
-    required_integrations: string[];
-  }>;
+  private mcps: MCP[]
+  private readonly mcpIds: Set<string>
+  private readonly mcpsById: Map<string, MCP>
+  private readonly mcpsByName: Map<string, MCP>
+  private relationshipMapping: Record<
+    string,
+    {
+      required_mcps: string[]
+      required_tools: string[]
+      required_integrations: string[]
+    }
+  >
 
   constructor(mcps: MCP[], relationshipMapping: RelationshipMapping) {
-    this.mcps = mcps;
-    this.mcpIds = new Set(mcps.map(mcp => mcp.id));
-    this.mcpsById = new Map(mcps.map(mcp => [mcp.id, mcp]));
-    this.mcpsByName = new Map(mcps.map(mcp => [mcp.name.toLowerCase(), mcp]));
-    this.relationshipMapping = relationshipMapping.skills || {};
+    this.mcps = mcps
+    this.mcpIds = new Set(mcps.map(mcp => mcp.id))
+    this.mcpsById = new Map(mcps.map(mcp => [mcp.id, mcp]))
+    this.mcpsByName = new Map(mcps.map(mcp => [mcp.name.toLowerCase(), mcp]))
+    this.relationshipMapping = relationshipMapping.skills || {}
   }
 
   /**
    * Get complete MCP integration plan for skills
    */
   integrate(skills: string[]): MCPIntegration {
-    const directMCPs = this.getDirectMCPs(skills);
-    const transitiveMCPs = this.getTransitiveMCPs(directMCPs);
-    const recommendedMCPs = this.getRecommendedMCPs(skills);
-    const optionalMCPs = this.getOptionalMCPs(skills);
+    const directMCPs = this.getDirectMCPs(skills)
+    const transitiveMCPs = this.getTransitiveMCPs(directMCPs)
+    const recommendedMCPs = this.getRecommendedMCPs(skills)
+    const optionalMCPs = this.getOptionalMCPs(skills)
 
     // Get tools and integrations
-    const tools = this.getRequiredTools(skills);
-    const integrations = this.getRequiredIntegrations(skills);
+    const tools = this.getRequiredTools(skills)
+    const integrations = this.getRequiredIntegrations(skills)
 
     // Generate dependencies with details
-    const dependencies = this.generateDependencies(skills, directMCPs, transitiveMCPs);
+    const dependencies = this.generateDependencies(skills, directMCPs, transitiveMCPs)
 
     // Check for warnings
-    const warnings = this.checkWarnings(skills, directMCPs);
+    const warnings = this.checkWarnings(skills, directMCPs)
 
     return {
       required: Array.from(new Set([...directMCPs, ...transitiveMCPs])),
@@ -81,106 +87,106 @@ export class MCPIntegrator {
       tools,
       integrations,
       warnings
-    };
+    }
   }
 
   /**
    * Get direct MCP dependencies for skills
    */
   private getDirectMCPs(skills: string[]): string[] {
-    const mcps = new Set<string>();
+    const mcps = new Set<string>()
 
     for (const skill of skills) {
-      const deps = this.relationshipMapping[skill];
+      const deps = this.relationshipMapping[skill]
       if (deps && deps.required_mcps) {
-        deps.required_mcps.forEach(mcp => mcps.add(mcp));
+        deps.required_mcps.forEach(mcp => mcps.add(mcp))
       }
     }
 
-    return Array.from(mcps);
+    return Array.from(mcps)
   }
 
   /**
    * Get transitive dependencies (MCPs required by other MCPs)
    */
   private getTransitiveMCPs(directMCPs: string[]): string[] {
-    const transitive = new Set<string>();
+    const transitive = new Set<string>()
 
     // In Phase 2, we'll implement this when we have MCP-to-MCP dependencies
     // For now, return empty array
-    return Array.from(transitive);
+    return Array.from(transitive)
   }
 
   /**
    * Get recommended (but not required) MCPs
    */
   private getRecommendedMCPs(skills: string[]): string[] {
-    const recommended: string[] = [];
+    const recommended: string[] = []
 
     // Recommend MCPs based on skill combinations
     if (skills.includes('rag-implementer') && !skills.includes('knowledge-base-manager')) {
-      recommended.push('knowledge-base-mcp');
+      recommended.push('knowledge-base-mcp')
     }
 
     if (skills.includes('frontend-builder') && skills.includes('api-designer')) {
-      recommended.push('component-generator-mcp');
+      recommended.push('component-generator-mcp')
     }
 
     if (skills.includes('testing-strategist')) {
-      recommended.push('test-runner-mcp');
+      recommended.push('test-runner-mcp')
     }
 
-    return recommended;
+    return recommended
   }
 
   /**
    * Get optional MCPs that might be useful
    */
   private getOptionalMCPs(skills: string[]): string[] {
-    const optional: string[] = [];
+    const optional: string[] = []
 
     // Suggest optional MCPs based on context
     if (skills.some(s => s.includes('builder') || s.includes('implementer'))) {
-      optional.push('code-quality-scanner-mcp');
+      optional.push('code-quality-scanner-mcp')
     }
 
     if (skills.includes('deployment-advisor')) {
-      optional.push('deployment-orchestrator-mcp');
+      optional.push('deployment-orchestrator-mcp')
     }
 
-    return optional;
+    return optional
   }
 
   /**
    * Get required tools for skills
    */
   private getRequiredTools(skills: string[]): string[] {
-    const tools = new Set<string>();
+    const tools = new Set<string>()
 
     for (const skill of skills) {
-      const deps = this.relationshipMapping[skill];
+      const deps = this.relationshipMapping[skill]
       if (deps && deps.required_tools) {
-        deps.required_tools.forEach(tool => tools.add(tool));
+        deps.required_tools.forEach(tool => tools.add(tool))
       }
     }
 
-    return Array.from(tools);
+    return Array.from(tools)
   }
 
   /**
    * Get required integrations for skills
    */
   private getRequiredIntegrations(skills: string[]): string[] {
-    const integrations = new Set<string>();
+    const integrations = new Set<string>()
 
     for (const skill of skills) {
-      const deps = this.relationshipMapping[skill];
+      const deps = this.relationshipMapping[skill]
       if (deps && deps.required_integrations) {
-        deps.required_integrations.forEach(integration => integrations.add(integration));
+        deps.required_integrations.forEach(integration => integrations.add(integration))
       }
     }
 
-    return Array.from(integrations);
+    return Array.from(integrations)
   }
 
   /**
@@ -191,21 +197,21 @@ export class MCPIntegrator {
     directMCPs: string[],
     transitiveMCPs: string[]
   ): MCPDependency[] {
-    const dependencies: MCPDependency[] = [];
+    const dependencies: MCPDependency[] = []
 
     // Direct dependencies
     for (const mcp of directMCPs) {
       const requiredBy = skills.filter(skill => {
-        const deps = this.relationshipMapping[skill];
-        return deps && deps.required_mcps && deps.required_mcps.includes(mcp);
-      });
+        const deps = this.relationshipMapping[skill]
+        return deps && deps.required_mcps && deps.required_mcps.includes(mcp)
+      })
 
       dependencies.push({
         mcp,
         requiredBy,
         reason: `Required by ${requiredBy.length} skill(s)`,
         priority: 'required'
-      });
+      })
     }
 
     // Transitive dependencies
@@ -215,70 +221,80 @@ export class MCPIntegrator {
         requiredBy: [],
         reason: 'Transitive dependency',
         priority: 'required'
-      });
+      })
     }
 
-    return dependencies;
+    return dependencies
   }
 
   /**
    * Check for warnings
    */
   private checkWarnings(skills: string[], mcps: string[]): string[] {
-    const warnings: string[] = [];
+    const warnings: string[] = []
 
     const resolvedMCPs = mcps.map(requested => ({
       requested,
       id: this.resolveMCPId(requested)
-    }));
+    }))
 
     for (const entry of resolvedMCPs) {
       if (!entry.id) {
-        warnings.push(`MCP '${this.formatMCPName(entry.requested)}' is required but not yet implemented`);
+        warnings.push(
+          `MCP '${this.formatMCPName(entry.requested)}' is required but not yet implemented`
+        )
       }
     }
 
-    const knownIds = new Set(resolvedMCPs.filter(entry => entry.id).map(entry => entry.id as string));
+    const knownIds = new Set(
+      resolvedMCPs.filter(entry => entry.id).map(entry => entry.id as string)
+    )
 
     // Check for conflicting MCPs
     if (knownIds.has('vector-database-mcp') && knownIds.has('graph-database-mcp')) {
-      warnings.push(`Both ${this.formatMCPName('vector-database-mcp')} and ${this.formatMCPName('graph-database-mcp')} are required - ensure sufficient resources`);
+      warnings.push(
+        `Both ${this.formatMCPName('vector-database-mcp')} and ${this.formatMCPName('graph-database-mcp')} are required - ensure sufficient resources`
+      )
     }
 
     // Check if skills need official MCPs
     if (skills.includes('rag-implementer')) {
-      const hasVectorDB = knownIds.has('vector-database-mcp');
-      const hasEmbedding = knownIds.has('embedding-generator-mcp');
+      const hasVectorDB = knownIds.has('vector-database-mcp')
+      const hasEmbedding = knownIds.has('embedding-generator-mcp')
 
       if (!hasVectorDB) {
-        warnings.push(`RAG implementation typically requires ${this.formatMCPName('vector-database-mcp')}`);
+        warnings.push(
+          `RAG implementation typically requires ${this.formatMCPName('vector-database-mcp')}`
+        )
       }
       if (!hasEmbedding) {
-        warnings.push(`RAG implementation typically requires ${this.formatMCPName('embedding-generator-mcp')}`);
+        warnings.push(
+          `RAG implementation typically requires ${this.formatMCPName('embedding-generator-mcp')}`
+        )
       }
     }
 
-    return warnings;
+    return warnings
   }
 
   private resolveMCPId(identifier: string): string | null {
     if (this.mcpIds.has(identifier)) {
-      return identifier;
+      return identifier
     }
 
-    const mcp = this.mcpsByName.get(identifier.toLowerCase());
-    return mcp ? mcp.id : null;
+    const mcp = this.mcpsByName.get(identifier.toLowerCase())
+    return mcp ? mcp.id : null
   }
 
   private formatMCPName(identifier: string): string {
-    const byId = this.mcpsById.get(identifier);
+    const byId = this.mcpsById.get(identifier)
     if (byId) {
-      return byId.name;
+      return byId.name
     }
 
-    const byName = this.mcpsByName.get(identifier.toLowerCase());
+    const byName = this.mcpsByName.get(identifier.toLowerCase())
     if (byName) {
-      return byName.name;
+      return byName.name
     }
 
     const words = identifier
@@ -287,135 +303,134 @@ export class MCPIntegrator {
       .filter(Boolean)
       .map(word => {
         if (word.toLowerCase() === 'mcp') {
-          return 'MCP';
+          return 'MCP'
         }
-        return word.charAt(0).toUpperCase() + word.slice(1);
-      });
+        return word.charAt(0).toUpperCase() + word.slice(1)
+      })
 
-    return words.length > 0 ? words.join(' ') : identifier;
+    return words.length > 0 ? words.join(' ') : identifier
   }
 
   /**
    * Get MCP status (official, community, custom)
    */
   getMCPStatus(mcpName: string): 'official' | 'community' | 'custom' | 'not-found' {
-    const mcp = this.mcps.find(m => m.name === mcpName);
-    if (!mcp) return 'not-found';
+    const mcp = this.mcps.find(m => m.name === mcpName)
+    if (!mcp) return 'not-found'
 
     // Check status field
-    if (mcp.status === 'official') return 'official';
-    if (mcp.status === 'community') return 'community';
-    return 'custom';
+    if (mcp.status === 'official') return 'official'
+    if (mcp.status === 'community') return 'community'
+    return 'custom'
   }
 
   /**
    * Recommend official MCPs to use instead of custom
    */
   recommendOfficialMCPs(customMCPs: string[]): Record<string, string> {
-    const recommendations: Record<string, string> = {};
+    const recommendations: Record<string, string> = {}
 
     // Map custom MCPs to official alternatives
     const officialAlternatives: Record<string, string> = {
       'custom-vector-db': 'vector-database-mcp',
       'custom-embedding': 'embedding-generator-mcp',
       'custom-file-system': 'filesystem-mcp'
-    };
+    }
 
     for (const custom of customMCPs) {
       if (officialAlternatives[custom]) {
-        recommendations[custom] = officialAlternatives[custom];
+        recommendations[custom] = officialAlternatives[custom]
       }
     }
 
-    return recommendations;
+    return recommendations
   }
 
   /**
    * Calculate MCP setup complexity
    */
   calculateSetupComplexity(mcps: string[]): {
-    complexity: 'simple' | 'moderate' | 'complex';
-    estimatedTime: string;
-    steps: string[];
+    complexity: 'simple' | 'moderate' | 'complex'
+    estimatedTime: string
+    steps: string[]
   } {
-    let complexity: 'simple' | 'moderate' | 'complex' = 'simple';
-    let estimatedMinutes = 0;
-    const steps: string[] = [];
+    let complexity: 'simple' | 'moderate' | 'complex' = 'simple'
+    let estimatedMinutes = 0
+    const steps: string[] = []
 
     for (const mcpName of mcps) {
-      const mcp = this.mcps.find(m => m.name === mcpName);
-      if (!mcp) continue;
+      const mcp = this.mcps.find(m => m.name === mcpName)
+      if (!mcp) continue
 
       // Estimate based on MCP type
       if (mcpName.includes('database')) {
-        estimatedMinutes += 20;
-        steps.push(`Configure ${mcpName}`);
-        complexity = 'moderate';
+        estimatedMinutes += 20
+        steps.push(`Configure ${mcpName}`)
+        complexity = 'moderate'
       } else if (mcpName.includes('vector') || mcpName.includes('embedding')) {
-        estimatedMinutes += 15;
-        steps.push(`Setup ${mcpName}`);
-        if (complexity === 'simple') complexity = 'moderate';
+        estimatedMinutes += 15
+        steps.push(`Setup ${mcpName}`)
+        if (complexity === 'simple') complexity = 'moderate'
       } else {
-        estimatedMinutes += 5;
-        steps.push(`Install ${mcpName}`);
+        estimatedMinutes += 5
+        steps.push(`Install ${mcpName}`)
       }
     }
 
     if (mcps.length > 5) {
-      complexity = 'complex';
-      steps.push('Test MCP integration');
-      estimatedMinutes += 15;
+      complexity = 'complex'
+      steps.push('Test MCP integration')
+      estimatedMinutes += 15
     }
 
-    const hours = Math.floor(estimatedMinutes / 60);
-    const minutes = estimatedMinutes % 60;
-    const estimatedTime = hours > 0
-      ? `${hours} hour${hours > 1 ? 's' : ''} ${minutes} min`
-      : `${minutes} min`;
+    const hours = Math.floor(estimatedMinutes / 60)
+    const minutes = estimatedMinutes % 60
+    const estimatedTime =
+      hours > 0 ? `${hours} hour${hours > 1 ? 's' : ''} ${minutes} min` : `${minutes} min`
 
     return {
       complexity,
       estimatedTime,
       steps
-    };
+    }
   }
 
   /**
    * Find skills that can use a specific MCP
    */
   findSkillsForMCP(mcpName: string): string[] {
-    const skills: string[] = [];
+    const skills: string[] = []
 
     for (const [skill, deps] of Object.entries(this.relationshipMapping)) {
       if (deps.required_mcps && deps.required_mcps.includes(mcpName)) {
-        skills.push(skill);
+        skills.push(skill)
       }
     }
 
-    return skills;
+    return skills
   }
 
   /**
    * Check MCP compatibility
    */
   checkCompatibility(mcps: string[]): {
-    compatible: boolean;
-    conflicts: string[];
-    recommendations: string[];
+    compatible: boolean
+    conflicts: string[]
+    recommendations: string[]
   } {
-    const conflicts: string[] = [];
-    const recommendations: string[] = [];
+    const conflicts: string[] = []
+    const recommendations: string[] = []
 
     // Check for known conflicts
     const conflictPairs = [
       ['sqlite-mcp', 'postgresql-mcp'],
       ['local-file-mcp', 'cloud-storage-mcp']
-    ];
+    ]
 
     for (const [mcp1, mcp2] of conflictPairs) {
       if (mcps.includes(mcp1) && mcps.includes(mcp2)) {
-        conflicts.push(`Conflict between ${mcp1} and ${mcp2}`);
-        recommendations.push(`Choose either ${mcp1} or ${mcp2}, not both`);
+        conflicts.push(`Conflict between ${mcp1} and ${mcp2}`)
+        recommendations.push(`Choose either ${mcp1} or ${mcp2}, not both`)
       }
     }
 
@@ -423,7 +438,7 @@ export class MCPIntegrator {
       compatible: conflicts.length === 0,
       conflicts,
       recommendations
-    };
+    }
   }
 
   /**
@@ -439,16 +454,16 @@ export class MCPIntegrator {
       '',
       'echo "Installing MCPs..."',
       ''
-    ];
+    ]
 
     for (const mcp of mcps) {
-      lines.push(`echo "Installing ${mcp}..."`);
-      lines.push(`npm install @modelcontextprotocol/${mcp} || true`);
-      lines.push('');
+      lines.push(`echo "Installing ${mcp}..."`)
+      lines.push(`npm install @modelcontextprotocol/${mcp} || true`)
+      lines.push('')
     }
 
-    lines.push('echo "MCP installation complete!"');
+    lines.push('echo "MCP installation complete!"')
 
-    return lines.join('\n');
+    return lines.join('\n')
   }
 }

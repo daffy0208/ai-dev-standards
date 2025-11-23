@@ -58,7 +58,8 @@ export class SimpleTaskAgent {
     this.config = {
       temperature: 0.7,
       maxTokens: 2000,
-      systemPrompt: 'You are a helpful AI assistant that completes tasks accurately and efficiently.',
+      systemPrompt:
+        'You are a helpful AI assistant that completes tasks accurately and efficiently.',
       maxRetries: 3,
       ...config
     }
@@ -161,7 +162,8 @@ export async function example() {
     name: 'DataAnalyzer',
     model: 'gpt-4',
     temperature: 0.3,
-    systemPrompt: 'You are a data analysis expert. Analyze data and provide clear, actionable insights.'
+    systemPrompt:
+      'You are a data analysis expert. Analyze data and provide clear, actionable insights.'
   })
 
   const result = await agent.execute({

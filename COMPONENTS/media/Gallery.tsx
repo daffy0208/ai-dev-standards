@@ -96,7 +96,7 @@ export const Gallery: React.FC<GalleryProps> = ({
   gap = 16,
   layout = 'grid',
   className,
-  onImageClick,
+  onImageClick
 }) => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const [zoom, setZoom] = useState(1)
@@ -135,11 +135,11 @@ export const Gallery: React.FC<GalleryProps> = ({
   }, [lightboxIndex, images.length])
 
   const handleZoomIn = () => {
-    setZoom((z) => Math.min(z + 0.5, 3))
+    setZoom(z => Math.min(z + 0.5, 3))
   }
 
   const handleZoomOut = () => {
-    setZoom((z) => Math.max(z - 0.5, 1))
+    setZoom(z => Math.max(z - 0.5, 1))
     if (zoom <= 1) {
       setPosition({ x: 0, y: 0 })
     }
@@ -187,7 +187,7 @@ export const Gallery: React.FC<GalleryProps> = ({
     if (isDragging.current && zoom > 1) {
       setPosition({
         x: e.clientX - dragStart.current.x,
-        y: e.clientY - dragStart.current.y,
+        y: e.clientY - dragStart.current.y
       })
     }
   }
@@ -220,12 +220,12 @@ export const Gallery: React.FC<GalleryProps> = ({
   const gridStyle: React.CSSProperties = {
     display: 'grid',
     gridTemplateColumns: `repeat(${columns}, 1fr)`,
-    gap: `${gap}px`,
+    gap: `${gap}px`
   }
 
   const masonryStyle: React.CSSProperties = {
     columnCount: columns,
-    columnGap: `${gap}px`,
+    columnGap: `${gap}px`
   }
 
   const currentImage = lightboxIndex !== null ? images[lightboxIndex] : null
@@ -242,10 +242,10 @@ export const Gallery: React.FC<GalleryProps> = ({
               overflow: 'hidden',
               borderRadius: '8px',
               marginBottom: layout === 'masonry' ? `${gap}px` : 0,
-              breakInside: 'avoid',
+              breakInside: 'avoid'
             }}
             onClick={() => openLightbox(index)}
-            onKeyDown={(e) => {
+            onKeyDown={e => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault()
                 openLightbox(index)
@@ -263,12 +263,12 @@ export const Gallery: React.FC<GalleryProps> = ({
                 height: layout === 'grid' ? '100%' : 'auto',
                 objectFit: 'cover',
                 display: 'block',
-                transition: 'transform 0.3s ease',
+                transition: 'transform 0.3s ease'
               }}
-              onMouseEnter={(e) => {
+              onMouseEnter={e => {
                 e.currentTarget.style.transform = 'scale(1.05)'
               }}
-              onMouseLeave={(e) => {
+              onMouseLeave={e => {
                 e.currentTarget.style.transform = 'scale(1)'
               }}
             />
@@ -289,7 +289,7 @@ export const Gallery: React.FC<GalleryProps> = ({
             zIndex: 9999,
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'center'
           }}
           onClick={closeLightbox}
           role="dialog"
@@ -314,7 +314,7 @@ export const Gallery: React.FC<GalleryProps> = ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              zIndex: 10001,
+              zIndex: 10001
             }}
             aria-label="Close lightbox"
           >
@@ -329,11 +329,11 @@ export const Gallery: React.FC<GalleryProps> = ({
               left: '20px',
               display: 'flex',
               gap: '8px',
-              zIndex: 10001,
+              zIndex: 10001
             }}
           >
             <button
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation()
                 handleZoomIn()
               }}
@@ -345,14 +345,14 @@ export const Gallery: React.FC<GalleryProps> = ({
                 height: '40px',
                 borderRadius: '50%',
                 cursor: 'pointer',
-                fontSize: '20px',
+                fontSize: '20px'
               }}
               aria-label="Zoom in"
             >
               +
             </button>
             <button
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation()
                 handleZoomOut()
               }}
@@ -364,7 +364,7 @@ export const Gallery: React.FC<GalleryProps> = ({
                 height: '40px',
                 borderRadius: '50%',
                 cursor: 'pointer',
-                fontSize: '20px',
+                fontSize: '20px'
               }}
               aria-label="Zoom out"
             >
@@ -375,7 +375,7 @@ export const Gallery: React.FC<GalleryProps> = ({
           {/* Previous button */}
           {images.length > 1 && (
             <button
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation()
                 prevImage()
               }}
@@ -392,7 +392,7 @@ export const Gallery: React.FC<GalleryProps> = ({
                 borderRadius: '50%',
                 cursor: 'pointer',
                 fontSize: '24px',
-                zIndex: 10001,
+                zIndex: 10001
               }}
               aria-label="Previous image"
             >
@@ -403,7 +403,7 @@ export const Gallery: React.FC<GalleryProps> = ({
           {/* Next button */}
           {images.length > 1 && (
             <button
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation()
                 nextImage()
               }}
@@ -420,7 +420,7 @@ export const Gallery: React.FC<GalleryProps> = ({
                 borderRadius: '50%',
                 cursor: 'pointer',
                 fontSize: '24px',
-                zIndex: 10001,
+                zIndex: 10001
               }}
               aria-label="Next image"
             >
@@ -430,7 +430,7 @@ export const Gallery: React.FC<GalleryProps> = ({
 
           {/* Image */}
           <div
-            onClick={(e) => e.stopPropagation()}
+            onClick={e => e.stopPropagation()}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
@@ -441,7 +441,7 @@ export const Gallery: React.FC<GalleryProps> = ({
               cursor: zoom > 1 ? 'grab' : 'default',
               maxWidth: '90%',
               maxHeight: '90%',
-              overflow: 'hidden',
+              overflow: 'hidden'
             }}
           >
             <img
@@ -452,7 +452,7 @@ export const Gallery: React.FC<GalleryProps> = ({
                 maxHeight: zoom === 1 ? '100%' : 'none',
                 transform: `scale(${zoom}) translate(${position.x / zoom}px, ${position.y / zoom}px)`,
                 transition: isDragging.current ? 'none' : 'transform 0.3s ease',
-                display: 'block',
+                display: 'block'
               }}
             />
           </div>
@@ -470,7 +470,7 @@ export const Gallery: React.FC<GalleryProps> = ({
                 padding: '12px 24px',
                 borderRadius: '8px',
                 maxWidth: '80%',
-                textAlign: 'center',
+                textAlign: 'center'
               }}
             >
               {currentImage.caption}
@@ -488,7 +488,7 @@ export const Gallery: React.FC<GalleryProps> = ({
                 background: 'rgba(0, 0, 0, 0.7)',
                 padding: '8px 16px',
                 borderRadius: '8px',
-                fontSize: '14px',
+                fontSize: '14px'
               }}
               aria-live="polite"
             >

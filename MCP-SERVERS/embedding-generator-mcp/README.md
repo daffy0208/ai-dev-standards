@@ -48,21 +48,23 @@ npm run build
 
 ## Tools
 
-| Tool | Description |
-|------|-------------|
-| `configure` | Set up embedding provider (OpenAI/Cohere) |
-| `generate_embeddings` | Generate embedding for single text |
-| `generate_batch_embeddings` | Generate embeddings for multiple texts |
-| `list_models` | List available models for provider |
+| Tool                        | Description                               |
+| --------------------------- | ----------------------------------------- |
+| `configure`                 | Set up embedding provider (OpenAI/Cohere) |
+| `generate_embeddings`       | Generate embedding for single text        |
+| `generate_batch_embeddings` | Generate embeddings for multiple texts    |
+| `list_models`               | List available models for provider        |
 
 ## Models
 
 **OpenAI:**
+
 - `text-embedding-3-small` - 1536 dims, $0.02/1M tokens (default)
 - `text-embedding-3-large` - 3072 dims, $0.13/1M tokens
 - `text-embedding-ada-002` - 1536 dims, $0.10/1M tokens (legacy)
 
 **Cohere:**
+
 - `embed-english-v3.0` - 1024 dims, $0.10/1M tokens (default)
 - `embed-english-light-v3.0` - 384 dims, $0.10/1M tokens
 - `embed-multilingual-v3.0` - 1024 dims, $0.10/1M tokens

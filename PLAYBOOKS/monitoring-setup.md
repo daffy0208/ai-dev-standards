@@ -52,7 +52,7 @@ graph TB
 ### Structured Logging with Winston
 
 ```typescript
-import winston from 'winston';
+import winston from 'winston'
 
 // Create logger
 const logger = winston.createLogger({
@@ -69,10 +69,7 @@ const logger = winston.createLogger({
   transports: [
     // Console output
     new winston.transports.Console({
-      format: winston.format.combine(
-        winston.format.colorize(),
-        winston.format.simple()
-      )
+      format: winston.format.combine(winston.format.colorize(), winston.format.simple())
     }),
     // File output
     new winston.transports.File({
@@ -83,64 +80,64 @@ const logger = winston.createLogger({
       filename: 'logs/combined.log'
     })
   ]
-});
+})
 
 // Usage
 logger.info('User logged in', {
   userId: '123',
   email: 'user@example.com',
   ip: '192.168.1.1'
-});
+})
 
 logger.error('Database connection failed', {
   error: new Error('Connection timeout'),
   database: 'postgres',
   host: 'db.example.com'
-});
+})
 ```
 
 ### Contextual Logging
 
 ```typescript
-import { AsyncLocalStorage } from 'async_hooks';
+import { AsyncLocalStorage } from 'async_hooks'
 
 // Create context storage
-const requestContext = new AsyncLocalStorage<Map<string, any>>();
+const requestContext = new AsyncLocalStorage<Map<string, any>>()
 
 // Middleware to create context
 app.use((req, res, next) => {
-  const store = new Map();
-  store.set('requestId', generateRequestId());
-  store.set('userId', req.user?.id);
-  store.set('path', req.path);
+  const store = new Map()
+  store.set('requestId', generateRequestId())
+  store.set('userId', req.user?.id)
+  store.set('path', req.path)
 
-  requestContext.run(store, () => next());
-});
+  requestContext.run(store, () => next())
+})
 
 // Logger with context
 class ContextLogger {
-  private logger: winston.Logger;
+  private logger: winston.Logger
 
   constructor(logger: winston.Logger) {
-    this.logger = logger;
+    this.logger = logger
   }
 
   private getContext(): Record<string, any> {
-    const store = requestContext.getStore();
-    if (!store) return {};
+    const store = requestContext.getStore()
+    if (!store) return {}
 
     return {
       requestId: store.get('requestId'),
       userId: store.get('userId'),
       path: store.get('path')
-    };
+    }
   }
 
   info(message: string, meta?: any): void {
     this.logger.info(message, {
       ...this.getContext(),
       ...meta
-    });
+    })
   }
 
   error(message: string, error?: Error, meta?: any): void {
@@ -149,35 +146,35 @@ class ContextLogger {
       error: error?.message,
       stack: error?.stack,
       ...meta
-    });
+    })
   }
 
   warn(message: string, meta?: any): void {
     this.logger.warn(message, {
       ...this.getContext(),
       ...meta
-    });
+    })
   }
 }
 
 // Usage
-const log = new ContextLogger(logger);
+const log = new ContextLogger(logger)
 
 app.get('/api/users/:id', async (req, res) => {
-  log.info('Fetching user');
+  log.info('Fetching user')
 
   try {
     const user = await db.user.findUnique({
       where: { id: req.params.id }
-    });
+    })
 
-    log.info('User fetched successfully', { userId: user.id });
-    res.json(user);
+    log.info('User fetched successfully', { userId: user.id })
+    res.json(user)
   } catch (error) {
-    log.error('Failed to fetch user', error);
-    res.status(500).json({ error: 'Internal server error' });
+    log.error('Failed to fetch user', error)
+    res.status(500).json({ error: 'Internal server error' })
   }
-});
+})
 ```
 
 ### Log Levels and Best Practices
@@ -196,20 +193,20 @@ logger.info('User authentication successful', {
   method: 'oauth',
   provider: 'google',
   timestamp: new Date().toISOString()
-});
+})
 
 logger.error('Database query failed', {
   error: error.message,
   query: sanitizedQuery, // Don't log sensitive data!
   duration: queryTime,
   retries: attemptCount
-});
+})
 
 // ❌ Bad logging practices
-logger.info('User logged in'); // Not enough context
-logger.error(error); // No message or context
-logger.debug(JSON.stringify(hugeObject)); // Too much data
-logger.info('Password:', user.password); // Logs sensitive data!
+logger.info('User logged in') // Not enough context
+logger.error(error) // No message or context
+logger.debug(JSON.stringify(hugeObject)) // Too much data
+logger.info('Password:', user.password) // Logs sensitive data!
 ```
 
 ---
@@ -219,13 +216,13 @@ logger.info('Password:', user.password); // Logs sensitive data!
 ### Prometheus Metrics
 
 ```typescript
-import prometheus from 'prom-client';
+import prometheus from 'prom-client'
 
 // Create registry
-const register = new prometheus.Registry();
+const register = new prometheus.Registry()
 
 // Default metrics (CPU, memory, etc.)
-prometheus.collectDefaultMetrics({ register });
+prometheus.collectDefaultMetrics({ register })
 
 // Custom metrics
 const httpRequestDuration = new prometheus.Histogram({
@@ -233,72 +230,72 @@ const httpRequestDuration = new prometheus.Histogram({
   help: 'Duration of HTTP requests in seconds',
   labelNames: ['method', 'route', 'status_code'],
   buckets: [0.01, 0.05, 0.1, 0.5, 1, 5]
-});
+})
 
 const httpRequestTotal = new prometheus.Counter({
   name: 'http_requests_total',
   help: 'Total number of HTTP requests',
   labelNames: ['method', 'route', 'status_code']
-});
+})
 
 const activeConnections = new prometheus.Gauge({
   name: 'active_connections',
   help: 'Number of active connections'
-});
+})
 
 const databaseQueryDuration = new prometheus.Summary({
   name: 'database_query_duration_seconds',
   help: 'Database query duration',
   labelNames: ['operation', 'table'],
   percentiles: [0.5, 0.9, 0.95, 0.99]
-});
+})
 
 // Register metrics
-register.registerMetric(httpRequestDuration);
-register.registerMetric(httpRequestTotal);
-register.registerMetric(activeConnections);
-register.registerMetric(databaseQueryDuration);
+register.registerMetric(httpRequestDuration)
+register.registerMetric(httpRequestTotal)
+register.registerMetric(activeConnections)
+register.registerMetric(databaseQueryDuration)
 
 // Middleware to track metrics
 app.use((req, res, next) => {
-  const start = Date.now();
+  const start = Date.now()
 
   res.on('finish', () => {
-    const duration = (Date.now() - start) / 1000;
+    const duration = (Date.now() - start) / 1000
 
     httpRequestDuration
       .labels(req.method, req.route?.path || req.path, res.statusCode.toString())
-      .observe(duration);
+      .observe(duration)
 
     httpRequestTotal
       .labels(req.method, req.route?.path || req.path, res.statusCode.toString())
-      .inc();
-  });
+      .inc()
+  })
 
-  next();
-});
+  next()
+})
 
 // Metrics endpoint
 app.get('/metrics', async (req, res) => {
-  res.set('Content-Type', register.contentType);
-  res.end(await register.metrics());
-});
+  res.set('Content-Type', register.contentType)
+  res.end(await register.metrics())
+})
 
 // Track database queries
 async function queryWithMetrics(operation: string, table: string, fn: () => Promise<any>) {
-  const end = databaseQueryDuration.startTimer({ operation, table });
+  const end = databaseQueryDuration.startTimer({ operation, table })
 
   try {
-    return await fn();
+    return await fn()
   } finally {
-    end();
+    end()
   }
 }
 
 // Usage
 const users = await queryWithMetrics('SELECT', 'users', async () => {
-  return db.user.findMany();
-});
+  return db.user.findMany()
+})
 ```
 
 ### Business Metrics
@@ -309,43 +306,46 @@ const userRegistrations = new prometheus.Counter({
   name: 'user_registrations_total',
   help: 'Total number of user registrations',
   labelNames: ['source', 'plan']
-});
+})
 
 const revenueTotal = new prometheus.Counter({
   name: 'revenue_total',
   help: 'Total revenue in cents',
   labelNames: ['currency', 'product']
-});
+})
 
 const subscriptionGauge = new prometheus.Gauge({
   name: 'active_subscriptions',
   help: 'Number of active subscriptions',
   labelNames: ['plan']
-});
+})
 
 // Track user registration
 app.post('/api/auth/register', async (req, res) => {
-  const user = await createUser(req.body);
+  const user = await createUser(req.body)
 
   userRegistrations.inc({
     source: req.body.source || 'web',
     plan: user.plan
-  });
+  })
 
-  res.json(user);
-});
+  res.json(user)
+})
 
 // Track revenue
 app.post('/api/payments', async (req, res) => {
-  const payment = await processPayment(req.body);
+  const payment = await processPayment(req.body)
 
-  revenueTotal.inc({
-    currency: payment.currency,
-    product: payment.productId
-  }, payment.amount);
+  revenueTotal.inc(
+    {
+      currency: payment.currency,
+      product: payment.productId
+    },
+    payment.amount
+  )
 
-  res.json(payment);
-});
+  res.json(payment)
+})
 
 // Update subscription gauge periodically
 setInterval(async () => {
@@ -353,12 +353,12 @@ setInterval(async () => {
     by: ['plan'],
     where: { status: 'active' },
     _count: true
-  });
+  })
 
   plans.forEach(({ plan, _count }) => {
-    subscriptionGauge.set({ plan }, _count);
-  });
-}, 60000); // Every minute
+    subscriptionGauge.set({ plan }, _count)
+  })
+}, 60000) // Every minute
 ```
 
 ---
@@ -368,11 +368,11 @@ setInterval(async () => {
 ### OpenTelemetry Setup
 
 ```typescript
-import { NodeSDK } from '@opentelemetry/sdk-node';
-import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
-import { Resource } from '@opentelemetry/resources';
-import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
-import { JaegerExporter } from '@opentelemetry/exporter-jaeger';
+import { NodeSDK } from '@opentelemetry/sdk-node'
+import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node'
+import { Resource } from '@opentelemetry/resources'
+import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions'
+import { JaegerExporter } from '@opentelemetry/exporter-jaeger'
 
 // Configure SDK
 const sdk = new NodeSDK({
@@ -389,55 +389,55 @@ const sdk = new NodeSDK({
       '@opentelemetry/instrumentation-fs': { enabled: false }
     })
   ]
-});
+})
 
 // Start SDK
-sdk.start();
+sdk.start()
 
 // Manual tracing
-import { trace, SpanStatusCode } from '@opentelemetry/api';
+import { trace, SpanStatusCode } from '@opentelemetry/api'
 
-const tracer = trace.getTracer('my-service');
+const tracer = trace.getTracer('my-service')
 
 async function processOrder(orderId: string) {
   const span = tracer.startSpan('process-order', {
     attributes: {
       'order.id': orderId
     }
-  });
+  })
 
   try {
     // Validate order
     const validateSpan = tracer.startSpan('validate-order', {
       parent: span
-    });
-    await validateOrder(orderId);
-    validateSpan.end();
+    })
+    await validateOrder(orderId)
+    validateSpan.end()
 
     // Process payment
     const paymentSpan = tracer.startSpan('process-payment', {
       parent: span
-    });
-    await processPayment(orderId);
-    paymentSpan.end();
+    })
+    await processPayment(orderId)
+    paymentSpan.end()
 
     // Ship order
     const shipSpan = tracer.startSpan('ship-order', {
       parent: span
-    });
-    await shipOrder(orderId);
-    shipSpan.end();
+    })
+    await shipOrder(orderId)
+    shipSpan.end()
 
-    span.setStatus({ code: SpanStatusCode.OK });
+    span.setStatus({ code: SpanStatusCode.OK })
   } catch (error) {
     span.setStatus({
       code: SpanStatusCode.ERROR,
       message: error.message
-    });
-    span.recordException(error);
-    throw error;
+    })
+    span.recordException(error)
+    throw error
   } finally {
-    span.end();
+    span.end()
   }
 }
 ```
@@ -445,48 +445,48 @@ async function processOrder(orderId: string) {
 ### Custom Span Attributes
 
 ```typescript
-import { context, propagation } from '@opentelemetry/api';
+import { context, propagation } from '@opentelemetry/api'
 
 // Add span attributes
 async function getUserData(userId: string) {
-  const span = tracer.startSpan('get-user-data');
+  const span = tracer.startSpan('get-user-data')
 
   span.setAttributes({
     'user.id': userId,
-    'operation': 'read',
+    operation: 'read',
     'cache.hit': false
-  });
+  })
 
   try {
     // Check cache
-    const cached = await redis.get(`user:${userId}`);
+    const cached = await redis.get(`user:${userId}`)
     if (cached) {
-      span.setAttribute('cache.hit', true);
-      return JSON.parse(cached);
+      span.setAttribute('cache.hit', true)
+      return JSON.parse(cached)
     }
 
     // Fetch from database
     const user = await db.user.findUnique({
       where: { id: userId }
-    });
+    })
 
-    span.setAttribute('database.query_time_ms', Date.now() - start);
+    span.setAttribute('database.query_time_ms', Date.now() - start)
 
     // Cache result
-    await redis.setex(`user:${userId}`, 3600, JSON.stringify(user));
+    await redis.setex(`user:${userId}`, 3600, JSON.stringify(user))
 
-    return user;
+    return user
   } finally {
-    span.end();
+    span.end()
   }
 }
 
 // Propagate context across services
 async function callExternalService(data: any) {
-  const headers: Record<string, string> = {};
+  const headers: Record<string, string> = {}
 
   // Inject trace context into headers
-  propagation.inject(context.active(), headers);
+  propagation.inject(context.active(), headers)
 
   const response = await fetch('https://api.example.com/endpoint', {
     method: 'POST',
@@ -495,9 +495,9 @@ async function callExternalService(data: any) {
       ...headers // Includes trace context
     },
     body: JSON.stringify(data)
-  });
+  })
 
-  return response.json();
+  return response.json()
 }
 ```
 
@@ -508,48 +508,45 @@ async function callExternalService(data: any) {
 ### Sentry Integration
 
 ```typescript
-import * as Sentry from '@sentry/node';
-import { ProfilingIntegration } from '@sentry/profiling-node';
+import * as Sentry from '@sentry/node'
+import { ProfilingIntegration } from '@sentry/profiling-node'
 
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
   environment: process.env.NODE_ENV,
   release: process.env.GIT_COMMIT,
-  integrations: [
-    new Sentry.Integrations.Http({ tracing: true }),
-    new ProfilingIntegration()
-  ],
+  integrations: [new Sentry.Integrations.Http({ tracing: true }), new ProfilingIntegration()],
   tracesSampleRate: 0.1, // 10% of requests
   profilesSampleRate: 0.1,
   beforeSend(event, hint) {
     // Filter out specific errors
     if (event.exception?.values?.[0]?.type === 'NotFoundError') {
-      return null;
+      return null
     }
 
     // Scrub sensitive data
     if (event.request?.data) {
-      delete event.request.data.password;
-      delete event.request.data.creditCard;
+      delete event.request.data.password
+      delete event.request.data.creditCard
     }
 
-    return event;
+    return event
   }
-});
+})
 
 // Express error handler
-app.use(Sentry.Handlers.requestHandler());
-app.use(Sentry.Handlers.tracingHandler());
+app.use(Sentry.Handlers.requestHandler())
+app.use(Sentry.Handlers.tracingHandler())
 
 // Routes...
 
-app.use(Sentry.Handlers.errorHandler());
+app.use(Sentry.Handlers.errorHandler())
 
 // Manual error capture
 app.post('/api/process', async (req, res) => {
   try {
-    const result = await processData(req.body);
-    res.json(result);
+    const result = await processData(req.body)
+    res.json(result)
   } catch (error) {
     Sentry.captureException(error, {
       tags: {
@@ -562,11 +559,11 @@ app.post('/api/process', async (req, res) => {
         }
       },
       level: 'error'
-    });
+    })
 
-    res.status(500).json({ error: 'Processing failed' });
+    res.status(500).json({ error: 'Processing failed' })
   }
-});
+})
 
 // Set user context
 app.use((req, res, next) => {
@@ -575,10 +572,10 @@ app.use((req, res, next) => {
       id: req.user.id,
       email: req.user.email,
       username: req.user.username
-    });
+    })
   }
-  next();
-});
+  next()
+})
 ```
 
 ---
@@ -654,8 +651,8 @@ groups:
         labels:
           severity: critical
         annotations:
-          summary: "High error rate detected"
-          description: "Error rate is {{ $value | humanizePercentage }} (threshold: 5%)"
+          summary: 'High error rate detected'
+          description: 'Error rate is {{ $value | humanizePercentage }} (threshold: 5%)'
 
       # Slow response time
       - alert: SlowResponseTime
@@ -665,8 +662,8 @@ groups:
         labels:
           severity: warning
         annotations:
-          summary: "Response time degraded"
-          description: "95th percentile response time is {{ $value }}s"
+          summary: 'Response time degraded'
+          description: '95th percentile response time is {{ $value }}s'
 
       # Database connection issues
       - alert: DatabaseConnectionPoolExhausted
@@ -676,7 +673,7 @@ groups:
         labels:
           severity: critical
         annotations:
-          summary: "Database connection pool near exhaustion"
+          summary: 'Database connection pool near exhaustion'
 
       # High memory usage
       - alert: HighMemoryUsage
@@ -686,28 +683,28 @@ groups:
         labels:
           severity: warning
         annotations:
-          summary: "High memory usage"
-          description: "Memory usage is {{ $value | humanize }}B"
+          summary: 'High memory usage'
+          description: 'Memory usage is {{ $value | humanize }}B'
 ```
 
 ### PagerDuty Integration
 
 ```typescript
-import axios from 'axios';
+import axios from 'axios'
 
 interface PagerDutyEvent {
-  severity: 'critical' | 'error' | 'warning' | 'info';
-  summary: string;
-  source: string;
-  component?: string;
-  customDetails?: Record<string, any>;
+  severity: 'critical' | 'error' | 'warning' | 'info'
+  summary: string
+  source: string
+  component?: string
+  customDetails?: Record<string, any>
 }
 
 class PagerDutyClient {
-  private integrationKey: string;
+  private integrationKey: string
 
   constructor(integrationKey: string) {
-    this.integrationKey = integrationKey;
+    this.integrationKey = integrationKey
   }
 
   async triggerAlert(event: PagerDutyEvent): Promise<void> {
@@ -721,7 +718,7 @@ class PagerDutyClient {
         component: event.component,
         custom_details: event.customDetails
       }
-    });
+    })
   }
 
   async resolveAlert(dedupKey: string): Promise<void> {
@@ -729,16 +726,16 @@ class PagerDutyClient {
       routing_key: this.integrationKey,
       event_action: 'resolve',
       dedup_key: dedupKey
-    });
+    })
   }
 }
 
 // Usage
-const pagerduty = new PagerDutyClient(process.env.PAGERDUTY_KEY!);
+const pagerduty = new PagerDutyClient(process.env.PAGERDUTY_KEY!)
 
 // Monitor critical errors
 app.use((err, req, res, next) => {
-  logger.error('Unhandled error', { error: err });
+  logger.error('Unhandled error', { error: err })
 
   if (err.severity === 'critical') {
     pagerduty.triggerAlert({
@@ -751,11 +748,11 @@ app.use((err, req, res, next) => {
         method: req.method,
         userId: req.user?.id
       }
-    });
+    })
   }
 
-  res.status(500).json({ error: 'Internal server error' });
-});
+  res.status(500).json({ error: 'Internal server error' })
+})
 ```
 
 ---
@@ -773,7 +770,7 @@ services:
     environment:
       - discovery.type=single-node
     ports:
-      - "9200:9200"
+      - '9200:9200'
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
 
@@ -782,14 +779,14 @@ services:
     volumes:
       - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
     ports:
-      - "5000:5000"
+      - '5000:5000'
     depends_on:
       - elasticsearch
 
   kibana:
     image: kibana:8.10.0
     ports:
-      - "5601:5601"
+      - '5601:5601'
     depends_on:
       - elasticsearch
 
@@ -829,23 +826,23 @@ output {
 ### Datadog
 
 ```typescript
-import { StatsD } from 'node-dogstatsd';
+import { StatsD } from 'node-dogstatsd'
 
-const dogstatsd = new StatsD('localhost', 8125);
+const dogstatsd = new StatsD('localhost', 8125)
 
 // Increment counter
-dogstatsd.increment('page.views', 1, ['route:/home']);
+dogstatsd.increment('page.views', 1, ['route:/home'])
 
 // Gauge
-dogstatsd.gauge('users.online', 1234);
+dogstatsd.gauge('users.online', 1234)
 
 // Histogram
-dogstatsd.histogram('request.duration', 245, ['endpoint:/api']);
+dogstatsd.histogram('request.duration', 245, ['endpoint:/api'])
 
 // Timing
-const start = Date.now();
-await someOperation();
-dogstatsd.timing('operation.duration', Date.now() - start);
+const start = Date.now()
+await someOperation()
+dogstatsd.timing('operation.duration', Date.now() - start)
 ```
 
 ---
@@ -870,10 +867,10 @@ dogstatsd.timing('operation.duration', Date.now() - start);
 
 ```typescript
 // ❌ Bad: Unbounded labels
-httpRequests.inc({ user_id: req.user.id });
+httpRequests.inc({ user_id: req.user.id })
 
 // ✅ Good: Bounded labels
-httpRequests.inc({ user_type: req.user.type });
+httpRequests.inc({ user_type: req.user.type })
 ```
 
 ---
@@ -881,10 +878,12 @@ httpRequests.inc({ user_type: req.user.type });
 ## Related Resources
 
 ### Skills
+
 - performance-optimizer
 - deployment-advisor
 
 ### Tools
+
 - Prometheus
 - Grafana
 - Jaeger

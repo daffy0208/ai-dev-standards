@@ -1,37 +1,33 @@
-import { Pinecone } from '@pinecone-database/pinecone';
-import {
-  VectorDatabaseProvider,
-  VectorRecord,
-  SearchResult,
-} from './interface.js';
+import { Pinecone } from '@pinecone-database/pinecone'
+import { VectorDatabaseProvider, VectorRecord, SearchResult } from './interface.js'
 
 export class PineconeClient implements VectorDatabaseProvider {
-  private client: Pinecone;
-  private index: any;
-  private indexName: string | null = null;
+  private client: Pinecone
+  private index: any
+  private indexName: string | null = null
 
   constructor(apiKey: string) {
     this.client = new Pinecone({
-      apiKey,
-    });
+      apiKey
+    })
   }
 
   async connect(indexName?: string): Promise<void> {
     if (!indexName) {
-      throw new Error('Index name required for Pinecone');
+      throw new Error('Index name required for Pinecone')
     }
 
-    this.indexName = indexName;
-    this.index = this.client.index(indexName);
+    this.indexName = indexName
+    this.index = this.client.index(indexName)
   }
 
   async insertVectors(vectors: VectorRecord[]): Promise<string> {
     if (!this.index) {
-      throw new Error('Not connected. Call connect() first.');
+      throw new Error('Not connected. Call connect() first.')
     }
 
-    await this.index.upsert(vectors);
-    return `Upserted to index: ${this.indexName}`;
+    await this.index.upsert(vectors)
+    return `Upserted to index: ${this.indexName}`
   }
 
   async searchVectors(
@@ -40,33 +36,33 @@ export class PineconeClient implements VectorDatabaseProvider {
     filter?: Record<string, any>
   ): Promise<SearchResult[]> {
     if (!this.index) {
-      throw new Error('Not connected. Call connect() first.');
+      throw new Error('Not connected. Call connect() first.')
     }
 
     const response = await this.index.query({
       vector: query,
       topK,
       filter,
-      includeMetadata: true,
-    });
+      includeMetadata: true
+    })
 
     return response.matches.map((match: any) => ({
       id: match.id,
       score: match.score,
-      metadata: match.metadata,
-    }));
+      metadata: match.metadata
+    }))
   }
 
   async deleteVectors(ids: string[]): Promise<void> {
     if (!this.index) {
-      throw new Error('Not connected. Call connect() first.');
+      throw new Error('Not connected. Call connect() first.')
     }
 
-    await this.index.deleteMany(ids);
+    await this.index.deleteMany(ids)
   }
 
   async listCollections(): Promise<string[]> {
-    const indexes = await this.client.listIndexes();
-    return indexes.indexes?.map((idx: any) => idx.name) || [];
+    const indexes = await this.client.listIndexes()
+    return indexes.indexes?.map((idx: any) => idx.name) || []
   }
 }

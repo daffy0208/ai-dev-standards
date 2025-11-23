@@ -171,13 +171,7 @@ The bootstrap creates `.ai-dev.json` with:
 {
   "version": "1.0.0",
   "lastSync": "2025-10-22T12:00:00Z",
-  "tracking": [
-    "skills",
-    "mcps",
-    "cursorrules",
-    "gitignore",
-    "tools"
-  ],
+  "tracking": ["skills", "mcps", "cursorrules", "gitignore", "tools"],
   "frequency": "git-hook",
   "installed": {
     "skills": [],
@@ -224,6 +218,7 @@ ai-dev sync --yes --silent || echo "⚠️  Auto-sync failed. Run 'ai-dev sync' 
 ```
 
 This ensures:
+
 - ✅ Latest skills are available after pulling
 - ✅ MCP configs stay current
 - ✅ Config files (.cursorrules, .gitignore) stay updated
@@ -248,6 +243,7 @@ ai-dev config set frequency "manual"
 **Problem:** CLI not installed globally or not in PATH
 
 **Solution:**
+
 ```bash
 # Option 1: Global install
 npm install -g @ai-dev-standards/cli
@@ -265,6 +261,7 @@ npm run ai-dev sync
 **Problem:** Outdated Node.js
 
 **Solution:**
+
 ```bash
 # Install latest Node.js LTS
 # macOS (Homebrew)
@@ -283,6 +280,7 @@ sudo apt-get install -y nodejs
 **Problem:** No package.json or .git found
 
 **Solution:**
+
 ```bash
 # Initialize git repo
 git init
@@ -300,6 +298,7 @@ npx @ai-dev-standards/bootstrap
 
 **Solution:**
 The bootstrap automatically falls back to local install:
+
 ```bash
 # Bootstrap handles this automatically!
 # It tries global, then falls back to:

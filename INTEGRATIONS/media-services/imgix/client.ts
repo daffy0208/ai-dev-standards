@@ -81,15 +81,7 @@ export interface ImgixParams {
   /**
    * Crop mode (used with fit=crop)
    */
-  crop?:
-    | 'top'
-    | 'bottom'
-    | 'left'
-    | 'right'
-    | 'faces'
-    | 'focalpoint'
-    | 'edges'
-    | 'entropy'
+  crop?: 'top' | 'bottom' | 'left' | 'right' | 'faces' | 'focalpoint' | 'edges' | 'entropy'
 
   /**
    * Aspect ratio
@@ -278,7 +270,7 @@ export class ImgixClient {
       domain: options.domain,
       secureUrlToken: options.secureUrlToken,
       useHttps: options.useHttps ?? true,
-      includeLibraryParam: options.includeLibraryParam ?? true,
+      includeLibraryParam: options.includeLibraryParam ?? true
     }
 
     if (!this.options.domain) {
@@ -350,7 +342,7 @@ export class ImgixClient {
       w: 64,
       blur: 200,
       auto: 'format,compress',
-      q: 30,
+      q: 30
     })
   }
 
@@ -370,7 +362,7 @@ export class ImgixClient {
       webp: this.buildUrl(path, { ...params, fm: 'webp' }),
       avif: this.buildUrl(path, { ...params, fm: 'avif' }),
       jpg: this.buildUrl(path, { ...params, fm: 'jpg' }),
-      png: this.buildUrl(path, { ...params, fm: 'png' }),
+      png: this.buildUrl(path, { ...params, fm: 'png' })
     }
   }
 
@@ -458,6 +450,6 @@ export function createImgixClient(options: Partial<ImgixClientOptions> = {}): Im
     domain: options.domain || process.env.IMGIX_DOMAIN || '',
     secureUrlToken: options.secureUrlToken || process.env.IMGIX_TOKEN,
     useHttps: options.useHttps,
-    includeLibraryParam: options.includeLibraryParam,
+    includeLibraryParam: options.includeLibraryParam
   })
 }

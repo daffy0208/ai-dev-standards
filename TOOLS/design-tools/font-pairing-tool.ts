@@ -65,21 +65,24 @@ Returns suggested heading and body font combinations with explanations.`
           {
             heading: fontName,
             body: 'Merriweather',
-            reason: 'Modern sans-serif heading with elegant serif body creates strong hierarchy and readability',
+            reason:
+              'Modern sans-serif heading with elegant serif body creates strong hierarchy and readability',
             contrast: 'high',
             category: { heading: 'sans-serif', body: 'serif' }
           },
           {
             heading: fontName,
             body: 'Lora',
-            reason: 'Clean geometric sans paired with warm serif balances professionalism with approachability',
+            reason:
+              'Clean geometric sans paired with warm serif balances professionalism with approachability',
             contrast: 'high',
             category: { heading: 'sans-serif', body: 'serif' }
           },
           {
             heading: fontName,
             body: fontName,
-            reason: 'Same family pairing with weight contrast (bold heading, regular body) ensures consistency',
+            reason:
+              'Same family pairing with weight contrast (bold heading, regular body) ensures consistency',
             contrast: 'low',
             category: { heading: 'sans-serif', body: 'sans-serif' }
           },
@@ -98,21 +101,24 @@ Returns suggested heading and body font combinations with explanations.`
           {
             heading: fontName,
             body: 'Open Sans',
-            reason: 'Traditional serif heading with clean humanist sans body creates elegant yet readable design',
+            reason:
+              'Traditional serif heading with clean humanist sans body creates elegant yet readable design',
             contrast: 'high',
             category: { heading: 'serif', body: 'sans-serif' }
           },
           {
             heading: fontName,
             body: 'Roboto',
-            reason: 'Classic serif paired with modern geometric sans balances tradition with contemporary feel',
+            reason:
+              'Classic serif paired with modern geometric sans balances tradition with contemporary feel',
             contrast: 'high',
             category: { heading: 'serif', body: 'sans-serif' }
           },
           {
             heading: fontName,
             body: 'Inter',
-            reason: 'Elegant serif with functional sans-serif optimizes both style and screen readability',
+            reason:
+              'Elegant serif with functional sans-serif optimizes both style and screen readability',
             contrast: 'high',
             category: { heading: 'serif', body: 'sans-serif' }
           },
@@ -131,21 +137,24 @@ Returns suggested heading and body font combinations with explanations.`
           {
             heading: fontName,
             body: 'Open Sans',
-            reason: 'Distinctive display heading with neutral sans body keeps focus on content while making impact',
+            reason:
+              'Distinctive display heading with neutral sans body keeps focus on content while making impact',
             contrast: 'high',
             category: { heading: 'display', body: 'sans-serif' }
           },
           {
             heading: fontName,
             body: 'Roboto',
-            reason: 'Bold display paired with clean geometric sans creates modern, attention-grabbing design',
+            reason:
+              'Bold display paired with clean geometric sans creates modern, attention-grabbing design',
             contrast: 'high',
             category: { heading: 'display', body: 'sans-serif' }
           },
           {
             heading: fontName,
             body: 'Merriweather',
-            reason: 'Expressive display with readable serif balances personality with professionalism',
+            reason:
+              'Expressive display with readable serif balances personality with professionalism',
             contrast: 'high',
             category: { heading: 'display', body: 'serif' }
           }
@@ -157,21 +166,24 @@ Returns suggested heading and body font combinations with explanations.`
           {
             heading: 'Inter',
             body: fontName,
-            reason: 'Clean sans heading with monospace body ideal for technical documentation and code',
+            reason:
+              'Clean sans heading with monospace body ideal for technical documentation and code',
             contrast: 'medium',
             category: { heading: 'sans-serif', body: 'monospace' }
           },
           {
             heading: fontName,
             body: 'Inter',
-            reason: 'Monospace heading with professional sans body creates technical yet accessible feel',
+            reason:
+              'Monospace heading with professional sans body creates technical yet accessible feel',
             contrast: 'medium',
             category: { heading: 'monospace', body: 'sans-serif' }
           },
           {
             heading: fontName,
             body: fontName,
-            reason: 'Consistent monospace with size contrast perfect for developer-focused interfaces',
+            reason:
+              'Consistent monospace with size contrast perfect for developer-focused interfaces',
             contrast: 'low',
             category: { heading: 'monospace', body: 'monospace' }
           }
@@ -219,34 +231,34 @@ Returns suggested heading and body font combinations with explanations.`
     // Font database (simplified)
     const fonts: Record<string, string> = {
       // Sans-serif
-      'roboto': 'sans-serif',
+      roboto: 'sans-serif',
       'open sans': 'sans-serif',
-      'lato': 'sans-serif',
-      'montserrat': 'sans-serif',
-      'inter': 'sans-serif',
-      'poppins': 'sans-serif',
-      'raleway': 'sans-serif',
-      'ubuntu': 'sans-serif',
-      'nunito': 'sans-serif',
+      lato: 'sans-serif',
+      montserrat: 'sans-serif',
+      inter: 'sans-serif',
+      poppins: 'sans-serif',
+      raleway: 'sans-serif',
+      ubuntu: 'sans-serif',
+      nunito: 'sans-serif',
       'work sans': 'sans-serif',
 
       // Serif
-      'merriweather': 'serif',
+      merriweather: 'serif',
       'playfair display': 'serif',
-      'lora': 'serif',
+      lora: 'serif',
       'pt serif': 'serif',
       'crimson text': 'serif',
       'libre baskerville': 'serif',
       'source serif pro': 'serif',
       'eb garamond': 'serif',
-      'cormorant': 'serif',
-      'georgia': 'serif',
+      cormorant: 'serif',
+      georgia: 'serif',
 
       // Display
       'bebas neue': 'display',
-      'pacifico': 'display',
-      'lobster': 'display',
-      'righteous': 'display',
+      pacifico: 'display',
+      lobster: 'display',
+      righteous: 'display',
       'abril fatface': 'display',
 
       // Monospace
@@ -254,7 +266,7 @@ Returns suggested heading and body font combinations with explanations.`
       'roboto mono': 'monospace',
       'fira code': 'monospace',
       'jetbrains mono': 'monospace',
-      'courier new': 'monospace',
+      'courier new': 'monospace'
     }
 
     const normalizedName = fontName.toLowerCase()

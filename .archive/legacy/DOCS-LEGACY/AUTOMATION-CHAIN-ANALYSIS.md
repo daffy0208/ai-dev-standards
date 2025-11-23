@@ -11,12 +11,14 @@
 **You said:** "I need to continually check that things are in place only to find they are not and clearly not automated"
 
 **Translation:** The framework makes promises it doesn't keep. When you add a skill/MCP, the system should:
+
 1. Update all relevant files automatically
 2. Validate everything is consistent
 3. FAIL LOUDLY if something breaks
 4. NEVER require you to manually check
 
 **Current Reality:**
+
 - ❌ Files don't auto-update
 - ❌ No validation happens
 - ❌ Failures are silent
@@ -132,18 +134,19 @@
 
 ### File Update Matrix
 
-| File | Skill Added | MCP Added | Skill Edited | Auto? | Script? |
-|------|-------------|-----------|--------------|-------|---------|
-| `META/skill-registry.json` | ✅ Should | - | ✅ Should | ❌ No | ⚠️ Partial |
-| `META/registry.json` | ✅ Should | ✅ Should | ✅ Should | ❌ No | ⚠️ Partial |
-| `META/relationship-mapping.json` | ✅ Should | ✅ Should | - | ❌ No | ❌ None |
-| `README.md` | ✅ Should | ✅ Should | - | ❌ No | ❌ None |
-| `BUILD_FOCUS.md` | ✅ Should | ✅ Should | - | ❌ No | ❌ None |
-| `DOCS/INDEX.md` | ✅ Should | ✅ Should | - | ❌ No | ❌ None |
-| `DOCS/MCP-DEVELOPMENT-ROADMAP.md` | ✅ Should | ✅ Should | - | ❌ No | ❌ None |
-| `.claude/claude.md` | ✅ Should | - | ✅ Should | ❌ No | ❌ None |
+| File                              | Skill Added | MCP Added | Skill Edited | Auto? | Script?    |
+| --------------------------------- | ----------- | --------- | ------------ | ----- | ---------- |
+| `META/skill-registry.json`        | ✅ Should   | -         | ✅ Should    | ❌ No | ⚠️ Partial |
+| `META/registry.json`              | ✅ Should   | ✅ Should | ✅ Should    | ❌ No | ⚠️ Partial |
+| `META/relationship-mapping.json`  | ✅ Should   | ✅ Should | -            | ❌ No | ❌ None    |
+| `README.md`                       | ✅ Should   | ✅ Should | -            | ❌ No | ❌ None    |
+| `BUILD_FOCUS.md`                  | ✅ Should   | ✅ Should | -            | ❌ No | ❌ None    |
+| `DOCS/INDEX.md`                   | ✅ Should   | ✅ Should | -            | ❌ No | ❌ None    |
+| `DOCS/MCP-DEVELOPMENT-ROADMAP.md` | ✅ Should   | ✅ Should | -            | ❌ No | ❌ None    |
+| `.claude/claude.md`               | ✅ Should   | -         | ✅ Should    | ❌ No | ❌ None    |
 
 **Summary:**
+
 - 8 files need updates
 - 0 files auto-update
 - 2 files have partial scripts (but don't cascade)
@@ -158,12 +161,14 @@
 **Problem:** You can commit broken state with no warning
 
 **Evidence:**
+
 ```bash
 ls -la .git/hooks/
 # Result: No pre-commit hook exists
 ```
 
 **Should exist:**
+
 - `.git/hooks/pre-commit` → Runs validation
 - Checks: skill count matches, relationship stubs exist, no orphans
 - Blocks commit if validation fails
@@ -177,12 +182,14 @@ ls -la .git/hooks/
 **Problem:** No way to check if everything is synchronized
 
 **Evidence:**
+
 ```bash
 npm run validate  # Should exist
 # Result: Script not found
 ```
 
 **Should exist:**
+
 - `npm run validate` → Checks all counts match
 - `npm run validate:relationships` → Checks all skills mapped
 - `npm run validate:registries` → Checks registries synchronized
@@ -196,6 +203,7 @@ npm run validate  # Should exist
 **Problem:** Running one script doesn't trigger dependent updates
 
 **Evidence:**
+
 ```bash
 node scripts/fix-skill-registry.cjs
 # Only updates skill-registry.json
@@ -203,6 +211,7 @@ node scripts/fix-skill-registry.cjs
 ```
 
 **Should cascade:**
+
 ```
 fix-skill-registry.cjs runs
   ↓
@@ -224,20 +233,22 @@ Exits with error if anything mismatched
 **Problem:** Scripts can fail and you don't know
 
 **Evidence:**
+
 ```javascript
 // Current scripts don't throw errors
 // They just log warnings and continue
-console.warn("Count mismatch detected");
+console.warn('Count mismatch detected')
 // No process.exit(1)
 ```
 
 **Should happen:**
+
 ```javascript
 if (countMismatch) {
-  console.error("❌ FATAL: Skill counts don't match!");
-  console.error("Expected: 37, Found: 36");
-  console.error("Run: npm run fix");
-  process.exit(1);  // FAIL LOUDLY
+  console.error("❌ FATAL: Skill counts don't match!")
+  console.error('Expected: 37, Found: 36')
+  console.error('Run: npm run fix')
+  process.exit(1) // FAIL LOUDLY
 }
 ```
 
@@ -250,12 +261,14 @@ if (countMismatch) {
 **Problem:** Multiple files claim to be authoritative
 
 **Current confusion:**
+
 - `SKILLS/` folder = source of truth for what exists
 - `skill-registry.json` = source of truth for metadata
 - `registry.json` = source of truth for versions
 - All three can be out of sync
 
 **Should be:**
+
 ```
 SKILLS/ folder = ONLY source of truth
   ↓
@@ -273,6 +286,7 @@ Any mismatch = ERROR
 **Problem:** You don't know what should happen automatically
 
 **Evidence:** No `AUTOMATION.md` or `CONTRIBUTING.md` section explaining:
+
 - What happens when you add a skill
 - What files auto-update
 - What validations run
@@ -289,6 +303,7 @@ I will create the following (in order):
 ### Phase 1: Validation (1 hour)
 
 **1. Create `scripts/validate-all.cjs`**
+
 ```javascript
 // Validates EVERYTHING
 - Skill count matches across all 8 files
@@ -302,6 +317,7 @@ I will create the following (in order):
 ```
 
 **2. Create `npm run validate` command**
+
 ```json
 "scripts": {
   "validate": "node scripts/validate-all.cjs",
@@ -314,30 +330,32 @@ I will create the following (in order):
 ### Phase 2: Automated Updates (2 hours)
 
 **3. Create `scripts/update-all.cjs`**
+
 ```javascript
 // Master orchestrator script
 function updateAll() {
-  const skills = scanSkillsFolder();
-  const mcps = scanMCPsFolder();
+  const skills = scanSkillsFolder()
+  const mcps = scanMCPsFolder()
 
   // Update ALL files atomically
-  updateSkillRegistry(skills);
-  updateMainRegistry(skills, mcps);
-  updateRelationships(skills, mcps);
-  updateREADME(skills.length, mcps.length);
-  updateBUILDFOCUS(skills.length, mcps.length);
-  updateDOCSINDEX(skills.length, mcps.length);
-  updateMCPROADMAP(skills.length, mcps.length);
-  updateClaudeMD(skills);
+  updateSkillRegistry(skills)
+  updateMainRegistry(skills, mcps)
+  updateRelationships(skills, mcps)
+  updateREADME(skills.length, mcps.length)
+  updateBUILDFOCUS(skills.length, mcps.length)
+  updateDOCSINDEX(skills.length, mcps.length)
+  updateMCPROADMAP(skills.length, mcps.length)
+  updateClaudeMD(skills)
 
   // Validate everything
   if (!validate()) {
-    throw new Error("Validation failed after update");
+    throw new Error('Validation failed after update')
   }
 }
 ```
 
 **4. Create `scripts/add-skill.cjs [name]`**
+
 ```javascript
 // Single command to add skill
 - Creates SKILLS/[name]/ folder structure
@@ -348,6 +366,7 @@ function updateAll() {
 ```
 
 **5. Create `scripts/add-mcp.cjs [name] [enables-skill]`**
+
 ```javascript
 // Single command to add MCP
 - Creates MCP-SERVERS/[name]-mcp/ structure
@@ -362,6 +381,7 @@ function updateAll() {
 ### Phase 3: Git Hooks (30 minutes)
 
 **6. Create `.githooks/pre-commit`**
+
 ```bash
 #!/bin/bash
 npm run validate || {
@@ -372,6 +392,7 @@ npm run validate || {
 ```
 
 **7. Configure git hooks**
+
 ```bash
 git config core.hooksPath .githooks
 ```
@@ -381,10 +402,12 @@ git config core.hooksPath .githooks
 ### Phase 4: Documentation (30 minutes)
 
 **8. Create `AUTOMATION.md`**
+
 ```markdown
 # How Automation Works
 
 ## When You Add a Skill
+
 1. Create SKILLS/skill-name/SKILL.md
 2. Run: npm run add-skill skill-name
 3. Script updates 8 files automatically
@@ -392,19 +415,23 @@ git config core.hooksPath .githooks
 5. Commit is blocked if validation fails
 
 ## When You Add an MCP
+
 [Similar instructions]
 
 ## When Validation Fails
+
 [Fix instructions]
 ```
 
 **9. Update `CONTRIBUTING.md`**
+
 ```markdown
 ## Adding New Skills
 
 DO NOT manually update registry files!
 
 Instead:
+
 1. Create skill folder
 2. Run: npm run add-skill [name]
 3. Commit (validation runs automatically)
@@ -415,6 +442,7 @@ Instead:
 ## 📊 Before & After
 
 ### BEFORE (Current State)
+
 ```
 User: "I added a new skill"
 System: <silence>
@@ -425,6 +453,7 @@ User: "Still broken. What did I miss?"
 ```
 
 ### AFTER (Fixed State)
+
 ```
 User: npm run add-skill new-skill
 System: ✅ Skill created
@@ -464,6 +493,7 @@ After implementing all fixes:
 5. ✅ Document everything (30 minutes)
 
 **After completion:**
+
 - Run validation → Should pass
 - Add test skill → Should auto-update 8 files
 - Commit with broken state → Should be blocked
@@ -476,12 +506,14 @@ After implementing all fixes:
 **The real problem isn't missing features. It's broken trust.**
 
 When automation is incomplete or unreliable, users:
+
 1. Lose confidence in the system
 2. Fall back to manual verification
 3. Spend time checking instead of building
 4. Feel frustrated by silent failures
 
 **The fix is NOT adding more features. It's making existing automation:**
+
 - ✅ Complete (covers all cases)
 - ✅ Reliable (fails loudly, never silently)
 - ✅ Transparent (documents what happens)

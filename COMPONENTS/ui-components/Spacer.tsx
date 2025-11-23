@@ -1,6 +1,6 @@
-import React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from './utils';
+import React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from './utils'
 
 const spacerVariants = cva('', {
   variants: {
@@ -22,23 +22,23 @@ const spacerVariants = cva('', {
       40: '',
       48: '',
       56: '',
-      64: '',
+      64: ''
     },
     direction: {
       vertical: 'block',
-      horizontal: 'inline-block',
+      horizontal: 'inline-block'
     },
     responsive: {
       true: '',
-      false: '',
-    },
+      false: ''
+    }
   },
   defaultVariants: {
     size: 4,
     direction: 'vertical',
-    responsive: false,
-  },
-});
+    responsive: false
+  }
+})
 
 // Map size to actual spacing classes
 const verticalSpacing = {
@@ -59,8 +59,8 @@ const verticalSpacing = {
   40: 'h-40',
   48: 'h-48',
   56: 'h-56',
-  64: 'h-64',
-};
+  64: 'h-64'
+}
 
 const horizontalSpacing = {
   0: 'w-0',
@@ -80,19 +80,19 @@ const horizontalSpacing = {
   40: 'w-40',
   48: 'w-48',
   56: 'w-56',
-  64: 'w-64',
-};
+  64: 'w-64'
+}
 
 export interface SpacerProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof spacerVariants> {
   /** Responsive sizing */
   responsiveSizes?: {
-    sm?: number;
-    md?: number;
-    lg?: number;
-    xl?: number;
-  };
+    sm?: number
+    md?: number
+    lg?: number
+    xl?: number
+  }
 }
 
 const Spacer = React.forwardRef<HTMLDivElement, SpacerProps>(
@@ -100,40 +100,41 @@ const Spacer = React.forwardRef<HTMLDivElement, SpacerProps>(
     const spacingClass =
       direction === 'vertical'
         ? verticalSpacing[size as keyof typeof verticalSpacing]
-        : horizontalSpacing[size as keyof typeof horizontalSpacing];
+        : horizontalSpacing[size as keyof typeof horizontalSpacing]
 
     // Build responsive classes
     const responsiveClasses = responsiveSizes
       ? [
           responsiveSizes.sm &&
-            (direction === 'vertical' ? `sm:h-${responsiveSizes.sm}` : `sm:w-${responsiveSizes.sm}`),
+            (direction === 'vertical'
+              ? `sm:h-${responsiveSizes.sm}`
+              : `sm:w-${responsiveSizes.sm}`),
           responsiveSizes.md &&
-            (direction === 'vertical' ? `md:h-${responsiveSizes.md}` : `md:w-${responsiveSizes.md}`),
+            (direction === 'vertical'
+              ? `md:h-${responsiveSizes.md}`
+              : `md:w-${responsiveSizes.md}`),
           responsiveSizes.lg &&
-            (direction === 'vertical' ? `lg:h-${responsiveSizes.lg}` : `lg:w-${responsiveSizes.lg}`),
+            (direction === 'vertical'
+              ? `lg:h-${responsiveSizes.lg}`
+              : `lg:w-${responsiveSizes.lg}`),
           responsiveSizes.xl &&
-            (direction === 'vertical' ? `xl:h-${responsiveSizes.xl}` : `xl:w-${responsiveSizes.xl}`),
+            (direction === 'vertical' ? `xl:h-${responsiveSizes.xl}` : `xl:w-${responsiveSizes.xl}`)
         ]
           .filter(Boolean)
           .join(' ')
-      : '';
+      : ''
 
     return (
       <div
-        className={cn(
-          spacerVariants({ direction }),
-          spacingClass,
-          responsiveClasses,
-          className
-        )}
+        className={cn(spacerVariants({ direction }), spacingClass, responsiveClasses, className)}
         ref={ref}
         aria-hidden="true"
         {...props}
       />
-    );
+    )
   }
-);
+)
 
-Spacer.displayName = 'Spacer';
+Spacer.displayName = 'Spacer'
 
-export { Spacer, spacerVariants };
+export { Spacer, spacerVariants }

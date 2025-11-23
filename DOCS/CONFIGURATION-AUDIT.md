@@ -24,6 +24,7 @@
 **Status:** All 49 present and configured
 
 #### Complete List:
+
 1. 3d-asset-manager-mcp
 2. accessibility-checker-mcp
 3. agent-orchestrator-mcp
@@ -102,6 +103,7 @@
 **MCPs:** 52 (49 repository + 3 marketplace)
 
 **Verification:**
+
 ```bash
 cat .claude/mcp-settings.json | jq '.mcpServers | keys | length'
 # Output: 52 ✅
@@ -113,6 +115,7 @@ cat .claude/mcp-settings.json | jq '.mcpServers | keys | length'
 **MCPs:** 54 (49 repository + 2 framework + 3 marketplace)
 
 **Verification:**
+
 ```bash
 cat "/mnt/c/Users/david/AppData/Roaming/Claude/claude_desktop_config.json" | jq '.mcpServers | keys | length'
 # Output: 54 ✅
@@ -123,24 +126,28 @@ cat "/mnt/c/Users/david/AppData/Roaming/Claude/claude_desktop_config.json" | jq 
 ## Verification Commands
 
 ### Check Repository MCP Count
+
 ```bash
 ls -d MCP-SERVERS/*/ | wc -l
 # Expected: 49 ✅
 ```
 
 ### Check Claude Code Configuration
+
 ```bash
 cat .claude/mcp-settings.json | jq '.mcpServers | keys | length'
 # Expected: 52 ✅
 ```
 
 ### Check Marketplace MCPs Are Built
+
 ```bash
 ls -la /home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins/mcp/*/dist/servers/*.js 2>/dev/null | wc -l
 # Expected: 3 ✅
 ```
 
 ### Check for Missing MCPs
+
 ```bash
 # List all repo MCPs
 ls -d MCP-SERVERS/*/ | sed 's|MCP-SERVERS/||g' | sed 's|/||g' | sort > /tmp/repo-mcps.txt
@@ -158,16 +165,19 @@ comm -23 /tmp/repo-mcps.txt /tmp/config-mcps.txt
 ## Path Formats
 
 ### Repository MCPs (Windows Paths)
+
 ```
 C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\{mcp-name}\\dist\\index.js
 ```
 
 ### Marketplace MCPs (Linux Paths)
+
 ```
 /home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins/mcp/{mcp-name}/dist/servers/*.js
 ```
 
 **Reason for different paths:**
+
 - Repository is in Windows filesystem (OneDrive)
 - Marketplace is in WSL Linux filesystem (~/.claude/)
 - Both work because Node.js runs in WSL
@@ -177,16 +187,19 @@ C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standar
 ## Known Issues & Resolutions
 
 ### Issue 1: Only 34 MCPs Initially Configured
+
 **Status:** ✅ RESOLVED
 **Resolution:** Added all 15 missing MCPs
 **Date:** 2025-10-29
 
 ### Issue 2: Marketplace MCPs Not Configured for Claude Code
+
 **Status:** ✅ RESOLVED
 **Resolution:** Added 3 marketplace MCPs to `.claude/mcp-settings.json`
 **Date:** 2025-10-29
 
 ### Issue 3: `/plugin install` Doesn't Install MCP Servers
+
 **Status:** ✅ DOCUMENTED
 **Resolution:** Created `MARKETPLACE-INSTALLATION-GUIDE.md` with manual installation steps
 **Date:** 2025-10-29
@@ -213,6 +226,7 @@ All documentation has been created/updated:
 **Restart required:** MCPs are loaded when Claude Code starts. The new marketplace MCPs will be available after restarting this session.
 
 **How to test:**
+
 ```
 # After restarting Claude Code
 "Use domain-memory-agent to search for archon-manager documentation"
@@ -233,6 +247,7 @@ All documentation has been created/updated:
 **Total MCPs:** 50 (49 local + 1 external archon-mcp)
 
 **Note:** Registry tracks repository MCPs only, not marketplace MCPs. This is correct because:
+
 - Repository MCPs are part of ai-dev-standards project
 - Marketplace MCPs are external, installed separately
 - Registry represents project-owned resources
@@ -242,21 +257,25 @@ All documentation has been created/updated:
 ## Final Verification
 
 ### Repository MCPs
+
 - **Expected:** 49
 - **Configured:** 49
 - **Status:** ✅ COMPLETE
 
 ### Marketplace MCPs
+
 - **Expected:** 3 (from this installation)
 - **Configured:** 3
 - **Status:** ✅ COMPLETE
 
 ### Total Claude Code MCPs
+
 - **Expected:** 52 (49 + 3)
 - **Configured:** 52
 - **Status:** ✅ COMPLETE
 
 ### Total Claude Desktop MCPs
+
 - **Expected:** 54 (49 + 2 framework + 3 marketplace)
 - **Configured:** 54
 - **Status:** ✅ COMPLETE

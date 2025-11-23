@@ -59,7 +59,7 @@ export const IconPicker: React.FC<IconPickerProps> = ({
   defaultSearch = '',
   showCopyCode = true,
   maxResults = 50,
-  className = '',
+  className = ''
 }) => {
   const [search, setSearch] = useState(defaultSearch)
   const [icons, setIcons] = useState<IconMetadata[]>([])
@@ -97,10 +97,10 @@ export const IconPicker: React.FC<IconPickerProps> = ({
     }
 
     const query = search.toLowerCase().trim()
-    const filtered = icons.filter((icon) => {
+    const filtered = icons.filter(icon => {
       const nameMatch = icon.name.toLowerCase().includes(query)
       const displayMatch = icon.displayName.toLowerCase().includes(query)
-      const tagMatch = icon.tags?.some((tag) => tag.toLowerCase().includes(query))
+      const tagMatch = icon.tags?.some(tag => tag.toLowerCase().includes(query))
 
       return nameMatch || displayMatch || tagMatch
     })
@@ -114,7 +114,7 @@ export const IconPicker: React.FC<IconPickerProps> = ({
       const selected: SelectedIcon = {
         name: icon.name,
         library,
-        displayName: icon.displayName,
+        displayName: icon.displayName
       }
 
       setSelectedIcon(selected)
@@ -124,20 +124,23 @@ export const IconPicker: React.FC<IconPickerProps> = ({
   )
 
   // Copy icon code to clipboard
-  const copyIconCode = useCallback(async (icon: IconMetadata) => {
-    const code = `<Icon name="${icon.name}" library="${library}" size="md" />`
+  const copyIconCode = useCallback(
+    async (icon: IconMetadata) => {
+      const code = `<Icon name="${icon.name}" library="${library}" size="md" />`
 
-    try {
-      await navigator.clipboard.writeText(code)
-      setCopiedIcon(icon.name)
+      try {
+        await navigator.clipboard.writeText(code)
+        setCopiedIcon(icon.name)
 
-      setTimeout(() => {
-        setCopiedIcon(null)
-      }, 2000)
-    } catch (error) {
-      console.error('Failed to copy:', error)
-    }
-  }, [library])
+        setTimeout(() => {
+          setCopiedIcon(null)
+        }, 2000)
+      } catch (error) {
+        console.error('Failed to copy:', error)
+      }
+    },
+    [library]
+  )
 
   return (
     <div className={`icon-picker ${className}`}>
@@ -146,7 +149,7 @@ export const IconPicker: React.FC<IconPickerProps> = ({
         <input
           type="text"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={e => setSearch(e.target.value)}
           placeholder="Search icons..."
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           aria-label="Search icons"
@@ -163,7 +166,7 @@ export const IconPicker: React.FC<IconPickerProps> = ({
         role="grid"
         aria-label="Icon selection grid"
       >
-        {filteredIcons.map((icon) => (
+        {filteredIcons.map(icon => (
           <button
             key={icon.name}
             onClick={() => handleSelect(icon)}
@@ -171,11 +174,7 @@ export const IconPicker: React.FC<IconPickerProps> = ({
               p-3 rounded-lg border-2 transition-all
               hover:border-blue-500 hover:bg-blue-50
               focus:outline-none focus:ring-2 focus:ring-blue-500
-              ${
-                selectedIcon?.name === icon.name
-                  ? 'border-blue-500 bg-blue-50'
-                  : 'border-gray-200'
-              }
+              ${selectedIcon?.name === icon.name ? 'border-blue-500 bg-blue-50' : 'border-gray-200'}
             `}
             role="gridcell"
             aria-label={icon.displayName}
@@ -203,7 +202,7 @@ export const IconPicker: React.FC<IconPickerProps> = ({
 
             {showCopyCode && (
               <button
-                onClick={() => copyIconCode(icons.find((i) => i.name === selectedIcon.name)!)}
+                onClick={() => copyIconCode(icons.find(i => i.name === selectedIcon.name)!)}
                 className={`
                   px-4 py-2 rounded-lg font-medium transition-colors
                   ${
@@ -266,7 +265,7 @@ function getIconList(library: IconLibrary): IconMetadata[] {
         { name: 'envelope', displayName: 'Envelope', tags: ['email', 'mail'] },
         { name: 'folder', displayName: 'Folder', tags: ['folder', 'directory'] },
         { name: 'document', displayName: 'Document', tags: ['document', 'file'] },
-        { name: 'trash', displayName: 'Trash', tags: ['trash', 'delete', 'remove'] },
+        { name: 'trash', displayName: 'Trash', tags: ['trash', 'delete', 'remove'] }
       ]
 
     case 'lucide':
@@ -288,7 +287,7 @@ function getIconList(library: IconLibrary): IconMetadata[] {
         { name: 'mail', displayName: 'Mail', tags: ['email', 'mail'] },
         { name: 'folder', displayName: 'Folder', tags: ['folder', 'directory'] },
         { name: 'file', displayName: 'File', tags: ['document', 'file'] },
-        { name: 'trash-2', displayName: 'Trash', tags: ['trash', 'delete', 'remove'] },
+        { name: 'trash-2', displayName: 'Trash', tags: ['trash', 'delete', 'remove'] }
       ]
 
     case 'font-awesome':
@@ -310,7 +309,7 @@ function getIconList(library: IconLibrary): IconMetadata[] {
         { name: 'envelope', displayName: 'Envelope', tags: ['email', 'mail'] },
         { name: 'folder', displayName: 'Folder', tags: ['folder', 'directory'] },
         { name: 'file', displayName: 'File', tags: ['document', 'file'] },
-        { name: 'trash', displayName: 'Trash', tags: ['trash', 'delete', 'remove'] },
+        { name: 'trash', displayName: 'Trash', tags: ['trash', 'delete', 'remove'] }
       ]
 
     default:

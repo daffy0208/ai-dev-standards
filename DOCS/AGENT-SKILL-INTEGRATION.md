@@ -11,6 +11,7 @@ How agents and skills work together to deliver powerful development capabilities
 **Together** they create a complete development system.
 
 **Total Resources:**
+
 - **10 Agents** (4 built-in + 6 skill-based)
 - **59 Skills** (specialized capabilities)
 - **49 MCPs** (executable servers)
@@ -60,11 +61,13 @@ Skills (Execution Layer)
 ### Pattern 1: Single Agent + Single Skill
 
 **Structure:**
+
 ```
 General-Purpose Agent + Specialized Skill
 ```
 
 **Example:**
+
 ```
 Task: Implement authentication
 Agent: General-Purpose
@@ -84,11 +87,13 @@ Skill provides:
 ### Pattern 2: Agent + Multiple Skills
 
 **Structure:**
+
 ```
 Agent + Skill A + Skill B + Skill C
 ```
 
 **Example:**
+
 ```
 Task: Build complete feature
 Agent: General-Purpose
@@ -103,6 +108,7 @@ Workflow:
 ### Pattern 3: Agent Coordination + Skills
 
 **Structure:**
+
 ```
 Coordinator Agent
 ├── Worker Agent 1 + Skill A
@@ -111,6 +117,7 @@ Coordinator Agent
 ```
 
 **Example:**
+
 ```
 Task: Security audit
 Coordinator: Multi-Agent Architect
@@ -123,6 +130,7 @@ Workers:
 ### Pattern 4: Framework Orchestration
 
 **Structure:**
+
 ```
 Framework-Orchestrator
 ├── Archon-Manager (strategy)
@@ -132,6 +140,7 @@ Framework-Orchestrator
 ```
 
 **Example:**
+
 ```
 Task: Complete SaaS application
 Orchestrator: Framework-Orchestrator
@@ -149,37 +158,39 @@ Phases:
 
 ### Development Tasks
 
-| Task | Agent | Skills |
-|------|-------|--------|
-| Feature Implementation | General-Purpose | frontend-builder, api-designer |
-| Bug Fix | General-Purpose | - |
-| Refactoring | General-Purpose | performance-optimizer |
-| Testing | General-Purpose | testing-strategist, quality-assurance |
+| Task                   | Agent           | Skills                                |
+| ---------------------- | --------------- | ------------------------------------- |
+| Feature Implementation | General-Purpose | frontend-builder, api-designer        |
+| Bug Fix                | General-Purpose | -                                     |
+| Refactoring            | General-Purpose | performance-optimizer                 |
+| Testing                | General-Purpose | testing-strategist, quality-assurance |
 
 ### Architecture Tasks
 
-| Task | Agent | Skills |
-|------|-------|--------|
-| Security Architecture | Security-Architect | security-engineer |
-| Design System | Design-System Architect | visual-designer, frontend-builder |
-| System Design | Explore + General-Purpose | dark-matter-analyzer |
-| Performance Audit | General-Purpose | performance-optimizer |
+| Task                  | Agent                     | Skills                            |
+| --------------------- | ------------------------- | --------------------------------- |
+| Security Architecture | Security-Architect        | security-engineer                 |
+| Design System         | Design-System Architect   | visual-designer, frontend-builder |
+| System Design         | Explore + General-Purpose | dark-matter-analyzer              |
+| Performance Audit     | General-Purpose           | performance-optimizer             |
 
 ### Management Tasks
 
-| Task | Agent | Skills |
-|------|-------|--------|
-| Project Management | Archon-Manager | All skills as needed |
-| Task Coordination | Archon-Manager | - |
-| Knowledge Management | Archon-Manager | knowledge-base-manager |
-| Strategic Planning | Framework-Orchestrator | product-strategist |
+| Task                 | Agent                  | Skills                 |
+| -------------------- | ---------------------- | ---------------------- |
+| Project Management   | Archon-Manager         | All skills as needed   |
+| Task Coordination    | Archon-Manager         | -                      |
+| Knowledge Management | Archon-Manager         | knowledge-base-manager |
+| Strategic Planning   | Framework-Orchestrator | product-strategist     |
 
 ---
 
 ## Skill Categories & Agent Pairing
 
 ### Product Development Skills
+
 **Best Agent:** General-Purpose or Archon-Manager
+
 - product-strategist
 - mvp-builder
 - go-to-market-planner
@@ -187,14 +198,18 @@ Phases:
 - product-analyst
 
 ### AI-Native Skills
+
 **Best Agent:** Multi-Agent Architect or Archon-Manager
+
 - rag-implementer
 - multi-agent-architect
 - knowledge-base-manager
 - knowledge-graph-builder
 
 ### Technical Skills
+
 **Best Agent:** General-Purpose
+
 - frontend-builder
 - api-designer
 - supabase-developer
@@ -202,28 +217,36 @@ Phases:
 - data-visualizer
 
 ### Infrastructure Skills
+
 **Best Agent:** General-Purpose
+
 - deployment-advisor
 - performance-optimizer
 - release-manager
 - security-engineer
 
 ### UX/Design Skills
+
 **Best Agent:** Design-System Architect or General-Purpose
+
 - ux-designer
 - visual-designer
 - design-system-architect
 - accessibility-engineer
 
 ### Quality/Security Skills
+
 **Best Agent:** Security-Architect or Codex-Review-Workflow
+
 - testing-strategist
 - quality-assurance
 - security-architect
 - security-engineer
 
 ### ADHD Support Skills
+
 **Best Agent:** General-Purpose or Archon-Manager
+
 - task-breakdown-specialist
 - context-preserver
 - focus-session-manager
@@ -235,6 +258,7 @@ Phases:
 ### Example 1: Feature Development
 
 **Setup:**
+
 ```
 Agent: General-Purpose
 Skills: frontend-builder, api-designer, testing-strategist
@@ -242,6 +266,7 @@ Coordinator: Archon-Manager (optional, for complex features)
 ```
 
 **Workflow:**
+
 ```
 1. Archon-Manager: Create project and tasks
 2. Explore Agent: Understand existing code
@@ -254,6 +279,7 @@ Coordinator: Archon-Manager (optional, for complex features)
 ### Example 2: Security Audit
 
 **Setup:**
+
 ```
 Agent: Security-Architect
 Skills: security-engineer, testing-strategist, quality-assurance
@@ -261,6 +287,7 @@ Coordinator: Multi-Agent Architect (for parallel audits)
 ```
 
 **Workflow:**
+
 ```
 1. Explore Agent (Very Thorough): Map security-critical code
 2. Security-Architect + security-engineer: Threat modeling
@@ -275,12 +302,14 @@ Coordinator: Multi-Agent Architect (for parallel audits)
 ### Example 3: Design System Creation
 
 **Setup:**
+
 ```
 Agent: Design-System Architect
 Skills: visual-designer, frontend-builder, figma-developer
 ```
 
 **Workflow:**
+
 ```
 1. Design-System Architect: Architecture and planning
 2. General-Purpose + visual-designer: Design tokens
@@ -295,6 +324,7 @@ Skills: visual-designer, frontend-builder, figma-developer
 ## When to Use What
 
 ### Simple Task (1 agent, 0-1 skills)
+
 ```
 Task: Fix a bug
 Solution: General-Purpose Agent
@@ -302,6 +332,7 @@ Maybe: + testing-strategist (if complex)
 ```
 
 ### Moderate Task (1-2 agents, 1-3 skills)
+
 ```
 Task: Implement feature
 Solution:
@@ -310,6 +341,7 @@ Solution:
 ```
 
 ### Complex Task (2-4 agents, 3-8 skills)
+
 ```
 Task: Security audit
 Solution:
@@ -318,6 +350,7 @@ Solution:
 ```
 
 ### Very Complex Task (4+ agents, 8+ skills)
+
 ```
 Task: Build SaaS application
 Solution:
@@ -330,26 +363,31 @@ Solution:
 ## Best Practices
 
 ### 1. Match Agent to Task Scope
+
 - **Simple → General-Purpose**
 - **Complex → Specialized Agent**
 - **Very Complex → Coordinator Agent**
 
 ### 2. Add Skills for Expertise
+
 - Don't ask agent to do specialized work alone
 - Invoke appropriate skill
 - Example: Security task? Use security-engineer skill
 
 ### 3. Use Archon for Strategy
+
 - Let Archon-Manager handle project strategy
 - Skills handle tactical execution
 - Clear WHAT/WHEN vs HOW separation
 
 ### 4. Coordinate for Complexity
+
 - Use Multi-Agent Architect for parallel work
 - Use Framework-Orchestrator for lifecycle
 - Let coordinators manage other agents
 
 ### 5. Validate with Agents
+
 - Use Codex-Review-Workflow for code quality
 - Use Security-Architect for security
 - Use Quality-Assurance skill for comprehensive checks
@@ -359,21 +397,25 @@ Solution:
 ## Integration Benefits
 
 ### Separation of Concerns
+
 - Agents: Strategy and coordination
 - Skills: Execution and expertise
 - Clear responsibilities
 
 ### Composability
+
 - Mix and match agents
 - Combine any skills
 - Build custom workflows
 
 ### Scalability
+
 - Add more agents for parallelism
 - Add more skills for capabilities
 - Grow system as needed
 
 ### Maintainability
+
 - Update agents independently
 - Update skills independently
 - Clear interfaces
@@ -383,6 +425,7 @@ Solution:
 ## Common Patterns
 
 ### Pattern: Explore → Plan → Execute
+
 ```
 1. Explore Agent → Understand codebase
 2. Archon-Manager → Plan work
@@ -391,6 +434,7 @@ Solution:
 ```
 
 ### Pattern: Parallel Execution
+
 ```
 1. Multi-Agent Architect → Coordinate
 2. Multiple General-Purpose + Skills → Execute in parallel
@@ -398,6 +442,7 @@ Solution:
 ```
 
 ### Pattern: Iterative Improvement
+
 ```
 1. General-Purpose + Skill → Initial implementation
 2. Codex-Review-Workflow → Validate
@@ -406,6 +451,7 @@ Solution:
 ```
 
 ### Pattern: Lifecycle Management
+
 ```
 1. Framework-Orchestrator → Determine phases
 2. For each phase:
@@ -419,16 +465,19 @@ Solution:
 ## Resources
 
 ### Agent Documentation
+
 - Agent Types: `.claude/agents/agent-types.md`
 - Skill-Based Agents: `.claude/agents/skill-agents.md`
 - Agent Workflows: `.claude/agents/agent-workflows.md`
 
 ### Skill Documentation
+
 - Skill Registry: `META/skill-registry.json`
 - Individual Skills: `/SKILLS/*/SKILL.md`
 - CLAUDE.md: Complete skill list
 
 ### Integration Documentation
+
 - This guide: `DOCS/AGENT-SKILL-INTEGRATION.md`
 - Agents Guide: `DOCS/AGENTS-GUIDE.md`
 - System Overview: `DOCS/SYSTEM-OVERVIEW.md`

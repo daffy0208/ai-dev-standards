@@ -45,13 +45,15 @@ export function useUser() {
 
   useEffect(() => {
     // Get initial user
-    auth.getUser().then((user) => {
+    auth.getUser().then(user => {
       setUser(user)
       setLoading(false)
     })
 
     // Listen for auth changes
-    const { data: { subscription } } = auth.onAuthStateChange((user) => {
+    const {
+      data: { subscription }
+    } = auth.onAuthStateChange(user => {
       setUser(user)
       setLoading(false)
     })
@@ -73,13 +75,15 @@ export function useSession() {
 
   useEffect(() => {
     // Get initial session
-    auth.getSession().then((session) => {
+    auth.getSession().then(session => {
       setSession(session)
       setLoading(false)
     })
 
     // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    const {
+      data: { subscription }
+    } = supabase.auth.onAuthStateChange((event, session) => {
       setSession(session)
       setLoading(false)
     })
@@ -100,17 +104,20 @@ export function useAuth() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  const signUp = useCallback(async (email: string, password: string, metadata?: Record<string, any>) => {
-    setIsLoading(true)
-    setError(null)
-    try {
-      await auth.signUp(email, password, metadata)
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Sign up failed')
-    } finally {
-      setIsLoading(false)
-    }
-  }, [])
+  const signUp = useCallback(
+    async (email: string, password: string, metadata?: Record<string, any>) => {
+      setIsLoading(true)
+      setError(null)
+      try {
+        await auth.signUp(email, password, metadata)
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Sign up failed')
+      } finally {
+        setIsLoading(false)
+      }
+    },
+    []
+  )
 
   const signIn = useCallback(async (email: string, password: string) => {
     setIsLoading(true)
@@ -277,8 +284,8 @@ export function usePaginatedQuery<T extends keyof Database['public']['Tables']>(
         setHasMore(false)
       }
 
-      setData((prev) => [...prev, ...(newData as Row[])])
-      setPage((p) => p + 1)
+      setData(prev => [...prev, ...(newData as Row[])])
+      setPage(p => p + 1)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Query failed')
     } finally {
@@ -326,7 +333,7 @@ export function UserList() {
 
   return (
     <ul>
-      {data.map((user) => (
+      {data.map(user => (
         <li key={user.id}>{user.email}</li>
       ))}
     </ul>
@@ -340,14 +347,14 @@ export function RealtimeUsers() {
   useQuery('users')
 
   // Subscribe to changes
-  useSubscription('users', (payload) => {
+  useSubscription('users', payload => {
     console.log('Change received!', payload)
     // Update local state based on payload
   })
 
   return (
     <ul>
-      {users.map((user) => (
+      {users.map(user => (
         <li key={user.id}>{user.email}</li>
       ))}
     </ul>
@@ -369,14 +376,14 @@ export function SignInForm() {
       <input
         type="email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={e => setEmail(e.target.value)}
         placeholder="Email"
         required
       />
       <input
         type="password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={e => setPassword(e.target.value)}
         placeholder="Password"
         required
       />

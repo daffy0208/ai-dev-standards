@@ -9,11 +9,13 @@ Verify vector-database-mcp MCP server integrates correctly with rag-implementer 
 ### Setup (Using Chroma for local testing)
 
 1. Start Chroma server:
+
 ```bash
 docker run -p 8000:8000 chromadb/chroma
 ```
 
 2. Start vector-database-mcp server:
+
 ```bash
 cd MCP-SERVERS/vector-database-mcp
 npm start
@@ -26,6 +28,7 @@ npm start
 **Tool**: `connect`
 
 **Input**:
+
 ```json
 {
   "provider": "chroma",
@@ -35,6 +38,7 @@ npm start
 ```
 
 **Expected Output**:
+
 ```
 ✅ Connected to chroma (collection: test-rag-docs)
 ```
@@ -48,6 +52,7 @@ npm start
 **Tool**: `insert_vectors`
 
 **Input** (Sample document vectors):
+
 ```json
 {
   "vectors": [
@@ -83,6 +88,7 @@ npm start
 ```
 
 **Expected Output**:
+
 ```
 ✅ Inserted 3 vectors. Inserted into collection: test-rag-docs
 ```
@@ -96,6 +102,7 @@ npm start
 **Tool**: `search_vectors`
 
 **Input** (User query: "How do RAG systems work?"):
+
 ```json
 {
   "query": [0.12, 0.22, 0.32, 0.42, 0.52],
@@ -107,6 +114,7 @@ npm start
 ```
 
 **Expected Output**:
+
 ```json
 [
   {
@@ -141,6 +149,7 @@ npm start
 **Input**: `{}`
 
 **Expected Output**:
+
 ```json
 ["test-rag-docs"]
 ```
@@ -154,6 +163,7 @@ npm start
 **Tool**: `delete_vectors`
 
 **Input**:
+
 ```json
 {
   "ids": ["doc-1", "doc-2", "doc-3"]
@@ -161,6 +171,7 @@ npm start
 ```
 
 **Expected Output**:
+
 ```
 ✅ Deleted 3 vectors
 ```
@@ -194,13 +205,13 @@ rag-implementer workflow → vector-database-mcp tools
 
 ## Test Results Summary
 
-| Test Step | Status | Notes |
-|-----------|--------|-------|
+| Test Step         | Status  | Notes                |
+| ----------------- | ------- | -------------------- |
 | Connect to Chroma | ✅ PASS | All providers tested |
-| Insert vectors | ✅ PASS | Metadata preserved |
-| Search vectors | ✅ PASS | topK + filters work |
-| List collections | ✅ PASS | Returns string[] |
-| Delete vectors | ✅ PASS | Cleanup successful |
+| Insert vectors    | ✅ PASS | Metadata preserved   |
+| Search vectors    | ✅ PASS | topK + filters work  |
+| List collections  | ✅ PASS | Returns string[]     |
+| Delete vectors    | ✅ PASS | Cleanup successful   |
 
 ## Validation
 
@@ -217,6 +228,7 @@ rag-implementer workflow → vector-database-mcp tools
 **Status**: Pending - Requires user to test with real vector database instance
 
 **Next Steps**:
+
 1. User runs MCP with actual Pinecone/Weaviate/Chroma instance
 2. User integrates with rag-implementer skill workflow
 3. User validates semantic search quality

@@ -48,9 +48,7 @@ export const Dropdown = ({ children, className }: DropdownProps) => {
 
   return (
     <DropdownContext.Provider value={{ isOpen, setIsOpen, triggerRef }}>
-      <div className={cn('relative inline-block', className)}>
-        {children}
-      </div>
+      <div className={cn('relative inline-block', className)}>{children}</div>
     </DropdownContext.Provider>
   )
 }
@@ -83,7 +81,7 @@ export const DropdownTrigger = ({ children, className }: DropdownTriggerProps) =
     onClick: handleClick,
     'aria-haspopup': 'true',
     'aria-expanded': isOpen,
-    className: cn(children.props.className, className),
+    className: cn(children.props.className, className)
   })
 }
 
@@ -103,7 +101,7 @@ export const DropdownMenu = ({
   children,
   align = 'start',
   side = 'bottom',
-  className,
+  className
 }: DropdownMenuProps) => {
   const context = React.useContext(DropdownContext)
   const menuRef = React.useRef<HTMLDivElement>(null)
@@ -235,7 +233,7 @@ export const DropdownItem = ({
   onSelect,
   disabled,
   destructive,
-  className,
+  className
 }: DropdownItemProps) => {
   const context = React.useContext(DropdownContext)
 
@@ -309,12 +307,7 @@ export interface DropdownLabelProps {
 
 export const DropdownLabel = ({ children, className }: DropdownLabelProps) => {
   return (
-    <div
-      className={cn(
-        'px-2 py-1.5 text-xs font-semibold text-gray-500',
-        className
-      )}
-    >
+    <div className={cn('px-2 py-1.5 text-xs font-semibold text-gray-500', className)}>
       {children}
     </div>
   )
@@ -340,9 +333,7 @@ export const DropdownItemWithIcon = ({
     <DropdownItem {...props} className={cn('gap-2', props.className)}>
       {icon && <span className="w-4 h-4">{icon}</span>}
       <span className="flex-1">{children}</span>
-      {shortcut && (
-        <span className="ml-auto text-xs text-gray-400">{shortcut}</span>
-      )}
+      {shortcut && <span className="ml-auto text-xs text-gray-400">{shortcut}</span>}
     </DropdownItem>
   )
 }

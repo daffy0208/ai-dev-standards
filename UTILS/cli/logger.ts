@@ -98,9 +98,7 @@ export class Logger {
     }
 
     // Level with emoji
-    const levelStr = this.config.emoji
-      ? `${style.emoji} ${style.label}`
-      : style.label
+    const levelStr = this.config.emoji ? `${style.emoji} ${style.label}` : style.label
     parts.push(this.colorize(style.color, levelStr))
 
     // Indentation
@@ -111,9 +109,7 @@ export class Logger {
 
     // Data (if provided)
     if (data !== undefined) {
-      const dataStr = typeof data === 'object'
-        ? '\n' + JSON.stringify(data, null, 2)
-        : String(data)
+      const dataStr = typeof data === 'object' ? '\n' + JSON.stringify(data, null, 2) : String(data)
       parts.push(this.colorize(COLORS.gray, dataStr))
     }
 

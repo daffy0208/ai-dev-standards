@@ -128,9 +128,7 @@ export class ApiCallerTool {
 
         case 'basic':
           if (auth.username && auth.password) {
-            const credentials = Buffer.from(
-              `${auth.username}:${auth.password}`
-            ).toString('base64')
+            const credentials = Buffer.from(`${auth.username}:${auth.password}`).toString('base64')
             finalHeaders['Authorization'] = `Basic ${credentials}`
           }
           break
@@ -143,10 +141,7 @@ export class ApiCallerTool {
   /**
    * Execute request with retries
    */
-  private async executeWithRetry<T>(
-    fn: () => Promise<T>,
-    retry?: RetryConfig
-  ): Promise<T> {
+  private async executeWithRetry<T>(fn: () => Promise<T>, retry?: RetryConfig): Promise<T> {
     const config = { ...this.defaultRetry, ...retry }
     let lastError: Error | null = null
 
@@ -201,10 +196,7 @@ export class ApiCallerTool {
       const headers = this.buildHeaders(options.headers, options.auth)
 
       const controller = new AbortController()
-      const timeout = setTimeout(
-        () => controller.abort(),
-        options.timeout || this.defaultTimeout
-      )
+      const timeout = setTimeout(() => controller.abort(), options.timeout || this.defaultTimeout)
 
       try {
         const response = await fetch(url, {
@@ -217,9 +209,7 @@ export class ApiCallerTool {
         clearTimeout(timeout)
 
         if (!response.ok) {
-          throw new Error(
-            `HTTP ${response.status}: ${response.statusText}`
-          )
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`)
         }
 
         const data = await this.parseResponse(response, options.responseType)
@@ -331,9 +321,8 @@ export class ApiCallerTool {
     const formData = new FormData()
 
     // Add file
-    const blob = file.data instanceof Buffer
-      ? new Blob([file.data], { type: file.type })
-      : file.data
+    const blob =
+      file.data instanceof Buffer ? new Blob([file.data], { type: file.type }) : file.data
 
     formData.append('file', blob, file.name)
 
@@ -349,10 +338,7 @@ export class ApiCallerTool {
     delete headers['Content-Type'] // Let browser set boundary
 
     const controller = new AbortController()
-    const timeout = setTimeout(
-      () => controller.abort(),
-      options?.timeout || this.defaultTimeout
-    )
+    const timeout = setTimeout(() => controller.abort(), options?.timeout || this.defaultTimeout)
 
     try {
       const response = await fetch(url, {
@@ -387,12 +373,8 @@ export class ApiCallerTool {
   /**
    * Make multiple parallel requests
    */
-  async batchRequest<T = any>(
-    requests: RequestOptions[]
-  ): Promise<ApiResponse<T>[]> {
-    return Promise.all(
-      requests.map(request => this.request<T>(request))
-    )
+  async batchRequest<T = any>(requests: RequestOptions[]): Promise<ApiResponse<T>[]> {
+    return Promise.all(requests.map(request => this.request<T>(request)))
   }
 }
 
@@ -401,7 +383,8 @@ export class ApiCallerTool {
  */
 export const apiCallerToolDefinition = {
   name: 'api_caller',
-  description: 'Make HTTP requests to APIs. Supports GET, POST, PUT, PATCH, DELETE methods with authentication, headers, and request bodies.',
+  description:
+    'Make HTTP requests to APIs. Supports GET, POST, PUT, PATCH, DELETE methods with authentication, headers, and request bodies.',
   parameters: {
     type: 'object',
     properties: {
@@ -542,7 +525,10 @@ export async function examples() {
       method: 'GET'
     }
   ])
-  console.log('Batch results:', results.map(r => r.data))
+  console.log(
+    'Batch results:',
+    results.map(r => r.data)
+  )
 
   // Example 8: Upload file
   const fileBuffer = Buffer.from('Hello, World!')

@@ -21,21 +21,25 @@ claude-code --skill animation-designer
 ## Common Tasks
 
 ### Add Page Transition
+
 ```
 "Add a smooth page transition using Framer Motion"
 ```
 
 ### Create Loading Animation
+
 ```
 "Create a skeleton loader animation for this card component"
 ```
 
 ### Build Scroll Effect
+
 ```
 "Add a parallax scroll effect to the hero section"
 ```
 
 ### Animate Modal
+
 ```
 "Animate this modal to fade in with a scale effect"
 ```

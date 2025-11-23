@@ -49,84 +49,84 @@
  * ```
  */
 
-import * as React from 'react';
-import { cn } from './utils';
+import * as React from 'react'
+import { cn } from './utils'
 
-type AccordionType = 'single' | 'multiple';
+type AccordionType = 'single' | 'multiple'
 
 export interface AccordionProps {
   /**
    * Accordion content (AccordionItem components)
    */
-  children: React.ReactNode;
+  children: React.ReactNode
 
   /**
    * Type of accordion
    * - single: Only one item can be open at a time (default)
    * - multiple: Multiple items can be open
    */
-  type?: AccordionType;
+  type?: AccordionType
 
   /**
    * Controlled value (single mode: string, multiple mode: string[])
    */
-  value?: string | string[];
+  value?: string | string[]
 
   /**
    * Default value for uncontrolled mode
    */
-  defaultValue?: string | string[];
+  defaultValue?: string | string[]
 
   /**
    * Callback when value changes
    */
-  onValueChange?: (value: string | string[]) => void;
+  onValueChange?: (value: string | string[]) => void
 
   /**
    * Allow collapsing all items (only for single mode)
    */
-  collapsible?: boolean;
+  collapsible?: boolean
 
   /**
    * Additional CSS classes
    */
-  className?: string;
+  className?: string
 }
 
 export interface AccordionItemProps {
   /**
    * Unique value for this item
    */
-  value: string;
+  value: string
 
   /**
    * Item title/header
    */
-  title: React.ReactNode;
+  title: React.ReactNode
 
   /**
    * Item content
    */
-  children: React.ReactNode;
+  children: React.ReactNode
 
   /**
    * Whether the item is disabled
    */
-  disabled?: boolean;
+  disabled?: boolean
 
   /**
    * Additional CSS classes for the item
    */
-  className?: string;
+  className?: string
 }
 
 interface AccordionContextType {
-  type: AccordionType;
-  value: string | string[];
-  onItemClick: (value: string) => void;
+  type: AccordionType
+  value: string | string[]
+  onItemClick: (value: string) => void
 }
 
-const AccordionContext = React.createContext<AccordionContextType | null>(null);
+const AccordionContext = React.createContext<AccordionContextType | null>(null)
 
 /**
  * Accordion with collapsible sections
@@ -140,139 +140,129 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       defaultValue,
       onValueChange,
       collapsible = false,
-      className,
+      className
     },
     ref
   ) => {
     // Initialize internal state
     const getInitialValue = () => {
-      if (controlledValue !== undefined) return controlledValue;
-      if (defaultValue !== undefined) return defaultValue;
-      return type === 'multiple' ? [] : '';
-    };
+      if (controlledValue !== undefined) return controlledValue
+      if (defaultValue !== undefined) return defaultValue
+      return type === 'multiple' ? [] : ''
+    }
 
-    const [internalValue, setInternalValue] = React.useState<string | string[]>(
-      getInitialValue
-    );
+    const [internalValue, setInternalValue] = React.useState<string | string[]>(getInitialValue)
 
     // Use controlled or internal state
-    const value = controlledValue !== undefined ? controlledValue : internalValue;
+    const value = controlledValue !== undefined ? controlledValue : internalValue
     const setValue = (newValue: string | string[]) => {
       if (controlledValue === undefined) {
-        setInternalValue(newValue);
+        setInternalValue(newValue)
       }
-      onValueChange?.(newValue);
-    };
+      onValueChange?.(newValue)
+    }
 
     // Handle item click
     const onItemClick = (itemValue: string) => {
       if (type === 'single') {
         // Single mode: toggle or set new value
-        const currentValue = value as string;
+        const currentValue = value as string
         if (currentValue === itemValue && collapsible) {
-          setValue('');
+          setValue('')
         } else {
-          setValue(itemValue);
+          setValue(itemValue)
         }
       } else {
         // Multiple mode: toggle item in array
-        const currentValues = value as string[];
+        const currentValues = value as string[]
         if (currentValues.includes(itemValue)) {
-          setValue(currentValues.filter((v) => v !== itemValue));
+          setValue(currentValues.filter(v => v !== itemValue))
         } else {
-          setValue([...currentValues, itemValue]);
+          setValue([...currentValues, itemValue])
         }
       }
-    };
+    }
 
     return (
       <AccordionContext.Provider value={{ type, value, onItemClick }}>
-        <div
-          ref={ref}
-          className={cn('space-y-2', className)}
-          data-orientation="vertical"
-        >
+        <div ref={ref} className={cn('space-y-2', className)} data-orientation="vertical">
           {children}
         </div>
       </AccordionContext.Provider>
-    );
+    )
   }
-);
+)
 
-Accordion.displayName = 'Accordion';
+Accordion.displayName = 'Accordion'
 
 /**
  * Accordion item
  */
 export const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps>(
   ({ value, title, children, disabled = false, className }, ref) => {
-    const context = React.useContext(AccordionContext);
-    const buttonRef = React.useRef<HTMLButtonElement>(null);
-    const panelRef = React.useRef<HTMLDivElement>(null);
-    const panelId = React.useId();
-    const buttonId = React.useId();
+    const context = React.useContext(AccordionContext)
+    const buttonRef = React.useRef<HTMLButtonElement>(null)
+    const panelRef = React.useRef<HTMLDivElement>(null)
+    const panelId = React.useId()
+    const buttonId = React.useId()
 
     if (!context) {
-      throw new Error('AccordionItem must be used within Accordion');
+      throw new Error('AccordionItem must be used within Accordion')
     }
 
-    const { type, value: accordionValue, onItemClick } = context;
+    const { type, value: accordionValue, onItemClick } = context
 
     // Check if this item is open
     const isOpen =
-      type === 'single'
-        ? accordionValue === value
-        : (accordionValue as string[]).includes(value);
+      type === 'single' ? accordionValue === value : (accordionValue as string[]).includes(value)
 
     // Handle click
     const handleClick = () => {
       if (!disabled) {
-        onItemClick(value);
+        onItemClick(value)
       }
-    };
+    }
 
     // Handle keyboard navigation
     const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-      const accordion = buttonRef.current?.closest('[data-orientation="vertical"]');
-      if (!accordion) return;
+      const accordion = buttonRef.current?.closest('[data-orientation="vertical"]')
+      if (!accordion) return
 
       const buttons = Array.from(
         accordion.querySelectorAll<HTMLButtonElement>(
           'button[data-accordion-trigger]:not([disabled])'
         )
-      );
-      const currentIndex = buttons.indexOf(buttonRef.current!);
+      )
+      const currentIndex = buttons.indexOf(buttonRef.current!)
 
       switch (event.key) {
-        case 'ArrowDown':
-          event.preventDefault();
-          const nextIndex = (currentIndex + 1) % buttons.length;
-          buttons[nextIndex]?.focus();
-          break;
-        case 'ArrowUp':
-          event.preventDefault();
-          const prevIndex = (currentIndex - 1 + buttons.length) % buttons.length;
-          buttons[prevIndex]?.focus();
-          break;
-        case 'Home':
-          event.preventDefault();
-          buttons[0]?.focus();
-          break;
-        case 'End':
-          event.preventDefault();
-          buttons[buttons.length - 1]?.focus();
-          break;
+        case 'ArrowDown': {
+          event.preventDefault()
+          const nextIndex = (currentIndex + 1) % buttons.length
+          buttons[nextIndex]?.focus()
+          break
+        }
+        case 'ArrowUp': {
+          event.preventDefault()
+          const prevIndex = (currentIndex - 1 + buttons.length) % buttons.length
+          buttons[prevIndex]?.focus()
+          break
+        }
+        case 'Home': {
+          event.preventDefault()
+          buttons[0]?.focus()
+          break
+        }
+        case 'End': {
+          event.preventDefault()
+          buttons[buttons.length - 1]?.focus()
+          break
+        }
       }
-    };
+    }
 
     return (
-      <div
-        ref={ref}
-        className={cn(
-          'border border-gray-200 rounded-lg overflow-hidden',
-          className
-        )}
-      >
+      <div ref={ref} className={cn('border border-gray-200 rounded-lg overflow-hidden', className)}>
         <h3>
           <button
             ref={buttonRef}
@@ -294,10 +284,7 @@ export const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps
           >
             <span>{title}</span>
             <svg
-              className={cn(
-                'h-4 w-4 transition-transform duration-200',
-                isOpen && 'rotate-180'
-              )}
+              className={cn('h-4 w-4 transition-transform duration-200', isOpen && 'rotate-180')}
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -320,9 +307,7 @@ export const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps
           hidden={!isOpen}
           className={cn(
             'overflow-hidden transition-all duration-200',
-            isOpen
-              ? 'animate-in slide-in-from-top-2'
-              : 'animate-out slide-out-to-top-2'
+            isOpen ? 'animate-in slide-in-from-top-2' : 'animate-out slide-out-to-top-2'
           )}
         >
           {isOpen && (
@@ -332,8 +317,8 @@ export const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps
           )}
         </div>
       </div>
-    );
+    )
   }
-);
+)
 
-AccordionItem.displayName = 'AccordionItem';
+AccordionItem.displayName = 'AccordionItem'

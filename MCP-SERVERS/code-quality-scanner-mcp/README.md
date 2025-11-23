@@ -31,9 +31,9 @@ npm install && npm run build
 ## Usage Example
 
 ```javascript
-await scanner.configure({ projectPath: './src', threshold: 'medium' });
-const metrics = await scanner.scan_complexity();
-console.log(`Maintainability Index: ${metrics.maintainability}/100`);
+await scanner.configure({ projectPath: './src', threshold: 'medium' })
+const metrics = await scanner.scan_complexity()
+console.log(`Maintainability Index: ${metrics.maintainability}/100`)
 ```
 
 ## Metrics

@@ -16,17 +16,19 @@ This guide walks you through connecting the **Codex CLI** to the **ai-dev-standa
 
 ## Prerequisites
 
-1. Install the Codex CLI  
+1. Install the Codex CLI
+
    ```bash
    npm install -g @anthropics/codex-cli
    ```
 
-2. Configure your API key  
+2. Configure your API key
+
    ```bash
    export CODEX_API_KEY="your-api-key"
    ```
 
-3. Build the Brain MCP  
+3. Build the Brain MCP
    ```bash
    cd MCP-SERVERS/brain-mcp
    npm install
@@ -41,11 +43,13 @@ This guide walks you through connecting the **Codex CLI** to the **ai-dev-standa
 The Codex CLI reads MCP settings from `~/.codex/mcp-servers.json`. You can either run the setup script (recommended) or copy the configuration manually.
 
 ### Option A · Run the Setup Script
+
 ```bash
 ./setup-codex-cli.sh
 ```
 
 ### Option B · Configure Manually
+
 ```bash
 mkdir -p ~/.codex
 cat > ~/.codex/mcp-servers.json <<'JSON'
@@ -79,6 +83,7 @@ codex mcp list
 ```
 
 Test a brain query:
+
 ```bash
 codex exec "Use brain_search with keyword 'rag'"
 ```
@@ -108,17 +113,18 @@ Once connected, Codex can access the same 12 tools that power the brain-first wo
 
 ## Working the Brain-First Way in Codex
 
-1. **Ask the Brain First**  
+1. **Ask the Brain First**
    ```bash
    codex exec "Use brain_search with keyword 'authentication'"
    ```
-2. **Inspect Dependencies**  
+2. **Inspect Dependencies**
    ```bash
    codex exec "Use graph_get_dependencies for skill 'security-engineer'"
    ```
 3. **Implement with the Recommended Skills** – switch back to your editor once you understand what to build.
 
 Use interactive mode if you prefer a conversation loop:
+
 ```bash
 codex chat
 # or
@@ -140,21 +146,21 @@ codex exec "Use brain_select_skills with taskDescription 'build analytics dashbo
 
 ## Troubleshooting
 
-| Issue | Fix |
-|-------|-----|
-| `codex: command not found` | Reinstall: `npm install -g @anthropics/codex-cli` |
-| Authentication error | Ensure `CODEX_API_KEY` is exported |
-| `brain-mcp` not listed | Re-run `./setup-codex-cli.sh` or re-create `~/.codex/mcp-servers.json` |
-| Permission denied when running script | `chmod +x setup-codex-cli.sh` |
-| Timeouts on complex queries | Increase `timeout` in the MCP config to `60000` |
+| Issue                                 | Fix                                                                    |
+| ------------------------------------- | ---------------------------------------------------------------------- |
+| `codex: command not found`            | Reinstall: `npm install -g @anthropics/codex-cli`                      |
+| Authentication error                  | Ensure `CODEX_API_KEY` is exported                                     |
+| `brain-mcp` not listed                | Re-run `./setup-codex-cli.sh` or re-create `~/.codex/mcp-servers.json` |
+| Permission denied when running script | `chmod +x setup-codex-cli.sh`                                          |
+| Timeouts on complex queries           | Increase `timeout` in the MCP config to `60000`                        |
 
 ---
 
 ## Next Steps
 
-1. Read `.codex/QUICK-START.md` for a 5-minute walkthrough  
-2. Compare workflows in `.codex/CLAUDE-VS-CODEX.md`  
-3. Run `codex exec "Use brain_status"` to confirm everything works  
+1. Read `.codex/QUICK-START.md` for a 5-minute walkthrough
+2. Compare workflows in `.codex/CLAUDE-VS-CODEX.md`
+3. Run `codex exec "Use brain_status"` to confirm everything works
 4. Explore skills via `META/skill-registry.json` and invoke them with Codex
 
 ---
@@ -163,21 +169,21 @@ codex exec "Use brain_select_skills with taskDescription 'build analytics dashbo
 
 Mirror the Claude Code flow without leaving the terminal:
 
-1. **Discover**  
+1. **Discover**
    ```bash
    codex exec "Use brain_search with keyword 'authentication'"
    ```
-2. **Check dependencies**  
+2. **Check dependencies**
    ```bash
    codex exec "Use graph_get_dependencies for skill 'security-engineer'"
    ```
 3. **Implement**  
    Follow the skill guidance in your editor.
-4. **Automated review**  
+4. **Automated review**
    ```bash
    ./scripts/ci/codex-review.sh src/auth/index.ts
    ```
-5. **Verify fixes**  
+5. **Verify fixes**
    ```bash
    codex exec "Review the updated src/auth/index.ts. Confirm the previous issues are resolved."
    ```

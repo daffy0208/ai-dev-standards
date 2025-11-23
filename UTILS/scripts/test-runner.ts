@@ -135,7 +135,7 @@ export class TestRunner {
       ci: options.ci ?? this.isCI(),
       verbose: options.verbose ?? false,
       updateSnapshots: options.updateSnapshots ?? false,
-      maxWorkers: options.maxWorkers,
+      maxWorkers: options.maxWorkers
     }
   }
 
@@ -175,7 +175,7 @@ export class TestRunner {
         failedTests: 0,
         skippedTests: 0,
         duration: Date.now() - startTime,
-        failures: [{ test: 'Test execution', error: errorMessage }],
+        failures: [{ test: 'Test execution', error: errorMessage }]
       }
     }
   }
@@ -233,22 +233,22 @@ export class TestRunner {
     return new Promise((resolve, reject) => {
       const child = spawn(command, [], {
         shell: true,
-        stdio: this.options.verbose ? 'inherit' : 'pipe',
+        stdio: this.options.verbose ? 'inherit' : 'pipe'
       })
 
       let output = ''
 
       if (!this.options.verbose) {
-        child.stdout?.on('data', (data) => {
+        child.stdout?.on('data', data => {
           output += data.toString()
         })
 
-        child.stderr?.on('data', (data) => {
+        child.stderr?.on('data', data => {
           output += data.toString()
         })
       }
 
-      child.on('close', (code) => {
+      child.on('close', code => {
         if (code === 0 || output) {
           resolve(output)
         } else {
@@ -271,7 +271,7 @@ export class TestRunner {
       failedTests: 0,
       skippedTests: 0,
       duration,
-      failures: [],
+      failures: []
     }
 
     // Parse based on framework
@@ -306,7 +306,7 @@ export class TestRunner {
         lines: this.extractNumber(output, /Lines\s+:\s+([\d.]+)%/) || 0,
         statements: this.extractNumber(output, /Statements\s+:\s+([\d.]+)%/) || 0,
         functions: this.extractNumber(output, /Functions\s+:\s+([\d.]+)%/) || 0,
-        branches: this.extractNumber(output, /Branches\s+:\s+([\d.]+)%/) || 0,
+        branches: this.extractNumber(output, /Branches\s+:\s+([\d.]+)%/) || 0
       }
     }
 
@@ -330,7 +330,7 @@ export class TestRunner {
       ...result,
       timestamp: new Date().toISOString(),
       framework: this.options.framework,
-      type: this.options.type,
+      type: this.options.type
     }
 
     writeFileSync(
@@ -457,7 +457,7 @@ export async function runTests(): Promise<void> {
     type: (process.env.TEST_TYPE as TestType) || 'all',
     coverage: process.env.TEST_COVERAGE === 'true',
     watch: process.env.TEST_WATCH === 'true',
-    ci: process.env.CI === 'true',
+    ci: process.env.CI === 'true'
   })
 
   const result = await runner.run()
@@ -469,7 +469,7 @@ export async function runTests(): Promise<void> {
 
 // Run if executed directly
 if (require.main === module) {
-  runTests().catch((error) => {
+  runTests().catch(error => {
     console.error('Test runner failed:', error)
     process.exit(1)
   })

@@ -21,9 +21,8 @@ import { fileURLToPath } from 'url'
 
 declare const __filename: string | undefined
 
-const resolvedFilename = typeof __filename === 'string'
-  ? __filename
-  : fileURLToPath(import.meta.url)
+const resolvedFilename =
+  typeof __filename === 'string' ? __filename : fileURLToPath(import.meta.url)
 const repoRoot = process.env.AI_DEV_STANDARDS_ROOT
   ? resolve(process.env.AI_DEV_STANDARDS_ROOT)
   : process.cwd()
@@ -227,14 +226,14 @@ function extractSkillRelationships(
       return
     }
     ensureSkill(skill)
-    mcps.forEach((mcp) => {
+    mcps.forEach(mcp => {
       if (!skillMappings[skill].required_mcps.includes(mcp)) {
         skillMappings[skill].required_mcps.push(mcp)
       }
     })
   })
 
-  Object.values(skillMappings).forEach((mapping) => {
+  Object.values(skillMappings).forEach(mapping => {
     mapping.required_mcps.sort()
     mapping.required_tools.sort()
     mapping.required_components.sort()
@@ -242,7 +241,7 @@ function extractSkillRelationships(
     mapping.supporting_scripts.sort()
   })
 
-  Object.keys(skillMappings).forEach((skill) => {
+  Object.keys(skillMappings).forEach(skill => {
     if (!definedSkills.has(skill)) {
       delete skillMappings[skill]
     }
@@ -266,15 +265,12 @@ function extractMcpRelationships(
     mcpMappings[mcp.id] = {
       required_tools: [],
       required_components: [],
-      required_integrations: [],
+      required_integrations: []
     }
 
     // Find tools that support this MCP
     toolRegistry.tools?.forEach((tool: any) => {
-      if (
-        tool.supports_mcps?.includes(mcp.id) ||
-        tool.supports_mcps?.includes('all')
-      ) {
+      if (tool.supports_mcps?.includes(mcp.id) || tool.supports_mcps?.includes('all')) {
         mcpMappings[mcp.id].required_tools.push(tool.id)
       }
     })
@@ -303,11 +299,18 @@ function extractMcpRelationships(
 function getFileDependencies(): Record<string, FileDependency> {
   return {
     'CLI/commands/sync.js': {
-      depends_on_registries: ['skill-registry', 'mcp-registry', 'tool-registry', 'component-registry', 'integration-registry'],
+      depends_on_registries: [
+        'skill-registry',
+        'mcp-registry',
+        'tool-registry',
+        'component-registry',
+        'integration-registry'
+      ],
       update_type: 'code',
       sections: ['checkForUpdates', 'applyUpdate', 'initializeSync', 'showSyncSummary'],
       priority: 'critical',
-      description: 'Sync command needs updating when new resource types are added or registry structures change'
+      description:
+        'Sync command needs updating when new resource types are added or registry structures change'
     },
     'CLI/utils/github-fetch.js': {
       depends_on_registries: ['all'],
@@ -433,52 +436,50 @@ function calculateStatistics(
   const scriptUsage: Record<string, number> = {}
 
   // Count tool usage
-  Object.values(skillMappings).forEach((mapping) => {
-    mapping.required_tools.forEach((tool) => {
+  Object.values(skillMappings).forEach(mapping => {
+    mapping.required_tools.forEach(tool => {
       toolUsage[tool] = (toolUsage[tool] || 0) + 1
     })
   })
-  Object.values(mcpMappings).forEach((mapping) => {
-    mapping.required_tools.forEach((tool) => {
+  Object.values(mcpMappings).forEach(mapping => {
+    mapping.required_tools.forEach(tool => {
       toolUsage[tool] = (toolUsage[tool] || 0) + 1
     })
   })
 
   // Count component usage
-  Object.values(skillMappings).forEach((mapping) => {
-    mapping.required_components.forEach((component) => {
+  Object.values(skillMappings).forEach(mapping => {
+    mapping.required_components.forEach(component => {
       componentUsage[component] = (componentUsage[component] || 0) + 1
     })
   })
-  Object.values(mcpMappings).forEach((mapping) => {
-    mapping.required_components.forEach((component) => {
+  Object.values(mcpMappings).forEach(mapping => {
+    mapping.required_components.forEach(component => {
       componentUsage[component] = (componentUsage[component] || 0) + 1
     })
   })
 
   // Count integration usage
-  Object.values(skillMappings).forEach((mapping) => {
-    mapping.required_integrations.forEach((integration) => {
+  Object.values(skillMappings).forEach(mapping => {
+    mapping.required_integrations.forEach(integration => {
       integrationUsage[integration] = (integrationUsage[integration] || 0) + 1
     })
   })
-  Object.values(mcpMappings).forEach((mapping) => {
-    mapping.required_integrations.forEach((integration) => {
+  Object.values(mcpMappings).forEach(mapping => {
+    mapping.required_integrations.forEach(integration => {
       integrationUsage[integration] = (integrationUsage[integration] || 0) + 1
     })
   })
 
   // Count script usage
-  Object.values(skillMappings).forEach((mapping) => {
-    mapping.supporting_scripts.forEach((script) => {
+  Object.values(skillMappings).forEach(mapping => {
+    mapping.supporting_scripts.forEach(script => {
       scriptUsage[script] = (scriptUsage[script] || 0) + 1
     })
   })
 
   const totalSkills = Object.keys(skillMappings).length
-  const skillsWithMcps = Object.values(skillMappings).filter(
-    (m) => m.required_mcps.length > 0
-  ).length
+  const skillsWithMcps = Object.values(skillMappings).filter(m => m.required_mcps.length > 0).length
 
   return {
     total_skills: totalSkills,
@@ -545,7 +546,12 @@ async function regenerateRelationships(options: { checkOnly?: boolean } = {}) {
 
   console.log('Calculating statistics...')
 
-  const statistics = calculateStatistics(skillMappings, mcpMappings, skillRegistry, fileDependencies)
+  const statistics = calculateStatistics(
+    skillMappings,
+    mcpMappings,
+    skillRegistry,
+    fileDependencies
+  )
 
   const existingSkills = existingMapping?.skills || {}
 
@@ -581,8 +587,7 @@ async function regenerateRelationships(options: { checkOnly?: boolean } = {}) {
     usage_notes: {
       purpose:
         'This is the single source of truth for resource dependencies. Skills and MCPs reference this mapping to discover required resources.',
-      validation:
-        'CI validates that all referenced resources exist in their respective registries',
+      validation: 'CI validates that all referenced resources exist in their respective registries',
       generation:
         'This file can be regenerated from individual registries using scripts/regenerate-relationships.ts',
       file_dependencies:
@@ -594,16 +599,18 @@ async function regenerateRelationships(options: { checkOnly?: boolean } = {}) {
         'META/mcp-registry.json - All MCPs',
         'META/tool-registry.json - All tools',
         'META/component-registry.json - All components',
-        'META/integration-registry.json - All integrations',
-      ],
-    },
+        'META/integration-registry.json - All integrations'
+      ]
+    }
   }
 
   const outputJson = JSON.stringify(relationshipMapping, null, 2) + '\n'
 
   if (options.checkOnly) {
     if (!existsSync(outputPath)) {
-      console.error('❌ relationship-mapping.json is missing. Regenerate it with npm run relationships:regen')
+      console.error(
+        '❌ relationship-mapping.json is missing. Regenerate it with npm run relationships:regen'
+      )
       throw new Error('relationship-mapping.json missing')
     }
 
@@ -639,7 +646,7 @@ const invokedDirectly = process.argv[1] ? resolve(process.argv[1]) === resolvedF
 if (invokedDirectly) {
   const checkOnly = process.argv.includes('--check')
 
-  regenerateRelationships({ checkOnly }).catch((error) => {
+  regenerateRelationships({ checkOnly }).catch(error => {
     console.error('Failed to regenerate relationships:', error)
     process.exit(1)
   })

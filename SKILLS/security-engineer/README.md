@@ -11,6 +11,7 @@ Helps you implement security best practices across your application stack, preve
 ## When to Use
 
 Use this skill when you need to:
+
 - Implement authentication and authorization
 - Secure API endpoints
 - Prevent OWASP Top 10 vulnerabilities
@@ -45,14 +46,17 @@ security-engineer/
 ## Prerequisites
 
 **Knowledge:**
+
 - HTTP basics
 - Authentication concepts
 - Database fundamentals
 
 **Tools:**
+
 - None required (skill guides tool selection)
 
 **Related Skills:**
+
 - `api-designer` - API security patterns
 - `testing-strategist` - Security testing
 - `deployment-advisor` - Production security config
@@ -60,6 +64,7 @@ security-engineer/
 ## Success Criteria
 
 You've successfully used this skill when:
+
 - ✅ Authentication implemented securely (JWT/session/OAuth)
 - ✅ All user input validated with schema
 - ✅ Passwords hashed with bcrypt
@@ -72,6 +77,7 @@ You've successfully used this skill when:
 ## Common Workflows
 
 ### Workflow 1: Secure New API
+
 1. Use security-engineer for auth strategy
 2. Implement JWT or session-based auth
 3. Add input validation with Zod
@@ -80,6 +86,7 @@ You've successfully used this skill when:
 6. Set up audit logging
 
 ### Workflow 2: Security Review
+
 1. Check OWASP Top 10 checklist
 2. Review authentication/authorization
 3. Verify input validation
@@ -88,6 +95,7 @@ You've successfully used this skill when:
 6. Verify HTTPS enforcement
 
 ### Workflow 3: Handle Sensitive Data
+
 1. Encrypt PII at rest
 2. Hash passwords with bcrypt
 3. Use HTTPS for transit
@@ -98,6 +106,7 @@ You've successfully used this skill when:
 ## Key Concepts
 
 **5 Security Pillars:**
+
 1. **Authentication & Authorization:** Who can access what
 2. **Input Validation:** Never trust user input
 3. **Secure Configuration:** Headers, CORS, secrets
@@ -105,6 +114,7 @@ You've successfully used this skill when:
 5. **Monitoring & Response:** Logging, rate limiting, alerts
 
 **OWASP Top 10 (2021):**
+
 1. Broken Access Control
 2. Cryptographic Failures
 3. Injection
@@ -119,20 +129,24 @@ You've successfully used this skill when:
 ## Troubleshooting
 
 **Skill not activating?**
+
 - Try explicitly requesting: "Use the security-engineer skill to..."
 - Mention keywords: "security", "authentication", "vulnerabilities"
 
 **CORS errors?**
+
 - Configure CORS origin to match your frontend domain
 - Set credentials: true if using cookies
 - Check allowed methods and headers
 
 **JWT issues?**
+
 - Verify secret matches on sign and verify
 - Check token expiry (15min access, 7d refresh recommended)
 - Use RS256 for production (not HS256)
 
 **Rate limiting not working?**
+
 - Ensure rate limiter middleware runs before route handlers
 - Check if IP is correctly extracted (behind proxy: trust proxy)
 - Verify windowMs and max values
@@ -140,6 +154,7 @@ You've successfully used this skill when:
 ## Quick Reference
 
 ### Security Checklist
+
 ```
 Authentication:
 □ Passwords hashed (bcrypt 12+ rounds)

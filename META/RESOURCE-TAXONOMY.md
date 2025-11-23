@@ -22,41 +22,46 @@ Core resources are **executable** or **directly actionable** assets that AI assi
 
 ### Breakdown
 
-| Resource Type | Count | Description | Registry File |
-|--------------|-------|-------------|---------------|
-| **Skills** | 64 | Specialized methodologies that guide development | `skill-registry.json` |
-| **MCP Servers** | 50 | Executable automation tools | `mcp-registry.json` |
-| **Components** | 72 | React components and UI patterns | `component-registry.json` |
-| **Integrations** | 28 | Pre-configured service connections | `integration-registry.json` |
-| **Tools** | 24 | Development utilities and scripts | `tool-registry.json` |
+| Resource Type    | Count | Description                                      | Registry File               |
+| ---------------- | ----- | ------------------------------------------------ | --------------------------- |
+| **Skills**       | 64    | Specialized methodologies that guide development | `skill-registry.json`       |
+| **MCP Servers**  | 50    | Executable automation tools                      | `mcp-registry.json`         |
+| **Components**   | 72    | React components and UI patterns                 | `component-registry.json`   |
+| **Integrations** | 28    | Pre-configured service connections               | `integration-registry.json` |
+| **Tools**        | 24    | Development utilities and scripts                | `tool-registry.json`        |
 
 ### What Counts as a Core Resource?
 
 **Skills**
+
 - Each skill directory in `SKILLS/` (excluding `_TEMPLATE`)
 - Must have a `skill.md` or `SKILL.md` file
 - Must be registered in `META/skill-registry.json`
 - Must provide a specific methodology or expertise area
 
 **MCPs (Model Context Protocol Servers)**
+
 - Each MCP implementation
 - Must be registered in `META/mcp-registry.json`
 - May or may not have a directory in `MCP-SERVERS/` (some are planned/documented)
 - Example: `archon-mcp` is registered but doesn't have an implementation yet
 
 **Components**
+
 - Reusable code components (primarily React/TypeScript)
 - Registered in `META/component-registry.json`
 - Located in `COMPONENTS/` directory
 - Each component entry counts as one resource regardless of file count
 
 **Integrations**
+
 - Pre-configured service connections and wrappers
 - Registered in `META/integration-registry.json`
 - Located in `INTEGRATIONS/` directory
 - Include API clients, SDKs, and service configurations
 
 **Tools**
+
 - Standalone utilities and scripts
 - Registered in `META/tool-registry.json`
 - Located in `TOOLS/` directory or various script directories
@@ -70,61 +75,70 @@ Supporting resources provide **reference**, **guidance**, and **structure** but 
 
 ### Breakdown
 
-| Resource Type | Count | Description | Registry File |
-|--------------|-------|-------------|---------------|
-| **Playbooks** | 14 | Step-by-step operational procedures | `playbook-registry.json` |
-| **Standards** | 20 | Architecture patterns and best practices | `standard-registry.json` |
-| **Templates** | 19 | Project starter templates | `template-registry.json` |
-| **Schemas** | 4 | Data and configuration schemas | `schema-registry.json` |
-| **Utilities** | 8 | Helper utilities and common functions | `util-registry.json` |
-| **Examples** | 3 | Reference implementations | `example-registry.json` |
-| **Installers** | 3 | Setup and installation scripts | `installer-registry.json` |
-| **Docs** | 24 | Comprehensive documentation | `docs-registry.json` |
-| **Agents** | 27 | Claude Code agent definitions | `agent-registry.json` |
+| Resource Type  | Count | Description                              | Registry File             |
+| -------------- | ----- | ---------------------------------------- | ------------------------- |
+| **Playbooks**  | 14    | Step-by-step operational procedures      | `playbook-registry.json`  |
+| **Standards**  | 20    | Architecture patterns and best practices | `standard-registry.json`  |
+| **Templates**  | 19    | Project starter templates                | `template-registry.json`  |
+| **Schemas**    | 4     | Data and configuration schemas           | `schema-registry.json`    |
+| **Utilities**  | 8     | Helper utilities and common functions    | `util-registry.json`      |
+| **Examples**   | 3     | Reference implementations                | `example-registry.json`   |
+| **Installers** | 3     | Setup and installation scripts           | `installer-registry.json` |
+| **Docs**       | 24    | Comprehensive documentation              | `docs-registry.json`      |
+| **Agents**     | 27    | Claude Code agent definitions            | `agent-registry.json`     |
 
 ### What Counts as a Supporting Resource?
 
 **Playbooks**
+
 - Procedural guides for common tasks
 - Located in `PLAYBOOKS/` directory
 - Each playbook file counts as one resource
 
 **Standards**
+
 - Architecture patterns (e.g., RAG patterns, MCP patterns)
 - Best practices guides
 - Located in `STANDARDS/` directory
 
 **Templates**
+
 - Project starter configurations
 - File templates (e.g., `.cursorrules` templates)
 - Located in `TEMPLATES/` directory
 
 **Schemas**
+
 - JSON schemas for validation
 - Configuration schemas
 - Located in `SCHEMAS/` directory
 
 **Utilities**
+
 - Small helper functions
 - Common code utilities
 - Located in `UTILS/` directory
 
 **Examples**
+
 - Reference implementations
 - Sample projects
 - Located in `EXAMPLES/` directory
 
 **Installers**
+
 - Setup scripts
 - Installation utilities
 - Located in `INSTALLERS/` directory
 
 **Docs**
+
 - Comprehensive guides
 - API documentation
 - Located in `DOCS/` directory
 
 **Agents**
+
 - Claude Code agent definitions
 - Agent configuration files
 - Located in `AGENTS/` or `.claude/agents/`
@@ -142,6 +156,7 @@ node scripts/validate-all.cjs
 ```
 
 This script:
+
 1. Scans directories for actual resources
 2. Reads registry files for registered resources
 3. Validates that directory counts match registry counts
@@ -175,6 +190,7 @@ cat META/integration-registry.json | jq '.integrations | length'
 All resources must be registered in their respective registry files in `META/`:
 
 ### Tier 1 Registries
+
 - `skill-registry.json` - 64 skills
 - `mcp-registry.json` - 51 MCPs (50 have directories, 1 is planned)
 - `component-registry.json` - 72 components
@@ -182,6 +198,7 @@ All resources must be registered in their respective registry files in `META/`:
 - `tool-registry.json` - 24 tools
 
 ### Tier 2 Registries
+
 - `playbook-registry.json` - 14 playbooks
 - `standard-registry.json` - 20 standards
 - `template-registry.json` - 19 templates
@@ -193,6 +210,7 @@ All resources must be registered in their respective registry files in `META/`:
 - `agent-registry.json` - 27 agents
 
 ### Master Registry
+
 - `registry.json` - Complete index of all resources with cross-references
 
 ---
@@ -237,6 +255,7 @@ node scripts/validate-all.cjs
 **Solution:** Count the component as ONE resource, not by file count
 
 **Example:**
+
 ```
 COMPONENTS/auth/LoginForm/
   ├── LoginForm.tsx
@@ -244,6 +263,7 @@ COMPONENTS/auth/LoginForm/
   ├── LoginForm.stories.tsx
   └── index.ts
 ```
+
 This counts as **1 component**, not 4 resources.
 
 ### Pitfall 2: Template Directory
@@ -256,7 +276,8 @@ This counts as **1 component**, not 4 resources.
 
 **Problem:** Some resources are registered but not yet implemented
 
-**Solution:** 
+**Solution:**
+
 - Registry count reflects planned + implemented
 - Directory count reflects only implemented
 - Document the discrepancy (e.g., archon-mcp)
@@ -266,6 +287,7 @@ This counts as **1 component**, not 4 resources.
 **Problem:** Unclear if documentation files are resources
 
 **Solution:**
+
 - Comprehensive guides in `DOCS/` → Tier 2 resources
 - README files within resource directories → Not counted separately
 - `META/` documentation files → Not counted as resources
@@ -277,6 +299,7 @@ This counts as **1 component**, not 4 resources.
 The validation system enforces these rules:
 
 ### Must Be True
+
 - ✅ Every registered resource must exist (or be documented as planned)
 - ✅ Every existing resource must be registered
 - ✅ Registry counts must match validation script counts (within documented exceptions)
@@ -284,6 +307,7 @@ The validation system enforces these rules:
 - ✅ All cross-references must be valid
 
 ### Documentation Requirements
+
 - ✅ Resource counts in documentation must match validation output
 - ✅ Any discrepancies must be documented (e.g., planned resources)
 - ✅ Last updated dates must be current
@@ -295,12 +319,14 @@ The validation system enforces these rules:
 ### When Documenting Counts
 
 **Do:**
+
 - ✅ Use exact counts from validation script
 - ✅ Clearly distinguish Tier 1 vs Tier 2
 - ✅ Document any known discrepancies
 - ✅ Link to this taxonomy document for details
 
 **Don't:**
+
 - ❌ Round numbers or use approximations
 - ❌ Count resources inconsistently across documents
 - ❌ Forget to update counts when adding resources
@@ -309,12 +335,14 @@ The validation system enforces these rules:
 ### When Adding Resources
 
 **Do:**
+
 - ✅ Register in appropriate registry file
 - ✅ Follow naming conventions
 - ✅ Run validation after adding
 - ✅ Update documentation if needed
 
 **Don't:**
+
 - ❌ Create resources without registering them
 - ❌ Use duplicate IDs or names
 - ❌ Skip validation checks
@@ -324,19 +352,19 @@ The validation system enforces these rules:
 
 ## 📊 Quick Reference
 
-| What | Count | Where |
-|------|-------|-------|
-| **Total Resources** | 360 | All registries |
-| **Core (Tier 1)** | 238 | Executable resources |
-| **Supporting (Tier 2)** | 122 | Reference resources |
-| **Skills** | 64 | `SKILLS/` + registry |
-| **MCPs** | 51 | `MCP-SERVERS/` + registry (1 planned) |
-| **Components** | 72 | `COMPONENTS/` + registry |
-| **Integrations** | 28 | `INTEGRATIONS/` + registry |
-| **Tools** | 24 | `TOOLS/` + registry |
-| **Playbooks** | 14 | `PLAYBOOKS/` + registry |
-| **Standards** | 20 | `STANDARDS/` + registry |
-| **Templates** | 19 | `TEMPLATES/` + registry |
+| What                    | Count | Where                                 |
+| ----------------------- | ----- | ------------------------------------- |
+| **Total Resources**     | 360   | All registries                        |
+| **Core (Tier 1)**       | 238   | Executable resources                  |
+| **Supporting (Tier 2)** | 122   | Reference resources                   |
+| **Skills**              | 64    | `SKILLS/` + registry                  |
+| **MCPs**                | 51    | `MCP-SERVERS/` + registry (1 planned) |
+| **Components**          | 72    | `COMPONENTS/` + registry              |
+| **Integrations**        | 28    | `INTEGRATIONS/` + registry            |
+| **Tools**               | 24    | `TOOLS/` + registry                   |
+| **Playbooks**           | 14    | `PLAYBOOKS/` + registry               |
+| **Standards**           | 20    | `STANDARDS/` + registry               |
+| **Templates**           | 19    | `TEMPLATES/` + registry               |
 
 ---
 

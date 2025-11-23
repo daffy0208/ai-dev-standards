@@ -203,11 +203,7 @@ export const EmailTemplates = {
   /**
    * Payment receipt
    */
-  paymentReceipt: (params: {
-    amount: string
-    date: string
-    invoiceUrl: string
-  }) => ({
+  paymentReceipt: (params: { amount: string; date: string; invoiceUrl: string }) => ({
     subject: 'Payment Receipt',
     html: `
       <h1>Payment Received</h1>
@@ -224,11 +220,7 @@ export const EmailTemplates = {
   /**
    * Subscription confirmation
    */
-  subscriptionConfirmation: (params: {
-    plan: string
-    amount: string
-    billingDate: string
-  }) => ({
+  subscriptionConfirmation: (params: { plan: string; amount: string; billingDate: string }) => ({
     subject: 'Subscription Confirmed',
     html: `
       <h1>Subscription Confirmed!</h1>

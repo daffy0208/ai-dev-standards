@@ -580,7 +580,7 @@ describe('Form Integration', () => {
 
 ### Component Documentation Template
 
-```typescript
+````typescript
 /**
  * Button component for user interactions
  *
@@ -607,7 +607,7 @@ export function Button({
 }: ButtonProps) {
   // Implementation
 }
-```
+````
 
 ### README Template
 
@@ -625,40 +625,43 @@ npm install @yourorg/components
 ## Usage
 
 ```tsx
-import { Button } from '@yourorg/components';
+import { Button } from '@yourorg/components'
 
 function App() {
   return (
     <Button variant="primary" onClick={handleClick}>
       Click me
     </Button>
-  );
+  )
 }
 ```
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'primary' \| 'secondary' \| 'danger'` | `'primary'` | Visual style variant |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Button size |
-| `disabled` | `boolean` | `false` | Disable the button |
-| `loading` | `boolean` | `false` | Show loading spinner |
-| `onClick` | `(event: MouseEvent) => void` | - | Click handler |
+| Prop       | Type                                   | Default     | Description          |
+| ---------- | -------------------------------------- | ----------- | -------------------- |
+| `variant`  | `'primary' \| 'secondary' \| 'danger'` | `'primary'` | Visual style variant |
+| `size`     | `'sm' \| 'md' \| 'lg'`                 | `'md'`      | Button size          |
+| `disabled` | `boolean`                              | `false`     | Disable the button   |
+| `loading`  | `boolean`                              | `false`     | Show loading spinner |
+| `onClick`  | `(event: MouseEvent) => void`          | -           | Click handler        |
 
 ## Examples
 
 ### Primary Button
+
 ```tsx
 <Button variant="primary">Primary</Button>
 ```
 
 ### Loading State
+
 ```tsx
 <Button loading>Processing...</Button>
 ```
 
 ### Sizes
+
 ```tsx
 <Button size="sm">Small</Button>
 <Button size="md">Medium</Button>
@@ -788,8 +791,8 @@ export const AllVariants: Story = {
 
 ```javascript
 // rollup.config.js
-import typescript from '@rollup/plugin-typescript';
-import postcss from 'rollup-plugin-postcss';
+import typescript from '@rollup/plugin-typescript'
+import postcss from 'rollup-plugin-postcss'
 
 export default {
   input: 'src/index.ts',
@@ -804,11 +807,8 @@ export default {
     }
   ],
   external: ['react', 'react-dom'],
-  plugins: [
-    typescript({ tsconfig: './tsconfig.json' }),
-    postcss({ extract: true, minimize: true })
-  ]
-};
+  plugins: [typescript({ tsconfig: './tsconfig.json' }), postcss({ extract: true, minimize: true })]
+}
 ```
 
 ---
@@ -849,11 +849,13 @@ const handleClick = useCallback(() => {
 ## Related Resources
 
 ### Skills
+
 - frontend-builder
 - design-system-architect
 - accessibility-engineer
 
 ### Components
+
 - `/COMPONENTS/ui-components/` - UI component library
 
 ---

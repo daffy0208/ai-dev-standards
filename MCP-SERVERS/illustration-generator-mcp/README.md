@@ -7,9 +7,11 @@ Generate custom illustrations, characters, and scenes with AI-powered illustrati
 ### Tools
 
 #### `generateIllustration`
+
 Generate custom illustrations from text descriptions with various artistic styles.
 
 **Parameters:**
+
 - `description` (string, required): Detailed illustration description
 - `style` (string, required): Style - flat, 3d, hand-drawn, minimalist, geometric, isometric, line-art
 - `colorPalette` (array): Color palette (default: modern tech colors)
@@ -18,6 +20,7 @@ Generate custom illustrations from text descriptions with various artistic style
 - `format` (string): Output format - svg, png, jpg, webp
 
 **Example:**
+
 ```typescript
 {
   description: "A person working on a laptop in a modern office",
@@ -30,9 +33,11 @@ Generate custom illustrations from text descriptions with various artistic style
 ```
 
 #### `generateCharacter`
+
 Generate character illustrations with specific traits and poses.
 
 **Parameters:**
+
 - `traits` (object, required): Character traits
   - `age` (string): Age range
   - `gender` (string): Gender presentation
@@ -45,6 +50,7 @@ Generate character illustrations with specific traits and poses.
 - `backgroundColor` (string): Background color or transparent
 
 **Example:**
+
 ```typescript
 {
   traits: {
@@ -59,9 +65,11 @@ Generate character illustrations with specific traits and poses.
 ```
 
 #### `generateScene`
+
 Generate complete scene illustrations with environments and objects.
 
 **Parameters:**
+
 - `description` (string, required): Scene description
 - `environment` (string): Type - indoor, outdoor, urban, nature, abstract, workspace
 - `timeOfDay` (string): Lighting - morning, afternoon, evening, night
@@ -70,6 +78,7 @@ Generate complete scene illustrations with environments and objects.
 - `includeCharacters` (boolean): Include people in scene
 
 **Example:**
+
 ```typescript
 {
   description: "A modern coworking space with natural light",
@@ -82,9 +91,11 @@ Generate complete scene illustrations with environments and objects.
 ```
 
 #### `customizeIllustration`
+
 Customize existing illustrations with modifications.
 
 **Parameters:**
+
 - `illustrationId` (string, required): ID of illustration to modify
 - `modifications` (object, required): Modifications to apply
   - `colorScheme` (array): New color palette
@@ -93,6 +104,7 @@ Customize existing illustrations with modifications.
   - `scale` (number): Scaling factor
 
 **Example:**
+
 ```typescript
 {
   illustrationId: "ill-1234567890",
@@ -109,9 +121,11 @@ Customize existing illustrations with modifications.
 ### Resources
 
 #### `illustration-generator://library`
+
 JSON collection of all generated illustrations with metadata.
 
 #### `illustration-generator://styles`
+
 Complete guide to illustration styles and best practices.
 
 ## Setup
@@ -146,7 +160,9 @@ npm run build
 ## Illustration Styles
 
 ### Flat Design
+
 **Characteristics:**
+
 - Simple geometric shapes
 - Solid colors, no gradients
 - Clean and minimal
@@ -156,7 +172,9 @@ npm run build
 **Examples:** Google Material Design, Dropbox illustrations
 
 ### 3D Illustrations
+
 **Characteristics:**
+
 - Depth and dimension
 - Lighting and shadows
 - Realistic textures
@@ -166,7 +184,9 @@ npm run build
 **Examples:** Apple product pages, Stripe illustrations
 
 ### Hand-Drawn
+
 **Characteristics:**
+
 - Organic, imperfect lines
 - Sketchy appearance
 - Personal touch
@@ -176,7 +196,9 @@ npm run build
 **Examples:** Mailchimp, Hootsuite illustrations
 
 ### Minimalist
+
 **Characteristics:**
+
 - Essential elements only
 - 1-3 colors max
 - Generous whitespace
@@ -186,7 +208,9 @@ npm run build
 **Examples:** Apple marketing, luxury fashion
 
 ### Geometric
+
 **Characteristics:**
+
 - Mathematical shapes
 - Pattern-based
 - Abstract concepts
@@ -196,7 +220,9 @@ npm run build
 **Examples:** GitHub, Microsoft illustrations
 
 ### Isometric
+
 **Characteristics:**
+
 - 30-degree perspective
 - Consistent angles
 - 3D without perspective
@@ -206,7 +232,9 @@ npm run build
 **Examples:** Atlassian, Asana diagrams
 
 ### Line Art
+
 **Characteristics:**
+
 - Outlines only
 - No fill colors
 - Clean and precise
@@ -245,18 +273,21 @@ npm run build
 ### Environment Types
 
 **Indoor:**
+
 - Office, home, cafe, studio
 - Controlled lighting
 - Furniture and details
 - Intimate feel
 
 **Outdoor:**
+
 - Nature, urban, parks
 - Natural lighting
 - Open space
 - Dynamic weather
 
 **Workspace:**
+
 - Desk, computer, tools
 - Professional context
 - Organized layout
@@ -264,28 +295,31 @@ npm run build
 
 ### Lighting & Mood
 
-| Time | Lighting | Mood | Use Case |
-|------|----------|------|----------|
-| Morning | Soft, warm | Energetic, fresh | Productivity apps |
-| Afternoon | Bright, clear | Professional | Business tools |
-| Evening | Warm, golden | Relaxed | Social apps |
-| Night | Cool, dim | Calm, intimate | Wellness apps |
+| Time      | Lighting      | Mood             | Use Case          |
+| --------- | ------------- | ---------------- | ----------------- |
+| Morning   | Soft, warm    | Energetic, fresh | Productivity apps |
+| Afternoon | Bright, clear | Professional     | Business tools    |
+| Evening   | Warm, golden  | Relaxed          | Social apps       |
+| Night     | Cool, dim     | Calm, intimate   | Wellness apps     |
 
 ## Color Psychology
 
 ### Primary Palettes
 
 **Tech/Modern:**
+
 - Blue: Trust, professionalism
 - Purple: Innovation, creativity
 - Green: Growth, success
 
 **Creative/Playful:**
+
 - Pink: Fun, youthful
 - Orange: Energy, enthusiasm
 - Yellow: Optimism, happiness
 
 **Professional/Corporate:**
+
 - Navy: Authority, stability
 - Gray: Neutral, balanced
 - Black: Sophistication, power
@@ -330,26 +364,22 @@ npm run build
 ### React Component
 
 ```tsx
-import { generateIllustration } from '@/lib/illustrations';
+import { generateIllustration } from '@/lib/illustrations'
 
 function Hero() {
-  const [illustration, setIllustration] = useState(null);
+  const [illustration, setIllustration] = useState(null)
 
   useEffect(() => {
     generateIllustration({
-      description: "Person using our app",
-      style: "flat",
-      aspectRatio: "16:9"
-    }).then(result => setIllustration(result.data));
-  }, []);
+      description: 'Person using our app',
+      style: 'flat',
+      aspectRatio: '16:9'
+    }).then(result => setIllustration(result.data))
+  }, [])
 
   return (
-    <div>
-      {illustration && (
-        <img src={illustration.imageUrl} alt={illustration.description} />
-      )}
-    </div>
-  );
+    <div>{illustration && <img src={illustration.imageUrl} alt={illustration.description} />}</div>
+  )
 }
 ```
 

@@ -22,11 +22,7 @@
       "related_skills": [],
       "related_playbooks": [],
       "related_standards": [],
-      "tags": [
-        "errorHandler",
-        "api",
-        "typescript"
-      ]
+      "tags": ["errorHandler", "api", "typescript"]
     },
     {
       "name": "logger",
@@ -36,22 +32,12 @@
       "language": "typescript",
       "path": "/UTILS/cli/logger.ts",
       "status": "active",
-      "exports": [
-        "LogLevel",
-        "LoggerConfig",
-        "Logger",
-        "logger",
-        "example"
-      ],
+      "exports": ["LogLevel", "LoggerConfig", "Logger", "logger", "example"],
       "dependencies": [],
       "related_skills": [],
       "related_playbooks": [],
       "related_standards": [],
-      "tags": [
-        "logger",
-        "cli",
-        "typescript"
-      ]
+      "tags": ["logger", "cli", "typescript"]
     },
     {
       "name": "db-backup",
@@ -61,27 +47,12 @@
       "language": "typescript",
       "path": "/UTILS/scripts/db-backup.ts",
       "status": "active",
-      "exports": [
-        "DatabaseType",
-        "StorageType",
-        "BackupOptions",
-        "DatabaseBackup"
-      ],
-      "dependencies": [
-        "child_process",
-        "fs",
-        "path",
-        "zlib",
-        "stream/promises"
-      ],
+      "exports": ["DatabaseType", "StorageType", "BackupOptions", "DatabaseBackup"],
+      "dependencies": ["child_process", "fs", "path", "zlib", "stream/promises"],
       "related_skills": [],
       "related_playbooks": [],
       "related_standards": [],
-      "tags": [
-        "db",
-        "scripts",
-        "typescript"
-      ]
+      "tags": ["db", "scripts", "typescript"]
     },
     {
       "name": "db-migrate",
@@ -91,24 +62,12 @@
       "language": "typescript",
       "path": "/UTILS/scripts/db-migrate.ts",
       "status": "active",
-      "exports": [
-        "DatabaseType",
-        "MigrationOptions",
-        "Migration",
-        "DatabaseMigration"
-      ],
-      "dependencies": [
-        "child_process",
-        "path"
-      ],
+      "exports": ["DatabaseType", "MigrationOptions", "Migration", "DatabaseMigration"],
+      "dependencies": ["child_process", "path"],
       "related_skills": [],
       "related_playbooks": [],
       "related_standards": [],
-      "tags": [
-        "db",
-        "scripts",
-        "typescript"
-      ]
+      "tags": ["db", "scripts", "typescript"]
     },
     {
       "name": "deploy",
@@ -118,26 +77,12 @@
       "language": "typescript",
       "path": "/UTILS/scripts/deploy.ts",
       "status": "active",
-      "exports": [
-        "Platform",
-        "Environment",
-        "DeployOptions",
-        "DeployResult",
-        "Deployment"
-      ],
-      "dependencies": [
-        "child_process",
-        "fs",
-        "path"
-      ],
+      "exports": ["Platform", "Environment", "DeployOptions", "DeployResult", "Deployment"],
+      "dependencies": ["child_process", "fs", "path"],
       "related_skills": [],
       "related_playbooks": [],
       "related_standards": [],
-      "tags": [
-        "deploy",
-        "scripts",
-        "typescript"
-      ]
+      "tags": ["deploy", "scripts", "typescript"]
     },
     {
       "name": "test-runner",
@@ -147,26 +92,12 @@
       "language": "typescript",
       "path": "/UTILS/scripts/test-runner.ts",
       "status": "active",
-      "exports": [
-        "TestType",
-        "TestFramework",
-        "TestRunnerOptions",
-        "TestResult",
-        "TestRunner"
-      ],
-      "dependencies": [
-        "child_process",
-        "fs",
-        "path"
-      ],
+      "exports": ["TestType", "TestFramework", "TestRunnerOptions", "TestResult", "TestRunner"],
+      "dependencies": ["child_process", "fs", "path"],
       "related_skills": [],
       "related_playbooks": [],
       "related_standards": [],
-      "tags": [
-        "test",
-        "scripts",
-        "typescript"
-      ]
+      "tags": ["test", "scripts", "typescript"]
     },
     {
       "name": "schemas",
@@ -183,17 +114,11 @@
         "urlSchema",
         "phoneSchema"
       ],
-      "dependencies": [
-        "zod"
-      ],
+      "dependencies": ["zod"],
       "related_skills": [],
       "related_playbooks": [],
       "related_standards": [],
-      "tags": [
-        "schemas",
-        "validation",
-        "typescript"
-      ]
+      "tags": ["schemas", "validation", "typescript"]
     }
   ],
   "categories": {

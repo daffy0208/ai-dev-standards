@@ -12,18 +12,21 @@ I help you build AR/VR experiences, spatial interfaces, and immersive 3D applica
 ## What I Do
 
 **WebXR Development:**
+
 - AR/VR experiences in the browser
 - Hand tracking and controllers
 - Spatial anchors
 - Immersive environments
 
 **Vision Pro Development:**
+
 - visionOS native apps
 - Spatial UI design
 - Reality Composer integration
 - SharePlay experiences
 
 **3D Web:**
+
 - Three.js scenes
 - React Three Fiber
 - 3D interactions
@@ -244,6 +247,7 @@ export function SpatialSound() {
 ## When to Use Me
 
 **Perfect for:**
+
 - Building AR/VR web experiences
 - Creating Vision Pro apps
 - Implementing 3D interactions
@@ -251,6 +255,7 @@ export function SpatialSound() {
 - Immersive storytelling
 
 **I'll help you:**
+
 - Set up WebXR projects
 - Build AR features
 - Implement hand tracking

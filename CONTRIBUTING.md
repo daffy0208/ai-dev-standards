@@ -13,6 +13,7 @@ Thank you for your interest in contributing! This document provides guidelines a
 ```
 
 This automatically:
+
 - Installs all dependencies
 - Sets up Git hooks for automation
 - Validates your environment
@@ -66,11 +67,13 @@ On every commit, the pre-commit hook automatically:
 ### Key Rules
 
 ✅ **DO:**
+
 - Add new skills to `SKILLS/` directory
 - Add new MCPs to `MCP-SERVERS/` directory
 - Let automation update documentation
 
 ❌ **DON'T:**
+
 - Manually edit resource counts in documentation
 - Manually edit registry files in `META/`
 - Skip automation (except emergencies)
@@ -224,11 +227,13 @@ npm run validate:fix && npm run lint:fix
 In emergencies, you can skip validation using either method:
 
 **Method 1: In commit message**
+
 ```bash
 git commit -m "emergency fix [skip-validation]"
 ```
 
 **Method 2: Environment variable**
+
 ```bash
 SKIP_VALIDATION=1 git commit -m "emergency fix"
 ```
@@ -238,6 +243,7 @@ SKIP_VALIDATION=1 git commit -m "emergency fix"
 #### Hook Execution Time
 
 The pre-commit hook is optimized to run in under 5 seconds on most systems:
+
 - Documentation validation: ~1-2 seconds
 - ESLint: ~1-2 seconds
 - TypeScript checking: ~1-2 seconds
@@ -259,16 +265,19 @@ npm run install-hooks
 #### Troubleshooting
 
 **Hook not running:**
+
 - Ensure the hook is executable: `chmod +x .git/hooks/pre-commit`
 - Check that you're in the repository root
 - Try reinstalling: `npm run install-hooks`
 
 **Hook too slow:**
+
 - The hook should complete in under 5 seconds
 - If slower, check for large file changes or network issues
 - Consider using `[skip-validation]` for large refactors, then fix separately
 
 **Existing custom hooks:**
+
 - The installer detects existing hooks and offers to merge or backup
 - Your custom hooks are backed up with timestamp: `.git/hooks/pre-commit.backup-YYYYMMDD-HHMMSS`
 - You can manually merge hooks if needed
@@ -421,7 +430,7 @@ describe('FeatureName', () => {
 
 ### Documentation Style
 
-```typescript
+````typescript
 /**
  * Validates email address and returns lowercase version
  *
@@ -438,7 +447,7 @@ describe('FeatureName', () => {
 export function validateEmail(email: string): string {
   // Implementation
 }
-```
+````
 
 ---
 
@@ -460,20 +469,24 @@ export function validateEmail(email: string): string {
 
 ```markdown
 ## Description
+
 [Describe your changes]
 
 ## Type of Change
+
 - [ ] Bug fix
 - [ ] New feature
 - [ ] Breaking change
 - [ ] Documentation update
 
 ## Testing
+
 - [ ] Unit tests added
 - [ ] Integration tests added
 - [ ] All tests pass
 
 ## Checklist
+
 - [ ] Code follows style guidelines
 - [ ] Self-review completed
 - [ ] Comments added where needed
@@ -598,7 +611,7 @@ function getUserData() {}
 const MAX_RETRIES = 3
 
 // kebab-case for file names
-api-caller-tool.ts
+api - caller - tool.ts
 ```
 
 ---

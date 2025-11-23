@@ -27,16 +27,16 @@ You should see detailed JSON or markdown responses directly in your terminal.
 
 ## Helpful References
 
-- Quick start → `.codex/QUICK-START.md`  
-- Detailed guide → `.codex/README.md`  
+- Quick start → `.codex/QUICK-START.md`
+- Detailed guide → `.codex/README.md`
 - Claude vs Codex comparison → `.codex/CLAUDE-VS-CODEX.md`
 
 ---
 
 ## Next Steps
 
-1. Run `codex chat` and ask the brain for recommendations on your current task.  
-2. Keep `.codex/codex.md` in sync (auto-generated via repo scripts).  
+1. Run `codex chat` and ask the brain for recommendations on your current task.
+2. Keep `.codex/codex.md` in sync (auto-generated via repo scripts).
 3. Integrate Codex checks into CI with `scripts/ci/codex-review.sh`.
 
 ---

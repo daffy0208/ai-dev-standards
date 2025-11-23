@@ -16,6 +16,7 @@ While most skills and MCPs in this repository are self-contained, some skills re
 ## Codex CLI (OpenAI)
 
 **Required By:**
+
 - `codex-review-workflow` skill
 
 **Purpose:**
@@ -28,6 +29,7 @@ npm install -g @openai/codex
 ```
 
 **Verify Installation:**
+
 ```bash
 codex --version
 # Expected output: codex-cli 0.50.0 (or newer)
@@ -42,11 +44,13 @@ codex login
 ```
 
 This will:
+
 1. Open your default browser
 2. Prompt you to log in with your ChatGPT account
 3. Authenticate the CLI
 
 **Verify Authentication:**
+
 ```bash
 codex login status
 # Expected output: Logged in using ChatGPT
@@ -63,16 +67,19 @@ echo "What is the current date?" | codex exec --sandbox read-only --skip-git-rep
 ### Usage Notes
 
 **Sandbox Modes:**
+
 - `--sandbox read-only` - Safest, only reads files
 - `--sandbox workspace-write` - Can write to workspace
 - `--sandbox danger-full-access` - Full system access (use with caution)
 
 **Git Repository:**
+
 - Codex CLI expects to run in a git repository
 - Use `--skip-git-repo-check` if testing outside a git repo
 - For actual use, run inside your project's git repository
 
 **Commands:**
+
 - `codex exec` - Execute a code review or analysis task
 - `codex login` - Authenticate with ChatGPT account
 - `codex login status` - Check authentication status
@@ -90,6 +97,7 @@ echo "What is the current date?" | codex exec --sandbox read-only --skip-git-rep
 ## Git
 
 **Required By:**
+
 - `codex-review-workflow` skill
 - Most development skills (implicit dependency)
 
@@ -99,12 +107,14 @@ Version control system used throughout the repository. Required by Codex CLI and
 ### Installation
 
 **Linux/WSL:**
+
 ```bash
 sudo apt-get update
 sudo apt-get install git
 ```
 
 **macOS:**
+
 ```bash
 brew install git
 ```
@@ -113,6 +123,7 @@ brew install git
 Download from [git-scm.com](https://git-scm.com/download/win)
 
 **Verify Installation:**
+
 ```bash
 git --version
 ```
@@ -120,6 +131,7 @@ git --version
 ### Configuration
 
 Basic git configuration:
+
 ```bash
 git config --global user.name "Your Name"
 git config --global user.email "your.email@example.com"
@@ -145,22 +157,26 @@ As new skills are added that require external dependencies, they will be documen
 ### Codex CLI Issues
 
 **"command not found: codex"**
+
 - Ensure npm global bin is in your PATH
 - Try: `npm config get prefix` to see where global packages are installed
 - Add to PATH: `export PATH="$(npm config get prefix)/bin:$PATH"`
 
 **"Not logged in"**
+
 - Run: `codex login`
 - Ensure browser opens and authentication completes
 - Check: `codex login status`
 
 **"This command requires a git repository"**
+
 - Run inside a git repository, or
 - Use `--skip-git-repo-check` flag for testing
 
 ### Git Issues
 
 **"git: command not found"**
+
 - Install git using instructions above
 - Restart terminal after installation
 

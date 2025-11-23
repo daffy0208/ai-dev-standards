@@ -73,10 +73,9 @@ async function doctorCommand(options) {
     console.log(chalk.bold('📋 Health Check Results:\n'))
 
     for (const check of checks) {
-      const icon = check.status === 'ok' ? '✅' :
-                   check.status === 'warning' ? '⚠️' : '❌'
-      const color = check.status === 'ok' ? chalk.green :
-                    check.status === 'warning' ? chalk.yellow : chalk.red
+      const icon = check.status === 'ok' ? '✅' : check.status === 'warning' ? '⚠️' : '❌'
+      const color =
+        check.status === 'ok' ? chalk.green : check.status === 'warning' ? chalk.yellow : chalk.red
 
       console.log(color(`${icon} ${check.name}`))
 
@@ -113,9 +112,10 @@ async function doctorCommand(options) {
     } else if (options.fixAll) {
       console.log(chalk.yellow('⚠️  Some issues require manual fixing\n'))
     } else {
-      console.log(chalk.yellow(`💡 Run ${chalk.cyan('ai-dev doctor --fix-all')} to auto-fix issues\n`))
+      console.log(
+        chalk.yellow(`💡 Run ${chalk.cyan('ai-dev doctor --fix-all')} to auto-fix issues\n`)
+      )
     }
-
   } catch (error) {
     console.error(chalk.red(`\n❌ Error: ${error.message}\n`))
     process.exit(1)
@@ -182,7 +182,7 @@ async function checkPackageManager() {
 async function checkPackageJson() {
   const packageJsonPath = path.join(process.cwd(), 'package.json')
 
-  if (!await fs.pathExists(packageJsonPath)) {
+  if (!(await fs.pathExists(packageJsonPath))) {
     return {
       name: 'package.json',
       status: 'error',
@@ -223,7 +223,7 @@ async function checkPackageJson() {
 async function checkDependencies(verbose) {
   const nodeModulesPath = path.join(process.cwd(), 'node_modules')
 
-  if (!await fs.pathExists(nodeModulesPath)) {
+  if (!(await fs.pathExists(nodeModulesPath))) {
     return {
       name: 'Dependencies',
       status: 'error',
@@ -283,7 +283,7 @@ async function checkGit() {
     await execa('git', ['--version'])
 
     const gitPath = path.join(process.cwd(), '.git')
-    if (!await fs.pathExists(gitPath)) {
+    if (!(await fs.pathExists(gitPath))) {
       return {
         name: 'Git',
         status: 'warning',
@@ -352,7 +352,7 @@ async function checkEnvironment() {
 async function checkTypeScript() {
   const tsconfigPath = path.join(process.cwd(), 'tsconfig.json')
 
-  if (!await fs.pathExists(tsconfigPath)) {
+  if (!(await fs.pathExists(tsconfigPath))) {
     return {
       name: 'TypeScript',
       status: 'ok',
@@ -384,8 +384,12 @@ async function checkLinting() {
   const eslintPath = path.join(process.cwd(), '.eslintrc.json')
   const prettierPath = path.join(process.cwd(), '.prettierrc')
 
-  const hasEslint = await fs.pathExists(eslintPath) || await fs.pathExists(path.join(process.cwd(), '.eslintrc.js'))
-  const hasPrettier = await fs.pathExists(prettierPath) || await fs.pathExists(path.join(process.cwd(), '.prettierrc.json'))
+  const hasEslint =
+    (await fs.pathExists(eslintPath)) ||
+    (await fs.pathExists(path.join(process.cwd(), '.eslintrc.js')))
+  const hasPrettier =
+    (await fs.pathExists(prettierPath)) ||
+    (await fs.pathExists(path.join(process.cwd(), '.prettierrc.json')))
 
   if (hasEslint && hasPrettier) {
     return {
@@ -415,8 +419,8 @@ async function checkLinting() {
  */
 async function checkAiDevStandards() {
   const configPath = path.join(process.cwd(), '.ai-dev.json')
-  
-  if (!await fs.pathExists(configPath)) {
+
+  if (!(await fs.pathExists(configPath))) {
     return {
       name: 'ai-dev-standards',
       status: 'warning',
@@ -427,7 +431,7 @@ async function checkAiDevStandards() {
 
   try {
     const config = await fs.readJson(configPath)
-    
+
     // Check if version is tracked
     if (!config.version) {
       return {
@@ -469,8 +473,8 @@ async function checkAiDevStandards() {
 async function checkHooks() {
   const hooksDir = path.join(process.cwd(), '.claude/hooks')
   const settingsFile = path.join(process.cwd(), '.claude/settings.json')
-  
-  if (!await fs.pathExists(hooksDir)) {
+
+  if (!(await fs.pathExists(hooksDir))) {
     return {
       name: 'Skill activation hooks',
       status: 'warning',
@@ -485,7 +489,7 @@ async function checkHooks() {
     try {
       const stats = await fs.stat(hookScript)
       const isExecutable = (stats.mode & parseInt('111', 8)) !== 0
-      
+
       if (!isExecutable) {
         return {
           name: 'Skill activation hooks',
@@ -528,8 +532,8 @@ async function checkHooks() {
  */
 async function checkSkillRules() {
   const skillRulesPath = path.join(process.cwd(), '.claude/skills/skill-rules.json')
-  
-  if (!await fs.pathExists(skillRulesPath)) {
+
+  if (!(await fs.pathExists(skillRulesPath))) {
     return {
       name: 'Skill activation rules',
       status: 'warning',
@@ -541,7 +545,7 @@ async function checkSkillRules() {
   try {
     const skillRules = await fs.readJson(skillRulesPath)
     const skillCount = Object.keys(skillRules).length
-    
+
     if (skillCount === 0) {
       return {
         name: 'Skill activation rules',
@@ -588,7 +592,10 @@ async function autoFixAll(checks) {
         } catch (error) {
           console.log(chalk.red('    ✗ Failed to initialize git'))
         }
-      } else if (check.name === 'Skill activation hooks' && check.message.includes('not executable')) {
+      } else if (
+        check.name === 'Skill activation hooks' &&
+        check.message.includes('not executable')
+      ) {
         console.log(chalk.cyan('  • Making hooks executable...'))
         try {
           await execa('chmod', ['+x', '.claude/hooks/*.sh'])

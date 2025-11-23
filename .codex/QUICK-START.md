@@ -20,17 +20,20 @@ Get the ai-dev-standards brain running in Codex in just a few minutes.
 ```
 
 The script:
+
 - Adds `brain-mcp` to Codex (via `codex mcp add`)
 - Creates/updates `~/.codex/mcp-servers.json`
 - Writes repository-local helpers to `.codex/`
 - Runs a quick sanity check
 
 **Manual alternative:**
+
 ```bash
 codex mcp add brain-mcp node ./MCP-SERVERS/brain-mcp/dist/index.js
 ```
 
 Verify:
+
 ```bash
 codex mcp list
 # Look for: ✓ brain-mcp ... Connected
@@ -45,6 +48,7 @@ codex exec "Use brain_search with keyword 'rag'"
 ```
 
 Or start an interactive shell:
+
 ```bash
 codex chat
 # Then, at the Codex prompt:
@@ -52,6 +56,7 @@ codex chat
 ```
 
 Expected skills:
+
 - `rag-implementer`
 - `knowledge-base-manager`
 - `vector-database-mcp`
@@ -60,13 +65,13 @@ Expected skills:
 
 ## 3. Common Workflows
 
-| Task | Codex Command |
-|------|---------------|
-| Discover skills for a domain | `codex exec "Use graph_query_by_domain with domain 'frontend'"` |
-| Inspect a skill | `codex exec "Use brain_show_skill with skill 'frontend-builder'"` |
-| Check dependencies | `codex exec "Use graph_get_dependencies for skill 'security-engineer'"` |
-| Find compatible skills | `codex exec "Use graph_composition_chains for 'SaaS launch'"` |
-| Check system health | `codex exec "Use brain_status"` |
+| Task                         | Codex Command                                                           |
+| ---------------------------- | ----------------------------------------------------------------------- |
+| Discover skills for a domain | `codex exec "Use graph_query_by_domain with domain 'frontend'"`         |
+| Inspect a skill              | `codex exec "Use brain_show_skill with skill 'frontend-builder'"`       |
+| Check dependencies           | `codex exec "Use graph_get_dependencies for skill 'security-engineer'"` |
+| Find compatible skills       | `codex exec "Use graph_composition_chains for 'SaaS launch'"`           |
+| Check system health          | `codex exec "Use brain_status"`                                         |
 
 ---
 
@@ -96,10 +101,11 @@ This mirrors the Claude workflow while keeping everything in your terminal.
 
 ## 5. Interactive vs One-Shot
 
-- **Interactive mode:** `codex chat` → keep context, ask follow-ups, iterate quickly  
+- **Interactive mode:** `codex chat` → keep context, ask follow-ups, iterate quickly
 - **One-shot mode:** `codex exec "<instruction>"` → perfect for scripts or single questions
 
 Try this interactive session:
+
 ```
 > Use brain_search with keyword "authentication"
 > Show dependencies for security-engineer
@@ -110,20 +116,20 @@ Try this interactive session:
 
 ## 6. Troubleshooting
 
-| Symptom | Fix |
-|---------|-----|
-| `codex: command not found` | Reinstall CLI globally |
-| `401 Unauthorized` | Check `CODEX_API_KEY` is set |
-| MCP not connecting | Ensure `brain-mcp/dist/index.js` exists |
-| Long-running requests | Add `--timeout 60000` to `codex exec` |
+| Symptom                    | Fix                                     |
+| -------------------------- | --------------------------------------- |
+| `codex: command not found` | Reinstall CLI globally                  |
+| `401 Unauthorized`         | Check `CODEX_API_KEY` is set            |
+| MCP not connecting         | Ensure `brain-mcp/dist/index.js` exists |
+| Long-running requests      | Add `--timeout 60000` to `codex exec`   |
 
 ---
 
 ## 7. Next Steps
 
-1. Read the detailed guide: `.codex/README.md`  
-2. Compare flows: `.codex/CLAUDE-VS-CODEX.md`  
-3. Explore skills in `META/skill-registry.json`  
+1. Read the detailed guide: `.codex/README.md`
+2. Compare flows: `.codex/CLAUDE-VS-CODEX.md`
+3. Explore skills in `META/skill-registry.json`
 4. Automate reviews via `scripts/ci/codex-review.sh`
 
 ---

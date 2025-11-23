@@ -5,11 +5,13 @@ Reusable, production-ready components for building Retrieval-Augmented Generatio
 ## Components Overview
 
 ### 1. Document Loader (270 lines)
+
 **File**: `document-loader.ts`
 
 Load documents from multiple sources with comprehensive format support.
 
 **Features:**
+
 - Multi-source loading (files, directories, URLs)
 - Format support: TXT, MD, HTML, JSON, CSV, PDF, DOCX
 - Parallel loading with concurrency control
@@ -18,11 +20,13 @@ Load documents from multiple sources with comprehensive format support.
 - Error handling and retry logic
 
 ### 2. Text Chunker (482 lines)
+
 **File**: `text-chunker.ts`
 
 Smart text chunking with multiple strategies for optimal semantic preservation.
 
 **Features:**
+
 - Multiple chunking strategies:
   - Fixed-size chunking (fast, predictable)
   - Recursive chunking (respects structure)
@@ -36,17 +40,20 @@ Smart text chunking with multiple strategies for optimal semantic preservation.
 - Automatic chunk size recommendation
 
 **New in Phase 1.5:**
+
 - `ChunkingUtils` class for advanced analysis
 - `analyzeText()` - Recommends optimal chunking parameters
 - `validateChunk()` - Quality scoring for chunks
 - `mergeSmallChunks()` - Post-processing utility
 
 ### 3. Embedding Pipeline (516 lines)
+
 **File**: `embedding-pipeline.ts`
 
 Generate and manage embeddings with multi-provider support.
 
 **Features:**
+
 - Batch embedding generation
 - Multi-provider support:
   - OpenAI (text-embedding-3-small, text-embedding-3-large)
@@ -58,6 +65,7 @@ Generate and manage embeddings with multi-provider support.
 - Dimension detection
 
 **New in Phase 1.5:**
+
 - Vector similarity functions (cosine, euclidean, dot product)
 - `SimilarityCalculator` class with:
   - Similarity matrix computation
@@ -70,11 +78,13 @@ Generate and manage embeddings with multi-provider support.
   - Cache statistics
 
 ### 4. Vector Store Client (527 lines)
+
 **File**: `vector-store-client.ts`
 
 Unified interface for multiple vector database providers.
 
 **Features:**
+
 - Provider-agnostic API
 - Supported databases:
   - Pinecone
@@ -89,11 +99,13 @@ Unified interface for multiple vector database providers.
 - Migration utilities between providers
 
 ### 5. Retrieval Pipeline (617 lines)
+
 **File**: `retrieval-pipeline.ts`
 
 Complete retrieval pipeline with advanced query processing.
 
 **Features:**
+
 - Multiple search types:
   - Vector similarity search
   - Keyword search
@@ -105,6 +117,7 @@ Complete retrieval pipeline with advanced query processing.
 - Result formatting
 
 **New in Phase 1.5:**
+
 - `QueryRewriter` class with:
   - Synonym expansion
   - HyDE (Hypothetical Document Embeddings)
@@ -122,11 +135,13 @@ Complete retrieval pipeline with advanced query processing.
   - NDCG@K (Normalized Discounted Cumulative Gain)
 
 ### 6. RAG Orchestrator (578 lines)
+
 **File**: `rag-orchestrator.ts`
 
 End-to-end RAG pipeline orchestration with monitoring.
 
 **Features:**
+
 - Complete workflow automation:
   1. Document loading
   2. Text chunking
@@ -141,6 +156,7 @@ End-to-end RAG pipeline orchestration with monitoring.
 - Query optimization
 
 **New in Phase 1.5:**
+
 - `RAGMonitor` class for performance tracking:
   - Query count and timing
   - Cache hit/miss rates
@@ -168,7 +184,7 @@ const rag = new RAGOrchestrator({
   chunkOverlap: 200,
   searchType: 'hybrid',
   rerank: true,
-  onProgress: (progress) => {
+  onProgress: progress => {
     console.log(`${progress.stage}: ${progress.current}/${progress.total}`)
   }
 })
@@ -233,7 +249,11 @@ const mergedChunks = ChunkingUtils.mergeSmallChunks(chunks, 100)
 ### 2. Advanced Embedding Pipeline
 
 ```typescript
-import { EmbeddingPipeline, SimilarityCalculator, EmbeddingCacheManager } from './embedding-pipeline'
+import {
+  EmbeddingPipeline,
+  SimilarityCalculator,
+  EmbeddingCacheManager
+} from './embedding-pipeline'
 
 // Create pipeline with cache
 const pipeline = new EmbeddingPipeline({

@@ -96,7 +96,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
   disabled = false,
   onFilesSelected,
   onUploadComplete,
-  onError,
+  onError
 }) => {
   const [files, setFiles] = useState<ImageFile[]>([])
   const [isDragging, setIsDragging] = useState(false)
@@ -106,9 +106,9 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const createPreview = (file: File): Promise<string> => {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       const reader = new FileReader()
-      reader.onload = (e) => resolve(e.target?.result as string)
+      reader.onload = e => resolve(e.target?.result as string)
       reader.readAsDataURL(file)
     })
   }
@@ -139,7 +139,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
           validFiles.push({
             file,
             preview,
-            id: `${file.name}-${Date.now()}-${Math.random()}`,
+            id: `${file.name}-${Date.now()}-${Math.random()}`
           })
         }
       }
@@ -202,7 +202,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
   }
 
   const removeFile = (id: string) => {
-    setFiles(files.filter((f) => f.id !== id))
+    setFiles(files.filter(f => f.id !== id))
   }
 
   const handleUpload = async () => {
@@ -213,7 +213,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
     setError(null)
 
     try {
-      const fileObjects = files.map((f) => f.file)
+      const fileObjects = files.map(f => f.file)
       const urls = await onUpload(fileObjects)
 
       setProgress(100)
@@ -251,12 +251,12 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
           cursor: disabled ? 'not-allowed' : 'pointer',
           backgroundColor: isDragging ? '#eff6ff' : disabled ? '#f9fafb' : '#ffffff',
           transition: 'all 0.3s',
-          opacity: disabled ? 0.5 : 1,
+          opacity: disabled ? 0.5 : 1
         }}
         role="button"
         tabIndex={disabled ? -1 : 0}
         aria-label="Upload images"
-        onKeyDown={(e) => {
+        onKeyDown={e => {
           if ((e.key === 'Enter' || e.key === ' ') && !disabled) {
             e.preventDefault()
             fileInputRef.current?.click()
@@ -268,7 +268,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
             width: '64px',
             height: '64px',
             margin: '0 auto 16px',
-            color: isDragging ? '#3b82f6' : '#9ca3af',
+            color: isDragging ? '#3b82f6' : '#9ca3af'
           }}
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -317,7 +317,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
             border: '1px solid #fecaca',
             borderRadius: '8px',
             color: '#dc2626',
-            fontSize: '14px',
+            fontSize: '14px'
           }}
           role="alert"
         >
@@ -332,10 +332,10 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))',
-              gap: '16px',
+              gap: '16px'
             }}
           >
-            {files.map((file) => (
+            {files.map(file => (
               <div
                 key={file.id}
                 style={{
@@ -343,7 +343,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
                   borderRadius: '8px',
                   overflow: 'hidden',
                   aspectRatio: '1',
-                  border: '1px solid #e5e7eb',
+                  border: '1px solid #e5e7eb'
                 }}
               >
                 <img
@@ -352,13 +352,13 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
                   style={{
                     width: '100%',
                     height: '100%',
-                    objectFit: 'cover',
+                    objectFit: 'cover'
                   }}
                 />
 
                 {/* Remove button */}
                 <button
-                  onClick={(e) => {
+                  onClick={e => {
                     e.stopPropagation()
                     removeFile(file.id)
                   }}
@@ -376,7 +376,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '16px',
+                    fontSize: '16px'
                   }}
                   aria-label={`Remove ${file.file.name}`}
                 >
@@ -396,7 +396,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
                     fontSize: '12px',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap',
+                    whiteSpace: 'nowrap'
                   }}
                 >
                   {file.file.name}
@@ -420,20 +420,22 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
               fontSize: '16px',
               fontWeight: 600,
               cursor: uploading || disabled ? 'not-allowed' : 'pointer',
-              transition: 'background-color 0.2s',
+              transition: 'background-color 0.2s'
             }}
-            onMouseEnter={(e) => {
+            onMouseEnter={e => {
               if (!uploading && !disabled) {
                 e.currentTarget.style.backgroundColor = '#2563eb'
               }
             }}
-            onMouseLeave={(e) => {
+            onMouseLeave={e => {
               if (!uploading && !disabled) {
                 e.currentTarget.style.backgroundColor = '#3b82f6'
               }
             }}
           >
-            {uploading ? 'Uploading...' : `Upload ${files.length} ${files.length === 1 ? 'file' : 'files'}`}
+            {uploading
+              ? 'Uploading...'
+              : `Upload ${files.length} ${files.length === 1 ? 'file' : 'files'}`}
           </button>
 
           {/* Progress bar */}
@@ -444,7 +446,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
                 height: '8px',
                 backgroundColor: '#e5e7eb',
                 borderRadius: '4px',
-                overflow: 'hidden',
+                overflow: 'hidden'
               }}
               role="progressbar"
               aria-valuenow={progress}
@@ -456,7 +458,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
                   height: '100%',
                   backgroundColor: '#3b82f6',
                   width: `${progress}%`,
-                  transition: 'width 0.3s ease',
+                  transition: 'width 0.3s ease'
                 }}
               />
             </div>

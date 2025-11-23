@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest';
-import { MCPIntegrator } from '../../../scripts/brain/mcp-integrator';
-import { MCP } from '../../../scripts/brain/knowledge-layer';
+import { describe, expect, it } from 'vitest'
+import { MCPIntegrator } from '../../../scripts/brain/mcp-integrator'
+import { MCP } from '../../../scripts/brain/knowledge-layer'
 
 const baseRelationship = {
   skills: {
@@ -20,7 +20,7 @@ const baseRelationship = {
       required_integrations: []
     }
   }
-};
+}
 
 describe('MCPIntegrator warnings', () => {
   const mcps: MCP[] = [
@@ -32,26 +32,28 @@ describe('MCPIntegrator warnings', () => {
       status: 'official',
       path: '/MCP-SERVERS/vector-database-mcp'
     }
-  ];
+  ]
 
   it('does not warn when required MCP identifiers exist in the registry', () => {
-    const integrator = new MCPIntegrator(mcps, baseRelationship);
-    const integration = integrator.integrate(['data-engineer']);
+    const integrator = new MCPIntegrator(mcps, baseRelationship)
+    const integration = integrator.integrate(['data-engineer'])
 
-    expect(integration.warnings).toEqual([]);
-  });
+    expect(integration.warnings).toEqual([])
+  })
 
   it('warns when required MCP identifiers are missing from the registry', () => {
-    const integrator = new MCPIntegrator(mcps, baseRelationship);
-    const integration = integrator.integrate(['ml-engineer']);
+    const integrator = new MCPIntegrator(mcps, baseRelationship)
+    const integration = integrator.integrate(['ml-engineer'])
 
-    expect(integration.warnings).toContain("MCP 'Embedding Generator MCP' is required but not yet implemented");
-  });
+    expect(integration.warnings).toContain(
+      "MCP 'Embedding Generator MCP' is required but not yet implemented"
+    )
+  })
 
   it('uses MCP identifiers for existence checks while accepting friendly names', () => {
-    const integrator = new MCPIntegrator(mcps, baseRelationship);
-    const integration = integrator.integrate(['friendly-skill']);
+    const integrator = new MCPIntegrator(mcps, baseRelationship)
+    const integration = integrator.integrate(['friendly-skill'])
 
-    expect(integration.warnings).toEqual([]);
-  });
-});
+    expect(integration.warnings).toEqual([])
+  })
+})

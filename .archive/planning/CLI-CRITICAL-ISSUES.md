@@ -19,11 +19,13 @@ The comprehensive audit claimed automation was "100% complete" but **completely 
 ## Critical Issues Found
 
 ### 1. sync.js - FIXED ✅
+
 **Issue:** Used mock data instead of fetching from GitHub
 **Status:** Fixed in commit 6e63159
 **Lines:** 395-422 (fetchLatestStandards)
 
 ### 2. update.js - 🔴 BROKEN
+
 **File:** CLI/commands/update.js
 **Line:** 353
 **Issue:** `// TODO: Fetch from actual ai-dev-standards repo`
@@ -31,23 +33,28 @@ The comprehensive audit claimed automation was "100% complete" but **completely 
 **Status:** NEEDS FIX
 
 ### 3. analyze.js - ⚠️ LIKELY BROKEN
+
 **File:** CLI/commands/analyze.js
 **Grep matches:** Contains "mock" or "Mock"
 **Status:** NEEDS REVIEW
 
 ### 4. Generator Files - ⚠️ INCOMPLETE
+
 **Files with TODOs:**
+
 - mcp-generator.js (lines 152, 199)
 - project-generator.js (lines 297, 390, 395, 400)
 - tool-generator.js (lines 88, 136, 205)
-**Status:** NEEDS REVIEW
+  **Status:** NEEDS REVIEW
 
 ---
 
 ## Why This Happened
 
 ### 1. Dark Matter Analysis Missed It
+
 The Dark Matter analysis found:
+
 - 3,296 TODO/FIXME markers in codebase
 - Documentation inflation
 - Execution deficit
@@ -55,7 +62,9 @@ The Dark Matter analysis found:
 But it **did not check if TODOs were in CRITICAL paths**.
 
 ### 2. Comprehensive Audit Missed It
+
 The COMPLETE-FILE-RELATIONSHIP-AUDIT.md documented:
+
 - All 303 files
 - All relationships
 - All automation status
@@ -63,7 +72,9 @@ The COMPLETE-FILE-RELATIONSHIP-AUDIT.md documented:
 But it **did not validate CLI functionality** or check for TODOs in user-facing code.
 
 ### 3. Validation Missed It
+
 The validation suite has 22 checks for:
+
 - Registry synchronization
 - Documentation accuracy
 - Relationship mapping
@@ -71,7 +82,9 @@ The validation suite has 22 checks for:
 But it has **zero checks for CLI functionality**.
 
 ### 4. No Integration Tests
+
 There are:
+
 - Unit tests for utilities
 - Registry validation tests
 - NO tests that actually run CLI commands
@@ -82,7 +95,9 @@ There are:
 ## What Should Have Been Done
 
 ### 1. CLI Functionality Validation
+
 **Missing check:** Do CLI commands actually work?
+
 ```javascript
 // Should have validated:
 - Can sync fetch from GitHub?
@@ -92,7 +107,9 @@ There are:
 ```
 
 ### 2. TODO Detection in Critical Paths
+
 **Missing check:** Are there TODOs in user-facing code?
+
 ```javascript
 // Should have flagged:
 - TODOs in CLI/commands/*.js
@@ -101,7 +118,9 @@ There are:
 ```
 
 ### 3. Integration Tests
+
 **Missing tests:**
+
 ```javascript
 // Should test:
 describe('CLI sync command', () => {
@@ -114,7 +133,9 @@ describe('CLI sync command', () => {
 ```
 
 ### 4. Smoke Tests
+
 **Missing validation:**
+
 ```bash
 # Should run before claiming "complete":
 ai-dev sync --dry-run
@@ -140,6 +161,7 @@ ai-dev generate skill test-skill
    - Test with example project
 
 3. **Add CLI validation to validate-all.cjs**
+
    ```javascript
    // New check #23: CLI commands have no TODOs
    validateNoCriticalTODOs()
@@ -156,11 +178,12 @@ ai-dev generate skill test-skill
    - tool-generator.js - Implement logic at lines 88, 136, 205
 
 5. **Add integration tests**
+
    ```javascript
-   tests/integration/cli-sync.test.js
-   tests/integration/cli-update.test.js
-   tests/integration/cli-analyze.test.js
-   tests/integration/cli-generate.test.js
+   tests / integration / cli - sync.test.js
+   tests / integration / cli - update.test.js
+   tests / integration / cli - analyze.test.js
+   tests / integration / cli - generate.test.js
    ```
 
 6. **Add smoke tests to CI/CD**
@@ -191,7 +214,9 @@ ai-dev generate skill test-skill
 ## Lessons Learned
 
 ### 1. Validation Must Match Reality
+
 The validation checked:
+
 - ✅ Documentation has correct counts
 - ✅ Registries are synchronized
 - ❌ **CLI actually works**
@@ -199,14 +224,18 @@ The validation checked:
 **Lesson:** Validate what users actually DO, not just what documentation SAYS.
 
 ### 2. TODOs in Critical Paths Are Blockers
+
 Found 3,296 TODOs total:
+
 - 3,290 in node_modules (irrelevant)
 - 6 in CLI code (CRITICAL)
 
 **Lesson:** Not all TODOs are equal. TODOs in user-facing code are BLOCKERS.
 
 ### 3. "Comprehensive" Doesn't Mean "Functional"
+
 Comprehensive audit reviewed:
+
 - ✅ Every file's purpose
 - ✅ Every file's relationships
 - ❌ **Whether files actually work**
@@ -214,7 +243,9 @@ Comprehensive audit reviewed:
 **Lesson:** Static analysis isn't enough. Must include functional validation.
 
 ### 4. Integration Tests > Unit Tests for User Experience
+
 Have unit tests for:
+
 - ✅ Utility functions
 - ✅ Registry validation
 - ❌ **End-to-end user workflows**
@@ -226,13 +257,10 @@ Have unit tests for:
 ## Updated Validation Requirements
 
 ### New Check #23: No TODOs in Critical Paths
+
 ```javascript
 function validateNoCriticalTODOs() {
-  const criticalPaths = [
-    'CLI/commands/',
-    'CLI/generators/',
-    'scripts/'
-  ]
+  const criticalPaths = ['CLI/commands/', 'CLI/generators/', 'scripts/']
 
   for (const path of criticalPaths) {
     const todos = grep('TODO|FIXME', path)
@@ -244,6 +272,7 @@ function validateNoCriticalTODOs() {
 ```
 
 ### New Check #24: CLI Fetches From GitHub
+
 ```javascript
 async function validateCLIFetchesFromGitHub() {
   // Test sync command
@@ -253,7 +282,8 @@ async function validateCLIFetchesFromGitHub() {
   }
 
   // Verify fetches from GitHub
-  const registryUrl = 'https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main/META/skill-registry.json'
+  const registryUrl =
+    'https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main/META/skill-registry.json'
   const canFetch = await testURL(registryUrl)
   if (!canFetch) {
     error('Cannot fetch from GitHub')
@@ -262,6 +292,7 @@ async function validateCLIFetchesFromGitHub() {
 ```
 
 ### New Check #25: CLI Commands Don't Crash
+
 ```javascript
 async function validateCLICommandsRun() {
   const commands = ['sync --help', 'update --help', 'generate --help']
@@ -290,6 +321,7 @@ async function validateCLICommandsRun() {
 ## Trust Impact
 
 This is the **third time** user has found critical gaps:
+
 1. Root files not in automation
 2. .claude/claude.md not auto-generated
 3. **CLI sync using mock data**

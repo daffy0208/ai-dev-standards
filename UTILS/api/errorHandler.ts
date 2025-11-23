@@ -182,9 +182,7 @@ export function handleApiError(error: unknown): Response {
   // Handle standard Error instances
   if (error instanceof Error) {
     const statusCode = 500
-    const message = process.env.NODE_ENV === 'production'
-      ? 'Internal server error'
-      : error.message
+    const message = process.env.NODE_ENV === 'production' ? 'Internal server error' : error.message
 
     return Response.json(
       {
@@ -215,9 +213,7 @@ export function handleApiError(error: unknown): Response {
 /**
  * Async error wrapper for API routes
  */
-export function withErrorHandler<T extends (...args: any[]) => Promise<Response>>(
-  handler: T
-): T {
+export function withErrorHandler<T extends (...args: any[]) => Promise<Response>>(handler: T): T {
   return (async (...args: any[]) => {
     try {
       return await handler(...args)

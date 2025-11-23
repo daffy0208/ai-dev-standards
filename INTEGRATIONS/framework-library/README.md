@@ -9,11 +9,11 @@ Both packages target Node.js 18+ and the shared `@modelcontextprotocol/sdk@^1.20
 
 ## framework-content MCP
 
-| Capability | Description |
-| ---------- | ----------- |
-| List resources | Enumerates every framework as a virtual `framework:///category/id` resource. |
+| Capability     | Description                                                                        |
+| -------------- | ---------------------------------------------------------------------------------- |
+| List resources | Enumerates every framework as a virtual `framework:///category/id` resource.       |
 | Read resources | Returns the markdown contents for a selected framework or the complete JSON index. |
-| Tools | `search_frameworks`, `get_framework_metadata` for keyword discovery. |
+| Tools          | `search_frameworks`, `get_framework_metadata` for keyword discovery.               |
 
 Configuration:
 
@@ -21,13 +21,13 @@ Configuration:
 
 ## framework-orchestrator MCP
 
-| Capability | Description |
-| ---------- | ----------- |
-| `analyze_project` | Classifies a project into patterns A/B/C using requirement heuristics. |
-| `select_frameworks` | Suggests an ordered framework sequence for a pattern. |
-| `generate_manifest` | Builds a JSON manifest describing the chosen frameworks and stack. |
-| `generate_project_structure` | Outputs a suggested folder layout for bootstrapping. |
-| `get_decision_matrix` | Produces a weighted technology matrix based on constraints. |
+| Capability                   | Description                                                            |
+| ---------------------------- | ---------------------------------------------------------------------- |
+| `analyze_project`            | Classifies a project into patterns A/B/C using requirement heuristics. |
+| `select_frameworks`          | Suggests an ordered framework sequence for a pattern.                  |
+| `generate_manifest`          | Builds a JSON manifest describing the chosen frameworks and stack.     |
+| `generate_project_structure` | Outputs a suggested folder layout for bootstrapping.                   |
+| `get_decision_matrix`        | Produces a weighted technology matrix based on constraints.            |
 
 This MCP does not require additional configuration—behaviour is fully driven by request payloads.
 

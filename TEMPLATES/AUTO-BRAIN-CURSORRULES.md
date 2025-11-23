@@ -17,11 +17,13 @@ You have access to a Brain MCP server that contains 64 expert skills, 51 MCPs, a
 **BEFORE responding, AUTOMATICALLY do this sequence:**
 
 1. **Query the brain silently:**
+
    ```
    brain_select_skills({ taskDescription: "[user's request]" })
    ```
 
 2. **Get dependencies:**
+
    ```
    graph_get_dependencies({ capabilityId: "[recommended-skill]" })
    ```
@@ -36,12 +38,14 @@ You have access to a Brain MCP server that contains 64 expert skills, 51 MCPs, a
 ## EXAMPLES OF AUTOMATIC BEHAVIOR
 
 ### ❌ WRONG (Don't do this):
+
 ```
 User: "Add authentication to my app"
 You: "I'll add authentication. Here's the code..."
 ```
 
 ### ✅ CORRECT (Do this automatically):
+
 ```
 User: "Add authentication to my app"
 
@@ -68,6 +72,7 @@ Let me implement authentication following OWASP Top 10 guidelines:
 ## AUTOMATIC TRIGGERS
 
 **Trigger brain_select_skills automatically when user says:**
+
 - "Build..."
 - "Add..."
 - "Implement..."
@@ -86,15 +91,18 @@ Let me implement authentication following OWASP Top 10 guidelines:
 Use these automatically (don't mention them to user):
 
 ### For Any Task:
+
 - `brain_select_skills({ taskDescription })` - ALWAYS run first
 - `graph_get_dependencies({ capabilityId })` - Check what's needed
 - `graph_composition_chains({ capabilityId })` - See workflow
 
 ### For Exploration (when user asks "what's available"):
+
 - `graph_query_by_domain({ domain })` - Find by domain
 - `brain_search({ query })` - Search everything
 
 ### For Details (when need more info):
+
 - `brain_show_skill({ skillName })` - Get skill details
 - `brain_relationships({ skillName })` - See dependencies
 
@@ -105,6 +113,7 @@ Use these automatically (don't mention them to user):
 After brain recommends skills:
 
 1. **Load the skill file:**
+
    ```
    Read: ~/ai-dev-standards/SKILLS/[skill-name]/SKILL.md
    ```
@@ -112,6 +121,7 @@ After brain recommends skills:
 2. **Follow its methodology exactly**
 
 3. **Apply relevant patterns:**
+
    ```
    Read: ~/ai-dev-standards/STANDARDS/architecture-patterns/[pattern].md
    Read: ~/ai-dev-standards/STANDARDS/best-practices/[practice].md
@@ -124,6 +134,7 @@ After brain recommends skills:
 ## BEHAVIORAL RULES
 
 ### DO (Automatically):
+
 ✅ Query brain before EVERY implementation task
 ✅ Load recommended skills without asking
 ✅ Follow skill methodologies precisely
@@ -132,6 +143,7 @@ After brain recommends skills:
 ✅ Implement following that skill's approach
 
 ### DON'T (Never):
+
 ❌ Implement without checking brain first
 ❌ Ask user to manually invoke brain tools
 ❌ Skip loading recommended skills
@@ -164,6 +176,7 @@ You:
 ## PROJECT CONTEXT
 
 **Tech Stack:**
+
 - Frontend: [e.g., Next.js 14, React, TypeScript]
 - Backend: [e.g., Node.js, Supabase]
 - Database: [e.g., PostgreSQL]
@@ -172,6 +185,7 @@ You:
 **Current Phase:** [MVP / Feature Expansion / Production]
 
 **Key Features:**
+
 1. [Feature 1]
 2. [Feature 2]
 3. [Feature 3]
@@ -197,6 +211,7 @@ Test yourself:
 **Scenario:** User says "Add authentication"
 
 **Your thought process should be:**
+
 1. ⚡ Automatically run brain_select_skills
 2. ⚡ Get recommendations (security-engineer, etc.)
 3. ⚡ Load that skill from ~/ai-dev-standards/SKILLS/

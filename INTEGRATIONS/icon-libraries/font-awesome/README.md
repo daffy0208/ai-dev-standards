@@ -38,7 +38,7 @@ const results = await fa.searchIcons('arrow')
 
 // Get specific icon
 const icon = await fa.getIcon('arrow-right', 'solid')
-console.log(icon.svg)      // SVG content
+console.log(icon.svg) // SVG content
 console.log(icon.cssClass) // "fas fa-arrow-right"
 ```
 
@@ -170,9 +170,7 @@ await fa.getIcon('arrow-right', 'solid', {
 #### getIcons(icons)
 
 ```typescript
-await fa.getIcons([
-  { name: 'home', style: 'solid', options: { size: 24 } }
-])
+await fa.getIcons([{ name: 'home', style: 'solid', options: { size: 24 } }])
 ```
 
 #### listIcons(options?)
@@ -206,18 +204,23 @@ fa.getCssClass('arrow-right', 'solid')
 ## Icon Styles
 
 ### Solid (fas)
+
 Default filled style, available in free tier.
 
 ### Regular (far)
+
 Outline style, available in free tier for some icons.
 
 ### Light (fal)
+
 Lighter weight outline, Pro only.
 
 ### Duotone (fad)
+
 Two-tone icons with primary and secondary colors, Pro only.
 
 ### Brands (fab)
+
 Brand logos, available in free tier.
 
 ## React Integration
@@ -240,7 +243,7 @@ function FAIcon({ name, style = 'solid', size = 24 }) {
 }
 
 // Usage
-<FAIcon name="heart" style="solid" size={24} />
+;<FAIcon name="heart" style="solid" size={24} />
 ```
 
 ## Best Practices

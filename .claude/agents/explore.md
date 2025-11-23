@@ -5,6 +5,7 @@ Fast, configurable codebase exploration agent for understanding project architec
 ## Overview
 
 The Explore Agent is optimized for:
+
 - Initial codebase assessment
 - Architecture understanding
 - Pattern discovery
@@ -15,22 +16,26 @@ The Explore Agent is optimized for:
 ## Thoroughness Modes
 
 ### Quick Mode
+
 **Speed:** Fast (seconds to minutes)
 **Depth:** Surface-level overview
 
 **Best For:**
+
 - Quick sanity checks
 - Initial repository assessment
 - Finding specific patterns
 - High-level architecture overview
 
 **What It Does:**
+
 - Scans directory structure
 - Identifies main technologies
 - Maps key files and folders
 - Generates quick summary
 
 **Example:**
+
 ```
 Task: Get overview of React project structure
 Mode: Quick
@@ -41,16 +46,19 @@ Output: Directory tree, tech stack, entry points
 ---
 
 ### Medium Mode (Default)
+
 **Speed:** Moderate (5-15 minutes)
 **Depth:** Balanced exploration
 
 **Best For:**
+
 - General codebase exploration
 - Understanding project organization
 - Identifying major components
 - Balanced depth vs. speed
 
 **What It Does:**
+
 - Comprehensive directory scan
 - File content sampling
 - Dependency analysis
@@ -58,6 +66,7 @@ Output: Directory tree, tech stack, entry points
 - Architecture mapping
 
 **Example:**
+
 ```
 Task: Understand authentication flow
 Mode: Medium
@@ -68,10 +77,12 @@ Output: Auth components, API endpoints, data flow, dependencies
 ---
 
 ### Very Thorough Mode
+
 **Speed:** Slow (30+ minutes)
 **Depth:** Deep, comprehensive analysis
 
 **Best For:**
+
 - Complete system understanding
 - Pre-refactoring analysis
 - Security audits
@@ -79,6 +90,7 @@ Output: Auth components, API endpoints, data flow, dependencies
 - Complex system mapping
 
 **What It Does:**
+
 - Reads all relevant files
 - Deep dependency analysis
 - Cross-reference mapping
@@ -86,6 +98,7 @@ Output: Auth components, API endpoints, data flow, dependencies
 - Comprehensive reporting
 
 **Example:**
+
 ```
 Task: Map entire microservices architecture
 Mode: Very Thorough
@@ -131,6 +144,7 @@ Output: Complete service map, API contracts, data flows, dependencies
 ## Usage Patterns
 
 ### Initial Repository Assessment
+
 ```
 Scenario: First time seeing codebase
 Agent: Explore (Quick)
@@ -141,6 +155,7 @@ Next Step: Explore (Medium) for specific areas of interest
 ```
 
 ### Pre-Refactoring Analysis
+
 ```
 Scenario: Planning to refactor authentication
 Agent: Explore (Very Thorough)
@@ -152,6 +167,7 @@ Next Step: General-purpose agent for implementation
 ```
 
 ### Architecture Documentation
+
 ```
 Scenario: Need to document system architecture
 Agent: Explore (Very Thorough)
@@ -163,6 +179,7 @@ Next Step: technical-writer skill to format docs
 ```
 
 ### Pattern Discovery
+
 ```
 Scenario: Find all API error handling patterns
 Agent: Explore (Medium)
@@ -176,6 +193,7 @@ Next Step: Standardize using general-purpose agent
 ## Performance Characteristics
 
 ### Speed Comparison
+
 ```
 Quick Mode:     ■□□□□ (20% time)
 Medium Mode:    ■■■□□ (60% time)
@@ -183,6 +201,7 @@ Very Thorough:  ■■■■■ (100% time)
 ```
 
 ### Depth Comparison
+
 ```
 Quick Mode:     ■■□□□ (40% depth)
 Medium Mode:    ■■■■□ (80% depth)
@@ -190,6 +209,7 @@ Very Thorough:  ■■■■■ (100% depth)
 ```
 
 ### Resource Usage
+
 ```
 Quick Mode:     Low memory, fast CPU
 Medium Mode:    Medium memory, medium CPU
@@ -201,18 +221,21 @@ Very Thorough:  High memory, sustained CPU
 ### 1. Choose Appropriate Mode
 
 **Quick** when:
+
 - Time is limited
 - Need just overview
 - Sanity checking
 - Multiple repositories
 
 **Medium** when:
+
 - General exploration
 - Balanced needs
 - Standard investigation
 - Default choice
 
 **Very Thorough** when:
+
 - Critical analysis needed
 - Pre-major-changes
 - Complete understanding required
@@ -221,11 +244,13 @@ Very Thorough:  High memory, sustained CPU
 ### 2. Focus Your Exploration
 
 Instead of:
+
 ```
 "Explore this codebase"
 ```
 
 Be specific:
+
 ```
 "Explore authentication and authorization code,
 focusing on user permissions and role management"
@@ -242,6 +267,7 @@ General-Purpose Agent → Implementation
 ```
 
 Example:
+
 ```
 1. Explore (Medium) → Find security patterns
 2. security-engineer skill → Analyze findings
@@ -263,6 +289,7 @@ If critical: Very Thorough mode for deep dive
 ### Works Well With Skills
 
 **After Exploration, Use:**
+
 - **dark-matter-analyzer** - Identify repository issues
 - **knowledge-base-manager** - Organize findings
 - **technical-writer** - Document discoveries
@@ -281,6 +308,7 @@ If critical: Very Thorough mode for deep dive
 ## Example Workflows
 
 ### 1. New Project Onboarding
+
 ```
 Day 1: Explore (Quick)
 - Get project overview
@@ -303,6 +331,7 @@ Time: 1 hour per area
 ```
 
 ### 2. Pre-Refactoring Analysis
+
 ```
 Step 1: Explore (Medium) - Target area
 Identify all code to be refactored
@@ -318,6 +347,7 @@ Time: Variable
 ```
 
 ### 3. Security Audit Preparation
+
 ```
 Step 1: Explore (Very Thorough)
 - Authentication code
@@ -338,6 +368,7 @@ Time: Variable
 ## Output Expectations
 
 ### Quick Mode Output
+
 ```
 - Directory structure (tree)
 - Technology stack
@@ -348,6 +379,7 @@ Time: Variable
 ```
 
 ### Medium Mode Output
+
 ```
 - Detailed directory analysis
 - Component relationships
@@ -359,6 +391,7 @@ Time: Variable
 ```
 
 ### Very Thorough Mode Output
+
 ```
 - Complete file inventory
 - Deep dependency analysis
@@ -375,12 +408,14 @@ Time: Variable
 ### Optimize Exploration Speed
 
 1. **Limit Scope**
+
    ```
    Bad:  "Explore entire monorepo"
    Good: "Explore authentication service in services/auth/"
    ```
 
 2. **Use Appropriate Mode**
+
    ```
    Don't use Very Thorough for quick checks
    Don't use Quick for critical analysis
@@ -413,6 +448,7 @@ Time: Variable
 ## Common Use Cases
 
 ### 1. "What does this project do?"
+
 ```
 Mode: Quick
 Focus: README, package.json, main files
@@ -420,6 +456,7 @@ Time: 1 minute
 ```
 
 ### 2. "How is authentication implemented?"
+
 ```
 Mode: Medium
 Focus: Auth-related code
@@ -427,6 +464,7 @@ Time: 10 minutes
 ```
 
 ### 3. "Map the entire system architecture"
+
 ```
 Mode: Very Thorough
 Focus: Entire codebase
@@ -434,6 +472,7 @@ Time: 45 minutes
 ```
 
 ### 4. "Find all uses of deprecated API"
+
 ```
 Mode: Medium
 Focus: API usage patterns
@@ -441,6 +480,7 @@ Time: 15 minutes
 ```
 
 ### 5. "Understand data flow from frontend to database"
+
 ```
 Mode: Very Thorough
 Focus: Complete data pipeline
@@ -450,12 +490,14 @@ Time: 30 minutes
 ## Combining with Other Agents
 
 ### Explore → General-Purpose
+
 ```
 1. Explore to understand
 2. General-Purpose to implement
 ```
 
 ### Explore → Skill → General-Purpose
+
 ```
 1. Explore to gather information
 2. Skill for specialized analysis
@@ -463,6 +505,7 @@ Time: 30 minutes
 ```
 
 ### Multiple Explore Passes
+
 ```
 1. Quick - Overall structure
 2. Medium - Interesting areas

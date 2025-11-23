@@ -26,11 +26,7 @@ import { z } from 'zod'
 /**
  * Common field schemas
  */
-export const emailSchema = z
-  .string()
-  .trim()
-  .email('Invalid email address')
-  .toLowerCase()
+export const emailSchema = z.string().trim().email('Invalid email address').toLowerCase()
 
 export const passwordSchema = z
   .string()
@@ -43,10 +39,7 @@ export const strongPasswordSchema = passwordSchema
   .regex(/[^A-Za-z0-9]/, 'Password must contain at least one special character')
   .min(12, 'Strong password must be at least 12 characters')
 
-export const urlSchema = z
-  .string()
-  .url('Invalid URL')
-  .trim()
+export const urlSchema = z.string().url('Invalid URL').trim()
 
 export const phoneSchema = z
   .string()
@@ -58,17 +51,12 @@ export const slugSchema = z
   .min(3, 'Slug must be at least 3 characters')
   .max(50, 'Slug must be at most 50 characters')
 
-export const uuidSchema = z
-  .string()
-  .uuid('Invalid UUID')
+export const uuidSchema = z.string().uuid('Invalid UUID')
 
 /**
  * Numeric schemas
  */
-export const positiveIntSchema = z
-  .number()
-  .int('Must be an integer')
-  .positive('Must be positive')
+export const positiveIntSchema = z.number().int('Must be an integer').positive('Must be positive')
 
 export const percentageSchema = z
   .number()
@@ -83,17 +71,13 @@ export const priceSchema = z
 /**
  * Date schemas
  */
-export const dateStringSchema = z
-  .string()
-  .datetime('Invalid datetime format')
+export const dateStringSchema = z.string().datetime('Invalid datetime format')
 
 export const futureDateSchema = z
   .date()
   .refine(date => date > new Date(), 'Date must be in the future')
 
-export const pastDateSchema = z
-  .date()
-  .refine(date => date < new Date(), 'Date must be in the past')
+export const pastDateSchema = z.date().refine(date => date < new Date(), 'Date must be in the past')
 
 /**
  * Array schemas
@@ -102,10 +86,9 @@ export const nonEmptyArraySchema = <T extends z.ZodTypeAny>(schema: T) =>
   z.array(schema).nonempty('Array must not be empty')
 
 export const uniqueArraySchema = <T extends z.ZodTypeAny>(schema: T) =>
-  z.array(schema).refine(
-    arr => new Set(arr).size === arr.length,
-    'Array must contain unique values'
-  )
+  z
+    .array(schema)
+    .refine(arr => new Set(arr).size === arr.length, 'Array must contain unique values')
 
 /**
  * Pagination schema
@@ -149,13 +132,15 @@ export const passwordResetSchema = z.object({
   email: emailSchema
 })
 
-export const passwordUpdateSchema = z.object({
-  password: passwordSchema,
-  confirmPassword: z.string()
-}).refine(data => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ['confirmPassword']
-})
+export const passwordUpdateSchema = z
+  .object({
+    password: passwordSchema,
+    confirmPassword: z.string()
+  })
+  .refine(data => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ['confirmPassword']
+  })
 
 /**
  * API request schemas
@@ -217,10 +202,7 @@ export const subscriptionSchema = z.object({
 /**
  * Metadata schema (for extensibility)
  */
-export const metadataSchema = z.record(
-  z.string(),
-  z.union([z.string(), z.number(), z.boolean()])
-)
+export const metadataSchema = z.record(z.string(), z.union([z.string(), z.number(), z.boolean()]))
 
 /**
  * Environment variable schema
@@ -238,10 +220,7 @@ export const envSchema = z.object({
 /**
  * Helper: Validate and parse data
  */
-export function validate<T extends z.ZodTypeAny>(
-  schema: T,
-  data: unknown
-): z.infer<T> {
+export function validate<T extends z.ZodTypeAny>(schema: T, data: unknown): z.infer<T> {
   return schema.parse(data)
 }
 
@@ -335,10 +314,7 @@ export async function exampleApiRoute(request: Request) {
     return Response.json({ success: true })
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return Response.json(
-        { error: 'Validation failed', issues: error.issues },
-        { status: 400 }
-      )
+      return Response.json({ error: 'Validation failed', issues: error.issues }, { status: 400 })
     }
     throw error
   }

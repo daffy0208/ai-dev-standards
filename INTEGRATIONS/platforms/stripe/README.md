@@ -95,9 +95,7 @@ const subscription = await stripe.createSubscription({
 ```typescript
 const session = await stripe.createCheckoutSession({
   customerEmail: 'user@example.com',
-  lineItems: [
-    { priceId: 'price_123', quantity: 1 }
-  ],
+  lineItems: [{ priceId: 'price_123', quantity: 1 }],
   mode: 'subscription', // or 'payment' for one-time
   successUrl: 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
   cancelUrl: 'https://example.com/cancel'
@@ -129,7 +127,7 @@ import { handleStripeWebhook } from '@/integrations/stripe/webhooks'
 
 export async function POST(request: Request) {
   return handleStripeWebhook(request, {
-    onPaymentSuccess: async (paymentIntent) => {
+    onPaymentSuccess: async paymentIntent => {
       // Handle successful payment
       console.log('Payment succeeded:', paymentIntent.id)
 
@@ -149,7 +147,7 @@ export async function POST(request: Request) {
       })
     },
 
-    onSubscriptionCreated: async (subscription) => {
+    onSubscriptionCreated: async subscription => {
       // Grant access
       await db.users.update({
         where: { stripeCustomerId: subscription.customer },
@@ -161,7 +159,7 @@ export async function POST(request: Request) {
       })
     },
 
-    onSubscriptionDeleted: async (subscription) => {
+    onSubscriptionDeleted: async subscription => {
       // Revoke access
       await db.users.update({
         where: { stripeCustomerId: subscription.customer },
@@ -173,7 +171,7 @@ export async function POST(request: Request) {
       })
     },
 
-    onInvoicePaymentFailed: async (invoice) => {
+    onInvoicePaymentFailed: async invoice => {
       // Notify user
       await sendEmail({
         to: customer.email,
@@ -219,9 +217,7 @@ stripe trigger customer.subscription.created
 async function hasActiveSubscription(customerId: string): Promise<boolean> {
   const subscriptions = await stripe.listSubscriptions(customerId)
 
-  return subscriptions.data.some(
-    sub => sub.status === 'active' || sub.status === 'trialing'
-  )
+  return subscriptions.data.some(sub => sub.status === 'active' || sub.status === 'trialing')
 }
 ```
 
@@ -243,10 +239,12 @@ await stripe.cancelSubscription(subscriptionId, {
 
 ```typescript
 const subscription = await stripe.updateSubscription(subscriptionId, {
-  items: [{
-    id: subscription.items.data[0].id,
-    price: 'price_new_plan'
-  }],
+  items: [
+    {
+      id: subscription.items.data[0].id,
+      price: 'price_new_plan'
+    }
+  ],
   proration_behavior: 'create_prorations'
 })
 ```
@@ -313,20 +311,24 @@ await stripe.createUsageRecord({
 ## Security Best Practices
 
 ### 1. Never Expose Secret Key
+
 - ❌ Don't use secret key on client-side
 - ✅ Use publishable key for client-side
 - ✅ Keep secret key server-side only
 
 ### 2. Verify Webhook Signatures
+
 - ✅ Always verify webhook signatures
 - ✅ Use constructWebhookEvent() method
 - ❌ Don't trust unverified webhooks
 
 ### 3. Use HTTPS
+
 - ✅ Always use HTTPS in production
 - ✅ Stripe requires HTTPS for webhooks
 
 ### 4. Handle Idempotency
+
 - ✅ Store event IDs to prevent duplicate processing
 - ✅ Use Stripe's built-in idempotency keys
 
@@ -352,15 +354,18 @@ No real charges will be made.
 ## Troubleshooting
 
 ### "Invalid API Key"
+
 Check that you're using the correct key for your environment (test vs live).
 
 ### Webhook Not Receiving Events
+
 1. Verify webhook URL is correct
 2. Check webhook is enabled in Stripe Dashboard
 3. Verify webhook secret is correct
 4. Check server logs for errors
 
 ### Payment Failing
+
 1. Check test card numbers
 2. Verify amount is in cents
 3. Check currency code is valid

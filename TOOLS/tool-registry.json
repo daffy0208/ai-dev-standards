@@ -101,11 +101,7 @@
       "description": "Tools for processing and transforming data (parsing, formatting, conversion)",
       "tool_count": 0,
       "tools": [],
-      "needed": [
-        "json-transformer-tool",
-        "csv-parser-tool",
-        "data-validator-tool"
-      ]
+      "needed": ["json-transformer-tool", "csv-parser-tool", "data-validator-tool"]
     },
     {
       "id": "communication",
@@ -113,11 +109,7 @@
       "description": "Tools for messaging and notifications (Slack, email, webhooks)",
       "tool_count": 0,
       "tools": [],
-      "needed": [
-        "slack-notifier-tool",
-        "email-sender-tool",
-        "webhook-caller-tool"
-      ]
+      "needed": ["slack-notifier-tool", "email-sender-tool", "webhook-caller-tool"]
     },
     {
       "id": "file-operations",
@@ -132,11 +124,7 @@
       "description": "Tools for running code and scripts (Python, Node.js, shell commands)",
       "tool_count": 0,
       "tools": [],
-      "needed": [
-        "python-executor-tool",
-        "node-executor-tool",
-        "shell-command-tool"
-      ]
+      "needed": ["python-executor-tool", "node-executor-tool", "shell-command-tool"]
     },
     {
       "id": "api-integration",
@@ -158,32 +146,21 @@
       "description": "Tools specifically designed for LangChain agents",
       "count": 0,
       "path": "/TOOLS/langchain-tools/",
-      "needed": [
-        "vector-search-langchain",
-        "embedding-langchain",
-        "reranking-langchain"
-      ]
+      "needed": ["vector-search-langchain", "embedding-langchain", "reranking-langchain"]
     },
     "crewai": {
       "name": "CrewAI Tools",
       "description": "Tools specifically designed for CrewAI agents",
       "count": 0,
       "path": "/TOOLS/crewai-tools/",
-      "needed": [
-        "code-analyzer-crewai",
-        "test-generator-crewai",
-        "doc-generator-crewai"
-      ]
+      "needed": ["code-analyzer-crewai", "test-generator-crewai", "doc-generator-crewai"]
     },
     "mcp": {
       "name": "MCP Tools",
       "description": "Tools that interact with MCP servers",
       "count": 0,
       "path": "/TOOLS/mcp-tools/",
-      "needed": [
-        "mcp-client-tool",
-        "mcp-server-caller-tool"
-      ]
+      "needed": ["mcp-client-tool", "mcp-server-caller-tool"]
     }
   },
   "priority_tools_to_add": {

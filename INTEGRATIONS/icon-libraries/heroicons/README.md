@@ -120,16 +120,11 @@ function Icon({ name, variant = 'outline', size = '24' }) {
     })
   }, [name, variant, size])
 
-  return (
-    <span
-      dangerouslySetInnerHTML={{ __html: svg }}
-      className="inline-block"
-    />
-  )
+  return <span dangerouslySetInnerHTML={{ __html: svg }} className="inline-block" />
 }
 
 // Usage
-<Icon name="heart" variant="solid" size="24" />
+;<Icon name="heart" variant="solid" size="24" />
 ```
 
 ### Clear Cache
@@ -166,8 +161,8 @@ Get icon SVG content.
 ```typescript
 await heroicons.getIcon(
   'arrow-right',
-  '24',      // size: '24' | '20'
-  'outline'  // variant: 'outline' | 'solid' | 'mini'
+  '24', // size: '24' | '20'
+  'outline' // variant: 'outline' | 'solid' | 'mini'
 )
 ```
 
@@ -225,8 +220,8 @@ type IconSize = '24' | '20'
 
 ```typescript
 interface IconSearchResult {
-  name: string           // kebab-case name
-  displayName: string    // Display Name
+  name: string // kebab-case name
+  displayName: string // Display Name
   variant: IconVariant
   size: IconSize
   category?: string
@@ -240,8 +235,8 @@ interface GetIconResult {
   name: string
   variant: IconVariant
   size: IconSize
-  svg: string       // SVG content
-  url: string       // Source URL
+  svg: string // SVG content
+  url: string // Source URL
 }
 ```
 
@@ -250,34 +245,40 @@ interface GetIconResult {
 Heroicons includes over 200 icons including:
 
 **Navigation:**
+
 - arrow-right, arrow-left, arrow-up, arrow-down
 - chevron-right, chevron-left, chevron-up, chevron-down
 - bars-3 (menu), x-mark (close)
 
 **Actions:**
+
 - plus, minus, check, x-mark
 - pencil (edit), trash (delete)
 - magnifying-glass (search)
 - share, download, upload
 
 **UI Elements:**
+
 - heart, star, bell
 - home, user, users
 - cog-6-tooth (settings)
 - ellipsis-horizontal, ellipsis-vertical
 
 **Content:**
+
 - document, folder, photo
 - calendar, clock, envelope
 - link, globe-alt, map-pin
 
 **Status:**
+
 - check-circle, x-circle
 - exclamation-triangle (warning)
 - information-circle, question-mark-circle
 - shield-check
 
 **Security:**
+
 - lock-closed, lock-open, key
 - eye, eye-slash
 
@@ -376,10 +377,7 @@ function IconPicker({ onSelect }) {
       />
       <div className="grid grid-cols-6 gap-2">
         {icons.map(icon => (
-          <button
-            key={`${icon.name}-${icon.variant}`}
-            onClick={() => onSelect(icon)}
-          >
+          <button key={`${icon.name}-${icon.variant}`} onClick={() => onSelect(icon)}>
             {icon.displayName}
           </button>
         ))}

@@ -7,9 +7,11 @@ Generate complete design system themes with automatic color scales, dark mode, a
 ### Tools
 
 #### `generateTheme`
+
 Generate complete theme from base brand colors.
 
 **Parameters:**
+
 - `baseColors` (object, required):
   - `primary` (string): Primary brand color
   - `secondary` (string): Secondary brand color
@@ -22,6 +24,7 @@ Generate complete theme from base brand colors.
   - `density` (string): compact, comfortable, spacious
 
 **Example:**
+
 ```typescript
 {
   baseColors: {
@@ -40,14 +43,17 @@ Generate complete theme from base brand colors.
 ```
 
 #### `createDarkMode`
+
 Generate dark mode variant from light theme.
 
 **Parameters:**
+
 - `lightTheme` (object, required): Light theme to convert
 - `strategy` (string): invert, shift, custom
 - `preserveColors` (array): Colors to keep unchanged
 
 **Example:**
+
 ```typescript
 {
   lightTheme: { /* theme object */ },
@@ -57,14 +63,17 @@ Generate dark mode variant from light theme.
 ```
 
 #### `validateThemeAccessibility`
+
 Validate theme for WCAG compliance.
 
 **Parameters:**
+
 - `theme` (object, required): Theme to validate
 - `level` (string): AA or AAA
 - `checkAspects` (array): contrast, color-blindness, touch-targets, focus-indicators
 
 **Example:**
+
 ```typescript
 {
   theme: { /* theme object */ },
@@ -74,14 +83,17 @@ Validate theme for WCAG compliance.
 ```
 
 #### `exportThemeTokens`
+
 Export theme as design tokens.
 
 **Parameters:**
+
 - `theme` (object, required): Theme to export
 - `format` (string, required): css, scss, js, json, tailwind, style-dictionary, figma-tokens
 - `includeComments` (boolean): Include usage comments
 
 **Example:**
+
 ```typescript
 {
   theme: { /* theme object */ },
@@ -93,9 +105,11 @@ Export theme as design tokens.
 ### Resources
 
 #### `theme-builder://presets`
+
 Curated theme presets for quick start.
 
 #### `theme-builder://guide`
+
 Comprehensive theme design best practices guide.
 
 ## Setup
@@ -130,10 +144,10 @@ npm run build
 
 ```typescript
 const baseColors = {
-  primary: "#4F46E5",    // Indigo - trust, professionalism
-  secondary: "#EC4899",   // Pink - creativity, energy
-  neutral: "#6B7280"      // Gray - balance, sophistication
-};
+  primary: '#4F46E5', // Indigo - trust, professionalism
+  secondary: '#EC4899', // Pink - creativity, energy
+  neutral: '#6B7280' // Gray - balance, sophistication
+}
 ```
 
 ### 2. Generate Complete Theme
@@ -142,13 +156,13 @@ const baseColors = {
 const theme = await generateTheme({
   baseColors,
   preferences: {
-    style: "modern",
-    colorScale: 9,        // 50, 100, 200, ... 900
+    style: 'modern',
+    colorScale: 9, // 50, 100, 200, ... 900
     includeSemanticColors: true,
-    roundness: "rounded",
-    density: "comfortable"
+    roundness: 'rounded',
+    density: 'comfortable'
   }
-});
+})
 
 // Result: Complete theme with:
 // - 9 shades per color
@@ -164,9 +178,9 @@ const theme = await generateTheme({
 ```typescript
 const darkTheme = await createDarkMode({
   lightTheme: theme,
-  strategy: "shift",
-  preserveColors: [baseColors.primary]  // Keep brand color
-});
+  strategy: 'shift',
+  preserveColors: [baseColors.primary] // Keep brand color
+})
 
 // Result: Accessible dark mode variant
 ```
@@ -176,9 +190,9 @@ const darkTheme = await createDarkMode({
 ```typescript
 const validation = await validateThemeAccessibility({
   theme: darkTheme,
-  level: "AA",
-  checkAspects: ["contrast", "color-blindness", "touch-targets"]
-});
+  level: 'AA',
+  checkAspects: ['contrast', 'color-blindness', 'touch-targets']
+})
 
 // Result: Issues and score
 // - Contrast ratios
@@ -192,9 +206,9 @@ const validation = await validateThemeAccessibility({
 ```typescript
 const tokens = await exportThemeTokens({
   theme: darkTheme,
-  format: "tailwind",
+  format: 'tailwind',
   includeComments: true
-});
+})
 
 // Result: Ready-to-use design tokens
 ```
@@ -206,6 +220,7 @@ const tokens = await exportThemeTokens({
 From a single base color, generates 9 shades:
 
 **Lightness Progression:**
+
 - 50: 95% - Lightest backgrounds
 - 100: 90% - Subtle backgrounds
 - 200: 80% - Hover states
@@ -221,19 +236,19 @@ From a single base color, generates 9 shades:
 
 ```css
 /* Backgrounds */
-background: colors.primary.50;   /* Subtle highlight */
-background: colors.primary.100;  /* Card background */
+background: colors.primary.50; /* Subtle highlight */
+background: colors.primary.100; /* Card background */
 
 /* Borders */
 border-color: colors.primary.300;
 
 /* Interactive */
-color: colors.primary.600;       /* Default */
-color: colors.primary.700;       /* Hover */
-color: colors.primary.800;       /* Active */
+color: colors.primary.600; /* Default */
+color: colors.primary.700; /* Hover */
+color: colors.primary.800; /* Active */
 
 /* Text */
-color: colors.primary.900;       /* High emphasis */
+color: colors.primary.900; /* High emphasis */
 ```
 
 ## Dark Mode Strategies
@@ -241,6 +256,7 @@ color: colors.primary.900;       /* High emphasis */
 ### Shift Strategy (Recommended)
 
 Reduces lightness by shifting on HSL scale:
+
 - Light backgrounds (50-200) → Dark backgrounds (800-900)
 - Dark text (800-900) → Light text (50-200)
 - Middle shades swap positions
@@ -250,6 +266,7 @@ Reduces lightness by shifting on HSL scale:
 ### Invert Strategy
 
 Flips lightness values completely:
+
 - 50 ↔ 950
 - 100 ↔ 900
 - etc.
@@ -267,11 +284,13 @@ Hand-pick specific colors for dark mode.
 ### WCAG Contrast Requirements
 
 **Level AA (Minimum):**
+
 - Normal text (< 18px): 4.5:1
 - Large text (≥ 18px): 3:1
 - UI components: 3:1
 
 **Level AAA (Enhanced):**
+
 - Normal text: 7:1
 - Large text: 4.5:1
 - UI components: 4.5:1
@@ -305,9 +324,9 @@ Hand-pick specific colors for dark mode.
 
 ```css
 :root {
-  --color-primary-50: #EEF2FF;
-  --color-primary-500: #4F46E5;
-  --color-primary-900: #312E81;
+  --color-primary-50: #eef2ff;
+  --color-primary-500: #4f46e5;
+  --color-primary-900: #312e81;
 
   --font-sans: 'Inter', sans-serif;
   --spacing-md: 1rem;
@@ -324,7 +343,7 @@ module.exports = {
       primary: {
         50: '#EEF2FF',
         500: '#4F46E5',
-        900: '#312E81',
+        900: '#312E81'
       }
     },
     fontFamily: {
@@ -367,30 +386,35 @@ module.exports = {
 ## Theme Presets
 
 ### Modern Tech
+
 - Primary: Indigo (#4F46E5)
 - Secondary: Pink (#EC4899)
 - Style: Clean, professional
 - Use: SaaS, tech startups
 
 ### Classic Professional
+
 - Primary: Navy (#1E40AF)
 - Secondary: Gold (#F59E0B)
 - Style: Traditional, trustworthy
 - Use: Finance, legal, corporate
 
 ### Playful Creative
+
 - Primary: Purple (#A855F7)
 - Secondary: Orange (#FB923C)
 - Style: Fun, energetic
 - Use: Creative agencies, entertainment
 
 ### Minimal Elegant
+
 - Primary: Black (#000000)
 - Secondary: Gray (#6B7280)
 - Style: Sophisticated, simple
 - Use: Fashion, luxury, design
 
 ### Bold Vibrant
+
 - Primary: Magenta (#EC4899)
 - Secondary: Cyan (#06B6D4)
 - Style: High energy, modern
@@ -452,40 +476,40 @@ module.exports = {
 
 ```typescript
 // theme.config.ts
-export const theme = await generateTheme({ baseColors });
+export const theme = await generateTheme({ baseColors })
 export const tokens = await exportThemeTokens({
   theme,
-  format: "tailwind"
-});
+  format: 'tailwind'
+})
 
 // tailwind.config.js
 module.exports = {
   theme: tokens
-};
+}
 ```
 
 ### Vue + CSS Variables
 
 ```typescript
 // Generate theme
-const theme = await generateTheme({ baseColors });
+const theme = await generateTheme({ baseColors })
 const css = await exportThemeTokens({
   theme,
-  format: "css"
-});
+  format: 'css'
+})
 
 // Write to file
-fs.writeFileSync('./src/styles/theme.css', css);
+fs.writeFileSync('./src/styles/theme.css', css)
 ```
 
 ### Storybook Integration
 
 ```typescript
 // .storybook/preview.js
-import { generateTheme, createDarkMode } from '@/lib/theme-builder';
+import { generateTheme, createDarkMode } from '@/lib/theme-builder'
 
-const lightTheme = await generateTheme({ baseColors });
-const darkTheme = await createDarkMode({ lightTheme });
+const lightTheme = await generateTheme({ baseColors })
+const darkTheme = await createDarkMode({ lightTheme })
 
 export const parameters = {
   themes: {
@@ -494,7 +518,7 @@ export const parameters = {
       { name: 'Dark', class: 'theme-dark', color: '#000' }
     ]
   }
-};
+}
 ```
 
 ## Development

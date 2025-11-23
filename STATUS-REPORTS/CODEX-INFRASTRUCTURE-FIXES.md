@@ -14,11 +14,14 @@ Both Codex PRs have been successfully merged to main and pushed to GitHub. These
 ## Merged Fixes
 
 ### PR #10: Dynamic Registry Loading (3395f7f)
+
 **Branch:** `codex/add-registry-fields-and-updates`
 **Files Changed:** 3 files (+381 lines, -8 lines)
 
 #### What Was Fixed
+
 `scripts/brain/knowledge-layer.ts` now loads all 5 registries dynamically:
+
 - ✅ skill-registry.json
 - ✅ mcp-registry.json
 - ✅ tool-registry.json (NEW)
@@ -26,24 +29,28 @@ Both Codex PRs have been successfully merged to main and pushed to GitHub. These
 - ✅ integration-registry.json (NEW)
 
 #### Bug Details
+
 **BEFORE:**
+
 ```typescript
 // Hard-coded constants
 totalResources: this.getSkillCount() + this.getMCPCount() + 13 + 9 + 6
 ```
 
 **AFTER:**
+
 ```typescript
 // Computed from registries
-const skillCount = this.getSkillCount();
-const mcpCount = this.getMCPCount();
-const toolCount = this.getToolCount();
-const componentCount = this.getComponentCount();
-const integrationCount = this.getIntegrationCount();
+const skillCount = this.getSkillCount()
+const mcpCount = this.getMCPCount()
+const toolCount = this.getToolCount()
+const componentCount = this.getComponentCount()
+const integrationCount = this.getIntegrationCount()
 totalResources: skillCount + mcpCount + toolCount + componentCount + integrationCount
 ```
 
 #### Why This Matters
+
 - Fixes documentation drift (README was always out of sync with actual counts)
 - Brain status command now shows accurate resource counts
 - No more manual updates needed when resources change
@@ -51,24 +58,30 @@ totalResources: skillCount + mcpCount + toolCount + componentCount + integration
 ---
 
 ### PR #9: MCP ID vs Name Resolution (2dc3765)
+
 **Branch:** `codex/update-mcp-integrator-warning-checks`
 **Files Changed:** 2 files (+113 lines, -11 lines)
 
 #### What Was Fixed
+
 `scripts/brain/mcp-integrator.ts` now properly handles MCP lookups:
+
 - Looks up MCPs by both ID and friendly name
 - Adds `resolveMCPId()` method for intelligent resolution
 - Improves warning messages with proper name formatting
 
 #### Bug Details
+
 **BEFORE:**
+
 ```typescript
 // Only checked by name - failed for IDs
-const mcpExists = this.mcps.some(m => m.name === mcp);
+const mcpExists = this.mcps.some(m => m.name === mcp)
 // Result: False warnings for valid MCPs
 ```
 
 **AFTER:**
+
 ```typescript
 // Resolves by both ID and name
 private resolveMCPId(identifier: string): string | null {
@@ -79,6 +92,7 @@ private resolveMCPId(identifier: string): string | null {
 ```
 
 #### Why This Matters
+
 - Fixes false "MCP is required but not yet implemented" warnings
 - Relationship mapping uses IDs, but code checked names - now consistent
 - Better error messages that show actual MCP names
@@ -90,6 +104,7 @@ private resolveMCPId(identifier: string): string | null {
 These issues existed before the Codex fixes and are unrelated:
 
 ### 1. Test Failures (5/30 failing)
+
 - Component count mismatch (75 vs 10)
 - MCPs missing `enables` field (Phase 2 issue)
 - Skills missing `requires` field (Phase 2 issue)
@@ -97,15 +112,18 @@ These issues existed before the Codex fixes and are unrelated:
 - Malformed skill name "3d-visualizer skill\n-" (data corruption)
 
 ### 2. Lint Errors (27 warnings, 9 errors)
+
 - React unescaped entities in CLI components
 - Console.log statements
 - Unused variables
 - Parsing errors in Toast.tsx and useForm.ts
 
 ### 3. TypeScript Type Check
+
 - Missing `tsconfig.json` file
 
 ### 4. Coverage/Build
+
 - Cascade failures from test failures
 
 ---
@@ -113,17 +131,21 @@ These issues existed before the Codex fixes and are unrelated:
 ## Impact
 
 ### ✅ Problems Solved
+
 1. **Documentation drift** - Brain now computes counts from registries
 2. **False MCP warnings** - ID vs name resolution now works correctly
 3. **Manual maintenance** - No more hard-coded constants to update
 
 ### ✅ Benefits
+
 - Brain status command shows accurate counts
 - MCP warnings are now reliable
 - Foundation for future registry additions
 
 ### 📝 Next Steps (Optional)
+
 To get CI fully passing, fix pre-existing issues:
+
 1. Create `tsconfig.json` (10 min)
 2. Fix malformed skill references (15 min)
 3. Fix lint errors in CLI components (30 min)

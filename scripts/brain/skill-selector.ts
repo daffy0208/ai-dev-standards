@@ -5,28 +5,28 @@
  * Analyzes task descriptions and recommends optimal skills.
  */
 
-import { Skill } from './knowledge-layer';
+import { Skill } from './knowledge-layer'
 
 export interface SkillScore {
-  skill: string;
-  score: number;
-  matchReasons: string[];
-  confidence: 'high' | 'medium' | 'low';
+  skill: string
+  score: number
+  matchReasons: string[]
+  confidence: 'high' | 'medium' | 'low'
 }
 
 export interface SkillSelection {
-  primary: string[];
-  secondary: string[];
-  optional: string[];
-  reasoning: string;
-  confidence: number;
+  primary: string[]
+  secondary: string[]
+  optional: string[]
+  reasoning: string
+  confidence: number
 }
 
 export class SkillSelector {
-  private skills: Skill[];
+  private skills: Skill[]
 
   constructor(skills: Skill[]) {
-    this.skills = skills;
+    this.skills = skills
   }
 
   /**
@@ -34,38 +34,42 @@ export class SkillSelector {
    * Enhanced to use semantic matching and common patterns
    */
   select(taskDescription: string): SkillSelection {
-    const lowerTask = taskDescription.toLowerCase();
+    const lowerTask = taskDescription.toLowerCase()
 
     // Score all skills with enhanced keyword matching
-    const scored = this.scoreAllSkills(lowerTask);
+    const scored = this.scoreAllSkills(lowerTask)
 
     // Sort by score
-    scored.sort((a, b) => b.score - a.score);
+    scored.sort((a, b) => b.score - a.score)
 
     // Categorize skills
     const primary = scored
       .filter(s => s.score >= 8 && s.confidence === 'high') // Lowered threshold from 15 to 8
       .slice(0, 3)
-      .map(s => s.skill);
+      .map(s => s.skill)
 
     const secondary = scored
-      .filter(s => s.score >= 8 && s.score < 15 && (s.confidence === 'high' || s.confidence === 'medium'))
+      .filter(
+        s => s.score >= 8 && s.score < 15 && (s.confidence === 'high' || s.confidence === 'medium')
+      )
       .slice(0, 3)
-      .map(s => s.skill);
+      .map(s => s.skill)
 
     const optional = scored
       .filter(s => s.score >= 3 && s.score < 8)
       .slice(0, 3)
-      .map(s => s.skill);
+      .map(s => s.skill)
 
     // Calculate overall confidence
-    const avgScore = primary.length > 0
-      ? scored.filter(s => primary.includes(s.skill)).reduce((sum, s) => sum + s.score, 0) / primary.length
-      : 0;
-    const confidence = Math.min(100, Math.round((avgScore / 30) * 100));
+    const avgScore =
+      primary.length > 0
+        ? scored.filter(s => primary.includes(s.skill)).reduce((sum, s) => sum + s.score, 0) /
+          primary.length
+        : 0
+    const confidence = Math.min(100, Math.round((avgScore / 30) * 100))
 
     // Generate reasoning
-    const reasoning = this.generateReasoning(primary, scored);
+    const reasoning = this.generateReasoning(primary, scored)
 
     return {
       primary,
@@ -73,86 +77,86 @@ export class SkillSelector {
       optional,
       reasoning,
       confidence
-    };
+    }
   }
 
   /**
    * Score all skills against task description
    */
   private scoreAllSkills(taskDescription: string): SkillScore[] {
-    return this.skills.map(skill => this.scoreSkill(skill, taskDescription));
+    return this.skills.map(skill => this.scoreSkill(skill, taskDescription))
   }
 
   /**
    * Score a single skill with detailed reasoning
    */
   private scoreSkill(skill: Skill, taskDescription: string): SkillScore {
-    let score = 0;
-    const matchReasons: string[] = [];
+    let score = 0
+    const matchReasons: string[] = []
 
     // Rule 0: Common pattern matching (NEW - highest priority)
-    const patterns = this.getCommonPatterns();
+    const patterns = this.getCommonPatterns()
     for (const pattern of patterns) {
-      const matchedKeywords = pattern.keywords.filter(k => taskDescription.includes(k));
+      const matchedKeywords = pattern.keywords.filter(k => taskDescription.includes(k))
       if (matchedKeywords.length > 0 && pattern.skills.includes(skill.name)) {
-        score += 15 * matchedKeywords.length; // Multiply by number of keyword matches
-        matchReasons.push(`Pattern: ${pattern.name} (${matchedKeywords.length} keywords)`);
+        score += 15 * matchedKeywords.length // Multiply by number of keyword matches
+        matchReasons.push(`Pattern: ${pattern.name} (${matchedKeywords.length} keywords)`)
       }
     }
 
     // Rule 1: Trigger matching (highest priority)
     for (const trigger of skill.triggers) {
       if (taskDescription.includes(trigger.toLowerCase())) {
-        score += 15;
-        matchReasons.push(`Trigger match: "${trigger}"`);
+        score += 15
+        matchReasons.push(`Trigger match: "${trigger}"`)
       } else if (this.fuzzyMatch(taskDescription, trigger.toLowerCase())) {
-        score += 8;
-        matchReasons.push(`Fuzzy trigger match: "${trigger}"`);
+        score += 8
+        matchReasons.push(`Fuzzy trigger match: "${trigger}"`)
       }
     }
 
     // Rule 2: Name matching
     if (taskDescription.includes(skill.name.toLowerCase())) {
-      score += 10;
-      matchReasons.push(`Skill name in task: "${skill.name}"`);
+      score += 10
+      matchReasons.push(`Skill name in task: "${skill.name}"`)
     } else if (this.fuzzyMatch(taskDescription, skill.name.toLowerCase())) {
-      score += 5;
-      matchReasons.push(`Fuzzy name match: "${skill.name}"`);
+      score += 5
+      matchReasons.push(`Fuzzy name match: "${skill.name}"`)
     }
 
     // Rule 3: Description keyword matching
-    const descWords = skill.description.toLowerCase().split(/\s+/);
-    const taskWords = taskDescription.split(/\s+/);
-    let descMatchCount = 0;
+    const descWords = skill.description.toLowerCase().split(/\s+/)
+    const taskWords = taskDescription.split(/\s+/)
+    let descMatchCount = 0
 
     for (const taskWord of taskWords) {
       if (taskWord.length > 3 && descWords.includes(taskWord)) {
-        score += 1;
-        descMatchCount++;
+        score += 1
+        descMatchCount++
       }
     }
 
     if (descMatchCount > 0) {
-      matchReasons.push(`${descMatchCount} description keyword matches`);
+      matchReasons.push(`${descMatchCount} description keyword matches`)
     }
 
     // Rule 4: Category bonus
     const categoryKeywords: Record<string, string[]> = {
       'product-development': ['product', 'mvp', 'launch', 'market'],
       'ai-native': ['ai', 'rag', 'agent', 'llm', 'knowledge'],
-      'technical': ['api', 'frontend', 'backend', 'implement'],
-      'infrastructure': ['deploy', 'performance', 'optimize', 'scale'],
+      technical: ['api', 'frontend', 'backend', 'implement'],
+      infrastructure: ['deploy', 'performance', 'optimize', 'scale'],
       'ux-design': ['design', 'ux', 'ui', 'user'],
-      'security': ['security', 'secure', 'auth', 'vulnerability']
-    };
+      security: ['security', 'secure', 'auth', 'vulnerability']
+    }
 
     for (const [category, keywords] of Object.entries(categoryKeywords)) {
       if (skill.category === category) {
         for (const keyword of keywords) {
           if (taskDescription.includes(keyword)) {
-            score += 2;
-            matchReasons.push(`Category match: ${category}`);
-            break;
+            score += 2
+            matchReasons.push(`Category match: ${category}`)
+            break
           }
         }
       }
@@ -161,17 +165,17 @@ export class SkillSelector {
     // Rule 5: Tag matching
     for (const tag of skill.tags) {
       if (taskDescription.includes(tag.toLowerCase())) {
-        score += 3;
-        matchReasons.push(`Tag match: "${tag}"`);
+        score += 3
+        matchReasons.push(`Tag match: "${tag}"`)
       }
     }
 
     // Determine confidence
-    let confidence: 'high' | 'medium' | 'low' = 'low';
+    let confidence: 'high' | 'medium' | 'low' = 'low'
     if (score >= 15) {
-      confidence = 'high';
+      confidence = 'high'
     } else if (score >= 8) {
-      confidence = 'medium';
+      confidence = 'medium'
     }
 
     return {
@@ -179,7 +183,7 @@ export class SkillSelector {
       score,
       matchReasons,
       confidence
-    };
+    }
   }
 
   /**
@@ -189,12 +193,42 @@ export class SkillSelector {
     return [
       {
         name: 'Frontend UI Development',
-        keywords: ['ui', 'component', 'layout', 'page', 'screen', 'view', 'skeleton', 'loading', 'button', 'form', 'modal', 'navigation'],
-        skills: ['frontend-builder', 'visual-designer', 'ux-designer', 'design-system-architect', 'animation-designer']
+        keywords: [
+          'ui',
+          'component',
+          'layout',
+          'page',
+          'screen',
+          'view',
+          'skeleton',
+          'loading',
+          'button',
+          'form',
+          'modal',
+          'navigation'
+        ],
+        skills: [
+          'frontend-builder',
+          'visual-designer',
+          'ux-designer',
+          'design-system-architect',
+          'animation-designer'
+        ]
       },
       {
         name: 'Authentication & Security',
-        keywords: ['auth', 'login', 'signup', 'password', 'security', 'permission', 'role', 'jwt', 'oauth', 'session'],
+        keywords: [
+          'auth',
+          'login',
+          'signup',
+          'password',
+          'security',
+          'permission',
+          'role',
+          'jwt',
+          'oauth',
+          'session'
+        ],
         skills: ['security-engineer', 'api-designer', 'supabase-developer']
       },
       {
@@ -237,19 +271,19 @@ export class SkillSelector {
         keywords: ['accessibility', 'a11y', 'wcag', 'aria', 'screen reader', 'keyboard'],
         skills: ['accessibility-engineer', 'ux-designer']
       }
-    ];
+    ]
   }
 
   /**
    * Fuzzy string matching with word boundaries to prevent false positives
    */
   private fuzzyMatch(text: string, pattern: string): boolean {
-    const words = pattern.split(/[\s-]+/);
+    const words = pattern.split(/[\s-]+/)
     // Use word boundaries to match whole words only, preventing "ai" from matching "maintain"
     return words.every(word => {
-      const regex = new RegExp(`\\b${word}\\b`, 'i');
-      return regex.test(text);
-    });
+      const regex = new RegExp(`\\b${word}\\b`, 'i')
+      return regex.test(text)
+    })
   }
 
   /**
@@ -257,55 +291,57 @@ export class SkillSelector {
    */
   private generateReasoning(primarySkills: string[], allScored: SkillScore[]): string {
     if (primarySkills.length === 0) {
-      return 'No strong matches found. Task description may be too vague or requires clarification.';
+      return 'No strong matches found. Task description may be too vague or requires clarification.'
     }
 
-    const topSkill = primarySkills[0];
-    const topScore = allScored.find(s => s.skill === topSkill);
+    const topSkill = primarySkills[0]
+    const topScore = allScored.find(s => s.skill === topSkill)
 
     if (!topScore) {
-      return `Selected ${primarySkills.length} skills based on general matching.`;
+      return `Selected ${primarySkills.length} skills based on general matching.`
     }
 
     const reasons = [
       `Primary match: ${topSkill} (score: ${topScore.score})`,
       topScore.matchReasons.length > 0 ? topScore.matchReasons[0] : ''
-    ];
+    ]
 
     if (primarySkills.length > 1) {
-      reasons.push(`${primarySkills.length - 1} additional skill(s) recommended for comprehensive coverage`);
+      reasons.push(
+        `${primarySkills.length - 1} additional skill(s) recommended for comprehensive coverage`
+      )
     }
 
-    return reasons.filter(Boolean).join('. ') + '.';
+    return reasons.filter(Boolean).join('. ') + '.'
   }
 
   /**
    * Get detailed scoring for a specific skill
    */
   getSkillScore(skillName: string, taskDescription: string): SkillScore | null {
-    const skill = this.skills.find(s => s.name === skillName);
-    if (!skill) return null;
+    const skill = this.skills.find(s => s.name === skillName)
+    if (!skill) return null
 
-    return this.scoreSkill(skill, taskDescription.toLowerCase());
+    return this.scoreSkill(skill, taskDescription.toLowerCase())
   }
 
   /**
    * Find complementary skills
    */
   findComplementary(primarySkills: string[]): string[] {
-    const complementary = new Set<string>();
+    const complementary = new Set<string>()
 
     for (const skillName of primarySkills) {
-      const skill = this.skills.find(s => s.name === skillName);
+      const skill = this.skills.find(s => s.name === skillName)
       if (skill) {
-        skill.related_skills.forEach(related => complementary.add(related));
+        skill.related_skills.forEach(related => complementary.add(related))
       }
     }
 
     // Remove skills that are already primary
-    primarySkills.forEach(skill => complementary.delete(skill));
+    primarySkills.forEach(skill => complementary.delete(skill))
 
-    return Array.from(complementary);
+    return Array.from(complementary)
   }
 
   /**
@@ -315,70 +351,68 @@ export class SkillSelector {
     const recommendations: Record<string, string[]> = {
       'web-app': ['frontend-builder', 'api-designer', 'deployment-advisor'],
       'mobile-app': ['mobile-developer', 'api-designer', 'ux-designer'],
-      'mvp': ['mvp-builder', 'product-strategist', 'frontend-builder'],
+      mvp: ['mvp-builder', 'product-strategist', 'frontend-builder'],
       'ai-app': ['rag-implementer', 'multi-agent-architect', 'api-designer'],
       'knowledge-base': ['knowledge-base-manager', 'rag-implementer', 'data-engineer'],
-      'api': ['api-designer', 'security-engineer', 'testing-strategist'],
-      'library': ['technical-writer', 'testing-strategist', 'quality-auditor']
-    };
+      api: ['api-designer', 'security-engineer', 'testing-strategist'],
+      library: ['technical-writer', 'testing-strategist', 'quality-auditor']
+    }
 
-    return recommendations[projectType.toLowerCase()] || [];
+    return recommendations[projectType.toLowerCase()] || []
   }
 
   /**
    * Analyze task complexity and recommend team size
    */
   analyzeComplexity(taskDescription: string): {
-    complexity: 'simple' | 'moderate' | 'complex';
-    recommendedSkillCount: number;
-    estimatedTime: string;
+    complexity: 'simple' | 'moderate' | 'complex'
+    recommendedSkillCount: number
+    estimatedTime: string
   } {
-    const lowerTask = taskDescription.toLowerCase();
+    const lowerTask = taskDescription.toLowerCase()
 
-    let complexity: 'simple' | 'moderate' | 'complex' = 'moderate';
-    let skillCount = 2;
-    let estimatedTime = '2-4 hours';
+    let complexity: 'simple' | 'moderate' | 'complex' = 'moderate'
+    let skillCount = 2
+    let estimatedTime = '2-4 hours'
 
     // Complexity indicators
     const complexityIndicators = {
       simple: ['fix', 'update', 'change', 'modify'],
       moderate: ['implement', 'add', 'create', 'build'],
       complex: ['system', 'architecture', 'integrate', 'refactor', 'migrate']
-    };
+    }
 
     if (complexityIndicators.complex.some(word => lowerTask.includes(word))) {
-      complexity = 'complex';
-      skillCount = 4;
-      estimatedTime = '1-2 weeks';
+      complexity = 'complex'
+      skillCount = 4
+      estimatedTime = '1-2 weeks'
     } else if (complexityIndicators.simple.some(word => lowerTask.includes(word))) {
-      complexity = 'simple';
-      skillCount = 1;
-      estimatedTime = '1-2 hours';
+      complexity = 'simple'
+      skillCount = 1
+      estimatedTime = '1-2 hours'
     }
 
     return {
       complexity,
       recommendedSkillCount: skillCount,
       estimatedTime
-    };
+    }
   }
 
   /**
    * Get skills by difficulty level
    */
   getSkillsByDifficulty(difficulty: string): string[] {
-    return this.skills
-      .filter(s => s.difficulty === difficulty)
-      .map(s => s.name);
+    return this.skills.filter(s => s.difficulty === difficulty).map(s => s.name)
   }
 
   /**
    * Find skills missing from task
    */
   findMissingSkills(taskDescription: string, currentSkills: string[]): string[] {
-    const selection = this.select(taskDescription);
-    const allRecommended = [...selection.primary, ...selection.secondary];
+    const selection = this.select(taskDescription)
+    const allRecommended = [...selection.primary, ...selection.secondary]
 
-    return allRecommended.filter(skill => !currentSkills.includes(skill));
+    return allRecommended.filter(skill => !currentSkills.includes(skill))
   }
 }

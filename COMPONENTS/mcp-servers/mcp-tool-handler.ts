@@ -24,102 +24,102 @@
  * ```
  */
 
-import { z } from 'zod';
+import { z } from 'zod'
 
 export interface ToolHandlerConfig {
-  name: string;
-  description: string;
-  inputSchema: z.ZodSchema;
-  handler: (args: any, context?: ToolExecutionContext) => Promise<any>;
-  rateLimits?: RateLimitConfig;
-  cache?: CacheConfig;
-  timeout?: number; // milliseconds
-  retries?: RetryConfig;
-  validation?: ValidationConfig;
-  metadata?: Record<string, any>;
+  name: string
+  description: string
+  inputSchema: z.ZodSchema
+  handler: (args: any, context?: ToolExecutionContext) => Promise<any>
+  rateLimits?: RateLimitConfig
+  cache?: CacheConfig
+  timeout?: number // milliseconds
+  retries?: RetryConfig
+  validation?: ValidationConfig
+  metadata?: Record<string, any>
 }
 
 export interface RateLimitConfig {
-  maxCalls: number;
-  windowMs: number;
-  strategy?: 'sliding' | 'fixed';
+  maxCalls: number
+  windowMs: number
+  strategy?: 'sliding' | 'fixed'
 }
 
 export interface CacheConfig {
-  ttl: number; // milliseconds
-  keyGenerator?: (args: any) => string;
-  enabled?: boolean;
+  ttl: number // milliseconds
+  keyGenerator?: (args: any) => string
+  enabled?: boolean
 }
 
 export interface RetryConfig {
-  maxAttempts: number;
-  backoffMs: number;
-  backoffStrategy?: 'linear' | 'exponential';
-  retryableErrors?: string[];
+  maxAttempts: number
+  backoffMs: number
+  backoffStrategy?: 'linear' | 'exponential'
+  retryableErrors?: string[]
 }
 
 export interface ValidationConfig {
-  sanitizeInput?: boolean;
-  validateOutput?: boolean;
-  outputSchema?: z.ZodSchema;
+  sanitizeInput?: boolean
+  validateOutput?: boolean
+  outputSchema?: z.ZodSchema
 }
 
 export interface ToolExecutionContext {
-  startTime: Date;
-  attemptNumber: number;
-  userId?: string;
-  sessionId?: string;
-  metadata?: Record<string, any>;
+  startTime: Date
+  attemptNumber: number
+  userId?: string
+  sessionId?: string
+  metadata?: Record<string, any>
 }
 
 export interface ToolExecutionResult<T = any> {
-  success: boolean;
-  data?: T;
-  error?: ToolExecutionError;
+  success: boolean
+  data?: T
+  error?: ToolExecutionError
   metadata: {
-    executionTime: number;
-    cached: boolean;
-    attemptNumber: number;
-    timestamp: Date;
-  };
+    executionTime: number
+    cached: boolean
+    attemptNumber: number
+    timestamp: Date
+  }
 }
 
 export interface ToolExecutionError {
-  code: string;
-  message: string;
-  retryable: boolean;
-  details?: any;
+  code: string
+  message: string
+  retryable: boolean
+  details?: any
 }
 
 /**
  * In-memory cache for tool results
  */
 class ToolCache {
-  private cache: Map<string, { value: any; expiresAt: number }> = new Map();
+  private cache: Map<string, { value: any; expiresAt: number }> = new Map()
 
   set(key: string, value: any, ttl: number): void {
-    const expiresAt = Date.now() + ttl;
-    this.cache.set(key, { value, expiresAt });
+    const expiresAt = Date.now() + ttl
+    this.cache.set(key, { value, expiresAt })
   }
 
   get(key: string): any | null {
-    const entry = this.cache.get(key);
-    if (!entry) return null;
+    const entry = this.cache.get(key)
+    if (!entry) return null
 
     if (Date.now() > entry.expiresAt) {
-      this.cache.delete(key);
-      return null;
+      this.cache.delete(key)
+      return null
     }
 
-    return entry.value;
+    return entry.value
   }
 
   clear(): void {
-    this.cache.clear();
+    this.cache.clear()
   }
 
   size(): number {
-    return this.cache.size;
+    return this.cache.size
   }
 }
 
@@ -127,43 +127,43 @@ class ToolCache {
  * Rate limiter for tool invocations
  */
 class RateLimiter {
-  private calls: Map<string, number[]> = new Map();
+  private calls: Map<string, number[]> = new Map()
 
   constructor(private config: RateLimitConfig) {}
 
   canExecute(userId: string = 'default'): boolean {
-    const now = Date.now();
-    const windowStart = now - this.config.windowMs;
+    const now = Date.now()
+    const windowStart = now - this.config.windowMs
 
     // Get existing calls within window
-    let userCalls = this.calls.get(userId) || [];
-    userCalls = userCalls.filter(callTime => callTime > windowStart);
+    let userCalls = this.calls.get(userId) || []
+    userCalls = userCalls.filter(callTime => callTime > windowStart)
 
     // Check if under limit
     if (userCalls.length >= this.config.maxCalls) {
-      return false;
+      return false
     }
 
     // Record this call
-    userCalls.push(now);
-    this.calls.set(userId, userCalls);
+    userCalls.push(now)
+    this.calls.set(userId, userCalls)
 
-    return true;
+    return true
   }
 
   reset(userId?: string): void {
     if (userId) {
-      this.calls.delete(userId);
+      this.calls.delete(userId)
     } else {
-      this.calls.clear();
+      this.calls.clear()
     }
   }
 
   getRemainingCalls(userId: string = 'default'): number {
-    const now = Date.now();
-    const windowStart = now - this.config.windowMs;
-    const userCalls = (this.calls.get(userId) || []).filter(callTime => callTime > windowStart);
-    return Math.max(0, this.config.maxCalls - userCalls.length);
+    const now = Date.now()
+    const windowStart = now - this.config.windowMs
+    const userCalls = (this.calls.get(userId) || []).filter(callTime => callTime > windowStart)
+    return Math.max(0, this.config.maxCalls - userCalls.length)
   }
 }
 
@@ -181,12 +181,12 @@ class RateLimiter {
  * - Performance metrics
  */
 export class MCPToolHandler<TInput = any, TOutput = any> {
-  private config: Required<ToolHandlerConfig>;
-  private cache?: ToolCache;
-  private rateLimiter?: RateLimiter;
-  private executionCount: number = 0;
-  private errorCount: number = 0;
-  private cacheHits: number = 0;
+  private config: Required<ToolHandlerConfig>
+  private cache?: ToolCache
+  private rateLimiter?: RateLimiter
+  private executionCount: number = 0
+  private errorCount: number = 0
+  private cacheHits: number = 0
 
   constructor(config: ToolHandlerConfig) {
     this.config = {
@@ -197,16 +197,16 @@ export class MCPToolHandler<TInput = any, TOutput = any> {
       retries: config.retries || { maxAttempts: 1, backoffMs: 1000 },
       validation: config.validation || {},
       metadata: config.metadata || {}
-    } as Required<ToolHandlerConfig>;
+    } as Required<ToolHandlerConfig>
 
     // Initialize cache if enabled
     if (this.config.cache?.enabled !== false) {
-      this.cache = new ToolCache();
+      this.cache = new ToolCache()
     }
 
     // Initialize rate limiter if configured
     if (this.config.rateLimits) {
-      this.rateLimiter = new RateLimiter(this.config.rateLimits);
+      this.rateLimiter = new RateLimiter(this.config.rateLimits)
     }
   }
 
@@ -219,52 +219,51 @@ export class MCPToolHandler<TInput = any, TOutput = any> {
       attemptNumber: 1,
       userId,
       metadata: {}
-    };
+    }
 
     try {
       // Check rate limits
       if (this.rateLimiter && !this.rateLimiter.canExecute(userId)) {
-        return this.createErrorResult('RATE_LIMIT_EXCEEDED', 'Rate limit exceeded', context, false);
+        return this.createErrorResult('RATE_LIMIT_EXCEEDED', 'Rate limit exceeded', context, false)
       }
 
       // Validate input
-      const validatedArgs = this.validateInput(args);
+      const validatedArgs = this.validateInput(args)
 
       // Check cache
       if (this.cache) {
-        const cacheKey = this.generateCacheKey(validatedArgs);
-        const cachedResult = this.cache.get(cacheKey);
+        const cacheKey = this.generateCacheKey(validatedArgs)
+        const cachedResult = this.cache.get(cacheKey)
 
         if (cachedResult !== null) {
-          this.cacheHits++;
-          return this.createSuccessResult(cachedResult, context, true);
+          this.cacheHits++
+          return this.createSuccessResult(cachedResult, context, true)
         }
       }
 
       // Execute with retries
-      const result = await this.executeWithRetries(validatedArgs, context);
+      const result = await this.executeWithRetries(validatedArgs, context)
 
       // Validate output
-      const validatedResult = this.validateOutput(result);
+      const validatedResult = this.validateOutput(result)
 
       // Cache result
       if (this.cache && this.config.cache) {
-        const cacheKey = this.generateCacheKey(validatedArgs);
-        this.cache.set(cacheKey, validatedResult, this.config.cache.ttl);
+        const cacheKey = this.generateCacheKey(validatedArgs)
+        this.cache.set(cacheKey, validatedResult, this.config.cache.ttl)
       }
 
-      this.executionCount++;
-      return this.createSuccessResult(validatedResult, context, false);
-
+      this.executionCount++
+      return this.createSuccessResult(validatedResult, context, false)
     } catch (error) {
-      this.errorCount++;
+      this.errorCount++
       return this.createErrorResult(
         error.code || 'EXECUTION_FAILED',
         error.message || 'Tool execution failed',
         context,
         error.retryable || false,
         error
-      );
+      )
     }
   }
 
@@ -272,30 +271,30 @@ export class MCPToolHandler<TInput = any, TOutput = any> {
    * Execute with retry logic
    */
   private async executeWithRetries(args: TInput, context: ToolExecutionContext): Promise<TOutput> {
-    let lastError: any;
+    let lastError: any
 
     for (let attempt = 1; attempt <= this.config.retries.maxAttempts; attempt++) {
-      context.attemptNumber = attempt;
+      context.attemptNumber = attempt
 
       try {
-        const result = await this.executeWithTimeout(args, context);
-        return result;
+        const result = await this.executeWithTimeout(args, context)
+        return result
       } catch (error) {
-        lastError = error;
+        lastError = error
 
         // Check if error is retryable
-        const isRetryable = this.isRetryableError(error);
+        const isRetryable = this.isRetryableError(error)
         if (!isRetryable || attempt >= this.config.retries.maxAttempts) {
-          throw error;
+          throw error
         }
 
         // Wait before retry
-        const backoffTime = this.calculateBackoff(attempt);
-        await this.sleep(backoffTime);
+        const backoffTime = this.calculateBackoff(attempt)
+        await this.sleep(backoffTime)
       }
     }
 
-    throw lastError;
+    throw lastError
   }
 
   /**
@@ -305,7 +304,7 @@ export class MCPToolHandler<TInput = any, TOutput = any> {
     return Promise.race([
       this.config.handler(args, context),
       this.createTimeoutPromise(this.config.timeout)
-    ]);
+    ])
   }
 
   /**
@@ -313,18 +312,18 @@ export class MCPToolHandler<TInput = any, TOutput = any> {
    */
   private validateInput(args: any): TInput {
     try {
-      return this.config.inputSchema.parse(args);
+      return this.config.inputSchema.parse(args)
     } catch (error) {
       if (error instanceof z.ZodError) {
-        const errors = error.errors.map(e => `${e.path.join('.')}: ${e.message}`).join(', ');
+        const errors = error.errors.map(e => `${e.path.join('.')}: ${e.message}`).join(', ')
         throw {
           code: 'VALIDATION_ERROR',
           message: `Input validation failed: ${errors}`,
           retryable: false,
           details: error.errors
-        };
+        }
       }
-      throw error;
+      throw error
     }
   }
 
@@ -334,21 +333,21 @@ export class MCPToolHandler<TInput = any, TOutput = any> {
   private validateOutput(result: any): TOutput {
     if (this.config.validation.outputSchema) {
       try {
-        return this.config.validation.outputSchema.parse(result);
+        return this.config.validation.outputSchema.parse(result)
       } catch (error) {
         if (error instanceof z.ZodError) {
-          const errors = error.errors.map(e => `${e.path.join('.')}: ${e.message}`).join(', ');
+          const errors = error.errors.map(e => `${e.path.join('.')}: ${e.message}`).join(', ')
           throw {
             code: 'OUTPUT_VALIDATION_ERROR',
             message: `Output validation failed: ${errors}`,
             retryable: false,
             details: error.errors
-          };
+          }
         }
-        throw error;
+        throw error
       }
     }
-    return result;
+    return result
   }
 
   /**
@@ -356,9 +355,9 @@ export class MCPToolHandler<TInput = any, TOutput = any> {
    */
   private generateCacheKey(args: TInput): string {
     if (this.config.cache?.keyGenerator) {
-      return this.config.cache.keyGenerator(args);
+      return this.config.cache.keyGenerator(args)
     }
-    return `${this.config.name}:${JSON.stringify(args)}`;
+    return `${this.config.name}:${JSON.stringify(args)}`
   }
 
   /**
@@ -366,21 +365,21 @@ export class MCPToolHandler<TInput = any, TOutput = any> {
    */
   private isRetryableError(error: any): boolean {
     if (!this.config.retries.retryableErrors) {
-      return error.retryable || false;
+      return error.retryable || false
     }
-    return this.config.retries.retryableErrors.includes(error.code);
+    return this.config.retries.retryableErrors.includes(error.code)
   }
 
   /**
    * Calculate backoff time for retries
    */
   private calculateBackoff(attempt: number): number {
-    const strategy = this.config.retries.backoffStrategy || 'exponential';
+    const strategy = this.config.retries.backoffStrategy || 'exponential'
 
     if (strategy === 'exponential') {
-      return this.config.retries.backoffMs * Math.pow(2, attempt - 1);
+      return this.config.retries.backoffMs * Math.pow(2, attempt - 1)
     } else {
-      return this.config.retries.backoffMs * attempt;
+      return this.config.retries.backoffMs * attempt
     }
   }
 
@@ -394,16 +393,16 @@ export class MCPToolHandler<TInput = any, TOutput = any> {
           code: 'TIMEOUT',
           message: `Tool execution timed out after ${ms}ms`,
           retryable: true
-        });
-      }, ms);
-    });
+        })
+      }, ms)
+    })
   }
 
   /**
    * Sleep utility
    */
   private sleep(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms))
   }
 
   /**
@@ -423,7 +422,7 @@ export class MCPToolHandler<TInput = any, TOutput = any> {
         attemptNumber: context.attemptNumber,
         timestamp: new Date()
       }
-    };
+    }
   }
 
   /**
@@ -450,7 +449,7 @@ export class MCPToolHandler<TInput = any, TOutput = any> {
         attemptNumber: context.attemptNumber,
         timestamp: new Date()
       }
-    };
+    }
   }
 
   /**
@@ -464,30 +463,30 @@ export class MCPToolHandler<TInput = any, TOutput = any> {
       cacheHits: this.cacheHits,
       cacheSize: this.cache?.size() || 0,
       errorRate: this.executionCount > 0 ? this.errorCount / this.executionCount : 0
-    };
+    }
   }
 
   /**
    * Clear cache
    */
   clearCache(): void {
-    this.cache?.clear();
-    this.cacheHits = 0;
+    this.cache?.clear()
+    this.cacheHits = 0
   }
 
   /**
    * Reset rate limiter
    */
   resetRateLimit(userId?: string): void {
-    this.rateLimiter?.reset(userId);
+    this.rateLimiter?.reset(userId)
   }
 
   /**
    * Get remaining rate limit calls
    */
   getRemainingCalls(userId?: string): number {
-    return this.rateLimiter?.getRemainingCalls(userId) ?? Infinity;
+    return this.rateLimiter?.getRemainingCalls(userId) ?? Infinity
   }
 }
 
-export default MCPToolHandler;
+export default MCPToolHandler

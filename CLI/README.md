@@ -58,6 +58,7 @@ ai-dev add component Button --with-tests --with-storybook --props "variant,size,
 ```
 
 Creates:
+
 ```
 components/Button/
 ├── Button.tsx          # Component with Zod validation
@@ -77,6 +78,7 @@ ai-dev init saas-starter my-app \
 ```
 
 Creates a **complete, working SaaS** with:
+
 - ✅ Authentication (Supabase)
 - ✅ Payments (Stripe)
 - ✅ Email (Resend)
@@ -93,6 +95,7 @@ ai-dev add mcp-server accessibility-checker
 ```
 
 Creates:
+
 ```
 MCP-SERVERS/accessibility-checker-mcp/
 ├── index.js         # Full MCP server implementation
@@ -108,6 +111,7 @@ ai-dev setup supabase --with-auth
 ```
 
 Creates:
+
 ```
 lib/
 ├── supabase.ts      # Supabase client
@@ -201,6 +205,7 @@ ai-dev analyze --report analysis.json
 ```
 
 Checks for:
+
 - ❌ Missing tests
 - ❌ Security vulnerabilities
 - ❌ Accessibility issues
@@ -223,6 +228,7 @@ ai-dev doctor --verbose
 ```
 
 Checks:
+
 - ✅ Node.js version
 - ✅ Dependencies installed
 - ✅ Git initialized
@@ -414,6 +420,7 @@ tools:
 ✅ **Clear next steps** - Shows exactly what to do next
 
 Example workflow:
+
 ```bash
 # 1. Create project (1 command)
 npx @ai-dev-standards/create-saas my-app
@@ -451,6 +458,7 @@ MIT
 ## 🎉 Summary
 
 **Before:**
+
 ```bash
 # Manual component creation
 mkdir -p components/Button
@@ -462,6 +470,7 @@ touch components/Button/index.ts
 ```
 
 **After:**
+
 ```bash
 ai-dev add component Button --with-tests --with-storybook
 # ✅ Done in 5 seconds!

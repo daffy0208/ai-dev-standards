@@ -6,8 +6,11 @@
  * Usage: npx @ai-dev-standards/create-saas my-app
  */
 
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { execSync } = require('child_process')
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const path = require('path')
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const fs = require('fs')
 
 const projectName = process.argv[2] || 'my-saas-app'
@@ -26,10 +29,13 @@ try {
 
 // Run ai-dev init
 console.log('🏗️  Initializing SaaS starter...\n')
-execSync(`ai-dev init saas-starter ${projectName} --auth supabase --payments stripe --email resend`, {
-  stdio: 'inherit',
-  cwd: process.cwd()
-})
+execSync(
+  `ai-dev init saas-starter ${projectName} --auth supabase --payments stripe --email resend`,
+  {
+    stdio: 'inherit',
+    cwd: process.cwd()
+  }
+)
 
 console.log(`\n✅ Successfully created ${projectName}!\n`)
 console.log('📚 Next steps:\n')

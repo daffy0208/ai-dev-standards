@@ -6,27 +6,27 @@ Claude Code has been the default environment for ai-dev-standards, but Codex can
 
 ## TL;DR
 
-| Scenario | Recommended Tool |
-|----------|------------------|
-| You want a desktop IDE with inline file edits | Claude Code |
-| You prefer terminal-first workflows or automation | Codex CLI |
-| You need automated reviews or CI integration | Codex CLI |
-| You rely on Claude’s inline planning prompts | Claude Code |
-| You want to script brain queries in shell | Codex CLI |
+| Scenario                                          | Recommended Tool |
+| ------------------------------------------------- | ---------------- |
+| You want a desktop IDE with inline file edits     | Claude Code      |
+| You prefer terminal-first workflows or automation | Codex CLI        |
+| You need automated reviews or CI integration      | Codex CLI        |
+| You rely on Claude’s inline planning prompts      | Claude Code      |
+| You want to script brain queries in shell         | Codex CLI        |
 
 ---
 
 ## Feature Comparison
 
-| Capability | Claude Code | Codex CLI |
-|------------|-------------|-----------|
-| Brain MCP access | ✅ Auto-connected | ✅ After `setup-codex-cli.sh` |
+| Capability            | Claude Code           | Codex CLI                                   |
+| --------------------- | --------------------- | ------------------------------------------- |
+| Brain MCP access      | ✅ Auto-connected     | ✅ After `setup-codex-cli.sh`               |
 | Skill recommendations | ✅ Inline suggestions | ✅ `codex exec "Use brain_select_skills …"` |
-| File editing | ✅ Rich editor | ⚠️ Not built-in (use your editor) |
-| Automated code review | ⚠️ Manual prompt | ✅ `scripts/ci/codex-review.sh` |
-| CI/CD integration | ⚠️ Indirect | ✅ `codex exec` commands inside pipelines |
-| Terminal automation | ⚠️ Limited | ✅ Any shell script |
-| Multi-step plans | ✅ Autonomy + tools | ✅ Use scripted brain queries |
+| File editing          | ✅ Rich editor        | ⚠️ Not built-in (use your editor)           |
+| Automated code review | ⚠️ Manual prompt      | ✅ `scripts/ci/codex-review.sh`             |
+| CI/CD integration     | ⚠️ Indirect           | ✅ `codex exec` commands inside pipelines   |
+| Terminal automation   | ⚠️ Limited            | ✅ Any shell script                         |
+| Multi-step plans      | ✅ Autonomy + tools   | ✅ Use scripted brain queries               |
 
 ---
 

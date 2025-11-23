@@ -11,6 +11,7 @@ Helps you build scalable, maintainable design systems with design tokens, compon
 ## When to Use
 
 Use this skill when you need to:
+
 - Build a component library
 - Establish design tokens
 - Set up Storybook documentation
@@ -24,9 +25,11 @@ Use this skill when you need to:
 **Fastest path to design system:**
 
 1. **Create design tokens:**
+
    ```bash
    npm install --save-dev style-dictionary
    ```
+
    - Define primitives (colors, spacing, typography)
    - Define semantic tokens (background-primary, text-secondary)
    - Build to CSS variables
@@ -37,9 +40,11 @@ Use this skill when you need to:
    - CSS modules for scoping
 
 3. **Add Storybook:**
+
    ```bash
    npx storybook@latest init
    ```
+
    - Document all components
    - Show all variants and states
    - Add accessibility addon
@@ -54,6 +59,7 @@ Use this skill when you need to:
 ## Success Criteria
 
 You've successfully used this skill when:
+
 - ✅ Design tokens are version controlled
 - ✅ All components have TypeScript types
 - ✅ Storybook is deployed and accessible
@@ -66,11 +72,13 @@ You've successfully used this skill when:
 ## Key Concepts
 
 **Design Tokens:**
+
 - Single source of truth for design decisions
 - Platform-agnostic (JSON → CSS, iOS, Android)
 - Three levels: Primitives → Semantic → Component
 
 **Atomic Design:**
+
 - Atoms (Button, Input)
 - Molecules (FormField = Label + Input + Error)
 - Organisms (LoginForm = FormFields + Button)
@@ -78,12 +86,14 @@ You've successfully used this skill when:
 - Pages (Real content)
 
 **Component API Design:**
+
 - Sensible defaults (works with minimal props)
 - Composition over configuration
 - Controlled & uncontrolled modes
 - Polymorphic components (render as different elements)
 
 **Semantic Versioning:**
+
 - MAJOR: Breaking changes (v1 → v2)
 - MINOR: New features (v1.0 → v1.1)
 - PATCH: Bug fixes (v1.0.0 → v1.0.1)
@@ -91,6 +101,7 @@ You've successfully used this skill when:
 ## Quick Reference
 
 ### Design Token Structure
+
 ```
 tokens/
 ├── primitives/
@@ -106,6 +117,7 @@ tokens/
 ```
 
 ### Component Structure
+
 ```
 components/
 └── Button/
@@ -119,6 +131,7 @@ components/
 ```
 
 ### Token Transformation
+
 ```bash
 # Install Style Dictionary
 npm install --save-dev style-dictionary
@@ -130,6 +143,7 @@ npx style-dictionary build
 ```
 
 ### Component Example
+
 ```typescript
 // Button.types.ts
 export interface ButtonProps {
@@ -163,6 +177,7 @@ export function Button({
 ```
 
 ### Storybook Story
+
 ```typescript
 // Button.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react'
@@ -199,25 +214,30 @@ export const AllVariants: Story = {
 ## Tools
 
 **Token Management:**
+
 - Style Dictionary (token transformation)
 - Figma Tokens (Figma → code sync)
 
 **Component Development:**
+
 - React + TypeScript
 - CSS Modules or styled-components
 - Rollup or tsup (bundling)
 
 **Documentation:**
+
 - Storybook (component explorer)
 - MDX (rich documentation)
 - Docusaurus (documentation site)
 
 **Testing:**
+
 - Jest + React Testing Library
 - jest-axe (accessibility)
 - Chromatic (visual regression)
 
 **Distribution:**
+
 - NPM (package registry)
 - Changesets (versioning)
 - GitHub Actions (CI/CD)
@@ -254,24 +274,29 @@ npx chromatic --project-token=YOUR_TOKEN
 ## Component Priority
 
 **P0 (Must Have):**
+
 - Button, Input, Label, Text, Icon
 - FormField, Card, Modal
 
 **P1 (Should Have):**
+
 - Select, Checkbox, Radio, Switch
 - Tabs, Dropdown, Tooltip
 
 **P2 (Nice to Have):**
+
 - DatePicker, Slider, Toggle
 - Toast, Drawer, Popover
 
 **P3 (Future):**
+
 - DataTable, Calendar, FileUpload
 - Charts, Stepper
 
 ## Design System Governance
 
 **Contribution Flow:**
+
 1. **Proposal** - GitHub issue with problem statement
 2. **Design Review** - Figma mockup approval
 3. **API Design** - TypeScript interface agreement
@@ -280,11 +305,13 @@ npx chromatic --project-token=YOUR_TOKEN
 6. **Release** - Version bump + changelog
 
 **Versioning Strategy:**
+
 - Breaking changes → MAJOR version
 - New features → MINOR version
 - Bug fixes → PATCH version
 
 **Deprecation Process:**
+
 1. Mark prop as deprecated with JSDoc
 2. Support both old and new (with warning)
 3. Remove in next major version
@@ -292,6 +319,7 @@ npx chromatic --project-token=YOUR_TOKEN
 ## Example Workflow
 
 ### 1. Create Design Tokens
+
 ```json
 // tokens/colors.json
 {
@@ -305,11 +333,13 @@ npx chromatic --project-token=YOUR_TOKEN
 ```
 
 ### 2. Build Tokens to CSS
+
 ```bash
 npx style-dictionary build
 ```
 
 ### 3. Create Component
+
 ```typescript
 // components/Button/Button.tsx
 export function Button({ children, ...props }: ButtonProps) {
@@ -318,6 +348,7 @@ export function Button({ children, ...props }: ButtonProps) {
 ```
 
 ### 4. Document in Storybook
+
 ```typescript
 // components/Button/Button.stories.tsx
 export const Primary: Story = {
@@ -326,6 +357,7 @@ export const Primary: Story = {
 ```
 
 ### 5. Test Component
+
 ```typescript
 // components/Button/Button.test.tsx
 it('renders children', () => {
@@ -335,6 +367,7 @@ it('renders children', () => {
 ```
 
 ### 6. Publish Package
+
 ```bash
 npm version minor
 npm publish
@@ -353,16 +386,19 @@ npm publish
 ## Maintenance
 
 **Weekly:**
+
 - Triage new component requests
 - Review and merge PRs
 - Update documentation
 
 **Monthly:**
+
 - Release new version
 - Update changelog
 - Audit accessibility
 
 **Quarterly:**
+
 - Review component usage analytics
 - Deprecate unused components
 - Plan major version updates

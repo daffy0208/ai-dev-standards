@@ -12,12 +12,14 @@ I help you build multilingual applications with proper internationalization (i18
 ## What I Do
 
 **Internationalization:**
+
 - Multi-language text content
 - Date/time formatting
 - Number and currency formatting
 - Right-to-left (RTL) support
 
 **Localization:**
+
 - Translation management
 - Language detection
 - Language switching
@@ -326,7 +328,7 @@ export default function LocaleLayout({ children }) {
 }
 
 /* Manual RTL handling */
-[dir="rtl"] .menu {
+[dir='rtl'] .menu {
   left: auto;
   right: 0;
 }
@@ -448,10 +450,7 @@ async function syncTranslations() {
   const data = await response.json()
 
   // Save to messages folder
-  await fs.writeFile(
-    './messages/en.json',
-    JSON.stringify(data.en, null, 2)
-  )
+  await fs.writeFile('./messages/en.json', JSON.stringify(data.en, null, 2))
 
   console.log('Translations synced!')
 }
@@ -467,7 +466,7 @@ import { getRequestConfig } from 'next-intl/server'
 
 export default getRequestConfig(async ({ locale }) => ({
   messages: (await import(`../messages/${locale}.json`)).default,
-  onError: (error) => {
+  onError: error => {
     console.error('Translation error:', error)
   },
   getMessageFallback: ({ namespace, key, error }) => {
@@ -493,11 +492,11 @@ export async function generateMetadata({ params: { locale } }) {
     alternates: {
       canonical: `/${locale}`,
       languages: {
-        'en': '/en',
-        'es': '/es',
-        'fr': '/fr',
-        'de': '/de',
-        'ja': '/ja'
+        en: '/en',
+        es: '/es',
+        fr: '/fr',
+        de: '/de',
+        ja: '/ja'
       }
     }
   }
@@ -518,6 +517,7 @@ export async function generateMetadata({ params: { locale } }) {
 ## When to Use Me
 
 **Perfect for:**
+
 - Building multilingual applications
 - International product launches
 - Global SaaS platforms
@@ -525,6 +525,7 @@ export async function generateMetadata({ params: { locale } }) {
 - Content management systems
 
 **I'll help you:**
+
 - Set up i18n infrastructure
 - Manage translations
 - Format dates, numbers, currencies

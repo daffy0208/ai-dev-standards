@@ -47,35 +47,35 @@
  * ```
  */
 
-import * as React from 'react';
-import { createPortal } from 'react-dom';
-import { cn } from './utils';
+import * as React from 'react'
+import { createPortal } from 'react-dom'
+import { cn } from './utils'
 
 export interface ModalProps {
   /**
    * Whether the modal is open
    */
-  open: boolean;
+  open: boolean
 
   /**
    * Callback when the modal should close
    */
-  onClose: () => void;
+  onClose: () => void
 
   /**
    * Modal title
    */
-  title?: string;
+  title?: string
 
   /**
    * Modal content
    */
-  children: React.ReactNode;
+  children: React.ReactNode
 
   /**
    * Footer content (typically buttons)
    */
-  footer?: React.ReactNode;
+  footer?: React.ReactNode
 
   /**
    * Modal size
@@ -84,12 +84,12 @@ export interface ModalProps {
    * - lg: 768px max width
    * - full: 95% of viewport width and height
    */
-  size?: 'sm' | 'md' | 'lg' | 'full';
+  size?: 'sm' | 'md' | 'lg' | 'full'
 
   /**
    * Additional CSS classes for the modal
    */
-  className?: string;
+  className?: string
 }
 
 /**
@@ -97,92 +97,91 @@ export interface ModalProps {
  */
 export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
   ({ open, onClose, title, children, footer, size = 'md', className }, ref) => {
-    const modalRef = React.useRef<HTMLDivElement>(null);
-    const [mounted, setMounted] = React.useState(false);
+    const modalRef = React.useRef<HTMLDivElement>(null)
+    const [mounted, setMounted] = React.useState(false)
 
     // Handle mounting for portal
     React.useEffect(() => {
-      setMounted(true);
-      return () => setMounted(false);
-    }, []);
+      setMounted(true)
+      return () => setMounted(false)
+    }, [])
 
     // Handle ESC key to close
     React.useEffect(() => {
-      if (!open) return;
+      if (!open) return
 
       const handleEscape = (event: KeyboardEvent) => {
         if (event.key === 'Escape') {
-          onClose();
+          onClose()
         }
-      };
+      }
 
-      document.addEventListener('keydown', handleEscape);
-      return () => document.removeEventListener('keydown', handleEscape);
-    }, [open, onClose]);
+      document.addEventListener('keydown', handleEscape)
+      return () => document.removeEventListener('keydown', handleEscape)
+    }, [open, onClose])
 
     // Lock body scroll when modal is open
     React.useEffect(() => {
       if (open) {
-        const scrollbarWidth =
-          window.innerWidth - document.documentElement.clientWidth;
-        document.body.style.overflow = 'hidden';
-        document.body.style.paddingRight = `${scrollbarWidth}px`;
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+        document.body.style.overflow = 'hidden'
+        document.body.style.paddingRight = `${scrollbarWidth}px`
       } else {
-        document.body.style.overflow = '';
-        document.body.style.paddingRight = '';
+        document.body.style.overflow = ''
+        document.body.style.paddingRight = ''
       }
 
       return () => {
-        document.body.style.overflow = '';
-        document.body.style.paddingRight = '';
-      };
-    }, [open]);
+        document.body.style.overflow = ''
+        document.body.style.paddingRight = ''
+      }
+    }, [open])
 
     // Focus trap implementation
     React.useEffect(() => {
-      if (!open || !modalRef.current) return;
+      if (!open || !modalRef.current) return
 
-      const modal = modalRef.current;
+      const modal = modalRef.current
       const focusableElements = modal.querySelectorAll<HTMLElement>(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      );
+      )
 
-      const firstElement = focusableElements[0];
-      const lastElement = focusableElements[focusableElements.length - 1];
+      const firstElement = focusableElements[0]
+      const lastElement = focusableElements[focusableElements.length - 1]
 
       // Focus first element when modal opens
-      firstElement?.focus();
+      firstElement?.focus()
 
       const handleTab = (event: KeyboardEvent) => {
-        if (event.key !== 'Tab') return;
+        if (event.key !== 'Tab') return
 
         if (event.shiftKey) {
           // Shift + Tab
           if (document.activeElement === firstElement) {
-            event.preventDefault();
-            lastElement?.focus();
+            event.preventDefault()
+            lastElement?.focus()
           }
         } else {
           // Tab
           if (document.activeElement === lastElement) {
-            event.preventDefault();
-            firstElement?.focus();
+            event.preventDefault()
+            firstElement?.focus()
           }
         }
-      };
+      }
 
-      document.addEventListener('keydown', handleTab);
-      return () => document.removeEventListener('keydown', handleTab);
-    }, [open]);
+      document.addEventListener('keydown', handleTab)
+      return () => document.removeEventListener('keydown', handleTab)
+    }, [open])
 
     // Click outside to close
     const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
       if (event.target === event.currentTarget) {
-        onClose();
+        onClose()
       }
-    };
+    }
 
-    if (!mounted || !open) return null;
+    if (!mounted || !open) return null
 
     const modalContent = (
       <div
@@ -208,9 +207,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           className={cn(
             'relative bg-white rounded-lg shadow-xl',
             'transition-all duration-200',
-            open
-              ? 'opacity-100 scale-100 translate-y-0'
-              : 'opacity-0 scale-95 translate-y-4',
+            open ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4',
             // Size variants
             size === 'sm' && 'w-full max-w-sm',
             size === 'md' && 'w-full max-w-lg',
@@ -224,10 +221,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           {/* Header */}
           {title && (
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-              <h2
-                id="modal-title"
-                className="text-xl font-semibold text-gray-900"
-              >
+              <h2 id="modal-title" className="text-xl font-semibold text-gray-900">
                 {title}
               </h2>
               <button
@@ -260,10 +254,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
 
           {/* Body */}
           <div
-            className={cn(
-              'px-6 py-4 overflow-y-auto',
-              size === 'full' ? 'flex-1' : 'max-h-[60vh]'
-            )}
+            className={cn('px-6 py-4 overflow-y-auto', size === 'full' ? 'flex-1' : 'max-h-[60vh]')}
           >
             {children}
           </div>
@@ -276,10 +267,10 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           )}
         </div>
       </div>
-    );
+    )
 
-    return createPortal(modalContent, document.body);
+    return createPortal(modalContent, document.body)
   }
-);
+)
 
-Modal.displayName = 'Modal';
+Modal.displayName = 'Modal'

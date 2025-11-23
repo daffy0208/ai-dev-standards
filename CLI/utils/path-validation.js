@@ -38,8 +38,8 @@ function validateFilePath(filePath, workspaceRoot = process.cwd(), context = 'fi
   if (!resolvedPath.startsWith(normalizedRoot + path.sep) && resolvedPath !== normalizedRoot) {
     throw new Error(
       `Invalid ${context}: path traversal detected. ` +
-      `Path must be within the project directory. ` +
-      `Attempted path: "${filePath}"`
+        `Path must be within the project directory. ` +
+        `Attempted path: "${filePath}"`
     )
   }
 
@@ -66,7 +66,7 @@ function validateEnvPath(envPath, workspaceRoot = process.cwd()) {
   if (!basename.startsWith('.env')) {
     throw new Error(
       `Invalid environment file: must be a .env file (.env, .env.local, .env.production, etc.). ` +
-      `Got: "${basename}"`
+        `Got: "${basename}"`
     )
   }
 
@@ -92,8 +92,7 @@ function validateReportPath(reportPath, workspaceRoot = process.cwd()) {
   // Ensure it's a .json file
   if (path.extname(validated) !== '.json') {
     throw new Error(
-      `Invalid report file: must be a .json file. ` +
-      `Got: "${path.basename(validated)}"`
+      `Invalid report file: must be a .json file. ` + `Got: "${path.basename(validated)}"`
     )
   }
 
@@ -144,7 +143,7 @@ function validateServiceURL(url, serviceName, allowedHosts) {
   if (!isAllowed) {
     throw new Error(
       `Invalid ${serviceName} URL: hostname "${hostname}" is not allowed. ` +
-      `Expected one of: ${allowedHosts.join(', ')}`
+        `Expected one of: ${allowedHosts.join(', ')}`
     )
   }
 

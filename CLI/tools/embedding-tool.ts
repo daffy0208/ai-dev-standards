@@ -74,7 +74,7 @@ Use this when you need to convert text to numerical vectors for similarity searc
       model: options.model || this.getDefaultModel(options.provider || 'openai'),
       apiKey: options.apiKey,
       batchSize: options.batchSize || 100,
-      returnString: options.returnString ?? true,
+      returnString: options.returnString ?? true
     }
 
     this.embeddings = this.initializeEmbeddings()
@@ -88,19 +88,19 @@ Use this when you need to convert text to numerical vectors for similarity searc
       case 'openai':
         return new OpenAIEmbeddings({
           modelName: this.options.model,
-          openAIApiKey: this.options.apiKey || process.env.OPENAI_API_KEY,
+          openAIApiKey: this.options.apiKey || process.env.OPENAI_API_KEY
         })
 
       case 'cohere':
         return new CohereEmbeddings({
           model: this.options.model,
-          apiKey: this.options.apiKey || process.env.COHERE_API_KEY,
+          apiKey: this.options.apiKey || process.env.COHERE_API_KEY
         })
 
       case 'huggingface':
         return new HuggingFaceInferenceEmbeddings({
           model: this.options.model,
-          apiKey: this.options.apiKey || process.env.HUGGINGFACE_API_KEY,
+          apiKey: this.options.apiKey || process.env.HUGGINGFACE_API_KEY
         })
 
       default:
@@ -157,7 +157,7 @@ Use this when you need to convert text to numerical vectors for similarity searc
           ? JSON.stringify({
               embeddings,
               count: embeddings.length,
-              dimensions: embeddings[0]?.length || 0,
+              dimensions: embeddings[0]?.length || 0
             })
           : JSON.stringify(embeddings)
       }

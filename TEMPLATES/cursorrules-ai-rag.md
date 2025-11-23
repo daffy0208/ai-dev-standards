@@ -6,6 +6,7 @@ For projects using RAG (Retrieval-Augmented Generation) or other AI features.
 # Project: [Your AI Product Name]
 
 ## AI Development Standards
+
 Repository: ~/ai-dev-standards/
 Status: Active
 
@@ -31,12 +32,14 @@ Status: Active
 
 **Example:**
 ```
+
 Task: "Add user authentication"
 Step 1: Use graph_query_by_effect("implements_authentication")
 Step 2: Returns: security-engineer, api-designer
 Step 3: Use graph_get_dependencies("security-engineer")
 Step 4: Implement using security-engineer skill
-```
+
+````
 
 **Brain-MCP Tools Available:**
 - brain_search, brain_show_skill, brain_relationships
@@ -173,9 +176,10 @@ See `META/relationship-mapping.json` for RAG-specific resource dependencies.
   "tags": ["product", "engineering"],
   "access_level": "public|internal|confidential"
 }
-```
+````
 
 #### Quality Checks
+
 - [ ] Duplicate detection and removal
 - [ ] Low-quality content filtering
 - [ ] Broken link validation
@@ -187,23 +191,27 @@ See `META/relationship-mapping.json` for RAG-specific resource dependencies.
 ## Retrieval Pipeline
 
 ### Query Enhancement
+
 - **Multi-query:** [Yes/No - e.g., "Generate 3 variations"]
 - **HyDE:** [Yes/No - e.g., "Generate hypothetical document"]
 - **Query expansion:** [Yes/No - e.g., "Add synonyms"]
 - **Keyword extraction:** [Yes/No - e.g., "Extract for hybrid search"]
 
 ### Retrieval Strategy
+
 - **Semantic search:** [e.g., "Top 20 chunks from Pinecone"]
 - **Keyword search:** [e.g., "Top 10 from BM25 index" or "None"]
 - **Metadata filtering:** [e.g., "By access_level, date range"]
 - **Hybrid merging:** [e.g., "RRF (Reciprocal Rank Fusion)"]
 
 ### Re-ranking (if applicable)
+
 - **Model:** [e.g., "Cohere Rerank v3"]
 - **Input:** [e.g., "Top 30 candidates"]
 - **Output:** [e.g., "Top 5 for context"]
 
 ### Context Assembly
+
 - **Max tokens:** [e.g., "4000 tokens"]
 - **Compression:** [e.g., "LLMLingua if >4k"]
 - **Deduplication:** [e.g., "Remove 90%+ similar chunks"]
@@ -216,7 +224,9 @@ See `META/relationship-mapping.json` for RAG-specific resource dependencies.
 ### Endpoints
 
 #### POST /api/search
+
 **Request:**
+
 ```json
 {
   "query": "How do I configure authentication?",
@@ -233,6 +243,7 @@ See `META/relationship-mapping.json` for RAG-specific resource dependencies.
 ```
 
 **Response:**
+
 ```json
 {
   "answer": "To configure authentication...",
@@ -262,16 +273,19 @@ See `META/relationship-mapping.json` for RAG-specific resource dependencies.
 ## Performance Requirements
 
 ### Latency Targets
+
 - **Retrieval:** <300ms (p95)
 - **Generation:** <2000ms (p95)
 - **Total:** <3000ms (p95)
 
 ### Accuracy Targets
+
 - **Retrieval Precision@5:** >0.85
 - **Answer Faithfulness:** >0.90
 - **Citation Accuracy:** >0.95
 
 ### Cost Targets
+
 - **Per query:** <$0.05 average
 - **Monthly (1000 queries/day):** <$1500
 
@@ -280,18 +294,21 @@ See `META/relationship-mapping.json` for RAG-specific resource dependencies.
 ## Tech Stack
 
 ### Backend
+
 - **Language:** [e.g., "Python 3.11"]
 - **Framework:** [e.g., "FastAPI"]
 - **Vector DB Client:** [e.g., "pinecone-client"]
 - **LLM SDK:** [e.g., "openai"]
 
 ### Infrastructure
+
 - **Hosting:** [e.g., "Railway"]
 - **Queue:** [e.g., "Redis for job queue"]
 - **Caching:** [e.g., "Redis for query results (15min TTL)"]
 - **Monitoring:** [e.g., "Datadog"]
 
 ### Frontend
+
 - **Framework:** [e.g., "Next.js 14"]
 - **UI Library:** [e.g., "shadcn/ui"]
 - **State:** [e.g., "React Query"]
@@ -301,18 +318,21 @@ See `META/relationship-mapping.json` for RAG-specific resource dependencies.
 ## Security & Privacy
 
 ### Data Security
+
 - [ ] Encryption at rest (vector DB)
 - [ ] Encryption in transit (HTTPS)
 - [ ] API authentication (JWT)
 - [ ] Rate limiting (100 req/min per user)
 
 ### Privacy
+
 - [ ] PII detection and masking
 - [ ] Access control by user role
 - [ ] Audit logging for all queries
 - [ ] Data retention policy (30 days)
 
 ### Compliance
+
 - [ ] GDPR compliance (if EU users)
 - [ ] SOC 2 (if enterprise)
 - [ ] Data residency requirements
@@ -322,17 +342,20 @@ See `META/relationship-mapping.json` for RAG-specific resource dependencies.
 ## Monitoring & Evaluation
 
 ### Metrics to Track
+
 - **Usage:** Queries/day, unique users
 - **Performance:** Latency (p50, p95, p99)
 - **Quality:** User thumbs up/down, explicit feedback
 - **Cost:** Embedding cost, LLM cost, DB cost per query
 
 ### Evaluation Dataset
+
 - **Size:** [e.g., "100 query-answer pairs"]
 - **Coverage:** [e.g., "Product (40%), Engineering (30%), Other (30%)"]
 - **Update frequency:** [e.g., "Monthly with new examples"]
 
 ### A/B Testing
+
 - [ ] Test embedding models (3-small vs 3-large)
 - [ ] Test LLMs (GPT-4 vs Claude)
 - [ ] Test retrieval strategies (semantic only vs hybrid)
@@ -343,6 +366,7 @@ See `META/relationship-mapping.json` for RAG-specific resource dependencies.
 ## Development Workflow
 
 ### Data Pipeline Updates
+
 ```bash
 # Weekly data sync
 python scripts/sync_sources.py
@@ -355,6 +379,7 @@ python scripts/upload_to_pinecone.py
 ```
 
 ### Testing
+
 - **Unit tests:** Chunking, embedding, query processing
 - **Integration tests:** Full retrieval pipeline
 - **End-to-end tests:** API with test queries
@@ -365,23 +390,27 @@ python scripts/upload_to_pinecone.py
 ## Instructions for Claude
 
 ### When Discussing RAG Architecture
+
 1. Reference **rag-pattern.md** for architecture styles
 2. Use **rag-implementer skill** for methodology
 3. Explain trade-offs clearly (cost vs accuracy vs latency)
 
 ### When Writing Code
+
 1. Follow FastAPI best practices
 2. Include error handling for API failures
 3. Log all queries for analysis
 4. Add retry logic for external services
 
 ### When Optimizing Performance
+
 1. Use **performance-optimizer skill**
 2. Profile before optimizing
 3. Focus on biggest bottlenecks first
 4. Test impact of changes
 
 ### When Adding Features
+
 1. Validate against requirements (latency, accuracy, cost)
 2. Consider impact on existing pipeline
 3. A/B test before full rollout
@@ -391,10 +420,12 @@ python scripts/upload_to_pinecone.py
 ## Project-Specific Notes
 
 ### Known Issues
+
 - [e.g., "Confluence API rate limits - need retry logic"]
 - [e.g., "Some PDFs fail to parse - need fallback"]
 
 ### Future Enhancements
+
 - [ ] Multi-modal support (images in docs)
 - [ ] Conversational memory (multi-turn)
 - [ ] Feedback loop (RLHF on user ratings)
@@ -408,6 +439,7 @@ python scripts/upload_to_pinecone.py
 - RAG Skill: ~/ai-dev-standards/SKILLS/rag-implementer/SKILL.md
 - Pinecone Docs: https://docs.pinecone.io
 - OpenAI Embeddings: https://platform.openai.com/docs/guides/embeddings
+
 ```
 
 ## How to Use
@@ -417,3 +449,4 @@ python scripts/upload_to_pinecone.py
 3. Fill in all architecture decisions (embedding model, vector DB, etc.)
 4. Update data sources and pipeline details
 5. Claude will follow RAG best practices from ai-dev-standards automatically
+```

@@ -16,21 +16,21 @@ Quick reference for all ai-dev-standards resources. Everything listed here is re
 
 ## 📊 Resource Inventory
 
-| Category | Count | Purpose | Auto-Update |
-|----------|-------|---------|-------------|
-| **Skills** | 64 | AI methodologies (HOW to build) | ✅ Yes |
-| **MCPs** | 50 | Tools (DO things) | ✅ Yes |
-| **Components** | 72 | Reusable code patterns | 📦 On-request |
-| **Integrations** | 28 | Third-party service connectors | 📦 On-request |
-| **Tools** | 24 | Development tools | ✅ Yes |
-| **Standards** | 20 | Architecture patterns & best practices | ✅ Yes |
-| **Playbooks** | 14 | Step-by-step procedures | ✅ Yes |
-| **Templates** | 19 | Project starters | 📦 On-request |
-| **Utils** | 8 | Utility functions | 📦 On-request |
-| **Schemas** | 4 | Data validation schemas | ✅ Yes |
-| **Examples** | 3 | Sample code | 📦 On-request |
-| **Installers** | 3 | Setup automation scripts | ✅ Yes |
-| **Scripts** | Various | Build/maintenance scripts | ✅ Yes |
+| Category         | Count   | Purpose                                | Auto-Update   |
+| ---------------- | ------- | -------------------------------------- | ------------- |
+| **Skills**       | 64      | AI methodologies (HOW to build)        | ✅ Yes        |
+| **MCPs**         | 50      | Tools (DO things)                      | ✅ Yes        |
+| **Components**   | 72      | Reusable code patterns                 | 📦 On-request |
+| **Integrations** | 28      | Third-party service connectors         | 📦 On-request |
+| **Tools**        | 24      | Development tools                      | ✅ Yes        |
+| **Standards**    | 20      | Architecture patterns & best practices | ✅ Yes        |
+| **Playbooks**    | 14      | Step-by-step procedures                | ✅ Yes        |
+| **Templates**    | 19      | Project starters                       | 📦 On-request |
+| **Utils**        | 8       | Utility functions                      | 📦 On-request |
+| **Schemas**      | 4       | Data validation schemas                | ✅ Yes        |
+| **Examples**     | 3       | Sample code                            | 📦 On-request |
+| **Installers**   | 3       | Setup automation scripts               | ✅ Yes        |
+| **Scripts**      | Various | Build/maintenance scripts              | ✅ Yes        |
 
 **Core Resources (Tier 1):** 238 resources (64 skills + 50 MCPs + 24 tools + 72 components + 28 integrations)
 
@@ -43,6 +43,7 @@ Quick reference for all ai-dev-standards resources. Everything listed here is re
 ## 🎯 Featured Resources
 
 ### Top Skills
+
 - **mvp-builder** — Rapid MVP development with P0/P1/P2 prioritization
 - **rag-implementer** — RAG systems with vector databases
 - **product-strategist** — Product-market fit validation
@@ -52,7 +53,9 @@ Quick reference for all ai-dev-standards resources. Everything listed here is re
 [See complete skill list in META/registry.json]
 
 ### MCPs (Tools)
+
 **50 total MCP servers** providing executable development tools including:
+
 - **brain-mcp** — Intelligent skill discovery and orchestration
 - **accessibility-checker-mcp** — WCAG compliance checking
 - **component-generator-mcp** — React component generation with tests
@@ -65,6 +68,7 @@ Quick reference for all ai-dev-standards resources. Everything listed here is re
 **Coverage:** 55 of 64 skills (85.9%) have MCP support with 119 skill-to-MCP relationships
 
 ### Key Standards
+
 - **rag-pattern.md** — RAG architecture
 - **microservices-pattern.md** — Microservices design
 - **authentication-patterns.md** — Auth patterns
@@ -78,11 +82,13 @@ Quick reference for all ai-dev-standards resources. Everything listed here is re
 ## 🚀 Usage
 
 ### Get Everything (Bootstrap)
+
 ```bash
 npx @ai-dev-standards/bootstrap
 ```
 
 ### Get Specific Resources
+
 ```bash
 # Sync latest skills
 ai-dev sync --skills
@@ -95,6 +101,7 @@ ai-dev generate project --template saas-starter
 ```
 
 ### Check What's Available
+
 ```bash
 # List all resources
 ai-dev list
@@ -110,54 +117,63 @@ ai-dev list components
 ## 📦 Resource Categories Explained
 
 ### Skills (SKILLS/)
+
 **What:** Methodologies and approaches (the HOW)
 **Example:** rag-implementer explains how to build RAG systems
 **Auto-update:** ✅ Yes (always current)
 **Customizable:** No (canonical patterns)
 
 ### MCPs (MCP-SERVERS/)
+
 **What:** Executable tools (the DO)
 **Example:** accessibility-checker runs WCAG audits
 **Auto-update:** ✅ Yes
 **Customizable:** Limited (configuration only)
 
 ### Components (COMPONENTS/)
+
 **What:** Reusable code templates
 **Example:** rag-pipelines provides RAG implementation code
 **Auto-update:** 📦 On-request
 **Customizable:** Yes (fully editable after install)
 
 ### Integrations (INTEGRATIONS/)
+
 **What:** Third-party service connectors
 **Example:** anthropic-client wraps Claude API
 **Auto-update:** 📦 On-request
 **Customizable:** Yes
 
 ### Standards (STANDARDS/)
+
 **What:** Architecture patterns and best practices
 **Example:** rag-pattern.md shows proven RAG architectures
 **Auto-update:** ✅ Yes (CRITICAL for security)
 **Customizable:** No (add custom docs separately)
 
 ### Playbooks (PLAYBOOKS/)
+
 **What:** Step-by-step operational procedures
 **Example:** deployment-checklist.md lists pre-deploy steps
 **Auto-update:** ✅ Yes
 **Customizable:** No
 
 ### Utils (UTILS/)
+
 **What:** Helper functions and scripts
 **Example:** logger.ts provides formatted console output
 **Auto-update:** 📦 On-request
 **Customizable:** Yes
 
 ### Templates (TEMPLATES/)
+
 **What:** Project starter kits
 **Example:** saas-starter provides full SaaS boilerplate
 **Auto-update:** 📦 On-request
 **Customizable:** Yes (starting point only)
 
 ### Installers (INSTALLERS/)
+
 **What:** Automated setup scripts
 **Example:** create-rag-system sets up complete RAG stack
 **Auto-update:** ✅ Yes
@@ -170,6 +186,7 @@ ai-dev list components
 ### By Use Case
 
 **Building a RAG System?**
+
 - Skill: rag-implementer
 - MCPs: vector-database-mcp (planned), embedding-generator-mcp (planned)
 - Component: rag-pipelines
@@ -178,12 +195,14 @@ ai-dev list components
 - Installer: create-rag-system
 
 **Building an MVP?**
+
 - Skill: mvp-builder
 - MCPs: feature-prioritizer-mcp (planned)
 - Component: agents, workflows
 - Playbook: validation-first-development
 
 **Building a SaaS App?**
+
 - Skills: frontend-builder, api-designer, deployment-advisor
 - MCPs: component-generator, accessibility-checker
 - Components: ui-components, forms, auth
@@ -192,15 +211,18 @@ ai-dev list components
 ### By Technology
 
 **React/Next.js:**
+
 - frontend-builder skill
 - component-generator MCP
 - ui-components, forms components
 
 **AI/LLM:**
+
 - rag-implementer, multi-agent-architect skills
 - anthropic-client integration
 
 **APIs:**
+
 - api-designer skill
 - openapi-generator-mcp (planned)
 
@@ -209,12 +231,15 @@ ai-dev list components
 ## ✅ Quality Assurance
 
 ### 100% Registry Coverage
+
 Every resource is registered in META/registry.json and validated by:
+
 - 30 automated tests (all passing)
 - CI/CD enforcement (blocks merges if validation fails)
 - Weekly manual review
 
 ### Relationship Mapping
+
 - 3/3 MCPs list which skills they enable
 - 64/64 skills declare what they require
 - 9/9 components list their dependencies
@@ -225,12 +250,14 @@ Every resource is registered in META/registry.json and validated by:
 ## 🚨 Known Gaps
 
 ### MCP Coverage: 8%
+
 - **Current:** 3 MCPs
 - **Needed:** 30+ MCPs
 - **Gap:** 92% of skills lack corresponding tools
 - **Status:** Active development (see BUILD_FOCUS.md)
 
 ### Skill Relationship Metadata: 50%
+
 - **Current:** 64/64 skills have `requires` field
 - **Target:** All high-priority skills
 - **Status:** Phase 2 complete for priority skills

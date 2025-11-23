@@ -33,12 +33,14 @@ async function syncCommand(options = {}) {
       console.log(chalk.yellow('⚠️  Project not initialized for auto-sync\n'))
 
       if (!options.yes) {
-        const { init } = await inquirer.prompt([{
-          type: 'confirm',
-          name: 'init',
-          message: 'Initialize auto-sync for this project?',
-          default: true
-        }])
+        const { init } = await inquirer.prompt([
+          {
+            type: 'confirm',
+            name: 'init',
+            message: 'Initialize auto-sync for this project?',
+            default: true
+          }
+        ])
 
         if (!init) {
           console.log(chalk.gray('Skipped.\n'))
@@ -70,12 +72,14 @@ async function syncCommand(options = {}) {
 
     // 4. Confirm update
     if (!options.yes) {
-      const { confirm } = await inquirer.prompt([{
-        type: 'confirm',
-        name: 'confirm',
-        message: 'Apply these updates?',
-        default: true
-      }])
+      const { confirm } = await inquirer.prompt([
+        {
+          type: 'confirm',
+          name: 'confirm',
+          message: 'Apply these updates?',
+          default: true
+        }
+      ])
 
       if (!confirm) {
         console.log(chalk.gray('\nCancelled.\n'))
@@ -106,7 +110,6 @@ async function syncCommand(options = {}) {
 
     // 7. Show summary
     showSyncSummary(updates)
-
   } catch (error) {
     console.error(chalk.red(`\n❌ Error: ${error.message}\n`))
     process.exit(1)
@@ -207,9 +210,7 @@ async function checkForUpdates(config) {
 
   // Check skills
   if (config.tracking.includes('skills')) {
-    const newSkills = latest.skills.filter(skill =>
-      !config.installed.skills.includes(skill.id)
-    )
+    const newSkills = latest.skills.filter(skill => !config.installed.skills.includes(skill.id))
 
     for (const skill of newSkills) {
       updates.push({
@@ -223,9 +224,7 @@ async function checkForUpdates(config) {
 
   // Check MCPs
   if (config.tracking.includes('mcps')) {
-    const newMcps = latest.mcps.filter(mcp =>
-      !config.installed.mcps.includes(mcp.id)
-    )
+    const newMcps = latest.mcps.filter(mcp => !config.installed.mcps.includes(mcp.id))
 
     for (const mcp of newMcps) {
       updates.push({
@@ -239,9 +238,7 @@ async function checkForUpdates(config) {
 
   // Check tools
   if (config.tracking.includes('tools')) {
-    const newTools = latest.tools.filter(tool =>
-      !config.installed.tools.includes(tool.id)
-    )
+    const newTools = latest.tools.filter(tool => !config.installed.tools.includes(tool.id))
 
     for (const tool of newTools) {
       updates.push({
@@ -253,8 +250,8 @@ async function checkForUpdates(config) {
     }
 
     // Check scripts
-    const newScripts = latest.scripts.filter(script =>
-      !config.installed.scripts.includes(script.id)
+    const newScripts = latest.scripts.filter(
+      script => !config.installed.scripts.includes(script.id)
     )
 
     for (const script of newScripts) {
@@ -269,8 +266,8 @@ async function checkForUpdates(config) {
 
   // Check components
   if (config.tracking.includes('components')) {
-    const newComponents = latest.components.filter(comp =>
-      !config.installed.components.includes(comp.id)
+    const newComponents = latest.components.filter(
+      comp => !config.installed.components.includes(comp.id)
     )
 
     for (const comp of newComponents) {
@@ -285,8 +282,8 @@ async function checkForUpdates(config) {
 
   // Check integrations
   if (config.tracking.includes('integrations')) {
-    const newIntegrations = latest.integrations.filter(int =>
-      !config.installed.integrations.includes(int.id)
+    const newIntegrations = latest.integrations.filter(
+      int => !config.installed.integrations.includes(int.id)
     )
 
     for (const integration of newIntegrations) {
@@ -380,7 +377,7 @@ async function addSkillToProject(projectPath, skill) {
   for (const client of clientConfigs) {
     const configPath = path.join(projectPath, `${client.dir}/${client.file}`)
 
-    if (!await fs.pathExists(configPath)) {
+    if (!(await fs.pathExists(configPath))) {
       await fs.ensureDir(path.dirname(configPath))
       await fs.writeFile(configPath, client.header)
     }
@@ -546,18 +543,18 @@ async function updateConfigFile(projectPath, fileName, content) {
  */
 function mergeConfigContent(existing, newContent, fileName) {
   // Detect if content is JSON by checking if it's valid JSON
-  const isJsonFile = fileName && (
-    fileName.endsWith('.json') ||
-    fileName === '.cursorrules' ||
-    fileName === 'package.json'
-  )
+  const isJsonFile =
+    fileName &&
+    (fileName.endsWith('.json') || fileName === '.cursorrules' || fileName === 'package.json')
 
   // Try to parse as JSON for structured merging
   if (isJsonFile || isValidJson(existing) || isValidJson(newContent)) {
     try {
       return mergeJsonContent(existing, newContent)
     } catch (error) {
-      console.warn(`Warning: Failed to merge as JSON, falling back to line-based merge: ${error.message}`)
+      console.warn(
+        `Warning: Failed to merge as JSON, falling back to line-based merge: ${error.message}`
+      )
       // Fall through to line-based merge
     }
   }
@@ -677,7 +674,7 @@ async function setupGitHook(projectPath) {
   const backupPath = path.join(hooksDir, 'post-merge.backup')
 
   // BUG FIX #2: Check if this is actually a git repository
-  if (!await fs.pathExists(gitDir)) {
+  if (!(await fs.pathExists(gitDir))) {
     throw new Error('Not a git repository. Git hooks can only be installed in git repositories.')
   }
 
@@ -705,10 +702,14 @@ ai-dev sync --yes --silent
     const timestamp = Date.now()
     const timestampedBackup = `${backupPath}.${timestamp}`
     await fs.copy(hookPath, timestampedBackup)
-    console.log(chalk.yellow(`  ⚠️  Existing post-merge hook backed up to: post-merge.backup.${timestamp}`))
+    console.log(
+      chalk.yellow(`  ⚠️  Existing post-merge hook backed up to: post-merge.backup.${timestamp}`)
+    )
 
     // Merge: append our command to existing hook
-    const mergedContent = existingContent.trimEnd() + '\n\n' +
+    const mergedContent =
+      existingContent.trimEnd() +
+      '\n\n' +
       '# Added by ai-dev-standards\n' +
       newHookContent.split('\n').slice(1).join('\n') // Skip shebang if already present
 
@@ -729,7 +730,9 @@ async function fetchLatestStandards() {
   try {
     return await localFetch.fetchAllStandards()
   } catch (error) {
-    console.warn(chalk.yellow(`[sync] Local standards fetch failed, falling back to GitHub: ${error.message}`))
+    console.warn(
+      chalk.yellow(`[sync] Local standards fetch failed, falling back to GitHub: ${error.message}`)
+    )
     return await githubFetch.fetchAllStandards()
   }
 }
@@ -742,7 +745,9 @@ async function getLatestVersion() {
   try {
     return await localFetch.fetchVersion()
   } catch (error) {
-    console.warn(chalk.yellow(`[sync] Local version lookup failed, falling back to GitHub: ${error.message}`))
+    console.warn(
+      chalk.yellow(`[sync] Local version lookup failed, falling back to GitHub: ${error.message}`)
+    )
     return await githubFetch.fetchVersion()
   }
 }
@@ -753,7 +758,7 @@ async function getLatestVersion() {
 async function loadProjectConfig(projectPath) {
   const configPath = path.join(projectPath, '.ai-dev.json')
 
-  if (!await fs.pathExists(configPath)) {
+  if (!(await fs.pathExists(configPath))) {
     return null
   }
 
@@ -763,7 +768,15 @@ async function loadProjectConfig(projectPath) {
   return {
     version: config.version || '1.0.0',
     lastSync: config.lastSync || null,
-    tracking: config.tracking || ['skills', 'mcps', 'tools', 'components', 'integrations', 'cursorrules', 'gitignore'],
+    tracking: config.tracking || [
+      'skills',
+      'mcps',
+      'tools',
+      'components',
+      'integrations',
+      'cursorrules',
+      'gitignore'
+    ],
     frequency: config.frequency || 'git-hook',
     installed: {
       skills: config.installed?.skills || [],

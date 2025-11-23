@@ -18,7 +18,9 @@ const ProjectGenerator = require('../generators/project-generator')
  * - mobile-app: React Native app
  */
 async function initCommand(projectType, projectName, options) {
-  console.log(chalk.blue(`\n🚀 Initializing ${projectType}: ${chalk.bold(projectName || 'my-project')}\n`))
+  console.log(
+    chalk.blue(`\n🚀 Initializing ${projectType}: ${chalk.bold(projectName || 'my-project')}\n`)
+  )
 
   const name = projectName || `my-${projectType}`
 
@@ -65,7 +67,6 @@ async function initCommand(projectType, projectName, options) {
 
     // Show next steps
     showNextSteps(projectType, name, config)
-
   } catch (error) {
     console.error(chalk.red(`\n❌ Error: ${error.message}\n`))
     process.exit(1)
@@ -100,7 +101,11 @@ async function promptProjectConfig(projectType, options) {
 
     default:
       console.log(chalk.yellow(`\n⚠️  Unknown project type: ${projectType}`))
-      console.log(chalk.gray('Available types: saas-starter, rag-system, api-service, dashboard, mobile-app\n'))
+      console.log(
+        chalk.gray(
+          'Available types: saas-starter, rag-system, api-service, dashboard, mobile-app\n'
+        )
+      )
       process.exit(1)
   }
 }
@@ -123,7 +128,7 @@ async function promptSaasConfig(options) {
       message: 'Payment provider:',
       choices: ['stripe', 'paddle', 'lemon-squeezy', 'none'],
       default: options.payments || 'stripe',
-      when: (answers) => answers.auth !== 'none'
+      when: answers => answers.auth !== 'none'
     },
     {
       type: 'list',
@@ -226,7 +231,7 @@ async function promptApiConfig(options) {
       message: 'ORM/Query builder:',
       choices: ['prisma', 'drizzle', 'typeorm', 'none'],
       default: 'prisma',
-      when: (answers) => answers.database !== 'none'
+      when: answers => answers.database !== 'none'
     },
     {
       type: 'checkbox',
@@ -320,12 +325,18 @@ function showNextSteps(projectType, name, config) {
   console.log(chalk.gray(`  1. ${chalk.cyan(`cd ${name}`)}`))
 
   if (projectType === 'saas-starter' || projectType === 'saas') {
-    console.log(chalk.gray(`  2. Copy ${chalk.cyan(`.env.example`)} to ${chalk.cyan(`.env.local`)}`))
+    console.log(
+      chalk.gray(`  2. Copy ${chalk.cyan(`.env.example`)} to ${chalk.cyan(`.env.local`)}`)
+    )
     if (config.auth !== 'none') {
-      console.log(chalk.gray(`  3. Add ${chalk.cyan(config.auth.toUpperCase())} credentials to .env.local`))
+      console.log(
+        chalk.gray(`  3. Add ${chalk.cyan(config.auth.toUpperCase())} credentials to .env.local`)
+      )
     }
     if (config.payments !== 'none') {
-      console.log(chalk.gray(`  4. Add ${chalk.cyan(config.payments.toUpperCase())} keys to .env.local`))
+      console.log(
+        chalk.gray(`  4. Add ${chalk.cyan(config.payments.toUpperCase())} keys to .env.local`)
+      )
     }
     console.log(chalk.gray(`  5. ${chalk.cyan(`npm run dev`)}`))
     console.log(chalk.gray(`  6. Open ${chalk.cyan(`http://localhost:3000`)}`))

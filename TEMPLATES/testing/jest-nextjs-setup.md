@@ -21,7 +21,7 @@ const nextJest = require('next/jest')
 
 const createJestConfig = nextJest({
   // Provide the path to your Next.js app to load next.config.js and .env files
-  dir: './',
+  dir: './'
 })
 
 const customJestConfig = {
@@ -29,27 +29,24 @@ const customJestConfig = {
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
     // Handle module aliases (matches tsconfig.json paths)
-    '^@/(.*)$': '<rootDir>/src/$1',
+    '^@/(.*)$': '<rootDir>/src/$1'
   },
   collectCoverageFrom: [
     'src/**/*.{js,jsx,ts,tsx}',
     '!src/**/*.d.ts',
     '!src/**/*.stories.{js,jsx,ts,tsx}',
     '!src/**/_*.{js,jsx,ts,tsx}', // Exclude private files
-    '!src/app/layout.tsx', // Exclude layout (tested via E2E)
+    '!src/app/layout.tsx' // Exclude layout (tested via E2E)
   ],
   coverageThresholds: {
     global: {
       branches: 70,
       functions: 70,
       lines: 70,
-      statements: 70,
-    },
+      statements: 70
+    }
   },
-  testMatch: [
-    '**/__tests__/**/*.[jt]s?(x)',
-    '**/?(*.)+(spec|test).[jt]s?(x)',
-  ],
+  testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)']
 }
 
 module.exports = createJestConfig(customJestConfig)
@@ -71,7 +68,7 @@ jest.mock('next/navigation', () => ({
       back: jest.fn(),
       pathname: '/',
       query: {},
-      asPath: '/',
+      asPath: '/'
     }
   },
   usePathname() {
@@ -79,23 +76,23 @@ jest.mock('next/navigation', () => ({
   },
   useSearchParams() {
     return new URLSearchParams()
-  },
+  }
 }))
 
 // Mock Next.js Image
 jest.mock('next/image', () => ({
   __esModule: true,
-  default: (props) => {
+  default: props => {
     // eslint-disable-next-line jsx-a11y/alt-text
     return <img {...props} />
-  },
+  }
 }))
 
 // Global test utilities
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
-  disconnect: jest.fn(),
+  disconnect: jest.fn()
 }))
 ```
 
@@ -161,9 +158,9 @@ jest.mock('@/lib/db', () => ({
   db: {
     user: {
       findMany: jest.fn(),
-      create: jest.fn(),
-    },
-  },
+      create: jest.fn()
+    }
+  }
 }))
 
 describe('/api/users', () => {
@@ -175,7 +172,7 @@ describe('/api/users', () => {
     it('returns all users', async () => {
       const mockUsers = [
         { id: '1', name: 'John', email: 'john@example.com' },
-        { id: '2', name: 'Jane', email: 'jane@example.com' },
+        { id: '2', name: 'Jane', email: 'jane@example.com' }
       ]
 
       ;(db.user.findMany as jest.Mock).mockResolvedValue(mockUsers)
@@ -197,7 +194,7 @@ describe('/api/users', () => {
 
       const request = new Request('http://localhost:3000/api/users', {
         method: 'POST',
-        body: JSON.stringify(newUser),
+        body: JSON.stringify(newUser)
       })
 
       const response = await POST(request)
@@ -210,7 +207,7 @@ describe('/api/users', () => {
     it('returns 400 for invalid data', async () => {
       const request = new Request('http://localhost:3000/api/users', {
         method: 'POST',
-        body: JSON.stringify({ name: '' }), // Invalid: missing email
+        body: JSON.stringify({ name: '' }) // Invalid: missing email
       })
 
       const response = await POST(request)
@@ -244,8 +241,8 @@ describe('createUser action', () => {
     expect(db.user.create).toHaveBeenCalledWith({
       data: {
         email: 'test@example.com',
-        name: 'Test',
-      },
+        name: 'Test'
+      }
     })
   })
 
@@ -258,7 +255,7 @@ describe('createUser action', () => {
 
     expect(result).toEqual({
       success: false,
-      error: 'Invalid email address',
+      error: 'Invalid email address'
     })
   })
 })
@@ -281,10 +278,9 @@ describe('useDebounce', () => {
   })
 
   it('debounces value changes', () => {
-    const { result, rerender } = renderHook(
-      ({ value, delay }) => useDebounce(value, delay),
-      { initialProps: { value: 'initial', delay: 500 } }
-    )
+    const { result, rerender } = renderHook(({ value, delay }) => useDebounce(value, delay), {
+      initialProps: { value: 'initial', delay: 500 }
+    })
 
     expect(result.current).toBe('initial')
 
@@ -347,7 +343,7 @@ export function createMockUser(overrides = {}) {
     email: faker.internet.email(),
     name: faker.person.fullName(),
     createdAt: new Date(),
-    ...overrides,
+    ...overrides
   }
 }
 
@@ -358,7 +354,7 @@ export function createMockPost(overrides = {}) {
     content: faker.lorem.paragraphs(),
     authorId: faker.string.uuid(),
     createdAt: new Date(),
-    ...overrides,
+    ...overrides
   }
 }
 ```
@@ -431,6 +427,7 @@ it('displays error message on failed fetch', async () => {
 ### Issue: "Cannot find module '@/...'"
 
 **Solution:** Update jest.config.js:
+
 ```javascript
 moduleNameMapper: {
   '^@/(.*)$': '<rootDir>/src/$1',
@@ -440,6 +437,7 @@ moduleNameMapper: {
 ### Issue: "TextEncoder is not defined"
 
 **Solution:** Add to jest.setup.js:
+
 ```javascript
 import { TextEncoder, TextDecoder } from 'util'
 global.TextEncoder = TextEncoder

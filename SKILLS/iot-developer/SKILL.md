@@ -12,18 +12,21 @@ I help you build IoT applications, connect sensors and devices, and create smart
 ## What I Do
 
 **Device Integration:**
+
 - Microcontroller programming (Arduino, ESP32)
 - Sensor reading and data collection
 - Actuator control (motors, LEDs, relays)
 - Hardware interfacing
 
 **Communication:**
+
 - MQTT messaging
 - WebSocket connections
 - REST API integration
 - Bluetooth/WiFi connectivity
 
 **IoT Platforms:**
+
 - Real-time dashboards
 - Device management
 - Data logging
@@ -53,13 +56,13 @@ export class MQTTClient {
       console.log('MQTT connected')
     })
 
-    this.client.on('error', (error) => {
+    this.client.on('error', error => {
       console.error('MQTT error:', error)
     })
   }
 
   subscribe(topic: string, callback: (message: string) => void) {
-    this.client.subscribe(topic, (err) => {
+    this.client.subscribe(topic, err => {
       if (err) console.error('Subscribe error:', err)
     })
 
@@ -333,7 +336,7 @@ export async function GET(req: Request) {
     headers: {
       'Content-Type': 'text/event-stream',
       'Cache-Control': 'no-cache',
-      'Connection': 'keep-alive'
+      Connection: 'keep-alive'
     }
   })
 }
@@ -344,6 +347,7 @@ export async function GET(req: Request) {
 ## When to Use Me
 
 **Perfect for:**
+
 - Building smart home systems
 - Creating industrial IoT solutions
 - Implementing sensor networks
@@ -351,6 +355,7 @@ export async function GET(req: Request) {
 - Automating physical processes
 
 **I'll help you:**
+
 - Connect IoT devices
 - Implement MQTT protocols
 - Read sensor data

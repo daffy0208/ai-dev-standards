@@ -13,7 +13,14 @@
     "start": "node dist/index.js",
     "test": "vitest"
   },
-  "keywords": ["mcp", "deployment", "vercel", "railway", "aws", "ci-cd"],
+  "keywords": [
+    "mcp",
+    "deployment",
+    "vercel",
+    "railway",
+    "aws",
+    "ci-cd"
+  ],
   "author": "ai-dev-standards",
   "license": "MIT",
   "dependencies": {

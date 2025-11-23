@@ -21,21 +21,25 @@ claude-code --skill data-visualizer
 ## Common Tasks
 
 ### Create a Line Chart
+
 ```
 "Create a line chart showing revenue over the last 12 months"
 ```
 
 ### Build a KPI Dashboard
+
 ```
 "Build a dashboard with 4 KPI cards showing revenue, users, conversion rate, and average order value"
 ```
 
 ### Add Real-Time Updates
+
 ```
 "Add real-time updates to this chart using Server-Sent Events"
 ```
 
 ### Make Charts Responsive
+
 ```
 "Make this chart responsive for mobile devices"
 ```

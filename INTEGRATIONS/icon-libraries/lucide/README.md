@@ -89,11 +89,11 @@ console.log('Data URL:', customIcon.dataUrl)
 
 ```typescript
 interface IconOptions {
-  size?: number        // Icon size (default: 24)
-  color?: string       // Stroke color (default: 'currentColor')
+  size?: number // Icon size (default: 24)
+  color?: string // Stroke color (default: 'currentColor')
   strokeWidth?: number // Stroke width (default: 2)
-  fill?: string        // Fill color (default: 'none')
-  className?: string   // CSS class name
+  fill?: string // Fill color (default: 'none')
+  className?: string // CSS class name
 }
 ```
 
@@ -143,16 +143,11 @@ function LucideIcon({ name, size = 24, color = 'currentColor', strokeWidth = 2 }
     })
   }, [name, size, color, strokeWidth])
 
-  return (
-    <span
-      dangerouslySetInnerHTML={{ __html: svg }}
-      className="inline-flex items-center"
-    />
-  )
+  return <span dangerouslySetInnerHTML={{ __html: svg }} className="inline-flex items-center" />
 }
 
 // Usage
-<LucideIcon name="heart" size={24} color="#e53e3e" />
+;<LucideIcon name="heart" size={24} color="#e53e3e" />
 ```
 
 ### Using Data URLs
@@ -173,7 +168,7 @@ function IconImage({ name }) {
 }
 
 // Use as background image
-<div style={{ backgroundImage: `url(${dataUrl})` }} />
+;<div style={{ backgroundImage: `url(${dataUrl})` }} />
 ```
 
 ## API Reference
@@ -257,55 +252,79 @@ lucide.clearCache()
 Lucide icons are organized into categories:
 
 ### arrows
+
 Arrow and chevron icons for navigation
+
 - arrow-right, arrow-left, arrow-up, arrow-down
 - chevron-right, chevron-left, chevron-up, chevron-down
 
 ### actions
+
 Common action icons
+
 - plus, minus, check, x
 - trash-2, edit-2, copy, save
 
 ### interface
+
 UI control icons
+
 - menu, search, settings, filter
 - more-horizontal, more-vertical
 
 ### files
+
 File and folder icons
+
 - file, folder, file-text
 - download, upload
 
 ### communication
+
 Communication icons
+
 - mail, message-square, bell, phone
 
 ### users
+
 User and people icons
+
 - user, users, user-plus
 
 ### ui
+
 Common UI element icons
+
 - home, heart, star, eye, eye-off
 
 ### status
+
 Status indicator icons
+
 - check-circle, x-circle, alert-circle, info
 
 ### media
+
 Media playback icons
+
 - image, video, music, play, pause
 
 ### security
+
 Security and privacy icons
+
 - lock, unlock, key, shield
 
 ### navigation
+
 Navigation and location icons
+
 - external-link, link, map-pin, compass
 
 ### time
+
 Time and calendar icons
+
 - calendar, clock
 
 ## Search Algorithm
@@ -405,13 +424,15 @@ function IconButton({ icon, size = 20, onClick }) {
 
   useEffect(() => {
     const client = new LucideClient()
-    client.getIcon(icon, {
-      size,
-      strokeWidth: 2,
-      className: 'icon'
-    }).then(result => {
-      setSvg(result.svg)
-    })
+    client
+      .getIcon(icon, {
+        size,
+        strokeWidth: 2,
+        className: 'icon'
+      })
+      .then(result => {
+        setSvg(result.svg)
+      })
   }, [icon, size])
 
   return (
@@ -473,10 +494,7 @@ function IconSearch() {
 
       <div className="mt-4 grid grid-cols-6 gap-3">
         {results.map(icon => (
-          <div
-            key={icon.name}
-            className="p-3 border rounded hover:bg-gray-50 cursor-pointer"
-          >
+          <div key={icon.name} className="p-3 border rounded hover:bg-gray-50 cursor-pointer">
             <LucideIcon name={icon.name} size={24} />
             <p className="text-xs mt-1">{icon.displayName}</p>
             <p className="text-xs text-gray-500">Score: {icon.matchScore}</p>
@@ -491,14 +509,17 @@ function IconSearch() {
 ## Comparison with Other Libraries
 
 ### vs Heroicons
+
 - **Lucide**: 1000+ icons, more variety
 - **Heroicons**: Simpler, Tailwind-native
 
 ### vs Font Awesome
+
 - **Lucide**: Lightweight, SVG-only, free
 - **Font Awesome**: More icons, but many require Pro
 
 ### vs Feather Icons
+
 - **Lucide**: Fork of Feather with more icons and active maintenance
 - **Feather**: Original, smaller set
 

@@ -7,11 +7,13 @@
 ## Backup Strategy (3-2-1 Rule)
 
 **The Golden Rule:**
+
 - **3** copies of your data
 - **2** different storage types
 - **1** copy off-site
 
 **Example:**
+
 ```
 Copy 1: Production database (AWS RDS)
 Copy 2: Daily snapshot (AWS S3)
@@ -25,18 +27,21 @@ Copy 3: Off-site backup (different region S3 bucket)
 ### Critical (Daily Backups)
 
 **1. Database**
+
 - User data
 - Transactions
 - Application state
 - Session data
 
 **2. User-Generated Content**
+
 - Uploaded files
 - Profile images
 - Documents
 - Media files
 
 **3. Configuration**
+
 - Environment variables
 - Feature flags
 - API keys (encrypted)
@@ -44,11 +49,13 @@ Copy 3: Off-site backup (different region S3 bucket)
 ### Important (Weekly Backups)
 
 **4. Code Repositories**
+
 - Application code (Git)
 - Infrastructure as Code
 - Scripts
 
 **5. Logs**
+
 - Application logs
 - Access logs
 - Error logs (Sentry)
@@ -56,6 +63,7 @@ Copy 3: Off-site backup (different region S3 bucket)
 ### Optional (Monthly Backups)
 
 **6. Analytics Data**
+
 - Metrics history
 - Usage statistics
 - Reports
@@ -287,6 +295,7 @@ resource "aws_s3_bucket_replication_configuration" "uploads" {
 ```
 
 **Benefits:**
+
 - Automatic replication
 - Cross-region protection
 - Versioning enabled (recover deleted files)
@@ -429,6 +438,7 @@ aws s3api get-object \
 ### Scenario 1: Database Corruption
 
 **Detection:**
+
 - Application errors
 - Data inconsistencies
 - Integrity check failures
@@ -576,6 +586,7 @@ rm backup_latest.sql
 **Schedule:** First Monday of every month
 
 **Success Criteria:**
+
 - ✅ Backup downloads successfully
 - ✅ Database restores without errors
 - ✅ Data counts match production (approximately)
@@ -642,23 +653,27 @@ export async function GET(req: Request) {
 ## Backup Checklist
 
 ### Daily
+
 - [ ] Database backup completed
 - [ ] Backup uploaded to S3
 - [ ] Backup verification passed
 - [ ] Old backups pruned (> 30 days)
 
 ### Weekly
+
 - [ ] Code repository backed up (Git)
 - [ ] Configuration backed up
 - [ ] Log archives created
 
 ### Monthly
+
 - [ ] Restore test performed
 - [ ] Restore test documented
 - [ ] Backup storage costs reviewed
 - [ ] Retention policy reviewed
 
 ### Quarterly
+
 - [ ] Disaster recovery plan tested
 - [ ] Team trained on restore procedures
 - [ ] Backup coverage reviewed (any missing data?)

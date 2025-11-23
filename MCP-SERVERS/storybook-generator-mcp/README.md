@@ -57,25 +57,28 @@ npm run build
 
 ## Tools
 
-| Tool | Description |
-|------|-------------|
-| `generate_story` | Generate story for single component |
-| `generate_all_stories` | Generate stories for all components in directory |
-| `update_storybook_config` | Create/update Storybook configuration |
+| Tool                      | Description                                      |
+| ------------------------- | ------------------------------------------------ |
+| `generate_story`          | Generate story for single component              |
+| `generate_all_stories`    | Generate stories for all components in directory |
+| `update_storybook_config` | Create/update Storybook configuration            |
 
 ## Resources
 
-| Resource | Description |
-|----------|-------------|
+| Resource                     | Description               |
+| ---------------------------- | ------------------------- |
 | `storybook://templates/list` | Available story templates |
 
 ## Story Templates
 
 ### Basic Template
+
 Simple story with default args and autodocs.
 
 ### With Variants Template
+
 Story with multiple variants:
+
 - Primary/Secondary/Outline variants
 - Size variations (sm, md, lg)
 - Comprehensive controls
@@ -117,16 +120,16 @@ const meta = {
   title: 'UI/Button',
   component: Button,
   parameters: {
-    layout: 'centered',
+    layout: 'centered'
   },
-  tags: ['autodocs'],
+  tags: ['autodocs']
 } satisfies Meta<typeof Button>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: {},
+  args: {}
 }
 ```
 

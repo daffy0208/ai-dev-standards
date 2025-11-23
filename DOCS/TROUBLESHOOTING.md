@@ -12,6 +12,7 @@ bash ~/ai-dev-standards/setup-project.sh
 ```
 
 **This will:**
+
 1. Install the CLI if needed
 2. Set up your project
 3. Run automatic analysis
@@ -45,6 +46,7 @@ npx @ai-dev-standards/bootstrap
 **Problem:** CLI not installed
 
 **Solution:**
+
 ```bash
 cd ~/ai-dev-standards/CLI
 npm install
@@ -56,6 +58,7 @@ npm link
 **Problem:** No package.json or .git
 
 **Solution:**
+
 ```bash
 # Either initialize git
 git init
@@ -72,6 +75,7 @@ bash ~/ai-dev-standards/setup-project.sh
 **Problem:** Dependencies not installed
 
 **Solution:**
+
 ```bash
 cd ~/ai-dev-standards/CLI
 npm install
@@ -82,6 +86,7 @@ npm install
 **Problem:** Package not on npm yet
 
 **Solution:** Use setup-project.sh instead:
+
 ```bash
 bash ~/ai-dev-standards/setup-project.sh
 ```
@@ -196,6 +201,7 @@ Recommended Skills:
 ### Recommendations
 
 The analysis provides:
+
 1. **Priority tasks** - What to focus on now
 2. **Recommended skills** - Which ai-dev skills to use
 3. **Quick wins** - Easy improvements you can make today
@@ -215,6 +221,7 @@ Help me set up the project structure and add tests."
 ```
 
 Claude will:
+
 - Reference the appropriate skills
 - Use the recommended approaches
 - Help you implement the priority tasks
@@ -239,6 +246,7 @@ bash ~/ai-dev-standards/scripts/analyze-project.sh /path/to/your/project
 ```
 
 This will:
+
 - Analyze the project
 - Show recommendations
 - NOT install anything
@@ -354,6 +362,7 @@ bash ~/ai-dev-standards/setup-project.sh
 ### "The analysis says I need tests but I don't know where to start"
 
 Ask Claude:
+
 ```
 "Use the testing-strategist skill to help me set up tests.
 My project is a [Next.js/React/Python] app."
@@ -366,6 +375,7 @@ Focus on Quick Wins first! They're small, easy tasks that give immediate value.
 ### "The analysis detected the wrong project type"
 
 The setup script auto-detects, but you can manually:
+
 1. Copy a different template from `TEMPLATES/`
 2. Edit `.cursorrules` to reflect your stack
 3. Ask Claude for guidance using specific skills

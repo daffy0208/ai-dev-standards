@@ -13,6 +13,7 @@ Great documentation is the difference between a product people use and a product
 **Write for your audience, not yourself.**
 
 Good documentation:
+
 - Answers questions before they're asked
 - Gets users to success quickly
 - Reduces support burden
@@ -23,22 +24,27 @@ Good documentation:
 ## Documentation Types
 
 ### 1. API Documentation
+
 **Audience:** Developers integrating your API
 **Goal:** Enable integration without support
 
 ### 2. User Guides
+
 **Audience:** End users
 **Goal:** Help users accomplish tasks
 
 ### 3. Tutorials
+
 **Audience:** Learners
 **Goal:** Teach concepts through practice
 
 ### 4. Reference Documentation
+
 **Audience:** Developers needing specifics
 **Goal:** Quick lookup of parameters, methods
 
 ### 5. Architecture Documentation
+
 **Audience:** Engineers maintaining system
 **Goal:** Understand system design decisions
 
@@ -196,9 +202,10 @@ security:
 ## Authentication
 
 All API requests require authentication using a Bearer token:
-
 ```
+
 Authorization: Bearer YOUR_API_KEY
+
 ```
 
 Get your API key from the [dashboard](https://dashboard.example.com).
@@ -206,7 +213,9 @@ Get your API key from the [dashboard](https://dashboard.example.com).
 ## Base URL
 
 ```
+
 https://api.example.com/v1
+
 ```
 
 ## Rate Limiting
@@ -216,10 +225,12 @@ https://api.example.com/v1
 
 Rate limit headers:
 ```
+
 X-RateLimit-Limit: 100
 X-RateLimit-Remaining: 99
 X-RateLimit-Reset: 1640000000
-```
+
+````
 
 ## Errors
 
@@ -246,7 +257,7 @@ Error response format:
     "message": "Must be a valid email address"
   }
 }
-```
+````
 
 ## Endpoints
 
@@ -260,12 +271,12 @@ Returns a paginated list of users.
 
 **Query Parameters:**
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| page | integer | 1 | Page number |
-| limit | integer | 20 | Items per page (max 100) |
-| sort | string | created_at | Sort field |
-| order | string | desc | Sort order (asc/desc) |
+| Parameter | Type    | Default    | Description              |
+| --------- | ------- | ---------- | ------------------------ |
+| page      | integer | 1          | Page number              |
+| limit     | integer | 20         | Items per page (max 100) |
+| sort      | string  | created_at | Sort field               |
+| order     | string  | desc       | Sort order (asc/desc)    |
 
 **Example Request:**
 
@@ -315,11 +326,11 @@ Creates a new user.
 
 **Parameters:**
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| email | string | Yes | User email address |
-| name | string | Yes | User full name |
-| role | string | No | User role (default: user) |
+| Field | Type   | Required | Description               |
+| ----- | ------ | -------- | ------------------------- |
+| email | string | Yes      | User email address        |
+| name  | string | Yes      | User full name            |
+| role  | string | No       | User role (default: user) |
 
 **Example Request:**
 
@@ -401,6 +412,7 @@ Subscribe to events via webhooks:
 ```
 
 Webhook payload:
+
 ```json
 {
   "event": "user.created",
@@ -415,12 +427,15 @@ Webhook payload:
 ## Changelog
 
 ### v1.1.0 (2024-01-22)
+
 - Added `sort` and `order` parameters to list endpoints
 - Improved error messages
 
 ### v1.0.0 (2024-01-01)
+
 - Initial release
-```
+
+````
 
 ---
 
@@ -466,7 +481,7 @@ Open your terminal and run:
 
 ```bash
 npm install -g @example/cli
-```
+````
 
 Verify installation:
 
@@ -515,6 +530,7 @@ Your app will be live at `https://your-app.example.com`
 **Solution:** Make sure npm's global bin directory is in your PATH.
 
 Run:
+
 ```bash
 npm config get prefix
 ```
@@ -524,6 +540,7 @@ Add `/bin` to your PATH.
 ### "Authentication failed"
 
 **Solution:**
+
 1. Log out: `example logout`
 2. Log in again: `example login`
 3. Make sure you're using the correct account
@@ -533,7 +550,8 @@ Add `/bin` to your PATH.
 - [Documentation](https://docs.example.com)
 - [Community Forum](https://community.example.com)
 - [Support](mailto:support@example.com)
-```
+
+````
 
 ---
 
@@ -568,7 +586,7 @@ Create a new project:
 npx create-example-app my-todo-app
 cd my-todo-app
 npm install
-```
+````
 
 Start the dev server:
 
@@ -586,14 +604,8 @@ Create `components/Todo.jsx`:
 export function Todo({ todo, onToggle, onDelete }) {
   return (
     <div className="todo">
-      <input
-        type="checkbox"
-        checked={todo.completed}
-        onChange={() => onToggle(todo.id)}
-      />
-      <span className={todo.completed ? 'completed' : ''}>
-        {todo.text}
-      </span>
+      <input type="checkbox" checked={todo.completed} onChange={() => onToggle(todo.id)} />
+      <span className={todo.completed ? 'completed' : ''}>{todo.text}</span>
       <button onClick={() => onDelete(todo.id)}>Delete</button>
     </div>
   )
@@ -601,6 +613,7 @@ export function Todo({ todo, onToggle, onDelete }) {
 ```
 
 **What's happening here:**
+
 - `onToggle` marks the todo as complete/incomplete
 - `onDelete` removes the todo
 - CSS class `completed` styles finished todos
@@ -632,15 +645,11 @@ export function TodoList() {
     setNewTodo('')
   }
 
-  const toggleTodo = (id) => {
-    setTodos(todos.map(todo =>
-      todo.id === id
-        ? { ...todo, completed: !todo.completed }
-        : todo
-    ))
+  const toggleTodo = id => {
+    setTodos(todos.map(todo => (todo.id === id ? { ...todo, completed: !todo.completed } : todo)))
   }
 
-  const deleteTodo = (id) => {
+  const deleteTodo = id => {
     setTodos(todos.filter(todo => todo.id !== id))
   }
 
@@ -651,21 +660,16 @@ export function TodoList() {
       <div className="add-todo">
         <input
           value={newTodo}
-          onChange={(e) => setNewTodo(e.target.value)}
+          onChange={e => setNewTodo(e.target.value)}
           placeholder="What needs to be done?"
-          onKeyPress={(e) => e.key === 'Enter' && addTodo()}
+          onKeyPress={e => e.key === 'Enter' && addTodo()}
         />
         <button onClick={addTodo}>Add</button>
       </div>
 
       <div className="todo-list">
         {todos.map(todo => (
-          <Todo
-            key={todo.id}
-            todo={todo}
-            onToggle={toggleTodo}
-            onDelete={deleteTodo}
-          />
+          <Todo key={todo.id} todo={todo} onToggle={toggleTodo} onDelete={deleteTodo} />
         ))}
       </div>
     </div>
@@ -674,6 +678,7 @@ export function TodoList() {
 ```
 
 **Key concepts:**
+
 - `useState` manages the list of todos
 - `map` renders each todo
 - `filter` removes deleted todos
@@ -796,7 +801,8 @@ const addTodo = async () => {
 ## Full Code
 
 [View on GitHub](https://github.com/example/todo-tutorial)
-```
+
+````
 
 ---
 
@@ -811,7 +817,7 @@ const addTodo = async () => {
 
 ```typescript
 import { Button } from '@/components/Button'
-```
+````
 
 ## Usage
 
@@ -823,16 +829,16 @@ import { Button } from '@/components/Button'
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| children | ReactNode | required | Button content |
-| variant | 'primary' \| 'secondary' \| 'danger' | 'primary' | Visual style |
-| size | 'sm' \| 'md' \| 'lg' | 'md' | Button size |
-| onClick | () => void | - | Click handler |
-| disabled | boolean | false | Disabled state |
-| loading | boolean | false | Shows loading spinner |
-| type | 'button' \| 'submit' \| 'reset' | 'button' | HTML button type |
-| fullWidth | boolean | false | Full width button |
+| Prop      | Type                                 | Default   | Description           |
+| --------- | ------------------------------------ | --------- | --------------------- |
+| children  | ReactNode                            | required  | Button content        |
+| variant   | 'primary' \| 'secondary' \| 'danger' | 'primary' | Visual style          |
+| size      | 'sm' \| 'md' \| 'lg'                 | 'md'      | Button size           |
+| onClick   | () => void                           | -         | Click handler         |
+| disabled  | boolean                              | false     | Disabled state        |
+| loading   | boolean                              | false     | Shows loading spinner |
+| type      | 'button' \| 'submit' \| 'reset'      | 'button'  | HTML button type      |
+| fullWidth | boolean                              | false     | Full width button     |
 
 ## Examples
 
@@ -881,7 +887,8 @@ import { Button } from '@/components/Button'
 
 - [IconButton](./IconButton.md)
 - [LinkButton](./LinkButton.md)
-```
+
+````
 
 ---
 
@@ -894,9 +901,10 @@ npx create-docusaurus@latest my-docs classic
 
 cd my-docs
 npm start
-```
+````
 
 **Structure:**
+
 ```
 my-docs/
 ├── docs/              # Documentation markdown files
@@ -926,30 +934,35 @@ my-docs/
 ### ✅ DO
 
 **Use Active Voice:**
+
 ```
 ✅ "Click the button to save"
 ❌ "The button should be clicked to save"
 ```
 
 **Be Concise:**
+
 ```
 ✅ "Returns user data"
 ❌ "This endpoint will return the data associated with the user"
 ```
 
 **Use Examples:**
+
 ```
 ✅ "Set `timeout` to 5000 (5 seconds)"
 ❌ "Set the timeout parameter"
 ```
 
 **Break Up Long Content:**
+
 ```
 ✅ Use headings, lists, code blocks
 ❌ Long paragraphs of text
 ```
 
 **Include Error Handling:**
+
 ```
 ✅ Show common errors and solutions
 ❌ Only show happy path
@@ -968,12 +981,14 @@ my-docs/
 ## Documentation Checklist
 
 ### Getting Started
+
 - [ ] Installation instructions
 - [ ] Quick start guide
 - [ ] Hello World example
 - [ ] Next steps
 
 ### API Documentation
+
 - [ ] Authentication explained
 - [ ] All endpoints documented
 - [ ] Request/response examples
@@ -982,18 +997,21 @@ my-docs/
 - [ ] SDKs documented
 
 ### Guides
+
 - [ ] Common use cases covered
 - [ ] Step-by-step tutorials
 - [ ] Screenshots/videos included
 - [ ] Troubleshooting section
 
 ### Reference
+
 - [ ] All parameters documented
 - [ ] Types specified
 - [ ] Default values listed
 - [ ] Examples provided
 
 ### Maintenance
+
 - [ ] Versioned
 - [ ] Changelog maintained
 - [ ] Broken links checked
@@ -1004,11 +1022,13 @@ my-docs/
 ## Related Resources
 
 **Skills:**
+
 - `api-designer` - API documentation
 - `frontend-builder` - Component documentation
 - `ux-designer` - User guides
 
 **Tools:**
+
 - [Docusaurus](https://docusaurus.io/)
 - [Swagger/OpenAPI](https://swagger.io/)
 - [GitBook](https://www.gitbook.com/)

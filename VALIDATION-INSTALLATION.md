@@ -11,6 +11,7 @@ curl -fsSL https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main/INS
 ## What It Does
 
 The installer automatically:
+
 - ✅ Downloads the complete validation command from GitHub
 - ✅ Installs all required dependencies (eslint, typescript, prettier, vitest)
 - ✅ Creates configuration files (.eslintrc.json, tsconfig.json, .prettierrc, vitest.config.ts)
@@ -21,13 +22,13 @@ The installer automatically:
 
 Run validation in your repository:
 
-```bash
+````bash
 # In Claude Code
 /validate
 
 # Or directly from command line
 awk '/^```bash$/,/^```$/' .claude/commands/validate.md | grep -v '```' | bash
-```
+````
 
 ## Features
 
@@ -56,6 +57,7 @@ curl -fsSL https://raw.githubusercontent.com/${VALIDATION_GITHUB_ORG}/${VALIDATI
 ## Tested and Verified ✅
 
 The installer has been successfully tested in a fresh repository and confirmed to:
+
 - Download validation command correctly (99KB validate.md)
 - Install all dependencies successfully
 - Create all configuration files

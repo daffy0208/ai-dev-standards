@@ -36,23 +36,17 @@ describe('FileSystemTool', () => {
   describe('Path validation', () => {
     it('should allow file in allowed path', async () => {
       const filePath = join(tempDir, 'test.txt')
-      await expect(
-        fs.writeFile(filePath, 'test content')
-      ).resolves.not.toThrow()
+      await expect(fs.writeFile(filePath, 'test content')).resolves.not.toThrow()
     })
 
     it('should reject file outside allowed paths', async () => {
       const filePath = '/tmp/outside.txt'
-      await expect(
-        fs.writeFile(filePath, 'test')
-      ).rejects.toThrow('Access denied')
+      await expect(fs.writeFile(filePath, 'test')).rejects.toThrow('Access denied')
     })
 
     it('should reject path traversal attempts', async () => {
       const filePath = join(tempDir, '../../../etc/passwd')
-      await expect(
-        fs.readFile(filePath)
-      ).rejects.toThrow('Access denied')
+      await expect(fs.readFile(filePath)).rejects.toThrow('Access denied')
     })
   })
 
@@ -76,9 +70,7 @@ describe('FileSystemTool', () => {
 
     it('should throw on non-existent file', async () => {
       const filePath = join(tempDir, 'nonexistent.txt')
-      await expect(
-        fs.readFile(filePath)
-      ).rejects.toThrow()
+      await expect(fs.readFile(filePath)).rejects.toThrow()
     })
   })
 
@@ -311,8 +303,12 @@ describe('FileSystemTool', () => {
       await expect(fs.writeFile(outsidePath, 'test')).rejects.toThrow('Access denied')
       await expect(fs.appendFile(outsidePath, 'test')).rejects.toThrow('Access denied')
       await expect(fs.deleteFile(outsidePath)).rejects.toThrow('Access denied')
-      await expect(fs.copyFile(join(tempDir, 'test.txt'), outsidePath)).rejects.toThrow('Access denied')
-      await expect(fs.moveFile(join(tempDir, 'test.txt'), outsidePath)).rejects.toThrow('Access denied')
+      await expect(fs.copyFile(join(tempDir, 'test.txt'), outsidePath)).rejects.toThrow(
+        'Access denied'
+      )
+      await expect(fs.moveFile(join(tempDir, 'test.txt'), outsidePath)).rejects.toThrow(
+        'Access denied'
+      )
     })
 
     it('should prevent directory traversal', async () => {

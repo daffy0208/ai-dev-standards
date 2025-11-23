@@ -7,34 +7,31 @@
  * and detecting exposed secrets in codebases.
  */
 
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import {
-  CallToolRequestSchema,
-  ListToolsRequestSchema,
-} from '@modelcontextprotocol/sdk/types.js';
+import { Server } from '@modelcontextprotocol/sdk/server/index.js'
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
+import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js'
 
 // Server configuration
 interface ScannerConfig {
-  projectPath: string;
-  projectType: 'node' | 'python' | 'generic';
-  severity: 'low' | 'medium' | 'high' | 'critical';
+  projectPath: string
+  projectType: 'node' | 'python' | 'generic'
+  severity: 'low' | 'medium' | 'high' | 'critical'
 }
 
-let config: ScannerConfig | null = null;
+let config: ScannerConfig | null = null
 
 // Create server instance
 const server = new Server(
   {
     name: 'security-scanner-mcp',
-    version: '1.0.0',
+    version: '1.0.0'
   },
   {
     capabilities: {
-      tools: {},
-    },
+      tools: {}
+    }
   }
-);
+)
 
 // Tool definitions
 server.setRequestHandler(ListToolsRequestSchema, async () => {
@@ -164,31 +161,31 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         }
       }
     ]
-  };
-});
+  }
+})
 
 // Tool implementations
-server.setRequestHandler(CallToolRequestSchema, async (request) => {
-  const { name, arguments: args } = request.params;
+server.setRequestHandler(CallToolRequestSchema, async request => {
+  const { name, arguments: args } = request.params
 
   try {
     switch (name) {
       case 'configure':
-        return await handleConfigure(args);
+        return await handleConfigure(args)
       case 'scan_dependencies':
-        return await handleScanDependencies(args);
+        return await handleScanDependencies(args)
       case 'scan_secrets':
-        return await handleScanSecrets(args);
+        return await handleScanSecrets(args)
       case 'scan_owasp':
-        return await handleScanOwasp(args);
+        return await handleScanOwasp(args)
       case 'scan_code_patterns':
-        return await handleScanCodePatterns(args);
+        return await handleScanCodePatterns(args)
       case 'generate_report':
-        return await handleGenerateReport(args);
+        return await handleGenerateReport(args)
       case 'risk_assessment':
-        return await handleRiskAssessment(args);
+        return await handleRiskAssessment(args)
       default:
-        throw new Error(`Unknown tool: ${name}`);
+        throw new Error(`Unknown tool: ${name}`)
     }
   } catch (error) {
     return {
@@ -199,9 +196,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         }
       ],
       isError: true
-    };
+    }
   }
-});
+})
 
 // Handler implementations
 async function handleConfigure(args: any) {
@@ -209,7 +206,7 @@ async function handleConfigure(args: any) {
     projectPath: args.projectPath,
     projectType: args.projectType,
     severity: args.severity || 'medium'
-  };
+  }
 
   return {
     content: [
@@ -218,12 +215,12 @@ async function handleConfigure(args: any) {
         text: `Configured security scanner:\n- Project: ${config.projectPath}\n- Type: ${config.projectType}\n- Min Severity: ${config.severity}`
       }
     ]
-  };
+  }
 }
 
 async function handleScanDependencies(args: any) {
   if (!config) {
-    throw new Error('Scanner not configured. Call configure first.');
+    throw new Error('Scanner not configured. Call configure first.')
   }
 
   return {
@@ -233,12 +230,12 @@ async function handleScanDependencies(args: any) {
         text: 'Dependency scanning not yet implemented'
       }
     ]
-  };
+  }
 }
 
 async function handleScanSecrets(args: any) {
   if (!config) {
-    throw new Error('Scanner not configured. Call configure first.');
+    throw new Error('Scanner not configured. Call configure first.')
   }
 
   return {
@@ -248,12 +245,12 @@ async function handleScanSecrets(args: any) {
         text: 'Secret scanning not yet implemented'
       }
     ]
-  };
+  }
 }
 
 async function handleScanOwasp(args: any) {
   if (!config) {
-    throw new Error('Scanner not configured. Call configure first.');
+    throw new Error('Scanner not configured. Call configure first.')
   }
 
   return {
@@ -263,12 +260,12 @@ async function handleScanOwasp(args: any) {
         text: 'OWASP scanning not yet implemented'
       }
     ]
-  };
+  }
 }
 
 async function handleScanCodePatterns(args: any) {
   if (!config) {
-    throw new Error('Scanner not configured. Call configure first.');
+    throw new Error('Scanner not configured. Call configure first.')
   }
 
   return {
@@ -278,12 +275,12 @@ async function handleScanCodePatterns(args: any) {
         text: 'Code pattern scanning not yet implemented'
       }
     ]
-  };
+  }
 }
 
 async function handleGenerateReport(args: any) {
   if (!config) {
-    throw new Error('Scanner not configured. Call configure first.');
+    throw new Error('Scanner not configured. Call configure first.')
   }
 
   return {
@@ -293,12 +290,12 @@ async function handleGenerateReport(args: any) {
         text: 'Report generation not yet implemented'
       }
     ]
-  };
+  }
 }
 
 async function handleRiskAssessment(args: any) {
   if (!config) {
-    throw new Error('Scanner not configured. Call configure first.');
+    throw new Error('Scanner not configured. Call configure first.')
   }
 
   return {
@@ -308,17 +305,17 @@ async function handleRiskAssessment(args: any) {
         text: 'Risk assessment not yet implemented'
       }
     ]
-  };
+  }
 }
 
 // Start server
 async function main() {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error('Security Scanner MCP Server running on stdio');
+  const transport = new StdioServerTransport()
+  await server.connect(transport)
+  console.error('Security Scanner MCP Server running on stdio')
 }
 
-main().catch((error) => {
-  console.error('Server error:', error);
-  process.exit(1);
-});
+main().catch(error => {
+  console.error('Server error:', error)
+  process.exit(1)
+})

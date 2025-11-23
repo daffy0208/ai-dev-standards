@@ -164,14 +164,10 @@ await fs.writeFile('tokens.json', json)
 
 ```typescript
 // Export specific nodes as images
-const images = await client.exportImages(
-  'abc123xyz',
-  ['node-id-1', 'node-id-2'],
-  {
-    format: 'png',
-    scale: 2 // 2x resolution
-  }
-)
+const images = await client.exportImages('abc123xyz', ['node-id-1', 'node-id-2'], {
+  format: 'png',
+  scale: 2 // 2x resolution
+})
 
 for (const image of images) {
   console.log(`${image.name}: ${image.url}`)
@@ -186,11 +182,7 @@ for (const image of images) {
 ### Export SVGs
 
 ```typescript
-const svgs = await client.exportImages(
-  'abc123xyz',
-  ['icon-1', 'icon-2'],
-  { format: 'svg' }
-)
+const svgs = await client.exportImages('abc123xyz', ['icon-1', 'icon-2'], { format: 'svg' })
 
 for (const svg of svgs) {
   const response = await fetch(svg.url)
@@ -387,6 +379,7 @@ https://www.figma.com/file/ABC123XYZ/My-Design-File
 ```
 
 Finding node IDs:
+
 1. Select a node in Figma
 2. Right-click → "Copy/Paste as" → "Copy link"
 3. The node ID is in the URL: `?node-id=123-456`
@@ -415,6 +408,7 @@ try {
 ## Rate Limits
 
 Figma API has rate limits:
+
 - **Free plans**: 100 requests per minute
 - **Paid plans**: 400 requests per minute
 
@@ -455,7 +449,8 @@ async function getCachedFile(fileKey: string) {
   const cached = cache.get(fileKey)
   const now = Date.now()
 
-  if (cached && now - cached.timestamp < 60000) { // 1 minute cache
+  if (cached && now - cached.timestamp < 60000) {
+    // 1 minute cache
     return cached.data
   }
 
@@ -476,6 +471,7 @@ const images = await client.exportImages(fileKey, allNodeIds)
 ### 3. Use Webhooks
 
 Set up webhooks for file updates:
+
 1. Figma → File → "Setup webhooks"
 2. Get notified when design changes
 3. Auto-sync tokens when designers update
@@ -485,15 +481,19 @@ Set up webhooks for file updates:
 ## Troubleshooting
 
 ### Invalid Access Token
+
 Ensure your token is valid and has access to the file.
 
 ### Node Not Found
+
 Check node ID format: use `123:456` not `123-456`.
 
 ### Export URLs Expire
+
 Export URLs are temporary. Download immediately.
 
 ### Missing Styles
+
 Styles must be published in team library to be accessible.
 
 ---

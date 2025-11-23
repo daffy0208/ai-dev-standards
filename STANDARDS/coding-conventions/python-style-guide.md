@@ -9,13 +9,13 @@
 
 ## Quick Reference
 
-| Category | Convention | Example |
-|----------|-----------|---------|
-| **Variables/Functions** | snake_case | `user_name`, `calculate_total()` |
-| **Classes** | PascalCase | `UserService`, `ApiClient` |
-| **Constants** | UPPER_SNAKE_CASE | `MAX_RETRIES`, `API_BASE_URL` |
-| **Private** | _leading_underscore | `_private_method()` |
-| **Modules** | snake_case | `api_client.py`, `user_service.py` |
+| Category                | Convention           | Example                            |
+| ----------------------- | -------------------- | ---------------------------------- |
+| **Variables/Functions** | snake_case           | `user_name`, `calculate_total()`   |
+| **Classes**             | PascalCase           | `UserService`, `ApiClient`         |
+| **Constants**           | UPPER_SNAKE_CASE     | `MAX_RETRIES`, `API_BASE_URL`      |
+| **Private**             | \_leading_underscore | `_private_method()`                |
+| **Modules**             | snake_case           | `api_client.py`, `user_service.py` |
 
 ---
 

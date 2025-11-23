@@ -63,7 +63,6 @@ async function setupCommand(integration, options) {
     }
 
     console.log(chalk.green(`\n✅ Successfully set up ${integration}!\n`))
-
   } catch (error) {
     console.error(chalk.red(`\n❌ Error: ${error.message}\n`))
     process.exit(1)
@@ -90,7 +89,7 @@ async function setupSupabase(options) {
       type: 'input',
       name: 'url',
       message: 'Supabase Project URL:',
-      validate: (input) => {
+      validate: input => {
         try {
           validateServiceURL(input, 'Supabase', ['supabase.co', '.supabase.co'])
           return true
@@ -103,7 +102,7 @@ async function setupSupabase(options) {
       type: 'password',
       name: 'anonKey',
       message: 'Supabase Anon Key:',
-      validate: (input) => input.length > 0 || 'Anon key is required'
+      validate: input => input.length > 0 || 'Anon key is required'
     }
   ])
 
@@ -195,13 +194,13 @@ async function setupStripe(options) {
       type: 'password',
       name: 'secretKey',
       message: 'Stripe Secret Key:',
-      validate: (input) => input.startsWith('sk_') || 'Invalid Stripe secret key'
+      validate: input => input.startsWith('sk_') || 'Invalid Stripe secret key'
     },
     {
       type: 'input',
       name: 'publicKey',
       message: 'Stripe Publishable Key:',
-      validate: (input) => input.startsWith('pk_') || 'Invalid Stripe publishable key'
+      validate: input => input.startsWith('pk_') || 'Invalid Stripe publishable key'
     }
   ])
 
@@ -276,7 +275,7 @@ async function setupPinecone(options) {
       type: 'password',
       name: 'apiKey',
       message: 'Pinecone API Key:',
-      validate: (input) => input.length > 0 || 'API key is required'
+      validate: input => input.length > 0 || 'API key is required'
     },
     {
       type: 'input',
@@ -369,7 +368,7 @@ async function setupWeaviate(options) {
       type: 'password',
       name: 'apiKey',
       message: 'Weaviate API Key (optional):',
-      when: (answers) => answers.url.includes('weaviate.cloud')
+      when: answers => answers.url.includes('weaviate.cloud')
     }
   ])
 
@@ -415,7 +414,7 @@ async function setupResend(options) {
       type: 'password',
       name: 'apiKey',
       message: 'Resend API Key:',
-      validate: (input) => input.startsWith('re_') || 'Invalid Resend API key'
+      validate: input => input.startsWith('re_') || 'Invalid Resend API key'
     }
   ])
 
@@ -473,7 +472,7 @@ async function setupOpenAI(options) {
       type: 'password',
       name: 'apiKey',
       message: 'OpenAI API Key:',
-      validate: (input) => input.startsWith('sk-') || 'Invalid OpenAI API key'
+      validate: input => input.startsWith('sk-') || 'Invalid OpenAI API key'
     }
   ])
 
@@ -522,7 +521,7 @@ async function setupAnthropic(options) {
       type: 'password',
       name: 'apiKey',
       message: 'Anthropic API Key:',
-      validate: (input) => input.startsWith('sk-ant-') || 'Invalid Anthropic API key'
+      validate: input => input.startsWith('sk-ant-') || 'Invalid Anthropic API key'
     }
   ])
 

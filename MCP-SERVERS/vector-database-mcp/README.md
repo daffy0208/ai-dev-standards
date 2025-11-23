@@ -65,13 +65,13 @@ npm run build
 
 ## Tools
 
-| Tool | Description |
-|------|-------------|
-| `connect` | Connect to vector database |
-| `insert_vectors` | Insert vectors with metadata |
-| `search_vectors` | Semantic search by vector similarity |
-| `delete_vectors` | Delete vectors by IDs |
-| `list_collections` | List available collections/indexes |
+| Tool               | Description                          |
+| ------------------ | ------------------------------------ |
+| `connect`          | Connect to vector database           |
+| `insert_vectors`   | Insert vectors with metadata         |
+| `search_vectors`   | Semantic search by vector similarity |
+| `delete_vectors`   | Delete vectors by IDs                |
+| `list_collections` | List available collections/indexes   |
 
 ## Running
 

@@ -12,18 +12,21 @@ I help you create cohesive brand identities, logos, and visual brand systems.
 ## What I Do
 
 **Brand Identity:**
+
 - Logo design and variations
 - Color palettes
 - Typography systems
 - Brand guidelines
 
 **Visual Assets:**
+
 - Business cards, letterheads
 - Social media templates
 - Marketing materials
 - Brand presentation decks
 
 **Brand Strategy:**
+
 - Brand positioning
 - Target audience definition
 - Competitor analysis
@@ -34,6 +37,7 @@ I help you create cohesive brand identities, logos, and visual brand systems.
 ### Step 1: Brand Discovery
 
 **Questions to Answer:**
+
 - What does the company do?
 - Who is the target audience?
 - What are the brand values?
@@ -41,6 +45,7 @@ I help you create cohesive brand identities, logos, and visual brand systems.
 - Any colors/symbols to avoid?
 
 **Example Brief:**
+
 ```markdown
 ## Brand Brief: TechStart
 
@@ -51,6 +56,7 @@ I help you create cohesive brand identities, logos, and visual brand systems.
 **Competitors:** GitHub, GitLab, Vercel
 
 **Logo Requirements:**
+
 - Works in monochrome
 - Scales from 16px (favicon) to billboard
 - Modern, not trendy (should age well)
@@ -62,6 +68,7 @@ I help you create cohesive brand identities, logos, and visual brand systems.
 ### Step 2: Logo Concepts
 
 **Concept 1: Wordmark**
+
 ```
 Clean, modern typography
 Focus on the company name
@@ -69,6 +76,7 @@ Example: Google, Facebook, Netflix
 ```
 
 **Concept 2: Lettermark**
+
 ```
 Initials in a distinctive way
 Good for long company names
@@ -76,6 +84,7 @@ Example: IBM, HBO, CNN
 ```
 
 **Concept 3: Icon + Wordmark**
+
 ```
 Symbol + company name
 Most versatile option
@@ -177,7 +186,7 @@ export const brandColors = {
     200: '#99C2FF',
     300: '#66A3FF',
     400: '#3385FF',
-    500: '#0066CC',  // Main brand color
+    500: '#0066CC', // Main brand color
     600: '#0052A3',
     700: '#003D7A',
     800: '#002952',
@@ -191,7 +200,7 @@ export const brandColors = {
     200: '#FFD399',
     300: '#FFBD66',
     400: '#FFA733',
-    500: '#FF9100',  // Main accent
+    500: '#FF9100', // Main accent
     600: '#CC7400',
     700: '#995700',
     800: '#663A00',
@@ -230,7 +239,7 @@ module.exports = {
       primary: brandColors.primary,
       secondary: brandColors.secondary,
       gray: brandColors.neutral,
-      green: brandColors.success,
+      green: brandColors.success
       // ...
     }
   }
@@ -243,16 +252,19 @@ module.exports = {
 ## Brand Colors
 
 ### Primary Blue (#0066CC)
+
 - **Use for:** Primary buttons, links, active states, brand elements
 - **Don't use for:** Backgrounds, large areas
 - **Accessibility:** Passes WCAG AA for text on white
 
 ### Secondary Orange (#FF9100)
+
 - **Use for:** CTAs, highlights, important actions
 - **Don't use for:** Body text
 - **Pairing:** Works best with primary blue
 
 ### Neutral Grays
+
 - **Use for:** Text, borders, backgrounds, UI elements
 - **Hierarchy:**
   - 900: Headings
@@ -278,15 +290,15 @@ module.exports = {
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
   /* Font sizes */
-  --text-xs: 0.75rem;     /* 12px */
-  --text-sm: 0.875rem;    /* 14px */
-  --text-base: 1rem;      /* 16px */
-  --text-lg: 1.125rem;    /* 18px */
-  --text-xl: 1.25rem;     /* 20px */
-  --text-2xl: 1.5rem;     /* 24px */
-  --text-3xl: 1.875rem;   /* 30px */
-  --text-4xl: 2.25rem;    /* 36px */
-  --text-5xl: 3rem;       /* 48px */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.5rem; /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+  --text-4xl: 2.25rem; /* 36px */
+  --text-5xl: 3rem; /* 48px */
 
   /* Font weights */
   --font-normal: 400;
@@ -351,18 +363,22 @@ export function Caption({ children }: { children: React.ReactNode }) {
 ## Logo Usage
 
 ### Logo Variations
+
 - **Full Logo**: Use on marketing materials, website header
 - **Icon Only**: Use for app icon, favicon, social media avatars
 - **Wordmark**: Use when icon doesn't fit context
 
 ### Clear Space
+
 Maintain clear space around logo equal to height of the "T" in TechStart
 
 ### Minimum Size
+
 - **Digital**: 120px width (full logo), 40px (icon)
 - **Print**: 1 inch width (full logo), 0.25 inch (icon)
 
 ### Don'ts
+
 ❌ Don't rotate the logo
 ❌ Don't change colors (except approved variations)
 ❌ Don't add effects (shadows, gradients, etc.)
@@ -373,6 +389,7 @@ Maintain clear space around logo equal to height of the "T" in TechStart
 ## Color Palette
 
 ### Primary Colors
+
 - **Brand Blue**: #0066CC
   - RGB: 0, 102, 204
   - CMYK: 100, 50, 0, 20
@@ -381,6 +398,7 @@ Maintain clear space around logo equal to height of the "T" in TechStart
   - CMYK: 0, 43, 100, 0
 
 ### Usage
+
 - Primary buttons, links: Brand Blue
 - CTAs, highlights: Accent Orange
 - Backgrounds: Neutral grays
@@ -390,11 +408,13 @@ Maintain clear space around logo equal to height of the "T" in TechStart
 ## Typography
 
 ### Fonts
+
 - **Headings**: Inter Bold (700)
 - **Body**: Inter Regular (400)
 - **Code**: JetBrains Mono Regular (400)
 
 ### Hierarchy
+
 - H1: 48px / Bold / Tight leading
 - H2: 36px / Semibold / Tight leading
 - Body: 16px / Regular / Normal leading
@@ -405,17 +425,20 @@ Maintain clear space around logo equal to height of the "T" in TechStart
 ## Voice & Tone
 
 ### Brand Personality
+
 - **Professional** but not corporate
 - **Technical** but approachable
 - **Innovative** but reliable
 
 ### Writing Style
+
 - Use active voice
 - Be concise and clear
 - Avoid jargon (unless technical docs)
 - Use "we" and "you" (not "I" or "one")
 
 ### Examples
+
 ✅ "Deploy your app in seconds"
 ❌ "Applications can be deployed quickly"
 
@@ -608,10 +631,10 @@ generateFavicons()
 
 ```html
 <!-- In layout/head -->
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="manifest" href="/site.webmanifest">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
 ```
 
 ---
@@ -619,6 +642,7 @@ generateFavicons()
 ## When to Use Me
 
 **Perfect for:**
+
 - Creating new brand identities
 - Designing logos and visual systems
 - Building brand guidelines
@@ -626,6 +650,7 @@ generateFavicons()
 - Ensuring brand consistency
 
 **I'll help you:**
+
 - Design memorable logos
 - Create cohesive color palettes
 - Build typography systems

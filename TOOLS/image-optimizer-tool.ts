@@ -31,36 +31,16 @@ import { z } from 'zod'
 const ImageOptimizerSchema = z.object({
   input: z.string().describe('Path to input image or directory'),
   output: z.string().optional().describe('Output directory path'),
-  quality: z
-    .number()
-    .min(1)
-    .max(100)
-    .default(85)
-    .describe('Output quality (1-100)'),
+  quality: z.number().min(1).max(100).default(85).describe('Output quality (1-100)'),
   format: z
     .enum(['webp', 'avif', 'jpeg', 'png', 'original'])
     .default('webp')
     .describe('Output format'),
-  sizes: z
-    .array(z.number())
-    .optional()
-    .describe('Generate responsive sizes (widths in pixels)'),
-  compressionType: z
-    .enum(['lossy', 'lossless'])
-    .default('lossy')
-    .describe('Compression type'),
-  stripMetadata: z
-    .boolean()
-    .default(true)
-    .describe('Remove EXIF and metadata'),
-  preserveAspectRatio: z
-    .boolean()
-    .default(true)
-    .describe('Maintain aspect ratio when resizing'),
-  progressive: z
-    .boolean()
-    .default(true)
-    .describe('Use progressive encoding'),
+  sizes: z.array(z.number()).optional().describe('Generate responsive sizes (widths in pixels)'),
+  compressionType: z.enum(['lossy', 'lossless']).default('lossy').describe('Compression type'),
+  stripMetadata: z.boolean().default(true).describe('Remove EXIF and metadata'),
+  preserveAspectRatio: z.boolean().default(true).describe('Maintain aspect ratio when resizing'),
+  progressive: z.boolean().default(true).describe('Use progressive encoding')
 })
 
 export type ImageOptimizerInput = z.infer<typeof ImageOptimizerSchema>
@@ -119,14 +99,12 @@ export class ImageOptimizerTool extends Tool {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
       return JSON.stringify({
         success: false,
-        error: errorMessage,
+        error: errorMessage
       })
     }
   }
 
-  private async optimizeImages(
-    input: ImageOptimizerInput
-  ): Promise<ImageOptimizerResult> {
+  private async optimizeImages(input: ImageOptimizerInput): Promise<ImageOptimizerResult> {
     // This is a mock implementation showing the structure
     // In production, integrate with Sharp, ImageMagick, or similar libraries
 
@@ -136,7 +114,7 @@ export class ImageOptimizerTool extends Tool {
       totalOriginalSize: 0,
       totalOptimizedSize: 0,
       totalSavings: 0,
-      totalSavingsPercent: 0,
+      totalSavingsPercent: 0
     }
 
     // Mock optimization for single file
@@ -149,7 +127,7 @@ export class ImageOptimizerTool extends Tool {
       savingsPercent: 50,
       format: input.format,
       width: 1920,
-      height: 1080,
+      height: 1080
     }
 
     result.files.push(mockFile)
@@ -166,25 +144,17 @@ export class ImageOptimizerTool extends Tool {
           savingsPercent: mockFile.savingsPercent,
           format: input.format,
           width,
-          height: Math.floor(1080 * (width / 1920)),
+          height: Math.floor(1080 * (width / 1920))
         }
         result.files.push(responsiveFile)
       }
     }
 
     // Calculate totals
-    result.totalOriginalSize = result.files.reduce(
-      (sum, file) => sum + file.originalSize,
-      0
-    )
-    result.totalOptimizedSize = result.files.reduce(
-      (sum, file) => sum + file.optimizedSize,
-      0
-    )
+    result.totalOriginalSize = result.files.reduce((sum, file) => sum + file.originalSize, 0)
+    result.totalOptimizedSize = result.files.reduce((sum, file) => sum + file.optimizedSize, 0)
     result.totalSavings = result.totalOriginalSize - result.totalOptimizedSize
-    result.totalSavingsPercent = Math.round(
-      (result.totalSavings / result.totalOriginalSize) * 100
-    )
+    result.totalSavingsPercent = Math.round((result.totalSavings / result.totalOriginalSize) * 100)
 
     return result
   }
@@ -200,9 +170,7 @@ export function createImageOptimizerTool(): ImageOptimizerTool {
 /**
  * Optimize images (direct function call)
  */
-export async function optimizeImages(
-  input: ImageOptimizerInput
-): Promise<ImageOptimizerResult> {
+export async function optimizeImages(input: ImageOptimizerInput): Promise<ImageOptimizerResult> {
   const tool = new ImageOptimizerTool()
   const result = await tool._call(input)
   return JSON.parse(result)

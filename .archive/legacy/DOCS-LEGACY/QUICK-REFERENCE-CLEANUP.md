@@ -4,14 +4,14 @@
 
 ### 🗂️ File Locations
 
-| Old Location | New Location | Notes |
-|--------------|--------------|-------|
-| `Dark Matter Mode — Repository Application Specification v1.2.md` | `DARK-MATTER-SPECIFICATION.md` | Renamed for consistency |
-| `DARK_MATTER_ACTIONS_COMPLETE.md` | `DOCS-LEGACY/` | Historical reference |
-| `dark_matter_report.md` | `DOCS-LEGACY/` | Original analysis archived |
-| `DOCS/archive/*` (18 files) | `DOCS-LEGACY/` | All archived docs consolidated |
-| `html/` | `portal/` | Better reflects purpose |
-| `setup-project.sh` | `scripts/setup-project.sh` | Centralized with other scripts |
+| Old Location                                                      | New Location                   | Notes                          |
+| ----------------------------------------------------------------- | ------------------------------ | ------------------------------ |
+| `Dark Matter Mode — Repository Application Specification v1.2.md` | `DARK-MATTER-SPECIFICATION.md` | Renamed for consistency        |
+| `DARK_MATTER_ACTIONS_COMPLETE.md`                                 | `DOCS-LEGACY/`                 | Historical reference           |
+| `dark_matter_report.md`                                           | `DOCS-LEGACY/`                 | Original analysis archived     |
+| `DOCS/archive/*` (18 files)                                       | `DOCS-LEGACY/`                 | All archived docs consolidated |
+| `html/`                                                           | `portal/`                      | Better reflects purpose        |
+| `setup-project.sh`                                                | `scripts/setup-project.sh`     | Centralized with other scripts |
 
 ### 📁 New Files Created
 
@@ -57,12 +57,14 @@
 ## Important Changes to Remember
 
 ### ✅ Do This Now
+
 - **Use** `/DOCS/INDEX.md` to navigate documentation
 - **Reference** `DARK-MATTER-SPECIFICATION.md` for Dark Matter Mode
 - **Check** `/DOCS-LEGACY/README.md` before using archived files
 - **Update** links if you referenced old file locations
 
 ### ⚠️ Don't Do This
+
 - **Don't link** to files in `/DOCS-LEGACY/` from active docs
 - **Don't use** archived Dark Matter files (use DARK-MATTER-SPECIFICATION.md)
 - **Don't create** new files without updating `/DOCS/INDEX.md`
@@ -71,17 +73,17 @@
 
 ### If You're Looking For...
 
-| Looking For | Go To |
-|------------|-------|
-| Documentation index | `/DOCS/INDEX.md` |
-| Dark Matter Mode spec | `/DARK-MATTER-SPECIFICATION.md` |
+| Looking For                     | Go To                                |
+| ------------------------------- | ------------------------------------ |
+| Documentation index             | `/DOCS/INDEX.md`                     |
+| Dark Matter Mode spec           | `/DARK-MATTER-SPECIFICATION.md`      |
 | Historical Dark Matter analysis | `/DOCS-LEGACY/dark_matter_report.md` |
-| Web portal files | `/portal/` |
-| Setup scripts | `/scripts/` |
-| Old archived docs | `/DOCS-LEGACY/` (reference only) |
-| API documentation | `/DOCS/api/README.md` (planned) |
-| Conceptual guides | `/DOCS/concepts/README.md` (planned) |
-| Step-by-step guides | `/DOCS/guides/README.md` (planned) |
+| Web portal files                | `/portal/`                           |
+| Setup scripts                   | `/scripts/`                          |
+| Old archived docs               | `/DOCS-LEGACY/` (reference only)     |
+| API documentation               | `/DOCS/api/README.md` (planned)      |
+| Conceptual guides               | `/DOCS/concepts/README.md` (planned) |
+| Step-by-step guides             | `/DOCS/guides/README.md` (planned)   |
 
 ## Statistics
 
@@ -94,6 +96,7 @@
 ## Need More Details?
 
 See `/REPOSITORY-CLEANUP-SUMMARY.md` for:
+
 - Complete list of all changes
 - Before/after comparisons
 - Validation commands
@@ -101,5 +104,5 @@ See `/REPOSITORY-CLEANUP-SUMMARY.md` for:
 
 ---
 
-*Cleanup Date: 2025-10-23*
-*Quick Reference Version: 1.0*
+_Cleanup Date: 2025-10-23_
+_Quick Reference Version: 1.0_

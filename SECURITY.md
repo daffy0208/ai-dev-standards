@@ -2,9 +2,9 @@
 
 ## Supported Versions
 
-| Version | Supported          | Security Status |
-| ------- | ------------------ | --------------- |
-| 3.0.x   | :white_check_mark: | **SECURE** - Local-first architecture |
+| Version | Supported          | Security Status                                   |
+| ------- | ------------------ | ------------------------------------------------- |
+| 3.0.x   | :white_check_mark: | **SECURE** - Local-first architecture             |
 | 2.x.x   | :x:                | **VULNERABLE** - Cross-project data exposure risk |
 | 1.x.x   | :x:                | **VULNERABLE** - Cross-project data exposure risk |
 
@@ -26,6 +26,7 @@
 All versions prior to v3.0.0 contained a critical security vulnerability where **all projects using ai-dev-standards synced from a single shared GitHub repository**, creating potential for cross-project data exposure and eliminating project isolation.
 
 **Affected Versions:** All versions < 3.0.0
+
 - v2.x.x: VULNERABLE
 - v1.x.x: VULNERABLE
 - v0.x.x: VULNERABLE
@@ -141,24 +142,24 @@ We currently do not offer a bug bounty program, but we deeply appreciate respons
 
 ### Security Features
 
-| Feature | Status | Version |
-|---------|--------|---------|
-| Project Isolation | ✅ Enabled | v3.0.0+ |
-| Input Validation | ✅ Enabled | v1.0.1+ |
+| Feature                   | Status     | Version |
+| ------------------------- | ---------- | ------- |
+| Project Isolation         | ✅ Enabled | v3.0.0+ |
+| Input Validation          | ✅ Enabled | v1.0.1+ |
 | Path Traversal Protection | ✅ Enabled | v1.0.1+ |
 | Code Injection Prevention | ✅ Enabled | v1.0.1+ |
-| Offline Operation | ✅ Enabled | v3.0.0+ |
-| Local-First Architecture | ✅ Enabled | v3.0.0+ |
+| Offline Operation         | ✅ Enabled | v3.0.0+ |
+| Local-First Architecture  | ✅ Enabled | v3.0.0+ |
 
 ---
 
 ## Security Audit History
 
-| Date | Version | Finding | Status | CVE |
-|------|---------|---------|--------|-----|
-| 2025-10-28 | v3.0.0 | Cross-project data exposure risk | ✅ FIXED | Pending |
-| 2025-10-27 | v1.0.1 | Path traversal vulnerabilities | ✅ FIXED | N/A |
-| 2025-10-27 | v1.0.1 | Code injection in generators | ✅ FIXED | N/A |
+| Date       | Version | Finding                          | Status   | CVE     |
+| ---------- | ------- | -------------------------------- | -------- | ------- |
+| 2025-10-28 | v3.0.0  | Cross-project data exposure risk | ✅ FIXED | Pending |
+| 2025-10-27 | v1.0.1  | Path traversal vulnerabilities   | ✅ FIXED | N/A     |
+| 2025-10-27 | v1.0.1  | Code injection in generators     | ✅ FIXED | N/A     |
 
 ---
 

@@ -18,6 +18,7 @@ This directory will contain practical, step-by-step guides for using the ai-dev-
 ## Contributing
 
 When adding guides:
+
 - Use clear, numbered steps
 - Include code examples and screenshots where helpful
 - Test all steps before documenting
@@ -25,4 +26,4 @@ When adding guides:
 
 ---
 
-*Last Updated: 2025-10-23*
+_Last Updated: 2025-10-23_

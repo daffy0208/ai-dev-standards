@@ -142,3 +142,4 @@ describe('Button', () => {
 
 ```
 User: "Generate a Card component with title, description, image, and onClick props"
+```

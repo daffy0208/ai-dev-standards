@@ -45,18 +45,21 @@ START
 Before starting migration, verify:
 
 **Infrastructure Requirements:**
+
 - [ ] Platform supports persistent mount directories (e.g., `/mnt/skills`)
 - [ ] IPython interpreter available
 - [ ] Persistent shell tool available
 - [ ] Sufficient storage for tool definitions and skills (minimum 100MB)
 
 **Agent Characteristics:**
+
 - [ ] Agent uses multiple tools (5+ tools recommended)
 - [ ] Agent processes significant data (>10KB per operation)
 - [ ] Agent performs complex, multi-step workflows
 - [ ] Agent would benefit from self-improvement capabilities
 
 **Team Readiness:**
+
 - [ ] Development team has 2-4 weeks available for migration
 - [ ] Testing resources allocated for validation period
 - [ ] Rollback plan approved
@@ -79,7 +82,7 @@ Expected Post-Migration:
 Monthly Savings:
 - Current cost: $___________
 - Expected cost: $___________
-- Monthly savings: $___________ 
+- Monthly savings: $___________
 - Break-even period: ___________ months
 ```
 
@@ -90,6 +93,7 @@ Monthly Savings:
 ### Phase 1: Preparation (Week 1)
 
 **Goals:**
+
 - Inventory existing agent
 - Set up infrastructure
 - Create backup points
@@ -97,10 +101,11 @@ Monthly Savings:
 **Tasks:**
 
 1. **Document Current State**
+
    ```bash
    # Create inventory of current agent
    mkdir migration-backup
-   
+
    # Document all tools used
    echo "Tools inventory:" > current-state.md
    # List all MCP servers
@@ -109,13 +114,14 @@ Monthly Savings:
    ```
 
 2. **Set Up Infrastructure**
+
    ```bash
    # Create persistent storage
    mkdir -p /mnt/skills
-   
+
    # Test IPython interpreter
    python3 -c "from IPython import embed; print('IPython OK')"
-   
+
    # Verify persistent shell
    # (platform-specific verification)
    ```
@@ -134,6 +140,7 @@ Monthly Savings:
 ### Phase 2: Infrastructure Setup (Week 1-2)
 
 **Goals:**
+
 - Create tool filesystem structure
 - Convert MCP servers to code
 - Test tool discovery
@@ -141,46 +148,48 @@ Monthly Savings:
 **Tasks:**
 
 1. **Create Filesystem Structure**
+
    ```bash
    # Create server directories
    mkdir -p /servers/google-drive
    mkdir -p /servers/notion
    mkdir -p /servers/salesforce
-   
+
    # Create skills directory
    mkdir -p /mnt/skills
    ```
 
 2. **Convert MCP Servers**
-   
+
    For each MCP server, create tool files:
-   
+
    ```typescript
    // /servers/google-drive/getDocument.ts
    /**
     * Retrieves a Google Drive document by ID
-    * 
+    *
     * @param {string} documentId - The ID of the document
     * @returns {Promise<string>} Document content
     */
    async function getDocument(documentId: string): Promise<string> {
-       // Implementation using MCP client
-       const client = await getMcpClient('google-drive');
-       return await client.call_tool('get_document', { id: documentId });
+     // Implementation using MCP client
+     const client = await getMcpClient('google-drive')
+     return await client.call_tool('get_document', { id: documentId })
    }
-   
-   export { getDocument };
+
+   export { getDocument }
    ```
 
 3. **Test Tool Discovery**
+
    ```python
    # Test agent can discover tools
    from os import listdir
-   
+
    # Verify filesystem structure
    servers = listdir('/servers')
    print(f"Found servers: {servers}")
-   
+
    # Verify tools per server
    for server in servers:
        tools = listdir(f'/servers/{server}')
@@ -190,6 +199,7 @@ Monthly Savings:
 ### Phase 3: Agent Conversion (Week 2)
 
 **Goals:**
+
 - Update agent prompts
 - Add skill discovery workflow
 - Implement tool selection logic
@@ -197,8 +207,9 @@ Monthly Savings:
 **Tasks:**
 
 1. **Update System Prompt**
-   
+
    **Before (Direct MCP):**
+
    ```
    You are a sales operations agent. You have access to the following tools:
    - google_drive.get_document
@@ -206,14 +217,15 @@ Monthly Savings:
    - notion.create_page
    - notion.update_page
    [... all 19 tools listed ...]
-   
+
    Use these tools to complete tasks.
    ```
-   
+
    **After (Code Execution):**
+
    ```
    You are a sales operations agent with code execution capabilities.
-   
+
    WORKFLOW:
    1. Check /mnt/skills for existing skills
    2. If skill exists, use it
@@ -222,17 +234,17 @@ Monthly Savings:
       - Import only the tools you need
       - Write TypeScript code to complete the task
    4. After completion, suggest new skills to create
-   
+
    TOOL DISCOVERY:
    - Tools are in /servers/<server-name>/<tool-name>.ts
    - Each file contains one tool with JSDoc documentation
    - Import: import { toolName } from './servers/server-name/toolName'
-   
+
    SKILL CREATION:
    - Save reusable code to /mnt/skills/<skill-name>.ts
    - Include clear documentation
    - Skills persist across conversations
-   
+
    EFFICIENCY RULES:
    - Only read tool files you need (not all tools)
    - Combine multiple tool calls in single code execution
@@ -240,16 +252,17 @@ Monthly Savings:
    ```
 
 2. **Add Skill Discovery Function**
+
    ```typescript
    // Add to agent capabilities
    async function discoverSkills(): Promise<string[]> {
-       const skills = await listDirectory('/mnt/skills');
-       return skills.filter(f => f.endsWith('.ts'));
+     const skills = await listDirectory('/mnt/skills')
+     return skills.filter(f => f.endsWith('.ts'))
    }
-   
+
    async function discoverTools(serverName: string): Promise<string[]> {
-       const tools = await listDirectory(`/servers/${serverName}`);
-       return tools.filter(f => f.endsWith('.ts'));
+     const tools = await listDirectory(`/servers/${serverName}`)
+     return tools.filter(f => f.endsWith('.ts'))
    }
    ```
 
@@ -257,25 +270,26 @@ Monthly Savings:
    ```typescript
    // Agent logic for selecting tools
    async function selectTools(taskDescription: string) {
-       // 1. Check for existing skill
-       const skills = await discoverSkills();
-       const matchingSkill = findRelevantSkill(skills, taskDescription);
-       
-       if (matchingSkill) {
-           return { type: 'skill', path: `/mnt/skills/${matchingSkill}` };
-       }
-       
-       // 2. Discover and select minimal tools needed
-       const allServers = await listDirectory('/servers');
-       const toolsNeeded = analyzeTaskRequirements(taskDescription);
-       
-       return { type: 'tools', tools: toolsNeeded };
+     // 1. Check for existing skill
+     const skills = await discoverSkills()
+     const matchingSkill = findRelevantSkill(skills, taskDescription)
+
+     if (matchingSkill) {
+       return { type: 'skill', path: `/mnt/skills/${matchingSkill}` }
+     }
+
+     // 2. Discover and select minimal tools needed
+     const allServers = await listDirectory('/servers')
+     const toolsNeeded = analyzeTaskRequirements(taskDescription)
+
+     return { type: 'tools', tools: toolsNeeded }
    }
    ```
 
 ### Phase 4: Testing & Optimization (Week 3)
 
 **Goals:**
+
 - Validate functionality matches original
 - Optimize prompts for efficiency
 - Test skill creation and reuse
@@ -283,9 +297,9 @@ Monthly Savings:
 **Tasks:**
 
 1. **Parallel Testing**
-   
+
    Run same tasks through both agents:
-   
+
    ```python
    # Test cases
    test_cases = [
@@ -295,24 +309,25 @@ Monthly Savings:
            "expected_tools": ["gdrive.getDocument", "notion.createPage"]
        },
        {
-           "name": "Multi-step workflow",  
+           "name": "Multi-step workflow",
            "task": "Analyze sales data and create report",
            "expected_tools": ["gdrive.getSheet", "openai.analyze", "notion.createPage"]
        }
    ]
-   
+
    for test in test_cases:
        # Run Direct MCP agent
        direct_result = run_direct_mcp_agent(test["task"])
-       
+
        # Run Code Execution agent
        code_exec_result = run_code_execution_agent(test["task"])
-       
+
        # Compare results
        compare_results(direct_result, code_exec_result)
    ```
 
 2. **Token Consumption Analysis**
+
    ```python
    # Compare token usage
    comparison = {
@@ -331,23 +346,25 @@ Monthly Savings:
    ```
 
 3. **Skill Creation Testing**
+
    ```typescript
    // Test skill creation and reuse
    // First run: Create skill
-   const firstRun = await agent.execute("Copy transcript from Drive to Notion");
+   const firstRun = await agent.execute('Copy transcript from Drive to Notion')
    // Should suggest creating skill
-   
+
    // Second run: Use skill
-   const secondRun = await agent.execute("Copy transcript from Drive to Notion");
+   const secondRun = await agent.execute('Copy transcript from Drive to Notion')
    // Should use existing skill, much faster
-   
+
    // Verify token reduction
-   assert(secondRun.tokens < firstRun.tokens * 0.5);
+   assert(secondRun.tokens < firstRun.tokens * 0.5)
    ```
 
 ### Phase 5: Gradual Rollout (Week 3-4)
 
 **Goals:**
+
 - Deploy to production gradually
 - Monitor for issues
 - Optimize based on real usage
@@ -370,20 +387,21 @@ Monthly Savings:
    - Update documentation
 
 **Monitoring Dashboard:**
+
 ```yaml
 metrics:
   - name: token_consumption
     target: 40-60% reduction vs baseline
     alert: if increase vs baseline
-  
+
   - name: error_rate
     target: <= baseline error rate
     alert: if > baseline + 5%
-  
+
   - name: latency
     target: <= baseline latency
     alert: if > baseline * 1.5
-  
+
   - name: skill_usage_rate
     target: increasing over time
     alert: if stagnant after 2 weeks
@@ -401,13 +419,13 @@ Let's walk through converting a real agent from Direct MCP to Code Execution.
 
 ```yaml
 agent:
-  name: "Sales Ops Agent"
-  description: "Copies meeting transcripts to CRM"
-  
+  name: 'Sales Ops Agent'
+  description: 'Copies meeting transcripts to CRM'
+
 mcp_servers:
   - google-drive
   - notion
-  
+
 tools:
   google-drive:
     - get_document
@@ -424,7 +442,7 @@ system_prompt: |
   You are a sales operations agent.
   Use google-drive tools to access transcripts.
   Use notion tools to update the CRM.
-  
+
   Complete tasks as requested.
 ```
 
@@ -455,140 +473,138 @@ system_prompt: |
 
 ```typescript
 // /servers/google-drive/getDocument.ts
-import { getMcpClient } from '../mcp-client';
+import { getMcpClient } from '../mcp-client'
 
 /**
  * Retrieves content of a Google Drive document
- * 
+ *
  * @param {string} documentId - ID of the document (e.g., "1abc...")
  * @returns {Promise<string>} Document content as text
- * 
+ *
  * @example
  * const content = await getDocument("1abcdef123456");
  * console.log(content);
  */
 async function getDocument(documentId: string): Promise<string> {
-    const client = await getMcpClient('google-drive');
-    const result = await client.call_tool('get_document', { 
-        document_id: documentId 
-    });
-    return result.content;
+  const client = await getMcpClient('google-drive')
+  const result = await client.call_tool('get_document', {
+    document_id: documentId
+  })
+  return result.content
 }
 
-export { getDocument };
+export { getDocument }
 ```
 
 ```typescript
 // /servers/notion/createPage.ts
-import { getMcpClient } from '../mcp-client';
+import { getMcpClient } from '../mcp-client'
 
 /**
  * Creates a new page in Notion database
- * 
+ *
  * @param {string} databaseId - ID of the database
  * @param {object} properties - Page properties
  * @param {string} content - Page content (markdown)
  * @returns {Promise<{id: string, url: string}>} Created page details
- * 
+ *
  * @example
- * const page = await createPage("db123", 
- *   { Title: "Meeting Notes" }, 
+ * const page = await createPage("db123",
+ *   { Title: "Meeting Notes" },
  *   "# Notes\nDiscussed Q4 targets"
  * );
  */
 async function createPage(
-    databaseId: string, 
-    properties: Record<string, any>,
-    content: string
-): Promise<{id: string, url: string}> {
-    const client = await getMcpClient('notion');
-    const result = await client.call_tool('create_page', {
-        database_id: databaseId,
-        properties,
-        children: [{ type: 'paragraph', paragraph: { text: content } }]
-    });
-    return { id: result.id, url: result.url };
+  databaseId: string,
+  properties: Record<string, any>,
+  content: string
+): Promise<{ id: string; url: string }> {
+  const client = await getMcpClient('notion')
+  const result = await client.call_tool('create_page', {
+    database_id: databaseId,
+    properties,
+    children: [{ type: 'paragraph', paragraph: { text: content } }]
+  })
+  return { id: result.id, url: result.url }
 }
 
-export { createPage };
+export { createPage }
 ```
 
 **Step 3: Update System Prompt**
 
-```yaml
+````yaml
 system_prompt: |
   You are a sales operations agent with code execution capabilities.
-  
+
   ## WORKFLOW
   1. CHECK SKILLS FIRST
      - Look in /mnt/skills/ for existing skills
      - If you find a relevant skill, use it
      - Skills are TypeScript files that solve complete workflows
-  
+
   2. IF NO SKILL EXISTS
      - Discover tools in /servers/<server-name>/
      - Read ONLY the tool files you need
      - Import and use tools in a single code execution
-  
+
   3. AFTER TASK COMPLETION
      - If this workflow might be repeated, suggest a skill
      - Skills should handle complete workflows (not individual tool calls)
-  
+
   ## TOOL DISCOVERY
   Available servers: /servers/google-drive, /servers/notion
-  
+
   Each tool is a .ts file with:
   - JSDoc documentation explaining usage
   - Type-safe function signature
   - Example usage
-  
+
   To use a tool:
   ```typescript
   import { getDocument } from './servers/google-drive/getDocument';
   const content = await getDocument("doc-id");
-  ```
-  
-  ## SKILL CREATION
-  When suggesting a skill, provide:
-  - Skill name (descriptive, kebab-case)
-  - Complete TypeScript code
-  - Documentation
-  
-  Example:
-  ```typescript
-  // /mnt/skills/copy-transcript-to-crm.ts
-  /**
-   * Copies a meeting transcript from Google Drive to Notion CRM
-   */
-  import { getDocument } from '../servers/google-drive/getDocument';
-  import { createPage } from '../servers/notion/createPage';
-  
-  async function copyTranscriptToCrm(
-      driveDocId: string,
-      notionDbId: string,
-      meetingTitle: string
-  ) {
-      const transcript = await getDocument(driveDocId);
-      const page = await createPage(notionDbId, 
-          { Title: meetingTitle },
-          transcript
-      );
-      return page;
-  }
-  
-  export { copyTranscriptToCrm };
-  ```
-  
-  ## EFFICIENCY RULES
-  ❌ DON'T: Read all tools from a server
-  ✅ DO: Read only the 1-3 tools you need
-  
-  ❌ DON'T: Make individual tool calls through context
-  ✅ DO: Combine tool calls in a single code execution
-  
-  ❌ DON'T: Create skills for one-off tasks
-  ✅ DO: Create skills for repeated workflows
+````
+
+## SKILL CREATION
+
+When suggesting a skill, provide:
+
+- Skill name (descriptive, kebab-case)
+- Complete TypeScript code
+- Documentation
+
+Example:
+
+```typescript
+// /mnt/skills/copy-transcript-to-crm.ts
+/**
+ * Copies a meeting transcript from Google Drive to Notion CRM
+ */
+import { getDocument } from '../servers/google-drive/getDocument'
+import { createPage } from '../servers/notion/createPage'
+
+async function copyTranscriptToCrm(driveDocId: string, notionDbId: string, meetingTitle: string) {
+  const transcript = await getDocument(driveDocId)
+  const page = await createPage(notionDbId, { Title: meetingTitle }, transcript)
+  return page
+}
+
+export { copyTranscriptToCrm }
 ```
+
+## EFFICIENCY RULES
+
+❌ DON'T: Read all tools from a server
+✅ DO: Read only the 1-3 tools you need
+
+❌ DON'T: Make individual tool calls through context
+✅ DO: Combine tool calls in a single code execution
+
+❌ DON'T: Create skills for one-off tasks
+✅ DO: Create skills for repeated workflows
+
+````
 
 **Step 4: Test Conversion**
 
@@ -615,16 +631,16 @@ test_2 = agent.execute(
 # - Uses skill directly
 # - No tool file reading needed
 # Expected tokens: 3,000-5,000 (90% reduction!)
-```
+````
 
 **Results:**
 
-| Metric | Direct MCP | Code Execution (First Run) | Code Execution (With Skill) |
-|--------|-----------|---------------------------|----------------------------|
-| Tokens | 32,000 | 12,000 (62% savings) | 4,000 (87% savings) |
-| Tool Reads | All 8 tools loaded | 2 tools read | 0 tools read (uses skill) |
-| Latency | 8 seconds | 4 seconds | 1.5 seconds |
-| Output Tokens | 28,000 (expensive!) | 1,500 | 500 |
+| Metric        | Direct MCP          | Code Execution (First Run) | Code Execution (With Skill) |
+| ------------- | ------------------- | -------------------------- | --------------------------- |
+| Tokens        | 32,000              | 12,000 (62% savings)       | 4,000 (87% savings)         |
+| Tool Reads    | All 8 tools loaded  | 2 tools read               | 0 tools read (uses skill)   |
+| Latency       | 8 seconds           | 4 seconds                  | 1.5 seconds                 |
+| Output Tokens | 28,000 (expensive!) | 1,500                      | 500                         |
 
 ---
 
@@ -636,59 +652,58 @@ test_2 = agent.execute(
 // migration-test-suite.ts
 
 interface TestCase {
-    name: string;
-    task: string;
-    expectedOutcome: string;
-    maxTokens?: number;
-    maxLatency?: number;
+  name: string
+  task: string
+  expectedOutcome: string
+  maxTokens?: number
+  maxLatency?: number
 }
 
 const testCases: TestCase[] = [
-    {
-        name: "Simple Copy Operation",
-        task: "Copy document 1abc to Notion db 2xyz",
-        expectedOutcome: "Document copied successfully",
-        maxTokens: 15000, // First run tolerance
-        maxLatency: 5000 // 5 seconds
-    },
-    {
-        name: "Multi-Step Workflow",
-        task: "Read sales data, analyze, create report",
-        expectedOutcome: "Report created with analysis",
-        maxTokens: 20000,
-        maxLatency: 10000
-    },
-    {
-        name: "Skill Reuse",
-        task: "Copy document 1abc to Notion db 2xyz", // Same as test 1
-        expectedOutcome: "Document copied successfully",
-        maxTokens: 6000, // Should use skill, much less tokens
-        maxLatency: 2000 // Should be faster
-    }
-];
+  {
+    name: 'Simple Copy Operation',
+    task: 'Copy document 1abc to Notion db 2xyz',
+    expectedOutcome: 'Document copied successfully',
+    maxTokens: 15000, // First run tolerance
+    maxLatency: 5000 // 5 seconds
+  },
+  {
+    name: 'Multi-Step Workflow',
+    task: 'Read sales data, analyze, create report',
+    expectedOutcome: 'Report created with analysis',
+    maxTokens: 20000,
+    maxLatency: 10000
+  },
+  {
+    name: 'Skill Reuse',
+    task: 'Copy document 1abc to Notion db 2xyz', // Same as test 1
+    expectedOutcome: 'Document copied successfully',
+    maxTokens: 6000, // Should use skill, much less tokens
+    maxLatency: 2000 // Should be faster
+  }
+]
 
 async function runMigrationTests() {
-    const results = [];
-    
-    for (const test of testCases) {
-        const result = await agent.execute(test.task);
-        
-        const passed = (
-            result.outcome === test.expectedOutcome &&
-            result.tokens <= test.maxTokens &&
-            result.latency <= test.maxLatency
-        );
-        
-        results.push({
-            test: test.name,
-            passed,
-            tokens: result.tokens,
-            latency: result.latency,
-            details: result
-        });
-    }
-    
-    return results;
+  const results = []
+
+  for (const test of testCases) {
+    const result = await agent.execute(test.task)
+
+    const passed =
+      result.outcome === test.expectedOutcome &&
+      result.tokens <= test.maxTokens &&
+      result.latency <= test.maxLatency
+
+    results.push({
+      test: test.name,
+      passed,
+      tokens: result.tokens,
+      latency: result.latency,
+      details: result
+    })
+  }
+
+  return results
 }
 ```
 
@@ -697,18 +712,21 @@ async function runMigrationTests() {
 After migration, verify:
 
 **Functionality:**
+
 - [ ] All original use cases work correctly
 - [ ] Output quality matches original agent
 - [ ] Error handling works as expected
 - [ ] Edge cases handled properly
 
 **Performance:**
+
 - [ ] Token consumption reduced by 40-60% (first run)
 - [ ] Token consumption reduced by 85-95% (with skills)
 - [ ] Latency same or better than original
 - [ ] Skill creation working correctly
 
 **Operations:**
+
 - [ ] Monitoring dashboards updated
 - [ ] Alerts configured for new metrics
 - [ ] Documentation updated
@@ -721,6 +739,7 @@ After migration, verify:
 ### When to Rollback
 
 Trigger rollback if:
+
 - Error rate increases by >10%
 - Token consumption increases vs baseline
 - Latency degrades by >2x
@@ -729,6 +748,7 @@ Trigger rollback if:
 ### Rollback Procedure
 
 **Step 1: Immediate Traffic Shift**
+
 ```bash
 # Revert to Direct MCP agent
 kubectl set image deployment/agent agent=agent:direct-mcp-v2
@@ -738,6 +758,7 @@ kubectl set image deployment/agent agent=agent:direct-mcp-v2
 ```
 
 **Step 2: Preserve Debugging Info**
+
 ```bash
 # Save logs from failed migration
 kubectl logs deployment/agent-code-exec > migration-failure-logs.txt
@@ -748,19 +769,22 @@ cp -r /servers migration-servers-backup/
 ```
 
 **Step 3: Root Cause Analysis**
+
 ```markdown
 ## Migration Rollback Report
 
 **Rollback Trigger**: [Error rate / Token increase / Latency / Functionality]
 
 **Metrics at Rollback**:
-- Error rate: ____%
-- Token consumption: _____
-- Latency: _____ms
+
+- Error rate: \_\_\_\_%
+- Token consumption: **\_**
+- Latency: **\_**ms
 
 **Root Cause**: [To be determined]
 
 **Next Steps**:
+
 1. Analyze logs
 2. Fix identified issues
 3. Re-test in staging
@@ -768,6 +792,7 @@ cp -r /servers migration-servers-backup/
 ```
 
 **Step 4: Plan Retry**
+
 - Fix identified issues
 - Update prompts based on learnings
 - Test more thoroughly in staging
@@ -780,22 +805,25 @@ cp -r /servers migration-servers-backup/
 ### Pitfall 1: Reading Too Many Files
 
 **Problem:**
+
 ```typescript
 // ❌ Agent reads all tools from a server
-const tools = listFiles('/servers/google-drive');
+const tools = listFiles('/servers/google-drive')
 for (const tool of tools) {
-    const content = readFile(tool); // Wastes tokens!
+  const content = readFile(tool) // Wastes tokens!
 }
 ```
 
 **Solution:**
+
 ```typescript
 // ✅ Agent reads only needed tools
-import { getDocument } from './servers/google-drive/getDocument';
+import { getDocument } from './servers/google-drive/getDocument'
 // Only loads one file
 ```
 
 **Fix in Prompt:**
+
 ```
 RULE: Only read tool files you will actually use.
 Before reading a tool file, confirm you need it for the task.
@@ -821,6 +849,7 @@ Do NOT recreate code that already exists as a skill.
 Agent creates skills for one-off tasks, cluttering `/mnt/skills/`.
 
 **Solution:**
+
 ```
 SKILL CREATION CRITERIA:
 Only create a skill if:
@@ -843,17 +872,17 @@ Keep tool files simple:
 ```typescript
 // ❌ Over-engineered
 class GoogleDriveDocument {
-    constructor(private client: McpClient) {}
-    
-    async get(id: string, options?: GetOptions): Promise<DocumentResponse> {
-        // 50 lines of complexity
-    }
+  constructor(private client: McpClient) {}
+
+  async get(id: string, options?: GetOptions): Promise<DocumentResponse> {
+    // 50 lines of complexity
+  }
 }
 
 // ✅ Simple and effective
 async function getDocument(documentId: string): Promise<string> {
-    const client = await getMcpClient('google-drive');
-    return await client.call_tool('get_document', { id: documentId });
+  const client = await getMcpClient('google-drive')
+  return await client.call_tool('get_document', { id: documentId })
 }
 ```
 
@@ -864,6 +893,7 @@ Migrating 100% of traffic without adequate testing.
 
 **Solution:**
 Follow gradual rollout:
+
 - Stage 1: Internal testing (1 week)
 - Stage 2: Canary 10% (2-3 days)
 - Stage 3: Expand 50% (3-4 days)
@@ -876,6 +906,7 @@ Follow gradual rollout:
 Use this checklist to track migration progress:
 
 ### Pre-Migration
+
 - [ ] Decision to migrate justified (use decision matrix)
 - [ ] Infrastructure ready (persistent storage, IPython)
 - [ ] Baseline metrics recorded
@@ -884,6 +915,7 @@ Use this checklist to track migration progress:
 - [ ] Team trained on new pattern
 
 ### Infrastructure Setup
+
 - [ ] `/servers/` directory structure created
 - [ ] All MCP servers converted to code
 - [ ] Tool files created with documentation
@@ -891,6 +923,7 @@ Use this checklist to track migration progress:
 - [ ] Tool discovery tested
 
 ### Agent Conversion
+
 - [ ] System prompt updated
 - [ ] Skill discovery workflow added
 - [ ] Efficiency rules added to prompt
@@ -898,6 +931,7 @@ Use this checklist to track migration progress:
 - [ ] Token consumption validated
 
 ### Testing
+
 - [ ] All test cases passing
 - [ ] Token reduction confirmed (40-60%)
 - [ ] Latency same or better
@@ -905,6 +939,7 @@ Use this checklist to track migration progress:
 - [ ] Skill reuse working (85-95% reduction)
 
 ### Deployment
+
 - [ ] Canary deployment (10%) successful
 - [ ] Expanded deployment (50%) successful
 - [ ] Full deployment (100%) successful
@@ -978,17 +1013,20 @@ After successful migration:
 ## Getting Help
 
 **Documentation:**
+
 - [MCP Decision Framework](./mcp-decision-framework.md)
 - [Filesystem Structure Guide](./mcp-filesystem-structure.md)
 - [Implementation Complexity](./mcp-implementation-complexity.md)
 
 **Community:**
+
 - Anthropic Discord: MCP channel
 - GitHub Discussions: anthropics/anthropic-sdk-python
 - Simon Willison's blog: https://simonwillison.net/tags/mcp/
 
 **Debugging:**
 If migration isn't working:
+
 1. Check tool file structure matches specification
 2. Verify persistent storage is working
 3. Review agent logs for tool discovery issues
@@ -1000,11 +1038,13 @@ If migration isn't working:
 ## Conclusion
 
 Migrating from Direct MCP to Code Execution is a significant undertaking, but the benefits are substantial:
+
 - 90-99% token reduction for complex workflows
 - 3-10x latency improvements
 - Self-improving agents that get better over time
 
 Success requires:
+
 - Careful planning and preparation
 - Thorough testing before rollout
 - Patient optimization of prompts

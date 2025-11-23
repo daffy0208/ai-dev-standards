@@ -12,17 +12,17 @@ Analyze typography usage, suggest type scales, and check readability metrics for
 
 ## Tools
 
-| Tool | Description |
-|------|-------------|
-| `analyze_typography` | Analyze typography usage in CSS |
-| `detect_font_usage` | Detect all fonts used in project |
-| `suggest_type_scale` | Generate harmonious type scale |
-| `check_readability` | Check text readability metrics |
+| Tool                 | Description                      |
+| -------------------- | -------------------------------- |
+| `analyze_typography` | Analyze typography usage in CSS  |
+| `detect_font_usage`  | Detect all fonts used in project |
+| `suggest_type_scale` | Generate harmonious type scale   |
+| `check_readability`  | Check text readability metrics   |
 
 ## Resources
 
-| Resource | Description |
-|----------|-------------|
+| Resource                      | Description           |
+| ----------------------------- | --------------------- |
 | `typography://best-practices` | Typography guidelines |
 
 ## Supported Skills
@@ -43,14 +43,17 @@ Analyze typography usage, suggest type scales, and check readability metrics for
 ## Readability Guidelines
 
 **Line Height:**
+
 - Body text: 1.5 - 1.8
 - Headings: 1.2 - 1.5
 
 **Line Length:**
+
 - Ideal: 66 characters
 - Range: 45-75 characters
 
 **Font Size:**
+
 - Minimum body text: 16px
 
 ## Example Usage

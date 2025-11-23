@@ -148,6 +148,7 @@ await client.createCollection(name: string, config?: {
 ```
 
 **Distance Metrics:**
+
 - `cosine`: Cosine similarity (recommended for normalized vectors)
 - `l2`: Euclidean distance (L2 norm)
 - `ip`: Inner product
@@ -267,7 +268,7 @@ const results2 = await client.search('docs', queryVector, {
 // Numeric comparison
 const results3 = await client.search('docs', queryVector, {
   filter: {
-    rating: { $gte: 4.5 }  // Greater than or equal
+    rating: { $gte: 4.5 } // Greater than or equal
   }
 })
 
@@ -374,12 +375,7 @@ await client.reset()
 ### Vector Operations
 
 ```typescript
-import {
-  normalizeVector,
-  cosineSimilarity,
-  euclideanDistance,
-  l2Distance
-} from './client'
+import { normalizeVector, cosineSimilarity, euclideanDistance, l2Distance } from './client'
 
 // Normalize vector for cosine similarity
 const normalized = normalizeVector([1, 2, 3])
@@ -425,29 +421,31 @@ async function ingestDocument(client: ChromaClient, text: string) {
   const chunks = chunkText(text, 500, 50)
 
   // 2. Generate embeddings
-  const embeddings = await Promise.all(
-    chunks.map(chunk => embed(chunk))
-  )
+  const embeddings = await Promise.all(chunks.map(chunk => embed(chunk)))
 
   // 3. Generate IDs
   const ids = chunks.map((chunk, i) => generateId(chunk, 'chunk'))
 
   // 4. Upsert to ChromaDB
-  await client.upsert('documents', {
-    ids,
-    embeddings,
-    documents: chunks,
-    metadatas: chunks.map((chunk, i) => ({
-      chunk_index: i,
-      total_chunks: chunks.length,
-      timestamp: Date.now()
-    }))
-  }, {
-    batchSize: 100,
-    onProgress: (current, total) => {
-      console.log(`Ingesting: ${current}/${total}`)
+  await client.upsert(
+    'documents',
+    {
+      ids,
+      embeddings,
+      documents: chunks,
+      metadatas: chunks.map((chunk, i) => ({
+        chunk_index: i,
+        total_chunks: chunks.length,
+        timestamp: Date.now()
+      }))
+    },
+    {
+      batchSize: 100,
+      onProgress: (current, total) => {
+        console.log(`Ingesting: ${current}/${total}`)
+      }
     }
-  })
+  )
 }
 
 async function queryDocuments(client: ChromaClient, query: string) {
@@ -480,9 +478,7 @@ async function searchAcrossCollections(
   limit: number = 5
 ) {
   const results = await Promise.all(
-    collections.map(collection =>
-      client.search(collection, queryVector, { limit })
-    )
+    collections.map(collection => client.search(collection, queryVector, { limit }))
   )
 
   // Combine and sort by distance
@@ -495,9 +491,7 @@ async function searchAcrossCollections(
     }))
   )
 
-  return combined
-    .sort((a, b) => a.distance - b.distance)
-    .slice(0, limit)
+  return combined.sort((a, b) => a.distance - b.distance).slice(0, limit)
 }
 ```
 
@@ -518,10 +512,12 @@ async function updateDocument(
     ids: [docId],
     embeddings: [newEmbedding],
     documents: [newText],
-    metadatas: [{
-      ...existing.metadatas?.[0],
-      updated_at: Date.now()
-    }]
+    metadatas: [
+      {
+        ...existing.metadatas?.[0],
+        updated_at: Date.now()
+      }
+    ]
   })
 }
 ```
@@ -592,10 +588,16 @@ Ensure all vectors in a collection have the same dimensions:
 
 ```typescript
 // Bad: Mixed dimensions
-embeddings: [[0.1, 0.2], [0.3, 0.4, 0.5]] // Error!
+embeddings: [
+  [0.1, 0.2],
+  [0.3, 0.4, 0.5]
+] // Error!
 
 // Good: Consistent dimensions
-embeddings: [[0.1, 0.2, 0.3], [0.4, 0.5, 0.6]]
+embeddings: [
+  [0.1, 0.2, 0.3],
+  [0.4, 0.5, 0.6]
+]
 ```
 
 #### 3. Memory Issues with Large Batches

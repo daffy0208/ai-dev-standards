@@ -40,6 +40,7 @@ META/DECISION-FRAMEWORK.md
 ```
 
 **Why this matters:**
+
 - PROJECT-CONTEXT explains what each directory contains
 - HOW-TO-USE (this file) teaches navigation patterns
 - DECISION-FRAMEWORK provides technology choice guidance
@@ -89,12 +90,14 @@ ls PLAYBOOKS/
 ```
 
 **If a playbook exists:**
+
 1. Read it thoroughly
 2. Follow step-by-step
 3. Adapt as needed for specific context
 4. Document any deviations
 
 **If no playbook exists:**
+
 - Proceed to identify relevant skills
 
 ---
@@ -104,18 +107,22 @@ ls PLAYBOOKS/
 **Two ways skills activate:**
 
 #### Automatic Activation (Preferred)
+
 Claude automatically activates skills based on context and skill descriptions.
 
 **Example:**
+
 ```
 User: "I need to prioritize features for my MVP"
 → mvp-builder skill activates automatically
 ```
 
 #### Explicit Request
+
 You or the user can explicitly request a skill:
 
 **Example:**
+
 ```
 "Use the rag-implementer skill to design a knowledge base system"
 ```
@@ -134,6 +141,7 @@ cat SKILLS/skill-name/README.md
 ```
 
 **Available skills (12 total):**
+
 1. **mvp-builder** - MVP development and feature prioritization
 2. **rag-implementer** - RAG system implementation
 3. **multi-agent-architect** - Multi-agent system design
@@ -164,6 +172,7 @@ cat SKILLS/skill-name/README.md
 ```
 
 **Pattern structure:**
+
 - **Problem:** What challenge this solves
 - **Solution:** How to implement
 - **When to use:** Decision criteria
@@ -200,6 +209,7 @@ Process:
 ```
 
 **When to use:**
+
 - **Always:** Check security best practices for any production system
 - **Always:** Review testing strategies before implementing tests
 - **When relevant:** Consult specific best practices for domain needs
@@ -231,6 +241,7 @@ EXAMPLES/
 ```
 
 **Use examples to:**
+
 - See patterns in practice
 - Understand implementation details
 - Copy starter code (adapt, don't just copy)
@@ -260,6 +271,7 @@ EXAMPLES/
 ```
 
 **Search by:**
+
 - **triggers:** Keywords that activate skill
 - **tags:** Categorical labels
 - **category:** Functional grouping
@@ -283,6 +295,7 @@ Every skill's SKILL.md includes "Related Skills" section:
 ## Related Resources
 
 **Related Skills:**
+
 - `api-designer` - For backend API design
 - `frontend-builder` - For UI implementation
 ```
@@ -367,6 +380,7 @@ ls PLAYBOOKS/
 ```
 
 **Files involved:**
+
 - `SKILLS/mvp-builder/SKILL.md`
 - `META/DECISION-FRAMEWORK.md` (tech stack selection)
 - `STANDARDS/best-practices/security-governance.md`
@@ -392,6 +406,7 @@ ls PLAYBOOKS/
 ```
 
 **Files involved:**
+
 - `SKILLS/rag-implementer/SKILL.md`
 - `STANDARDS/architecture-patterns/rag-pattern.md`
 - `META/DECISION-FRAMEWORK.md` (Vector DB selection)
@@ -414,6 +429,7 @@ ls PLAYBOOKS/
 ```
 
 **Files involved:**
+
 - `SKILLS/multi-agent-architect/SKILL.md`
 - `STANDARDS/architecture-patterns/multi-agent-pattern.md`
 - `STANDARDS/architecture-patterns/agentic-workflow-pattern.md`
@@ -438,6 +454,7 @@ ls PLAYBOOKS/
 ```
 
 **Files involved:**
+
 - `META/DECISION-FRAMEWORK.md`
 - `SKILLS/api-designer/SKILL.md`
 
@@ -456,6 +473,7 @@ ls PLAYBOOKS/
 ```
 
 **Files involved:**
+
 - `PLAYBOOKS/deploy-to-production.md`
 - `SKILLS/deployment-advisor/SKILL.md`
 - `STANDARDS/best-practices/security-governance.md`
@@ -476,6 +494,7 @@ ls PLAYBOOKS/
 ```
 
 **Files involved:**
+
 - `STANDARDS/best-practices/` (all)
 - `STANDARDS/architecture-patterns/` (relevant ones)
 - `SKILLS/mvp-builder/` (prioritization logic)
@@ -513,6 +532,7 @@ META/
 **Purpose:** Searchable index of all skills
 
 **Structure:**
+
 ```json
 {
   "version": "1.0.0",
@@ -532,6 +552,7 @@ META/
 ```
 
 **Usage:**
+
 ```bash
 # Search for skills related to "api"
 grep -i "api" META/skill-registry.json
@@ -555,29 +576,35 @@ Currently empty, will be populated as tools are added to TOOLS/ directory.
 ### DO:
 
 ✅ **Always load context first**
+
 - Read PROJECT-CONTEXT.md every session
 - Understand what's available before proceeding
 
 ✅ **Search before creating**
+
 - Check for existing skills, patterns, playbooks
 - Reuse rather than reinvent
 
 ✅ **Follow standards religiously**
+
 - Code conventions in STANDARDS/coding-conventions/
 - Best practices in STANDARDS/best-practices/
 - No exceptions without documented reasoning
 
 ✅ **Provide clear explanations**
+
 - Reference specific files: "Based on SKILLS/mvp-builder/SKILL.md..."
 - Include file paths: "See STANDARDS/architecture-patterns/rag-pattern.md:45"
 - Explain trade-offs when making decisions
 
 ✅ **Reference sources**
+
 - Cite where guidance comes from
 - Link related resources
 - Show connections between concepts
 
 ✅ **Suggest improvements**
+
 - Identify gaps in coverage
 - Recommend new skills or patterns
 - Note unclear or outdated content
@@ -585,26 +612,32 @@ Currently empty, will be populated as tools are added to TOOLS/ directory.
 ### DON'T:
 
 ❌ **Don't invent patterns**
+
 - If a pattern exists, use it
 - Don't create "custom" approaches without checking first
 
 ❌ **Don't skip prerequisites**
+
 - Skills list prerequisites for a reason
 - Load required context before proceeding
 
 ❌ **Don't violate standards**
+
 - Standards exist for consistency
 - Document if deviation is necessary
 
 ❌ **Don't duplicate content**
+
 - One canonical source per concept
 - Reference existing material
 
 ❌ **Don't ignore security**
+
 - Always check security best practices
 - Never compromise on security guidelines
 
 ❌ **Don't rush quality checks**
+
 - Validate against success criteria
 - Test before claiming complete
 
@@ -615,6 +648,7 @@ Currently empty, will be populated as tools are added to TOOLS/ directory.
 ### When Referencing Skills
 
 **Good:**
+
 ```
 "I'm using the mvp-builder skill (SKILLS/mvp-builder/SKILL.md) to help
 prioritize features. The skill provides a P0/P1/P2 matrix where:
@@ -626,6 +660,7 @@ Let's categorize your features..."
 ```
 
 **Why it's good:**
+
 - Names the skill
 - Provides file path
 - Explains what it offers
@@ -634,6 +669,7 @@ Let's categorize your features..."
 ### When Referencing Patterns
 
 **Good:**
+
 ```
 "Based on the RAG architecture pattern (STANDARDS/architecture-patterns/
 rag-pattern.md), RAG is appropriate here because:
@@ -646,6 +682,7 @@ base design..."
 ```
 
 **Why it's good:**
+
 - References specific pattern
 - Explains why it applies
 - Cites decision criteria
@@ -654,6 +691,7 @@ base design..."
 ### When Making Decisions
 
 **Good:**
+
 ```
 "For vector database selection, META/DECISION-FRAMEWORK.md recommends:
 
@@ -674,6 +712,7 @@ See META/DECISION-FRAMEWORK.md:669-675 for the decision matrix."
 ```
 
 **Why it's good:**
+
 - Cites decision framework
 - Lists requirements
 - Clear recommendation
@@ -690,6 +729,7 @@ See META/DECISION-FRAMEWORK.md:669-675 for the decision matrix."
 **Issue:** Skill doesn't activate when expected
 
 **Solutions:**
+
 1. Check skill description in SKILL.md YAML frontmatter
 2. Verify triggers match your request
 3. Explicitly request: "Use the [skill-name] skill to..."
@@ -700,6 +740,7 @@ See META/DECISION-FRAMEWORK.md:669-675 for the decision matrix."
 **Issue:** Unsure which pattern applies
 
 **Solutions:**
+
 1. Start with META/DECISION-FRAMEWORK.md
 2. List requirements and constraints
 3. Review related patterns
@@ -710,6 +751,7 @@ See META/DECISION-FRAMEWORK.md:669-675 for the decision matrix."
 **Issue:** Standard seems wrong for use case
 
 **Solutions:**
+
 1. Document why standard doesn't apply
 2. Explain context and constraints
 3. Get user approval for deviation
@@ -720,6 +762,7 @@ See META/DECISION-FRAMEWORK.md:669-675 for the decision matrix."
 **Issue:** Several skills or patterns could work
 
 **Solutions:**
+
 1. Check decision framework for criteria
 2. List options with trade-offs
 3. Recommend based on requirements
@@ -730,6 +773,7 @@ See META/DECISION-FRAMEWORK.md:669-675 for the decision matrix."
 ## Quick Reference Card
 
 **Before every task:**
+
 ```
 [ ] Loaded META/PROJECT-CONTEXT.md
 [ ] Loaded META/HOW-TO-USE.md (this file)
@@ -738,6 +782,7 @@ See META/DECISION-FRAMEWORK.md:669-675 for the decision matrix."
 ```
 
 **Task execution order:**
+
 ```
 1. Check PLAYBOOKS/ for exact procedure
 2. Activate relevant SKILLS/
@@ -748,6 +793,7 @@ See META/DECISION-FRAMEWORK.md:669-675 for the decision matrix."
 ```
 
 **When in doubt:**
+
 ```
 - Skills: For methodology and expertise
 - Patterns: For architecture and design

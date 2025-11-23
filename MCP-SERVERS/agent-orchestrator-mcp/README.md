@@ -31,11 +31,11 @@ npm install && npm run build
 ## Usage Example
 
 ```javascript
-await orchestrator.configure({ strategy: 'sequential' });
+await orchestrator.configure({ strategy: 'sequential' })
 
 // Register agents
-await orchestrator.register_agent({ id: 'researcher', capabilities: ['search', 'summarize'] });
-await orchestrator.register_agent({ id: 'writer', capabilities: ['write', 'edit'] });
+await orchestrator.register_agent({ id: 'researcher', capabilities: ['search', 'summarize'] })
+await orchestrator.register_agent({ id: 'writer', capabilities: ['write', 'edit'] })
 
 // Create workflow
 await orchestrator.create_workflow({
@@ -44,10 +44,10 @@ await orchestrator.create_workflow({
     { agent: 'researcher', task: 'research-topic' },
     { agent: 'writer', task: 'write-post' }
   ]
-});
+})
 
 // Execute
-const result = await orchestrator.execute_workflow({ id: 'blog-post', input: { topic: 'AI' } });
+const result = await orchestrator.execute_workflow({ id: 'blog-post', input: { topic: 'AI' } })
 ```
 
 ## Orchestration Strategies

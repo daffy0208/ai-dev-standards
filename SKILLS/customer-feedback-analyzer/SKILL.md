@@ -14,6 +14,7 @@ Collect, analyze, and prioritize user feedback to inform product decisions.
 ## Feedback Channels
 
 ### 1. In-App Feedback Widget
+
 **Best for**: Contextual feedback, low friction
 
 ```javascript
@@ -32,6 +33,7 @@ Collect, analyze, and prioritize user feedback to inform product decisions.
 **Cons**: Can interrupt user flow
 
 ### 2. NPS Surveys
+
 **Best for**: Measuring overall satisfaction and loyalty
 
 ```yaml
@@ -54,6 +56,7 @@ Benchmarks:
 **Follow-up question**: "What's the main reason for your score?"
 
 ### 3. Support Tickets
+
 **Best for**: Identifying recurring issues
 
 ```yaml
@@ -64,6 +67,7 @@ Pattern Recognition:
 ```
 
 ### 4. User Interviews
+
 **Best for**: Deep qualitative insights
 
 ```yaml
@@ -77,6 +81,7 @@ Sample Size: 5-10 users per persona
 ```
 
 ### 5. Feature Request Voting
+
 **Best for**: Prioritizing roadmap
 
 **Tools**: Canny, ProductBoard, Upvoty
@@ -94,6 +99,7 @@ Avoid:
 ```
 
 ### 6. Exit Interviews
+
 **Best for**: Understanding why users churn
 
 ```yaml
@@ -107,6 +113,7 @@ Key Questions:
 ## Feedback Categorization
 
 ### By Type
+
 ```yaml
 Bug: Something broken
   - "Export fails with >100 rows"
@@ -130,6 +137,7 @@ Performance: Speed issue
 ```
 
 ### By Severity
+
 ```yaml
 Critical: Blocks core workflow
   - "Can't save projects"
@@ -149,6 +157,7 @@ Low: Edge case or cosmetic
 ```
 
 ### By Frequency
+
 ```yaml
 Widespread: 50+ reports
   → High priority
@@ -164,6 +173,7 @@ Rare: <5 reports
 ```
 
 ### By User Segment
+
 ```yaml
 Power Users: High engagement, experienced
   → Actionable, technical feedback
@@ -181,6 +191,7 @@ Enterprise: Paying customers
 ## Prioritization Framework
 
 ### Priority Score Formula
+
 ```
 Score = Impact (1-5) × Frequency (1-5) × Strategic Alignment (1-5)
 
@@ -190,6 +201,7 @@ Score < 20: Low Priority (backlog or never)
 ```
 
 **Example**:
+
 ```yaml
 Feedback: "Add Slack integration"
   Impact: 4 (significantly improves collaboration)
@@ -211,6 +223,7 @@ Feedback: "Change button color"
 ## Close the Feedback Loop
 
 ### 1. Acknowledge
+
 ```markdown
 Email Template:
 
@@ -230,22 +243,23 @@ Thanks for helping us improve!
 ```
 
 ### 2. Act
+
 ```yaml
-Decision Tree:
-  Is it reported 10+ times?
-    Yes → Add to roadmap
-    No → Monitor
+Decision Tree: Is it reported 10+ times?
+  Yes → Add to roadmap
+  No → Monitor
 
   Does it align with strategy?
-    Yes → Prioritize
-    No → Document why not
+  Yes → Prioritize
+  No → Document why not
 
   Can we ship in 2 weeks?
-    Yes → Quick win, do it
-    No → Add to backlog
+  Yes → Quick win, do it
+  No → Add to backlog
 ```
 
 ### 3. Notify Users Who Requested It
+
 ```markdown
 Email Template:
 
@@ -258,6 +272,7 @@ Remember when you asked us to add [feature]? Good news - it's live!
 [Screenshot/GIF of feature]
 
 Here's how it works:
+
 1. [Step 1]
 2. [Step 2]
 
@@ -270,12 +285,14 @@ P.S. Have more ideas? Reply to this email.
 ```
 
 ### 4. Public Changelog
+
 ```markdown
 ## [Feature] is now live!
 
 Requested by 47 users, [Feature] lets you [benefit].
 
 How it works:
+
 - [Key point 1]
 - [Key point 2]
 
@@ -286,6 +303,7 @@ Thanks to everyone who suggested this!
 ## Common Feedback Patterns
 
 ### Squeaky Wheel Syndrome
+
 ```yaml
 Problem: Vocal minority ≠ Real need
 
@@ -297,6 +315,7 @@ Action: Validate with data before building
 ```
 
 ### Silent Churn
+
 ```yaml
 Problem: Users leave without complaining
 
@@ -311,14 +330,15 @@ Action:
 ```
 
 ### Feature Bloat Risk
+
 ```yaml
 Problem: Building everything requested leads to bloat
 
 Example:
-  - "Add Excel export"
-  - "Add CSV export"
-  - "Add JSON export"
-  - "Add PDF export"
+  - 'Add Excel export'
+  - 'Add CSV export'
+  - 'Add JSON export'
+  - 'Add PDF export'
 
 Action: Build generic solution, not every variant
 ```
@@ -440,6 +460,7 @@ Quarterly:
 ## Summary
 
 Great feedback analysis:
+
 - ✅ Multiple channels (surveys, tickets, interviews)
 - ✅ Categorize and prioritize systematically
 - ✅ Act on high-priority feedback quickly

@@ -61,7 +61,6 @@ async function updateCommand(target, options) {
     }
 
     console.log(chalk.green(`\n✅ ${target} updated successfully!\n`))
-
   } catch (error) {
     console.error(chalk.red(`\n❌ Error: ${error.message}\n`))
     process.exit(1)
@@ -94,17 +93,19 @@ async function updateSkills(projectPath, options) {
   console.log(chalk.bold(`\n📦 ${newSkills.length} new skills available:\n`))
 
   // Let user select which to install
-  const { selected } = await inquirer.prompt([{
-    type: 'checkbox',
-    name: 'selected',
-    message: 'Select skills to add:',
-    choices: newSkills.map(skill => ({
-      name: `${skill.name} - ${skill.description}`,
-      value: skill.name,
-      checked: options.all || false
-    })),
-    pageSize: 15
-  }])
+  const { selected } = await inquirer.prompt([
+    {
+      type: 'checkbox',
+      name: 'selected',
+      message: 'Select skills to add:',
+      choices: newSkills.map(skill => ({
+        name: `${skill.name} - ${skill.description}`,
+        value: skill.name,
+        checked: options.all || false
+      })),
+      pageSize: 15
+    }
+  ])
 
   if (selected.length === 0) {
     console.log(chalk.gray('No skills selected'))
@@ -150,16 +151,18 @@ async function updateMcpServers(projectPath, options) {
 
   console.log(chalk.bold(`\n📦 ${newMcps.length} new MCP servers available:\n`))
 
-  const { selected } = await inquirer.prompt([{
-    type: 'checkbox',
-    name: 'selected',
-    message: 'Select MCP servers to configure:',
-    choices: newMcps.map(mcp => ({
-      name: `${mcp.name} - ${mcp.description}`,
-      value: mcp.name,
-      checked: options.all || false
-    }))
-  }])
+  const { selected } = await inquirer.prompt([
+    {
+      type: 'checkbox',
+      name: 'selected',
+      message: 'Select MCP servers to configure:',
+      choices: newMcps.map(mcp => ({
+        name: `${mcp.name} - ${mcp.description}`,
+        value: mcp.name,
+        checked: options.all || false
+      }))
+    }
+  ])
 
   if (selected.length === 0) {
     console.log(chalk.gray('No MCPs selected'))
@@ -229,12 +232,14 @@ async function updateCursorRules(projectPath, options) {
   // Show diff
   console.log(chalk.bold('📝 Cursor rules will be updated\n'))
 
-  const { confirm } = await inquirer.prompt([{
-    type: 'confirm',
-    name: 'confirm',
-    message: 'Update .cursorrules with latest best practices?',
-    default: true
-  }])
+  const { confirm } = await inquirer.prompt([
+    {
+      type: 'confirm',
+      name: 'confirm',
+      message: 'Update .cursorrules with latest best practices?',
+      default: true
+    }
+  ])
 
   if (!confirm) {
     console.log(chalk.gray('Cancelled'))
@@ -305,16 +310,18 @@ async function updateTools(projectPath, options) {
 
   console.log(chalk.bold(`\n📦 ${newTools.length} new tools available:\n`))
 
-  const { selected } = await inquirer.prompt([{
-    type: 'checkbox',
-    name: 'selected',
-    message: 'Select tools to add:',
-    choices: newTools.map(tool => ({
-      name: `${tool.name} (${tool.framework}) - ${tool.description}`,
-      value: tool.name,
-      checked: options.all || false
-    }))
-  }])
+  const { selected } = await inquirer.prompt([
+    {
+      type: 'checkbox',
+      name: 'selected',
+      message: 'Select tools to add:',
+      choices: newTools.map(tool => ({
+        name: `${tool.name} (${tool.framework}) - ${tool.description}`,
+        value: tool.name,
+        checked: options.all || false
+      }))
+    }
+  ])
 
   if (selected.length === 0) {
     console.log(chalk.gray('No tools selected'))
@@ -468,7 +475,7 @@ async function addSkillReference(projectPath, skill) {
 async function loadConfig(projectPath) {
   const configPath = path.join(projectPath, '.ai-dev.json')
 
-  if (!await fs.pathExists(configPath)) {
+  if (!(await fs.pathExists(configPath))) {
     return { installed: { skills: [], mcps: [], tools: [], integrations: [] } }
   }
 

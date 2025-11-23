@@ -36,11 +36,11 @@ Uses OpenAI Codex to analyze existing skills, MCPs, tools, and components to aut
 
 ```yaml
 inputs:
-  skill_path: string          # Path to skill directory (e.g., SKILLS/rag-implementer)
-  resource_type: string       # "skill" | "mcp" | "tool" | "component" | "integration"
-  description_file: string    # Usually SKILL.md or README.md
+  skill_path: string # Path to skill directory (e.g., SKILLS/rag-implementer)
+  resource_type: string # "skill" | "mcp" | "tool" | "component" | "integration"
+  description_file: string # Usually SKILL.md or README.md
   implementation_file: string # Optional: actual code file for validation
-  output_path: string         # Where to write manifest.yaml (default: same directory)
+  output_path: string # Where to write manifest.yaml (default: same directory)
 ```
 
 ## Process
@@ -208,11 +208,11 @@ side_effects:
   - modifies_files
   - makes_api_calls
 idempotent: false
-success_signal: "Vector index created and queryable with test embeddings"
+success_signal: 'Vector index created and queryable with test embeddings'
 failure_signals:
-  - "API key invalid"
-  - "Vector database connection failed"
-  - "Embedding generation failed"
+  - 'API key invalid'
+  - 'Vector database connection failed'
+  - 'Embedding generation failed'
 compatibility:
   requires:
     - openai-integration OR anthropic-integration
@@ -228,25 +228,25 @@ compatibility:
     - knowledge-retrieval
 observability:
   logs:
-    - "Embedding X documents"
-    - "Vector index created with Y dimensions"
-    - "Retrieval query: {query} returned {count} results"
+    - 'Embedding X documents'
+    - 'Vector index created with Y dimensions'
+    - 'Retrieval query: {query} returned {count} results'
   metrics:
     - embedding_count
     - retrieval_latency_ms
     - search_relevance_score
 metadata:
-  version: "1.0.0"
-  created_at: "2025-10-28"
+  version: '1.0.0'
+  created_at: '2025-10-28'
   tags:
     - rag
     - vector-database
     - embeddings
     - semantic-search
   examples:
-    - "Implement RAG for Next.js documentation site"
-    - "Add semantic search to existing API"
-    - "Build document Q&A system"
+    - 'Implement RAG for Next.js documentation site'
+    - 'Add semantic search to existing API'
+    - 'Build document Q&A system'
 ```
 
 ## Bootstrap Script

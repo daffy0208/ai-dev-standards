@@ -2,7 +2,6 @@
 
 ## Skills
 
-
 ### 3d-visualizer
 
 Expert in Three.js, 3D graphics, and interactive 3D visualizations

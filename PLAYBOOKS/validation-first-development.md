@@ -13,15 +13,17 @@
 **BUILD AS LITTLE AS POSSIBLE TO LEARN AS MUCH AS POSSIBLE.**
 
 Don't build anything until you've:
+
 1. ✅ Validated the problem exists and is severe
 2. ✅ Validated your solution actually solves it
 3. ✅ Validated people will pay for it
 
 ---
 
-## ⚠️  STOP Signs
+## ⚠️ STOP Signs
 
 **STOP if you're tempted to:**
+
 - ❌ "Just build it quickly and see if people use it"
 - ❌ "I'll do some research and then start coding"
 - ❌ "Let me set up the infrastructure first"
@@ -29,6 +31,7 @@ Don't build anything until you've:
 - ❌ "I'll build a prototype to show investors"
 
 **START with:**
+
 - ✅ Talking to potential users
 - ✅ Testing with landing pages
 - ✅ Manually delivering the service (Concierge MVP)
@@ -40,19 +43,24 @@ Don't build anything until you've:
 ## 📊 The Playbook: 5 Phases
 
 ### Phase 1: Problem Discovery (Week 1-2)
+
 ⏰ **Time Limit:** 2 weeks MAX - then move to Phase 2
 
 ### Phase 2: Solution Validation (Day 1-3)
+
 ⏰ **Time Limit:** 3 days MAX - then move to Phase 3
 
 ### Phase 3: MVP Build & Test (Week 1-2)
+
 ⏰ **Time Limit:** 2 weeks MAX - if longer, scope is too big
 
 ### Phase 4: Validated Learning (Ongoing)
+
 🎯 **Gate:** Must have metrics before Phase 5
 
 ### Phase 5: Scale Decision
-⚠️  **Only proceed if metrics prove viability**
+
+⚠️ **Only proceed if metrics prove viability**
 
 ---
 
@@ -65,6 +73,7 @@ Don't build anything until you've:
 ### Step 1.1: Define Problem Hypothesis (Day 1)
 
 **Template:**
+
 ```
 [Target users] struggle with [problem]
 when they [context/situation],
@@ -80,6 +89,7 @@ because [root cause].
 **Target:** 10-15 interviews minimum
 
 **Mom Test Questions** (ask about past behavior, not opinions):
+
 1. "Tell me about the last time you encountered [problem]."
 2. "How are you currently solving this?"
 3. "How much time/money do you spend on this problem?"
@@ -87,6 +97,7 @@ because [root cause].
 5. "Walk me through your workflow when [doing related task]."
 
 **❌ DON'T ASK:**
+
 - "Would you use this product?" (Everyone says yes)
 - "Do you think this is a good idea?"
 - "How much would you pay for this?"
@@ -95,15 +106,16 @@ because [root cause].
 
 Score each dimension (1-5):
 
-| Dimension | 1 (Low) | 3 (Medium) | 5 (High) |
-|-----------|---------|------------|----------|
-| **Frequency** | Rarely | Monthly | Daily/Weekly |
-| **Impact** | Minor annoyance | Wastes 1-2 hours | Critical blocker |
-| **Urgency** | Can wait | Should fix eventually | Need it now |
-| **Willingness to Pay** | Won't pay | Might pay $5-20/mo | Will pay $50+/mo |
-| **Current Workarounds** | Works fine | Tolerable | Painful/expensive |
+| Dimension               | 1 (Low)         | 3 (Medium)            | 5 (High)          |
+| ----------------------- | --------------- | --------------------- | ----------------- |
+| **Frequency**           | Rarely          | Monthly               | Daily/Weekly      |
+| **Impact**              | Minor annoyance | Wastes 1-2 hours      | Critical blocker  |
+| **Urgency**             | Can wait        | Should fix eventually | Need it now       |
+| **Willingness to Pay**  | Won't pay       | Might pay $5-20/mo    | Will pay $50+/mo  |
+| **Current Workarounds** | Works fine      | Tolerable             | Painful/expensive |
 
 **Decision Rule:**
+
 - **Score 20-25** (4-5 High dimensions) → ✅ BUILD IT - Problem validated
 - **Score 12-19** (2-3 High dimensions) → ⚠️ VALIDATE SOLUTION - Problem exists, test solution
 - **Score 5-11** (0-1 High dimensions) → ❌ DON'T BUILD - Problem not severe enough
@@ -111,6 +123,7 @@ Score each dimension (1-5):
 ### Validation Gate 1: Problem Discovery
 
 Before moving to Phase 2, confirm:
+
 - [ ] 10+ customer discovery interviews completed
 - [ ] Problem severity score ≥ 12 (2+ High dimensions)
 - [ ] Current workarounds documented and evaluated
@@ -134,6 +147,7 @@ Before moving to Phase 2, confirm:
 ### Method 1: Landing Page Test (Fastest - 1-2 days)
 
 **Steps:**
+
 1. Create single-page site describing solution
 2. Add "Sign up for early access" email form
 3. Drive 100-500 visitors (ads, social, outreach)
@@ -146,6 +160,7 @@ Before moving to Phase 2, confirm:
 ### Method 2: Concierge MVP (1 week)
 
 **Steps:**
+
 1. Manually deliver solution to 5-10 early customers
 2. Do everything by hand (no automation)
 3. Walk them through process yourself
@@ -158,6 +173,7 @@ Before moving to Phase 2, confirm:
 ### Method 3: Wizard of Oz MVP (1-2 weeks)
 
 **Steps:**
+
 1. Build front-end UI only
 2. Handle all requests manually behind the scenes
 3. Users think it's automated
@@ -170,6 +186,7 @@ Before moving to Phase 2, confirm:
 ### Method 4: Prototype Testing (3-5 days)
 
 **Steps:**
+
 1. Create clickable prototype (Figma, InVision)
 2. Show to 10-15 target users
 3. Watch them attempt key tasks WITHOUT help
@@ -182,6 +199,7 @@ Before moving to Phase 2, confirm:
 ### Validation Gate 2: Solution Validation
 
 Before moving to Phase 3, confirm:
+
 - [ ] Solution tested with prototype or MVP
 - [ ] 50%+ of testers say they'd use/pay for it
 - [ ] Users achieve desired outcome
@@ -204,32 +222,36 @@ Before moving to Phase 3, confirm:
 
 Use P0/P1/P2 Matrix:
 
-| Priority | Definition | Action |
-|----------|------------|--------|
-| **P0** | Must have for core value proposition | Build now (this sprint) |
-| **P1** | Important but can wait | Ship after validation |
-| **P2** | Nice to have | Ship v2+ |
-| **Out of Scope** | Not needed for validation | Defer indefinitely |
+| Priority         | Definition                           | Action                  |
+| ---------------- | ------------------------------------ | ----------------------- |
+| **P0**           | Must have for core value proposition | Build now (this sprint) |
+| **P1**           | Important but can wait               | Ship after validation   |
+| **P2**           | Nice to have                         | Ship v2+                |
+| **Out of Scope** | Not needed for validation            | Defer indefinitely      |
 
 **Example: Task Management MVP**
 
 **P0 (Week 1):**
+
 - Create task with title
 - Mark task complete
 - View task list
 - Basic auth (email/password)
 
 **P1 (After validation):**
+
 - Due dates
 - Priorities
 - Reminders
 
 **P2 (Future):**
+
 - Team collaboration
 - File attachments
 - Mobile app
 
 **Out of Scope:**
+
 - Gantt charts
 - Time tracking
 - Integrations
@@ -237,6 +259,7 @@ Use P0/P1/P2 Matrix:
 ### Implementation Checklist
 
 **Week 1:**
+
 - [ ] Set up minimal infrastructure (Vercel + Supabase OR Replit)
 - [ ] Build P0 features only (resist scope creep!)
 - [ ] No styling beyond basic CSS (ugly is fine for MVP)
@@ -244,6 +267,7 @@ Use P0/P1/P2 Matrix:
 - [ ] Deploy to production
 
 **Week 2:**
+
 - [ ] Get 10-20 users testing
 - [ ] Fix critical bugs only
 - [ ] Collect usage data
@@ -253,6 +277,7 @@ Use P0/P1/P2 Matrix:
 ### Cost Budget
 
 **MVP Budget (max):**
+
 - Infrastructure: $0-50/month (Vercel free + Supabase free tier)
 - Tools: $0-30/month (Figma, analytics)
 - **Total:** <$100/month, <$200 total
@@ -262,6 +287,7 @@ Use P0/P1/P2 Matrix:
 ### Validation Gate 3: MVP Validation
 
 After 2 weeks with MVP, measure:
+
 - [ ] 10+ real users testing
 - [ ] ≥40% retention (users return after first use)
 - [ ] ≥30% weekly active (users use at least weekly)
@@ -283,6 +309,7 @@ After 2 weeks with MVP, measure:
 ### Set Up Metrics
 
 **Track:**
+
 1. **Acquisition:** How many users sign up?
 2. **Activation:** How many complete first key action?
 3. **Retention:** How many come back after 1 week? 1 month?
@@ -292,6 +319,7 @@ After 2 weeks with MVP, measure:
 ### Weekly Learning Cycles
 
 **Every week:**
+
 1. Identify biggest unknown/risk
 2. Design cheapest test to validate/invalidate
 3. Run test
@@ -302,6 +330,7 @@ After 2 weeks with MVP, measure:
 ### Cost Control
 
 **Spending limits:**
+
 - Infrastructure: <$200/month
 - Marketing: <$500/month
 - Total: <$1000/month
@@ -311,6 +340,7 @@ After 2 weeks with MVP, measure:
 ### Validation Gate 4: Validated Learning
 
 Before Phase 5, you need:
+
 - [ ] 3+ months of usage data
 - [ ] 100+ active users
 - [ ] Retention >40% (monthly)
@@ -328,11 +358,12 @@ Before Phase 5, you need:
 
 **Goal:** Decide whether to scale up or wind down
 
-**⚠️  DO NOT PROCEED WITHOUT VALIDATION GATES 1-4 COMPLETE**
+**⚠️ DO NOT PROCEED WITHOUT VALIDATION GATES 1-4 COMPLETE**
 
 ### Scale Decision Matrix
 
 **Scale UP if:**
+
 - ✅ Retention >40% monthly
 - ✅ Users actively using product weekly
 - ✅ Positive word of mouth / referrals
@@ -342,12 +373,14 @@ Before Phase 5, you need:
 - ✅ Team capable of executing scale plan
 
 **Keep iterating if:**
+
 - ⚠️ Some metrics good, some not yet
 - ⚠️ Users like it but not using regularly
 - ⚠️ Core value prop needs refinement
 - ⚠️ Monetization not yet validated
 
 **Wind down if (Kill Criteria):**
+
 - ❌ <30% retention after 6 months
 - ❌ Users not using product regularly
 - ❌ No one willing to pay after 6 months
@@ -358,6 +391,7 @@ Before Phase 5, you need:
 ### If Scaling: Then What?
 
 **NOW you can:**
+
 - ✅ Build robust infrastructure
 - ✅ Implement full feature set
 - ✅ Optimize performance
@@ -366,6 +400,7 @@ Before Phase 5, you need:
 - ✅ Use technical skills: api-designer, frontend-builder, deployment-advisor
 
 **Before scaling checklist:**
+
 - [ ] Validation Gates 1-4 passed
 - [ ] Product-market fit confirmed
 - [ ] Unit economics understood
@@ -379,24 +414,28 @@ Before Phase 5, you need:
 **STOP and move forward if:**
 
 ### Research Phase (>2 weeks)
+
 - You've been researching for >2 weeks
 - You're analyzing competitors for >1 week
 - You're creating detailed specs without talking to users
 - **Action:** STOP researching. Move to customer interviews.
 
 ### Design Phase (>3 days without code)
+
 - You're designing architecture for >3 days
 - You're choosing tech stack for >2 days
 - You're planning perfect database schema
 - **Action:** STOP designing. Build simplest version. Learn from implementation.
 
 ### Validation Phase (>2 weeks)
+
 - You're perfecting landing page for >3 days
 - You're building "better" prototype for >1 week
 - You're waiting for "more data" for >2 weeks
 - **Action:** STOP perfecting. Ship what you have. Get real feedback.
 
 ### Implementation Phase (>2 weeks for MVP)
+
 - MVP is taking >2 weeks
 - You're adding "just one more feature"
 - You're optimizing before anyone uses it
@@ -408,22 +447,22 @@ Before Phase 5, you need:
 
 ### Validation Costs (Phase 1-2)
 
-| Method | Time | Cost | Learning |
-|--------|------|------|----------|
-| Customer interviews | 1-2 weeks | $0 | Problem validation |
-| Landing page | 1-2 days | $50-100 | Demand validation |
-| Concierge MVP | 1 week | $0 | Solution validation |
-| Prototype test | 3-5 days | $0 | Usability validation |
+| Method              | Time      | Cost    | Learning             |
+| ------------------- | --------- | ------- | -------------------- |
+| Customer interviews | 1-2 weeks | $0      | Problem validation   |
+| Landing page        | 1-2 days  | $50-100 | Demand validation    |
+| Concierge MVP       | 1 week    | $0      | Solution validation  |
+| Prototype test      | 3-5 days  | $0      | Usability validation |
 
 **Total validation:** 2-4 weeks, $0-200
 
 ### Building Without Validation
 
-| Approach | Time | Cost | Risk |
-|----------|------|------|------|
-| Full SaaS build | 4-8 weeks | $500-1500 | 80% fail |
-| RAG system | 2-4 weeks | $200-600 | 70% unnecessary |
-| Multi-agent | 3-6 weeks | $300-1000 | 75% overkill |
+| Approach        | Time      | Cost      | Risk            |
+| --------------- | --------- | --------- | --------------- |
+| Full SaaS build | 4-8 weeks | $500-1500 | 80% fail        |
+| RAG system      | 2-4 weeks | $200-600  | 70% unnecessary |
+| Multi-agent     | 3-6 weeks | $300-1000 | 75% overkill    |
 
 **Average waste:** 4-6 weeks, $400-800, 75% wrong solution
 
@@ -442,6 +481,7 @@ Before Phase 5, you need:
 ### Project Start Checklist
 
 Before writing ANY code:
+
 - [ ] Problem hypothesis defined
 - [ ] 10+ customer discovery interviews scheduled
 - [ ] Mom Test questions prepared
@@ -473,11 +513,13 @@ Before writing ANY code:
 ### Scenario 1: "I have a great idea for an app"
 
 **DON'T:**
+
 - ❌ Jump into coding
 - ❌ Start with tech stack selection
 - ❌ Build prototype to show friends
 
 **DO:**
+
 - ✅ Define problem hypothesis
 - ✅ Interview 10-15 potential users
 - ✅ Test with landing page
@@ -486,11 +528,13 @@ Before writing ANY code:
 ### Scenario 2: "Users said they want feature X"
 
 **DON'T:**
+
 - ❌ Immediately build feature X
 - ❌ Add to backlog without validation
 - ❌ Trust verbal feedback alone
 
 **DO:**
+
 - ✅ Observe if they actually need it (do they have workaround?)
 - ✅ Test with fake door (button that does nothing, see if clicked)
 - ✅ Manual concierge delivery first
@@ -499,11 +543,13 @@ Before writing ANY code:
 ### Scenario 3: "I need AI/RAG for this project"
 
 **DON'T:**
+
 - ❌ Immediately set up vector database
 - ❌ Start with complex RAG architecture
 - ❌ Build before knowing if users want AI
 
 **DO:**
+
 - ✅ Test if users actually want AI-powered solution
 - ✅ Try simple keyword search first
 - ✅ Manual curation as concierge MVP
@@ -514,6 +560,7 @@ Before writing ANY code:
 **STOP signal:** You've been researching for >1 week
 
 **Action:**
+
 1. Pick top 2-3 competitors only
 2. Document their 3 main strengths/weaknesses
 3. Define your 1-2 key differentiators
@@ -525,11 +572,13 @@ Before writing ANY code:
 ## 📚 Related Resources
 
 **Skills to use:**
+
 - **product-strategist** - Detailed validation methodology
 - **mvp-builder** - MVP patterns and prioritization
 - **user-researcher** - Interview techniques
 
 **Skills to avoid until validated:**
+
 - ⚠️ api-designer (until solution validated)
 - ⚠️ frontend-builder (until MVP validated)
 - ⚠️ deployment-advisor (until scaling)
@@ -537,6 +586,7 @@ Before writing ANY code:
 - ⚠️ multi-agent-architect (until you know you need agents)
 
 **Other playbooks:**
+
 - `avoid-analysis-paralysis.md` - Time limits and triggers
 - `deployment-checklist.md` - When ready to scale
 
@@ -557,6 +607,7 @@ Before writing ANY code:
 ## ✅ Success Criteria
 
 **You're doing it right if:**
+
 - ✅ Talked to 10+ users before writing code
 - ✅ Tested with landing page or concierge before building
 - ✅ MVP took <2 weeks and cost <$200
@@ -565,6 +616,7 @@ Before writing ANY code:
 - ✅ Pivoted or stopped 1-2 ideas before finding one that works
 
 **You're doing it wrong if:**
+
 - ❌ Building for >2 weeks without users
 - ❌ Spent >$500 before validation
 - ❌ Haven't talked to users yet

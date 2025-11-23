@@ -21,21 +21,25 @@ claude-code --skill video-producer
 ## Common Tasks
 
 ### Build Video Player
+
 ```
 "Create a custom video player with play, pause, seek, and fullscreen controls"
 ```
 
 ### Add HLS Streaming
+
 ```
 "Implement adaptive bitrate streaming using HLS.js"
 ```
 
 ### Add Subtitles
+
 ```
 "Add multi-language subtitle support to this video player"
 ```
 
 ### Quality Selector
+
 ```
 "Add quality selection (1080p, 720p, 480p) to the video player"
 ```

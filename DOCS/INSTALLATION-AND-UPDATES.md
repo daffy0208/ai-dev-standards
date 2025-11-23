@@ -19,6 +19,7 @@ bash ~/ai-dev-standards/setup-project.sh
 ### 1. Version Tracking ✅
 
 Every installation now tracks:
+
 - ai-dev-standards version
 - Installation path
 - Last sync date
@@ -41,6 +42,7 @@ Every installation now tracks:
 ### 2. Automatic Hooks Installation ✅
 
 Setup automatically installs:
+
 - `.claude/hooks/` - Skill activation hooks
 - `.claude/skills/skill-rules.json` - 64 skill activation rules
 - `.claude/settings.json` - Hook configuration
@@ -51,6 +53,7 @@ Setup automatically installs:
 ### 3. Health Check System ✅
 
 Run `ai-dev doctor` to check:
+
 - Node.js version (>=18)
 - Dependencies status
 - ai-dev-standards installation
@@ -64,6 +67,7 @@ Run `ai-dev doctor` to check:
 ### 4. Flexible Installation Paths ✅
 
 No longer requires `~/ai-dev-standards`:
+
 - Stores actual path in `.ai-dev.json`
 - Resolves paths dynamically
 - Supports multiple installations
@@ -72,6 +76,7 @@ No longer requires `~/ai-dev-standards`:
 ### 5. Post-Install Verification ✅
 
 After setup completes:
+
 - Health check runs automatically
 - Displays installation summary
 - Shows skill count and hooks status
@@ -86,12 +91,14 @@ ai-dev check-updates
 ```
 
 **Shows:**
+
 - Current version vs remote version
 - Commits behind
 - Recent changes
 - Update recommendation
 
 **Example output:**
+
 ```
 🔍 Checking for updates...
 
@@ -116,6 +123,7 @@ ai-dev self-update
 ```
 
 **What it does:**
+
 1. Checks for local changes
 2. Stashes changes if `--force`
 3. Pulls latest from Git
@@ -124,9 +132,11 @@ ai-dev self-update
 6. Shows what's new
 
 **Options:**
+
 - `--force` - Update even with local changes
 
 **Example:**
+
 ```bash
 # Safe update (fails if local changes)
 ai-dev self-update
@@ -142,6 +152,7 @@ ai-dev doctor
 ```
 
 **Checks 11 areas:**
+
 1. Node.js version
 2. Package manager (npm)
 3. package.json validity
@@ -155,11 +166,13 @@ ai-dev doctor
 11. Skill activation rules
 
 **Auto-fix issues:**
+
 ```bash
 ai-dev doctor --fix-all
 ```
 
 **Verbose output:**
+
 ```bash
 ai-dev doctor --verbose
 ```
@@ -171,6 +184,7 @@ ai-dev sync
 ```
 
 **Updates:**
+
 - Latest skills list
 - MCP configurations
 - Registry updates
@@ -194,6 +208,7 @@ ai-dev-standards can be installed anywhere:
 ```
 
 **How it works:**
+
 1. `setup-project.sh` detects installation path
 2. Saves to `.ai-dev.json` as `aiDevStandardsRoot`
 3. Commands resolve paths dynamically
@@ -224,6 +239,7 @@ jq -r '.version' .ai-dev.json
 ```
 
 **What gets upgraded:**
+
 - Adds version to `.ai-dev.json`
 - Adds installation path tracking
 - Installs hooks if missing
@@ -286,6 +302,7 @@ ls -la .claude/hooks/*.sh
 ### Issue: "ai-dev command not found"
 
 **Solution:**
+
 ```bash
 cd ~/ai-dev-standards/CLI
 npm install
@@ -295,6 +312,7 @@ npm link
 ### Issue: "Version not tracked"
 
 **Solution:**
+
 ```bash
 # Add version manually
 jq '. + {version: "3.0.0", aiDevStandardsRoot: "'$HOME'/ai-dev-standards"}' \
@@ -304,6 +322,7 @@ jq '. + {version: "3.0.0", aiDevStandardsRoot: "'$HOME'/ai-dev-standards"}' \
 ### Issue: "Hooks not working"
 
 **Solution:**
+
 ```bash
 # Re-install hooks
 bash ~/ai-dev-standards/setup-project.sh
@@ -317,6 +336,7 @@ chmod +x *.sh
 ### Issue: "Local changes prevent update"
 
 **Solution:**
+
 ```bash
 # Option 1: Commit changes
 cd ~/ai-dev-standards
@@ -335,6 +355,7 @@ git reset --hard origin/main
 ### Issue: "skill-rules.json missing"
 
 **Solution:**
+
 ```bash
 # Regenerate
 cd .claude/hooks
@@ -405,6 +426,7 @@ done
 ### From v2.x to v3.x
 
 **What's new:**
+
 - Version tracking
 - Automatic hooks installation
 - Health check system
@@ -412,6 +434,7 @@ done
 - Self-update command
 
 **Migration steps:**
+
 ```bash
 # 1. Update ai-dev-standards
 cd ~/ai-dev-standards
@@ -435,21 +458,25 @@ ai-dev doctor
 All operations are optimized:
 
 ### Check Updates
+
 - < 2 seconds
 - Only fetches Git metadata
 - Minimal network usage
 
 ### Self Update
+
 - < 10 seconds (typical)
 - Parallel operations
 - Incremental updates only
 
 ### Health Check
+
 - < 3 seconds
 - Cached checks
 - Parallel validation
 
 ### Hooks Installation
+
 - < 5 seconds
 - Minimal dependencies
 - Silent npm install
@@ -459,6 +486,7 @@ All operations are optimized:
 ### Update Safety
 
 `ai-dev self-update` is safe:
+
 - Checks for local changes first
 - Creates backup with `--force`
 - Pulls from trusted Git remote
@@ -467,6 +495,7 @@ All operations are optimized:
 ### Installation Verification
 
 `setup-project.sh` is transparent:
+
 - All paths are visible
 - No hidden operations
 - Standard npm/git commands
@@ -524,16 +553,19 @@ RUN ai-dev doctor --fix-all
 ## Support
 
 **Issues:**
+
 - Run `ai-dev doctor --verbose`
 - Check `.ai-dev.json` for configuration
 - Verify hooks with `ls -la .claude/hooks/*.sh`
 
 **Questions:**
+
 - See [DOCS/INDEX.md](./INDEX.md)
 - Check [README.md](../README.md)
 - Review [SKILL-AUTO-ACTIVATION.md](./SKILL-AUTO-ACTIVATION.md)
 
 **Updates:**
+
 - Check [CHANGELOG.md](../CHANGELOG.md)
 - Run `ai-dev check-updates`
 - Follow repository releases
@@ -551,6 +583,7 @@ RUN ai-dev doctor --fix-all
 5. ✅ **Post-Install Verification** - Automatic health check after setup
 
 **Key Commands:**
+
 - `ai-dev check-updates` - Check for updates
 - `ai-dev self-update` - Update to latest
 - `ai-dev doctor` - Health check

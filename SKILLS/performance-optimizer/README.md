@@ -11,6 +11,7 @@ Guides systematic performance optimization through profiling, database tuning, c
 ## When to Use
 
 Use this skill when you need to:
+
 - Investigate slow page loads or API responses
 - Optimize database queries and eliminate N+1 problems
 - Implement caching strategies (Redis, CDN)
@@ -66,23 +67,27 @@ performance-optimizer/
 ## Prerequisites
 
 **Knowledge:**
+
 - Profiling tools (Chrome DevTools, Node --prof)
 - Database query optimization
 - HTTP caching and CDN concepts
 
 **Tools:**
+
 - Lighthouse CLI or Chrome DevTools
 - Profiling tools (Chrome DevTools, Node profiler)
 - APM tool (Sentry, New Relic, Datadog)
 - Redis for caching (optional but recommended)
 
 **Related Skills:**
+
 - `frontend-builder` for React performance patterns
 - `deployment-advisor` for infrastructure optimization
 
 ## Success Criteria
 
 You've successfully used this skill when:
+
 - ✅ Core Web Vitals: LCP < 2.5s, FID < 100ms, CLS < 0.1
 - ✅ Lighthouse score > 90
 - ✅ P95 API response time < 500ms
@@ -97,6 +102,7 @@ You've successfully used this skill when:
 ## Common Workflows
 
 ### Workflow 1: Fix Slow Page Loads
+
 1. Run Lighthouse audit → identify issues
 2. Use performance-optimizer Phase 4 (Frontend)
 3. Optimize images (WebP, lazy loading)
@@ -105,6 +111,7 @@ You've successfully used this skill when:
 6. Verify: LCP < 2.5s
 
 ### Workflow 2: Optimize Slow API
+
 1. Profile backend (Node --prof or similar)
 2. Enable slow query logging
 3. Use performance-optimizer Phase 2 (Database)
@@ -113,6 +120,7 @@ You've successfully used this skill when:
 6. Verify: P95 < 500ms
 
 ### Workflow 3: Scale for Growth
+
 1. Profile current performance
 2. Optimize database (indexes, connection pooling)
 3. Add multi-layer caching (Redis + CDN)
@@ -123,18 +131,21 @@ You've successfully used this skill when:
 ## Key Concepts
 
 **Performance Budget:**
+
 - **LCP**: Largest Contentful Paint < 2.5s
 - **FID**: First Input Delay < 100ms
 - **CLS**: Cumulative Layout Shift < 0.1
 - **API P95**: 95th percentile response time < 500ms
 
 **Profiling Tools:**
+
 - **Chrome DevTools**: Performance tab, Lighthouse, Network
 - **React DevTools**: Profiler for component render times
 - **Node.js**: --prof flag, flame graphs with 0x
 - **Database**: EXPLAIN ANALYZE, slow query logs
 
 **Optimization Phases:**
+
 1. **Profiling**: Identify bottlenecks
 2. **Database**: Indexes, query optimization, N+1 fixes
 3. **Caching**: Redis, CDN, HTTP headers
@@ -143,6 +154,7 @@ You've successfully used this skill when:
 6. **Monitoring**: APM, alerts, dashboards
 
 **Caching Layers:**
+
 - Browser cache (HTTP headers)
 - CDN cache (Cloudflare, CloudFront)
 - Application cache (Redis, Memcached)
@@ -151,16 +163,19 @@ You've successfully used this skill when:
 ## Troubleshooting
 
 **Skill not activating?**
+
 - Try explicitly requesting: "Use the performance-optimizer skill to..."
 - Mention keywords: "performance", "slow", "optimization", "caching"
 
 **Don't know where to start?**
+
 - Run Lighthouse audit first
 - Profile with Chrome DevTools Performance tab
 - Check backend with slow query logging
 - Start with Phase 1 (Profiling) to identify real bottlenecks
 
 **LCP (Largest Contentful Paint) too slow?**
+
 - Optimize images (WebP, lazy loading, Next.js Image)
 - Reduce JavaScript execution time (code splitting)
 - Preload critical resources
@@ -168,6 +183,7 @@ You've successfully used this skill when:
 - Server-side render above-the-fold content
 
 **API responses too slow?**
+
 - Profile to find bottleneck (database, external API, computation)
 - Add database indexes on WHERE/ORDER BY columns
 - Fix N+1 queries with eager loading
@@ -175,20 +191,23 @@ You've successfully used this skill when:
 - Move heavy computations to background queue
 
 **Database queries slow?**
+
 - Run EXPLAIN ANALYZE on slow queries
 - Add indexes (but not too many—slows writes)
-- Avoid SELECT *, fetch only needed columns
+- Avoid SELECT \*, fetch only needed columns
 - Use LIMIT for large result sets
 - Avoid functions in WHERE clause (breaks indexes)
 - Check query execution plan
 
 **N+1 query problem?**
+
 - Use eager loading (include/join in ORM)
 - Implement DataLoader for batching
 - Check ORM logs for query count
 - Profile with database slow query log
 
 **Bundle size too large?**
+
 - Analyze with `npm run build -- --analyze`
 - Remove unused dependencies
 - Use tree-shaking imports (`import debounce from 'lodash/debounce'`)
@@ -196,6 +215,7 @@ You've successfully used this skill when:
 - Code split routes
 
 **React app re-rendering too much?**
+
 - Use React DevTools Profiler
 - Add `memo` to expensive components
 - Use `useMemo` for expensive calculations
@@ -203,6 +223,7 @@ You've successfully used this skill when:
 - Check dependency arrays in useEffect, useMemo, useCallback
 
 **Cache not helping?**
+
 - Check cache hit ratio (should be > 80%)
 - Ensure cache keys are correct
 - Set appropriate TTL (Time To Live)
@@ -210,6 +231,7 @@ You've successfully used this skill when:
 - Monitor cache eviction rate
 
 **How to prioritize optimizations?**
+
 - Fix issues impacting most users first
 - Target Core Web Vitals for SEO
 - Optimize P95 response times (not just average)

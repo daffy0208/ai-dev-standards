@@ -559,19 +559,28 @@ type User {
 ### CSS Classes (BEM)
 
 ```css
-✅ Good - kebab-case, BEM methodology
-.button {}
-.button--primary {}
-.button--large {}
-.button__icon {}
-.card {}
-.card__header {}
-.card__body {}
+✅ Good - kebab-case,
+BEM methodology .button {
+}
+.button--primary {
+}
+.button--large {
+}
+.button__icon {
+}
+.card {
+}
+.card__header {
+}
+.card__body {
+}
 
-❌ Bad
-.Button {}                 /* Use lowercase */
-.button_primary {}         /* Use -- for modifiers */
-.buttonIcon {}             /* Use __ for elements */
+❌ Bad .Button {
+} /* Use lowercase */
+.button_primary {
+} /* Use -- for modifiers */
+.buttonIcon {
+} /* Use __ for elements */
 ```
 
 ### Tailwind Utilities
@@ -589,35 +598,42 @@ type User {
 ## Summary Checklist
 
 ### Files
+
 - [ ] Use kebab-case for non-component files
 - [ ] Use PascalCase for React components
 - [ ] Match test file names to source files
 
 ### Variables
+
 - [ ] Use camelCase for variables
 - [ ] Use is/has/can prefixes for booleans
 - [ ] Use plural names for arrays
 
 ### Functions
+
 - [ ] Start with verbs (get, set, fetch, create, update, delete)
 - [ ] Use handle/on for event handlers
 - [ ] Use is/has/can for predicates
 
 ### Classes & Types
+
 - [ ] Use PascalCase for classes, interfaces, types
 - [ ] Avoid I prefix for interfaces
 - [ ] Use descriptive generic names
 
 ### Constants
+
 - [ ] Use UPPER_SNAKE_CASE
 - [ ] Make names descriptive
 
 ### Database
+
 - [ ] Use snake_case for tables and columns
 - [ ] Use plural for table names
 - [ ] Use singular_id for foreign keys
 
 ### API
+
 - [ ] Use kebab-case for REST endpoints
 - [ ] Use plural resource names
 - [ ] Use camelCase for GraphQL

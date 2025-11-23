@@ -9,6 +9,7 @@
 ## When to Use
 
 ✅ **Use real-time systems when:**
+
 - Chat/messaging applications
 - Live notifications
 - Collaborative editing (Google Docs-style)
@@ -18,6 +19,7 @@
 - Presence detection (who's online)
 
 ❌ **Don't use when:**
+
 - Simple request-response (REST is fine)
 - Infrequent updates (polling acceptable)
 - No real-time requirement
@@ -27,15 +29,15 @@
 
 ## Decision Matrix: WebSockets vs SSE vs Polling
 
-| Feature | WebSockets | SSE | Long Polling |
-|---------|------------|-----|--------------|
-| **Direction** | Bi-directional | Server → Client | Client → Server |
-| **Protocol** | ws:// wss:// | HTTP | HTTP |
-| **Browser Support** | Excellent | Good (no IE) | Universal |
-| **Complexity** | Medium | Low | Low |
-| **Firewall Issues** | Possible | Rare | None |
-| **Automatic Reconnect** | Manual | Automatic | N/A |
-| **Best For** | Chat, games | Notifications, feeds | Simple updates |
+| Feature                 | WebSockets     | SSE                  | Long Polling    |
+| ----------------------- | -------------- | -------------------- | --------------- |
+| **Direction**           | Bi-directional | Server → Client      | Client → Server |
+| **Protocol**            | ws:// wss://   | HTTP                 | HTTP            |
+| **Browser Support**     | Excellent      | Good (no IE)         | Universal       |
+| **Complexity**          | Medium         | Low                  | Low             |
+| **Firewall Issues**     | Possible       | Rare                 | None            |
+| **Automatic Reconnect** | Manual         | Automatic            | N/A             |
+| **Best For**            | Chat, games    | Notifications, feeds | Simple updates  |
 
 ---
 
@@ -44,6 +46,7 @@
 ### Use Case: Chat Application
 
 **Server (Node.js + Socket.io):**
+
 ```typescript
 import { Server } from 'socket.io'
 import { createServer } from 'http'
@@ -54,7 +57,7 @@ const io = new Server(httpServer, {
 })
 
 // Connection handler
-io.on('connection', (socket) => {
+io.on('connection', socket => {
   console.log('Client connected:', socket.id)
 
   // Join room
@@ -67,7 +70,7 @@ io.on('connection', (socket) => {
   })
 
   // Handle message
-  socket.on('send-message', (data: { roomId: string, message: string }) => {
+  socket.on('send-message', (data: { roomId: string; message: string }) => {
     // Broadcast to room
     io.to(data.roomId).emit('new-message', {
       userId: socket.id,
@@ -94,6 +97,7 @@ httpServer.listen(3001)
 ```
 
 **Client (React):**
+
 ```typescript
 import { useEffect, useState } from 'react'
 import { io, Socket } from 'socket.io-client'
@@ -171,6 +175,7 @@ export function Chat({ roomId }: { roomId: string }) {
 ### Use Case: Live Notifications
 
 **Server (Next.js API Route):**
+
 ```typescript
 // app/api/notifications/route.ts
 import { NextRequest } from 'next/server'
@@ -206,13 +211,14 @@ export async function GET(req: NextRequest) {
     headers: {
       'Content-Type': 'text/event-stream',
       'Cache-Control': 'no-cache',
-      'Connection': 'keep-alive'
+      Connection: 'keep-alive'
     }
   })
 }
 ```
 
 **Client:**
+
 ```typescript
 import { useEffect, useState } from 'react'
 
@@ -263,6 +269,7 @@ export function Notifications() {
 ### Use Case: Collaborative Todo List
 
 **Setup (Supabase):**
+
 ```sql
 -- Enable real-time
 create table todos (
@@ -277,6 +284,7 @@ alter publication supabase_realtime add table todos;
 ```
 
 **Client:**
+
 ```typescript
 import { createClient } from '@supabase/supabase-js'
 import { useEffect, useState } from 'react'
@@ -354,11 +362,12 @@ export function TodoList() {
 ### Use Case: "Who's Online" Feature
 
 **Server (Socket.io):**
+
 ```typescript
 // Track online users
-const onlineUsers = new Map<string, { socketId: string, userId: string, lastSeen: Date }>()
+const onlineUsers = new Map<string, { socketId: string; userId: string; lastSeen: Date }>()
 
-io.on('connection', (socket) => {
+io.on('connection', socket => {
   socket.on('user-online', (userId: string) => {
     onlineUsers.set(userId, {
       socketId: socket.id,
@@ -400,6 +409,7 @@ io.on('connection', (socket) => {
 ```
 
 **Client:**
+
 ```typescript
 export function OnlineUsers() {
   const [onlineUsers, setOnlineUsers] = useState<string[]>([])
@@ -450,6 +460,7 @@ export function OnlineUsers() {
 **Concept:** Multiple users edit same document simultaneously, conflicts resolved automatically.
 
 **Server (simplified):**
+
 ```typescript
 import { Server } from 'socket.io'
 
@@ -460,9 +471,9 @@ interface Operation {
   version: number
 }
 
-const documents = new Map<string, { content: string, version: number }>()
+const documents = new Map<string, { content: string; version: number }>()
 
-io.on('connection', (socket) => {
+io.on('connection', socket => {
   socket.on('join-document', (docId: string) => {
     socket.join(docId)
 
@@ -471,7 +482,7 @@ io.on('connection', (socket) => {
     socket.emit('document-state', doc)
   })
 
-  socket.on('operation', (data: { docId: string, operation: Operation }) => {
+  socket.on('operation', (data: { docId: string; operation: Operation }) => {
     const doc = documents.get(data.docId)
     if (!doc) return
 
@@ -505,6 +516,7 @@ function applyOperation(content: string, op: Operation): string {
 ### Connection Management
 
 **Reconnection Logic:**
+
 ```typescript
 const socket = io('http://localhost:3001', {
   reconnection: true,
@@ -517,7 +529,7 @@ socket.on('connect', () => {
   console.log('Connected')
 })
 
-socket.on('disconnect', (reason) => {
+socket.on('disconnect', reason => {
   if (reason === 'io server disconnect') {
     // Server disconnected, manually reconnect
     socket.connect()
@@ -525,7 +537,7 @@ socket.on('disconnect', (reason) => {
   // Otherwise reconnection is automatic
 })
 
-socket.on('reconnect', (attemptNumber) => {
+socket.on('reconnect', attemptNumber => {
   console.log('Reconnected after', attemptNumber, 'attempts')
 })
 ```
@@ -533,6 +545,7 @@ socket.on('reconnect', (attemptNumber) => {
 ### Rate Limiting
 
 **Prevent spam:**
+
 ```typescript
 import { rateLimit } from 'express-rate-limit'
 
@@ -547,6 +560,7 @@ app.use('/api/realtime', limiter)
 ### Authentication
 
 **Secure WebSocket connections:**
+
 ```typescript
 // Server
 io.use((socket, next) => {
@@ -574,12 +588,14 @@ const socket = io('http://localhost:3001', {
 ## Trade-offs
 
 ### Pros
+
 - ✅ Instant updates (no polling delay)
 - ✅ Better UX (real-time feel)
 - ✅ Efficient (push vs pull)
 - ✅ Bi-directional communication (WebSockets)
 
 ### Cons
+
 - ❌ More server resources (persistent connections)
 - ❌ Complexity (reconnection, state sync)
 - ❌ Firewall issues (WebSockets)
@@ -590,6 +606,7 @@ const socket = io('http://localhost:3001', {
 ## Scaling Real-Time Systems
 
 **Use Redis for pub/sub across servers:**
+
 ```typescript
 import { createAdapter } from '@socket.io/redis-adapter'
 import { createClient } from 'redis'

@@ -12,17 +12,20 @@ I help you create smooth, professional animations for web applications using Fra
 ## What I Do
 
 **UI Animations:**
+
 - Page transitions
 - Component enter/exit animations
 - Hover effects, button interactions
 - Loading animations
 
 **Scroll Animations:**
+
 - Parallax effects
 - Scroll-triggered animations
 - Progress indicators
 
 **Micro-interactions:**
+
 - Button press feedback
 - Form field focus states
 - Success/error animations
@@ -412,8 +415,13 @@ export function PulsingDots() {
 
 /* Bounce */
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .bounce {
@@ -651,6 +659,7 @@ export function AnimatedNumber({ value }: { value: number }) {
 ## When to Use Me
 
 **Perfect for:**
+
 - Creating polished UI animations
 - Building interactive components
 - Adding scroll effects
@@ -658,6 +667,7 @@ export function AnimatedNumber({ value }: { value: number }) {
 - Improving user feedback
 
 **I'll help you:**
+
 - Choose the right animation type
 - Implement smooth transitions
 - Optimize animation performance

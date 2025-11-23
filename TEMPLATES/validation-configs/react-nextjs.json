@@ -28,10 +28,7 @@
   "eslintrc": {
     "extends": ["next/core-web-vitals", "prettier"],
     "rules": {
-      "@typescript-eslint/no-unused-vars": [
-        "warn",
-        { "argsIgnorePattern": "^_" }
-      ]
+      "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }]
     }
   },
   "tsconfig": {
@@ -64,11 +61,7 @@
         "functions": 80,
         "branches": 75,
         "statements": 80,
-        "exclude": [
-          "**/*.config.*",
-          "**/dist/**",
-          "**/.next/**"
-        ]
+        "exclude": ["**/*.config.*", "**/dist/**", "**/.next/**"]
       }
     }
   },

@@ -1,4 +1,5 @@
 # MCP Pattern Decision Framework
+
 ## Choosing Between Direct MCP and Code Execution
 
 **Last Updated:** November 14, 2025  
@@ -54,18 +55,18 @@ If 0-1 factors → Use Direct MCP
 
 ## 📊 Detailed Comparison Matrix
 
-| Factor | Use Direct MCP | Use Code Execution |
-|--------|---------------|-------------------|
-| **Tool Count** | 1-2 tools | 5+ tools |
-| **Data Size** | < 5KB per call | > 10KB per call |
-| **Workflow** | Linear sequence | Branching/conditional |
-| **Frequency** | One-off tasks | Repeated patterns |
-| **Latency Needs** | < 50ms response | Can tolerate 300ms setup |
-| **Privacy** | Public data | PII/sensitive data |
-| **Complexity** | Simple CRUD | Multi-step orchestration |
-| **Infrastructure** | Minimal deployment | Sandbox available |
-| **Team Expertise** | Basic API skills | DevOps capability |
-| **Debugging Needs** | Active development | Stable workflows |
+| Factor              | Use Direct MCP     | Use Code Execution       |
+| ------------------- | ------------------ | ------------------------ |
+| **Tool Count**      | 1-2 tools          | 5+ tools                 |
+| **Data Size**       | < 5KB per call     | > 10KB per call          |
+| **Workflow**        | Linear sequence    | Branching/conditional    |
+| **Frequency**       | One-off tasks      | Repeated patterns        |
+| **Latency Needs**   | < 50ms response    | Can tolerate 300ms setup |
+| **Privacy**         | Public data        | PII/sensitive data       |
+| **Complexity**      | Simple CRUD        | Multi-step orchestration |
+| **Infrastructure**  | Minimal deployment | Sandbox available        |
+| **Team Expertise**  | Basic API skills   | DevOps capability        |
+| **Debugging Needs** | Active development | Stable workflows         |
 
 ---
 
@@ -74,8 +75,9 @@ If 0-1 factors → Use Direct MCP
 ### Perfect Use Cases:
 
 #### 1. Simple Single-Tool Operations
+
 ```yaml
-Task: "Send a Slack message to #engineering"
+Task: 'Send a Slack message to #engineering'
 Analysis:
   - Tools: 1 (Slack)
   - Data: 50 bytes
@@ -86,8 +88,9 @@ Reason: Overhead of code execution > benefit
 ```
 
 #### 2. Customer Support Chat
+
 ```yaml
-Task: "Answer customer questions using knowledge base"
+Task: 'Answer customer questions using knowledge base'
 Analysis:
   - Tools: 1-2 (KB search + maybe CRM)
   - Data: < 2KB per query
@@ -98,8 +101,9 @@ Reason: Every millisecond counts, simple workflow
 ```
 
 #### 3. Development/Debugging Phase
+
 ```yaml
-Task: "Testing new API integration"
+Task: 'Testing new API integration'
 Analysis:
   - Status: Iterating rapidly
   - Need: See exact tool responses
@@ -109,8 +113,9 @@ Reason: Direct visibility helps debugging
 ```
 
 #### 4. Resource-Constrained Environments
+
 ```yaml
-Context: "Running on serverless with cold starts"
+Context: 'Running on serverless with cold starts'
 Analysis:
   - Infrastructure: No persistent sandbox
   - Cost: Pay per millisecond
@@ -120,17 +125,19 @@ Reason: Code execution requires persistent infrastructure
 ```
 
 #### 5. Simple CRUD Operations
+
 ```yaml
 Examples:
-  - "Create a calendar event"
-  - "Update one database field"
-  - "Delete a file"
-  - "Read a single document"
+  - 'Create a calendar event'
+  - 'Update one database field'
+  - 'Delete a file'
+  - 'Read a single document'
 Verdict: Direct MCP ✓
 Reason: Single operation, minimal orchestration
 ```
 
 ### Direct MCP Performance Profile:
+
 ```
 Setup Time:        0ms (no sandbox)
 Tool Loading:      100ms (schemas in context)
@@ -149,29 +156,31 @@ Complexity:       Low
 ### Perfect Use Cases:
 
 #### 1. Multi-Tool Data Pipelines
+
 ```yaml
-Task: "Read spreadsheet, validate data, update CRM, notify team"
+Task: 'Read spreadsheet, validate data, update CRM, notify team'
 Analysis:
   - Tools: 4 (Sheets, Validator, CRM, Slack)
   - Data: 50KB spreadsheet
   - Logic: Validation rules + error handling
   - Frequency: Daily automated task
 Verdict: Code Execution ✓
-Reason: 
+Reason:
   - Multiple tools (4)
   - Large data stays in sandbox
   - Complex logic in code
   - Reusable as skill
-  
+
 Savings:
-  Direct MCP:      ~80,000 tokens ($0.90)
-  Code Execution:  ~8,000 tokens ($0.08)
-  Reduction:       90% ($0.82 saved per run)
+  Direct MCP: ~80,000 tokens ($0.90)
+  Code Execution: ~8,000 tokens ($0.08)
+  Reduction: 90% ($0.82 saved per run)
 ```
 
 #### 2. Privacy-Sensitive Operations
+
 ```yaml
-Task: "Import customer contacts from CSV to Salesforce"
+Task: 'Import customer contacts from CSV to Salesforce'
 Analysis:
   - Data: PII (emails, phones, SSNs)
   - Compliance: GDPR/HIPAA
@@ -185,9 +194,10 @@ Reason:
 ```
 
 #### 3. Complex Orchestration
+
 ```yaml
-Task: "If meeting canceled, reschedule, update calendar, notify attendees, 
-       adjust follow-up tasks, log in CRM"
+Task: 'If meeting canceled, reschedule, update calendar, notify attendees,
+  adjust follow-up tasks, log in CRM'
 Analysis:
   - Tools: 5 (Calendar, Email, Slack, TaskManager, CRM)
   - Logic: Multiple if/else branches
@@ -202,9 +212,10 @@ Reason:
 ```
 
 #### 4. Repeated Patterns
+
 ```yaml
-Task: "Daily sales report: Query DB, analyze trends, create charts, 
-       email summary"
+Task: 'Daily sales report: Query DB, analyze trends, create charts,
+  email summary'
 Analysis:
   - Frequency: Daily (365x/year)
   - Tools: 4 (Database, Analytics, Charts, Email)
@@ -215,16 +226,17 @@ Reason:
   - Subsequent: 4,000 tokens (uses skill)
   - 67% reduction after first run
   - Gets faster over time
-  
+
 Annual Savings:
-  Direct MCP:      365 × $0.90 = $328.50
-  Code Execution:  1 × $0.12 + 364 × $0.04 = $14.68
-  Saved:          $313.82 per year
+  Direct MCP: 365 × $0.90 = $328.50
+  Code Execution: 1 × $0.12 + 364 × $0.04 = $14.68
+  Saved: $313.82 per year
 ```
 
 #### 5. Large Data Processing
+
 ```yaml
-Task: "Analyze 100-page document, extract insights, generate report"
+Task: 'Analyze 100-page document, extract insights, generate report'
 Analysis:
   - Data: 200KB document
   - Processing: Multiple analysis passes
@@ -234,14 +246,15 @@ Reason:
   - Document stays in sandbox
   - Processing happens in code
   - Only summary to context
-  
+
 Token Comparison:
-  Direct MCP:      200,000+ tokens (might hit limits!)
-  Code Execution:  8,000 tokens
-  Reduction:       96%
+  Direct MCP: 200,000+ tokens (might hit limits!)
+  Code Execution: 8,000 tokens
+  Reduction: 96%
 ```
 
 ### Code Execution Performance Profile:
+
 ```
 Setup Time:        300ms (sandbox init, first run)
 Setup Time:        50ms (sandbox init, subsequent)
@@ -264,18 +277,18 @@ Complexity:          High (requires infrastructure)
 
 ```yaml
 Phase 1 - MVP (Direct MCP):
-  Task: "Send daily report"
+  Task: 'Send daily report'
   Reason: Quick to build, simple workflow
   Pattern: Direct MCP ✓
 
 Phase 2 - Growth (Still Direct MCP):
-  Task: "Send daily report with custom filters"
+  Task: 'Send daily report with custom filters'
   Reason: Still manageable, 2-3 tools
   Pattern: Direct MCP ✓
 
 Phase 3 - Scale (Migrate to Code Execution):
-  Task: "Generate custom reports, analyze trends, predict outcomes, 
-         notify stakeholders, update dashboards"
+  Task: 'Generate custom reports, analyze trends, predict outcomes,
+    notify stakeholders, update dashboards'
   Reason: Now 7 tools, complex logic, running 50x/day
   Pattern: Code Execution ✓
   Migration: Worth the infrastructure investment
@@ -289,12 +302,12 @@ Architecture:
     - Simple queries
     - Low latency required
     - Pattern: Direct MCP ✓
-    
+
   Backend (Data Processing):
     - Complex workflows
     - Batch operations
     - Pattern: Code Execution ✓
-    
+
 Benefits:
   - Right tool for each job
   - Optimize for user experience
@@ -315,21 +328,21 @@ def calculate_breakeven(tools, data_kb, runs_per_month):
     direct_tokens = (tools * 5000) + (data_kb * 10)
     direct_cost_per_run = direct_tokens * 0.000003  # $3 per M tokens
     direct_monthly = direct_cost_per_run * runs_per_month
-    
+
     # Code Execution cost
     setup_tokens = 12000  # First run (creates skill)
     reuse_tokens = 4000   # Subsequent runs
     code_first_run = setup_tokens * 0.000003
     code_subsequent = reuse_tokens * 0.000003
     code_monthly = code_first_run + (code_subsequent * (runs_per_month - 1))
-    
+
     # Infrastructure cost (estimated)
     infrastructure_monthly = 50  # Sandbox, storage, monitoring
     code_total_monthly = code_monthly + infrastructure_monthly
-    
+
     savings = direct_monthly - code_total_monthly
     breakeven_runs = infrastructure_monthly / (direct_cost_per_run - code_subsequent)
-    
+
     return {
         'direct_monthly': direct_monthly,
         'code_monthly': code_total_monthly,
@@ -372,6 +385,7 @@ High Volume (> 200 runs/month):
 ### Before Choosing Code Execution, Ensure You Have:
 
 #### Infrastructure ✅
+
 - [ ] Sandboxed execution environment (Docker/V8/Firecracker)
 - [ ] Persistent storage (/mnt/skills or equivalent)
 - [ ] Code interpreter (IPython, Node, or similar)
@@ -379,6 +393,7 @@ High Volume (> 200 runs/month):
 - [ ] Network egress control
 
 #### Security ✅
+
 - [ ] Sandbox isolation tested
 - [ ] PII tokenization system
 - [ ] Audit logging infrastructure
@@ -386,6 +401,7 @@ High Volume (> 200 runs/month):
 - [ ] Security review completed
 
 #### Operations ✅
+
 - [ ] Monitoring and alerting setup
 - [ ] Error tracking and debugging tools
 - [ ] Performance metrics collection
@@ -393,6 +409,7 @@ High Volume (> 200 runs/month):
 - [ ] Backup and recovery procedures
 
 #### Team ✅
+
 - [ ] DevOps expertise available
 - [ ] Security best practices understood
 - [ ] Monitoring/debugging skills
@@ -400,6 +417,7 @@ High Volume (> 200 runs/month):
 - [ ] Documentation maintained
 
 #### Cost ✅
+
 - [ ] Budget for infrastructure (~$50-200/month)
 - [ ] Budget for initial setup (2-4 weeks engineer time)
 - [ ] Budget for ongoing ops (0.5 FTE)
@@ -427,7 +445,7 @@ Reasons:
   - Simple workflow (search KB, return answer)
   - Small data payloads (< 1KB)
   - High volume favors simple infrastructure
-  
+
 Results:
   - Average response: 80ms
   - Cost: $0.02 per query
@@ -450,11 +468,11 @@ Reasons:
   - 30KB transcripts (large data)
   - Complex logic (extract insights, sentiment, action items)
   - PII sensitive (customer names, company info)
-  
+
 Implementation:
   Month 1: Setup infrastructure ($2,000 engineering)
   Month 2+: Automated workflow
-  
+
 Results:
   - Token reduction: 150K → 2K (98.7%)
   - Cost per meeting: $1.50 → $0.02
@@ -491,6 +509,7 @@ Results:
 ## 🎓 Learning Path
 
 ### Start with Direct MCP if:
+
 - ✅ Building MVP/proof of concept
 - ✅ Learning MCP fundamentals
 - ✅ Team new to AI agents
@@ -498,6 +517,7 @@ Results:
 - ✅ Simple use case
 
 ### Graduate to Code Execution when:
+
 - ✅ Proven use case with traction
 - ✅ Volume justifies investment
 - ✅ Complexity increasing
@@ -511,6 +531,7 @@ Results:
 Quick visual guide for decision making:
 
 ### 🟢 GREEN LIGHT (Code Execution)
+
 - 5+ tools needed
 - > 10KB data payloads
 - Repeated daily/weekly workflows
@@ -520,6 +541,7 @@ Quick visual guide for decision making:
 - DevOps team available
 
 ### 🟡 YELLOW LIGHT (Evaluate Carefully)
+
 - 3-4 tools
 - 5-10KB data
 - Monthly execution
@@ -528,6 +550,7 @@ Quick visual guide for decision making:
 - Medium team capability
 
 ### 🔴 RED LIGHT (Direct MCP)
+
 - 1-2 tools
 - < 5KB data
 - One-off or ad-hoc tasks

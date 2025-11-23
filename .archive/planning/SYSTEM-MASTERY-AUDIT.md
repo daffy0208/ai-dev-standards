@@ -11,6 +11,7 @@
 User request: "WE need to return to the foundations of this tool and ensure that all skills, mcps and in fact every single file and all its content in this repository is understood and you know every single detail of it and all its relationships and when and why you would start a workflow regardless of the scenario."
 
 **Translation**: The AI assistant (Claude) must have COMPLETE mastery of:
+
 1. Every file and its purpose
 2. All 38 skills - what they do, when to use them
 3. All 35 MCPs - what they provide, how they integrate
@@ -27,12 +28,14 @@ User request: "WE need to return to the foundations of this tool and ensure that
 ### Gap 1: Foundational Documentation Outdated
 
 **META/PROJECT-CONTEXT.md**:
+
 - Says "12 skills" (line 129, 259, 386)
 - Reality: 38 skills
 - Gap: 26 skills undocumented
 - Last updated: 2025-10-21
 
 **META/HOW-TO-USE.md**:
+
 - Lists only 12 skills by name (lines 136-148)
 - Reality: 38 skills
 - Gap: 26 skills unlisted
@@ -43,6 +46,7 @@ User request: "WE need to return to the foundations of this tool and ensure that
 ### Gap 2: AI Not Following Documented Workflow
 
 **Documented Workflow** (from HOW-TO-USE.md):
+
 ```
 1. Load context (META files) - ALWAYS FIRST
 2. Understand the task
@@ -54,6 +58,7 @@ User request: "WE need to return to the foundations of this tool and ensure that
 ```
 
 **What AI Actually Did (Supabase example)**:
+
 ```
 1. Started coding immediately ❌
 2. Did not load META files ❌
@@ -68,6 +73,7 @@ User request: "WE need to return to the foundations of this tool and ensure that
 ### Gap 3: No Archon Integration for ai-dev-standards Development
 
 **The Archon+Skills Pattern** (from DOCS/ARCHON-INTEGRATION.md):
+
 ```
 Phase 1: Strategic Planning (Archon)
 - Get task from Archon
@@ -92,6 +98,7 @@ Phase 3: Quality Validation
 **Created**: scripts/validate-sync.sh
 **Documented**: META/MANDATORY-UPDATE-CHECKLIST.md
 **Missing**:
+
 - Not in .cursorrules as mandatory step
 - Not in git pre-commit hook
 - Not in ARCHON-INTEGRATION workflow
@@ -174,18 +181,21 @@ Phase 3: Quality Validation
 ## The 38 Skills (Current Reality)
 
 ### Product & Strategy (4)
+
 1. **mvp-builder** - MVP development and feature prioritization
 2. **product-strategist** - Product-market fit validation
 3. **go-to-market-planner** - Launch strategy and marketing
 4. **user-researcher** - User research methodology
 
 ### Backend & API (4)
+
 5. **api-designer** - REST/GraphQL API design
 6. **security-engineer** - Security best practices
 7. **data-engineer** - Data pipelines and infrastructure
 8. **deployment-advisor** - Deployment strategy
 
 ### Frontend & Design (8)
+
 9. **frontend-builder** - React/Next.js development
 10. **ux-designer** - UX/UI design
 11. **visual-designer** - Visual design and design systems
@@ -196,21 +206,25 @@ Phase 3: Quality Validation
 16. **copywriter** - Content and copy writing
 
 ### AI & Knowledge (4)
+
 17. **rag-implementer** - RAG system implementation
 18. **knowledge-graph-builder** - Knowledge graph design
 19. **knowledge-base-manager** - Unified KB management
 20. **multi-agent-architect** - Multi-agent systems
 
 ### Data & Visualization (2)
+
 21. **data-visualizer** - Charts and dashboards
 22. **3d-visualizer** - Three.js and 3D graphics
 
 ### Quality & Performance (3)
+
 23. **testing-strategist** - Testing strategies
 24. **performance-optimizer** - Performance optimization
 25. **quality-auditor** - Comprehensive auditing
 
 ### Specialized Domains (7)
+
 26. **mobile-developer** - React Native/Expo
 27. **iot-developer** - IoT and hardware
 28. **spatial-developer** - AR/VR/WebXR
@@ -220,12 +234,14 @@ Phase 3: Quality Validation
 32. **voice-interface-builder** - Voice interfaces
 
 ### Developer Experience (4)
+
 33. **technical-writer** - Documentation
 34. **context-preserver** - ADHD-friendly context management
 35. **focus-session-manager** - ADHD-friendly focus management
 36. **task-breakdown-specialist** - ADHD-friendly task chunking
 
 ### Code & Repository (2)
+
 37. **dark-matter-analyzer** - Repository pattern analysis
 38. **localization-engineer** - i18n/l10n
 
@@ -234,12 +250,14 @@ Phase 3: Quality Validation
 ## The 35 MCPs (Current Reality)
 
 ### AI & Knowledge (4)
+
 1. **vector-database-mcp** - Vector database operations
 2. **embedding-generator-mcp** - Generate embeddings
 3. **semantic-search-mcp** - Semantic search
 4. **knowledge-base-mcp** - KB CRUD with versioning
 
 ### Development (7)
+
 5. **component-generator-mcp** - Generate React components
 6. **doc-generator-mcp** - Generate documentation
 7. **test-runner-mcp** - Run tests
@@ -249,6 +267,7 @@ Phase 3: Quality Validation
 11. **dark-matter-analyzer-mcp** - Repository analysis
 
 ### Design & Media (11)
+
 12. **asset-optimizer-mcp** - Optimize images/assets
 13. **design-token-manager-mcp** - Manage design tokens
 14. **wireframe-generator-mcp** - Generate wireframes
@@ -262,6 +281,7 @@ Phase 3: Quality Validation
 22. **seo-analyzer-mcp** - SEO analysis
 
 ### Backend & Infrastructure (7)
+
 23. **openapi-generator-mcp** - Generate OpenAPI specs
 24. **api-validator-mcp** - Validate APIs
 25. **database-migration-mcp** - Database migrations
@@ -271,12 +291,14 @@ Phase 3: Quality Validation
 29. **i18n-manager-mcp** - Internationalization
 
 ### Product & Research (4)
+
 30. **feature-prioritizer-mcp** - Feature prioritization
 31. **user-insight-analyzer-mcp** - User research analysis
 32. **market-analyzer-mcp** - Market analysis
 33. **streaming-setup-mcp** - Live streaming setup
 
 ### Agents & IoT (2)
+
 34. **agent-orchestrator-mcp** - Multi-agent orchestration
 35. **iot-device-manager-mcp** - IoT device management
 
@@ -287,6 +309,7 @@ Phase 3: Quality Validation
 ### Scenario: Adding New Feature
 
 **Workflow**:
+
 ```
 1. Archon: Get task, research, mark 'doing'
 2. Skills: mvp-builder (prioritization) → relevant domain skill
@@ -300,6 +323,7 @@ Phase 3: Quality Validation
 ### Scenario: Bug Fix
 
 **Workflow**:
+
 ```
 1. Understand bug (reproduce, logs)
 2. Check PLAYBOOKS/ for debugging procedure
@@ -313,6 +337,7 @@ Phase 3: Quality Validation
 ### Scenario: Architecture Decision
 
 **Workflow**:
+
 ```
 1. Load META/DECISION-FRAMEWORK.md
 2. Consult relevant architecture pattern
@@ -325,6 +350,7 @@ Phase 3: Quality Validation
 ### Scenario: Adding Skill/MCP
 
 **Workflow**:
+
 ```
 1. Archon: Research need, existing solutions
 2. Design skill/MCP
@@ -354,6 +380,7 @@ AI demonstrates complete mastery when:
 ## Next Actions
 
 **Priority 1 - Fix Documentation** (TODAY):
+
 - [ ] Update PROJECT-CONTEXT.md
 - [ ] Update HOW-TO-USE.md
 - [ ] Create COMPLETE-SKILL-MAP.md
@@ -361,11 +388,13 @@ AI demonstrates complete mastery when:
 - [ ] Create WORKFLOW-DECISION-MATRIX.md
 
 **Priority 2 - Integrate Archon** (THIS WEEK):
+
 - [ ] Set up Archon project for ai-dev-standards
 - [ ] Update .cursorrules with complete workflow
 - [ ] Document self-application in META/
 
 **Priority 3 - Quality Assurance** (ONGOING):
+
 - [ ] Audit all relationships
 - [ ] Create usage examples
 - [ ] Test complete workflows

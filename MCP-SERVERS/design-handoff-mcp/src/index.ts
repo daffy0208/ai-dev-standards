@@ -1,31 +1,31 @@
 #!/usr/bin/env node
 
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { Server } from '@modelcontextprotocol/sdk/server/index.js'
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
   ListResourcesRequestSchema,
-  ReadResourceRequestSchema,
-} from '@modelcontextprotocol/sdk/types.js';
+  ReadResourceRequestSchema
+} from '@modelcontextprotocol/sdk/types.js'
 
 interface DesignSpec {
-  id: string;
-  component: string;
-  dimensions: { width: number; height: number };
-  colors: string[];
-  typography: any[];
-  spacing: any[];
-  assets: string[];
-  timestamp: string;
+  id: string
+  component: string
+  dimensions: { width: number; height: number }
+  colors: string[]
+  typography: any[]
+  spacing: any[]
+  assets: string[]
+  timestamp: string
 }
 
-const designSpecs: DesignSpec[] = [];
+const designSpecs: DesignSpec[] = []
 
 const server = new Server(
   { name: 'design-handoff-mcp', version: '1.0.0' },
   { capabilities: { tools: {}, resources: {} } }
-);
+)
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: [
@@ -37,24 +37,24 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           designFile: {
             type: 'string',
-            description: 'URL or path to design file',
+            description: 'URL or path to design file'
           },
           componentName: {
             type: 'string',
-            description: 'Specific component to extract (optional, extracts all if omitted)',
+            description: 'Specific component to extract (optional, extracts all if omitted)'
           },
           includeAnnotations: {
             type: 'boolean',
-            description: 'Include designer annotations and comments',
+            description: 'Include designer annotations and comments'
           },
           format: {
             type: 'string',
             enum: ['json', 'markdown', 'html'],
-            description: 'Output format',
-          },
+            description: 'Output format'
+          }
         },
-        required: ['designFile'],
-      },
+        required: ['designFile']
+      }
     },
     {
       name: 'generateCode',
@@ -64,29 +64,29 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           component: {
             type: 'string',
-            description: 'Component name or specification ID',
+            description: 'Component name or specification ID'
           },
           framework: {
             type: 'string',
             enum: ['react', 'vue', 'svelte', 'angular', 'html', 'react-native'],
-            description: 'Target framework',
+            description: 'Target framework'
           },
           styleApproach: {
             type: 'string',
             enum: ['css-modules', 'styled-components', 'tailwind', 'emotion', 'sass'],
-            description: 'Styling approach',
+            description: 'Styling approach'
           },
           typescript: {
             type: 'boolean',
-            description: 'Generate TypeScript code',
+            description: 'Generate TypeScript code'
           },
           responsive: {
             type: 'boolean',
-            description: 'Include responsive breakpoints',
-          },
+            description: 'Include responsive breakpoints'
+          }
         },
-        required: ['component', 'framework'],
-      },
+        required: ['component', 'framework']
+      }
     },
     {
       name: 'compareDesignVsCode',
@@ -96,27 +96,27 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           designFile: {
             type: 'string',
-            description: 'URL or path to design file',
+            description: 'URL or path to design file'
           },
           codeFile: {
             type: 'string',
-            description: 'Path to implemented component code',
+            description: 'Path to implemented component code'
           },
           checkAspects: {
             type: 'array',
             items: {
               type: 'string',
-              enum: ['colors', 'typography', 'spacing', 'dimensions', 'layout'],
+              enum: ['colors', 'typography', 'spacing', 'dimensions', 'layout']
             },
-            description: 'Aspects to compare',
+            description: 'Aspects to compare'
           },
           tolerance: {
             type: 'number',
-            description: 'Tolerance for numeric differences (in pixels)',
-          },
+            description: 'Tolerance for numeric differences (in pixels)'
+          }
         },
-        required: ['designFile', 'codeFile'],
-      },
+        required: ['designFile', 'codeFile']
+      }
     },
     {
       name: 'generateStyleGuide',
@@ -126,31 +126,31 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           designFile: {
             type: 'string',
-            description: 'URL or path to design file',
+            description: 'URL or path to design file'
           },
           sections: {
             type: 'array',
             items: {
               type: 'string',
-              enum: ['colors', 'typography', 'components', 'spacing', 'icons', 'patterns'],
+              enum: ['colors', 'typography', 'components', 'spacing', 'icons', 'patterns']
             },
-            description: 'Sections to include',
+            description: 'Sections to include'
           },
           format: {
             type: 'string',
             enum: ['markdown', 'html', 'pdf', 'storybook'],
-            description: 'Output format',
-          },
+            description: 'Output format'
+          }
         },
-        required: ['designFile'],
-      },
-    },
-  ],
-}));
+        required: ['designFile']
+      }
+    }
+  ]
+}))
 
-server.setRequestHandler(CallToolRequestSchema, async (request) => {
+server.setRequestHandler(CallToolRequestSchema, async request => {
   try {
-    const { name, arguments: args } = request.params;
+    const { name, arguments: args } = request.params
 
     switch (name) {
       case 'extractSpecs': {
@@ -158,11 +158,11 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           designFile,
           componentName,
           includeAnnotations = true,
-          format = 'json',
-        } = args as any;
+          format = 'json'
+        } = args as any
 
         if (!designFile) {
-          throw new Error('Missing required argument: designFile');
+          throw new Error('Missing required argument: designFile')
         }
 
         const spec: DesignSpec = {
@@ -172,28 +172,28 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           colors: ['#4F46E5', '#EC4899', '#10B981'],
           typography: [
             { element: 'h1', size: '2rem', weight: 700, lineHeight: 1.2 },
-            { element: 'body', size: '1rem', weight: 400, lineHeight: 1.5 },
+            { element: 'body', size: '1rem', weight: 400, lineHeight: 1.5 }
           ],
           spacing: [
             { element: 'padding', value: '1rem' },
-            { element: 'margin', value: '1.5rem' },
+            { element: 'margin', value: '1.5rem' }
           ],
           assets: ['logo.svg', 'icon-home.svg'],
-          timestamp: new Date().toISOString(),
-        };
+          timestamp: new Date().toISOString()
+        }
 
-        designSpecs.push(spec);
+        designSpecs.push(spec)
 
         const result = {
           success: true,
           message: 'Design specifications extracted',
           data: { spec, format, includeAnnotations },
-          note: 'Configure design tool API access for real extraction',
-        };
+          note: 'Configure design tool API access for real extraction'
+        }
 
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
-        };
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
+        }
       }
 
       case 'generateCode': {
@@ -202,15 +202,27 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           framework,
           styleApproach = 'css-modules',
           typescript = false,
-          responsive = true,
-        } = args as any;
+          responsive = true
+        } = args as any
 
         if (!component || !framework) {
-          throw new Error('Missing required arguments: component, framework');
+          throw new Error('Missing required arguments: component, framework')
         }
 
-        const ext = typescript ? (framework === 'react' ? 'tsx' : 'ts') : (framework === 'react' ? 'jsx' : 'js');
-        const code = generateComponentCode(component, framework, styleApproach, typescript, responsive);
+        const ext = typescript
+          ? framework === 'react'
+            ? 'tsx'
+            : 'ts'
+          : framework === 'react'
+            ? 'jsx'
+            : 'js'
+        const code = generateComponentCode(
+          component,
+          framework,
+          styleApproach,
+          typescript,
+          responsive
+        )
 
         const result = {
           success: true,
@@ -223,15 +235,15 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             responsive,
             files: [
               { name: `${component}.${ext}`, code: code.component },
-              { name: `${component}.module.css`, code: code.styles },
-            ],
+              { name: `${component}.module.css`, code: code.styles }
+            ]
           },
-          note: 'This is generated boilerplate. Refine based on exact design specs.',
-        };
+          note: 'This is generated boilerplate. Refine based on exact design specs.'
+        }
 
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
-        };
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
+        }
       }
 
       case 'compareDesignVsCode': {
@@ -239,18 +251,22 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           designFile,
           codeFile,
           checkAspects = ['colors', 'typography', 'spacing'],
-          tolerance = 2,
-        } = args as any;
+          tolerance = 2
+        } = args as any
 
         if (!designFile || !codeFile) {
-          throw new Error('Missing required arguments: designFile, codeFile');
+          throw new Error('Missing required arguments: designFile, codeFile')
         }
 
         const differences = [
-          { aspect: 'colors', issue: 'Primary color: Design #4F46E5 vs Code #4F45E5', severity: 'minor' },
+          {
+            aspect: 'colors',
+            issue: 'Primary color: Design #4F46E5 vs Code #4F45E5',
+            severity: 'minor'
+          },
           { aspect: 'spacing', issue: 'Padding: Design 16px vs Code 18px', severity: 'minor' },
-          { aspect: 'typography', issue: 'Font weight: Design 600 vs Code 700', severity: 'medium' },
-        ];
+          { aspect: 'typography', issue: 'Font weight: Design 600 vs Code 700', severity: 'medium' }
+        ]
 
         const result = {
           success: true,
@@ -262,28 +278,28 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             tolerance,
             differences,
             match: differences.length === 0,
-            accuracy: `${(100 - differences.length * 5).toFixed(1)}%`,
+            accuracy: `${(100 - differences.length * 5).toFixed(1)}%`
           },
-          note: 'Configure design tool access and provide actual code file for real comparison',
-        };
+          note: 'Configure design tool access and provide actual code file for real comparison'
+        }
 
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
-        };
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
+        }
       }
 
       case 'generateStyleGuide': {
         const {
           designFile,
           sections = ['colors', 'typography', 'components', 'spacing'],
-          format = 'markdown',
-        } = args as any;
+          format = 'markdown'
+        } = args as any
 
         if (!designFile) {
-          throw new Error('Missing required argument: designFile');
+          throw new Error('Missing required argument: designFile')
         }
 
-        const styleGuide = generateStyleGuideContent(sections, format);
+        const styleGuide = generateStyleGuideContent(sections, format)
 
         const result = {
           success: true,
@@ -293,31 +309,31 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             sections,
             format,
             content: styleGuide,
-            fileName: `style-guide.${format === 'html' ? 'html' : 'md'}`,
+            fileName: `style-guide.${format === 'html' ? 'html' : 'md'}`
           },
-          note: 'Configure design tool access for comprehensive style guide',
-        };
+          note: 'Configure design tool access for comprehensive style guide'
+        }
 
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
-        };
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
+        }
       }
 
       default:
-        throw new Error(`Unknown tool: ${name}`);
+        throw new Error(`Unknown tool: ${name}`)
     }
   } catch (error) {
     return {
       content: [
         {
           type: 'text',
-          text: `Error: ${error instanceof Error ? error.message : String(error)}`,
-        },
+          text: `Error: ${error instanceof Error ? error.message : String(error)}`
+        }
       ],
-      isError: true,
-    };
+      isError: true
+    }
   }
-});
+})
 
 server.setRequestHandler(ListResourcesRequestSchema, async () => ({
   resources: [
@@ -325,19 +341,19 @@ server.setRequestHandler(ListResourcesRequestSchema, async () => ({
       uri: 'design-handoff://specs',
       name: 'Extracted Design Specs',
       description: 'All extracted design specifications',
-      mimeType: 'application/json',
+      mimeType: 'application/json'
     },
     {
       uri: 'design-handoff://workflow',
       name: 'Design Handoff Workflow',
       description: 'Best practices for design-to-development handoff',
-      mimeType: 'text/plain',
-    },
-  ],
-}));
+      mimeType: 'text/plain'
+    }
+  ]
+}))
 
-server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
-  const { uri } = request.params;
+server.setRequestHandler(ReadResourceRequestSchema, async request => {
+  const { uri } = request.params
 
   if (uri === 'design-handoff://specs') {
     return {
@@ -345,10 +361,10 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
         {
           uri,
           mimeType: 'application/json',
-          text: JSON.stringify({ specs: designSpecs, count: designSpecs.length }, null, 2),
-        },
-      ],
-    };
+          text: JSON.stringify({ specs: designSpecs, count: designSpecs.length }, null, 2)
+        }
+      ]
+    }
   }
 
   if (uri === 'design-handoff://workflow') {
@@ -430,20 +446,20 @@ Handoff Checklist:
 □ Accessibility notes
 □ Browser requirements
 □ Performance targets
-`;
+`
     return {
       contents: [
         {
           uri,
           mimeType: 'text/plain',
-          text: workflow,
-        },
-      ],
-    };
+          text: workflow
+        }
+      ]
+    }
   }
 
-  throw new Error(`Unknown resource: ${uri}`);
-});
+  throw new Error(`Unknown resource: ${uri}`)
+})
 
 function generateComponentCode(
   name: string,
@@ -452,7 +468,7 @@ function generateComponentCode(
   typescript: boolean,
   responsive: boolean
 ): { component: string; styles: string } {
-  const tsType = typescript ? ': React.FC<{}>  ' : '';
+  const tsType = typescript ? ': React.FC<{}>  ' : ''
 
   const reactCode = `import React from 'react';
 import styles from './${name}.module.css';
@@ -465,7 +481,7 @@ export const ${name}${tsType} = (${typescript ? 'props: Props' : ''}) => {
       <h2 className={styles.title}>${name}</h2>
     </div>
   );
-};`;
+};`
 
   const css = `.container {
   padding: 1rem;
@@ -476,9 +492,9 @@ export const ${name}${tsType} = (${typescript ? 'props: Props' : ''}) => {
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--color-primary);
-}`;
+}`
 
-  return { component: reactCode, styles: css };
+  return { component: reactCode, styles: css }
 }
 
 function generateStyleGuideContent(sections: string[], format: string): string {
@@ -501,18 +517,18 @@ function generateStyleGuideContent(sections: string[], format: string): string {
 ## Spacing
 - Base unit: 0.25rem (4px)
 - Scale: 4, 8, 12, 16, 24, 32, 48, 64
-`;
+`
   }
-  return 'Style guide content';
+  return 'Style guide content'
 }
 
 async function main() {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error('design-handoff-mcp v1.0.0 running on stdio');
+  const transport = new StdioServerTransport()
+  await server.connect(transport)
+  console.error('design-handoff-mcp v1.0.0 running on stdio')
 }
 
-main().catch((error) => {
-  console.error('Server error:', error);
-  process.exit(1);
-});
+main().catch(error => {
+  console.error('Server error:', error)
+  process.exit(1)
+})

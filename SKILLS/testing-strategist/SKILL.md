@@ -13,6 +13,7 @@ Test the right things at the right level - write tests that give you confidence 
 **The Testing Pyramid:** 70% unit tests, 20% integration tests, 10% E2E tests.
 
 Tests should be:
+
 - **Fast** - Run in milliseconds (unit) to seconds (integration) to minutes (E2E)
 - **Isolated** - Test one thing at a time
 - **Repeatable** - Same input = same output
@@ -54,6 +55,7 @@ Tests should be:
 Test individual functions, components, or classes in isolation.
 
 **Good candidates:**
+
 - ✅ Business logic functions (calculations, validation, transformations)
 - ✅ Utility functions (formatDate, parseUrl, etc.)
 - ✅ React components (rendering, props, state)
@@ -61,6 +63,7 @@ Test individual functions, components, or classes in isolation.
 - ✅ Pure functions (same input = same output)
 
 **Skip:**
+
 - ❌ Third-party libraries (assume they work)
 - ❌ Framework internals (React, Next.js)
 - ❌ Simple getters/setters with no logic
@@ -237,6 +240,7 @@ describe('useCounter', () => {
 ### Unit Test Best Practices
 
 ✅ **Do:**
+
 - Test behavior, not implementation
 - Use descriptive test names (it should...)
 - Follow AAA pattern: Arrange, Act, Assert
@@ -244,6 +248,7 @@ describe('useCounter', () => {
 - Keep tests simple and readable
 
 ❌ **Don't:**
+
 - Test private methods directly
 - Over-mock (makes tests brittle)
 - Test framework internals
@@ -258,6 +263,7 @@ describe('useCounter', () => {
 Test multiple units working together - typically API routes, database operations, or service integrations.
 
 **Good candidates:**
+
 - ✅ API endpoints (request → controller → database → response)
 - ✅ Database operations (queries, transactions)
 - ✅ Third-party integrations (Stripe, SendGrid)
@@ -342,12 +348,10 @@ describe('POST /api/posts', () => {
   })
 
   it('returns 401 for unauthenticated request', async () => {
-    const response = await testClient
-      .post('/api/posts')
-      .send({
-        title: 'Test',
-        content: 'Test'
-      })
+    const response = await testClient.post('/api/posts').send({
+      title: 'Test',
+      content: 'Test'
+    })
 
     expect(response.status).toBe(401)
   })
@@ -407,9 +411,7 @@ describe('userRepository', () => {
     it('throws error for duplicate email', async () => {
       await createUser({ email: 'test@example.com', password: 'pass' })
 
-      await expect(
-        createUser({ email: 'test@example.com', password: 'pass' })
-      ).rejects.toThrow()
+      await expect(createUser({ email: 'test@example.com', password: 'pass' })).rejects.toThrow()
     })
   })
 
@@ -433,6 +435,7 @@ describe('userRepository', () => {
 ### Integration Test Best Practices
 
 ✅ **Do:**
+
 - Use test database (separate from development/production)
 - Clean up test data (beforeEach/afterEach)
 - Test happy path + error cases
@@ -440,6 +443,7 @@ describe('userRepository', () => {
 - Use factories/fixtures for test data
 
 ❌ **Don't:**
+
 - Test against production database
 - Leave test data behind
 - Mock database (defeats purpose of integration test)
@@ -454,11 +458,13 @@ describe('userRepository', () => {
 Test complete user journeys through the actual UI.
 
 **Good candidates:**
+
 - ✅ Critical user flows (signup, login, checkout)
 - ✅ Core business processes
 - ✅ Multi-step workflows
 
 **Skip:**
+
 - ❌ Every possible UI interaction (too slow/brittle)
 - ❌ Edge cases (cover with unit/integration tests)
 
@@ -558,6 +564,7 @@ test.describe('Checkout Flow', () => {
 ### E2E Test Best Practices
 
 ✅ **Do:**
+
 - Test critical paths only (< 20 tests)
 - Use data-testid attributes (stable selectors)
 - Run in CI/CD pipeline
@@ -565,6 +572,7 @@ test.describe('Checkout Flow', () => {
 - Take screenshots on failure
 
 ❌ **Don't:**
+
 - Test every UI variation
 - Use fragile selectors (text content, nth-child)
 - Run E2E tests on every commit (too slow)
@@ -624,12 +632,14 @@ it('handles negative amounts', () => {
 ### When to Use TDD
 
 **Good for:**
+
 - ✅ Complex business logic
 - ✅ Bug fixes (write test that reproduces bug first)
 - ✅ Well-defined requirements
 - ✅ Critical algorithms
 
 **Skip for:**
+
 - ❌ Exploratory coding (don't know requirements yet)
 - ❌ Throwaway prototypes
 - ❌ Simple CRUD operations
@@ -694,11 +704,13 @@ mockRandom.mockRestore()
 ### Mocking Best Practices
 
 ✅ **Do:**
+
 - Mock at boundaries (APIs, file system)
 - Restore mocks after tests
 - Make mocks realistic (same shape as real data)
 
 ❌ **Don't:**
+
 - Over-mock (makes tests brittle)
 - Mock your own code (test real behavior)
 - Mock what you don't own (unless external)
@@ -716,17 +728,20 @@ mockRandom.mockRestore()
 ### What to Focus On
 
 **High priority (must have 90%+ coverage):**
+
 - Business logic
 - Authentication/authorization
 - Payment processing
 - Data validation
 
 **Medium priority (aim for 70%+):**
+
 - API routes
 - Database queries
 - Utility functions
 
 **Low priority (okay to skip):**
+
 - UI components (test behavior, not implementation)
 - Configuration files
 - Type definitions
@@ -774,16 +789,19 @@ module.exports = {
 ## Testing Strategies by Framework
 
 ### Next.js (React)
+
 - Unit: Jest + React Testing Library
 - Integration: Supertest (API routes)
 - E2E: Playwright
 
 ### Express API
+
 - Unit: Jest
 - Integration: Supertest
 - E2E: Playwright (if has UI)
 
 ### FastAPI (Python)
+
 - Unit: pytest
 - Integration: pytest + TestClient
 - E2E: Playwright
@@ -879,6 +897,7 @@ src/
 ## When to Use This Skill
 
 Use testing-strategist skill when:
+
 - ✅ Setting up testing for new project
 - ✅ Choosing test frameworks
 - ✅ Deciding what to test and at what level
@@ -891,16 +910,19 @@ Use testing-strategist skill when:
 ## Related Resources
 
 **Skills:**
+
 - `security-engineer` - Security testing
 - `api-designer` - API testing strategies
 - `frontend-builder` - React testing patterns
 
 **Patterns:**
+
 - `/STANDARDS/best-practices/testing-best-practices.md`
 - `/TEMPLATES/testing/jest-nextjs-setup.md`
 - `/TEMPLATES/testing/playwright-e2e-setup.md`
 
 **External:**
+
 - [Jest Documentation](https://jestjs.io/)
 - [React Testing Library](https://testing-library.com/react)
 - [Playwright](https://playwright.dev/)

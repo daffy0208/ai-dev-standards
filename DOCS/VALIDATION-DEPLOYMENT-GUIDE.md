@@ -52,14 +52,14 @@ npm install --save-dev \
 
 ### 4. Run Validation
 
-```bash
+````bash
 # In Claude Code, run:
 /validate
 
 # Or extract and run directly:
 awk '/^```bash$/,/^```$/' .claude/commands/validate.md | grep -v '```' > /tmp/validate.sh
 bash /tmp/validate.sh
-```
+````
 
 ## Customization
 
@@ -93,7 +93,7 @@ Configure TypeScript strictness in `tsconfig.json`:
 ```json
 {
   "compilerOptions": {
-    "strict": true,           // Strict mode for production
+    "strict": true, // Strict mode for production
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true
@@ -122,7 +122,7 @@ Configure coverage thresholds in `vitest.config.ts`:
 export default defineConfig({
   test: {
     coverage: {
-      lines: 80,      // Adjust based on your standards
+      lines: 80, // Adjust based on your standards
       functions: 80,
       branches: 75,
       statements: 80
@@ -160,8 +160,8 @@ echo ""
 echo "🔍 Phase 5.11: Testing database migrations..."
 npm run test:db
 if [ $? -ne 0 ]; then
-  echo "❌ Database tests failed!"
-  exit 1
+echo "❌ Database tests failed!"
+exit 1
 fi
 echo "✅ Database tests passed!"
 \`\`\`
@@ -179,6 +179,7 @@ export VALIDATION_CONTINUE_ON_FAILURE=true
 ```
 
 **Use Cases:**
+
 - Testing new validation phases
 - Seeing complete validation output despite early failures
 - Verifying Wave 2 features (dashboard, metrics)
@@ -221,6 +222,7 @@ open .validation-report-TIMESTAMP.html
 ```
 
 **Dashboard Features:**
+
 - Real-time metrics visualization
 - Phase-by-phase results
 - Historical trend charts
@@ -239,6 +241,7 @@ Metrics are tracked in `.validation-history/`:
 ```
 
 **Tracked Metrics:**
+
 - Test pass rates over time
 - Coverage trends
 - Lint warning trends
@@ -259,7 +262,7 @@ The validation system includes automatic retry logic:
 
 Create `.github/workflows/validate.yml`:
 
-```yaml
+````yaml
 name: Validation
 
 on:
@@ -301,13 +304,13 @@ jobs:
         with:
           name: validation-metrics
           path: .validation-history/
-```
+````
 
 ### GitLab CI
 
 Create `.gitlab-ci.yml`:
 
-```yaml
+````yaml
 validate:
   stage: test
   image: node:20
@@ -326,7 +329,7 @@ validate:
       coverage_report:
         coverage_format: cobertura
         path: coverage/cobertura-coverage.xml
-```
+````
 
 ## Project Type Examples
 
@@ -431,6 +434,7 @@ chmod 755 .validation-history
 ## Support
 
 For issues, questions, or contributions:
+
 - GitHub Issues: https://github.com/daffy0208/ai-dev-standards/issues
 - Documentation: https://github.com/daffy0208/ai-dev-standards/docs
 

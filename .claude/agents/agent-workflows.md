@@ -19,6 +19,7 @@ How agents work together to accomplish complex tasks through proven coordination
 Agents can be coordinated in various patterns to accomplish complex tasks more efficiently than single-agent approaches. This document catalogs proven coordination patterns and workflows.
 
 **Key Principles:**
+
 - **Separation of Concerns:** Each agent has a clear responsibility
 - **Loose Coupling:** Agents communicate through well-defined interfaces
 - **Composability:** Patterns can be combined for complex workflows
@@ -31,6 +32,7 @@ Agents can be coordinated in various patterns to accomplish complex tasks more e
 ### 1. Sequential Pattern
 
 **Structure:**
+
 ```
 Agent A → Agent B → Agent C
 ```
@@ -38,11 +40,13 @@ Agent A → Agent B → Agent C
 **Description:** Agents execute one after another, with each agent's output becoming the next agent's input.
 
 **When to Use:**
+
 - Tasks have clear dependencies
 - Each step builds on previous results
 - Order matters
 
 **Example:**
+
 ```
 Workflow: Feature Implementation
 1. Explore Agent (Medium) → Understand codebase
@@ -52,11 +56,13 @@ Workflow: Feature Implementation
 ```
 
 **Advantages:**
+
 - Simple to understand and implement
 - Clear data flow
 - Easy to debug
 
 **Disadvantages:**
+
 - Slow (serial execution)
 - Blocked by any agent failure
 - No parallelization
@@ -66,6 +72,7 @@ Workflow: Feature Implementation
 ### 2. Parallel Pattern
 
 **Structure:**
+
 ```
         Agent B
        ↗
@@ -77,11 +84,13 @@ Agent A → Agent C
 **Description:** Multiple agents execute simultaneously on independent tasks, results aggregated at the end.
 
 **When to Use:**
+
 - Tasks are independent
 - No dependencies between agents
 - Time is critical
 
 **Example:**
+
 ```
 Workflow: Comprehensive Security Audit
 Coordinator: Multi-Agent Architect
@@ -97,11 +106,13 @@ Aggregation: Combine all findings into report
 ```
 
 **Advantages:**
+
 - Fast (parallel execution)
 - Efficient resource utilization
 - Scalable
 
 **Disadvantages:**
+
 - More complex coordination
 - Requires aggregation logic
 - Resource intensive
@@ -111,6 +122,7 @@ Aggregation: Combine all findings into report
 ### 3. Hierarchical Pattern
 
 **Structure:**
+
 ```
     Coordinator
     ├── Worker A
@@ -121,11 +133,13 @@ Aggregation: Combine all findings into report
 **Description:** One agent (coordinator) manages multiple worker agents, delegating tasks and aggregating results.
 
 **When to Use:**
+
 - Complex task needs decomposition
 - Centralized control needed
 - Dynamic task assignment
 
 **Example:**
+
 ```
 Workflow: Multi-Service Refactoring
 Coordinator: Multi-Agent Architect
@@ -144,11 +158,13 @@ Coordinator:
 ```
 
 **Advantages:**
+
 - Centralized control
 - Dynamic task assignment
 - Handles complexity well
 
 **Disadvantages:**
+
 - Single point of failure (coordinator)
 - Coordinator can become bottleneck
 - More complex implementation
@@ -158,6 +174,7 @@ Coordinator:
 ### 4. Pipeline Pattern
 
 **Structure:**
+
 ```
 Agent A → [Buffer] → Agent B → [Buffer] → Agent C
 ```
@@ -165,11 +182,13 @@ Agent A → [Buffer] → Agent B → [Buffer] → Agent C
 **Description:** Agents arranged in stages with buffers, allowing streaming and partial results.
 
 **When to Use:**
+
 - Processing large datasets
 - Want incremental results
 - Memory constraints
 
 **Example:**
+
 ```
 Workflow: Large Codebase Analysis
 Stage 1: Explore Agent → Find all files
@@ -180,11 +199,13 @@ Stage 3: General-Purpose + technical-writer → Generate report
 ```
 
 **Advantages:**
+
 - Streaming processing
 - Memory efficient
 - Incremental results
 
 **Disadvantages:**
+
 - Complex buffer management
 - Backpressure handling needed
 - Debugging harder
@@ -194,6 +215,7 @@ Stage 3: General-Purpose + technical-writer → Generate report
 ### 5. Hub-and-Spoke Pattern
 
 **Structure:**
+
 ```
      Worker B
          ↑
@@ -205,11 +227,13 @@ Worker A ← Hub → Worker C
 **Description:** Central hub agent coordinates all other agents, routing messages and managing state.
 
 **When to Use:**
+
 - Complex inter-agent communication
 - Shared state needed
 - Centralized logging/monitoring
 
 **Example:**
+
 ```
 Workflow: Real-Time Collaboration System
 Hub: Framework-Orchestrator
@@ -228,11 +252,13 @@ Hub:
 ```
 
 **Advantages:**
+
 - Centralized coordination
 - Easy to add new agents
 - Shared state management
 
 **Disadvantages:**
+
 - Hub is single point of failure
 - Can become bottleneck
 - Requires robust hub implementation
@@ -244,6 +270,7 @@ Hub:
 ### 6. Iterative Refinement Pattern
 
 **Structure:**
+
 ```
 Agent A → Agent B → Evaluator
             ↑          ↓
@@ -254,11 +281,13 @@ Agent A → Agent B → Evaluator
 **Description:** Agents work in loop, refining output until quality threshold met.
 
 **When to Use:**
+
 - Quality threshold required
 - Iterative improvement possible
 - Maximum iterations acceptable
 
 **Example:**
+
 ```
 Workflow: Automated Code Quality
 1. General-Purpose: Write initial code
@@ -269,6 +298,7 @@ Workflow: Automated Code Quality
 ```
 
 **Implementation:**
+
 ```python
 max_iterations = 5
 for i in range(max_iterations):
@@ -284,6 +314,7 @@ for i in range(max_iterations):
 ### 7. Consensus Pattern
 
 **Structure:**
+
 ```
 Agent A ─┐
 Agent B ─┤→ Consensus → Final Decision
@@ -293,11 +324,13 @@ Agent C ─┘
 **Description:** Multiple agents provide recommendations, consensus mechanism makes final decision.
 
 **When to Use:**
+
 - Critical decisions
 - Want multiple perspectives
 - Need confidence threshold
 
 **Example:**
+
 ```
 Workflow: Architecture Decision
 ├── Agent 1 (performance-optimizer): Performance perspective
@@ -311,6 +344,7 @@ Workflow: Architecture Decision
 ### 8. Fallback Pattern
 
 **Structure:**
+
 ```
 Primary Agent → Success? Yes → Done
                ↓ No
@@ -322,11 +356,13 @@ Primary Agent → Success? Yes → Done
 **Description:** Try primary agent, fall back to alternatives if it fails.
 
 **When to Use:**
+
 - Reliability critical
 - Multiple approaches possible
 - Graceful degradation needed
 
 **Example:**
+
 ```
 Workflow: Code Generation
 1. Try: GPT-4 generation (primary)
@@ -340,6 +376,7 @@ Workflow: Code Generation
 ### 9. Map-Reduce Pattern
 
 **Structure:**
+
 ```
         ┌→ Worker A → Result A ┐
 Data → Map Worker B → Result B  Reduce → Final
@@ -349,11 +386,13 @@ Data → Map Worker B → Result B  Reduce → Final
 **Description:** Distribute work across multiple workers, aggregate results.
 
 **When to Use:**
+
 - Large dataset processing
 - Parallel processing needed
 - Results can be aggregated
 
 **Example:**
+
 ```
 Workflow: Repository-Wide Analysis
 Map Phase:
@@ -371,6 +410,7 @@ Reduce Phase:
 ### 10. Event-Driven Pattern
 
 **Structure:**
+
 ```
 Event Bus
 ├─→ Listener Agent A
@@ -381,11 +421,13 @@ Event Bus
 **Description:** Agents subscribe to events, react when events occur.
 
 **When to Use:**
+
 - Asynchronous processing
 - Loose coupling desired
 - Reactive systems
 
 **Example:**
+
 ```
 Workflow: Continuous Integration
 Event: Code committed
@@ -560,16 +602,19 @@ Phase 5: Integration (Sequential)
 ### 1. Pattern Selection
 
 **Choose Sequential when:**
+
 - Tasks have clear dependencies
 - Simplicity is important
 - Time is not critical
 
 **Choose Parallel when:**
+
 - Tasks are independent
 - Speed is critical
 - Resources available
 
 **Choose Hierarchical when:**
+
 - Complex task decomposition needed
 - Centralized control desired
 - Dynamic assignment required
@@ -577,6 +622,7 @@ Phase 5: Integration (Sequential)
 ### 2. Error Handling
 
 **Implement fallbacks:**
+
 ```
 Try primary approach
 └─ If fails: Try alternative
@@ -584,6 +630,7 @@ Try primary approach
 ```
 
 **Use circuit breakers:**
+
 ```
 If agent fails N times:
 └─ Stop using agent temporarily
@@ -591,6 +638,7 @@ If agent fails N times:
 ```
 
 **Log everything:**
+
 ```
 Log:
 ├── Agent invocations
@@ -602,16 +650,19 @@ Log:
 ### 3. Performance Optimization
 
 **Use caching:**
+
 - Cache agent results
 - Avoid redundant work
 - Share results between agents
 
 **Batch operations:**
+
 - Batch similar operations
 - Reduce overhead
 - Improve throughput
 
 **Load balance:**
+
 - Distribute work evenly
 - Monitor agent performance
 - Adjust dynamically
@@ -619,17 +670,20 @@ Log:
 ### 4. Monitoring & Observability
 
 **Track metrics:**
+
 - Agent execution time
 - Success/failure rates
 - Resource utilization
 - Bottlenecks
 
 **Implement tracing:**
+
 - Trace requests across agents
 - Identify slow paths
 - Debug issues
 
 **Set up alerts:**
+
 - High failure rates
 - Slow execution
 - Resource exhaustion
@@ -637,16 +691,19 @@ Log:
 ### 5. Testing
 
 **Unit test agents:**
+
 - Test each agent individually
 - Mock dependencies
 - Verify behavior
 
 **Integration test workflows:**
+
 - Test agent coordination
 - Verify data flow
 - Check error handling
 
 **End-to-end test:**
+
 - Test complete workflows
 - Real-world scenarios
 - Performance testing
@@ -656,22 +713,27 @@ Log:
 ## Anti-Patterns
 
 ### 1. Over-Coordination
+
 **Problem:** Too many agents for simple task
 **Solution:** Use simpler pattern or single agent
 
 ### 2. Under-Coordination
+
 **Problem:** Agents working without coordination
 **Solution:** Add coordinator agent
 
 ### 3. Circular Dependencies
+
 **Problem:** Agent A waits for B, B waits for A
 **Solution:** Break cycle, use mediator
 
 ### 4. Single Point of Failure
+
 **Problem:** One agent failure breaks workflow
 **Solution:** Implement fallbacks and redundancy
 
 ### 5. Unbounded Iteration
+
 **Problem:** Iterative pattern never terminates
 **Solution:** Set max iterations and timeout
 

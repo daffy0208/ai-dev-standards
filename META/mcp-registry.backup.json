@@ -11,9 +11,7 @@
       "description": "MCP server for loading, optimizing, and managing 3D models and textures",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/3d-asset-manager-mcp",
       "status": "active",
       "phase": 5
@@ -24,9 +22,7 @@
       "description": "MCP server for automated WCAG compliance checking",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/accessibility-checker-mcp",
       "status": "active",
       "phase": 5
@@ -37,9 +33,7 @@
       "description": "MCP server for coordinating multi-agent workflows and communication",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/agent-orchestrator-mcp",
       "status": "active",
       "phase": 5
@@ -50,9 +44,7 @@
       "description": "MCP server for Framer Motion animation presets and configurations",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/animation-library-mcp",
       "status": "active",
       "phase": 5
@@ -63,9 +55,7 @@
       "description": "MCP server for validating API requests and responses against schemas",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/api-validator-mcp",
       "status": "active",
       "phase": 5
@@ -76,9 +66,7 @@
       "description": "MCP server for managing design assets and generating variants",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/asset-library-mcp",
       "status": "active",
       "phase": 5
@@ -89,9 +77,7 @@
       "description": "MCP server for optimizing images, generating color palettes, and managing assets",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/asset-optimizer-mcp",
       "status": "active",
       "phase": 5
@@ -102,9 +88,7 @@
       "description": "MCP server for audio optimization, format conversion, and processing",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/audio-processor-mcp",
       "status": "active",
       "phase": 5
@@ -115,9 +99,7 @@
       "description": "MCP server that exposes ai-dev-standards brain and capability graph to Claude Code",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/brain-mcp",
       "status": "active",
       "phase": 5
@@ -128,9 +110,7 @@
       "description": "MCP server for creating charts and data visualizations programmatically",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/chart-builder-mcp",
       "status": "active",
       "phase": 5
@@ -141,9 +121,7 @@
       "description": "MCP server for scanning code quality, complexity, and technical debt",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/code-quality-scanner-mcp",
       "status": "active",
       "phase": 5
@@ -154,9 +132,7 @@
       "description": "MCP server for intelligent React/Next.js component scaffolding",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/component-generator-mcp",
       "status": "active",
       "phase": 5
@@ -167,9 +143,7 @@
       "description": "MCP server for repository coherence analysis and organizational health insights",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/dark-matter-analyzer-mcp",
       "status": "active",
       "phase": 5
@@ -180,9 +154,7 @@
       "description": "MCP server for dark-mode-converter",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/dark-mode-converter-mcp",
       "status": "active",
       "phase": 5
@@ -193,9 +165,7 @@
       "description": "MCP server for generating and running database migrations with Prisma and Drizzle",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/database-migration-mcp",
       "status": "active",
       "phase": 5
@@ -206,9 +176,7 @@
       "description": "MCP server for orchestrating deployments to Vercel, Railway, AWS, and other platforms",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/deployment-orchestrator-mcp",
       "status": "active",
       "phase": 5
@@ -219,9 +187,7 @@
       "description": "MCP server for design-handoff",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/design-handoff-mcp",
       "status": "active",
       "phase": 5
@@ -232,9 +198,7 @@
       "description": "MCP server for managing design tokens and generating theme configurations",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/design-token-manager-mcp",
       "status": "active",
       "phase": 5
@@ -245,9 +209,7 @@
       "description": "MCP server for generating documentation from code, diagrams, and changelogs",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/doc-generator-mcp",
       "status": "active",
       "phase": 5
@@ -258,9 +220,7 @@
       "description": "MCP server for generating embeddings with OpenAI and Cohere",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/embedding-generator-mcp",
       "status": "active",
       "phase": 5
@@ -271,9 +231,7 @@
       "description": "MCP server for feature prioritization using P0/P1/P2 framework",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/feature-prioritizer-mcp",
       "status": "active",
       "phase": 5
@@ -284,9 +242,7 @@
       "description": "MCP server for figma-sync",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/figma-sync-mcp",
       "status": "active",
       "phase": 5
@@ -297,9 +253,7 @@
       "description": "MCP server for font-optimizer",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/font-optimizer-mcp",
       "status": "active",
       "phase": 5
@@ -310,9 +264,7 @@
       "description": "MCP server for Neo4j operations, Cypher queries, and graph visualization",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/graph-database-mcp",
       "status": "active",
       "phase": 5
@@ -323,9 +275,7 @@
       "description": "MCP server for managing translations, extracting strings, and locale files",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/i18n-manager-mcp",
       "status": "active",
       "phase": 5
@@ -336,9 +286,7 @@
       "description": "MCP server for icon-library",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/icon-library-mcp",
       "status": "active",
       "phase": 5
@@ -349,9 +297,7 @@
       "description": "MCP server for illustration-generator",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/illustration-generator-mcp",
       "status": "active",
       "phase": 5
@@ -362,9 +308,7 @@
       "description": "MCP server for image-generator",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/image-generator-mcp",
       "status": "active",
       "phase": 5
@@ -375,9 +319,7 @@
       "description": "MCP server for IoT device management, MQTT operations, and firmware updates",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/iot-device-manager-mcp",
       "status": "active",
       "phase": 5
@@ -388,9 +330,7 @@
       "description": "MCP server for knowledge base management - CRUD operations, versioning, validation, and curation",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/knowledge-base-mcp",
       "status": "active",
       "phase": 5
@@ -401,9 +341,7 @@
       "description": "MCP server for market analysis, sizing, and competitor tracking",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/market-analyzer-mcp",
       "status": "active",
       "phase": 5
@@ -414,9 +352,7 @@
       "description": "MCP server for generating React Native and Expo mobile projects",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/mobile-builder-mcp",
       "status": "active",
       "phase": 5
@@ -427,9 +363,7 @@
       "description": "MCP server for generating OpenAPI/Swagger specifications from code",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/openapi-generator-mcp",
       "status": "active",
       "phase": 5
@@ -440,9 +374,7 @@
       "description": "MCP server for profiling application performance and identifying bottlenecks",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/performance-profiler-mcp",
       "status": "active",
       "phase": 5
@@ -453,9 +385,7 @@
       "description": "MCP server for documenting React component props",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/props-documenter-mcp",
       "status": "active",
       "phase": 5
@@ -466,9 +396,7 @@
       "description": "MCP server for responsive design preview and testing",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/responsive-preview-mcp",
       "status": "active",
       "phase": 5
@@ -479,9 +407,7 @@
       "description": "MCP server for visual regression testing",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/screenshot-testing-mcp",
       "status": "active",
       "phase": 5
@@ -492,9 +418,7 @@
       "description": "MCP server for scanning security vulnerabilities, dependencies, and secrets",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/security-scanner-mcp",
       "status": "active",
       "phase": 5
@@ -505,9 +429,7 @@
       "description": "MCP server for semantic search with query embedding, similarity search, and re-ranking",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/semantic-search-mcp",
       "status": "active",
       "phase": 5
@@ -518,9 +440,7 @@
       "description": "MCP server for SEO analysis, readability scoring, and keyword analysis",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/seo-analyzer-mcp",
       "status": "active",
       "phase": 5
@@ -531,9 +451,7 @@
       "description": "MCP server for generating Storybook stories from React components",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/storybook-generator-mcp",
       "status": "active",
       "phase": 5
@@ -544,9 +462,7 @@
       "description": "MCP server for WebRTC configuration and live streaming setup",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/streaming-setup-mcp",
       "status": "active",
       "phase": 5
@@ -557,9 +473,7 @@
       "description": "MCP server for svg-generator",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/svg-generator-mcp",
       "status": "active",
       "phase": 5
@@ -570,9 +484,7 @@
       "description": "MCP server for running tests, parsing results, and generating coverage reports",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/test-runner-mcp",
       "status": "active",
       "phase": 5
@@ -583,9 +495,7 @@
       "description": "MCP server for theme-builder",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/theme-builder-mcp",
       "status": "active",
       "phase": 5
@@ -596,9 +506,7 @@
       "description": "MCP server for typography analysis and type scale generation",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/typography-analyzer-mcp",
       "status": "active",
       "phase": 5
@@ -609,9 +517,7 @@
       "description": "MCP server for analyzing user feedback and extracting patterns, pain points, and insights",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/user-insight-analyzer-mcp",
       "status": "active",
       "phase": 5
@@ -622,9 +528,7 @@
       "description": "MCP server for vector database operations (Pinecone, Weaviate, Chroma)",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/vector-database-mcp",
       "status": "active",
       "phase": 5
@@ -635,9 +539,7 @@
       "description": "MCP server for video compression, format conversion, and streaming setup",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/video-optimizer-mcp",
       "status": "active",
       "phase": 5
@@ -648,9 +550,7 @@
       "description": "MCP server for generating wireframes and user flow diagrams",
       "category": "general",
       "supports_skills": [],
-      "features": [
-        "tools"
-      ],
+      "features": ["tools"],
       "path": "/MCP-SERVERS/wireframe-generator-mcp",
       "status": "active",
       "phase": 5

@@ -3,6 +3,7 @@
 ## ✅ Completed
 
 ### 1. Registry Files (All Updated)
+
 - ✅ `META/tool-registry.json` - Created with 9 tools + 4 scripts
 - ✅ `META/relationship-mapping.json` - v2.0.0 with new structure
 - ✅ `META/component-registry.json` - Enhanced with cross-refs
@@ -10,14 +11,17 @@
 - ✅ `scripts/regenerate-relationships.ts` - Automation script
 
 ### 2. CLI Utils
+
 - ✅ `CLI/utils/github-fetch.js` - Now fetches all 5 registries + relationships
 
 ## 🔄 In Progress
 
 ### 3. CLI Commands
+
 **File:** `CLI/commands/sync.js`
 
 **Current Issues:**
+
 - Line 195-208: Only checks skills
 - Line 210-224: Only checks MCPs
 - Line 226-240: Checks tools but structure changed
@@ -25,13 +29,14 @@
 - Missing: Integration checking
 
 **Needed Changes:**
+
 ```javascript
 // Add to checkForUpdates():
 
 // Check components
 if (config.tracking.includes('components')) {
-  const newComponents = latest.components.filter(comp =>
-    !config.installed.components.includes(comp.id)
+  const newComponents = latest.components.filter(
+    comp => !config.installed.components.includes(comp.id)
   )
   for (const comp of newComponents) {
     updates.push({
@@ -45,8 +50,8 @@ if (config.tracking.includes('components')) {
 
 // Check integrations
 if (config.tracking.includes('integrations')) {
-  const newIntegrations = latest.integrations.filter(int =>
-    !config.installed.integrations.includes(int.id)
+  const newIntegrations = latest.integrations.filter(
+    int => !config.installed.integrations.includes(int.id)
   )
   for (const integration of newIntegrations) {
     updates.push({
@@ -60,17 +65,16 @@ if (config.tracking.includes('integrations')) {
 
 // Update tool checking to use new structure:
 if (config.tracking.includes('tools')) {
-  const newTools = latest.tools.filter(tool =>
-    !config.installed.tools.includes(tool.id)  // Changed from tool.name to tool.id
+  const newTools = latest.tools.filter(
+    tool => !config.installed.tools.includes(tool.id) // Changed from tool.name to tool.id
   )
   // Also check scripts
-  const newScripts = latest.scripts.filter(script =>
-    !config.installed.scripts.includes(script.id)
-  )
+  const newScripts = latest.scripts.filter(script => !config.installed.scripts.includes(script.id))
 }
 ```
 
 **Add to applyUpdate() switch:**
+
 ```javascript
 case 'component':
   await addComponentToProject(projectPath, update.data)
@@ -89,6 +93,7 @@ case 'script':
 ```
 
 **Add new functions:**
+
 ```javascript
 async function addComponentToProject(projectPath, component) {
   // Copy component to components directory
@@ -131,6 +136,7 @@ async function addScriptToProject(projectPath, script) {
 ```
 
 **Update initializeSync() tracking choices:**
+
 ```javascript
 choices: [
   { name: 'Skills (claude.md)', value: 'skills', checked: true },
@@ -145,6 +151,7 @@ choices: [
 ```
 
 **Update config.installed initialization:**
+
 ```javascript
 installed: {
   skills: [],
@@ -163,16 +170,19 @@ installed: {
 **`.claude/claude.md`** - Needs all 37 skills listed
 
 Current format needed:
+
 ```markdown
 # Claude Configuration
 
 ## Skills
 
 ### 3d-visualizer
+
 Expert in Three.js, 3D graphics, and interactive 3D visualizations
 **Location:** `/SKILLS/3d-visualizer/SKILL.md`
 
 ### accessibility-engineer
+
 Implement accessibility (a11y) best practices...
 **Location:** `/SKILLS/accessibility-engineer/SKILL.md`
 
@@ -182,10 +192,12 @@ Implement accessibility (a11y) best practices...
 **`.cursorrules`** - Update registry references
 
 Add section:
+
 ```markdown
 ## Available Resources
 
 This project has access to:
+
 - **37 Skills** - Specialized development methodologies
 - **34 MCPs** - Executable Model Context Protocol servers
 - **9 Tools** - LangChain, CrewAI, and custom tools
@@ -194,6 +206,7 @@ This project has access to:
 - **4 Scripts** - db-backup, db-migrate, test-runner, deploy
 
 See registries in `/META/`:
+
 - `skill-registry.json` - All available skills
 - `mcp-registry.json` - All MCP servers
 - `tool-registry.json` - All tools and scripts
@@ -205,6 +218,7 @@ See registries in `/META/`:
 **`TEMPLATES/cursorrules-*.md`** - Update all templates
 
 Same registry references as above should be added to:
+
 - `cursorrules-ai-rag.md`
 - `cursorrules-existing-project.md`
 - `cursorrules-minimal.md`
@@ -214,11 +228,13 @@ Same registry references as above should be added to:
 **`README.md`** - Update statistics (lines 9-26)
 
 Current shows:
+
 ```
 **Version 1.2.0** | **Last Updated:** 2025-10-23
 ```
 
 Update to:
+
 ```
 **Version 1.3.0** | **Last Updated:** 2025-10-24
 
@@ -231,11 +247,13 @@ Update to:
 ```
 
 Line 24 currently:
+
 ```
 **MCP Development Status:** 7/37 tools built (19%) — [See roadmap](BUILD_FOCUS.md)
 ```
 
 Update to:
+
 ```
 **Resource Status:** 34 MCPs, 9 Tools, 13 Components, 6 Integrations - [See registries](META/)
 ```
@@ -245,6 +263,7 @@ Update to:
 **`INSTALLERS/bootstrap/`** directory
 
 The bootstrap installer needs to:
+
 1. Fetch all 5 registries
 2. Install from tool-registry
 3. Install from component-registry
@@ -254,6 +273,7 @@ The bootstrap installer needs to:
 ### 6. Testing
 
 Before committing, test:
+
 ```bash
 # Test CLI
 cd CLI
@@ -269,6 +289,7 @@ ai-dev sync --yes
 ## 📊 Updated Statistics
 
 **New Totals:**
+
 - Skills: 37
 - MCPs: 34
 - Tools: 9
@@ -278,6 +299,7 @@ ai-dev sync --yes
 - **Total Resources: 103**
 
 **Coverage:**
+
 - Skills with MCP support: 31/37 (84%)
 - Skills with at least one resource: 37/37 (100%)
 - MCPs with dependencies mapped: 34/34 (100%)
@@ -286,6 +308,7 @@ ai-dev sync --yes
 - Integrations with cross-refs: 6/6 (100%)
 
 **Relationship Mapping v2.0:**
+
 - Per-skill mappings: All 37 skills
 - Per-MCP mappings: All 34 MCPs
 - Most used tool: filesystem-tool (20 usages)
@@ -307,6 +330,7 @@ ai-dev sync --yes
 ## 🔧 Manual Updates Needed
 
 Some files are too complex to auto-generate and need manual review:
+
 - CLI command handlers (sync, add, generate)
 - Bootstrap installer logic
 - Template content (cursorrules templates)

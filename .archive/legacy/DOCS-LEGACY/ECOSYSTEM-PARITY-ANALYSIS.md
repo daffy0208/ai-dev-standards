@@ -11,6 +11,7 @@
 > "I want to know what else still needs parity with skills and that the relationships between each other is understood across the board."
 
 **Translation:** Do all project components:
+
 1. Have similar levels of completeness/structure? (PARITY)
 2. Reference and understand each other? (RELATIONSHIPS)
 3. Work together as a cohesive system? (INTEGRATION)
@@ -21,29 +22,30 @@
 
 ### Components in Project
 
-| Folder | Purpose | Registry Tracked | Items Count | Parity Level |
-|--------|---------|------------------|-------------|--------------|
-| **SKILLS** | Methodologies (HOW to do things) | ✅ Yes | 36 | 🟢 EXCELLENT |
-| **MCP-SERVERS** | Tools (DO things) | ✅ Yes (as mcpServers) | 3 | 🔴 CRITICAL GAP |
-| **STANDARDS** | Architecture patterns | ✅ Yes | 4 | 🟡 PARTIAL |
-| **PLAYBOOKS** | Step-by-step procedures | ✅ Yes | 7 (reg: 4) | 🟡 PARTIAL |
-| **TOOLS** | Development tools | ✅ Yes | 5+ (reg: 4) | 🟡 PARTIAL |
-| **COMPONENTS** | Reusable code | ✅ Yes | 9 (reg: 5) | 🟡 PARTIAL |
-| **INTEGRATIONS** | Third-party services | ✅ Yes | 4 (reg: 4) | 🟢 GOOD |
-| **UTILS** | Utility functions | ✅ Yes | 5 (reg: 2) | 🔴 POOR |
-| **TEMPLATES** | Project starters | ✅ Yes | 10+ (reg: 2) | 🔴 POOR |
-| **EXAMPLES** | Sample code | ✅ Yes | 2+ (reg: 2) | 🟡 PARTIAL |
-| **SCHEMAS** | Data schemas | ❌ NO | 2 | 🔴 NOT TRACKED |
-| **INSTALLERS** | Installation scripts | ❌ NO | 3 | 🔴 NOT TRACKED |
-| **scripts** | Build scripts | ❌ NO | 1 | 🔴 NOT TRACKED |
-| **tests** | Test files | ❌ NO | 4 | 🔴 NOT TRACKED |
-| **CLI** | Command-line tool | ❌ NO | Multiple | 🟢 GOOD |
-| **META** | Metadata & registry | N/A | 4 files | 🟢 GOOD |
-| **DOCS** | Documentation | ❌ NO | 28+ | 🟢 GOOD |
-| **.github** | CI/CD workflows | ❌ NO | Multiple | 🟢 GOOD |
-| **.claude** | Claude configuration | ❌ NO | - | ⚪ N/A |
+| Folder           | Purpose                          | Registry Tracked       | Items Count  | Parity Level    |
+| ---------------- | -------------------------------- | ---------------------- | ------------ | --------------- |
+| **SKILLS**       | Methodologies (HOW to do things) | ✅ Yes                 | 36           | 🟢 EXCELLENT    |
+| **MCP-SERVERS**  | Tools (DO things)                | ✅ Yes (as mcpServers) | 3            | 🔴 CRITICAL GAP |
+| **STANDARDS**    | Architecture patterns            | ✅ Yes                 | 4            | 🟡 PARTIAL      |
+| **PLAYBOOKS**    | Step-by-step procedures          | ✅ Yes                 | 7 (reg: 4)   | 🟡 PARTIAL      |
+| **TOOLS**        | Development tools                | ✅ Yes                 | 5+ (reg: 4)  | 🟡 PARTIAL      |
+| **COMPONENTS**   | Reusable code                    | ✅ Yes                 | 9 (reg: 5)   | 🟡 PARTIAL      |
+| **INTEGRATIONS** | Third-party services             | ✅ Yes                 | 4 (reg: 4)   | 🟢 GOOD         |
+| **UTILS**        | Utility functions                | ✅ Yes                 | 5 (reg: 2)   | 🔴 POOR         |
+| **TEMPLATES**    | Project starters                 | ✅ Yes                 | 10+ (reg: 2) | 🔴 POOR         |
+| **EXAMPLES**     | Sample code                      | ✅ Yes                 | 2+ (reg: 2)  | 🟡 PARTIAL      |
+| **SCHEMAS**      | Data schemas                     | ❌ NO                  | 2            | 🔴 NOT TRACKED  |
+| **INSTALLERS**   | Installation scripts             | ❌ NO                  | 3            | 🔴 NOT TRACKED  |
+| **scripts**      | Build scripts                    | ❌ NO                  | 1            | 🔴 NOT TRACKED  |
+| **tests**        | Test files                       | ❌ NO                  | 4            | 🔴 NOT TRACKED  |
+| **CLI**          | Command-line tool                | ❌ NO                  | Multiple     | 🟢 GOOD         |
+| **META**         | Metadata & registry              | N/A                    | 4 files      | 🟢 GOOD         |
+| **DOCS**         | Documentation                    | ❌ NO                  | 28+          | 🟢 GOOD         |
+| **.github**      | CI/CD workflows                  | ❌ NO                  | Multiple     | 🟢 GOOD         |
+| **.claude**      | Claude configuration             | ❌ NO                  | -            | ⚪ N/A          |
 
 **Summary:**
+
 - **19 component types** in the project
 - **10 tracked** in META/registry.json
 - **9 NOT tracked** (47%)
@@ -57,22 +59,23 @@
 
 **Problem:** Registry doesn't track everything
 
-| Category | Directory Count | Registry Count | Missing |
-|----------|----------------|----------------|---------|
-| SKILLS | 36 | 36 | ✅ 0 |
-| MCP-SERVERS | 3 | 3 | ✅ 0 |
-| PLAYBOOKS | 7 | 4 | ❌ 3 |
-| TOOLS | 5+ | 4 | ❌ 1+ |
-| COMPONENTS | 9 | 5 | ❌ 4 |
-| UTILS | 5 | 2 | ❌ 3 |
-| TEMPLATES | 10+ | 2 | ❌ 8+ |
-| STANDARDS | 4 | 4 | ✅ 0 |
-| **SCHEMAS** | 2 | **0** | ❌ **2 (NOT IN REGISTRY)** |
-| **INSTALLERS** | 3 | **0** | ❌ **3 (NOT IN REGISTRY)** |
-| **scripts** | 1 | **0** | ❌ **1 (NOT IN REGISTRY)** |
-| **tests** | 4 | **0** | ❌ **4 (NOT IN REGISTRY)** |
+| Category       | Directory Count | Registry Count | Missing                    |
+| -------------- | --------------- | -------------- | -------------------------- |
+| SKILLS         | 36              | 36             | ✅ 0                       |
+| MCP-SERVERS    | 3               | 3              | ✅ 0                       |
+| PLAYBOOKS      | 7               | 4              | ❌ 3                       |
+| TOOLS          | 5+              | 4              | ❌ 1+                      |
+| COMPONENTS     | 9               | 5              | ❌ 4                       |
+| UTILS          | 5               | 2              | ❌ 3                       |
+| TEMPLATES      | 10+             | 2              | ❌ 8+                      |
+| STANDARDS      | 4               | 4              | ✅ 0                       |
+| **SCHEMAS**    | 2               | **0**          | ❌ **2 (NOT IN REGISTRY)** |
+| **INSTALLERS** | 3               | **0**          | ❌ **3 (NOT IN REGISTRY)** |
+| **scripts**    | 1               | **0**          | ❌ **1 (NOT IN REGISTRY)** |
+| **tests**      | 4               | **0**          | ❌ **4 (NOT IN REGISTRY)** |
 
 **Impact:**
+
 - Auto-update doesn't know about missing items
 - CLI can't discover them
 - Validation tests don't check them
@@ -87,6 +90,7 @@
 #### Example: rag-implementer Skill
 
 **Current State:**
+
 ```
 Skill: rag-implementer (tells HOW to build RAG)
 Needs:
@@ -166,10 +170,12 @@ tests → validate → META/registry.json
 **Problem:** SCHEMAS exist but aren't validated against
 
 **Current Schemas:**
+
 1. `ai-dev.config.schema.yaml` - Configuration schema
 2. `component.schema.yaml` - Component schema
 
 **Missing:**
+
 - Registry entries don't validate against schemas
 - Skills don't validate against schemas
 - MCPs don't validate against schemas
@@ -183,11 +189,13 @@ tests → validate → META/registry.json
 **Problem:** INSTALLERS exist but not in registry
 
 **Current Installers:**
+
 1. `bootstrap` - Bootstrap entire project
 2. `create-rag-system` - Create RAG system
 3. `create-saas` - Create SaaS project
 
 **Missing:**
+
 - Not tracked in registry
 - Can't be discovered by CLI
 - No relationship mapping (what do they install?)
@@ -200,6 +208,7 @@ tests → validate → META/registry.json
 **Problem:** READMEs don't reference related components
 
 **Example: COMPONENTS/README.md**
+
 - Mentions MCP servers but doesn't link to MCP-SERVERS/
 - Mentions workflows but doesn't link to PLAYBOOKS/
 - Doesn't mention SKILLS that use these components
@@ -267,6 +276,7 @@ tests → validate → META/registry.json
 ### 🟢 EXCELLENT Parity (Skills-level)
 
 **SKILLS (36 items)**
+
 - ✅ All registered in META/registry.json
 - ✅ Consistent structure (SKILL.md, README.md, TROUBLESHOOTING.md)
 - ✅ Comprehensive documentation
@@ -277,6 +287,7 @@ tests → validate → META/registry.json
 - ❌ **Missing:** Links to required MCPs, COMPONENTS, INTEGRATIONS
 
 **What others should match:**
+
 - Every item tracked in registry
 - Consistent file structure
 - Comprehensive docs
@@ -288,6 +299,7 @@ tests → validate → META/registry.json
 ### 🟡 PARTIAL Parity (Some structure, incomplete tracking)
 
 **COMPONENTS (9 items, 5 registered)**
+
 - ✅ Has README.md
 - ✅ Organized by category
 - ⚠️ Only 5 of 9 registered
@@ -297,6 +309,7 @@ tests → validate → META/registry.json
 - ❌ No links to dependent INTEGRATIONS, UTILS, SCHEMAS
 
 **PLAYBOOKS (7 items, 4 registered)**
+
 - ✅ All have markdown files
 - ✅ Consistent format
 - ⚠️ Only 4 of 7 registered
@@ -305,6 +318,7 @@ tests → validate → META/registry.json
 - ❌ No links to CLI commands
 
 **TOOLS (5+ items, 4 registered)**
+
 - ✅ Has tool-registry.json
 - ✅ Organized by category
 - ⚠️ Registry tracking incomplete
@@ -313,6 +327,7 @@ tests → validate → META/registry.json
 - ❌ No links to MCP-SERVERS that use them
 
 **TEMPLATES (10+ items, 2 registered)**
+
 - ✅ Has cursorrules templates
 - ✅ Has config files
 - ⚠️ Only 2 of 10+ registered
@@ -321,6 +336,7 @@ tests → validate → META/registry.json
 - ❌ No metadata (what skills does this template enable?)
 
 **STANDARDS (4 items, 4 registered)**
+
 - ✅ All registered
 - ✅ Organized by category
 - ⚠️ No version tracking
@@ -328,6 +344,7 @@ tests → validate → META/registry.json
 - ❌ No links to COMPONENTS that implement them
 
 **UTILS (5 items, 2 registered)**
+
 - ✅ Has README.md
 - ✅ Organized by category
 - ⚠️ Only 2 of 5 registered
@@ -339,6 +356,7 @@ tests → validate → META/registry.json
 ### 🔴 POOR/MISSING Parity (Not tracked or minimal structure)
 
 **SCHEMAS (2 items, 0 registered)**
+
 - ✅ Has schema files
 - ❌ NOT in META/registry.json
 - ❌ No README.md
@@ -347,6 +365,7 @@ tests → validate → META/registry.json
 - ❌ No automated validation that resources comply with schemas
 
 **INSTALLERS (3 items, 0 registered)**
+
 - ✅ Has installer scripts
 - ❌ NOT in META/registry.json
 - ❌ No README.md explaining each
@@ -355,6 +374,7 @@ tests → validate → META/registry.json
 - ❌ No links to SKILLS, COMPONENTS, TEMPLATES they set up
 
 **scripts (1 item, 0 registered)**
+
 - ✅ Has update-registry.js
 - ❌ NOT in META/registry.json
 - ❌ No README.md
@@ -362,6 +382,7 @@ tests → validate → META/registry.json
 - ❌ No documentation
 
 **tests (4 items, 0 registered)**
+
 - ✅ Has test files
 - ❌ NOT in META/registry.json (tests shouldn't be? Or should they?)
 - ⚠️ Only 1 test (registry-validation.test.ts)
@@ -378,6 +399,7 @@ tests → validate → META/registry.json
 **Add to META/registry.json:**
 
 1. **schemas** (NEW category)
+
    ```json
    "schemas": [
      {
@@ -396,6 +418,7 @@ tests → validate → META/registry.json
    ```
 
 2. **installers** (NEW category)
+
    ```json
    "installers": [
      {
@@ -409,6 +432,7 @@ tests → validate → META/registry.json
    ```
 
 3. **scripts** (NEW category)
+
    ```json
    "scripts": [
      {
@@ -502,22 +526,27 @@ describe('Schema Validation', () => {
 ## Related Resources
 
 ### Skills That Use Components
+
 - **rag-implementer** → Uses `rag-pipelines/`
 - **frontend-builder** → Uses `ui-components/`
 - **multi-agent-architect** → Uses `agents/`
 
 ### Required Integrations
+
 - `rag-pipelines/` requires → INTEGRATIONS/vector-databases/, INTEGRATIONS/llm-providers/
 - `ui-components/` requires → INTEGRATIONS/platforms/vercel
 
 ### Required Utils
+
 - All components use → UTILS/validation/
 - Many components use → UTILS/api/
 
 ### Schemas
+
 - Components must follow → SCHEMAS/component.schema.yaml
 
 ### See Also
+
 - [SKILLS/](../SKILLS/) - Methodologies using components
 - [INTEGRATIONS/](../INTEGRATIONS/) - External services
 - [TEMPLATES/](../TEMPLATES/) - Project starters with components
@@ -532,14 +561,16 @@ describe('Schema Validation', () => {
 1. Add to registry (see Priority 1)
 2. Create `INSTALLERS/README.md`:
 
-```markdown
+````markdown
 # Project Installers
 
 ## Available Installers
 
 ### 1. bootstrap
+
 **Purpose:** Set up complete ai-dev-standards project
 **Installs:**
+
 - All 36 skills
 - All 3 MCPs
 - Selected components
@@ -547,13 +578,17 @@ describe('Schema Validation', () => {
 - Project templates
 
 **Usage:**
+
 ```bash
 npx @ai-dev-standards/bootstrap
 ```
+````
 
 ### 2. create-rag-system
+
 **Purpose:** Set up RAG system from scratch
 **Installs:**
+
 - rag-implementer skill
 - vector-database-mcp (when available)
 - embedding-generator-mcp (when available)
@@ -562,13 +597,16 @@ npx @ai-dev-standards/bootstrap
 - RAG template
 
 **Usage:**
+
 ```bash
 npx @ai-dev-standards/create-rag-system
 ```
 
 ### 3. create-saas
+
 **Purpose:** Set up SaaS project
 **Installs:**
+
 - mvp-builder skill
 - product-strategist skill
 - frontend-builder skill
@@ -578,9 +616,11 @@ npx @ai-dev-standards/create-rag-system
 - Common integrations (auth, payments, email)
 
 **Usage:**
+
 ```bash
 npx @ai-dev-standards/create-saas
 ```
+
 ```
 
 3. Link installers to skills in registry
@@ -807,3 +847,4 @@ Need:
 **Next Steps:** Execute Phase 1 (Complete the Registry)
 
 **Last Updated:** 2025-10-22
+```

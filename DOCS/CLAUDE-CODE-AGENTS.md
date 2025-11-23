@@ -28,17 +28,20 @@ Claude Code has a **powerful built-in subagent system** via the **Task tool**. T
 ## Claude Code's Built-in Agent Types
 
 ### 1. general-purpose
+
 **Best for:** Complex multi-step tasks, code searching, research
 
 **Tools Available:** All tools (Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch, etc.)
 
 **Use when:**
+
 - Multi-step implementation tasks
 - Searching for code patterns across files
 - Research requiring web access
 - Tasks requiring file reads + web searches
 
 **Example from Phase 3:**
+
 ```
 We used this 8 times to create 75 design resources in parallel:
 - Image Management Suite (16 files, 6,290 lines)
@@ -54,27 +57,32 @@ Total: 108 files, ~28,000+ lines of code created in parallel
 ```
 
 ### 2. Explore
+
 **Best for:** Fast codebase exploration, pattern discovery
 
 **Tools Available:** Glob, Grep, Read, Bash (limited)
 
 **Thoroughness Levels:**
+
 - `quick` - Basic searches
 - `medium` - Moderate exploration
 - `very thorough` - Comprehensive analysis
 
 **Use when:**
+
 - Finding files by patterns
 - Searching code for keywords
 - Answering "how does X work?" questions
 - Quick codebase orientation
 
 ### 3. statusline-setup
+
 **Best for:** Configuring Claude Code status line
 
 **Tools Available:** Read, Edit
 
 ### 4. output-style-setup
+
 **Best for:** Creating Claude Code output styles
 
 **Tools Available:** Read, Write, Edit, Glob, Grep
@@ -110,19 +118,23 @@ In Phase 3, we launched 8 agents simultaneously to create 108 files. Each agent 
 ## Custom Agents vs Claude Code Agents
 
 ### Custom Agents (COMPONENTS/agents)
+
 **What they are:**
+
 - LLM-based agents you build
 - Located in `COMPONENTS/agents/`
 - Currently: 1 agent (simple-task-agent.ts)
 - Planned: 4 more (rag-agent, research-agent, code-review-agent, multi-agent-coordinator)
 
 **When to use:**
+
 - Building multi-agent systems
 - Need persistent agent instances
 - Implementing specific workflows
 - Using with `multi-agent-architect` skill
 
 **Example:**
+
 ```typescript
 import { SimpleTaskAgent } from 'COMPONENTS/agents/simple-task-agent'
 
@@ -139,13 +151,16 @@ const result = await agent.execute({
 ```
 
 ### Claude Code Native Agents (Task tool)
+
 **What they are:**
+
 - Built into Claude Code
 - No installation required
 - Specialized for development tasks
 - Run in isolated contexts
 
 **When to use:**
+
 - Within Claude Code conversations
 - Parallel task execution
 - Code exploration and search
@@ -158,16 +173,19 @@ const result = await agent.execute({
 Many skills explicitly recommend using Task tool for optimal performance:
 
 ### Exploration & Research
+
 - `dark-matter-analyzer` - Use Explore agent for repository analysis
 - `user-researcher` - Use general-purpose for data collection
 - `knowledge-graph-builder` - Use Explore to find entity relationships
 
 ### Multi-Step Implementation
+
 - `mvp-builder` - Use general-purpose for parallel feature creation
 - `frontend-builder` - Use for component generation
 - `design-system-architect` - Use for token extraction and component creation
 
 ### Code Quality & Analysis
+
 - `performance-optimizer` - Use Explore to find bottlenecks
 - `security-engineer` - Use Explore for vulnerability scanning
 - `quality-auditor` - Use general-purpose for comprehensive audits
@@ -179,18 +197,21 @@ Many skills explicitly recommend using Task tool for optimal performance:
 The `multi-agent-architect` skill helps you **design** multi-agent systems, while Task tool helps you **use** agents within Claude Code.
 
 **multi-agent-architect** covers:
+
 - Agent coordination patterns
 - Communication strategies
 - Task delegation
 - Orchestration frameworks
 
 **Task tool** provides:
+
 - Immediate agent spawning
 - Parallel execution
 - Built-in specializations
 - No setup required
 
 **Use together:**
+
 1. Use `multi-agent-architect` skill to design your system
 2. Use Task tool to implement parts of it
 3. Build custom agents (COMPONENTS/agents) for persistent instances
@@ -210,6 +231,7 @@ The `multi-agent-architect` skill helps you **design** multi-agent systems, whil
 4. **THIS document covers the gap** - how Task tool relates to our resources
 
 **If anything needs a separate file**, it would be:
+
 - `WORKFLOWS/parallel-agent-pattern.md` - Best practices for Task tool
 - `EXAMPLES/task-tool-examples.md` - Real-world examples
 
@@ -218,6 +240,7 @@ The `multi-agent-architect` skill helps you **design** multi-agent systems, whil
 ## Registry Coverage
 
 **Current Status:**
+
 - ✅ Custom agents registered in `component-registry.json` (1 active, 4 planned)
 - ✅ `multi-agent-architect` skill documented
 - ✅ `agent-orchestrator-mcp` provides agent coordination
@@ -233,6 +256,7 @@ The `multi-agent-architect` skill helps you **design** multi-agent systems, whil
 **You asked:** "Are we missing a category of agents?"
 
 **Answer:** No! We have both:
+
 1. ✅ **Claude Code native agents** (Task tool) - Now documented here
 2. ✅ **Custom LLM agents** (COMPONENTS/agents) - Already in registry
 
@@ -251,4 +275,4 @@ The confusion was that **we used Task tool extensively** (8 agents in Phase 3) b
 
 ---
 
-*Last Updated: 2025-10-27*
+_Last Updated: 2025-10-27_

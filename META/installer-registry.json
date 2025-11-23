@@ -16,10 +16,7 @@
       "installation": "npx @ai-dev-standards/bootstrap",
       "features": [],
       "related_skills": [],
-      "tags": [
-        "bootstrap",
-        "installer"
-      ]
+      "tags": ["bootstrap", "installer"]
     },
     {
       "name": "create-rag-system",
@@ -34,10 +31,7 @@
       "installation": "npx @ai-dev-standards/create-rag-system",
       "features": [],
       "related_skills": [],
-      "tags": [
-        "create",
-        "installer"
-      ]
+      "tags": ["create", "installer"]
     },
     {
       "name": "create-saas",
@@ -52,10 +46,7 @@
       "installation": "npx @ai-dev-standards/create-saas",
       "features": [],
       "related_skills": [],
-      "tags": [
-        "create",
-        "installer"
-      ]
+      "tags": ["create", "installer"]
     }
   ],
   "categories": {
