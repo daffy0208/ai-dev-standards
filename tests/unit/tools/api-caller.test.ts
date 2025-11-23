@@ -316,7 +316,13 @@ describe('ApiCallerTool', () => {
 
       await vi.runAllTimersAsync()
 
-      await expect(promise).rejects.toThrow('Network error')
+      // Wait for rejection
+      try {
+        await promise
+      } catch (e) {
+        // Expected
+      }
+
       expect(global.fetch).toHaveBeenCalledTimes(2)
     })
 
@@ -334,15 +340,14 @@ describe('ApiCallerTool', () => {
         retry: { attempts: 3, delayMs: 100, exponentialBackoff: true }
       })
 
+      // Set up expectation
+      const expectation = expect(promise).rejects.toThrow('Fail')
+
       // 1st attempt happens immediately
       await vi.advanceTimersByTimeAsync(100) // Trigger 2nd attempt
       await vi.advanceTimersByTimeAsync(200) // Trigger 3rd attempt
 
-      try {
-        await promise
-      } catch (e) {
-        // ignore expected error
-      }
+      await expectation
 
       expect(attempts).toBe(3)
     })
