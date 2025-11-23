@@ -212,6 +212,49 @@ fi
 
 echo ""
 
+# Configure brain-mcp in .gemini/mcp-settings.json
+echo -e "${BLUE}🧠 Configuring brain-mcp for Gemini...${NC}"
+
+# Create .gemini directory if it doesn't exist
+mkdir -p .gemini
+
+# Check if gemini mcp-settings exists
+if [ -f ".gemini/mcp-settings.json" ]; then
+    if grep -q '"brain-mcp"' .gemini/mcp-settings.json; then
+        echo -e "${GREEN}✅ brain-mcp already configured for Gemini${NC}"
+    else
+        echo -e "${YELLOW}⚠️  Adding brain-mcp to Gemini mcp-settings.json${NC}"
+        cp .gemini/mcp-settings.json .gemini/mcp-settings.json.backup
+
+        if command -v jq &> /dev/null; then
+            jq --arg brain_path "$BRAIN_MCP_PATH" --arg root_path "$AI_DEV_STANDARDS_DIR" \
+               '.mcpServers["brain-mcp"] = {"command": "node", "args": [$brain_path], "env": {"AI_DEV_STANDARDS_ROOT": $root_path}}' \
+               .gemini/mcp-settings.json.backup > .gemini/mcp-settings.json
+            echo -e "${GREEN}✅ brain-mcp added to Gemini mcp-settings.json${NC}"
+        else
+            echo -e "${YELLOW}⚠️  jq not installed, skipping automatic Gemini configuration${NC}"
+            echo -e "${GRAY}  Please manually add brain-mcp to .gemini/mcp-settings.json${NC}"
+        fi
+    fi
+else
+    cat > .gemini/mcp-settings.json << EOF
+{
+  "mcpServers": {
+    "brain-mcp": {
+      "command": "node",
+      "args": ["$BRAIN_MCP_PATH"],
+      "env": {
+        "AI_DEV_STANDARDS_ROOT": "$AI_DEV_STANDARDS_DIR"
+      }
+    }
+  }
+}
+EOF
+    echo -e "${GREEN}✅ Created .gemini/mcp-settings.json with brain-mcp${NC}"
+fi
+
+echo ""
+
 # Build brain-mcp to ensure it's ready
 echo -e "${BLUE}🏗️  Building brain-mcp...${NC}"
 if [ -x "$AI_DEV_STANDARDS_DIR/scripts/configure-mcp-paths.sh" ]; then

@@ -155,6 +155,9 @@ async function main() {
       case 'analyze':
         await commandAnalyze(brain, args.slice(1).join(' '));
         break;
+      case 'route':
+        await commandRoute(brain, args.slice(1).join(' '));
+        break;
       case 'generate-manifest':
         await commandGenerateManifest(args.slice(1), rootPath);
         break;
@@ -662,6 +665,39 @@ async function commandAnalyze(brain: RepositoryBrain, task: string): Promise<voi
   console.log(`${colorize('Overall Confidence:', 'green')} ${analysis.summary.confidence}%`);
 }
 
+async function commandRoute(brain: RepositoryBrain, task: string): Promise<void> {
+  if (!task) {
+    printError('Please provide a task description');
+    process.exit(1);
+  }
+
+  printHeader(`Pattern Routing: "${task}"`);
+
+  const result = await brain.routeTask(task);
+
+  const patternColor = result.pattern_used === 'code-execution' ? 'green' : 'cyan';
+  console.log(colorize('Recommended Pattern:', 'bright'));
+  console.log(`  ${colorize(result.pattern_used.toUpperCase().replace('-', ' '), patternColor)}`);
+  
+  console.log(`\n${colorize('Confidence:', 'dim')} ${(result.decision.confidence * 100).toFixed(0)}%`);
+
+  console.log(`\n${colorize('Reasoning:', 'bright')}`);
+  result.decision.reasoning.forEach((r: string) => console.log(`  - ${r}`));
+
+  console.log(`\n${colorize('Factors:', 'bright')}`);
+  console.log(`  Complexity Score: ${result.decision.factors.complexity_score}/10`);
+  console.log(`  Estimated Tools: ${result.decision.factors.estimated_tools}`);
+  console.log(`  Data Size: ${result.decision.factors.data_size_kb} KB`);
+  
+  if (result.decision.estimated_token_savings) {
+    console.log(`\n${colorize('Estimated Benefits:', 'green')}`);
+    console.log(`  Token Savings: ~${result.decision.estimated_token_savings} tokens`);
+    if (result.decision.estimated_cost_per_run) {
+      console.log(`  Cost per run: $${result.decision.estimated_cost_per_run.toFixed(4)}`);
+    }
+  }
+}
+
 function printUsage() {
   console.log(`
 ${colorize('Repository Brain CLI', 'bright')}
@@ -695,6 +731,7 @@ ${colorize('Phase 2 - Advanced Intelligence:', 'magenta')}
   patterns <problem>          Match architecture patterns
   workflow <scenario>         Get detailed workflow with steps
   analyze <task>              Comprehensive analysis (all engines)
+  route <task>                Route task to optimal MCP pattern (Direct vs Code Exec)
 
 ${colorize('Phase 3 - Orchestration System:', 'magenta')}
   generate-manifest <path>    Generate capability manifest using Codex

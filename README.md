@@ -44,6 +44,7 @@ Think of this as a **shared brain** between you and Claude:
 
 - 100% of core registries are discoverable (skills, MCPs, components)
 - **55 of 64 skills (85.9%)** have MCP support
+- **92% skill-to-MCP coverage** (simulation report confirmed)
 - **119 skill-to-MCP relationships** (average ratio **1.9:1** between MCPs and skills)
 - Complete dependency mapping and relationship validation across the core system
 
@@ -86,7 +87,7 @@ The tool automatically:
 **Supported CLI Tools:**
 - ✅ **Claude Code** - Native integration (recommended)
 - ✅ **Codex CLI** - Run `./setup-codex-cli.sh`
-- 🚧 **Gemini CLI** - Planned (see roadmap)
+- ✅ **Gemini CLI** - Run `./setup-gemini-cli.sh`
 
 ---
 
