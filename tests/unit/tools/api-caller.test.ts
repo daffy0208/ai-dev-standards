@@ -310,6 +310,9 @@ describe('ApiCallerTool', () => {
         retry: { attempts: 2, delayMs: 1000 }
       })
 
+      // Attach a catch handler to avoid "Unhandled Rejection" warnings during timer execution
+      promise.catch(() => {})
+
       await vi.runAllTimersAsync()
 
       await expect(promise).rejects.toThrow('Network error')
@@ -330,13 +333,18 @@ describe('ApiCallerTool', () => {
         retry: { attempts: 3, delayMs: 100, exponentialBackoff: true }
       })
 
+      // Attach a catch handler to avoid "Unhandled Rejection" warnings during timer execution
+      promise.catch(() => {})
+
       // 1st attempt happens immediately
       await vi.advanceTimersByTimeAsync(100) // Trigger 2nd attempt
       await vi.advanceTimersByTimeAsync(200) // Trigger 3rd attempt
       
       try {
         await promise
-      } catch (e) {}
+      } catch (e) {
+        // Expected error
+      }
 
       expect(attempts).toBe(3)
     })

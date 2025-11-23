@@ -102,7 +102,7 @@ export function PasswordResetRequest({
           </div>
           <h2 className="text-2xl font-bold mb-2">Check Your Email</h2>
           <p className="text-gray-600 mb-6">
-            We've sent a password reset link to <strong>{email}</strong>
+            We&apos;ve sent a password reset link to <strong>{email}</strong>
           </p>
           <p className="text-sm text-gray-500 mb-6">
             Click the link in the email to reset your password. The link expires in 1 hour.
@@ -122,7 +122,7 @@ export function PasswordResetRequest({
     <div className="w-full max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-2 text-center">Reset Password</h2>
       <p className="text-gray-600 mb-6 text-center">
-        Enter your email and we'll send you a reset link
+        Enter your email and we&apos;ll send you a reset link
       </p>
 
       {error && (

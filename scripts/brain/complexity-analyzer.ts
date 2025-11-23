@@ -154,7 +154,7 @@ export class ComplexityAnalyzer {
         }
 
         // Check for words suggesting multiple data sources
-        if (/(multiple|several|various)\s+(sources?|systems?|platforms?)/i.test(text)) {
+        if (/(multiple|several|various)\s+(sources?|systems?|platforms?|tools?)/i.test(text)) {
             count = Math.max(count, 3);
         }
 
@@ -169,9 +169,9 @@ export class ComplexityAnalyzer {
         let stepCount = 0;
 
         // Look for explicit step markers
-        const stepMarkers = text.match(/\b(then|next|after|followed by|and then)\b/gi);
+        const stepMarkers = text.match(/\b(first|then|next|after|finally|lastly|followed by|and then)\b/gi);
         if (stepMarkers) {
-            stepCount = stepMarkers.length + 1; // +1 for initial step
+            stepCount = stepMarkers.length + (text.match(/\bfirst\b/i) ? 0 : 1); // +1 for initial step unless 'first' is present
         }
 
         // Look for numbered/bulleted lists
@@ -181,7 +181,7 @@ export class ComplexityAnalyzer {
         }
 
         // Look for action verbs (each suggests a step)
-        const actionVerbs = text.match(/\b(get|create|update|delete|send|analyze|transform|process|validate|check|generate|build)\b/gi);
+        const actionVerbs = text.match(/\b(get|fetch|create|make|update|delete|remove|send|post|analyze|transform|process|validate|check|verify|generate|build|save|store|copy|move|read|write|upload|download)\b/gi);
         if (actionVerbs && actionVerbs.length > stepCount) {
             stepCount = Math.min(actionVerbs.length, 10); // Cap at 10
         }
@@ -216,6 +216,10 @@ export class ComplexityAnalyzer {
 
         if (sizePatterns.some(p => p.test(text))) {
             complexity = 'moderate';
+            // Upgrade to complex for explicit large sizes
+            if (/\b\d+\s*(mb|gb|million)\b/i.test(text) || /\b(massive|extensive)\b/i.test(text)) {
+                complexity = 'complex';
+            }
             sizeMentioned = true;
         }
 
@@ -223,7 +227,7 @@ export class ComplexityAnalyzer {
         const transformPatterns = [
             /\b(transform|convert|parse|format|restructure|normalize)\b/i,
             /\b(extract|filter|aggregate|merge|join|combine)\b/i,
-            /\b(clean|sanitize|validate|process)\b/i,
+            /\b(clean|sanitize|validate|process|analyze|visualize|chart|graph)\b/i,
         ];
 
         if (transformPatterns.some(p => p.test(text))) {
@@ -238,6 +242,7 @@ export class ComplexityAnalyzer {
             /\b(pipeline|workflow|batch|bulk)\b/i,
             /\b(complex|sophisticated|advanced)\b.*\b(processing|analysis|transformation)\b/i,
             /\bmultiple\s+transformations?\b/i,
+            /\b(visualization|chart|graph)s?\b/i,
         ];
 
         if (complexPatterns.some(p => p.test(text))) {
@@ -299,12 +304,12 @@ export class ComplexityAnalyzer {
      * Calculate tools score (1-10)
      */
     private calculateToolsScore(toolCount: number): number {
-        // 1 tool = 2, 2 tools = 4, 3 tools = 5, 5+ tools = 8-10
+        // 1 tool = 2, 2 tools = 4, 3 tools = 6, 4 tools = 8, 5+ tools = 10
         if (toolCount === 1) return 2;
         if (toolCount === 2) return 4;
-        if (toolCount === 3) return 5;
-        if (toolCount === 4) return 6;
-        if (toolCount >= 5) return Math.min(7 + toolCount - 5, 10);
+        if (toolCount === 3) return 6;
+        if (toolCount === 4) return 8;
+        if (toolCount >= 5) return 10;
         return 1;
     }
 
@@ -312,12 +317,12 @@ export class ComplexityAnalyzer {
      * Calculate steps score (1-10)
      */
     private calculateStepsScore(stepCount: number): number {
-        // 1 step = 2, 2-3 steps = 4-5, 5+ steps = 7-10
+        // 1 step = 2, 2 steps = 4, 3 steps = 6, 4 steps = 8, 5+ = 10
         if (stepCount === 1) return 2;
         if (stepCount === 2) return 4;
-        if (stepCount === 3) return 5;
-        if (stepCount === 4) return 6;
-        return Math.min(6 + stepCount - 4, 10);
+        if (stepCount === 3) return 6;
+        if (stepCount === 4) return 8;
+        return Math.min(8 + stepCount - 4, 10);
     }
 
     /**

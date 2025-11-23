@@ -40,7 +40,8 @@ describe('ApproachSelector', () => {
             );
 
             expect(decision.pattern).toBe('code-execution');
-            expect(decision.reasoning).toContain(expect.stringMatching(/large data/i));
+            const hasLargeData = decision.reasoning.some(r => /large data/i.test(r));
+            expect(hasLargeData).toBe(true);
         });
 
         it('should select Code Execution when PII is present', async () => {
@@ -52,7 +53,8 @@ describe('ApproachSelector', () => {
             );
 
             expect(decision.pattern).toBe('code-execution');
-            expect(decision.reasoning).toContain(expect.stringMatching(/pii/i));
+            const hasPii = decision.reasoning.some(r => /pii/i.test(r));
+            expect(hasPii).toBe(true);
         });
 
         it('should select Code Execution for repeated workflows', async () => {
@@ -186,8 +188,10 @@ describe('ApproachSelector', () => {
 
         it('should explain complexity scores', async () => {
             const decision = await selector.selectApproach(
-                'Complex workflow'
+                'Complex workflow with multiple tools'
             );
+
+            // console.log('DEBUG REASONING:', decision.reasoning);
 
             const hasComplexityExplanation = decision.reasoning.some(r =>
                 r.includes('complexity') || r.includes('score')

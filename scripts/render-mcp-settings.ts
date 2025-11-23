@@ -98,7 +98,7 @@ function main(): void {
       AI_DEV_ROOT: aiDevRoot
     };
     
-    let renderedContent = renderTemplate(templateContent, vars);
+    const renderedContent = renderTemplate(templateContent, vars);
     const settings = JSON.parse(renderedContent);
 
     // Load MCP registry to auto-generate additional entries
