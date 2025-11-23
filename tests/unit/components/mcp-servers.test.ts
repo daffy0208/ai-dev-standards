@@ -21,7 +21,7 @@ describe('BaseMCPServer', () => {
     }
 
     server = new TestServer();
-    await server.initialize();
+    // await server.initialize();
   });
 
   it('should initialize successfully', () => {

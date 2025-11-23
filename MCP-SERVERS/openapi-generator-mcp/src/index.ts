@@ -602,7 +602,7 @@ class OpenAPIGeneratorServer {
         return true;
       case 'array':
         return schema.items ? [this.generateExampleValue(schema.items)] : [];
-      case 'object':
+      case 'object': {
         const obj: any = {};
         if (schema.properties) {
           for (const [key, prop] of Object.entries(schema.properties)) {
@@ -610,6 +610,7 @@ class OpenAPIGeneratorServer {
           }
         }
         return obj;
+      }
       default:
         return null;
     }

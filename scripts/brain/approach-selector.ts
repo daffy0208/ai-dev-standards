@@ -53,14 +53,14 @@ export interface ApproachConfig {
 }
 
 const DEFAULT_CONFIG: ApproachConfig = {
-    complexity_threshold: 7,
-    tools_threshold: 5,
+    complexity_threshold: 6,
+    tools_threshold: 2,
     data_size_threshold_kb: 10,
     complexity_weight: 0.4,
-    tools_weight: 0.25,
-    data_size_weight: 0.15,
-    pii_weight: 0.10,
-    frequency_weight: 0.10,
+    tools_weight: 0.3,
+    data_size_weight: 0.1,
+    pii_weight: 0.1,
+    frequency_weight: 0.1,
     force_direct_for_realtime: true,
     force_direct_for_single_tool: true,
 };
@@ -108,31 +108,38 @@ export class ApproachSelector {
         }
 
         if (this.config.force_direct_for_single_tool && factors.estimated_tools <= 1) {
-            return this.createDecision('direct', factors, 1.0, [
-                'Single tool operation is simple',
-                'Direct MCP has lower overhead for simple tasks',
-            ]);
+            // Only force direct if no complicating factors
+            if (!factors.has_pii && !factors.is_repeated && factors.data_size_kb <= this.config.data_size_threshold_kb) {
+                return this.createDecision('direct', factors, 1.0, [
+                    'Single tool operation is simple',
+                    'Direct MCP has lower overhead for simple tasks',
+                ]);
+            }
         }
 
         // Calculate weighted score
         const score = this.calculateScore(factors);
 
         // Make decision based on score
-        if (score >= 0.7) {
-            return this.createDecision('code-execution', factors, score, [
+        if (score >= 0.4) {
+            const reasoning = [
                 `High complexity score: ${factors.complexity_score}/10`,
                 `Multiple tools needed: ${factors.estimated_tools}`,
                 factors.has_pii ? 'PII present - benefits from security layers' : null,
                 factors.is_repeated ? 'Repeated execution - skills will optimize' : null,
                 factors.data_size_kb > 10 ? `Large data payload: ${factors.data_size_kb}KB` : null,
-            ].filter(Boolean) as string[]);
+            ].filter(Boolean) as string[];
+            console.log('DECISION REASONING (Code Exec):', reasoning);
+            return this.createDecision('code-execution', factors, score, reasoning);
         } else {
-            return this.createDecision('direct', factors, 1 - score, [
+            const reasoning = [
                 `Low to medium complexity: ${factors.complexity_score}/10`,
                 `Few tools needed: ${factors.estimated_tools}`,
                 'Direct MCP is simpler and more reliable',
                 factors.data_size_kb <= 10 ? 'Small data payload' : null,
-            ].filter(Boolean) as string[]);
+            ].filter(Boolean) as string[];
+            console.log('DECISION REASONING (Direct):', reasoning);
+            return this.createDecision('direct', factors, 1 - score, reasoning);
         }
     }
 
@@ -166,6 +173,11 @@ export class ApproachSelector {
         if (factors.workflow_type === 'complex') {
             score += 0.1; // Small boost for complex workflows
         }
+
+        // Boosts for critical factors
+        if (factors.has_pii) score += 0.25;
+        if (factors.is_repeated) score += 0.25;
+        if (factors.data_size_kb > this.config.data_size_threshold_kb) score += 0.25;
 
         return Math.min(score, 1.0);
     }

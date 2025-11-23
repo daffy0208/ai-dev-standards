@@ -36,7 +36,7 @@ export interface NotFoundProps {
 
 export function NotFound({
   title = "Page Not Found",
-  message = "Sorry, we couldn't find the page you're looking for.",
+  message = "Sorry, we couldn&apos;t find the page you&apos;re looking for.",
   showSearch = true,
   showPopularPages = true,
   popularPages = [
@@ -202,7 +202,7 @@ export function NotFoundWithIllustration() {
         <div className="order-1 md:order-2 text-center md:text-left">
           <h1 className="text-5xl font-bold text-gray-900 mb-4">Oops!</h1>
           <p className="text-xl text-gray-600 mb-6">
-            We can't seem to find the page you're looking for.
+            We can&apos;t seem to find the page you&apos;re looking for.
           </p>
           <p className="text-gray-500 mb-8">
             The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.

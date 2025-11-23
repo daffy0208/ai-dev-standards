@@ -164,7 +164,7 @@ function updateREADME(counts: RegistryCounts): void {
  * Add AUTO-GEN markers to INSTALL.md if they don't exist
  */
 function addMarkersToINSTALL(filePath: string): void {
-  let content = fs.readFileSync(filePath, 'utf-8');
+  const content = fs.readFileSync(filePath, 'utf-8');
   let modified = false;
 
   // Add markers around skill count mentions

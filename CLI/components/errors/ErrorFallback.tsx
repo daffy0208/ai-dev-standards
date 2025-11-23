@@ -154,7 +154,7 @@ export function PermissionError({ resource }: { resource?: string }) {
           <h3 className="text-sm font-medium text-orange-800">Permission Denied</h3>
           <div className="mt-2 text-sm text-orange-700">
             <p>
-              You don't have permission to access {resource || 'this resource'}.
+              You don&apos;t have permission to access {resource || 'this resource'}.
               Please contact your administrator if you believe this is an error.
             </p>
           </div>

@@ -418,23 +418,25 @@ export async function runMigrations(): Promise<void> {
   })
 
   switch (command) {
-    case 'generate':
+    case 'generate': {
       const nameIndex = args.indexOf('--name')
       const name = nameIndex >= 0 ? args[nameIndex + 1] : 'migration'
       await migration.generate(name)
       break
+    }
 
     case 'up':
       await migration.up()
       break
 
-    case 'down':
+    case 'down': {
       const stepsIndex = args.indexOf('--steps')
       const steps = stepsIndex >= 0 ? parseInt(args[stepsIndex + 1]) : undefined
       const toIndex = args.indexOf('--to')
       const to = toIndex >= 0 ? args[toIndex + 1] : undefined
       await migration.down({ steps, to })
       break
+    }
 
     case 'status':
       await migration.status()
