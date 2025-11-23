@@ -13,6 +13,7 @@ describe('ApiCallerTool', () => {
   beforeEach(() => {
     api = new ApiCallerTool()
     vi.clearAllMocks()
+    vi.spyOn(console, 'error').mockImplementation(() => {})
   })
 
   afterEach(() => {
@@ -269,13 +270,14 @@ describe('ApiCallerTool', () => {
   })
 
   describe('Retry logic', () => {
-    beforeEach(() => {
-      vi.useFakeTimers()
-    })
+    // Use real timers with short delays to avoid unhandled rejection issues with fake timers
+    // beforeEach(() => {
+    //   vi.useFakeTimers()
+    // })
 
-    afterEach(() => {
-      vi.useRealTimers()
-    })
+    // afterEach(() => {
+    //   vi.useRealTimers()
+    // })
 
     it('should retry on failure', async () => {
       let attempts = 0
@@ -295,13 +297,9 @@ describe('ApiCallerTool', () => {
         })
       })
 
-      const promise = api.get('https://api.example.com/unstable', {
-        retry: { attempts: 3, delayMs: 1000 }
+      const result = await api.get('https://api.example.com/unstable', {
+        retry: { attempts: 3, delayMs: 1 } // Fast retry
       })
-
-      await vi.runAllTimersAsync()
-
-      const result = await promise
 
       expect(attempts).toBe(3)
       expect(result.data).toEqual({ success: true })
@@ -310,18 +308,10 @@ describe('ApiCallerTool', () => {
     it('should fail after max retries', async () => {
       global.fetch = vi.fn().mockRejectedValue(new Error('Network error'))
 
-      const promise = api.get('https://api.example.com/failing', {
-        retry: { attempts: 2, delayMs: 1000 }
-      })
-
-      await vi.runAllTimersAsync()
-
-      // Wait for rejection
-      try {
-        await promise
-      } catch (e) {
-        // Expected
-      }
+      // Should fail
+      await expect(api.get('https://api.example.com/failing', {
+        retry: { attempts: 2, delayMs: 1 }
+      })).rejects.toThrow('Network error')
 
       expect(global.fetch).toHaveBeenCalledTimes(2)
     })
@@ -336,20 +326,15 @@ describe('ApiCallerTool', () => {
         return Promise.reject(new Error('Fail'))
       })
 
-      const promise = api.get('https://api.example.com/failing', {
-        retry: { attempts: 3, delayMs: 100, exponentialBackoff: true }
-      })
-
-      // Set up expectation
-      const expectation = expect(promise).rejects.toThrow('Fail')
-
-      // 1st attempt happens immediately
-      await vi.advanceTimersByTimeAsync(100) // Trigger 2nd attempt
-      await vi.advanceTimersByTimeAsync(200) // Trigger 3rd attempt
-
-      await expectation
+      await expect(api.get('https://api.example.com/failing', {
+        retry: { attempts: 3, delayMs: 10, exponentialBackoff: true }
+      })).rejects.toThrow('Fail')
 
       expect(attempts).toBe(3)
+      // Check timing roughly (1st immediate, 2nd ~10ms, 3rd ~20ms)
+      expect(startTimes.length).toBe(3)
+      expect(startTimes[1] - startTimes[0]).toBeGreaterThanOrEqual(5) // allowing some variance
+      expect(startTimes[2] - startTimes[1]).toBeGreaterThanOrEqual(15) // 10 * 2 = 20ms roughly
     })
   })
 

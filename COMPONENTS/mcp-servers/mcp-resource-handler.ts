@@ -7,8 +7,8 @@
  * @example
  * ```typescript
  * import { MCPResourceHandler } from './mcp-resource-handler';
-import * as crypto from 'crypto';
-
+ * import * as crypto from 'crypto';
+ *
  * const resourceHandler = new MCPResourceHandler({
  *   uri: 'myapp://docs/readme',
  *   name: 'README',
@@ -24,6 +24,8 @@ import * as crypto from 'crypto';
  * const content = await resourceHandler.get();
  * ```
  */
+
+import * as crypto from 'crypto';
 
 export interface ResourceHandlerConfig {
   uri: string
@@ -226,6 +228,9 @@ export class MCPResourceHandler {
       if (this.cache) {
         const cacheKey = this.getCacheKey(version)
         const cached = this.cache.get(cacheKey)
+        
+        // DEBUG
+        // console.log(`[MCPResourceHandler] Cache check for key: ${cacheKey}, found: ${!!cached}`)
 
         if (cached) {
           // Check ETag for conditional requests
@@ -247,6 +252,8 @@ export class MCPResourceHandler {
       let etag: string | undefined
       if (this.cache && this.config.cache) {
         const cacheKey = this.getCacheKey(version)
+        // DEBUG
+        // console.log(`[MCPResourceHandler] Caching content for key: ${cacheKey}, ttl: ${this.config.cache.ttl}`)
         etag = this.cache.set(cacheKey, content, this.config.cache.ttl || 300000)
       }
 

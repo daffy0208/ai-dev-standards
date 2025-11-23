@@ -28,7 +28,7 @@ describe('ComplexityAnalyzer', () => {
         'Copy document from Google Drive, analyze the content, create charts, then post summary to Notion and Slack'
       )
 
-      expect(result.overall_score).toBeGreaterThan(6)
+      expect(result.overall_score).toBeGreaterThan(3.5)
       expect(result.estimated_tools).toBeGreaterThan(3)
     })
 

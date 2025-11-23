@@ -179,7 +179,7 @@ export class ComplexityAnalyzer {
 
     // Look for action verbs (each suggests a step)
     const actionVerbs = text.match(
-      /\b(get|create|update|delete|send|analyze|transform|process|validate|check|generate|build)\b/gi
+      /\b(get|create|update|delete|send|analyze|transform|process|validate|check|generate|build|fetch|save|read|write|load|store)\b/gi
     )
     if (actionVerbs && actionVerbs.length > stepCount) {
       stepCount = Math.min(actionVerbs.length, 10) // Cap at 10
