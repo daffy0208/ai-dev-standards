@@ -52,7 +52,7 @@ export default defineConfig({
     hookTimeout: 10000,
 
     // Reporter
-    reporter: ['verbose', 'json', 'html'],
+    reporters: ['verbose', 'json', 'html'],
 
     // Parallel execution
     pool: 'threads',

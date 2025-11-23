@@ -38,10 +38,10 @@
 
 import type { VectorStore } from 'langchain/vectorstores/base'
 import type { Document } from 'langchain/document'
-import { DocumentLoader } from './document-loader'
-import { TextChunker } from './text-chunker'
-import { EmbeddingPipeline } from './embedding-pipeline'
-import { RetrievalPipeline } from './retrieval-pipeline'
+import { DocumentLoader } from './document-loader.js'
+import { TextChunker } from './text-chunker.js'
+import { EmbeddingPipeline } from './embedding-pipeline.js'
+import { RetrievalPipeline } from './retrieval-pipeline.js'
 
 export type EmbeddingProvider = 'openai' | 'cohere' | 'huggingface'
 export type ChunkingStrategy = 'fixed' | 'recursive' | 'markdown' | 'token' | 'semantic'

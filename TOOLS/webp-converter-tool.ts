@@ -25,7 +25,7 @@
  * ```
  */
 
-import { Tool } from '@langchain/core/tools'
+import { StructuredTool } from '@langchain/core/tools'
 import { z } from 'zod'
 
 const WebPConverterSchema = z.object({
@@ -77,7 +77,7 @@ export interface WebPConversionResult {
   error?: string
 }
 
-export class WebPConverterTool extends Tool {
+export class WebPConverterTool extends StructuredTool {
   name = 'webp_converter'
 
   description = `Convert images to WebP format for optimal web performance.

@@ -287,7 +287,7 @@ export class PatternRouter {
     // 4. Suggest new routing rules
 
     const validations = await Promise.all(
-      history.map(h => this.validateDecision(h.result, h.metrics))
+      history.map(h => this.validateDecision(h.result, h.metrics as any))
     )
 
     const optimalCount = validations.filter(v => v.was_optimal).length

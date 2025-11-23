@@ -5,7 +5,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { ApiCallerTool } from '../../../TOOLS/custom-tools/api-caller-tool'
+import { ApiCallerTool } from '../../../TOOLS/custom-tools/api-caller-tool.js'
 
 describe('ApiCallerTool', () => {
   let api: ApiCallerTool

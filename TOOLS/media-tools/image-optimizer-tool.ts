@@ -25,7 +25,7 @@
  * ```
  */
 
-import { Tool } from '@langchain/core/tools'
+import { StructuredTool } from '@langchain/core/tools'
 import { z } from 'zod'
 
 const ImageOptimizerSchema = z.object({
@@ -65,7 +65,7 @@ export interface ImageOptimizerResult {
   error?: string
 }
 
-export class ImageOptimizerTool extends Tool {
+export class ImageOptimizerTool extends StructuredTool {
   name = 'image_optimizer'
 
   description = `Optimize images for web use with compression, format conversion, and responsive sizing.

@@ -18,7 +18,7 @@ import {
   BaseMCPServer,
   validateArgs,
   createErrorResponse
-} from '../../COMPONENTS/mcp-servers/base-mcp-server'
+} from '../../COMPONENTS/mcp-servers/base-mcp-server.js'
 import * as fs from 'fs/promises'
 import * as path from 'path'
 

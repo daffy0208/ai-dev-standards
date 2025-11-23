@@ -5,10 +5,10 @@
  * in a typical application scenario.
  */
 
-import { createLogger, FileOutput } from './logger-tool'
-import { MetricsCollector } from './metrics-tool'
-import { Tracer } from './tracer-tool'
-import { ErrorTracker } from './error-tracker-tool'
+import { createLogger, FileOutput } from './logger-tool.js'
+import { MetricsCollector } from './metrics-tool.js'
+import { Tracer } from './tracer-tool.js'
+import { ErrorTracker, ErrorSeverity, BreadcrumbType } from './error-tracker-tool.js'
 
 // ============================================================================
 // INITIALIZATION
@@ -75,7 +75,7 @@ async function fetchUser(userId: string): Promise<any> {
 
   // Breadcrumb
   errorTracker.addBreadcrumb({
-    type: 'query',
+    type: BreadcrumbType.QUERY,
     message: 'Fetching user from database',
     data: { userId }
   })
@@ -99,7 +99,7 @@ async function fetchUser(userId: string): Promise<any> {
     span.recordException(error as Error)
 
     errorTracker.captureException(error as Error, {
-      severity: 'error',
+      severity: ErrorSeverity.ERROR,
       context: { userId, operation: 'fetch_user' },
       tags: { database: 'users' }
     })
@@ -134,7 +134,7 @@ async function processOrder(orderId: string): Promise<void> {
   try {
     // Step 1: Validate order
     errorTracker.addBreadcrumb({
-      type: 'default',
+      type: BreadcrumbType.DEFAULT,
       message: 'Validating order',
       data: { orderId }
     })
@@ -146,7 +146,7 @@ async function processOrder(orderId: string): Promise<void> {
 
     // Step 2: Check inventory
     errorTracker.addBreadcrumb({
-      type: 'default',
+      type: BreadcrumbType.DEFAULT,
       message: 'Checking inventory',
       data: { orderId }
     })
@@ -159,7 +159,7 @@ async function processOrder(orderId: string): Promise<void> {
 
     // Step 3: Process payment
     errorTracker.addBreadcrumb({
-      type: 'http',
+      type: BreadcrumbType.HTTP,
       message: 'Processing payment',
       data: { orderId, processor: 'stripe' }
     })
@@ -175,7 +175,7 @@ async function processOrder(orderId: string): Promise<void> {
 
     // Step 4: Create shipment
     errorTracker.addBreadcrumb({
-      type: 'default',
+      type: BreadcrumbType.DEFAULT,
       message: 'Creating shipment',
       data: { orderId }
     })
@@ -195,7 +195,7 @@ async function processOrder(orderId: string): Promise<void> {
     rootSpan.recordException(error as Error)
 
     errorTracker.captureException(error as Error, {
-      severity: 'error',
+      severity: ErrorSeverity.ERROR,
       context: { orderId },
       tags: { operation: 'process_order' }
     })
@@ -221,7 +221,7 @@ async function simulateErrors(): Promise<void> {
     throw new Error('Invalid input: email format incorrect')
   } catch (error) {
     errorTracker.captureException(error as Error, {
-      severity: 'warning',
+      severity: ErrorSeverity.WARNING,
       context: { input: 'invalid@email' },
       tags: { type: 'validation' }
     })
@@ -232,7 +232,7 @@ async function simulateErrors(): Promise<void> {
     throw new Error('Network timeout after 5000ms')
   } catch (error) {
     errorTracker.captureException(error as Error, {
-      severity: 'error',
+      severity: ErrorSeverity.ERROR,
       context: { url: 'https://api.example.com', timeout: 5000 },
       tags: { type: 'network' }
     })
@@ -243,7 +243,7 @@ async function simulateErrors(): Promise<void> {
     throw new Error('Database connection pool exhausted')
   } catch (error) {
     errorTracker.captureException(error as Error, {
-      severity: 'fatal',
+      severity: ErrorSeverity.FATAL,
       context: { poolSize: 10, activeConnections: 10 },
       tags: { type: 'database' }
     })

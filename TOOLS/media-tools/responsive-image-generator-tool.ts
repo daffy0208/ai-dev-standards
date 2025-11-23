@@ -24,7 +24,7 @@
  * ```
  */
 
-import { Tool } from '@langchain/core/tools'
+import { StructuredTool } from '@langchain/core/tools'
 import { z } from 'zod'
 
 const BreakpointSchema = z.object({
@@ -63,7 +63,7 @@ export interface ResponsiveImageResult {
   error?: string
 }
 
-export class ResponsiveImageGeneratorTool extends Tool {
+export class ResponsiveImageGeneratorTool extends StructuredTool {
   name = 'responsive_image_generator'
 
   description = `Generate responsive image srcset and sizes for optimal image loading across devices.

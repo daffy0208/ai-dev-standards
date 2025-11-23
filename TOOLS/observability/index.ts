@@ -36,7 +36,7 @@ export {
   LogEntry,
   LoggerOptions,
   LogOutput
-} from './logger-tool'
+} from './logger-tool.js'
 
 // ============================================================================
 // METRICS EXPORTS
@@ -58,7 +58,7 @@ export {
   HistogramSnapshot,
   MetricSnapshot,
   MetricsCollectorOptions
-} from './metrics-tool'
+} from './metrics-tool.js'
 
 // ============================================================================
 // TRACER EXPORTS
@@ -82,7 +82,7 @@ export {
   TraceContext,
   Trace,
   TracerOptions
-} from './tracer-tool'
+} from './tracer-tool.js'
 
 // ============================================================================
 // ERROR TRACKER EXPORTS
@@ -105,7 +105,7 @@ export {
   ErrorGroup,
   ErrorReport,
   ErrorTrackerOptions
-} from './error-tracker-tool'
+} from './error-tracker-tool.js'
 
 // ============================================================================
 // CONVENIENCE FACTORY
@@ -151,13 +151,13 @@ export function createObservabilitySuite(config: {
   } = config
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { createLogger } = require('./logger-tool')
+  const { createLogger } = require('./logger-tool.js')
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { MetricsCollector } = require('./metrics-tool')
+  const { MetricsCollector } = require('./metrics-tool.js')
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { Tracer } = require('./tracer-tool')
+  const { Tracer } = require('./tracer-tool.js')
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { ErrorTracker } = require('./error-tracker-tool')
+  const { ErrorTracker } = require('./error-tracker-tool.js')
 
   return {
     logger: createLogger({

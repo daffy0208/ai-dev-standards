@@ -130,7 +130,9 @@ export class SimpleTaskAgent {
     return prompt
   }
 
-  private async callLLM(messages: Array<{ role: string; content: string }>) {
+  private async callLLM(
+    messages: Array<{ role: string; content: string }>
+  ): Promise<{ content: string; tokensUsed: number }> {
     // Placeholder - integrate with OpenAI, Anthropic, or other LLM provider
     // Example with OpenAI:
     // const response = await openai.chat.completions.create({

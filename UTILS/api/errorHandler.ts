@@ -285,7 +285,7 @@ export async function exampleApiRoute(request: Request) {
 
     // Success response
     return Response.json({ success: true })
-  })(request)
+  })()
 }
 
 /**
@@ -305,7 +305,7 @@ export async function protectedApiRoute(
     }
 
     return handler(user)
-  })(request)
+  })()
 }
 
 /**
@@ -330,5 +330,5 @@ export async function paginatedApiRoute(
     const data = await handler({ page, limit })
 
     return Response.json(data)
-  })(request)
+  })()
 }

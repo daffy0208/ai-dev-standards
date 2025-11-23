@@ -329,6 +329,7 @@ export function ToastProviderWithEvents({
         ))}
       </div>
       {/* eslint-disable-next-line react/no-unknown-property */}
+      {/* @ts-ignore */}
       <style jsx global>{`
         @keyframes slide-in-right {
           from {

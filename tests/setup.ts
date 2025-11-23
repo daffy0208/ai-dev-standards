@@ -4,7 +4,7 @@
  * Global setup and utilities for tests.
  */
 
-import { beforeAll, afterAll, afterEach } from 'vitest'
+import { beforeAll, afterAll, afterEach, vi } from 'vitest'
 
 // Set test environment variables
 process.env.NODE_ENV = 'test'

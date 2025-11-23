@@ -21,7 +21,7 @@ import {
   BaseMCPServer,
   validateArgs,
   createErrorResponse
-} from '../../COMPONENTS/mcp-servers/base-mcp-server'
+} from '../../COMPONENTS/mcp-servers/base-mcp-server.js'
 
 interface SearchIconsArgs {
   query: string

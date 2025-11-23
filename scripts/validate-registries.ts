@@ -99,7 +99,7 @@ function validateSkillRegistry(): ValidationResult {
     const actualNames = new Set(actualSkills)
 
     for (const name of registryNames) {
-      if (!actualNames.has(name)) {
+      if (!actualNames.has(name as string)) {
         result.errors.push(`Orphaned registry entry: ${name} (directory doesn't exist)`)
         result.passed = false
       }
@@ -217,7 +217,7 @@ function validateMCPRegistry(): ValidationResult {
     const actualIds = new Set(actualMCPs)
 
     for (const id of registryIds) {
-      if (!actualIds.has(id)) {
+      if (!actualIds.has(id as string)) {
         result.errors.push(`Orphaned registry entry: ${id} (directory doesn't exist)`)
         result.passed = false
       }

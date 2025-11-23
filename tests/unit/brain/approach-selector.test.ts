@@ -3,7 +3,7 @@
  */
 
 import { describe, it, expect, beforeEach } from 'vitest'
-import { ApproachSelector, createApproachSelector } from '../../../scripts/brain/approach-selector'
+import { ApproachSelector, createApproachSelector } from '../../../scripts/brain/approach-selector.js'
 
 describe('ApproachSelector', () => {
   let selector: ApproachSelector

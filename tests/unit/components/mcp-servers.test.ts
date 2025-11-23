@@ -8,7 +8,7 @@ import {
   MCPToolHandler,
   MCPResourceHandler,
   MCPPromptHandler
-} from '../../../COMPONENTS/mcp-servers'
+} from '../../../COMPONENTS/mcp-servers/index.js'
 import { z } from 'zod'
 
 describe('BaseMCPServer', () => {

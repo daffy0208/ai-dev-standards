@@ -446,11 +446,13 @@ export async function examples() {
     console.log('Products:', products.data)
 
     // Example 3: Execute JavaScript
-    const data = await scraper.evaluate('https://example.com', () => {
-      return {
-        title: document.title,
-        links: Array.from(document.querySelectorAll('a')).map(a => a.href)
-      }
+    const data = await scraper.evaluate('https://example.com', async (page) => {
+      return await page.evaluate(() => {
+        return {
+          title: document.title,
+          links: Array.from(document.querySelectorAll('a')).map(a => a.href)
+        }
+      })
     })
     console.log('Custom data:', data)
 
