@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 /**
  * Skeleton Loading Components
  *
@@ -21,6 +22,8 @@
  */
 
 'use client'
+
+import React from 'react'
 
 export interface SkeletonProps {
   className?: string

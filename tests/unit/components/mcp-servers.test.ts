@@ -21,9 +21,15 @@ describe('BaseMCPServer', () => {
       }
     }
 
+<<<<<<< HEAD
     server = new TestServer()
     // await server.initialize() // initialize() does not exist
   })
+=======
+    server = new TestServer();
+    // await server.initialize();
+  });
+>>>>>>> origin/main
 
   it('should initialize successfully', () => {
     expect(server).toBeDefined()

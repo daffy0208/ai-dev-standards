@@ -246,6 +246,29 @@ export abstract class BaseMCPServer {
   async stop(): Promise<void> {
     await this.server.close()
   }
+
+  /**
+   * List available tools
+   */
+  public listTools(): MCPTool[] {
+    return Array.from(this.tools.values());
+  }
+
+  /**
+   * Invoke a tool directly
+   */
+  public async invokeTool(name: string, args: any): Promise<any> {
+    const tool = this.tools.get(name);
+    if (!tool) throw new Error(`Unknown tool: ${name}`);
+    return tool.handler(args);
+  }
+
+  /**
+   * Get server health status
+   */
+  public getHealth(): { initialized: boolean; status: string } {
+    return { initialized: true, status: 'healthy' };
+  }
 }
 
 /**

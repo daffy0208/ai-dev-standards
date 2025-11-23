@@ -96,10 +96,17 @@ function main(): void {
     // Render template
     const vars = {
       AI_DEV_ROOT: aiDevRoot
+<<<<<<< HEAD
     }
 
     const renderedContent = renderTemplate(templateContent, vars)
     const settings = JSON.parse(renderedContent)
+=======
+    };
+    
+    const renderedContent = renderTemplate(templateContent, vars);
+    const settings = JSON.parse(renderedContent);
+>>>>>>> origin/main
 
     // Load MCP registry to auto-generate additional entries
     const mcpRegistryPath = path.join(ROOT, 'META', 'mcp-registry.json')
