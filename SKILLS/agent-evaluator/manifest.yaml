@@ -1,0 +1,87 @@
+name: agent-evaluator
+kind: skill
+description: Design and implement comprehensive evaluation strategies for AI agents using Eval-Driven Development (EDD), Golden Datasets, and Model-Graded Evals.
+version: 1.0.0
+
+preconditions:
+  - check: has_agent_implementation
+    description: An AI agent or LLM-based system exists to be evaluated
+    required: true
+  - check: has_test_cases_or_logs
+    description: Initial test cases, user logs, or behavior requirements exist
+    required: false
+
+effects:
+  - establishes_golden_dataset
+  - implements_model_graded_evals
+  - validates_agent_reliability
+  - measures_performance_metrics
+  - detects_regressions
+  - optimizes_prompts_based_on_data
+
+domains:
+  - ai-engineering
+  - evaluation
+  - testing
+  - quality-assurance
+  - llm-ops
+
+cost: medium
+latency: medium
+risk_level: low
+
+side_effects:
+  - creates_eval_files
+  - generates_evaluation_reports
+  - may_incur_api_costs_for_evals
+
+idempotent: true
+
+success_signal: "Golden dataset created, evaluation pipeline established, and baseline metrics recorded for agent performance"
+
+failure_signals:
+  - "No clear evaluation metrics defined"
+  - "Golden dataset lacks ground truth"
+  - "Evaluator model not configured"
+  - "Evaluation results are inconsistent/noisy"
+
+compatibility:
+  requires: []
+  conflicts_with:
+    - vibes-based-testing
+    - manual-only-verification
+  composes_with:
+    - testing-strategist
+    - quality-auditor
+    - rag-implementer
+    - prompt-engineer
+  enables:
+    - reliable-agent-deployment
+    - confident-prompt-refactoring
+    - systematic-performance-improvement
+
+observability:
+  logs:
+    - "Eval run completed: {pass_rate}% pass rate"
+    - "Golden dataset size: {dataset_size} cases"
+    - "Regressions detected: {regression_count}"
+  metrics:
+    - eval_pass_rate
+    - token_usage_per_eval
+    - latency_per_eval
+    - hallucination_rate
+
+metadata:
+  version: "1.0.0"
+  created_at: "2025-11-24"
+  tags:
+    - eval-driven-development
+    - llm-evals
+    - agent-testing
+    - reliability
+    - quality
+  examples:
+    - "Create a golden dataset for a customer support agent"
+    - "Set up model-graded evals for RAG retrieval quality"
+    - "Evaluate prompt changes against a baseline"
+    - "Implement a regression testing pipeline for an AI agent"
