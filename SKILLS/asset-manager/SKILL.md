@@ -645,7 +645,6 @@ export const brandAssets: BrandAssets = {
 
 // Or use Next.js Image
 import Image from 'next/image'
-
 ;<Image src="/hero.jpg" width={1920} height={1080} placeholder="blur" alt="Hero" />
 ```
 

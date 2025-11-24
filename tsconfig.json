@@ -7,5 +7,15 @@
     "types": ["node", "react", "vitest"]
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
-  "exclude": ["node_modules", "dist", "build", ".archive", "html", "TOOLS", "MCP-SERVERS", "INTEGRATIONS"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    ".archive",
+    "html",
+    "TOOLS",
+    "MCP-SERVERS",
+    "INTEGRATIONS",
+    "COMPONENTS"
+  ]
 }

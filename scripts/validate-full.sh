@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set +e
+set -e
 # Auto-generated validation script from .claude/commands/validate.md
 
 
@@ -255,12 +255,8 @@ fi
 echo "🔍 Phase 1: Running ESLint..."
 npm run lint
 if [ $? -ne 0 ]; then
-  if [ "$VALIDATION_CONTINUE_ON_FAILURE" = "true" ]; then
-    echo "⚠️  Linting failed but VALIDATION_CONTINUE_ON_FAILURE=true"
-  else
-    echo "❌ Linting failed! Run 'npm run lint:fix' to auto-fix issues."
-    exit 1
-  fi
+  echo "❌ Linting failed! Run 'npm run lint:fix' to auto-fix issues."
+  exit 1
 fi
 echo "✅ Linting passed!"
 
@@ -405,18 +401,16 @@ cd scripts/brain
 
 retry_with_backoff 3 "npm ci"
 if [ $? -ne 0 ]; then
-  if [ "$VALIDATION_CONTINUE_ON_FAILURE" = "true" ]; then
-    echo "⚠️  Brain CLI dependency installation failed but VALIDATION_CONTINUE_ON_FAILURE=true"
-  else
-    echo "❌ Brain CLI dependency installation failed after retries!"
-    cd ../..
-    exit 1
-  fi
+  echo "❌ Brain CLI dependency installation failed after retries!"
+  cd ../..
+  exit 1
 fi
 
 retry_with_backoff 2 "npm run build"
 if [ $? -ne 0 ]; then
-  echo "⚠️  Brain CLI build failed (bypassed)"
+  echo "❌ Brain CLI build failed after retries!"
+  cd ../..
+  exit 1
 fi
 
 cd ../..
@@ -428,18 +422,16 @@ cd MCP-SERVERS/brain-mcp
 
 retry_with_backoff 3 "npm ci"
 if [ $? -ne 0 ]; then
-  if [ "$VALIDATION_CONTINUE_ON_FAILURE" = "true" ]; then
-    echo "⚠️  Brain MCP dependency installation failed but VALIDATION_CONTINUE_ON_FAILURE=true"
-  else
-    echo "❌ Brain MCP dependency installation failed after retries!"
-    cd ../..
-    exit 1
-  fi
+  echo "❌ Brain MCP dependency installation failed after retries!"
+  cd ../..
+  exit 1
 fi
 
 retry_with_backoff 2 "npm run build"
 if [ $? -ne 0 ]; then
-  echo "⚠️  Brain MCP build failed (bypassed)"
+  echo "❌ Brain MCP build failed after retries!"
+  cd ../..
+  exit 1
 fi
 
 cd ../..

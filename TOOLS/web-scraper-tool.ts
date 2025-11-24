@@ -446,7 +446,7 @@ export async function examples() {
     console.log('Products:', products.data)
 
     // Example 3: Execute JavaScript
-    const data = await scraper.evaluate('https://example.com', async (page) => {
+    const data = await scraper.evaluate('https://example.com', async page => {
       return await page.evaluate(() => {
         return {
           title: document.title,

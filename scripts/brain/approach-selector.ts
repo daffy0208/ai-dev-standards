@@ -143,9 +143,7 @@ export class ApproachSelector {
           `Low to medium complexity: ${factors.complexity_score}/10`,
           `Few tools needed: ${factors.estimated_tools}`,
           'Direct MCP is simpler and more reliable',
-          factors.data_size_kb <= this.config.data_size_threshold_kb
-            ? 'Small data payload'
-            : null
+          factors.data_size_kb <= this.config.data_size_threshold_kb ? 'Small data payload' : null
         ].filter(Boolean) as string[]
       )
     }
@@ -234,7 +232,7 @@ export class ApproachSelector {
   async selectApproachBatch(
     tasks: Array<{
       description: string
-      context?: Parameters<typeof this.selectApproach>[1]
+      context?: Parameters<ApproachSelector['selectApproach']>[1]
     }>
   ): Promise<ApproachDecision[]> {
     const decisions = await Promise.all(

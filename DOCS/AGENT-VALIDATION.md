@@ -11,6 +11,7 @@ This guide documents the **Eval-Driven Development (EDD)** process used in this 
 In traditional software, `assert(2 + 2 == 4)` is always true. In AI, "Write a funny poem" yields infinite variations. Developers often rely on "vibes-based testing"—chatting with the bot until it "feels right."
 
 **Why Vibes Fail:**
+
 - **Non-Scalable:** You can't manually chat 1000 times for every prompt change.
 - **Subjective:** "Funny" varies by person.
 - **Regression-Prone:** Fixing one edge case often breaks another (the "whack-a-mole" problem).
@@ -32,6 +33,7 @@ We use **EDD** to systematically measure agent performance against a "Golden Dat
 The agent validation process is now integrated into the core validation pipeline.
 
 ### 1. Run the Full Suite
+
 The easiest way to validate your agents is to run the standard validation command:
 
 ```bash
@@ -39,12 +41,14 @@ The easiest way to validate your agents is to run the standard validation comman
 ```
 
 This command now includes **Phase 5.12: Agent Evaluation**, which automatically:
+
 1.  Loads the golden dataset (`tests/fixtures/golden-dataset-example.json`)
 2.  Runs the eval runner (`scripts/run-agent-evals.js`)
 3.  Reports pass/fail metrics
 4.  Generates a report in `.validation-history/`
 
 ### 2. Run Evals Independently
+
 For faster iteration during prompt engineering, run the eval script directly:
 
 ```bash
@@ -56,6 +60,7 @@ node scripts/run-agent-evals.js --dataset tests/fixtures/your-dataset.json
 ```
 
 ### 3. Create a Custom Dataset
+
 Create a JSON file (e.g., `tests/fixtures/my-agent-data.json`) with your test cases:
 
 ```json
@@ -82,12 +87,12 @@ Create a JSON file (e.g., `tests/fixtures/my-agent-data.json`) with your test ca
 
 The system supports different ways to grade an answer:
 
-| Type | Description | Use Case |
-| :--- | :--- | :--- |
-| **`exact`** | String must match exactly. | JSON output, specific command strings. |
-| **`contains`** | Output must contain a substring. | Checking for keywords or safety warnings. |
-| **`regex`** | Output must match a regular expression. | Validating formats (emails, dates, IDs). |
-| **`llm-graded`** | An LLM "Judge" scores the answer 0-1. | Assessing tone, helpfulness, creativity, reasoning. |
+| Type             | Description                             | Use Case                                            |
+| :--------------- | :-------------------------------------- | :-------------------------------------------------- |
+| **`exact`**      | String must match exactly.              | JSON output, specific command strings.              |
+| **`contains`**   | Output must contain a substring.        | Checking for keywords or safety warnings.           |
+| **`regex`**      | Output must match a regular expression. | Validating formats (emails, dates, IDs).            |
+| **`llm-graded`** | An LLM "Judge" scores the answer 0-1.   | Assessing tone, helpfulness, creativity, reasoning. |
 
 ---
 

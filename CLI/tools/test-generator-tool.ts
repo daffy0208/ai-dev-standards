@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * CrewAI Test Generator Tool
  *

@@ -25,7 +25,7 @@
  * ```
  */
 
-import * as crypto from 'crypto';
+import * as crypto from 'crypto'
 
 export interface ResourceHandlerConfig {
   uri: string
@@ -228,7 +228,7 @@ export class MCPResourceHandler {
       if (this.cache) {
         const cacheKey = this.getCacheKey(version)
         const cached = this.cache.get(cacheKey)
-        
+
         // DEBUG
         // console.log(`[MCPResourceHandler] Cache check for key: ${cacheKey}, found: ${!!cached}`)
 

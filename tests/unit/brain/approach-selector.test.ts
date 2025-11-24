@@ -3,7 +3,10 @@
  */
 
 import { describe, it, expect, beforeEach } from 'vitest'
-import { ApproachSelector, createApproachSelector } from '../../../scripts/brain/approach-selector.js'
+import {
+  ApproachSelector,
+  createApproachSelector
+} from '../../../scripts/brain/approach-selector.js'
 
 describe('ApproachSelector', () => {
   let selector: ApproachSelector
@@ -28,7 +31,7 @@ describe('ApproachSelector', () => {
         complexity_weight: 0.9,
         tools_weight: 0.9
       })
-      
+
       const decision = await customSelector.selectApproach(
         'Analyze sales data from Salesforce, create charts, generate report in Notion, and notify team via Slack'
       )
@@ -37,21 +40,24 @@ describe('ApproachSelector', () => {
     })
 
     it('should select Code Execution for large data processing', async () => {
-      const customSelector = createApproachSelector({ 
+      const customSelector = createApproachSelector({
         data_size_threshold_kb: 1,
         data_size_weight: 0.9,
         force_direct_for_single_tool: false
       })
-      const decision = await customSelector.selectApproach('Process large dataset with transformations', {
-        data_size_estimate_kb: 50
-      })
+      const decision = await customSelector.selectApproach(
+        'Process large dataset with transformations',
+        {
+          data_size_estimate_kb: 50
+        }
+      )
 
       expect(decision.pattern).toBe('code-execution')
       expect(decision.reasoning.some(r => /large data/i.test(r))).toBe(true)
     })
 
     it('should select Code Execution when PII is present', async () => {
-      const customSelector = createApproachSelector({ 
+      const customSelector = createApproachSelector({
         pii_weight: 0.9,
         force_direct_for_single_tool: false
       })
@@ -64,7 +70,7 @@ describe('ApproachSelector', () => {
     })
 
     it('should select Code Execution for repeated workflows', async () => {
-      const customSelector = createApproachSelector({ 
+      const customSelector = createApproachSelector({
         frequency_weight: 0.9,
         force_direct_for_single_tool: false
       })

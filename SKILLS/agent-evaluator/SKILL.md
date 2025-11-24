@@ -33,17 +33,19 @@ To provide a rigorous methodology for validating the probabilistic nature of AI 
 **Objective:** Define what "good" looks like before building.
 
 **Actions:**
-1.  **Identify Core Use Cases:** What *must* the agent do well?
+
+1.  **Identify Core Use Cases:** What _must_ the agent do well?
 2.  **Create a "Golden Dataset":** A set of inputs and expected outputs (ground truth).
-    *   Start small (10-20 examples).
-    *   Include easy, medium, and hard cases.
-    *   Include adversarial/safety cases.
+    - Start small (10-20 examples).
+    - Include easy, medium, and hard cases.
+    - Include adversarial/safety cases.
 3.  **Define Metrics:** How will you measure success?
-    *   *Binary:* Pass/Fail (e.g., JSON validity, specific tool call).
-    *   *Scalar:* 1-5 score (e.g., helpfulness, tone).
-    *   *Semantic:* Similarity to golden reference.
+    - _Binary:_ Pass/Fail (e.g., JSON validity, specific tool call).
+    - _Scalar:_ 1-5 score (e.g., helpfulness, tone).
+    - _Semantic:_ Similarity to golden reference.
 
 **Key Decisions:**
+
 - **Deterministic vs. Probabilistic:** Can this be checked with code (regex, JSON schema) or does it need an LLM grader?
 - **Eval Dataset Source:** Hand-curated (high quality) vs. Synthetic (high volume).
 
@@ -52,11 +54,13 @@ To provide a rigorous methodology for validating the probabilistic nature of AI 
 **Objective:** Run tests automatically and consistently.
 
 **Actions:**
+
 1.  **Select an Eval Framework:** (e.g., Promptfoo, LangSmith, or custom script).
 2.  **Implement Model-Graded Evals:** Use a stronger model (e.g., GPT-4o, Claude 3.5 Sonnet) to grade the agent's output.
 3.  **Establish Baselines:** Run the eval on the current version to get a baseline score.
 
 **Example Model-Grader Prompt:**
+
 ```text
 You are an expert grader. Compare the ACTUAL output to the EXPECTED output.
 Context: [Input Context]
@@ -76,11 +80,12 @@ Output a score (0-1) and a brief reasoning.
 **Objective:** Improve the agent without breaking it.
 
 **Actions:**
+
 1.  **Run Evals on Every Change:** Treat prompts like code. Run evals in CI/CD.
 2.  **Analyze Failures:** Look at the cases where the agent failed.
-    *   *Prompt Issue:* Fix instructions.
-    *   *Context Issue:* Fix retrieval (RAG).
-    *   *Model Issue:* Switch models or fine-tune.
+    - _Prompt Issue:_ Fix instructions.
+    - _Context Issue:_ Fix retrieval (RAG).
+    - _Model Issue:_ Switch models or fine-tune.
 3.  **Update the Golden Set:** When you find a new edge case in production, add it to the dataset.
 
 ## Key Principles
@@ -94,21 +99,25 @@ Output a score (0-1) and a brief reasoning.
 
 **Choosing an Evaluation Method:**
 
-| method | Use When... | Cost | Speed |
-| :--- | :--- | :--- | :--- |
-| **Code-Based (Deterministic)** | Output must follow strict format (JSON), contain specific keywords, or pass unit tests. | Low | Fast |
-| **Model-Graded (Probabilistic)** | Assessing reasoning, creativity, tone, or semantic similarity. | Medium | Medium |
-| **Human Review** | Establishing the initial golden set or auditing model graders. | High | Slow |
+| method                           | Use When...                                                                             | Cost   | Speed  |
+| :------------------------------- | :-------------------------------------------------------------------------------------- | :----- | :----- |
+| **Code-Based (Deterministic)**   | Output must follow strict format (JSON), contain specific keywords, or pass unit tests. | Low    | Fast   |
+| **Model-Graded (Probabilistic)** | Assessing reasoning, creativity, tone, or semantic similarity.                          | Medium | Medium |
+| **Human Review**                 | Establishing the initial golden set or auditing model graders.                          | High   | Slow   |
 
 ## Common Patterns
 
 ### Pattern 1: The "LLM-as-a-Judge"
+
 Use a superior model to evaluate the outputs of a smaller/faster model.
-*   *Agent:* Claude 3 Haiku (Fast)
-*   *Judge:* Claude 3.5 Sonnet (Smart)
+
+- _Agent:_ Claude 3 Haiku (Fast)
+- _Judge:_ Claude 3.5 Sonnet (Smart)
 
 ### Pattern 2: RAG Triad Evaluation
+
 Evaluate three components of RAG separately:
+
 1.  **Context Relevance:** Is the retrieved chunk relevant to the query?
 2.  **Groundedness:** Is the answer supported by the retrieved chunks?
 3.  **Answer Relevance:** Does the answer address the user's query?
@@ -116,10 +125,12 @@ Evaluate three components of RAG separately:
 ## Related Resources
 
 **Related Skills:**
+
 - `testing-strategist` - General testing methodologies.
 - `rag-implementer` - Specifics on building RAG (which needs evals).
 - `quality-auditor` - Auditing the overall system quality.
 
 **Related Standards:**
+
 - `STANDARDS/best-practices/eval-driven-development.md`
 - `STANDARDS/architecture-patterns/agent-validation-pattern.md`

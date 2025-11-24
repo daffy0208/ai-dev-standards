@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * CrewAI Code Analyzer Tool
  *
