@@ -23,6 +23,8 @@
 
 'use client'
 
+import React from 'react'
+
 export type SpinnerSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 export type SpinnerColor = 'blue' | 'green' | 'red' | 'gray' | 'white'
 
@@ -90,9 +92,11 @@ export function LoadingOverlay({
   transparent?: boolean
 }) {
   return (
-    <div className={`fixed inset-0 z-50 flex items-center justify-center ${
-      transparent ? 'bg-white/60 backdrop-blur-sm' : 'bg-white'
-    }`}>
+    <div
+      className={`fixed inset-0 z-50 flex items-center justify-center ${
+        transparent ? 'bg-white/60 backdrop-blur-sm' : 'bg-white'
+      }`}
+    >
       <div className="text-center">
         <Spinner size="lg" color="blue" />
         <p className="mt-4 text-gray-700 font-medium">{message}</p>
@@ -163,9 +167,18 @@ export function DotsLoading({ color = 'blue' }: { color?: SpinnerColor }) {
 
   return (
     <div className="flex items-center gap-1">
-      <div className={`h-2 w-2 rounded-full ${colorClasses[color]} animate-bounce`} style={{ animationDelay: '0ms' }}></div>
-      <div className={`h-2 w-2 rounded-full ${colorClasses[color]} animate-bounce`} style={{ animationDelay: '150ms' }}></div>
-      <div className={`h-2 w-2 rounded-full ${colorClasses[color]} animate-bounce`} style={{ animationDelay: '300ms' }}></div>
+      <div
+        className={`h-2 w-2 rounded-full ${colorClasses[color]} animate-bounce`}
+        style={{ animationDelay: '0ms' }}
+      ></div>
+      <div
+        className={`h-2 w-2 rounded-full ${colorClasses[color]} animate-bounce`}
+        style={{ animationDelay: '150ms' }}
+      ></div>
+      <div
+        className={`h-2 w-2 rounded-full ${colorClasses[color]} animate-bounce`}
+        style={{ animationDelay: '300ms' }}
+      ></div>
     </div>
   )
 }
@@ -177,8 +190,14 @@ export function PulseLoading() {
   return (
     <div className="flex items-center gap-2">
       <div className="h-3 w-3 bg-blue-500 rounded-full animate-pulse"></div>
-      <div className="h-3 w-3 bg-blue-400 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-      <div className="h-3 w-3 bg-blue-300 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+      <div
+        className="h-3 w-3 bg-blue-400 rounded-full animate-pulse"
+        style={{ animationDelay: '0.2s' }}
+      ></div>
+      <div
+        className="h-3 w-3 bg-blue-300 rounded-full animate-pulse"
+        style={{ animationDelay: '0.4s' }}
+      ></div>
     </div>
   )
 }
@@ -267,10 +286,7 @@ export function LoadingExamples() {
 
       <div>
         <h3 className="font-medium mb-4">Loading Button</h3>
-        <LoadingButton
-          loading={true}
-          className="px-6 py-2 bg-blue-600 text-white rounded-lg"
-        >
+        <LoadingButton loading={true} className="px-6 py-2 bg-blue-600 text-white rounded-lg">
           Save Changes
         </LoadingButton>
       </div>

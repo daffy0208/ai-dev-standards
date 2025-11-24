@@ -88,11 +88,7 @@
         {
           "name": "Strategic Insights",
           "duration": "30 min",
-          "tasks": [
-            "Strengths/gaps analysis",
-            "Coherence scoring (Dark Matter)",
-            "Recommendations"
-          ]
+          "tasks": ["Strengths/gaps analysis", "Coherence scoring (Dark Matter)", "Recommendations"]
         }
       ],
       "deliverables": [
@@ -109,9 +105,7 @@
       "archon_actions": [
         "archon:manage_task({ action: 'update', task_id: 'P0-4', update_fields: { status: 'review' } })"
       ],
-      "skills": [
-        "archon-manager - Coordinate decisions"
-      ],
+      "skills": ["archon-manager - Coordinate decisions"],
       "questions_to_answer": [
         "Which patterns should become STANDARDS/architecture-patterns/?",
         "Which capabilities should become new Skills?",

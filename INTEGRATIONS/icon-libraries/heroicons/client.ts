@@ -65,11 +65,14 @@ export class HeroiconsClient {
   /**
    * Search icons by name or tags
    */
-  async searchIcons(query: string, options?: {
-    variant?: IconVariant
-    size?: IconSize
-    limit?: number
-  }): Promise<IconSearchResult[]> {
+  async searchIcons(
+    query: string,
+    options?: {
+      variant?: IconVariant
+      size?: IconSize
+      limit?: number
+    }
+  ): Promise<IconSearchResult[]> {
     const normalizedQuery = query.toLowerCase().trim()
 
     // Get all available icons
@@ -97,7 +100,7 @@ export class HeroiconsClient {
             displayName: this.toDisplayName(icon.name),
             variant,
             size,
-            category: icon.category,
+            category: icon.category
           })
         }
       }
@@ -114,7 +117,11 @@ export class HeroiconsClient {
   /**
    * Get icon SVG content
    */
-  async getIcon(name: string, size: IconSize = '24', variant: IconVariant = 'outline'): Promise<GetIconResult> {
+  async getIcon(
+    name: string,
+    size: IconSize = '24',
+    variant: IconVariant = 'outline'
+  ): Promise<GetIconResult> {
     const cacheKey = `${name}-${size}-${variant}`
 
     // Check cache
@@ -124,7 +131,7 @@ export class HeroiconsClient {
         variant,
         size,
         svg: this.iconCache.get(cacheKey)!,
-        url: this.getIconUrl(name, size, variant),
+        url: this.getIconUrl(name, size, variant)
       }
     }
 
@@ -148,31 +155,33 @@ export class HeroiconsClient {
         variant,
         size,
         svg,
-        url,
+        url
       }
     } catch (error) {
-      throw new Error(`Failed to fetch icon: ${error instanceof Error ? error.message : String(error)}`)
+      throw new Error(
+        `Failed to fetch icon: ${error instanceof Error ? error.message : String(error)}`
+      )
     }
   }
 
   /**
    * Get multiple icons at once
    */
-  async getIcons(icons: Array<{
-    name: string
-    size?: IconSize
-    variant?: IconVariant
-  }>): Promise<GetIconResult[]> {
+  async getIcons(
+    icons: Array<{
+      name: string
+      size?: IconSize
+      variant?: IconVariant
+    }>
+  ): Promise<GetIconResult[]> {
     const results = await Promise.allSettled(
-      icons.map(icon => this.getIcon(
-        icon.name,
-        icon.size || '24',
-        icon.variant || 'outline'
-      ))
+      icons.map(icon => this.getIcon(icon.name, icon.size || '24', icon.variant || 'outline'))
     )
 
     return results
-      .filter((result): result is PromiseFulfilledResult<GetIconResult> => result.status === 'fulfilled')
+      .filter(
+        (result): result is PromiseFulfilledResult<GetIconResult> => result.status === 'fulfilled'
+      )
       .map(result => result.value)
   }
 
@@ -198,7 +207,7 @@ export class HeroiconsClient {
             displayName: this.toDisplayName(icon.name),
             variant,
             size,
-            category: icon.category,
+            category: icon.category
           })
         }
       }
@@ -219,25 +228,61 @@ export class HeroiconsClient {
     // For production, you'd want to fetch the actual directory listing
     // This is a simplified implementation with common icons
     const commonIcons = [
-      'arrow-right', 'arrow-left', 'arrow-up', 'arrow-down',
-      'check', 'x-mark', 'chevron-right', 'chevron-left',
-      'chevron-up', 'chevron-down', 'plus', 'minus',
-      'magnifying-glass', 'bars-3', 'ellipsis-horizontal',
-      'ellipsis-vertical', 'heart', 'star', 'bell',
-      'envelope', 'user', 'users', 'home', 'cog-6-tooth',
-      'trash', 'pencil', 'document', 'folder', 'photo',
-      'calendar', 'clock', 'map-pin', 'globe-alt',
-      'link', 'share', 'download', 'upload', 'eye',
-      'eye-slash', 'lock-closed', 'lock-open', 'key',
-      'shield-check', 'exclamation-triangle', 'information-circle',
-      'question-mark-circle', 'check-circle', 'x-circle',
+      'arrow-right',
+      'arrow-left',
+      'arrow-up',
+      'arrow-down',
+      'check',
+      'x-mark',
+      'chevron-right',
+      'chevron-left',
+      'chevron-up',
+      'chevron-down',
+      'plus',
+      'minus',
+      'magnifying-glass',
+      'bars-3',
+      'ellipsis-horizontal',
+      'ellipsis-vertical',
+      'heart',
+      'star',
+      'bell',
+      'envelope',
+      'user',
+      'users',
+      'home',
+      'cog-6-tooth',
+      'trash',
+      'pencil',
+      'document',
+      'folder',
+      'photo',
+      'calendar',
+      'clock',
+      'map-pin',
+      'globe-alt',
+      'link',
+      'share',
+      'download',
+      'upload',
+      'eye',
+      'eye-slash',
+      'lock-closed',
+      'lock-open',
+      'key',
+      'shield-check',
+      'exclamation-triangle',
+      'information-circle',
+      'question-mark-circle',
+      'check-circle',
+      'x-circle'
     ]
 
     this.metadataCache = commonIcons.map(name => ({
       name,
       variants: ['outline', 'solid'] as IconVariant[],
       sizes: ['24', '20'] as IconSize[],
-      tags: name.split('-'),
+      tags: name.split('-')
     }))
 
     return this.metadataCache

@@ -38,10 +38,10 @@ Ensures that skill/MCP implementations actually deliver what their manifests pro
 
 ```yaml
 inputs:
-  resource_path: string          # Path to skill/MCP directory
-  manifest_path: string          # Path to manifest.yaml (default: resource_path/manifest.yaml)
-  implementation_path: string    # Path to code (default: resource_path/index.js)
-  strict_mode: boolean           # Fail on warnings (default: false)
+  resource_path: string # Path to skill/MCP directory
+  manifest_path: string # Path to manifest.yaml (default: resource_path/manifest.yaml)
+  implementation_path: string # Path to code (default: resource_path/index.js)
+  strict_mode: boolean # Fail on warnings (default: false)
 ```
 
 ## Process
@@ -331,17 +331,10 @@ PYTHON_SCRIPT
 
 ```javascript
 // Overall score is average of component scores
-overallScore = (
-  descriptionAccuracy +
-  preconditionCoverage +
-  effectCoverage
-) / 3
+overallScore = (descriptionAccuracy + preconditionCoverage + effectCoverage) / 3
 
 // Pass criteria
-passed = (
-  overallScore >= 0.8 &&
-  highSeverityIssues.length === 0
-)
+passed = overallScore >= 0.8 && highSeverityIssues.length === 0
 ```
 
 ### Severity Levels
@@ -358,8 +351,8 @@ passed = (
   "validated_at": "2025-10-28T12:00:00Z",
   "overall_score": 0.85,
   "scores": {
-    "description_accuracy": 0.90,
-    "precondition_coverage": 0.80,
+    "description_accuracy": 0.9,
+    "precondition_coverage": 0.8,
     "effect_coverage": 0.85
   },
   "validation_results": {
@@ -367,7 +360,7 @@ passed = (
       "description_accurate": true,
       "missing_features": [],
       "undocumented_features": ["vector_index_optimization"],
-      "accuracy_score": 0.90,
+      "accuracy_score": 0.9,
       "issues": [
         {
           "type": "undocumented_feature",
@@ -392,7 +385,7 @@ passed = (
           "error_handling": "good"
         }
       ],
-      "coverage_score": 0.80
+      "coverage_score": 0.8
     },
     "effects": {
       "effects_validated": [
@@ -408,7 +401,7 @@ passed = (
           "implemented": true,
           "location": "setupPipeline:85",
           "conditional": false,
-          "confidence": 0.90
+          "confidence": 0.9
         }
       ],
       "missing_effects": [],

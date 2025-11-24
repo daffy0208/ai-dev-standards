@@ -9,6 +9,7 @@ Retrieval-Augmented Generation (RAG) architecture enhances LLM responses by retr
 ### When to Use This Pattern
 
 **Use RAG When:**
+
 - ✅ Need to ground LLM responses in up-to-date or proprietary data
 - ✅ Knowledge changes frequently (documentation, regulations, news)
 - ✅ Require source attribution and traceability
@@ -16,6 +17,7 @@ Retrieval-Augmented Generation (RAG) architecture enhances LLM responses by retr
 - ✅ Need to reduce hallucinations with factual grounding
 
 **Don't Use RAG When:**
+
 - ❌ Base model already has sufficient knowledge
 - ❌ Task requires reasoning over information, not retrieval
 - ❌ Latency requirements incompatible with retrieval overhead
@@ -35,6 +37,7 @@ User Query → Embedding → Vector Search → Top-K Retrieval → Context + Que
 ```
 
 **Architecture**:
+
 ```python
 # Simple RAG pipeline
 class NaiveRAG:
@@ -65,6 +68,7 @@ Answer based only on the context above:"""
 ```
 
 **Components**:
+
 - Embedding model (OpenAI, Cohere, or local)
 - Vector database (Chroma, Pinecone, Weaviate)
 - LLM (GPT-4, Claude, or local)
@@ -85,6 +89,7 @@ User Query → Query Enhancement → Hybrid Retrieval → Re-ranking → Context
 ```
 
 **Architecture**:
+
 ```python
 class AdvancedRAG:
     def __init__(self, vector_store, keyword_index, reranker, llm):
@@ -137,6 +142,7 @@ class AdvancedRAG:
 ```
 
 **Enhanced Components**:
+
 - **Query Enhancement**: Multi-query, HyDE (Hypothetical Document Embeddings), query expansion
 - **Hybrid Retrieval**: Semantic (vector) + keyword (BM25) + metadata filtering
 - **Re-ranking**: Cross-encoder models for relevance scoring
@@ -161,6 +167,7 @@ User Query → Router → [Search Module] → [Memory Module] → [Predict Modul
 ```
 
 **Architecture**:
+
 ```python
 class ModularRAG:
     def __init__(self, modules: dict, orchestrator, llm):
@@ -257,6 +264,7 @@ class PredictModule:
 ```
 
 **Modular Components**:
+
 - **Router**: Intelligent query routing to specialized knowledge bases
 - **Search Module**: Multi-KB search with domain-specific retrieval strategies
 - **Memory Module**: Conversation history and user preference tracking
@@ -272,13 +280,13 @@ class PredictModule:
 
 ### Embedding Models
 
-| Model | Dimensions | Use Case | Cost | Performance |
-|-------|-----------|----------|------|-------------|
-| **OpenAI text-embedding-3-large** | 3072 (customizable) | General-purpose, high quality | $$ | Excellent |
-| **OpenAI text-embedding-3-small** | 1536 | Cost-sensitive, good quality | $ | Good |
-| **Cohere Embed v3** | 1024 | Multilingual, semantic search | $$ | Excellent |
-| **Sentence Transformers (all-MiniLM-L6-v2)** | 384 | Self-hosted, fast inference | Free | Good |
-| **BGE-large-en** | 1024 | Self-hosted, high quality | Free | Excellent |
+| Model                                        | Dimensions          | Use Case                      | Cost | Performance |
+| -------------------------------------------- | ------------------- | ----------------------------- | ---- | ----------- |
+| **OpenAI text-embedding-3-large**            | 3072 (customizable) | General-purpose, high quality | $$   | Excellent   |
+| **OpenAI text-embedding-3-small**            | 1536                | Cost-sensitive, good quality  | $    | Good        |
+| **Cohere Embed v3**                          | 1024                | Multilingual, semantic search | $$   | Excellent   |
+| **Sentence Transformers (all-MiniLM-L6-v2)** | 384                 | Self-hosted, fast inference   | Free | Good        |
+| **BGE-large-en**                             | 1024                | Self-hosted, high quality     | Free | Excellent   |
 
 **Recommendation**: Start with `text-embedding-3-small` for prototypes, upgrade to `text-embedding-3-large` or fine-tuned models for production.
 
@@ -286,16 +294,17 @@ class PredictModule:
 
 ### Vector Databases
 
-| Database | Scale | Deployment | Best For |
-|----------|-------|-----------|----------|
-| **Chroma** | <1M docs | Local/Self-hosted | Development, prototyping |
-| **Pinecone** | 1M-100M+ | Cloud-managed | Production, scalability |
-| **Weaviate** | 1M-10M+ | Self-hosted/Cloud | Hybrid search, GraphQL |
-| **Qdrant** | 1M-100M+ | Self-hosted/Cloud | High performance, Rust-based |
-| **Milvus** | 10M-1B+ | Self-hosted | Enterprise, massive scale |
-| **PostgreSQL + pgvector** | <10M | Self-hosted | Existing Postgres infrastructure |
+| Database                  | Scale    | Deployment        | Best For                         |
+| ------------------------- | -------- | ----------------- | -------------------------------- |
+| **Chroma**                | <1M docs | Local/Self-hosted | Development, prototyping         |
+| **Pinecone**              | 1M-100M+ | Cloud-managed     | Production, scalability          |
+| **Weaviate**              | 1M-10M+  | Self-hosted/Cloud | Hybrid search, GraphQL           |
+| **Qdrant**                | 1M-100M+ | Self-hosted/Cloud | High performance, Rust-based     |
+| **Milvus**                | 10M-1B+  | Self-hosted       | Enterprise, massive scale        |
+| **PostgreSQL + pgvector** | <10M     | Self-hosted       | Existing Postgres infrastructure |
 
 **Selection Guide**:
+
 - **MVP/Prototype**: Chroma (local, free, fast setup)
 - **Production (cloud-first)**: Pinecone (managed, scalable)
 - **Production (self-hosted)**: Weaviate or Qdrant (open-source, flexible)
@@ -305,12 +314,12 @@ class PredictModule:
 
 ### Re-ranking Models
 
-| Model | Latency | Accuracy | Use Case |
-|-------|---------|----------|----------|
-| **Cohere Rerank** | Low | Excellent | Production, managed service |
-| **Cross-Encoder (ms-marco)** | Medium | Excellent | Self-hosted, high accuracy |
-| **BGE Reranker** | Low | Good | Self-hosted, cost-sensitive |
-| **ColBERT** | High | Excellent | Accuracy-critical, research |
+| Model                        | Latency | Accuracy  | Use Case                    |
+| ---------------------------- | ------- | --------- | --------------------------- |
+| **Cohere Rerank**            | Low     | Excellent | Production, managed service |
+| **Cross-Encoder (ms-marco)** | Medium  | Excellent | Self-hosted, high accuracy  |
+| **BGE Reranker**             | Low     | Good      | Self-hosted, cost-sensitive |
+| **ColBERT**                  | High    | Excellent | Accuracy-critical, research |
 
 **Recommendation**: Use re-ranking for top-20 → top-5 refinement. Adds 50-200ms latency but significantly improves relevance.
 
@@ -733,15 +742,18 @@ print(response.source_nodes)  # Citations
 ## Related Resources
 
 **Related Skills**:
+
 - `rag-implementer` - Methodology for implementing RAG systems
 - `knowledge-graph-builder` - Graph-based knowledge representation
 - `multi-agent-architect` - Multi-agent systems with RAG components
 
 **Related Standards**:
+
 - `STANDARDS/architecture-patterns/embedding-strategy.md` - Embedding model selection (when created)
 - `STANDARDS/architecture-patterns/vector-db-pattern.md` - Vector database patterns (when created)
 
 **Related Playbooks**:
+
 - `PLAYBOOKS/deploy-rag-system.md` - RAG deployment guide (when created)
 - `PLAYBOOKS/evaluate-rag-quality.md` - RAG evaluation procedures (when created)
 
@@ -768,6 +780,7 @@ Do I need RAG?
 ```
 
 **Next Steps After Choosing RAG**:
+
 1. Define knowledge base scope and data sources
 2. Select embedding model and vector database
 3. Implement retrieval pipeline (start simple, iterate)

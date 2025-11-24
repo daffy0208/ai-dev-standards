@@ -21,21 +21,25 @@ The dark-matter-analyzer has a unique **recursive capability**: it can analyze r
 ### Trigger Scenarios
 
 **1. After Major Changes**
+
 - New skill/MCP added → Check if all files updated
 - Registry modified → Verify relationship integrity
 - BUILD_FOCUS updated → Assess adherence to new rules
 
 **2. Periodic Health Checks**
+
 - Weekly: Quick coherence scan
 - Monthly: Deep analysis with full RCI calculation
 - Quarterly: Comprehensive audit with external validation
 
 **3. User-Discovered Gaps**
+
 - When user asks "Why isn't X updated?"
 - When inconsistencies are reported
 - When automation fails silently
 
 **4. Before Major Releases**
+
 - Pre-commit: Quick relationship check
 - Pre-release: Full coherence analysis
 - Post-release: Validate documentation accuracy
@@ -47,16 +51,19 @@ The dark-matter-analyzer has a unique **recursive capability**: it can analyze r
 ### 1. BUILD_FOCUS Adherence Patterns
 
 **Pattern: "Moratorium Violation"**
+
 - **Signal:** New skill created while MCP count < 15
 - **Check:** Compare current ratio against BUILD_FOCUS target
 - **Action:** 🔴 HOLD - Flag as violation, recommend deletion or MCP creation
 
 **Pattern: "Documentation Inflation"**
+
 - **Signal:** New .md files created without corresponding feature
 - **Check:** Track doc count against BUILD_FOCUS consolidation target
 - **Action:** 🟡 REVIEW - Assess if new doc is necessary
 
 **Pattern: "Build vs Doc Ratio Violation"**
+
 - **Signal:** Ratio < 1.0 (more docs than features)
 - **Check:** Weekly Friday calculation
 - **Action:** 🟡 REVIEW - Highlight the imbalance
@@ -64,6 +71,7 @@ The dark-matter-analyzer has a unique **recursive capability**: it can analyze r
 ### 2. Relationship Integrity Patterns
 
 **Pattern: "Orphaned Skill"**
+
 - **Signal:** Skill in registry but not in relationship-mapping.json
 - **Check:** Cross-reference skill-registry.json with relationship-mapping.json
 - **Action:** 🔴 HOLD - Add relationship or remove skill
@@ -75,6 +83,7 @@ The dark-matter-analyzer has a unique **recursive capability**: it can analyze r
   ```
 
 **Pattern: "Broken MCP Reference"**
+
 - **Signal:** Skill claims to use MCP that doesn't exist
 - **Check:** Verify all "existing" MCPs in relationships actually exist in MCP-SERVERS/
 - **Action:** 🔴 HOLD - Fix reference or build MCP
@@ -87,6 +96,7 @@ The dark-matter-analyzer has a unique **recursive capability**: it can analyze r
   ```
 
 **Pattern: "Stale Planned MCP"**
+
 - **Signal:** MCP listed as "planned" but already exists
 - **Check:** Compare "planned" list with actual MCP-SERVERS/ contents
 - **Action:** 🟡 REVIEW - Move from planned to existing
@@ -99,6 +109,7 @@ The dark-matter-analyzer has a unique **recursive capability**: it can analyze r
   ```
 
 **Pattern: "Undocumented MCP"**
+
 - **Signal:** MCP exists but not referenced by any skill
 - **Check:** Reverse lookup - which skills use this MCP?
 - **Action:** 🟡 REVIEW - Add to skill or document reason
@@ -112,6 +123,7 @@ The dark-matter-analyzer has a unique **recursive capability**: it can analyze r
 ### 3. File Update Consistency Patterns
 
 **Pattern: "Registry Drift"**
+
 - **Signal:** Skill count in README ≠ skill-registry.json ≠ registry.json
 - **Check:** Compare skill counts across all files
 - **Files to Check:**
@@ -137,6 +149,7 @@ The dark-matter-analyzer has a unique **recursive capability**: it can analyze r
   ```
 
 **Pattern: "Version Mismatch"**
+
 - **Signal:** Version numbers inconsistent across files
 - **Check:** Compare versions in package.json, README, registries
 - **Files to Check:**
@@ -147,6 +160,7 @@ The dark-matter-analyzer has a unique **recursive capability**: it can analyze r
 - **Action:** 🟡 REVIEW - Synchronize versions
 
 **Pattern: "Stale Last Updated Date"**
+
 - **Signal:** File modified but "Last Updated" not changed
 - **Check:** Compare git last-modified with embedded dates
 - **Action:** 🟢 OBSERVE - Update dates for clarity
@@ -154,6 +168,7 @@ The dark-matter-analyzer has a unique **recursive capability**: it can analyze r
 ### 4. Automation Gap Patterns
 
 **Pattern: "Manual Update Required"**
+
 - **Signal:** Change made but related files not updated
 - **Check:** When X changes, Y should also change
 - **Action:** 🔴 HOLD - Create automation or document process
@@ -163,11 +178,13 @@ The dark-matter-analyzer has a unique **recursive capability**: it can analyze r
   - Skill-MCP relationship created → 2 files should update
 
 **Pattern: "Missing Test Coverage"**
+
 - **Signal:** Registry validation tests don't cover new patterns
 - **Check:** Are new patterns tested in tests/unit/?
 - **Action:** 🟡 REVIEW - Add test coverage
 
 **Pattern: "Undocumented Convention"**
+
 - **Signal:** Pattern exists but not documented in CONTRIBUTING.md
 - **Check:** Compare actual practices with documented guidelines
 - **Action:** 🟢 OBSERVE - Document implicit conventions
@@ -181,16 +198,19 @@ The dark-matter-analyzer has a unique **recursive capability**: it can analyze r
 **Should be related to:**
 
 **Analysis & Quality Skills:**
+
 - `quality-auditor` - Technical quality after organizational health
 - `testing-strategist` - Test strategy informed by patterns
 - `technical-debt-assessor` - Prioritize debt based on coherence
 
 **Product & Strategy Skills:**
+
 - `product-strategist` - Strategic alignment checks
 - `mvp-builder` - Ensure execution-driven development
 - `deployment-advisor` - Deployment readiness assessment
 
 **Meta-Level Monitoring:**
+
 - Should analyze BUILD_FOCUS itself
 - Should validate registry integrity
 - Should check relationship consistency
@@ -212,6 +232,7 @@ The dark-matter-analyzer has a unique **recursive capability**: it can analyze r
 ```
 
 Add new section:
+
 ```json
 {
   "meta_analysis_flow": {
@@ -229,11 +250,7 @@ Add new section:
         "pre_release",
         "user_discovered_gap"
       ],
-      "informs": [
-        "quality-auditor",
-        "product-strategist",
-        "mvp-builder"
-      ]
+      "informs": ["quality-auditor", "product-strategist", "mvp-builder"]
     }
   }
 }
@@ -246,18 +263,21 @@ Add new section:
 ### Level 1: Immediate Automation (High Value, Low Complexity)
 
 **1. Registry Count Validator**
+
 - **Tool:** Pre-commit hook or CI check
 - **Function:** Validate skill/MCP counts match across all files
 - **Files:** README, BUILD_FOCUS, registries, DOCS/INDEX
 - **Action:** Block commit if mismatch detected
 
 **2. Relationship Integrity Checker**
+
 - **Tool:** CI test
 - **Function:** Validate skills reference existing MCPs
 - **Files:** relationship-mapping.json, MCP-SERVERS/
 - **Action:** Fail build if broken references
 
 **3. Dark Matter Weekly Report**
+
 - **Tool:** GitHub Actions scheduled workflow
 - **Function:** Run dark-matter-analyzer-mcp on ai-dev-standards
 - **Schedule:** Every Friday
@@ -266,18 +286,21 @@ Add new section:
 ### Level 2: Medium Priority (High Value, Medium Complexity)
 
 **4. Auto-Update Cascade**
+
 - **Tool:** Script triggered on skill/MCP addition
 - **Function:** Automatically update all related files
 - **Trigger:** When skill-registry.json changes
 - **Updates:** README, BUILD_FOCUS, DOCS/INDEX, relationship-mapping
 
 **5. Version Synchronizer**
+
 - **Tool:** Release preparation script
 - **Function:** Synchronize versions across all files
 - **Files:** All version fields
 - **Action:** Update and create version changelog
 
 **6. Relationship Graph Visualizer**
+
 - **Tool:** Script to generate visual dependency graph
 - **Function:** Show skill→MCP→component relationships
 - **Output:** Mermaid diagram in DOCS/
@@ -285,18 +308,21 @@ Add new section:
 ### Level 3: Advanced Automation (High Value, High Complexity)
 
 **7. Self-Healing Registry**
+
 - **Tool:** Automated PR creator
 - **Function:** Detect inconsistencies and create fix PRs
 - **Process:** Run dark-matter → detect gaps → generate fixes
 - **Review:** Require human approval
 
 **8. BUILD_FOCUS Enforcer**
+
 - **Tool:** Pre-commit hook with exceptions
 - **Function:** Block new skills if ratio > target
 - **Override:** Require explanation in commit message
 - **Log:** Track moratorium violations
 
 **9. Meta-Analysis Dashboard**
+
 - **Tool:** Web portal showing repository health
 - **Metrics:** RCI score, relationship graph, automation coverage
 - **Updates:** Real-time or on push
@@ -309,6 +335,7 @@ Add new section:
 ### When Adding New Skill
 
 **Current Manual Process:**
+
 1. Create skill files (SKILL.md, README.md)
 2. Update skill-registry.json
 3. Update registry.json
@@ -320,6 +347,7 @@ Add new section:
 9. Update MCP-DEVELOPMENT-ROADMAP.md (if applicable)
 
 **With Dark Matter Integration:**
+
 1. Create skill files (SKILL.md, README.md)
 2. Run `npm run add-skill [skill-name]` (automation)
    - Updates all registries
@@ -335,6 +363,7 @@ Add new section:
 6. Commit (pre-commit hook re-validates)
 
 **Dark Matter Check Points:**
+
 - ✅ After step 2: "Are all files updated?"
 - ✅ Before step 6: "Is BUILD_FOCUS followed?"
 - ✅ Post-commit: "Is repository coherent?"
@@ -342,6 +371,7 @@ Add new section:
 ### When Adding New MCP
 
 **With Dark Matter Integration:**
+
 1. Create MCP files (src/, package.json, etc.)
 2. Run `npm run add-mcp [mcp-name] [enables-skill]`
 3. **Run dark-matter quick-check**
@@ -354,6 +384,7 @@ Add new section:
 ### Periodic Health Checks
 
 **Weekly (Automated):**
+
 ```bash
 # GitHub Actions: Every Friday
 npm run dark-matter:weekly
@@ -362,6 +393,7 @@ npm run dark-matter:weekly
 ```
 
 **Monthly (Manual):**
+
 ```bash
 npm run dark-matter:deep
 # Output: Comprehensive report
@@ -369,6 +401,7 @@ npm run dark-matter:deep
 ```
 
 **Pre-Release (Manual):**
+
 ```bash
 npm run dark-matter:release-check
 # Output: Release readiness report
@@ -380,24 +413,28 @@ npm run dark-matter:release-check
 ## 🎯 Implementation Priority
 
 ### Phase 1: Foundation (Week 1)
+
 1. ✅ Create dark-matter-analyzer skill
 2. ✅ Create dark-matter-analyzer-mcp
 3. 📋 Add meta-analysis patterns to MCP
 4. 📋 Create relationship integrity checks
 
 ### Phase 2: Automation (Week 2-3)
+
 1. Registry count validator (CI)
 2. Relationship integrity checker (CI)
 3. Dark Matter weekly report (GitHub Actions)
 4. Documentation for using dark-matter on ai-dev-standards
 
 ### Phase 3: Self-Healing (Week 4-6)
+
 1. Auto-update cascade script
 2. Version synchronizer
 3. BUILD_FOCUS enforcer hook
 4. Self-healing registry (automated PRs)
 
 ### Phase 4: Visualization (Week 7-8)
+
 1. Relationship graph generator
 2. Meta-analysis dashboard
 3. Real-time coherence monitoring
@@ -407,11 +444,13 @@ npm run dark-matter:release-check
 ## 🔍 Example: Dark Matter Analyzing ai-dev-standards
 
 **Command:**
+
 ```bash
 npm run dark-matter:self-check
 ```
 
 **Expected Output:**
+
 ```markdown
 # Dark Matter Analysis - ai-dev-standards
 
@@ -420,20 +459,24 @@ npm run dark-matter:self-check
 ## Patterns Detected
 
 ### ✅ BUILD_FOCUS Adherence (Excellent)
+
 - Current ratio: 5.4:1 (Target: <6:1) ✅
 - Documentation: 21 files (Target: 15) 🟡 Needs work
 - MCP development: On track
 
 ### ✅ Relationship Integrity (Excellent)
+
 - All skills have relationship mappings ✅
 - All MCP references valid ✅
 - No orphaned skills ✅
 
 ### 🟡 File Update Consistency (Minor Issues)
+
 - Skill count mismatch: DOCS/INDEX.md shows 37, should be 38
 - Last updated date: 3 files need updating
 
 ### 🟢 Automation Coverage (Good)
+
 - Registry validation: Exists ✅
 - CI checks: Active ✅
 - Suggested: Add pre-commit hooks
@@ -441,11 +484,13 @@ npm run dark-matter:self-check
 ## Recommendations
 
 ### 🟡 REVIEW
+
 1. Update DOCS/INDEX.md skill count
 2. Update last-modified dates
 3. Consider consolidating to 15 docs (current: 21)
 
 ### 🟢 OBSERVE
+
 1. Monitor weekly build vs doc ratio
 2. Continue MCP development pace
 3. Maintain relationship integrity
@@ -456,16 +501,19 @@ npm run dark-matter:self-check
 ## 📝 Documentation Updates Needed
 
 Add to **CONTRIBUTING.md:**
+
 - When to run dark-matter self-check
 - How to interpret results
 - Fix workflow for flagged issues
 
 Add to **BUILD_FOCUS.md:**
+
 - Dark matter monitoring schedule
 - Escalation process for HOLD items
 - Self-check before major changes
 
 Add to **DOCS/guides/** (when created):
+
 - Complete guide: "Using Dark Matter to Monitor Framework Health"
 - Quick reference: "Dark Matter Self-Check Workflow"
 
@@ -482,6 +530,7 @@ Dark Matter analyzer is **meta-level recursive** - it can:
 5. **Self-heal** - Eventually create PRs to fix detected issues
 
 **Next Steps:**
+
 1. Add meta-analysis patterns to dark-matter-analyzer-mcp
 2. Create CI checks for registry consistency
 3. Set up weekly GitHub Actions workflow
@@ -492,4 +541,4 @@ This closes the loop: the framework can now **analyze itself** and **maintain it
 
 ---
 
-*"The mirror must know when it is dreaming — and when the framework dreams, Dark Matter wakes it up."*
+_"The mirror must know when it is dreaming — and when the framework dreams, Dark Matter wakes it up."_

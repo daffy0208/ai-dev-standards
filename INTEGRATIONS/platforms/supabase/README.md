@@ -202,7 +202,7 @@ if (error) throw error
 
 ```typescript
 // Subscribe to changes
-const subscription = db.subscribe('users', (payload) => {
+const subscription = db.subscribe('users', payload => {
   console.log('Change:', payload)
 })
 
@@ -347,7 +347,9 @@ export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
   const supabase = createMiddlewareClient(req, res)
 
-  const { data: { session } } = await supabase.auth.getSession()
+  const {
+    data: { session }
+  } = await supabase.auth.getSession()
 
   // Protect routes
   if (!session && req.nextUrl.pathname.startsWith('/dashboard')) {
@@ -367,18 +369,23 @@ export const config = {
 ## Best Practices
 
 ### 1. Use Row-Level Security
+
 Always enable RLS and create policies for data access control.
 
 ### 2. Type Safety
+
 Generate TypeScript types from your database schema.
 
 ### 3. Error Handling
+
 Always handle errors from Supabase operations.
 
 ### 4. Server-Side Auth
+
 Use server-side auth checks for protected routes and API endpoints.
 
 ### 5. Real-time Subscriptions
+
 Unsubscribe from channels when components unmount.
 
 ---
@@ -454,15 +461,19 @@ function SignUpForm() {
 ## Troubleshooting
 
 ### "Invalid API key" error
+
 Check that environment variables are set correctly and restart dev server.
 
 ### RLS blocking queries
+
 Check your RLS policies. Use service role key for admin operations.
 
 ### Real-time not working
+
 Ensure real-time is enabled in Supabase dashboard for your table.
 
 ### TypeScript errors
+
 Regenerate types after schema changes: `npx supabase gen types typescript`
 
 ---

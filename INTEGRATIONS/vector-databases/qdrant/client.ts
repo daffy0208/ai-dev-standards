@@ -145,6 +145,35 @@ export interface ScrollOptions {
   offset?: string | number
 }
 
+type QdrantVector = number[] | number[][] | Record<string, unknown> | null | undefined
+
+const normalizeVector = (vector?: QdrantVector): number[] | undefined => {
+  if (!vector || !Array.isArray(vector)) {
+    return undefined
+  }
+
+  const first = vector[0]
+  if (Array.isArray(first)) {
+    return first as number[]
+  }
+
+  return vector as number[]
+}
+
+const coercePointId = (id: unknown): string | number => {
+  if (typeof id === 'string' || typeof id === 'number') {
+    return id
+  }
+  return JSON.stringify(id)
+}
+
+const normalizeOffset = (offset?: unknown): string | number | undefined => {
+  if (typeof offset === 'string' || typeof offset === 'number') {
+    return offset
+  }
+  return undefined
+}
+
 export class QdrantClient {
   private client: QdrantSDK
   private options: Required<Omit<QdrantClientOptions, 'apiKey'>> & { apiKey?: string }
@@ -153,31 +182,28 @@ export class QdrantClient {
     this.options = {
       url: options.url || 'http://localhost:6333',
       apiKey: options.apiKey,
-      timeout: options.timeout || 30000,
+      timeout: options.timeout || 30000
     }
 
     this.client = new QdrantSDK({
       url: this.options.url,
       apiKey: this.options.apiKey,
-      timeout: this.options.timeout,
+      timeout: this.options.timeout
     })
   }
 
   /**
    * Create a collection
    */
-  async createCollection(
-    name: string,
-    options: CreateCollectionOptions
-  ): Promise<void> {
+  async createCollection(name: string, options: CreateCollectionOptions): Promise<void> {
     await this.client.createCollection(name, {
       vectors: {
         size: options.vectorSize,
-        distance: options.distance || 'Cosine',
+        distance: options.distance || 'Cosine'
       },
       shard_number: options.shardNumber,
       replication_factor: options.replicationFactor,
-      on_disk_payload: options.onDisk,
+      on_disk_payload: options.onDisk
     })
   }
 
@@ -205,7 +231,7 @@ export class QdrantClient {
    */
   async listCollections(): Promise<string[]> {
     const response = await this.client.getCollections()
-    return response.collections.map((c) => c.name)
+    return response.collections.map(c => c.name)
   }
 
   /**
@@ -223,23 +249,20 @@ export class QdrantClient {
       vectorCount: info.vectors_count || 0,
       pointsCount: info.points_count || 0,
       status: info.status,
-      config: info.config,
+      config: info.config
     }
   }
 
   /**
    * Add vectors to collection
    */
-  async addVectors(
-    collectionName: string,
-    data: { points: Point[] }
-  ): Promise<void> {
+  async addVectors(collectionName: string, data: { points: Point[] }): Promise<void> {
     await this.client.upsert(collectionName, {
-      points: data.points.map((point) => ({
+      points: data.points.map(point => ({
         id: point.id,
         vector: point.vector,
-        payload: point.payload,
-      })),
+        payload: point.payload
+      }))
     })
   }
 
@@ -253,42 +276,36 @@ export class QdrantClient {
   ): Promise<void> {
     await this.client.setPayload(collectionName, {
       payload,
-      points: [pointId],
+      points: [pointId]
     })
   }
 
   /**
    * Delete vectors
    */
-  async deleteVectors(
-    collectionName: string,
-    ids: Array<string | number>
-  ): Promise<void> {
+  async deleteVectors(collectionName: string, ids: Array<string | number>): Promise<void> {
     await this.client.delete(collectionName, {
-      points: ids,
+      points: ids
     })
   }
 
   /**
    * Get vector by ID
    */
-  async getVector(
-    collectionName: string,
-    id: string | number
-  ): Promise<Point | null> {
+  async getVector(collectionName: string, id: string | number): Promise<Point | null> {
     const points = await this.client.retrieve(collectionName, {
       ids: [id],
       with_payload: true,
-      with_vector: true,
+      with_vector: true
     })
 
     if (points.length === 0) return null
 
     const point = points[0]
     return {
-      id: point.id,
-      vector: Array.isArray(point.vector) ? point.vector : [],
-      payload: point.payload,
+      id: coercePointId(point.id),
+      vector: normalizeVector(point.vector) || [],
+      payload: point.payload
     }
   }
 
@@ -307,14 +324,14 @@ export class QdrantClient {
       filter: options.filter,
       with_payload: options.withPayload ?? true,
       with_vector: options.withVector ?? false,
-      params: options.params,
+      params: options.params
     })
 
-    return results.map((result) => ({
-      id: result.id,
+    return results.map(result => ({
+      id: coercePointId(result.id),
       score: result.score,
       payload: result.payload,
-      vector: Array.isArray(result.vector) ? result.vector : undefined,
+      vector: normalizeVector(result.vector)
     }))
   }
 
@@ -325,26 +342,26 @@ export class QdrantClient {
     collectionName: string,
     queries: Array<{ vector: number[]; options?: SearchOptions }>
   ): Promise<SearchResult[][]> {
-    const searchRequests = queries.map((query) => ({
+    const searchRequests = queries.map(query => ({
       vector: query.vector,
       limit: query.options?.limit || 10,
       score_threshold: query.options?.scoreThreshold,
       filter: query.options?.filter,
       with_payload: query.options?.withPayload ?? true,
       with_vector: query.options?.withVector ?? false,
-      params: query.options?.params,
+      params: query.options?.params
     }))
 
     const results = await this.client.searchBatch(collectionName, {
-      searches: searchRequests,
+      searches: searchRequests
     })
 
-    return results.map((batch) =>
-      batch.map((result) => ({
-        id: result.id,
+    return results.map(batch =>
+      batch.map(result => ({
+        id: coercePointId(result.id),
         score: result.score,
         payload: result.payload,
-        vector: Array.isArray(result.vector) ? result.vector : undefined,
+        vector: normalizeVector(result.vector)
       }))
     )
   }
@@ -361,29 +378,26 @@ export class QdrantClient {
       filter: options.filter,
       with_payload: options.withPayload ?? true,
       with_vector: options.withVector ?? false,
-      offset: options.offset,
+      offset: options.offset
     })
 
     return {
-      points: result.points.map((point) => ({
-        id: point.id,
-        vector: Array.isArray(point.vector) ? point.vector : [],
-        payload: point.payload,
+      points: result.points.map(point => ({
+        id: coercePointId(point.id),
+        vector: normalizeVector(point.vector) || [],
+        payload: point.payload
       })),
-      nextOffset: result.next_page_offset,
+      nextOffset: normalizeOffset(result.next_page_offset)
     }
   }
 
   /**
    * Count points in collection
    */
-  async count(
-    collectionName: string,
-    filter?: Schemas['Filter']
-  ): Promise<number> {
+  async count(collectionName: string, filter?: Schemas['Filter']): Promise<number> {
     const result = await this.client.count(collectionName, {
       filter,
-      exact: true,
+      exact: true
     })
 
     return result.count
@@ -399,17 +413,14 @@ export class QdrantClient {
   ): Promise<void> {
     await this.client.createPayloadIndex(collectionName, {
       field_name: fieldName,
-      field_schema: fieldType,
+      field_schema: fieldType
     })
   }
 
   /**
    * Delete payload index
    */
-  async deletePayloadIndex(
-    collectionName: string,
-    fieldName: string
-  ): Promise<void> {
+  async deletePayloadIndex(collectionName: string, fieldName: string): Promise<void> {
     await this.client.deletePayloadIndex(collectionName, fieldName)
   }
 
@@ -426,16 +437,13 @@ export class QdrantClient {
    */
   async listSnapshots(collectionName: string): Promise<string[]> {
     const result = await this.client.listSnapshots(collectionName)
-    return result.map((s) => s.name)
+    return result.map(s => s.name)
   }
 
   /**
    * Delete snapshot
    */
-  async deleteSnapshot(
-    collectionName: string,
-    snapshotName: string
-  ): Promise<void> {
+  async deleteSnapshot(collectionName: string, snapshotName: string): Promise<void> {
     await this.client.deleteSnapshot(collectionName, snapshotName)
   }
 
@@ -452,24 +460,17 @@ export class QdrantClient {
         limit: 100,
         offset,
         withPayload: false,
-        withVector: false,
+        withVector: false
       })
 
       if (result.points.length > 0) {
-        const ids = result.points.map((p) => p.id)
+        const ids = result.points.map(p => p.id)
         await this.deleteVectors(collectionName, ids)
       }
 
       offset = result.nextOffset
       hasMore = offset !== undefined
     }
-  }
-
-  /**
-   * Get cluster info
-   */
-  async getClusterInfo(): Promise<any> {
-    return await this.client.getCluster()
   }
 
   /**
@@ -487,6 +488,6 @@ export function createQdrantClient(options: QdrantClientOptions = {}): QdrantCli
   return new QdrantClient({
     url: options.url || process.env.QDRANT_URL,
     apiKey: options.apiKey || process.env.QDRANT_API_KEY,
-    timeout: options.timeout,
+    timeout: options.timeout
   })
 }

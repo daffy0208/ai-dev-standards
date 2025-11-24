@@ -33,8 +33,37 @@
 
 'use client'
 
-import { useEffect, useState, ReactNode } from 'react'
+import React, { useEffect, useState, ReactNode } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
+
+export type AuthUser = { email?: string; roles?: string[] } | null
+
+export type AuthAdapter = {
+  getCurrentUser: () => Promise<AuthUser>
+  hasRole: (user: AuthUser, requiredRole: string) => boolean
+}
+
+/**
+ * Default auth adapter. Replace implementations with your auth provider
+ * (Supabase, NextAuth, custom API, etc).
+ */
+export const authAdapter: AuthAdapter = {
+  async getCurrentUser() {
+    return null
+  },
+  hasRole(user, requiredRole) {
+    if (!user) return false
+    return Array.isArray(user.roles) ? user.roles.includes(requiredRole) : false
+  }
+}
+
+export async function fetchCurrentUser(): Promise<AuthUser> {
+  return authAdapter.getCurrentUser()
+}
+
+export function userHasRole(user: AuthUser, requiredRole: string): boolean {
+  return authAdapter.hasRole(user, requiredRole)
+}
 
 export interface ProtectedRouteProps {
   children: ReactNode
@@ -66,8 +95,7 @@ export function ProtectedRoute({
         // import { auth } from '@/integrations/supabase/client'
         // const user = await auth.getUser()
 
-        // Simulated auth check
-        const user = null // Replace with actual user check
+        const user = await fetchCurrentUser()
 
         if (!user) {
           setIsAuthorized(false)
@@ -79,13 +107,7 @@ export function ProtectedRoute({
 
         // Check role if required
         if (requiredRole) {
-          // TODO: Replace with your role check implementation
-          // Example:
-          // const userRoles = user.user_metadata?.roles as string[] || []
-          // const hasRole = userRoles.includes(requiredRole)
-
-          const hasRole = false // Replace with actual role check
-
+          const hasRole = userHasRole(user, requiredRole)
           if (!hasRole) {
             setIsAuthorized(false)
             if (onUnauthorized) {
@@ -101,7 +123,7 @@ export function ProtectedRoute({
       } catch (error) {
         console.error('Auth check failed:', error)
         setIsAuthorized(false)
-        router.push(redirectTo)
+        router.push('/auth/login')
       } finally {
         setIsLoading(false)
       }
@@ -112,13 +134,15 @@ export function ProtectedRoute({
 
   // Show loading state
   if (isLoading) {
-    return fallback || (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
+    return (
+      fallback || (
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
+            <p className="mt-4 text-gray-600">Loading...</p>
+          </div>
         </div>
-      </div>
+      )
     )
   }
 
@@ -148,19 +172,14 @@ export async function ProtectedLayout({
   // import { serverAuth } from '@/integrations/supabase/server'
   // const user = await serverAuth.getUser()
 
-  const user = null // Replace with actual server-side auth check
+  const user = await fetchCurrentUser()
 
   if (!user) {
     redirect('/auth/login')
   }
 
-  // Check role if required
-  if (requiredRole) {
-    // TODO: Replace with your role check
-    // const userRoles = user.user_metadata?.roles as string[] || []
-    // if (!userRoles.includes(requiredRole)) {
-    //   redirect('/unauthorized')
-    // }
+  if (requiredRole && !userHasRole(user, requiredRole)) {
+    redirect('/unauthorized')
   }
 
   return <>{children}</>
@@ -178,10 +197,7 @@ export function withAuth<P extends object>(
 ) {
   return function ProtectedComponent(props: P) {
     return (
-      <ProtectedRoute
-        requiredRole={options?.requiredRole}
-        redirectTo={options?.redirectTo}
-      >
+      <ProtectedRoute requiredRole={options?.requiredRole} redirectTo={options?.redirectTo}>
         <Component {...props} />
       </ProtectedRoute>
     )
@@ -193,32 +209,25 @@ export function withAuth<P extends object>(
  */
 export function useRequireAuth(requiredRole?: string) {
   const router = useRouter()
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<AuthUser>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function checkAuth() {
       try {
-        // TODO: Replace with your auth implementation
-        // const user = await auth.getUser()
+        const authUser = await fetchCurrentUser()
 
-        const user = null // Replace with actual check
-
-        if (!user) {
+        if (!authUser) {
           router.push('/auth/login')
           return
         }
 
-        if (requiredRole) {
-          // Check role
-          // const hasRole = user.user_metadata?.roles?.includes(requiredRole)
-          // if (!hasRole) {
-          //   router.push('/unauthorized')
-          //   return
-          // }
+        if (requiredRole && !userHasRole(authUser, requiredRole)) {
+          router.push('/unauthorized')
+          return
         }
 
-        setUser(user)
+        setUser(authUser)
       } finally {
         setLoading(false)
       }

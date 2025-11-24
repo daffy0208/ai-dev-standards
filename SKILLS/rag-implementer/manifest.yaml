@@ -12,7 +12,7 @@ preconditions:
   - check: env_var_set('OPENAI_API_KEY') or env_var_set('ANTHROPIC_API_KEY')
     description: LLM API key for embeddings and generation
     required: true
-  - check: has_dependency('langchain') or has_dependency('@langchain/core')
+  - check: has_dependency('langchain') or has_dependency('@langchain/core') or has_dependency('@langchain/community')
     description: LangChain or similar RAG framework
     required: false
 

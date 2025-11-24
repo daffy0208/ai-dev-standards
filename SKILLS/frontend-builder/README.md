@@ -11,6 +11,7 @@ Guides development of modern React and Next.js frontends with best practices for
 ## When to Use
 
 Use this skill when you need to:
+
 - Build a new web application (React or Next.js)
 - Choose frontend stack and architecture
 - Structure components and folders
@@ -27,6 +28,7 @@ Use this skill when you need to:
    - React + Vite: Client-side only, simpler setup
 
 2. **Initialize project**
+
    ```bash
    npx create-next-app@latest my-app --typescript --tailwind --app
    # or
@@ -34,12 +36,14 @@ Use this skill when you need to:
    ```
 
 3. **Install core dependencies**
+
    ```bash
    npm install @tanstack/react-query zustand react-hook-form zod
    npm install -D @shadcn/ui
    ```
 
 4. **Set up folder structure**
+
    ```
    app/ or src/
    ├── components/ui/        # shadcn components
@@ -77,22 +81,26 @@ frontend-builder/
 ## Prerequisites
 
 **Knowledge:**
+
 - JavaScript/TypeScript basics
 - React fundamentals (components, props, state, hooks)
 - HTML and CSS
 
 **Tools:**
+
 - Node.js 18+ and npm/pnpm/yarn
 - Code editor (VS Code recommended)
 - Browser dev tools
 
 **Related Skills:**
+
 - `api-designer` helps design APIs to consume
 - `ux-designer` provides designs to implement
 
 ## Success Criteria
 
 You've successfully used this skill when:
+
 - ✅ Next.js or React + Vite project set up with TypeScript
 - ✅ Components organized in clear folder structure
 - ✅ State management strategy chosen (useState → Context → Zustand)
@@ -106,6 +114,7 @@ You've successfully used this skill when:
 ## Common Workflows
 
 ### Workflow 1: New Next.js App
+
 1. Use frontend-builder to initialize Next.js with App Router
 2. Set up shadcn/ui for component library
 3. Install React Query for data fetching
@@ -114,6 +123,7 @@ You've successfully used this skill when:
 6. Use `deployment-advisor` for hosting (Vercel recommended)
 
 ### Workflow 2: Complex State Management
+
 1. Start with useState for local state
 2. Lift state to parent when siblings need it
 3. Use Context API for widely-used state (theme, auth)
@@ -121,6 +131,7 @@ You've successfully used this skill when:
 5. Use React Query for server state (users, posts, products)
 
 ### Workflow 3: Performance Optimization
+
 1. Use frontend-builder performance section
 2. Identify slow renders with React DevTools Profiler
 3. Apply useMemo for expensive calculations
@@ -132,11 +143,13 @@ You've successfully used this skill when:
 ## Key Concepts
 
 **Component Types:**
+
 - **Page**: Route entry points (`app/users/page.tsx`)
 - **Feature**: Business logic (`components/features/UserList.tsx`)
 - **UI**: Reusable, no logic (`components/ui/button.tsx`)
 
 **State Management Decision:**
+
 ```
 One component → useState
 Parent + children → Props
@@ -147,15 +160,18 @@ Server state → React Query
 ```
 
 **Next.js vs React:**
+
 - **Next.js**: SEO, SSR, file routing, image optimization, API routes
 - **React + Vite**: Client-side, simpler, faster dev server, custom routing
 
 **Styling Options:**
+
 - **Tailwind CSS**: Utility-first, fast, no CSS files (recommended)
 - **CSS Modules**: Scoped, traditional CSS
 - **CSS-in-JS**: Styled-components, Emotion (less common now)
 
 **Data Fetching:**
+
 - **React Query**: Caching, revalidation, mutations (recommended)
 - **SWR**: Similar to React Query, by Vercel
 - **useEffect + fetch**: Manual, not recommended for production
@@ -163,15 +179,18 @@ Server state → React Query
 ## Troubleshooting
 
 **Skill not activating?**
+
 - Try explicitly requesting: "Use the frontend-builder skill to..."
 - Mention keywords: "frontend", "React", "Next.js", "components", "UI"
 
 **Choosing between Next.js and React?**
+
 - Next.js: SEO needed, blog, marketing site, e-commerce, full-stack app
 - React + Vite: Internal tool, admin panel, single-page app, no SEO
 - Default recommendation: Next.js (more features, better DX)
 
 **State management confusion?**
+
 - Start simple: useState for component state
 - Lift state up when siblings need it
 - Context for app-wide state (theme, auth)
@@ -180,6 +199,7 @@ Server state → React Query
 - Don't over-engineer: most apps only need useState + React Query
 
 **Component re-rendering too much?**
+
 - Use React DevTools Profiler to identify slow components
 - Apply `memo` to expensive components
 - Use `useMemo` for expensive calculations
@@ -187,6 +207,7 @@ Server state → React Query
 - Check dependencies arrays in useEffect, useMemo, useCallback
 
 **Forms not validating?**
+
 - Use React Hook Form + Zod for validation
 - Define Zod schema before form
 - Use zodResolver in useForm
@@ -194,6 +215,7 @@ Server state → React Query
 - Show error messages below inputs
 
 **Tailwind classes not working?**
+
 - Check tailwind.config.js includes content paths
 - Restart dev server after config changes
 - Use VS Code Tailwind CSS IntelliSense extension
@@ -201,6 +223,7 @@ Server state → React Query
 - Use `cn()` helper from shadcn for conditional classes
 
 **Build errors with TypeScript?**
+
 - Define interfaces for all component props
 - Type useState: `useState<User | null>(null)`
 - Type API responses with interfaces

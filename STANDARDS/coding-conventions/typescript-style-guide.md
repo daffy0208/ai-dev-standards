@@ -57,14 +57,14 @@ function validateForm(data: unknown): FormData {
 
 ### File Naming
 
-| Type | Convention | Example |
-|------|-----------|---------|
-| **Components** | PascalCase | `UserProfile.tsx`, `LoginForm.tsx` |
-| **Utilities** | camelCase | `formatDate.ts`, `apiClient.ts` |
-| **Types** | PascalCase | `User.ts`, `ApiResponse.ts` |
-| **Constants** | camelCase | `config.ts`, `constants.ts` |
-| **Tests** | Match source + `.test` | `UserProfile.test.tsx` |
-| **Hooks** | camelCase + `use` prefix | `useAuth.ts`, `useForm.ts` |
+| Type           | Convention               | Example                            |
+| -------------- | ------------------------ | ---------------------------------- |
+| **Components** | PascalCase               | `UserProfile.tsx`, `LoginForm.tsx` |
+| **Utilities**  | camelCase                | `formatDate.ts`, `apiClient.ts`    |
+| **Types**      | PascalCase               | `User.ts`, `ApiResponse.ts`        |
+| **Constants**  | camelCase                | `config.ts`, `constants.ts`        |
+| **Tests**      | Match source + `.test`   | `UserProfile.test.tsx`             |
+| **Hooks**      | camelCase + `use` prefix | `useAuth.ts`, `useForm.ts`         |
 
 ---
 
@@ -76,12 +76,12 @@ function validateForm(data: unknown): FormData {
 // ✅ GOOD: camelCase for variables and functions
 const userName = 'John'
 const isAuthenticated = true
-function calculateTotal(items: Item[]): number { }
+function calculateTotal(items: Item[]): number {}
 
 // ❌ BAD: snake_case or PascalCase
 const user_name = 'John'
 const IsAuthenticated = true
-function CalculateTotal(items: Item[]): number { }
+function CalculateTotal(items: Item[]): number {}
 ```
 
 ### Constants
@@ -94,7 +94,7 @@ const API_BASE_URL = 'https://api.example.com'
 // ✅ GOOD: camelCase for configuration objects
 const config = {
   apiUrl: 'https://api.example.com',
-  timeout: 5000,
+  timeout: 5000
 } as const
 
 // ❌ BAD: Mixed conventions
@@ -118,8 +118,8 @@ type ApiResponse<T> = {
 }
 
 // ❌ BAD: Prefixing with I, generic names
-interface IUserProfile { }
-interface Data { }
+interface IUserProfile {}
+interface Data {}
 ```
 
 ### Classes
@@ -139,8 +139,8 @@ class UserService {
 }
 
 // ❌ BAD: camelCase, verb-based names
-class userService { }
-class GetUsers { }
+class userService {}
+class GetUsers {}
 ```
 
 ### Booleans
@@ -313,12 +313,7 @@ function createUser(params: CreateUserParams): User {
 }
 
 // ❌ BAD: Too many positional parameters
-function createUser(
-  name: string,
-  email: string,
-  role: string,
-  department?: string
-): User {
+function createUser(name: string, email: string, role: string, department?: string): User {
   // hard to remember parameter order
 }
 ```
@@ -339,9 +334,9 @@ async function fetchUserData(id: string): Promise<UserData> {
 
 // ❌ BAD: Promise chains
 function fetchUserData(id: string): Promise<UserData> {
-  return api.getUser(id)
-    .then(user => api.getUserPosts(id)
-      .then(posts => ({ user, posts })))
+  return api
+    .getUser(id)
+    .then(user => api.getUserPosts(id).then(posts => ({ user, posts })))
     .catch(error => {
       throw new Error(`Failed to fetch user data: ${error}`)
     })
@@ -407,9 +402,9 @@ class UserService {
 }
 
 // ❌ BAD: Deep inheritance
-class BaseService { }
-class ApiService extends BaseService { }
-class UserService extends ApiService { }
+class BaseService {}
+class ApiService extends BaseService {}
+class UserService extends ApiService {}
 ```
 
 ---
@@ -492,10 +487,7 @@ async function getUser(id: string): Promise<User> {
   const response = await fetch(`/api/users/${id}`)
 
   if (!response.ok) {
-    throw new ApiError(
-      'Failed to fetch user',
-      response.status
-    )
+    throw new ApiError('Failed to fetch user', response.status)
   }
 
   return response.json()
@@ -531,7 +523,7 @@ async function fetchData(): Promise<Data | undefined> {
 
 ### JSDoc for Public APIs
 
-```typescript
+````typescript
 /**
  * Calculates the total price including tax
  *
@@ -548,7 +540,7 @@ async function fetchData(): Promise<Data | undefined> {
 export function calculateTotal(amount: number, taxRate: number): number {
   return amount * (1 + taxRate)
 }
-```
+````
 
 ### Explain Why, Not What
 
@@ -586,12 +578,7 @@ const debouncedSearch = debounce(searchUsers, 300)
 ```typescript
 // ✅ GOOD: Use type guards
 function isUser(data: unknown): data is User {
-  return (
-    typeof data === 'object' &&
-    data !== null &&
-    'id' in data &&
-    'name' in data
-  )
+  return typeof data === 'object' && data !== null && 'id' in data && 'name' in data
 }
 
 if (isUser(data)) {
@@ -608,7 +595,7 @@ console.log(user.name) // unsafe
 ```typescript
 // ✅ GOOD: Const assertion for literal types
 const STATUSES = ['pending', 'active', 'completed'] as const
-type Status = typeof STATUSES[number] // 'pending' | 'active' | 'completed'
+type Status = (typeof STATUSES)[number] // 'pending' | 'active' | 'completed'
 
 // ❌ BAD: Manual type definition
 type Status = 'pending' | 'active' | 'completed'

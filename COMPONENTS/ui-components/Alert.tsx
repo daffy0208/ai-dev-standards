@@ -33,29 +33,24 @@
  * ```
  */
 
-import * as React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from './utils';
+import * as React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from './utils'
 
-const alertVariants = cva(
-  'relative w-full rounded-lg border p-4 transition-opacity',
-  {
-    variants: {
-      variant: {
-        default: 'bg-white border-gray-200 text-gray-900',
-        success:
-          'bg-green-50 border-green-200 text-green-900',
-        warning:
-          'bg-yellow-50 border-yellow-200 text-yellow-900',
-        error: 'bg-red-50 border-red-200 text-red-900',
-        info: 'bg-blue-50 border-blue-200 text-blue-900',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-    },
+const alertVariants = cva('relative w-full rounded-lg border p-4 transition-opacity', {
+  variants: {
+    variant: {
+      default: 'bg-white border-gray-200 text-gray-900',
+      success: 'bg-green-50 border-green-200 text-green-900',
+      warning: 'bg-yellow-50 border-yellow-200 text-yellow-900',
+      error: 'bg-red-50 border-red-200 text-red-900',
+      info: 'bg-blue-50 border-blue-200 text-blue-900'
+    }
+  },
+  defaultVariants: {
+    variant: 'default'
   }
-);
+})
 
 export interface AlertProps
   extends React.HTMLAttributes<HTMLDivElement>,
@@ -63,27 +58,27 @@ export interface AlertProps
   /**
    * Alert title
    */
-  title?: string;
+  title?: string
 
   /**
    * Alert description
    */
-  description?: string;
+  description?: string
 
   /**
    * Custom icon element
    */
-  icon?: React.ReactNode;
+  icon?: React.ReactNode
 
   /**
    * Allow dismissing the alert
    */
-  dismissible?: boolean;
+  dismissible?: boolean
 
   /**
    * Callback when alert is dismissed
    */
-  onDismiss?: () => void;
+  onDismiss?: () => void
 }
 
 /**
@@ -91,12 +86,7 @@ export interface AlertProps
  */
 const defaultIcons = {
   default: (
-    <svg
-      className="w-5 h-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -106,12 +96,7 @@ const defaultIcons = {
     </svg>
   ),
   success: (
-    <svg
-      className="w-5 h-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -121,12 +106,7 @@ const defaultIcons = {
     </svg>
   ),
   warning: (
-    <svg
-      className="w-5 h-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -136,12 +116,7 @@ const defaultIcons = {
     </svg>
   ),
   error: (
-    <svg
-      className="w-5 h-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -151,12 +126,7 @@ const defaultIcons = {
     </svg>
   ),
   info: (
-    <svg
-      className="w-5 h-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -164,8 +134,8 @@ const defaultIcons = {
         d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
       />
     </svg>
-  ),
-};
+  )
+}
 
 // Icon color map
 const iconColorMap = {
@@ -173,8 +143,8 @@ const iconColorMap = {
   success: 'text-green-500',
   warning: 'text-yellow-500',
   error: 'text-red-500',
-  info: 'text-blue-500',
-};
+  info: 'text-blue-500'
+}
 
 /**
  * Alert component for notifications and messages
@@ -194,16 +164,16 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
     },
     ref
   ) => {
-    const [isVisible, setIsVisible] = React.useState(true);
+    const [isVisible, setIsVisible] = React.useState(true)
 
     const handleDismiss = () => {
-      setIsVisible(false);
-      onDismiss?.();
-    };
+      setIsVisible(false)
+      onDismiss?.()
+    }
 
-    if (!isVisible) return null;
+    if (!isVisible) return null
 
-    const displayIcon = icon || defaultIcons[variant!];
+    const displayIcon = icon || defaultIcons[variant!]
 
     return (
       <div
@@ -216,25 +186,15 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         <div className="flex">
           {/* Icon */}
           {displayIcon && (
-            <div
-              className={cn(
-                'flex-shrink-0',
-                iconColorMap[variant!]
-              )}
-              aria-hidden="true"
-            >
+            <div className={cn('flex-shrink-0', iconColorMap[variant!])} aria-hidden="true">
               {displayIcon}
             </div>
           )}
 
           {/* Content */}
           <div className={cn('flex-1', displayIcon && 'ml-3')}>
-            {title && (
-              <h3 className="text-sm font-semibold mb-1">{title}</h3>
-            )}
-            {description && (
-              <p className="text-sm opacity-90">{description}</p>
-            )}
+            {title && <h3 className="text-sm font-semibold mb-1">{title}</h3>}
+            {description && <p className="text-sm opacity-90">{description}</p>}
             {children && <div className="mt-2">{children}</div>}
           </div>
 
@@ -252,7 +212,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
                   'focus:ring-green-500': variant === 'success',
                   'focus:ring-yellow-500': variant === 'warning',
                   'focus:ring-red-500': variant === 'error',
-                  'focus:ring-blue-500': variant === 'info',
+                  'focus:ring-blue-500': variant === 'info'
                 }
               )}
               aria-label="Dismiss alert"
@@ -275,8 +235,8 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
           )}
         </div>
       </div>
-    );
+    )
   }
-);
+)
 
-Alert.displayName = 'Alert';
+Alert.displayName = 'Alert'

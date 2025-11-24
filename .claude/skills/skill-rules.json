@@ -1,13 +1,8 @@
 {
   "3d-visualizer": {
-    "promptTriggers": [
-      "3d-visualizer",
-      "3d visualizer"
-    ],
+    "promptTriggers": ["3d-visualizer", "3d visualizer"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/3d-visualizer/**/*"
-      ]
+      "pathPatterns": ["**/3d-visualizer/**/*"]
     }
   },
   "accessibility-engineer": {
@@ -33,14 +28,9 @@
     }
   },
   "animation-designer": {
-    "promptTriggers": [
-      "animation-designer",
-      "animation designer"
-    ],
+    "promptTriggers": ["animation-designer", "animation designer"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/animation-designer/**/*"
-      ]
+      "pathPatterns": ["**/animation-designer/**/*"]
     }
   },
   "api-designer": {
@@ -67,17 +57,9 @@
     }
   },
   "api-integration-builder": {
-    "promptTriggers": [
-      "api-integration-builder",
-      "api integration builder",
-      "api",
-      "ai",
-      "oauth"
-    ],
+    "promptTriggers": ["api-integration-builder", "api integration builder", "api", "ai", "oauth"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/api-integration-builder/**/*"
-      ]
+      "pathPatterns": ["**/api-integration-builder/**/*"]
     }
   },
   "archon-manager": {
@@ -89,33 +71,19 @@
       "task tracking"
     ],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/archon-manager/**/*",
-        "**/MCP-SERVERS/**/*"
-      ]
+      "pathPatterns": ["**/archon-manager/**/*", "**/MCP-SERVERS/**/*"]
     }
   },
   "asset-manager": {
-    "promptTriggers": [
-      "asset-manager",
-      "asset manager",
-      "ai"
-    ],
+    "promptTriggers": ["asset-manager", "asset manager", "ai"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/asset-manager/**/*"
-      ]
+      "pathPatterns": ["**/asset-manager/**/*"]
     }
   },
   "audio-producer": {
-    "promptTriggers": [
-      "audio-producer",
-      "audio producer"
-    ],
+    "promptTriggers": ["audio-producer", "audio producer"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/audio-producer/**/*"
-      ]
+      "pathPatterns": ["**/audio-producer/**/*"]
     }
   },
   "bmad-method": {
@@ -129,31 +97,19 @@
       "ai"
     ],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/bmad-method/**/*"
-      ]
+      "pathPatterns": ["**/bmad-method/**/*"]
     }
   },
   "brand-designer": {
-    "promptTriggers": [
-      "brand-designer",
-      "brand designer"
-    ],
+    "promptTriggers": ["brand-designer", "brand designer"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/brand-designer/**/*"
-      ]
+      "pathPatterns": ["**/brand-designer/**/*"]
     }
   },
   "capability-graph-builder": {
-    "promptTriggers": [
-      "capability-graph-builder",
-      "capability graph builder"
-    ],
+    "promptTriggers": ["capability-graph-builder", "capability graph builder"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/capability-graph-builder/**/*"
-      ]
+      "pathPatterns": ["**/capability-graph-builder/**/*"]
     }
   },
   "codex-review-workflow": {
@@ -168,88 +124,49 @@
       "security"
     ],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/codex-review-workflow/**/*"
-      ]
+      "pathPatterns": ["**/codex-review-workflow/**/*"]
     }
   },
   "context-preserver": {
-    "promptTriggers": [
-      "context-preserver",
-      "context preserver",
-      "rest"
-    ],
+    "promptTriggers": ["context-preserver", "context preserver", "rest"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/context-preserver/**/*"
-      ]
+      "pathPatterns": ["**/context-preserver/**/*"]
     }
   },
   "copywriter": {
-    "promptTriggers": [
-      "copywriter"
-    ],
+    "promptTriggers": ["copywriter"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/copywriter/**/*"
-      ]
+      "pathPatterns": ["**/copywriter/**/*"]
     }
   },
   "customer-feedback-analyzer": {
-    "promptTriggers": [
-      "customer-feedback-analyzer",
-      "customer feedback analyzer"
-    ],
+    "promptTriggers": ["customer-feedback-analyzer", "customer feedback analyzer"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/customer-feedback-analyzer/**/*"
-      ]
+      "pathPatterns": ["**/customer-feedback-analyzer/**/*"]
     }
   },
   "customer-support-builder": {
-    "promptTriggers": [
-      "customer-support-builder",
-      "customer support builder",
-      "infrastructure"
-    ],
+    "promptTriggers": ["customer-support-builder", "customer support builder", "infrastructure"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/customer-support-builder/**/*"
-      ]
+      "pathPatterns": ["**/customer-support-builder/**/*"]
     }
   },
   "dark-matter-analyzer": {
-    "promptTriggers": [
-      "dark-matter-analyzer",
-      "dark matter analyzer"
-    ],
+    "promptTriggers": ["dark-matter-analyzer", "dark matter analyzer"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/dark-matter-analyzer/**/*"
-      ]
+      "pathPatterns": ["**/dark-matter-analyzer/**/*"]
     }
   },
   "data-engineer": {
-    "promptTriggers": [
-      "data-engineer",
-      "data engineer",
-      "infrastructure"
-    ],
+    "promptTriggers": ["data-engineer", "data engineer", "infrastructure"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/data-engineer/**/*"
-      ]
+      "pathPatterns": ["**/data-engineer/**/*"]
     }
   },
   "data-visualizer": {
-    "promptTriggers": [
-      "data-visualizer",
-      "data visualizer"
-    ],
+    "promptTriggers": ["data-visualizer", "data visualizer"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/data-visualizer/**/*"
-      ]
+      "pathPatterns": ["**/data-visualizer/**/*"]
     }
   },
   "deployment-advisor": {
@@ -286,46 +203,25 @@
       "design system"
     ],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/design-system-architect/**/*"
-      ]
+      "pathPatterns": ["**/design-system-architect/**/*"]
     }
   },
   "figma-developer": {
-    "promptTriggers": [
-      "figma-developer",
-      "figma developer",
-      "react",
-      "component"
-    ],
+    "promptTriggers": ["figma-developer", "figma developer", "react", "component"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/figma-developer/**/*"
-      ]
+      "pathPatterns": ["**/figma-developer/**/*"]
     }
   },
   "focus-session-manager": {
-    "promptTriggers": [
-      "focus-session-manager",
-      "focus session manager",
-      "ai"
-    ],
+    "promptTriggers": ["focus-session-manager", "focus session manager", "ai"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/focus-session-manager/**/*"
-      ]
+      "pathPatterns": ["**/focus-session-manager/**/*"]
     }
   },
   "forensic-data-engineer": {
-    "promptTriggers": [
-      "forensic-data-engineer",
-      "forensic data engineer",
-      "ai"
-    ],
+    "promptTriggers": ["forensic-data-engineer", "forensic data engineer", "ai"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/forensic-data-engineer/**/*"
-      ]
+      "pathPatterns": ["**/forensic-data-engineer/**/*"]
     }
   },
   "framework-orchestrator": {
@@ -338,9 +234,7 @@
       "framework orchestrator"
     ],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/framework-orchestrator/**/*"
-      ]
+      "pathPatterns": ["**/framework-orchestrator/**/*"]
     }
   },
   "frontend-builder": {
@@ -366,49 +260,27 @@
     }
   },
   "go-to-market-planner": {
-    "promptTriggers": [
-      "go-to-market-planner",
-      "go to market planner",
-      "ai"
-    ],
+    "promptTriggers": ["go-to-market-planner", "go to market planner", "ai"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/go-to-market-planner/**/*"
-      ]
+      "pathPatterns": ["**/go-to-market-planner/**/*"]
     }
   },
   "growth-experimenter": {
-    "promptTriggers": [
-      "growth-experimenter",
-      "growth experimenter"
-    ],
+    "promptTriggers": ["growth-experimenter", "growth experimenter"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/growth-experimenter/**/*"
-      ]
+      "pathPatterns": ["**/growth-experimenter/**/*"]
     }
   },
   "iot-developer": {
-    "promptTriggers": [
-      "iot-developer",
-      "iot developer"
-    ],
+    "promptTriggers": ["iot-developer", "iot developer"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/iot-developer/**/*"
-      ]
+      "pathPatterns": ["**/iot-developer/**/*"]
     }
   },
   "knowledge-base-manager": {
-    "promptTriggers": [
-      "knowledge-base-manager",
-      "knowledge base manager",
-      "ai"
-    ],
+    "promptTriggers": ["knowledge-base-manager", "knowledge base manager", "ai"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/knowledge-base-manager/**/*"
-      ]
+      "pathPatterns": ["**/knowledge-base-manager/**/*"]
     }
   },
   "knowledge-graph-builder": {
@@ -419,101 +291,53 @@
       "semantic search"
     ],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/knowledge-graph-builder/**/*"
-      ]
+      "pathPatterns": ["**/knowledge-graph-builder/**/*"]
     }
   },
   "livestream-engineer": {
-    "promptTriggers": [
-      "livestream-engineer",
-      "livestream engineer"
-    ],
+    "promptTriggers": ["livestream-engineer", "livestream engineer"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/livestream-engineer/**/*"
-      ]
+      "pathPatterns": ["**/livestream-engineer/**/*"]
     }
   },
   "localization-engineer": {
-    "promptTriggers": [
-      "localization-engineer",
-      "localization engineer"
-    ],
+    "promptTriggers": ["localization-engineer", "localization engineer"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/localization-engineer/**/*"
-      ]
+      "pathPatterns": ["**/localization-engineer/**/*"]
     }
   },
   "manifest-generator": {
-    "promptTriggers": [
-      "manifest-generator",
-      "manifest generator"
-    ],
+    "promptTriggers": ["manifest-generator", "manifest generator"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/manifest-generator/**/*",
-        "**/MCP-SERVERS/**/*"
-      ]
+      "pathPatterns": ["**/manifest-generator/**/*", "**/MCP-SERVERS/**/*"]
     }
   },
   "mobile-developer": {
-    "promptTriggers": [
-      "mobile-developer",
-      "mobile developer",
-      "react"
-    ],
+    "promptTriggers": ["mobile-developer", "mobile developer", "react"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/mobile-developer/**/*"
-      ]
+      "pathPatterns": ["**/mobile-developer/**/*"]
     }
   },
   "multi-agent-architect": {
-    "promptTriggers": [
-      "multi-agent-architect",
-      "multi agent architect",
-      "ai"
-    ],
+    "promptTriggers": ["multi-agent-architect", "multi agent architect", "ai"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/multi-agent-architect/**/*"
-      ]
+      "pathPatterns": ["**/multi-agent-architect/**/*"]
     }
   },
   "mvp-builder": {
-    "promptTriggers": [
-      "mvp-builder",
-      "mvp builder",
-      "api"
-    ],
+    "promptTriggers": ["mvp-builder", "mvp builder", "api"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/features/**/*",
-        "**/product/**/*",
-        "**/mvp-builder/**/*"
-      ]
+      "pathPatterns": ["**/features/**/*", "**/product/**/*", "**/mvp-builder/**/*"]
     }
   },
   "orchestration-planner": {
-    "promptTriggers": [
-      "orchestration-planner",
-      "orchestration planner"
-    ],
+    "promptTriggers": ["orchestration-planner", "orchestration planner"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/orchestration-planner/**/*"
-      ]
+      "pathPatterns": ["**/orchestration-planner/**/*"]
     }
   },
   "performance-optimizer": {
-    "promptTriggers": [
-      "performance-optimizer",
-      "performance optimizer",
-      "frontend",
-      "database"
-    ],
+    "promptTriggers": ["performance-optimizer", "performance optimizer", "frontend", "database"],
     "fileTriggers": {
       "pathPatterns": [
         "**/optimization/**/*",
@@ -526,58 +350,33 @@
     }
   },
   "pricing-strategist": {
-    "promptTriggers": [
-      "pricing-strategist",
-      "pricing strategist"
-    ],
+    "promptTriggers": ["pricing-strategist", "pricing strategist"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/pricing-strategist/**/*"
-      ]
+      "pathPatterns": ["**/pricing-strategist/**/*"]
     }
   },
   "product-analyst": {
-    "promptTriggers": [
-      "product-analyst",
-      "product analyst"
-    ],
+    "promptTriggers": ["product-analyst", "product analyst"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/product-analyst/**/*"
-      ]
+      "pathPatterns": ["**/product-analyst/**/*"]
     }
   },
   "product-analytics": {
-    "promptTriggers": [
-      "product-analytics",
-      "product analytics"
-    ],
+    "promptTriggers": ["product-analytics", "product analytics"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/product-analytics/**/*"
-      ]
+      "pathPatterns": ["**/product-analytics/**/*"]
     }
   },
   "product-strategist": {
-    "promptTriggers": [
-      "product-strategist",
-      "product strategist"
-    ],
+    "promptTriggers": ["product-strategist", "product strategist"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/product-strategist/**/*"
-      ]
+      "pathPatterns": ["**/product-strategist/**/*"]
     }
   },
   "prototype-designer": {
-    "promptTriggers": [
-      "prototype-designer",
-      "prototype designer"
-    ],
+    "promptTriggers": ["prototype-designer", "prototype designer"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/prototype-designer/**/*"
-      ]
+      "pathPatterns": ["**/prototype-designer/**/*"]
     }
   },
   "prp-generator": {
@@ -591,9 +390,7 @@
       "ai"
     ],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/prp-generator/**/*"
-      ]
+      "pathPatterns": ["**/prp-generator/**/*"]
     }
   },
   "quality-assurance": {
@@ -607,9 +404,7 @@
       "quality assurance"
     ],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/quality-assurance/**/*"
-      ]
+      "pathPatterns": ["**/quality-assurance/**/*"]
     }
   },
   "quality-auditor": {
@@ -627,9 +422,7 @@
       "ai"
     ],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/quality-auditor/**/*"
-      ]
+      "pathPatterns": ["**/quality-auditor/**/*"]
     }
   },
   "rag-implementer": {
@@ -658,16 +451,9 @@
     }
   },
   "release-manager": {
-    "promptTriggers": [
-      "release-manager",
-      "release manager",
-      "deploy",
-      "deployment"
-    ],
+    "promptTriggers": ["release-manager", "release manager", "deploy", "deployment"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/release-manager/**/*"
-      ]
+      "pathPatterns": ["**/release-manager/**/*"]
     }
   },
   "security-architect": {
@@ -682,9 +468,7 @@
       "security"
     ],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/security-architect/**/*"
-      ]
+      "pathPatterns": ["**/security-architect/**/*"]
     }
   },
   "security-engineer": {
@@ -715,27 +499,15 @@
     }
   },
   "skill-validator": {
-    "promptTriggers": [
-      "skill-validator",
-      "skill validator",
-      "api"
-    ],
+    "promptTriggers": ["skill-validator", "skill validator", "api"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/skill-validator/**/*",
-        "**/MCP-SERVERS/**/*"
-      ]
+      "pathPatterns": ["**/skill-validator/**/*", "**/MCP-SERVERS/**/*"]
     }
   },
   "spatial-developer": {
-    "promptTriggers": [
-      "spatial-developer",
-      "spatial developer"
-    ],
+    "promptTriggers": ["spatial-developer", "spatial developer"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/spatial-developer/**/*"
-      ]
+      "pathPatterns": ["**/spatial-developer/**/*"]
     }
   },
   "supabase-developer": {
@@ -748,43 +520,25 @@
       "authentication"
     ],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/supabase-developer/**/*"
-      ]
+      "pathPatterns": ["**/supabase-developer/**/*"]
     }
   },
   "system-diagnostician": {
-    "promptTriggers": [
-      "system-diagnostician",
-      "system diagnostician"
-    ],
+    "promptTriggers": ["system-diagnostician", "system diagnostician"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/system-diagnostician/**/*"
-      ]
+      "pathPatterns": ["**/system-diagnostician/**/*"]
     }
   },
   "task-breakdown-specialist": {
-    "promptTriggers": [
-      "task-breakdown-specialist",
-      "task breakdown specialist"
-    ],
+    "promptTriggers": ["task-breakdown-specialist", "task breakdown specialist"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/task-breakdown-specialist/**/*"
-      ]
+      "pathPatterns": ["**/task-breakdown-specialist/**/*"]
     }
   },
   "technical-writer": {
-    "promptTriggers": [
-      "technical-writer",
-      "technical writer",
-      "api"
-    ],
+    "promptTriggers": ["technical-writer", "technical writer", "api"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/technical-writer/**/*"
-      ]
+      "pathPatterns": ["**/technical-writer/**/*"]
     }
   },
   "testing-strategist": {
@@ -819,73 +573,39 @@
     }
   },
   "usability-tester": {
-    "promptTriggers": [
-      "usability-tester",
-      "usability tester"
-    ],
+    "promptTriggers": ["usability-tester", "usability tester"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/usability-tester/**/*"
-      ]
+      "pathPatterns": ["**/usability-tester/**/*"]
     }
   },
   "user-researcher": {
-    "promptTriggers": [
-      "user-researcher",
-      "user researcher",
-      "ai"
-    ],
+    "promptTriggers": ["user-researcher", "user researcher", "ai"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/user-researcher/**/*"
-      ]
+      "pathPatterns": ["**/user-researcher/**/*"]
     }
   },
   "ux-designer": {
-    "promptTriggers": [
-      "ux-designer",
-      "ux designer",
-      "accessibility"
-    ],
+    "promptTriggers": ["ux-designer", "ux designer", "accessibility"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/ux-designer/**/*"
-      ]
+      "pathPatterns": ["**/ux-designer/**/*"]
     }
   },
   "video-producer": {
-    "promptTriggers": [
-      "video-producer",
-      "video producer"
-    ],
+    "promptTriggers": ["video-producer", "video producer"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/video-producer/**/*"
-      ]
+      "pathPatterns": ["**/video-producer/**/*"]
     }
   },
   "visual-designer": {
-    "promptTriggers": [
-      "visual-designer",
-      "visual designer",
-      "design system",
-      "typography"
-    ],
+    "promptTriggers": ["visual-designer", "visual designer", "design system", "typography"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/visual-designer/**/*"
-      ]
+      "pathPatterns": ["**/visual-designer/**/*"]
     }
   },
   "voice-interface-builder": {
-    "promptTriggers": [
-      "voice-interface-builder",
-      "voice interface builder"
-    ],
+    "promptTriggers": ["voice-interface-builder", "voice interface builder"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/voice-interface-builder/**/*"
-      ]
+      "pathPatterns": ["**/voice-interface-builder/**/*"]
     }
   }
 }

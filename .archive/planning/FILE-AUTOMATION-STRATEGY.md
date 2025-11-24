@@ -109,6 +109,7 @@ These document current session work. Update during active work, archive when don
    - DARK-MATTER-SPECIFICATION.md
 
 **Strategy:**
+
 - Update if actively referenced
 - Move to DOCS-LEGACY when work complete
 - Add "Last Updated" datestamp
@@ -153,6 +154,7 @@ MCP-specific test documentation:
 ## Automation Implementation Plan
 
 ### Phase 1: Current Files (DONE ✅)
+
 - README.md
 - BUILD_FOCUS.md
 - DOCS/INDEX.md
@@ -161,7 +163,9 @@ MCP-specific test documentation:
 - CHANGELOG.md
 
 ### Phase 2: Examples/Templates (2 hours)
+
 Update these to use template system:
+
 - DOCS/QUICK-START.md
 - DOCS/CLI-REFERENCE.md
 - DOCS/BOOTSTRAP.md
@@ -172,7 +176,9 @@ Update these to use template system:
 - INSTALLERS/README.md
 
 ### Phase 3: Legacy Disclaimer (30 min)
+
 Add header to DOCS-LEGACY/:
+
 ```markdown
 > **Historical Document** - This document reflects the state of the repository
 > as of [DATE]. Counts and status information are preserved for historical
@@ -180,11 +186,13 @@ Add header to DOCS-LEGACY/:
 ```
 
 ### Phase 4: Session Reports (1 hour)
+
 - Add "Last Updated" to active reports
 - Create archival process
 - Update current reports with latest counts
 
 ### Phase 5: META Documentation (1 hour)
+
 - Update GAP-ANALYSIS.md
 - Update IMPLEMENTATION-STATUS.md
 - Update MASTER-ROADMAP.md if needed
@@ -194,6 +202,7 @@ Add header to DOCS-LEGACY/:
 ## Validation Strategy
 
 ### Tier 1: Critical (Always Validate)
+
 - README.md
 - BUILD_FOCUS.md
 - DOCS/INDEX.md
@@ -202,12 +211,14 @@ Add header to DOCS-LEGACY/:
 - CHANGELOG.md
 
 ### Tier 2: Important (Warn Only)
+
 - DOCS/QUICK-START.md (examples)
 - DOCS/CLI-REFERENCE.md (examples)
 - META/GAP-ANALYSIS.md
 
 ### Tier 3: Informational (Skip)
-- DOCS-LEGACY/* (historical)
+
+- DOCS-LEGACY/\* (historical)
 - SESSION-SUMMARY.md (session-specific)
 - MCP test files (MCP-specific)
 
@@ -228,6 +239,7 @@ Add header to DOCS-LEGACY/:
 **Total Files:** 48 with skill/MCP references
 
 **Categorization:**
+
 - AUTO-UPDATE: 6 files (implemented ✅)
 - TEMPLATE-BASED: 8 files (needs implementation)
 - LEGACY: 25 files (add disclaimer, do not update)
@@ -237,6 +249,7 @@ Add header to DOCS-LEGACY/:
 - AUDIT SYSTEM: 2 files (audit-specific updates)
 
 **Automation Coverage:**
+
 - Currently: 6/48 files (12.5%)
 - Should be: 6/48 files (12.5%) ✅
 - Legacy (no update): 25/48 (52%)
@@ -244,11 +257,13 @@ Add header to DOCS-LEGACY/:
 - Selective: 9/48 (18.5%)
 
 **Key Insight:** We're actually automating the RIGHT files already! The "gap" is mostly:
+
 1. Legacy files that SHOULD NOT update
 2. Example files that need template system
 3. Session/audit files that update on different triggers
 
 **Recommendation:**
+
 1. ✅ Keep current 6-file automation
 2. ✅ Add disclaimer to DOCS-LEGACY
 3. ✅ Convert examples to use `{{placeholders}}`

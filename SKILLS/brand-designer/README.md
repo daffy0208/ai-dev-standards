@@ -21,21 +21,25 @@ claude-code --skill brand-designer
 ## Common Tasks
 
 ### Design Logo
+
 ```
 "Design a modern logo for a SaaS company targeting developers"
 ```
 
 ### Create Brand Colors
+
 ```
 "Create a professional color palette with primary, secondary, and neutral colors"
 ```
 
 ### Build Typography System
+
 ```
 "Set up a typography scale using Inter font with proper hierarchy"
 ```
 
 ### Generate Brand Guidelines
+
 ```
 "Create brand guidelines document with logo usage, colors, and voice"
 ```

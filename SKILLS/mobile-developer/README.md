@@ -21,21 +21,25 @@ claude-code --skill mobile-developer
 ## Common Tasks
 
 ### Create New App
+
 ```
 "Create a new Expo app with tab navigation and authentication"
 ```
 
 ### Add Native Features
+
 ```
 "Add camera integration with permission handling"
 ```
 
 ### Implement Navigation
+
 ```
 "Set up tab navigation with Home, Profile, and Settings tabs"
 ```
 
 ### Optimize Performance
+
 ```
 "Optimize this list for 10,000 items using FlashList"
 ```

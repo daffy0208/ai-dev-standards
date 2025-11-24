@@ -31,65 +31,65 @@
  * ```
  */
 
-import * as React from 'react';
-import { cn } from './utils';
+import * as React from 'react'
+import { cn } from './utils'
 
 export interface FileUploadProps {
   /**
    * Callback when files are selected
    */
-  onUpload?: (files: File[]) => void;
+  onUpload?: (files: File[]) => void
 
   /**
    * Upload progress callback (0-100)
    */
-  onProgress?: (progress: number) => void;
+  onProgress?: (progress: number) => void
 
   /**
    * Label for the file upload
    */
-  label?: string;
+  label?: string
 
   /**
    * Allow multiple file selection
    */
-  multiple?: boolean;
+  multiple?: boolean
 
   /**
    * Accepted file types (e.g., "image/*", ".pdf,.doc")
    */
-  accept?: string;
+  accept?: string
 
   /**
    * Maximum file size in bytes
    */
-  maxSize?: number;
+  maxSize?: number
 
   /**
    * Show file preview thumbnails
    */
-  showPreview?: boolean;
+  showPreview?: boolean
 
   /**
    * Show upload progress
    */
-  showProgress?: boolean;
+  showProgress?: boolean
 
   /**
    * Whether the upload is disabled
    */
-  disabled?: boolean;
+  disabled?: boolean
 
   /**
    * Additional CSS classes
    */
-  className?: string;
+  className?: string
 }
 
 interface UploadedFile {
-  file: File;
-  preview?: string;
-  error?: string;
+  file: File
+  preview?: string
+  error?: string
 }
 
 /**
@@ -107,166 +107,166 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
       showPreview = false,
       showProgress = false,
       disabled = false,
-      className,
+      className
     },
     ref
   ) => {
-    const uploadId = React.useId();
-    const inputRef = React.useRef<HTMLInputElement>(null);
-    const [isDragging, setIsDragging] = React.useState(false);
-    const [files, setFiles] = React.useState<UploadedFile[]>([]);
-    const [progress, setProgress] = React.useState(0);
+    const uploadId = React.useId()
+    const inputRef = React.useRef<HTMLInputElement>(null)
+    const [isDragging, setIsDragging] = React.useState(false)
+    const [files, setFiles] = React.useState<UploadedFile[]>([])
+    const [progress, setProgress] = React.useState(0)
 
     // Format file size
     const formatFileSize = (bytes: number): string => {
-      if (bytes === 0) return '0 Bytes';
-      const k = 1024;
-      const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-      const i = Math.floor(Math.log(bytes) / Math.log(k));
-      return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
-    };
+      if (bytes === 0) return '0 Bytes'
+      const k = 1024
+      const sizes = ['Bytes', 'KB', 'MB', 'GB']
+      const i = Math.floor(Math.log(bytes) / Math.log(k))
+      return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i]
+    }
 
     // Validate file
     const validateFile = (file: File): string | null => {
       // Check file size
       if (maxSize && file.size > maxSize) {
-        return `File size exceeds ${formatFileSize(maxSize)}`;
+        return `File size exceeds ${formatFileSize(maxSize)}`
       }
 
       // Check file type
       if (accept) {
-        const acceptedTypes = accept.split(',').map((t) => t.trim());
-        const fileExtension = '.' + file.name.split('.').pop()?.toLowerCase();
-        const mimeType = file.type;
+        const acceptedTypes = accept.split(',').map(t => t.trim())
+        const fileExtension = '.' + file.name.split('.').pop()?.toLowerCase()
+        const mimeType = file.type
 
-        const isAccepted = acceptedTypes.some((type) => {
+        const isAccepted = acceptedTypes.some(type => {
           if (type.startsWith('.')) {
-            return fileExtension === type.toLowerCase();
+            return fileExtension === type.toLowerCase()
           }
           if (type.endsWith('/*')) {
-            return mimeType.startsWith(type.replace('/*', ''));
+            return mimeType.startsWith(type.replace('/*', ''))
           }
-          return mimeType === type;
-        });
+          return mimeType === type
+        })
 
         if (!isAccepted) {
-          return `File type not accepted. Accepted: ${accept}`;
+          return `File type not accepted. Accepted: ${accept}`
         }
       }
 
-      return null;
-    };
+      return null
+    }
 
     // Create preview for image files
     const createPreview = (file: File): Promise<string | undefined> => {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         if (!file.type.startsWith('image/')) {
-          resolve(undefined);
-          return;
+          resolve(undefined)
+          return
         }
 
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          resolve(e.target?.result as string);
-        };
+        const reader = new FileReader()
+        reader.onload = e => {
+          resolve(e.target?.result as string)
+        }
         reader.onerror = () => {
-          resolve(undefined);
-        };
-        reader.readAsDataURL(file);
-      });
-    };
+          resolve(undefined)
+        }
+        reader.readAsDataURL(file)
+      })
+    }
 
     // Process files
     const processFiles = async (fileList: FileList | File[]) => {
-      const newFiles: UploadedFile[] = [];
-      const filesArray = Array.from(fileList);
+      const newFiles: UploadedFile[] = []
+      const filesArray = Array.from(fileList)
 
       for (const file of filesArray) {
-        const error = validateFile(file);
-        const preview = showPreview ? await createPreview(file) : undefined;
+        const error = validateFile(file)
+        const preview = showPreview ? await createPreview(file) : undefined
 
         newFiles.push({
           file,
           preview,
-          error: error || undefined,
-        });
+          error: error || undefined
+        })
       }
 
-      const updatedFiles = multiple ? [...files, ...newFiles] : newFiles;
-      setFiles(updatedFiles);
+      const updatedFiles = multiple ? [...files, ...newFiles] : newFiles
+      setFiles(updatedFiles)
 
       // Simulate upload progress
       if (showProgress && onProgress) {
-        let currentProgress = 0;
+        let currentProgress = 0
         const interval = setInterval(() => {
-          currentProgress += 10;
-          setProgress(currentProgress);
-          onProgress(currentProgress);
+          currentProgress += 10
+          setProgress(currentProgress)
+          onProgress(currentProgress)
 
           if (currentProgress >= 100) {
-            clearInterval(interval);
+            clearInterval(interval)
             setTimeout(() => {
-              setProgress(0);
-            }, 500);
+              setProgress(0)
+            }, 500)
           }
-        }, 200);
+        }, 200)
       }
 
       // Call onUpload with valid files
-      const validFiles = newFiles.filter((f) => !f.error).map((f) => f.file);
+      const validFiles = newFiles.filter(f => !f.error).map(f => f.file)
       if (validFiles.length > 0) {
-        onUpload?.(validFiles);
+        onUpload?.(validFiles)
       }
-    };
+    }
 
     // Handle file input change
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files && e.target.files.length > 0) {
-        processFiles(e.target.files);
+        processFiles(e.target.files)
       }
-    };
+    }
 
     // Handle drag events
     const handleDragEnter = (e: React.DragEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
+      e.preventDefault()
+      e.stopPropagation()
       if (!disabled) {
-        setIsDragging(true);
+        setIsDragging(true)
       }
-    };
+    }
 
     const handleDragLeave = (e: React.DragEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-      setIsDragging(false);
-    };
+      e.preventDefault()
+      e.stopPropagation()
+      setIsDragging(false)
+    }
 
     const handleDragOver = (e: React.DragEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-    };
+      e.preventDefault()
+      e.stopPropagation()
+    }
 
     const handleDrop = (e: React.DragEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-      setIsDragging(false);
+      e.preventDefault()
+      e.stopPropagation()
+      setIsDragging(false)
 
       if (!disabled && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-        processFiles(e.dataTransfer.files);
+        processFiles(e.dataTransfer.files)
       }
-    };
+    }
 
     // Handle click to browse
     const handleClick = () => {
       if (!disabled) {
-        inputRef.current?.click();
+        inputRef.current?.click()
       }
-    };
+    }
 
     // Remove file
     const handleRemoveFile = (index: number) => {
-      setFiles(files.filter((_, i) => i !== index));
-    };
+      setFiles(files.filter((_, i) => i !== index))
+    }
 
     // Get file icon
     const getFileIcon = (file: File): React.ReactNode => {
@@ -285,7 +285,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
               d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
             />
           </svg>
-        );
+        )
       }
 
       return (
@@ -302,8 +302,8 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
             d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
           />
         </svg>
-      );
-    };
+      )
+    }
 
     return (
       <div ref={ref} className={cn('w-full', className)}>
@@ -350,18 +350,15 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
           role="button"
           tabIndex={disabled ? -1 : 0}
           aria-disabled={disabled}
-          onKeyDown={(e) => {
+          onKeyDown={e => {
             if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              handleClick();
+              e.preventDefault()
+              handleClick()
             }
           }}
         >
           <svg
-            className={cn(
-              'w-12 h-12 mb-3',
-              isDragging ? 'text-blue-500' : 'text-gray-400'
-            )}
+            className={cn('w-12 h-12 mb-3', isDragging ? 'text-blue-500' : 'text-gray-400')}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -376,16 +373,11 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
           </svg>
 
           <p className="text-sm text-gray-600 mb-1">
-            <span className="font-semibold text-blue-600">Click to upload</span>{' '}
-            or drag and drop
+            <span className="font-semibold text-blue-600">Click to upload</span> or drag and drop
           </p>
 
           <p className="text-xs text-gray-500">
-            {accept
-              ? `Accepted: ${accept}`
-              : multiple
-                ? 'Any file type'
-                : 'Single file'}
+            {accept ? `Accepted: ${accept}` : multiple ? 'Any file type' : 'Single file'}
             {maxSize && ` (Max: ${formatFileSize(maxSize)})`}
           </p>
 
@@ -403,9 +395,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                   aria-label="Upload progress"
                 />
               </div>
-              <p className="text-xs text-gray-500 mt-1 text-center">
-                {progress}% uploaded
-              </p>
+              <p className="text-xs text-gray-500 mt-1 text-center">{progress}% uploaded</p>
             </div>
           )}
         </div>
@@ -429,9 +419,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                     className="w-12 h-12 rounded object-cover"
                   />
                 ) : (
-                  <div className="flex-shrink-0">
-                    {getFileIcon(uploadedFile.file)}
-                  </div>
+                  <div className="flex-shrink-0">{getFileIcon(uploadedFile.file)}</div>
                 )}
 
                 {/* File info */}
@@ -439,22 +427,18 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                   <p className="text-sm font-medium text-gray-900 truncate">
                     {uploadedFile.file.name}
                   </p>
-                  <p className="text-xs text-gray-500">
-                    {formatFileSize(uploadedFile.file.size)}
-                  </p>
+                  <p className="text-xs text-gray-500">{formatFileSize(uploadedFile.file.size)}</p>
                   {uploadedFile.error && (
-                    <p className="text-xs text-red-600 mt-1">
-                      {uploadedFile.error}
-                    </p>
+                    <p className="text-xs text-red-600 mt-1">{uploadedFile.error}</p>
                   )}
                 </div>
 
                 {/* Remove button */}
                 <button
                   type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleRemoveFile(index);
+                  onClick={e => {
+                    e.stopPropagation()
+                    handleRemoveFile(index)
                   }}
                   className={cn(
                     'flex-shrink-0 p-1 rounded hover:bg-gray-200',
@@ -482,8 +466,8 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
           </div>
         )}
       </div>
-    );
+    )
   }
-);
+)
 
-FileUpload.displayName = 'FileUpload';
+FileUpload.displayName = 'FileUpload'

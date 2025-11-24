@@ -25,7 +25,7 @@
 
 'use client'
 
-import { useState, FormEvent } from 'react'
+import React, { useState, FormEvent } from 'react'
 import { z } from 'zod'
 
 export interface LoginFormProps {
@@ -33,7 +33,6 @@ export interface LoginFormProps {
   onError?: (error: Error) => void
   showOAuth?: boolean
   showRememberMe?: boolean
-  redirectTo?: string
 }
 
 const loginSchema = z.object({
@@ -45,8 +44,7 @@ export function LoginForm({
   onSuccess,
   onError,
   showOAuth = true,
-  showRememberMe = true,
-  redirectTo = '/dashboard'
+  showRememberMe = true
 }: LoginFormProps) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -67,7 +65,7 @@ export function LoginForm({
     } catch (err) {
       if (err instanceof z.ZodError) {
         const errors: Record<string, string> = {}
-        err.errors.forEach((error) => {
+        err.errors.forEach(error => {
           if (error.path[0]) {
             errors[error.path[0] as string] = error.message
           }
@@ -111,7 +109,7 @@ export function LoginForm({
       // import { auth } from '@/integrations/supabase/client'
       // await auth.signInWithOAuth(provider)
 
-      console.log(`Signing in with ${provider}`)
+      console.warn(`Signing in with ${provider}`)
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'OAuth sign in failed'
       setError(errorMessage)
@@ -143,7 +141,7 @@ export function LoginForm({
             id="email"
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
             className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
               fieldErrors.email
                 ? 'border-red-500 focus:ring-red-500'
@@ -153,9 +151,7 @@ export function LoginForm({
             required
             disabled={loading}
           />
-          {fieldErrors.email && (
-            <p className="mt-1 text-sm text-red-600">{fieldErrors.email}</p>
-          )}
+          {fieldErrors.email && <p className="mt-1 text-sm text-red-600">{fieldErrors.email}</p>}
         </div>
 
         {/* Password */}
@@ -168,7 +164,7 @@ export function LoginForm({
               id="password"
               type={showPassword ? 'text' : 'password'}
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value)}
               className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
                 fieldErrors.password
                   ? 'border-red-500 focus:ring-red-500'
@@ -199,17 +195,14 @@ export function LoginForm({
               <input
                 type="checkbox"
                 checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
+                onChange={e => setRememberMe(e.target.checked)}
                 className="mr-2"
                 disabled={loading}
               />
               <span className="text-sm text-gray-700">Remember me</span>
             </label>
           )}
-          <a
-            href="/auth/forgot-password"
-            className="text-sm text-blue-600 hover:text-blue-800"
-          >
+          <a href="/auth/forgot-password" className="text-sm text-blue-600 hover:text-blue-800">
             Forgot password?
           </a>
         </div>
@@ -282,7 +275,7 @@ export function LoginForm({
 
       {/* Sign Up Link */}
       <p className="mt-6 text-center text-sm text-gray-600">
-        Don't have an account?{' '}
+        Don&apos;t have an account?{' '}
         <a href="/auth/signup" className="text-blue-600 hover:text-blue-800 font-medium">
           Sign up
         </a>

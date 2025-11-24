@@ -10,6 +10,7 @@
 **Critical Finding:** The resource discovery mechanism has a severe synchronization issue. Only **7 out of 36 skills** (19%) are registered in `META/registry.json`, making **29 skills invisible** to projects using the discovery system.
 
 ### Impact
+
 - **Projects cannot discover 81% of available skills**
 - **MVP skill IS visible** (mvp-builder is registered) ✅
 - **30+ other skills are NOT visible** (product-strategist, api-designer, frontend-builder, etc.) ❌
@@ -21,16 +22,17 @@
 
 ### What We Found
 
-| Resource Type | Available | Registered | Missing | Coverage |
-|--------------|-----------|------------|---------|----------|
-| **Skills** | 36 | 7 | 29 | **19%** ❌ |
-| **MCP Servers** | 3 | 3 | 0 | **100%** ✅ |
-| **Playbooks** | 4 | 4 | 0 | **100%** ✅ |
-| **Architecture Patterns** | 3 | 3 | 0 | **100%** ✅ |
+| Resource Type             | Available | Registered | Missing | Coverage    |
+| ------------------------- | --------- | ---------- | ------- | ----------- |
+| **Skills**                | 36        | 7          | 29      | **19%** ❌  |
+| **MCP Servers**           | 3         | 3          | 0       | **100%** ✅ |
+| **Playbooks**             | 4         | 4          | 0       | **100%** ✅ |
+| **Architecture Patterns** | 3         | 3          | 0       | **100%** ✅ |
 
 ### Skills - Detailed Breakdown
 
 #### ✅ Registered Skills (7/36)
+
 1. **mvp-builder** - Build MVPs rapidly with best practices ✅
 2. **rag-implementer** - Implement RAG systems with vector databases ✅
 3. **data-visualizer** - Create charts and dashboards ✅
@@ -40,21 +42,26 @@
 7. **quality-auditor** - Comprehensive quality auditing and evaluation ✅
 
 #### ❌ Missing Skills (29/36)
+
 **Product & Strategy:**
+
 - product-strategist (mentioned in README!) ❌
 - go-to-market-planner ❌
 
 **Technical Development:**
+
 - api-designer (mentioned in README!) ❌
 - frontend-builder (mentioned in README!) ❌
 - deployment-advisor (mentioned in README!) ❌
 - performance-optimizer (mentioned in README!) ❌
 
 **AI & Architecture:**
+
 - knowledge-graph-builder (mentioned in README!) ❌
 - multi-agent-architect (mentioned in README!) ❌
 
 **UX & Design:**
+
 - user-researcher (mentioned in README!) ❌
 - ux-designer (mentioned in README!) ❌
 - accessibility-engineer ❌
@@ -64,6 +71,7 @@
 - animation-designer ❌
 
 **Content & Media:**
+
 - technical-writer ❌
 - copywriter ❌
 - audio-producer ❌
@@ -71,6 +79,7 @@
 - livestream-engineer ❌
 
 **Engineering Specialties:**
+
 - security-engineer ❌
 - testing-strategist ❌
 - mobile-developer ❌
@@ -79,6 +88,7 @@
 - voice-interface-builder ❌
 
 **ADHD Support:**
+
 - task-breakdown-specialist ❌
 - context-preserver ❌
 - focus-session-manager ❌
@@ -92,6 +102,7 @@
 Projects discover resources through 3 paths:
 
 #### Path 1: CLI Sync/Update Commands (`ai-dev sync`, `ai-dev update`)
+
 ```javascript
 // CLI/commands/sync.js & update.js
 async function fetchAvailableSkills() {
@@ -107,6 +118,7 @@ async function fetchAvailableSkills() {
 **Status:** 🔴 **BROKEN** - Returns only 3 hardcoded skills, not all 36
 
 #### Path 2: Registry File (`META/registry.json`)
+
 ```json
 {
   "skills": [
@@ -120,7 +132,9 @@ async function fetchAvailableSkills() {
 **Status:** 🔴 **OUT OF SYNC** - Contains only 7 of 36 skills (19%)
 
 #### Path 3: Direct File Access
+
 Projects can directly reference skill files if they know the path:
+
 ```
 SKILLS/mvp-builder/SKILL.md
 SKILLS/product-strategist/SKILL.md  # Works, but not discoverable
@@ -133,18 +147,22 @@ SKILLS/product-strategist/SKILL.md  # Works, but not discoverable
 ## 🧪 Test Results
 
 ### Test 1: MVP Skill Discovery ✅
+
 **Question:** Can projects discover the MVP skill?
 
 **Result:** **YES** ✅
+
 - mvp-builder is registered in META/registry.json
 - Path: `SKILLS/mvp-builder/SKILL.md`
 - Description: "Build MVPs rapidly with best practices"
 - Discoverable via registry
 
 ### Test 2: Product Strategist Discovery ❌
+
 **Question:** Can projects discover the product-strategist skill?
 
 **Result:** **NO** ❌
+
 - File exists: `SKILLS/product-strategist/SKILL.md`
 - Complete and production-ready
 - **NOT in META/registry.json**
@@ -152,20 +170,24 @@ SKILLS/product-strategist/SKILL.md  # Works, but not discoverable
 - Projects cannot find it through CLI or registry
 
 ### Test 3: CLI Sync Discovery ❌
+
 **Question:** Does `ai-dev sync` discover all skills?
 
 **Result:** **NO** ❌
+
 - `fetchAvailableSkills()` returns hardcoded mock data
 - Only returns 3 skills (data-visualizer, iot-developer, spatial-developer)
 - Does not scan SKILLS directory
 - Comment says "TODO: Fetch from actual ai-dev-standards repo"
 
 ### Test 4: README vs Registry Consistency ❌
+
 **Question:** Are README-documented skills discoverable?
 
 **Result:** **NO** ❌
 
 README mentions these skills as "Available":
+
 - ✅ mvp-builder (registered)
 - ✅ rag-implementer (registered)
 - ❌ product-strategist (NOT registered)
@@ -186,12 +208,14 @@ README mentions these skills as "Available":
 ## 🔧 Root Causes
 
 ### 1. Registry Not Automatically Updated
+
 - Skills are added to `SKILLS/` directory
 - `META/registry.json` is NOT automatically updated
 - No sync mechanism between filesystem and registry
 - Manual updates forgotten or incomplete
 
 ### 2. CLI Uses Mock Data
+
 ```javascript
 // CLI/commands/sync.js line 352
 async function fetchAvailableSkills() {
@@ -204,11 +228,13 @@ async function fetchAvailableSkills() {
 ```
 
 ### 3. No Validation Process
+
 - No automated test to check registry completeness
 - No CI/CD check to ensure registry matches filesystem
 - No warning when skills are added without registry update
 
 ### 4. README Out of Sync
+
 - README documents skills as "available"
 - Those skills exist in SKILLS/ folder
 - But they're not in the registry
@@ -223,6 +249,7 @@ async function fetchAvailableSkills() {
 **Action:** Scan SKILLS directory and update META/registry.json with all 36 skills
 
 **Script to generate:**
+
 ```bash
 #!/bin/bash
 # scan-skills.sh - Generate complete registry
@@ -249,14 +276,18 @@ done
 **Action:** Update `CLI/commands/sync.js` and `CLI/commands/update.js` to read from registry
 
 **Before:**
+
 ```javascript
 async function fetchAvailableSkills() {
   // TODO: Fetch from actual ai-dev-standards repo
-  return [/* hardcoded mock data */]
+  return [
+    /* hardcoded mock data */
+  ]
 }
 ```
 
 **After:**
+
 ```javascript
 async function fetchAvailableSkills() {
   const registryPath = path.join(AI_DEV_STANDARDS_PATH, 'META/registry.json')
@@ -270,6 +301,7 @@ async function fetchAvailableSkills() {
 **Action:** Create git hook to auto-update registry when skills are added
 
 **File:** `.git/hooks/pre-commit`
+
 ```bash
 #!/bin/bash
 # Auto-update registry when skills change
@@ -282,6 +314,7 @@ fi
 ```
 
 **Script:** `scripts/update-registry.js`
+
 ```javascript
 const fs = require('fs-extra')
 const path = require('path')
@@ -344,6 +377,7 @@ updateRegistry().catch(console.error)
 **Action:** Add test to verify registry completeness
 
 **File:** `tests/registry-validation.test.ts`
+
 ```typescript
 import { describe, it, expect } from 'vitest'
 import fs from 'fs-extra'
@@ -356,9 +390,8 @@ describe('Registry Validation', () => {
 
     // Get all skill directories
     const dirs = await fs.readdir(skillsDir)
-    const skillDirs = dirs.filter(dir =>
-      dir !== '_TEMPLATE' &&
-      fs.existsSync(path.join(skillsDir, dir, 'SKILL.md'))
+    const skillDirs = dirs.filter(
+      dir => dir !== '_TEMPLATE' && fs.existsSync(path.join(skillsDir, dir, 'SKILL.md'))
     )
 
     // Get registered skills
@@ -388,6 +421,7 @@ describe('Registry Validation', () => {
 ```
 
 Add to CI workflow (`.github/workflows/ci.yml`):
+
 ```yaml
 - name: Validate Registry
   run: npm run test:registry
@@ -398,6 +432,7 @@ Add to CI workflow (`.github/workflows/ci.yml`):
 **Action:** Ensure README mentions only discoverable skills
 
 **Script:** `scripts/validate-readme.js`
+
 ```javascript
 // Check that skills mentioned in README are in registry
 // Warn if discrepancies found
@@ -447,6 +482,7 @@ After fixes are complete:
 After implementing fixes, test with:
 
 ### Test 1: Registry Completeness
+
 ```bash
 # Count skills in filesystem
 ls -1 SKILLS/ | grep -v "_TEMPLATE" | wc -l
@@ -458,6 +494,7 @@ jq '.skills | length' META/registry.json
 ```
 
 ### Test 2: CLI Discovery
+
 ```bash
 cd /tmp/test-project
 ai-dev update skills --all
@@ -467,6 +504,7 @@ ai-dev update skills --all
 ```
 
 ### Test 3: Specific Skill Discovery
+
 ```bash
 # Test product-strategist (currently missing)
 ai-dev update skills
@@ -478,6 +516,7 @@ ai-dev update skills
 ```
 
 ### Test 4: README Consistency
+
 ```bash
 # Extract skills mentioned in README
 grep -A 1 "^-.*skill" README.md
@@ -493,6 +532,7 @@ jq '.skills[].name' META/registry.json
 ## 📊 Current State Summary
 
 ### What Works ✅
+
 - MVP skill (mvp-builder) IS discoverable
 - MCP servers fully registered (3/3)
 - Playbooks fully registered (4/4)
@@ -500,6 +540,7 @@ jq '.skills[].name' META/registry.json
 - Direct file access works for all skills
 
 ### What's Broken ❌
+
 - Only 19% of skills discoverable (7/36)
 - CLI returns mock data (3 hardcoded skills)
 - README documents unavailable skills (9/12)
@@ -508,6 +549,7 @@ jq '.skills[].name' META/registry.json
 - 29 production-ready skills invisible to users
 
 ### User Impact
+
 **Current:** Users see documentation for 12 skills, but can only discover 7 (58%). They're missing out on 29 excellent production-ready skills including critical ones like product-strategist, api-designer, frontend-builder, and deployment-advisor.
 
 **After Fix:** Users discover all 36 skills automatically. README documentation matches reality. CLI tools work correctly. Discovery stays in sync automatically.

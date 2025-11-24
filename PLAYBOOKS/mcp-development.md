@@ -26,6 +26,7 @@ Model Context Protocol (MCP) provides a standardized way for AI models to access
 ### What is MCP?
 
 MCP servers expose three types of capabilities:
+
 - **Tools**: Executable functions the AI can invoke
 - **Resources**: Data the AI can read (documents, databases, etc.)
 - **Prompts**: Template prompts with variables
@@ -52,19 +53,19 @@ graph LR
 
 ```typescript
 interface MCPRequest {
-  method: string;
-  params?: any;
-  id?: string | number;
+  method: string
+  params?: any
+  id?: string | number
 }
 
 interface MCPResponse {
-  result?: any;
+  result?: any
   error?: {
-    code: number;
-    message: string;
-    data?: any;
-  };
-  id?: string | number;
+    code: number
+    message: string
+    data?: any
+  }
+  id?: string | number
 }
 ```
 
@@ -145,11 +146,11 @@ my-mcp-server/
 ### Extend BaseMCPServer
 
 ```typescript
-import { BaseMCPServer } from './base-mcp-server';
-import { MCPToolHandler } from './mcp-tool-handler';
-import { MCPResourceHandler } from './mcp-resource-handler';
-import { MCPPromptHandler } from './mcp-prompt-handler';
-import { z } from 'zod';
+import { BaseMCPServer } from './base-mcp-server'
+import { MCPToolHandler } from './mcp-tool-handler'
+import { MCPResourceHandler } from './mcp-resource-handler'
+import { MCPPromptHandler } from './mcp-prompt-handler'
+import { z } from 'zod'
 
 class MyMCPServer extends BaseMCPServer {
   constructor() {
@@ -158,18 +159,18 @@ class MyMCPServer extends BaseMCPServer {
       version: '1.0.0',
       description: 'My custom MCP server for X',
       capabilities: ['tools', 'resources', 'prompts']
-    });
+    })
   }
 
   async initialize(): Promise<void> {
-    await super.initialize();
+    await super.initialize()
 
     // Register your tools, resources, and prompts
-    await this.registerTools();
-    await this.registerResources();
-    await this.registerPrompts();
+    await this.registerTools()
+    await this.registerResources()
+    await this.registerPrompts()
 
-    console.log(`${this.config.name} initialized successfully`);
+    console.log(`${this.config.name} initialized successfully`)
   }
 
   private async registerTools(): Promise<void> {
@@ -185,24 +186,24 @@ class MyMCPServer extends BaseMCPServer {
   }
 
   async shutdown(): Promise<void> {
-    console.log('Shutting down server...');
-    await super.shutdown();
+    console.log('Shutting down server...')
+    await super.shutdown()
   }
 }
 
 // Start server
 async function main() {
-  const server = new MyMCPServer();
-  await server.initialize();
+  const server = new MyMCPServer()
+  await server.initialize()
 
   // Handle graceful shutdown
   process.on('SIGINT', async () => {
-    await server.shutdown();
-    process.exit(0);
-  });
+    await server.shutdown()
+    process.exit(0)
+  })
 }
 
-main().catch(console.error);
+main().catch(console.error)
 ```
 
 ---
@@ -213,8 +214,8 @@ main().catch(console.error);
 
 ```typescript
 // src/tools/search-tool.ts
-import { MCPToolHandler } from '../mcp-tool-handler';
-import { z } from 'zod';
+import { MCPToolHandler } from '../mcp-tool-handler'
+import { z } from 'zod'
 
 export function createSearchTool() {
   return new MCPToolHandler({
@@ -223,18 +224,21 @@ export function createSearchTool() {
     inputSchema: z.object({
       query: z.string().min(1).max(200).describe('Search query'),
       limit: z.number().int().min(1).max(50).default(10).describe('Number of results'),
-      filters: z.object({
-        category: z.string().optional(),
-        dateFrom: z.string().optional(),
-        dateTo: z.string().optional()
-      }).optional().describe('Optional filters')
+      filters: z
+        .object({
+          category: z.string().optional(),
+          dateFrom: z.string().optional(),
+          dateTo: z.string().optional()
+        })
+        .optional()
+        .describe('Optional filters')
     }),
-    handler: async (args) => {
+    handler: async args => {
       // Implement search logic
       const results = await performSearch(args.query, {
         limit: args.limit,
         filters: args.filters
-      });
+      })
 
       return {
         query: args.query,
@@ -245,7 +249,7 @@ export function createSearchTool() {
           score: r.score
         })),
         total: results.length
-      };
+      }
     },
     // Advanced features
     rateLimits: {
@@ -262,12 +266,12 @@ export function createSearchTool() {
       backoffStrategy: 'exponential'
     },
     timeout: 10000 // 10 second timeout
-  });
+  })
 }
 
 async function performSearch(query: string, options: any): Promise<any[]> {
   // Your search implementation
-  return [];
+  return []
 }
 ```
 
@@ -275,11 +279,13 @@ async function performSearch(query: string, options: any): Promise<any[]> {
 
 ```typescript
 class MyMCPServer extends BaseMCPServer {
-  private searchTool: MCPToolHandler;
+  private searchTool: MCPToolHandler
 
   constructor() {
-    super({ /* config */ });
-    this.searchTool = createSearchTool();
+    super({
+      /* config */
+    })
+    this.searchTool = createSearchTool()
   }
 
   private async registerTools(): Promise<void> {
@@ -291,16 +297,16 @@ class MyMCPServer extends BaseMCPServer {
         query: z.string(),
         limit: z.number().optional()
       }),
-      handler: async (args) => {
-        const result = await this.searchTool.execute(args);
+      handler: async args => {
+        const result = await this.searchTool.execute(args)
 
         if (!result.success) {
-          throw new Error(result.error?.message || 'Search failed');
+          throw new Error(result.error?.message || 'Search failed')
         }
 
-        return result.data;
+        return result.data
       }
-    });
+    })
   }
 }
 ```
@@ -317,23 +323,23 @@ function createStreamingTool() {
       topic: z.string(),
       format: z.enum(['markdown', 'json', 'html'])
     }),
-    handler: async (args) => {
+    handler: async args => {
       // Return async generator for streaming
       async function* generate() {
-        yield { status: 'started', progress: 0 };
+        yield { status: 'started', progress: 0 }
 
         for (let i = 1; i <= 10; i++) {
-          await sleep(1000);
-          yield { status: 'processing', progress: i * 10 };
+          await sleep(1000)
+          yield { status: 'processing', progress: i * 10 }
         }
 
-        const report = await generateReport(args.topic, args.format);
-        yield { status: 'completed', progress: 100, data: report };
+        const report = await generateReport(args.topic, args.format)
+        yield { status: 'completed', progress: 100, data: report }
       }
 
-      return generate();
+      return generate()
     }
-  });
+  })
 }
 
 // Tool with validation
@@ -346,18 +352,18 @@ function createValidatedTool() {
       email: z.string().email().optional(),
       age: z.number().int().min(0).max(150).optional()
     }),
-    handler: async (args) => {
+    handler: async args => {
       // Custom validation
-      const user = await getUser(args.userId);
+      const user = await getUser(args.userId)
       if (!user) {
-        throw new Error('User not found');
+        throw new Error('User not found')
       }
 
       if (args.email && args.email === user.email) {
-        throw new Error('Email unchanged');
+        throw new Error('Email unchanged')
       }
 
-      return updateUser(args.userId, args);
+      return updateUser(args.userId, args)
     },
     validation: {
       validateOutput: true,
@@ -367,7 +373,7 @@ function createValidatedTool() {
         updatedAt: z.string()
       })
     }
-  });
+  })
 }
 ```
 
@@ -379,8 +385,8 @@ function createValidatedTool() {
 
 ```typescript
 // src/resources/docs-resource.ts
-import { MCPResourceHandler } from '../mcp-resource-handler';
-import fs from 'fs/promises';
+import { MCPResourceHandler } from '../mcp-resource-handler'
+import fs from 'fs/promises'
 
 export function createDocsResource() {
   return new MCPResourceHandler({
@@ -388,9 +394,9 @@ export function createDocsResource() {
     name: 'README Documentation',
     description: 'Application README and getting started guide',
     mimeType: 'text/markdown',
-    handler: async (version) => {
-      const filename = version ? `README-${version}.md` : 'README.md';
-      return fs.readFile(filename, 'utf-8');
+    handler: async version => {
+      const filename = version ? `README-${version}.md` : 'README.md'
+      return fs.readFile(filename, 'utf-8')
     },
     cache: {
       enabled: true,
@@ -407,7 +413,7 @@ export function createDocsResource() {
       author: 'Engineering Team',
       lastModified: new Date('2024-01-01')
     }
-  });
+  })
 }
 
 // Dynamic resource (API-based)
@@ -418,14 +424,14 @@ export function createAPIResource() {
     description: 'Current API health and status',
     mimeType: 'application/json',
     handler: async () => {
-      const response = await fetch('https://api.example.com/status');
-      return response.json();
+      const response = await fetch('https://api.example.com/status')
+      return response.json()
     },
     cache: {
       enabled: true,
       ttl: 30000 // 30 seconds
     }
-  });
+  })
 }
 
 // Resource with access control
@@ -438,16 +444,16 @@ export function createSecureResource() {
     handler: async (version, context) => {
       // Check permissions
       if (!context.user?.isAdmin) {
-        throw new Error('Access denied: admin privileges required');
+        throw new Error('Access denied: admin privileges required')
       }
 
-      return getAdminConfig();
+      return getAdminConfig()
     },
     accessControl: {
       requiresAuth: true,
       requiredRoles: ['admin']
     }
-  });
+  })
 }
 ```
 
@@ -455,11 +461,13 @@ export function createSecureResource() {
 
 ```typescript
 class MyMCPServer extends BaseMCPServer {
-  private docsResource: MCPResourceHandler;
+  private docsResource: MCPResourceHandler
 
   constructor() {
-    super({ /* config */ });
-    this.docsResource = createDocsResource();
+    super({
+      /* config */
+    })
+    this.docsResource = createDocsResource()
   }
 
   private async registerResources(): Promise<void> {
@@ -467,16 +475,16 @@ class MyMCPServer extends BaseMCPServer {
       uri: 'myapp://docs/readme',
       name: 'README Documentation',
       description: 'Application documentation',
-      handler: async (options) => {
-        const result = await this.docsResource.get(options);
+      handler: async options => {
+        const result = await this.docsResource.get(options)
 
         if (!result.success) {
-          throw new Error(result.error?.message || 'Failed to read resource');
+          throw new Error(result.error?.message || 'Failed to read resource')
         }
 
-        return result.content!;
+        return result.content!
       }
-    });
+    })
   }
 }
 ```
@@ -489,7 +497,7 @@ class MyMCPServer extends BaseMCPServer {
 
 ```typescript
 // src/prompts/query-prompt.ts
-import { MCPPromptHandler } from '../mcp-prompt-handler';
+import { MCPPromptHandler } from '../mcp-prompt-handler'
 
 export function createQueryPrompt() {
   return new MCPPromptHandler({
@@ -508,7 +516,7 @@ Generate a concise, effective search query that will return the most relevant re
       userInput: {
         type: 'string',
         required: true,
-        description: 'User\'s original search input'
+        description: "User's original search input"
       },
       context: {
         type: 'string',
@@ -535,7 +543,7 @@ Generate a concise, effective search query that will return the most relevant re
         output: 'authentication security best practices implementation guide'
       }
     ]
-  });
+  })
 }
 
 // Multi-step prompt
@@ -574,7 +582,7 @@ Focus on: {{focusAreas}}`,
         description: 'Areas to focus analysis on'
       }
     }
-  });
+  })
 }
 ```
 
@@ -582,27 +590,29 @@ Focus on: {{focusAreas}}`,
 
 ```typescript
 class MyMCPServer extends BaseMCPServer {
-  private queryPrompt: MCPPromptHandler;
+  private queryPrompt: MCPPromptHandler
 
   constructor() {
-    super({ /* config */ });
-    this.queryPrompt = createQueryPrompt();
+    super({
+      /* config */
+    })
+    this.queryPrompt = createQueryPrompt()
   }
 
   private async registerPrompts(): Promise<void> {
     this.addPrompt({
       name: 'search_query',
       description: 'Generate optimized search query',
-      handler: async (args) => {
-        const result = await this.queryPrompt.execute(args);
+      handler: async args => {
+        const result = await this.queryPrompt.execute(args)
 
         if (!result.success) {
-          throw new Error(result.error?.message || 'Failed to generate prompt');
+          throw new Error(result.error?.message || 'Failed to generate prompt')
         }
 
-        return result.prompt!;
+        return result.prompt!
       }
-    });
+    })
   }
 }
 ```
@@ -614,93 +624,85 @@ class MyMCPServer extends BaseMCPServer {
 ### Unit Tests
 
 ```typescript
-import { describe, it, expect, beforeEach } from 'vitest';
-import { MyMCPServer } from '../src/index';
+import { describe, it, expect, beforeEach } from 'vitest'
+import { MyMCPServer } from '../src/index'
 
 describe('MyMCPServer', () => {
-  let server: MyMCPServer;
+  let server: MyMCPServer
 
   beforeEach(async () => {
-    server = new MyMCPServer();
-    await server.initialize();
-  });
+    server = new MyMCPServer()
+    await server.initialize()
+  })
 
   describe('Tools', () => {
     it('should list available tools', async () => {
-      const tools = server.listTools();
-      expect(tools).toContainEqual(
-        expect.objectContaining({ name: 'search' })
-      );
-    });
+      const tools = server.listTools()
+      expect(tools).toContainEqual(expect.objectContaining({ name: 'search' }))
+    })
 
     it('should execute search tool', async () => {
       const result = await server.invokeTool('search', {
         query: 'test query',
         limit: 5
-      });
+      })
 
-      expect(result).toHaveProperty('results');
-      expect(result.results).toBeInstanceOf(Array);
-    });
+      expect(result).toHaveProperty('results')
+      expect(result.results).toBeInstanceOf(Array)
+    })
 
     it('should validate tool input', async () => {
-      await expect(
-        server.invokeTool('search', { query: '' })
-      ).rejects.toThrow('query must be at least 1 character');
-    });
+      await expect(server.invokeTool('search', { query: '' })).rejects.toThrow(
+        'query must be at least 1 character'
+      )
+    })
 
     it('should handle tool errors', async () => {
-      await expect(
-        server.invokeTool('nonexistent', {})
-      ).rejects.toThrow('Tool not found');
-    });
-  });
+      await expect(server.invokeTool('nonexistent', {})).rejects.toThrow('Tool not found')
+    })
+  })
 
   describe('Resources', () => {
     it('should list available resources', async () => {
-      const resources = server.listResources();
-      expect(resources).toContainEqual(
-        expect.objectContaining({ uri: 'myapp://docs/readme' })
-      );
-    });
+      const resources = server.listResources()
+      expect(resources).toContainEqual(expect.objectContaining({ uri: 'myapp://docs/readme' }))
+    })
 
     it('should read resource', async () => {
-      const content = await server.getResource('myapp://docs/readme');
-      expect(content).toBeDefined();
-      expect(typeof content).toBe('string');
-    });
+      const content = await server.getResource('myapp://docs/readme')
+      expect(content).toBeDefined()
+      expect(typeof content).toBe('string')
+    })
 
     it('should handle versioned resources', async () => {
       const v1 = await server.getResource('myapp://docs/readme', {
         version: '1.0.0'
-      });
+      })
       const v2 = await server.getResource('myapp://docs/readme', {
         version: '2.0.0'
-      });
+      })
 
-      expect(v1).not.toBe(v2);
-    });
-  });
+      expect(v1).not.toBe(v2)
+    })
+  })
 
   describe('Prompts', () => {
     it('should list available prompts', async () => {
-      const prompts = server.listPrompts();
-      expect(prompts).toContainEqual(
-        expect.objectContaining({ name: 'search_query' })
-      );
-    });
+      const prompts = server.listPrompts()
+      expect(prompts).toContainEqual(expect.objectContaining({ name: 'search_query' }))
+    })
 
     it('should execute prompt', async () => {
       const prompt = await server.executePrompt('search_query', {
         userInput: 'authentication',
         context: 'security'
-      });
+      })
 
-      expect(prompt).toContain('authentication');
-      expect(prompt).toContain('security');
-    });
-  });
-});
+      expect(prompt).toContain('authentication')
+      expect(prompt).toContain('security')
+    })
+  })
+})
 ```
 
 ### Integration Tests
@@ -708,26 +710,26 @@ describe('MyMCPServer', () => {
 ```typescript
 describe('MCP Server Integration', () => {
   it('should handle full workflow', async () => {
-    const server = new MyMCPServer();
-    await server.initialize();
+    const server = new MyMCPServer()
+    await server.initialize()
 
     // 1. Generate query prompt
     const prompt = await server.executePrompt('search_query', {
       userInput: 'best practices'
-    });
+    })
 
     // 2. Execute search
     const searchResults = await server.invokeTool('search', {
       query: prompt
-    });
+    })
 
     // 3. Read documentation resource
-    const docs = await server.getResource('myapp://docs/readme');
+    const docs = await server.getResource('myapp://docs/readme')
 
-    expect(searchResults.results.length).toBeGreaterThan(0);
-    expect(docs).toBeDefined();
-  });
-});
+    expect(searchResults.results.length).toBeGreaterThan(0)
+    expect(docs).toBeDefined()
+  })
+})
 ```
 
 ---
@@ -751,10 +753,7 @@ describe('MCP Server Integration', () => {
   "keywords": ["mcp", "ai", "tools"],
   "author": "Your Name",
   "license": "MIT",
-  "files": [
-    "dist",
-    "README.md"
-  ]
+  "files": ["dist", "README.md"]
 }
 ```
 
@@ -830,11 +829,11 @@ Add your server to `/META/mcp-registry.json`:
 ```typescript
 const tool = new MCPToolHandler({
   name: 'slow_operation',
-  handler: async (args) => {
+  handler: async args => {
     // Your logic
   },
   timeout: 30000 // 30 seconds
-});
+})
 ```
 
 ### Issue: Memory Leaks
@@ -843,9 +842,9 @@ const tool = new MCPToolHandler({
 
 ```typescript
 setInterval(() => {
-  tool.clearCache();
-  resource.clearCache();
-}, 3600000); // Every hour
+  tool.clearCache()
+  resource.clearCache()
+}, 3600000) // Every hour
 ```
 
 ---
@@ -853,13 +852,16 @@ setInterval(() => {
 ## Related Resources
 
 ### Skills
+
 - multi-agent-architect
 - api-designer
 
 ### Components
+
 - `/COMPONENTS/mcp-servers/` - All MCP base components
 
 ### Registry
+
 - `/META/mcp-registry.json` - MCP server registry
 
 ---

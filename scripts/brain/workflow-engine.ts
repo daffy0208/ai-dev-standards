@@ -6,25 +6,25 @@
  */
 
 export interface WorkflowStep {
-  order: number;
-  action: string;
-  description: string;
-  estimatedTime: string;
-  requiredSkills: string[];
-  optional: boolean;
+  order: number
+  action: string
+  description: string
+  estimatedTime: string
+  requiredSkills: string[]
+  optional: boolean
 }
 
 export interface WorkflowDecision {
-  scenario: string;
-  workflowType: string;
-  steps: WorkflowStep[];
-  skills: string[];
-  mcps: string[];
-  integrations: string[];
-  estimatedTime: string;
-  reasoning: string;
-  alternatives: string[];
-  warnings: string[];
+  scenario: string
+  workflowType: string
+  steps: WorkflowStep[]
+  skills: string[]
+  mcps: string[]
+  integrations: string[]
+  estimatedTime: string
+  reasoning: string
+  alternatives: string[]
+  warnings: string[]
 }
 
 export class WorkflowEngine {
@@ -32,28 +32,28 @@ export class WorkflowEngine {
    * Decide complete workflow for a scenario
    */
   decide(scenario: string, skillRecommendations: string[]): WorkflowDecision {
-    const lowerScenario = scenario.toLowerCase();
+    const lowerScenario = scenario.toLowerCase()
 
     // Detect workflow type
-    const workflowType = this.detectWorkflowType(lowerScenario);
+    const workflowType = this.detectWorkflowType(lowerScenario)
 
     // Generate workflow steps
-    const steps = this.generateWorkflowSteps(workflowType, lowerScenario);
+    const steps = this.generateWorkflowSteps(workflowType, lowerScenario)
 
     // Calculate total time
-    const estimatedTime = this.calculateTotalTime(steps);
+    const estimatedTime = this.calculateTotalTime(steps)
 
     // Determine required integrations
-    const integrations = this.determineIntegrations(workflowType, skillRecommendations);
+    const integrations = this.determineIntegrations(workflowType, skillRecommendations)
 
     // Generate reasoning
-    const reasoning = this.generateReasoning(workflowType, steps, skillRecommendations);
+    const reasoning = this.generateReasoning(workflowType, steps, skillRecommendations)
 
     // Find alternatives
-    const alternatives = this.findAlternatives(workflowType);
+    const alternatives = this.findAlternatives(workflowType)
 
     // Check for warnings
-    const warnings = this.checkWarnings(workflowType, lowerScenario);
+    const warnings = this.checkWarnings(workflowType, lowerScenario)
 
     return {
       scenario,
@@ -66,7 +66,7 @@ export class WorkflowEngine {
       reasoning,
       alternatives,
       warnings
-    };
+    }
   }
 
   /**
@@ -88,15 +88,15 @@ export class WorkflowEngine {
       { type: 'rag-system', keywords: ['rag', 'retrieval', 'knowledge base', 'semantic search'] },
       { type: 'multi-agent', keywords: ['agent', 'multi-agent', 'orchestration'] },
       { type: 'security', keywords: ['security', 'secure', 'authentication', 'authorization'] }
-    ];
+    ]
 
     for (const pattern of patterns) {
       if (pattern.keywords.some(keyword => scenario.includes(keyword))) {
-        return pattern.type;
+        return pattern.type
       }
     }
 
-    return 'general';
+    return 'general'
   }
 
   /**
@@ -105,170 +105,919 @@ export class WorkflowEngine {
   private generateWorkflowSteps(workflowType: string, scenario: string): WorkflowStep[] {
     const workflows: Record<string, WorkflowStep[]> = {
       'new-skill': [
-        { order: 1, action: 'Research', description: 'Research existing patterns and similar skills', estimatedTime: '30 min', requiredSkills: [], optional: false },
-        { order: 2, action: 'Check MCPs', description: 'Check if official MCP exists for this capability', estimatedTime: '15 min', requiredSkills: [], optional: false },
-        { order: 3, action: 'Create SKILL.md', description: 'Write comprehensive skill documentation with patterns', estimatedTime: '45 min', requiredSkills: ['technical-writer'], optional: false },
-        { order: 4, action: 'Create README.md', description: 'Create skill README with overview', estimatedTime: '15 min', requiredSkills: ['technical-writer'], optional: true },
-        { order: 5, action: 'Update Registries', description: 'Update skill-registry.json with new skill', estimatedTime: '10 min', requiredSkills: [], optional: false },
-        { order: 6, action: 'Update Relationships', description: 'Update relationship-mapping.json with dependencies', estimatedTime: '10 min', requiredSkills: [], optional: false },
-        { order: 7, action: 'Update CLAUDE.md', description: 'Add skill to .claude/CLAUDE.md', estimatedTime: '10 min', requiredSkills: [], optional: false },
-        { order: 8, action: 'Update README', description: 'Add skill to main README.md', estimatedTime: '10 min', requiredSkills: [], optional: false },
-        { order: 9, action: 'Validate', description: 'Run brain validate to check consistency', estimatedTime: '5 min', requiredSkills: [], optional: false },
-        { order: 10, action: 'Commit', description: 'Commit and push changes', estimatedTime: '5 min', requiredSkills: [], optional: false }
+        {
+          order: 1,
+          action: 'Research',
+          description: 'Research existing patterns and similar skills',
+          estimatedTime: '30 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 2,
+          action: 'Check MCPs',
+          description: 'Check if official MCP exists for this capability',
+          estimatedTime: '15 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 3,
+          action: 'Create SKILL.md',
+          description: 'Write comprehensive skill documentation with patterns',
+          estimatedTime: '45 min',
+          requiredSkills: ['technical-writer'],
+          optional: false
+        },
+        {
+          order: 4,
+          action: 'Create README.md',
+          description: 'Create skill README with overview',
+          estimatedTime: '15 min',
+          requiredSkills: ['technical-writer'],
+          optional: true
+        },
+        {
+          order: 5,
+          action: 'Update Registries',
+          description: 'Update skill-registry.json with new skill',
+          estimatedTime: '10 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 6,
+          action: 'Update Relationships',
+          description: 'Update relationship-mapping.json with dependencies',
+          estimatedTime: '10 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 7,
+          action: 'Update CLAUDE.md',
+          description: 'Add skill to .claude/CLAUDE.md',
+          estimatedTime: '10 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 8,
+          action: 'Update README',
+          description: 'Add skill to main README.md',
+          estimatedTime: '10 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 9,
+          action: 'Validate',
+          description: 'Run brain validate to check consistency',
+          estimatedTime: '5 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 10,
+          action: 'Commit',
+          description: 'Commit and push changes',
+          estimatedTime: '5 min',
+          requiredSkills: [],
+          optional: false
+        }
       ],
       'new-mcp': [
-        { order: 1, action: 'Research', description: 'Research MCP patterns and official MCPs', estimatedTime: '30 min', requiredSkills: [], optional: false },
-        { order: 2, action: 'Design API', description: 'Design MCP tool interfaces', estimatedTime: '30 min', requiredSkills: ['api-designer'], optional: false },
-        { order: 3, action: 'Implement', description: 'Implement MCP server', estimatedTime: '2 hours', requiredSkills: [], optional: false },
-        { order: 4, action: 'Add Tests', description: 'Create integration tests', estimatedTime: '45 min', requiredSkills: ['testing-strategist'], optional: false },
-        { order: 5, action: 'Update Registries', description: 'Update mcp-registry.json', estimatedTime: '10 min', requiredSkills: [], optional: false },
-        { order: 6, action: 'Update Relationships', description: 'Link MCP to skills in relationship-mapping.json', estimatedTime: '10 min', requiredSkills: [], optional: false },
-        { order: 7, action: 'Validate', description: 'Run brain validate', estimatedTime: '5 min', requiredSkills: [], optional: false },
-        { order: 8, action: 'Commit', description: 'Commit and push', estimatedTime: '5 min', requiredSkills: [], optional: false }
+        {
+          order: 1,
+          action: 'Research',
+          description: 'Research MCP patterns and official MCPs',
+          estimatedTime: '30 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 2,
+          action: 'Design API',
+          description: 'Design MCP tool interfaces',
+          estimatedTime: '30 min',
+          requiredSkills: ['api-designer'],
+          optional: false
+        },
+        {
+          order: 3,
+          action: 'Implement',
+          description: 'Implement MCP server',
+          estimatedTime: '2 hours',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 4,
+          action: 'Add Tests',
+          description: 'Create integration tests',
+          estimatedTime: '45 min',
+          requiredSkills: ['testing-strategist'],
+          optional: false
+        },
+        {
+          order: 5,
+          action: 'Update Registries',
+          description: 'Update mcp-registry.json',
+          estimatedTime: '10 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 6,
+          action: 'Update Relationships',
+          description: 'Link MCP to skills in relationship-mapping.json',
+          estimatedTime: '10 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 7,
+          action: 'Validate',
+          description: 'Run brain validate',
+          estimatedTime: '5 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 8,
+          action: 'Commit',
+          description: 'Commit and push',
+          estimatedTime: '5 min',
+          requiredSkills: [],
+          optional: false
+        }
       ],
       'new-feature': [
-        { order: 1, action: 'Context', description: 'Load project context and understand requirements', estimatedTime: '15 min', requiredSkills: [], optional: false },
-        { order: 2, action: 'Design', description: 'Design feature architecture and data flow', estimatedTime: '30 min', requiredSkills: [], optional: false },
-        { order: 3, action: 'Check Playbooks', description: 'Review playbooks for relevant patterns', estimatedTime: '10 min', requiredSkills: [], optional: true },
-        { order: 4, action: 'Implement Backend', description: 'Implement backend logic and APIs', estimatedTime: '1.5 hours', requiredSkills: ['api-designer'], optional: false },
-        { order: 5, action: 'Implement Frontend', description: 'Implement UI components', estimatedTime: '1.5 hours', requiredSkills: ['frontend-builder'], optional: false },
-        { order: 6, action: 'Write Tests', description: 'Add unit and integration tests', estimatedTime: '45 min', requiredSkills: ['testing-strategist'], optional: false },
-        { order: 7, action: 'Update Docs', description: 'Update relevant documentation', estimatedTime: '20 min', requiredSkills: ['technical-writer'], optional: false },
-        { order: 8, action: 'Validate', description: 'Run tests and validation', estimatedTime: '10 min', requiredSkills: [], optional: false },
-        { order: 9, action: 'Commit', description: 'Commit changes', estimatedTime: '5 min', requiredSkills: [], optional: false }
+        {
+          order: 1,
+          action: 'Context',
+          description: 'Load project context and understand requirements',
+          estimatedTime: '15 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 2,
+          action: 'Design',
+          description: 'Design feature architecture and data flow',
+          estimatedTime: '30 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 3,
+          action: 'Check Playbooks',
+          description: 'Review playbooks for relevant patterns',
+          estimatedTime: '10 min',
+          requiredSkills: [],
+          optional: true
+        },
+        {
+          order: 4,
+          action: 'Implement Backend',
+          description: 'Implement backend logic and APIs',
+          estimatedTime: '1.5 hours',
+          requiredSkills: ['api-designer'],
+          optional: false
+        },
+        {
+          order: 5,
+          action: 'Implement Frontend',
+          description: 'Implement UI components',
+          estimatedTime: '1.5 hours',
+          requiredSkills: ['frontend-builder'],
+          optional: false
+        },
+        {
+          order: 6,
+          action: 'Write Tests',
+          description: 'Add unit and integration tests',
+          estimatedTime: '45 min',
+          requiredSkills: ['testing-strategist'],
+          optional: false
+        },
+        {
+          order: 7,
+          action: 'Update Docs',
+          description: 'Update relevant documentation',
+          estimatedTime: '20 min',
+          requiredSkills: ['technical-writer'],
+          optional: false
+        },
+        {
+          order: 8,
+          action: 'Validate',
+          description: 'Run tests and validation',
+          estimatedTime: '10 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 9,
+          action: 'Commit',
+          description: 'Commit changes',
+          estimatedTime: '5 min',
+          requiredSkills: [],
+          optional: false
+        }
       ],
-      'enhancement': [
-        { order: 1, action: 'Analyze', description: 'Analyze existing implementation', estimatedTime: '20 min', requiredSkills: [], optional: false },
-        { order: 2, action: 'Identify Gaps', description: 'Identify improvement opportunities', estimatedTime: '15 min', requiredSkills: ['quality-auditor'], optional: false },
-        { order: 3, action: 'Research', description: 'Research best practices', estimatedTime: '20 min', requiredSkills: [], optional: true },
-        { order: 4, action: 'Implement', description: 'Implement enhancements', estimatedTime: '1.5 hours', requiredSkills: [], optional: false },
-        { order: 5, action: 'Update Tests', description: 'Update or add tests', estimatedTime: '30 min', requiredSkills: ['testing-strategist'], optional: false },
-        { order: 6, action: 'Update Docs', description: 'Update documentation', estimatedTime: '15 min', requiredSkills: ['technical-writer'], optional: false },
-        { order: 7, action: 'Validate', description: 'Run validation', estimatedTime: '10 min', requiredSkills: [], optional: false },
-        { order: 8, action: 'Commit', description: 'Commit changes', estimatedTime: '5 min', requiredSkills: [], optional: false }
+      enhancement: [
+        {
+          order: 1,
+          action: 'Analyze',
+          description: 'Analyze existing implementation',
+          estimatedTime: '20 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 2,
+          action: 'Identify Gaps',
+          description: 'Identify improvement opportunities',
+          estimatedTime: '15 min',
+          requiredSkills: ['quality-auditor'],
+          optional: false
+        },
+        {
+          order: 3,
+          action: 'Research',
+          description: 'Research best practices',
+          estimatedTime: '20 min',
+          requiredSkills: [],
+          optional: true
+        },
+        {
+          order: 4,
+          action: 'Implement',
+          description: 'Implement enhancements',
+          estimatedTime: '1.5 hours',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 5,
+          action: 'Update Tests',
+          description: 'Update or add tests',
+          estimatedTime: '30 min',
+          requiredSkills: ['testing-strategist'],
+          optional: false
+        },
+        {
+          order: 6,
+          action: 'Update Docs',
+          description: 'Update documentation',
+          estimatedTime: '15 min',
+          requiredSkills: ['technical-writer'],
+          optional: false
+        },
+        {
+          order: 7,
+          action: 'Validate',
+          description: 'Run validation',
+          estimatedTime: '10 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 8,
+          action: 'Commit',
+          description: 'Commit changes',
+          estimatedTime: '5 min',
+          requiredSkills: [],
+          optional: false
+        }
       ],
       'bug-fix': [
-        { order: 1, action: 'Reproduce', description: 'Reproduce the bug', estimatedTime: '15 min', requiredSkills: [], optional: false },
-        { order: 2, action: 'Diagnose', description: 'Identify root cause', estimatedTime: '30 min', requiredSkills: [], optional: false },
-        { order: 3, action: 'Fix', description: 'Implement fix', estimatedTime: '45 min', requiredSkills: [], optional: false },
-        { order: 4, action: 'Test Fix', description: 'Verify fix resolves issue', estimatedTime: '15 min', requiredSkills: [], optional: false },
-        { order: 5, action: 'Regression Test', description: 'Add regression test', estimatedTime: '20 min', requiredSkills: ['testing-strategist'], optional: false },
-        { order: 6, action: 'Update Docs', description: 'Update docs if needed', estimatedTime: '10 min', requiredSkills: ['technical-writer'], optional: true },
-        { order: 7, action: 'Commit', description: 'Commit fix', estimatedTime: '5 min', requiredSkills: [], optional: false }
+        {
+          order: 1,
+          action: 'Reproduce',
+          description: 'Reproduce the bug',
+          estimatedTime: '15 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 2,
+          action: 'Diagnose',
+          description: 'Identify root cause',
+          estimatedTime: '30 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 3,
+          action: 'Fix',
+          description: 'Implement fix',
+          estimatedTime: '45 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 4,
+          action: 'Test Fix',
+          description: 'Verify fix resolves issue',
+          estimatedTime: '15 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 5,
+          action: 'Regression Test',
+          description: 'Add regression test',
+          estimatedTime: '20 min',
+          requiredSkills: ['testing-strategist'],
+          optional: false
+        },
+        {
+          order: 6,
+          action: 'Update Docs',
+          description: 'Update docs if needed',
+          estimatedTime: '10 min',
+          requiredSkills: ['technical-writer'],
+          optional: true
+        },
+        {
+          order: 7,
+          action: 'Commit',
+          description: 'Commit fix',
+          estimatedTime: '5 min',
+          requiredSkills: [],
+          optional: false
+        }
       ],
-      'mvp': [
-        { order: 1, action: 'Validate Problem', description: 'Validate problem-solution fit', estimatedTime: '30 min', requiredSkills: ['product-strategist'], optional: false },
-        { order: 2, action: 'Prioritize', description: 'Prioritize features (P0/P1/P2)', estimatedTime: '30 min', requiredSkills: ['mvp-builder'], optional: false },
-        { order: 3, action: 'Choose Stack', description: 'Select technology stack', estimatedTime: '20 min', requiredSkills: ['deployment-advisor'], optional: false },
-        { order: 4, action: 'Design', description: 'Design MVP architecture', estimatedTime: '45 min', requiredSkills: ['api-designer', 'frontend-builder'], optional: false },
-        { order: 5, action: 'Build P0', description: 'Implement P0 features only', estimatedTime: '3 hours', requiredSkills: ['mvp-builder', 'frontend-builder'], optional: false },
-        { order: 6, action: 'Test', description: 'Basic testing', estimatedTime: '30 min', requiredSkills: ['testing-strategist'], optional: false },
-        { order: 7, action: 'Deploy', description: 'Deploy to staging', estimatedTime: '30 min', requiredSkills: ['deployment-advisor'], optional: false },
-        { order: 8, action: 'Validate', description: 'User validation', estimatedTime: '1 hour', requiredSkills: ['user-researcher'], optional: false }
+      mvp: [
+        {
+          order: 1,
+          action: 'Validate Problem',
+          description: 'Validate problem-solution fit',
+          estimatedTime: '30 min',
+          requiredSkills: ['product-strategist'],
+          optional: false
+        },
+        {
+          order: 2,
+          action: 'Prioritize',
+          description: 'Prioritize features (P0/P1/P2)',
+          estimatedTime: '30 min',
+          requiredSkills: ['mvp-builder'],
+          optional: false
+        },
+        {
+          order: 3,
+          action: 'Choose Stack',
+          description: 'Select technology stack',
+          estimatedTime: '20 min',
+          requiredSkills: ['deployment-advisor'],
+          optional: false
+        },
+        {
+          order: 4,
+          action: 'Design',
+          description: 'Design MVP architecture',
+          estimatedTime: '45 min',
+          requiredSkills: ['api-designer', 'frontend-builder'],
+          optional: false
+        },
+        {
+          order: 5,
+          action: 'Build P0',
+          description: 'Implement P0 features only',
+          estimatedTime: '3 hours',
+          requiredSkills: ['mvp-builder', 'frontend-builder'],
+          optional: false
+        },
+        {
+          order: 6,
+          action: 'Test',
+          description: 'Basic testing',
+          estimatedTime: '30 min',
+          requiredSkills: ['testing-strategist'],
+          optional: false
+        },
+        {
+          order: 7,
+          action: 'Deploy',
+          description: 'Deploy to staging',
+          estimatedTime: '30 min',
+          requiredSkills: ['deployment-advisor'],
+          optional: false
+        },
+        {
+          order: 8,
+          action: 'Validate',
+          description: 'User validation',
+          estimatedTime: '1 hour',
+          requiredSkills: ['user-researcher'],
+          optional: false
+        }
       ],
       'rag-system': [
-        { order: 1, action: 'Design', description: 'Design RAG architecture', estimatedTime: '45 min', requiredSkills: ['rag-implementer'], optional: false },
-        { order: 2, action: 'Setup Vector DB', description: 'Configure vector database', estimatedTime: '30 min', requiredSkills: ['rag-implementer'], optional: false },
-        { order: 3, action: 'Embeddings', description: 'Implement embedding generation', estimatedTime: '45 min', requiredSkills: ['rag-implementer'], optional: false },
-        { order: 4, action: 'Ingestion', description: 'Build document ingestion pipeline', estimatedTime: '1 hour', requiredSkills: ['data-engineer'], optional: false },
-        { order: 5, action: 'Retrieval', description: 'Implement retrieval logic', estimatedTime: '1 hour', requiredSkills: ['rag-implementer'], optional: false },
-        { order: 6, action: 'LLM Integration', description: 'Integrate with LLM', estimatedTime: '45 min', requiredSkills: ['rag-implementer'], optional: false },
-        { order: 7, action: 'Evaluation', description: 'Build evaluation framework', estimatedTime: '45 min', requiredSkills: ['testing-strategist'], optional: false },
-        { order: 8, action: 'Test', description: 'Test end-to-end', estimatedTime: '30 min', requiredSkills: [], optional: false }
+        {
+          order: 1,
+          action: 'Design',
+          description: 'Design RAG architecture',
+          estimatedTime: '45 min',
+          requiredSkills: ['rag-implementer'],
+          optional: false
+        },
+        {
+          order: 2,
+          action: 'Setup Vector DB',
+          description: 'Configure vector database',
+          estimatedTime: '30 min',
+          requiredSkills: ['rag-implementer'],
+          optional: false
+        },
+        {
+          order: 3,
+          action: 'Embeddings',
+          description: 'Implement embedding generation',
+          estimatedTime: '45 min',
+          requiredSkills: ['rag-implementer'],
+          optional: false
+        },
+        {
+          order: 4,
+          action: 'Ingestion',
+          description: 'Build document ingestion pipeline',
+          estimatedTime: '1 hour',
+          requiredSkills: ['data-engineer'],
+          optional: false
+        },
+        {
+          order: 5,
+          action: 'Retrieval',
+          description: 'Implement retrieval logic',
+          estimatedTime: '1 hour',
+          requiredSkills: ['rag-implementer'],
+          optional: false
+        },
+        {
+          order: 6,
+          action: 'LLM Integration',
+          description: 'Integrate with LLM',
+          estimatedTime: '45 min',
+          requiredSkills: ['rag-implementer'],
+          optional: false
+        },
+        {
+          order: 7,
+          action: 'Evaluation',
+          description: 'Build evaluation framework',
+          estimatedTime: '45 min',
+          requiredSkills: ['testing-strategist'],
+          optional: false
+        },
+        {
+          order: 8,
+          action: 'Test',
+          description: 'Test end-to-end',
+          estimatedTime: '30 min',
+          requiredSkills: [],
+          optional: false
+        }
       ],
       'multi-agent': [
-        { order: 1, action: 'Design', description: 'Design agent system architecture', estimatedTime: '1 hour', requiredSkills: ['multi-agent-architect'], optional: false },
-        { order: 2, action: 'Define Roles', description: 'Define agent roles and responsibilities', estimatedTime: '30 min', requiredSkills: ['multi-agent-architect'], optional: false },
-        { order: 3, action: 'Communication', description: 'Design agent communication protocol', estimatedTime: '45 min', requiredSkills: ['multi-agent-architect'], optional: false },
-        { order: 4, action: 'Implement Agents', description: 'Implement individual agents', estimatedTime: '2 hours', requiredSkills: ['multi-agent-architect'], optional: false },
-        { order: 5, action: 'Orchestration', description: 'Implement orchestration layer', estimatedTime: '1.5 hours', requiredSkills: ['multi-agent-architect'], optional: false },
-        { order: 6, action: 'Test', description: 'Test agent coordination', estimatedTime: '45 min', requiredSkills: ['testing-strategist'], optional: false }
+        {
+          order: 1,
+          action: 'Design',
+          description: 'Design agent system architecture',
+          estimatedTime: '1 hour',
+          requiredSkills: ['multi-agent-architect'],
+          optional: false
+        },
+        {
+          order: 2,
+          action: 'Define Roles',
+          description: 'Define agent roles and responsibilities',
+          estimatedTime: '30 min',
+          requiredSkills: ['multi-agent-architect'],
+          optional: false
+        },
+        {
+          order: 3,
+          action: 'Communication',
+          description: 'Design agent communication protocol',
+          estimatedTime: '45 min',
+          requiredSkills: ['multi-agent-architect'],
+          optional: false
+        },
+        {
+          order: 4,
+          action: 'Implement Agents',
+          description: 'Implement individual agents',
+          estimatedTime: '2 hours',
+          requiredSkills: ['multi-agent-architect'],
+          optional: false
+        },
+        {
+          order: 5,
+          action: 'Orchestration',
+          description: 'Implement orchestration layer',
+          estimatedTime: '1.5 hours',
+          requiredSkills: ['multi-agent-architect'],
+          optional: false
+        },
+        {
+          order: 6,
+          action: 'Test',
+          description: 'Test agent coordination',
+          estimatedTime: '45 min',
+          requiredSkills: ['testing-strategist'],
+          optional: false
+        }
       ],
-      'documentation': [
-        { order: 1, action: 'Analyze', description: 'Analyze code to document', estimatedTime: '20 min', requiredSkills: [], optional: false },
-        { order: 2, action: 'Outline', description: 'Create documentation outline', estimatedTime: '15 min', requiredSkills: ['technical-writer'], optional: false },
-        { order: 3, action: 'Write', description: 'Write comprehensive documentation', estimatedTime: '1.5 hours', requiredSkills: ['technical-writer'], optional: false },
-        { order: 4, action: 'Examples', description: 'Add code examples and use cases', estimatedTime: '45 min', requiredSkills: ['technical-writer'], optional: false },
-        { order: 5, action: 'Review', description: 'Review and polish documentation', estimatedTime: '20 min', requiredSkills: ['technical-writer'], optional: false },
-        { order: 6, action: 'Deploy', description: 'Deploy to documentation site', estimatedTime: '15 min', requiredSkills: [], optional: false }
+      documentation: [
+        {
+          order: 1,
+          action: 'Analyze',
+          description: 'Analyze code to document',
+          estimatedTime: '20 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 2,
+          action: 'Outline',
+          description: 'Create documentation outline',
+          estimatedTime: '15 min',
+          requiredSkills: ['technical-writer'],
+          optional: false
+        },
+        {
+          order: 3,
+          action: 'Write',
+          description: 'Write comprehensive documentation',
+          estimatedTime: '1.5 hours',
+          requiredSkills: ['technical-writer'],
+          optional: false
+        },
+        {
+          order: 4,
+          action: 'Examples',
+          description: 'Add code examples and use cases',
+          estimatedTime: '45 min',
+          requiredSkills: ['technical-writer'],
+          optional: false
+        },
+        {
+          order: 5,
+          action: 'Review',
+          description: 'Review and polish documentation',
+          estimatedTime: '20 min',
+          requiredSkills: ['technical-writer'],
+          optional: false
+        },
+        {
+          order: 6,
+          action: 'Deploy',
+          description: 'Deploy to documentation site',
+          estimatedTime: '15 min',
+          requiredSkills: [],
+          optional: false
+        }
       ],
-      'testing': [
-        { order: 1, action: 'Plan', description: 'Plan test coverage and strategy', estimatedTime: '20 min', requiredSkills: ['testing-strategist'], optional: false },
-        { order: 2, action: 'Unit Tests', description: 'Write unit tests', estimatedTime: '1 hour', requiredSkills: ['testing-strategist'], optional: false },
-        { order: 3, action: 'Integration Tests', description: 'Write integration tests', estimatedTime: '1 hour', requiredSkills: ['testing-strategist'], optional: false },
-        { order: 4, action: 'E2E Tests', description: 'Write end-to-end tests', estimatedTime: '1.5 hours', requiredSkills: ['testing-strategist'], optional: true },
-        { order: 5, action: 'Coverage', description: 'Measure code coverage', estimatedTime: '15 min', requiredSkills: [], optional: false },
-        { order: 6, action: 'Run Tests', description: 'Run full test suite', estimatedTime: '10 min', requiredSkills: [], optional: false }
+      testing: [
+        {
+          order: 1,
+          action: 'Plan',
+          description: 'Plan test coverage and strategy',
+          estimatedTime: '20 min',
+          requiredSkills: ['testing-strategist'],
+          optional: false
+        },
+        {
+          order: 2,
+          action: 'Unit Tests',
+          description: 'Write unit tests',
+          estimatedTime: '1 hour',
+          requiredSkills: ['testing-strategist'],
+          optional: false
+        },
+        {
+          order: 3,
+          action: 'Integration Tests',
+          description: 'Write integration tests',
+          estimatedTime: '1 hour',
+          requiredSkills: ['testing-strategist'],
+          optional: false
+        },
+        {
+          order: 4,
+          action: 'E2E Tests',
+          description: 'Write end-to-end tests',
+          estimatedTime: '1.5 hours',
+          requiredSkills: ['testing-strategist'],
+          optional: true
+        },
+        {
+          order: 5,
+          action: 'Coverage',
+          description: 'Measure code coverage',
+          estimatedTime: '15 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 6,
+          action: 'Run Tests',
+          description: 'Run full test suite',
+          estimatedTime: '10 min',
+          requiredSkills: [],
+          optional: false
+        }
       ],
-      'deployment': [
-        { order: 1, action: 'Prepare', description: 'Prepare code for production', estimatedTime: '20 min', requiredSkills: [], optional: false },
-        { order: 2, action: 'Choose Infrastructure', description: 'Select deployment infrastructure', estimatedTime: '30 min', requiredSkills: ['deployment-advisor'], optional: false },
-        { order: 3, action: 'Setup CI/CD', description: 'Configure CI/CD pipeline', estimatedTime: '45 min', requiredSkills: ['deployment-advisor'], optional: false },
-        { order: 4, action: 'Database Setup', description: 'Provision and configure database', estimatedTime: '45 min', requiredSkills: [], optional: false },
-        { order: 5, action: 'Security', description: 'Configure security and secrets', estimatedTime: '30 min', requiredSkills: ['security-engineer'], optional: false },
-        { order: 6, action: 'Deploy', description: 'Deploy to production', estimatedTime: '20 min', requiredSkills: ['deployment-advisor'], optional: false },
-        { order: 7, action: 'Verify', description: 'Verify deployment success', estimatedTime: '15 min', requiredSkills: [], optional: false }
+      deployment: [
+        {
+          order: 1,
+          action: 'Prepare',
+          description: 'Prepare code for production',
+          estimatedTime: '20 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 2,
+          action: 'Choose Infrastructure',
+          description: 'Select deployment infrastructure',
+          estimatedTime: '30 min',
+          requiredSkills: ['deployment-advisor'],
+          optional: false
+        },
+        {
+          order: 3,
+          action: 'Setup CI/CD',
+          description: 'Configure CI/CD pipeline',
+          estimatedTime: '45 min',
+          requiredSkills: ['deployment-advisor'],
+          optional: false
+        },
+        {
+          order: 4,
+          action: 'Database Setup',
+          description: 'Provision and configure database',
+          estimatedTime: '45 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 5,
+          action: 'Security',
+          description: 'Configure security and secrets',
+          estimatedTime: '30 min',
+          requiredSkills: ['security-engineer'],
+          optional: false
+        },
+        {
+          order: 6,
+          action: 'Deploy',
+          description: 'Deploy to production',
+          estimatedTime: '20 min',
+          requiredSkills: ['deployment-advisor'],
+          optional: false
+        },
+        {
+          order: 7,
+          action: 'Verify',
+          description: 'Verify deployment success',
+          estimatedTime: '15 min',
+          requiredSkills: [],
+          optional: false
+        }
       ],
-      'architecture': [
-        { order: 1, action: 'Assess', description: 'Assess current architecture', estimatedTime: '30 min', requiredSkills: [], optional: false },
-        { order: 2, action: 'Design', description: 'Design new architecture', estimatedTime: '1.5 hours', requiredSkills: [], optional: false },
-        { order: 3, action: 'Document', description: 'Document architecture patterns', estimatedTime: '45 min', requiredSkills: ['technical-writer'], optional: false },
-        { order: 4, action: 'Identify Components', description: 'Identify major components and interfaces', estimatedTime: '30 min', requiredSkills: [], optional: false },
-        { order: 5, action: 'Implementation Plan', description: 'Create implementation roadmap', estimatedTime: '30 min', requiredSkills: [], optional: false },
-        { order: 6, action: 'Review', description: 'Get architecture review', estimatedTime: '20 min', requiredSkills: [], optional: true }
+      architecture: [
+        {
+          order: 1,
+          action: 'Assess',
+          description: 'Assess current architecture',
+          estimatedTime: '30 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 2,
+          action: 'Design',
+          description: 'Design new architecture',
+          estimatedTime: '1.5 hours',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 3,
+          action: 'Document',
+          description: 'Document architecture patterns',
+          estimatedTime: '45 min',
+          requiredSkills: ['technical-writer'],
+          optional: false
+        },
+        {
+          order: 4,
+          action: 'Identify Components',
+          description: 'Identify major components and interfaces',
+          estimatedTime: '30 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 5,
+          action: 'Implementation Plan',
+          description: 'Create implementation roadmap',
+          estimatedTime: '30 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 6,
+          action: 'Review',
+          description: 'Get architecture review',
+          estimatedTime: '20 min',
+          requiredSkills: [],
+          optional: true
+        }
       ],
-      'integration': [
-        { order: 1, action: 'Analyze', description: 'Analyze external service API', estimatedTime: '30 min', requiredSkills: ['api-designer'], optional: false },
-        { order: 2, action: 'Design', description: 'Design integration approach', estimatedTime: '30 min', requiredSkills: ['api-designer', 'api-integration-builder'], optional: false },
-        { order: 3, action: 'Implement', description: 'Implement integration', estimatedTime: '1.5 hours', requiredSkills: ['api-integration-builder'], optional: false },
-        { order: 4, action: 'Error Handling', description: 'Add error handling and retry logic', estimatedTime: '45 min', requiredSkills: [], optional: false },
-        { order: 5, action: 'Test', description: 'Test integration flow', estimatedTime: '30 min', requiredSkills: ['testing-strategist'], optional: false },
-        { order: 6, action: 'Monitor', description: 'Setup integration monitoring', estimatedTime: '20 min', requiredSkills: [], optional: true }
+      integration: [
+        {
+          order: 1,
+          action: 'Analyze',
+          description: 'Analyze external service API',
+          estimatedTime: '30 min',
+          requiredSkills: ['api-designer'],
+          optional: false
+        },
+        {
+          order: 2,
+          action: 'Design',
+          description: 'Design integration approach',
+          estimatedTime: '30 min',
+          requiredSkills: ['api-designer', 'api-integration-builder'],
+          optional: false
+        },
+        {
+          order: 3,
+          action: 'Implement',
+          description: 'Implement integration',
+          estimatedTime: '1.5 hours',
+          requiredSkills: ['api-integration-builder'],
+          optional: false
+        },
+        {
+          order: 4,
+          action: 'Error Handling',
+          description: 'Add error handling and retry logic',
+          estimatedTime: '45 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 5,
+          action: 'Test',
+          description: 'Test integration flow',
+          estimatedTime: '30 min',
+          requiredSkills: ['testing-strategist'],
+          optional: false
+        },
+        {
+          order: 6,
+          action: 'Monitor',
+          description: 'Setup integration monitoring',
+          estimatedTime: '20 min',
+          requiredSkills: [],
+          optional: true
+        }
       ],
-      'security': [
-        { order: 1, action: 'Threat Model', description: 'Identify threats and attack vectors', estimatedTime: '45 min', requiredSkills: ['security-architect'], optional: false },
-        { order: 2, action: 'Review Code', description: 'Conduct security code review', estimatedTime: '1 hour', requiredSkills: ['security-engineer'], optional: false },
-        { order: 3, action: 'Implement Fixes', description: 'Implement security improvements', estimatedTime: '1.5 hours', requiredSkills: ['security-engineer'], optional: false },
-        { order: 4, action: 'Add Tests', description: 'Add security tests', estimatedTime: '45 min', requiredSkills: ['testing-strategist'], optional: false },
-        { order: 5, action: 'Audit', description: 'Run security audit tools', estimatedTime: '20 min', requiredSkills: [], optional: false },
-        { order: 6, action: 'Document', description: 'Document security measures', estimatedTime: '20 min', requiredSkills: ['technical-writer'], optional: true }
+      security: [
+        {
+          order: 1,
+          action: 'Threat Model',
+          description: 'Identify threats and attack vectors',
+          estimatedTime: '45 min',
+          requiredSkills: ['security-architect'],
+          optional: false
+        },
+        {
+          order: 2,
+          action: 'Review Code',
+          description: 'Conduct security code review',
+          estimatedTime: '1 hour',
+          requiredSkills: ['security-engineer'],
+          optional: false
+        },
+        {
+          order: 3,
+          action: 'Implement Fixes',
+          description: 'Implement security improvements',
+          estimatedTime: '1.5 hours',
+          requiredSkills: ['security-engineer'],
+          optional: false
+        },
+        {
+          order: 4,
+          action: 'Add Tests',
+          description: 'Add security tests',
+          estimatedTime: '45 min',
+          requiredSkills: ['testing-strategist'],
+          optional: false
+        },
+        {
+          order: 5,
+          action: 'Audit',
+          description: 'Run security audit tools',
+          estimatedTime: '20 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 6,
+          action: 'Document',
+          description: 'Document security measures',
+          estimatedTime: '20 min',
+          requiredSkills: ['technical-writer'],
+          optional: true
+        }
       ],
-      'general': [
-        { order: 1, action: 'Clarify', description: 'Clarify task requirements', estimatedTime: '15 min', requiredSkills: [], optional: false },
-        { order: 2, action: 'Plan', description: 'Create high-level plan', estimatedTime: '20 min', requiredSkills: [], optional: false },
-        { order: 3, action: 'Execute', description: 'Execute task', estimatedTime: '2 hours', requiredSkills: [], optional: false },
-        { order: 4, action: 'Test', description: 'Test results', estimatedTime: '30 min', requiredSkills: [], optional: false },
-        { order: 5, action: 'Document', description: 'Document changes', estimatedTime: '20 min', requiredSkills: ['technical-writer'], optional: true },
-        { order: 6, action: 'Commit', description: 'Commit changes', estimatedTime: '5 min', requiredSkills: [], optional: false }
+      general: [
+        {
+          order: 1,
+          action: 'Clarify',
+          description: 'Clarify task requirements',
+          estimatedTime: '15 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 2,
+          action: 'Plan',
+          description: 'Create high-level plan',
+          estimatedTime: '20 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 3,
+          action: 'Execute',
+          description: 'Execute task',
+          estimatedTime: '2 hours',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 4,
+          action: 'Test',
+          description: 'Test results',
+          estimatedTime: '30 min',
+          requiredSkills: [],
+          optional: false
+        },
+        {
+          order: 5,
+          action: 'Document',
+          description: 'Document changes',
+          estimatedTime: '20 min',
+          requiredSkills: ['technical-writer'],
+          optional: true
+        },
+        {
+          order: 6,
+          action: 'Commit',
+          description: 'Commit changes',
+          estimatedTime: '5 min',
+          requiredSkills: [],
+          optional: false
+        }
       ]
-    };
+    }
 
-    return workflows[workflowType] || workflows['new-feature'];
+    return workflows[workflowType] || workflows['new-feature']
   }
 
   /**
    * Calculate total estimated time
    */
   private calculateTotalTime(steps: WorkflowStep[]): string {
-    let totalMinutes = 0;
+    let totalMinutes = 0
 
     for (const step of steps) {
-      const time = step.estimatedTime;
+      const time = step.estimatedTime
       if (time.includes('hour')) {
-        const hours = parseFloat(time);
-        totalMinutes += hours * 60;
+        const hours = parseFloat(time)
+        totalMinutes += hours * 60
       } else if (time.includes('min')) {
-        const minutes = parseInt(time);
-        totalMinutes += minutes;
+        const minutes = parseInt(time)
+        totalMinutes += minutes
       }
     }
 
     if (totalMinutes < 60) {
-      return `${totalMinutes} minutes`;
+      return `${totalMinutes} minutes`
     } else {
-      const hours = Math.floor(totalMinutes / 60);
-      const minutes = totalMinutes % 60;
-      return minutes > 0 ? `${hours}-${hours + 1} hours` : `${hours} hours`;
+      const hours = Math.floor(totalMinutes / 60)
+      const minutes = totalMinutes % 60
+      return minutes > 0 ? `${hours}-${hours + 1} hours` : `${hours} hours`
     }
   }
 
@@ -276,25 +1025,25 @@ export class WorkflowEngine {
    * Determine required integrations
    */
   private determineIntegrations(workflowType: string, skills: string[]): string[] {
-    const integrations: string[] = [];
+    const integrations: string[] = []
 
     // Based on workflow type
     if (workflowType === 'rag-system') {
-      integrations.push('openai', 'pinecone');
+      integrations.push('openai', 'pinecone')
     } else if (workflowType === 'multi-agent') {
-      integrations.push('openai', 'anthropic');
+      integrations.push('openai', 'anthropic')
     }
 
     // Based on skills
     if (skills.includes('rag-implementer')) {
-      if (!integrations.includes('openai')) integrations.push('openai');
-      if (!integrations.includes('pinecone')) integrations.push('pinecone');
+      if (!integrations.includes('openai')) integrations.push('openai')
+      if (!integrations.includes('pinecone')) integrations.push('pinecone')
     }
     if (skills.includes('api-designer') && workflowType === 'new-feature') {
-      integrations.push('supabase');
+      integrations.push('supabase')
     }
 
-    return integrations;
+    return integrations
   }
 
   /**
@@ -304,10 +1053,12 @@ export class WorkflowEngine {
     const reasons = [
       `Detected workflow type: ${workflowType}`,
       `Generated ${steps.length} step workflow`,
-      skills.length > 0 ? `Recommended ${skills.length} skills for implementation` : 'No specific skills required'
-    ];
+      skills.length > 0
+        ? `Recommended ${skills.length} skills for implementation`
+        : 'No specific skills required'
+    ]
 
-    return reasons.join('. ') + '.';
+    return reasons.join('. ') + '.'
   }
 
   /**
@@ -315,46 +1066,52 @@ export class WorkflowEngine {
    */
   private findAlternatives(workflowType: string): string[] {
     const alternatives: Record<string, string[]> = {
-      'new-skill': ['Enhance existing skill instead of creating new one', 'Create sub-pattern within existing skill'],
+      'new-skill': [
+        'Enhance existing skill instead of creating new one',
+        'Create sub-pattern within existing skill'
+      ],
       'new-mcp': ['Use official MCP if available', 'Create tool instead of full MCP'],
       'new-feature': ['Build as separate microservice', 'Use serverless functions'],
-      'mvp': ['Use no-code tools for validation', 'Create Figma prototype first'],
-      'rag-system': ['Use existing RAG service (e.g., LlamaIndex Cloud)', 'Start with simple keyword search']
-    };
+      mvp: ['Use no-code tools for validation', 'Create Figma prototype first'],
+      'rag-system': [
+        'Use existing RAG service (e.g., LlamaIndex Cloud)',
+        'Start with simple keyword search'
+      ]
+    }
 
-    return alternatives[workflowType] || [];
+    return alternatives[workflowType] || []
   }
 
   /**
    * Check for warnings
    */
   private checkWarnings(workflowType: string, scenario: string): string[] {
-    const warnings: string[] = [];
+    const warnings: string[] = []
 
     if (workflowType === 'new-skill' && !scenario.includes('research')) {
-      warnings.push('Consider researching existing skills before creating new one');
+      warnings.push('Consider researching existing skills before creating new one')
     }
 
     if (workflowType === 'new-mcp' && !scenario.includes('official')) {
-      warnings.push('Always check for official MCPs first before building custom');
+      warnings.push('Always check for official MCPs first before building custom')
     }
 
     if (workflowType === 'mvp' && scenario.includes('feature')) {
-      warnings.push('For MVP, focus on P0 features only - avoid feature creep');
+      warnings.push('For MVP, focus on P0 features only - avoid feature creep')
     }
 
     if (workflowType === 'rag-system' && !scenario.includes('vector')) {
-      warnings.push('RAG systems require vector database - ensure infrastructure is ready');
+      warnings.push('RAG systems require vector database - ensure infrastructure is ready')
     }
 
-    return warnings;
+    return warnings
   }
 
   /**
    * Get workflow template by type
    */
   getWorkflowTemplate(type: string): WorkflowStep[] {
-    return this.generateWorkflowSteps(type, type);
+    return this.generateWorkflowSteps(type, type)
   }
 
   /**
@@ -377,6 +1134,6 @@ export class WorkflowEngine {
       'multi-agent',
       'security',
       'general'
-    ];
+    ]
   }
 }

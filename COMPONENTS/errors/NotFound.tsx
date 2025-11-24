@@ -23,7 +23,7 @@
 
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 export interface NotFoundProps {
@@ -35,7 +35,7 @@ export interface NotFoundProps {
 }
 
 export function NotFound({
-  title = "Page Not Found",
+  title = 'Page Not Found',
   message = "Sorry, we couldn't find the page you're looking for.",
   showSearch = true,
   showPopularPages = true,
@@ -89,7 +89,7 @@ export function NotFound({
                 <input
                   type="text"
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={e => setSearchQuery(e.target.value)}
                   placeholder="Search for a page..."
                   className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
@@ -98,7 +98,12 @@ export function NotFound({
                   className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-gray-400 hover:text-gray-600"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
                   </svg>
                 </button>
               </div>
@@ -111,7 +116,7 @@ export function NotFound({
           <div className="mb-8">
             <p className="text-sm font-medium text-gray-700 mb-4">Popular Pages:</p>
             <div className="flex flex-wrap justify-center gap-3">
-              {popularPages.map((page) => (
+              {popularPages.map(page => (
                 <a
                   key={page.href}
                   href={page.href}
@@ -189,10 +194,22 @@ export function NotFoundWithIllustration() {
           >
             {/* Simple illustration - replace with actual SVG */}
             <circle cx="250" cy="200" r="150" fill="#E5E7EB" />
-            <path d="M200 180 Q220 160 240 180 T280 180" stroke="#6B7280" strokeWidth="4" fill="none" />
+            <path
+              d="M200 180 Q220 160 240 180 T280 180"
+              stroke="#6B7280"
+              strokeWidth="4"
+              fill="none"
+            />
             <circle cx="200" cy="160" r="10" fill="#6B7280" />
             <circle cx="300" cy="160" r="10" fill="#6B7280" />
-            <text x="250" y="280" textAnchor="middle" fontSize="80" fill="#3B82F6" fontWeight="bold">
+            <text
+              x="250"
+              y="280"
+              textAnchor="middle"
+              fontSize="80"
+              fill="#3B82F6"
+              fontWeight="bold"
+            >
               404
             </text>
           </svg>
@@ -202,10 +219,11 @@ export function NotFoundWithIllustration() {
         <div className="order-1 md:order-2 text-center md:text-left">
           <h1 className="text-5xl font-bold text-gray-900 mb-4">Oops!</h1>
           <p className="text-xl text-gray-600 mb-6">
-            We can't seem to find the page you're looking for.
+            We can&apos;t seem to find the page you&apos;re looking for.
           </p>
           <p className="text-gray-500 mb-8">
-            The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
+            The page you are looking for might have been removed, had its name changed, or is
+            temporarily unavailable.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a

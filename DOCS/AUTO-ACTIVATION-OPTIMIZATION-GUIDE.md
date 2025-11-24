@@ -11,12 +11,14 @@ This guide identifies existing skills, agents, MCPs, and tools that can benefit 
 ### What's Already Working ✅
 
 **Phase 1 Implementation Complete:**
+
 - 64 skills have activation rules in skill-rules.json
 - All skills have promptTriggers
 - All skills have fileTriggers with pathPatterns
 - Hook executes < 50ms
 
 **Current Coverage:**
+
 - ✅ Skills: 64/64 (100%)
 - ✅ Agents: 13 available
 - ✅ MCPs: 51 registered
@@ -33,29 +35,38 @@ This guide identifies existing skills, agents, MCPs, and tools that can benefit 
 **Examples:**
 
 #### accessibility-engineer
+
 **Current triggers:**
+
 ```json
 {
   "promptTriggers": ["accessibility-engineer", "accessibility engineer", "ui", "design"],
-  "fileTriggers": {"pathPatterns": ["**/accessibility-engineer/**/*"]}
+  "fileTriggers": { "pathPatterns": ["**/accessibility-engineer/**/*"] }
 }
 ```
 
 **Issue:** "ui" and "design" are too generic
 
 **Recommended:**
+
 ```json
 {
   "promptTriggers": [
-    "accessibility-engineer", "accessibility engineer",
-    "accessibility", "a11y", "WCAG", "screen reader",
-    "keyboard navigation", "ARIA", "contrast ratio"
+    "accessibility-engineer",
+    "accessibility engineer",
+    "accessibility",
+    "a11y",
+    "WCAG",
+    "screen reader",
+    "keyboard navigation",
+    "ARIA",
+    "contrast ratio"
   ],
   "fileTriggers": {
     "pathPatterns": [
       "**/accessibility-engineer/**/*",
       "**/a11y/**/*",
-      "**/components/**/*",  // When working on UI components
+      "**/components/**/*", // When working on UI components
       "**/*.accessibility.test.*"
     ]
   }
@@ -63,41 +74,76 @@ This guide identifies existing skills, agents, MCPs, and tools that can benefit 
 ```
 
 #### api-designer
+
 **Current triggers:**
+
 ```json
 {
-  "promptTriggers": ["api-designer", "api designer", "api", "backend", "endpoint", "design", "auth", "authentication"],
-  "fileTriggers": {"pathPatterns": ["**/api/**/*.{ts,js}", "**/routes/**/*.{ts,js}", "**/controllers/**/*.{ts,js}", "**/api-designer/**/*"]}
+  "promptTriggers": [
+    "api-designer",
+    "api designer",
+    "api",
+    "backend",
+    "endpoint",
+    "design",
+    "auth",
+    "authentication"
+  ],
+  "fileTriggers": {
+    "pathPatterns": [
+      "**/api/**/*.{ts,js}",
+      "**/routes/**/*.{ts,js}",
+      "**/controllers/**/*.{ts,js}",
+      "**/api-designer/**/*"
+    ]
+  }
 }
 ```
 
 **Good!** Already well-optimized with specific keywords and file patterns.
 
 #### rag-implementer
+
 **Current triggers:**
+
 ```json
 {
   "promptTriggers": ["rag-implementer", "rag implementer", "ui", "vector", "embedding", "llm"],
-  "fileTriggers": {"pathPatterns": ["**/rag/**/*", "**/vector/**/*", "**/search/**/*", "**/embeddings/**/*", "**/rag-implementer/**/*"]}
+  "fileTriggers": {
+    "pathPatterns": [
+      "**/rag/**/*",
+      "**/vector/**/*",
+      "**/search/**/*",
+      "**/embeddings/**/*",
+      "**/rag-implementer/**/*"
+    ]
+  }
 }
 ```
 
 **Issue:** "ui" is incorrect (should be "RAG" not "ui")
 
 **Recommended:**
+
 ```json
 {
   "promptTriggers": [
-    "rag-implementer", "rag implementer",
-    "RAG", "retrieval augmented generation",
-    "vector", "embedding", "llm",
-    "semantic search", "vector database",
-    "document retrieval", "knowledge base"
+    "rag-implementer",
+    "rag implementer",
+    "RAG",
+    "retrieval augmented generation",
+    "vector",
+    "embedding",
+    "llm",
+    "semantic search",
+    "vector database",
+    "document retrieval",
+    "knowledge base"
   ],
   "fileTriggers": {
     "pathPatterns": [
       "**/rag/**/*",
-      "**/vector/**/*", 
+      "**/vector/**/*",
       "**/search/**/*",
       "**/embeddings/**/*",
       "**/retrieval/**/*",
@@ -112,26 +158,61 @@ This guide identifies existing skills, agents, MCPs, and tools that can benefit 
 **Problem:** Some skills only have generic pathPatterns based on skill name.
 
 #### frontend-builder
+
 **Current:**
+
 ```json
 {
-  "promptTriggers": ["frontend-builder", "frontend builder", "react", "component", "ui", "interface", "frontend", "client"],
-  "fileTriggers": {"pathPatterns": ["**/components/**/*.{tsx,jsx}", "**/pages/**/*.{tsx,jsx}", "**/app/**/*.{tsx,jsx}", "**/frontend-builder/**/*"]}
+  "promptTriggers": [
+    "frontend-builder",
+    "frontend builder",
+    "react",
+    "component",
+    "ui",
+    "interface",
+    "frontend",
+    "client"
+  ],
+  "fileTriggers": {
+    "pathPatterns": [
+      "**/components/**/*.{tsx,jsx}",
+      "**/pages/**/*.{tsx,jsx}",
+      "**/app/**/*.{tsx,jsx}",
+      "**/frontend-builder/**/*"
+    ]
+  }
 }
 ```
 
 **Good!** Already has specific React patterns.
 
 #### security-engineer
+
 **Current (likely):**
+
 ```json
 {
-  "promptTriggers": ["security-engineer", "security engineer", "security", "auth", "authentication", "authorization"],
-  "fileTriggers": {"pathPatterns": ["**/security/**/*", "**/auth/**/*", "**/middleware/**/*", "**/security-engineer/**/*"]}
+  "promptTriggers": [
+    "security-engineer",
+    "security engineer",
+    "security",
+    "auth",
+    "authentication",
+    "authorization"
+  ],
+  "fileTriggers": {
+    "pathPatterns": [
+      "**/security/**/*",
+      "**/auth/**/*",
+      "**/middleware/**/*",
+      "**/security-engineer/**/*"
+    ]
+  }
 }
 ```
 
 **Recommended additions:**
+
 ```json
 {
   "fileTriggers": {
@@ -143,21 +224,32 @@ This guide identifies existing skills, agents, MCPs, and tools that can benefit 
       "**/permissions/**/*",
       "**/*.security.test.*",
       "**/config/security.{ts,js,json}",
-      "**/.env*"  // Security config files
+      "**/.env*" // Security config files
     ]
   }
 }
 ```
 
 #### testing-strategist
+
 **Recommended:**
+
 ```json
 {
   "promptTriggers": [
-    "testing-strategist", "testing strategist",
-    "test", "testing", "qa", "quality assurance",
-    "unit test", "integration test", "e2e",
-    "jest", "vitest", "playwright", "cypress"
+    "testing-strategist",
+    "testing strategist",
+    "test",
+    "testing",
+    "qa",
+    "quality assurance",
+    "unit test",
+    "integration test",
+    "e2e",
+    "jest",
+    "vitest",
+    "playwright",
+    "cypress"
   ],
   "fileTriggers": {
     "pathPatterns": [
@@ -180,9 +272,11 @@ This guide identifies existing skills, agents, MCPs, and tools that can benefit 
 **High-Value Combinations:** Skills that work together should activate in complementary contexts.
 
 #### Authentication + API Design
+
 **When user works on:** `backend/api/routes/auth.ts`
 
 **Should activate:**
+
 1. security-engineer (primary - auth context)
 2. api-designer (secondary - API context)
 3. backend-developer (tertiary - backend context)
@@ -190,9 +284,11 @@ This guide identifies existing skills, agents, MCPs, and tools that can benefit 
 **Current state:** Likely activates all three, which is good!
 
 #### Frontend + Accessibility
+
 **When user works on:** `components/ui/Modal.tsx`
 
 **Should activate:**
+
 1. frontend-builder (primary - component)
 2. accessibility-engineer (secondary - UI component needs a11y)
 3. react-specialist (tertiary - React context)
@@ -200,9 +296,11 @@ This guide identifies existing skills, agents, MCPs, and tools that can benefit 
 **Optimization needed:** Add UI component patterns to accessibility-engineer
 
 #### RAG + Vector Database
+
 **When user asks:** "How do I implement semantic search?"
 
 **Should activate:**
+
 1. rag-implementer (primary - RAG/semantic search)
 2. vector-database-mcp (secondary - vector DB tool)
 3. knowledge-base-manager (tertiary - knowledge organization)
@@ -226,8 +324,8 @@ The Brain MCP already provides intelligent recommendations:
 ```typescript
 // Brain MCP can suggest MCPs based on skill context
 brain_select_mcps({
-  taskDescription: "implement authentication",
-  activeSkills: ["security-engineer", "api-designer"]
+  taskDescription: 'implement authentication',
+  activeSkills: ['security-engineer', 'api-designer']
 })
 
 // Returns:
@@ -266,6 +364,7 @@ examples:
 ### Current Agent Availability
 
 **13 Specialized Agents:**
+
 - 10 from showcase (code review, refactoring, debugging, etc.)
 - 3 ai-dev-standards specific (registry, skill testing, MCP building)
 
@@ -301,13 +400,9 @@ examples:
       "beforeCommand": ["npm run release"]
     }
   },
-  
+
   "code-architecture-reviewer": {
-    "contextTriggers": [
-      "after implementing feature",
-      "before merge",
-      "code review requested"
-    ],
+    "contextTriggers": ["after implementing feature", "before merge", "code review requested"],
     "promptTriggers": [
       "review code",
       "check architecture",
@@ -319,24 +414,12 @@ examples:
       "minFilesChanged": 5
     }
   },
-  
+
   "skill-tester-agent": {
-    "contextTriggers": [
-      "after modifying skill-rules.json",
-      "after adding skills",
-      "testing phase"
-    ],
-    "promptTriggers": [
-      "test skills",
-      "verify activation",
-      "check skill triggers",
-      "skill testing"
-    ],
+    "contextTriggers": ["after modifying skill-rules.json", "after adding skills", "testing phase"],
+    "promptTriggers": ["test skills", "verify activation", "check skill triggers", "skill testing"],
     "automaticTriggers": {
-      "afterFileChange": [
-        ".claude/skills/skill-rules.json",
-        "SKILLS/*/SKILL.md"
-      ]
+      "afterFileChange": [".claude/skills/skill-rules.json", "SKILLS/*/SKILL.md"]
     }
   }
 }
@@ -389,10 +472,12 @@ examples:
 **User prompt:** "Help me add authentication to my API"
 
 **Current activation (likely):**
+
 - security-engineer ✅
 - api-designer ✅
 
 **Could also benefit from:**
+
 - backend-developer (for implementation)
 - database-architect (for user storage)
 - testing-strategist (for auth tests)
@@ -404,10 +489,12 @@ examples:
 **User prompt:** "Create a design system with reusable components"
 
 **Current activation (likely):**
+
 - design-system-architect ✅
 - frontend-builder ✅
 
 **Could also benefit from:**
+
 - accessibility-engineer (a11y compliance)
 - documentation-writer (component docs)
 - testing-strategist (component tests)
@@ -419,19 +506,23 @@ examples:
 **User prompt:** "Build a RAG system for document search"
 
 **Current activation:**
+
 - rag-implementer ✅
 
 **Should also activate:**
+
 - knowledge-base-manager (document organization)
 - performance-optimizer (search speed)
 - testing-strategist (accuracy testing)
 
 **Should recommend MCPs:**
+
 - vector-database-mcp
 - embedding-generator-mcp
 - document-parser-mcp
 
 **Should recommend tools:**
+
 - similarity-search-tool
 - embedding-tool
 
@@ -445,18 +536,18 @@ Update `.claude/hooks/generate-skill-rules.cjs`:
 
 ```javascript
 // Add more specific keyword extraction
-const extractKeywords = (description) => {
+const extractKeywords = description => {
   // Domain-specific keyword lists
   const keywords = {
     ai: ['RAG', 'LLM', 'embedding', 'vector', 'semantic search'],
     security: ['authentication', 'authorization', 'JWT', 'OAuth', 'encryption'],
-    testing: ['test', 'QA', 'unit test', 'integration', 'e2e'],
+    testing: ['test', 'QA', 'unit test', 'integration', 'e2e']
     // ... more domains
-  };
-  
+  }
+
   // Extract relevant keywords based on description
-  return matchedKeywords;
-};
+  return matchedKeywords
+}
 
 // Add more specific file patterns
 const filePatterns = {
@@ -466,14 +557,9 @@ const filePatterns = {
     '**/controllers/**/*',
     '**/endpoints/**/*'
   ],
-  'testing-strategist': [
-    '**/*.test.*',
-    '**/*.spec.*',
-    '**/tests/**/*',
-    '**/__tests__/**/*'
-  ]
+  'testing-strategist': ['**/*.test.*', '**/*.spec.*', '**/tests/**/*', '**/__tests__/**/*']
   // ... more patterns
-};
+}
 ```
 
 ### Step 2: Test and Validate
@@ -511,18 +597,21 @@ dependencies:
 ## Success Metrics
 
 **Before Optimization:**
+
 - Some generic triggers causing noise
 - Skills activate independently
 - MCPs/tools selected manually
 - Agents invoked explicitly
 
 **After Optimization:**
+
 - Specific, accurate triggers
 - Related skills activate together
 - Brain MCP recommends MCPs/tools
 - Agents suggested contextually
 
 **Target Metrics:**
+
 - 95%+ trigger accuracy (skills activate when relevant)
 - <5% false positive rate (skills don't activate when irrelevant)
 - 80%+ MCP recommendation accuracy
@@ -564,6 +653,7 @@ dependencies:
 **Current State:** ✅ Phase 1 complete with 64 skills auto-activating
 
 **Optimization Opportunities:**
+
 1. 🎯 Fix generic triggers (high priority)
 2. 📁 Add specific file patterns (high priority)
 3. 🔗 Document MCP/tool dependencies (medium priority)
@@ -571,6 +661,7 @@ dependencies:
 5. 📊 Implement usage tracking (low priority)
 
 **Next Steps:**
+
 1. Review and update generate-skill-rules.cjs
 2. Regenerate skill-rules.json with improvements
 3. Test with skill-tester-agent

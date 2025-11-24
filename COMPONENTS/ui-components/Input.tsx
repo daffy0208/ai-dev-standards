@@ -39,45 +39,44 @@
  * ```
  */
 
-import * as React from 'react';
-import { cn } from './utils';
+import * as React from 'react'
+import { cn } from './utils'
 
-export interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
+export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
   /**
    * Input label text
    */
-  label?: string;
+  label?: string
 
   /**
    * Error message to display
    */
-  error?: string;
+  error?: string
 
   /**
    * Input type
    */
-  type?: 'text' | 'password' | 'email' | 'number';
+  type?: 'text' | 'password' | 'email' | 'number'
 
   /**
    * Placeholder text
    */
-  placeholder?: string;
+  placeholder?: string
 
   /**
    * Whether the input is disabled
    */
-  disabled?: boolean;
+  disabled?: boolean
 
   /**
    * Whether the input is required
    */
-  required?: boolean;
+  required?: boolean
 
   /**
    * Additional CSS classes for the input
    */
-  className?: string;
+  className?: string
 }
 
 /**
@@ -98,17 +97,17 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const generatedId = React.useId();
-    const id = providedId || generatedId;
-    const errorId = `${id}-error`;
+    const generatedId = React.useId()
+    const id = providedId || generatedId
+    const errorId = `${id}-error`
 
-    const [showPassword, setShowPassword] = React.useState(false);
-    const isPassword = type === 'password';
-    const inputType = isPassword && showPassword ? 'text' : type;
+    const [showPassword, setShowPassword] = React.useState(false)
+    const isPassword = type === 'password'
+    const inputType = isPassword && showPassword ? 'text' : type
 
     const togglePasswordVisibility = () => {
-      setShowPassword((prev) => !prev);
-    };
+      setShowPassword(prev => !prev)
+    }
 
     return (
       <div className="w-full">
@@ -226,17 +225,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
         {/* Error Message */}
         {error && (
-          <p
-            id={errorId}
-            role="alert"
-            className="mt-1.5 text-sm text-red-600"
-          >
+          <p id={errorId} role="alert" className="mt-1.5 text-sm text-red-600">
             {error}
           </p>
         )}
       </div>
-    );
+    )
   }
-);
+)
 
-Input.displayName = 'Input';
+Input.displayName = 'Input'

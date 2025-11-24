@@ -124,9 +124,7 @@ describe('handleApiError', () => {
   })
 
   it('should handle ValidationError with details', () => {
-    const validationErrors = [
-      { field: 'email', message: 'Invalid' }
-    ]
+    const validationErrors = [{ field: 'email', message: 'Invalid' }]
     const error = new ValidationError('Validation failed', validationErrors)
     const response = handleApiError(error)
 

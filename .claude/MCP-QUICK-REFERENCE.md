@@ -5,11 +5,13 @@
 ### To Use MCPs
 
 **In Claude Desktop:**
+
 ```
 "Use the {mcp-name} to {action}"
 ```
 
 **Example:**
+
 ```
 "Use the semantic-search-mcp to search for RAG documentation"
 "Use the component-generator-mcp to create a React button component"
@@ -21,6 +23,7 @@
 ## 📋 Configured MCPs (54)
 
 ### Marketplace MCPs (3)
+
 - `domain-memory-agent` - Knowledge base with semantic search
 - `project-health-auditor` - Code health and complexity analysis
 - `workflow-orchestrator` - DAG-based workflow automation
@@ -30,12 +33,14 @@
 ## 📦 Repository MCPs (49)
 
 ### AI & Knowledge (4)
+
 - `embedding-generator-mcp` - Generate embeddings
 - `semantic-search-mcp` - Semantic search
 - `vector-database-mcp` - Vector DB operations
 - `graph-database-mcp` - Graph DB management
 
 ### Development (8)
+
 - `agent-orchestrator-mcp` - Multi-agent coordination
 - `api-validator-mcp` - API validation
 - `code-quality-scanner-mcp` - Code quality
@@ -46,6 +51,7 @@
 - `openapi-generator-mcp` - OpenAPI specs
 
 ### Design & UI (6)
+
 - `3d-asset-manager-mcp` - 3D models
 - `animation-library-mcp` - Animations
 - `asset-optimizer-mcp` - Asset optimization
@@ -54,6 +60,7 @@
 - `wireframe-generator-mcp` - Wireframes
 
 ### Testing & Quality (5)
+
 - `accessibility-checker-mcp` - WCAG compliance
 - `performance-profiler-mcp` - Performance
 - `screenshot-testing-mcp` - Visual regression
@@ -61,17 +68,20 @@
 - `test-runner-mcp` - Test execution
 
 ### Product & Analytics (3)
+
 - `feature-prioritizer-mcp` - Feature priorities
 - `market-analyzer-mcp` - Market analysis
 - `user-insight-analyzer-mcp` - User insights
 
 ### Media & Content (4)
+
 - `audio-processor-mcp` - Audio processing
 - `video-optimizer-mcp` - Video optimization
 - `streaming-setup-mcp` - Live streaming
 - `seo-analyzer-mcp` - SEO analysis
 
 ### Specialized (4)
+
 - `chart-builder-mcp` - Data visualization
 - `i18n-manager-mcp` - Internationalization
 - `iot-device-manager-mcp` - IoT devices
@@ -82,9 +92,11 @@
 ## 🔧 Configuration Files
 
 ### Project-Level
+
 `.claude/mcp-settings.json`
 
 ### Global
+
 `C:\Users\{username}\AppData\Roaming\Claude\claude_desktop_config.json`
 
 ---
@@ -124,6 +136,7 @@ ListMcpResourcesTool
 **Last Updated:** 2025-10-29
 
 ### Breakdown
+
 - Repository MCPs: 49
 - Framework MCPs: 2 (framework-content, framework-orchestrator)
 - Marketplace MCPs: 3 (domain-memory-agent, project-health-auditor, workflow-orchestrator)

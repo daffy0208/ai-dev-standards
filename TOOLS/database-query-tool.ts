@@ -46,46 +46,24 @@
  * ```
  */
 
-import { Pool as PgPool, PoolClient as PgClient } from 'pg'
+import { Pool as PgPool } from 'pg'
 import mysql from 'mysql2/promise'
 import sqlite3 from 'sqlite3'
 import { open, Database as SqliteDB } from 'sqlite'
+import type {
+  DatabaseConfig,
+  DatabaseToolArgs,
+  DatabaseType,
+  QueryParam,
+  QueryResult,
+  TransactionFn
+} from '../types/database'
 
-export type DatabaseType = 'postgres' | 'mysql' | 'sqlite'
-
-export interface DatabaseConfig {
-  type: DatabaseType
-  connection:
-    | {
-        // PostgreSQL/MySQL
-        host: string
-        port?: number
-        database: string
-        user: string
-        password: string
-      }
-    | {
-        // SQLite
-        filename: string
-      }
-  readOnly?: boolean
-  maxConnections?: number
-}
-
-export interface QueryOptions {
-  params?: any[]
-  timeout?: number
-}
-
-export interface QueryResult<T = any> {
-  rows: T[]
-  rowCount: number
-  fields?: string[]
-  executionTime: number
-}
-
-export interface TransactionFn {
-  query<T = any>(sql: string, params?: any[]): Promise<QueryResult<T>>
+const logInfo = (...messages: unknown[]): void => {
+  const formatted = messages.map(message =>
+    typeof message === 'string' ? message : JSON.stringify(message, null, 2)
+  )
+  process.stdout.write(`${formatted.join(' ')}\n`)
 }
 
 export class DatabaseQueryTool {
@@ -165,22 +143,16 @@ export class DatabaseQueryTool {
         'REVOKE'
       ]
 
-      const hasWriteOp = writeOperations.some(op =>
-        normalizedSql.startsWith(op)
-      )
+      const hasWriteOp = writeOperations.some(op => normalizedSql.startsWith(op))
 
       if (hasWriteOp) {
-        throw new Error(
-          'Write operations not allowed in read-only mode'
-        )
+        throw new Error('Write operations not allowed in read-only mode')
       }
     }
 
     // Always block dangerous operations
     const dangerousOps = ['DROP DATABASE', 'DROP SCHEMA', 'TRUNCATE']
-    const hasDangerousOp = dangerousOps.some(op =>
-      normalizedSql.includes(op)
-    )
+    const hasDangerousOp = dangerousOps.some(op => normalizedSql.includes(op))
 
     if (hasDangerousOp) {
       throw new Error('Dangerous operations not allowed')
@@ -195,9 +167,9 @@ export class DatabaseQueryTool {
   /**
    * Execute query (PostgreSQL)
    */
-  private async queryPostgres<T = any>(
+  private async queryPostgres<T = unknown>(
     sql: string,
-    params?: any[]
+    params?: QueryParam[]
   ): Promise<QueryResult<T>> {
     if (!this.pgPool) {
       throw new Error('PostgreSQL pool not initialized')
@@ -208,7 +180,7 @@ export class DatabaseQueryTool {
     const executionTime = Date.now() - startTime
 
     return {
-      rows: result.rows,
+      rows: result.rows as T[],
       rowCount: result.rowCount || 0,
       fields: result.fields?.map(f => f.name),
       executionTime
@@ -218,21 +190,22 @@ export class DatabaseQueryTool {
   /**
    * Execute query (MySQL)
    */
-  private async queryMysql<T = any>(
+  private async queryMysql<T = unknown>(
     sql: string,
-    params?: any[]
+    params?: QueryParam[]
   ): Promise<QueryResult<T>> {
     if (!this.mysqlPool) {
       throw new Error('MySQL pool not initialized')
     }
 
     const startTime = Date.now()
-    const [rows, fields] = await this.mysqlPool.execute(sql, params)
+    const [rawRows, fields] = await this.mysqlPool.execute(sql, params)
     const executionTime = Date.now() - startTime
+    const rows = Array.isArray(rawRows) ? (rawRows as T[]) : []
 
     return {
-      rows: rows as T[],
-      rowCount: Array.isArray(rows) ? rows.length : 0,
+      rows,
+      rowCount: rows.length,
       fields: Array.isArray(fields) ? fields.map(f => f.name) : undefined,
       executionTime
     }
@@ -241,9 +214,9 @@ export class DatabaseQueryTool {
   /**
    * Execute query (SQLite)
    */
-  private async querySqlite<T = any>(
+  private async querySqlite<T = unknown>(
     sql: string,
-    params?: any[]
+    params?: QueryParam[]
   ): Promise<QueryResult<T>> {
     if (!this.sqliteDb) {
       throw new Error('SQLite database not initialized')
@@ -253,7 +226,7 @@ export class DatabaseQueryTool {
 
     // Check if query is SELECT
     if (sql.trim().toUpperCase().startsWith('SELECT')) {
-      const rows = await this.sqliteDb.all(sql, params)
+      const rows = (await this.sqliteDb.all<T>(sql, params)) as T[]
       const executionTime = Date.now() - startTime
 
       return {
@@ -276,10 +249,7 @@ export class DatabaseQueryTool {
   /**
    * Execute SQL query
    */
-  async query<T = any>(
-    sql: string,
-    params?: any[]
-  ): Promise<QueryResult<T>> {
+  async query<T = unknown>(sql: string, params?: QueryParam[]): Promise<QueryResult<T>> {
     // Validate query
     this.validateQuery(sql)
 
@@ -302,9 +272,7 @@ export class DatabaseQueryTool {
   /**
    * Execute multiple queries in transaction
    */
-  async transaction<T = any>(
-    fn: (tx: TransactionFn) => Promise<T>
-  ): Promise<T> {
+  async transaction<T = unknown>(fn: (tx: TransactionFn) => Promise<T>): Promise<T> {
     if (this.readOnly) {
       throw new Error('Transactions not allowed in read-only mode')
     }
@@ -327,9 +295,7 @@ export class DatabaseQueryTool {
   /**
    * Transaction (PostgreSQL)
    */
-  private async transactionPostgres<T>(
-    fn: (tx: TransactionFn) => Promise<T>
-  ): Promise<T> {
+  private async transactionPostgres<T>(fn: (tx: TransactionFn) => Promise<T>): Promise<T> {
     if (!this.pgPool) {
       throw new Error('PostgreSQL pool not initialized')
     }
@@ -340,14 +306,14 @@ export class DatabaseQueryTool {
       await client.query('BEGIN')
 
       const tx: TransactionFn = {
-        query: async <R = any>(sql: string, params?: any[]) => {
+        query: async <R = unknown>(sql: string, params?: QueryParam[]) => {
           this.validateQuery(sql)
           const startTime = Date.now()
           const result = await client.query(sql, params)
           const executionTime = Date.now() - startTime
 
           return {
-            rows: result.rows,
+            rows: result.rows as R[],
             rowCount: result.rowCount || 0,
             fields: result.fields?.map(f => f.name),
             executionTime
@@ -370,9 +336,7 @@ export class DatabaseQueryTool {
   /**
    * Transaction (MySQL)
    */
-  private async transactionMysql<T>(
-    fn: (tx: TransactionFn) => Promise<T>
-  ): Promise<T> {
+  private async transactionMysql<T>(fn: (tx: TransactionFn) => Promise<T>): Promise<T> {
     if (!this.mysqlPool) {
       throw new Error('MySQL pool not initialized')
     }
@@ -383,15 +347,16 @@ export class DatabaseQueryTool {
       await connection.beginTransaction()
 
       const tx: TransactionFn = {
-        query: async <R = any>(sql: string, params?: any[]) => {
+        query: async <R = unknown>(sql: string, params?: QueryParam[]) => {
           this.validateQuery(sql)
           const startTime = Date.now()
-          const [rows, fields] = await connection.execute(sql, params)
+          const [rawRows, fields] = await connection.execute(sql, params)
           const executionTime = Date.now() - startTime
+          const rows = Array.isArray(rawRows) ? (rawRows as R[]) : []
 
           return {
-            rows: rows as R[],
-            rowCount: Array.isArray(rows) ? rows.length : 0,
+            rows,
+            rowCount: rows.length,
             fields: Array.isArray(fields) ? fields.map(f => f.name) : undefined,
             executionTime
           }
@@ -413,9 +378,7 @@ export class DatabaseQueryTool {
   /**
    * Transaction (SQLite)
    */
-  private async transactionSqlite<T>(
-    fn: (tx: TransactionFn) => Promise<T>
-  ): Promise<T> {
+  private async transactionSqlite<T>(fn: (tx: TransactionFn) => Promise<T>): Promise<T> {
     if (!this.sqliteDb) {
       throw new Error('SQLite database not initialized')
     }
@@ -424,16 +387,16 @@ export class DatabaseQueryTool {
       await this.sqliteDb.exec('BEGIN TRANSACTION')
 
       const tx: TransactionFn = {
-        query: async <R = any>(sql: string, params?: any[]) => {
+        query: async <R = unknown>(sql: string, params?: QueryParam[]) => {
           this.validateQuery(sql)
           const startTime = Date.now()
 
           if (sql.trim().toUpperCase().startsWith('SELECT')) {
-            const rows = await this.sqliteDb!.all(sql, params)
+            const rows = (await this.sqliteDb!.all<R>(sql, params)) as R[]
             const executionTime = Date.now() - startTime
 
             return {
-              rows: rows as R[],
+              rows,
               rowCount: rows.length,
               executionTime
             }
@@ -463,26 +426,32 @@ export class DatabaseQueryTool {
   /**
    * Get table schema
    */
-  async getTableSchema(tableName: string): Promise<any> {
+  async getTableSchema(tableName: string): Promise<QueryResult<Record<string, unknown>>> {
     switch (this.type) {
       case 'postgres':
-        return this.query(`
+        return this.query<Record<string, unknown>>(
+          `
           SELECT column_name, data_type, is_nullable, column_default
           FROM information_schema.columns
           WHERE table_name = $1
           ORDER BY ordinal_position
-        `, [tableName])
+        `,
+          [tableName]
+        )
 
       case 'mysql':
-        return this.query(`
+        return this.query<Record<string, unknown>>(
+          `
           SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE, COLUMN_DEFAULT
           FROM information_schema.COLUMNS
           WHERE TABLE_NAME = ?
           ORDER BY ORDINAL_POSITION
-        `, [tableName])
+        `,
+          [tableName]
+        )
 
       case 'sqlite':
-        return this.query(`PRAGMA table_info(${tableName})`)
+        return this.query<Record<string, unknown>>(`PRAGMA table_info(${tableName})`)
 
       default:
         throw new Error(`Unsupported database type: ${this.type}`)
@@ -493,28 +462,34 @@ export class DatabaseQueryTool {
    * List all tables
    */
   async listTables(): Promise<string[]> {
-    let result: QueryResult
-
     switch (this.type) {
-      case 'postgres':
-        result = await this.query(`
+      case 'postgres': {
+        const pgResult = await this.query<{ tablename: string }>(`
           SELECT tablename
           FROM pg_catalog.pg_tables
           WHERE schemaname != 'pg_catalog'
             AND schemaname != 'information_schema'
         `)
-        return result.rows.map((r: any) => r.tablename)
+        return pgResult.rows.map(row => row.tablename)
+      }
 
-      case 'mysql':
-        result = await this.query('SHOW TABLES')
-        return result.rows.map((r: any) => Object.values(r)[0] as string)
+      case 'mysql': {
+        const mysqlResult = await this.query<Record<string, string>>('SHOW TABLES')
+        return mysqlResult.rows
+          .map(row => {
+            const firstValue = Object.values(row)[0]
+            return typeof firstValue === 'string' ? firstValue : ''
+          })
+          .filter(Boolean)
+      }
 
-      case 'sqlite':
-        result = await this.query(`
+      case 'sqlite': {
+        const sqliteResult = await this.query<{ name: string }>(`
           SELECT name FROM sqlite_master
           WHERE type='table'
         `)
-        return result.rows.map((r: any) => r.name)
+        return sqliteResult.rows.map(row => row.name)
+      }
 
       default:
         throw new Error(`Unsupported database type: ${this.type}`)
@@ -544,7 +519,8 @@ export class DatabaseQueryTool {
  */
 export const databaseQueryToolDefinition = {
   name: 'database_query',
-  description: 'Execute SQL queries on databases. Supports SELECT queries in read-only mode. Uses parameterized queries to prevent SQL injection.',
+  description:
+    'Execute SQL queries on databases. Supports SELECT queries in read-only mode. Uses parameterized queries to prevent SQL injection.',
   parameters: {
     type: 'object',
     properties: {
@@ -575,17 +551,23 @@ export const databaseQueryToolDefinition = {
  * Execute tool (for AI frameworks)
  */
 export async function executeDatabaseQueryTool(
-  args: any,
+  args: DatabaseToolArgs,
   config: DatabaseConfig
-): Promise<any> {
+): Promise<unknown> {
   const db = new DatabaseQueryTool(config)
 
   try {
     switch (args.action) {
       case 'query':
+        if (!args.sql) {
+          throw new Error('SQL query is required for query action')
+        }
         return await db.query(args.sql, args.params)
 
       case 'schema':
+        if (!args.table) {
+          throw new Error('Table name is required for schema action')
+        }
         return await db.getTableSchema(args.table)
 
       case 'list_tables':
@@ -618,19 +600,19 @@ export async function examples() {
   try {
     // List tables
     const tables = await pgDb.listTables()
-    console.log('Tables:', tables)
+    logInfo('Tables:', tables)
 
     // Get table schema
     const schema = await pgDb.getTableSchema('users')
-    console.log('Schema:', schema.rows)
+    logInfo('Schema:', schema.rows)
 
     // Execute query with parameters
-    const users = await pgDb.query(
-      'SELECT * FROM users WHERE age > $1 AND status = $2',
-      [18, 'active']
-    )
-    console.log(`Found ${users.rowCount} users`)
-    console.log('Users:', users.rows)
+    const users = await pgDb.query('SELECT * FROM users WHERE age > $1 AND status = $2', [
+      18,
+      'active'
+    ])
+    logInfo(`Found ${users.rowCount} users`)
+    logInfo('Users:', users.rows)
 
     // Execute aggregation query
     const stats = await pgDb.query(`
@@ -640,7 +622,7 @@ export async function examples() {
         MAX(age) as max_age
       FROM users
     `)
-    console.log('Stats:', stats.rows[0])
+    logInfo('Stats:', stats.rows[0])
   } finally {
     await pgDb.close()
   }
@@ -656,19 +638,16 @@ export async function examples() {
 
   try {
     // Transaction example
-    await sqliteDb.transaction(async (tx) => {
-      await tx.query(
-        'INSERT INTO users (name, email) VALUES (?, ?)',
-        ['John Doe', 'john@example.com']
-      )
+    await sqliteDb.transaction(async tx => {
+      await tx.query('INSERT INTO users (name, email) VALUES (?, ?)', [
+        'John Doe',
+        'john@example.com'
+      ])
 
-      await tx.query(
-        'UPDATE accounts SET balance = balance + ?',
-        [100]
-      )
+      await tx.query('UPDATE accounts SET balance = balance + ?', [100])
     })
 
-    console.log('Transaction completed')
+    logInfo('Transaction completed')
   } finally {
     await sqliteDb.close()
   }

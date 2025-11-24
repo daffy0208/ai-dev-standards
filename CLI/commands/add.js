@@ -22,12 +22,14 @@ async function writeFilesWithCheck(files) {
     // Check if file exists (prevent silent overwrites)
     if (await fs.pathExists(file.path)) {
       writeSpinner.stop()
-      const overwrite = await inquirer.prompt([{
-        type: 'confirm',
-        name: 'overwrite',
-        message: `File ${file.path} already exists. Overwrite?`,
-        default: false
-      }])
+      const overwrite = await inquirer.prompt([
+        {
+          type: 'confirm',
+          name: 'overwrite',
+          message: `File ${file.path} already exists. Overwrite?`,
+          default: false
+        }
+      ])
 
       if (!overwrite.overwrite) {
         console.log(chalk.yellow(`  Skipped: ${file.path}`))
@@ -85,7 +87,6 @@ async function addCommand(type, name, options) {
 
     // Show next steps
     showNextSteps(type, name)
-
   } catch (error) {
     console.error(chalk.red(`\n❌ Error: ${error.message}\n`))
     process.exit(1)
@@ -105,16 +106,18 @@ async function addComponent(name, options) {
 
     // Ask for prop types
     spinner.stop()
-    const answers = await inquirer.prompt([{
-      type: 'checkbox',
-      name: 'propTypes',
-      message: 'Select prop types:',
-      choices: propList.map(prop => ({
-        name: `${prop} (string)`,
-        value: { name: prop, type: 'string' },
-        checked: true
-      }))
-    }])
+    const answers = await inquirer.prompt([
+      {
+        type: 'checkbox',
+        name: 'propTypes',
+        message: 'Select prop types:',
+        choices: propList.map(prop => ({
+          name: `${prop} (string)`,
+          value: { name: prop, type: 'string' },
+          checked: true
+        }))
+      }
+    ])
 
     props = answers.propTypes.reduce((acc, prop) => {
       acc[prop.name] = prop.type
@@ -304,25 +307,41 @@ function showNextSteps(type, name) {
 
   switch (type) {
     case 'component':
-      console.log(chalk.gray(`  1. Import the component: ${chalk.cyan(`import { ${name} } from './components/${name}'`)}`))
+      console.log(
+        chalk.gray(
+          `  1. Import the component: ${chalk.cyan(`import { ${name} } from './components/${name}'`)}`
+        )
+      )
       console.log(chalk.gray(`  2. Use it in your app: ${chalk.cyan(`<${name} />`)}`))
       console.log(chalk.gray(`  3. Run tests: ${chalk.cyan(`npm test ${name}`)}`))
       break
 
     case 'mcp-server':
-      console.log(chalk.gray(`  1. Install dependencies: ${chalk.cyan(`cd MCP-SERVERS/${name}-mcp && npm install`)}`))
+      console.log(
+        chalk.gray(
+          `  1. Install dependencies: ${chalk.cyan(`cd MCP-SERVERS/${name}-mcp && npm install`)}`
+        )
+      )
       console.log(chalk.gray(`  2. Test the server: ${chalk.cyan(`npm test`)}`))
       console.log(chalk.gray(`  3. Add to Claude Code config`))
       break
 
     case 'integration':
       console.log(chalk.gray(`  1. Add environment variables to ${chalk.cyan(`.env.local`)}`))
-      console.log(chalk.gray(`  2. Import the client: ${chalk.cyan(`import { ${name}Client } from './integrations/${name}'`)}`))
+      console.log(
+        chalk.gray(
+          `  2. Import the client: ${chalk.cyan(`import { ${name}Client } from './integrations/${name}'`)}`
+        )
+      )
       console.log(chalk.gray(`  3. Initialize and use`))
       break
 
     case 'tool':
-      console.log(chalk.gray(`  1. Import the tool: ${chalk.cyan(`import { ${name}Tool } from './tools/${name}'`)}`))
+      console.log(
+        chalk.gray(
+          `  1. Import the tool: ${chalk.cyan(`import { ${name}Tool } from './tools/${name}'`)}`
+        )
+      )
       console.log(chalk.gray(`  2. Add to your agent's tools array`))
       console.log(chalk.gray(`  3. Test the tool`))
       break

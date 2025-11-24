@@ -114,9 +114,9 @@ interface EventMetrics {
  * Event Bus
  */
 export class EventBus {
-  private options: Required<Omit<EventBusOptions,
-    'errorHandler' | 'onEmit' | 'onSubscribe' | 'onUnsubscribe'
-  >> & {
+  private options: Required<
+    Omit<EventBusOptions, 'errorHandler' | 'onEmit' | 'onSubscribe' | 'onUnsubscribe'>
+  > & {
     errorHandler?: (error: Error, event: Event) => void
     onEmit?: (event: Event) => void
     onSubscribe?: (type: string) => void
@@ -137,7 +137,7 @@ export class EventBus {
       errorHandler: options.errorHandler,
       onEmit: options.onEmit,
       onSubscribe: options.onSubscribe,
-      onUnsubscribe: options.onUnsubscribe,
+      onUnsubscribe: options.onUnsubscribe
     }
   }
 
@@ -154,7 +154,7 @@ export class EventBus {
       pattern,
       handler: handler as EventHandler,
       priority,
-      once: false,
+      once: false
     })
 
     this.options.onSubscribe?.(type)
@@ -165,7 +165,11 @@ export class EventBus {
   /**
    * Subscribe to events once
    */
-  once<T = any>(type: string, handler: EventHandler<T>, priority: EventPriority = 'normal'): string {
+  once<T = any>(
+    type: string,
+    handler: EventHandler<T>,
+    priority: EventPriority = 'normal'
+  ): string {
     const id = `sub-${++this.subscriptionCounter}`
     const pattern = this.typeToRegex(type)
 
@@ -175,7 +179,7 @@ export class EventBus {
       pattern,
       handler: handler as EventHandler,
       priority,
-      once: true,
+      once: true
     })
 
     this.options.onSubscribe?.(type)
@@ -214,20 +218,21 @@ export class EventBus {
    */
   async emit<T = any>(event: Event<T> | string, data?: T): Promise<void> {
     // Normalize event
-    const normalizedEvent: Event<T> = typeof event === 'string'
-      ? {
-          type: event,
-          data: data!,
-          timestamp: Date.now(),
-          priority: this.options.defaultPriority,
-          id: this.generateEventId(),
-        }
-      : {
-          ...event,
-          timestamp: event.timestamp || Date.now(),
-          priority: event.priority || this.options.defaultPriority,
-          id: event.id || this.generateEventId(),
-        }
+    const normalizedEvent: Event<T> =
+      typeof event === 'string'
+        ? {
+            type: event,
+            data: data!,
+            timestamp: Date.now(),
+            priority: this.options.defaultPriority,
+            id: this.generateEventId()
+          }
+        : {
+            ...event,
+            timestamp: event.timestamp || Date.now(),
+            priority: event.priority || this.options.defaultPriority,
+            id: event.id || this.generateEventId()
+          }
 
     // Store in history
     if (this.options.enableReplay) {
@@ -251,7 +256,7 @@ export class EventBus {
         critical: 4,
         high: 3,
         normal: 2,
-        low: 1,
+        low: 1
       }
       return priorityOrder[b.priority] - priorityOrder[a.priority]
     })
@@ -285,9 +290,10 @@ export class EventBus {
    */
   emitAsync<T = any>(event: Event<T> | string, data?: T): void {
     this.emit(event, data).catch(error => {
-      this.options.errorHandler?.(error, typeof event === 'string'
-        ? { type: event, data: data! }
-        : event)
+      this.options.errorHandler?.(
+        error,
+        typeof event === 'string' ? { type: event, data: data! } : event
+      )
     })
   }
 
@@ -371,7 +377,7 @@ export class EventBus {
             pattern,
             handler,
             priority: 'normal',
-            once: false,
+            once: false
           },
           event
         )
@@ -405,9 +411,7 @@ export class EventBus {
     }
 
     const pattern = this.typeToRegex(typePattern)
-    this.eventHistory = this.eventHistory.filter(
-      event => !pattern.test(event.type)
-    )
+    this.eventHistory = this.eventHistory.filter(event => !pattern.test(event.type))
   }
 
   /**
@@ -419,9 +423,7 @@ export class EventBus {
     }
 
     const pattern = this.typeToRegex(typePattern)
-    return Array.from(this.subscriptions.values()).filter(sub =>
-      pattern.test(sub.type)
-    )
+    return Array.from(this.subscriptions.values()).filter(sub => pattern.test(sub.type))
   }
 
   /**
@@ -483,7 +485,7 @@ export class EventBus {
     return new Promise((resolve, reject) => {
       let timeoutId: NodeJS.Timeout | undefined
 
-      const id = this.once<T>(type, (event) => {
+      const id = this.once<T>(type, event => {
         if (timeoutId) clearTimeout(timeoutId)
         resolve(event)
       })
@@ -505,7 +507,7 @@ export class EventBus {
     predicate: (event: Event<T>) => boolean,
     handler: EventHandler<T>
   ): string {
-    return this.on<T>(type, async (event) => {
+    return this.on<T>(type, async event => {
       if (predicate(event)) {
         await handler(event)
       }
@@ -520,13 +522,13 @@ export class EventBus {
     targetType: string,
     mapper: (event: Event<T>) => R
   ): string {
-    return this.on<T>(sourceType, async (event) => {
+    return this.on<T>(sourceType, async event => {
       const mapped = mapper(event)
       await this.emit<R>({
         type: targetType,
         data: mapped,
         source: event.type,
-        metadata: event.metadata,
+        metadata: event.metadata
       })
     })
   }
@@ -572,7 +574,7 @@ export class EventBus {
       current.avgHandlerTime = duration
     } else {
       // Moving average
-      current.avgHandlerTime = (current.avgHandlerTime * 0.9) + (duration * 0.1)
+      current.avgHandlerTime = current.avgHandlerTime * 0.9 + duration * 0.1
     }
 
     this.metrics.set(type, current)
@@ -585,7 +587,7 @@ export class EventBus {
     return {
       emitCount: 0,
       handlerCount: 0,
-      errorCount: 0,
+      errorCount: 0
     }
   }
 

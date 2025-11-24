@@ -73,36 +73,36 @@ graph TB
 ### JWT-Based Authentication
 
 ```typescript
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
 
 interface User {
-  id: string;
-  email: string;
-  passwordHash: string;
-  roles: string[];
+  id: string
+  email: string
+  passwordHash: string
+  roles: string[]
 }
 
 interface JWTPayload {
-  userId: string;
-  email: string;
-  roles: string[];
+  userId: string
+  email: string
+  roles: string[]
 }
 
 class AuthService {
-  private readonly JWT_SECRET = process.env.JWT_SECRET!;
-  private readonly JWT_EXPIRY = '1h';
-  private readonly REFRESH_TOKEN_EXPIRY = '7d';
-  private readonly SALT_ROUNDS = 12;
+  private readonly JWT_SECRET = process.env.JWT_SECRET!
+  private readonly JWT_EXPIRY = '1h'
+  private readonly REFRESH_TOKEN_EXPIRY = '7d'
+  private readonly SALT_ROUNDS = 12
 
   // Hash password
   async hashPassword(password: string): Promise<string> {
-    return bcrypt.hash(password, this.SALT_ROUNDS);
+    return bcrypt.hash(password, this.SALT_ROUNDS)
   }
 
   // Verify password
   async verifyPassword(password: string, hash: string): Promise<boolean> {
-    return bcrypt.compare(password, hash);
+    return bcrypt.compare(password, hash)
   }
 
   // Generate access token
@@ -111,23 +111,19 @@ class AuthService {
       userId: user.id,
       email: user.email,
       roles: user.roles
-    };
+    }
 
     return jwt.sign(payload, this.JWT_SECRET, {
       expiresIn: this.JWT_EXPIRY,
       algorithm: 'HS256',
       issuer: 'your-app',
       audience: 'your-app-api'
-    });
+    })
   }
 
   // Generate refresh token
   generateRefreshToken(user: User): string {
-    return jwt.sign(
-      { userId: user.id },
-      this.JWT_SECRET,
-      { expiresIn: this.REFRESH_TOKEN_EXPIRY }
-    );
+    return jwt.sign({ userId: user.id }, this.JWT_SECRET, { expiresIn: this.REFRESH_TOKEN_EXPIRY })
   }
 
   // Verify token
@@ -137,27 +133,27 @@ class AuthService {
         algorithms: ['HS256'],
         issuer: 'your-app',
         audience: 'your-app-api'
-      }) as JWTPayload;
+      }) as JWTPayload
     } catch (error) {
-      throw new Error('Invalid or expired token');
+      throw new Error('Invalid or expired token')
     }
   }
 
   // Refresh access token
   async refreshAccessToken(refreshToken: string): Promise<string> {
-    const payload = this.verifyToken(refreshToken);
-    const user = await this.getUserById(payload.userId);
+    const payload = this.verifyToken(refreshToken)
+    const user = await this.getUserById(payload.userId)
 
     if (!user) {
-      throw new Error('User not found');
+      throw new Error('User not found')
     }
 
-    return this.generateAccessToken(user);
+    return this.generateAccessToken(user)
   }
 
   private async getUserById(id: string): Promise<User | null> {
     // Implement database lookup
-    return null;
+    return null
   }
 }
 ```
@@ -173,69 +169,76 @@ enum Permission {
 }
 
 interface Role {
-  name: string;
-  permissions: Permission[];
+  name: string
+  permissions: Permission[]
 }
 
 class RBACService {
   private roles: Map<string, Role> = new Map([
     ['user', { name: 'user', permissions: [Permission.READ] }],
     ['editor', { name: 'editor', permissions: [Permission.READ, Permission.WRITE] }],
-    ['admin', { name: 'admin', permissions: [Permission.READ, Permission.WRITE, Permission.DELETE, Permission.ADMIN] }]
-  ]);
+    [
+      'admin',
+      {
+        name: 'admin',
+        permissions: [Permission.READ, Permission.WRITE, Permission.DELETE, Permission.ADMIN]
+      }
+    ]
+  ])
 
   hasPermission(userRoles: string[], requiredPermission: Permission): boolean {
     for (const roleName of userRoles) {
-      const role = this.roles.get(roleName);
+      const role = this.roles.get(roleName)
       if (role && role.permissions.includes(requiredPermission)) {
-        return true;
+        return true
       }
     }
-    return false;
+    return false
   }
 
   // Express middleware
   requirePermission(permission: Permission) {
     return (req: any, res: any, next: any) => {
-      const user = req.user; // Set by auth middleware
+      const user = req.user // Set by auth middleware
 
       if (!user) {
-        return res.status(401).json({ error: 'Unauthorized' });
+        return res.status(401).json({ error: 'Unauthorized' })
       }
 
       if (!this.hasPermission(user.roles, permission)) {
-        return res.status(403).json({ error: 'Forbidden' });
+        return res.status(403).json({ error: 'Forbidden' })
       }
 
-      next();
-    };
+      next()
+    }
   }
 }
 
 // Usage
-const rbac = new RBACService();
+const rbac = new RBACService()
 
-app.delete('/api/users/:id',
+app.delete(
+  '/api/users/:id',
   authMiddleware,
   rbac.requirePermission(Permission.DELETE),
   deleteUserHandler
-);
+)
 ```
 
 ### OAuth 2.0 Implementation
 
 ```typescript
-import { google } from 'googleapis';
+import { google } from 'googleapis'
 
 class OAuth2Service {
-  private oauth2Client: any;
+  private oauth2Client: any
 
   constructor() {
     this.oauth2Client = new google.auth.OAuth2(
       process.env.GOOGLE_CLIENT_ID,
       process.env.GOOGLE_CLIENT_SECRET,
       process.env.GOOGLE_REDIRECT_URI
-    );
+    )
   }
 
   // Generate authorization URL
@@ -247,27 +250,27 @@ class OAuth2Service {
         'https://www.googleapis.com/auth/userinfo.profile'
       ],
       state: this.generateState() // CSRF protection
-    });
+    })
   }
 
   // Exchange code for tokens
   async getTokens(code: string): Promise<any> {
-    const { tokens } = await this.oauth2Client.getToken(code);
-    return tokens;
+    const { tokens } = await this.oauth2Client.getToken(code)
+    return tokens
   }
 
   // Get user info
   async getUserInfo(accessToken: string): Promise<any> {
-    this.oauth2Client.setCredentials({ access_token: accessToken });
+    this.oauth2Client.setCredentials({ access_token: accessToken })
 
-    const oauth2 = google.oauth2({ version: 'v2', auth: this.oauth2Client });
-    const { data } = await oauth2.userinfo.get();
+    const oauth2 = google.oauth2({ version: 'v2', auth: this.oauth2Client })
+    const { data } = await oauth2.userinfo.get()
 
-    return data;
+    return data
   }
 
   private generateState(): string {
-    return crypto.randomBytes(32).toString('hex');
+    return crypto.randomBytes(32).toString('hex')
   }
 }
 ```
@@ -275,8 +278,8 @@ class OAuth2Service {
 ### Multi-Factor Authentication (MFA)
 
 ```typescript
-import speakeasy from 'speakeasy';
-import QRCode from 'qrcode';
+import speakeasy from 'speakeasy'
+import QRCode from 'qrcode'
 
 class MFAService {
   // Generate secret for user
@@ -284,17 +287,17 @@ class MFAService {
     const secret = speakeasy.generateSecret({
       name: `YourApp (${email})`,
       issuer: 'YourApp'
-    });
+    })
 
     return {
       secret: secret.base32,
       qrCode: secret.otpauth_url!
-    };
+    }
   }
 
   // Generate QR code image
   async generateQRCode(otpauthUrl: string): Promise<string> {
-    return QRCode.toDataURL(otpauthUrl);
+    return QRCode.toDataURL(otpauthUrl)
   }
 
   // Verify token
@@ -304,31 +307,31 @@ class MFAService {
       encoding: 'base32',
       token,
       window: 2 // Allow 2 time steps before/after
-    });
+    })
   }
 
   // Express middleware
   requireMFA() {
     return async (req: any, res: any, next: any) => {
-      const user = req.user;
-      const mfaToken = req.headers['x-mfa-token'];
+      const user = req.user
+      const mfaToken = req.headers['x-mfa-token']
 
       if (!user.mfaEnabled) {
-        return next();
+        return next()
       }
 
       if (!mfaToken) {
-        return res.status(401).json({ error: 'MFA token required' });
+        return res.status(401).json({ error: 'MFA token required' })
       }
 
-      const isValid = this.verifyToken(user.mfaSecret, mfaToken);
+      const isValid = this.verifyToken(user.mfaSecret, mfaToken)
 
       if (!isValid) {
-        return res.status(401).json({ error: 'Invalid MFA token' });
+        return res.status(401).json({ error: 'Invalid MFA token' })
       }
 
-      next();
-    };
+      next()
+    }
   }
 }
 ```
@@ -340,12 +343,13 @@ class MFAService {
 ### Schema Validation with Zod
 
 ```typescript
-import { z } from 'zod';
+import { z } from 'zod'
 
 // Define schemas
 const UserSchema = z.object({
   email: z.string().email().max(255),
-  password: z.string()
+  password: z
+    .string()
     .min(8, 'Password must be at least 8 characters')
     .max(128)
     .regex(/[A-Z]/, 'Password must contain uppercase letter')
@@ -355,7 +359,7 @@ const UserSchema = z.object({
   name: z.string().min(1).max(100),
   age: z.number().int().min(13).max(120).optional(),
   roles: z.array(z.enum(['user', 'editor', 'admin'])).default(['user'])
-});
+})
 
 const QuerySchema = z.object({
   page: z.coerce.number().int().min(1).default(1),
@@ -363,60 +367,54 @@ const QuerySchema = z.object({
   search: z.string().max(200).optional(),
   sortBy: z.enum(['name', 'createdAt', 'updatedAt']).default('createdAt'),
   order: z.enum(['asc', 'desc']).default('desc')
-});
+})
 
 // Validation middleware
 function validateBody(schema: z.ZodSchema) {
   return (req: any, res: any, next: any) => {
     try {
-      req.body = schema.parse(req.body);
-      next();
+      req.body = schema.parse(req.body)
+      next()
     } catch (error) {
       if (error instanceof z.ZodError) {
         return res.status(400).json({
           error: 'Validation failed',
           details: error.errors
-        });
+        })
       }
-      next(error);
+      next(error)
     }
-  };
+  }
 }
 
 function validateQuery(schema: z.ZodSchema) {
   return (req: any, res: any, next: any) => {
     try {
-      req.query = schema.parse(req.query);
-      next();
+      req.query = schema.parse(req.query)
+      next()
     } catch (error) {
       if (error instanceof z.ZodError) {
         return res.status(400).json({
           error: 'Invalid query parameters',
           details: error.errors
-        });
+        })
       }
-      next(error);
+      next(error)
     }
-  };
+  }
 }
 
 // Usage
-app.post('/api/users',
-  validateBody(UserSchema),
-  createUserHandler
-);
+app.post('/api/users', validateBody(UserSchema), createUserHandler)
 
-app.get('/api/users',
-  validateQuery(QuerySchema),
-  getUsersHandler
-);
+app.get('/api/users', validateQuery(QuerySchema), getUsersHandler)
 ```
 
 ### Sanitization
 
 ```typescript
-import DOMPurify from 'isomorphic-dompurify';
-import validator from 'validator';
+import DOMPurify from 'isomorphic-dompurify'
+import validator from 'validator'
 
 class InputSanitizer {
   // Sanitize HTML
@@ -424,39 +422,41 @@ class InputSanitizer {
     return DOMPurify.sanitize(input, {
       ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'a', 'p', 'br'],
       ALLOWED_ATTR: ['href']
-    });
+    })
   }
 
   // Escape SQL
   escapeSQLString(input: string): string {
-    return input.replace(/'/g, "''");
+    return input.replace(/'/g, "''")
   }
 
   // Sanitize filename
   sanitizeFilename(filename: string): string {
-    return filename.replace(/[^a-zA-Z0-9.-]/g, '_');
+    return filename.replace(/[^a-zA-Z0-9.-]/g, '_')
   }
 
   // Validate and sanitize URL
   sanitizeURL(url: string): string | null {
-    if (!validator.isURL(url, {
-      protocols: ['http', 'https'],
-      require_protocol: true
-    })) {
-      return null;
+    if (
+      !validator.isURL(url, {
+        protocols: ['http', 'https'],
+        require_protocol: true
+      })
+    ) {
+      return null
     }
 
     try {
-      const parsed = new URL(url);
+      const parsed = new URL(url)
 
       // Block internal IPs (SSRF prevention)
       if (this.isInternalIP(parsed.hostname)) {
-        return null;
+        return null
       }
 
-      return url;
+      return url
     } catch {
-      return null;
+      return null
     }
   }
 
@@ -468,9 +468,9 @@ class InputSanitizer {
       /^192\.168\./,
       /^localhost$/i,
       /^0\.0\.0\.0$/
-    ];
+    ]
 
-    return internalPatterns.some(pattern => pattern.test(hostname));
+    return internalPatterns.some(pattern => pattern.test(hostname))
   }
 }
 ```
@@ -482,10 +482,10 @@ class InputSanitizer {
 ### Parameterized Queries
 
 ```typescript
-import { Pool } from 'pg';
+import { Pool } from 'pg'
 
 class SecureDatabase {
-  private pool: Pool;
+  private pool: Pool
 
   constructor() {
     this.pool = new Pool({
@@ -493,14 +493,14 @@ class SecureDatabase {
       ssl: { rejectUnauthorized: true },
       max: 20,
       idleTimeoutMillis: 30000
-    });
+    })
   }
 
   // CORRECT: Parameterized query
   async getUserByEmail(email: string): Promise<any> {
-    const query = 'SELECT * FROM users WHERE email = $1';
-    const result = await this.pool.query(query, [email]);
-    return result.rows[0];
+    const query = 'SELECT * FROM users WHERE email = $1'
+    const result = await this.pool.query(query, [email])
+    return result.rows[0]
   }
 
   // CORRECT: Multiple parameters
@@ -510,17 +510,17 @@ class SecureDatabase {
       FROM users
       WHERE name ILIKE $1 AND age >= $2
       ORDER BY created_at DESC
-    `;
-    const result = await this.pool.query(query, [`%${name}%`, minAge]);
-    return result.rows;
+    `
+    const result = await this.pool.query(query, [`%${name}%`, minAge])
+    return result.rows
   }
 
   // WRONG: String concatenation (DO NOT DO THIS)
   async unsafeQuery(email: string): Promise<any> {
     // ❌ VULNERABLE TO SQL INJECTION
-    const query = `SELECT * FROM users WHERE email = '${email}'`;
-    const result = await this.pool.query(query);
-    return result.rows[0];
+    const query = `SELECT * FROM users WHERE email = '${email}'`
+    const result = await this.pool.query(query)
+    return result.rows[0]
   }
 }
 ```
@@ -528,16 +528,16 @@ class SecureDatabase {
 ### ORM Usage (Prisma)
 
 ```typescript
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client'
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient()
 
 // Prisma automatically uses parameterized queries
 async function secureUserQueries() {
   // Find user by email
   const user = await prisma.user.findUnique({
     where: { email: 'user@example.com' }
-  });
+  })
 
   // Search with filters
   const users = await prisma.user.findMany({
@@ -550,7 +550,7 @@ async function secureUserQueries() {
       email: true,
       name: true
     }
-  });
+  })
 
   // Update with transaction
   await prisma.$transaction([
@@ -565,7 +565,7 @@ async function secureUserQueries() {
         timestamp: new Date()
       }
     })
-  ]);
+  ])
 }
 ```
 
@@ -576,29 +576,31 @@ async function secureUserQueries() {
 ### Content Security Policy
 
 ```typescript
-import helmet from 'helmet';
+import helmet from 'helmet'
 
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'self'"],
-    scriptSrc: [
-      "'self'",
-      "'sha256-...'", // Specific inline script hash
-      "https://cdn.example.com"
-    ],
-    styleSrc: [
-      "'self'",
-      "'unsafe-inline'", // Required for some CSS-in-JS
-      "https://fonts.googleapis.com"
-    ],
-    imgSrc: ["'self'", "data:", "https:"],
-    fontSrc: ["'self'", "https://fonts.gstatic.com"],
-    connectSrc: ["'self'", "https://api.example.com"],
-    frameSrc: ["'none'"],
-    objectSrc: ["'none'"],
-    upgradeInsecureRequests: []
-  }
-}));
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: [
+        "'self'",
+        "'sha256-...'", // Specific inline script hash
+        'https://cdn.example.com'
+      ],
+      styleSrc: [
+        "'self'",
+        "'unsafe-inline'", // Required for some CSS-in-JS
+        'https://fonts.googleapis.com'
+      ],
+      imgSrc: ["'self'", 'data:', 'https:'],
+      fontSrc: ["'self'", 'https://fonts.gstatic.com'],
+      connectSrc: ["'self'", 'https://api.example.com'],
+      frameSrc: ["'none'"],
+      objectSrc: ["'none'"],
+      upgradeInsecureRequests: []
+    }
+  })
+)
 ```
 
 ### Output Encoding
@@ -652,18 +654,18 @@ function SafeComponent({ userInput }: { userInput: string }) {
 ### Token-Based CSRF Protection
 
 ```typescript
-import csrf from 'csurf';
-import cookieParser from 'cookie-parser';
+import csrf from 'csurf'
+import cookieParser from 'cookie-parser'
 
 // Setup CSRF protection
-app.use(cookieParser());
-app.use(csrf({ cookie: true }));
+app.use(cookieParser())
+app.use(csrf({ cookie: true }))
 
 // Middleware to attach token to response
 app.use((req, res, next) => {
-  res.locals.csrfToken = req.csrfToken();
-  next();
-});
+  res.locals.csrfToken = req.csrfToken()
+  next()
+})
 
 // HTML form
 app.get('/form', (req, res) => {
@@ -673,19 +675,19 @@ app.get('/form', (req, res) => {
       <input type="text" name="data">
       <button type="submit">Submit</button>
     </form>
-  `);
-});
+  `)
+})
 
 // API endpoint
 app.get('/api/csrf-token', (req, res) => {
-  res.json({ csrfToken: req.csrfToken() });
-});
+  res.json({ csrfToken: req.csrfToken() })
+})
 
 // Frontend usage
 async function makeSecureRequest(data: any) {
   // Get CSRF token
-  const tokenResponse = await fetch('/api/csrf-token');
-  const { csrfToken } = await tokenResponse.json();
+  const tokenResponse = await fetch('/api/csrf-token')
+  const { csrfToken } = await tokenResponse.json()
 
   // Include in request
   const response = await fetch('/api/data', {
@@ -695,28 +697,30 @@ async function makeSecureRequest(data: any) {
       'X-CSRF-Token': csrfToken
     },
     body: JSON.stringify(data)
-  });
+  })
 
-  return response.json();
+  return response.json()
 }
 ```
 
 ### SameSite Cookies
 
 ```typescript
-import session from 'express-session';
+import session from 'express-session'
 
-app.use(session({
-  secret: process.env.SESSION_SECRET!,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: true, // HTTPS only
-    httpOnly: true, // No JavaScript access
-    sameSite: 'strict', // Strict CSRF protection
-    maxAge: 3600000 // 1 hour
-  }
-}));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET!,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: true, // HTTPS only
+      httpOnly: true, // No JavaScript access
+      sameSite: 'strict', // Strict CSRF protection
+      maxAge: 3600000 // 1 hour
+    }
+  })
+)
 ```
 
 ---
@@ -726,11 +730,11 @@ app.use(session({
 ### Rate Limiting
 
 ```typescript
-import rateLimit from 'express-rate-limit';
-import RedisStore from 'rate-limit-redis';
-import Redis from 'ioredis';
+import rateLimit from 'express-rate-limit'
+import RedisStore from 'rate-limit-redis'
+import Redis from 'ioredis'
 
-const redis = new Redis(process.env.REDIS_URL);
+const redis = new Redis(process.env.REDIS_URL)
 
 // Global rate limiter
 const globalLimiter = rateLimit({
@@ -743,7 +747,7 @@ const globalLimiter = rateLimit({
   message: 'Too many requests, please try again later',
   standardHeaders: true,
   legacyHeaders: false
-});
+})
 
 // Strict limiter for auth endpoints
 const authLimiter = rateLimit({
@@ -754,7 +758,7 @@ const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 5, // Only 5 login attempts per 15 minutes
   skipSuccessfulRequests: true
-});
+})
 
 // Per-user rate limiter
 const perUserLimiter = rateLimit({
@@ -764,79 +768,76 @@ const perUserLimiter = rateLimit({
   }),
   windowMs: 60 * 1000, // 1 minute
   max: 30,
-  keyGenerator: (req) => req.user?.id || req.ip
-});
+  keyGenerator: req => req.user?.id || req.ip
+})
 
-app.use('/api/', globalLimiter);
-app.post('/api/auth/login', authLimiter, loginHandler);
-app.use('/api/user/', perUserLimiter);
+app.use('/api/', globalLimiter)
+app.post('/api/auth/login', authLimiter, loginHandler)
+app.use('/api/user/', perUserLimiter)
 ```
 
 ### API Key Management
 
 ```typescript
-import crypto from 'crypto';
+import crypto from 'crypto'
 
 class APIKeyService {
   // Generate API key
   generateAPIKey(): { key: string; hash: string } {
-    const key = `sk_${crypto.randomBytes(32).toString('hex')}`;
-    const hash = this.hashAPIKey(key);
-    return { key, hash };
+    const key = `sk_${crypto.randomBytes(32).toString('hex')}`
+    const hash = this.hashAPIKey(key)
+    return { key, hash }
   }
 
   // Hash API key for storage
   private hashAPIKey(key: string): string {
-    return crypto
-      .createHash('sha256')
-      .update(key)
-      .digest('hex');
+    return crypto.createHash('sha256').update(key).digest('hex')
   }
 
   // Verify API key
   async verifyAPIKey(providedKey: string): Promise<boolean> {
-    const hash = this.hashAPIKey(providedKey);
+    const hash = this.hashAPIKey(providedKey)
 
     // Look up hash in database
-    const apiKey = await this.getAPIKeyByHash(hash);
+    const apiKey = await this.getAPIKeyByHash(hash)
 
     if (!apiKey) {
-      return false;
+      return false
     }
 
     // Check if expired
     if (apiKey.expiresAt && apiKey.expiresAt < new Date()) {
-      return false;
+      return false
     }
 
     // Update last used
-    await this.updateLastUsed(apiKey.id);
+    await this.updateLastUsed(apiKey.id)
 
-    return true;
+    return true
   }
 
   // Express middleware
   requireAPIKey() {
     return async (req: any, res: any, next: any) => {
-      const apiKey = req.headers['x-api-key'];
+      const apiKey = req.headers['x-api-key']
 
       if (!apiKey) {
-        return res.status(401).json({ error: 'API key required' });
+        return res.status(401).json({ error: 'API key required' })
       }
 
-      const isValid = await this.verifyAPIKey(apiKey);
+      const isValid = await this.verifyAPIKey(apiKey)
 
       if (!isValid) {
-        return res.status(401).json({ error: 'Invalid API key' });
+        return res.status(401).json({ error: 'Invalid API key' })
       }
 
-      next();
-    };
+      next()
+    }
   }
 
   private async getAPIKeyByHash(hash: string): Promise<any> {
     // Database lookup
-    return null;
+    return null
   }
 
   private async updateLastUsed(id: string): Promise<void> {
@@ -862,76 +863,69 @@ ENCRYPTION_KEY=...
 */
 
 // Load environment variables
-import dotenv from 'dotenv';
-dotenv.config();
+import dotenv from 'dotenv'
+dotenv.config()
 
 // Validate required env vars at startup
 class EnvValidator {
-  private static requiredVars = [
-    'DATABASE_URL',
-    'JWT_SECRET',
-    'API_KEY',
-    'ENCRYPTION_KEY'
-  ];
+  private static requiredVars = ['DATABASE_URL', 'JWT_SECRET', 'API_KEY', 'ENCRYPTION_KEY']
 
   static validate(): void {
-    const missing = this.requiredVars.filter(
-      varName => !process.env[varName]
-    );
+    const missing = this.requiredVars.filter(varName => !process.env[varName])
 
     if (missing.length > 0) {
-      throw new Error(`Missing required environment variables: ${missing.join(', ')}`);
+      throw new Error(`Missing required environment variables: ${missing.join(', ')}`)
     }
   }
 }
 
 // Call at application startup
-EnvValidator.validate();
+EnvValidator.validate()
 ```
 
 ### AWS Secrets Manager
 
 ```typescript
-import { SecretsManagerClient, GetSecretValueCommand } from '@aws-sdk/client-secrets-manager';
+import { SecretsManagerClient, GetSecretValueCommand } from '@aws-sdk/client-secrets-manager'
 
 class SecretsManager {
-  private client: SecretsManagerClient;
-  private cache: Map<string, { value: any; expiresAt: number }> = new Map();
+  private client: SecretsManagerClient
+  private cache: Map<string, { value: any; expiresAt: number }> = new Map()
 
   constructor() {
     this.client = new SecretsManagerClient({
       region: process.env.AWS_REGION
-    });
+    })
   }
 
   async getSecret(secretName: string): Promise<any> {
     // Check cache
-    const cached = this.cache.get(secretName);
+    const cached = this.cache.get(secretName)
     if (cached && cached.expiresAt > Date.now()) {
-      return cached.value;
+      return cached.value
     }
 
     // Fetch from AWS
-    const command = new GetSecretValueCommand({ SecretId: secretName });
-    const response = await this.client.send(command);
+    const command = new GetSecretValueCommand({ SecretId: secretName })
+    const response = await this.client.send(command)
 
-    const secret = JSON.parse(response.SecretString!);
+    const secret = JSON.parse(response.SecretString!)
 
     // Cache for 5 minutes
     this.cache.set(secretName, {
       value: secret,
       expiresAt: Date.now() + 5 * 60 * 1000
-    });
+    })
 
-    return secret;
+    return secret
   }
 
   async getDBCredentials(): Promise<any> {
-    return this.getSecret('prod/database/credentials');
+    return this.getSecret('prod/database/credentials')
   }
 
   async getAPIKeys(): Promise<any> {
-    return this.getSecret('prod/api/keys');
+    return this.getSecret('prod/api/keys')
   }
 }
 ```
@@ -939,56 +933,56 @@ class SecretsManager {
 ### Encryption at Rest
 
 ```typescript
-import crypto from 'crypto';
+import crypto from 'crypto'
 
 class EncryptionService {
-  private algorithm = 'aes-256-gcm';
-  private key = Buffer.from(process.env.ENCRYPTION_KEY!, 'hex');
+  private algorithm = 'aes-256-gcm'
+  private key = Buffer.from(process.env.ENCRYPTION_KEY!, 'hex')
 
   encrypt(text: string): string {
-    const iv = crypto.randomBytes(16);
-    const cipher = crypto.createCipheriv(this.algorithm, this.key, iv);
+    const iv = crypto.randomBytes(16)
+    const cipher = crypto.createCipheriv(this.algorithm, this.key, iv)
 
-    let encrypted = cipher.update(text, 'utf8', 'hex');
-    encrypted += cipher.final('hex');
+    let encrypted = cipher.update(text, 'utf8', 'hex')
+    encrypted += cipher.final('hex')
 
-    const authTag = cipher.getAuthTag();
+    const authTag = cipher.getAuthTag()
 
     // Return: iv:authTag:encrypted
-    return `${iv.toString('hex')}:${authTag.toString('hex')}:${encrypted}`;
+    return `${iv.toString('hex')}:${authTag.toString('hex')}:${encrypted}`
   }
 
   decrypt(encryptedData: string): string {
-    const [ivHex, authTagHex, encrypted] = encryptedData.split(':');
+    const [ivHex, authTagHex, encrypted] = encryptedData.split(':')
 
-    const iv = Buffer.from(ivHex, 'hex');
-    const authTag = Buffer.from(authTagHex, 'hex');
+    const iv = Buffer.from(ivHex, 'hex')
+    const authTag = Buffer.from(authTagHex, 'hex')
 
-    const decipher = crypto.createDecipheriv(this.algorithm, this.key, iv);
-    decipher.setAuthTag(authTag);
+    const decipher = crypto.createDecipheriv(this.algorithm, this.key, iv)
+    decipher.setAuthTag(authTag)
 
-    let decrypted = decipher.update(encrypted, 'hex', 'utf8');
-    decrypted += decipher.final('utf8');
+    let decrypted = decipher.update(encrypted, 'hex', 'utf8')
+    decrypted += decipher.final('utf8')
 
-    return decrypted;
+    return decrypted
   }
 }
 
 // Usage: Encrypt sensitive data before storing
-const encryption = new EncryptionService();
+const encryption = new EncryptionService()
 
 async function storeUserData(userId: string, ssn: string) {
-  const encryptedSSN = encryption.encrypt(ssn);
+  const encryptedSSN = encryption.encrypt(ssn)
 
   await db.user.update({
     where: { id: userId },
     data: { ssn: encryptedSSN }
-  });
+  })
 }
 
 async function getUserSSN(userId: string): Promise<string> {
-  const user = await db.user.findUnique({ where: { id: userId } });
-  return encryption.decrypt(user.ssn);
+  const user = await db.user.findUnique({ where: { id: userId } })
+  return encryption.decrypt(user.ssn)
 }
 ```
 
@@ -1036,16 +1030,16 @@ jobs:
 # .github/dependabot.yml
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
     open-pull-requests-limit: 10
     reviewers:
-      - "security-team"
+      - 'security-team'
     labels:
-      - "dependencies"
-      - "security"
+      - 'dependencies'
+      - 'security'
 ```
 
 ---
@@ -1131,8 +1125,8 @@ jobs:
 ### TLS Configuration
 
 ```typescript
-import https from 'https';
-import fs from 'fs';
+import https from 'https'
+import fs from 'fs'
 
 const httpsOptions = {
   key: fs.readFileSync('private-key.pem'),
@@ -1147,9 +1141,9 @@ const httpsOptions = {
     'ECDHE-RSA-AES256-GCM-SHA384'
   ].join(':'),
   honorCipherOrder: true
-};
+}
 
-https.createServer(httpsOptions, app).listen(443);
+https.createServer(httpsOptions, app).listen(443)
 ```
 
 ---
@@ -1157,27 +1151,29 @@ https.createServer(httpsOptions, app).listen(443);
 ## Security Headers
 
 ```typescript
-import helmet from 'helmet';
+import helmet from 'helmet'
 
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      imgSrc: ["'self'", "data:", "https:"]
-    }
-  },
-  hsts: {
-    maxAge: 31536000,
-    includeSubDomains: true,
-    preload: true
-  },
-  frameguard: { action: 'deny' },
-  noSniff: true,
-  xssFilter: true,
-  referrerPolicy: { policy: 'strict-origin-when-cross-origin' }
-}));
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'", 'data:', 'https:']
+      }
+    },
+    hsts: {
+      maxAge: 31536000,
+      includeSubDomains: true,
+      preload: true
+    },
+    frameguard: { action: 'deny' },
+    noSniff: true,
+    xssFilter: true,
+    referrerPolicy: { policy: 'strict-origin-when-cross-origin' }
+  })
+)
 ```
 
 ---
@@ -1187,26 +1183,26 @@ app.use(helmet({
 ```typescript
 class AuditLogger {
   async log(event: {
-    action: string;
-    userId?: string;
-    ip: string;
-    resource?: string;
-    result: 'success' | 'failure';
-    metadata?: any;
+    action: string
+    userId?: string
+    ip: string
+    resource?: string
+    result: 'success' | 'failure'
+    metadata?: any
   }): Promise<void> {
     await db.auditLog.create({
       data: {
         ...event,
         timestamp: new Date()
       }
-    });
+    })
   }
 }
 
 // Usage
 app.post('/api/users/:id', async (req, res) => {
   try {
-    await updateUser(req.params.id, req.body);
+    await updateUser(req.params.id, req.body)
 
     await auditLogger.log({
       action: 'UPDATE_USER',
@@ -1214,9 +1210,9 @@ app.post('/api/users/:id', async (req, res) => {
       ip: req.ip,
       resource: `user:${req.params.id}`,
       result: 'success'
-    });
+    })
 
-    res.json({ success: true });
+    res.json({ success: true })
   } catch (error) {
     await auditLogger.log({
       action: 'UPDATE_USER',
@@ -1225,11 +1221,11 @@ app.post('/api/users/:id', async (req, res) => {
       resource: `user:${req.params.id}`,
       result: 'failure',
       metadata: { error: error.message }
-    });
+    })
 
-    res.status(500).json({ error: 'Update failed' });
+    res.status(500).json({ error: 'Update failed' })
   }
-});
+})
 ```
 
 ---
@@ -1265,14 +1261,16 @@ app.post('/api/users/:id', async (req, res) => {
 **Solution**: Configure CORS properly
 
 ```typescript
-import cors from 'cors';
+import cors from 'cors'
 
-app.use(cors({
-  origin: process.env.ALLOWED_ORIGINS?.split(',') || ['http://localhost:3000'],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.use(
+  cors({
+    origin: process.env.ALLOWED_ORIGINS?.split(',') || ['http://localhost:3000'],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  })
+)
 ```
 
 ---
@@ -1280,10 +1278,12 @@ app.use(cors({
 ## Related Resources
 
 ### Skills
+
 - security-engineer
 - api-designer
 
 ### MCPs
+
 - security-scanner-mcp
 - audit-logger-mcp
 

@@ -15,24 +15,28 @@ Build scalable customer support systems that grow with your product without requ
 ## Support Maturity Model
 
 ### Stage 1: Founder-Led (0-100 users)
+
 - Founders answer every question personally
 - Learn what users actually struggle with
 - Document FAQs manually
 - **Key Metric**: Response time < 2 hours
 
 ### Stage 2: Documented (100-1,000 users)
+
 - Comprehensive knowledge base
 - Email support with templates
 - Basic FAQ section
 - **Key Metric**: 30% self-service rate
 
 ### Stage 3: Self-Service (1,000-10,000 users)
+
 - Searchable help center
 - Contextual in-app help
 - Automated responses for common issues
 - **Key Metric**: 60% self-service rate
 
 ### Stage 4: Scaled (10,000+ users)
+
 - AI-powered chatbots
 - Community forums
 - Video tutorials
@@ -76,9 +80,11 @@ Help Center
 **Difficulty**: Beginner/Intermediate/Advanced
 
 ## Problem
+
 One-sentence description of what this solves.
 
 ## Solution
+
 Step-by-step instructions with screenshots.
 
 1. **Step 1**: Clear action
@@ -90,10 +96,12 @@ Step-by-step instructions with screenshots.
    - Expected result
 
 ## Troubleshooting
+
 - Problem: X → Solution: Y
 - Problem: A → Solution: B
 
 ## Related Articles
+
 - [Article 1](#)
 - [Article 2](#)
 ```
@@ -103,6 +111,7 @@ Step-by-step instructions with screenshots.
 ### Email Support
 
 **Setup**:
+
 ```yaml
 Primary: support@company.com
 Routing:
@@ -120,6 +129,7 @@ SLA:
 
 ```markdown
 # Welcome Email
+
 Subject: Welcome to [Product]! Here's how to get started
 
 Hi [Name],
@@ -137,6 +147,7 @@ Need help? Reply to this email or check our help center: [Link]
 
 ```markdown
 # Issue Resolved
+
 Subject: [Ticket #123] Resolved - [Issue Title]
 
 Hi [Name],
@@ -160,6 +171,7 @@ Was this helpful? [Yes] [No]
 ### Chat Support
 
 **In-App Chat Widget**:
+
 ```javascript
 // Intercom, Drift, Crisp example
 <script>
@@ -179,6 +191,7 @@ window.intercomSettings = {
 ```
 
 **Chat SLA**:
+
 - Business hours: 5-minute response
 - After hours: Email auto-response
 - Expected resolution: 1-3 messages
@@ -186,8 +199,9 @@ window.intercomSettings = {
 ### Chatbot (AI-Powered)
 
 **Decision Tree**:
+
 ```
-User message → 
+User message →
   ├── Can answer with KB article? → Send article
   ├── Simple factual question? → AI answers
   ├── Complex issue? → Route to human
@@ -195,32 +209,33 @@ User message →
 ```
 
 **Implementation**:
+
 ```python
 def handle_support_message(message, user_context):
     # 1. Search knowledge base
     kb_results = search_kb(message, top_k=3)
-    
+
     if kb_results[0].score > 0.85:
         return {
             'type': 'article',
             'article': kb_results[0],
             'confidence': 'high'
         }
-    
+
     # 2. Try AI response with context
     ai_response = generate_response(
         message=message,
         kb_context=kb_results,
         user_history=user_context
     )
-    
+
     if ai_response.confidence > 0.8:
         return {
             'type': 'ai_response',
             'response': ai_response.text,
             'sources': kb_results
         }
-    
+
     # 3. Route to human
     return {
         'type': 'human_handoff',
@@ -238,7 +253,7 @@ interface Ticket {
   id: string
   status: 'new' | 'open' | 'pending' | 'resolved' | 'closed'
   priority: 'low' | 'normal' | 'high' | 'critical'
-  category: string  // 'billing', 'technical', 'feature', etc.
+  category: string // 'billing', 'technical', 'feature', etc.
   subject: string
   description: string
   requester: User
@@ -259,16 +274,16 @@ Routing Rules:
   - Condition: subject contains "billing" OR "payment"
     Action: Assign to billing-team
     Priority: high
-    
+
   - Condition: user.plan == "enterprise"
     Action: Assign to enterprise-team
     Priority: high
     SLA: 2 hours
-    
+
   - Condition: subject contains "API" OR "webhook"
     Action: Assign to engineering
-    Tag: "api-issue"
-    
+    Tag: 'api-issue'
+
   - Condition: sentiment == "angry"
     Action: Priority routing
     Priority: critical
@@ -284,6 +299,7 @@ New → Open → Pending → Resolved → Closed
 ```
 
 **Status Definitions**:
+
 - **New**: Just created, not yet viewed
 - **Open**: Agent working on it
 - **Pending**: Waiting for customer response
@@ -298,25 +314,25 @@ New → Open → Pending → Resolved → Closed
 // Example: Connection troubleshooter
 const troubleshooter = {
   start: {
-    question: "What problem are you experiencing?",
+    question: 'What problem are you experiencing?',
     options: [
-      { text: "Can't connect", next: "check_connection" },
-      { text: "Slow performance", next: "check_performance" },
-      { text: "Error message", next: "check_error" }
+      { text: "Can't connect", next: 'check_connection' },
+      { text: 'Slow performance', next: 'check_performance' },
+      { text: 'Error message', next: 'check_error' }
     ]
   },
   check_connection: {
-    question: "Can you access our website?",
+    question: 'Can you access our website?',
     options: [
-      { text: "Yes", next: "browser_check" },
-      { text: "No", action: "show_status_page" }
+      { text: 'Yes', next: 'browser_check' },
+      { text: 'No', action: 'show_status_page' }
     ]
   },
   browser_check: {
-    question: "Clear your browser cache and try again.",
+    question: 'Clear your browser cache and try again.',
     options: [
-      { text: "It worked!", action: "problem_solved" },
-      { text: "Still not working", action: "contact_support" }
+      { text: 'It worked!', action: 'problem_solved' },
+      { text: 'Still not working', action: 'contact_support' }
     ]
   }
 }
@@ -329,18 +345,18 @@ const troubleshooter = {
 const helpTooltips = {
   '/dashboard': {
     first_visit: {
-      title: "Welcome to your dashboard!",
+      title: 'Welcome to your dashboard!',
       steps: [
-        "1. View your key metrics here",
+        '1. View your key metrics here',
         "2. Click 'Add Widget' to customize",
-        "3. Need help? Click the ? icon"
+        '3. Need help? Click the ? icon'
       ]
     }
   },
   '/settings/billing': {
     always_show: {
-      payment_methods: "We accept Visa, Mastercard, and AmEx",
-      billing_cycle: "Changes take effect next billing cycle"
+      payment_methods: 'We accept Visa, Mastercard, and AmEx',
+      billing_cycle: 'Changes take effect next billing cycle'
     }
   }
 }
@@ -354,27 +370,27 @@ const helpTooltips = {
 interface SupportMetrics {
   // Response metrics
   first_response_time: {
-    p50: number  // median
-    p90: number  // 90th percentile
+    p50: number // median
+    p90: number // 90th percentile
     p99: number
   }
-  
+
   // Resolution metrics
   avg_resolution_time: number
   tickets_resolved_first_contact: number
-  
+
   // Volume metrics
   tickets_created_today: number
   tickets_open: number
   tickets_overdue: number
-  
+
   // Quality metrics
-  customer_satisfaction_score: number  // 1-5
-  net_promoter_score: number  // -100 to 100
-  
+  customer_satisfaction_score: number // 1-5
+  net_promoter_score: number // -100 to 100
+
   // Efficiency metrics
-  self_service_rate: number  // % resolved without ticket
-  deflection_rate: number  // % answered by KB/bot
+  self_service_rate: number // % resolved without ticket
+  deflection_rate: number // % answered by KB/bot
   cost_per_ticket: number
 }
 ```
@@ -383,18 +399,18 @@ interface SupportMetrics {
 
 ```yaml
 Excellent Support:
-  first_response_time_p90: "< 2 hours"
-  resolution_time_avg: "< 24 hours"
-  self_service_rate: "> 70%"
-  csat: "> 4.5/5"
-  nps: "> 50"
-  
+  first_response_time_p90: '< 2 hours'
+  resolution_time_avg: '< 24 hours'
+  self_service_rate: '> 70%'
+  csat: '> 4.5/5'
+  nps: '> 50'
+
 Good Support:
-  first_response_time_p90: "< 4 hours"
-  resolution_time_avg: "< 48 hours"
-  self_service_rate: "> 50%"
-  csat: "> 4.0/5"
-  nps: "> 30"
+  first_response_time_p90: '< 4 hours'
+  resolution_time_avg: '< 48 hours'
+  self_service_rate: '> 50%'
+  csat: '> 4.0/5'
+  nps: '> 30'
 ```
 
 ## Scaling Strategy
@@ -421,6 +437,7 @@ Support Manager (1)
 ### When to Hire Support Staff
 
 **Rule of Thumb**:
+
 - 0-500 users: Founders handle it
 - 500-2,000 users: 1 support person
 - 2,000-5,000 users: 2-3 support people
@@ -428,6 +445,7 @@ Support Manager (1)
 - 20,000+ users: Build a team
 
 **Better metric**: Support load
+
 - Hire when: > 50 tickets/day or > 10 concurrent chats
 - Each agent can handle: ~30-40 tickets/day or 8-10 chats/day
 
@@ -456,13 +474,13 @@ class SupportSystem {
     })
     return ticket
   }
-  
+
   async trackKBArticleView(article_id, user_id) {
     await analytics.track('kb_article_viewed', {
       article_id,
       user_id
     })
-    
+
     // If user doesn't create ticket after viewing,
     // article was helpful (deflection)
   }
@@ -479,19 +497,15 @@ async function detectPotentialIssues() {
   // Error spike detection
   const errorRate = await getErrorRate('last_hour')
   if (errorRate > 2 * avgErrorRate) {
-    await notifySupport("Error spike detected")
+    await notifySupport('Error spike detected')
     await displayStatusMessage("We're investigating an issue...")
   }
-  
+
   // User struggle detection
   const strugglingUsers = await detectStrugglingUsers({
-    criteria: [
-      'repeated_failed_actions',
-      'long_time_on_page',
-      'back_and_forth_clicks'
-    ]
+    criteria: ['repeated_failed_actions', 'long_time_on_page', 'back_and_forth_clicks']
   })
-  
+
   if (strugglingUsers.length > 0) {
     await offerProactiveHelp(strugglingUsers)
   }
@@ -503,7 +517,7 @@ async function detectPotentialIssues() {
 ```typescript
 interface CustomerHealth {
   user_id: string
-  health_score: number  // 0-100
+  health_score: number // 0-100
   signals: {
     usage_frequency: 'increasing' | 'stable' | 'declining'
     feature_adoption: number
@@ -525,12 +539,14 @@ if (customer.health_score < 40) {
 ## Quick Start Checklist
 
 ### Week 1: Foundation
+
 - [ ] Set up support email (support@)
 - [ ] Create basic FAQ (top 10 questions)
 - [ ] Install chat widget
 - [ ] Document known issues
 
 ### Week 2-3: Knowledge Base
+
 - [ ] Choose KB platform
 - [ ] Create getting started guide
 - [ ] Document all features
@@ -538,12 +554,14 @@ if (customer.health_score < 40) {
 - [ ] Create troubleshooting section
 
 ### Week 4: Automation
+
 - [ ] Set up auto-responders
 - [ ] Create email templates
 - [ ] Configure routing rules
 - [ ] Add chatbot (basic)
 
 ### Ongoing
+
 - [ ] Review ticket themes weekly
 - [ ] Update KB based on common questions
 - [ ] Track self-service rate
@@ -561,6 +579,7 @@ if (customer.health_score < 40) {
 ## Success Criteria
 
 You have great support when:
+
 - ✅ 70%+ of users find answers without contacting support
 - ✅ First response time < 2 hours during business hours
 - ✅ Customer satisfaction > 4.5/5

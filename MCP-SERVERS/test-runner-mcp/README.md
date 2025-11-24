@@ -37,6 +37,7 @@ Add to your Claude MCP settings:
 ## Tools
 
 ### 1. configure
+
 Configure test runner settings.
 
 ```typescript
@@ -48,6 +49,7 @@ Configure test runner settings.
 ```
 
 ### 2. run_tests
+
 Run tests and return results.
 
 ```typescript
@@ -60,6 +62,7 @@ Run tests and return results.
 ```
 
 Returns:
+
 ```json
 {
   "framework": "vitest",
@@ -84,6 +87,7 @@ Returns:
 ```
 
 ### 3. discover_tests
+
 Find all test files.
 
 ```typescript
@@ -93,6 +97,7 @@ Find all test files.
 ```
 
 ### 4. run_single_test
+
 Run a specific test file.
 
 ```typescript
@@ -103,6 +108,7 @@ Run a specific test file.
 ```
 
 ### 5. generate_coverage
+
 Generate coverage report.
 
 ```typescript
@@ -113,6 +119,7 @@ Generate coverage report.
 ```
 
 ### 6. watch_tests
+
 Run tests in watch mode.
 
 ```typescript
@@ -129,54 +136,58 @@ await testRunner.configure({
   framework: 'vitest',
   projectPath: './my-project',
   testPattern: '**/*.test.ts'
-});
+})
 
 // 2. Discover tests
-const tests = await testRunner.discover_tests();
-console.log(`Found ${tests.count} test files`);
+const tests = await testRunner.discover_tests()
+console.log(`Found ${tests.count} test files`)
 
 // 3. Run all tests with coverage
 const results = await testRunner.run_tests({
   coverage: true
-});
+})
 
-console.log(`✅ ${results.passed} passed`);
-console.log(`❌ ${results.failed} failed`);
-console.log(`📊 Coverage: ${results.coverage.statements}%`);
+console.log(`✅ ${results.passed} passed`)
+console.log(`❌ ${results.failed} failed`)
+console.log(`📊 Coverage: ${results.coverage.statements}%`)
 
 // 4. Run specific test file
 const singleResult = await testRunner.run_single_test({
   filePath: 'src/api.test.ts',
   testName: 'should handle 404 errors'
-});
+})
 
 // 5. Generate HTML coverage report
 await testRunner.generate_coverage({
   format: 'html',
   outputPath: './coverage'
-});
+})
 ```
 
 ## Supported Frameworks
 
 ### Vitest (Recommended)
+
 - Fast, modern testing framework
 - Built-in coverage with c8
 - Watch mode with HMR
 - TypeScript support
 
 ### Jest
+
 - Most popular testing framework
 - Extensive ecosystem
 - Built-in mocking
 - Snapshot testing
 
 ### Mocha
+
 - Flexible, unopinionated
 - Wide plugin support
 - BDD/TDD styles
 
 ### Playwright
+
 - E2E and integration tests
 - Multiple browsers
 - Visual regression testing
@@ -184,6 +195,7 @@ await testRunner.generate_coverage({
 ## Integration with Testing Strategist Skill
 
 This MCP enables the `testing-strategist` skill by providing:
+
 - Automated test execution
 - Real-time test results
 - Coverage analysis
@@ -214,24 +226,28 @@ Let me help you fix these failures...
 ## Best Practices
 
 ### Test Organization
+
 - Group tests by feature/component
 - Use descriptive test names
 - Keep tests independent
 - Clean up after tests
 
 ### Coverage Targets
+
 - Aim for 80%+ statement coverage
 - Focus on critical paths
 - Don't chase 100% coverage
 - Test behavior, not implementation
 
 ### Performance
+
 - Run tests in parallel when possible
 - Use watch mode during development
 - Skip slow tests in CI (tag them)
 - Cache test results
 
 ### CI Integration
+
 - Run tests on every commit
 - Block merge if tests fail
 - Generate coverage reports
@@ -240,15 +256,19 @@ Let me help you fix these failures...
 ## Output Formats
 
 ### JSON
+
 Structured test results for programmatic use
 
 ### HTML
+
 Interactive coverage reports with source highlighting
 
 ### LCOV
+
 Coverage format for CI/CD integration
 
 ### Text
+
 Terminal-friendly output with colors
 
 ## Error Handling
@@ -278,4 +298,3 @@ npm test
 - **Enables:** testing-strategist skill
 - **Use case:** Test automation, CI/CD, TDD workflows
 - **Integration:** Works with all major test frameworks
-

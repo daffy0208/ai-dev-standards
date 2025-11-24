@@ -9,6 +9,7 @@ You: "Use the quality-auditor skill to audit ai-dev-standards"
 ```
 
 Claude will:
+
 1. **Discover** - Read documentation, examine code, test functionality (10 min)
 2. **Evaluate** - Score all 12 dimensions with evidence (30-60 min)
 3. **Report** - Generate comprehensive report with recommendations (20 min)
@@ -57,11 +58,13 @@ secure enough for enterprise use?"
 **Overall Score:** 8.7/10 - Excellent
 
 **Key Strengths:**
+
 1. Exceptional automation (10/10)
 2. Outstanding documentation (9/10)
 3. Excellent ADHD-friendliness (9/10)
 
 **Critical Improvements:**
+
 1. Add unit tests (current: 0%)
 2. Security audit needed
 3. Performance benchmarks missing
@@ -102,21 +105,25 @@ special attention to ADHD-friendliness and developer experience
 ## Understanding Scores
 
 ### 9-10 (Exceptional)
+
 - Industry-leading
 - Sets new standards
 - Minimal improvements possible
 
 ### 7-8 (Excellent/Very Good)
+
 - Above average
 - Competitive with top tools
 - Some improvements beneficial
 
 ### 5-6 (Good/Acceptable)
+
 - Meets expectations
 - Average quality
 - Several improvements needed
 
 ### Below 5 (Needs Work)
+
 - Below standards
 - Significant issues
 - Major improvements required
@@ -126,21 +133,25 @@ special attention to ADHD-friendliness and developer experience
 ## When to Use
 
 **Before Launch:**
+
 - Verify production-readiness
 - Identify blocking issues
 - Validate quality claims
 
 **During Development:**
+
 - Track quality metrics
 - Guide improvement priorities
 - Benchmark progress
 
 **For Comparison:**
+
 - Evaluate alternatives
 - Understand trade-offs
 - Make informed decisions
 
 **For Compliance:**
+
 - Security audit
 - Accessibility review
 - Standards compliance
@@ -150,61 +161,73 @@ special attention to ADHD-friendliness and developer experience
 ## What Gets Evaluated
 
 ### 1. Code Quality (10%)
+
 - Structure, patterns, maintainability
 - Clean code principles
 - Design patterns
 
 ### 2. Architecture (10%)
+
 - System design, scalability
 - Modularity, coupling
 - Architectural patterns
 
 ### 3. Documentation (10%)
+
 - Completeness, clarity
 - Examples, accuracy
 - Onboarding quality
 
 ### 4. Usability (10%)
+
 - Learning curve
 - Installation ease
 - User experience
 
 ### 5. Performance (8%)
+
 - Speed, efficiency
 - Resource usage
 - Optimization
 
 ### 6. Security (10%)
+
 - Vulnerabilities
 - Best practices
 - OWASP compliance
 
 ### 7. Testing (8%)
+
 - Coverage, quality
 - Automation
 - Test types
 
 ### 8. Maintainability (8%)
+
 - Technical debt
 - Refactorability
 - Code clarity
 
 ### 9. Developer Experience (10%)
+
 - Setup ease
 - Debugging
 - Tooling
 
 ### 10. Accessibility (8%)
+
 - ADHD-friendly
 - WCAG compliance
 - Inclusive design
 
 ### 11. CI/CD (5%)
+
 - Automation
 - Deployment
 - Reliability
 
 ### 12. Innovation (3%)
+
 - Novelty
 - Creativity
 - Forward-thinking
@@ -345,6 +368,7 @@ The skill compares against:
 Yes! Regular self-audits maintain quality.
 
 **Q: How often should I audit?**
+
 - Pre-launch: Always
 - Major releases: Every time
 - Ongoing: Quarterly

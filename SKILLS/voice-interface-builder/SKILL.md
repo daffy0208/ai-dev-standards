@@ -12,18 +12,21 @@ I help you build voice-enabled interfaces using the Web Speech API and modern vo
 ## What I Do
 
 **Speech Recognition:**
+
 - Voice commands and controls
 - Voice-to-text input
 - Continuous dictation
 - Command detection
 
 **Text-to-Speech:**
+
 - Reading content aloud
 - Voice feedback and notifications
 - Multilingual speech output
 - Voice selection and customization
 
 **Voice UI:**
+
 - Voice-first interfaces
 - Accessibility features
 - Hands-free controls
@@ -58,8 +61,7 @@ export function useSpeechRecognition({
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    const SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
 
     if (!SpeechRecognition) {
       console.warn('Speech recognition not supported')
@@ -71,16 +73,16 @@ export function useSpeechRecognition({
     recognition.lang = language
     recognition.interimResults = true
 
-    recognition.onresult = (event) => {
+    recognition.onresult = event => {
       const transcript = Array.from(event.results)
-        .map((result) => result[0].transcript)
+        .map(result => result[0].transcript)
         .join('')
 
       setTranscript(transcript)
       onResult?.(transcript)
     }
 
-    recognition.onerror = (event) => {
+    recognition.onerror = event => {
       console.error('Speech recognition error:', event.error)
       onError?.(event.error)
       setIsListening(false)
@@ -162,12 +164,15 @@ export function useSpeechSynthesis() {
     window.speechSynthesis.onvoiceschanged = loadVoices
   }, [])
 
-  const speak = (text: string, options?: {
-    voice?: SpeechSynthesisVoice
-    rate?: number
-    pitch?: number
-    volume?: number
-  }) => {
+  const speak = (
+    text: string,
+    options?: {
+      voice?: SpeechSynthesisVoice
+      rate?: number
+      pitch?: number
+      volume?: number
+    }
+  ) => {
     if (typeof window === 'undefined') return
 
     const utterance = new SpeechSynthesisUtterance(text)
@@ -580,6 +585,7 @@ export function Form() {
 ## When to Use Me
 
 **Perfect for:**
+
 - Building voice-controlled interfaces
 - Adding accessibility features
 - Creating hands-free experiences
@@ -587,6 +593,7 @@ export function Form() {
 - Building voice assistants
 
 **I'll help you:**
+
 - Implement speech recognition
 - Add text-to-speech
 - Build voice commands

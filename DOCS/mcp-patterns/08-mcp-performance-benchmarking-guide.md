@@ -155,38 +155,38 @@ class BaselineBenchmark:
         self.agent = agent
         self.test_cases = test_cases
         self.results = []
-    
+
     def run_baseline(self, iterations=5):
         """Run each test case multiple times"""
         for test_case in self.test_cases:
             print(f"Running baseline for: {test_case['name']}")
-            
+
             case_results = []
             for i in range(iterations):
                 result = self._run_single_test(test_case)
                 case_results.append(result)
-                
+
                 # Log individual result
                 self._log_result(test_case['name'], i, result)
-            
+
             # Aggregate results for this test case
             aggregated = self._aggregate_results(test_case['name'], case_results)
             self.results.append(aggregated)
-        
+
         # Save baseline for future comparison
         self._save_baseline()
-        
+
         return self.results
-    
+
     def _run_single_test(self, test_case):
         """Execute single test and measure metrics"""
         start_time = time.time()
-        
+
         # Execute agent
         response = self.agent.execute(test_case['description'])
-        
+
         end_time = time.time()
-        
+
         # Extract metrics
         return {
             "input_tokens": response.usage.prompt_tokens,
@@ -197,20 +197,20 @@ class BaselineBenchmark:
             "error": response.error if not response.success else None,
             "timestamp": datetime.now().isoformat()
         }
-    
+
     def _aggregate_results(self, test_name, results):
         """Calculate mean, median, p95 for each metric"""
         import statistics
-        
+
         successful = [r for r in results if r['success']]
-        
+
         if not successful:
             return {
                 "test_name": test_name,
                 "error_rate": 100.0,
                 "message": "All runs failed"
             }
-        
+
         return {
             "test_name": test_name,
             "sample_size": len(results),
@@ -228,12 +228,12 @@ class BaselineBenchmark:
                 "p95": self._percentile([r['latency'] for r in successful], 95)
             }
         }
-    
+
     def _percentile(self, data, percentile):
         """Calculate percentile"""
         import statistics
         return statistics.quantiles(data, n=100)[percentile-1]
-    
+
     def _save_baseline(self):
         """Save baseline results for comparison"""
         with open('baseline-results.json', 'w') as f:
@@ -242,7 +242,7 @@ class BaselineBenchmark:
                 "agent_version": "direct-mcp",
                 "results": self.results
             }, f, indent=2)
-        
+
         print("✅ Baseline saved to baseline-results.json")
 ```
 
@@ -272,6 +272,7 @@ for result in results:
 
 ```markdown
 # Baseline Performance Report
+
 **Date**: 2025-11-14
 **Agent**: Direct MCP v2.0
 **Test Iterations**: 5 per case
@@ -279,6 +280,7 @@ for result in results:
 ## Results
 
 ### Test Case 1: Simple Copy-Paste
+
 - **Tokens**: 32,000 (mean), 31,500 (median)
   - Input: 28,000
   - Output: 4,000
@@ -286,6 +288,7 @@ for result in results:
 - **Success Rate**: 100%
 
 ### Test Case 2: Multi-Step Workflow
+
 - **Tokens**: 67,000 (mean), 65,000 (median)
   - Input: 45,000
   - Output: 22,000
@@ -297,12 +300,14 @@ for result in results:
 ## Cost Analysis
 
 **Current Cost per Run**:
+
 - Simple tasks: $0.18 (32K tokens)
 - Complex tasks: $0.48 (67K tokens)
 
 **Monthly Cost** (1000 runs/month, 50% simple, 50% complex):
-- Simple: 500 * $0.18 = $90
-- Complex: 500 * $0.48 = $240
+
+- Simple: 500 \* $0.18 = $90
+- Complex: 500 \* $0.48 = $240
 - **Total: $330/month**
 ```
 
@@ -340,13 +345,13 @@ class BenchmarkComparison:
             self.baseline = json.load(f)
         with open(migration_path) as f:
             self.migration = json.load(f)
-    
+
     def compare(self):
         """Generate comparison report"""
         comparisons = []
-        
+
         for baseline_result, migration_result in zip(
-            self.baseline['results'], 
+            self.baseline['results'],
             self.migration['results']
         ):
             comparison = {
@@ -369,51 +374,51 @@ class BenchmarkComparison:
                 "migration_latency": migration_result['latency']['mean']
             }
             comparisons.append(comparison)
-        
+
         return comparisons
-    
+
     def _calculate_reduction(self, baseline, current):
         """Calculate % reduction"""
         return ((baseline - current) / baseline) * 100
-    
+
     def _calculate_change(self, baseline, current):
         """Calculate % change (negative = improvement)"""
         return ((current - baseline) / baseline) * 100
-    
+
     def print_report(self):
         """Print formatted comparison report"""
         comparisons = self.compare()
-        
+
         print("\n" + "="*80)
         print("MIGRATION PERFORMANCE COMPARISON")
         print("="*80)
-        
+
         for comp in comparisons:
             print(f"\n📊 {comp['test_name']}")
             print(f"   Tokens: {comp['baseline_tokens']:.0f} → {comp['migration_tokens']:.0f}")
             print(f"   ✅ Reduction: {comp['token_reduction']:.1f}%")
             print(f"   Output tokens reduction: {comp['output_token_reduction']:.1f}%")
             print(f"   Latency: {comp['baseline_latency']:.2f}s → {comp['migration_latency']:.2f}s")
-            
+
             if comp['latency_change'] < 0:
                 print(f"   ⚡ Faster by: {abs(comp['latency_change']):.1f}%")
             else:
                 print(f"   ⏱️ Slower by: {comp['latency_change']:.1f}%")
-        
+
         # Overall summary
         avg_token_reduction = sum(c['token_reduction'] for c in comparisons) / len(comparisons)
         print(f"\n{'='*80}")
         print(f"OVERALL RESULTS:")
         print(f"  Average token reduction: {avg_token_reduction:.1f}%")
         print(f"  Target: 40-60% (first run), 85-95% (with skills)")
-        
+
         if 40 <= avg_token_reduction <= 60:
             print(f"  ✅ Within target range for first run!")
         elif avg_token_reduction >= 85:
             print(f"  🎉 Excellent! Exceeding even skill-optimized targets!")
         else:
             print(f"  ⚠️ Below target. Review prompts and tool loading.")
-        
+
         print("="*80 + "\n")
 ```
 
@@ -456,7 +461,7 @@ OVERALL RESULTS:
 class DetailedAnalysis:
     def analyze_token_breakdown(self, baseline, migration):
         """Analyze where token savings come from"""
-        
+
         breakdown = {
             "tool_descriptions_saved": self._calculate_tool_desc_savings(
                 baseline, migration
@@ -468,22 +473,22 @@ class DetailedAnalysis:
                 baseline, migration
             )
         }
-        
+
         return breakdown
-    
+
     def analyze_latency_breakdown(self, baseline, migration):
         """Analyze latency changes"""
-        
+
         breakdown = {
             "tool_discovery_time": migration.get('discovery_time', 0),
             "code_execution_time": migration.get('execution_time', 0),
             "network_time": migration.get('network_time', 0),
             "total": migration['latency']['mean']
         }
-        
+
         # Compare to baseline
         baseline_total = baseline['latency']['mean']
-        
+
         analysis = {
             "breakdown": breakdown,
             "change_vs_baseline": {
@@ -491,7 +496,7 @@ class DetailedAnalysis:
                 "percentage": ((breakdown['total'] - baseline_total) / baseline_total) * 100
             }
         }
-        
+
         return analysis
 ```
 
@@ -502,17 +507,17 @@ import matplotlib.pyplot as plt
 
 def plot_comparison(comparisons):
     """Create visual comparison charts"""
-    
+
     test_names = [c['test_name'] for c in comparisons]
     baseline_tokens = [c['baseline_tokens'] for c in comparisons]
     migration_tokens = [c['migration_tokens'] for c in comparisons]
-    
+
     # Token comparison bar chart
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
-    
+
     x = range(len(test_names))
     width = 0.35
-    
+
     ax1.bar([i - width/2 for i in x], baseline_tokens, width, label='Baseline', color='red', alpha=0.7)
     ax1.bar([i + width/2 for i in x], migration_tokens, width, label='Migration', color='green', alpha=0.7)
     ax1.set_ylabel('Tokens')
@@ -521,7 +526,7 @@ def plot_comparison(comparisons):
     ax1.set_xticklabels([t[:15] + '...' if len(t) > 15 else t for t in test_names], rotation=45, ha='right')
     ax1.legend()
     ax1.grid(axis='y', alpha=0.3)
-    
+
     # Reduction percentage
     reductions = [c['token_reduction'] for c in comparisons]
     colors = ['green' if r >= 40 else 'orange' for r in reductions]
@@ -534,7 +539,7 @@ def plot_comparison(comparisons):
     ax2.set_xticklabels([t[:15] + '...' if len(t) > 15 else t for t in test_names], rotation=45, ha='right')
     ax2.legend()
     ax2.grid(axis='y', alpha=0.3)
-    
+
     plt.tight_layout()
     plt.savefig('benchmark-comparison.png', dpi=300)
     print("📊 Chart saved to benchmark-comparison.png")
@@ -550,7 +555,7 @@ def plot_comparison(comparisons):
 class OptimizationTracker:
     def __init__(self):
         self.weekly_results = []
-    
+
     def record_week(self, week_number, benchmark_results):
         """Record benchmark results for a week"""
         self.weekly_results.append({
@@ -558,33 +563,33 @@ class OptimizationTracker:
             "timestamp": datetime.now().isoformat(),
             "results": benchmark_results
         })
-    
+
     def track_improvement(self):
         """Track improvements over time"""
         if len(self.weekly_results) < 2:
             return "Need at least 2 weeks of data"
-        
+
         improvements = []
-        
+
         for i in range(1, len(self.weekly_results)):
             prev_week = self.weekly_results[i-1]
             curr_week = self.weekly_results[i]
-            
+
             # Calculate improvement
             prev_tokens = self._avg_tokens(prev_week['results'])
             curr_tokens = self._avg_tokens(curr_week['results'])
-            
+
             improvement = ((prev_tokens - curr_tokens) / prev_tokens) * 100
-            
+
             improvements.append({
                 "week": curr_week['week'],
                 "improvement": improvement,
                 "prev_tokens": prev_tokens,
                 "curr_tokens": curr_tokens
             })
-        
+
         return improvements
-    
+
     def _avg_tokens(self, results):
         """Calculate average tokens across all tests"""
         return sum(r['tokens']['mean'] for r in results) / len(results)
@@ -596,11 +601,11 @@ class OptimizationTracker:
 class SkillUsageTracker:
     def track_skill_adoption(self, runs):
         """Track how often skills are used vs created"""
-        
+
         skill_created = sum(1 for r in runs if r.get('skill_created'))
         skill_used = sum(1 for r in runs if r.get('skill_used'))
         no_skill = sum(1 for r in runs if not r.get('skill_created') and not r.get('skill_used'))
-        
+
         return {
             "total_runs": len(runs),
             "skills_created": skill_created,
@@ -609,7 +614,7 @@ class SkillUsageTracker:
             "skill_usage_rate": (skill_used / len(runs)) * 100 if runs else 0,
             "skill_library_size": self._count_skills()
         }
-    
+
     def _count_skills(self):
         """Count skills in /mnt/skills"""
         import os
@@ -631,21 +636,21 @@ class ROICalculator:
         self.baseline_monthly = baseline_cost
         self.migration_monthly = migration_cost
         self.implementation_cost = implementation_cost
-    
+
     def calculate_roi(self):
         """Calculate return on investment"""
-        
+
         monthly_savings = self.baseline_monthly - self.migration_monthly
-        
+
         # Break-even point
         break_even_months = self.implementation_cost / monthly_savings if monthly_savings > 0 else float('inf')
-        
+
         # 1-year projection
         year_1_savings = (monthly_savings * 12) - self.implementation_cost
-        
+
         # 3-year projection
         year_3_savings = (monthly_savings * 36) - self.implementation_cost
-        
+
         return {
             "monthly_savings": monthly_savings,
             "break_even_months": break_even_months,
@@ -654,11 +659,11 @@ class ROICalculator:
             "roi_1_year": (year_1_savings / self.implementation_cost) * 100,
             "roi_3_year": (year_3_savings / self.implementation_cost) * 100
         }
-    
+
     def print_report(self):
         """Print ROI analysis"""
         roi = self.calculate_roi()
-        
+
         print("\n" + "="*60)
         print("ROI ANALYSIS")
         print("="*60)
@@ -710,27 +715,27 @@ class ContinuousBenchmark:
     def __init__(self, agent, test_cases):
         self.agent = agent
         self.test_cases = test_cases
-    
+
     def run_daily_benchmark(self):
         """Run lightweight benchmark daily"""
         # Run subset of test cases
         quick_tests = self.test_cases[:3]  # First 3 cases only
-        
+
         results = []
         for test in quick_tests:
             result = self._run_single_test(test)
             results.append(result)
-        
+
         # Compare to baseline
         self._check_regression(results)
-        
+
         # Log
         self._log_daily_results(results)
-    
+
     def _check_regression(self, results):
         """Alert if performance regresses"""
         baseline = self._load_baseline()
-        
+
         for result, baseline_result in zip(results, baseline):
             # Check token regression
             if result['tokens'] > baseline_result['tokens'] * 1.2:  # 20% worse
@@ -738,7 +743,7 @@ class ContinuousBenchmark:
                     f"Token regression detected in {result['test_name']}: "
                     f"{result['tokens']} vs baseline {baseline_result['tokens']}"
                 )
-            
+
             # Check latency regression
             if result['latency'] > baseline_result['latency'] * 1.5:  # 50% worse
                 self._alert_regression(
@@ -752,12 +757,14 @@ class ContinuousBenchmark:
 ## Conclusion
 
 Performance benchmarking is essential to:
+
 1. **Validate** the migration is achieving promised benefits
 2. **Track** improvements over time
 3. **Detect** performance regressions early
 4. **Calculate** ROI and justify the investment
 
 **Key Steps**:
+
 1. Measure baseline before migration
 2. Run same tests after migration
 3. Compare and analyze results
@@ -765,6 +772,7 @@ Performance benchmarking is essential to:
 5. Monitor continuously in production
 
 **Success Criteria**:
+
 - ✅ 40-60% token reduction (first run)
 - ✅ 85-95% token reduction (with skills)
 - ✅ Same or better latency

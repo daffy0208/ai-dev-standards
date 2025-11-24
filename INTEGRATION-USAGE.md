@@ -17,6 +17,7 @@ In integration mode, ai-dev-standards becomes part of your project:
 - **Zero configuration** - One command does everything
 
 **When to use integration mode:**
+
 - Active development on a project
 - Want AI assistants to automatically use best practices
 - Need automatic updates when standards evolve
@@ -35,6 +36,7 @@ bash ~/ai-dev-standards/setup-project.sh
 ```
 
 **That's it!** The script automatically:
+
 1. Detects your project type (Next.js, React, Node.js, etc.)
 2. Installs the ai-dev CLI globally
 3. Syncs all 238 core resources
@@ -85,6 +87,7 @@ cat START-HERE.md
 ```
 
 This includes:
+
 - Project health score
 - Recommended skills for your project
 - Priority tasks
@@ -111,6 +114,7 @@ your-project/
 ```
 
 **What's NOT committed (automatically in .gitignore):**
+
 - `START-HERE.md` - Personal guide
 - `.ai-dev/backups/` - Backup files
 - `orchestration-requests/` - Agent tracking
@@ -125,6 +129,7 @@ your-project/
 Claude/AI assistants automatically use relevant skills based on your conversation:
 
 **Example:**
+
 ```
 You: "I want to build an MVP for a task management app"
 
@@ -185,6 +190,7 @@ bash ~/ai-dev-standards/setup-project.sh
 ### What Gets Updated
 
 The sync updates:
+
 - **Skills** (SKILLS/) - <!-- AUTO-GEN:START:skills -->64<!-- AUTO-GEN:END:skills --> specialized methodologies
 - **MCP Servers** (MCP-SERVERS/) - <!-- AUTO-GEN:START:mcps -->50<!-- AUTO-GEN:END:mcps --> automation tools
 - **Configuration** (.cursorrules, .gitignore, etc.)
@@ -204,16 +210,19 @@ Your customizations in other directories are preserved.
 AI assistants can invoke these tools automatically:
 
 **Discovery:**
+
 - `brain_search` - Search all skills, MCPs, tools by keyword
 - `brain_select_skills` - Get skill recommendations for a task
 - `brain_show_skill` - Get detailed skill information
 
 **Relationships:**
+
 - `brain_relationships` - Show skill dependencies (MCPs, tools, components)
 - `graph_query_by_domain` - Find capabilities by domain (ai, security, etc.)
 - `graph_query_by_effect` - Find capabilities by effect (implements_auth, etc.)
 
 **Status:**
+
 - `brain_status` - Repository status (64 skills, 50 MCPs, 238 core resources)
 
 ### Using with Claude
@@ -290,6 +299,7 @@ The `.cursorrules` file configures the Brain-First Development workflow:
 
 ```markdown
 # Edit to customize for your project
+
 vim .cursorrules
 ```
 
@@ -337,6 +347,7 @@ The `.cursorrules` file enables a discovery-first approach:
 ### Project-Specific Recommendations
 
 After setup, `START-HERE.md` provides:
+
 - Health score based on your codebase
 - Skills most relevant to your project
 - Priority issues to address
@@ -345,6 +356,7 @@ After setup, `START-HERE.md` provides:
 ### Skill Auto-Activation
 
 Skills activate based on:
+
 - **File context** - Which files you're editing
 - **Conversation context** - What you're discussing
 - **Task type** - Building, testing, deploying, etc.
@@ -363,6 +375,7 @@ cd /your/project
 ```
 
 Shows:
+
 - New commits available
 - What's changed
 - How to update
@@ -374,6 +387,7 @@ cat .ai-dev.json
 ```
 
 Shows:
+
 - Current version
 - Last sync timestamp
 - Resources installed
@@ -406,6 +420,7 @@ git pull  # If git hook is configured
 ### What Gets Committed
 
 Safe to commit:
+
 - `.ai-dev.json` - Version tracking
 - `.cursorrules` - Development workflow
 - `.claude/` and `.codex/` directories - Configurations
@@ -414,6 +429,7 @@ Safe to commit:
 ### What Stays Local
 
 Automatically excluded (in `.gitignore`):
+
 - `START-HERE.md` - Personalized guide
 - `.ai-dev/backups/` - Backup files
 - `orchestration-requests/` - Request tracking
@@ -428,6 +444,7 @@ Automatically excluded (in `.gitignore`):
 ### Project Isolation (v3.0.0+)
 
 Version 3.0.0+ uses **local-first architecture**:
+
 - Complete project isolation
 - No shared state between projects
 - No cross-project data exposure
@@ -438,26 +455,31 @@ Version 3.0.0+ uses **local-first architecture**:
 ## 🧪 Project Types Supported
 
 ### Next.js Projects
+
 - Auto-detects and uses `cursorrules-saas.md` template
 - Configures for React + Server Components
 - Sets up recommended deployment patterns
 
 ### React Projects
+
 - Auto-detects and uses `cursorrules-saas.md` template
 - Configures for SPA patterns
 - Sets up component best practices
 
 ### Node.js / Backend Projects
+
 - Uses minimal configuration
 - Focuses on API design and backend skills
 - Configures for Express/Fastify patterns
 
 ### Existing Projects
+
 - Uses `cursorrules-existing-project.md` template
 - Focuses on documentation and improvement
 - Provides analysis and recommendations
 
 ### Empty Projects
+
 - Uses minimal template
 - Helps bootstrap new projects
 - Guides through initial setup
@@ -469,6 +491,7 @@ Version 3.0.0+ uses **local-first architecture**:
 ### "ai-dev command not found"
 
 Install the CLI:
+
 ```bash
 cd ~/ai-dev-standards/CLI
 npm install
@@ -478,6 +501,7 @@ npm link
 ### "brain-mcp not working in Claude"
 
 Build brain-mcp:
+
 ```bash
 cd ~/ai-dev-standards/MCP-SERVERS/brain-mcp
 npm install
@@ -489,6 +513,7 @@ Then restart Claude/Codex.
 ### "Setup script fails with permission error"
 
 Make script executable:
+
 ```bash
 chmod +x ~/ai-dev-standards/setup-project.sh
 ```
@@ -496,6 +521,7 @@ chmod +x ~/ai-dev-standards/setup-project.sh
 ### "Git hook not running"
 
 Verify and fix:
+
 ```bash
 chmod +x .git/hooks/post-merge
 # Test manually:
@@ -505,10 +531,12 @@ chmod +x .git/hooks/post-merge
 ### "Sync overwrote my customizations"
 
 **Prevention:** Keep customizations in:
+
 - `.ai-dev/custom-skills/` - Custom skills
 - Your own directories - The sync only touches specific directories
 
 **Recovery:** Check git history:
+
 ```bash
 git diff HEAD^ HEAD -- [file-that-changed]
 git checkout HEAD^ -- [file-to-restore]
@@ -517,6 +545,7 @@ git checkout HEAD^ -- [file-to-restore]
 ### "Skills not activating automatically"
 
 Check configuration:
+
 ```bash
 # Verify .cursorrules exists
 cat .cursorrules
@@ -569,6 +598,7 @@ Let the brain guide you to the right resources.
 ### 4. Test After Major Updates
 
 After updating to a new major version:
+
 1. Run your test suite
 2. Test brain-mcp connectivity
 3. Verify Claude can access skills
@@ -608,16 +638,19 @@ EOF
 ## 📚 Additional Resources
 
 ### Documentation
+
 - [STANDALONE-USAGE.md](STANDALONE-USAGE.md) - Using as reference library
 - [DOCS/TROUBLESHOOTING.md](DOCS/TROUBLESHOOTING.md) - Common issues
 - [CONTRIBUTING.md](CONTRIBUTING.md) - Contributing guidelines
 
 ### Getting Help
+
 - Check [DOCS/INDEX.md](DOCS/INDEX.md) for all documentation
 - Review [META/HOW-TO-USE.md](META/HOW-TO-USE.md) for navigation
 - Open an issue on GitHub for bugs
 
 ### What's New
+
 - [CHANGELOG.md](CHANGELOG.md) - Version history
 - [VERSION-POLICY.md](VERSION-POLICY.md) - Versioning strategy
 
@@ -626,33 +659,38 @@ EOF
 ## 📊 What You Get (238 Core Resources)
 
 ### 64 Specialized Skills
+
 Methodologies covering product development, AI development, technical development, infrastructure, and UX/design.
 
 ### 50 MCP Servers
+
 Automation tools for AI/ML, product management, engineering, quality, and design.
 
 ### 72 Components
+
 React components for auth, forms, errors, feedback, media, layouts, and advanced UI.
 
 ### 28 Service Integrations
+
 Pre-configured connections to OpenAI, Supabase, Stripe, and other essential services.
 
 ### 24 Essential Tools
+
 Development utilities and automation scripts.
 
 ---
 
 ## 🎯 Comparison: Integration vs Standalone
 
-| Feature | Integration Mode | Standalone Mode |
-|---------|-----------------|-----------------|
-| **Setup** | One command | Clone + browse |
-| **AI Integration** | Automatic via MCP | Manual prompts |
-| **Updates** | Auto-sync | Manual git pull |
-| **Skill Activation** | Automatic | Manual reference |
-| **Project Analysis** | Yes (START-HERE.md) | No |
-| **Best For** | Active development | Learning, browsing |
-| **Overhead** | Adds config files | None |
+| Feature              | Integration Mode    | Standalone Mode    |
+| -------------------- | ------------------- | ------------------ |
+| **Setup**            | One command         | Clone + browse     |
+| **AI Integration**   | Automatic via MCP   | Manual prompts     |
+| **Updates**          | Auto-sync           | Manual git pull    |
+| **Skill Activation** | Automatic           | Manual reference   |
+| **Project Analysis** | Yes (START-HERE.md) | No                 |
+| **Best For**         | Active development  | Learning, browsing |
+| **Overhead**         | Adds config files   | None               |
 
 ---
 

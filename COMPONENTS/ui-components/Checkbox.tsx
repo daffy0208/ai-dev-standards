@@ -1,6 +1,6 @@
-import React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from './utils';
+import React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from './utils'
 
 const checkboxVariants = cva(
   'peer shrink-0 rounded border border-gray-300 bg-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-600 disabled:cursor-not-allowed disabled:opacity-50',
@@ -9,27 +9,27 @@ const checkboxVariants = cva(
       size: {
         sm: 'h-4 w-4',
         md: 'h-5 w-5',
-        lg: 'h-6 w-6',
+        lg: 'h-6 w-6'
       },
       checked: {
         true: 'border-blue-600 bg-blue-600',
         false: 'border-gray-300 bg-white',
-        indeterminate: 'border-blue-600 bg-blue-600',
-      },
+        indeterminate: 'border-blue-600 bg-blue-600'
+      }
     },
     defaultVariants: {
       size: 'md',
-      checked: false,
-    },
+      checked: false
+    }
   }
-);
+)
 
 const CheckIcon = ({ size }: { size?: 'sm' | 'md' | 'lg' }) => {
   const sizeMap = {
     sm: 'h-3 w-3',
     md: 'h-4 w-4',
-    lg: 'h-5 w-5',
-  };
+    lg: 'h-5 w-5'
+  }
 
   return (
     <svg
@@ -42,15 +42,15 @@ const CheckIcon = ({ size }: { size?: 'sm' | 'md' | 'lg' }) => {
     >
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
-  );
-};
+  )
+}
 
 const IndeterminateIcon = ({ size }: { size?: 'sm' | 'md' | 'lg' }) => {
   const sizeMap = {
     sm: 'h-3 w-3',
     md: 'h-4 w-4',
-    lg: 'h-5 w-5',
-  };
+    lg: 'h-5 w-5'
+  }
 
   return (
     <svg
@@ -63,28 +63,28 @@ const IndeterminateIcon = ({ size }: { size?: 'sm' | 'md' | 'lg' }) => {
     >
       <path strokeLinecap="round" strokeLinejoin="round" d="M6 12h12" />
     </svg>
-  );
-};
+  )
+}
 
 export interface CheckboxProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'size'>,
     VariantProps<typeof checkboxVariants> {
   /** Controlled checked state */
-  checked?: boolean;
+  checked?: boolean
   /** Default checked state (uncontrolled) */
-  defaultChecked?: boolean;
+  defaultChecked?: boolean
   /** Indeterminate state */
-  indeterminate?: boolean;
+  indeterminate?: boolean
   /** Change handler */
-  onCheckedChange?: (checked: boolean) => void;
+  onCheckedChange?: (checked: boolean) => void
   /** Label text */
-  label?: string;
+  label?: string
   /** Label position */
-  labelPosition?: 'left' | 'right';
+  labelPosition?: 'left' | 'right'
   /** Label className */
-  labelClassName?: string;
+  labelClassName?: string
   /** Description text below label */
-  description?: string;
+  description?: string
 }
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
@@ -105,22 +105,20 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     },
     ref
   ) => {
-    const [uncontrolledChecked, setUncontrolledChecked] = React.useState(
-      defaultChecked ?? false
-    );
+    const [uncontrolledChecked, setUncontrolledChecked] = React.useState(defaultChecked ?? false)
 
-    const isControlled = controlledChecked !== undefined;
-    const checked = isControlled ? controlledChecked : uncontrolledChecked;
+    const isControlled = controlledChecked !== undefined
+    const checked = isControlled ? controlledChecked : uncontrolledChecked
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      const newChecked = event.target.checked;
+      const newChecked = event.target.checked
       if (!isControlled) {
-        setUncontrolledChecked(newChecked);
+        setUncontrolledChecked(newChecked)
       }
-      onCheckedChange?.(newChecked);
-    };
+      onCheckedChange?.(newChecked)
+    }
 
-    const checkboxState = indeterminate ? 'indeterminate' : checked;
+    const checkboxState = indeterminate ? 'indeterminate' : checked
 
     const checkboxElement = (
       <div className="relative inline-flex items-center justify-center">
@@ -147,7 +145,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           )}
         </div>
       </div>
-    );
+    )
 
     if (label || description) {
       return (
@@ -172,13 +170,13 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             </div>
           )}
         </label>
-      );
+      )
     }
 
-    return checkboxElement;
+    return checkboxElement
   }
-);
+)
 
-Checkbox.displayName = 'Checkbox';
+Checkbox.displayName = 'Checkbox'
 
-export { Checkbox, checkboxVariants };
+export { Checkbox, checkboxVariants }

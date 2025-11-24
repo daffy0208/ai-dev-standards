@@ -23,6 +23,13 @@
 
 import Anthropic from '@anthropic-ai/sdk'
 
+const logInfo = (...messages: unknown[]): void => {
+  const formatted = messages.map(message =>
+    typeof message === 'string' ? message : JSON.stringify(message, null, 2)
+  )
+  process.stdout.write(`${formatted.join(' ')}\n`)
+}
+
 export interface ClaudeConfig {
   apiKey?: string
   model?: 'claude-3-opus-20240229' | 'claude-3-sonnet-20240229' | 'claude-3-haiku-20240307'
@@ -81,10 +88,7 @@ export class ClaudeClient {
     })
   }
 
-  async sendMessage(
-    messages: ClaudeMessage[],
-    systemPrompt?: string
-  ): Promise<ClaudeResponse> {
+  async sendMessage(messages: ClaudeMessage[], systemPrompt?: string): Promise<ClaudeResponse> {
     try {
       const response = await this.client.messages.create({
         model: this.config.model,
@@ -186,25 +190,21 @@ export async function example() {
 
   // Simple message
   const response = await client.sendMessage(
-    [
-      { role: 'user', content: 'What is the capital of France?' }
-    ],
+    [{ role: 'user', content: 'What is the capital of France?' }],
     'You are a helpful geography expert.'
   )
 
-  console.log('Response:', response.content)
-  console.log('Cost:', `$${response.cost.total.toFixed(6)}`)
-  console.log('Tokens:', response.usage)
+  logInfo('Response:', response.content)
+  logInfo('Cost:', `$${response.cost.total.toFixed(6)}`)
+  logInfo('Tokens:', response.usage)
 
   // Streaming example
-  console.log('\nStreaming example:')
-  for await (const chunk of client.streamMessage(
-    [
-      { role: 'user', content: 'Count from 1 to 5' }
-    ]
-  )) {
+  logInfo('\nStreaming example:')
+  for await (const chunk of client.streamMessage([
+    { role: 'user', content: 'Count from 1 to 5' }
+  ])) {
     process.stdout.write(chunk)
   }
 
-  console.log('\n\nTotal session cost:', `$${client.getTotalCost().toFixed(6)}`)
+  logInfo('\n\nTotal session cost:', `$${client.getTotalCost().toFixed(6)}`)
 }

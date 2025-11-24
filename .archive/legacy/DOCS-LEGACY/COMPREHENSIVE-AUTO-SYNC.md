@@ -33,16 +33,16 @@ After running `npx @ai-dev-standards/bootstrap`, your `.ai-dev.json` includes:
   "version": "1.0.0",
   "lastSync": "2025-10-22T12:00:00Z",
   "tracking": [
-    "skills",           // AI development skills
-    "mcps",             // MCP server configurations
-    "components",       // Reusable code components
-    "integrations",     // Third-party integrations
-    "standards",        // Architecture patterns & best practices
-    "utils",            // Utility functions and scripts
-    "tools",            // Development tools
-    "examples",         // Example implementations
-    "cursorrules",      // Cursor IDE rules
-    "gitignore"         // Git ignore patterns
+    "skills", // AI development skills
+    "mcps", // MCP server configurations
+    "components", // Reusable code components
+    "integrations", // Third-party integrations
+    "standards", // Architecture patterns & best practices
+    "utils", // Utility functions and scripts
+    "tools", // Development tools
+    "examples", // Example implementations
+    "cursorrules", // Cursor IDE rules
+    "gitignore" // Git ignore patterns
   ],
   "frequency": "git-hook",
   "installed": {
@@ -102,6 +102,7 @@ $ git pull
 **Count:** 12+ skills
 
 **How it syncs:**
+
 ```bash
 # Each skill is referenced in claude.md:
 ## Skills
@@ -123,6 +124,7 @@ Rapid MVP development with P0/P1/P2 prioritization
 **Count:** 4+ MCPs
 
 **How it syncs:**
+
 ```json
 {
   "mcpServers": {
@@ -141,6 +143,7 @@ Rapid MVP development with P0/P1/P2 prioritization
 
 **What:** Reusable code components and patterns
 **Categories:**
+
 - `agents/` - Agent implementations
 - `mcp-servers/` - MCP server components
 - `rag-pipelines/` - RAG pipeline components
@@ -152,6 +155,7 @@ Rapid MVP development with P0/P1/P2 prioritization
 **Count:** As added
 
 **How it syncs:**
+
 ```bash
 # Components copied to local .ai-dev directory:
 .ai-dev/
@@ -167,6 +171,7 @@ Rapid MVP development with P0/P1/P2 prioritization
 
 **What:** Third-party service integrations
 **Categories:**
+
 - `framework-adapters/` - Framework adapters
 - `llm-providers/` - LLM provider integrations
 - `platforms/` - Platform integrations (Vercel, AWS)
@@ -177,6 +182,7 @@ Rapid MVP development with P0/P1/P2 prioritization
 **Count:** As added
 
 **How it syncs:**
+
 ```bash
 # When you run: ai-dev setup supabase
 # Integration code copied to:
@@ -195,6 +201,7 @@ Rapid MVP development with P0/P1/P2 prioritization
 
 **What:** Architecture patterns and best practices
 **Categories:**
+
 - `architecture-patterns/` - Design patterns (13 patterns)
   - rag-pattern.md
   - microservices-pattern.md
@@ -221,6 +228,7 @@ Rapid MVP development with P0/P1/P2 prioritization
 **Count:** 13+ patterns, 3+ best practices
 
 **How it syncs:**
+
 ```bash
 # Standards copied to local directory:
 .ai-dev/
@@ -242,6 +250,7 @@ Rapid MVP development with P0/P1/P2 prioritization
 
 **What:** Utility functions and helper scripts
 **Categories:**
+
 - `cli/` - CLI utilities
 - `scripts/` - Development scripts
 
@@ -255,6 +264,7 @@ Rapid MVP development with P0/P1/P2 prioritization
 
 **What:** Development tools for AI frameworks
 **Categories:**
+
 - `crewai-tools/` - CrewAI tool implementations
 - `langchain-tools/` - LangChain tools
 - `mcp-tools/` - MCP tool implementations
@@ -265,6 +275,7 @@ Rapid MVP development with P0/P1/P2 prioritization
 **Count:** As added
 
 **How it syncs:**
+
 ```bash
 # When you request: ai-dev install tool web-scraper
 # Tool copied to:
@@ -282,6 +293,7 @@ Rapid MVP development with P0/P1/P2 prioritization
 
 **What:** Example implementations and sample code
 **Categories:**
+
 - `complete-projects/` - Full project examples
 - `mini-examples/` - Small focused examples
 
@@ -295,6 +307,7 @@ Rapid MVP development with P0/P1/P2 prioritization
 
 **What:** Project configuration files
 **Files:**
+
 - `.cursorrules` - Cursor IDE rules
 - `.gitignore` - Git ignore patterns
 - `.env.example` - Environment variables
@@ -349,7 +362,7 @@ Edit `.ai-dev.json`:
   "tracking": [
     "skills",
     "mcps",
-    "standards"    // Only sync these three
+    "standards" // Only sync these three
   ]
 }
 ```
@@ -390,6 +403,7 @@ ai-dev sync skills mcps standards
 ### Before Comprehensive Sync
 
 ❌ **Manual Updates:**
+
 - Copy skills manually
 - Miss new MCPs
 - Outdated standards
@@ -397,6 +411,7 @@ ai-dev sync skills mcps standards
 - Forget to check for updates
 
 ❌ **Incomplete:**
+
 - Skills synced ✅
 - Standards not synced ❌
 - Components not synced ❌
@@ -407,6 +422,7 @@ ai-dev sync skills mcps standards
 ### After Comprehensive Sync
 
 ✅ **Fully Automatic:**
+
 - All skills always current
 - All MCPs always configured
 - **All standards always up-to-date**
@@ -415,6 +431,7 @@ ai-dev sync skills mcps standards
 - Tools available when needed
 
 ✅ **Complete:**
+
 - Skills ✅
 - MCPs ✅
 - Components ✅
@@ -471,6 +488,7 @@ All resources tracked in `META/registry.json`:
 ### Scenario: Standards Get Updated
 
 **Main repo (ai-dev-standards):**
+
 ```bash
 # New security best practice added
 echo "# XSS Prevention" >> STANDARDS/best-practices/security-best-practices.md
@@ -479,6 +497,7 @@ git push
 ```
 
 **Your project:**
+
 ```bash
 # You pull your code
 git pull origin main
@@ -495,6 +514,7 @@ Done!
 ```
 
 **Now you have:**
+
 - Latest security guidelines
 - XSS prevention patterns
 - No manual work
@@ -558,6 +578,7 @@ ai-dev config get tracking
 **Before:** Only skills and MCPs synced automatically.
 
 **Now:** **EVERYTHING** syncs automatically:
+
 1. Skills ✅
 2. MCPs ✅
 3. Components ✅
@@ -575,17 +596,20 @@ ai-dev config get tracking
 ## Next Steps
 
 1. **Run Bootstrap:**
+
    ```bash
    npx @ai-dev-standards/bootstrap
    ```
 
 2. **Verify Tracking:**
+
    ```bash
    cat .ai-dev.json
    # Should show all 10 resource types
    ```
 
 3. **Test Auto-Sync:**
+
    ```bash
    git pull
    # Should sync all tracked resources

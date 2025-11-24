@@ -1,7 +1,7 @@
 # Auto-Sync System Guide
 
-> **📢 DEPRECATED:** This file is maintained for backward compatibility. 
-> 
+> **📢 DEPRECATED:** This file is maintained for backward compatibility.
+>
 > **Please use:** [INTEGRATION-USAGE.md](INTEGRATION-USAGE.md) for complete auto-sync documentation.
 >
 > The new guide provides comprehensive coverage of auto-sync functionality with the new `./scripts/check-updates.sh` script for update checking.
@@ -25,6 +25,7 @@ The auto-sync system keeps projects up-to-date with the latest ai-dev-standards 
 ## 🎯 What Auto-Syncs
 
 ### ✅ Always Updated (On Git Pull)
+
 Resources that **should** stay in sync with upstream:
 
 - **Skills** (SKILLS/) - New methodologies and updates
@@ -36,6 +37,7 @@ Resources that **should** stay in sync with upstream:
 **Why:** These evolve rapidly. Security patches, new best practices, and improved patterns should propagate automatically.
 
 ### 📦 On-Request Updates
+
 Resources that sync only when explicitly requested:
 
 - **Components** (COMPONENTS/) - May be customized
@@ -51,6 +53,7 @@ Resources that sync only when explicitly requested:
 ## 🚀 Quick Start
 
 ### Option 1: Bootstrap (Recommended)
+
 ```bash
 npx @ai-dev-standards/bootstrap
 ```
@@ -58,6 +61,7 @@ npx @ai-dev-standards/bootstrap
 This sets up auto-sync automatically with git hooks.
 
 ### Option 2: Manual Setup
+
 ```bash
 # 1. Clone ai-dev-standards
 git clone <repo-url> ~/ai-dev-standards
@@ -85,6 +89,7 @@ chmod +x .git/hooks/post-merge
 ## 🔧 Usage
 
 ### Sync Everything
+
 ```bash
 ai-dev sync
 ```
@@ -92,6 +97,7 @@ ai-dev sync
 Syncs all auto-update resources from ~/ai-dev-standards to current project.
 
 ### Sync Specific Categories
+
 ```bash
 ai-dev sync --skills           # Just skills
 ai-dev sync --mcps             # Just MCPs
@@ -100,6 +106,7 @@ ai-dev sync --config          # Just config files
 ```
 
 ### Check What Would Sync (Dry Run)
+
 ```bash
 ai-dev sync --dry-run
 ```
@@ -107,6 +114,7 @@ ai-dev sync --dry-run
 Shows what would be updated without making changes.
 
 ### Force Update (Overwrite Local Changes)
+
 ```bash
 ai-dev sync --force
 ```
@@ -118,21 +126,25 @@ ai-dev sync --force
 ## 📋 Sync Behavior by Resource
 
 ### Skills (SKILLS/)
+
 - **Sync:** Always on `git pull`
 - **Conflict:** Upstream wins (skills are canonical)
 - **Custom:** Use `.ai-dev/custom-skills/` for project-specific skills
 
 ### MCPs (MCP-SERVERS/)
+
 - **Sync:** Always on `git pull`
 - **Conflict:** Upstream wins
 - **Custom:** Install additional MCPs separately
 
 ### Standards (STANDARDS/)
+
 - **Sync:** Always (CRITICAL for security)
 - **Conflict:** Upstream wins
 - **Custom:** Add project-specific docs to `.ai-dev/standards/custom/`
 
 ### Config Files
+
 - **Sync:** Smart-merge
   - `.cursorrules` - **Auto-update** (always sync)
   - `.gitignore` - **Append** (merge, don't overwrite)
@@ -142,6 +154,7 @@ ai-dev sync --force
   - `.eslintrc.json` - **Merge**
 
 ### Components (COMPONENTS/)
+
 - **Sync:** On-request only
 - **Command:** `ai-dev install component <name>`
 - **Custom:** Fully customizable after install
@@ -151,6 +164,7 @@ ai-dev sync --force
 ## 🔄 How It Works
 
 ### Architecture
+
 ```
 ai-dev-standards (Upstream)
         ↓
@@ -164,6 +178,7 @@ ai-dev-standards (Upstream)
 ```
 
 ### Sync Algorithm
+
 1. **Check registry** — Read META/registry.json for available resources
 2. **Compare versions** — Check project .ai-dev/manifest.json vs. registry
 3. **Determine updates** — Find resources with newer versions
@@ -171,6 +186,7 @@ ai-dev-standards (Upstream)
 5. **Update manifest** — Record synced versions in project
 
 ### Conflict Resolution
+
 - **Auto-update resources:** Upstream always wins
 - **Merge resources:** Smart merge, preserve local additions
 - **On-request resources:** Never auto-sync, manual only
@@ -180,6 +196,7 @@ ai-dev-standards (Upstream)
 ## 🛡️ Safety Features
 
 ### Backup Before Sync
+
 ```bash
 # Auto-sync creates backup
 .ai-dev/backups/YYYYMMDD-HHMMSS/
@@ -188,6 +205,7 @@ ai-dev-standards (Upstream)
 Backups are kept for 30 days.
 
 ### Rollback
+
 ```bash
 ai-dev rollback <timestamp>
 ```
@@ -195,6 +213,7 @@ ai-dev rollback <timestamp>
 Restores from backup if sync causes issues.
 
 ### Diff Preview
+
 ```bash
 ai-dev sync --diff
 ```
@@ -206,9 +225,11 @@ Shows what will change before applying.
 ## 🚨 Troubleshooting
 
 ### Sync Fails with "Registry Not Found"
+
 **Problem:** CLI can't find META/registry.json
 
 **Solution:**
+
 ```bash
 # Check ~/ai-dev-standards exists
 ls ~/ai-dev-standards/META/registry.json
@@ -218,9 +239,11 @@ cd ~/ai-dev-standards/CLI && git pull && npm install
 ```
 
 ### Local Changes Overwritten
+
 **Problem:** Auto-sync replaced customizations
 
 **Solution:**
+
 ```bash
 # 1. Rollback
 ai-dev rollback <latest-backup-timestamp>
@@ -234,9 +257,11 @@ ai-dev sync
 ```
 
 ### Sync Hook Not Running
+
 **Problem:** Git hook not executing
 
 **Solution:**
+
 ```bash
 # Check hook exists and is executable
 ls -la .git/hooks/post-merge
@@ -273,6 +298,7 @@ After Sync:
 ## 🔮 Future Enhancements
 
 ### Planned (Not Yet Implemented)
+
 - [ ] Selective auto-sync (choose which categories)
 - [ ] Notification system (what changed in sync)
 - [ ] Cloud sync (sync from GitHub directly)
@@ -280,7 +306,9 @@ After Sync:
 - [ ] Sync analytics (track what's being used)
 
 ### Status
+
 Currently, auto-sync is **partially implemented**:
+
 - ✅ Registry system works
 - ✅ CLI can read from registry
 - ⚠️ Git hooks need setup per-project

@@ -1,4 +1,5 @@
 # MCP Code Execution: Filesystem Structure Specification
+
 ## How to Organize MCP Tools as Code
 
 **Last Updated:** November 14, 2025  
@@ -82,38 +83,37 @@ Every tool file follows this structure:
 
 /**
  * Brief description of what this tool does
- * 
+ *
  * @example
  * const result = await toolName({ param1: 'value' });
  */
 
 // 1. Input interface (parameters)
 interface ToolNameInput {
-  param1: string;
-  param2?: number;  // Optional parameters marked with ?
-  param3: {         // Nested objects allowed
-    subfield: string;
-  };
+  param1: string
+  param2?: number // Optional parameters marked with ?
+  param3: {
+    // Nested objects allowed
+    subfield: string
+  }
 }
 
 // 2. Output interface (response)
 interface ToolNameResponse {
-  data: string;
-  status: 'success' | 'error';
+  data: string
+  status: 'success' | 'error'
   metadata?: {
-    timestamp: string;
-  };
+    timestamp: string
+  }
 }
 
 // 3. Exported async function
-export async function toolName(
-  input: ToolNameInput
-): Promise<ToolNameResponse> {
+export async function toolName(input: ToolNameInput): Promise<ToolNameResponse> {
   // This calls the actual MCP tool under the hood
   return callMCPTool<ToolNameResponse>(
-    'server_name__tool_name',  // MCP tool identifier
+    'server_name__tool_name', // MCP tool identifier
     input
-  );
+  )
 }
 ```
 
@@ -136,39 +136,34 @@ export async function toolName(
 
 /**
  * Reads a document from Google Drive
- * 
+ *
  * Returns the full content of the document along with metadata.
  * Supports Google Docs, Sheets, and Slides.
- * 
+ *
  * @example
- * const doc = await getDocument({ 
- *   documentId: '1abc...xyz' 
+ * const doc = await getDocument({
+ *   documentId: '1abc...xyz'
  * });
  * console.log(doc.content);
  */
 
 interface GetDocumentInput {
-  documentId: string;
-  format?: 'text' | 'html' | 'markdown';  // Default: text
+  documentId: string
+  format?: 'text' | 'html' | 'markdown' // Default: text
 }
 
 interface GetDocumentResponse {
-  content: string;
+  content: string
   metadata: {
-    title: string;
-    author: string;
-    lastModified: string;
-    wordCount: number;
-  };
+    title: string
+    author: string
+    lastModified: string
+    wordCount: number
+  }
 }
 
-export async function getDocument(
-  input: GetDocumentInput
-): Promise<GetDocumentResponse> {
-  return callMCPTool<GetDocumentResponse>(
-    'google_drive__get_document',
-    input
-  );
+export async function getDocument(input: GetDocumentInput): Promise<GetDocumentResponse> {
+  return callMCPTool<GetDocumentResponse>('google_drive__get_document', input)
 }
 ```
 
@@ -179,10 +174,10 @@ export async function getDocument(
 
 /**
  * Updates an existing Salesforce record
- * 
+ *
  * Can update any standard or custom object.
  * Performs partial updates - only specified fields are changed.
- * 
+ *
  * @example
  * await updateRecord({
  *   objectType: 'Account',
@@ -192,25 +187,20 @@ export async function getDocument(
  */
 
 interface UpdateRecordInput {
-  objectType: string;      // e.g., 'Account', 'Contact', 'Opportunity'
-  recordId: string;        // Salesforce record ID
-  data: Record<string, any>;  // Key-value pairs of fields to update
+  objectType: string // e.g., 'Account', 'Contact', 'Opportunity'
+  recordId: string // Salesforce record ID
+  data: Record<string, any> // Key-value pairs of fields to update
 }
 
 interface UpdateRecordResponse {
-  success: boolean;
-  recordId: string;
-  updatedFields: string[];
-  errors?: string[];
+  success: boolean
+  recordId: string
+  updatedFields: string[]
+  errors?: string[]
 }
 
-export async function updateRecord(
-  input: UpdateRecordInput
-): Promise<UpdateRecordResponse> {
-  return callMCPTool<UpdateRecordResponse>(
-    'salesforce__update_record',
-    input
-  );
+export async function updateRecord(input: UpdateRecordInput): Promise<UpdateRecordResponse> {
+  return callMCPTool<UpdateRecordResponse>('salesforce__update_record', input)
 }
 ```
 
@@ -221,10 +211,10 @@ export async function updateRecord(
 
 /**
  * Sends a message to a Slack channel
- * 
+ *
  * Supports markdown formatting, @mentions, and emoji.
  * Can be used for both channels and direct messages.
- * 
+ *
  * @example
  * await sendMessage({
  *   channel: '#engineering',
@@ -233,30 +223,26 @@ export async function updateRecord(
  */
 
 interface SendMessageInput {
-  channel: string;         // Channel name (#general) or user (@username)
-  text: string;           // Message content (supports markdown)
-  threadId?: string;      // Optional: Reply in thread
-  attachments?: Array<{   // Optional: Rich attachments
-    title: string;
-    text: string;
-    color?: string;
-  }>;
+  channel: string // Channel name (#general) or user (@username)
+  text: string // Message content (supports markdown)
+  threadId?: string // Optional: Reply in thread
+  attachments?: Array<{
+    // Optional: Rich attachments
+    title: string
+    text: string
+    color?: string
+  }>
 }
 
 interface SendMessageResponse {
-  success: boolean;
-  messageId: string;
-  timestamp: string;
-  permalink: string;
+  success: boolean
+  messageId: string
+  timestamp: string
+  permalink: string
 }
 
-export async function sendMessage(
-  input: SendMessageInput
-): Promise<SendMessageResponse> {
-  return callMCPTool<SendMessageResponse>(
-    'slack__send_message',
-    input
-  );
+export async function sendMessage(input: SendMessageInput): Promise<SendMessageResponse> {
+  return callMCPTool<SendMessageResponse>('slack__send_message', input)
 }
 ```
 
@@ -267,10 +253,10 @@ export async function sendMessage(
 
 /**
  * Creates a new issue in a GitHub repository
- * 
+ *
  * Supports labels, assignees, and milestone assignment.
  * Returns the issue URL for reference.
- * 
+ *
  * @example
  * const issue = await createIssue({
  *   owner: 'myorg',
@@ -282,29 +268,24 @@ export async function sendMessage(
  */
 
 interface CreateIssueInput {
-  owner: string;           // Repository owner
-  repo: string;            // Repository name
-  title: string;           // Issue title
-  body?: string;           // Issue description (markdown)
-  labels?: string[];       // Label names
-  assignees?: string[];    // GitHub usernames
-  milestone?: number;      // Milestone number
+  owner: string // Repository owner
+  repo: string // Repository name
+  title: string // Issue title
+  body?: string // Issue description (markdown)
+  labels?: string[] // Label names
+  assignees?: string[] // GitHub usernames
+  milestone?: number // Milestone number
 }
 
 interface CreateIssueResponse {
-  success: boolean;
-  issueNumber: number;
-  issueUrl: string;
-  createdAt: string;
+  success: boolean
+  issueNumber: number
+  issueUrl: string
+  createdAt: string
 }
 
-export async function createIssue(
-  input: CreateIssueInput
-): Promise<CreateIssueResponse> {
-  return callMCPTool<CreateIssueResponse>(
-    'github__create_issue',
-    input
-  );
+export async function createIssue(input: CreateIssueInput): Promise<CreateIssueResponse> {
+  return callMCPTool<CreateIssueResponse>('github__create_issue', input)
 }
 ```
 
@@ -320,20 +301,20 @@ The agent can explore the directory structure to discover tools:
 // Agent code to discover tools
 
 // 1. List all available servers
-const servers = await fs.readdir('./servers');
+const servers = await fs.readdir('./servers')
 // Returns: ['google-drive', 'salesforce', 'slack', 'github']
 
 // 2. Explore a specific server
-const gdriveTools = await fs.readdir('./servers/google-drive');
+const gdriveTools = await fs.readdir('./servers/google-drive')
 // Returns: ['getDocument.ts', 'writeDocument.ts', 'listFiles.ts', ...]
 
 // 3. Read tool definition when needed
-const toolDef = await fs.readFile('./servers/google-drive/getDocument.ts');
+const toolDef = await fs.readFile('./servers/google-drive/getDocument.ts')
 // Now agent understands the tool interface
 
 // 4. Import and use the tool
-import { getDocument } from './servers/google-drive/getDocument';
-const doc = await getDocument({ documentId: 'abc123' });
+import { getDocument } from './servers/google-drive/getDocument'
+const doc = await getDocument({ documentId: 'abc123' })
 ```
 
 ### Method 2: Search Function (Optional)
@@ -345,10 +326,10 @@ Alternatively, provide a search tool for semantic discovery:
 
 /**
  * Searches available MCP tools by keyword or description
- * 
+ *
  * Performs semantic search across tool names and descriptions.
  * Returns relevant tools ranked by relevance.
- * 
+ *
  * @example
  * const tools = await search_tools({
  *   query: 'salesforce update',
@@ -357,29 +338,24 @@ Alternatively, provide a search tool for semantic discovery:
  */
 
 interface SearchToolsInput {
-  query: string;
-  limit?: number;  // Default: 10
-  server?: string; // Optional: Filter by server
+  query: string
+  limit?: number // Default: 10
+  server?: string // Optional: Filter by server
 }
 
 interface SearchToolsResponse {
   results: Array<{
-    server: string;
-    tool: string;
-    path: string;
-    description: string;
-    relevance: number;  // 0.0 to 1.0
-  }>;
+    server: string
+    tool: string
+    path: string
+    description: string
+    relevance: number // 0.0 to 1.0
+  }>
 }
 
-export async function search_tools(
-  input: SearchToolsInput
-): Promise<SearchToolsResponse> {
+export async function search_tools(input: SearchToolsInput): Promise<SearchToolsResponse> {
   // Implementation: Semantic search across tool definitions
-  return callMCPTool<SearchToolsResponse>(
-    'mcp_search__search_tools',
-    input
-  );
+  return callMCPTool<SearchToolsResponse>('mcp_search__search_tools', input)
 }
 ```
 
@@ -394,29 +370,29 @@ When your agent starts, generate the filesystem structure from connected MCP ser
 ```typescript
 // generate-filesystem.ts
 
-import { MCPClient } from '@modelcontextprotocol/sdk';
-import * as fs from 'fs/promises';
+import { MCPClient } from '@modelcontextprotocol/sdk'
+import * as fs from 'fs/promises'
 
 async function generateFilesystem(mcpServers: MCPServer[]) {
   // Create root directory
-  await fs.mkdir('./servers', { recursive: true });
-  
+  await fs.mkdir('./servers', { recursive: true })
+
   for (const server of mcpServers) {
     // Create server directory
-    const serverPath = `./servers/${server.name}`;
-    await fs.mkdir(serverPath, { recursive: true });
-    
+    const serverPath = `./servers/${server.name}`
+    await fs.mkdir(serverPath, { recursive: true })
+
     // Generate file for each tool
     for (const tool of server.tools) {
-      const filePath = `${serverPath}/${tool.name}.ts`;
-      const fileContent = generateToolFile(server, tool);
-      await fs.writeFile(filePath, fileContent);
+      const filePath = `${serverPath}/${tool.name}.ts`
+      const fileContent = generateToolFile(server, tool)
+      await fs.writeFile(filePath, fileContent)
     }
-    
+
     // Generate README
-    const readmePath = `${serverPath}/README.md`;
-    const readmeContent = generateReadme(server);
-    await fs.writeFile(readmePath, readmeContent);
+    const readmePath = `${serverPath}/README.md`
+    const readmeContent = generateReadme(server)
+    await fs.writeFile(readmePath, readmeContent)
   }
 }
 
@@ -438,7 +414,7 @@ export async function ${tool.name}(
     input
   );
 }
-`.trim();
+`.trim()
 }
 ```
 
@@ -450,12 +426,12 @@ export async function ${tool.name}(
 const agent = new Agent({
   model: 'claude-sonnet-4-20250514',
   tools: [
-    'code_execution',    // Enable code execution
-    'file_system'        // Enable filesystem access
+    'code_execution', // Enable code execution
+    'file_system' // Enable filesystem access
   ],
   filesystem: {
-    mount: './servers',  // Mount point for MCP tools
-    readonly: true       // Tools are readonly
+    mount: './servers', // Mount point for MCP tools
+    readonly: true // Tools are readonly
   },
   systemPrompt: `
     You have access to MCP tools as TypeScript files.
@@ -470,7 +446,7 @@ const agent = new Agent({
     import { getDocument } from './servers/google-drive/getDocument';
     const doc = await getDocument({ documentId: 'abc123' });
   `
-});
+})
 ```
 
 ### Step 3: Agent Workflow
@@ -485,43 +461,43 @@ The agent follows this pattern:
 // Agent thinks: "I need Google Drive and Salesforce tools"
 
 // Step 1: Discover tools
-const servers = await fs.readdir('./servers');
+const servers = await fs.readdir('./servers')
 // ['google-drive', 'salesforce', 'slack', ...]
 
 // Step 2: Find relevant tools
-const gdriveTools = await fs.readdir('./servers/google-drive');
+const gdriveTools = await fs.readdir('./servers/google-drive')
 // ['getDocument.ts', 'writeDocument.ts', ...]
 
-const salesforceTools = await fs.readdir('./servers/salesforce');
+const salesforceTools = await fs.readdir('./servers/salesforce')
 // ['updateRecord.ts', 'createAccount.ts', ...]
 
 // Step 3: Read tool definitions
-const getDocDef = await fs.readFile('./servers/google-drive/getDocument.ts');
-const updateRecordDef = await fs.readFile('./servers/salesforce/updateRecord.ts');
+const getDocDef = await fs.readFile('./servers/google-drive/getDocument.ts')
+const updateRecordDef = await fs.readFile('./servers/salesforce/updateRecord.ts')
 
 // Step 4: Write code using tools
-import { getDocument } from './servers/google-drive/getDocument';
-import { updateRecord } from './servers/salesforce/updateRecord';
+import { getDocument } from './servers/google-drive/getDocument'
+import { updateRecord } from './servers/salesforce/updateRecord'
 
 // Read document (stays in sandbox)
-const doc = await getDocument({ documentId: 'q4-planning-doc-id' });
+const doc = await getDocument({ documentId: 'q4-planning-doc-id' })
 
 // Extract key information (in sandbox)
-const summary = extractKeyPoints(doc.content);
+const summary = extractKeyPoints(doc.content)
 
 // Update Salesforce (in sandbox)
 await updateRecord({
   objectType: 'Account',
   recordId: 'account-id',
   data: { Q4_Planning: summary }
-});
+})
 
 // Return result (only this goes to model context)
 return {
   success: true,
   documentProcessed: doc.metadata.title,
   salesforceUpdated: true
-};
+}
 ```
 
 ---
@@ -538,34 +514,39 @@ Integration with Google Drive for document operations.
 ## Authentication
 
 Requires OAuth 2.0 with scopes:
+
 - `https://www.googleapis.com/auth/drive.readonly`
 - `https://www.googleapis.com/auth/drive.file`
 
 ## Available Tools
 
 ### Read Operations
+
 - `getDocument.ts` - Read document content
 - `listFiles.ts` - List files in a folder
 - `searchFiles.ts` - Search for files by query
 
 ### Write Operations
+
 - `writeDocument.ts` - Create or update document
 - `shareDocument.ts` - Share document with users
 
 ## Usage Examples
 
 ### Read a document
+
 \`\`\`typescript
 import { getDocument } from './google-drive/getDocument';
 const doc = await getDocument({ documentId: 'abc123' });
 \`\`\`
 
 ### Search for files
+
 \`\`\`typescript
 import { searchFiles } from './google-drive/searchFiles';
-const results = await searchFiles({ 
-  query: 'Q4 Planning',
-  mimeType: 'application/vnd.google-apps.document'
+const results = await searchFiles({
+query: 'Q4 Planning',
+mimeType: 'application/vnd.google-apps.document'
 });
 \`\`\`
 
@@ -579,11 +560,11 @@ const results = await searchFiles({
 All tools return errors in the response object:
 \`\`\`typescript
 {
-  success: false,
-  error: {
-    code: 'NOT_FOUND',
-    message: 'Document not found'
-  }
+success: false,
+error: {
+code: 'NOT_FOUND',
+message: 'Document not found'
+}
 }
 \`\`\`
 ```
@@ -611,7 +592,7 @@ All tools return errors in the response object:
 ```typescript
 // DO NOT include credentials in tool files
 // ❌ BAD:
-const API_KEY = 'sk-1234...';  // Never do this!
+const API_KEY = 'sk-1234...' // Never do this!
 
 // ✅ GOOD:
 // Credentials handled by callMCPTool internally
@@ -625,12 +606,14 @@ const API_KEY = 'sk-1234...';  // Never do this!
 ### Token Usage
 
 **Traditional (All tools in context):**
+
 ```
 50 tools × 5,000 tokens = 250,000 tokens
 Every conversation starts with 250K tokens!
 ```
 
 **Code Execution (On-demand loading):**
+
 ```
 Agent lists ./servers/: 200 tokens
 Agent reads 3 tool files: 600 tokens
@@ -642,6 +625,7 @@ Savings: 99.7%! 🎉
 ### Latency
 
 **Filesystem operations are fast:**
+
 - List directory: ~1ms
 - Read tool file: ~5ms
 - Import tool: ~10ms
@@ -671,16 +655,16 @@ msg.ts
 ```typescript
 // ✅ GOOD: All fields typed
 interface Input {
-  requiredField: string;
-  optionalField?: number;
+  requiredField: string
+  optionalField?: number
   nestedField: {
-    subfield: string;
-  };
+    subfield: string
+  }
 }
 
 // ❌ BAD: Any types
 interface Input {
-  data: any;  // Lost type safety!
+  data: any // Lost type safety!
 }
 ```
 
@@ -702,12 +686,12 @@ interface Input {
 ```typescript
 // ✅ GOOD: Errors in response
 interface Response {
-  success: boolean;
-  data?: string;
+  success: boolean
+  data?: string
   error?: {
-    code: string;
-    message: string;
-  };
+    code: string
+    message: string
+  }
 }
 
 // ❌ BAD: Throws exceptions (hard for agent to handle)
@@ -725,10 +709,12 @@ const tools = [
   {
     name: 'google_drive__get_document',
     description: 'Reads a document...',
-    parameters: { /* 5000 tokens of schema */ }
-  },
+    parameters: {
+      /* 5000 tokens of schema */
+    }
+  }
   // ... 49 more tools
-];
+]
 
 // Total: 250,000 tokens in every context!
 ```

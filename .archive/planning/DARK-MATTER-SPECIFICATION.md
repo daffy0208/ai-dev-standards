@@ -1,5 +1,6 @@
-# ⚙️ Dark Matter Mode — Repository Application Specification v1.2  
-*(BrainFrameOS v5.2 Integration Draft)*  
+# ⚙️ Dark Matter Mode — Repository Application Specification v1.2
+
+_(BrainFrameOS v5.2 Integration Draft)_
 
 **Purpose:**  
 To extend **Dark Matter Mode (DMM)** for reflective use across AI, software, and code-based ecosystems.  
@@ -7,57 +8,57 @@ Its mission: **to reveal what is unseen, unsaid, and unmeasured** — and restor
 
 ---
 
-## 🧠 Essence  
+## 🧠 Essence
 
 Dark Matter Mode is **not diagnostic** — it is **interpretive**.  
-It does not predict; it *illuminates*.  
-DMM’s function is to surface the **invisible architectures** shaping system behavior — emotional, cultural, and technical alike.  
+It does not predict; it _illuminates_.  
+DMM’s function is to surface the **invisible architectures** shaping system behavior — emotional, cultural, and technical alike.
 
-> “Every repo is a psyche made visible.”  
+> “Every repo is a psyche made visible.”
 
-Where other tools optimize speed, DMM seeks **truthfulness** — coherence between what was meant, what was made, and what was moved.  
+Where other tools optimize speed, DMM seeks **truthfulness** — coherence between what was meant, what was made, and what was moved.
 
 ---
 
-## 🧩 Architecture Overview  
+## 🧩 Architecture Overview
 
 DMM operates through **seven interdependent layers**, forming a recursive coherence circuit:  
 **Sensing → Pattern → Reflection → Action → Feedback → Shadow → Integration.**
 
 ---
 
-### 1. Sensing Layer — *Signal Ingest*  
+### 1. Sensing Layer — _Signal Ingest_
 
-Captures metadata and ambient signals from repositories:  
+Captures metadata and ambient signals from repositories:
 
-* **Code Signals:** commit patterns, refactor rhythm, lint suppressions.  
-* **Documentation Signals:** README drift, redundant .md files, tone inconsistency.  
-* **Temporal Signals:** lag between decision and execution, feature latency.  
-* **Environmental Signals:** dependency health, build reliability, open issue cadence.  
+- **Code Signals:** commit patterns, refactor rhythm, lint suppressions.
+- **Documentation Signals:** README drift, redundant .md files, tone inconsistency.
+- **Temporal Signals:** lag between decision and execution, feature latency.
+- **Environmental Signals:** dependency health, build reliability, open issue cadence.
 
-All data passes through a **coherence-safe adapter** — metadata only, never secrets or PII.  
-
----
-
-### 2. Pattern Layer — *Weak Signal Mapping*  
-
-Identifies subtle misalignments before they surface as technical or cultural debt.  
-
-| Pattern Type | Example Signal | Reflective Interpretation |
-|---------------|----------------|-----------------------------|
-| **Strategic Drift** | README ≠ commit activity | Vision disconnection or premature pivoting |
-| **Documentation Inflation** | Many similar .md files | Over-planning; avoidance through writing |
-| **Suppression Pattern** | `eslint-disable` or `any` usage | Time pressure or fatigue |
-| **Frozen Dependencies** | No updates for months | Fear of breakage or resistance to change |
-| **Commit Whiplash** | Rapid reversals | External pressure or internal restlessness |
-
-Patterns are never treated as errors — they are **expressions of system emotion**.  
+All data passes through a **coherence-safe adapter** — metadata only, never secrets or PII.
 
 ---
 
-### 3. Reflection Layer — *Meaning Extraction*  
+### 2. Pattern Layer — _Weak Signal Mapping_
 
-Transforms patterns into **narrative insights** instead of numeric metrics:  
+Identifies subtle misalignments before they surface as technical or cultural debt.
+
+| Pattern Type                | Example Signal                  | Reflective Interpretation                  |
+| --------------------------- | ------------------------------- | ------------------------------------------ |
+| **Strategic Drift**         | README ≠ commit activity        | Vision disconnection or premature pivoting |
+| **Documentation Inflation** | Many similar .md files          | Over-planning; avoidance through writing   |
+| **Suppression Pattern**     | `eslint-disable` or `any` usage | Time pressure or fatigue                   |
+| **Frozen Dependencies**     | No updates for months           | Fear of breakage or resistance to change   |
+| **Commit Whiplash**         | Rapid reversals                 | External pressure or internal restlessness |
+
+Patterns are never treated as errors — they are **expressions of system emotion**.
+
+---
+
+### 3. Reflection Layer — _Meaning Extraction_
+
+Transforms patterns into **narrative insights** instead of numeric metrics:
 
 Pattern: Documentation Inflation
 Signal: 18 overlapping .md files in 2 days
@@ -67,38 +68,40 @@ Action: Consolidate docs; focus narrative before next sprint.
 sql
 Copy code
 
-**Reflection Enhancements (v1.2):**  
-- Adds **Reflective Confidence (0.0–1.0)** per insight.  
-- Introduces **Uncertainty Index** to indicate interpretive humility.  
-- Expands **technical ↔ human translation bridge**:  
+**Reflection Enhancements (v1.2):**
 
-| Technical Symptom | Human Parallel |
-|--------------------|----------------|
-| Ignored build errors | Denial of fragility |
-| Rapid branching | Loss of trust in direction |
-| Over-commenting | Fear of being misunderstood |
-| Skipped validation | Avoidance of feedback |
-| Over-planning | Anxiety about imperfection |
+- Adds **Reflective Confidence (0.0–1.0)** per insight.
+- Introduces **Uncertainty Index** to indicate interpretive humility.
+- Expands **technical ↔ human translation bridge**:
 
-Reflection is where *system empathy* becomes tangible.  
+| Technical Symptom    | Human Parallel              |
+| -------------------- | --------------------------- |
+| Ignored build errors | Denial of fragility         |
+| Rapid branching      | Loss of trust in direction  |
+| Over-commenting      | Fear of being misunderstood |
+| Skipped validation   | Avoidance of feedback       |
+| Over-planning        | Anxiety about imperfection  |
+
+Reflection is where _system empathy_ becomes tangible.
 
 ---
 
-### 4. Action Layer — *Routing + Coherence Restoration*  
+### 4. Action Layer — _Routing + Coherence Restoration_
 
-All outputs are routed according to **intervention strength**:  
+All outputs are routed according to **intervention strength**:
 
-| Mode | Action | Example |
-|------|---------|----------|
-| **OBSERVE** | Gentle awareness | “Velocity high, coherence low.” |
-| **REVIEW** | Structured reflection | “Validate assumptions with one peer.” |
-| **HOLD** | Pause + confirm | “Reality desynced; reconcile before next build.” |
+| Mode        | Action                | Example                                          |
+| ----------- | --------------------- | ------------------------------------------------ |
+| **OBSERVE** | Gentle awareness      | “Velocity high, coherence low.”                  |
+| **REVIEW**  | Structured reflection | “Validate assumptions with one peer.”            |
+| **HOLD**    | Pause + confirm       | “Reality desynced; reconcile before next build.” |
 
-Every recommendation passes the **Coherence Filter:**  
-> “Does this make the system more truthful — not just faster?”  
+Every recommendation passes the **Coherence Filter:**
+
+> “Does this make the system more truthful — not just faster?”
 
 **New Subsection: Restoration Protocol**  
-When misalignment is detected, initiate **Re-synchronization Script**:  
+When misalignment is detected, initiate **Re-synchronization Script**:
 
 ```yaml
 restoration_protocol:
@@ -235,3 +238,4 @@ Shadow:
   acknowledges: bias, projection, overreach
 Integration:
   connects: BrainFrameOS v5.2, CLISA, MythicPulse
+```

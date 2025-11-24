@@ -22,6 +22,7 @@ Types: `plan`, `validate`, `diagnose`, `generate_manifest`, `build_capability_gr
 ## Executing Requests
 
 Tell Claude Code:
+
 ```
 Execute orchestration request <ID>
 ```

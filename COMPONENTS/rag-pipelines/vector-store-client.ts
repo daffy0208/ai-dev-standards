@@ -1,3 +1,5 @@
+import type { VectorFilter, VectorMetadata } from '../../types/vector-store'
+
 /**
  * Vector Store Client (Abstraction Layer)
  *
@@ -55,7 +57,7 @@ export interface VectorStoreOptions {
   /**
    * Additional provider-specific config
    */
-  config?: Record<string, any>
+  config?: Record<string, unknown>
 }
 
 export interface CollectionOptions {
@@ -77,13 +79,13 @@ export interface CollectionOptions {
   /**
    * Provider-specific options
    */
-  metadata?: Record<string, any>
+  metadata?: VectorMetadata
 }
 
 export interface Vector {
   id: string
   values: number[]
-  metadata?: Record<string, any>
+  metadata?: VectorMetadata
 }
 
 export interface SearchOptions {
@@ -100,7 +102,7 @@ export interface SearchOptions {
   /**
    * Metadata filter
    */
-  filter?: Record<string, any>
+  filter?: VectorFilter
 
   /**
    * Include metadata in results
@@ -116,7 +118,7 @@ export interface SearchOptions {
 export interface SearchResult {
   id: string
   score: number
-  metadata?: Record<string, any>
+  metadata?: VectorMetadata
   values?: number[]
 }
 
@@ -126,6 +128,8 @@ export interface CollectionInfo {
   vectorCount: number
   metric: DistanceMetric
 }
+
+const markUsed = (..._values: unknown[]): void => {}
 
 export abstract class BaseVectorStore {
   abstract createCollection(name: string, options: CollectionOptions): Promise<void>
@@ -273,14 +277,14 @@ export class VectorStoreClient {
     // Create target collection
     await targetClient.createCollection(collectionName, {
       dimension: info.dimension,
-      metric: info.metric,
+      metric: info.metric
     })
 
     // Migrate vectors in batches
     // Note: This is a simplified implementation
     // Real implementation would need pagination/scrolling
-    console.log(`Migrating collection ${collectionName}...`)
-    console.log(`Total vectors: ${info.vectorCount}`)
+    console.warn(`Migrating collection ${collectionName}...`)
+    console.warn(`Total vectors: ${info.vectorCount}`)
   }
 }
 
@@ -288,38 +292,41 @@ export class VectorStoreClient {
  * Provider Adapters
  */
 
-class PineconeAdapter extends BaseVectorStore {
-  private client: any
-
-  constructor(options: VectorStoreOptions) {
+class NotImplementedAdapter extends BaseVectorStore {
+  constructor(
+    private readonly adapterName: string,
+    protected readonly options: VectorStoreOptions
+  ) {
     super()
-    // Initialize Pinecone client
-    // Implementation would import and use actual Pinecone client
+  }
+
+  private fail(method: string, ...args: unknown[]): never {
+    markUsed(this.options, ...args)
+    throw new Error(`${this.adapterName} adapter ${method} not fully implemented`)
   }
 
   async createCollection(name: string, options: CollectionOptions): Promise<void> {
-    // Pinecone implementation
-    throw new Error('Pinecone adapter not fully implemented')
+    return this.fail('createCollection', name, options)
   }
 
   async deleteCollection(name: string): Promise<void> {
-    throw new Error('Pinecone adapter not fully implemented')
+    return this.fail('deleteCollection', name)
   }
 
   async listCollections(): Promise<string[]> {
-    throw new Error('Pinecone adapter not fully implemented')
+    return this.fail('listCollections')
   }
 
   async getCollectionInfo(name: string): Promise<CollectionInfo> {
-    throw new Error('Pinecone adapter not fully implemented')
+    return this.fail('getCollectionInfo', name)
   }
 
   async upsert(collectionName: string, vectors: Vector[]): Promise<void> {
-    throw new Error('Pinecone adapter not fully implemented')
+    return this.fail('upsert', collectionName, vectors)
   }
 
   async delete(collectionName: string, ids: string[]): Promise<void> {
-    throw new Error('Pinecone adapter not fully implemented')
+    return this.fail('delete', collectionName, ids)
   }
 
   async search(
@@ -327,183 +334,41 @@ class PineconeAdapter extends BaseVectorStore {
     queryVector: number[],
     options?: SearchOptions
   ): Promise<SearchResult[]> {
-    throw new Error('Pinecone adapter not fully implemented')
+    return this.fail('search', collectionName, queryVector, options)
   }
 
   async clear(collectionName: string): Promise<void> {
-    throw new Error('Pinecone adapter not fully implemented')
+    return this.fail('clear', collectionName)
   }
 }
 
-class WeaviateAdapter extends BaseVectorStore {
-  // Similar pattern for Weaviate
+class PineconeAdapter extends NotImplementedAdapter {
   constructor(options: VectorStoreOptions) {
-    super()
-  }
-
-  async createCollection(name: string, options: CollectionOptions): Promise<void> {
-    throw new Error('Weaviate adapter not fully implemented')
-  }
-
-  async deleteCollection(name: string): Promise<void> {
-    throw new Error('Weaviate adapter not fully implemented')
-  }
-
-  async listCollections(): Promise<string[]> {
-    throw new Error('Weaviate adapter not fully implemented')
-  }
-
-  async getCollectionInfo(name: string): Promise<CollectionInfo> {
-    throw new Error('Weaviate adapter not fully implemented')
-  }
-
-  async upsert(collectionName: string, vectors: Vector[]): Promise<void> {
-    throw new Error('Weaviate adapter not fully implemented')
-  }
-
-  async delete(collectionName: string, ids: string[]): Promise<void> {
-    throw new Error('Weaviate adapter not fully implemented')
-  }
-
-  async search(
-    collectionName: string,
-    queryVector: number[],
-    options?: SearchOptions
-  ): Promise<SearchResult[]> {
-    throw new Error('Weaviate adapter not fully implemented')
-  }
-
-  async clear(collectionName: string): Promise<void> {
-    throw new Error('Weaviate adapter not fully implemented')
+    super('Pinecone', options)
   }
 }
 
-class ChromaAdapter extends BaseVectorStore {
-  // Similar pattern for Chroma
+class WeaviateAdapter extends NotImplementedAdapter {
   constructor(options: VectorStoreOptions) {
-    super()
-  }
-
-  async createCollection(name: string, options: CollectionOptions): Promise<void> {
-    throw new Error('Chroma adapter not fully implemented')
-  }
-
-  async deleteCollection(name: string): Promise<void> {
-    throw new Error('Chroma adapter not fully implemented')
-  }
-
-  async listCollections(): Promise<string[]> {
-    throw new Error('Chroma adapter not fully implemented')
-  }
-
-  async getCollectionInfo(name: string): Promise<CollectionInfo> {
-    throw new Error('Chroma adapter not fully implemented')
-  }
-
-  async upsert(collectionName: string, vectors: Vector[]): Promise<void> {
-    throw new Error('Chroma adapter not fully implemented')
-  }
-
-  async delete(collectionName: string, ids: string[]): Promise<void> {
-    throw new Error('Chroma adapter not fully implemented')
-  }
-
-  async search(
-    collectionName: string,
-    queryVector: number[],
-    options?: SearchOptions
-  ): Promise<SearchResult[]> {
-    throw new Error('Chroma adapter not fully implemented')
-  }
-
-  async clear(collectionName: string): Promise<void> {
-    throw new Error('Chroma adapter not fully implemented')
+    super('Weaviate', options)
   }
 }
 
-class QdrantAdapter extends BaseVectorStore {
-  // Similar pattern for Qdrant
+class ChromaAdapter extends NotImplementedAdapter {
   constructor(options: VectorStoreOptions) {
-    super()
-  }
-
-  async createCollection(name: string, options: CollectionOptions): Promise<void> {
-    throw new Error('Qdrant adapter not fully implemented')
-  }
-
-  async deleteCollection(name: string): Promise<void> {
-    throw new Error('Qdrant adapter not fully implemented')
-  }
-
-  async listCollections(): Promise<string[]> {
-    throw new Error('Qdrant adapter not fully implemented')
-  }
-
-  async getCollectionInfo(name: string): Promise<CollectionInfo> {
-    throw new Error('Qdrant adapter not fully implemented')
-  }
-
-  async upsert(collectionName: string, vectors: Vector[]): Promise<void> {
-    throw new Error('Qdrant adapter not fully implemented')
-  }
-
-  async delete(collectionName: string, ids: string[]): Promise<void> {
-    throw new Error('Qdrant adapter not fully implemented')
-  }
-
-  async search(
-    collectionName: string,
-    queryVector: number[],
-    options?: SearchOptions
-  ): Promise<SearchResult[]> {
-    throw new Error('Qdrant adapter not fully implemented')
-  }
-
-  async clear(collectionName: string): Promise<void> {
-    throw new Error('Qdrant adapter not fully implemented')
+    super('Chroma', options)
   }
 }
 
-class PgVectorAdapter extends BaseVectorStore {
-  // Similar pattern for pgvector
+class QdrantAdapter extends NotImplementedAdapter {
   constructor(options: VectorStoreOptions) {
-    super()
+    super('Qdrant', options)
   }
+}
 
-  async createCollection(name: string, options: CollectionOptions): Promise<void> {
-    throw new Error('PgVector adapter not fully implemented')
-  }
-
-  async deleteCollection(name: string): Promise<void> {
-    throw new Error('PgVector adapter not fully implemented')
-  }
-
-  async listCollections(): Promise<string[]> {
-    throw new Error('PgVector adapter not fully implemented')
-  }
-
-  async getCollectionInfo(name: string): Promise<CollectionInfo> {
-    throw new Error('PgVector adapter not fully implemented')
-  }
-
-  async upsert(collectionName: string, vectors: Vector[]): Promise<void> {
-    throw new Error('PgVector adapter not fully implemented')
-  }
-
-  async delete(collectionName: string, ids: string[]): Promise<void> {
-    throw new Error('PgVector adapter not fully implemented')
-  }
-
-  async search(
-    collectionName: string,
-    queryVector: number[],
-    options?: SearchOptions
-  ): Promise<SearchResult[]> {
-    throw new Error('PgVector adapter not fully implemented')
-  }
-
-  async clear(collectionName: string): Promise<void> {
-    throw new Error('PgVector adapter not fully implemented')
+class PgVectorAdapter extends NotImplementedAdapter {
+  constructor(options: VectorStoreOptions) {
+    super('PgVector', options)
   }
 }
 
@@ -522,6 +387,6 @@ export function createVectorStoreClient(
     apiKey: process.env.VECTOR_STORE_API_KEY,
     environment: process.env.VECTOR_STORE_ENVIRONMENT,
     url: process.env.VECTOR_STORE_URL,
-    ...options,
+    ...options
   })
 }

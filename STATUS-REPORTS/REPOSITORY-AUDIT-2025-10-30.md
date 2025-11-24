@@ -23,24 +23,26 @@ Using the newly created **brain-mcp server**, we validated and updated all resou
 
 ### 1. Resource Counts Verified
 
-| Resource Type | Count | Status |
-|--------------|-------|--------|
-| **Skills** | 64 | ✅ Verified |
-| **MCPs** | 50 | ✅ Verified (includes new brain-mcp) |
-| **Tools** | 24 | ✅ Verified |
-| **Components** | 72 | ✅ Verified |
-| **Integrations** | 25 | ✅ Verified |
-| **TOTAL** | **235** | ✅ Updated from 238 |
+| Resource Type    | Count   | Status                               |
+| ---------------- | ------- | ------------------------------------ |
+| **Skills**       | 64      | ✅ Verified                          |
+| **MCPs**         | 50      | ✅ Verified (includes new brain-mcp) |
+| **Tools**        | 24      | ✅ Verified                          |
+| **Components**   | 72      | ✅ Verified                          |
+| **Integrations** | 25      | ✅ Verified                          |
+| **TOTAL**        | **235** | ✅ Updated from 238                  |
 
 ### 2. Capability Graph Updated
 
 **Before:**
+
 - Nodes: 113 (64 skills + 49 MCPs)
 - Edges: 169
 - Domains: 84
 - Effects: 215
 
 **After:**
+
 - Nodes: **114** (64 skills + **50 MCPs**)
 - Edges: **178**
 - Domains: **89**
@@ -54,6 +56,7 @@ Using the newly created **brain-mcp server**, we validated and updated all resou
 **Purpose:** Exposes brain and capability graph to Claude Code
 
 **12 Tools Provided:**
+
 1. brain_search
 2. brain_select_skills
 3. brain_show_skill
@@ -106,6 +109,7 @@ Using the newly created **brain-mcp server**, we validated and updated all resou
 ### Graph Consistency Check
 
 **Known Issues (Expected):**
+
 - ⚠️ 86 missing nodes (abstract concepts referenced but not defined)
 - ⚠️ 57 asymmetric relationships (enables without requires)
 - ⚠️ 79 orphaned nodes (MCPs not yet fully connected)
@@ -236,6 +240,7 @@ Health: HEALTHY
 ## Summary
 
 This audit:
+
 - ✅ Created brain-mcp for universal brain access
 - ✅ Verified all resource counts are accurate
 - ✅ Updated capability graph to 114 nodes

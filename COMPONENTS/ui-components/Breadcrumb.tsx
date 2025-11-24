@@ -36,46 +36,56 @@
  * ```
  */
 
-import * as React from 'react';
-import { cn } from './utils';
+import * as React from 'react'
+import { cn } from './utils'
 
 export interface BreadcrumbItem {
   /**
    * Display label
    */
-  label: string;
+  label: string
 
   /**
    * Link href (if omitted, item is not clickable and treated as current)
    */
-  href?: string;
+  href?: string
 
   /**
    * Click handler (alternative to href)
    */
-  onClick?: () => void;
+  onClick?: () => void
 }
+
+interface BreadcrumbEllipsisItem {
+  label: string
+  isEllipsis: true
+}
+
+type BreadcrumbRenderItem = BreadcrumbItem | BreadcrumbEllipsisItem
+
+const isEllipsisItem = (item: BreadcrumbRenderItem): item is BreadcrumbEllipsisItem =>
+  'isEllipsis' in item && item.isEllipsis
 
 export interface BreadcrumbProps {
   /**
    * Breadcrumb items
    */
-  items: BreadcrumbItem[];
+  items: BreadcrumbItem[]
 
   /**
    * Separator between items (string or React element)
    */
-  separator?: React.ReactNode;
+  separator?: React.ReactNode
 
   /**
    * Maximum number of items to show (rest will be collapsed)
    */
-  maxItems?: number;
+  maxItems?: number
 
   /**
    * Additional CSS classes
    */
-  className?: string;
+  className?: string
 }
 
 /**
@@ -89,68 +99,59 @@ const DefaultSeparator = () => (
     stroke="currentColor"
     aria-hidden="true"
   >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M9 5l7 7-7 7"
-    />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
   </svg>
-);
+)
 
 /**
  * Breadcrumb component for navigation
  */
 export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
   ({ items, separator, maxItems, className }, ref) => {
-    const [isExpanded, setIsExpanded] = React.useState(false);
+    const [isExpanded, setIsExpanded] = React.useState(false)
 
     // Determine if we need to truncate
-    const shouldTruncate = maxItems && items.length > maxItems;
-    const displayItems = React.useMemo(() => {
+    const shouldTruncate = maxItems && items.length > maxItems
+    const displayItems = React.useMemo<BreadcrumbRenderItem[]>(() => {
       if (!shouldTruncate || isExpanded) {
-        return items;
+        return items
       }
 
       // Show first item, ellipsis, and last (maxItems - 1) items
-      const firstItem = items[0];
-      const lastItems = items.slice(-(maxItems - 1));
+      const firstItem = items[0]
+      const lastItems = items.slice(-(maxItems - 1))
 
-      return [firstItem, { label: '...', isEllipsis: true }, ...lastItems];
-    }, [items, maxItems, shouldTruncate, isExpanded]);
+      return [firstItem, { label: '...', isEllipsis: true }, ...lastItems]
+    }, [items, maxItems, shouldTruncate, isExpanded])
 
     // Render separator
     const renderSeparator = () => {
       if (separator === undefined) {
-        return <DefaultSeparator />;
+        return <DefaultSeparator />
       }
       if (typeof separator === 'string') {
         return (
           <span className="mx-2 text-gray-400" aria-hidden="true">
             {separator}
           </span>
-        );
+        )
       }
-      return <span className="mx-2" aria-hidden="true">{separator}</span>;
-    };
+      return (
+        <span className="mx-2" aria-hidden="true">
+          {separator}
+        </span>
+      )
+    }
 
     return (
-      <nav
-        ref={ref}
-        aria-label="Breadcrumb"
-        className={cn('flex items-center', className)}
-      >
+      <nav ref={ref} aria-label="Breadcrumb" className={cn('flex items-center', className)}>
         <ol className="flex items-center flex-wrap gap-y-2">
           {displayItems.map((item, index) => {
-            const isLast = index === displayItems.length - 1;
-            const isCurrent = isLast || !item.href;
-            const isEllipsis = 'isEllipsis' in item && item.isEllipsis;
+            const isLast = index === displayItems.length - 1
+            const isEllipsis = isEllipsisItem(item)
 
             return (
-              <li
-                key={index}
-                className="flex items-center"
-              >
+              <li key={index} className="flex items-center">
                 {/* Item */}
                 {isEllipsis ? (
                   <button
@@ -165,51 +166,59 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                   >
                     {item.label}
                   </button>
-                ) : isCurrent ? (
-                  <span
-                    className="text-sm font-medium text-gray-900"
-                    aria-current="page"
-                  >
-                    {item.label}
-                  </span>
-                ) : item.onClick ? (
-                  <button
-                    type="button"
-                    onClick={item.onClick}
-                    className={cn(
-                      'text-sm font-medium text-gray-500 hover:text-gray-700',
-                      'focus:outline-none focus:underline',
-                      'transition-colors'
-                    )}
-                  >
-                    {item.label}
-                  </button>
                 ) : (
-                  <a
-                    href={item.href}
-                    className={cn(
-                      'text-sm font-medium text-gray-500 hover:text-gray-700',
-                      'focus:outline-none focus:underline',
-                      'transition-colors'
-                    )}
-                  >
-                    {item.label}
-                  </a>
+                  (() => {
+                    const actualItem = item as BreadcrumbItem
+                    const isCurrent = isLast || !actualItem.href
+
+                    if (isCurrent) {
+                      return (
+                        <span className="text-sm font-medium text-gray-900" aria-current="page">
+                          {actualItem.label}
+                        </span>
+                      )
+                    }
+
+                    if (actualItem.onClick) {
+                      return (
+                        <button
+                          type="button"
+                          onClick={actualItem.onClick}
+                          className={cn(
+                            'text-sm font-medium text-gray-500 hover:text-gray-700',
+                            'focus:outline-none focus:underline',
+                            'transition-colors'
+                          )}
+                        >
+                          {actualItem.label}
+                        </button>
+                      )
+                    }
+
+                    return (
+                      <a
+                        href={actualItem.href}
+                        className={cn(
+                          'text-sm font-medium text-gray-500 hover:text-gray-700',
+                          'focus:outline-none focus:underline',
+                          'transition-colors'
+                        )}
+                      >
+                        {actualItem.label}
+                      </a>
+                    )
+                  })()
                 )}
 
                 {/* Separator */}
-                {!isLast && (
-                  <div className="flex items-center">
-                    {renderSeparator()}
-                  </div>
-                )}
+                {!isLast && <div className="flex items-center">{renderSeparator()}</div>}
               </li>
-            );
+            )
           })}
         </ol>
       </nav>
-    );
+    )
   }
-);
+)
 
-Breadcrumb.displayName = 'Breadcrumb';
+Breadcrumb.displayName = 'Breadcrumb'

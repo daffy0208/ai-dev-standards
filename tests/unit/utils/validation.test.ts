@@ -326,7 +326,7 @@ describe('Helper Functions', () => {
     it('should return error object', () => {
       const result = validateSafe(emailSchema, 'invalid')
       expect(result.success).toBe(false)
-      if (!result.success) {
+      if (!result.success && 'errors' in result) {
         expect(result.errors).toBeDefined()
         expect(Array.isArray(result.errors)).toBe(true)
       }

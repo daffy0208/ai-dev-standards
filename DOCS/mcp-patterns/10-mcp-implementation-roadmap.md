@@ -14,18 +14,21 @@ This is the **custom implementation plan** for integrating Code Execution patter
 ### What We Have
 
 **MCPs**: 50 active servers using Direct MCP
+
 - See `/MCP-SERVERS/` directory
 - All catalogued in `/META/mcp-registry.json`
 - Average 3-8 tools per MCP
 - Total ~200 tools available
 
 **Skills**: 64 active skills
+
 - See `/SKILLS/` directory
 - Catalogued in `/META/skill-registry.json`
 - Many depend on multiple MCPs
 - Mix of simple and complex skills
 
 **Brain Orchestrator**: Central coordination
+
 - `brain-mcp` server active
 - Handles skill selection
 - Maps MCP relationships
@@ -34,12 +37,14 @@ This is the **custom implementation plan** for integrating Code Execution patter
 ### What Works Well
 
 ✅ **Direct MCP is effective for**:
+
 - Simple single-MCP operations
 - Real-time interactions
 - Development/debugging
 - Low-frequency tasks
 
 ✅ **No immediate problems**:
+
 - System is stable
 - Token costs are manageable at current scale
 - Team comfortable with current setup
@@ -47,12 +52,14 @@ This is the **custom implementation plan** for integrating Code Execution patter
 ### Growth Challenges
 
 ⚠️ **Approaching limits**:
+
 - 50 MCPs ≈ 100K tokens context overhead
 - Adding more MCPs becomes expensive
 - Complex workflows consume many tokens
 - No token reduction over time (no learning)
 
 ⚠️ **Future needs**:
+
 - More automation = more frequent runs
 - Larger datasets = higher token costs
 - More complex workflows = more coordination
@@ -135,6 +142,7 @@ These 5 MCPs are ideal candidates:
 ### Keep Direct MCP (Don't Migrate)
 
 All other 40 MCPs should stay Direct MCP:
+
 - Simple generators (component, doc, icon, svg, etc.)
 - Asset lookups and management
 - Single-purpose tools
@@ -148,6 +156,7 @@ All other 40 MCPs should stay Direct MCP:
 **Goal**: Set up infrastructure and documentation
 
 **Tasks**:
+
 - [ ] Complete documentation structure ✅ (In progress)
 - [ ] Set up sandbox environment (Docker or gVisor)
 - [ ] Configure persistent storage (/mnt/skills)
@@ -155,6 +164,7 @@ All other 40 MCPs should stay Direct MCP:
 - [ ] Create benchmarking baseline
 
 **Deliverables**:
+
 - Documentation complete
 - Sandbox tested and validated
 - Monitoring dashboard operational
@@ -168,6 +178,7 @@ All other 40 MCPs should stay Direct MCP:
 **Goal**: Migrate semantic-search-mcp as proof of concept
 
 **Tasks**:
+
 - [ ] Create /servers/semantic-search/ structure
 - [ ] Convert tools to .ts files
 - [ ] Write README.md
@@ -177,6 +188,7 @@ All other 40 MCPs should stay Direct MCP:
 - [ ] Measure token reduction
 
 **Success Criteria**:
+
 - ✅ Token reduction >40%
 - ✅ Error rate ≤ baseline
 - ✅ Latency ≤ baseline + 200ms
@@ -190,6 +202,7 @@ All other 40 MCPs should stay Direct MCP:
 **Goal**: Evaluate pilot results and refine approach
 
 **Tasks**:
+
 - [ ] Analyze metrics vs. baseline
 - [ ] Identify issues and improvements
 - [ ] Refine prompts and tooling
@@ -197,6 +210,7 @@ All other 40 MCPs should stay Direct MCP:
 - [ ] Decide: continue or pivot?
 
 **Go/No-Go Decision Point**:
+
 - IF savings ≥40% AND errors ≤baseline → PROCEED
 - IF not → Investigate, iterate, re-test
 
@@ -208,6 +222,7 @@ All other 40 MCPs should stay Direct MCP:
 **Goal**: Add automatic pattern selection to brain-mcp
 
 **Tasks**:
+
 - [ ] Create approach-selector.ts
 - [ ] Create complexity-analyzer.ts
 - [ ] Update mcp-integrator.ts
@@ -216,6 +231,7 @@ All other 40 MCPs should stay Direct MCP:
 - [ ] Monitor pattern selection accuracy
 
 **Deliverables**:
+
 - Brain automatically chooses pattern
 - Seamless switching between patterns
 - Pattern selection metrics tracked
@@ -228,6 +244,7 @@ All other 40 MCPs should stay Direct MCP:
 **Goal**: Migrate remaining Tier 1 MCPs (4 more)
 
 **Tasks**:
+
 - [ ] Week 8: market-analyzer-mcp + user-insight-analyzer-mcp
 - [ ] Week 9: deployment-orchestrator-mcp
 - [ ] Week 10: agent-orchestrator-mcp
@@ -235,6 +252,7 @@ All other 40 MCPs should stay Direct MCP:
 - [ ] Measure cumulative savings
 
 **Success Criteria**:
+
 - ✅ All 5 Tier 1 MCPs migrated
 - ✅ Average savings 80%+
 - ✅ Skill library growing (10-20 skills)
@@ -248,6 +266,7 @@ All other 40 MCPs should stay Direct MCP:
 **Goal**: Implement full 4-layer security model
 
 **Tasks**:
+
 - [ ] Layer 1: Upgrade to gVisor (if needed)
 - [ ] Layer 2: Complete PII tokenization
 - [ ] Layer 3: Full RBAC implementation
@@ -256,6 +275,7 @@ All other 40 MCPs should stay Direct MCP:
 - [ ] Penetration testing
 
 **Deliverables**:
+
 - Production-grade security
 - Compliance ready (GDPR, etc.)
 - Security documentation
@@ -268,6 +288,7 @@ All other 40 MCPs should stay Direct MCP:
 **Goal**: Optimize performance and consider Tier 2 migrations
 
 **Tasks**:
+
 - [ ] Optimize skill library
 - [ ] Improve tool discovery
 - [ ] Semantic search implementation (optional)
@@ -276,6 +297,7 @@ All other 40 MCPs should stay Direct MCP:
 - [ ] Document best practices
 
 **Ongoing**:
+
 - Monitor metrics
 - Grow skill library
 - Refine patterns
@@ -318,18 +340,18 @@ Total: $5-200/month depending on approach
 
 ```yaml
 Current (Direct MCP, estimated):
-- 1500 runs/month
-- Average 110K tokens
-- Cost: ~$500/month
+  - 1500 runs/month
+  - Average 110K tokens
+  - Cost: ~$500/month
 
 After Migration (Tier 1 only):
-- 1500 runs/month
-- Mixed: 900 Direct + 600 Code Exec
-- Direct: 900 × 110K = 99M tokens = $297
-- Code Exec (first runs): 100 × 12K = 1.2M = $3.60
-- Code Exec (with skills): 500 × 4K = 2M = $6
-- Infrastructure: $100
-- Total: ~$407/month
+  - 1500 runs/month
+  - Mixed: 900 Direct + 600 Code Exec
+  - Direct: 900 × 110K = 99M tokens = $297
+  - Code Exec (first runs): 100 × 12K = 1.2M = $3.60
+  - Code Exec (with skills): 500 × 4K = 2M = $6
+  - Infrastructure: $100
+  - Total: ~$407/month
 
 Savings: $93/month ($1116/year)
 Break-even: ~3 months
@@ -362,19 +384,15 @@ Skill Reuse Rate:
 ### Secondary Metrics
 
 ```yaml
-Cost Savings:
-  Monthly token cost reduction
+Cost Savings: Monthly token cost reduction
 
-Skill Library Growth:
-  Number of skills created
+Skill Library Growth: Number of skills created
   Skill usage frequency
 
-Developer Experience:
-  Time to create new MCP tool
+Developer Experience: Time to create new MCP tool
   Debugging ease
 
-Security Events:
-  Sandbox violations
+Security Events: Sandbox violations
   PII leakage attempts
   Access control denials
 ```
@@ -384,6 +402,7 @@ Security Events:
 ### Risk 1: Pilot Migration Fails
 
 **Mitigation**:
+
 - Choose low-risk MCP for pilot
 - Extensive testing before production
 - Keep Direct MCP as fallback
@@ -392,6 +411,7 @@ Security Events:
 ### Risk 2: Token Savings Lower Than Expected
 
 **Mitigation**:
+
 - Set realistic 40% target (not 95%)
 - Measure actual usage patterns first
 - Have break-even calculation
@@ -400,6 +420,7 @@ Security Events:
 ### Risk 3: Brain Pattern Selection Incorrect
 
 **Mitigation**:
+
 - Manual override available
 - Extensive testing of decision logic
 - Monitor pattern selection accuracy
@@ -408,6 +429,7 @@ Security Events:
 ### Risk 4: Security Vulnerabilities
 
 **Mitigation**:
+
 - Security review before production
 - Sandbox isolation tested thoroughly
 - PII tokenization validated
@@ -416,6 +438,7 @@ Security Events:
 ### Risk 5: Team Resistance / Learning Curve
 
 **Mitigation**:
+
 - Comprehensive documentation
 - Training sessions
 - Gradual rollout
@@ -426,18 +449,21 @@ Security Events:
 ### Go/No-Go: After Pilot (Week 5)
 
 **GO if**:
+
 - ✅ Token savings ≥40%
 - ✅ Error rate ≤baseline
 - ✅ Team confident in approach
 - ✅ No major blockers
 
 **NO-GO if**:
+
 - ❌ Savings <30%
 - ❌ Error rate significantly higher
 - ❌ Unresolved technical issues
 - ❌ Team concerns
 
 **Action if NO-GO**:
+
 - Iterate on pilot
 - Investigate issues
 - Consider alternative approach
@@ -448,12 +474,14 @@ Security Events:
 **Decision**: Migrate Tier 2 MCPs?
 
 **MIGRATE if**:
+
 - ✅ Tier 1 successful (>80% savings)
 - ✅ Skill library robust (20+ skills)
 - ✅ ROI clearly positive
 - ✅ Team capacity available
 
 **DON'T MIGRATE if**:
+
 - ❌ Tier 1 results marginal
 - ❌ Operational overhead high
 - ❌ Team at capacity
@@ -500,6 +528,7 @@ Metrics:
 ### Future Enhancements
 
 **After initial implementation**:
+
 1. Semantic search for tool discovery (vs filesystem)
 2. Skill recommendation system
 3. Automated skill optimization
@@ -511,18 +540,21 @@ Metrics:
 ### Stakeholders
 
 **Engineering Team**:
+
 - Weekly updates during implementation
 - Training sessions before each phase
 - Documentation access
 - Support channel
 
 **Leadership**:
+
 - Monthly progress reports
 - Cost/benefit analysis updates
 - Risk assessment
 - Go/no-go recommendations
 
 **Users (if internal)**:
+
 - Change notifications
 - Migration schedule
 - Support resources
@@ -543,6 +575,7 @@ This roadmap provides a **pragmatic, low-risk approach** to adopting Code Execut
 ---
 
 **Next Steps**:
+
 1. Review and approve this roadmap
 2. Allocate engineering resources
 3. Begin Phase 0 (Foundation)

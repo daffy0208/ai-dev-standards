@@ -31,6 +31,13 @@
 import Stripe from 'stripe'
 import { StripeClient } from './client'
 
+const logInfo = (...messages: unknown[]): void => {
+  const formatted = messages.map(message =>
+    typeof message === 'string' ? message : JSON.stringify(message, null, 2)
+  )
+  process.stdout.write(`${formatted.join(' ')}\n`)
+}
+
 export interface WebhookHandlers {
   // Payment events
   onPaymentSuccess?: (paymentIntent: Stripe.PaymentIntent) => Promise<void>
@@ -71,10 +78,7 @@ export async function handleStripeWebhook(
     const signature = request.headers.get('stripe-signature')
 
     if (!signature) {
-      return Response.json(
-        { error: 'Missing stripe-signature header' },
-        { status: 400 }
-      )
+      return Response.json({ error: 'Missing stripe-signature header' }, { status: 400 })
     }
 
     // Verify webhook signature
@@ -82,7 +86,7 @@ export async function handleStripeWebhook(
     const event = stripe.constructWebhookEvent(body, signature)
 
     // Log event (optional)
-    console.log(`[Stripe Webhook] ${event.type}:`, event.id)
+    logInfo(`[Stripe Webhook] ${event.type}:`, event.id)
 
     // Handle event based on type
     await handleEvent(event, handlers)
@@ -92,16 +96,10 @@ export async function handleStripeWebhook(
     console.error('[Stripe Webhook Error]:', error)
 
     if (error instanceof Error && error.message.includes('signature')) {
-      return Response.json(
-        { error: 'Invalid signature' },
-        { status: 400 }
-      )
+      return Response.json({ error: 'Invalid signature' }, { status: 400 })
     }
 
-    return Response.json(
-      { error: 'Webhook handler failed' },
-      { status: 500 }
-    )
+    return Response.json({ error: 'Webhook handler failed' }, { status: 500 })
   }
 }
 
@@ -193,7 +191,7 @@ async function handleEvent(event: Stripe.Event, handlers: WebhookHandlers) {
         if (handlers.onOtherEvent) {
           await handlers.onOtherEvent(event)
         } else {
-          console.log(`[Stripe Webhook] Unhandled event type: ${event.type}`)
+          logInfo(`[Stripe Webhook] Unhandled event type: ${event.type}`)
         }
     }
   } catch (error) {
@@ -207,8 +205,8 @@ async function handleEvent(event: Stripe.Event, handlers: WebhookHandlers) {
  */
 export async function exampleWebhookHandler(request: Request) {
   return handleStripeWebhook(request, {
-    onPaymentSuccess: async (paymentIntent) => {
-      console.log('Payment succeeded:', paymentIntent.id)
+    onPaymentSuccess: async paymentIntent => {
+      logInfo('Payment succeeded:', paymentIntent.id)
 
       // Update database
       // await db.payments.create({
@@ -226,8 +224,8 @@ export async function exampleWebhookHandler(request: Request) {
       // })
     },
 
-    onSubscriptionCreated: async (subscription) => {
-      console.log('Subscription created:', subscription.id)
+    onSubscriptionCreated: async subscription => {
+      logInfo('Subscription created:', subscription.id)
 
       // Update user subscription status
       // await db.users.update({
@@ -247,8 +245,8 @@ export async function exampleWebhookHandler(request: Request) {
       // })
     },
 
-    onSubscriptionUpdated: async (subscription) => {
-      console.log('Subscription updated:', subscription.id)
+    onSubscriptionUpdated: async subscription => {
+      logInfo('Subscription updated:', subscription.id)
 
       // Update database
       // await db.users.update({
@@ -268,8 +266,8 @@ export async function exampleWebhookHandler(request: Request) {
       }
     },
 
-    onSubscriptionDeleted: async (subscription) => {
-      console.log('Subscription deleted:', subscription.id)
+    onSubscriptionDeleted: async subscription => {
+      logInfo('Subscription deleted:', subscription.id)
 
       // Update database
       // await db.users.update({
@@ -285,8 +283,8 @@ export async function exampleWebhookHandler(request: Request) {
       // await revokeAccess(subscription.customer)
     },
 
-    onInvoicePaymentFailed: async (invoice) => {
-      console.log('Invoice payment failed:', invoice.id)
+    onInvoicePaymentFailed: async invoice => {
+      logInfo('Invoice payment failed:', invoice.id)
 
       // Send payment failure email
       // await sendEmail({
@@ -304,8 +302,8 @@ export async function exampleWebhookHandler(request: Request) {
       // })
     },
 
-    onCheckoutCompleted: async (session) => {
-      console.log('Checkout completed:', session.id)
+    onCheckoutCompleted: async session => {
+      logInfo('Checkout completed:', session.id)
 
       // Fulfill order
       // await fulfillOrder(session)
@@ -317,7 +315,7 @@ export async function exampleWebhookHandler(request: Request) {
  * Helper: Test webhook locally
  */
 export function testWebhookLocally() {
-  console.log(`
+  logInfo(`
 To test webhooks locally:
 
 1. Install Stripe CLI:
@@ -343,10 +341,7 @@ To test webhooks locally:
  * Helper: Verify webhook configuration
  */
 export async function verifyWebhookSetup() {
-  const required = [
-    'STRIPE_SECRET_KEY',
-    'STRIPE_WEBHOOK_SECRET'
-  ]
+  const required = ['STRIPE_SECRET_KEY', 'STRIPE_WEBHOOK_SECRET']
 
   const missing = required.filter(key => !process.env[key])
 
@@ -354,5 +349,5 @@ export async function verifyWebhookSetup() {
     throw new Error(`Missing required environment variables: ${missing.join(', ')}`)
   }
 
-  console.log('✅ Webhook configuration verified')
+  logInfo('✅ Webhook configuration verified')
 }

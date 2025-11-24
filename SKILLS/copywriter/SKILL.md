@@ -12,18 +12,21 @@ I help you write clear, compelling copy for your product, marketing, and user ex
 ## What I Do
 
 **UX Writing:**
+
 - Button labels, form fields, error messages
 - Empty states, onboarding flows
 - Tooltips, help text
 - Confirmation dialogs
 
 **Marketing Copy:**
+
 - Landing pages, hero sections
 - Feature descriptions
 - Call-to-action (CTA) buttons
 - Email campaigns
 
 **Product Content:**
+
 - Product descriptions
 - Feature announcements
 - Release notes
@@ -46,6 +49,7 @@ I help you write clear, compelling copy for your product, marketing, and user ex
 ```
 
 **Guidelines:**
+
 - Use verb + noun ("Save Changes" not "Save")
 - Be specific ("Delete Post" not "Delete")
 - Show outcome ("Start Free Trial" not "Submit")
@@ -91,6 +95,7 @@ function PasswordInput() {
 ```
 
 **Error Message Formula:**
+
 1. What happened
 2. Why it happened (optional)
 3. How to fix it
@@ -131,6 +136,7 @@ function EmptyInbox() {
 ```
 
 **Empty State Formula:**
+
 - Headline (what's empty)
 - Explanation (why it's empty)
 - Action (what to do next)
@@ -161,6 +167,7 @@ function EmptyInbox() {
 ```
 
 **Label Guidelines:**
+
 - Use clear, everyday language
 - Add help text for complex fields
 - Avoid technical jargon
@@ -260,6 +267,7 @@ export function Hero() {
 ```
 
 **Hero Copy Formula:**
+
 1. Headline: Main benefit (not what you do)
 2. Subheadline: How it works or who it's for
 3. CTA: Primary action
@@ -325,6 +333,7 @@ export function Features() {
 ```
 
 **Feature Copy Guidelines:**
+
 - Focus on benefits, not features
 - Use active voice
 - Be specific (numbers, timeframes)
@@ -356,6 +365,7 @@ export function Features() {
 ```
 
 **CTA Copy Formula:**
+
 - Start with a verb
 - Highlight the benefit
 - Remove friction ("Free", "No credit card", etc.)
@@ -503,15 +513,18 @@ export function PaymentSuccessEmail({ orderNumber, total }: {
 ## TechStart Voice
 
 **Professional but friendly**
+
 - We're experts, but we don't talk down to you
 - Use "we" and "you" (not "I" or "users")
 
 **Clear and concise**
+
 - Short sentences
 - Simple words
 - No jargon (unless necessary)
 
 **Helpful and supportive**
+
 - Anticipate questions
 - Provide context
 - Offer next steps
@@ -524,16 +537,16 @@ export function PaymentSuccessEmail({ orderNumber, total }: {
 "We're thrilled to announce auto-scaling! 🎉"
 
 // Tone: Reassuring (error message)
-"Something went wrong, but your data is safe. Please try again."
+'Something went wrong, but your data is safe. Please try again.'
 
 // Tone: Urgent (security alert)
-"Action required: Suspicious login detected on your account"
+'Action required: Suspicious login detected on your account'
 
 // Tone: Casual (success message)
-"All set! Your changes are live."
+'All set! Your changes are live.'
 
 // Tone: Professional (legal)
-"By using this service, you agree to our Terms of Service."
+'By using this service, you agree to our Terms of Service.'
 ```
 
 ---
@@ -582,6 +595,7 @@ export function PaymentSuccessEmail({ orderNumber, total }: {
 ## When to Use Me
 
 **Perfect for:**
+
 - Writing UX copy (buttons, errors, forms)
 - Creating landing pages
 - Writing product descriptions
@@ -589,6 +603,7 @@ export function PaymentSuccessEmail({ orderNumber, total }: {
 - Building onboarding flows
 
 **I'll help you:**
+
 - Write clear, actionable copy
 - Match your brand voice
 - Improve conversion rates

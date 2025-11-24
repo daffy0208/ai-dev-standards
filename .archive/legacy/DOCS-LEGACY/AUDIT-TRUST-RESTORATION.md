@@ -9,12 +9,14 @@
 ## 🎯 The Trust Problem
 
 **What Happened:**
+
 - Quality audit scored project 8.6/10 ("Excellent, Production-Ready")
 - **Meanwhile:** 81% of skills were invisible (29 out of 36 not discoverable)
 - CLI returned 3 hardcoded skills instead of 36 from registry
 - README documented skills that users couldn't access
 
 **The Core Issue:**
+
 > **"I don't have confidence in the data I am being given."**
 
 This is a fundamental trust breach. If audits miss critical issues like 81% invisible resources, how can you trust any audit score or analysis?
@@ -25,7 +27,7 @@ This is a fundamental trust breach. If audits miss critical issues like 81% invi
 
 ###
 
- Critical Failures NOT Caught:
+Critical Failures NOT Caught:
 
 1. **Resource Discovery (81% Missing)**
    - 36 skills exist in SKILLS/ directory
@@ -60,6 +62,7 @@ This is a fundamental trust breach. If audits miss critical issues like 81% invi
 **File:** `tests/registry-validation.test.ts`
 
 Comprehensive test suite that validates:
+
 - ✅ All skills in SKILLS/ are in registry
 - ✅ All MCPs in MCP-SERVERS/ are in registry
 - ✅ All playbooks in PLAYBOOKS/ are in registry
@@ -92,12 +95,14 @@ registry-validation:
 ```
 
 **Key Features:**
+
 - ⚠️ **Blocks merges** if registry incomplete
 - ⚠️ **Fails build** if resources missing
 - ⚠️ **Shows exact gap** (e.g., "36 skills exist but only 7 registered")
 - ⚠️ **Checks CLI integration** (no mock data)
 
 **Status Check Updated:**
+
 ```yaml
 needs: [test, lint, typecheck, build, registry-validation]
 # ALL must pass to merge
@@ -114,6 +119,7 @@ needs: [test, lint, typecheck, build, registry-validation]
 Added **Phase 0: Resource Completeness Check (MANDATORY)**
 
 **Before any scoring:**
+
 1. Run `npm run test:registry`
 2. Verify registry completeness
 3. Check resource discoverability
@@ -121,12 +127,14 @@ Added **Phase 0: Resource Completeness Check (MANDATORY)**
 5. Check CLI integration
 
 **Critical Failure Conditions:**
+
 - Registry missing >10% of resources → Audit fails
 - README documents unavailable resources → Audit fails
 - CLI uses mock data → Audit fails
 - Cross-references broken → Audit fails
 
 **Score Impact:**
+
 ```
 If Resource Discovery < 5/10:
   Overall Score = MIN(6.0, calculated_score)
@@ -144,6 +152,7 @@ If Resource Discovery < 5/10:
 Detailed checklist covering:
 
 **Pre-Audit (Mandatory):**
+
 - Resource completeness validation
 - CLI/tool integration checks
 - Documentation accuracy verification
@@ -151,6 +160,7 @@ Detailed checklist covering:
 - Automated validation confirmation
 
 **Dimension-Specific Updates:**
+
 - Code Quality: Check for hardcoded data
 - Architecture: Verify single source of truth
 - Documentation: Validate against reality
@@ -159,6 +169,7 @@ Detailed checklist covering:
 - Developer Experience: Confirm resource accessibility
 
 **Decision Tree:**
+
 ```
 Start Audit
   ├─ Run test:registry
@@ -176,6 +187,7 @@ Start Audit
 **File:** `package.json` (Updated)
 
 Added validation scripts:
+
 ```json
 {
   "test:registry": "vitest run tests/registry-validation.test.ts",
@@ -186,6 +198,7 @@ Added validation scripts:
 ```
 
 **Usage:**
+
 ```bash
 # Before commit
 npm run validate
@@ -204,6 +217,7 @@ npm run ci  # Includes registry validation
 ## 🔒 Multi-Layer Protection
 
 ### Layer 1: Pre-Commit (Local)
+
 ```bash
 git commit
   → pre-commit hook runs
@@ -212,6 +226,7 @@ git commit
 ```
 
 ### Layer 2: CI/CD (Remote)
+
 ```bash
 git push
   → GitHub Actions runs
@@ -220,6 +235,7 @@ git push
 ```
 
 ### Layer 3: Audit (Periodic)
+
 ```bash
 Quality audit requested
   → Phase 0: Resource Completeness (mandatory)
@@ -228,6 +244,7 @@ Quality audit requested
 ```
 
 ### Layer 4: Automated Tests (Continuous)
+
 ```bash
 npm test
   → Includes test:registry
@@ -240,6 +257,7 @@ npm test
 ## 📋 What Gets Validated
 
 ### Resource Counts
+
 ```
 ✅ Skills:    36 in directory = 36 in registry
 ✅ MCPs:       3 in directory =  3 in registry
@@ -248,6 +266,7 @@ npm test
 ```
 
 ### CLI Integration
+
 ```
 ✅ sync.js reads from registry.json
 ✅ update.js reads from registry.json
@@ -256,6 +275,7 @@ npm test
 ```
 
 ### Documentation
+
 ```
 ✅ README lists only discoverable skills
 ✅ Examples use existing resources
@@ -264,6 +284,7 @@ npm test
 ```
 
 ### Cross-References
+
 ```
 ✅ Skills → Skills references valid
 ✅ Playbooks → Skills references valid
@@ -278,12 +299,14 @@ npm test
 ### Issue 1: 81% Skills Invisible
 
 **Test:** `should register ALL skills from SKILLS directory`
+
 ```typescript
 const registeredSkills = registry.skills.map(s => s.name)
 for (const skillDir of skillDirs) {
-  expect(registeredSkills).toContain(skillDir)  // WOULD FAIL
+  expect(registeredSkills).toContain(skillDir) // WOULD FAIL
 }
 ```
+
 **Result:** ✅ CAUGHT - Test would fail with "Skill 'product-strategist' exists in SKILLS/ but NOT in registry!"
 
 ---
@@ -291,11 +314,11 @@ for (const skillDir of skillDirs) {
 ### Issue 2: CLI Mock Data
 
 **Test:** `should ensure CLI reads from registry, not mock data`
+
 ```typescript
-expect(
-  syncContent.includes('TODO: Fetch from actual repo')
-).toBe(false)  // WOULD FAIL
+expect(syncContent.includes('TODO: Fetch from actual repo')).toBe(false) // WOULD FAIL
 ```
+
 **Result:** ✅ CAUGHT - Test would fail with "CLI sync.js has TODO comment - still using mock data!"
 
 ---
@@ -303,11 +326,13 @@ expect(
 ### Issue 3: README Inaccuracy
 
 **Test:** `should only document skills that exist in registry`
+
 ```typescript
 for (const mentioned of uniqueMentioned) {
-  expect(registeredSkills).toContain(mentioned)  // WOULD FAIL
+  expect(registeredSkills).toContain(mentioned) // WOULD FAIL
 }
 ```
+
 **Result:** ✅ CAUGHT - Test would fail with "README mentions skill 'api-designer' but it's NOT in registry!"
 
 ---
@@ -315,12 +340,14 @@ for (const mentioned of uniqueMentioned) {
 ### Issue 4: Quality Audit Miss
 
 **Phase 0:** `Resource Completeness Check (MANDATORY)`
+
 ```bash
 # Count mismatch
 SKILL_DIRS=36
 REGISTRY_SKILLS=7
 # CRITICAL FAILURE TRIGGERED
 ```
+
 **Result:** ✅ CAUGHT - Audit would score 0/10 for Resource Discovery, cap overall at 6/10 maximum
 
 ---
@@ -330,6 +357,7 @@ REGISTRY_SKILLS=7
 ### Before Fixes
 
 **Protection Layers:** 0
+
 - ❌ No automated tests for registry
 - ❌ No CI validation
 - ❌ No audit checks for discovery
@@ -337,6 +365,7 @@ REGISTRY_SKILLS=7
 - ❌ Trust based on manual review
 
 **Result:**
+
 - 81% resources invisible for weeks/months
 - Audit scored 8.6/10 despite critical failures
 - Users couldn't access most functionality
@@ -347,6 +376,7 @@ REGISTRY_SKILLS=7
 ### After Fixes
 
 **Protection Layers:** 5
+
 - ✅ Automated tests (registry-validation.test.ts)
 - ✅ CI/CD enforcement (blocks merges)
 - ✅ Quality auditor Phase 0 (mandatory checks)
@@ -354,6 +384,7 @@ REGISTRY_SKILLS=7
 - ✅ Package scripts (easy validation)
 
 **Result:**
+
 - Impossible to have incomplete registry
 - Audits MUST validate discovery first
 - CI catches issues before merge
@@ -364,24 +395,28 @@ REGISTRY_SKILLS=7
 ## 🎓 Key Principles Established
 
 ### 1. Trust But Verify
+
 **Never trust high-level claims without testing underlying systems.**
 
 - ❌ "Repository has 36 skills" → Trust the README
 - ✅ "Repository has 36 skills" → Run test, verify registry, check CLI
 
 ### 2. Existence ≠ Accessibility
+
 **Resources must be both present AND discoverable.**
 
 - ❌ Files exist in SKILLS/ → Assume users can find them
 - ✅ Files exist in SKILLS/ → Verify registry entry, test CLI, check docs
 
 ### 3. Automate All Critical Checks
+
 **If it's critical, it must be automated and in CI.**
 
 - ❌ Manual checklist for auditors
 - ✅ Automated tests that block merges
 
 ### 4. Multiple Layers of Defense
+
 **Single point of failure = system failure.**
 
 - Layer 1: Pre-commit hooks
@@ -391,6 +426,7 @@ REGISTRY_SKILLS=7
 - Layer 5: Manual verification
 
 ### 5. Fail Fast and Loud
+
 **Better to block a merge than deploy broken state.**
 
 - ❌ Warnings that get ignored
@@ -403,11 +439,13 @@ REGISTRY_SKILLS=7
 ### For Developers
 
 **Before committing:**
+
 ```bash
 npm run validate  # Runs all checks including registry
 ```
 
 **When adding resources:**
+
 ```bash
 # 1. Add skill file
 mkdir SKILLS/new-skill
@@ -421,6 +459,7 @@ npm run test:registry
 ```
 
 **Before PR:**
+
 ```bash
 npm run ci  # Full CI check locally
 ```
@@ -430,6 +469,7 @@ npm run ci  # Full CI check locally
 ### For Auditors
 
 **Start every audit with Phase 0:**
+
 ```bash
 # 1. Run automated tests
 npm run test:registry
@@ -444,6 +484,7 @@ npm run test:registry
 ```
 
 **Use the checklist:**
+
 - `DOCS/AUDIT-VALIDATION-CHECKLIST.md`
 - Check every item before scoring
 - Document all findings
@@ -454,6 +495,7 @@ npm run test:registry
 ### For Project Maintainers
 
 **Setup (One Time):**
+
 ```bash
 # 1. Ensure tests exist
 ls tests/registry-validation.test.ts  # Should exist
@@ -466,6 +508,7 @@ npm run test:registry  # Should pass
 ```
 
 **Ongoing:**
+
 ```bash
 # Every time skills/resources added:
 npm run update-registry
@@ -481,6 +524,7 @@ npm run update-registry
 ## ✅ Success Metrics
 
 ### Immediate (Implemented)
+
 - ✅ Automated tests created (`tests/registry-validation.test.ts`)
 - ✅ CI validation added (`.github/workflows/ci.yml`)
 - ✅ Quality auditor updated (`SKILLS/quality-auditor/SKILL.md`)
@@ -488,6 +532,7 @@ npm run update-registry
 - ✅ Package scripts added (`package.json`)
 
 ### Ongoing (To Monitor)
+
 - [ ] Registry validation tests run on every PR
 - [ ] Zero merges with incomplete registry
 - [ ] All audits complete Phase 0 checks
@@ -495,6 +540,7 @@ npm run update-registry
 - [ ] Developers use `npm run validate` before commits
 
 ### Long-term (Confidence Restoration)
+
 - [ ] Zero resource discovery issues for 3+ months
 - [ ] Audit scores trusted and actionable
 - [ ] No user reports of missing resources
@@ -505,10 +551,13 @@ npm run update-registry
 ## 🎯 What This Solves
 
 ### User's Concern:
+
 > "I don't have confidence in the data I am being given. It is imperative that each and every element of the project has awareness and accessibility of each and every other area."
 
 ### Solution:
+
 **5 layers of automated validation ensure:**
+
 1. ✅ **Awareness:** Tests verify all resources are registered
 2. ✅ **Accessibility:** Tests verify CLI/tools provide access
 3. ✅ **Cross-reference:** Tests verify all links are valid
@@ -522,11 +571,13 @@ npm run update-registry
 ## 📚 Files Created/Updated
 
 ### New Files
+
 1. ✅ `tests/registry-validation.test.ts` - Comprehensive validation tests
 2. ✅ `DOCS/AUDIT-VALIDATION-CHECKLIST.md` - Step-by-step audit guide
 3. ✅ `DOCS/AUDIT-TRUST-RESTORATION.md` - This document
 
 ### Updated Files
+
 1. ✅ `.github/workflows/ci.yml` - Added registry-validation job
 2. ✅ `package.json` - Added test:registry, validate, update-registry scripts
 3. ✅ `SKILLS/quality-auditor/SKILL.md` - Added Phase 0 mandatory checks
@@ -537,6 +588,7 @@ npm run update-registry
 ## 🚀 Next Steps
 
 ### Immediate (Complete)
+
 - [x] Create automated tests
 - [x] Add CI validation
 - [x] Update quality auditor
@@ -544,12 +596,14 @@ npm run update-registry
 - [x] Add package scripts
 
 ### Short-term (This Week)
+
 - [ ] Run full audit with new Phase 0
 - [ ] Verify CI catches test failures
 - [ ] Test pre-commit hooks
 - [ ] Document for team
 
 ### Long-term (This Month)
+
 - [ ] Monitor CI for issues
 - [ ] Track audit trust metrics
 - [ ] Gather team feedback
@@ -566,6 +620,7 @@ npm run update-registry
 **The Solution:** 5 layers of automated checks that MUST pass.
 
 **The Result:**
+
 - Impossible to have incomplete registry
 - Audits can't skip discovery checks
 - CI blocks broken state

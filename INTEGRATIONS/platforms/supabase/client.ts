@@ -77,6 +77,10 @@ export interface Database {
   }
 }
 
+type Tables = Database['public']['Tables']
+type TableName = Extract<keyof Tables, string>
+export type SupabaseTableName = TableName
+
 /**
  * Create Supabase client for browser/client-side
  */
@@ -112,6 +116,7 @@ export function createSupabaseAdminClient() {
 
 // Export singleton instance
 export const supabase = createSupabaseClient()
+const supabaseAny = supabase as SupabaseClient<any>
 
 /**
  * Authentication helpers
@@ -188,7 +193,9 @@ export const auth = {
    * Get current user
    */
   async getUser(): Promise<User | null> {
-    const { data: { user } } = await supabase.auth.getUser()
+    const {
+      data: { user }
+    } = await supabase.auth.getUser()
     return user
   },
 
@@ -196,7 +203,9 @@ export const auth = {
    * Get current session
    */
   async getSession() {
-    const { data: { session } } = await supabase.auth.getSession()
+    const {
+      data: { session }
+    } = await supabase.auth.getSession()
     return session
   },
 
@@ -241,12 +250,8 @@ export const db = {
   /**
    * Get all rows from a table
    */
-  async getAll<T extends keyof Database['public']['Tables']>(
-    table: T
-  ): Promise<Database['public']['Tables'][T]['Row'][]> {
-    const { data, error } = await supabase
-      .from(table)
-      .select('*')
+  async getAll<T extends TableName>(table: T): Promise<Database['public']['Tables'][T]['Row'][]> {
+    const { data, error } = await supabaseAny.from(table as string).select('*')
 
     if (error) throw new Error(`Query failed: ${error.message}`)
     return data as Database['public']['Tables'][T]['Row'][]
@@ -255,12 +260,12 @@ export const db = {
   /**
    * Get single row by ID
    */
-  async getById<T extends keyof Database['public']['Tables']>(
+  async getById<T extends TableName>(
     table: T,
     id: string
   ): Promise<Database['public']['Tables'][T]['Row'] | null> {
-    const { data, error } = await supabase
-      .from(table)
+    const { data, error } = await supabaseAny
+      .from(table as string)
       .select('*')
       .eq('id', id)
       .single()
@@ -274,12 +279,12 @@ export const db = {
   /**
    * Insert row
    */
-  async insert<T extends keyof Database['public']['Tables']>(
+  async insert<T extends TableName>(
     table: T,
     data: Database['public']['Tables'][T]['Insert']
   ): Promise<Database['public']['Tables'][T]['Row']> {
-    const { data: result, error } = await supabase
-      .from(table)
+    const { data: result, error } = await supabaseAny
+      .from(table as string)
       .insert(data)
       .select()
       .single()
@@ -291,13 +296,13 @@ export const db = {
   /**
    * Update row
    */
-  async update<T extends keyof Database['public']['Tables']>(
+  async update<T extends TableName>(
     table: T,
     id: string,
     updates: Database['public']['Tables'][T]['Update']
   ): Promise<Database['public']['Tables'][T]['Row']> {
-    const { data, error } = await supabase
-      .from(table)
+    const { data, error } = await supabaseAny
+      .from(table as string)
       .update(updates)
       .eq('id', id)
       .select()
@@ -310,12 +315,9 @@ export const db = {
   /**
    * Delete row
    */
-  async delete<T extends keyof Database['public']['Tables']>(
-    table: T,
-    id: string
-  ): Promise<void> {
-    const { error } = await supabase
-      .from(table)
+  async delete<T extends TableName>(table: T, id: string): Promise<void> {
+    const { error } = await supabaseAny
+      .from(table as string)
       .delete()
       .eq('id', id)
 
@@ -325,11 +327,8 @@ export const db = {
   /**
    * Subscribe to real-time changes
    */
-  subscribe<T extends keyof Database['public']['Tables']>(
-    table: T,
-    callback: (payload: any) => void
-  ) {
-    return supabase
+  subscribe<T extends TableName>(table: T, callback: (payload: any) => void) {
+    return supabaseAny
       .channel(`${table}_changes`)
       .on('postgres_changes', { event: '*', schema: 'public', table }, callback)
       .subscribe()
@@ -344,12 +343,10 @@ export const storage = {
    * Upload file to storage bucket
    */
   async upload(bucket: string, path: string, file: File) {
-    const { data, error } = await supabase.storage
-      .from(bucket)
-      .upload(path, file, {
-        cacheControl: '3600',
-        upsert: false
-      })
+    const { data, error } = await supabaseAny.storage.from(bucket).upload(path, file, {
+      cacheControl: '3600',
+      upsert: false
+    })
 
     if (error) throw new Error(`Upload failed: ${error.message}`)
     return data
@@ -359,9 +356,7 @@ export const storage = {
    * Get public URL for file
    */
   getPublicUrl(bucket: string, path: string): string {
-    const { data } = supabase.storage
-      .from(bucket)
-      .getPublicUrl(path)
+    const { data } = supabaseAny.storage.from(bucket).getPublicUrl(path)
 
     return data.publicUrl
   },
@@ -370,9 +365,7 @@ export const storage = {
    * Download file
    */
   async download(bucket: string, path: string) {
-    const { data, error } = await supabase.storage
-      .from(bucket)
-      .download(path)
+    const { data, error } = await supabaseAny.storage.from(bucket).download(path)
 
     if (error) throw new Error(`Download failed: ${error.message}`)
     return data
@@ -382,9 +375,7 @@ export const storage = {
    * Delete file
    */
   async delete(bucket: string, paths: string[]) {
-    const { data, error } = await supabase.storage
-      .from(bucket)
-      .remove(paths)
+    const { data, error } = await supabaseAny.storage.from(bucket).remove(paths)
 
     if (error) throw new Error(`Delete failed: ${error.message}`)
     return data
@@ -394,9 +385,7 @@ export const storage = {
    * List files in bucket
    */
   async list(bucket: string, path?: string) {
-    const { data, error } = await supabase.storage
-      .from(bucket)
-      .list(path)
+    const { data, error } = await supabaseAny.storage.from(bucket).list(path)
 
     if (error) throw new Error(`List failed: ${error.message}`)
     return data
@@ -431,7 +420,7 @@ export async function examples() {
   })
 
   // Real-time subscription
-  const subscription = db.subscribe('users', (payload) => {
+  const subscription = db.subscribe('users', payload => {
     console.log('Change received!', payload)
   })
 

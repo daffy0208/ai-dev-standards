@@ -43,6 +43,7 @@ From `META/REPOSITORY-BRAIN.md`, we have a complete 4-layer brain design:
 ### 2. Current Archon Phase 2 Progress
 
 From `ARCHON-PROJECT.json`:
+
 - ✅ **P0-1 DONE**: Knowledge Base Manager skill created
 - ✅ **P0-3 DONE**: Archon + Skills integration guide (`DOCS/ARCHON-INTEGRATION.md`)
 - ⏳ **P0-2 TODO**: knowledge-base-mcp server (not yet built)
@@ -151,6 +152,7 @@ si-systems-v5-brain/
 **Goal**: Understand scope before deep diving
 
 **Actions**:
+
 1. Use `archon-manager` to create project: "SI Systems v5 Analysis"
 2. Use `dark-matter-analyzer` to run initial repository scan
 3. Get high-level metrics:
@@ -189,6 +191,7 @@ si-systems-v5-brain/
 ### Phase 3: Integration Planning (30 minutes)
 
 **Decide what to extract**:
+
 - Which patterns should become STANDARDS/?
 - Which capabilities should become Skills?
 - Which tools should become MCPs?
@@ -197,6 +200,7 @@ si-systems-v5-brain/
 ### Phase 4: Execution (Variable)
 
 **Implement approved extractions**:
+
 - Create new skills if warranted
 - Add patterns to STANDARDS/
 - Document integrations
@@ -217,6 +221,7 @@ si-systems-v5-brain/
 ## Tools & Resources Available
 
 ### Current Repository State
+
 - **39 Skills** (including newly created knowledge-base-manager)
 - **36 MCP Servers** (92% skill coverage)
 - **Complete registries** in META/
@@ -224,6 +229,7 @@ si-systems-v5-brain/
 - **Dark Matter analyzer** for repo health assessment
 
 ### Key Files to Reference
+
 - `META/REPOSITORY-BRAIN.md` - Brain architecture design
 - `ARCHON-PROJECT.json` - Current phase and tasks
 - `META/relationship-mapping.json` - Resource relationships
@@ -235,6 +241,7 @@ si-systems-v5-brain/
 ## Next Steps (For Morning Session)
 
 ### Immediate Actions
+
 1. **Review this file** to reload context
 2. **Decide approach**:
    - Option A: Start with Phase 1 reconnaissance
@@ -244,6 +251,7 @@ si-systems-v5-brain/
 4. **Set scope**: How deep to go (quick scan vs. comprehensive)
 
 ### Open Questions for User
+
 - [ ] Is si-systems-v5 public or private? (affects access)
 - [ ] What specific aspects interest you most?
 - [ ] Time constraint: Quick scan or comprehensive analysis?
@@ -274,6 +282,7 @@ Recent commits:
 ## For Tomorrow's Claude Instance
 
 **Context to load**:
+
 1. Read this file first
 2. Read `META/REPOSITORY-BRAIN.md` for brain architecture
 3. Read `ARCHON-PROJECT.json` for current project status

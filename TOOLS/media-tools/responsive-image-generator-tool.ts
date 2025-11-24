@@ -24,12 +24,12 @@
  * ```
  */
 
-import { Tool } from '@langchain/core/tools'
+import { StructuredTool } from '@langchain/core/tools'
 import { z } from 'zod'
 
 const BreakpointSchema = z.object({
   width: z.number().describe('Viewport width in pixels'),
-  size: z.string().describe('Image size at this breakpoint (e.g., "100vw", "50vw", "800px")'),
+  size: z.string().describe('Image size at this breakpoint (e.g., "100vw", "50vw", "800px")')
 })
 
 const ResponsiveImageGeneratorSchema = z.object({
@@ -38,28 +38,11 @@ const ResponsiveImageGeneratorSchema = z.object({
     .array(z.number())
     .default([320, 640, 768, 1024, 1280, 1536, 1920])
     .describe('Widths to generate in pixels'),
-  breakpoints: z
-    .array(BreakpointSchema)
-    .optional()
-    .describe('Responsive breakpoints with sizes'),
-  format: z
-    .enum(['webp', 'avif', 'jpeg', 'png'])
-    .default('webp')
-    .describe('Output format'),
-  quality: z
-    .number()
-    .min(1)
-    .max(100)
-    .default(85)
-    .describe('Image quality'),
-  dpr: z
-    .array(z.number())
-    .default([1, 2])
-    .describe('Device pixel ratios to support'),
-  generateFiles: z
-    .boolean()
-    .default(false)
-    .describe('Actually generate image files (vs just URLs)'),
+  breakpoints: z.array(BreakpointSchema).optional().describe('Responsive breakpoints with sizes'),
+  format: z.enum(['webp', 'avif', 'jpeg', 'png']).default('webp').describe('Output format'),
+  quality: z.number().min(1).max(100).default(85).describe('Image quality'),
+  dpr: z.array(z.number()).default([1, 2]).describe('Device pixel ratios to support'),
+  generateFiles: z.boolean().default(false).describe('Actually generate image files (vs just URLs)')
 })
 
 export type ResponsiveImageGeneratorInput = z.infer<typeof ResponsiveImageGeneratorSchema>
@@ -80,7 +63,9 @@ export interface ResponsiveImageResult {
   error?: string
 }
 
-export class ResponsiveImageGeneratorTool extends Tool {
+export class ResponsiveImageGeneratorTool extends StructuredTool<
+  typeof ResponsiveImageGeneratorSchema
+> {
   name = 'responsive_image_generator'
 
   description = `Generate responsive image srcset and sizes for optimal image loading across devices.
@@ -113,7 +98,7 @@ export class ResponsiveImageGeneratorTool extends Tool {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
       return JSON.stringify({
         success: false,
-        error: errorMessage,
+        error: errorMessage
       })
     }
   }
@@ -125,14 +110,14 @@ export class ResponsiveImageGeneratorTool extends Tool {
     const extension = input.format
 
     // Generate image URLs for each width
-    const images = input.widths.map((width) => ({
+    const images = input.widths.map(width => ({
       url: `${basePath}-${width}w.${extension}`,
       width,
-      format: input.format,
+      format: input.format
     }))
 
     // Generate srcset string
-    const srcset = images.map((img) => `${img.url} ${img.width}w`).join(', ')
+    const srcset = images.map(img => `${img.url} ${img.width}w`).join(', ')
 
     // Generate sizes attribute
     let sizes: string
@@ -140,9 +125,7 @@ export class ResponsiveImageGeneratorTool extends Tool {
       // Custom breakpoints
       const sortedBreakpoints = [...input.breakpoints].sort((a, b) => a.width - b.width)
 
-      const sizeStrings = sortedBreakpoints.map(
-        (bp) => `(max-width: ${bp.width}px) ${bp.size}`
-      )
+      const sizeStrings = sortedBreakpoints.map(bp => `(max-width: ${bp.width}px) ${bp.size}`)
 
       // Add default size for largest viewport
       const lastBreakpoint = sortedBreakpoints[sortedBreakpoints.length - 1]
@@ -182,7 +165,7 @@ export class ResponsiveImageGeneratorTool extends Tool {
       sizes,
       images,
       htmlSnippet,
-      pictureElementSnippet,
+      pictureElementSnippet
     }
   }
 }
@@ -220,7 +203,7 @@ export function calculateOptimalSizes(options: {
     return '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
   }
 
-  const sizeStrings = breakpoints.map((bp) => {
+  const sizeStrings = breakpoints.map(bp => {
     const columns = bp.columns || 1
     const percentage = Math.round((1 / columns) * 100)
     return `(max-width: ${bp.width}px) ${percentage}vw`
@@ -238,5 +221,5 @@ export function calculateOptimalSizes(options: {
  * Helper: Generate srcset for different DPRs
  */
 export function generateDprSrcset(baseUrl: string, dprValues: number[] = [1, 2, 3]): string {
-  return dprValues.map((dpr) => `${baseUrl}?dpr=${dpr} ${dpr}x`).join(', ')
+  return dprValues.map(dpr => `${baseUrl}?dpr=${dpr} ${dpr}x`).join(', ')
 }

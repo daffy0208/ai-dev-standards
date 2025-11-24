@@ -22,10 +22,10 @@
  * ```
  */
 
-import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
-import { CohereEmbeddings } from 'langchain/embeddings/cohere'
-import { HuggingFaceInferenceEmbeddings } from 'langchain/embeddings/hf'
-import type { Document } from 'langchain/document'
+import { OpenAIEmbeddings } from '@langchain/openai'
+import { CohereEmbeddings } from '@langchain/community/embeddings/cohere'
+import { HuggingFaceInferenceEmbeddings } from '@langchain/community/embeddings/hf'
+import type { Document } from '@langchain/core/documents'
 
 export type EmbeddingProvider = 'openai' | 'cohere' | 'huggingface'
 
@@ -57,7 +57,7 @@ export class EmbeddingPipeline {
       batchSize: options.batchSize || 100,
       maxRetries: options.maxRetries || 3,
       cache: options.cache ?? true,
-      onProgress: options.onProgress,
+      onProgress: options.onProgress
     }
 
     this.embeddings = this.createEmbeddingsClient()
@@ -71,19 +71,19 @@ export class EmbeddingPipeline {
       case 'openai':
         return new OpenAIEmbeddings({
           modelName: this.options.model || 'text-embedding-3-small',
-          openAIApiKey: process.env.OPENAI_API_KEY,
+          openAIApiKey: process.env.OPENAI_API_KEY
         })
 
       case 'cohere':
         return new CohereEmbeddings({
-          model: this.options.model || 'embed-english-v3.0',
-          apiKey: process.env.COHERE_API_KEY,
+          modelName: this.options.model || 'embed-english-v3.0',
+          apiKey: process.env.COHERE_API_KEY
         })
 
       case 'huggingface':
         return new HuggingFaceInferenceEmbeddings({
           model: this.options.model || 'sentence-transformers/all-MiniLM-L6-v2',
-          apiKey: process.env.HUGGINGFACE_API_KEY,
+          apiKey: process.env.HUGGINGFACE_API_KEY
         })
 
       default:
@@ -106,7 +106,7 @@ export class EmbeddingPipeline {
       batch.forEach((doc, idx) => {
         embeddedDocs.push({
           ...doc,
-          embedding: batchEmbeddings[idx],
+          embedding: batchEmbeddings[idx]
         })
       })
 
@@ -114,7 +114,7 @@ export class EmbeddingPipeline {
       if (this.options.onProgress) {
         this.options.onProgress({
           current: embeddedDocs.length,
-          total: documents.length,
+          total: documents.length
         })
       }
     }
@@ -153,10 +153,7 @@ export class EmbeddingPipeline {
   /**
    * Embed texts with retry logic
    */
-  private async embedWithRetry(
-    texts: string[],
-    attempt: number = 1
-  ): Promise<number[][]> {
+  private async embedWithRetry(texts: string[], attempt: number = 1): Promise<number[][]> {
     try {
       return await this.embeddings.embedDocuments(texts)
     } catch (error) {
@@ -317,7 +314,9 @@ export class SimilarityCalculator {
    */
   static computeSimilarityMatrix(vectors: number[][]): number[][] {
     const n = vectors.length
-    const matrix: number[][] = Array(n).fill(0).map(() => Array(n).fill(0))
+    const matrix: number[][] = Array(n)
+      .fill(0)
+      .map(() => Array(n).fill(0))
 
     for (let i = 0; i < n; i++) {
       for (let j = i; j < n; j++) {
@@ -343,19 +342,13 @@ export class SimilarityCalculator {
       similarity: cosineSimilarity(queryVector, vec)
     }))
 
-    return similarities
-      .sort((a, b) => b.similarity - a.similarity)
-      .slice(0, k)
+    return similarities.sort((a, b) => b.similarity - a.similarity).slice(0, k)
   }
 
   /**
    * Cluster vectors using k-means
    */
-  static clusterVectors(
-    vectors: number[][],
-    k: number,
-    maxIterations: number = 100
-  ): number[] {
+  static clusterVectors(vectors: number[][], k: number, maxIterations: number = 100): number[] {
     const n = vectors.length
     const dim = vectors[0].length
 
@@ -398,7 +391,8 @@ export class SimilarityCalculator {
         const clusterVectors = vectors.filter((_, i) => labels[i] === j)
         if (clusterVectors.length > 0) {
           for (let d = 0; d < dim; d++) {
-            centroids[j][d] = clusterVectors.reduce((sum, vec) => sum + vec[d], 0) / clusterVectors.length
+            centroids[j][d] =
+              clusterVectors.reduce((sum, vec) => sum + vec[d], 0) / clusterVectors.length
           }
         }
       }
@@ -444,8 +438,9 @@ export class EmbeddingCacheManager {
   set(text: string, embedding: number[]): void {
     // Evict oldest entries if cache is full
     if (this.cache.size >= this.maxSize) {
-      const oldest = Array.from(this.cache.entries())
-        .sort((a, b) => a[1].timestamp - b[1].timestamp)[0]
+      const oldest = Array.from(this.cache.entries()).sort(
+        (a, b) => a[1].timestamp - b[1].timestamp
+      )[0]
       this.cache.delete(oldest[0])
     }
 

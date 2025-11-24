@@ -2,8 +2,12 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "ESNext",
-    "lib": ["ES2020", "DOM"],
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@crewai/crewai": ["types/crewai__crewai"]
+    },
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": false,
@@ -16,17 +20,15 @@
     "checkJs": false,
     "types": ["node", "react", "vitest"]
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.js",
-    "**/*.jsx"
-  ],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
   "exclude": [
     "node_modules",
     "dist",
     "build",
     ".archive",
-    "html"
+    "html",
+    "tests/**/*",
+    "**/*.test.ts",
+    "**/*.test.tsx"
   ]
 }

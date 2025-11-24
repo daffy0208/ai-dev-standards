@@ -192,7 +192,7 @@ export class SketchClient {
   constructor(options: SketchClientOptions = {}) {
     this.options = {
       workDir: options.workDir || process.cwd(),
-      debug: options.debug || false,
+      debug: options.debug || false
     }
   }
 
@@ -234,23 +234,29 @@ export class SketchClient {
       green: color.green,
       blue: color.blue,
       alpha: color.alpha,
-      name: color.name,
+      name: color.name
     }))
 
     // Extract text styles
     const textStyles = (document.layerTextStyles?.objects || []).map((style: any) => ({
       name: style.name,
-      fontFamily: style.value?.textStyle?.encodedAttributes?.MSAttributedStringFontAttribute?.attributes?.name,
-      fontSize: style.value?.textStyle?.encodedAttributes?.MSAttributedStringFontAttribute?.attributes?.size,
-      fontWeight: style.value?.textStyle?.encodedAttributes?.MSAttributedStringFontAttribute?.attributes?.weight,
-      color: style.value?.textStyle?.encodedAttributes?.MSAttributedStringColorAttribute,
+      fontFamily:
+        style.value?.textStyle?.encodedAttributes?.MSAttributedStringFontAttribute?.attributes
+          ?.name,
+      fontSize:
+        style.value?.textStyle?.encodedAttributes?.MSAttributedStringFontAttribute?.attributes
+          ?.size,
+      fontWeight:
+        style.value?.textStyle?.encodedAttributes?.MSAttributedStringFontAttribute?.attributes
+          ?.weight,
+      color: style.value?.textStyle?.encodedAttributes?.MSAttributedStringColorAttribute
     }))
 
     // Extract layer styles
     const layerStyles = (document.layerStyles?.objects || []).map((style: any) => ({
       id: style.do_objectID,
       name: style.name,
-      style: this.parseStyle(style.value?.style),
+      style: this.parseStyle(style.value?.style)
     }))
 
     return {
@@ -258,7 +264,7 @@ export class SketchClient {
       pages,
       colors,
       textStyles,
-      layerStyles,
+      layerStyles
     }
   }
 
@@ -272,7 +278,7 @@ export class SketchClient {
       colors: [],
       typography: [],
       spacing: [],
-      shadows: [],
+      shadows: []
     }
 
     // Extract colors
@@ -284,8 +290,8 @@ export class SketchClient {
           r: color.red,
           g: color.green,
           b: color.blue,
-          a: color.alpha,
-        },
+          a: color.alpha
+        }
       })
     }
 
@@ -298,7 +304,7 @@ export class SketchClient {
           fontSize: textStyle.fontSize,
           fontWeight: textStyle.fontWeight,
           lineHeight: textStyle.lineHeight,
-          letterSpacing: textStyle.letterSpacing,
+          letterSpacing: textStyle.letterSpacing
         })
       }
     }
@@ -312,7 +318,7 @@ export class SketchClient {
     for (const spacing of Array.from(spacingSet).sort((a, b) => a - b)) {
       tokens.spacing.push({
         name: `spacing-${spacing}`,
-        value: spacing,
+        value: spacing
       })
     }
 
@@ -327,7 +333,7 @@ export class SketchClient {
               offsetY: shadow.offsetY,
               blur: shadow.blurRadius,
               spread: shadow.spread,
-              color: this.rgbaToHex(shadow.color),
+              color: this.rgbaToHex(shadow.color)
             })
           }
         }
@@ -356,7 +362,7 @@ export class SketchClient {
    */
   async getArtboard(filePath: string, artboardName: string): Promise<SketchArtboard | null> {
     const artboards = await this.getArtboards(filePath)
-    return artboards.find((a) => a.name === artboardName) || null
+    return artboards.find(a => a.name === artboardName) || null
   }
 
   /**
@@ -475,7 +481,7 @@ export class SketchClient {
       id: page.do_objectID,
       name: page.name,
       artboards,
-      layers,
+      layers
     }
   }
 
@@ -488,7 +494,7 @@ export class SketchClient {
       name: artboard.name,
       frame: artboard.frame,
       backgroundColor: artboard.backgroundColor,
-      layers: (artboard.layers || []).map((l: any) => this.parseLayer(l)),
+      layers: (artboard.layers || []).map((l: any) => this.parseLayer(l))
     }
   }
 
@@ -503,7 +509,7 @@ export class SketchClient {
       frame: layer.frame,
       style: this.parseStyle(layer.style),
       layers: layer.layers ? layer.layers.map((l: any) => this.parseLayer(l)) : undefined,
-      exportOptions: layer.exportOptions?.exportFormats,
+      exportOptions: layer.exportOptions?.exportFormats
     }
   }
 
@@ -517,7 +523,7 @@ export class SketchClient {
       fills: style.fills,
       borders: style.borders,
       shadows: style.shadows,
-      blur: style.blur,
+      blur: style.blur
     }
   }
 

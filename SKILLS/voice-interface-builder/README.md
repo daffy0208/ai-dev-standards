@@ -21,21 +21,25 @@ claude-code --skill voice-interface-builder
 ## Common Tasks
 
 ### Add Speech Recognition
+
 ```
 "Add voice input to this search field using the Web Speech API"
 ```
 
 ### Implement Text-to-Speech
+
 ```
 "Add a 'read aloud' button that speaks the article content"
 ```
 
 ### Create Voice Commands
+
 ```
 "Implement voice navigation commands like 'go home' and 'open menu'"
 ```
 
 ### Build Voice Search
+
 ```
 "Create a voice-enabled search component with visual feedback"
 ```

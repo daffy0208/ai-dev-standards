@@ -26,6 +26,13 @@
 import OpenAI from 'openai'
 import { encoding_for_model, TiktokenModel } from 'tiktoken'
 
+const logInfo = (...messages: unknown[]): void => {
+  const formatted = messages.map(message =>
+    typeof message === 'string' ? message : JSON.stringify(message, null, 2)
+  )
+  process.stdout.write(`${formatted.join(' ')}\n`)
+}
+
 export interface OpenAIConfig {
   apiKey?: string
   model?: string
@@ -133,8 +140,9 @@ export class OpenAIClient {
       const usage = completion.usage!
 
       // Calculate cost
-      const pricing = OpenAIClient.PRICING[model as keyof typeof OpenAIClient.PRICING] ||
-                     OpenAIClient.PRICING['gpt-4-turbo-preview']
+      const pricing =
+        OpenAIClient.PRICING[model as keyof typeof OpenAIClient.PRICING] ||
+        OpenAIClient.PRICING['gpt-4-turbo-preview']
 
       const cost = {
         prompt: (usage.prompt_tokens / 1000) * pricing.prompt,
@@ -349,35 +357,28 @@ export async function examples() {
     ]
   })
 
-  console.log('Response:', response.content)
-  console.log('Cost:', `$${response.cost.total.toFixed(6)}`)
-  console.log('Tokens:', response.usage)
+  logInfo('Response:', response.content)
+  logInfo('Cost:', `$${response.cost.total.toFixed(6)}`)
+  logInfo('Tokens:', response.usage)
 
   // Streaming chat
-  console.log('\nStreaming response:')
+  logInfo('\nStreaming response:')
   for await (const chunk of client.chatStream({
-    messages: [
-      { role: 'user', content: 'Count from 1 to 5' }
-    ]
+    messages: [{ role: 'user', content: 'Count from 1 to 5' }]
   })) {
     process.stdout.write(chunk)
   }
-  console.log()
+  logInfo('')
 
   // Embeddings
-  const embeddings = await client.embed([
-    'The quick brown fox',
-    'jumps over the lazy dog'
-  ])
+  const embeddings = await client.embed(['The quick brown fox', 'jumps over the lazy dog'])
 
-  console.log('\nEmbeddings:', embeddings.length, 'vectors')
-  console.log('Vector dimension:', embeddings[0].embedding.length)
+  logInfo('\nEmbeddings:', `${embeddings.length} vectors`)
+  logInfo('Vector dimension:', embeddings[0].embedding.length)
 
   // Function calling
   const functionResponse = await client.callFunction(
-    [
-      { role: 'user', content: 'What is the weather in San Francisco?' }
-    ],
+    [{ role: 'user', content: 'What is the weather in San Francisco?' }],
     [
       {
         name: 'get_weather',
@@ -401,17 +402,17 @@ export async function examples() {
   )
 
   if (functionResponse.functionCall) {
-    console.log('\nFunction call:', functionResponse.functionCall)
+    logInfo('\nFunction call:', functionResponse.functionCall)
   }
 
   // Token counting
   const text = 'Hello, how are you doing today?'
   const tokenCount = client.countTokens(text)
-  console.log(`\nText: "${text}"`)
-  console.log(`Tokens: ${tokenCount}`)
+  logInfo(`\nText: "${text}"`)
+  logInfo(`Tokens: ${tokenCount}`)
 
   // Total session cost
-  console.log(`\nTotal session cost: $${client.getTotalCost().toFixed(6)}`)
+  logInfo(`\nTotal session cost: $${client.getTotalCost().toFixed(6)}`)
 }
 
 // Helper: Create singleton instance

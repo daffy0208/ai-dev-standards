@@ -25,10 +25,12 @@ This document captures all inconsistencies, contradictions, repetitions, gaps, a
 **Status:** FIXED in commit 860c1fd
 
 **What was wrong:**
+
 - Documented: 198 "Project Install Set" / 329 "Repository Inventory"
 - Actual: 238 Tier 1 + 122 Tier 2 = 360 total
 
 **What was fixed:**
+
 - Updated README.md with correct counts (238 core, 360 total)
 - Updated INTEGRATION-USAGE.md with correct counts
 - Updated STANDALONE-USAGE.md with correct counts
@@ -41,10 +43,12 @@ This document captures all inconsistencies, contradictions, repetitions, gaps, a
 **Status:** FIXED in commit 860c1fd
 
 **What was wrong:**
+
 - SECURITY.md showed "Last Updated: 2025-10-28"
 - Other core docs showed 2025-11-09
 
 **What was fixed:**
+
 - Updated SECURITY.md to 2025-11-10
 - Updated version from 3.0.0 to 3.0.3
 
@@ -55,11 +59,13 @@ This document captures all inconsistencies, contradictions, repetitions, gaps, a
 **Status:** FIXED in commit 6415224
 
 **What was wrong:**
+
 - 18 historical status reports cluttered root directory
 - Conflicting information about resource counts
 - Users didn't know which reports were current
 
 **What was fixed:**
+
 - Created STATUS-REPORTS/ directory
 - Moved all 18 historical reports there
 - Created STATUS-REPORTS/README.md explaining the reports
@@ -72,11 +78,13 @@ This document captures all inconsistencies, contradictions, repetitions, gaps, a
 **Status:** FIXED in commit 6415224
 
 **What was missing:**
+
 - No clear explanation of how resources are counted
 - No documentation of Tier 1 vs Tier 2
 - No guidance on what counts as a resource
 
 **What was created:**
+
 - META/RESOURCE-TAXONOMY.md with comprehensive guide
 - Explains all resource categories
 - Documents validation methodology
@@ -89,6 +97,7 @@ This document captures all inconsistencies, contradictions, repetitions, gaps, a
 **Status:** Enhanced in commit 6415224
 
 **What was improved:**
+
 - Added "Notable Historical Documents" section
 - Improved search examples with file counting
 - Added decision context references
@@ -100,11 +109,13 @@ This document captures all inconsistencies, contradictions, repetitions, gaps, a
 ### Repository Structure Issues (Fixed) ✅
 
 **What was wrong:**
+
 - Root directory cluttered with 30+ markdown files
 - Historical reports mixed with current documentation
 - No clear organization
 
 **What was fixed:**
+
 - Root: 30+ files → 13 essential files
 - Created STATUS-REPORTS/ for historical reports
 - Enhanced .archive/README.md
@@ -120,11 +131,13 @@ This document captures all inconsistencies, contradictions, repetitions, gaps, a
 **Issue:** The documented resource counts do not match the actual registry counts.
 
 **Documented (README.md line 31):**
+
 ```
 198 resources (64 skills + 50 MCPs + 4 tools + 75 components + 5 integrations)
 ```
 
 **Validation Script Reports (scripts/validate-all.cjs):**
+
 ```
 Tier 1: 238 resources (64 Skills, 50 MCPs, 72 Components, 28 Integrations, 24 Tools)
 Tier 2: 122 resources (14 Playbooks, 20 Standards, 19 Templates, 4 Schemas, 8 Utils, 3 Examples, 3 Installers, 24 Docs)
@@ -132,6 +145,7 @@ TOTAL:  360 resources
 ```
 
 **Manual Registry Counts:**
+
 - Skills: 64 ✅ CORRECT
 - MCPs: 51 (registry shows 51, validation shows 50 - need to investigate)
 - Tools: 24 ❌ WRONG (documented as 4)
@@ -139,6 +153,7 @@ TOTAL:  360 resources
 - Integrations: 28 ❌ WRONG (documented as 5)
 
 **Discrepancy Analysis:**
+
 - Documented "Project Install Set": 198 resources
 - Validation script Tier 1: 238 resources (difference of 40!)
 - Documented "Repository Inventory": 329 resources
@@ -147,12 +162,14 @@ TOTAL:  360 resources
 **Impact:** CRITICAL - This is repeated throughout documentation and causes massive confusion about what the repository contains.
 
 **Locations to Fix:**
+
 - README.md lines 20, 31, 73, 185, 226, 426
 - INTEGRATION-USAGE.md lines 24, 40, 217, 624-640
 - STANDALONE-USAGE.md lines 14, 381-407
 - Multiple other status reports
 
-**Recommended Fix:** 
+**Recommended Fix:**
+
 1. The validation script shows the truth: **238 Tier 1 + 122 Tier 2 = 360 total resources**
 2. Update README.md to reflect actual counts:
    - Tier 1 (Core/Executable): 238 resources = 64 skills + 50 MCPs + 72 components + 28 integrations + 24 tools
@@ -170,6 +187,7 @@ TOTAL:  360 resources
 **Issue:** Security document shows "Last Updated: 2025-10-28" while other core docs show 2025-11-09
 
 **Current State:**
+
 - README.md: 2025-11-09 ✅
 - INTEGRATION-USAGE.md: 2025-11-09 ✅
 - STANDALONE-USAGE.md: 2025-11-09 ✅
@@ -185,6 +203,7 @@ TOTAL:  360 resources
 **Issue:** Too many status/audit reports that may be outdated or contradictory
 
 **Files Found:**
+
 - HONEST-STATUS-REPORT.md (dated 2025-10-28)
 - OUTDATED-INFO-AUDIT-REPORT.md (dated 2025-11-09)
 - REPOSITORY-STATUS-REPORT.md (version 3.0.0, outdated)
@@ -203,13 +222,15 @@ TOTAL:  360 resources
 - CI-CD-QUICK-FIX-GUIDE.md
 - BRAIN-ORCHESTRATOR-SOLUTION.md
 
-**Issue:** 
+**Issue:**
+
 1. Many of these are point-in-time reports that are now historical
 2. They contain conflicting information about resource counts
 3. Users don't know which is current
 4. Creates confusion about repository state
 
 **Recommended Fix:**
+
 1. Create a `STATUS-REPORTS/` directory
 2. Move historical reports there with date prefixes
 3. Keep only current, authoritative docs at root:
@@ -233,14 +254,16 @@ TOTAL:  360 resources
 **Issue:** These files are marked as deprecated but still appear in directory listings
 
 **Current State:**
+
 ```markdown
-> **📢 DEPRECATED:** This file is maintained for backward compatibility. 
+> **📢 DEPRECATED:** This file is maintained for backward compatibility.
 > **Please use:** [INTEGRATION-USAGE.md](INTEGRATION-USAGE.md)
 ```
 
 **Issue:** Users may not see the deprecation notice and use outdated instructions
 
 **Recommended Fix:**
+
 1. Rename to `INSTALL.md.deprecated` and `UPDATE-GUIDE.md.deprecated`
 2. OR move to `.archive/` directory
 3. OR add prominent warning at very top in larger text
@@ -253,6 +276,7 @@ TOTAL:  360 resources
 **Issue:** This report identifies the same resource count discrepancies but the issues haven't been fixed
 
 **Content Summary:**
+
 - Correctly identifies that MCPs should be 51 not 50
 - Correctly identifies that Components should be 72 not 75
 - Correctly identifies that Tools should be 24 not 4
@@ -269,17 +293,19 @@ TOTAL:  360 resources
 **Issue:** Directory contains 65 subdirectories but only 64 skills in registry
 
 **Investigation Needed:**
+
 - One directory may be a template or non-skill directory
 - Need to identify which directory is extra
 
 ---
 
-### 7. MCP Directory Count Mismatch  
+### 7. MCP Directory Count Mismatch
 
 **Location:** MCP-SERVERS/ directory  
 **Issue:** Directory contains 50 subdirectories but 51 MCPs in registry
 
 **Investigation Needed:**
+
 - One MCP in registry may not have a directory
 - OR one directory may contain multiple MCPs
 
@@ -293,16 +319,19 @@ TOTAL:  360 resources
 **Issue:** The breakdown of "329 resources" is not clear
 
 **Current State:**
+
 ```
 329 resources (Tier 1: 238 executable/core resources • Tier 2: 91 supporting resources like docs, templates, playbooks, standards, schemas, utilities, examples)
 ```
 
 **Questions:**
+
 1. How is 238 + 91 = 329 if the registry totals are 239?
 2. What exactly are Tier 1 vs Tier 2 resources?
 3. Is this counting different things than the "198 project install set"?
 
 **Recommended Fix:** Create a clear resource taxonomy document explaining:
+
 - What counts as a "resource"
 - Tier 1 vs Tier 2 distinction
 - Project Install Set vs Repository Inventory
@@ -317,6 +346,7 @@ TOTAL:  360 resources
 **Gap:** No clear documentation on how resources are counted and categorized
 
 **Need:**
+
 - Document in META/RESOURCE-TAXONOMY.md:
   - What counts as a resource
   - How to count composite resources (e.g., component library with multiple files)
@@ -331,6 +361,7 @@ TOTAL:  360 resources
 **Gap:** Resource counts in documentation can drift from registry counts
 
 **Need:**
+
 - Add validation script that checks:
   - Documentation resource counts match registry counts
   - "Last Updated" dates are consistent
@@ -346,6 +377,7 @@ TOTAL:  360 resources
 **Locations:** Multiple files
 
 **Contradictions:**
+
 - README.md line 20: "50 MCP Servers"
 - README.md line 31: "50 MCPs"
 - README.md line 73: "50 MCP servers"
@@ -360,6 +392,7 @@ TOTAL:  360 resources
 ### 12. Component Count Contradiction
 
 **Contradictions:**
+
 - README.md line 31: "75 components"
 - README.md line 178: "72 components in current catalog"
 - Component registry actual count: 72 components
@@ -374,6 +407,7 @@ TOTAL:  360 resources
 ### 13. Installation Instructions Repeated
 
 **Locations:**
+
 - README.md (Quick Start section)
 - INTEGRATION-USAGE.md (Quick Start section)
 - INSTALL.md (deprecated)
@@ -381,7 +415,8 @@ TOTAL:  360 resources
 
 **Issue:** Same installation command repeated in multiple places with slight variations
 
-**Recommended Fix:** 
+**Recommended Fix:**
+
 - Keep detailed instructions only in INTEGRATION-USAGE.md
 - Have README.md link to INTEGRATION-USAGE.md
 - Remove from deprecated INSTALL.md or add clear redirect
@@ -391,6 +426,7 @@ TOTAL:  360 resources
 ### 14. Brain-MCP Setup Instructions Repeated
 
 **Locations:**
+
 - README.md (Brain & Orchestrator section)
 - INTEGRATION-USAGE.md (Brain-MCP section)
 - INSTALL.md (Post-Setup section)
@@ -407,11 +443,13 @@ TOTAL:  360 resources
 **Location:** README.md line 31
 
 **Claim:**
+
 ```
 198 resources (64 skills + 50 MCPs + 4 tools + 75 components + 5 integrations)
 ```
 
 **Math Check:**
+
 - 64 + 50 + 4 + 75 + 5 = 198 ✅ Math is correct
 - BUT actual registry has: 64 + 51 + 24 + 72 + 28 = 239
 
@@ -424,6 +462,7 @@ TOTAL:  360 resources
 **Location:** HONEST-STATUS-REPORT.md line 50
 
 **Quote:**
+
 ```
 ### 1. README Never Updated (CRITICAL)
 **Status:** ❌ **CLAIMED FIXED BUT NOT ACTUALLY FIXED**
@@ -432,6 +471,7 @@ TOTAL:  360 resources
 **Issue:** This report is dated 2025-10-28, but README.md shows "Last Updated: 2025-11-09" which is AFTER this report
 
 **Questions:**
+
 1. Was the README fixed after this report?
 2. Is this report outdated?
 3. Should this report be archived?
@@ -444,13 +484,15 @@ TOTAL:  360 resources
 
 **Location:** .archive/ directory (large collection of legacy docs)
 
-**Issue:** 
+**Issue:**
+
 - Contains historical audits, planning docs, reports
 - Some may still have valuable information
 - No index or README explaining what's in archive
 - No clear policy on when to archive vs delete
 
 **Recommended Fix:**
+
 - Add .archive/README.md explaining:
   - What's in the archive
   - Why things are archived
@@ -464,6 +506,7 @@ TOTAL:  360 resources
 ### 18. Version Numbers Mostly Consistent
 
 **Check:** Version 3.0.3 appears consistently in:
+
 - README.md ✅
 - package.json (need to verify)
 - CHANGELOG.md ✅
@@ -502,18 +545,21 @@ TOTAL:  360 resources
 ## Files to Update
 
 ### High Priority
+
 - [ ] README.md - Fix resource counts (lines 20, 31, 73, 185, 226, 426)
 - [ ] INTEGRATION-USAGE.md - Fix resource counts (lines 24, 40, 217, 624-640)
 - [ ] STANDALONE-USAGE.md - Fix resource counts (lines 14, 381-407)
 - [ ] SECURITY.md - Update date to 2025-11-09
 
 ### Medium Priority
+
 - [ ] Move 17 historical status reports to STATUS-REPORTS/ directory
 - [ ] Add STATUS-REPORTS/README.md explaining each report
 - [ ] Add .archive/README.md documenting archive contents
 - [ ] Create META/RESOURCE-TAXONOMY.md explaining resource counting
 
 ### Low Priority
+
 - [ ] Review and consolidate repeated installation instructions
 - [ ] Add validation script for documentation consistency
 - [ ] Update or archive REPOSITORY-STATUS-REPORT.md (shows v3.0.0)
@@ -547,6 +593,7 @@ TOTAL:  360 resources
 ### What Was Accomplished
 
 **Phase 1: Analysis & Documentation (Commit 9361c7a)**
+
 - Comprehensive scan of all documentation
 - Analysis of resource count discrepancies
 - Investigation of registry vs directory counts
@@ -555,6 +602,7 @@ TOTAL:  360 resources
 - Identified 18 issues across priority levels
 
 **Phase 2: Critical Fixes (Commit 860c1fd)**
+
 - Fixed resource counts in README.md (8 locations)
 - Fixed resource counts in INTEGRATION-USAGE.md (4 locations)
 - Fixed resource counts in STANDALONE-USAGE.md (2 locations)
@@ -562,6 +610,7 @@ TOTAL:  360 resources
 - Corrected: 198→238 core, 329→360 total
 
 **Phase 3: Organization & Taxonomy (Commit 6415224)**
+
 - Created META/RESOURCE-TAXONOMY.md (comprehensive guide)
 - Enhanced .archive/README.md (usage guidance)
 - Created STATUS-REPORTS/ directory
@@ -571,17 +620,20 @@ TOTAL:  360 resources
 ### Impact
 
 **Documentation Accuracy:**
+
 - ✅ Resource counts now match validation script
 - ✅ Clear terminology (Core/Supporting vs confusing Project Install Set/Repository Inventory)
 - ✅ Up-to-date dates across all core docs
 
 **Repository Organization:**
+
 - ✅ Clean root directory (13 files instead of 30+)
 - ✅ Historical reports organized in STATUS-REPORTS/
 - ✅ Clear separation of current vs historical content
 - ✅ Enhanced navigation with READMEs
 
 **Knowledge Transfer:**
+
 - ✅ Resource taxonomy documented for future maintainers
 - ✅ Archive usage explained
 - ✅ Status reports organized and indexed
@@ -590,6 +642,7 @@ TOTAL:  360 resources
 ### Remaining Work (Optional Future Enhancements)
 
 **Low Priority Issues (10 remaining):**
+
 1. Consider renaming deprecated files (INSTALL.md, UPDATE-GUIDE.md)
 2. Investigate archon-mcp (in registry but no directory)
 3. Review repetition in setup instructions (acceptable as-is)
@@ -597,6 +650,7 @@ TOTAL:  360 resources
 5. Others documented in "Issues Remaining" section above
 
 **Why These Are Low Priority:**
+
 - They don't affect functionality
 - They don't confuse users significantly
 - They can be addressed incrementally
@@ -605,6 +659,7 @@ TOTAL:  360 resources
 ### Validation
 
 **Before Review:**
+
 - Resource counts: Wrong in all major docs (198/329 vs reality)
 - Root directory: 30+ markdown files (cluttered)
 - No resource taxonomy: Confusion about counting
@@ -612,6 +667,7 @@ TOTAL:  360 resources
 - Last updated dates: Inconsistent
 
 **After Review:**
+
 - Resource counts: Correct everywhere (238/360)
 - Root directory: 13 essential files (organized)
 - Resource taxonomy: Fully documented
@@ -635,6 +691,7 @@ TOTAL:  360 resources
 ### Files Moved
 
 18 files moved from root to STATUS-REPORTS/:
+
 - 3 audit reports
 - 2 resource count analyses
 - 5 technical status reports
@@ -646,13 +703,13 @@ TOTAL:  360 resources
 
 ## 📊 Final Statistics
 
-| Metric | Before | After | Change |
-|--------|--------|-------|--------|
-| Root markdown files | 30+ | 13 | -17 |
-| Resource count accuracy | 0% | 100% | +100% |
-| Documentation clarity | Low | High | Major improvement |
-| Repository organization | Cluttered | Clean | Major improvement |
-| Knowledge documentation | Minimal | Comprehensive | Created taxonomy |
+| Metric                  | Before    | After         | Change            |
+| ----------------------- | --------- | ------------- | ----------------- |
+| Root markdown files     | 30+       | 13            | -17               |
+| Resource count accuracy | 0%        | 100%          | +100%             |
+| Documentation clarity   | Low       | High          | Major improvement |
+| Repository organization | Cluttered | Clean         | Major improvement |
+| Knowledge documentation | Minimal   | Comprehensive | Created taxonomy  |
 
 ---
 

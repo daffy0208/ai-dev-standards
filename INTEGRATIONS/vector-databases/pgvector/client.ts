@@ -155,7 +155,7 @@ export class PgVectorClient {
       min: options.poolConfig?.min || 2,
       max: options.poolConfig?.max || 10,
       idleTimeoutMillis: options.poolConfig?.idleTimeoutMillis || 30000,
-      connectionTimeoutMillis: options.poolConfig?.connectionTimeoutMillis || 2000,
+      connectionTimeoutMillis: options.poolConfig?.connectionTimeoutMillis || 2000
     })
   }
 
@@ -178,11 +178,11 @@ export class PgVectorClient {
       `embedding vector(${dimension})`,
       'metadata JSONB',
       'content TEXT',
-      ...columns.map((col) => {
+      ...columns.map(col => {
         const nullable = col.nullable ?? true
         return `${col.name} ${col.type}${nullable ? '' : ' NOT NULL'}`
       }),
-      'created_at TIMESTAMP DEFAULT NOW()',
+      'created_at TIMESTAMP DEFAULT NOW()'
     ]
 
     await this.query(`
@@ -232,13 +232,16 @@ export class PgVectorClient {
    * List all tables
    */
   async listTables(): Promise<string[]> {
-    const result = await this.query(`
+    const result = await this.query(
+      `
       SELECT tablename
       FROM pg_tables
       WHERE schemaname = $1
-    `, [this.schema])
+    `,
+      [this.schema]
+    )
 
-    return result.rows.map((row) => row.tablename)
+    return result.rows.map(row => row.tablename)
   }
 
   /**
@@ -250,9 +253,7 @@ export class PgVectorClient {
     indexes: string[]
   }> {
     // Get row count
-    const countResult = await this.query(
-      `SELECT COUNT(*) FROM ${this.schema}.${tableName}`
-    )
+    const countResult = await this.query(`SELECT COUNT(*) FROM ${this.schema}.${tableName}`)
     const rowCount = parseInt(countResult.rows[0].count)
 
     // Get vector dimension
@@ -264,12 +265,15 @@ export class PgVectorClient {
     const dimension = dimResult.rows[0]?.dimension || 0
 
     // Get indexes
-    const indexResult = await this.query(`
+    const indexResult = await this.query(
+      `
       SELECT indexname
       FROM pg_indexes
       WHERE schemaname = $1 AND tablename = $2
-    `, [this.schema, tableName])
-    const indexes = indexResult.rows.map((row) => row.indexname)
+    `,
+      [this.schema, tableName]
+    )
+    const indexes = indexResult.rows.map(row => row.indexname)
 
     return { rowCount, dimension, indexes }
   }
@@ -295,7 +299,7 @@ export class PgVectorClient {
             record.id,
             `[${record.embedding.join(',')}]`,
             JSON.stringify(record.metadata || {}),
-            record.content || null,
+            record.content || null
           ]
         )
       }
@@ -315,10 +319,7 @@ export class PgVectorClient {
   async delete(tableName: string, ids: string[]): Promise<void> {
     if (ids.length === 0) return
 
-    await this.query(
-      `DELETE FROM ${this.schema}.${tableName} WHERE id = ANY($1)`,
-      [ids]
-    )
+    await this.query(`DELETE FROM ${this.schema}.${tableName} WHERE id = ANY($1)`, [ids])
   }
 
   /**
@@ -329,13 +330,7 @@ export class PgVectorClient {
     queryVector: number[],
     options: SearchOptions = {}
   ): Promise<SearchResult[]> {
-    const {
-      limit = 10,
-      operator = '<->',
-      where = {},
-      scoreThreshold,
-      efSearch,
-    } = options
+    const { limit = 10, operator = '<->', where = {}, scoreThreshold, efSearch } = options
 
     // Set ef_search if provided (HNSW only)
     if (efSearch) {
@@ -377,11 +372,11 @@ export class PgVectorClient {
 
     const result = await this.query(query, params)
 
-    return result.rows.map((row) => ({
+    return result.rows.map(row => ({
       id: row.id,
       distance: parseFloat(row.distance),
       metadata: row.metadata,
-      content: row.content,
+      content: row.content
     }))
   }
 
@@ -400,7 +395,7 @@ export class PgVectorClient {
       id: result.rows[0].id,
       distance: 0,
       metadata: result.rows[0].metadata,
-      content: result.rows[0].content,
+      content: result.rows[0].content
     }
   }
 
@@ -412,10 +407,10 @@ export class PgVectorClient {
     id: string,
     metadata: Record<string, any>
   ): Promise<void> {
-    await this.query(
-      `UPDATE ${this.schema}.${tableName} SET metadata = $1 WHERE id = $2`,
-      [JSON.stringify(metadata), id]
-    )
+    await this.query(`UPDATE ${this.schema}.${tableName} SET metadata = $1 WHERE id = $2`, [
+      JSON.stringify(metadata),
+      id
+    ])
   }
 
   /**
@@ -462,8 +457,6 @@ export class PgVectorClient {
 /**
  * Create pgvector client from environment variables
  */
-export function createPgVectorClient(
-  options: PgVectorClientOptions = {}
-): PgVectorClient {
+export function createPgVectorClient(options: PgVectorClientOptions = {}): PgVectorClient {
   return new PgVectorClient(options)
 }

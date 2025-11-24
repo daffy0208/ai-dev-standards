@@ -11,7 +11,7 @@ This project uses the ai-dev-standards repository with intelligent skill, MCP, a
 **ALWAYS follow this workflow:**
 
 1. **Discover Skills**: Use `brain_select_skills` with task description
-2. **Check Dependencies**: Use `brain_relationships` for required MCPs/tools  
+2. **Check Dependencies**: Use `brain_relationships` for required MCPs/tools
 3. **Load Skills**: Read recommended skill files from `SKILLS/` directory
 4. **Apply Methodology**: Follow the skill's instructions
 5. **Use MCPs**: Invoke recommended MCPs and tools
@@ -24,23 +24,25 @@ User: "I need to implement authentication"
 Assistant Steps:
 1. brain_select_skills(taskDescription: "implement authentication system")
    → Recommends: security-engineer, api-designer
-   
+
 2. brain_relationships(skillName: "security-engineer")
    → Shows required MCPs: oauth-provider-mcp, jwt-manager-mcp
-   
+
 3. Read SKILLS/security-engineer/SKILL.md
-   
+
 4. Follow security-engineer methodology for authentication
-   
+
 5. Use recommended MCPs for implementation
 ```
 
 ## When to Use Brain Tools
 
 ### brain_select_skills
+
 **Use for:** Finding the right skills for any task
 
 **Examples:**
+
 - "I need to build an MVP" → mvp-builder, product-strategist
 - "Implement RAG system" → rag-implementer, knowledge-base-manager
 - "Design an API" → api-designer, security-engineer
@@ -50,42 +52,52 @@ Assistant Steps:
 **Always invoke this FIRST when starting a new task.**
 
 ### brain_search
+
 **Use for:** Finding specific resources by keyword
 
 **Examples:**
+
 - brain_search(query: "authentication")
 - brain_search(query: "vector database")
 - brain_search(query: "testing")
 - brain_search(query: "deployment")
 
 ### brain_relationships
+
 **Use for:** Finding dependencies for a skill
 
 **Examples:**
+
 - brain_relationships(skillName: "rag-implementer")
   → Shows: vector-database-mcp, embedding-generator-mcp, semantic-search-mcp
 - brain_relationships(skillName: "frontend-builder")
   → Shows: component-generator-mcp, design-token-manager-mcp
 
 ### brain_show_skill
+
 **Use for:** Getting detailed information about a specific skill
 
 **Examples:**
+
 - brain_show_skill(skillName: "mvp-builder")
 - brain_show_skill(skillName: "security-engineer")
 
 ### graph_query_by_domain
+
 **Use for:** Exploring all capabilities in a domain
 
 **Examples:**
+
 - graph_query_by_domain(domain: "ai")
 - graph_query_by_domain(domain: "security")
 - graph_query_by_domain(domain: "frontend")
 
 ### graph_query_by_effect
+
 **Use for:** Finding capabilities that produce specific effects
 
 **Examples:**
+
 - graph_query_by_effect(effect: "implements_authentication")
 - graph_query_by_effect(effect: "creates_vector_index")
 - graph_query_by_effect(effect: "adds_tests")
@@ -133,7 +145,7 @@ Step 1: Discover skills
 → brain_select_skills(taskDescription: "implement RAG for documentation search")
   Result: rag-implementer, knowledge-base-manager
 
-Step 2: Check dependencies  
+Step 2: Check dependencies
 → brain_relationships(skillName: "rag-implementer")
   Result: vector-database-mcp, embedding-generator-mcp, semantic-search-mcp
 
@@ -163,24 +175,28 @@ Step 6: Use MCPs
 ## Best Practices
 
 ### Always Start With Brain Tools
+
 ```
 ❌ Don't: Immediately start coding
 ✅ Do: First discover relevant skills and dependencies
 ```
 
 ### Load Skills Before Implementing
+
 ```
 ❌ Don't: Guess at implementation approach
 ✅ Do: Read skill files and follow proven methodologies
 ```
 
 ### Check Relationships for MCPs
+
 ```
 ❌ Don't: Manually implement tools that exist
 ✅ Do: Use brain_relationships to find available MCPs
 ```
 
 ### Follow Skill Methodologies
+
 ```
 ❌ Don't: Skip steps in skill workflows
 ✅ Do: Follow the skill's phases/stages systematically
@@ -219,33 +235,34 @@ ai-dev-standards/
 
 ### Common Tasks → Skills
 
-| Task | Skills to Use |
-|------|---------------|
-| Build MVP | mvp-builder, product-strategist |
-| Implement RAG | rag-implementer, knowledge-base-manager |
-| Design API | api-designer, security-engineer |
-| Build Frontend | frontend-builder, ux-designer |
-| Optimize Performance | performance-optimizer |
-| Secure Application | security-engineer, security-auditor |
-| Write Tests | testing-strategist |
-| Deploy Application | deployment-advisor |
-| Build Multi-Agent | multi-agent-architect |
-| Knowledge Graph | knowledge-graph-builder |
+| Task                 | Skills to Use                           |
+| -------------------- | --------------------------------------- |
+| Build MVP            | mvp-builder, product-strategist         |
+| Implement RAG        | rag-implementer, knowledge-base-manager |
+| Design API           | api-designer, security-engineer         |
+| Build Frontend       | frontend-builder, ux-designer           |
+| Optimize Performance | performance-optimizer                   |
+| Secure Application   | security-engineer, security-auditor     |
+| Write Tests          | testing-strategist                      |
+| Deploy Application   | deployment-advisor                      |
+| Build Multi-Agent    | multi-agent-architect                   |
+| Knowledge Graph      | knowledge-graph-builder                 |
 
 ### Domain → Brain Query
 
-| Domain | Query |
-|--------|-------|
-| AI/ML | graph_query_by_domain(domain: "ai") |
+| Domain   | Query                                     |
+| -------- | ----------------------------------------- |
+| AI/ML    | graph_query_by_domain(domain: "ai")       |
 | Security | graph_query_by_domain(domain: "security") |
 | Frontend | graph_query_by_domain(domain: "frontend") |
-| Backend | graph_query_by_domain(domain: "backend") |
-| Testing | graph_query_by_domain(domain: "testing") |
-| DevOps | graph_query_by_domain(domain: "devops") |
+| Backend  | graph_query_by_domain(domain: "backend")  |
+| Testing  | graph_query_by_domain(domain: "testing")  |
+| DevOps   | graph_query_by_domain(domain: "devops")   |
 
 ## Troubleshooting
 
 If brain tools aren't working:
+
 1. Check MCP configuration: `.claude/mcp-settings.json`
 2. Verify paths are correct (not hardcoded to another user's directory)
 3. Run: `./scripts/configure-mcp-paths.sh`
@@ -256,6 +273,7 @@ If brain tools aren't working:
 **Core Principle**: Always discover skills and dependencies before implementing.
 
 **Workflow**:
+
 1. 🔍 Discover (brain_select_skills)
 2. 🔗 Check dependencies (brain_relationships)
 3. 📖 Read skill files

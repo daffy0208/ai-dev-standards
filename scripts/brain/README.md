@@ -37,6 +37,7 @@ npm run build
 ```
 
 To use globally:
+
 ```bash
 npm link
 ```
@@ -507,45 +508,45 @@ Critical Issues: 1
 You can also use the brain programmatically:
 
 ```typescript
-import { createBrain } from './brain-core';
+import { createBrain } from './brain-core'
 
 async function example() {
   // Initialize brain
-  const brain = await createBrain('/path/to/ai-dev-standards');
+  const brain = await createBrain('/path/to/ai-dev-standards')
 
   // Get status
-  const status = await brain.status();
-  console.log(`Skills: ${status.state.skills}`);
+  const status = await brain.status()
+  console.log(`Skills: ${status.state.skills}`)
 
   // Search skills
-  const results = await brain.search('authentication');
-  console.log(`Found ${results.skills.length} skills`);
+  const results = await brain.search('authentication')
+  console.log(`Found ${results.skills.length} skills`)
 
   // Get skill recommendations
-  const skills = await brain.selectSkills('build MVP');
-  console.log('Recommended:', skills.recommended);
+  const skills = await brain.selectSkills('build MVP')
+  console.log('Recommended:', skills.recommended)
 
   // Get workflow recommendation
-  const workflow = await brain.decideWorkflow('add new feature');
-  console.log('Steps:', workflow.workflow);
+  const workflow = await brain.decideWorkflow('add new feature')
+  console.log('Steps:', workflow.workflow)
 
   // Phase 2 - Advanced Intelligence
 
   // Match architecture patterns
-  const patterns = await brain.matchPatterns('need knowledge base');
-  console.log('Top pattern:', patterns[0].pattern.name);
+  const patterns = await brain.matchPatterns('need knowledge base')
+  console.log('Top pattern:', patterns[0].pattern.name)
 
   // Get detailed workflow
-  const detailedWorkflow = await brain.decideWorkflowAdvanced('implement RAG');
-  console.log('Workflow type:', detailedWorkflow.workflowType);
-  console.log('Steps:', detailedWorkflow.steps.length);
+  const detailedWorkflow = await brain.decideWorkflowAdvanced('implement RAG')
+  console.log('Workflow type:', detailedWorkflow.workflowType)
+  console.log('Steps:', detailedWorkflow.steps.length)
 
   // Comprehensive analysis
-  const analysis = await brain.analyze('build AI chatbot');
-  console.log('Primary skills:', analysis.skills.primary);
-  console.log('Required MCPs:', analysis.mcps.required);
-  console.log('Best pattern:', analysis.patterns[0].pattern.name);
-  console.log('Confidence:', analysis.summary.confidence);
+  const analysis = await brain.analyze('build AI chatbot')
+  console.log('Primary skills:', analysis.skills.primary)
+  console.log('Required MCPs:', analysis.mcps.required)
+  console.log('Best pattern:', analysis.patterns[0].pattern.name)
+  console.log('Confidence:', analysis.summary.confidence)
 }
 ```
 
@@ -597,6 +598,7 @@ npm run brain -- search "authentication"
 The decision layer consists of 4 specialized engines working together:
 
 #### Workflow Engine
+
 - **File**: `workflow-engine.ts`
 - **Purpose**: Generate context-aware workflows
 - **Capabilities**:
@@ -605,6 +607,7 @@ The decision layer consists of 4 specialized engines working together:
   - Alternative approaches and warnings
 
 #### Skill Selector
+
 - **File**: `skill-selector.ts`
 - **Purpose**: Advanced skill matching with scoring
 - **Capabilities**:
@@ -614,6 +617,7 @@ The decision layer consists of 4 specialized engines working together:
   - Complexity analysis
 
 #### MCP Integrator
+
 - **File**: `mcp-integrator.ts`
 - **Purpose**: MCP dependency resolution
 - **Capabilities**:
@@ -623,6 +627,7 @@ The decision layer consists of 4 specialized engines working together:
   - Setup complexity estimation
 
 #### Pattern Matcher
+
 - **File**: `pattern-matcher.ts`
 - **Purpose**: Architecture pattern recommendation
 - **Capabilities**:
@@ -644,12 +649,14 @@ The decision layer consists of 4 specialized engines working together:
 ## Roadmap
 
 ### ✅ Phase 1: Foundation (Complete)
+
 - [x] Layer 1: Knowledge queries
 - [x] Brain core class
 - [x] CLI interface
 - [x] Basic commands (12 commands)
 
 ### ✅ Phase 2: Intelligence (Complete)
+
 - [x] Workflow engine (15 workflow types)
 - [x] Advanced skill selection (weighted scoring)
 - [x] MCP integrator (dependency resolution)
@@ -659,6 +666,7 @@ The decision layer consists of 4 specialized engines working together:
 - [x] Decision rules documentation
 
 ### ✅ Phase 3: Orchestration System (Complete)
+
 - [x] Manifest generator (generate-manifest command)
 - [x] Capability graph builder (build-graph command)
 - [x] Orchestration planner (plan command)
@@ -668,12 +676,14 @@ The decision layer consists of 4 specialized engines working together:
 - [x] Documentation and examples
 
 ### 📋 Phase 4: Enforcement (Planned)
+
 - [ ] Validation scripts
 - [ ] Git hooks
 - [ ] CI/CD integration
 - [ ] Auto-fix capabilities
 
 ### 🎯 Phase 5: Management (Planned)
+
 - [ ] Full Archon integration
 - [ ] RAG queries
 - [ ] Task orchestration
@@ -691,6 +701,7 @@ The brain is self-aware of all resources. When adding new skills, MCPs, or tools
 ## Support
 
 For issues or questions about the brain:
+
 - Read: `META/REPOSITORY-BRAIN.md` for architecture details
 - Run: `brain health` to diagnose issues
 - Check: `brain validate` for validation errors

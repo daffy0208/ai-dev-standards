@@ -1,7 +1,7 @@
 # Install ai-dev-standards
 
-> **📢 DEPRECATED:** This file is maintained for backward compatibility. 
-> 
+> **📢 DEPRECATED:** This file is maintained for backward compatibility.
+>
 > **Please use:** [INTEGRATION-USAGE.md](INTEGRATION-USAGE.md) for complete integration documentation.
 >
 > The new guide consolidates INSTALL.md, UPDATE-GUIDE.md, and AUTO-SYNC-GUIDE.md into a single, comprehensive resource with update checking and troubleshooting.
@@ -44,6 +44,7 @@ bash ~/ai-dev-standards/setup-project.sh
 ```
 
 Plus:
+
 - Project health score
 - Customized recommendations
 - Priority tasks
@@ -55,6 +56,7 @@ Plus:
 ## Examples
 
 ### Brand New Project
+
 ```bash
 git clone git@github.com:you/new-repo.git
 cd new-repo
@@ -62,12 +64,14 @@ bash ~/ai-dev-standards/setup-project.sh
 ```
 
 ### Existing Project
+
 ```bash
 cd ~/my-existing-app
 bash ~/ai-dev-standards/setup-project.sh
 ```
 
 ### Empty Directory
+
 ```bash
 mkdir my-new-app
 cd my-new-app
@@ -137,6 +141,7 @@ This creates the `dist/index.js` file that Claude uses for intelligent skill rec
 **"bash: setup-project.sh: command not found"**
 
 First time? Clone ai-dev-standards:
+
 ```bash
 cd ~
 git clone https://github.com/daffy0208/ai-dev-standards.git
@@ -147,6 +152,7 @@ bash ~/ai-dev-standards/setup-project.sh
 **"Command not found: ai-dev"**
 
 The script installs it automatically. If it fails:
+
 ```bash
 cd ~/ai-dev-standards/CLI
 npm install
@@ -156,6 +162,7 @@ npm link
 **"brain-mcp not working in Claude"**
 
 Build the brain-mcp MCP server:
+
 ```bash
 cd ~/ai-dev-standards/MCP-SERVERS/brain-mcp
 npm install

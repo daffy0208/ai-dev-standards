@@ -19,6 +19,7 @@
 ## Problem Solved
 
 Previously, the ai-dev-standards brain was only accessible via CLI in the ai-dev-standards repository. When working in other projects, Claude Code couldn't:
+
 - Query the capability graph
 - Get intelligent skill recommendations
 - Find MCPs for specific tasks
@@ -80,9 +81,7 @@ When you run `setup-project.sh`, brain-mcp should be automatically configured. I
   "mcpServers": {
     "brain-mcp": {
       "command": "node",
-      "args": [
-        "/absolute/path/to/ai-dev-standards/MCP-SERVERS/brain-mcp/dist/index.js"
-      ],
+      "args": ["/absolute/path/to/ai-dev-standards/MCP-SERVERS/brain-mcp/dist/index.js"],
       "env": {
         "AI_DEV_STANDARDS_ROOT": "/absolute/path/to/ai-dev-standards"
       }
@@ -102,16 +101,19 @@ When you run `setup-project.sh`, brain-mcp should be automatically configured. I
 ### Example 1: Find Skills for Your Task
 
 **Instead of:**
+
 ```
 "I need to implement authentication. What skills should I use?"
 ```
 
 **Now do:**
+
 ```
 Use brain_select_skills with taskDescription: "implement authentication and authorization"
 ```
 
 **Result:**
+
 ```
 Recommended Skills:
   • security-engineer - Security best practices, OWASP Top 10
@@ -125,11 +127,13 @@ Required MCPs:
 ### Example 2: Explore a Domain
 
 **Ask:**
+
 ```
 Use graph_query_by_domain to show me all AI-related capabilities.
 ```
 
 **Result:**
+
 ```
 80 capabilities in domain 'ai':
   • rag-implementer
@@ -143,11 +147,13 @@ Use graph_query_by_domain to show me all AI-related capabilities.
 ### Example 3: Check Dependencies
 
 **Ask:**
+
 ```
 Use graph_get_dependencies for rag-implementer to see what it needs.
 ```
 
 **Result:**
+
 ```
 Dependencies for rag-implementer:
   Direct:
@@ -160,11 +166,13 @@ Dependencies for rag-implementer:
 ### Example 4: Find What Works Together
 
 **Ask:**
+
 ```
 Use graph_composition_chains for security-engineer to see what skills compose well.
 ```
 
 **Result:**
+
 ```
 Composition chains:
   1. security-engineer → api-designer
@@ -176,11 +184,13 @@ Composition chains:
 ### Example 5: Search Everything
 
 **Ask:**
+
 ```
 Use brain_search with query "rag" to find all RAG-related resources.
 ```
 
 **Result:**
+
 ```
 7 results:
   Skills:
@@ -285,17 +295,20 @@ Use brain_search with query "rag" to find all RAG-related resources.
 ### "Brain MCP not available"
 
 **Check MCP configuration:**
+
 ```bash
 cat .claude/mcp-settings.json | grep brain-mcp
 ```
 
 **Ensure brain-mcp is built:**
+
 ```bash
 cd /path/to/ai-dev-standards/MCP-SERVERS/brain-mcp
 ls dist/index.js
 ```
 
 If missing:
+
 ```bash
 npm install
 npm run build
@@ -304,6 +317,7 @@ npm run build
 ### "Brain CLI not found"
 
 **Ensure brain CLI is built:**
+
 ```bash
 cd /path/to/ai-dev-standards/scripts/brain
 npm install
@@ -313,6 +327,7 @@ npm run build
 ### "Capability graph missing"
 
 **Check graph exists:**
+
 ```bash
 ls /path/to/ai-dev-standards/META/capability-graph.json
 ```
@@ -322,6 +337,7 @@ If missing, it should exist (113 nodes). Check that you're pointing to the right
 ### "Python not found"
 
 Graph queries use Python. Ensure Python 3 is installed:
+
 ```bash
 python3 --version
 ```
@@ -329,6 +345,7 @@ python3 --version
 ### "Permission denied"
 
 **Check executable permissions:**
+
 ```bash
 chmod +x /path/to/ai-dev-standards/scripts/graph-query-tool.py
 ```
@@ -365,6 +382,7 @@ chmod +x /path/to/ai-dev-standards/scripts/graph-query-tool.py
 ### Proactive Recommendations
 
 Claude Code can now:
+
 - Suggest skills based on file changes
 - Recommend MCPs for detected patterns
 - Warn about missing dependencies

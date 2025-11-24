@@ -11,6 +11,7 @@ version: 1.0.0
 ## Core Principle
 
 Design systems are not just component libraries—they're the shared language between design and engineering. A good design system:
+
 - Accelerates product development (reusable components)
 - Ensures consistency across products (unified brand)
 - Improves accessibility (baked into components)
@@ -28,6 +29,7 @@ Design systems are not just component libraries—they're the shared language be
 **Design tokens are the atomic values of your design system.** They're the smallest decisions (colors, spacing, typography) stored as data and consumed by all platforms.
 
 **Why Tokens Matter:**
+
 - Single source of truth (change once, update everywhere)
 - Platform-agnostic (JSON → CSS, iOS, Android, etc.)
 - Versioned and traceable (Git history for design decisions)
@@ -77,6 +79,7 @@ Design systems are not just component libraries—they're the shared language be
 ### Token Categories
 
 **Primitive Tokens** (Raw values):
+
 ```json
 {
   "color-blue-500": "#3b82f6",
@@ -86,6 +89,7 @@ Design systems are not just component libraries—they're the shared language be
 ```
 
 **Semantic Tokens** (Named by purpose):
+
 ```json
 {
   "color-primary": "{color-blue-500}",
@@ -95,6 +99,7 @@ Design systems are not just component libraries—they're the shared language be
 ```
 
 **Component Tokens** (Component-specific):
+
 ```json
 {
   "button-padding-x": "{spacing-default}",
@@ -126,11 +131,13 @@ tokens/
 ### Token Transformation with Style Dictionary
 
 **Install Style Dictionary:**
+
 ```bash
 npm install --save-dev style-dictionary
 ```
 
 **config.json:**
+
 ```json
 {
   "source": ["tokens/**/*.json"],
@@ -160,11 +167,13 @@ npm install --save-dev style-dictionary
 ```
 
 **Build tokens:**
+
 ```bash
 npx style-dictionary build
 ```
 
 **Output (variables.css):**
+
 ```css
 :root {
   --color-brand-primary-500: #3b82f6;
@@ -204,13 +213,14 @@ npx style-dictionary build
 ```
 
 **CSS Output:**
+
 ```css
 :root {
   --background-primary: #ffffff;
   --text-primary: #111827;
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   --background-primary: #111827;
   --text-primary: #f9fafb;
 }
@@ -268,6 +278,7 @@ components/
 ### Button Component (Atomic Example)
 
 **Button.types.ts:**
+
 ```typescript
 export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'danger'
 export type ButtonSize = 'sm' | 'md' | 'lg'
@@ -284,6 +295,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 ```
 
 **Button.tsx:**
+
 ```typescript
 import React from 'react'
 import styles from './Button.module.css'
@@ -334,6 +346,7 @@ export function Button({
 ```
 
 **Button.module.css:**
+
 ```css
 .button {
   /* Base */
@@ -445,7 +458,9 @@ export function Button({
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .iconLeft,
@@ -463,6 +478,7 @@ export function Button({
 ### FormField Component (Molecule Example)
 
 **FormField.tsx:**
+
 ```typescript
 import React from 'react'
 import styles from './FormField.module.css'
@@ -531,6 +547,7 @@ export function FormField({
 ### Component API Design Principles
 
 **1. Sensible Defaults:**
+
 ```typescript
 // ✅ Good: Works with minimal props
 <Button>Click me</Button>
@@ -542,6 +559,7 @@ export function FormField({
 ```
 
 **2. Composition Over Configuration:**
+
 ```typescript
 // ❌ Bad: Too many props
 <Modal
@@ -565,6 +583,7 @@ export function FormField({
 ```
 
 **3. Controlled & Uncontrolled Modes:**
+
 ```typescript
 // Uncontrolled (internal state)
 <Input defaultValue="hello" />
@@ -574,6 +593,7 @@ export function FormField({
 ```
 
 **4. Polymorphic Components:**
+
 ```typescript
 interface ButtonProps<T extends React.ElementType = 'button'> {
   as?: T
@@ -597,11 +617,13 @@ interface ButtonProps<T extends React.ElementType = 'button'> {
 ### Storybook Setup
 
 **Install Storybook:**
+
 ```bash
 npx storybook@latest init
 ```
 
 **Button.stories.tsx:**
+
 ```typescript
 import type { Meta, StoryObj } from '@storybook/react'
 import { Button } from './Button'
@@ -700,7 +722,8 @@ export const FullWidth: Story = {
 ### MDX Documentation
 
 **Button.mdx:**
-```mdx
+
+````mdx
 import { Meta, Story, Canvas, Controls } from '@storybook/blocks'
 import * as ButtonStories from './Button.stories'
 
@@ -722,15 +745,19 @@ Buttons allow users to trigger actions and make choices with a single tap.
 <Canvas of={ButtonStories.AllVariants} />
 
 ### Primary
+
 Use for the main action on a page. Limit to one per screen.
 
 ### Secondary
+
 Use for less important actions. Can have multiple per screen.
 
 ### Tertiary
+
 Use for the least important actions, like "Learn more" links.
 
 ### Danger
+
 Use for destructive actions like deleting data.
 
 ## Sizes
@@ -750,11 +777,13 @@ Icons can clarify the button's purpose or indicate direction.
 ## States
 
 ### Loading
+
 <Canvas of={ButtonStories.Loading} />
 
 Show a loading spinner when an async action is in progress.
 
 ### Disabled
+
 <Canvas of={ButtonStories.Disabled} />
 
 Disable buttons when an action is not currently available.
@@ -783,7 +812,9 @@ function MyComponent() {
   )
 }
 ```
-```
+````
+
+````
 
 ### Storybook Addons
 
@@ -796,9 +827,10 @@ npm install --save-dev @storybook/addon-interactions
 
 # Design tokens addon
 npm install --save-dev storybook-addon-designs
-```
+````
 
 **.storybook/main.ts:**
+
 ```typescript
 import type { StorybookConfig } from '@storybook/react-vite'
 
@@ -809,9 +841,9 @@ const config: StorybookConfig = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@storybook/addon-a11y',
-    'storybook-addon-designs',
+    'storybook-addon-designs'
   ],
-  framework: '@storybook/react-vite',
+  framework: '@storybook/react-vite'
 }
 
 export default config
@@ -824,6 +856,7 @@ export default config
 ### CSS Variables Approach
 
 **tokens.css:**
+
 ```css
 :root {
   /* Primitives */
@@ -843,11 +876,11 @@ export default config
 }
 
 /* Theme override */
-[data-theme="brand-red"] {
+[data-theme='brand-red'] {
   --color-primary: #dc2626;
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   --color-primary: #60a5fa;
   --button-primary-background: var(--color-primary);
 }
@@ -856,6 +889,7 @@ export default config
 ### Theme Provider (React)
 
 **ThemeProvider.tsx:**
+
 ```typescript
 import React, { createContext, useContext, useEffect, useState } from 'react'
 
@@ -920,47 +954,42 @@ export function useTheme() {
 export const acmeTheme = {
   colors: {
     primary: '#3b82f6',
-    secondary: '#8b5cf6',
+    secondary: '#8b5cf6'
   },
   typography: {
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: 'Inter, sans-serif'
   },
   spacing: {
-    unit: 8,
-  },
+    unit: 8
+  }
 }
 
 // themes/contoso.ts
 export const contosoTheme = {
   colors: {
     primary: '#dc2626',
-    secondary: '#f59e0b',
+    secondary: '#f59e0b'
   },
   typography: {
-    fontFamily: 'Roboto, sans-serif',
+    fontFamily: 'Roboto, sans-serif'
   },
   spacing: {
-    unit: 4,
-  },
+    unit: 4
+  }
 }
 ```
 
 **Theme Application:**
+
 ```typescript
 function applyTheme(theme: Theme) {
   Object.entries(theme.colors).forEach(([key, value]) => {
     document.documentElement.style.setProperty(`--color-${key}`, value)
   })
 
-  document.documentElement.style.setProperty(
-    '--font-base',
-    theme.typography.fontFamily
-  )
+  document.documentElement.style.setProperty('--font-base', theme.typography.fontFamily)
 
-  document.documentElement.style.setProperty(
-    '--space-unit',
-    `${theme.spacing.unit}px`
-  )
+  document.documentElement.style.setProperty('--space-unit', `${theme.spacing.unit}px`)
 }
 ```
 
@@ -990,16 +1019,19 @@ function applyTheme(theme: Theme) {
 ### Changelog
 
 **CHANGELOG.md:**
-```markdown
+
+````markdown
 # Changelog
 
 ## [2.0.0] - 2024-01-15
 
 ### Breaking Changes
+
 - **Button:** Renamed `type` prop to `variant`
 - **Input:** Removed `error` prop (use FormField wrapper instead)
 
 ### Migration Guide
+
 ```typescript
 // Before
 <Button type="primary">Click</Button>
@@ -1007,24 +1039,29 @@ function applyTheme(theme: Theme) {
 // After
 <Button variant="primary">Click</Button>
 ```
+````
 
 ## [1.5.0] - 2024-01-10
 
 ### Added
+
 - **Button:** New `isLoading` prop
 - **Input:** New `leftIcon` and `rightIcon` props
 - **Card:** New component
 
 ### Fixed
+
 - **Button:** Focus outline now visible on all browsers
 - **Input:** Placeholder color now meets WCAG contrast requirements
 
 ## [1.4.1] - 2024-01-05
 
 ### Fixed
+
 - **Button:** Loading spinner now centered correctly
 - **Modal:** Fixed backdrop z-index issue
-```
+
+````
 
 ### Component Lifecycle
 
@@ -1055,9 +1092,10 @@ export interface ButtonProps {
   type?: 'primary' | 'secondary' // Deprecated
   variant?: 'primary' | 'secondary' // New
 }
-```
+````
 
 **2. Support both (with warning):**
+
 ```typescript
 export function Button({ type, variant, ...props }: ButtonProps) {
   if (type) {
@@ -1070,6 +1108,7 @@ export function Button({ type, variant, ...props }: ButtonProps) {
 ```
 
 **3. Remove in next major version:**
+
 ```typescript
 // v3.0.0 - type prop removed entirely
 export interface ButtonProps {
@@ -1080,12 +1119,14 @@ export interface ButtonProps {
 ### Design System Governance
 
 **Design System Team:**
+
 - **Owner:** Overall vision and roadmap
 - **Designers:** Visual design, UX patterns
 - **Engineers:** Implementation, tooling
 - **Contributors:** Product teams building components
 
 **Contribution Flow:**
+
 ```
 1. Proposal → GitHub issue
 2. Design Review → Figma mockup
@@ -1096,7 +1137,8 @@ export interface ButtonProps {
 ```
 
 **Proposal Template:**
-```markdown
+
+````markdown
 ## Component Name
 
 **Problem:** What user need does this solve?
@@ -1104,18 +1146,21 @@ export interface ButtonProps {
 **Usage:** When should this be used?
 
 **API Proposal:**
+
 ```typescript
 interface ComponentProps {
   // ...
 }
 ```
+````
 
 **Design Mockup:** [Link to Figma]
 
 **Accessibility:** How will this be accessible?
 
 **Alternatives Considered:** What else did we explore?
-```
+
+````
 
 ---
 
@@ -1129,9 +1174,10 @@ npm install --save-dev chromatic
 
 # Run visual tests
 npx chromatic --project-token=YOUR_TOKEN
-```
+````
 
 **package.json:**
+
 ```json
 {
   "scripts": {
@@ -1196,6 +1242,7 @@ it('has no accessibility violations', async () => {
 ### NPM Package Setup
 
 **package.json:**
+
 ```json
 {
   "name": "@company/design-system",
@@ -1204,10 +1251,7 @@ it('has no accessibility violations', async () => {
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "README.md"
-  ],
+  "files": ["dist", "README.md"],
   "scripts": {
     "build": "rollup -c",
     "prepublishOnly": "npm run build"
@@ -1223,6 +1267,7 @@ it('has no accessibility violations', async () => {
 ```
 
 **rollup.config.js:**
+
 ```javascript
 import typescript from '@rollup/plugin-typescript'
 import postcss from 'rollup-plugin-postcss'
@@ -1233,26 +1278,27 @@ export default {
     {
       file: 'dist/index.js',
       format: 'cjs',
-      sourcemap: true,
+      sourcemap: true
     },
     {
       file: 'dist/index.esm.js',
       format: 'esm',
-      sourcemap: true,
-    },
+      sourcemap: true
+    }
   ],
   plugins: [
     typescript({ tsconfig: './tsconfig.json' }),
     postcss({
       modules: true,
-      extract: 'styles.css',
-    }),
+      extract: 'styles.css'
+    })
   ],
-  external: ['react', 'react-dom'],
+  external: ['react', 'react-dom']
 }
 ```
 
 **Publish:**
+
 ```bash
 npm login
 npm version patch  # or minor, major
@@ -1284,12 +1330,14 @@ function App() {
 ## Design System Checklist
 
 ### Foundation
+
 - [ ] Design tokens (colors, spacing, typography, shadows, radii)
 - [ ] Token transformation pipeline (Style Dictionary)
 - [ ] Dark mode support
 - [ ] Documentation site (Storybook)
 
 ### Components
+
 - [ ] Atomic design structure (atoms → organisms)
 - [ ] Component API guidelines (sensible defaults, composition)
 - [ ] TypeScript types for all components
@@ -1297,6 +1345,7 @@ function App() {
 - [ ] Accessibility baked in (WCAG 2.1 AA)
 
 ### Documentation
+
 - [ ] Storybook stories for all components
 - [ ] MDX docs with usage examples
 - [ ] Props table (auto-generated)
@@ -1304,12 +1353,14 @@ function App() {
 - [ ] Code examples
 
 ### Testing
+
 - [ ] Unit tests (70%+ coverage)
 - [ ] Accessibility tests (jest-axe)
 - [ ] Visual regression tests (Chromatic)
 - [ ] Manual testing checklist
 
 ### Governance
+
 - [ ] Semantic versioning
 - [ ] Changelog maintained
 - [ ] Contribution guidelines
@@ -1317,6 +1368,7 @@ function App() {
 - [ ] Deprecation strategy
 
 ### Distribution
+
 - [ ] NPM package published
 - [ ] Storybook deployed
 - [ ] Installation guide
@@ -1327,25 +1379,30 @@ function App() {
 ## Tools & Resources
 
 **Token Management:**
+
 - Style Dictionary (token transformation)
 - Figma Tokens (sync Figma → code)
 
 **Component Development:**
+
 - Storybook (documentation)
 - Chromatic (visual testing)
 - React + TypeScript
 
 **Testing:**
+
 - Jest + React Testing Library
 - jest-axe (accessibility)
 - Playwright (E2E)
 
 **Build & Distribution:**
+
 - Rollup or tsup (bundling)
 - NPM (distribution)
 - Changesets (versioning)
 
 **Inspiration:**
+
 - [Radix UI](https://www.radix-ui.com/) (accessible primitives)
 - [Chakra UI](https://chakra-ui.com/) (themeable components)
 - [Material UI](https://mui.com/) (comprehensive system)

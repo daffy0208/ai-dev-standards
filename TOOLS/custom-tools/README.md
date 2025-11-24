@@ -12,6 +12,7 @@ This collection provides 4 essential tools that enable AI agents to interact wit
 4. **Database Query Tool** - Execute SQL queries
 
 All tools are designed with:
+
 - **Safety** - Validation, sandboxing, read-only modes
 - **Error Handling** - Comprehensive error messages
 - **Type Safety** - Full TypeScript types
@@ -25,6 +26,7 @@ All tools are designed with:
 Extract content from web pages using Playwright.
 
 **Features:**
+
 - HTML, text, or markdown extraction
 - Element extraction by CSS selector
 - Screenshot capture
@@ -34,6 +36,7 @@ Extract content from web pages using Playwright.
 - Cookie/auth support
 
 **Usage:**
+
 ```typescript
 import { WebScraperTool } from './web-scraper-tool'
 
@@ -57,6 +60,7 @@ const data = await scraper.extract({
 ```
 
 **Setup:**
+
 ```bash
 npm install playwright
 npx playwright install chromium
@@ -67,6 +71,7 @@ npx playwright install chromium
 Make HTTP requests with authentication and retry logic.
 
 **Features:**
+
 - All HTTP methods (GET, POST, PUT, PATCH, DELETE)
 - Authentication (Bearer, API Key, Basic)
 - Request/response handling
@@ -75,6 +80,7 @@ Make HTTP requests with authentication and retry logic.
 - Batch requests
 
 **Usage:**
+
 ```typescript
 import { ApiCallerTool } from './api-caller-tool'
 
@@ -100,6 +106,7 @@ const data = await api.request({
 ```
 
 **Setup:**
+
 ```bash
 # No additional dependencies needed
 ```
@@ -109,6 +116,7 @@ const data = await api.request({
 Safe file operations with sandboxing and backups.
 
 **Features:**
+
 - Read/write files (text, JSON, binary)
 - List directory contents
 - Search files (glob patterns)
@@ -118,6 +126,7 @@ Safe file operations with sandboxing and backups.
 - Path validation
 
 **Usage:**
+
 ```typescript
 import { FileSystemTool } from './filesystem-tool'
 
@@ -139,11 +148,13 @@ const files = await fs.listDirectory('/path/to/project', { recursive: true })
 ```
 
 **Setup:**
+
 ```bash
 npm install glob
 ```
 
 **Safety:**
+
 - All operations restricted to `allowedPaths`
 - Automatic backups before overwrites
 - Path traversal prevention
@@ -154,6 +165,7 @@ npm install glob
 Execute safe SQL queries with parameterization.
 
 **Features:**
+
 - PostgreSQL, MySQL, SQLite support
 - Parameterized queries (prevents SQL injection)
 - Read-only mode
@@ -162,6 +174,7 @@ Execute safe SQL queries with parameterization.
 - Table introspection
 
 **Usage:**
+
 ```typescript
 import { DatabaseQueryTool } from './database-query-tool'
 
@@ -177,10 +190,7 @@ const db = new DatabaseQueryTool({
 })
 
 // Execute query with parameters
-const users = await db.query(
-  'SELECT * FROM users WHERE age > $1 AND status = $2',
-  [18, 'active']
-)
+const users = await db.query('SELECT * FROM users WHERE age > $1 AND status = $2', [18, 'active'])
 
 // Get table schema
 const schema = await db.getTableSchema('users')
@@ -189,18 +199,20 @@ const schema = await db.getTableSchema('users')
 const tables = await db.listTables()
 
 // Transaction (requires readOnly: false)
-await db.transaction(async (tx) => {
+await db.transaction(async tx => {
   await tx.query('INSERT INTO users (name) VALUES ($1)', ['John'])
   await tx.query('UPDATE accounts SET balance = balance + $1', [100])
 })
 ```
 
 **Setup:**
+
 ```bash
 npm install pg mysql2 sqlite3 sqlite
 ```
 
 **Safety:**
+
 - Read-only mode by default
 - Parameterized queries only
 - Query validation
@@ -211,25 +223,13 @@ npm install pg mysql2 sqlite3 sqlite
 All tools provide function definitions for AI frameworks:
 
 ```typescript
-import {
-  webScraperToolDefinition,
-  executeWebScraperTool
-} from './web-scraper-tool'
+import { webScraperToolDefinition, executeWebScraperTool } from './web-scraper-tool'
 
-import {
-  apiCallerToolDefinition,
-  executeApiCallerTool
-} from './api-caller-tool'
+import { apiCallerToolDefinition, executeApiCallerTool } from './api-caller-tool'
 
-import {
-  fileSystemToolDefinition,
-  executeFileSystemTool
-} from './filesystem-tool'
+import { fileSystemToolDefinition, executeFileSystemTool } from './filesystem-tool'
 
-import {
-  databaseQueryToolDefinition,
-  executeDatabaseQueryTool
-} from './database-query-tool'
+import { databaseQueryToolDefinition, executeDatabaseQueryTool } from './database-query-tool'
 
 // Use with OpenAI function calling
 const tools = [
@@ -253,7 +253,9 @@ async function executeTool(toolName: string, args: any) {
     case 'database_query':
       return executeDatabaseQueryTool(args, {
         type: 'postgres',
-        connection: { /* ... */ },
+        connection: {
+          /* ... */
+        },
         readOnly: true
       })
   }
@@ -272,10 +274,7 @@ async function runAgent() {
   const scraper = new WebScraperTool()
   const api = new ApiCallerTool()
 
-  const tools = [
-    webScraperToolDefinition,
-    apiCallerToolDefinition
-  ]
+  const tools = [webScraperToolDefinition, apiCallerToolDefinition]
 
   try {
     // Agent decides which tools to use
@@ -317,16 +316,17 @@ async function runAgent() {
 
 ## Tool Comparison
 
-| Tool | Use Case | Safety | Dependencies |
-|------|----------|--------|--------------|
-| **Web Scraper** | Extract web content | Rate limiting, user agent | playwright |
-| **API Caller** | HTTP requests | Retry logic, timeout | none |
-| **File System** | File operations | Path validation, backups | glob |
-| **Database** | SQL queries | Parameterized, read-only | pg, mysql2, sqlite |
+| Tool            | Use Case            | Safety                    | Dependencies       |
+| --------------- | ------------------- | ------------------------- | ------------------ |
+| **Web Scraper** | Extract web content | Rate limiting, user agent | playwright         |
+| **API Caller**  | HTTP requests       | Retry logic, timeout      | none               |
+| **File System** | File operations     | Path validation, backups  | glob               |
+| **Database**    | SQL queries         | Parameterized, read-only  | pg, mysql2, sqlite |
 
 ## Best Practices
 
 ### 1. Always Use Parameterized Queries
+
 ```typescript
 // ✅ GOOD - Parameterized
 await db.query('SELECT * FROM users WHERE id = $1', [userId])
@@ -336,6 +336,7 @@ await db.query(`SELECT * FROM users WHERE id = ${userId}`)
 ```
 
 ### 2. Enable Safety Features
+
 ```typescript
 // File system - restrict paths
 const fs = new FileSystemTool({
@@ -346,12 +347,15 @@ const fs = new FileSystemTool({
 // Database - use read-only mode
 const db = new DatabaseQueryTool({
   type: 'postgres',
-  connection: { /* ... */ },
+  connection: {
+    /* ... */
+  },
   readOnly: true // ✅ Safe by default
 })
 ```
 
 ### 3. Handle Errors Gracefully
+
 ```typescript
 try {
   const result = await api.get('https://api.example.com/data', {
@@ -365,6 +369,7 @@ try {
 ```
 
 ### 4. Rate Limit Web Scraping
+
 ```typescript
 // Scrape multiple pages with delays
 const results = await scraper.scrapeMultiple(urls, {
@@ -374,6 +379,7 @@ const results = await scraper.scrapeMultiple(urls, {
 ```
 
 ### 5. Close Connections
+
 ```typescript
 const scraper = new WebScraperTool()
 const db = new DatabaseQueryTool(config)
@@ -429,16 +435,21 @@ try {
 ## Performance
 
 ### Connection Pooling
+
 Database tool uses connection pooling by default:
+
 ```typescript
 const db = new DatabaseQueryTool({
   type: 'postgres',
-  connection: { /* ... */ },
+  connection: {
+    /* ... */
+  },
   maxConnections: 10 // Pool size
 })
 ```
 
 ### Parallel Operations
+
 ```typescript
 // Scrape multiple pages in parallel
 const results = await scraper.scrapeMultiple(urls, {

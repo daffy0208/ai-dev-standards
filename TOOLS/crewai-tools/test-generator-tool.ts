@@ -91,7 +91,7 @@ Supports multiple test frameworks (Jest, Vitest, Mocha, Playwright).`
       assertionLibrary: options.assertionLibrary,
       includeSetup: options.includeSetup ?? true,
       includeEdgeCases: options.includeEdgeCases ?? true,
-      includeMocks: options.includeMocks ?? true,
+      includeMocks: options.includeMocks ?? true
     }
   }
 
@@ -113,7 +113,7 @@ Supports multiple test frameworks (Jest, Vitest, Mocha, Playwright).`
     const functions = this.extractFunctions(code)
 
     // Generate test cases
-    const testCases = functions.map((fn) => this.generateTestCasesForFunction(fn))
+    const testCases = functions.map(fn => this.generateTestCasesForFunction(fn))
 
     // Build test file
     const testCode = this.buildTestFile(testCases)
@@ -128,9 +128,9 @@ Supports multiple test frameworks (Jest, Vitest, Mocha, Playwright).`
       coverage: {
         edgeCases: this.options.includeEdgeCases,
         errorHandling: true,
-        mocking: this.options.includeMocks,
+        mocking: this.options.includeMocks
       },
-      recommendations: this.getRecommendations(functions),
+      recommendations: this.getRecommendations(functions)
     }
   }
 
@@ -153,8 +153,8 @@ Supports multiple test frameworks (Jest, Vitest, Mocha, Playwright).`
       const name = match[1]
       const params = match[2]
         .split(',')
-        .map((p) => p.trim())
-        .filter((p) => p)
+        .map(p => p.trim())
+        .filter(p => p)
 
       functions.push({ name, params, isAsync })
     }
@@ -167,8 +167,8 @@ Supports multiple test frameworks (Jest, Vitest, Mocha, Playwright).`
       const name = match[1]
       const params = match[2]
         .split(',')
-        .map((p) => p.trim())
-        .filter((p) => p)
+        .map(p => p.trim())
+        .filter(p => p)
 
       functions.push({ name, params, isAsync })
     }
@@ -181,8 +181,8 @@ Supports multiple test frameworks (Jest, Vitest, Mocha, Playwright).`
       const name = match[1]
       const params = match[2]
         .split(',')
-        .map((p) => p.trim())
-        .filter((p) => p)
+        .map(p => p.trim())
+        .filter(p => p)
 
       if (name !== 'constructor') {
         functions.push({ name, params, isAsync })
@@ -218,7 +218,9 @@ Supports multiple test frameworks (Jest, Vitest, Mocha, Playwright).`
     }
 
     // Happy path test
-    testSuite.push(`  it('should work correctly with valid inputs', ${fn.isAsync ? 'async ' : ''}() => {`)
+    testSuite.push(
+      `  it('should work correctly with valid inputs', ${fn.isAsync ? 'async ' : ''}() => {`
+    )
     testSuite.push(`    // Arrange`)
     fn.params.forEach((param, i) => {
       testSuite.push(`    const ${param} = // TODO: Provide test value`)
@@ -319,7 +321,7 @@ Supports multiple test frameworks (Jest, Vitest, Mocha, Playwright).`
     const parts: string[] = []
 
     parts.push('GENERATED TEST FILE')
-    parts.push('=' .repeat(60))
+    parts.push('='.repeat(60))
     parts.push('')
     parts.push(`Framework: ${test.framework}`)
     parts.push(`Edge Cases: ${test.coverage.edgeCases ? 'Yes' : 'No'}`)
@@ -351,7 +353,7 @@ Supports multiple test frameworks (Jest, Vitest, Mocha, Playwright).`
     const recommendations: string[] = []
 
     // Check for async functions
-    const asyncFunctions = functions.filter((fn) => fn.isAsync)
+    const asyncFunctions = functions.filter(fn => fn.isAsync)
     if (asyncFunctions.length > 0) {
       recommendations.push(
         'Consider testing async functions with proper error handling and timeout cases'
@@ -359,7 +361,7 @@ Supports multiple test frameworks (Jest, Vitest, Mocha, Playwright).`
     }
 
     // Check for functions with many parameters
-    const complexFunctions = functions.filter((fn) => fn.params.length > 3)
+    const complexFunctions = functions.filter(fn => fn.params.length > 3)
     if (complexFunctions.length > 0) {
       recommendations.push(
         'Functions with many parameters may benefit from parameter object pattern'
@@ -379,8 +381,6 @@ Supports multiple test frameworks (Jest, Vitest, Mocha, Playwright).`
 /**
  * Create test generator tool
  */
-export function createTestGeneratorTool(
-  options: TestGeneratorOptions = {}
-): TestGeneratorTool {
+export function createTestGeneratorTool(options: TestGeneratorOptions = {}): TestGeneratorTool {
   return new TestGeneratorTool(options)
 }

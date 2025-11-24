@@ -2,82 +2,62 @@
 
 Semantic search MCP server with vector database integration and similarity search capabilities
 
-**Pattern:** Code Execution (Advanced)
-**Progressive Discovery:** Enabled
+**Pattern:** Code Execution (Advanced)  
+**Vector store:** Pinecone (auto-fallback to in-memory for local testing)  
 **Skills Support:** Yes
 
-## What This MCP Does
+## Capabilities
 
-- 🛠️ Provides tools for semantic-search operations
-
-
-- 🔄 Progressive discovery with tool file navigation
-- 💾 Persistent skill library support
-
-## Installation
-
-```bash
-# Install dependencies
-cd MCP-SERVERS/semantic-search-mcp
-# Code Execution pattern uses tool files - no npm install needed
-```
+- 🛠️ Tools for indexing documents, running semantic or hybrid search, reranking, and extracting citations
+- 🔌 Uses Pinecone when `PINECONE_API_KEY` and `PINECONE_INDEX` are provided
+- 🧪 Falls back to an in-memory vector store for local experimentation/testing
+- 🔄 Progressive discovery via tool files
 
 ## Setup
 
-Add to your Claude Code MCP settings:
+Add to your Claude Code MCP settings (update paths as needed):
 
 ```json
 {
   "mcpServers": {
     "semantic-search": {
       "command": "mcp-code-execution",
-      "args": ["--servers-path", "/home/david/projects/ai-dev-standards/MCP-SERVERS/semantic-search-mcp/servers"],
+      "args": [
+        "--servers-path",
+        "/path/to/ai-dev-standards/MCP-SERVERS/semantic-search-mcp/servers"
+      ],
       "env": {
-        "SKILLS_PATH": "/home/david/projects/ai-dev-standards/MCP-SERVERS/semantic-search-mcp/skills"
+        "SKILLS_PATH": "/path/to/ai-dev-standards/MCP-SERVERS/semantic-search-mcp/skills",
+        "PINECONE_API_KEY": "your-api-key",
+        "PINECONE_INDEX": "your-index-name"
       }
     }
   }
 }
 ```
 
-## Usage
-
-
-### Tools
-
-```javascript
-// Use the semantic-search tool
-await semantic-search_action({
-  input: 'your-input-here'
-})
-```
-
-
-
-
-
-
-## Configuration
-
-Copy `.env.example` to `.env` and fill in your values:
-
-```bash
-cp .env.example .env
-```
+When `PINECONE_API_KEY` and `PINECONE_INDEX` are not set the server keeps documents inside the MCP process. That is useful for local testing but **not** production-ready.
 
 ## Testing
+
+Unit tests (including vector-store smoke tests) run with the root test command:
 
 ```bash
 npm test
 ```
 
-## Development
+Use `PINECONE_API_KEY`/`PINECONE_INDEX` environment variables when you want the tests to hit a live index. Without them, the tests automatically use the in-memory store.
 
-To test the MCP server locally:
+For the Docker code-execution pattern validation:
 
 ```bash
-npm start
+# Builds the mcp-sandbox image (if needed) and runs python tools inside the sandbox
+npm run test:semantic-search:docker
 ```
+
+Optional Pinecone verification is triggered automatically when `PINECONE_API_KEY`, `PINECONE_INDEX`, and `PINECONE_DIMENSION` are set. The script skips the live test otherwise.
+
+For a full walkthrough (CLI suites, docker smoke test, and direct tool invocation), see [Semantic Search MCP Usage](../../DOCS/SEMANTIC-SEARCH-USAGE.md).
 
 ## License
 

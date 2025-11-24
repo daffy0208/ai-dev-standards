@@ -176,7 +176,7 @@ export class RailwayClient {
     `
 
     const response = await this.graphql(mutation, {
-      input: { name, description },
+      input: { name, description }
     })
     return response.data.projectCreate
   }
@@ -217,7 +217,7 @@ export class RailwayClient {
     const response = await this.graphql(query, { projectId })
     return response.data.project.services.edges.map((edge: any) => ({
       ...edge.node,
-      projectId,
+      projectId
     }))
   }
 
@@ -248,13 +248,13 @@ export class RailwayClient {
       input: {
         projectId,
         name,
-        ...options,
-      },
+        ...options
+      }
     })
 
     return {
       ...response.data.serviceCreate,
-      projectId,
+      projectId
     }
   }
 
@@ -288,8 +288,8 @@ export class RailwayClient {
     const response = await this.graphql(mutation, {
       input: {
         serviceId: options.serviceId,
-        environmentId: options.environmentId,
-      },
+        environmentId: options.environmentId
+      }
     })
 
     return response.data.serviceInstanceDeploy
@@ -393,10 +393,7 @@ export class RailwayClient {
   /**
    * List environment variables
    */
-  async listVariables(
-    projectId: string,
-    environmentId: string
-  ): Promise<Variable[]> {
+  async listVariables(projectId: string, environmentId: string): Promise<Variable[]> {
     const query = `
       query($projectId: String!, $environmentId: String!) {
         variables(projectId: $projectId, environmentId: $environmentId) {
@@ -437,19 +434,15 @@ export class RailwayClient {
         projectId,
         environmentId,
         name,
-        value,
-      },
+        value
+      }
     })
   }
 
   /**
    * Delete environment variable
    */
-  async deleteVariable(
-    projectId: string,
-    environmentId: string,
-    name: string
-  ): Promise<void> {
+  async deleteVariable(projectId: string, environmentId: string, name: string): Promise<void> {
     const mutation = `
       mutation($input: VariableDeleteInput!) {
         variableDelete(input: $input)
@@ -460,8 +453,8 @@ export class RailwayClient {
       input: {
         projectId,
         environmentId,
-        name,
-      },
+        name
+      }
     })
   }
 
@@ -485,13 +478,13 @@ export class RailwayClient {
     const response = await this.graphql(mutation, {
       input: {
         projectId,
-        type,
-      },
+        type
+      }
     })
 
     return {
       ...response.data.pluginCreate,
-      projectId,
+      projectId
     }
   }
 
@@ -504,13 +497,13 @@ export class RailwayClient {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${this.token}`,
+          Authorization: `Bearer ${this.token}`
         },
         body: JSON.stringify({
           query,
-          variables,
+          variables
         }),
-        signal: AbortSignal.timeout(this.timeout),
+        signal: AbortSignal.timeout(this.timeout)
       })
 
       if (!response.ok) {
@@ -541,7 +534,10 @@ export class RailwayClient {
       return result
     } catch (error: any) {
       // Retry on network errors or timeouts
-      if ((error.name === 'AbortError' || error.name === 'TypeError') && retryCount < this.maxRetries) {
+      if (
+        (error.name === 'AbortError' || error.name === 'TypeError') &&
+        retryCount < this.maxRetries
+      ) {
         const delay = Math.pow(2, retryCount) * 1000
         await new Promise(resolve => setTimeout(resolve, delay))
         return this.graphql(query, variables, retryCount + 1)

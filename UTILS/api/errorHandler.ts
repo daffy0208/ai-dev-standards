@@ -182,9 +182,7 @@ export function handleApiError(error: unknown): Response {
   // Handle standard Error instances
   if (error instanceof Error) {
     const statusCode = 500
-    const message = process.env.NODE_ENV === 'production'
-      ? 'Internal server error'
-      : error.message
+    const message = process.env.NODE_ENV === 'production' ? 'Internal server error' : error.message
 
     return Response.json(
       {
@@ -215,9 +213,7 @@ export function handleApiError(error: unknown): Response {
 /**
  * Async error wrapper for API routes
  */
-export function withErrorHandler<T extends (...args: any[]) => Promise<Response>>(
-  handler: T
-): T {
+export function withErrorHandler<T extends (...args: any[]) => Promise<Response>>(handler: T): T {
   return (async (...args: any[]) => {
     try {
       return await handler(...args)
@@ -253,7 +249,7 @@ export function getUserFriendlyMessage(error: unknown): string {
  * Example: API route with error handling
  */
 export async function exampleApiRoute(request: Request) {
-  return withErrorHandler(async () => {
+  return withErrorHandler(async (req: Request) => {
     // Get user from auth
     const user = null // Replace with actual auth check
 
@@ -262,7 +258,7 @@ export async function exampleApiRoute(request: Request) {
     }
 
     // Validate request
-    const body = await request.json()
+    const body = (await req.json()) as { email?: string; isAdmin?: boolean }
     if (!body.email) {
       throw new ValidationError('Email is required', {
         field: 'email',
@@ -299,9 +295,9 @@ export async function protectedApiRoute(
   request: Request,
   handler: (user: any) => Promise<Response>
 ) {
-  return withErrorHandler(async () => {
+  return withErrorHandler(async (req: Request) => {
     // Get user from session/token
-    // const user = await getUser(request)
+    // const user = await getUser(req)
     const user = null
 
     if (!user) {
@@ -319,8 +315,8 @@ export async function paginatedApiRoute(
   request: Request,
   handler: (params: { page: number; limit: number }) => Promise<any>
 ) {
-  return withErrorHandler(async () => {
-    const { searchParams } = new URL(request.url)
+  return withErrorHandler(async (req: Request) => {
+    const { searchParams } = new URL(req.url)
     const page = parseInt(searchParams.get('page') || '1')
     const limit = parseInt(searchParams.get('limit') || '10')
 

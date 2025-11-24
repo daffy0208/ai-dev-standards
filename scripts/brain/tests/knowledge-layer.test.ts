@@ -1,16 +1,16 @@
-import { describe, expect, it } from 'vitest';
-import * as fs from 'fs';
-import * as path from 'path';
-import os from 'os';
-import { KnowledgeLayer } from '../knowledge-layer';
+import { describe, expect, it } from 'vitest'
+import * as fs from 'fs'
+import * as path from 'path'
+import os from 'os'
+import { KnowledgeLayer } from '../knowledge-layer'
 
 interface Registries {
-  skillRegistry: any;
-  mcpRegistry: any;
-  toolRegistry: any;
-  componentRegistry: any;
-  integrationRegistry: any;
-  relationshipMapping: any;
+  skillRegistry: any
+  mcpRegistry: any
+  toolRegistry: any
+  componentRegistry: any
+  integrationRegistry: any
+  relationshipMapping: any
 }
 
 function createBaseRegistries(): Registries {
@@ -87,9 +87,7 @@ function createBaseRegistries(): Registries {
       version: '1.0.0',
       last_updated: '2024-01-01',
       description: 'Test component registry',
-      components: [
-        { id: 'component-alpha', name: 'Component Alpha' }
-      ],
+      components: [{ id: 'component-alpha', name: 'Component Alpha' }],
       total_components: 1
     },
     integrationRegistry: {
@@ -123,16 +121,16 @@ function createBaseRegistries(): Registries {
         }
       }
     }
-  };
+  }
 }
 
 function createTestEnvironment(customize?: (registries: Registries) => void) {
-  const registries = createBaseRegistries();
-  customize?.(registries);
+  const registries = createBaseRegistries()
+  customize?.(registries)
 
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'knowledge-layer-'));
-  const metaDir = path.join(root, 'META');
-  fs.mkdirSync(metaDir);
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'knowledge-layer-'))
+  const metaDir = path.join(root, 'META')
+  fs.mkdirSync(metaDir)
 
   const files: Record<string, any> = {
     'skill-registry.json': registries.skillRegistry,
@@ -141,50 +139,60 @@ function createTestEnvironment(customize?: (registries: Registries) => void) {
     'component-registry.json': registries.componentRegistry,
     'integration-registry.json': registries.integrationRegistry,
     'relationship-mapping.json': registries.relationshipMapping
-  };
-
-  for (const [filename, content] of Object.entries(files)) {
-    fs.writeFileSync(path.join(metaDir, filename), JSON.stringify(content, null, 2), 'utf-8');
   }
 
-  return { root, registries };
+  for (const [filename, content] of Object.entries(files)) {
+    fs.writeFileSync(path.join(metaDir, filename), JSON.stringify(content, null, 2), 'utf-8')
+  }
+
+  return { root, registries }
 }
 
 describe('KnowledgeLayer registry integration', () => {
   it('calculates total resources using dynamic registry counts', async () => {
-    const { root } = createTestEnvironment();
-    const layer = new KnowledgeLayer(root);
+    const { root } = createTestEnvironment()
+    const layer = new KnowledgeLayer(root)
 
-    await layer.loadRegistries();
-    const initialState = layer.getRepositoryState();
-    expect(initialState.skills).toBe(2);
-    expect(initialState.mcps).toBe(1);
-    expect(initialState.totalResources).toBe(9);
+    await layer.loadRegistries()
+    const initialState = layer.getRepositoryState()
+    expect(initialState.skills).toBe(2)
+    expect(initialState.mcps).toBe(1)
+    expect(initialState.totalResources).toBe(9)
 
-    const toolRegistryPath = path.join(root, 'META', 'tool-registry.json');
-    const toolRegistry = JSON.parse(fs.readFileSync(toolRegistryPath, 'utf-8'));
-    toolRegistry.tools.push({ id: 'tool-four', name: 'Tool Four' });
-    fs.writeFileSync(toolRegistryPath, JSON.stringify(toolRegistry, null, 2), 'utf-8');
+    const toolRegistryPath = path.join(root, 'META', 'tool-registry.json')
+    const toolRegistry = JSON.parse(fs.readFileSync(toolRegistryPath, 'utf-8'))
+    toolRegistry.tools.push({ id: 'tool-four', name: 'Tool Four' })
+    fs.writeFileSync(toolRegistryPath, JSON.stringify(toolRegistry, null, 2), 'utf-8')
 
-    await layer.loadRegistries();
-    const updatedState = layer.getRepositoryState();
-    expect(updatedState.totalResources).toBe(10);
-  });
+    await layer.loadRegistries()
+    const updatedState = layer.getRepositoryState()
+    expect(updatedState.totalResources).toBe(10)
+  })
 
   it('fails validation when required resources are missing', async () => {
     const { root } = createTestEnvironment(registries => {
-      registries.relationshipMapping.skills['demo-skill'].required_tools.push('missing-tool');
-      registries.relationshipMapping.skills['demo-skill'].required_components.push('missing-component');
-      registries.relationshipMapping.skills['demo-skill'].required_integrations.push('missing-integration');
-    });
+      registries.relationshipMapping.skills['demo-skill'].required_tools.push('missing-tool')
+      registries.relationshipMapping.skills['demo-skill'].required_components.push(
+        'missing-component'
+      )
+      registries.relationshipMapping.skills['demo-skill'].required_integrations.push(
+        'missing-integration'
+      )
+    })
 
-    const layer = new KnowledgeLayer(root);
-    await layer.loadRegistries();
+    const layer = new KnowledgeLayer(root)
+    await layer.loadRegistries()
 
-    const validation = layer.validateRegistries();
-    expect(validation.valid).toBe(false);
-    expect(validation.errors).toContain("Required tool 'missing-tool' for skill 'demo-skill' not found in tool registry");
-    expect(validation.errors).toContain("Required component 'missing-component' for skill 'demo-skill' not found in component registry");
-    expect(validation.errors).toContain("Required integration 'missing-integration' for skill 'demo-skill' not found in integration registry");
-  });
-});
+    const validation = layer.validateRegistries()
+    expect(validation.valid).toBe(false)
+    expect(validation.errors).toContain(
+      "Required tool 'missing-tool' for skill 'demo-skill' not found in tool registry"
+    )
+    expect(validation.errors).toContain(
+      "Required component 'missing-component' for skill 'demo-skill' not found in component registry"
+    )
+    expect(validation.errors).toContain(
+      "Required integration 'missing-integration' for skill 'demo-skill' not found in integration registry"
+    )
+  })
+})

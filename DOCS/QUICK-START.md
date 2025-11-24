@@ -30,6 +30,7 @@ The tool figures out everything automatically.
 6. Shows you exactly where to start
 
 **Works everywhere:**
+
 - New projects, existing projects
 - Any language, any framework
 - Empty repos to large codebases
@@ -112,6 +113,7 @@ cat .claude/mcp-settings.json
 ```
 
 **Expected:**
+
 - `.ai-dev.json` exists
 - `.claude/claude.md` lists all skills
 - `.claude/mcp-settings.json` has MCP configs
@@ -128,6 +130,7 @@ You: "What skills are available from ai-dev-standards?"
 ```
 
 **Expected:** Claude lists all 64 skills:
+
 - mvp-builder, rag-implementer, product-strategist, multi-agent-architect
 - api-designer, frontend-builder, deployment-advisor, security-engineer
 - data-engineer, data-visualizer, knowledge-graph-builder, performance-optimizer
@@ -224,6 +227,7 @@ npx @ai-dev-standards/bootstrap
 After bootstrap, you'll have:
 
 ### `.ai-dev.json` - Configuration
+
 ```json
 {
   "version": "1.0.0",
@@ -235,44 +239,53 @@ After bootstrap, you'll have:
   }
 }
 ```
+
 **Purpose:** Tracks what's installed, controls auto-sync
 
 ---
 
 ### `.claude/claude.md` - Skills
+
 ```markdown
 # Claude Configuration
 
 ## Skills
 
 ### mvp-builder
+
 Rapid MVP development with P0/P1/P2 prioritization
 
 **Location:** `/path/to/ai-dev-standards/SKILLS/mvp-builder/SKILL.md`
 
 ### api-designer
+
 Design REST and GraphQL APIs
 ...
 ```
+
 **Purpose:** Makes skills available to Claude
 
 ---
 
 ### `.codex/codex.md` - Skills for Codex
+
 ```markdown
 # Codex Configuration
 
 ## Skills
 
 ### mvp-builder
+
 Rapid MVP development with P0/P1/P2 prioritization
 
 **Location:** `/path/to/ai-dev-standards/SKILLS/mvp-builder/SKILL.md`
 
 ### api-designer
+
 Design REST and GraphQL APIs
 ...
 ```
+
 **Purpose:** Mirrors the Claude catalog so Codex CLI has identical guidance
 
 ---
@@ -282,6 +295,7 @@ Design REST and GraphQL APIs
 ---
 
 ### `.claude/mcp-settings.json` - MCPs
+
 ```json
 {
   "mcpServers": {
@@ -295,11 +309,13 @@ Design REST and GraphQL APIs
   }
 }
 ```
+
 **Purpose:** Configures MCP servers for Claude
 
 ---
 
 ### `.codex/mcp-settings.json` - MCPs for Codex
+
 ```json
 {
   "mcpServers": {
@@ -313,35 +329,42 @@ Design REST and GraphQL APIs
   }
 }
 ```
+
 **Purpose:** Keeps Codex CLI in sync with the same MCP servers
 
 ---
 
 ### `.cursorrules` - Best Practices
+
 ```markdown
 # AI Dev Standards - Best Practices
 
 ## TypeScript
+
 ✅ Use strict mode
 ✅ Explicit return types
 ❌ No 'any' types
 
 ## React
+
 ✅ Functional components
 ✅ Hooks
 ❌ Class components
 ...
 ```
+
 **Purpose:** Enforces best practices in your code
 
 ---
 
 ### `.git/hooks/post-merge` - Auto-Sync
+
 ```bash
 #!/bin/sh
 echo "🔄 Auto-syncing with ai-dev-standards..."
 ai-dev sync --yes --silent
 ```
+
 **Purpose:** Keeps everything current automatically
 
 ---
@@ -395,6 +418,7 @@ ai-dev setup openai
 ```
 
 Each setup command:
+
 - Installs npm packages
 - Creates client code
 - Updates .env files
@@ -417,30 +441,38 @@ cat .claude/skills/mvp-builder/README.md
 **All 64 skills available:**
 
 **Product & Strategy:**
+
 - mvp-builder, product-strategist, go-to-market-planner, user-researcher
 
 **AI & Data:**
+
 - rag-implementer, knowledge-graph-builder, multi-agent-architect
 - data-engineer, data-visualizer
 
 **Frontend:**
+
 - frontend-builder, ux-designer, visual-designer, animation-designer
 - design-system-architect, accessibility-engineer, mobile-developer
 
 **Backend & Infrastructure:**
+
 - api-designer, deployment-advisor, performance-optimizer, security-engineer
 
 **Specialized:**
+
 - 3d-visualizer, spatial-developer, voice-interface-builder, video-producer
 - audio-producer, livestream-engineer, iot-developer, localization-engineer
 
 **Quality & Documentation:**
+
 - testing-strategist, quality-auditor, technical-writer, copywriter, brand-designer
 
 **ADHD Support:**
+
 - context-preserver, focus-session-manager, task-breakdown-specialist
 
 **Repository Analysis:**
+
 - dark-matter-analyzer
 
 See `META/skill-registry.json` for complete details
@@ -452,6 +484,7 @@ See `META/skill-registry.json` for complete details
 ### "Command not found: ai-dev"
 
 **Solution:**
+
 ```bash
 # Option 1: Install globally
 npm install -g @ai-dev-standards/cli
@@ -468,6 +501,7 @@ npx @ai-dev-standards/bootstrap
 ### "Not a project directory"
 
 **Solution:**
+
 ```bash
 # Initialize as npm project
 npm init -y
@@ -484,11 +518,13 @@ npx @ai-dev-standards/bootstrap
 ### Claude Not Loading Skills
 
 **Check:**
+
 1. `.claude/claude.md` exists
 2. Skills are listed in file
 3. Path to ai-dev-standards is correct
 
 **Fix:**
+
 ```bash
 # Re-sync everything
 ai-dev sync --force
@@ -502,6 +538,7 @@ ai-dev list installed
 ### Auto-Sync Not Working
 
 **Check git hook:**
+
 ```bash
 # Verify hook exists
 cat .git/hooks/post-merge
@@ -599,6 +636,7 @@ mv .cursorrules.backup .cursorrules
 ## 🎉 You're Ready!
 
 **What you have now:**
+
 - ✅ All 64 skills available to Claude
 - ✅ 36 MCP servers (92% skill coverage)
 - ✅ 9 tools + 4 scripts for automation
@@ -611,6 +649,7 @@ mv .cursorrules.backup .cursorrules
 **Total: 103 resources at your fingertips**
 
 **What happens automatically:**
+
 - ✅ Skills update when standards update
 - ✅ New MCPs become available automatically
 - ✅ Components and integrations sync automatically
@@ -634,6 +673,7 @@ cp ~/ai-dev-standards/TEMPLATES/cursorrules-saas.md .cursorrules
 ```
 
 **Trade-offs:**
+
 - ✅ More control
 - ❌ No auto-sync
 - ❌ Manual updates needed

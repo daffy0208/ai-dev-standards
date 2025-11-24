@@ -13,18 +13,10 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "multi-agent-architect"
-      ],
-      "supports_mcps": [
-        "agent-orchestrator-mcp"
-      ],
+      "supports_skills": ["multi-agent-architect"],
+      "supports_mcps": ["agent-orchestrator-mcp"],
       "depends_on": [],
-      "features": [
-        "Task execution",
-        "Error handling",
-        "State management"
-      ]
+      "features": ["Task execution", "Error handling", "State management"]
     },
     {
       "id": "login-form",
@@ -35,25 +27,10 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "security-engineer",
-        "mobile-developer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "mobile-builder-mcp"
-      ],
-      "depends_on": [
-        "form-field",
-        "use-form"
-      ],
-      "features": [
-        "Email/password login",
-        "Form validation",
-        "Error handling",
-        "Loading states"
-      ]
+      "supports_skills": ["frontend-builder", "security-engineer", "mobile-developer"],
+      "supports_mcps": ["component-generator-mcp", "mobile-builder-mcp"],
+      "depends_on": ["form-field", "use-form"],
+      "features": ["Email/password login", "Form validation", "Error handling", "Loading states"]
     },
     {
       "id": "signup-form",
@@ -64,19 +41,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "security-engineer",
-        "mobile-developer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "mobile-builder-mcp"
-      ],
-      "depends_on": [
-        "form-field",
-        "use-form"
-      ],
+      "supports_skills": ["frontend-builder", "security-engineer", "mobile-developer"],
+      "supports_mcps": ["component-generator-mcp", "mobile-builder-mcp"],
+      "depends_on": ["form-field", "use-form"],
       "features": [
         "User registration",
         "Password strength validation",
@@ -93,22 +60,10 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "security-engineer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp"
-      ],
-      "depends_on": [
-        "form-field",
-        "use-form"
-      ],
-      "features": [
-        "Email verification",
-        "Token validation",
-        "Password update"
-      ]
+      "supports_skills": ["frontend-builder", "security-engineer"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": ["form-field", "use-form"],
+      "features": ["Email verification", "Token validation", "Password update"]
     },
     {
       "id": "protected-route",
@@ -119,20 +74,10 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "security-engineer",
-        "accessibility-engineer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp"
-      ],
+      "supports_skills": ["frontend-builder", "security-engineer", "accessibility-engineer"],
+      "supports_mcps": ["component-generator-mcp"],
       "depends_on": [],
-      "features": [
-        "Authentication checking",
-        "Redirect to login",
-        "Role-based access"
-      ]
+      "features": ["Authentication checking", "Redirect to login", "Role-based access"]
     },
     {
       "id": "error-boundary",
@@ -143,23 +88,10 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "mobile-developer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "mobile-builder-mcp"
-      ],
-      "depends_on": [
-        "error-fallback"
-      ],
-      "features": [
-        "Error catching",
-        "Fallback UI",
-        "Error reporting"
-      ]
+      "supports_skills": ["frontend-builder", "mobile-developer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "mobile-builder-mcp"],
+      "depends_on": ["error-fallback"],
+      "features": ["Error catching", "Fallback UI", "Error reporting"]
     },
     {
       "id": "error-fallback",
@@ -170,20 +102,10 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "wireframe-generator-mcp"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp", "wireframe-generator-mcp"],
       "depends_on": [],
-      "features": [
-        "User-friendly error display",
-        "Retry functionality",
-        "Error details"
-      ]
+      "features": ["User-friendly error display", "Retry functionality", "Error details"]
     },
     {
       "id": "not-found",
@@ -194,20 +116,10 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "wireframe-generator-mcp"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp", "wireframe-generator-mcp"],
       "depends_on": [],
-      "features": [
-        "404 messaging",
-        "Navigation links",
-        "Search functionality"
-      ]
+      "features": ["404 messaging", "Navigation links", "Search functionality"]
     },
     {
       "id": "loading-spinner",
@@ -230,11 +142,7 @@
         "design-token-manager-mcp"
       ],
       "depends_on": [],
-      "features": [
-        "Animated spinner",
-        "Size variants",
-        "Color customization"
-      ]
+      "features": ["Animated spinner", "Size variants", "Color customization"]
     },
     {
       "id": "skeleton",
@@ -245,21 +153,10 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "design-token-manager-mcp"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
       "depends_on": [],
-      "features": [
-        "Content placeholders",
-        "Animation",
-        "Shape variants"
-      ]
+      "features": ["Content placeholders", "Animation", "Shape variants"]
     },
     {
       "id": "toast",
@@ -298,23 +195,14 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "accessibility-engineer",
-        "design-system-architect"
-      ],
+      "supports_skills": ["frontend-builder", "accessibility-engineer", "design-system-architect"],
       "supports_mcps": [
         "component-generator-mcp",
         "accessibility-checker-mcp",
         "design-token-manager-mcp"
       ],
       "depends_on": [],
-      "features": [
-        "Input types",
-        "Validation",
-        "Error messages",
-        "ARIA labels"
-      ]
+      "features": ["Input types", "Validation", "Error messages", "ARIA labels"]
     },
     {
       "id": "use-form",
@@ -325,19 +213,10 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp"
-      ],
+      "supports_skills": ["frontend-builder"],
+      "supports_mcps": ["component-generator-mcp"],
       "depends_on": [],
-      "features": [
-        "Form state",
-        "Validation",
-        "Submit handling",
-        "Reset functionality"
-      ]
+      "features": ["Form state", "Validation", "Submit handling", "Reset functionality"]
     },
     {
       "id": "base-mcp-server",
@@ -348,12 +227,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "multi-agent-architect"
-      ],
-      "supports_mcps": [
-        "all-36-mcps"
-      ],
+      "supports_skills": ["multi-agent-architect"],
+      "supports_mcps": ["all-36-mcps"],
       "depends_on": [],
       "features": [
         "Tool registration and invocation",
@@ -372,16 +247,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "multi-agent-architect",
-        "performance-optimizer"
-      ],
-      "supports_mcps": [
-        "all-36-mcps"
-      ],
-      "depends_on": [
-        "base-mcp-server"
-      ],
+      "supports_skills": ["multi-agent-architect", "performance-optimizer"],
+      "supports_mcps": ["all-36-mcps"],
+      "depends_on": ["base-mcp-server"],
       "features": [
         "Input/output validation with Zod",
         "Rate limiting (sliding/fixed window)",
@@ -400,15 +268,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "multi-agent-architect"
-      ],
-      "supports_mcps": [
-        "all-36-mcps"
-      ],
-      "depends_on": [
-        "base-mcp-server"
-      ],
+      "supports_skills": ["multi-agent-architect"],
+      "supports_mcps": ["all-36-mcps"],
+      "depends_on": ["base-mcp-server"],
       "features": [
         "Content caching with size limits",
         "Version management",
@@ -426,16 +288,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "multi-agent-architect",
-        "copywriter"
-      ],
-      "supports_mcps": [
-        "all-36-mcps"
-      ],
-      "depends_on": [
-        "base-mcp-server"
-      ],
+      "supports_skills": ["multi-agent-architect", "copywriter"],
+      "supports_mcps": ["all-36-mcps"],
+      "depends_on": ["base-mcp-server"],
       "features": [
         "Template processing with {{variable}} syntax",
         "Type validation",
@@ -453,14 +308,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "rag-implementer",
-        "knowledge-base-manager"
-      ],
-      "supports_mcps": [
-        "vector-database-mcp",
-        "knowledge-base-mcp"
-      ],
+      "supports_skills": ["rag-implementer", "knowledge-base-manager"],
+      "supports_mcps": ["vector-database-mcp", "knowledge-base-mcp"],
       "depends_on": [],
       "features": [
         "Multi-source loading (files, directories, URLs)",
@@ -479,14 +328,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "rag-implementer",
-        "knowledge-base-manager"
-      ],
-      "supports_mcps": [
-        "vector-database-mcp",
-        "semantic-search-mcp"
-      ],
+      "supports_skills": ["rag-implementer", "knowledge-base-manager"],
+      "supports_mcps": ["vector-database-mcp", "semantic-search-mcp"],
       "depends_on": [],
       "features": [
         "Multiple chunking strategies (fixed, recursive, semantic, sentence, markdown)",
@@ -505,14 +348,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "rag-implementer",
-        "knowledge-base-manager"
-      ],
-      "supports_mcps": [
-        "embedding-generator-mcp",
-        "vector-database-mcp"
-      ],
+      "supports_skills": ["rag-implementer", "knowledge-base-manager"],
+      "supports_mcps": ["embedding-generator-mcp", "vector-database-mcp"],
       "depends_on": [],
       "features": [
         "Multi-provider support (OpenAI, Cohere, HuggingFace)",
@@ -531,14 +368,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "rag-implementer",
-        "knowledge-base-manager"
-      ],
-      "supports_mcps": [
-        "vector-database-mcp",
-        "semantic-search-mcp"
-      ],
+      "supports_skills": ["rag-implementer", "knowledge-base-manager"],
+      "supports_mcps": ["vector-database-mcp", "semantic-search-mcp"],
       "depends_on": [],
       "features": [
         "Multi-database support (Pinecone, Weaviate, Chroma, Qdrant, PgVector)",
@@ -557,18 +388,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "rag-implementer",
-        "knowledge-base-manager"
-      ],
-      "supports_mcps": [
-        "semantic-search-mcp",
-        "vector-database-mcp"
-      ],
-      "depends_on": [
-        "vector-store-client",
-        "embedding-pipeline"
-      ],
+      "supports_skills": ["rag-implementer", "knowledge-base-manager"],
+      "supports_mcps": ["semantic-search-mcp", "vector-database-mcp"],
+      "depends_on": ["vector-store-client", "embedding-pipeline"],
       "features": [
         "Query expansion and rewriting",
         "Hybrid search (vector + keyword)",
@@ -586,14 +408,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "rag-implementer",
-        "knowledge-base-manager"
-      ],
-      "supports_mcps": [
-        "knowledge-base-mcp",
-        "vector-database-mcp"
-      ],
+      "supports_skills": ["rag-implementer", "knowledge-base-manager"],
+      "supports_mcps": ["knowledge-base-mcp", "vector-database-mcp"],
       "depends_on": [
         "document-loader",
         "text-chunker",
@@ -618,19 +434,13 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "design-system-architect",
-        "accessibility-engineer"
-      ],
+      "supports_skills": ["frontend-builder", "design-system-architect", "accessibility-engineer"],
       "supports_mcps": [
         "component-generator-mcp",
         "design-token-manager-mcp",
         "accessibility-checker-mcp"
       ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "depends_on": ["cn-utility"],
       "features": [
         "Variant styles (primary, secondary, ghost, destructive, outline, link)",
         "Size options (sm, md, lg, icon)",
@@ -648,18 +458,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "design-system-architect",
-        "ux-designer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "design-token-manager-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "design-system-architect", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Variant styles (default, bordered, elevated)",
         "Optional title and footer",
@@ -676,18 +477,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "accessibility-engineer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "accessibility-checker-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "accessibility-engineer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Input types (text, password, email, number)",
         "Password visibility toggle",
@@ -705,18 +497,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "accessibility-engineer",
-        "ux-designer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "accessibility-checker-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "accessibility-engineer", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Size options (sm, md, lg, full)",
         "Focus trap implementation",
@@ -735,18 +518,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "accessibility-engineer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "accessibility-checker-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "accessibility-engineer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Single and multi-select modes",
         "Searchable/filterable options",
@@ -764,18 +538,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "data-visualizer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "design-token-manager-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "data-visualizer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Column sorting (ascending/descending)",
         "Variant styles (default, striped, bordered, compact)",
@@ -793,18 +558,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "design-token-manager-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Compound component pattern",
         "Controlled and uncontrolled modes",
@@ -822,18 +578,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer",
-        "data-visualizer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "design-token-manager-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer", "data-visualizer"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Intelligent page number algorithm with ellipsis",
         "First/last and prev/next buttons",
@@ -851,14 +598,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "design-token-manager-mcp"
-      ],
+      "supports_skills": ["frontend-builder", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
       "depends_on": [],
       "features": [
         "Merge Tailwind classes with proper precedence",
@@ -875,14 +616,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "multi-agent-architect",
-        "mvp-builder",
-        "performance-optimizer"
-      ],
-      "supports_mcps": [
-        "agent-orchestrator-mcp"
-      ],
+      "supports_skills": ["multi-agent-architect", "mvp-builder", "performance-optimizer"],
+      "supports_mcps": ["agent-orchestrator-mcp"],
       "depends_on": [],
       "features": [
         "Priority queue (low, normal, high, urgent)",
@@ -901,13 +636,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "multi-agent-architect",
-        "mvp-builder"
-      ],
-      "supports_mcps": [
-        "agent-orchestrator-mcp"
-      ],
+      "supports_skills": ["multi-agent-architect", "mvp-builder"],
+      "supports_mcps": ["agent-orchestrator-mcp"],
       "depends_on": [],
       "features": [
         "Linear and parallel step execution",
@@ -926,13 +656,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "multi-agent-architect",
-        "frontend-builder"
-      ],
-      "supports_mcps": [
-        "agent-orchestrator-mcp"
-      ],
+      "supports_skills": ["multi-agent-architect", "frontend-builder"],
+      "supports_mcps": ["agent-orchestrator-mcp"],
       "depends_on": [],
       "features": [
         "State get/set/delete with dot notation paths",
@@ -951,14 +676,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "custom",
-      "supports_skills": [
-        "multi-agent-architect",
-        "frontend-builder",
-        "mvp-builder"
-      ],
-      "supports_mcps": [
-        "agent-orchestrator-mcp"
-      ],
+      "supports_skills": ["multi-agent-architect", "frontend-builder", "mvp-builder"],
+      "supports_mcps": ["agent-orchestrator-mcp"],
       "depends_on": [],
       "features": [
         "Pub/sub event pattern",
@@ -977,18 +696,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "performance-optimizer",
-        "visual-designer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "asset-optimizer-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "performance-optimizer", "visual-designer"],
+      "supports_mcps": ["component-generator-mcp", "asset-optimizer-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Lazy loading with Intersection Observer",
         "Responsive srcset generation",
@@ -1006,20 +716,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer",
-        "accessibility-engineer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "accessibility-checker-mcp"
-      ],
-      "depends_on": [
-        "image",
-        "modal",
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer", "accessibility-engineer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["image", "modal", "cn-utility"],
       "features": [
         "Grid layout with masonry option",
         "Lightbox modal",
@@ -1037,19 +736,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer",
-        "mobile-developer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "mobile-builder-mcp"
-      ],
-      "depends_on": [
-        "image",
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer", "mobile-developer"],
+      "supports_mcps": ["component-generator-mcp", "mobile-builder-mcp"],
+      "depends_on": ["image", "cn-utility"],
       "features": [
         "Touch swipe support",
         "Autoplay with pause on hover",
@@ -1067,16 +756,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Drag and drop interface",
         "Click to browse",
@@ -1095,17 +777,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "design-token-manager-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Image with fallback to initials",
         "Size variants (xs, sm, md, lg, xl)",
@@ -1123,17 +797,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp"
-      ],
-      "depends_on": [
-        "modal",
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": ["modal", "cn-utility"],
       "features": [
         "Full-screen mode",
         "Zoom in/out controls",
@@ -1151,18 +817,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer",
-        "accessibility-engineer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "accessibility-checker-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer", "accessibility-engineer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "4 placements (top, bottom, left, right)",
         "Auto-positioning",
@@ -1180,18 +837,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer",
-        "accessibility-engineer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "accessibility-checker-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer", "accessibility-engineer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Portal rendering",
         "Click outside to close",
@@ -1209,18 +857,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer",
-        "accessibility-engineer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "accessibility-checker-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer", "accessibility-engineer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Single or multiple expansion",
         "Keyboard navigation",
@@ -1238,18 +877,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer",
-        "accessibility-engineer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "accessibility-checker-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer", "accessibility-engineer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Slide from left/right/top/bottom",
         "Focus trap",
@@ -1267,18 +897,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "accessibility-engineer",
-        "ux-designer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "accessibility-checker-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "accessibility-engineer", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Size options (sm, md, lg, xl)",
         "Focus trap implementation",
@@ -1296,18 +917,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer",
-        "accessibility-engineer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "accessibility-checker-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer", "accessibility-engineer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Single and range sliders",
         "Mark indicators",
@@ -1325,19 +937,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "visual-designer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "design-token-manager-mcp"
-      ],
-      "depends_on": [
-        "input",
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "visual-designer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["input", "cn-utility"],
       "features": [
         "HEX/RGB/HSL input modes",
         "Color palette swatches",
@@ -1355,20 +957,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer",
-        "accessibility-engineer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "accessibility-checker-mcp"
-      ],
-      "depends_on": [
-        "input",
-        "popover",
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer", "accessibility-engineer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["input", "popover", "cn-utility"],
       "features": [
         "Single date and range selection",
         "Min/max date constraints",
@@ -1386,18 +977,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp"
-      ],
-      "depends_on": [
-        "input",
-        "select",
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": ["input", "select", "cn-utility"],
       "features": [
         "12/24 hour format",
         "Hour/minute selection",
@@ -1415,16 +997,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Drag and drop",
         "Multiple file support",
@@ -1443,18 +1018,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "design-system-architect",
-        "ux-designer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "design-token-manager-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "design-system-architect", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Linear and circular styles",
         "Determinate and indeterminate modes",
@@ -1472,18 +1038,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "design-system-architect",
-        "visual-designer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "design-token-manager-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "design-system-architect", "visual-designer"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Variant styles (default, primary, success, warning, error)",
         "Size options (sm, md, lg)",
@@ -1501,19 +1058,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "design-token-manager-mcp"
-      ],
-      "depends_on": [
-        "icon",
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["icon", "cn-utility"],
       "features": [
         "Variant styles (info, success, warning, error)",
         "Closeable option",
@@ -1531,18 +1078,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer",
-        "accessibility-engineer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "accessibility-checker-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer", "accessibility-engineer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Automatic separator",
         "Current page indicator",
@@ -1560,16 +1098,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Horizontal and vertical layouts",
         "Step status (active, completed, error)",
@@ -1587,17 +1118,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp"
-      ],
-      "depends_on": [
-        "icon",
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": ["icon", "cn-utility"],
       "features": [
         "Star or custom icon",
         "Half-star support",
@@ -1615,17 +1138,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "design-token-manager-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Responsive column count",
         "Gap control",
@@ -1643,17 +1158,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "design-token-manager-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Max-width variants (sm, md, lg, xl, 2xl, full)",
         "Responsive padding",
@@ -1670,17 +1177,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "design-token-manager-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Vertical/horizontal direction",
         "Spacing control",
@@ -1698,15 +1197,8 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "design-system-architect",
-        "visual-designer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "design-token-manager-mcp"
-      ],
+      "supports_skills": ["frontend-builder", "design-system-architect", "visual-designer"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
       "depends_on": [],
       "features": [
         "Fixed or flex sizing",
@@ -1724,18 +1216,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "visual-designer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "design-token-manager-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "visual-designer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Horizontal/vertical orientation",
         "Label/text in divider",
@@ -1753,16 +1236,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Common ratios (1:1, 16:9, 4:3, 21:9)",
         "Custom ratio support",
@@ -1779,16 +1255,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Horizontal centering",
         "Vertical centering",
@@ -1805,18 +1274,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "accessibility-engineer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "accessibility-checker-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "accessibility-engineer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "On/off toggle",
         "Size variants (sm, md, lg)",
@@ -1834,18 +1294,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "accessibility-engineer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "accessibility-checker-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "accessibility-engineer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Checked/unchecked/indeterminate states",
         "Label support",
@@ -1863,18 +1314,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "accessibility-engineer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "accessibility-checker-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "accessibility-engineer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "RadioGroup for managing selection",
         "Keyboard navigation",
@@ -1892,18 +1334,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "accessibility-engineer",
-        "ux-designer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "accessibility-checker-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "accessibility-engineer", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Compound component pattern (DropdownTrigger, DropdownMenu, DropdownItem)",
         "Portal rendering",
@@ -1922,18 +1355,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "design-token-manager-mcp"
-      ],
-      "depends_on": [
-        "cn-utility"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
       "features": [
         "Multiple variants (text, circle, rectangle)",
         "Size options (sm, md, lg, xl)",
@@ -1958,10 +1382,7 @@
         "brand-designer",
         "design-system-architect"
       ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "icon-library-mcp"
-      ],
+      "supports_mcps": ["component-generator-mcp", "icon-library-mcp"],
       "depends_on": [],
       "features": [
         "Multi-library support (Heroicons, Lucide, Font Awesome)",
@@ -1982,18 +1403,9 @@
       "status": "active",
       "language": "typescript",
       "framework": "react",
-      "supports_skills": [
-        "frontend-builder",
-        "ux-designer",
-        "visual-designer"
-      ],
-      "supports_mcps": [
-        "component-generator-mcp",
-        "icon-library-mcp"
-      ],
-      "depends_on": [
-        "icon-media"
-      ],
+      "supports_skills": ["frontend-builder", "ux-designer", "visual-designer"],
+      "supports_mcps": ["component-generator-mcp", "icon-library-mcp"],
+      "depends_on": ["icon-media"],
       "features": [
         "Search icons by name",
         "Tag-based filtering",
@@ -2010,68 +1422,36 @@
       "name": "AI Agents",
       "count": 1,
       "description": "Reusable AI agent implementations",
-      "components": [
-        "simple-task-agent"
-      ],
-      "needed": [
-        "rag-agent",
-        "research-agent",
-        "code-review-agent",
-        "multi-agent-coordinator"
-      ]
+      "components": ["simple-task-agent"],
+      "needed": ["rag-agent", "research-agent", "code-review-agent", "multi-agent-coordinator"]
     },
     "auth": {
       "name": "Authentication",
       "count": 4,
       "description": "Authentication and authorization components",
-      "components": [
-        "login-form",
-        "signup-form",
-        "password-reset",
-        "protected-route"
-      ],
+      "components": ["login-form", "signup-form", "password-reset", "protected-route"],
       "needed": []
     },
     "errors": {
       "name": "Error Handling",
       "count": 3,
       "description": "Error display and handling components",
-      "components": [
-        "error-boundary",
-        "error-fallback",
-        "not-found"
-      ],
+      "components": ["error-boundary", "error-fallback", "not-found"],
       "needed": []
     },
     "feedback": {
       "name": "User Feedback",
       "count": 3,
       "description": "Loading states and user feedback components",
-      "components": [
-        "loading-spinner",
-        "skeleton",
-        "toast"
-      ],
-      "needed": [
-        "progress-bar",
-        "alert",
-        "modal"
-      ]
+      "components": ["loading-spinner", "skeleton", "toast"],
+      "needed": ["progress-bar", "alert", "modal"]
     },
     "forms": {
       "name": "Forms",
       "count": 2,
       "description": "Form components and utilities",
-      "components": [
-        "form-field",
-        "use-form"
-      ],
-      "needed": [
-        "select",
-        "checkbox",
-        "radio",
-        "file-upload"
-      ]
+      "components": ["form-field", "use-form"],
+      "needed": ["select", "checkbox", "radio", "file-upload"]
     },
     "mcp-servers": {
       "name": "MCP Servers",
@@ -2151,12 +1531,7 @@
       "name": "Workflows",
       "count": 4,
       "description": "Workflow orchestration components",
-      "components": [
-        "task-queue",
-        "workflow-orchestrator",
-        "state-manager",
-        "event-bus"
-      ],
+      "components": ["task-queue", "workflow-orchestrator", "state-manager", "event-bus"],
       "needed": []
     },
     "media": {

@@ -32,9 +32,11 @@
 
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
-import { User, Session } from '@supabase/supabase-js'
-import { supabase, auth, Database } from './client'
+import React, { useEffect, useState, useCallback } from 'react'
+import { User, Session, SupabaseClient } from '@supabase/supabase-js'
+import { supabase, auth, Database, SupabaseTableName } from './client'
+
+const supabaseAny = supabase as SupabaseClient<any>
 
 /**
  * Hook to get current user
@@ -45,13 +47,15 @@ export function useUser() {
 
   useEffect(() => {
     // Get initial user
-    auth.getUser().then((user) => {
+    auth.getUser().then(user => {
       setUser(user)
       setLoading(false)
     })
 
     // Listen for auth changes
-    const { data: { subscription } } = auth.onAuthStateChange((user) => {
+    const {
+      data: { subscription }
+    } = auth.onAuthStateChange(user => {
       setUser(user)
       setLoading(false)
     })
@@ -73,13 +77,15 @@ export function useSession() {
 
   useEffect(() => {
     // Get initial session
-    auth.getSession().then((session) => {
+    auth.getSession().then(session => {
       setSession(session)
       setLoading(false)
     })
 
     // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    const {
+      data: { subscription }
+    } = supabase.auth.onAuthStateChange((event, session) => {
       setSession(session)
       setLoading(false)
     })
@@ -100,17 +106,20 @@ export function useAuth() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  const signUp = useCallback(async (email: string, password: string, metadata?: Record<string, any>) => {
-    setIsLoading(true)
-    setError(null)
-    try {
-      await auth.signUp(email, password, metadata)
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Sign up failed')
-    } finally {
-      setIsLoading(false)
-    }
-  }, [])
+  const signUp = useCallback(
+    async (email: string, password: string, metadata?: Record<string, any>) => {
+      setIsLoading(true)
+      setError(null)
+      try {
+        await auth.signUp(email, password, metadata)
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Sign up failed')
+      } finally {
+        setIsLoading(false)
+      }
+    },
+    []
+  )
 
   const signIn = useCallback(async (email: string, password: string) => {
     setIsLoading(true)
@@ -163,10 +172,7 @@ export function useAuth() {
 /**
  * Hook for type-safe database queries
  */
-export function useQuery<T extends keyof Database['public']['Tables']>(
-  table: T,
-  query?: (builder: any) => any
-) {
+export function useQuery<T extends SupabaseTableName>(table: T, query?: (builder: any) => any) {
   type Row = Database['public']['Tables'][T]['Row']
 
   const [data, setData] = useState<Row[] | null>(null)
@@ -179,7 +185,7 @@ export function useQuery<T extends keyof Database['public']['Tables']>(
       setError(null)
 
       try {
-        let builder = supabase.from(table).select('*')
+        let builder = supabaseAny.from(table).select('*')
 
         if (query) {
           builder = query(builder)
@@ -188,7 +194,8 @@ export function useQuery<T extends keyof Database['public']['Tables']>(
         const { data, error } = await builder
 
         if (error) throw error
-        setData(data as Row[])
+        const typedData = (data ?? null) as unknown as Row[] | null
+        setData(typedData)
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Query failed')
       } finally {
@@ -205,13 +212,13 @@ export function useQuery<T extends keyof Database['public']['Tables']>(
 /**
  * Hook for real-time subscriptions
  */
-export function useSubscription<T extends keyof Database['public']['Tables']>(
+export function useSubscription<T extends SupabaseTableName>(
   table: T,
   callback: (payload: any) => void,
   filter?: { column: string; value: any }
 ) {
   useEffect(() => {
-    let channel = supabase.channel(`${table}_subscription`)
+    let channel = supabaseAny.channel(`${table}_subscription`)
 
     if (filter) {
       channel = channel.on(
@@ -247,7 +254,7 @@ export function useSubscription<T extends keyof Database['public']['Tables']>(
 /**
  * Hook for paginated queries
  */
-export function usePaginatedQuery<T extends keyof Database['public']['Tables']>(
+export function usePaginatedQuery<T extends Extract<keyof Database['public']['Tables'], string>>(
   table: T,
   pageSize: number = 10
 ) {
@@ -277,8 +284,9 @@ export function usePaginatedQuery<T extends keyof Database['public']['Tables']>(
         setHasMore(false)
       }
 
-      setData((prev) => [...prev, ...(newData as Row[])])
-      setPage((p) => p + 1)
+      const casted = (newData ?? []) as unknown as Row[]
+      setData(prev => [...prev, ...casted])
+      setPage(p => p + 1)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Query failed')
     } finally {
@@ -326,7 +334,7 @@ export function UserList() {
 
   return (
     <ul>
-      {data.map((user) => (
+      {data.map(user => (
         <li key={user.id}>{user.email}</li>
       ))}
     </ul>
@@ -340,14 +348,14 @@ export function RealtimeUsers() {
   useQuery('users')
 
   // Subscribe to changes
-  useSubscription('users', (payload) => {
+  useSubscription('users', payload => {
     console.log('Change received!', payload)
     // Update local state based on payload
   })
 
   return (
     <ul>
-      {users.map((user) => (
+      {users.map(user => (
         <li key={user.id}>{user.email}</li>
       ))}
     </ul>
@@ -369,14 +377,14 @@ export function SignInForm() {
       <input
         type="email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={e => setEmail(e.target.value)}
         placeholder="Email"
         required
       />
       <input
         type="password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={e => setPassword(e.target.value)}
         placeholder="Password"
         required
       />

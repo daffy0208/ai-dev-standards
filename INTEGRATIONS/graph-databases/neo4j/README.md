@@ -131,9 +131,13 @@ const alice = await client.findNodes('Person', {
 })
 
 // Find with limit
-const recentDocs = await client.findNodes('Document', {
-  category: 'AI'
-}, 10)
+const recentDocs = await client.findNodes(
+  'Document',
+  {
+    category: 'AI'
+  },
+  10
+)
 ```
 
 ### Update Node
@@ -142,7 +146,7 @@ const recentDocs = await client.findNodes('Document', {
 await client.updateNode(
   'Person',
   { name: 'Alice' }, // Match criteria
-  { age: 31 }        // Update values
+  { age: 31 } // Update values
 )
 ```
 
@@ -164,16 +168,20 @@ await client.deleteNode('Person', {
 ```typescript
 // Create KNOWS relationship
 await client.createRelationship(
-  'Person', { name: 'Alice' },    // From node
-  'Person', { name: 'Bob' },      // To node
-  'KNOWS',                         // Relationship type
-  { since: 2020, strength: 0.8 }  // Relationship properties
+  'Person',
+  { name: 'Alice' }, // From node
+  'Person',
+  { name: 'Bob' }, // To node
+  'KNOWS', // Relationship type
+  { since: 2020, strength: 0.8 } // Relationship properties
 )
 
 // Create authorship relationship
 await client.createRelationship(
-  'Person', { email: 'alice@example.com' },
-  'Document', { title: 'Machine Learning Basics' },
+  'Person',
+  { email: 'alice@example.com' },
+  'Document',
+  { title: 'Machine Learning Basics' },
   'AUTHORED',
   { role: 'primary', date: '2025-01-15' }
 )
@@ -199,11 +207,14 @@ const recent = await client.findRelationships('KNOWS', {
 
 ```typescript
 // Simple query
-const result = await client.query(`
+const result = await client.query(
+  `
   MATCH (p:Person)
   WHERE p.age > $minAge
   RETURN p
-`, { minAge: 25 })
+`,
+  { minAge: 25 }
+)
 
 // Process results
 result.records.forEach(record => {
@@ -250,16 +261,22 @@ const friendsOfFriends = await client.query(fofQuery, { name: 'Alice' })
 ### Atomic Operations
 
 ```typescript
-await client.transaction(async (session) => {
+await client.transaction(async session => {
   // All operations in this function are atomic
-  await session.run(`
+  await session.run(
+    `
     CREATE (p:Person {name: $name})
-  `, { name: 'Charlie' })
+  `,
+    { name: 'Charlie' }
+  )
 
-  await session.run(`
+  await session.run(
+    `
     MATCH (p:Person {name: $name})
     CREATE (p)-[:WORKS_AT]->(:Company {name: $company})
-  `, { name: 'Charlie', company: 'Acme Corp' })
+  `,
+    { name: 'Charlie', company: 'Acme Corp' }
+  )
 })
 ```
 
@@ -272,9 +289,11 @@ await client.transaction(async (session) => {
 ```typescript
 // Find shortest path between two people
 const path = await client.shortestPath(
-  'Person', { name: 'Alice' },
-  'Person', { name: 'Charlie' },
-  'KNOWS'  // Optional: relationship type to follow
+  'Person',
+  { name: 'Alice' },
+  'Person',
+  { name: 'Charlie' },
+  'KNOWS' // Optional: relationship type to follow
 )
 
 if (path) {
@@ -326,8 +345,10 @@ async function buildKnowledgeGraph(client: Neo4jClient) {
 
   // Link concepts
   await client.createRelationship(
-    'Concept', { name: 'Neural Networks' },
-    'Concept', { name: 'Machine Learning' },
+    'Concept',
+    { name: 'Neural Networks' },
+    'Concept',
+    { name: 'Machine Learning' },
     'IS_A',
     { confidence: 0.95 }
   )
@@ -340,8 +361,10 @@ async function buildKnowledgeGraph(client: Neo4jClient) {
   })
 
   await client.createRelationship(
-    'Resource', { title: 'Deep Learning Book' },
-    'Concept', { name: 'Neural Networks' },
+    'Resource',
+    { title: 'Deep Learning Book' },
+    'Concept',
+    { name: 'Neural Networks' },
     'TEACHES'
   )
 }
@@ -364,17 +387,9 @@ async function buildCitationNetwork(client: Neo4jClient) {
   }
 
   // Add citations
-  await client.createRelationship(
-    'Paper', { id: 'paper2' },
-    'Paper', { id: 'paper1' },
-    'CITES'
-  )
+  await client.createRelationship('Paper', { id: 'paper2' }, 'Paper', { id: 'paper1' }, 'CITES')
 
-  await client.createRelationship(
-    'Paper', { id: 'paper3' },
-    'Paper', { id: 'paper1' },
-    'CITES'
-  )
+  await client.createRelationship('Paper', { id: 'paper3' }, 'Paper', { id: 'paper1' }, 'CITES')
 
   // Find most cited papers
   const mostCited = await client.query(`
@@ -411,14 +426,18 @@ async function buildOrgChart(client: Neo4jClient) {
 
   // Build hierarchy
   await client.createRelationship(
-    'Employee', { name: 'VP Engineering' },
-    'Employee', { name: 'CEO' },
+    'Employee',
+    { name: 'VP Engineering' },
+    'Employee',
+    { name: 'CEO' },
     'REPORTS_TO'
   )
 
   await client.createRelationship(
-    'Employee', { name: 'Senior Engineer' },
-    'Employee', { name: 'VP Engineering' },
+    'Employee',
+    { name: 'Senior Engineer' },
+    'Employee',
+    { name: 'VP Engineering' },
     'REPORTS_TO'
   )
 
@@ -472,7 +491,7 @@ await client.query(`
 For bulk inserts, use transactions:
 
 ```typescript
-await client.transaction(async (session) => {
+await client.transaction(async session => {
   for (const item of largeDataset) {
     await session.run('CREATE (n:Node $props)', { props: item })
   }
@@ -509,16 +528,17 @@ async function ragWithGraphContext(query: string) {
 
   try {
     // Find relevant context from graph
-    const context = await client.query(`
+    const context = await client.query(
+      `
       MATCH (d:Document)-[:RELATED_TO]->(concept:Concept)
       WHERE concept.name CONTAINS $query
       RETURN d.content as content
       LIMIT 3
-    `, { query })
+    `,
+      { query }
+    )
 
-    const contextText = context.records
-      .map(r => r.get('content'))
-      .join('\n\n')
+    const contextText = context.records.map(r => r.get('content')).join('\n\n')
 
     // Generate response with context
     const response = await openai.chat.completions.create({
@@ -544,20 +564,25 @@ async function storeDocumentWithEmbedding(
   client: Neo4jClient,
   doc: { title: string; content: string; embedding: number[] }
 ) {
-  await client.query(`
+  await client.query(
+    `
     CREATE (d:Document {
       title: $title,
       content: $content,
       embedding: $embedding
     })
-  `, doc)
+  `,
+    doc
+  )
 
   // Create relationships to concepts
   const concepts = extractConcepts(doc.content)
   for (const concept of concepts) {
     await client.createRelationship(
-      'Document', { title: doc.title },
-      'Concept', { name: concept },
+      'Document',
+      { title: doc.title },
+      'Concept',
+      { name: concept },
       'MENTIONS'
     )
   }
@@ -565,7 +590,8 @@ async function storeDocumentWithEmbedding(
 
 // Hybrid search: vector + graph
 async function hybridSearch(client: Neo4jClient, query: string, embedding: number[]) {
-  return client.query(`
+  return client.query(
+    `
     MATCH (d:Document)
     WITH d, gds.similarity.cosine(d.embedding, $embedding) AS similarity
     WHERE similarity > 0.7
@@ -573,7 +599,9 @@ async function hybridSearch(client: Neo4jClient, query: string, embedding: numbe
     RETURN d, similarity, collect(c.name) as concepts
     ORDER BY similarity DESC
     LIMIT 10
-  `, { embedding })
+  `,
+    { embedding }
+  )
 }
 ```
 

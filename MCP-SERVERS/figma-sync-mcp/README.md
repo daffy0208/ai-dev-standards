@@ -7,9 +7,11 @@ Sync Figma designs with your codebase - import components, extract design tokens
 ### Tools
 
 #### `importFigmaDesign`
+
 Import complete Figma design file with components, styles, and assets.
 
 **Parameters:**
+
 - `fileUrl` (string, required): Figma file URL
 - `options` (object):
   - `includeComponents` (boolean): Import components
@@ -18,6 +20,7 @@ Import complete Figma design file with components, styles, and assets.
   - `format` (string): Export format - json, css, react, vue
 
 **Example:**
+
 ```typescript
 {
   fileUrl: "https://www.figma.com/file/abc123/MyDesign",
@@ -30,14 +33,17 @@ Import complete Figma design file with components, styles, and assets.
 ```
 
 #### `extractDesignTokens`
+
 Extract design tokens (colors, typography, spacing) from Figma.
 
 **Parameters:**
+
 - `fileUrl` (string, required): Figma file URL
 - `tokenTypes` (array): Types to extract - colors, typography, spacing, effects, grids
 - `format` (string): Output format - json, css, scss, tailwind, style-dictionary
 
 **Example:**
+
 ```typescript
 {
   fileUrl: "https://www.figma.com/file/abc123/MyDesign",
@@ -47,15 +53,18 @@ Extract design tokens (colors, typography, spacing) from Figma.
 ```
 
 #### `exportComponents`
+
 Export specific Figma components as framework code.
 
 **Parameters:**
+
 - `fileUrl` (string, required): Figma file URL
 - `componentNames` (array, required): Component names to export
 - `framework` (string, required): Target framework - react, vue, svelte, html, angular
 - `includeStyles` (boolean): Include inline styles
 
 **Example:**
+
 ```typescript
 {
   fileUrl: "https://www.figma.com/file/abc123/MyDesign",
@@ -66,15 +75,18 @@ Export specific Figma components as framework code.
 ```
 
 #### `syncStyles`
+
 Continuously sync Figma styles with codebase design tokens.
 
 **Parameters:**
+
 - `fileUrl` (string, required): Figma file URL
 - `targetPath` (string, required): Path to write design tokens
 - `format` (string): Output file format - css, scss, js, json, ts
 - `watch` (boolean): Watch for changes and auto-sync
 
 **Example:**
+
 ```typescript
 {
   fileUrl: "https://www.figma.com/file/abc123/MyDesign",
@@ -87,9 +99,11 @@ Continuously sync Figma styles with codebase design tokens.
 ### Resources
 
 #### `figma-sync://files`
+
 List of accessible Figma files.
 
 #### `figma-sync://setup`
+
 Complete setup guide for Figma API integration.
 
 ## Setup
@@ -143,14 +157,14 @@ npm run build
 ```typescript
 // 1. Import full design
 const design = await importFigmaDesign({
-  fileUrl: "https://www.figma.com/file/abc123/MyApp",
+  fileUrl: 'https://www.figma.com/file/abc123/MyApp',
   options: {
     includeComponents: true,
     includeStyles: true,
     includeAssets: true,
-    format: "react"
+    format: 'react'
   }
-});
+})
 
 // Result: Components, styles, and assets ready for development
 ```
@@ -160,18 +174,18 @@ const design = await importFigmaDesign({
 ```typescript
 // 1. Extract design tokens
 const tokens = await extractDesignTokens({
-  fileUrl: "https://www.figma.com/file/abc123/MyApp",
-  tokenTypes: ["colors", "typography", "spacing"],
-  format: "tailwind"
-});
+  fileUrl: 'https://www.figma.com/file/abc123/MyApp',
+  tokenTypes: ['colors', 'typography', 'spacing'],
+  format: 'tailwind'
+})
 
 // 2. Sync to codebase
 await syncStyles({
-  fileUrl: "https://www.figma.com/file/abc123/MyApp",
-  targetPath: "./src/styles/design-tokens.css",
-  format: "css",
+  fileUrl: 'https://www.figma.com/file/abc123/MyApp',
+  targetPath: './src/styles/design-tokens.css',
+  format: 'css',
   watch: true // Auto-update on changes
-});
+})
 ```
 
 ### Component Export
@@ -179,11 +193,11 @@ await syncStyles({
 ```typescript
 // Export specific components
 const components = await exportComponents({
-  fileUrl: "https://www.figma.com/file/abc123/MyApp",
-  componentNames: ["Button", "Card", "Modal", "Input"],
-  framework: "react",
+  fileUrl: 'https://www.figma.com/file/abc123/MyApp',
+  componentNames: ['Button', 'Card', 'Modal', 'Input'],
+  framework: 'react',
   includeStyles: true
-});
+})
 
 // Components ready to integrate
 ```
@@ -191,6 +205,7 @@ const components = await exportComponents({
 ## Design Token Formats
 
 ### JSON Format
+
 ```json
 {
   "colors": {
@@ -205,16 +220,18 @@ const components = await exportComponents({
 ```
 
 ### CSS Format
+
 ```css
 :root {
-  --color-primary: #4F46E5;
-  --color-secondary: #EC4899;
+  --color-primary: #4f46e5;
+  --color-secondary: #ec4899;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
 }
 ```
 
 ### Tailwind Format
+
 ```javascript
 module.exports = {
   theme: {
@@ -231,6 +248,7 @@ module.exports = {
 ```
 
 ### Style Dictionary Format
+
 ```json
 {
   "color": {
@@ -242,18 +260,16 @@ module.exports = {
 ## Component Export Examples
 
 ### React Component
+
 ```tsx
 // Button.tsx
 export function Button({ children, variant = 'primary' }) {
-  return (
-    <button className={`btn btn-${variant}`}>
-      {children}
-    </button>
-  );
+  return <button className={`btn btn-${variant}`}>{children}</button>
 }
 ```
 
 ### Vue Component
+
 ```vue
 <!-- Button.vue -->
 <template>
@@ -268,6 +284,7 @@ defineProps(['variant'])
 ```
 
 ### Svelte Component
+
 ```svelte
 <!-- Button.svelte -->
 <script>
@@ -284,11 +301,13 @@ defineProps(['variant'])
 ### 1. Design Token Naming
 
 **Figma:**
+
 - Use consistent naming: `color/primary/500`
 - Organize in folders
 - Document usage
 
 **Code:**
+
 - Match Figma structure
 - Use semantic names
 - Version control tokens
@@ -303,11 +322,13 @@ defineProps(['variant'])
 ### 3. Sync Strategy
 
 **One-time sync:**
+
 - Initial project setup
 - Major redesigns
 - Prototyping
 
 **Continuous sync:**
+
 - Active development
 - Design iteration
 - Component libraries
@@ -331,20 +352,24 @@ git commit -m "Update design tokens from Figma"
 ## Troubleshooting
 
 ### 401 Unauthorized
+
 - Token invalid or expired
 - Regenerate token in Figma settings
 
 ### 403 Forbidden
+
 - Missing file permissions
 - Check file sharing settings
 - Verify team access
 
 ### 404 Not Found
+
 - Invalid file URL
 - File deleted or moved
 - Check file ID format
 
 ### 429 Rate Limited
+
 - Too many requests
 - Wait 1 hour or use caching
 - Batch operations
@@ -357,10 +382,10 @@ Monitor Figma for changes and auto-sync:
 
 ```typescript
 await syncStyles({
-  fileUrl: "...",
-  targetPath: "./src/styles/tokens.css",
+  fileUrl: '...',
+  targetPath: './src/styles/tokens.css',
   watch: true
-});
+})
 
 // Terminal output:
 // ✓ Synced: 12 colors, 8 typography tokens
@@ -373,13 +398,13 @@ Import only what you need:
 
 ```typescript
 await importFigmaDesign({
-  fileUrl: "...",
+  fileUrl: '...',
   options: {
     includeComponents: true,
-    includeStyles: false,  // Skip styles
-    includeAssets: false   // Skip assets
+    includeStyles: false, // Skip styles
+    includeAssets: false // Skip assets
   }
-});
+})
 ```
 
 ### Multi-File Sync
@@ -387,13 +412,10 @@ await importFigmaDesign({
 Sync multiple Figma files:
 
 ```typescript
-const files = [
-  "https://www.figma.com/file/abc/Components",
-  "https://www.figma.com/file/def/Tokens"
-];
+const files = ['https://www.figma.com/file/abc/Components', 'https://www.figma.com/file/def/Tokens']
 
 for (const fileUrl of files) {
-  await syncStyles({ fileUrl, targetPath: "..." });
+  await syncStyles({ fileUrl, targetPath: '...' })
 }
 ```
 
@@ -406,7 +428,7 @@ name: Sync Figma Designs
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Daily
+    - cron: '0 0 * * *' # Daily
   workflow_dispatch:
 
 jobs:

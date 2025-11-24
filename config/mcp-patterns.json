@@ -18,8 +18,8 @@
       "enabled": true,
       "description": "Advanced pattern with progressive discovery",
       "config": {
-        "servers_path": "/MCP-SERVERS",
-        "skills_path": "/home/david/projects/ai-dev-standards/skills",
+        "servers_path": "./MCP-SERVERS",
+        "skills_path": "./skills",
         "sandbox": {
           "type": "docker",
           "memory": "512m",
@@ -27,9 +27,7 @@
           "network": "none"
         },
         "security": {
-          "layers_enabled": [
-            "sandbox"
-          ],
+          "layers_enabled": ["sandbox"],
           "pii_tokenization": false,
           "access_control": false,
           "monitoring": false

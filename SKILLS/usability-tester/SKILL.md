@@ -41,8 +41,7 @@ Examples:
 Choose 3-5 tasks that represent key user journeys:
 
 ```yaml
-Example Tasks (Project Management Tool):
-  1. Sign up and create account
+Example Tasks (Project Management Tool): 1. Sign up and create account
   2. Create your first project
   3. Invite a team member
   4. Assign a task to someone
@@ -73,24 +72,28 @@ Incentives:
 ### Best Practices
 
 ✅ **Good task scenario**:
+
 ```
 "Your team is launching a new project next week. Create a project
 called 'Q2 Launch' and invite john@example.com to collaborate."
 ```
 
 **Why it works**:
+
 - Realistic context
 - Clear goal
 - Natural language
 - Doesn't give step-by-step instructions
 
 ❌ **Bad task scenario**:
+
 ```
 "Click the 'New Project' button, then enter 'Q2 Launch', then
 click Settings, then click Invite, then enter email."
 ```
 
 **Why it fails**:
+
 - Step-by-step instructions
 - No context
 - Doesn't test discoverability
@@ -114,6 +117,7 @@ Example:
 ### Think-Aloud Protocol
 
 **Key instruction to participant**:
+
 ```
 "Please think aloud as you work. Tell me what you're looking for,
 what you're thinking, what you're trying to do. There are no
@@ -121,6 +125,7 @@ wrong answers - we're testing the product, not you."
 ```
 
 **What to listen for**:
+
 - "I'm looking for..." (what they expect)
 - "I thought this would..." (mental models)
 - "This is confusing because..." (friction points)
@@ -129,6 +134,7 @@ wrong answers - we're testing the product, not you."
 ### Facilitation Rules
 
 ✅ **Do**:
+
 - Observe silently
 - Take notes
 - Let them struggle (reveals issues)
@@ -136,6 +142,7 @@ wrong answers - we're testing the product, not you."
 - Stay neutral
 
 ❌ **Don't**:
+
 - Help or explain
 - Lead them ("maybe try clicking...")
 - Defend design choices
@@ -146,15 +153,15 @@ wrong answers - we're testing the product, not you."
 
 ```yaml
 Completion Questions:
-  - "On a scale of 1-5, how easy was that task?"
-  - "What were you expecting to see?"
-  - "What was confusing about that?"
-  - "If you could change one thing, what would it be?"
+  - 'On a scale of 1-5, how easy was that task?'
+  - 'What were you expecting to see?'
+  - 'What was confusing about that?'
+  - 'If you could change one thing, what would it be?'
 
 Discovery Questions:
-  - "Where did you expect to find that?"
-  - "What do you think this [feature] does?"
-  - "Why did you click there?"
+  - 'Where did you expect to find that?'
+  - 'What do you think this [feature] does?'
+  - 'Why did you click there?'
 ```
 
 ## Metrics to Track
@@ -167,8 +174,7 @@ Measurement:
   - Partial: User achieved goal with hints
   - Failed: User could not complete task
 
-Calculation:
-  Task Success Rate = (Completed Tasks / Total Attempts) × 100
+Calculation: Task Success Rate = (Completed Tasks / Total Attempts) × 100
 
 Target: ≥80% for core tasks
 ```
@@ -199,8 +205,7 @@ Errors:
   - Had to backtrack
   - Gave up and tried different approach
 
-Calculation:
-  Errors per Task = Total Errors / Number of Users
+Calculation: Errors per Task = Total Errors / Number of Users
 
 Target: <2 errors per task
 ```
@@ -223,11 +228,13 @@ Target: ≥4.0 average
 ## Issue Severity Rating
 
 ### Severity Formula
+
 ```
 Severity = Impact × Frequency
 ```
 
 ### Impact Scale (1-3)
+
 ```yaml
 1 - Low Impact:
   - Minor inconvenience
@@ -246,6 +253,7 @@ Severity = Impact × Frequency
 ```
 
 ### Frequency Scale (1-3)
+
 ```yaml
 1 - Rare:
   - Only 1-2 users encountered
@@ -292,8 +300,7 @@ Low (1-3):
 **10-question survey** (post-test, 1-5 Likert scale):
 
 ```yaml
-Questions (Odd = Positive, Even = Negative):
-  1. I think I would like to use this product frequently
+Questions (Odd = Positive, Even = Negative): 1. I think I would like to use this product frequently
   2. I found the product unnecessarily complex
   3. I thought the product was easy to use
   4. I think I would need support to use this product
@@ -322,20 +329,20 @@ Interpretation:
 
 ```yaml
 usability_test_summary:
-  date: "2024-01-20"
+  date: '2024-01-20'
   participants: 8
-  participant_profile: "New users, age 25-45, tech-savvy"
+  participant_profile: 'New users, age 25-45, tech-savvy'
 
   tasks:
-    - task: "Create a new project"
-      success_rate: "87.5% (7/8)"
-      avg_time: "1m 24s"
+    - task: 'Create a new project'
+      success_rate: '87.5% (7/8)'
+      avg_time: '1m 24s'
       errors: 1.2 per user
       satisfaction: 4.3/5
 
-    - task: "Invite team member"
-      success_rate: "62.5% (5/8)"
-      avg_time: "2m 45s"
+    - task: 'Invite team member'
+      success_rate: '62.5% (5/8)'
+      avg_time: '2m 45s'
       errors: 2.8 per user
       satisfaction: 3.1/5
 
@@ -347,14 +354,14 @@ usability_test_summary:
       affected_users: 7/8
       recommendation: "Move 'Invite' button to top of project page, make it more prominent"
 
-    - issue: "Confusion about project vs workspace"
+    - issue: 'Confusion about project vs workspace'
       severity: medium
       impact: 2
       frequency: 3
       affected_users: 6/8
-      recommendation: "Add tooltip explaining difference, update onboarding"
+      recommendation: 'Add tooltip explaining difference, update onboarding'
 
-    - issue: "Export button text unclear"
+    - issue: 'Export button text unclear'
       severity: low
       impact: 1
       frequency: 2
@@ -364,9 +371,9 @@ usability_test_summary:
   sus_score: 72 (Good)
 
   key_insights:
-    - "Onboarding is smooth (87.5% success)"
-    - "Team collaboration features hard to discover"
-    - "Overall product easy to use once features are found"
+    - 'Onboarding is smooth (87.5% success)'
+    - 'Team collaboration features hard to discover'
+    - 'Overall product easy to use once features are found'
 
   recommended_actions:
     1. "High priority: Redesign invite flow"
@@ -462,6 +469,7 @@ Analysis:
 ## Quick Start Checklist
 
 ### Planning Phase
+
 - [ ] Define test objectives
 - [ ] Write 3-5 task scenarios
 - [ ] Recruit 5-8 participants
@@ -469,6 +477,7 @@ Analysis:
 - [ ] Set up recording
 
 ### Testing Phase
+
 - [ ] Welcome participant
 - [ ] Explain think-aloud protocol
 - [ ] Conduct tasks (don't help!)
@@ -477,6 +486,7 @@ Analysis:
 - [ ] Thank participant
 
 ### Analysis Phase
+
 - [ ] Calculate success rates
 - [ ] Identify common issues
 - [ ] Rate issue severity
@@ -496,6 +506,7 @@ Analysis:
 ## Summary
 
 Great usability testing:
+
 - ✅ Test with 5-8 users per persona
 - ✅ Use realistic task scenarios (not step-by-step)
 - ✅ Think-aloud protocol (understand mental models)

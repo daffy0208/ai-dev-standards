@@ -9,6 +9,7 @@ Codified decision logic for the Repository Brain's Layer 3 (Decision Making).
 **Triggers**: `new skill`, `add skill`, `create skill`
 
 **Workflow**:
+
 1. Research existing patterns
 2. Check if official MCP exists
 3. Create SKILL.md
@@ -30,6 +31,7 @@ Codified decision logic for the Repository Brain's Layer 3 (Decision Making).
 **Triggers**: `new feature`, `add feature`, `implement feature`
 
 **Workflow**:
+
 1. Load project context
 2. Check playbooks for patterns
 3. Select appropriate skills
@@ -50,6 +52,7 @@ Codified decision logic for the Repository Brain's Layer 3 (Decision Making).
 **Triggers**: `enhance`, `improve`, `optimize`, `refactor`
 
 **Workflow**:
+
 1. Load existing implementation
 2. Identify gaps
 3. Research best practices
@@ -70,6 +73,7 @@ Codified decision logic for the Repository Brain's Layer 3 (Decision Making).
 **Triggers**: `fix bug`, `debug`, `resolve issue`
 
 **Workflow**:
+
 1. Reproduce bug
 2. Identify root cause
 3. Implement fix
@@ -89,6 +93,7 @@ Codified decision logic for the Repository Brain's Layer 3 (Decision Making).
 **Triggers**: `new mcp`, `add mcp`, `create mcp`
 
 **Workflow**:
+
 1. Research MCP patterns
 2. Check official MCPs first
 3. Create MCP directory structure
@@ -113,10 +118,12 @@ Codified decision logic for the Repository Brain's Layer 3 (Decision Making).
 **Priority**: High (Score: 10 points)
 
 Match user request keywords against skill **triggers**:
+
 - Exact match: +10 points
 - Partial match: +5 points
 
 **Example**:
+
 - Request: "implement authentication"
 - Match: `security-engineer` (trigger: "authentication")
 
@@ -127,9 +134,11 @@ Match user request keywords against skill **triggers**:
 **Priority**: Medium (Score: 1-5 points)
 
 Match request words against skill **description**:
+
 - Each matching word: +1 point
 
 **Example**:
+
 - Request: "build REST API"
 - Match: `api-designer` (description contains "REST" and "API")
 
@@ -140,9 +149,11 @@ Match request words against skill **description**:
 **Priority**: Medium (Score: 5 points)
 
 Match request against skill **name**:
+
 - Name appears in request: +5 points
 
 **Example**:
+
 - Request: "use mvp builder"
 - Match: `mvp-builder` (+5 points)
 
@@ -153,6 +164,7 @@ Match request against skill **name**:
 **Priority**: Low (Optional)
 
 Filter by task category:
+
 - `product-development`: mvp-builder, product-strategist, go-to-market-planner
 - `ai-native`: rag-implementer, knowledge-base-manager, multi-agent-architect
 - `technical`: frontend-builder, api-designer, security-engineer
@@ -166,9 +178,11 @@ Filter by task category:
 **Priority**: Low (Score: 2 points)
 
 If primary skill selected, consider `related_skills`:
+
 - Each related skill: +2 points
 
 **Example**:
+
 - Primary: `rag-implementer`
 - Also recommend: `knowledge-base-manager`, `knowledge-graph-builder`
 
@@ -183,6 +197,7 @@ If primary skill selected, consider `related_skills`:
 For each selected skill, include all `required_mcps` from relationship-mapping.json.
 
 **Example**:
+
 - Skill: `rag-implementer`
 - Required MCPs: `vector-database-mcp`, `embedding-generator-mcp`, `semantic-search-mcp`
 
@@ -195,6 +210,7 @@ For each selected skill, include all `required_mcps` from relationship-mapping.j
 If Skill A requires Skill B, include MCPs from both.
 
 **Example**:
+
 - User selects: `knowledge-base-manager`
 - Related: `rag-implementer`
 - Include MCPs from both skills
@@ -206,6 +222,7 @@ If Skill A requires Skill B, include MCPs from both.
 **Priority**: High
 
 Always prefer official MCPs over custom implementations:
+
 - Check MCP registry status: "official" > "community" > "custom"
 
 ---
@@ -259,6 +276,7 @@ Always prefer official MCPs over custom implementations:
 ## Time Estimation Rules
 
 ### Rule 1: Skill Creation
+
 - **Simple skill** (1 pattern): 2 hours
 - **Standard skill** (3-5 patterns): 3 hours
 - **Complex skill** (7+ patterns): 4-5 hours
@@ -266,6 +284,7 @@ Always prefer official MCPs over custom implementations:
 ---
 
 ### Rule 2: MCP Creation
+
 - **Simple MCP** (1-2 tools): 3 hours
 - **Standard MCP** (3-5 tools): 4 hours
 - **Complex MCP** (integration + tests): 5-6 hours
@@ -273,6 +292,7 @@ Always prefer official MCPs over custom implementations:
 ---
 
 ### Rule 3: Feature Implementation
+
 - **UI-only**: 2-3 hours
 - **Frontend + Backend**: 4-6 hours
 - **Full stack + tests**: 6-8 hours
@@ -280,6 +300,7 @@ Always prefer official MCPs over custom implementations:
 ---
 
 ### Rule 4: Enhancement
+
 - **Documentation only**: 1 hour
 - **Minor code changes**: 2-3 hours
 - **Major refactor**: 4-6 hours
@@ -300,6 +321,7 @@ Always prefer official MCPs over custom implementations:
 ### Rule 2: Skill Priority
 
 When multiple skills match:
+
 1. **Exact trigger match** (highest priority)
 2. **Name match**
 3. **Description match**
@@ -342,6 +364,7 @@ When multiple skills match:
 ### Rule 1: Pattern Extraction
 
 Extract patterns from external repositories:
+
 - Identify recurring architecture patterns
 - Score pattern quality
 - Add to STANDARDS/ if high quality
@@ -351,6 +374,7 @@ Extract patterns from external repositories:
 ### Rule 2: Skill Discovery
 
 Discover new skill opportunities:
+
 - Find capabilities not covered by existing skills
 - Analyze skill usage patterns
 - Recommend new skills to create
@@ -360,6 +384,7 @@ Discover new skill opportunities:
 ### Rule 3: MCP Optimization
 
 Optimize MCP selection:
+
 - Track which MCPs are used together
 - Identify redundant MCPs
 - Recommend consolidation
@@ -404,6 +429,7 @@ To add new decision rules:
 ## Version History
 
 **v1.0.0** (2025-10-26): Initial decision rules
+
 - Workflow selection (5 patterns)
 - Skill selection (5 rules)
 - MCP selection (3 rules)

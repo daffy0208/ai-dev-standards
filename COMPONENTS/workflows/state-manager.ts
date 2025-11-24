@@ -41,14 +41,24 @@
  * ```
  */
 
-export type StateChangeListener<T = any> = (newValue: T, oldValue: T | undefined, path: string) => void
-export type StateValidator = (state: Record<string, any>) => void | Promise<void>
+export type StateValue = unknown
+export type StateTree = Record<string, StateValue>
+
+export type StateChangeListener<T = StateValue> = (
+  newValue: T,
+  oldValue: T | undefined,
+  path: string
+) => void
+export type StateValidator = (state: StateTree) => void | Promise<void>
 
 /**
  * Custom error class for state errors
  */
 export class StateError extends Error {
-  constructor(message: string, public path?: string) {
+  constructor(
+    message: string,
+    public path?: string
+  ) {
     super(message)
     this.name = 'StateError'
   }
@@ -61,8 +71,8 @@ export interface StateChange {
   timestamp: number
   type: 'set' | 'delete'
   path: string
-  oldValue?: any
-  newValue?: any
+  oldValue?: StateValue
+  newValue?: StateValue
 }
 
 /**
@@ -70,15 +80,15 @@ export interface StateChange {
  */
 export interface StateSnapshot {
   timestamp: number
-  state: Record<string, any>
-  metadata?: Record<string, any>
+  state: StateTree
+  metadata?: Record<string, StateValue>
 }
 
 /**
  * State manager options
  */
 export interface StateOptions {
-  initialState?: Record<string, any>
+  initialState?: StateTree
   persistence?: boolean
   persistenceKey?: string
   persistencePath?: string
@@ -103,17 +113,17 @@ interface Subscription {
  * State Manager
  */
 export class StateManager {
-  private options: Required<Omit<StateOptions,
-    'initialState' | 'validation' | 'onChange' | 'onError' | 'persistencePath'
-  >> & {
-    initialState?: Record<string, any>
+  private options: Required<
+    Omit<StateOptions, 'initialState' | 'validation' | 'onChange' | 'onError' | 'persistencePath'>
+  > & {
+    initialState?: StateTree
     validation?: StateValidator
     onChange?: StateChangeListener
     onError?: (error: Error) => void
     persistencePath?: string
   }
 
-  private state: Record<string, any> = {}
+  private state: StateTree = {}
   private history: StateChange[] = []
   private historyIndex = -1
   private subscriptions: Map<string, Subscription> = new Map()
@@ -131,7 +141,7 @@ export class StateManager {
       validation: options.validation,
       onChange: options.onChange,
       onError: options.onError,
-      debounceMs: options.debounceMs || 0,
+      debounceMs: options.debounceMs || 0
     }
 
     // Initialize state
@@ -148,14 +158,14 @@ export class StateManager {
   /**
    * Get state value by path
    */
-  get<T = any>(path: string): T | undefined {
-    return this.getNestedValue(this.state, path)
+  get<T = StateValue>(path: string): T | undefined {
+    return this.getNestedValue(this.state, path) as T | undefined
   }
 
   /**
    * Set state value by path
    */
-  async set<T = any>(path: string, value: T): Promise<void> {
+  async set<T = StateValue>(path: string, value: T): Promise<void> {
     const oldValue = this.get(path)
 
     // Validate if validator provided
@@ -183,7 +193,7 @@ export class StateManager {
       type: 'set',
       path,
       oldValue,
-      newValue: value,
+      newValue: value
     })
 
     // Notify subscribers
@@ -215,7 +225,7 @@ export class StateManager {
       type: 'delete',
       path,
       oldValue,
-      newValue: undefined,
+      newValue: undefined
     })
 
     // Notify subscribers
@@ -237,14 +247,14 @@ export class StateManager {
   /**
    * Get all state
    */
-  getAll(): Record<string, any> {
+  getAll(): StateTree {
     return { ...this.state }
   }
 
   /**
    * Set multiple values at once
    */
-  async setMany(values: Record<string, any>): Promise<void> {
+  async setMany(values: StateTree): Promise<void> {
     for (const [path, value] of Object.entries(values)) {
       await this.set(path, value)
     }
@@ -254,7 +264,7 @@ export class StateManager {
    * Clear all state
    */
   async clear(): Promise<void> {
-    const oldState = { ...this.state }
+    const oldState: StateTree = { ...this.state }
     this.state = {}
 
     // Record change
@@ -263,7 +273,7 @@ export class StateManager {
       type: 'delete',
       path: '*',
       oldValue: oldState,
-      newValue: undefined,
+      newValue: undefined
     })
 
     // Notify all subscribers
@@ -280,7 +290,7 @@ export class StateManager {
   /**
    * Subscribe to state changes
    */
-  subscribe<T = any>(path: string, listener: StateChangeListener<T>): string {
+  subscribe<T = StateValue>(path: string, listener: StateChangeListener<T>): string {
     const id = `sub-${++this.subscriptionCounter}`
     const pattern = this.pathToRegex(path)
 
@@ -288,7 +298,7 @@ export class StateManager {
       id,
       path,
       pattern,
-      listener: listener as StateChangeListener,
+      listener: listener as StateChangeListener<StateValue>
     })
 
     return id
@@ -304,7 +314,7 @@ export class StateManager {
   /**
    * Subscribe once
    */
-  once<T = any>(path: string, listener: StateChangeListener<T>): string {
+  once<T = StateValue>(path: string, listener: StateChangeListener<T>): string {
     const wrappedListener: StateChangeListener<T> = (newValue, oldValue, path) => {
       listener(newValue, oldValue, path)
       this.unsubscribe(id)
@@ -317,11 +327,11 @@ export class StateManager {
   /**
    * Create state snapshot
    */
-  snapshot(metadata?: Record<string, any>): StateSnapshot {
+  snapshot(metadata?: Record<string, StateValue>): StateSnapshot {
     const snapshot: StateSnapshot = {
       timestamp: Date.now(),
-      state: JSON.parse(JSON.stringify(this.state)),
-      metadata,
+      state: JSON.parse(JSON.stringify(this.state)) as StateTree,
+      metadata
     }
 
     this.snapshots.push(snapshot)
@@ -346,8 +356,8 @@ export class StateManager {
       return
     }
 
-    const oldState = { ...this.state }
-    this.state = JSON.parse(JSON.stringify(targetSnapshot.state))
+    const oldState: StateTree = { ...this.state }
+    this.state = JSON.parse(JSON.stringify(targetSnapshot.state)) as StateTree
 
     // Notify subscribers of all changes
     for (const path of this.getAllPaths(oldState)) {
@@ -477,12 +487,9 @@ export class StateManager {
   /**
    * Get diff between current state and snapshot
    */
-  diff(snapshot: StateSnapshot): Record<string, { old: any; new: any }> {
-    const diff: Record<string, { old: any; new: any }> = {}
-    const allPaths = new Set([
-      ...this.getAllPaths(snapshot.state),
-      ...this.getAllPaths(this.state),
-    ])
+  diff(snapshot: StateSnapshot): Record<string, { old: StateValue; new: StateValue }> {
+    const diff: Record<string, { old: StateValue; new: StateValue }> = {}
+    const allPaths = new Set([...this.getAllPaths(snapshot.state), ...this.getAllPaths(this.state)])
 
     for (const path of allPaths) {
       const oldValue = this.getNestedValue(snapshot.state, path)
@@ -520,7 +527,7 @@ export class StateManager {
   /**
    * Notify subscribers of change
    */
-  private notifySubscribers(path: string, newValue: any, oldValue: any): void {
+  private notifySubscribers(path: string, newValue: StateValue, oldValue: StateValue): void {
     for (const sub of this.subscriptions.values()) {
       if (sub.pattern.test(path)) {
         try {
@@ -536,7 +543,11 @@ export class StateManager {
   /**
    * Notify subscribers with debouncing
    */
-  private notifySubscribersDebounced(path: string, newValue: any, oldValue: any): void {
+  private notifySubscribersDebounced(
+    path: string,
+    newValue: StateValue,
+    oldValue: StateValue
+  ): void {
     // Clear existing timer for this path
     const existingTimer = this.debounceTimers.get(path)
     if (existingTimer) {
@@ -558,10 +569,7 @@ export class StateManager {
   private pathToRegex(pattern: string): RegExp {
     // Support wildcards: 'user.*' matches 'user.name', 'user.email', etc.
     // Support '**': 'user.**' matches 'user.profile.name', etc.
-    const escaped = pattern
-      .replace(/\./g, '\\.')
-      .replace(/\*\*/g, '.*')
-      .replace(/\*/g, '[^.]*')
+    const escaped = pattern.replace(/\./g, '\\.').replace(/\*\*/g, '.*').replace(/\*/g, '[^.]*')
 
     return new RegExp(`^${escaped}$`)
   }
@@ -569,15 +577,19 @@ export class StateManager {
   /**
    * Get nested value by path
    */
-  private getNestedValue(obj: any, path: string): any {
+  private getNestedValue(obj: StateTree, path: string): StateValue | undefined {
     const keys = path.split('.')
-    let current = obj
+    let current: StateValue = obj
 
     for (const key of keys) {
-      if (current === null || current === undefined) {
+      if (typeof current !== 'object' || current === null) {
         return undefined
       }
-      current = current[key]
+      const container = current as StateTree
+      current = container[key]
+      if (current === undefined) {
+        return undefined
+      }
     }
 
     return current
@@ -586,51 +598,72 @@ export class StateManager {
   /**
    * Set nested value by path
    */
-  private setNestedValue(obj: any, path: string, value: any): void {
+  private setNestedValue(obj: StateTree, path: string, value: StateValue): void {
     const keys = path.split('.')
     const lastKey = keys.pop()!
-    let current = obj
+    let current: StateValue = obj
 
     for (const key of keys) {
-      if (!(key in current) || typeof current[key] !== 'object') {
-        current[key] = {}
+      if (typeof current !== 'object' || current === null) {
+        throw new StateError(`Cannot set path "${path}" on non-object value`)
       }
-      current = current[key]
+      const container = current as StateTree
+      if (!(key in container) || typeof container[key] !== 'object' || container[key] === null) {
+        container[key] = {}
+      }
+      current = container[key]
     }
 
-    current[lastKey] = value
+    if (typeof current !== 'object' || current === null) {
+      throw new StateError(`Cannot set path "${path}" on non-object value`)
+    }
+
+    ;(current as StateTree)[lastKey] = value
   }
 
   /**
    * Delete nested value by path
    */
-  private deleteNestedValue(obj: any, path: string): void {
+  private deleteNestedValue(obj: StateTree, path: string): void {
     const keys = path.split('.')
     const lastKey = keys.pop()!
-    let current = obj
+    let current: StateValue = obj
 
     for (const key of keys) {
-      if (!(key in current)) {
+      if (typeof current !== 'object' || current === null) {
         return
       }
-      current = current[key]
+      const container = current as StateTree
+      if (!(key in container)) {
+        return
+      }
+      current = container[key]
     }
 
-    delete current[lastKey]
+    if (typeof current !== 'object' || current === null) {
+      return
+    }
+
+    delete (current as StateTree)[lastKey]
   }
 
   /**
    * Get all paths in object
    */
-  private getAllPaths(obj: any, prefix = ''): string[] {
+  private getAllPaths(obj: StateValue, prefix = ''): string[] {
     const paths: string[] = []
 
-    for (const key in obj) {
+    if (typeof obj !== 'object' || obj === null) {
+      return paths
+    }
+
+    for (const key of Object.keys(obj as StateTree)) {
       const path = prefix ? `${prefix}.${key}` : key
       paths.push(path)
 
-      if (typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key])) {
-        paths.push(...this.getAllPaths(obj[key], path))
+      const value = (obj as StateTree)[key]
+      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+        paths.push(...this.getAllPaths(value, path))
       }
     }
 
@@ -640,20 +673,31 @@ export class StateManager {
   /**
    * Deep equality check
    */
-  private deepEqual(a: any, b: any): boolean {
+  private deepEqual(a: StateValue, b: StateValue): boolean {
     if (a === b) return true
-    if (a === null || b === null) return false
     if (typeof a !== typeof b) return false
-    if (typeof a !== 'object') return false
+    if (a === null || b === null) return false
 
-    const keysA = Object.keys(a)
-    const keysB = Object.keys(b)
+    if (Array.isArray(a) || Array.isArray(b)) {
+      if (!Array.isArray(a) || !Array.isArray(b)) return false
+      if (a.length !== b.length) return false
+      return a.every((item, index) => this.deepEqual(item, b[index]))
+    }
+
+    if (typeof a !== 'object' || typeof b !== 'object') {
+      return false
+    }
+
+    const objA = a as StateTree
+    const objB = b as StateTree
+    const keysA = Object.keys(objA)
+    const keysB = Object.keys(objB)
 
     if (keysA.length !== keysB.length) return false
 
     for (const key of keysA) {
       if (!keysB.includes(key)) return false
-      if (!this.deepEqual(a[key], b[key])) return false
+      if (!this.deepEqual(objA[key], objB[key])) return false
     }
 
     return true
@@ -675,6 +719,7 @@ export class StateManager {
     // Node.js: file system
     if (this.options.persistencePath && typeof require !== 'undefined') {
       try {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
         const fs = require('fs').promises
         await fs.writeFile(this.options.persistencePath, serialized, 'utf8')
       } catch (error) {
@@ -686,7 +731,7 @@ export class StateManager {
   /**
    * Load state from persistence
    */
-  private loadFromPersistence(): Record<string, any> | null {
+  private loadFromPersistence(): StateTree | null {
     let serialized: string | null = null
 
     // Browser: localStorage
@@ -697,6 +742,7 @@ export class StateManager {
     // Node.js: file system
     if (!serialized && this.options.persistencePath && typeof require !== 'undefined') {
       try {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
         const fs = require('fs')
         serialized = fs.readFileSync(this.options.persistencePath, 'utf8')
       } catch (error) {
@@ -706,13 +752,20 @@ export class StateManager {
 
     if (serialized) {
       try {
-        return JSON.parse(serialized)
+        const parsed = JSON.parse(serialized)
+        if (this.isStateTree(parsed)) {
+          return parsed
+        }
       } catch (error) {
         this.options.onError?.(error as Error)
       }
     }
 
     return null
+  }
+
+  private isStateTree(value: unknown): value is StateTree {
+    return typeof value === 'object' && value !== null && !Array.isArray(value)
   }
 
   /**

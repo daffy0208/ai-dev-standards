@@ -541,7 +541,7 @@ export class FetchAdapter implements APIAdapter {
   async post<T>(url: string, data: any): Promise<T> {
     const response = await fetch(url, {
       method: 'POST',
-      body: JSON.stringify(data),
+      body: JSON.stringify(data)
     })
     return response.json()
   }
@@ -608,24 +608,28 @@ const userService = container.resolve<UserService>('UserService')
 ## Summary Checklist
 
 ### Directory Structure
+
 - [ ] Feature-based organization
 - [ ] Clear separation of concerns
 - [ ] Consistent naming conventions
 - [ ] Logical grouping of related files
 
 ### File Organization
+
 - [ ] Single responsibility per file
 - [ ] Clear file naming
 - [ ] Proper import organization
 - [ ] Files under 300 lines
 
 ### Module Organization
+
 - [ ] Use barrel exports
 - [ ] Group by feature, not type
 - [ ] Clear module boundaries
 - [ ] Proper dependency management
 
 ### Code Quality
+
 - [ ] Separation of concerns
 - [ ] Appropriate design patterns
 - [ ] Dependency injection where needed

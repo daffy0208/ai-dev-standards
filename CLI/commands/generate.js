@@ -9,6 +9,26 @@ const ComponentGenerator = require('../generators/component-generator')
 const McpGenerator = require('../generators/mcp-generator')
 const IntegrationGenerator = require('../generators/integration-generator')
 
+const defaultDeps = {
+  chalk,
+  ora,
+  fs,
+  path,
+  yaml,
+  Joi,
+  componentGeneratorFactory: () => new ComponentGenerator(),
+  mcpGeneratorFactory: () => new McpGenerator(),
+  integrationGeneratorFactory: () => new IntegrationGenerator(),
+  exit: code => process.exit(code)
+}
+
+function createGenerateCommand(overrides = {}) {
+  const deps = { ...defaultDeps, ...overrides }
+  return async function runGenerate(options) {
+    return generateCommandInternal(options, deps)
+  }
+}
+
 /**
  * Generate Command
  *
@@ -33,38 +53,53 @@ const IntegrationGenerator = require('../generators/integration-generator')
  *     template: accessibility-checker
  * ```
  */
-async function generateCommand(options) {
+async function generateCommandInternal(options, deps) {
+  const {
+    chalk,
+    ora,
+    fs,
+    path,
+    yaml,
+    Joi,
+    componentGeneratorFactory,
+    mcpGeneratorFactory,
+    integrationGeneratorFactory,
+    exit
+  } = deps
+
   console.log(chalk.blue(`\n🚀 Generating from config: ${chalk.bold(options.config)}\n`))
 
   try {
     // Read config file
     const configPath = path.resolve(process.cwd(), options.config)
-    if (!await fs.pathExists(configPath)) {
+    if (!(await fs.pathExists(configPath))) {
       console.log(chalk.red(`❌ Config file not found: ${options.config}`))
-      console.log(chalk.yellow(`\nCreate ${chalk.cyan('ai-dev.config.yaml')} with your configuration.`))
+      console.log(
+        chalk.yellow(`\nCreate ${chalk.cyan('ai-dev.config.yaml')} with your configuration.`)
+      )
       console.log(chalk.gray('\nExample:\n'))
       console.log(chalk.gray('components:'))
       console.log(chalk.gray('  - name: Button'))
       console.log(chalk.gray('    props:'))
       console.log(chalk.gray('      variant: [primary, secondary]'))
       console.log(chalk.gray('    tests: true\n'))
-      process.exit(1)
+      exit(1)
     }
 
     const configContent = await fs.readFile(configPath, 'utf8')
     const config = yaml.parse(configContent)
 
     // Validate config
-    const validationError = validateConfig(config)
+    const validationError = validateConfig(config, Joi)
     if (validationError) {
       console.log(chalk.red(`❌ Invalid config: ${validationError.message}`))
-      process.exit(1)
+      exit(1)
     }
 
     // Dry run?
     if (options.dryRun) {
       console.log(chalk.yellow('🔍 DRY RUN - No files will be created\n'))
-      await previewGeneration(config)
+      await previewGeneration(config, { chalk })
       return
     }
 
@@ -73,7 +108,7 @@ async function generateCommand(options) {
 
     if (config.components) {
       const spinner = ora('Generating components...').start()
-      const generator = new ComponentGenerator()
+      const generator = componentGeneratorFactory()
 
       for (const componentConfig of config.components) {
         const files = await generator.generate(componentConfig)
@@ -92,7 +127,7 @@ async function generateCommand(options) {
 
     if (config.mcpServers) {
       const spinner = ora('Generating MCP servers...').start()
-      const generator = new McpGenerator()
+      const generator = mcpGeneratorFactory()
 
       for (const mcpConfig of config.mcpServers) {
         const files = await generator.generate(mcpConfig)
@@ -111,7 +146,7 @@ async function generateCommand(options) {
 
     if (config.integrations) {
       const spinner = ora('Generating integrations...').start()
-      const generator = new IntegrationGenerator()
+      const generator = integrationGeneratorFactory()
 
       for (const integrationConfig of config.integrations) {
         const files = await generator.generate(integrationConfig)
@@ -129,21 +164,20 @@ async function generateCommand(options) {
     }
 
     console.log(chalk.green(`\n✅ Successfully generated ${totalFiles} files\n`))
-
   } catch (error) {
     console.error(chalk.red(`\n❌ Error: ${error.message}\n`))
     if (error.stack) {
       console.error(chalk.gray(error.stack))
     }
-    process.exit(1)
+    exit(1)
   }
 }
 
 /**
  * Validate config schema
  */
-function validateConfig(config) {
-  const schema = Joi.object({
+function validateConfig(config, JoiInstance) {
+  const schema = JoiInstance.object({
     components: Joi.array().items(
       Joi.object({
         name: Joi.string().required(),
@@ -185,7 +219,8 @@ function validateConfig(config) {
 /**
  * Preview what will be generated
  */
-async function previewGeneration(config) {
+async function previewGeneration(config, deps) {
+  const { chalk } = deps
   console.log(chalk.bold('📋 Generation Preview:\n'))
 
   if (config.components) {
@@ -224,4 +259,5 @@ async function previewGeneration(config) {
   console.log(chalk.yellow(`Run without ${chalk.cyan('--dry-run')} to create files.\n`))
 }
 
-module.exports = generateCommand
+module.exports = createGenerateCommand()
+module.exports.createGenerateCommand = createGenerateCommand

@@ -1,4 +1,5 @@
 # Repository Drift Analysis
+
 **Generated:** 2025-10-27
 **Status:** ✅ RESOLVED - False positive detected and fixed
 **Brain Health:** HEALTHY (0 errors)
@@ -11,6 +12,7 @@
 **THE 45 "MISSING MCPs" WERE A FALSE POSITIVE!**
 
 All 36 MCPs were actually present in the registry and filesystem, but the brain's validation code had a bug:
+
 - The brain searched MCPs by `name` field ("Vector Database MCP")
 - But the registry uses `id` field ("vector-database-mcp")
 - This caused all MCP lookups to fail
@@ -37,26 +39,28 @@ These MCPs are required by 2+ skills and should be implemented first:
 
 ### Tier 1: Critical (2+ skills each)
 
-| MCP | Skills Requiring It | Priority |
-|-----|---------------------|----------|
-| **component-generator-mcp** | frontend-builder, mvp-builder | HIGH |
-| **vector-database-mcp** | knowledge-base-manager, rag-implementer | HIGH |
-| **embedding-generator-mcp** | knowledge-base-manager, rag-implementer | HIGH |
-| **graph-database-mcp** | knowledge-base-manager, knowledge-graph-builder | HIGH |
-| **feature-prioritizer-mcp** | mvp-builder, product-strategist | MEDIUM |
-| **screenshot-testing-mcp** | quality-auditor, testing-strategist | MEDIUM |
-| **user-insight-analyzer-mcp** | product-strategist, user-researcher | MEDIUM |
-| **design-token-manager-mcp** | design-system-architect, visual-designer | MEDIUM |
-| **database-migration-mcp** | data-engineer, forensic-data-engineer | MEDIUM |
+| MCP                           | Skills Requiring It                             | Priority |
+| ----------------------------- | ----------------------------------------------- | -------- |
+| **component-generator-mcp**   | frontend-builder, mvp-builder                   | HIGH     |
+| **vector-database-mcp**       | knowledge-base-manager, rag-implementer         | HIGH     |
+| **embedding-generator-mcp**   | knowledge-base-manager, rag-implementer         | HIGH     |
+| **graph-database-mcp**        | knowledge-base-manager, knowledge-graph-builder | HIGH     |
+| **feature-prioritizer-mcp**   | mvp-builder, product-strategist                 | MEDIUM   |
+| **screenshot-testing-mcp**    | quality-auditor, testing-strategist             | MEDIUM   |
+| **user-insight-analyzer-mcp** | product-strategist, user-researcher             | MEDIUM   |
+| **design-token-manager-mcp**  | design-system-architect, visual-designer        | MEDIUM   |
+| **database-migration-mcp**    | data-engineer, forensic-data-engineer           | MEDIUM   |
 
 ### Tier 2: Important (1 skill each, commonly used skills)
 
 #### RAG & AI Systems
+
 - **semantic-search-mcp** (rag-implementer)
 - **knowledge-base-mcp** (knowledge-base-manager)
 - **agent-orchestrator-mcp** (multi-agent-architect)
 
 #### Development Tools
+
 - **openapi-generator-mcp** (api-designer)
 - **api-validator-mcp** (api-designer)
 - **code-quality-scanner-mcp** (quality-auditor)
@@ -64,6 +68,7 @@ These MCPs are required by 2+ skills and should be implemented first:
 - **doc-generator-mcp** (technical-writer)
 
 #### Security & Performance
+
 - **security-scanner-mcp** (security-engineer)
 - **performance-profiler-mcp** (performance-optimizer)
 
@@ -92,6 +97,7 @@ These MCPs are required by 2+ skills and should be implemented first:
 ### Skills Blocked by Missing MCPs
 
 **Completely Blocked (all dependencies missing):**
+
 - 3d-visualizer (1/1 missing)
 - accessibility-engineer (1/1 missing)
 - animation-designer (1/1 missing)
@@ -115,6 +121,7 @@ These MCPs are required by 2+ skills and should be implemented first:
 - video-producer (1/1 missing)
 
 **Partially Blocked (some dependencies missing):**
+
 - api-designer (2/2 missing: openapi-generator, api-validator)
 - data-engineer (1/1 missing: database-migration)
 - forensic-data-engineer (1/1 missing: database-migration)
@@ -131,6 +138,7 @@ These MCPs are required by 2+ skills and should be implemented first:
 ## Recommendations
 
 ### Phase 1: Core Infrastructure (High Priority)
+
 Implement these 9 MCPs to unblock critical workflows:
 
 1. **vector-database-mcp** - Unblocks RAG and knowledge base workflows
@@ -146,6 +154,7 @@ Implement these 9 MCPs to unblock critical workflows:
 **Impact:** Unblocks 8 skills (rag-implementer, knowledge-base-manager, frontend-builder, mvp-builder, api-designer, quality-auditor, knowledge-graph-builder, testing-strategist)
 
 ### Phase 2: Development Tools (Medium Priority)
+
 Implement these 6 MCPs for enhanced development workflows:
 
 1. **feature-prioritizer-mcp** - Product strategy and MVP planning
@@ -158,6 +167,7 @@ Implement these 6 MCPs for enhanced development workflows:
 **Impact:** Unblocks 6 more skills
 
 ### Phase 3: Specialized Tools (Lower Priority)
+
 Implement remaining 30 MCPs based on specific project needs
 
 ### Alternative: Adjust Skill Dependencies
@@ -174,6 +184,7 @@ Consider marking some MCP dependencies as "recommended" instead of "required" in
 ## Archon-MCP Note
 
 The `archon-mcp` is listed as missing, but Archon MCP actually exists in the repository. This may be a naming mismatch:
+
 - Listed in relationship-mapping: `archon-mcp`
 - Actual MCP name: Check `META/mcp-registry.json` for correct name
 

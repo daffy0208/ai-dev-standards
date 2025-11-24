@@ -67,72 +67,72 @@ This guide helps you implement Model Context Protocol (MCP) servers with code ex
 
 ```typescript
 // server.ts
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { Server } from '@modelcontextprotocol/sdk/server/index.js'
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 
 const server = new Server(
   {
     name: 'code-executor-mcp',
-    version: '1.0.0',
+    version: '1.0.0'
   },
   {
     capabilities: {
       tools: {},
-      resources: {},
-    },
+      resources: {}
+    }
   }
-);
+)
 ```
 
 ### Step 2: Implement Secure Code Execution
 
 ```typescript
-import { VM } from 'vm2';
+import { VM } from 'vm2'
 
 interface ExecutionContext {
-  memory_limit: string;
-  timeout: number;
-  allowed_modules: string[];
+  memory_limit: string
+  timeout: number
+  allowed_modules: string[]
 }
 
 class SecureExecutor {
-  private vm: VM;
-  
+  private vm: VM
+
   constructor(config: ExecutionContext) {
     this.vm = new VM({
       timeout: config.timeout * 1000,
       sandbox: {},
       eval: false,
-      wasm: false,
-    });
+      wasm: false
+    })
   }
-  
+
   async execute(code: string, context: Record<string, any>) {
     try {
       // Inject safe context
-      const safeContext = this.sanitizeContext(context);
-      
+      const safeContext = this.sanitizeContext(context)
+
       // Execute code
-      const result = this.vm.run(code, { context: safeContext });
-      
+      const result = this.vm.run(code, { context: safeContext })
+
       return {
         success: true,
         output: result,
-        error: null,
-      };
+        error: null
+      }
     } catch (error) {
       return {
         success: false,
         output: null,
-        error: error.message,
-      };
+        error: error.message
+      }
     }
   }
-  
+
   private sanitizeContext(context: Record<string, any>) {
     // Remove sensitive or dangerous objects
-    const { process, require, module, __dirname, __filename, ...safe } = context;
-    return safe;
+    const { process, require, module, __dirname, __filename, ...safe } = context
+    return safe
   }
 }
 ```
@@ -151,22 +151,22 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           properties: {
             code: {
               type: 'string',
-              description: 'JavaScript code to execute',
+              description: 'JavaScript code to execute'
             },
             context: {
               type: 'object',
               description: 'Variables to make available in the execution context',
-              default: {},
+              default: {}
             },
             timeout: {
               type: 'number',
               description: 'Execution timeout in seconds (max 900)',
               default: 60,
-              maximum: 900,
-            },
+              maximum: 900
+            }
           },
-          required: ['code'],
-        },
+          required: ['code']
+        }
       },
       {
         name: 'execute_python',
@@ -176,75 +176,75 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           properties: {
             code: {
               type: 'string',
-              description: 'Python code to execute',
+              description: 'Python code to execute'
             },
             context: {
               type: 'object',
               description: 'Variables to inject into execution context',
-              default: {},
+              default: {}
             },
             timeout: {
               type: 'number',
               description: 'Execution timeout in seconds (max 900)',
               default: 60,
-              maximum: 900,
-            },
+              maximum: 900
+            }
           },
-          required: ['code'],
-        },
-      },
-    ],
-  };
-});
+          required: ['code']
+        }
+      }
+    ]
+  }
+})
 ```
 
 ### Step 4: Handle Tool Calls
 
 ```typescript
-import { CallToolRequestSchema } from '@modelcontextprotocol/sdk/types.js';
+import { CallToolRequestSchema } from '@modelcontextprotocol/sdk/types.js'
 
-server.setRequestHandler(CallToolRequestSchema, async (request) => {
-  const { name, arguments: args } = request.params;
-  
+server.setRequestHandler(CallToolRequestSchema, async request => {
+  const { name, arguments: args } = request.params
+
   switch (name) {
     case 'execute_javascript': {
       const executor = new SecureExecutor({
         memory_limit: '4GB',
         timeout: args.timeout || 60,
-        allowed_modules: ['fs', 'path'],
-      });
-      
-      const result = await executor.execute(args.code, args.context || {});
-      
+        allowed_modules: ['fs', 'path']
+      })
+
+      const result = await executor.execute(args.code, args.context || {})
+
       return {
         content: [
           {
             type: 'text',
-            text: JSON.stringify(result, null, 2),
-          },
-        ],
-      };
+            text: JSON.stringify(result, null, 2)
+          }
+        ]
+      }
     }
-    
+
     case 'execute_python': {
       // Implementation for Python execution
       // Use child_process.spawn with Python in isolated environment
-      const result = await executePython(args.code, args.context, args.timeout);
-      
+      const result = await executePython(args.code, args.context, args.timeout)
+
       return {
         content: [
           {
             type: 'text',
-            text: JSON.stringify(result, null, 2),
-          },
-        ],
-      };
+            text: JSON.stringify(result, null, 2)
+          }
+        ]
+      }
     }
-    
+
     default:
-      throw new Error(`Unknown tool: ${name}`);
+      throw new Error(`Unknown tool: ${name}`)
   }
-});
+})
 ```
 
 ### Step 5: Add Safety Checks
@@ -257,21 +257,21 @@ function validateCode(code: string, language: 'javascript' | 'python'): boolean 
     /eval\s*\(/,
     /__import__\s*\(\s*['"]os['"]\s*\)/,
     /exec\s*\(/,
-    /system\s*\(/,
-  ];
-  
+    /system\s*\(/
+  ]
+
   for (const pattern of dangerousPatterns) {
     if (pattern.test(code)) {
-      return false;
+      return false
     }
   }
-  
-  return true;
+
+  return true
 }
 
 // Use in execution handler
 if (!validateCode(args.code, 'javascript')) {
-  throw new Error('Code contains dangerous patterns');
+  throw new Error('Code contains dangerous patterns')
 }
 ```
 
@@ -310,73 +310,73 @@ if (!validateCode(args.code, 'javascript')) {
 ### Unit Test Example
 
 ```typescript
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from 'vitest'
 
 describe('SecureExecutor', () => {
   it('executes simple JavaScript', async () => {
     const executor = new SecureExecutor({
       memory_limit: '4GB',
       timeout: 10,
-      allowed_modules: [],
-    });
-    
-    const result = await executor.execute('return 2 + 2;', {});
-    
-    expect(result.success).toBe(true);
-    expect(result.output).toBe(4);
-  });
-  
+      allowed_modules: []
+    })
+
+    const result = await executor.execute('return 2 + 2;', {})
+
+    expect(result.success).toBe(true)
+    expect(result.output).toBe(4)
+  })
+
   it('blocks dangerous code', async () => {
     const executor = new SecureExecutor({
       memory_limit: '4GB',
       timeout: 10,
-      allowed_modules: [],
-    });
-    
-    const code = 'require("child_process").exec("rm -rf /");';
-    
-    expect(() => executor.execute(code, {})).toThrow();
-  });
-  
+      allowed_modules: []
+    })
+
+    const code = 'require("child_process").exec("rm -rf /");'
+
+    expect(() => executor.execute(code, {})).toThrow()
+  })
+
   it('enforces timeout', async () => {
     const executor = new SecureExecutor({
       memory_limit: '4GB',
       timeout: 1,
-      allowed_modules: [],
-    });
-    
-    const code = 'while(true) {}';
-    
-    await expect(executor.execute(code, {})).rejects.toThrow('timeout');
-  });
-});
+      allowed_modules: []
+    })
+
+    const code = 'while(true) {}'
+
+    await expect(executor.execute(code, {})).rejects.toThrow('timeout')
+  })
+})
 ```
 
 ### Integration Test Example
 
 ```typescript
-import { Client } from '@modelcontextprotocol/sdk/client/index.js';
+import { Client } from '@modelcontextprotocol/sdk/client/index.js'
 
 describe('Code Executor MCP', () => {
-  let client: Client;
-  
+  let client: Client
+
   beforeAll(async () => {
-    client = await setupMCPClient('code-executor-mcp');
-  });
-  
+    client = await setupMCPClient('code-executor-mcp')
+  })
+
   it('executes code via MCP tool', async () => {
     const result = await client.callTool({
       name: 'execute_javascript',
       arguments: {
-        code: 'return Math.sqrt(16);',
-      },
-    });
-    
-    const output = JSON.parse(result.content[0].text);
-    expect(output.success).toBe(true);
-    expect(output.output).toBe(4);
-  });
-});
+        code: 'return Math.sqrt(16);'
+      }
+    })
+
+    const output = JSON.parse(result.content[0].text)
+    expect(output.success).toBe(true)
+    expect(output.output).toBe(4)
+  })
+})
 ```
 
 ---
@@ -387,19 +387,19 @@ describe('Code Executor MCP', () => {
 
 ```typescript
 class ExecutorPool {
-  private pool: SecureExecutor[] = [];
-  private maxSize = 10;
-  
+  private pool: SecureExecutor[] = []
+  private maxSize = 10
+
   async acquire(): Promise<SecureExecutor> {
     if (this.pool.length > 0) {
-      return this.pool.pop()!;
+      return this.pool.pop()!
     }
-    return new SecureExecutor(config);
+    return new SecureExecutor(config)
   }
-  
+
   release(executor: SecureExecutor) {
     if (this.pool.length < this.maxSize) {
-      this.pool.push(executor);
+      this.pool.push(executor)
     }
   }
 }
@@ -409,18 +409,18 @@ class ExecutorPool {
 
 ```typescript
 class CodeCache {
-  private cache = new Map<string, CompiledCode>();
-  
+  private cache = new Map<string, CompiledCode>()
+
   compile(code: string): CompiledCode {
-    const hash = this.hash(code);
-    
+    const hash = this.hash(code)
+
     if (this.cache.has(hash)) {
-      return this.cache.get(hash)!;
+      return this.cache.get(hash)!
     }
-    
-    const compiled = this.compileCode(code);
-    this.cache.set(hash, compiled);
-    return compiled;
+
+    const compiled = this.compileCode(code)
+    this.cache.set(hash, compiled)
+    return compiled
   }
 }
 ```
@@ -429,10 +429,8 @@ class CodeCache {
 
 ```typescript
 async function executeBatch(codes: string[]) {
-  const results = await Promise.all(
-    codes.map(code => executor.execute(code, {}))
-  );
-  return results;
+  const results = await Promise.all(codes.map(code => executor.execute(code, {})))
+  return results
 }
 ```
 
@@ -450,17 +448,17 @@ async execute(code: string, context: any) {
     codeLength: code.length,
     contextKeys: Object.keys(context),
   });
-  
+
   const startTime = Date.now();
-  
+
   try {
     const result = await this.vm.run(code, { context });
-    
+
     logger.info('Execution completed', {
       duration: Date.now() - startTime,
       success: true,
     });
-    
+
     return result;
   } catch (error) {
     logger.error('Execution failed', {
@@ -481,23 +479,23 @@ class ExecutionMetrics {
     successfulExecutions: 0,
     failedExecutions: 0,
     averageExecutionTime: 0,
-    totalExecutionTime: 0,
-  };
-  
-  recordExecution(success: boolean, duration: number) {
-    this.metrics.totalExecutions++;
-    if (success) {
-      this.metrics.successfulExecutions++;
-    } else {
-      this.metrics.failedExecutions++;
-    }
-    this.metrics.totalExecutionTime += duration;
-    this.metrics.averageExecutionTime = 
-      this.metrics.totalExecutionTime / this.metrics.totalExecutions;
+    totalExecutionTime: 0
   }
-  
+
+  recordExecution(success: boolean, duration: number) {
+    this.metrics.totalExecutions++
+    if (success) {
+      this.metrics.successfulExecutions++
+    } else {
+      this.metrics.failedExecutions++
+    }
+    this.metrics.totalExecutionTime += duration
+    this.metrics.averageExecutionTime =
+      this.metrics.totalExecutionTime / this.metrics.totalExecutions
+  }
+
   getMetrics() {
-    return { ...this.metrics };
+    return { ...this.metrics }
   }
 }
 ```
@@ -509,6 +507,7 @@ class ExecutionMetrics {
 A complete reference implementation is planned for future addition to the EXAMPLES directory. In the meantime, this guide provides all the code snippets and patterns needed to build a working MCP server with code execution capabilities.
 
 Key components covered in this guide:
+
 - Server setup and configuration
 - Secure code execution implementation
 - Tool registration and handling
@@ -615,10 +614,12 @@ Key components covered in this guide:
 ### Issue: Code Execution Timeout
 
 **Symptoms:**
+
 - Operations fail with timeout errors
 - Long-running operations incomplete
 
 **Solutions:**
+
 1. Increase timeout for legitimate long operations
 2. Break down operations into smaller chunks
 3. Implement progress reporting
@@ -627,10 +628,12 @@ Key components covered in this guide:
 ### Issue: Memory Limit Exceeded
 
 **Symptoms:**
+
 - Out of memory errors
 - Process crashes during execution
 
 **Solutions:**
+
 1. Increase memory limit if justified
 2. Process data in streams
 3. Implement pagination
@@ -639,10 +642,12 @@ Key components covered in this guide:
 ### Issue: Security Violations
 
 **Symptoms:**
+
 - Blocked operations
 - Permission errors
 
 **Solutions:**
+
 1. Review security policies
 2. Adjust allowed operations
 3. Use proper sandboxing
@@ -675,6 +680,7 @@ Key components covered in this guide:
 ## References
 
 ### MCP Patterns Documentation (New!)
+
 - [MCP Patterns Overview](./mcp-patterns/README.md) - Master index
 - [Direct MCP Pattern](./mcp-patterns/02-mcp-direct-pattern.md) - Current implementation
 - [Code Execution Pattern](./mcp-patterns/03-mcp-code-execution-pattern.md) - Advanced pattern
@@ -683,11 +689,13 @@ Key components covered in this guide:
 - [Brain Integration](./mcp-patterns/09-brain-orchestrator-mcp-integration.md) - Automatic pattern selection
 
 ### Implementation Guides
+
 - [MCP Code Execution Best Practices](../STANDARDS/best-practices/mcp-code-execution-best-practices.md)
 - [Security Best Practices](../STANDARDS/best-practices/security-best-practices.md)
 - [MCP Development Roadmap](./MCP-DEVELOPMENT-ROADMAP.md)
 
 ### External Resources
+
 - [Anthropic Engineering: Code Execution with MCP](https://www.anthropic.com/engineering/code-execution-with-mcp)
 
 ---

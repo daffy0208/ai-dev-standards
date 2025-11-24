@@ -5,6 +5,24 @@ const path = require('path')
 const inquirer = require('inquirer')
 const localFetch = require('../utils/local-fetch')
 const githubFetch = require('../utils/github-fetch')
+
+const defaultDeps = {
+  chalk,
+  ora,
+  fs,
+  path,
+  inquirer,
+  localFetch,
+  githubFetch,
+  exit: code => process.exit(code)
+}
+
+function createSyncCommand(overrides = {}) {
+  const deps = { ...defaultDeps, ...overrides }
+  return async function runSync(options = {}) {
+    return syncCommandInternal(options, deps)
+  }
+}
 // BUG FIX #5: Removed unused 'execa' import (line 5 in original code)
 
 /**
@@ -20,25 +38,29 @@ const githubFetch = require('../utils/github-fetch')
  * ADHD-friendly: Set it once, forget it!
  */
 // BUG FIX #5: Added missing default parameter 'options = {}' at function declaration (line 20 in original)
-async function syncCommand(options = {}) {
+async function syncCommandInternal(options = {}, deps) {
+  const { chalk, ora, fs, path, inquirer } = deps
+
   console.log(chalk.blue('\n🔄 Syncing with ai-dev-standards...\n'))
 
   const projectPath = process.cwd()
 
   try {
     // 1. Check if project is tracked
-    let config = await loadProjectConfig(projectPath)
+    let config = await loadProjectConfig(projectPath, deps)
 
     if (!config) {
       console.log(chalk.yellow('⚠️  Project not initialized for auto-sync\n'))
 
       if (!options.yes) {
-        const { init } = await inquirer.prompt([{
-          type: 'confirm',
-          name: 'init',
-          message: 'Initialize auto-sync for this project?',
-          default: true
-        }])
+        const { init } = await inquirer.prompt([
+          {
+            type: 'confirm',
+            name: 'init',
+            message: 'Initialize auto-sync for this project?',
+            default: true
+          }
+        ])
 
         if (!init) {
           console.log(chalk.gray('Skipped.\n'))
@@ -46,12 +68,12 @@ async function syncCommand(options = {}) {
         }
       }
 
-      config = await initializeSync(projectPath, options)
+      config = await initializeSync(projectPath, options, deps)
     }
 
     // 2. Check for updates
     const spinner = ora('Checking for updates...').start()
-    const updates = await checkForUpdates(config)
+    const updates = await checkForUpdates(config, deps)
     spinner.succeed(`Found ${updates.length} updates`)
 
     if (updates.length === 0) {
@@ -70,12 +92,14 @@ async function syncCommand(options = {}) {
 
     // 4. Confirm update
     if (!options.yes) {
-      const { confirm } = await inquirer.prompt([{
-        type: 'confirm',
-        name: 'confirm',
-        message: 'Apply these updates?',
-        default: true
-      }])
+      const { confirm } = await inquirer.prompt([
+        {
+          type: 'confirm',
+          name: 'confirm',
+          message: 'Apply these updates?',
+          default: true
+        }
+      ])
 
       if (!confirm) {
         console.log(chalk.gray('\nCancelled.\n'))
@@ -90,7 +114,7 @@ async function syncCommand(options = {}) {
       const updateSpinner = ora(update.name).start()
 
       try {
-        await applyUpdate(projectPath, update, config)
+        await applyUpdate(projectPath, update, config, deps)
         updateSpinner.succeed(update.name)
       } catch (error) {
         updateSpinner.fail(`${update.name} - ${error.message}`)
@@ -99,24 +123,24 @@ async function syncCommand(options = {}) {
 
     // 6. Save updated config
     config.lastSync = new Date().toISOString()
-    config.version = await getLatestVersion()
-    await saveProjectConfig(projectPath, config)
+    config.version = await getLatestVersion(deps)
+    await saveProjectConfig(projectPath, config, deps)
 
     console.log(chalk.green('\n✅ Sync complete!\n'))
 
     // 7. Show summary
     showSyncSummary(updates)
-
   } catch (error) {
     console.error(chalk.red(`\n❌ Error: ${error.message}\n`))
-    process.exit(1)
+    deps.exit(1)
   }
 }
 
 /**
  * Initialize sync for project
  */
-async function initializeSync(projectPath, options = {}) {
+async function initializeSync(projectPath, options = {}, deps = defaultDeps) {
+  const { ora, inquirer } = deps
   const spinner = ora('Initializing auto-sync...').start()
 
   let answers
@@ -162,7 +186,7 @@ async function initializeSync(projectPath, options = {}) {
   }
 
   const config = {
-    version: await getLatestVersion(),
+    version: await getLatestVersion(deps),
     lastSync: new Date().toISOString(),
     tracking: answers.track,
     frequency: answers.frequency,
@@ -181,7 +205,7 @@ async function initializeSync(projectPath, options = {}) {
   if (answers.frequency === 'git-hook') {
     spinner.text = 'Setting up git hook...'
     try {
-      await setupGitHook(projectPath)
+      await setupGitHook(projectPath, deps)
     } catch (error) {
       // If not a git repo, warn but don't fail
       console.log(chalk.yellow(`\n⚠️  Warning: ${error.message}`))
@@ -189,7 +213,7 @@ async function initializeSync(projectPath, options = {}) {
     }
   }
 
-  await saveProjectConfig(projectPath, config)
+  await saveProjectConfig(projectPath, config, deps)
 
   spinner.succeed('Auto-sync initialized')
 
@@ -199,17 +223,13 @@ async function initializeSync(projectPath, options = {}) {
 /**
  * Check for updates
  */
-async function checkForUpdates(config) {
+async function checkForUpdates(config, deps = defaultDeps) {
+  const latest = await fetchLatestStandards(deps)
   const updates = []
-
-  // Get latest standards
-  const latest = await fetchLatestStandards()
 
   // Check skills
   if (config.tracking.includes('skills')) {
-    const newSkills = latest.skills.filter(skill =>
-      !config.installed.skills.includes(skill.id)
-    )
+    const newSkills = latest.skills.filter(skill => !config.installed.skills.includes(skill.id))
 
     for (const skill of newSkills) {
       updates.push({
@@ -223,9 +243,7 @@ async function checkForUpdates(config) {
 
   // Check MCPs
   if (config.tracking.includes('mcps')) {
-    const newMcps = latest.mcps.filter(mcp =>
-      !config.installed.mcps.includes(mcp.id)
-    )
+    const newMcps = latest.mcps.filter(mcp => !config.installed.mcps.includes(mcp.id))
 
     for (const mcp of newMcps) {
       updates.push({
@@ -239,9 +257,7 @@ async function checkForUpdates(config) {
 
   // Check tools
   if (config.tracking.includes('tools')) {
-    const newTools = latest.tools.filter(tool =>
-      !config.installed.tools.includes(tool.id)
-    )
+    const newTools = latest.tools.filter(tool => !config.installed.tools.includes(tool.id))
 
     for (const tool of newTools) {
       updates.push({
@@ -253,8 +269,8 @@ async function checkForUpdates(config) {
     }
 
     // Check scripts
-    const newScripts = latest.scripts.filter(script =>
-      !config.installed.scripts.includes(script.id)
+    const newScripts = latest.scripts.filter(
+      script => !config.installed.scripts.includes(script.id)
     )
 
     for (const script of newScripts) {
@@ -269,8 +285,8 @@ async function checkForUpdates(config) {
 
   // Check components
   if (config.tracking.includes('components')) {
-    const newComponents = latest.components.filter(comp =>
-      !config.installed.components.includes(comp.id)
+    const newComponents = latest.components.filter(
+      comp => !config.installed.components.includes(comp.id)
     )
 
     for (const comp of newComponents) {
@@ -285,8 +301,8 @@ async function checkForUpdates(config) {
 
   // Check integrations
   if (config.tracking.includes('integrations')) {
-    const newIntegrations = latest.integrations.filter(int =>
-      !config.installed.integrations.includes(int.id)
+    const newIntegrations = latest.integrations.filter(
+      int => !config.installed.integrations.includes(int.id)
     )
 
     for (const integration of newIntegrations) {
@@ -329,40 +345,40 @@ async function checkForUpdates(config) {
 /**
  * Apply update
  */
-async function applyUpdate(projectPath, update, config) {
+async function applyUpdate(projectPath, update, config, deps = defaultDeps) {
   switch (update.type) {
     case 'skill':
-      await addSkillToProject(projectPath, update.data)
+      await addSkillToProject(projectPath, update.data, deps)
       config.installed.skills.push(update.data.id)
       break
 
     case 'mcp':
-      await addMcpToProject(projectPath, update.data)
+      await addMcpToProject(projectPath, update.data, deps)
       config.installed.mcps.push(update.data.id)
       break
 
     case 'tool':
-      await addToolToProject(projectPath, update.data)
+      await addToolToProject(projectPath, update.data, deps)
       config.installed.tools.push(update.data.id)
       break
 
     case 'script':
-      await addScriptToProject(projectPath, update.data)
+      await addScriptToProject(projectPath, update.data, deps)
       config.installed.scripts.push(update.data.id)
       break
 
     case 'component':
-      await addComponentToProject(projectPath, update.data)
+      await addComponentToProject(projectPath, update.data, deps)
       config.installed.components.push(update.data.id)
       break
 
     case 'integration':
-      await addIntegrationToProject(projectPath, update.data)
+      await addIntegrationToProject(projectPath, update.data, deps)
       config.installed.integrations.push(update.data.id)
       break
 
     case 'config':
-      await updateConfigFile(projectPath, update.name, update.data)
+      await updateConfigFile(projectPath, update.name, update.data, deps)
       break
   }
 }
@@ -371,7 +387,8 @@ async function applyUpdate(projectPath, update, config) {
  * Add skill to client configuration files
  * SECURITY FIX: Now references LOCAL file paths instead of remote GitHub URLs
  */
-async function addSkillToProject(projectPath, skill) {
+async function addSkillToProject(projectPath, skill, deps = defaultDeps) {
+  const { fs, path, localFetch } = deps
   const clientConfigs = [
     { dir: '.claude', file: 'claude.md', header: '# Claude Configuration\n\n## Skills\n\n' },
     { dir: '.codex', file: 'codex.md', header: '# Codex Configuration\n\n## Skills\n\n' }
@@ -380,7 +397,7 @@ async function addSkillToProject(projectPath, skill) {
   for (const client of clientConfigs) {
     const configPath = path.join(projectPath, `${client.dir}/${client.file}`)
 
-    if (!await fs.pathExists(configPath)) {
+    if (!(await fs.pathExists(configPath))) {
       await fs.ensureDir(path.dirname(configPath))
       await fs.writeFile(configPath, client.header)
     }
@@ -409,7 +426,8 @@ async function addSkillToProject(projectPath, skill) {
 /**
  * Add MCP to project config
  */
-async function addMcpToProject(projectPath, mcp) {
+async function addMcpToProject(projectPath, mcp, deps = defaultDeps) {
+  const { fs, path } = deps
   const clientDirs = ['.claude', '.codex']
 
   for (const dir of clientDirs) {
@@ -452,7 +470,8 @@ function normalizeRegistryPath(registryPath) {
  * Add tool to project
  * SECURITY FIX: Now reads from LOCAL files instead of GitHub
  */
-async function addToolToProject(projectPath, tool) {
+async function addToolToProject(projectPath, tool, deps = defaultDeps) {
+  const { fs, path, localFetch } = deps
   // Copy tool file to project from local installation
   const toolsDir = path.join(projectPath, 'tools')
   await fs.ensureDir(toolsDir)
@@ -468,7 +487,8 @@ async function addToolToProject(projectPath, tool) {
  * Add script to project
  * SECURITY FIX: Now reads from LOCAL files instead of GitHub
  */
-async function addScriptToProject(projectPath, script) {
+async function addScriptToProject(projectPath, script, deps = defaultDeps) {
+  const { fs, path, localFetch } = deps
   // Copy script to scripts directory from local installation
   const scriptsDir = path.join(projectPath, 'scripts')
   await fs.ensureDir(scriptsDir)
@@ -485,7 +505,8 @@ async function addScriptToProject(projectPath, script) {
  * Add component to project
  * SECURITY FIX: Now reads from LOCAL files instead of GitHub
  */
-async function addComponentToProject(projectPath, component) {
+async function addComponentToProject(projectPath, component, deps = defaultDeps) {
+  const { fs, path, localFetch } = deps
   // Copy component to components directory from local installation
   const componentsDir = path.join(projectPath, 'components', component.category)
   await fs.ensureDir(componentsDir)
@@ -501,7 +522,8 @@ async function addComponentToProject(projectPath, component) {
  * Add integration to project
  * SECURITY FIX: Now reads from LOCAL files instead of GitHub
  */
-async function addIntegrationToProject(projectPath, integration) {
+async function addIntegrationToProject(projectPath, integration, deps = defaultDeps) {
+  const { fs, path, localFetch } = deps
   // Copy integration to lib directory from local installation
   const integrationsDir = path.join(projectPath, 'lib', 'integrations', integration.category)
   await fs.ensureDir(integrationsDir)
@@ -518,7 +540,8 @@ async function addIntegrationToProject(projectPath, integration) {
  * BUG FIX #1: Added backup creation before modifying config files
  * This prevents data loss if merge goes wrong
  */
-async function updateConfigFile(projectPath, fileName, content) {
+async function updateConfigFile(projectPath, fileName, content, deps = defaultDeps) {
+  const { fs, path } = deps
   const filePath = path.join(projectPath, fileName)
 
   if (await fs.pathExists(filePath)) {
@@ -546,18 +569,18 @@ async function updateConfigFile(projectPath, fileName, content) {
  */
 function mergeConfigContent(existing, newContent, fileName) {
   // Detect if content is JSON by checking if it's valid JSON
-  const isJsonFile = fileName && (
-    fileName.endsWith('.json') ||
-    fileName === '.cursorrules' ||
-    fileName === 'package.json'
-  )
+  const isJsonFile =
+    fileName &&
+    (fileName.endsWith('.json') || fileName === '.cursorrules' || fileName === 'package.json')
 
   // Try to parse as JSON for structured merging
   if (isJsonFile || isValidJson(existing) || isValidJson(newContent)) {
     try {
       return mergeJsonContent(existing, newContent)
     } catch (error) {
-      console.warn(`Warning: Failed to merge as JSON, falling back to line-based merge: ${error.message}`)
+      console.warn(
+        `Warning: Failed to merge as JSON, falling back to line-based merge: ${error.message}`
+      )
       // Fall through to line-based merge
     }
   }
@@ -670,14 +693,15 @@ function deepMerge(target, source) {
  * BUG FIX #2: Added proper validation and backup before modifying git hooks
  * Prevents overwriting existing hooks and handles non-git repositories gracefully
  */
-async function setupGitHook(projectPath) {
+async function setupGitHook(projectPath, deps = defaultDeps) {
+  const { fs, path, chalk } = deps
   const gitDir = path.join(projectPath, '.git')
   const hooksDir = path.join(gitDir, 'hooks')
   const hookPath = path.join(hooksDir, 'post-merge')
   const backupPath = path.join(hooksDir, 'post-merge.backup')
 
   // BUG FIX #2: Check if this is actually a git repository
-  if (!await fs.pathExists(gitDir)) {
+  if (!(await fs.pathExists(gitDir))) {
     throw new Error('Not a git repository. Git hooks can only be installed in git repositories.')
   }
 
@@ -705,10 +729,14 @@ ai-dev sync --yes --silent
     const timestamp = Date.now()
     const timestampedBackup = `${backupPath}.${timestamp}`
     await fs.copy(hookPath, timestampedBackup)
-    console.log(chalk.yellow(`  ⚠️  Existing post-merge hook backed up to: post-merge.backup.${timestamp}`))
+    console.log(
+      chalk.yellow(`  ⚠️  Existing post-merge hook backed up to: post-merge.backup.${timestamp}`)
+    )
 
     // Merge: append our command to existing hook
-    const mergedContent = existingContent.trimEnd() + '\n\n' +
+    const mergedContent =
+      existingContent.trimEnd() +
+      '\n\n' +
       '# Added by ai-dev-standards\n' +
       newHookContent.split('\n').slice(1).join('\n') // Skip shebang if already present
 
@@ -725,11 +753,14 @@ ai-dev sync --yes --silent
  * Fetch latest standards from LOCAL installation
  * SECURITY FIX: Now reads from local file system instead of GitHub
  */
-async function fetchLatestStandards() {
+async function fetchLatestStandards(deps = defaultDeps) {
+  const { localFetch, githubFetch, chalk } = deps
   try {
     return await localFetch.fetchAllStandards()
   } catch (error) {
-    console.warn(chalk.yellow(`[sync] Local standards fetch failed, falling back to GitHub: ${error.message}`))
+    console.warn(
+      chalk.yellow(`[sync] Local standards fetch failed, falling back to GitHub: ${error.message}`)
+    )
     return await githubFetch.fetchAllStandards()
   }
 }
@@ -738,11 +769,14 @@ async function fetchLatestStandards() {
  * Get latest version from LOCAL installation
  * SECURITY FIX: Now reads from local file system instead of GitHub
  */
-async function getLatestVersion() {
+async function getLatestVersion(deps = defaultDeps) {
+  const { localFetch, githubFetch, chalk } = deps
   try {
     return await localFetch.fetchVersion()
   } catch (error) {
-    console.warn(chalk.yellow(`[sync] Local version lookup failed, falling back to GitHub: ${error.message}`))
+    console.warn(
+      chalk.yellow(`[sync] Local version lookup failed, falling back to GitHub: ${error.message}`)
+    )
     return await githubFetch.fetchVersion()
   }
 }
@@ -750,20 +784,30 @@ async function getLatestVersion() {
 /**
  * Load project config
  */
-async function loadProjectConfig(projectPath) {
-  const configPath = path.join(projectPath, '.ai-dev.json')
+async function loadProjectConfig(projectPath, deps = defaultDeps) {
+  const pathModule = deps.path || path
+  const fsModule = deps.fs || fs
+  const configFilePath = pathModule.join(projectPath, '.ai-dev.json')
 
-  if (!await fs.pathExists(configPath)) {
+  if (!(await fsModule.pathExists(configFilePath))) {
     return null
   }
 
-  const config = await fs.readJson(configPath)
+  const config = await fsModule.readJson(configFilePath)
 
   // Ensure all required fields exist with defaults
   return {
     version: config.version || '1.0.0',
     lastSync: config.lastSync || null,
-    tracking: config.tracking || ['skills', 'mcps', 'tools', 'components', 'integrations', 'cursorrules', 'gitignore'],
+    tracking: config.tracking || [
+      'skills',
+      'mcps',
+      'tools',
+      'components',
+      'integrations',
+      'cursorrules',
+      'gitignore'
+    ],
     frequency: config.frequency || 'git-hook',
     installed: {
       skills: config.installed?.skills || [],
@@ -779,9 +823,11 @@ async function loadProjectConfig(projectPath) {
 /**
  * Save project config
  */
-async function saveProjectConfig(projectPath, config) {
-  const configPath = path.join(projectPath, '.ai-dev.json')
-  await fs.writeJson(configPath, config, { spaces: 2 })
+async function saveProjectConfig(projectPath, config, deps = defaultDeps) {
+  const pathModule = deps.path || path
+  const fsModule = deps.fs || fs
+  const configFilePath = pathModule.join(projectPath, '.ai-dev.json')
+  await fsModule.writeJson(configFilePath, config, { spaces: 2 })
 }
 
 /**
@@ -810,4 +856,20 @@ function showSyncSummary(updates) {
   console.log(chalk.gray('  Or run manually: ai-dev sync\n'))
 }
 
-module.exports = syncCommand
+module.exports = createSyncCommand()
+module.exports.createSyncCommand = createSyncCommand
+module.exports.initializeSync = initializeSync
+module.exports.loadProjectConfig = loadProjectConfig
+module.exports.saveProjectConfig = saveProjectConfig
+module.exports.setupGitHook = setupGitHook
+module.exports.getLatestVersion = getLatestVersion
+module.exports.fetchLatestStandards = fetchLatestStandards
+module.exports.checkForUpdates = checkForUpdates
+module.exports.applyUpdate = applyUpdate
+module.exports.addSkillToProject = addSkillToProject
+module.exports.addMcpToProject = addMcpToProject
+module.exports.addToolToProject = addToolToProject
+module.exports.addScriptToProject = addScriptToProject
+module.exports.addComponentToProject = addComponentToProject
+module.exports.addIntegrationToProject = addIntegrationToProject
+module.exports.updateConfigFile = updateConfigFile

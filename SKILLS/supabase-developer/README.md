@@ -106,7 +106,9 @@ await supabase.auth.signInWithOAuth({ provider: 'google' })
 await supabase.auth.signInWithOtp({ email })
 
 // Session management
-const { data: { user } } = await supabase.auth.getUser()
+const {
+  data: { user }
+} = await supabase.auth.getUser()
 ```
 
 ### Database with RLS
@@ -133,14 +135,10 @@ CREATE POLICY "Users manage own posts"
 
 ```typescript
 // Upload file
-const { data, error } = await supabase.storage
-  .from('avatars')
-  .upload(`${userId}/avatar.png`, file)
+const { data, error } = await supabase.storage.from('avatars').upload(`${userId}/avatar.png`, file)
 
 // Get public URL
-const { data } = supabase.storage
-  .from('avatars')
-  .getPublicUrl(`${userId}/avatar.png`)
+const { data } = supabase.storage.from('avatars').getPublicUrl(`${userId}/avatar.png`)
 ```
 
 ### Real-time Subscriptions
@@ -149,13 +147,17 @@ const { data } = supabase.storage
 // Subscribe to changes
 const channel = supabase
   .channel('room-1')
-  .on('postgres_changes', {
-    event: 'INSERT',
-    schema: 'public',
-    table: 'messages',
-  }, (payload) => {
-    console.log('New message:', payload.new)
-  })
+  .on(
+    'postgres_changes',
+    {
+      event: 'INSERT',
+      schema: 'public',
+      table: 'messages'
+    },
+    payload => {
+      console.log('New message:', payload.new)
+    }
+  )
   .subscribe()
 ```
 
@@ -195,6 +197,7 @@ const channel = supabase
 ## MCP Support
 
 Works seamlessly with **supabase-mcp** for:
+
 - Database operations (CRUD)
 - Authentication management
 - Storage operations

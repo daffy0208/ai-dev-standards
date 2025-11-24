@@ -6,11 +6,11 @@
  * Wrapper for SKILLS/capability-graph-builder/build-graph.sh
  */
 
-import * as path from 'path';
-import { exec } from 'child_process';
-import { promisify } from 'util';
+import * as path from 'path'
+import { exec } from 'child_process'
+import { promisify } from 'util'
 
-const execAsync = promisify(exec);
+const execAsync = promisify(exec)
 
 const COLORS = {
   reset: '\x1b[0m',
@@ -18,27 +18,27 @@ const COLORS = {
   red: '\x1b[31m',
   green: '\x1b[32m',
   yellow: '\x1b[33m',
-  cyan: '\x1b[36m',
-};
+  cyan: '\x1b[36m'
+}
 
 function colorize(text: string, color: keyof typeof COLORS): string {
-  return `${COLORS[color]}${text}${COLORS.reset}`;
+  return `${COLORS[color]}${text}${COLORS.reset}`
 }
 
 function printHeader(text: string) {
-  console.log(colorize(`\n━━━ ${text} ━━━\n`, 'bright'));
+  console.log(colorize(`\n━━━ ${text} ━━━\n`, 'bright'))
 }
 
 function printSuccess(text: string) {
-  console.log(colorize(`✓ ${text}`, 'green'));
+  console.log(colorize(`✓ ${text}`, 'green'))
 }
 
 function printError(text: string) {
-  console.log(colorize(`✗ ${text}`, 'red'));
+  console.log(colorize(`✗ ${text}`, 'red'))
 }
 
 function printInfo(text: string) {
-  console.log(colorize(`→ ${text}`, 'cyan'));
+  console.log(colorize(`→ ${text}`, 'cyan'))
 }
 
 export function printUsage() {
@@ -74,87 +74,87 @@ ${colorize('Description:', 'bright')}
   - Validate bidirectional relationship consistency
   - Infer missing relationships from descriptions
   - Detect circular dependencies and conflicts
-`);
+`)
 }
 
 export async function execute(args: string[], rootPath: string): Promise<void> {
   // Parse arguments
-  let outputPath = '';
-  let validate = false;
-  let inferMissing = false;
+  let outputPath = ''
+  let validate = false
+  let inferMissing = false
 
   for (let i = 0; i < args.length; i++) {
     switch (args[i]) {
       case '--output':
-        outputPath = args[++i];
-        break;
+        outputPath = args[++i]
+        break
       case '--validate':
-        validate = true;
-        break;
+        validate = true
+        break
       case '--infer-missing':
-        inferMissing = true;
-        break;
+        inferMissing = true
+        break
       case '--help':
       case '-h':
-        printUsage();
-        return;
+        printUsage()
+        return
       default:
-        printError(`Unknown option: ${args[i]}`);
-        printUsage();
-        process.exit(1);
+        printError(`Unknown option: ${args[i]}`)
+        printUsage()
+        process.exit(1)
     }
   }
 
-  const scriptPath = path.resolve(rootPath, 'SKILLS/capability-graph-builder/build-graph.sh');
+  const scriptPath = path.resolve(rootPath, 'SKILLS/capability-graph-builder/build-graph.sh')
 
-  printHeader('Build Capability Graph');
+  printHeader('Build Capability Graph')
   if (outputPath) {
-    printInfo(`Output: ${outputPath}`);
+    printInfo(`Output: ${outputPath}`)
   }
   if (validate) {
-    printInfo('Validation: enabled');
+    printInfo('Validation: enabled')
   }
   if (inferMissing) {
-    printInfo('Inference: enabled');
+    printInfo('Inference: enabled')
   }
 
   try {
     // Build command
-    let cmd = `bash "${scriptPath}"`;
+    let cmd = `bash "${scriptPath}"`
     if (outputPath) {
       const fullOutputPath = path.isAbsolute(outputPath)
         ? outputPath
-        : path.resolve(rootPath, outputPath);
-      cmd += ` --output "${fullOutputPath}"`;
+        : path.resolve(rootPath, outputPath)
+      cmd += ` --output "${fullOutputPath}"`
     }
     if (validate) {
-      cmd += ' --validate';
+      cmd += ' --validate'
     }
     if (inferMissing) {
-      cmd += ' --infer-missing';
+      cmd += ' --infer-missing'
     }
 
-    printInfo('Building capability graph...\n');
+    printInfo('Building capability graph...\n')
 
     // Execute the script
     const { stdout, stderr } = await execAsync(cmd, {
       cwd: rootPath,
-      maxBuffer: 20 * 1024 * 1024, // 20MB buffer for large graphs
-    });
+      maxBuffer: 20 * 1024 * 1024 // 20MB buffer for large graphs
+    })
 
     if (stdout) {
-      console.log(stdout);
+      console.log(stdout)
     }
     if (stderr) {
-      console.error(stderr);
+      console.error(stderr)
     }
 
-    printSuccess('Capability graph build complete!');
+    printSuccess('Capability graph build complete!')
   } catch (error) {
-    const err = error as any;
-    printError('Graph build failed');
-    if (err.stdout) console.log(err.stdout);
-    if (err.stderr) console.error(err.stderr);
-    process.exit(1);
+    const err = error as any
+    printError('Graph build failed')
+    if (err.stdout) console.log(err.stdout)
+    if (err.stderr) console.error(err.stderr)
+    process.exit(1)
   }
 }

@@ -14,6 +14,7 @@ Keep design assets organized, optimized, and accessible.
 **Organized assets = faster development.**
 
 Assets should be:
+
 - Easy to find
 - Properly named
 - Optimized for production
@@ -53,6 +54,7 @@ assets/
 ### Naming Conventions
 
 **Images:**
+
 ```
 {category}-{description}-{size}.{format}
 
@@ -63,6 +65,7 @@ ui-background-pattern.png
 ```
 
 **Icons:**
+
 ```
 {icon-name}-{variant}.svg
 
@@ -74,6 +77,7 @@ arrow-right.svg
 ```
 
 **Fonts:**
+
 ```
 {font-family}-{weight}.{format}
 
@@ -100,7 +104,7 @@ const rules: AssetRule[] = [
   { pattern: /product-/i, destination: 'images/products' },
   { pattern: /team-/i, destination: 'images/team' },
   { pattern: /icon-/i, destination: 'icons/svg' },
-  { pattern: /logo-/i, destination: 'logos' },
+  { pattern: /logo-/i, destination: 'logos' }
 ]
 
 async function organizeAssets(sourceDir: string) {
@@ -161,16 +165,8 @@ interface OptimizeOptions {
   formats?: ('jpg' | 'png' | 'webp' | 'avif')[]
 }
 
-async function optimizeImages(
-  inputDir: string,
-  outputDir: string,
-  options: OptimizeOptions = {}
-) {
-  const {
-    quality = 80,
-    maxWidth = 2000,
-    formats = ['jpg', 'png', 'webp']
-  } = options
+async function optimizeImages(inputDir: string, outputDir: string, options: OptimizeOptions = {}) {
+  const { quality = 80, maxWidth = 2000, formats = ['jpg', 'png', 'webp'] } = options
 
   const files = await fs.readdir(inputDir)
 
@@ -211,21 +207,13 @@ async function optimizeImages(
       const outputPath = path.join(outputDir, `${name}.${format}`)
 
       if (format === 'jpg') {
-        await image
-          .jpeg({ quality, mozjpeg: true })
-          .toFile(outputPath)
+        await image.jpeg({ quality, mozjpeg: true }).toFile(outputPath)
       } else if (format === 'png') {
-        await image
-          .png({ quality, compressionLevel: 9 })
-          .toFile(outputPath)
+        await image.png({ quality, compressionLevel: 9 }).toFile(outputPath)
       } else if (format === 'webp') {
-        await image
-          .webp({ quality })
-          .toFile(outputPath)
+        await image.webp({ quality }).toFile(outputPath)
       } else if (format === 'avif') {
-        await image
-          .avif({ quality })
-          .toFile(outputPath)
+        await image.avif({ quality }).toFile(outputPath)
       }
 
       console.log(`  ✓ Generated ${format}`)
@@ -379,8 +367,9 @@ optimizeFonts('./assets/fonts/raw', './assets/fonts/optimized')
 /* Preload critical fonts */
 @font-face {
   font-family: 'Inter';
-  src: url('/fonts/Inter-Regular.woff2') format('woff2'),
-       url('/fonts/Inter-Regular.woff') format('woff');
+  src:
+    url('/fonts/Inter-Regular.woff2') format('woff2'),
+    url('/fonts/Inter-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap; /* Show fallback first */
@@ -388,8 +377,9 @@ optimizeFonts('./assets/fonts/raw', './assets/fonts/optimized')
 
 @font-face {
   font-family: 'Inter';
-  src: url('/fonts/Inter-Bold.woff2') format('woff2'),
-       url('/fonts/Inter-Bold.woff') format('woff');
+  src:
+    url('/fonts/Inter-Bold.woff2') format('woff2'),
+    url('/fonts/Inter-Bold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -401,8 +391,8 @@ optimizeFonts('./assets/fonts/raw', './assets/fonts/optimized')
 ```html
 <head>
   <!-- Preload critical fonts -->
-  <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin />
 </head>
 ```
 
@@ -651,23 +641,11 @@ export const brandAssets: BrandAssets = {
 
 ```tsx
 // Lazy load images
-<img
-  src="placeholder.jpg"
-  data-src="hero.jpg"
-  loading="lazy"
-  alt="Hero"
-/>
+;<img src="placeholder.jpg" data-src="hero.jpg" loading="lazy" alt="Hero" />
 
 // Or use Next.js Image
 import Image from 'next/image'
-
-<Image
-  src="/hero.jpg"
-  width={1920}
-  height={1080}
-  placeholder="blur"
-  alt="Hero"
-/>
+;<Image src="/hero.jpg" width={1920} height={1080} placeholder="blur" alt="Hero" />
 ```
 
 ### 3. Asset CDN
@@ -724,17 +702,20 @@ runAssetPipeline()
 ## Tools & Resources
 
 **Optimization Tools:**
+
 - [Sharp](https://sharp.pixelplumbing.com/) - Image processing
 - [ImageOptim](https://imageoptim.com/) - Image compression
 - [SVGO](https://github.com/svg/svgo) - SVG optimization
 - [Squoosh](https://squoosh.app/) - Online image compression
 
 **Font Tools:**
+
 - [Glyphhanger](https://github.com/zachleat/glyphhanger) - Font subsetting
 - [Transfonter](https://transfonter.org/) - Font conversion
 - [FontForge](https://fontforge.org/) - Font editor
 
 **Related Skills:**
+
 - `visual-designer` - Design principles
 - `figma-developer` - Export from Figma
 - `brand-designer` - Brand asset creation

@@ -62,6 +62,10 @@ const LEVELS = {
   error: 4
 }
 
+const writeLine = (message: string): void => {
+  process.stdout.write(`${message}\n`)
+}
+
 const LEVEL_STYLES = {
   debug: { color: COLORS.gray, emoji: '🔍', label: 'DEBUG' },
   info: { color: COLORS.blue, emoji: 'ℹ️', label: 'INFO' },
@@ -98,9 +102,7 @@ export class Logger {
     }
 
     // Level with emoji
-    const levelStr = this.config.emoji
-      ? `${style.emoji} ${style.label}`
-      : style.label
+    const levelStr = this.config.emoji ? `${style.emoji} ${style.label}` : style.label
     parts.push(this.colorize(style.color, levelStr))
 
     // Indentation
@@ -111,9 +113,7 @@ export class Logger {
 
     // Data (if provided)
     if (data !== undefined) {
-      const dataStr = typeof data === 'object'
-        ? '\n' + JSON.stringify(data, null, 2)
-        : String(data)
+      const dataStr = typeof data === 'object' ? '\n' + JSON.stringify(data, null, 2) : String(data)
       parts.push(this.colorize(COLORS.gray, dataStr))
     }
 
@@ -127,7 +127,7 @@ export class Logger {
 
   private log(level: LogLevel, message: string, data?: any) {
     if (!this.shouldLog(level)) return
-    console.log(this.format(level, message, data))
+    writeLine(this.format(level, message, data))
   }
 
   debug(message: string, data?: any) {
@@ -166,12 +166,12 @@ export class Logger {
   }
 
   line() {
-    console.log(this.colorize(COLORS.gray, '─'.repeat(50)))
+    writeLine(this.colorize(COLORS.gray, '─'.repeat(50)))
   }
 
   header(title: string) {
     this.line()
-    console.log(this.colorize(COLORS.bright + COLORS.cyan, `  ${title}`))
+    writeLine(this.colorize(COLORS.bright + COLORS.cyan, `  ${title}`))
     this.line()
   }
 
@@ -209,7 +209,7 @@ export class Logger {
   }
 
   json(data: any) {
-    console.log(JSON.stringify(data, null, 2))
+    writeLine(JSON.stringify(data, null, 2))
   }
 }
 

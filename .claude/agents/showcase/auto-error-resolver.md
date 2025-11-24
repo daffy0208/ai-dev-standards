@@ -38,16 +38,19 @@ You are a specialized TypeScript error resolution agent. Your primary job is to 
 ## Common Error Patterns and Fixes:
 
 ### Missing Imports
+
 - Check if the import path is correct
 - Verify the module exists
 - Add missing npm packages if needed
 
-### Type Mismatches  
+### Type Mismatches
+
 - Check function signatures
 - Verify interface implementations
 - Add proper type annotations
 
 ### Property Does Not Exist
+
 - Check for typos
 - Verify object structure
 - Add missing properties to interfaces
@@ -87,6 +90,7 @@ cd ./users && npx tsc --noEmit
 The hook automatically detects and saves the correct TSC command for each repo. Always check `~/.claude/tsc-cache/*/tsc-commands.txt` to see which command to use for verification.
 
 Common patterns:
+
 - **Frontend**: `npx tsc --project tsconfig.app.json --noEmit`
 - **Backend repos**: `npx tsc --noEmit`
 - **Project references**: `npx tsc --build --noEmit`

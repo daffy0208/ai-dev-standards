@@ -82,11 +82,14 @@ export class FontAwesomeClient {
   /**
    * Search icons by name, tags, or category
    */
-  async searchIcons(query: string, options?: {
-    category?: string
-    style?: IconStyle
-    limit?: number
-  }): Promise<IconSearchResult[]> {
+  async searchIcons(
+    query: string,
+    options?: {
+      category?: string
+      style?: IconStyle
+      limit?: number
+    }
+  ): Promise<IconSearchResult[]> {
     const normalizedQuery = query.toLowerCase().trim()
 
     // Get all available icons
@@ -113,8 +116,7 @@ export class FontAwesomeClient {
       // Tag match
       else if (icon.tags.some(tag => tag === normalizedQuery)) {
         matchScore = 70
-      }
-      else if (icon.tags.some(tag => tag.includes(normalizedQuery))) {
+      } else if (icon.tags.some(tag => tag.includes(normalizedQuery))) {
         matchScore = 40
       }
       // Category match
@@ -133,7 +135,7 @@ export class FontAwesomeClient {
 
         results.push({
           ...icon,
-          matchScore,
+          matchScore
         })
       }
     }
@@ -152,7 +154,11 @@ export class FontAwesomeClient {
   /**
    * Get icon SVG content
    */
-  async getIcon(name: string, style: IconStyle = 'solid', options?: GetIconOptions): Promise<GetIconResult> {
+  async getIcon(
+    name: string,
+    style: IconStyle = 'solid',
+    options?: GetIconOptions
+  ): Promise<GetIconResult> {
     const cacheKey = `${name}-${style}`
 
     // Check cache
@@ -163,7 +169,7 @@ export class FontAwesomeClient {
         style,
         svg: this.customizeSvg(svg, options),
         cssClass: this.getCssClass(name, style),
-        unicode: this.getUnicode(name),
+        unicode: this.getUnicode(name)
       }
     }
 
@@ -187,41 +193,40 @@ export class FontAwesomeClient {
         style,
         svg: this.customizeSvg(svg, options),
         cssClass: this.getCssClass(name, style),
-        unicode: this.getUnicode(name),
+        unicode: this.getUnicode(name)
       }
     } catch (error) {
-      throw new Error(`Failed to fetch icon: ${error instanceof Error ? error.message : String(error)}`)
+      throw new Error(
+        `Failed to fetch icon: ${error instanceof Error ? error.message : String(error)}`
+      )
     }
   }
 
   /**
    * Get multiple icons at once
    */
-  async getIcons(icons: Array<{
-    name: string
-    style?: IconStyle
-    options?: GetIconOptions
-  }>): Promise<GetIconResult[]> {
+  async getIcons(
+    icons: Array<{
+      name: string
+      style?: IconStyle
+      options?: GetIconOptions
+    }>
+  ): Promise<GetIconResult[]> {
     const results = await Promise.allSettled(
-      icons.map(icon => this.getIcon(
-        icon.name,
-        icon.style || 'solid',
-        icon.options
-      ))
+      icons.map(icon => this.getIcon(icon.name, icon.style || 'solid', icon.options))
     )
 
     return results
-      .filter((result): result is PromiseFulfilledResult<GetIconResult> => result.status === 'fulfilled')
+      .filter(
+        (result): result is PromiseFulfilledResult<GetIconResult> => result.status === 'fulfilled'
+      )
       .map(result => result.value)
   }
 
   /**
    * List all available icons
    */
-  async listIcons(options?: {
-    category?: string
-    style?: IconStyle
-  }): Promise<IconMetadata[]> {
+  async listIcons(options?: { category?: string; style?: IconStyle }): Promise<IconMetadata[]> {
     const metadata = await this.getIconMetadata()
 
     let filtered = metadata
@@ -263,7 +268,7 @@ export class FontAwesomeClient {
       regular: 'far',
       light: 'fal',
       duotone: 'fad',
-      brands: 'fab',
+      brands: 'fab'
     }
     return prefixes[style]
   }
@@ -332,60 +337,364 @@ export class FontAwesomeClient {
   private getIconList(): IconMetadata[] {
     const freeIcons: IconMetadata[] = [
       // Arrows & Directions
-      { name: 'arrow-right', displayName: 'Arrow Right', category: 'arrows', styles: ['solid'], tags: ['arrow', 'right', 'next'], tier: 'free', unicode: 'f061' },
-      { name: 'arrow-left', displayName: 'Arrow Left', category: 'arrows', styles: ['solid'], tags: ['arrow', 'left', 'back'], tier: 'free', unicode: 'f060' },
-      { name: 'arrow-up', displayName: 'Arrow Up', category: 'arrows', styles: ['solid'], tags: ['arrow', 'up'], tier: 'free', unicode: 'f062' },
-      { name: 'arrow-down', displayName: 'Arrow Down', category: 'arrows', styles: ['solid'], tags: ['arrow', 'down'], tier: 'free', unicode: 'f063' },
-      { name: 'chevron-right', displayName: 'Chevron Right', category: 'arrows', styles: ['solid'], tags: ['chevron', 'right'], tier: 'free', unicode: 'f054' },
-      { name: 'chevron-left', displayName: 'Chevron Left', category: 'arrows', styles: ['solid'], tags: ['chevron', 'left'], tier: 'free', unicode: 'f053' },
+      {
+        name: 'arrow-right',
+        displayName: 'Arrow Right',
+        category: 'arrows',
+        styles: ['solid'],
+        tags: ['arrow', 'right', 'next'],
+        tier: 'free',
+        unicode: 'f061'
+      },
+      {
+        name: 'arrow-left',
+        displayName: 'Arrow Left',
+        category: 'arrows',
+        styles: ['solid'],
+        tags: ['arrow', 'left', 'back'],
+        tier: 'free',
+        unicode: 'f060'
+      },
+      {
+        name: 'arrow-up',
+        displayName: 'Arrow Up',
+        category: 'arrows',
+        styles: ['solid'],
+        tags: ['arrow', 'up'],
+        tier: 'free',
+        unicode: 'f062'
+      },
+      {
+        name: 'arrow-down',
+        displayName: 'Arrow Down',
+        category: 'arrows',
+        styles: ['solid'],
+        tags: ['arrow', 'down'],
+        tier: 'free',
+        unicode: 'f063'
+      },
+      {
+        name: 'chevron-right',
+        displayName: 'Chevron Right',
+        category: 'arrows',
+        styles: ['solid'],
+        tags: ['chevron', 'right'],
+        tier: 'free',
+        unicode: 'f054'
+      },
+      {
+        name: 'chevron-left',
+        displayName: 'Chevron Left',
+        category: 'arrows',
+        styles: ['solid'],
+        tags: ['chevron', 'left'],
+        tier: 'free',
+        unicode: 'f053'
+      },
 
       // Actions
-      { name: 'plus', displayName: 'Plus', category: 'actions', styles: ['solid'], tags: ['plus', 'add', 'create'], tier: 'free', unicode: 'f067' },
-      { name: 'minus', displayName: 'Minus', category: 'actions', styles: ['solid'], tags: ['minus', 'subtract'], tier: 'free', unicode: 'f068' },
-      { name: 'xmark', displayName: 'X Mark', category: 'actions', styles: ['solid'], tags: ['x', 'close', 'cancel'], tier: 'free', unicode: 'f00d' },
-      { name: 'check', displayName: 'Check', category: 'actions', styles: ['solid'], tags: ['check', 'done', 'success'], tier: 'free', unicode: 'f00c' },
-      { name: 'trash', displayName: 'Trash', category: 'actions', styles: ['solid'], tags: ['trash', 'delete', 'remove'], tier: 'free', unicode: 'f1f8' },
-      { name: 'pen', displayName: 'Pen', category: 'actions', styles: ['solid'], tags: ['pen', 'edit', 'write'], tier: 'free', unicode: 'f304' },
+      {
+        name: 'plus',
+        displayName: 'Plus',
+        category: 'actions',
+        styles: ['solid'],
+        tags: ['plus', 'add', 'create'],
+        tier: 'free',
+        unicode: 'f067'
+      },
+      {
+        name: 'minus',
+        displayName: 'Minus',
+        category: 'actions',
+        styles: ['solid'],
+        tags: ['minus', 'subtract'],
+        tier: 'free',
+        unicode: 'f068'
+      },
+      {
+        name: 'xmark',
+        displayName: 'X Mark',
+        category: 'actions',
+        styles: ['solid'],
+        tags: ['x', 'close', 'cancel'],
+        tier: 'free',
+        unicode: 'f00d'
+      },
+      {
+        name: 'check',
+        displayName: 'Check',
+        category: 'actions',
+        styles: ['solid'],
+        tags: ['check', 'done', 'success'],
+        tier: 'free',
+        unicode: 'f00c'
+      },
+      {
+        name: 'trash',
+        displayName: 'Trash',
+        category: 'actions',
+        styles: ['solid'],
+        tags: ['trash', 'delete', 'remove'],
+        tier: 'free',
+        unicode: 'f1f8'
+      },
+      {
+        name: 'pen',
+        displayName: 'Pen',
+        category: 'actions',
+        styles: ['solid'],
+        tags: ['pen', 'edit', 'write'],
+        tier: 'free',
+        unicode: 'f304'
+      },
 
       // Interface
-      { name: 'bars', displayName: 'Bars', category: 'interface', styles: ['solid'], tags: ['menu', 'hamburger'], tier: 'free', unicode: 'f0c9' },
-      { name: 'magnifying-glass', displayName: 'Magnifying Glass', category: 'interface', styles: ['solid'], tags: ['search', 'find'], tier: 'free', unicode: 'f002' },
-      { name: 'gear', displayName: 'Gear', category: 'interface', styles: ['solid'], tags: ['settings', 'cog'], tier: 'free', unicode: 'f013' },
-      { name: 'ellipsis', displayName: 'Ellipsis', category: 'interface', styles: ['solid'], tags: ['more', 'dots'], tier: 'free', unicode: 'f141' },
+      {
+        name: 'bars',
+        displayName: 'Bars',
+        category: 'interface',
+        styles: ['solid'],
+        tags: ['menu', 'hamburger'],
+        tier: 'free',
+        unicode: 'f0c9'
+      },
+      {
+        name: 'magnifying-glass',
+        displayName: 'Magnifying Glass',
+        category: 'interface',
+        styles: ['solid'],
+        tags: ['search', 'find'],
+        tier: 'free',
+        unicode: 'f002'
+      },
+      {
+        name: 'gear',
+        displayName: 'Gear',
+        category: 'interface',
+        styles: ['solid'],
+        tags: ['settings', 'cog'],
+        tier: 'free',
+        unicode: 'f013'
+      },
+      {
+        name: 'ellipsis',
+        displayName: 'Ellipsis',
+        category: 'interface',
+        styles: ['solid'],
+        tags: ['more', 'dots'],
+        tier: 'free',
+        unicode: 'f141'
+      },
 
       // Files & Folders
-      { name: 'file', displayName: 'File', category: 'files', styles: ['solid', 'regular'], tags: ['file', 'document'], tier: 'free', unicode: 'f15b' },
-      { name: 'folder', displayName: 'Folder', category: 'files', styles: ['solid', 'regular'], tags: ['folder', 'directory'], tier: 'free', unicode: 'f07b' },
-      { name: 'download', displayName: 'Download', category: 'files', styles: ['solid'], tags: ['download', 'save'], tier: 'free', unicode: 'f019' },
-      { name: 'upload', displayName: 'Upload', category: 'files', styles: ['solid'], tags: ['upload', 'import'], tier: 'free', unicode: 'f093' },
+      {
+        name: 'file',
+        displayName: 'File',
+        category: 'files',
+        styles: ['solid', 'regular'],
+        tags: ['file', 'document'],
+        tier: 'free',
+        unicode: 'f15b'
+      },
+      {
+        name: 'folder',
+        displayName: 'Folder',
+        category: 'files',
+        styles: ['solid', 'regular'],
+        tags: ['folder', 'directory'],
+        tier: 'free',
+        unicode: 'f07b'
+      },
+      {
+        name: 'download',
+        displayName: 'Download',
+        category: 'files',
+        styles: ['solid'],
+        tags: ['download', 'save'],
+        tier: 'free',
+        unicode: 'f019'
+      },
+      {
+        name: 'upload',
+        displayName: 'Upload',
+        category: 'files',
+        styles: ['solid'],
+        tags: ['upload', 'import'],
+        tier: 'free',
+        unicode: 'f093'
+      },
 
       // Communication
-      { name: 'envelope', displayName: 'Envelope', category: 'communication', styles: ['solid', 'regular'], tags: ['email', 'mail'], tier: 'free', unicode: 'f0e0' },
-      { name: 'comment', displayName: 'Comment', category: 'communication', styles: ['solid', 'regular'], tags: ['comment', 'chat', 'message'], tier: 'free', unicode: 'f075' },
-      { name: 'bell', displayName: 'Bell', category: 'communication', styles: ['solid', 'regular'], tags: ['bell', 'notification'], tier: 'free', unicode: 'f0f3' },
-      { name: 'phone', displayName: 'Phone', category: 'communication', styles: ['solid'], tags: ['phone', 'call'], tier: 'free', unicode: 'f095' },
+      {
+        name: 'envelope',
+        displayName: 'Envelope',
+        category: 'communication',
+        styles: ['solid', 'regular'],
+        tags: ['email', 'mail'],
+        tier: 'free',
+        unicode: 'f0e0'
+      },
+      {
+        name: 'comment',
+        displayName: 'Comment',
+        category: 'communication',
+        styles: ['solid', 'regular'],
+        tags: ['comment', 'chat', 'message'],
+        tier: 'free',
+        unicode: 'f075'
+      },
+      {
+        name: 'bell',
+        displayName: 'Bell',
+        category: 'communication',
+        styles: ['solid', 'regular'],
+        tags: ['bell', 'notification'],
+        tier: 'free',
+        unicode: 'f0f3'
+      },
+      {
+        name: 'phone',
+        displayName: 'Phone',
+        category: 'communication',
+        styles: ['solid'],
+        tags: ['phone', 'call'],
+        tier: 'free',
+        unicode: 'f095'
+      },
 
       // Users
-      { name: 'user', displayName: 'User', category: 'users', styles: ['solid', 'regular'], tags: ['user', 'person'], tier: 'free', unicode: 'f007' },
-      { name: 'users', displayName: 'Users', category: 'users', styles: ['solid'], tags: ['users', 'people', 'team'], tier: 'free', unicode: 'f0c0' },
+      {
+        name: 'user',
+        displayName: 'User',
+        category: 'users',
+        styles: ['solid', 'regular'],
+        tags: ['user', 'person'],
+        tier: 'free',
+        unicode: 'f007'
+      },
+      {
+        name: 'users',
+        displayName: 'Users',
+        category: 'users',
+        styles: ['solid'],
+        tags: ['users', 'people', 'team'],
+        tier: 'free',
+        unicode: 'f0c0'
+      },
 
       // UI Elements
-      { name: 'house', displayName: 'House', category: 'ui', styles: ['solid'], tags: ['home', 'house'], tier: 'free', unicode: 'f015' },
-      { name: 'heart', displayName: 'Heart', category: 'ui', styles: ['solid', 'regular'], tags: ['heart', 'like', 'favorite'], tier: 'free', unicode: 'f004' },
-      { name: 'star', displayName: 'Star', category: 'ui', styles: ['solid', 'regular'], tags: ['star', 'favorite'], tier: 'free', unicode: 'f005' },
-      { name: 'eye', displayName: 'Eye', category: 'ui', styles: ['solid', 'regular'], tags: ['eye', 'view', 'visible'], tier: 'free', unicode: 'f06e' },
+      {
+        name: 'house',
+        displayName: 'House',
+        category: 'ui',
+        styles: ['solid'],
+        tags: ['home', 'house'],
+        tier: 'free',
+        unicode: 'f015'
+      },
+      {
+        name: 'heart',
+        displayName: 'Heart',
+        category: 'ui',
+        styles: ['solid', 'regular'],
+        tags: ['heart', 'like', 'favorite'],
+        tier: 'free',
+        unicode: 'f004'
+      },
+      {
+        name: 'star',
+        displayName: 'Star',
+        category: 'ui',
+        styles: ['solid', 'regular'],
+        tags: ['star', 'favorite'],
+        tier: 'free',
+        unicode: 'f005'
+      },
+      {
+        name: 'eye',
+        displayName: 'Eye',
+        category: 'ui',
+        styles: ['solid', 'regular'],
+        tags: ['eye', 'view', 'visible'],
+        tier: 'free',
+        unicode: 'f06e'
+      },
 
       // Status
-      { name: 'circle-check', displayName: 'Circle Check', category: 'status', styles: ['solid', 'regular'], tags: ['check', 'success'], tier: 'free', unicode: 'f058' },
-      { name: 'circle-xmark', displayName: 'Circle X Mark', category: 'status', styles: ['solid', 'regular'], tags: ['x', 'error'], tier: 'free', unicode: 'f057' },
-      { name: 'triangle-exclamation', displayName: 'Triangle Exclamation', category: 'status', styles: ['solid'], tags: ['warning', 'alert'], tier: 'free', unicode: 'f071' },
-      { name: 'circle-info', displayName: 'Circle Info', category: 'status', styles: ['solid'], tags: ['info', 'information'], tier: 'free', unicode: 'f05a' },
+      {
+        name: 'circle-check',
+        displayName: 'Circle Check',
+        category: 'status',
+        styles: ['solid', 'regular'],
+        tags: ['check', 'success'],
+        tier: 'free',
+        unicode: 'f058'
+      },
+      {
+        name: 'circle-xmark',
+        displayName: 'Circle X Mark',
+        category: 'status',
+        styles: ['solid', 'regular'],
+        tags: ['x', 'error'],
+        tier: 'free',
+        unicode: 'f057'
+      },
+      {
+        name: 'triangle-exclamation',
+        displayName: 'Triangle Exclamation',
+        category: 'status',
+        styles: ['solid'],
+        tags: ['warning', 'alert'],
+        tier: 'free',
+        unicode: 'f071'
+      },
+      {
+        name: 'circle-info',
+        displayName: 'Circle Info',
+        category: 'status',
+        styles: ['solid'],
+        tags: ['info', 'information'],
+        tier: 'free',
+        unicode: 'f05a'
+      },
 
       // Brands
-      { name: 'github', displayName: 'GitHub', category: 'brands', styles: ['brands'], tags: ['github', 'code'], tier: 'free', unicode: 'f09b' },
-      { name: 'twitter', displayName: 'Twitter', category: 'brands', styles: ['brands'], tags: ['twitter', 'social'], tier: 'free', unicode: 'f099' },
-      { name: 'facebook', displayName: 'Facebook', category: 'brands', styles: ['brands'], tags: ['facebook', 'social'], tier: 'free', unicode: 'f09a' },
-      { name: 'linkedin', displayName: 'LinkedIn', category: 'brands', styles: ['brands'], tags: ['linkedin', 'social'], tier: 'free', unicode: 'f08c' },
+      {
+        name: 'github',
+        displayName: 'GitHub',
+        category: 'brands',
+        styles: ['brands'],
+        tags: ['github', 'code'],
+        tier: 'free',
+        unicode: 'f09b'
+      },
+      {
+        name: 'twitter',
+        displayName: 'Twitter',
+        category: 'brands',
+        styles: ['brands'],
+        tags: ['twitter', 'social'],
+        tier: 'free',
+        unicode: 'f099'
+      },
+      {
+        name: 'facebook',
+        displayName: 'Facebook',
+        category: 'brands',
+        styles: ['brands'],
+        tags: ['facebook', 'social'],
+        tier: 'free',
+        unicode: 'f09a'
+      },
+      {
+        name: 'linkedin',
+        displayName: 'LinkedIn',
+        category: 'brands',
+        styles: ['brands'],
+        tags: ['linkedin', 'social'],
+        tier: 'free',
+        unicode: 'f08c'
+      }
     ]
 
     return freeIcons

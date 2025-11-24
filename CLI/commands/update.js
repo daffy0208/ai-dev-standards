@@ -4,6 +4,69 @@ const fs = require('fs-extra')
 const path = require('path')
 const inquirer = require('inquirer')
 
+const defaultDeps = {
+  chalk,
+  ora,
+  fs,
+  path,
+  inquirer,
+  cwd: () => process.cwd(),
+  fetchAvailableSkills: async () => {
+    const { fetchSkills } = require('../utils/github-fetch')
+    return await fetchSkills()
+  },
+  fetchAvailableMcps: async () => {
+    const { fetchMCPs } = require('../utils/github-fetch')
+    return await fetchMCPs()
+  },
+  fetchAvailableTools: async () => [],
+  fetchLatestCursorRules: async () => `# Cursor Rules
+
+## AI Development Standards
+
+Follow patterns from ai-dev-standards.
+
+## Code Style
+
+- TypeScript strict mode
+- Functional components
+- Zod validation
+- Tailwind CSS
+
+## Testing
+
+- Jest + React Testing Library
+- Test coverage > 80%
+
+## Accessibility
+
+- WCAG AA compliance
+- Semantic HTML
+- ARIA labels
+`,
+  fetchLatestGitignore: async () => `node_modules/
+.env
+.env.local
+.DS_Store
+dist/
+build/
+coverage/
+.next/
+.turbo/
+.vercel/
+.ai-dev.json
+*.log
+`,
+  exit: code => process.exit(code)
+}
+
+function createUpdateCommand(overrides = {}) {
+  const deps = { ...defaultDeps, ...overrides }
+  return async function runUpdate(target, options) {
+    return updateCommandInternal(target, options, deps)
+  }
+}
+
 /**
  * Update Command
  *
@@ -15,37 +78,38 @@ const inquirer = require('inquirer')
  *
  * Fine-grained control over what gets updated
  */
-async function updateCommand(target, options) {
+async function updateCommandInternal(target, options, deps) {
+  const { chalk } = deps
   console.log(chalk.blue(`\n🔄 Updating ${target}...\n`))
 
-  const projectPath = process.cwd()
+  const projectPath = deps.cwd ? deps.cwd() : process.cwd()
 
   try {
     switch (target) {
       case 'skills':
-        await updateSkills(projectPath, options)
+        await updateSkills(projectPath, options, deps)
         break
 
       case 'mcps':
       case 'mcp-servers':
-        await updateMcpServers(projectPath, options)
+        await updateMcpServers(projectPath, options, deps)
         break
 
       case 'cursorrules':
       case 'cursor-rules':
-        await updateCursorRules(projectPath, options)
+        await updateCursorRules(projectPath, deps)
         break
 
       case 'gitignore':
-        await updateGitignore(projectPath, options)
+        await updateGitignore(projectPath, deps)
         break
 
       case 'tools':
-        await updateTools(projectPath, options)
+        await updateTools(projectPath, options, deps)
         break
 
       case 'all':
-        await updateAll(projectPath, options)
+        await updateAll(projectPath, deps)
         break
 
       default:
@@ -57,30 +121,30 @@ async function updateCommand(target, options) {
         console.log(chalk.gray('  - gitignore'))
         console.log(chalk.gray('  - tools'))
         console.log(chalk.gray('  - all\n'))
-        process.exit(1)
+        throw new Error('Unknown target')
     }
 
     console.log(chalk.green(`\n✅ ${target} updated successfully!\n`))
-
   } catch (error) {
     console.error(chalk.red(`\n❌ Error: ${error.message}\n`))
-    process.exit(1)
+    deps.exit(1)
+    throw error
   }
 }
 
 /**
  * Update skills
  */
-async function updateSkills(projectPath, options) {
+async function updateSkills(projectPath, options, deps) {
+  const { ora, chalk, inquirer } = deps
   const spinner = ora('Fetching available skills...').start()
 
-  // Get available skills
-  const availableSkills = await fetchAvailableSkills()
+  const availableSkills = await deps.fetchAvailableSkills()
 
   spinner.succeed(`Found ${availableSkills.length} skills`)
 
   // Get currently installed
-  const config = await loadConfig(projectPath)
+  const config = await loadConfig(projectPath, deps)
   const installed = config?.installed?.skills || []
 
   // Show new skills
@@ -94,17 +158,19 @@ async function updateSkills(projectPath, options) {
   console.log(chalk.bold(`\n📦 ${newSkills.length} new skills available:\n`))
 
   // Let user select which to install
-  const { selected } = await inquirer.prompt([{
-    type: 'checkbox',
-    name: 'selected',
-    message: 'Select skills to add:',
-    choices: newSkills.map(skill => ({
-      name: `${skill.name} - ${skill.description}`,
-      value: skill.name,
-      checked: options.all || false
-    })),
-    pageSize: 15
-  }])
+  const { selected } = await inquirer.prompt([
+    {
+      type: 'checkbox',
+      name: 'selected',
+      message: 'Select skills to add:',
+      choices: newSkills.map(skill => ({
+        name: `${skill.name} - ${skill.description}`,
+        value: skill.name,
+        checked: options.all || false
+      })),
+      pageSize: 15
+    }
+  ])
 
   if (selected.length === 0) {
     console.log(chalk.gray('No skills selected'))
@@ -116,14 +182,14 @@ async function updateSkills(projectPath, options) {
 
   for (const skillName of selected) {
     const skill = newSkills.find(s => s.name === skillName)
-    await addSkillReference(projectPath, skill)
+    await addSkillReference(projectPath, skill, deps)
     installed.push(skillName)
   }
 
   // Update config
   if (!config.installed) config.installed = {}
   config.installed.skills = installed
-  await saveConfig(projectPath, config)
+  await saveConfig(projectPath, config, deps)
 
   addSpinner.succeed(`Added ${selected.length} skills`)
 }
@@ -131,14 +197,15 @@ async function updateSkills(projectPath, options) {
 /**
  * Update MCP servers
  */
-async function updateMcpServers(projectPath, options) {
+async function updateMcpServers(projectPath, options, deps) {
+  const { ora, chalk, inquirer, fs, path } = deps
   const spinner = ora('Fetching available MCP servers...').start()
 
-  const availableMcps = await fetchAvailableMcps()
+  const availableMcps = await deps.fetchAvailableMcps()
 
   spinner.succeed(`Found ${availableMcps.length} MCP servers`)
 
-  const config = await loadConfig(projectPath)
+  const config = await loadConfig(projectPath, deps)
   const installed = config?.installed?.mcps || []
 
   const newMcps = availableMcps.filter(mcp => !installed.includes(mcp.name))
@@ -150,16 +217,18 @@ async function updateMcpServers(projectPath, options) {
 
   console.log(chalk.bold(`\n📦 ${newMcps.length} new MCP servers available:\n`))
 
-  const { selected } = await inquirer.prompt([{
-    type: 'checkbox',
-    name: 'selected',
-    message: 'Select MCP servers to configure:',
-    choices: newMcps.map(mcp => ({
-      name: `${mcp.name} - ${mcp.description}`,
-      value: mcp.name,
-      checked: options.all || false
-    }))
-  }])
+  const { selected } = await inquirer.prompt([
+    {
+      type: 'checkbox',
+      name: 'selected',
+      message: 'Select MCP servers to configure:',
+      choices: newMcps.map(mcp => ({
+        name: `${mcp.name} - ${mcp.description}`,
+        value: mcp.name,
+        checked: options.all || false
+      }))
+    }
+  ])
 
   if (selected.length === 0) {
     console.log(chalk.gray('No MCPs selected'))
@@ -199,7 +268,7 @@ async function updateMcpServers(projectPath, options) {
   // Update config
   if (!config.installed) config.installed = {}
   config.installed.mcps = installed
-  await saveConfig(projectPath, config)
+  await saveConfig(projectPath, config, deps)
 
   console.log(chalk.green(`\n✅ Configured ${selected.length} MCP servers`))
 }
@@ -207,10 +276,11 @@ async function updateMcpServers(projectPath, options) {
 /**
  * Update cursor rules
  */
-async function updateCursorRules(projectPath, options) {
+async function updateCursorRules(projectPath, deps) {
+  const { ora, chalk, fs, path, inquirer } = deps
   const spinner = ora('Fetching latest cursor rules...').start()
 
-  const latestRules = await fetchLatestCursorRules()
+  const latestRules = await deps.fetchLatestCursorRules()
 
   spinner.stop()
 
@@ -229,12 +299,14 @@ async function updateCursorRules(projectPath, options) {
   // Show diff
   console.log(chalk.bold('📝 Cursor rules will be updated\n'))
 
-  const { confirm } = await inquirer.prompt([{
-    type: 'confirm',
-    name: 'confirm',
-    message: 'Update .cursorrules with latest best practices?',
-    default: true
-  }])
+  const { confirm } = await inquirer.prompt([
+    {
+      type: 'confirm',
+      name: 'confirm',
+      message: 'Update .cursorrules with latest best practices?',
+      default: true
+    }
+  ])
 
   if (!confirm) {
     console.log(chalk.gray('Cancelled'))
@@ -256,10 +328,11 @@ async function updateCursorRules(projectPath, options) {
 /**
  * Update gitignore
  */
-async function updateGitignore(projectPath, options) {
+async function updateGitignore(projectPath, deps) {
+  const { ora, fs, path, chalk } = deps
   const spinner = ora('Fetching latest .gitignore patterns...').start()
 
-  const latestPatterns = await fetchLatestGitignore()
+  const latestPatterns = await deps.fetchLatestGitignore()
 
   spinner.stop()
 
@@ -286,14 +359,15 @@ async function updateGitignore(projectPath, options) {
 /**
  * Update tools
  */
-async function updateTools(projectPath, options) {
+async function updateTools(projectPath, options, deps) {
+  const { ora, chalk, inquirer, fs, path } = deps
   const spinner = ora('Fetching available tools...').start()
 
-  const availableTools = await fetchAvailableTools()
+  const availableTools = await deps.fetchAvailableTools()
 
   spinner.succeed(`Found ${availableTools.length} tools`)
 
-  const config = await loadConfig(projectPath)
+  const config = await loadConfig(projectPath, deps)
   const installed = config?.installed?.tools || []
 
   const newTools = availableTools.filter(tool => !installed.includes(tool.name))
@@ -305,16 +379,18 @@ async function updateTools(projectPath, options) {
 
   console.log(chalk.bold(`\n📦 ${newTools.length} new tools available:\n`))
 
-  const { selected } = await inquirer.prompt([{
-    type: 'checkbox',
-    name: 'selected',
-    message: 'Select tools to add:',
-    choices: newTools.map(tool => ({
-      name: `${tool.name} (${tool.framework}) - ${tool.description}`,
-      value: tool.name,
-      checked: options.all || false
-    }))
-  }])
+  const { selected } = await inquirer.prompt([
+    {
+      type: 'checkbox',
+      name: 'selected',
+      message: 'Select tools to add:',
+      choices: newTools.map(tool => ({
+        name: `${tool.name} (${tool.framework}) - ${tool.description}`,
+        value: tool.name,
+        checked: options.all || false
+      }))
+    }
+  ])
 
   if (selected.length === 0) {
     console.log(chalk.gray('No tools selected'))
@@ -335,7 +411,7 @@ async function updateTools(projectPath, options) {
   // Update config
   if (!config.installed) config.installed = {}
   config.installed.tools = installed
-  await saveConfig(projectPath, config)
+  await saveConfig(projectPath, config, deps)
 
   console.log(chalk.green(`\n✅ Added ${selected.length} tools`))
 }
@@ -343,86 +419,15 @@ async function updateTools(projectPath, options) {
 /**
  * Update all
  */
-async function updateAll(projectPath, options) {
+async function updateAll(projectPath, deps) {
+  const { chalk } = deps
   console.log(chalk.bold('Updating everything...\n'))
 
-  await updateSkills(projectPath, { all: true })
-  await updateMcpServers(projectPath, { all: true })
-  await updateCursorRules(projectPath, options)
-  await updateGitignore(projectPath, options)
-  await updateTools(projectPath, { all: true })
-}
-
-/**
- * Fetch available skills from GitHub
- */
-async function fetchAvailableSkills() {
-  const { fetchSkills } = require('../utils/github-fetch')
-  return await fetchSkills()
-}
-
-/**
- * Fetch available MCPs from GitHub
- */
-async function fetchAvailableMcps() {
-  const { fetchMCPs } = require('../utils/github-fetch')
-  return await fetchMCPs()
-}
-
-/**
- * Fetch available tools
- */
-async function fetchAvailableTools() {
-  return []
-}
-
-/**
- * Fetch latest cursor rules
- */
-async function fetchLatestCursorRules() {
-  return `# Cursor Rules
-
-## AI Development Standards
-
-Follow patterns from ai-dev-standards.
-
-## Code Style
-
-- TypeScript strict mode
-- Functional components
-- Zod validation
-- Tailwind CSS
-
-## Testing
-
-- Jest + React Testing Library
-- Test coverage > 80%
-
-## Accessibility
-
-- WCAG AA compliance
-- Semantic HTML
-- ARIA labels
-`
-}
-
-/**
- * Fetch latest gitignore
- */
-async function fetchLatestGitignore() {
-  return `node_modules/
-.env
-.env.local
-.DS_Store
-dist/
-build/
-coverage/
-.next/
-.turbo/
-.vercel/
-.ai-dev.json
-*.log
-`
+  await updateSkills(projectPath, { all: true }, deps)
+  await updateMcpServers(projectPath, { all: true }, deps)
+  await updateCursorRules(projectPath, deps)
+  await updateGitignore(projectPath, deps)
+  await updateTools(projectPath, { all: true }, deps)
 }
 
 const CLIENT_SKILL_DOCS = [
@@ -443,7 +448,8 @@ const CLIENT_SKILL_DOCS = [
 /**
  * Add skill reference to client configuration files
  */
-async function addSkillReference(projectPath, skill) {
+async function addSkillReference(projectPath, skill, deps = defaultDeps) {
+  const { fs, path } = deps
   for (const client of CLIENT_SKILL_DOCS) {
     const targetPath = path.join(projectPath, client.dir, client.file)
     await fs.ensureDir(path.dirname(targetPath))
@@ -465,10 +471,11 @@ async function addSkillReference(projectPath, skill) {
 /**
  * Load config
  */
-async function loadConfig(projectPath) {
+async function loadConfig(projectPath, deps = defaultDeps) {
+  const { fs, path } = deps
   const configPath = path.join(projectPath, '.ai-dev.json')
 
-  if (!await fs.pathExists(configPath)) {
+  if (!(await fs.pathExists(configPath))) {
     return { installed: { skills: [], mcps: [], tools: [], integrations: [] } }
   }
 
@@ -478,9 +485,11 @@ async function loadConfig(projectPath) {
 /**
  * Save config
  */
-async function saveConfig(projectPath, config) {
+async function saveConfig(projectPath, config, deps = defaultDeps) {
+  const { fs, path } = deps
   const configPath = path.join(projectPath, '.ai-dev.json')
   await fs.writeJson(configPath, config, { spaces: 2 })
 }
 
-module.exports = updateCommand
+module.exports = createUpdateCommand()
+module.exports.createUpdateCommand = createUpdateCommand

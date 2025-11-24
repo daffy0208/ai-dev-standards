@@ -91,7 +91,7 @@ export class WeaviateClient {
   constructor(config: WeaviateConfig) {
     const clientConfig: any = {
       scheme: config.scheme,
-      host: config.host,
+      host: config.host
     }
 
     if (config.apiKey) {
@@ -108,16 +108,13 @@ export class WeaviateClient {
   /**
    * Create a new collection (class in Weaviate terminology)
    */
-  async createCollection(
-    name: string,
-    config: CollectionConfig
-  ): Promise<void> {
+  async createCollection(name: string, config: CollectionConfig): Promise<void> {
     const classObj = {
       class: name,
       vectorizer: config.vectorizer || 'none',
       vectorIndexType: config.vectorIndexType || 'hnsw',
       properties: config.properties,
-      moduleConfig: config.moduleConfig || {},
+      moduleConfig: config.moduleConfig || {}
     }
 
     await this.client.schema.classCreator().withClass(classObj).do()
@@ -180,7 +177,7 @@ export class WeaviateClient {
       batcher = batcher.withObject({
         class: collectionName,
         properties,
-        vector,
+        vector
       })
 
       counter++
@@ -212,7 +209,7 @@ export class WeaviateClient {
       .withNearVector({
         vector: queryVector,
         certainty: options.certainty,
-        distance: options.distance,
+        distance: options.distance
       })
       .withLimit(options.limit || 10)
 
@@ -226,7 +223,7 @@ export class WeaviateClient {
         operator: options.filter.operator,
         valueText: options.filter.valueText,
         valueNumber: options.filter.valueNumber,
-        valueBoolean: options.filter.valueBoolean,
+        valueBoolean: options.filter.valueBoolean
       })
     }
 
@@ -248,7 +245,7 @@ export class WeaviateClient {
       .withHybrid({
         query: options.query || '',
         vector: queryVector,
-        alpha: options.alpha || 0.5, // Balance between keyword and semantic
+        alpha: options.alpha || 0.5 // Balance between keyword and semantic
       })
       .withLimit(options.limit || 10)
 
@@ -262,7 +259,7 @@ export class WeaviateClient {
         operator: options.filter.operator,
         valueText: options.filter.valueText,
         valueNumber: options.filter.valueNumber,
-        valueBoolean: options.filter.valueBoolean,
+        valueBoolean: options.filter.valueBoolean
       })
     }
 
@@ -274,11 +271,7 @@ export class WeaviateClient {
    * Get object by ID
    */
   async getById(collectionName: string, id: string): Promise<any> {
-    const result = await this.client.data
-      .getterById()
-      .withClassName(collectionName)
-      .withId(id)
-      .do()
+    const result = await this.client.data.getterById().withClassName(collectionName).withId(id).do()
 
     return result
   }
@@ -299,7 +292,7 @@ export class WeaviateClient {
       .withProperties(properties)
 
     if (vector) {
-      updater = updater.withVector(vector)
+      ;(updater as any).withVector(vector)
     }
 
     await updater.do()
@@ -309,20 +302,13 @@ export class WeaviateClient {
    * Delete object by ID
    */
   async deleteById(collectionName: string, id: string): Promise<void> {
-    await this.client.data
-      .deleter()
-      .withClassName(collectionName)
-      .withId(id)
-      .do()
+    await this.client.data.deleter().withClassName(collectionName).withId(id).do()
   }
 
   /**
    * Delete objects matching filter
    */
-  async deleteByFilter(
-    collectionName: string,
-    filter: SearchOptions['filter']
-  ): Promise<void> {
+  async deleteByFilter(collectionName: string, filter: SearchOptions['filter']): Promise<void> {
     if (!filter) {
       throw new Error('Filter is required for batch delete')
     }
@@ -335,7 +321,7 @@ export class WeaviateClient {
         operator: filter.operator,
         valueText: filter.valueText,
         valueNumber: filter.valueNumber,
-        valueBoolean: filter.valueBoolean,
+        valueBoolean: filter.valueBoolean
       })
       .do()
   }
@@ -375,6 +361,6 @@ export function createWeaviateClient(): WeaviateClient {
   return new WeaviateClient({
     scheme,
     host,
-    apiKey: process.env.WEAVIATE_API_KEY,
+    apiKey: process.env.WEAVIATE_API_KEY
   })
 }

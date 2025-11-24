@@ -114,10 +114,18 @@ export class ResendClient {
   }
 
   /**
-   * Cancel scheduled email
+   * Cancel scheduled email when supported by the SDK.
    */
   async cancelEmail(emailId: string) {
-    return this.resend.emails.cancel(emailId)
+    const emailsClient = this.resend.emails as typeof this.resend.emails & {
+      cancel?: (id: string) => Promise<unknown>
+    }
+
+    if (typeof emailsClient.cancel === 'function') {
+      return emailsClient.cancel(emailId)
+    }
+
+    throw new Error('Email cancellation is not supported by the current Resend SDK version.')
   }
 }
 
@@ -203,11 +211,7 @@ export const EmailTemplates = {
   /**
    * Payment receipt
    */
-  paymentReceipt: (params: {
-    amount: string
-    date: string
-    invoiceUrl: string
-  }) => ({
+  paymentReceipt: (params: { amount: string; date: string; invoiceUrl: string }) => ({
     subject: 'Payment Receipt',
     html: `
       <h1>Payment Received</h1>
@@ -224,11 +228,7 @@ export const EmailTemplates = {
   /**
    * Subscription confirmation
    */
-  subscriptionConfirmation: (params: {
-    plan: string
-    amount: string
-    billingDate: string
-  }) => ({
+  subscriptionConfirmation: (params: { plan: string; amount: string; billingDate: string }) => ({
     subject: 'Subscription Confirmed',
     html: `
       <h1>Subscription Confirmed!</h1>

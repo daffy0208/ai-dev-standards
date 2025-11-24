@@ -63,6 +63,7 @@ console.log('Connected! File:', file.name)
 Design tokens are design decisions (colors, typography, spacing) stored as code.
 
 **Benefits:**
+
 - Single source of truth
 - Consistent across platforms
 - Easy to update
@@ -360,8 +361,8 @@ async function generateButtonComponent() {
 
   // Get button component
   const components = await client.getFileComponents(fileKey)
-  const buttonComponent = Object.values(components).find(
-    c => c.name.toLowerCase().includes('button')
+  const buttonComponent = Object.values(components).find(c =>
+    c.name.toLowerCase().includes('button')
   )
 
   if (!buttonComponent) {
@@ -462,9 +463,15 @@ function extractStyles(node: any) {
 }
 
 function rgbToHex(color: any): string {
-  const r = Math.round(color.r * 255).toString(16).padStart(2, '0')
-  const g = Math.round(color.g * 255).toString(16).padStart(2, '0')
-  const b = Math.round(color.b * 255).toString(16).padStart(2, '0')
+  const r = Math.round(color.r * 255)
+    .toString(16)
+    .padStart(2, '0')
+  const g = Math.round(color.g * 255)
+    .toString(16)
+    .padStart(2, '0')
+  const b = Math.round(color.b * 255)
+    .toString(16)
+    .padStart(2, '0')
   return `#${r}${g}${b}`
 }
 
@@ -534,6 +541,7 @@ jobs:
 ### 1. Organize Figma Files
 
 **Structure:**
+
 ```
 Design System File
 ├── 📄 Cover (description)
@@ -550,6 +558,7 @@ Design System File
 ### 2. Naming Conventions
 
 **Colors:**
+
 ```
 Primary/500
 Secondary/500
@@ -560,6 +569,7 @@ Error
 ```
 
 **Typography:**
+
 ```
 Heading/Large
 Heading/Medium
@@ -568,6 +578,7 @@ Body/Small
 ```
 
 **Components:**
+
 ```
 Button/Primary
 Button/Secondary
@@ -578,6 +589,7 @@ Card/Elevated
 ### 3. Use Figma Variables (Beta)
 
 Figma now supports variables natively. Use them for:
+
 - Colors
 - Spacing
 - Border radius
@@ -654,9 +666,7 @@ async function syncComponent(componentName: string) {
 
   // Get component from Figma
   const components = await client.getFileComponents(fileKey)
-  const component = Object.values(components).find(
-    c => c.name === componentName
-  )
+  const component = Object.values(components).find(c => c.name === componentName)
 
   if (!component) {
     throw new Error(`Component not found: ${componentName}`)
@@ -733,16 +743,19 @@ async function getCachedFile(fileKey: string) {
 ## Tools & Resources
 
 **Figma Plugins:**
+
 - Figma Tokens - Manage design tokens
 - Design Tokens - Export tokens
 - Figma to Code - Generate code
 
 **Libraries:**
+
 - `@figma/rest-api-spec` - TypeScript types
 - `figma-api` - Alternative client
 - `style-dictionary` - Transform tokens
 
 **Related Skills:**
+
 - `design-system-architect` - Building design systems
 - `visual-designer` - Design principles
 - `asset-manager` - Managing exported assets

@@ -21,21 +21,25 @@ claude-code --skill livestream-engineer
 ## Common Tasks
 
 ### Video Call
+
 ```
 "Create a WebRTC peer-to-peer video call component"
 ```
 
 ### Screen Sharing
+
 ```
 "Add screen sharing functionality with start/stop controls"
 ```
 
 ### Live Streaming
+
 ```
 "Build a live streaming platform with chat"
 ```
 
 ### Video Conference
+
 ```
 "Create a multi-party video conference (up to 4 participants)"
 ```

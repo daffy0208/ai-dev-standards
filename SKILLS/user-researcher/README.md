@@ -37,6 +37,7 @@ Guides systematic user research to understand needs, validate assumptions, and c
 ## Key Concepts
 
 **Interview Questions:**
+
 - ✅ "Tell me about the last time you..."
 - ✅ "Walk me through your process for..."
 - ❌ "Would you use...?" (hypothetical)

@@ -9,11 +9,13 @@ The Model Context Protocol (MCP) can be implemented in two fundamentally differe
 ### Pattern 1: Direct MCP (Traditional)
 
 **How it works:**
+
 - Agent loads ALL available tools into context at startup
 - Every tool description is included in every prompt
 - Agent selects and calls tools directly through MCP protocol
 
 **Visual:**
+
 ```
 Agent Startup:
 ┌─────────────────────────────────────┐
@@ -32,6 +34,7 @@ Agent → calls tool directly via MCP → Result
 ```
 
 **Characteristics:**
+
 - ✅ Simple to implement
 - ✅ Fast initialization
 - ✅ Works with any MCP server
@@ -44,12 +47,14 @@ Agent → calls tool directly via MCP → Result
 ### Pattern 2: Code Execution (Advanced)
 
 **How it works:**
-- Agent has access to tools as *code files* in filesystem
+
+- Agent has access to tools as _code files_ in filesystem
 - Agent discovers and loads only the tools it needs
 - Agent writes and executes code that uses the tools
 - Agent can create reusable "skills" that persist
 
 **Visual:**
+
 ```
 Agent Startup:
 ┌─────────────────────────────────────┐
@@ -70,6 +75,7 @@ Agent → discovers tools via filesystem/search
 ```
 
 **Characteristics:**
+
 - ✅ Massive token reduction (60-95%)
 - ✅ Scales to 1000+ tools
 - ✅ Self-improving (creates reusable skills)
@@ -81,25 +87,26 @@ Agent → discovers tools via filesystem/search
 
 ## Side-by-Side Comparison
 
-| Aspect | Direct MCP | Code Execution |
-|--------|-----------|---------------|
-| **Initial Setup** | Simple | Complex |
-| **Context Usage** | High (all tools loaded) | Low (selective loading) |
-| **Token Consumption** | Baseline | 60-95% less |
-| **Tools Supported** | ~200 maximum | 1000+ |
-| **Latency** | Baseline | Same or better |
-| **Infrastructure** | MCP servers only | MCP + sandbox + storage |
-| **Security** | Basic MCP security | 4-layer model required |
-| **Self-Improvement** | No | Yes (skills) |
-| **Prompt Engineering** | Moderate | Complex |
-| **Platform Support** | Universal | Needs IPython, persistent storage |
-| **Best For** | Simple agents, quick tasks | Complex workflows, batch processing |
+| Aspect                 | Direct MCP                 | Code Execution                      |
+| ---------------------- | -------------------------- | ----------------------------------- |
+| **Initial Setup**      | Simple                     | Complex                             |
+| **Context Usage**      | High (all tools loaded)    | Low (selective loading)             |
+| **Token Consumption**  | Baseline                   | 60-95% less                         |
+| **Tools Supported**    | ~200 maximum               | 1000+                               |
+| **Latency**            | Baseline                   | Same or better                      |
+| **Infrastructure**     | MCP servers only           | MCP + sandbox + storage             |
+| **Security**           | Basic MCP security         | 4-layer model required              |
+| **Self-Improvement**   | No                         | Yes (skills)                        |
+| **Prompt Engineering** | Moderate                   | Complex                             |
+| **Platform Support**   | Universal                  | Needs IPython, persistent storage   |
+| **Best For**           | Simple agents, quick tasks | Complex workflows, batch processing |
 
 ## Detailed Comparison
 
 ### Token Consumption
 
 **Direct MCP Example:**
+
 ```
 Task: "Copy Google Drive doc to Notion"
 
@@ -114,6 +121,7 @@ Agent uses 2 tools but pays for all 50.
 ```
 
 **Code Execution Example:**
+
 ```
 Task: "Copy Google Drive doc to Notion"
 
@@ -129,6 +137,7 @@ Agent discovers:
 ### Execution Flow
 
 **Direct MCP:**
+
 ```
 1. Agent receives task
 2. Agent selects tool from loaded context
@@ -139,6 +148,7 @@ Agent discovers:
 ```
 
 **Code Execution:**
+
 ```
 1. Agent receives task
 2. Agent checks /mnt/skills/ for existing solution
@@ -155,6 +165,7 @@ Agent discovers:
 ### Scalability
 
 **Direct MCP Scalability Curve:**
+
 ```
 Tools:    10      50      100     200     500
 Tokens:   5K     25K     50K     100K    250K
@@ -163,6 +174,7 @@ Scale:    ✅     ✅      ⚠️      ❌      ❌
 ```
 
 **Code Execution Scalability Curve:**
+
 ```
 Tools:    10      50      100     200     500     1000
 Tokens:   2K      3K      4K      5K      6K      8K
@@ -183,6 +195,7 @@ Scale:    ✅     ✅      ✅      ✅      ✅      ✅
 ✅ **Stable toolset** - Tools rarely change
 
 **Examples:**
+
 - Slack notification bot
 - Simple CRUD operations
 - Status checkers
@@ -199,6 +212,7 @@ Scale:    ✅     ✅      ✅      ✅      ✅      ✅
 ✅ **High usage** - Cost savings matter
 
 **Examples:**
+
 - Data analysis pipelines
 - Multi-system integrations
 - Document processing workflows
@@ -208,6 +222,7 @@ Scale:    ✅     ✅      ✅      ✅      ✅      ✅
 ### Use BOTH (Hybrid Approach):
 
 ✅ **Brain orchestrator decides automatically**
+
 - Simple tasks → Direct MCP
 - Complex tasks → Code Execution
 - Automatic pattern selection based on task analysis
@@ -217,11 +232,13 @@ See [Brain Orchestrator Integration](./09-brain-orchestrator-mcp-integration.md)
 ## Migration Path
 
 ### Your Current State
+
 - **50 MCPs** using Direct MCP
 - **64 Skills** depending on MCPs
 - Works well for current use cases
 
 ### Migration Strategy
+
 1. **Assess**: Identify high-value migration candidates
 2. **Pilot**: Migrate 1-2 complex MCPs first
 3. **Validate**: Measure actual token reduction
@@ -233,6 +250,7 @@ See [Migration Guide](./04-mcp-migration-guide.md) for step-by-step process.
 ## Architecture Diagrams
 
 ### Direct MCP Architecture
+
 ```
 ┌─────────────────────────────────────────────────────┐
 │ AI Agent (Claude)                                    │
@@ -256,6 +274,7 @@ See [Migration Guide](./04-mcp-migration-guide.md) for step-by-step process.
 ```
 
 ### Code Execution Architecture
+
 ```
 ┌─────────────────────────────────────────────────────┐
 │ AI Agent (Claude)                                    │
@@ -308,18 +327,22 @@ See [Migration Guide](./04-mcp-migration-guide.md) for step-by-step process.
 Based on analysis of your 50 MCPs and 64 skills:
 
 ### Token Savings
+
 - **Simple MCPs** (< 5 tools): 50% reduction
 - **Medium MCPs** (5-10 tools): 70% reduction
 - **Complex MCPs** (10+ tools): 85% reduction
 
 ### Cost Savings (Estimated)
-*To be calculated based on actual usage data*
+
+_To be calculated based on actual usage data_
+
 - Current baseline: TBD
 - After migration: TBD
 - Monthly savings: TBD
 - Break-even: TBD
 
 ### Skill Library Growth
+
 - Month 1: 5-10 skills created
 - Month 3: 20-30 skills (60% reuse)
 - Month 6: 40-50 skills (75% reuse)
@@ -328,12 +351,14 @@ Based on analysis of your 50 MCPs and 64 skills:
 ## Key Principles
 
 ### Direct MCP Principles
+
 1. **Simplicity first** - Easy to understand and implement
 2. **Universal compatibility** - Works everywhere
 3. **Reliable** - Proven pattern
 4. **Transparent** - Agent behavior is clear
 
 ### Code Execution Principles
+
 1. **Efficiency** - Only load what you need
 2. **Scalability** - Grows with your toolset
 3. **Self-improvement** - Gets better over time
@@ -356,6 +381,7 @@ The best approach for ai-dev-standards is likely **hybrid**: use Direct MCP by d
 ---
 
 **Related Documentation:**
+
 - [Decision Framework](./01-mcp-decision-framework.md) - Choose the right pattern
 - [Direct MCP Pattern](./02-mcp-direct-pattern.md) - Your current implementation
 - [Code Execution Pattern](./03-mcp-code-execution-pattern.md) - Advanced pattern

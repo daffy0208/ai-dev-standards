@@ -17,6 +17,7 @@ This directory will contain conceptual guides and explanations for understanding
 ## Contributing
 
 When adding conceptual documentation:
+
 - Start with the "why" before the "how"
 - Use diagrams and visual aids where helpful
 - Provide real-world examples
@@ -24,4 +25,4 @@ When adding conceptual documentation:
 
 ---
 
-*Last Updated: 2025-10-23*
+_Last Updated: 2025-10-23_

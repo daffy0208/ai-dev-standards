@@ -25,7 +25,7 @@
 
 'use client'
 
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 
 export interface FormFieldProps {
   label: string
@@ -59,9 +59,7 @@ export function FormField({
           {error}
         </p>
       )}
-      {helpText && !error && (
-        <p className="text-sm text-gray-500">{helpText}</p>
-      )}
+      {helpText && !error && <p className="text-sm text-gray-500">{helpText}</p>}
     </div>
   )
 }
@@ -82,9 +80,7 @@ export function Input({ label, error, helpText, required, className = '', ...pro
         {...props}
         required={required}
         className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
-          error
-            ? 'border-red-500 focus:ring-red-500'
-            : 'border-gray-300 focus:ring-blue-500'
+          error ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
         } ${className}`}
       />
     </FormField>
@@ -100,16 +96,21 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   helpText?: string
 }
 
-export function Textarea({ label, error, helpText, required, className = '', ...props }: TextareaProps) {
+export function Textarea({
+  label,
+  error,
+  helpText,
+  required,
+  className = '',
+  ...props
+}: TextareaProps) {
   return (
     <FormField label={label} error={error} helpText={helpText} required={required}>
       <textarea
         {...props}
         required={required}
         className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 resize-vertical ${
-          error
-            ? 'border-red-500 focus:ring-red-500'
-            : 'border-gray-300 focus:ring-blue-500'
+          error ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
         } ${className}`}
       />
     </FormField>
@@ -143,9 +144,7 @@ export function Select({
         {...props}
         required={required}
         className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
-          error
-            ? 'border-red-500 focus:ring-red-500'
-            : 'border-gray-300 focus:ring-blue-500'
+          error ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
         } ${className}`}
       >
         {placeholder && <option value="">{placeholder}</option>}
@@ -184,9 +183,7 @@ export function Checkbox({ label, error, helpText, className = '', ...props }: C
           {error}
         </p>
       )}
-      {helpText && !error && (
-        <p className="text-sm text-gray-500">{helpText}</p>
-      )}
+      {helpText && !error && <p className="text-sm text-gray-500">{helpText}</p>}
     </div>
   )
 }
@@ -229,7 +226,7 @@ export function RadioGroup({
               name={name}
               value={option.value}
               checked={value === option.value}
-              onChange={(e) => onChange(e.target.value)}
+              onChange={e => onChange(e.target.value)}
               className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
             />
             <span className="text-sm text-gray-700">{option.label}</span>
@@ -241,9 +238,7 @@ export function RadioGroup({
           {error}
         </p>
       )}
-      {helpText && !error && (
-        <p className="text-sm text-gray-500">{helpText}</p>
-      )}
+      {helpText && !error && <p className="text-sm text-gray-500">{helpText}</p>}
     </div>
   )
 }
@@ -292,9 +287,7 @@ export function FileInput({
         onChange={handleChange}
         {...props}
         className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 ${
-          error
-            ? 'border-red-500 focus:ring-red-500'
-            : 'border-gray-300 focus:ring-blue-500'
+          error ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
         } ${className}`}
       />
     </FormField>
@@ -330,9 +323,7 @@ export function Toggle({ label, checked, onChange, helpText }: ToggleProps) {
         />
       </button>
       <label className="ml-3 text-sm text-gray-700">{label}</label>
-      {helpText && (
-        <p className="text-sm text-gray-500">{helpText}</p>
-      )}
+      {helpText && <p className="text-sm text-gray-500">{helpText}</p>}
     </div>
   )
 }
@@ -359,12 +350,7 @@ export function ExampleCompleteForm() {
         error="Password must be at least 8 characters"
       />
 
-      <Textarea
-        label="Bio"
-        name="bio"
-        rows={4}
-        helpText="Tell us about yourself"
-      />
+      <Textarea label="Bio" name="bio" rows={4} helpText="Tell us about yourself" />
 
       <Select
         label="Country"
@@ -377,10 +363,7 @@ export function ExampleCompleteForm() {
         placeholder="Select a country"
       />
 
-      <Checkbox
-        label="I accept the terms and conditions"
-        name="acceptTerms"
-      />
+      <Checkbox label="I accept the terms and conditions" name="acceptTerms" />
 
       <RadioGroup
         label="Subscription Plan"
@@ -391,7 +374,7 @@ export function ExampleCompleteForm() {
           { value: 'enterprise', label: 'Enterprise - $99/mo' }
         ]}
         value="pro"
-        onChange={(value) => console.log(value)}
+        onChange={value => console.log(value)}
       />
 
       <FileInput
@@ -405,7 +388,7 @@ export function ExampleCompleteForm() {
       <Toggle
         label="Email notifications"
         checked={true}
-        onChange={(checked) => console.log(checked)}
+        onChange={checked => console.log(checked)}
         helpText="Receive email updates about your account"
       />
 

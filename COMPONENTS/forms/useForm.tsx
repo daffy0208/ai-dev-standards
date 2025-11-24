@@ -30,7 +30,7 @@
 
 'use client'
 
-import { useState, useCallback, FormEvent, ChangeEvent } from 'react'
+import React, { useState, useCallback, FormEvent, ChangeEvent } from 'react'
 import { z } from 'zod'
 
 export interface UseFormOptions<T extends z.ZodTypeAny> {
@@ -76,49 +76,51 @@ export function useForm<T extends z.ZodTypeAny>({
   const [isDirty, setIsDirty] = useState(false)
 
   // Register field
-  const register = useCallback((name: keyof FormData) => {
-    return {
-      name: String(name),
-      value: values[name] ?? '',
-      onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        const value = e.target.type === 'checkbox'
-          ? (e.target as HTMLInputElement).checked
-          : e.target.value
+  const register = useCallback(
+    (name: keyof FormData) => {
+      return {
+        name: String(name),
+        value: values[name] ?? '',
+        onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+          const value =
+            e.target.type === 'checkbox' ? (e.target as HTMLInputElement).checked : e.target.value
 
-        setValues(prev => ({ ...prev, [name]: value }))
-        setIsDirty(true)
+          setValues(prev => ({ ...prev, [name]: value }))
+          setIsDirty(true)
 
-        // Clear error on change
-        if (errors[name]) {
-          setErrors(prev => {
-            const newErrors = { ...prev }
-            delete newErrors[name]
-            return newErrors
-          })
-        }
-      },
-      onBlur: () => {
-        setTouched(prev => ({ ...prev, [name]: true }))
-
-        // Validate field on blur
-        try {
-          if (schema instanceof z.ZodObject) {
-            const fieldSchema = schema.shape[name as string]
-            if (fieldSchema) {
-              fieldSchema.parse(values[name])
-            }
+          // Clear error on change
+          if (errors[name]) {
+            setErrors(prev => {
+              const newErrors = { ...prev }
+              delete newErrors[name]
+              return newErrors
+            })
           }
-        } catch (error) {
-          if (error instanceof z.ZodError) {
-            setErrors(prev => ({
-              ...prev,
-              [name]: error.errors[0].message
-            }))
+        },
+        onBlur: () => {
+          setTouched(prev => ({ ...prev, [name]: true }))
+
+          // Validate field on blur
+          try {
+            if (schema instanceof z.ZodObject) {
+              const fieldSchema = schema.shape[name as string]
+              if (fieldSchema) {
+                fieldSchema.parse(values[name])
+              }
+            }
+          } catch (error) {
+            if (error instanceof z.ZodError) {
+              setErrors(prev => ({
+                ...prev,
+                [name]: error.errors[0].message
+              }))
+            }
           }
         }
       }
-    }
-  }, [values, errors, schema])
+    },
+    [values, errors, schema]
+  )
 
   // Set field value programmatically
   const setValue = useCallback((name: keyof FormData, value: any) => {
@@ -161,46 +163,55 @@ export function useForm<T extends z.ZodTypeAny>({
   }, [values, schema, onError])
 
   // Handle form submission
-  const handleSubmit = useCallback(async (e: FormEvent) => {
-    e.preventDefault()
+  const handleSubmit = useCallback(
+    async (e: FormEvent) => {
+      e.preventDefault()
 
-    if (isSubmitting) return
+      if (isSubmitting) return
 
-    // Mark all fields as touched
-    const allTouched = Object.keys(values).reduce((acc, key) => {
-      acc[key as keyof FormData] = true
-      return acc
-    }, {} as Partial<Record<keyof FormData, boolean>>)
-    setTouched(allTouched)
+      // Mark all fields as touched
+      const allTouched = Object.keys(values).reduce(
+        (acc, key) => {
+          acc[key as keyof FormData] = true
+          return acc
+        },
+        {} as Partial<Record<keyof FormData, boolean>>
+      )
+      setTouched(allTouched)
 
-    // Validate
-    if (!validate()) {
-      return
-    }
-
-    setIsSubmitting(true)
-
-    try {
-      await onSubmit(values as FormData)
-    } catch (error) {
-      console.error('Form submission error:', error)
-
-      if (error instanceof Error) {
-        setErrors({ _form: error.message } as any)
+      // Validate
+      if (!validate()) {
+        return
       }
-    } finally {
-      setIsSubmitting(false)
-    }
-  }, [values, validate, onSubmit, isSubmitting])
+
+      setIsSubmitting(true)
+
+      try {
+        await onSubmit(values as FormData)
+      } catch (error) {
+        console.error('Form submission error:', error)
+
+        if (error instanceof Error) {
+          setErrors({ _form: error.message } as any)
+        }
+      } finally {
+        setIsSubmitting(false)
+      }
+    },
+    [values, validate, onSubmit, isSubmitting]
+  )
 
   // Reset form
-  const reset = useCallback((newValues?: Partial<FormData>) => {
-    setValues(newValues || defaultValues)
-    setErrors({})
-    setTouched({})
-    setIsDirty(false)
-    setIsSubmitting(false)
-  }, [defaultValues])
+  const reset = useCallback(
+    (newValues?: Partial<FormData>) => {
+      setValues(newValues || defaultValues)
+      setErrors({})
+      setTouched({})
+      setIsDirty(false)
+      setIsSubmitting(false)
+    },
+    [defaultValues]
+  )
 
   // Check if form is valid
   const isValid = Object.keys(errors).length === 0
@@ -239,7 +250,7 @@ export function ExampleForm() {
       password: '',
       name: ''
     },
-    onSubmit: async (data) => {
+    onSubmit: async data => {
       console.log('Submitting:', data)
       // await api.createUser(data)
     }
@@ -273,11 +284,7 @@ export function ExampleForm() {
 
       <div>
         <label>Name</label>
-        <input
-          type="text"
-          {...form.register('name')}
-          className="border rounded px-3 py-2 w-full"
-        />
+        <input type="text" {...form.register('name')} className="border rounded px-3 py-2 w-full" />
         {form.errors.name && form.touched.name && (
           <span className="text-red-600 text-sm">{form.errors.name}</span>
         )}

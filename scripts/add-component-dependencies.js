@@ -1,10 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const registryPath = path.join(__dirname, '..', 'META', 'registry.json');
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const registryPath = path.join(__dirname, '..', 'META', 'registry.json')
 
 // Component dependencies mapping
 const componentDependencies = {
@@ -18,17 +18,17 @@ const componentDependencies = {
     utils: [],
     components: []
   },
-  'agents': {
+  agents: {
     integrations: ['llm-providers'],
     utils: ['api', 'cli'],
     components: []
   },
-  'workflows': {
+  workflows: {
     integrations: [],
     utils: ['cli'],
     components: ['agents']
   },
-  'forms': {
+  forms: {
     integrations: [],
     utils: ['validation'],
     components: ['ui-components']
@@ -38,42 +38,44 @@ const componentDependencies = {
     utils: ['api'],
     components: []
   },
-  'auth': {
+  auth: {
     integrations: [],
     utils: ['api'],
     components: ['forms']
   },
-  'errors': {
+  errors: {
     integrations: [],
     utils: [],
     components: []
   },
-  'feedback': {
+  feedback: {
     integrations: [],
     utils: [],
     components: ['ui-components']
   }
-};
+}
 
 // Read registry
-const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'))
 
 // Add dependencies to components
-let updated = 0;
+let updated = 0
 for (const component of registry.components) {
-  const deps = componentDependencies[component.category];
+  const deps = componentDependencies[component.category]
   if (deps && !component.dependencies) {
-    component.dependencies = deps;
-    updated++;
-    console.log(`✅ Added dependencies to: ${component.category}`);
+    component.dependencies = deps
+    updated++
+    console.log(`✅ Added dependencies to: ${component.category}`)
   }
 }
 
 // Update timestamp
-registry.lastUpdated = new Date().toISOString();
+registry.lastUpdated = new Date().toISOString()
 
 // Write back
-fs.writeFileSync(registryPath, JSON.stringify(registry, null, 2));
+fs.writeFileSync(registryPath, JSON.stringify(registry, null, 2))
 
-console.log(`\n✅ Updated ${updated} components with dependencies`);
-console.log(`📝 Total components with dependencies: ${registry.components.filter(c => c.dependencies).length}/9`);
+console.log(`\n✅ Updated ${updated} components with dependencies`)
+console.log(
+  `📝 Total components with dependencies: ${registry.components.filter(c => c.dependencies).length}/9`
+)

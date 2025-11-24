@@ -25,39 +25,17 @@
  * ```
  */
 
-import { Tool } from '@langchain/core/tools'
+import { StructuredTool } from '@langchain/core/tools'
 import { z } from 'zod'
 
 const WebPConverterSchema = z.object({
-  input: z
-    .string()
-    .describe('Path to image file, directory, or glob pattern'),
-  output: z
-    .string()
-    .optional()
-    .describe('Output directory (defaults to same as input)'),
-  quality: z
-    .number()
-    .min(1)
-    .max(100)
-    .default(85)
-    .describe('WebP quality (1-100)'),
-  lossless: z
-    .boolean()
-    .default(false)
-    .describe('Use lossless compression'),
-  generateFallback: z
-    .boolean()
-    .default(true)
-    .describe('Generate JPEG fallback for compatibility'),
-  preserveOriginal: z
-    .boolean()
-    .default(true)
-    .describe('Keep original files'),
-  stripMetadata: z
-    .boolean()
-    .default(true)
-    .describe('Remove EXIF metadata'),
+  input: z.string().describe('Path to image file, directory, or glob pattern'),
+  output: z.string().optional().describe('Output directory (defaults to same as input)'),
+  quality: z.number().min(1).max(100).default(85).describe('WebP quality (1-100)'),
+  lossless: z.boolean().default(false).describe('Use lossless compression'),
+  generateFallback: z.boolean().default(true).describe('Generate JPEG fallback for compatibility'),
+  preserveOriginal: z.boolean().default(true).describe('Keep original files'),
+  stripMetadata: z.boolean().default(true).describe('Remove EXIF metadata'),
   alphaQuality: z
     .number()
     .min(1)
@@ -69,7 +47,7 @@ const WebPConverterSchema = z.object({
     .min(0)
     .max(6)
     .default(4)
-    .describe('Compression method (0=fast, 6=slowest/best)'),
+    .describe('Compression method (0=fast, 6=slowest/best)')
 })
 
 export type WebPConverterInput = z.infer<typeof WebPConverterSchema>
@@ -99,7 +77,7 @@ export interface WebPConversionResult {
   error?: string
 }
 
-export class WebPConverterTool extends Tool {
+export class WebPConverterTool extends StructuredTool<typeof WebPConverterSchema> {
   name = 'webp_converter'
 
   description = `Convert images to WebP format for optimal web performance.
@@ -140,14 +118,12 @@ export class WebPConverterTool extends Tool {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
       return JSON.stringify({
         success: false,
-        error: errorMessage,
+        error: errorMessage
       })
     }
   }
 
-  private async convertToWebP(
-    input: WebPConverterInput
-  ): Promise<WebPConversionResult> {
+  private async convertToWebP(input: WebPConverterInput): Promise<WebPConversionResult> {
     const startTime = Date.now()
 
     // Mock implementation showing the structure
@@ -166,8 +142,8 @@ export class WebPConverterTool extends Tool {
         savings: 324000,
         savingsPercent: 31.6,
         width: 1920,
-        height: 1080,
-      },
+        height: 1080
+      }
     ]
 
     const totalOriginalSize = mockFiles.reduce((sum, file) => sum + file.originalSize, 0)
@@ -186,7 +162,7 @@ export class WebPConverterTool extends Tool {
       totalSavingsPercent: Math.round(
         ((totalOriginalSize - totalWebPSize) / totalOriginalSize) * 100
       ),
-      processingTime: Date.now() - startTime,
+      processingTime: Date.now() - startTime
     }
 
     return result
@@ -203,9 +179,7 @@ export function createWebPConverterTool(): WebPConverterTool {
 /**
  * Convert images to WebP (direct function call)
  */
-export async function convertToWebP(
-  input: WebPConverterInput
-): Promise<WebPConversionResult> {
+export async function convertToWebP(input: WebPConverterInput): Promise<WebPConversionResult> {
   const tool = new WebPConverterTool()
   const result = await tool._call(input)
   return JSON.parse(result)
@@ -223,15 +197,7 @@ export function generateWebPPictureElement(options: {
   className?: string
   loading?: 'lazy' | 'eager'
 }): string {
-  const {
-    webpSrc,
-    fallbackSrc,
-    alt,
-    srcset,
-    sizes,
-    className,
-    loading = 'lazy',
-  } = options
+  const { webpSrc, fallbackSrc, alt, srcset, sizes, className, loading = 'lazy' } = options
 
   const srcsetAttr = srcset ? `srcset="${srcset}"` : ''
   const sizesAttr = sizes ? `sizes="${sizes}"` : ''
@@ -273,7 +239,7 @@ export function checkWebPSupport(): Promise<boolean> {
     return Promise.resolve(false)
   }
 
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     const webP = new Image()
     webP.onload = webP.onerror = () => {
       resolve(webP.height === 2)

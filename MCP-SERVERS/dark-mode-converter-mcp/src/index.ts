@@ -1,19 +1,19 @@
 #!/usr/bin/env node
 
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { Server } from '@modelcontextprotocol/sdk/server/index.js'
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
   ListResourcesRequestSchema,
-  ReadResourceRequestSchema,
-} from '@modelcontextprotocol/sdk/types.js';
+  ReadResourceRequestSchema
+} from '@modelcontextprotocol/sdk/types.js'
 
 interface DarkModeExample {
-  name: string;
-  lightColors: any;
-  darkColors: any;
-  strategy: string;
+  name: string
+  lightColors: any
+  darkColors: any
+  strategy: string
 }
 
 const darkModeExamples: DarkModeExample[] = [
@@ -21,14 +21,14 @@ const darkModeExamples: DarkModeExample[] = [
     name: 'GitHub Dark',
     lightColors: { bg: '#FFFFFF', text: '#24292E', border: '#E1E4E8' },
     darkColors: { bg: '#0D1117', text: '#C9D1D9', border: '#30363D' },
-    strategy: 'custom',
-  },
-];
+    strategy: 'custom'
+  }
+]
 
 const server = new Server(
   { name: 'dark-mode-converter-mcp', version: '1.0.0' },
   { capabilities: { tools: {}, resources: {} } }
-);
+)
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: [
@@ -46,25 +46,25 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
               surface: { type: 'string' },
               text: { type: 'string' },
               primary: { type: 'string' },
-              secondary: { type: 'string' },
-            },
+              secondary: { type: 'string' }
+            }
           },
           strategy: {
             type: 'string',
             enum: ['auto', 'invert', 'desaturate', 'shift-hue', 'custom'],
-            description: 'Conversion strategy',
+            description: 'Conversion strategy'
           },
           preserveBrand: {
             type: 'boolean',
-            description: 'Keep brand colors unchanged',
+            description: 'Keep brand colors unchanged'
           },
           contrastTarget: {
             type: 'number',
-            description: 'Target contrast ratio (default: 4.5)',
-          },
+            description: 'Target contrast ratio (default: 4.5)'
+          }
         },
-        required: ['lightColors'],
-      },
+        required: ['lightColors']
+      }
     },
     {
       name: 'suggestDarkVariant',
@@ -74,21 +74,21 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           lightColor: {
             type: 'string',
-            description: 'Hex color to convert',
+            description: 'Hex color to convert'
           },
           role: {
             type: 'string',
             enum: ['background', 'surface', 'text', 'primary', 'accent'],
-            description: 'Color role/usage',
+            description: 'Color role/usage'
           },
           adjacentColors: {
             type: 'array',
             items: { type: 'string' },
-            description: 'Colors used nearby for contrast checking',
-          },
+            description: 'Colors used nearby for contrast checking'
+          }
         },
-        required: ['lightColor', 'role'],
-      },
+        required: ['lightColor', 'role']
+      }
     },
     {
       name: 'validateDarkContrast',
@@ -98,12 +98,12 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           darkTheme: {
             type: 'object',
-            description: 'Dark mode theme to validate',
+            description: 'Dark mode theme to validate'
           },
           wcagLevel: {
             type: 'string',
             enum: ['AA', 'AAA'],
-            description: 'WCAG compliance level',
+            description: 'WCAG compliance level'
           },
           checkCombinations: {
             type: 'array',
@@ -112,14 +112,14 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
               properties: {
                 foreground: { type: 'string' },
                 background: { type: 'string' },
-                usage: { type: 'string' },
-              },
+                usage: { type: 'string' }
+              }
             },
-            description: 'Specific color combinations to check',
-          },
+            description: 'Specific color combinations to check'
+          }
         },
-        required: ['darkTheme'],
-      },
+        required: ['darkTheme']
+      }
     },
     {
       name: 'generateDarkPalette',
@@ -129,27 +129,27 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           brandColor: {
             type: 'string',
-            description: 'Primary brand color',
+            description: 'Primary brand color'
           },
           style: {
             type: 'string',
             enum: ['pure-black', 'true-dark', 'soft-dark', 'blue-tinted', 'warm-dark'],
-            description: 'Dark mode style',
+            description: 'Dark mode style'
           },
           includeSemantics: {
             type: 'boolean',
-            description: 'Include success/warning/error colors',
-          },
+            description: 'Include success/warning/error colors'
+          }
         },
-        required: ['brandColor'],
-      },
-    },
-  ],
-}));
+        required: ['brandColor']
+      }
+    }
+  ]
+}))
 
-server.setRequestHandler(CallToolRequestSchema, async (request) => {
+server.setRequestHandler(CallToolRequestSchema, async request => {
   try {
-    const { name, arguments: args } = request.params;
+    const { name, arguments: args } = request.params
 
     switch (name) {
       case 'convertToDarkMode': {
@@ -157,30 +157,30 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           lightColors,
           strategy = 'auto',
           preserveBrand = true,
-          contrastTarget = 4.5,
-        } = args as any;
+          contrastTarget = 4.5
+        } = args as any
 
         if (!lightColors) {
-          throw new Error('Missing required argument: lightColors');
+          throw new Error('Missing required argument: lightColors')
         }
 
         // Convert colors based on strategy
-        const darkColors: any = {};
+        const darkColors: any = {}
 
         // Background: light → dark
-        darkColors.background = invertLightness(lightColors.background || '#FFFFFF', 5);
-        darkColors.surface = invertLightness(lightColors.surface || '#F9FAFB', 8);
+        darkColors.background = invertLightness(lightColors.background || '#FFFFFF', 5)
+        darkColors.surface = invertLightness(lightColors.surface || '#F9FAFB', 8)
 
         // Text: dark → light
-        darkColors.text = invertLightness(lightColors.text || '#111827', 95);
+        darkColors.text = invertLightness(lightColors.text || '#111827', 95)
 
         // Brand colors: preserve or adjust
         darkColors.primary = preserveBrand
           ? lightColors.primary
-          : adjustForDarkMode(lightColors.primary || '#4F46E5');
+          : adjustForDarkMode(lightColors.primary || '#4F46E5')
         darkColors.secondary = preserveBrand
           ? lightColors.secondary
-          : adjustForDarkMode(lightColors.secondary || '#EC4899');
+          : adjustForDarkMode(lightColors.secondary || '#EC4899')
 
         const result = {
           success: true,
@@ -192,51 +192,51 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             preserveBrand,
             contrastRatios: {
               textOnBackground: calculateContrast(darkColors.text, darkColors.background),
-              primaryOnSurface: calculateContrast(darkColors.primary, darkColors.surface),
+              primaryOnSurface: calculateContrast(darkColors.primary, darkColors.surface)
             },
-            meetsTarget: true,
-          },
-        };
+            meetsTarget: true
+          }
+        }
 
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
-        };
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
+        }
       }
 
       case 'suggestDarkVariant': {
-        const { lightColor, role, adjacentColors = [] } = args as any;
+        const { lightColor, role, adjacentColors = [] } = args as any
 
         if (!lightColor || !role) {
-          throw new Error('Missing required arguments: lightColor, role');
+          throw new Error('Missing required arguments: lightColor, role')
         }
 
-        let darkVariant: string;
-        let reasoning: string;
+        let darkVariant: string
+        let reasoning: string
 
         switch (role) {
           case 'background':
-            darkVariant = '#0D1117';
-            reasoning = 'Pure dark backgrounds reduce eye strain and improve battery life on OLED';
-            break;
+            darkVariant = '#0D1117'
+            reasoning = 'Pure dark backgrounds reduce eye strain and improve battery life on OLED'
+            break
           case 'surface':
-            darkVariant = '#161B22';
-            reasoning = 'Slightly lighter than background for card/surface elevation';
-            break;
+            darkVariant = '#161B22'
+            reasoning = 'Slightly lighter than background for card/surface elevation'
+            break
           case 'text':
-            darkVariant = '#C9D1D9';
-            reasoning = 'Light gray text (not pure white) reduces contrast and eye strain';
-            break;
+            darkVariant = '#C9D1D9'
+            reasoning = 'Light gray text (not pure white) reduces contrast and eye strain'
+            break
           case 'primary':
-            darkVariant = adjustForDarkMode(lightColor);
-            reasoning = 'Slightly lighter/more saturated for visibility on dark backgrounds';
-            break;
+            darkVariant = adjustForDarkMode(lightColor)
+            reasoning = 'Slightly lighter/more saturated for visibility on dark backgrounds'
+            break
           case 'accent':
-            darkVariant = adjustForDarkMode(lightColor);
-            reasoning = 'Increased saturation for accent colors in dark mode';
-            break;
+            darkVariant = adjustForDarkMode(lightColor)
+            reasoning = 'Increased saturation for accent colors in dark mode'
+            break
           default:
-            darkVariant = lightColor;
-            reasoning = 'No conversion applied';
+            darkVariant = lightColor
+            reasoning = 'No conversion applied'
         }
 
         const result = {
@@ -247,43 +247,42 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             darkVariant,
             role,
             reasoning,
-            contrast: adjacentColors.length > 0
-              ? calculateContrast(darkVariant, adjacentColors[0])
-              : null,
-          },
-        };
+            contrast:
+              adjacentColors.length > 0 ? calculateContrast(darkVariant, adjacentColors[0]) : null
+          }
+        }
 
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
-        };
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
+        }
       }
 
       case 'validateDarkContrast': {
-        const { darkTheme, wcagLevel = 'AA', checkCombinations = [] } = args as any;
+        const { darkTheme, wcagLevel = 'AA', checkCombinations = [] } = args as any
 
         if (!darkTheme) {
-          throw new Error('Missing required argument: darkTheme');
+          throw new Error('Missing required argument: darkTheme')
         }
 
-        const minContrast = wcagLevel === 'AAA' ? 7 : 4.5;
-        const issues = [];
+        const minContrast = wcagLevel === 'AAA' ? 7 : 4.5
+        const issues = []
 
         // Check common combinations
         const textBgContrast = calculateContrast(
           darkTheme.colors?.text || '#C9D1D9',
           darkTheme.colors?.background || '#0D1117'
-        );
+        )
 
         if (textBgContrast < minContrast) {
           issues.push({
             combination: 'text on background',
             actual: textBgContrast,
             required: minContrast,
-            severity: 'high',
-          });
+            severity: 'high'
+          })
         }
 
-        const passed = issues.length === 0;
+        const passed = issues.length === 0
 
         const result = {
           success: true,
@@ -294,20 +293,20 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             minContrast,
             issues,
             checkedCombinations: checkCombinations.length || 'default combinations',
-            score: `${Math.max(0, 100 - issues.length * 20)}%`,
-          },
-        };
+            score: `${Math.max(0, 100 - issues.length * 20)}%`
+          }
+        }
 
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
-        };
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
+        }
       }
 
       case 'generateDarkPalette': {
-        const { brandColor, style = 'true-dark', includeSemantics = true } = args as any;
+        const { brandColor, style = 'true-dark', includeSemantics = true } = args as any
 
         if (!brandColor) {
-          throw new Error('Missing required argument: brandColor');
+          throw new Error('Missing required argument: brandColor')
         }
 
         const backgrounds: any = {
@@ -315,10 +314,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           'true-dark': { bg: '#0D1117', surface: '#161B22' },
           'soft-dark': { bg: '#1A1A1A', surface: '#242424' },
           'blue-tinted': { bg: '#0A1929', surface: '#132F4C' },
-          'warm-dark': { bg: '#1A1612', surface: '#2A251E' },
-        };
+          'warm-dark': { bg: '#1A1612', surface: '#2A251E' }
+        }
 
-        const { bg, surface } = backgrounds[style] || backgrounds['true-dark'];
+        const { bg, surface } = backgrounds[style] || backgrounds['true-dark']
 
         const palette: any = {
           background: bg,
@@ -327,14 +326,14 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           textSecondary: '#9DA3A7',
           border: '#30363D',
           primary: adjustForDarkMode(brandColor),
-          primaryHover: adjustForDarkMode(brandColor, 10),
-        };
+          primaryHover: adjustForDarkMode(brandColor, 10)
+        }
 
         if (includeSemantics) {
-          palette.success = '#3FB950';
-          palette.warning = '#D29922';
-          palette.error = '#F85149';
-          palette.info = '#58A6FF';
+          palette.success = '#3FB950'
+          palette.warning = '#D29922'
+          palette.error = '#F85149'
+          palette.info = '#58A6FF'
         }
 
         const result = {
@@ -347,31 +346,31 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             includeSemantics,
             contrastRatios: {
               text: calculateContrast(palette.text, palette.background),
-              primary: calculateContrast(palette.primary, palette.background),
-            },
-          },
-        };
+              primary: calculateContrast(palette.primary, palette.background)
+            }
+          }
+        }
 
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
-        };
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
+        }
       }
 
       default:
-        throw new Error(`Unknown tool: ${name}`);
+        throw new Error(`Unknown tool: ${name}`)
     }
   } catch (error) {
     return {
       content: [
         {
           type: 'text',
-          text: `Error: ${error instanceof Error ? error.message : String(error)}`,
-        },
+          text: `Error: ${error instanceof Error ? error.message : String(error)}`
+        }
       ],
-      isError: true,
-    };
+      isError: true
+    }
   }
-});
+})
 
 server.setRequestHandler(ListResourcesRequestSchema, async () => ({
   resources: [
@@ -379,19 +378,19 @@ server.setRequestHandler(ListResourcesRequestSchema, async () => ({
       uri: 'dark-mode://examples',
       name: 'Dark Mode Examples',
       description: 'Curated examples of excellent dark mode implementations',
-      mimeType: 'application/json',
+      mimeType: 'application/json'
     },
     {
       uri: 'dark-mode://guide',
       name: 'Dark Mode Design Guide',
       description: 'Comprehensive guide to designing dark mode',
-      mimeType: 'text/plain',
-    },
-  ],
-}));
+      mimeType: 'text/plain'
+    }
+  ]
+}))
 
-server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
-  const { uri } = request.params;
+server.setRequestHandler(ReadResourceRequestSchema, async request => {
+  const { uri } = request.params
 
   if (uri === 'dark-mode://examples') {
     return {
@@ -399,10 +398,10 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
         {
           uri,
           mimeType: 'application/json',
-          text: JSON.stringify({ examples: darkModeExamples }, null, 2),
-        },
-      ],
-    };
+          text: JSON.stringify({ examples: darkModeExamples }, null, 2)
+        }
+      ]
+    }
   }
 
   if (uri === 'dark-mode://guide') {
@@ -512,44 +511,44 @@ Implementation:
 - JS: localStorage + system detection
 - Toggle: Smooth transition (200ms)
 - Icons: Moon/sun symbols
-`;
+`
     return {
       contents: [
         {
           uri,
           mimeType: 'text/plain',
-          text: guide,
-        },
-      ],
-    };
+          text: guide
+        }
+      ]
+    }
   }
 
-  throw new Error(`Unknown resource: ${uri}`);
-});
+  throw new Error(`Unknown resource: ${uri}`)
+})
 
 // Helper functions
 function invertLightness(color: string, targetLightness: number): string {
   // Placeholder: In production, use color manipulation library (chroma.js, polished)
-  return color === '#FFFFFF' ? '#0D1117' : color === '#000000' ? '#E3E4E6' : color;
+  return color === '#FFFFFF' ? '#0D1117' : color === '#000000' ? '#E3E4E6' : color
 }
 
 function adjustForDarkMode(color: string, adjustment: number = 0): string {
   // Placeholder: Increase saturation and lightness for dark mode
-  return color;
+  return color
 }
 
 function calculateContrast(foreground: string, background: string): number {
   // Placeholder: Calculate WCAG contrast ratio
-  return 7.5; // Mock value
+  return 7.5 // Mock value
 }
 
 async function main() {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error('dark-mode-converter-mcp v1.0.0 running on stdio');
+  const transport = new StdioServerTransport()
+  await server.connect(transport)
+  console.error('dark-mode-converter-mcp v1.0.0 running on stdio')
 }
 
-main().catch((error) => {
-  console.error('Server error:', error);
-  process.exit(1);
-});
+main().catch(error => {
+  console.error('Server error:', error)
+  process.exit(1)
+})

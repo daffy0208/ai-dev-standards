@@ -17,10 +17,7 @@
         "copywriter",
         "voice-interface-builder"
       ],
-      "supports_mcps": [
-        "embedding-generator-mcp",
-        "agent-orchestrator-mcp"
-      ],
+      "supports_mcps": ["embedding-generator-mcp", "agent-orchestrator-mcp"],
       "depends_on": [],
       "features": [
         "Chat completions",
@@ -38,22 +35,10 @@
       "description": "Anthropic API integration for Claude models",
       "path": "/INTEGRATIONS/llm-providers/anthropic-client.ts",
       "status": "active",
-      "supports_skills": [
-        "rag-implementer",
-        "multi-agent-architect",
-        "copywriter"
-      ],
-      "supports_mcps": [
-        "embedding-generator-mcp",
-        "agent-orchestrator-mcp"
-      ],
+      "supports_skills": ["rag-implementer", "multi-agent-architect", "copywriter"],
+      "supports_mcps": ["embedding-generator-mcp", "agent-orchestrator-mcp"],
       "depends_on": [],
-      "features": [
-        "Message API",
-        "Streaming responses",
-        "Vision support",
-        "Tool use"
-      ],
+      "features": ["Message API", "Streaming responses", "Vision support", "Tool use"],
       "authentication": "API key",
       "documentation_url": "https://docs.anthropic.com"
     },
@@ -64,15 +49,8 @@
       "description": "Cohere API integration for embeddings, reranking, and language models",
       "path": "/INTEGRATIONS/ai-providers/cohere/client.ts",
       "status": "active",
-      "supports_skills": [
-        "rag-implementer",
-        "knowledge-base-manager",
-        "multi-agent-architect"
-      ],
-      "supports_mcps": [
-        "embedding-generator-mcp",
-        "semantic-search-mcp"
-      ],
+      "supports_skills": ["rag-implementer", "knowledge-base-manager", "multi-agent-architect"],
+      "supports_mcps": ["embedding-generator-mcp", "semantic-search-mcp"],
       "depends_on": [],
       "features": [
         "Text embeddings (embed-english-v3.0, embed-multilingual-v3.0)",
@@ -132,11 +110,7 @@
         "/INTEGRATIONS/platforms/stripe/README.md"
       ],
       "status": "active",
-      "supports_skills": [
-        "frontend-builder",
-        "api-designer",
-        "mvp-builder"
-      ],
+      "supports_skills": ["frontend-builder", "api-designer", "mvp-builder"],
       "supports_mcps": [],
       "depends_on": [],
       "features": [
@@ -155,18 +129,10 @@
       "description": "Resend email service integration",
       "path": "/INTEGRATIONS/platforms/resend/client.ts",
       "status": "active",
-      "supports_skills": [
-        "frontend-builder",
-        "mvp-builder"
-      ],
+      "supports_skills": ["frontend-builder", "mvp-builder"],
       "supports_mcps": [],
       "depends_on": [],
-      "features": [
-        "Transactional emails",
-        "Template support",
-        "Email tracking",
-        "Batch sending"
-      ],
+      "features": ["Transactional emails", "Template support", "Email tracking", "Batch sending"],
       "authentication": "API key",
       "documentation_url": "https://resend.com/docs"
     },
@@ -177,20 +143,10 @@
       "description": "Pinecone vector database integration",
       "path": "/INTEGRATIONS/vector-databases/pinecone/client.ts",
       "status": "active",
-      "supports_skills": [
-        "rag-implementer"
-      ],
-      "supports_mcps": [
-        "vector-database-mcp",
-        "semantic-search-mcp"
-      ],
+      "supports_skills": ["rag-implementer"],
+      "supports_mcps": ["vector-database-mcp", "semantic-search-mcp"],
       "depends_on": [],
-      "features": [
-        "Vector storage",
-        "Similarity search",
-        "Metadata filtering",
-        "Namespaces"
-      ],
+      "features": ["Vector storage", "Similarity search", "Metadata filtering", "Namespaces"],
       "authentication": "API key",
       "documentation_url": "https://docs.pinecone.io"
     },
@@ -200,9 +156,7 @@
       "category": "graph-databases",
       "description": "Neo4j graph database integration for knowledge graphs and relationship mapping",
       "path": "/INTEGRATIONS/graph-databases/neo4j/client.ts",
-      "additional_files": [
-        "README.md"
-      ],
+      "additional_files": ["README.md"],
       "status": "active",
       "supports_skills": [
         "knowledge-graph-builder",
@@ -210,11 +164,7 @@
         "rag-implementer",
         "data-engineer"
       ],
-      "supports_mcps": [
-        "graph-database-mcp",
-        "knowledge-graph-mcp",
-        "semantic-search-mcp"
-      ],
+      "supports_mcps": ["graph-database-mcp", "knowledge-graph-mcp", "semantic-search-mcp"],
       "depends_on": [],
       "features": [
         "Node and relationship CRUD",
@@ -233,19 +183,10 @@
       "category": "vector-databases",
       "description": "Weaviate vector database integration with hybrid search support",
       "path": "/INTEGRATIONS/vector-databases/weaviate/client.ts",
-      "additional_files": [
-        "README.md"
-      ],
+      "additional_files": ["README.md"],
       "status": "active",
-      "supports_skills": [
-        "rag-implementer",
-        "knowledge-base-manager"
-      ],
-      "supports_mcps": [
-        "vector-database-mcp",
-        "semantic-search-mcp",
-        "knowledge-base-mcp"
-      ],
+      "supports_skills": ["rag-implementer", "knowledge-base-manager"],
+      "supports_mcps": ["vector-database-mcp", "semantic-search-mcp", "knowledge-base-mcp"],
       "depends_on": [],
       "features": [
         "Vector similarity search",
@@ -264,19 +205,10 @@
       "category": "vector-databases",
       "description": "Chroma embedded vector database for prototyping and development",
       "path": "/INTEGRATIONS/vector-databases/chroma/client.ts",
-      "additional_files": [
-        "README.md"
-      ],
+      "additional_files": ["README.md"],
       "status": "active",
-      "supports_skills": [
-        "rag-implementer",
-        "knowledge-base-manager",
-        "mvp-builder"
-      ],
-      "supports_mcps": [
-        "vector-database-mcp",
-        "semantic-search-mcp"
-      ],
+      "supports_skills": ["rag-implementer", "knowledge-base-manager", "mvp-builder"],
+      "supports_mcps": ["vector-database-mcp", "semantic-search-mcp"],
       "depends_on": [],
       "features": [
         "Embedded and client-server modes",
@@ -295,18 +227,10 @@
       "category": "vector-databases",
       "description": "Qdrant high-performance vector database with advanced filtering",
       "path": "/INTEGRATIONS/vector-databases/qdrant/client.ts",
-      "additional_files": [
-        "README.md"
-      ],
+      "additional_files": ["README.md"],
       "status": "active",
-      "supports_skills": [
-        "rag-implementer",
-        "knowledge-base-manager"
-      ],
-      "supports_mcps": [
-        "vector-database-mcp",
-        "semantic-search-mcp"
-      ],
+      "supports_skills": ["rag-implementer", "knowledge-base-manager"],
+      "supports_mcps": ["vector-database-mcp", "semantic-search-mcp"],
       "depends_on": [],
       "features": [
         "High-performance vector search",
@@ -325,20 +249,10 @@
       "category": "vector-databases",
       "description": "PostgreSQL vector extension for similarity search",
       "path": "/INTEGRATIONS/vector-databases/pgvector/client.ts",
-      "additional_files": [
-        "README.md"
-      ],
+      "additional_files": ["README.md"],
       "status": "active",
-      "supports_skills": [
-        "rag-implementer",
-        "knowledge-base-manager",
-        "data-engineer"
-      ],
-      "supports_mcps": [
-        "vector-database-mcp",
-        "semantic-search-mcp",
-        "database-migration-mcp"
-      ],
+      "supports_skills": ["rag-implementer", "knowledge-base-manager", "data-engineer"],
+      "supports_mcps": ["vector-database-mcp", "semantic-search-mcp", "database-migration-mcp"],
       "depends_on": [],
       "features": [
         "PostgreSQL native vector support",
@@ -357,18 +271,10 @@
       "category": "deployment-platforms",
       "description": "Vercel deployment platform integration",
       "path": "/INTEGRATIONS/deployment-platforms/vercel/client.ts",
-      "additional_files": [
-        "README.md"
-      ],
+      "additional_files": ["README.md"],
       "status": "active",
-      "supports_skills": [
-        "deployment-advisor",
-        "frontend-builder",
-        "mvp-builder"
-      ],
-      "supports_mcps": [
-        "deployment-orchestrator-mcp"
-      ],
+      "supports_skills": ["deployment-advisor", "frontend-builder", "mvp-builder"],
+      "supports_mcps": ["deployment-orchestrator-mcp"],
       "depends_on": [],
       "features": [
         "Deployment management (create, get, list, cancel, rollback)",
@@ -386,20 +292,10 @@
       "category": "deployment-platforms",
       "description": "Railway full-stack deployment platform integration",
       "path": "/INTEGRATIONS/deployment-platforms/railway/client.ts",
-      "additional_files": [
-        "README.md"
-      ],
+      "additional_files": ["README.md"],
       "status": "active",
-      "supports_skills": [
-        "deployment-advisor",
-        "frontend-builder",
-        "data-engineer",
-        "mvp-builder"
-      ],
-      "supports_mcps": [
-        "deployment-orchestrator-mcp",
-        "database-migration-mcp"
-      ],
+      "supports_skills": ["deployment-advisor", "frontend-builder", "data-engineer", "mvp-builder"],
+      "supports_mcps": ["deployment-orchestrator-mcp", "database-migration-mcp"],
       "depends_on": [],
       "features": [
         "Service management (create, restart, deploy)",
@@ -417,9 +313,7 @@
       "category": "deployment-platforms",
       "description": "Fly.io multi-region deployment platform integration",
       "path": "/INTEGRATIONS/deployment-platforms/fly-io/client.ts",
-      "additional_files": [
-        "README.md"
-      ],
+      "additional_files": ["README.md"],
       "status": "active",
       "supports_skills": [
         "deployment-advisor",
@@ -427,9 +321,7 @@
         "performance-optimizer",
         "mvp-builder"
       ],
-      "supports_mcps": [
-        "deployment-orchestrator-mcp"
-      ],
+      "supports_mcps": ["deployment-orchestrator-mcp"],
       "depends_on": [],
       "features": [
         "Multi-region deployment",
@@ -449,14 +341,8 @@
       "description": "Cloudinary CDN and image transformations",
       "path": "/INTEGRATIONS/media-services/cloudinary/client.ts",
       "status": "active",
-      "supports_skills": [
-        "frontend-builder",
-        "visual-designer",
-        "performance-optimizer"
-      ],
-      "supports_mcps": [
-        "asset-optimizer-mcp"
-      ],
+      "supports_skills": ["frontend-builder", "visual-designer", "performance-optimizer"],
+      "supports_mcps": ["asset-optimizer-mcp"],
       "depends_on": [],
       "features": [
         "Image upload and storage",
@@ -475,13 +361,8 @@
       "description": "Real-time image processing and optimization",
       "path": "/INTEGRATIONS/media-services/imgix/client.ts",
       "status": "active",
-      "supports_skills": [
-        "frontend-builder",
-        "performance-optimizer"
-      ],
-      "supports_mcps": [
-        "asset-optimizer-mcp"
-      ],
+      "supports_skills": ["frontend-builder", "performance-optimizer"],
+      "supports_mcps": ["asset-optimizer-mcp"],
       "depends_on": [],
       "features": [
         "Real-time image transformations",
@@ -500,10 +381,7 @@
       "description": "Stock photo API for high-quality images",
       "path": "/INTEGRATIONS/media-services/unsplash/client.ts",
       "status": "active",
-      "supports_skills": [
-        "frontend-builder",
-        "visual-designer"
-      ],
+      "supports_skills": ["frontend-builder", "visual-designer"],
       "supports_mcps": [],
       "depends_on": [],
       "features": [
@@ -523,15 +401,8 @@
       "description": "Beautiful hand-crafted SVG icons by the Tailwind CSS team",
       "path": "/INTEGRATIONS/icon-libraries/heroicons/client.ts",
       "status": "active",
-      "supports_skills": [
-        "frontend-builder",
-        "visual-designer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "icon-library-mcp",
-        "component-generator-mcp"
-      ],
+      "supports_skills": ["frontend-builder", "visual-designer", "design-system-architect"],
+      "supports_mcps": ["icon-library-mcp", "component-generator-mcp"],
       "depends_on": [],
       "features": [
         "500+ icons",
@@ -550,15 +421,8 @@
       "description": "Beautiful and consistent icon toolkit",
       "path": "/INTEGRATIONS/icon-libraries/lucide/client.ts",
       "status": "active",
-      "supports_skills": [
-        "frontend-builder",
-        "visual-designer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "icon-library-mcp",
-        "component-generator-mcp"
-      ],
+      "supports_skills": ["frontend-builder", "visual-designer", "design-system-architect"],
+      "supports_mcps": ["icon-library-mcp", "component-generator-mcp"],
       "depends_on": [],
       "features": [
         "1000+ icons",
@@ -577,15 +441,8 @@
       "description": "World's most popular icon set and toolkit",
       "path": "/INTEGRATIONS/icon-libraries/font-awesome/client.ts",
       "status": "active",
-      "supports_skills": [
-        "frontend-builder",
-        "visual-designer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "icon-library-mcp",
-        "component-generator-mcp"
-      ],
+      "supports_skills": ["frontend-builder", "visual-designer", "design-system-architect"],
+      "supports_mcps": ["icon-library-mcp", "component-generator-mcp"],
       "depends_on": [],
       "features": [
         "Thousands of icons",
@@ -604,15 +461,8 @@
       "description": "Free and open-source font library",
       "path": "/INTEGRATIONS/font-services/google-fonts/client.ts",
       "status": "active",
-      "supports_skills": [
-        "frontend-builder",
-        "visual-designer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "font-optimizer-mcp",
-        "design-token-manager-mcp"
-      ],
+      "supports_skills": ["frontend-builder", "visual-designer", "design-system-architect"],
+      "supports_mcps": ["font-optimizer-mcp", "design-token-manager-mcp"],
       "depends_on": [],
       "features": [
         "1400+ font families",
@@ -631,15 +481,8 @@
       "description": "Premium web font service (formerly Typekit)",
       "path": "/INTEGRATIONS/font-services/adobe-fonts/client.ts",
       "status": "active",
-      "supports_skills": [
-        "frontend-builder",
-        "visual-designer",
-        "brand-designer"
-      ],
-      "supports_mcps": [
-        "font-optimizer-mcp",
-        "design-token-manager-mcp"
-      ],
+      "supports_skills": ["frontend-builder", "visual-designer", "brand-designer"],
+      "supports_mcps": ["font-optimizer-mcp", "design-token-manager-mcp"],
       "depends_on": [],
       "features": [
         "20,000+ fonts",
@@ -665,11 +508,7 @@
         "design-system-architect",
         "figma-developer"
       ],
-      "supports_mcps": [
-        "figma-sync-mcp",
-        "design-handoff-mcp",
-        "component-generator-mcp"
-      ],
+      "supports_mcps": ["figma-sync-mcp", "design-handoff-mcp", "component-generator-mcp"],
       "depends_on": [],
       "features": [
         "File and node access",
@@ -688,14 +527,8 @@
       "description": "Sketch API for design asset management",
       "path": "/INTEGRATIONS/design-tools/sketch/client.ts",
       "status": "active",
-      "supports_skills": [
-        "ux-designer",
-        "visual-designer",
-        "design-system-architect"
-      ],
-      "supports_mcps": [
-        "design-handoff-mcp"
-      ],
+      "supports_skills": ["ux-designer", "visual-designer", "design-system-architect"],
+      "supports_mcps": ["design-handoff-mcp"],
       "depends_on": [],
       "features": [
         "Document access",
@@ -714,13 +547,8 @@
       "description": "Adobe XD API for prototypes and design specs",
       "path": "/INTEGRATIONS/design-tools/adobe-xd/client.ts",
       "status": "active",
-      "supports_skills": [
-        "ux-designer",
-        "visual-designer"
-      ],
-      "supports_mcps": [
-        "design-handoff-mcp"
-      ],
+      "supports_skills": ["ux-designer", "visual-designer"],
+      "supports_mcps": ["design-handoff-mcp"],
       "depends_on": [],
       "features": [
         "Prototype access",
@@ -739,11 +567,7 @@
       "description": "Canva API for design automation",
       "path": "/INTEGRATIONS/design-tools/canva/client.ts",
       "status": "active",
-      "supports_skills": [
-        "visual-designer",
-        "brand-designer",
-        "copywriter"
-      ],
+      "supports_skills": ["visual-designer", "brand-designer", "copywriter"],
       "supports_mcps": [],
       "depends_on": [],
       "features": [
@@ -763,11 +587,7 @@
       "description": "Integration MCPs that expose the curated AI operational and build frameworks for assistants.",
       "path": "/INTEGRATIONS/framework-library/README.md",
       "status": "beta",
-      "supports_skills": [
-        "orchestration-planner",
-        "system-diagnostician",
-        "multi-agent-architect"
-      ],
+      "supports_skills": ["orchestration-planner", "system-diagnostician", "multi-agent-architect"],
       "supports_mcps": [],
       "depends_on": [],
       "features": [
@@ -785,131 +605,77 @@
       "name": "LLM Providers",
       "count": 2,
       "description": "Large Language Model API integrations",
-      "integrations": [
-        "openai",
-        "anthropic"
-      ],
-      "needed": [
-        "together-ai",
-        "huggingface"
-      ]
+      "integrations": ["openai", "anthropic"],
+      "needed": ["together-ai", "huggingface"]
     },
     "ai-providers": {
       "name": "AI Providers",
       "count": 1,
       "description": "AI service providers for embeddings, reranking, and specialized tasks",
-      "integrations": [
-        "cohere"
-      ],
-      "needed": [
-        "huggingface-inference"
-      ]
+      "integrations": ["cohere"],
+      "needed": ["huggingface-inference"]
     },
     "platforms": {
       "name": "Platform Services",
       "count": 3,
       "description": "Backend and platform service integrations",
-      "integrations": [
-        "supabase",
-        "stripe",
-        "resend"
-      ],
-      "needed": [
-        "clerk",
-        "auth0"
-      ]
+      "integrations": ["supabase", "stripe", "resend"],
+      "needed": ["clerk", "auth0"]
     },
     "deployment-platforms": {
       "name": "Deployment Platforms",
       "count": 3,
       "description": "Deployment and infrastructure platform integrations",
-      "integrations": [
-        "vercel",
-        "railway",
-        "fly-io"
-      ],
+      "integrations": ["vercel", "railway", "fly-io"],
       "needed": []
     },
     "vector-databases": {
       "name": "Vector Databases",
       "count": 5,
       "description": "Vector database integrations for RAG and semantic search",
-      "integrations": [
-        "pinecone",
-        "weaviate",
-        "chroma",
-        "qdrant",
-        "pgvector"
-      ],
+      "integrations": ["pinecone", "weaviate", "chroma", "qdrant", "pgvector"],
       "needed": []
     },
     "graph-databases": {
       "name": "Graph Databases",
       "count": 1,
       "description": "Graph database integrations",
-      "integrations": [
-        "neo4j"
-      ],
-      "needed": [
-        "dgraph"
-      ]
+      "integrations": ["neo4j"],
+      "needed": ["dgraph"]
     },
     "framework-adapters": {
       "name": "Framework Adapters",
       "count": 1,
       "description": "Integrations for web and AI frameworks",
-      "integrations": [
-        "framework-library"
-      ],
-      "needed": [
-        "nextjs",
-        "remix",
-        "astro",
-        "sveltekit"
-      ]
+      "integrations": ["framework-library"],
+      "needed": ["nextjs", "remix", "astro", "sveltekit"]
     },
     "media-services": {
       "name": "Media Services",
       "count": 3,
       "description": "CDN, image processing, and stock photo services",
-      "integrations": [
-        "cloudinary",
-        "imgix",
-        "unsplash"
-      ],
+      "integrations": ["cloudinary", "imgix", "unsplash"],
       "needed": []
     },
     "icon-libraries": {
       "name": "Icon Libraries",
       "count": 3,
       "description": "Icon sets and toolkits",
-      "integrations": [
-        "heroicons",
-        "lucide",
-        "font-awesome"
-      ],
+      "integrations": ["heroicons", "lucide", "font-awesome"],
       "needed": []
     },
     "font-services": {
       "name": "Font Services",
       "count": 2,
       "description": "Web font services and libraries",
-      "integrations": [
-        "google-fonts",
-        "adobe-fonts"
-      ],
+      "integrations": ["google-fonts", "adobe-fonts"],
       "needed": []
     },
     "design-tools": {
       "name": "Design Tools",
       "count": 4,
       "description": "Design tool API integrations",
-      "integrations": [
-        "figma",
-        "sketch",
-        "adobe-xd",
-        "canva"
-      ],
+      "integrations": ["figma", "sketch", "adobe-xd", "canva"],
       "needed": []
     }
   },

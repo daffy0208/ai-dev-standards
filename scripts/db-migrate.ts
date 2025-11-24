@@ -29,13 +29,7 @@
  */
 
 import { execSync } from 'child_process'
-import {
-  existsSync,
-  mkdirSync,
-  readFileSync,
-  writeFileSync,
-  readdirSync,
-} from 'fs'
+import { existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from 'fs'
 import { join } from 'path'
 
 export type DatabaseType = 'postgres' | 'mysql' | 'mongodb'
@@ -85,7 +79,7 @@ export class DatabaseMigration {
       database: options.database || process.env.DATABASE_URL || '',
       migrationsDir: options.migrationsDir || './migrations',
       tableName: options.tableName || 'schema_migrations',
-      dryRun: options.dryRun ?? false,
+      dryRun: options.dryRun ?? false
     }
 
     // Create migrations directory if it doesn't exist
@@ -129,9 +123,7 @@ export class DatabaseMigration {
     }
 
     // Filter to specific migration if specified
-    const migrationsToRun = options?.to
-      ? pending.filter((m) => m.id <= options.to!)
-      : pending
+    const migrationsToRun = options?.to ? pending.filter(m => m.id <= options.to!) : pending
 
     for (const migration of migrationsToRun) {
       console.log(`Migrating: ${migration.name}`)
@@ -176,7 +168,7 @@ export class DatabaseMigration {
 
     if (options?.to) {
       // Rollback to specific migration
-      migrationsToRollback = executed.filter((m) => m.id > options.to!)
+      migrationsToRollback = executed.filter(m => m.id > options.to!)
     } else if (options?.steps) {
       // Rollback specific number of steps
       migrationsToRollback = executed.slice(-options.steps)
@@ -218,7 +210,7 @@ export class DatabaseMigration {
   async status(): Promise<void> {
     const all = this.getAllMigrations()
     const executed = await this.getExecutedMigrations()
-    const executedIds = new Set(executed.map((m) => m.id))
+    const executedIds = new Set(executed.map(m => m.id))
 
     console.log('Migration Status:\n')
     console.log('ID               | Name                    | Status')
@@ -298,10 +290,10 @@ export class DatabaseMigration {
    */
   private getAllMigrations(): Migration[] {
     const files = readdirSync(this.options.migrationsDir)
-      .filter((f) => f.endsWith('.sql'))
+      .filter(f => f.endsWith('.sql'))
       .sort()
 
-    return files.map((file) => {
+    return files.map(file => {
       const [id, ...nameParts] = file.replace('.sql', '').split('_')
       const name = nameParts.join('_')
       const content = readFileSync(join(this.options.migrationsDir, file), 'utf-8')
@@ -316,7 +308,7 @@ export class DatabaseMigration {
         name,
         timestamp: parseInt(id),
         up,
-        down,
+        down
       }
     })
   }
@@ -344,7 +336,13 @@ export class DatabaseMigration {
     }
 
     // Execute query and parse results
-    // This is simplified - real implementation would use DB driver
+    // TODO: Implement actual database query execution
+    // WARNING: Currently returns empty array, causing all migrations to be treated as pending
+    // Real implementation should use a database driver (pg, mysql2, etc.) to execute the SQL
+    // and return the actual migration records from the database
+    // Example:
+    //   const result = await pool.query(sql)
+    //   return result.rows.map(row => ({ id: row.id, name: row.name, executedAt: row.executed_at }))
     return []
   }
 
@@ -354,9 +352,9 @@ export class DatabaseMigration {
   private async getPendingMigrations(): Promise<Migration[]> {
     const all = this.getAllMigrations()
     const executed = await this.getExecutedMigrations()
-    const executedIds = new Set(executed.map((m) => m.id))
+    const executedIds = new Set(executed.map(m => m.id))
 
-    return all.filter((m) => !executedIds.has(m.id))
+    return all.filter(m => !executedIds.has(m.id))
   }
 
   /**
@@ -367,15 +365,15 @@ export class DatabaseMigration {
 
     switch (this.options.type) {
       case 'postgres':
-        command = `psql ${this.options.database} -c "${sql.replace(/"/g, '\\"')}"`
+        command = `psql ${this.options.database}`
         break
 
       case 'mysql':
-        command = `mysql ${this.options.database} -e "${sql.replace(/"/g, '\\"')}"`
+        command = `mysql ${this.options.database}`
         break
 
       case 'mongodb':
-        command = `mongo ${this.options.database} --eval "${sql.replace(/"/g, '\\"')}"`
+        command = `mongo ${this.options.database}`
         break
 
       default:
@@ -383,9 +381,10 @@ export class DatabaseMigration {
     }
 
     try {
-      execSync(command, { stdio: 'pipe' })
+      // Pipe SQL via stdin to avoid shell injection vulnerabilities
+      execSync(command, { input: sql, stdio: 'pipe' })
     } catch (error) {
-      throw new Error(`Migration execution failed: ${command}`)
+      throw new Error(`Migration execution failed: ${error}`)
     }
   }
 
@@ -393,7 +392,10 @@ export class DatabaseMigration {
    * Record migration in database
    */
   private async recordMigration(id: string, name: string): Promise<void> {
-    const sql = `INSERT INTO ${this.options.tableName} (id, name) VALUES ('${id}', '${name}')`
+    // Escape single quotes to prevent SQL injection
+    const escapedId = id.replace(/'/g, "''")
+    const escapedName = name.replace(/'/g, "''")
+    const sql = `INSERT INTO ${this.options.tableName} (id, name) VALUES ('${escapedId}', '${escapedName}')`
     await this.executeMigration(sql)
   }
 
@@ -401,7 +403,9 @@ export class DatabaseMigration {
    * Remove migration record
    */
   private async removeMigration(id: string): Promise<void> {
-    const sql = `DELETE FROM ${this.options.tableName} WHERE id = '${id}'`
+    // Escape single quotes to prevent SQL injection
+    const escapedId = id.replace(/'/g, "''")
+    const sql = `DELETE FROM ${this.options.tableName} WHERE id = '${escapedId}'`
     await this.executeMigration(sql)
   }
 }
@@ -414,27 +418,29 @@ export async function runMigrations(): Promise<void> {
   const args = process.argv.slice(3)
 
   const migration = new DatabaseMigration({
-    dryRun: args.includes('--dry-run'),
+    dryRun: args.includes('--dry-run')
   })
 
   switch (command) {
-    case 'generate':
+    case 'generate': {
       const nameIndex = args.indexOf('--name')
       const name = nameIndex >= 0 ? args[nameIndex + 1] : 'migration'
       await migration.generate(name)
       break
+    }
 
     case 'up':
       await migration.up()
       break
 
-    case 'down':
+    case 'down': {
       const stepsIndex = args.indexOf('--steps')
       const steps = stepsIndex >= 0 ? parseInt(args[stepsIndex + 1]) : undefined
       const toIndex = args.indexOf('--to')
       const to = toIndex >= 0 ? args[toIndex + 1] : undefined
       await migration.down({ steps, to })
       break
+    }
 
     case 'status':
       await migration.status()
@@ -455,7 +461,7 @@ export async function runMigrations(): Promise<void> {
 
 // Run if executed directly
 if (require.main === module) {
-  runMigrations().catch((error) => {
+  runMigrations().catch(error => {
     console.error('Migration failed:', error)
     process.exit(1)
   })

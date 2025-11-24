@@ -17,16 +17,19 @@ This example shows the complete Archon + Skills workflow for a real task.
 ## Phase 1: Strategic Planning (Archon) - 10 min
 
 ### Step 1: Get Task Details
+
 ```
 archon:manage_task({ action: "get", task_id: "P0-3" })
 ```
 
 **Result:**
+
 - Task: Implement JWT-based authentication
 - Requirements: Login, signup, password reset
 - Integration: Existing Next.js app
 
 ### Step 2: Research Domain
+
 ```
 archon:perform_rag_query({
   query: "JWT authentication Next.js best practices",
@@ -35,11 +38,13 @@ archon:perform_rag_query({
 ```
 
 **Key Insights:**
+
 - Use httpOnly cookies for tokens
 - Implement refresh token rotation
 - Add CSRF protection
 
 ### Step 3: Find Code Examples
+
 ```
 archon:search_code_examples({
   query: "auth middleware Next.js TypeScript",
@@ -50,6 +55,7 @@ archon:search_code_examples({
 **Found:** Existing auth patterns in codebase
 
 ### Step 4: Mark as Doing
+
 ```
 archon:manage_task({
   action: "update",
@@ -63,6 +69,7 @@ archon:manage_task({
 ## Phase 2: Tactical Execution (Skills) - 4 hours
 
 ### Skills Invoked:
+
 1. **security-engineer** - Authentication security patterns
 2. **api-designer** - API endpoint design
 3. **frontend-builder** - Auth UI components
@@ -70,6 +77,7 @@ archon:manage_task({
 ### Implementation Guidance Combined:
 
 **From security-engineer:**
+
 - JWT with short expiration (15 min)
 - Refresh tokens (7 days)
 - httpOnly + secure + sameSite cookies
@@ -77,6 +85,7 @@ archon:manage_task({
 - Rate limiting on auth endpoints
 
 **From api-designer:**
+
 - POST /api/auth/signup
 - POST /api/auth/login
 - POST /api/auth/refresh
@@ -84,12 +93,14 @@ archon:manage_task({
 - GET /api/auth/me
 
 **From frontend-builder:**
+
 - Use React Context for auth state
 - Protected route component
 - Login/signup forms with validation
 - Error handling and loading states
 
 ### Implementation:
+
 Built auth system following all three skill guidelines + Archon code examples.
 
 ---
@@ -99,11 +110,13 @@ Built auth system following all three skill guidelines + Archon code examples.
 ### Quality Checks:
 
 **testing-strategist:**
+
 - Unit tests for auth functions
 - Integration tests for API endpoints
 - E2E tests for login flow
 
 **security-engineer (review):**
+
 - No secrets in code ✅
 - HTTPS only ✅
 - Input validation ✅
@@ -117,6 +130,7 @@ Built auth system following all three skill guidelines + Archon code examples.
 ## Phase 4: Review & Complete - 5 min
 
 ### Mark for Review
+
 ```
 archon:manage_task({
   action: "update",
@@ -128,6 +142,7 @@ archon:manage_task({
 ### User Tests & Approves
 
 ### Mark Done
+
 ```
 archon:manage_task({
   action: "update",
@@ -137,6 +152,7 @@ archon:manage_task({
 ```
 
 ### Get Next Task
+
 ```
 archon:manage_task({
   action: "list",
@@ -150,17 +166,20 @@ archon:manage_task({
 ## Summary
 
 **Total Time:** 4 hours 45 minutes
+
 - Planning: 10 min
 - Implementation: 4 hours
 - Quality: 30 min
 - Review: 5 min
 
 **Quality:** High
+
 - Combined Archon context + 3 Skills expertise
 - All security checks passed
 - Complete test coverage
 
 **Tracking:** Complete
+
 - All status updates in Archon
 - Full audit trail of decisions
 

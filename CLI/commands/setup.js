@@ -2,9 +2,25 @@ const chalk = require('chalk')
 const ora = require('ora')
 const inquirer = require('inquirer')
 const fs = require('fs-extra')
-const path = require('path')
 const execa = require('execa')
 const { validateEnvPath, validateServiceURL } = require('../utils/path-validation')
+
+const defaultDeps = {
+  chalk,
+  ora,
+  inquirer,
+  fs,
+  execa,
+  validateEnvPath,
+  validateServiceURL
+}
+
+function createSetupCommand(overrides = {}) {
+  const deps = { ...defaultDeps, ...overrides }
+  return async function runSetup(integration, options = {}) {
+    return setupCommandInternal(integration, options, deps)
+  }
+}
 
 /**
  * Setup Command
@@ -16,37 +32,38 @@ const { validateEnvPath, validateServiceURL } = require('../utils/path-validatio
  * - resend: Email sending
  * - anthropic/openai: LLM integration
  */
-async function setupCommand(integration, options) {
+async function setupCommandInternal(integration, options, deps) {
+  const { chalk } = deps
   console.log(chalk.blue(`\n🔧 Setting up ${chalk.bold(integration)}...\n`))
 
   try {
     switch (integration.toLowerCase()) {
       case 'supabase':
-        await setupSupabase(options)
+        await setupSupabase(options, deps)
         break
 
       case 'stripe':
-        await setupStripe(options)
+        await setupStripe(options, deps)
         break
 
       case 'pinecone':
-        await setupPinecone(options)
+        await setupPinecone(options, deps)
         break
 
       case 'weaviate':
-        await setupWeaviate(options)
+        await setupWeaviate(options, deps)
         break
 
       case 'resend':
-        await setupResend(options)
+        await setupResend(options, deps)
         break
 
       case 'openai':
-        await setupOpenAI(options)
+        await setupOpenAI(options, deps)
         break
 
       case 'anthropic':
-        await setupAnthropic(options)
+        await setupAnthropic(options, deps)
         break
 
       default:
@@ -63,7 +80,6 @@ async function setupCommand(integration, options) {
     }
 
     console.log(chalk.green(`\n✅ Successfully set up ${integration}!\n`))
-
   } catch (error) {
     console.error(chalk.red(`\n❌ Error: ${error.message}\n`))
     process.exit(1)
@@ -73,7 +89,8 @@ async function setupCommand(integration, options) {
 /**
  * Setup Supabase
  */
-async function setupSupabase(options) {
+async function setupSupabase(options, deps) {
+  const { ora, execa, inquirer, validateServiceURL, fs, validateEnvPath, chalk } = deps
   const spinner = ora('Installing Supabase...').start()
 
   // Install dependencies
@@ -90,7 +107,7 @@ async function setupSupabase(options) {
       type: 'input',
       name: 'url',
       message: 'Supabase Project URL:',
-      validate: (input) => {
+      validate: input => {
         try {
           validateServiceURL(input, 'Supabase', ['supabase.co', '.supabase.co'])
           return true
@@ -103,7 +120,7 @@ async function setupSupabase(options) {
       type: 'password',
       name: 'anonKey',
       message: 'Supabase Anon Key:',
-      validate: (input) => input.length > 0 || 'Anon key is required'
+      validate: input => input.length > 0 || 'Anon key is required'
     }
   ])
 
@@ -183,7 +200,8 @@ export async function getUser() {
 /**
  * Setup Stripe
  */
-async function setupStripe(options) {
+async function setupStripe(options, deps) {
+  const { ora, execa, inquirer, fs, validateEnvPath, chalk } = deps
   const spinner = ora('Installing Stripe...').start()
 
   await execa('npm', ['install', 'stripe', '@stripe/stripe-js'])
@@ -195,13 +213,13 @@ async function setupStripe(options) {
       type: 'password',
       name: 'secretKey',
       message: 'Stripe Secret Key:',
-      validate: (input) => input.startsWith('sk_') || 'Invalid Stripe secret key'
+      validate: input => input.startsWith('sk_') || 'Invalid Stripe secret key'
     },
     {
       type: 'input',
       name: 'publicKey',
       message: 'Stripe Publishable Key:',
-      validate: (input) => input.startsWith('pk_') || 'Invalid Stripe publishable key'
+      validate: input => input.startsWith('pk_') || 'Invalid Stripe publishable key'
     }
   ])
 
@@ -260,7 +278,8 @@ NEXT_PUBLIC_URL=http://localhost:3000
 /**
  * Setup Pinecone
  */
-async function setupPinecone(options) {
+async function setupPinecone(options, deps) {
+  const { ora, execa, inquirer, fs, validateEnvPath, chalk } = deps
   const spinner = ora('Installing Pinecone...').start()
 
   await execa('npm', ['install', '@pinecone-database/pinecone'])
@@ -276,7 +295,7 @@ async function setupPinecone(options) {
       type: 'password',
       name: 'apiKey',
       message: 'Pinecone API Key:',
-      validate: (input) => input.length > 0 || 'API key is required'
+      validate: input => input.length > 0 || 'API key is required'
     },
     {
       type: 'input',
@@ -308,8 +327,8 @@ export const index = pinecone.index('${answers.indexName}')
 
   // Add RAG setup if requested
   if (options.withRag) {
-    const ragCode = `import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
-import { PineconeStore } from 'langchain/vectorstores/pinecone'
+    const ragCode = `import { OpenAIEmbeddings } from '@langchain/openai'
+import { PineconeStore } from '@langchain/community/vectorstores/pinecone'
 import { index } from './pinecone'
 
 export async function createVectorStore() {
@@ -351,7 +370,8 @@ PINECONE_INDEX_NAME=${answers.indexName}
 /**
  * Setup Weaviate
  */
-async function setupWeaviate(options) {
+async function setupWeaviate(options, deps) {
+  const { ora, execa, inquirer, fs, validateEnvPath, chalk } = deps
   const spinner = ora('Installing Weaviate...').start()
 
   await execa('npm', ['install', 'weaviate-ts-client'])
@@ -369,7 +389,7 @@ async function setupWeaviate(options) {
       type: 'password',
       name: 'apiKey',
       message: 'Weaviate API Key (optional):',
-      when: (answers) => answers.url.includes('weaviate.cloud')
+      when: answers => answers.url.includes('weaviate.cloud')
     }
   ])
 
@@ -403,7 +423,8 @@ ${answers.apiKey ? `WEAVIATE_API_KEY=${answers.apiKey}` : ''}
 /**
  * Setup Resend
  */
-async function setupResend(options) {
+async function setupResend(options, deps) {
+  const { ora, execa, inquirer, fs, validateEnvPath, chalk } = deps
   const spinner = ora('Installing Resend...').start()
 
   await execa('npm', ['install', 'resend'])
@@ -415,7 +436,7 @@ async function setupResend(options) {
       type: 'password',
       name: 'apiKey',
       message: 'Resend API Key:',
-      validate: (input) => input.startsWith('re_') || 'Invalid Resend API key'
+      validate: input => input.startsWith('re_') || 'Invalid Resend API key'
     }
   ])
 
@@ -461,7 +482,8 @@ RESEND_API_KEY=${answers.apiKey}
 /**
  * Setup OpenAI
  */
-async function setupOpenAI(options) {
+async function setupOpenAI(options, deps) {
+  const { ora, execa, inquirer, fs, validateEnvPath, chalk } = deps
   const spinner = ora('Installing OpenAI...').start()
 
   await execa('npm', ['install', 'openai'])
@@ -473,7 +495,7 @@ async function setupOpenAI(options) {
       type: 'password',
       name: 'apiKey',
       message: 'OpenAI API Key:',
-      validate: (input) => input.startsWith('sk-') || 'Invalid OpenAI API key'
+      validate: input => input.startsWith('sk-') || 'Invalid OpenAI API key'
     }
   ])
 
@@ -510,7 +532,8 @@ OPENAI_API_KEY=${answers.apiKey}
 /**
  * Setup Anthropic
  */
-async function setupAnthropic(options) {
+async function setupAnthropic(options, deps) {
+  const { ora, execa, inquirer, fs, validateEnvPath, chalk } = deps
   const spinner = ora('Installing Anthropic...').start()
 
   await execa('npm', ['install', '@anthropic-ai/sdk'])
@@ -522,7 +545,7 @@ async function setupAnthropic(options) {
       type: 'password',
       name: 'apiKey',
       message: 'Anthropic API Key:',
-      validate: (input) => input.startsWith('sk-ant-') || 'Invalid Anthropic API key'
+      validate: input => input.startsWith('sk-ant-') || 'Invalid Anthropic API key'
     }
   ])
 
@@ -557,4 +580,5 @@ ANTHROPIC_API_KEY=${answers.apiKey}
   console.log(chalk.gray(`  Updated: ${options.env}`))
 }
 
-module.exports = setupCommand
+module.exports = createSetupCommand()
+module.exports.createSetupCommand = createSetupCommand

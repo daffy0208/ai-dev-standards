@@ -44,38 +44,35 @@ When services are running with PM2, check logs for authentication errors:
 ### Authentication Testing
 
 1. Use `scripts/test-auth-route.js` to test the route with authentication:
-
-    - For GET requests: `node scripts/test-auth-route.js [URL]`
-    - For POST/PUT/DELETE: `node scripts/test-auth-route.js --method [METHOD] --body '[JSON]' [URL]`
-    - Test without auth to confirm it's an auth issue: `--no-auth` flag
+   - For GET requests: `node scripts/test-auth-route.js [URL]`
+   - For POST/PUT/DELETE: `node scripts/test-auth-route.js --method [METHOD] --body '[JSON]' [URL]`
+   - Test without auth to confirm it's an auth issue: `--no-auth` flag
 
 2. If route works without auth but fails with auth, investigate:
-    - Cookie configuration (httpOnly, secure, sameSite)
-    - JWT signing/validation in SSO middleware
-    - Token expiration settings
-    - Role/permission requirements
+   - Cookie configuration (httpOnly, secure, sameSite)
+   - JWT signing/validation in SSO middleware
+   - Token expiration settings
+   - Role/permission requirements
 
 ### Common Issues to Check
 
 1. **Route Not Found (404)**:
-
-    - Missing route registration in app.ts
-    - Route registered after a catch-all route
-    - Typo in route path or HTTP method
-    - Missing router export/import
-    - Check PM2 logs for startup errors: `pm2 logs [service] --lines 500`
+   - Missing route registration in app.ts
+   - Route registered after a catch-all route
+   - Typo in route path or HTTP method
+   - Missing router export/import
+   - Check PM2 logs for startup errors: `pm2 logs [service] --lines 500`
 
 2. **Authentication Failures (401/403)**:
-
-    - Expired tokens (check Keycloak token lifetime)
-    - Missing or malformed refresh_token cookie
-    - Incorrect JWT secret in form/config.ini
-    - Role-based access control blocking the user
+   - Expired tokens (check Keycloak token lifetime)
+   - Missing or malformed refresh_token cookie
+   - Incorrect JWT secret in form/config.ini
+   - Role-based access control blocking the user
 
 3. **Cookie Issues**:
-    - Development vs production cookie settings
-    - CORS configuration preventing cookie transmission
-    - SameSite policy blocking cross-origin requests
+   - Development vs production cookie settings
+   - CORS configuration preventing cookie transmission
+   - SameSite policy blocking cross-origin requests
 
 ### Testing Payloads
 
@@ -97,11 +94,11 @@ After resolving an issue:
 
 ## Key Technical Details
 
--   The SSO middleware expects a JWT-signed refresh token in the `refresh_token` cookie
--   User claims are stored in `res.locals.claims` including username, email, and roles
--   Default dev credentials: username=testuser, password=testpassword
--   Keycloak realm: yourRealm, Client: your-app-client
--   Routes must handle both cookie-based auth and potential Bearer token fallbacks
+- The SSO middleware expects a JWT-signed refresh token in the `refresh_token` cookie
+- User claims are stored in `res.locals.claims` including username, email, and roles
+- Default dev credentials: username=testuser, password=testpassword
+- Keycloak realm: yourRealm, Client: your-app-client
+- Routes must handle both cookie-based auth and potential Bearer token fallbacks
 
 ## Output Format
 

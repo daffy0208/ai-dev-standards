@@ -1,3 +1,18 @@
+import type {
+  ApiResponse,
+  AuthConfig,
+  QueryParams,
+  RequestOptions,
+  RetryConfig
+} from '../../types/http'
+
+const logInfo = (...messages: unknown[]): void => {
+  const formatted = messages.map(message =>
+    typeof message === 'string' ? message : JSON.stringify(message, null, 2)
+  )
+  process.stdout.write(`${formatted.join(' ')}\n`)
+}
+
 /**
  * API Caller Tool
  *
@@ -40,42 +55,6 @@
  * ```
  */
 
-export interface AuthConfig {
-  type: 'bearer' | 'apiKey' | 'basic'
-  token?: string // for bearer
-  key?: string // header name for apiKey
-  value?: string // value for apiKey
-  username?: string // for basic
-  password?: string // for basic
-}
-
-export interface RetryConfig {
-  attempts: number
-  delayMs: number
-  exponentialBackoff?: boolean
-}
-
-export interface RequestOptions {
-  url: string
-  method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
-  headers?: Record<string, string>
-  params?: Record<string, string | number | boolean>
-  body?: any
-  auth?: AuthConfig
-  timeout?: number
-  retry?: RetryConfig
-  responseType?: 'json' | 'text' | 'blob' | 'arraybuffer'
-}
-
-export interface ApiResponse<T = any> {
-  data: T
-  status: number
-  statusText: string
-  headers: Record<string, string>
-  url: string
-  timestamp: Date
-}
-
 export class ApiCallerTool {
   private defaultTimeout: number = 30000
   private defaultRetry: RetryConfig = {
@@ -87,7 +66,7 @@ export class ApiCallerTool {
   /**
    * Build URL with query parameters
    */
-  private buildUrl(url: string, params?: Record<string, string | number | boolean>): string {
+  private buildUrl(url: string, params?: QueryParams): string {
     if (!params || Object.keys(params).length === 0) {
       return url
     }
@@ -128,9 +107,7 @@ export class ApiCallerTool {
 
         case 'basic':
           if (auth.username && auth.password) {
-            const credentials = Buffer.from(
-              `${auth.username}:${auth.password}`
-            ).toString('base64')
+            const credentials = Buffer.from(`${auth.username}:${auth.password}`).toString('base64')
             finalHeaders['Authorization'] = `Basic ${credentials}`
           }
           break
@@ -143,10 +120,7 @@ export class ApiCallerTool {
   /**
    * Execute request with retries
    */
-  private async executeWithRetry<T>(
-    fn: () => Promise<T>,
-    retry?: RetryConfig
-  ): Promise<T> {
+  private async executeWithRetry<T>(fn: () => Promise<T>, retry?: RetryConfig): Promise<T> {
     const config = { ...this.defaultRetry, ...retry }
     let lastError: Error | null = null
 
@@ -174,37 +148,34 @@ export class ApiCallerTool {
   /**
    * Parse response based on type
    */
-  private async parseResponse(
+  private async parseResponse<T>(
     response: Response,
     responseType: RequestOptions['responseType'] = 'json'
-  ): Promise<any> {
+  ): Promise<T> {
     switch (responseType) {
       case 'json':
-        return await response.json()
+        return (await response.json()) as T
       case 'text':
-        return await response.text()
+        return (await response.text()) as T
       case 'blob':
-        return await response.blob()
+        return (await response.blob()) as T
       case 'arraybuffer':
-        return await response.arrayBuffer()
+        return (await response.arrayBuffer()) as T
       default:
-        return await response.json()
+        return (await response.json()) as T
     }
   }
 
   /**
    * Make HTTP request
    */
-  async request<T = any>(options: RequestOptions): Promise<ApiResponse<T>> {
+  async request<T = unknown>(options: RequestOptions): Promise<ApiResponse<T>> {
     return this.executeWithRetry(async () => {
       const url = this.buildUrl(options.url, options.params)
       const headers = this.buildHeaders(options.headers, options.auth)
 
       const controller = new AbortController()
-      const timeout = setTimeout(
-        () => controller.abort(),
-        options.timeout || this.defaultTimeout
-      )
+      const timeout = setTimeout(() => controller.abort(), options.timeout || this.defaultTimeout)
 
       try {
         const response = await fetch(url, {
@@ -217,18 +188,22 @@ export class ApiCallerTool {
         clearTimeout(timeout)
 
         if (!response.ok) {
-          throw new Error(
-            `HTTP ${response.status}: ${response.statusText}`
-          )
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`)
         }
 
-        const data = await this.parseResponse(response, options.responseType)
+        const data = await this.parseResponse<T>(response, options.responseType)
+
+        // Convert Headers to plain object
+        const responseHeaders: Record<string, string> = {}
+        response.headers.forEach((value, key) => {
+          responseHeaders[key] = value
+        })
 
         return {
           data,
           status: response.status,
           statusText: response.statusText,
-          headers: Object.fromEntries(response.headers.entries()),
+          headers: responseHeaders,
           url: response.url,
           timestamp: new Date()
         }
@@ -249,7 +224,7 @@ export class ApiCallerTool {
   /**
    * GET request
    */
-  async get<T = any>(
+  async get<T = unknown>(
     url: string,
     options?: Omit<RequestOptions, 'url' | 'method' | 'body'>
   ): Promise<ApiResponse<T>> {
@@ -263,7 +238,7 @@ export class ApiCallerTool {
   /**
    * POST request
    */
-  async post<T = any>(
+  async post<T = unknown>(
     url: string,
     options?: Omit<RequestOptions, 'url' | 'method'>
   ): Promise<ApiResponse<T>> {
@@ -277,7 +252,7 @@ export class ApiCallerTool {
   /**
    * PUT request
    */
-  async put<T = any>(
+  async put<T = unknown>(
     url: string,
     options?: Omit<RequestOptions, 'url' | 'method'>
   ): Promise<ApiResponse<T>> {
@@ -291,7 +266,7 @@ export class ApiCallerTool {
   /**
    * PATCH request
    */
-  async patch<T = any>(
+  async patch<T = unknown>(
     url: string,
     options?: Omit<RequestOptions, 'url' | 'method'>
   ): Promise<ApiResponse<T>> {
@@ -305,7 +280,7 @@ export class ApiCallerTool {
   /**
    * DELETE request
    */
-  async delete<T = any>(
+  async delete<T = unknown>(
     url: string,
     options?: Omit<RequestOptions, 'url' | 'method' | 'body'>
   ): Promise<ApiResponse<T>> {
@@ -331,9 +306,9 @@ export class ApiCallerTool {
     const formData = new FormData()
 
     // Add file
-    const blob = file.data instanceof Buffer
-      ? new Blob([file.data], { type: file.type })
-      : file.data
+    const blob = Buffer.isBuffer(file.data)
+      ? new Blob([Buffer.from(file.data)], { type: file.type })
+      : (file.data as Blob)
 
     formData.append('file', blob, file.name)
 
@@ -349,10 +324,7 @@ export class ApiCallerTool {
     delete headers['Content-Type'] // Let browser set boundary
 
     const controller = new AbortController()
-    const timeout = setTimeout(
-      () => controller.abort(),
-      options?.timeout || this.defaultTimeout
-    )
+    const timeout = setTimeout(() => controller.abort(), options?.timeout || this.defaultTimeout)
 
     try {
       const response = await fetch(url, {
@@ -370,11 +342,17 @@ export class ApiCallerTool {
 
       const data = await response.json()
 
+      // Convert Headers to plain object
+      const responseHeaders: Record<string, string> = {}
+      response.headers.forEach((value, key) => {
+        responseHeaders[key] = value
+      })
+
       return {
         data,
         status: response.status,
         statusText: response.statusText,
-        headers: Object.fromEntries(response.headers.entries()),
+        headers: responseHeaders,
         url: response.url,
         timestamp: new Date()
       }
@@ -387,12 +365,8 @@ export class ApiCallerTool {
   /**
    * Make multiple parallel requests
    */
-  async batchRequest<T = any>(
-    requests: RequestOptions[]
-  ): Promise<ApiResponse<T>[]> {
-    return Promise.all(
-      requests.map(request => this.request<T>(request))
-    )
+  async batchRequest<T = unknown>(requests: RequestOptions[]): Promise<ApiResponse<T>[]> {
+    return Promise.all(requests.map(request => this.request<T>(request)))
   }
 }
 
@@ -401,7 +375,8 @@ export class ApiCallerTool {
  */
 export const apiCallerToolDefinition = {
   name: 'api_caller',
-  description: 'Make HTTP requests to APIs. Supports GET, POST, PUT, PATCH, DELETE methods with authentication, headers, and request bodies.',
+  description:
+    'Make HTTP requests to APIs. Supports GET, POST, PUT, PATCH, DELETE methods with authentication, headers, and request bodies.',
   parameters: {
     type: 'object',
     properties: {
@@ -457,17 +432,12 @@ export const apiCallerToolDefinition = {
 /**
  * Execute tool (for AI frameworks)
  */
-export async function executeApiCallerTool(args: any): Promise<any> {
+export async function executeApiCallerTool(args: RequestOptions): Promise<ApiResponse<unknown>> {
   const api = new ApiCallerTool()
 
   return api.request({
-    url: args.url,
-    method: args.method || 'GET',
-    headers: args.headers,
-    params: args.params,
-    body: args.body,
-    auth: args.auth,
-    timeout: args.timeout
+    ...args,
+    method: args.method || 'GET'
   })
 }
 
@@ -479,7 +449,7 @@ export async function examples() {
 
   // Example 1: Simple GET request
   const users = await api.get('https://jsonplaceholder.typicode.com/users')
-  console.log('Users:', users.data)
+  logInfo('Users:', users.data)
 
   // Example 2: POST with body
   const newUser = await api.post('https://jsonplaceholder.typicode.com/users', {
@@ -488,7 +458,7 @@ export async function examples() {
       email: 'john@example.com'
     }
   })
-  console.log('Created user:', newUser.data)
+  logInfo('Created user:', newUser.data)
 
   // Example 3: GET with query params
   const filteredUsers = await api.get('https://jsonplaceholder.typicode.com/users', {
@@ -496,7 +466,7 @@ export async function examples() {
       userId: 1
     }
   })
-  console.log('Filtered users:', filteredUsers.data)
+  logInfo('Filtered users:', filteredUsers.data)
 
   // Example 4: Request with Bearer auth
   const protectedData = await api.get('https://api.example.com/protected', {
@@ -505,7 +475,7 @@ export async function examples() {
       token: 'your-access-token'
     }
   })
-  console.log('Protected data:', protectedData.data)
+  logInfo('Protected data:', protectedData.data)
 
   // Example 5: Request with API key
   const apiData = await api.get('https://api.example.com/data', {
@@ -515,7 +485,7 @@ export async function examples() {
       value: 'your-api-key'
     }
   })
-  console.log('API data:', apiData.data)
+  logInfo('API data:', apiData.data)
 
   // Example 6: Request with retries
   const dataWithRetry = await api.get('https://api.example.com/unstable', {
@@ -525,7 +495,7 @@ export async function examples() {
       exponentialBackoff: true
     }
   })
-  console.log('Data with retry:', dataWithRetry.data)
+  logInfo('Data with retry:', dataWithRetry.data)
 
   // Example 7: Batch requests
   const results = await api.batchRequest([
@@ -542,7 +512,10 @@ export async function examples() {
       method: 'GET'
     }
   ])
-  console.log('Batch results:', results.map(r => r.data))
+  logInfo(
+    'Batch results:',
+    results.map(r => r.data)
+  )
 
   // Example 8: Upload file
   const fileBuffer = Buffer.from('Hello, World!')
@@ -563,7 +536,7 @@ export async function examples() {
       }
     }
   )
-  console.log('Upload result:', uploadResult.data)
+  logInfo('Upload result:', uploadResult.data)
 
   // Example 9: Complex request with all options
   const complexRequest = await api.request({
@@ -590,5 +563,5 @@ export async function examples() {
       delayMs: 500
     }
   })
-  console.log('Complex request result:', complexRequest.data)
+  logInfo('Complex request result:', complexRequest.data)
 }

@@ -19,12 +19,14 @@ Design intuitive, accessible user experiences grounded in research.
 **Goal**: Organize content and functionality logically
 
 **Activities**:
+
 - Card sorting: Let users organize content into categories
 - Site mapping: Create hierarchy of pages and features
 - Navigation design: Primary, secondary, utility navigation
 - Labeling: Clear, user-friendly terminology
 
 **Validation**:
+
 - [ ] IA tested with 5+ users (tree testing)
 - [ ] Navigation paths clear and logical
 - [ ] Labels match user mental models
@@ -36,12 +38,14 @@ Design intuitive, accessible user experiences grounded in research.
 **Goal**: Map paths users take to complete tasks
 
 **Key Flows to Design**:
+
 - Onboarding: First-time user experience
 - Core tasks: Primary use cases (80% of usage)
 - Error states: Recovery from mistakes
 - Edge cases: Less common but important scenarios
 
 **Flow Diagram Elements**:
+
 ```
 [Entry Point] → [Decision] → [Action] → [Outcome]
                     ↓
@@ -49,6 +53,7 @@ Design intuitive, accessible user experiences grounded in research.
 ```
 
 **Validation**:
+
 - [ ] Happy path documented
 - [ ] Error states designed
 - [ ] Exit points identified
@@ -61,11 +66,13 @@ Design intuitive, accessible user experiences grounded in research.
 **Goal**: Create low-fidelity layouts focusing on structure
 
 **Fidelity Levels**:
+
 - **Low-fi**: Sketches, boxes, placeholder text (fastest)
 - **Mid-fi**: Grayscale, realistic content, basic interactions
 - **High-fi**: Styled, branded, detailed interactions
 
 **Key Screens to Wireframe**:
+
 - Homepage/Dashboard
 - Core task screens (CRUD operations)
 - Navigation (header, sidebar, footer)
@@ -73,6 +80,7 @@ Design intuitive, accessible user experiences grounded in research.
 - Empty states, loading states, error states
 
 **Wireframe Checklist**:
+
 - [ ] Clear visual hierarchy
 - [ ] Consistent layout patterns
 - [ ] Accessible contrast and sizing
@@ -86,12 +94,14 @@ Design intuitive, accessible user experiences grounded in research.
 **Goal**: Create interactive prototypes for usability testing
 
 **Prototyping Tools**:
+
 - Figma (recommended): Collaborative, browser-based
 - Adobe XD: Design system friendly
 - Framer: Code-based prototyping
 - InVision: Simple click-through prototypes
 
 **Usability Testing**:
+
 ```
 Script:
 1. Welcome (5 min): Explain process, get consent
@@ -108,6 +118,7 @@ Metrics:
 ```
 
 **Validation**:
+
 - [ ] Prototype covers main user flows
 - [ ] 5+ users tested
 - [ ] Task completion >70%
@@ -120,6 +131,7 @@ Metrics:
 **Goal**: Create high-fidelity, production-ready designs
 
 **Design System Elements**:
+
 - Colors: Primary, secondary, neutrals, semantic (error, success)
 - Typography: Scale (h1-h6, body, small), weights
 - Spacing: 4pt or 8pt grid system
@@ -127,6 +139,7 @@ Metrics:
 - Icons: Consistent set (Heroicons, Lucide, Font Awesome)
 
 **Accessibility (WCAG 2.1 AA)**:
+
 - Color contrast: 4.5:1 for text, 3:1 for large text/UI
 - Keyboard navigation: Tab order logical
 - Screen readers: Semantic HTML, ARIA labels
@@ -134,6 +147,7 @@ Metrics:
 - Alt text: Descriptive image alternatives
 
 **Developer Handoff**:
+
 - Design specs: Spacing, colors, fonts (inspect mode)
 - Component states: Default, hover, active, disabled, error
 - Responsive breakpoints: Mobile, tablet, desktop
@@ -141,6 +155,7 @@ Metrics:
 - Assets: Icons, images, logos (exported)
 
 **Validation**:
+
 - [ ] Designs match brand guidelines
 - [ ] Accessibility checked (Contrast, keyboard nav)
 - [ ] Responsive layouts for all breakpoints
@@ -152,18 +167,23 @@ Metrics:
 ## Key UX Principles
 
 ### 1. Consistency
+
 Use familiar patterns. Don't reinvent standard UI elements.
 
 ### 2. Feedback
+
 Confirm user actions (success messages, loading states).
 
 ### 3. Error Prevention
+
 Design to prevent errors, not just handle them.
 
 ### 4. Recognition Over Recall
+
 Show options rather than requiring memory.
 
 ### 5. Flexibility
+
 Support both novice and expert users (shortcuts, defaults).
 
 ---
@@ -171,6 +191,7 @@ Support both novice and expert users (shortcuts, defaults).
 ## Design Patterns
 
 **Form Design**:
+
 - Label above field (not placeholder)
 - Inline validation (real-time feedback)
 - Clear error messages ("Email must include @")
@@ -178,18 +199,21 @@ Support both novice and expert users (shortcuts, defaults).
 - Group related fields
 
 **Navigation**:
+
 - Current page highlighted
 - Breadcrumbs for deep hierarchies
 - Search for large sites
 - Max 7 items in top nav (Miller's Law)
 
 **Empty States**:
+
 - Explain why it's empty
 - Provide clear next action
 - Use illustration or icon
 - Example: "No tasks yet. Create your first task to get started."
 
 **Loading States**:
+
 - Skeleton screens (better than spinners)
 - Progress indicators for long operations
 - Optimistic UI (show result before confirmed)
@@ -214,22 +238,26 @@ Support both novice and expert users (shortcuts, defaults).
 ## Tools & Resources
 
 **Design Tools**:
+
 - Figma: Collaborative design
 - Tailwind CSS: Utility-first CSS framework
 - shadcn/ui: Component library
 - Heroicons/Lucide: Icon sets
 
 **Prototyping**:
+
 - Figma: Built-in prototyping
 - Framer: Advanced interactions
 - ProtoPie: Complex micro-interactions
 
 **Testing**:
+
 - Maze: Remote usability testing
 - UserTesting: Moderated and unmoderated tests
 - Hotjar: Session recordings and heatmaps
 
 **Accessibility**:
+
 - WAVE: Accessibility checker
 - axe DevTools: Browser extension
 - Lighthouse: Automated audits
@@ -239,14 +267,17 @@ Support both novice and expert users (shortcuts, defaults).
 ## Related Resources
 
 **Related Skills**:
+
 - `user-researcher` - For grounding design in research
 - `frontend-builder` - For implementing designs
 - `product-strategist` - For validating design direction
 
 **Related Patterns**:
+
 - `STANDARDS/design-systems/component-library.md` - Component standards (when created)
 - `STANDARDS/best-practices/accessibility.md` - Accessibility guidelines (when created)
 
 **Related Playbooks**:
+
 - `PLAYBOOKS/conduct-usability-test.md` - Testing procedure (when created)
 - `PLAYBOOKS/design-handoff.md` - Developer handoff process (when created)

@@ -21,21 +21,25 @@ claude-code --skill audio-producer
 ## Common Tasks
 
 ### Build Audio Player
+
 ```
 "Create a custom audio player with play, pause, seek, and volume controls"
 ```
 
 ### Add Voice Recording
+
 ```
 "Implement voice recording with download functionality"
 ```
 
 ### Create Waveform
+
 ```
 "Add a waveform visualization to this audio player"
 ```
 
 ### Apply Audio Effects
+
 ```
 "Add low-pass and high-pass filter controls to the audio player"
 ```

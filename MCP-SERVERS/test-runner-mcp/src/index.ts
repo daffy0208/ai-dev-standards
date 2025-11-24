@@ -7,37 +7,34 @@
  * across multiple testing frameworks (Vitest, Jest, Mocha, Playwright).
  */
 
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import {
-  CallToolRequestSchema,
-  ListToolsRequestSchema,
-} from '@modelcontextprotocol/sdk/types.js';
-import { execa } from 'execa';
-import { readFileSync, existsSync } from 'fs';
-import { join } from 'path';
+import { Server } from '@modelcontextprotocol/sdk/server/index.js'
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
+import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js'
+import execa from 'execa'
+import { readFileSync, existsSync } from 'fs'
+import { join } from 'path'
 
 // Server configuration
 interface TestRunnerConfig {
-  framework: 'vitest' | 'jest' | 'mocha' | 'playwright';
-  projectPath: string;
-  testPattern: string;
+  framework: 'vitest' | 'jest' | 'mocha' | 'playwright'
+  projectPath: string
+  testPattern: string
 }
 
-let config: TestRunnerConfig | null = null;
+let config: TestRunnerConfig | null = null
 
 // Create server instance
 const server = new Server(
   {
     name: 'test-runner-mcp',
-    version: '1.0.0',
+    version: '1.0.0'
   },
   {
     capabilities: {
-      tools: {},
-    },
+      tools: {}
+    }
   }
-);
+)
 
 // Tool definitions
 server.setRequestHandler(ListToolsRequestSchema, async () => {
@@ -141,27 +138,27 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         }
       }
     ]
-  };
-});
+  }
+})
 
 // Tool implementations
-server.setRequestHandler(CallToolRequestSchema, async (request) => {
-  const { name, arguments: args } = request.params;
+server.setRequestHandler(CallToolRequestSchema, async request => {
+  const { name, arguments: args } = request.params
 
   try {
     switch (name) {
       case 'configure':
-        return await handleConfigure(args);
+        return await handleConfigure(args)
       case 'run_tests':
-        return await handleRunTests(args);
+        return await handleRunTests(args)
       case 'discover_tests':
-        return await handleDiscoverTests(args);
+        return await handleDiscoverTests(args)
       case 'run_single_test':
-        return await handleRunSingleTest(args);
+        return await handleRunSingleTest(args)
       case 'generate_coverage':
-        return await handleGenerateCoverage(args);
+        return await handleGenerateCoverage(args)
       default:
-        throw new Error(`Unknown tool: ${name}`);
+        throw new Error(`Unknown tool: ${name}`)
     }
   } catch (error) {
     return {
@@ -172,9 +169,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         }
       ],
       isError: true
-    };
+    }
   }
-});
+})
 
 // Handler implementations
 async function handleConfigure(args: any) {
@@ -182,7 +179,7 @@ async function handleConfigure(args: any) {
     framework: args.framework,
     projectPath: args.projectPath,
     testPattern: args.testPattern || '**/*.{test,spec}.{js,ts,tsx}'
-  };
+  }
 
   return {
     content: [
@@ -191,25 +188,25 @@ async function handleConfigure(args: any) {
         text: `Configured test runner:\n- Framework: ${config.framework}\n- Project: ${config.projectPath}\n- Pattern: ${config.testPattern}`
       }
     ]
-  };
+  }
 }
 
 async function handleRunTests(args: any) {
   if (!config) {
-    throw new Error('Test runner not configured. Call configure first.');
+    throw new Error('Test runner not configured. Call configure first.')
   }
 
   // Build command based on framework
-  const command = buildTestCommand(config, args);
+  const command = buildTestCommand(config, args)
 
   // Execute tests
   const result = await execa(command.cmd, command.args, {
     cwd: config.projectPath,
     reject: false
-  });
+  })
 
   // Parse results
-  const parsed = parseTestOutput(config.framework, result);
+  const parsed = parseTestOutput(config.framework, result)
 
   return {
     content: [
@@ -218,12 +215,12 @@ async function handleRunTests(args: any) {
         text: JSON.stringify(parsed, null, 2)
       }
     ]
-  };
+  }
 }
 
 async function handleDiscoverTests(args: any) {
   if (!config) {
-    throw new Error('Test runner not configured. Call configure first.');
+    throw new Error('Test runner not configured. Call configure first.')
   }
 
   // Implementation for test discovery
@@ -234,12 +231,12 @@ async function handleDiscoverTests(args: any) {
         text: 'Test discovery not yet implemented'
       }
     ]
-  };
+  }
 }
 
 async function handleRunSingleTest(args: any) {
   if (!config) {
-    throw new Error('Test runner not configured. Call configure first.');
+    throw new Error('Test runner not configured. Call configure first.')
   }
 
   // Implementation for single test execution
@@ -250,12 +247,12 @@ async function handleRunSingleTest(args: any) {
         text: 'Single test execution not yet implemented'
       }
     ]
-  };
+  }
 }
 
 async function handleGenerateCoverage(args: any) {
   if (!config) {
-    throw new Error('Test runner not configured. Call configure first.');
+    throw new Error('Test runner not configured. Call configure first.')
   }
 
   // Implementation for coverage generation
@@ -266,39 +263,39 @@ async function handleGenerateCoverage(args: any) {
         text: 'Coverage generation not yet implemented'
       }
     ]
-  };
+  }
 }
 
 // Helper functions
 function buildTestCommand(config: TestRunnerConfig, options: any) {
-  const args: string[] = [];
+  const args: string[] = []
 
   switch (config.framework) {
     case 'vitest':
-      if (options.coverage) args.push('--coverage');
-      if (options.watch) args.push('--watch');
-      if (options.bail) args.push('--bail');
-      if (options.pattern) args.push(options.pattern);
-      return { cmd: 'vitest', args };
+      if (options.coverage) args.push('--coverage')
+      if (options.watch) args.push('--watch')
+      if (options.bail) args.push('--bail')
+      if (options.pattern) args.push(options.pattern)
+      return { cmd: 'vitest', args }
 
     case 'jest':
-      if (options.coverage) args.push('--coverage');
-      if (options.watch) args.push('--watch');
-      if (options.bail) args.push('--bail');
-      if (options.pattern) args.push(options.pattern);
-      return { cmd: 'jest', args };
+      if (options.coverage) args.push('--coverage')
+      if (options.watch) args.push('--watch')
+      if (options.bail) args.push('--bail')
+      if (options.pattern) args.push(options.pattern)
+      return { cmd: 'jest', args }
 
     case 'mocha':
-      if (options.bail) args.push('--bail');
-      if (options.pattern) args.push(options.pattern);
-      return { cmd: 'mocha', args };
+      if (options.bail) args.push('--bail')
+      if (options.pattern) args.push(options.pattern)
+      return { cmd: 'mocha', args }
 
     case 'playwright':
-      if (options.pattern) args.push(options.pattern);
-      return { cmd: 'playwright', args: ['test', ...args] };
+      if (options.pattern) args.push(options.pattern)
+      return { cmd: 'playwright', args: ['test', ...args] }
 
     default:
-      throw new Error(`Unsupported framework: ${config.framework}`);
+      throw new Error(`Unsupported framework: ${config.framework}`)
   }
 }
 
@@ -311,17 +308,17 @@ function parseTestOutput(framework: string, result: any) {
     skipped: 0,
     duration: 0,
     output: result.stdout + result.stderr
-  };
+  }
 }
 
 // Start server
 async function main() {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error('Test Runner MCP Server running on stdio');
+  const transport = new StdioServerTransport()
+  await server.connect(transport)
+  console.error('Test Runner MCP Server running on stdio')
 }
 
-main().catch((error) => {
-  console.error('Server error:', error);
-  process.exit(1);
-});
+main().catch(error => {
+  console.error('Server error:', error)
+  process.exit(1)
+})

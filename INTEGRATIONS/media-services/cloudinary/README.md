@@ -39,7 +39,7 @@ const client = createCloudinaryClient()
 const client = new CloudinaryClient({
   cloudName: 'your_cloud_name',
   apiKey: 'your_api_key',
-  apiSecret: 'your_api_secret',
+  apiSecret: 'your_api_secret'
 })
 ```
 
@@ -51,14 +51,14 @@ const result = await client.upload({
   file: imageBuffer,
   folder: 'products',
   publicId: 'product-123',
-  tags: ['ecommerce', 'featured'],
+  tags: ['ecommerce', 'featured']
 })
 
 // Upload from URL
 const result = await client.upload({
   file: 'https://example.com/image.jpg',
   folder: 'imported',
-  useFilename: true,
+  useFilename: true
 })
 
 // Upload with transformation
@@ -69,8 +69,8 @@ const result = await client.upload({
     height: 600,
     crop: 'fill',
     quality: 'auto',
-    format: 'webp',
-  },
+    format: 'webp'
+  }
 })
 ```
 
@@ -87,7 +87,7 @@ const url = client.url('product-123', {
   crop: 'fill',
   quality: 'auto',
   format: 'auto',
-  fetchFormat: 'auto',
+  fetchFormat: 'auto'
 })
 
 // Thumbnail with face detection
@@ -95,7 +95,7 @@ const thumbnail = client.url('portrait-photo', {
   width: 200,
   height: 200,
   crop: 'thumb',
-  gravity: 'face',
+  gravity: 'face'
 })
 
 // Responsive images
@@ -104,8 +104,8 @@ const responsive = client.responsive('product-123', {
   baseOptions: {
     crop: 'fill',
     quality: 'auto',
-    format: 'auto',
-  },
+    format: 'auto'
+  }
 })
 
 // Returns array of URLs with widths
@@ -120,7 +120,7 @@ responsive.forEach(({ url, width }) => {
 // Add effects
 const url = client.url('photo', {
   effect: 'blur:300',
-  quality: 'auto',
+  quality: 'auto'
 })
 
 // Rounded corners
@@ -128,13 +128,13 @@ const url = client.url('avatar', {
   width: 200,
   height: 200,
   crop: 'fill',
-  radius: 'max', // Circular
+  radius: 'max' // Circular
 })
 
 // Overlay text or image
 const url = client.url('base-image', {
   overlay: 'text:Arial_60:Hello%20World',
-  gravity: 'north',
+  gravity: 'north'
 })
 
 // Multiple transformations
@@ -145,7 +145,7 @@ const url = client.url('product', {
   quality: 'auto:best',
   format: 'auto',
   dpr: 'auto',
-  flags: ['progressive', 'lossy'],
+  flags: ['progressive', 'lossy']
 })
 ```
 
@@ -155,13 +155,13 @@ const url = client.url('product', {
 // Delete image
 const result = await client.delete({
   publicId: 'product-123',
-  invalidate: true, // Invalidate CDN cache
+  invalidate: true // Invalidate CDN cache
 })
 
 // Delete video
 const result = await client.delete({
   publicId: 'video-id',
-  resourceType: 'video',
+  resourceType: 'video'
 })
 ```
 
@@ -210,7 +210,7 @@ const result = await client.delete({
 const optimized = client.url('image', {
   quality: 'auto',
   format: 'auto',
-  fetchFormat: 'auto',
+  fetchFormat: 'auto'
 })
 
 // Responsive with DPR
@@ -218,7 +218,7 @@ const responsive = client.url('image', {
   width: 800,
   crop: 'scale',
   dpr: 'auto',
-  quality: 'auto',
+  quality: 'auto'
 })
 ```
 
@@ -230,7 +230,7 @@ const thumbnail = client.url('group-photo', {
   width: 300,
   height: 300,
   crop: 'thumb',
-  gravity: 'faces',
+  gravity: 'faces'
 })
 
 // Auto-crop to faces
@@ -238,7 +238,7 @@ const cropped = client.url('portrait', {
   width: 500,
   height: 500,
   crop: 'fill',
-  gravity: 'auto:faces',
+  gravity: 'auto:faces'
 })
 ```
 
@@ -249,7 +249,7 @@ const cropped = client.url('portrait', {
 const placeholder = client.url('image', {
   width: 50,
   quality: 'auto:low',
-  format: 'auto',
+  format: 'auto'
 })
 
 // Full-quality image
@@ -257,7 +257,7 @@ const fullImage = client.url('image', {
   width: 1200,
   quality: 'auto',
   format: 'auto',
-  flags: ['progressive'],
+  flags: ['progressive']
 })
 ```
 
@@ -267,7 +267,7 @@ const fullImage = client.url('image', {
 try {
   const result = await client.upload({
     file: imageBuffer,
-    folder: 'products',
+    folder: 'products'
   })
   console.log('Upload successful:', result.secureUrl)
 } catch (error) {

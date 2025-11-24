@@ -16,7 +16,7 @@
  * ```
  */
 
-import { Tool } from 'langchain/tools'
+import { Tool } from '@langchain/core/tools'
 
 export interface ColorSystemOutput {
   primary: ColorScale
@@ -100,7 +100,7 @@ Includes CSS variables and Tailwind configuration.`
       success: this.generateScale('#10B981'), // Green
       warning: this.generateScale('#F59E0B'), // Amber
       error: this.generateScale('#EF4444'), // Red
-      info: this.generateScale('#3B82F6'), // Blue
+      info: this.generateScale('#3B82F6') // Blue
     }
 
     // Generate CSS variables
@@ -109,7 +109,7 @@ Includes CSS variables and Tailwind configuration.`
       secondary,
       accent,
       neutrals,
-      semantic,
+      semantic
     })
 
     // Generate Tailwind config
@@ -118,7 +118,7 @@ Includes CSS variables and Tailwind configuration.`
       secondary,
       accent,
       neutrals,
-      semantic,
+      semantic
     })
 
     return {
@@ -128,7 +128,7 @@ Includes CSS variables and Tailwind configuration.`
       neutrals,
       semantic,
       cssVariables,
-      tailwindConfig,
+      tailwindConfig
     }
   }
 
@@ -146,11 +146,13 @@ Includes CSS variables and Tailwind configuration.`
       700: this.hslToHex(hsl.h, hsl.s, 30),
       800: this.hslToHex(hsl.h, hsl.s, 20),
       900: this.hslToHex(hsl.h, hsl.s, 10),
-      950: this.hslToHex(hsl.h, hsl.s, 5),
+      950: this.hslToHex(hsl.h, hsl.s, 5)
     }
   }
 
-  private generateCssVariables(colors: Omit<ColorSystemOutput, 'cssVariables' | 'tailwindConfig'>): string {
+  private generateCssVariables(
+    colors: Omit<ColorSystemOutput, 'cssVariables' | 'tailwindConfig'>
+  ): string {
     const lines: string[] = [':root {']
 
     // Primary
@@ -207,10 +209,10 @@ Includes CSS variables and Tailwind configuration.`
             success: colors.semantic.success,
             warning: colors.semantic.warning,
             error: colors.semantic.error,
-            info: colors.semantic.info,
-          },
-        },
-      },
+            info: colors.semantic.info
+          }
+        }
+      }
     }
 
     return JSON.stringify(config, null, 2)
@@ -248,7 +250,7 @@ Includes CSS variables and Tailwind configuration.`
     return {
       h: Math.round(h * 360),
       s: Math.round(s * 100),
-      l: Math.round(l * 100),
+      l: Math.round(l * 100)
     }
   }
 
@@ -295,7 +297,7 @@ Includes CSS variables and Tailwind configuration.`
     return {
       r: parseInt(result[1], 16),
       g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16),
+      b: parseInt(result[3], 16)
     }
   }
 

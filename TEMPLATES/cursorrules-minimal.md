@@ -6,6 +6,7 @@ Copy this into your project root as `.cursorrules` for basic integration.
 # Project: [Your Project Name]
 
 ## AI Development Standards
+
 Repository: ~/ai-dev-standards/
 Status: Active
 
@@ -31,11 +32,13 @@ Status: Active
 
 **Example:**
 ```
+
 Task: "Add user authentication"
 Step 1: Use graph_query_by_effect("implements_authentication")
 Step 2: Returns: security-engineer, api-designer
 Step 3: Use graph_get_dependencies("security-engineer")
 Step 4: Implement using security-engineer skill
+
 ```
 
 **Brain-MCP Tools Available:**

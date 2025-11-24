@@ -17,6 +17,7 @@ Since Archon MCP is now configured, you can use **Claude Desktop** to complete t
 2. **Start a new conversation** in the ai-dev-standards project folder
 
 3. **Verify Archon is connected:**
+
    ```
    "Can you check if Archon MCP tools are available?"
    ```
@@ -28,6 +29,7 @@ Since Archon MCP is now configured, you can use **Claude Desktop** to complete t
    - `archon:search_code_examples`
 
 4. **Sync the registries (Priority 1):**
+
    ```
    "Use Archon MCP to add these documents to the ai-dev-standards project:
    - META/skill-registry.json
@@ -41,6 +43,7 @@ Since Archon MCP is now configured, you can use **Claude Desktop** to complete t
    ```
 
 5. **Sync strategic documents (Priority 2):**
+
    ```
    "Now sync these strategic documents to Archon:
    - META/REPOSITORY-BRAIN.md
@@ -87,30 +90,35 @@ If you're using Cursor IDE:
 After syncing, run these queries in **Claude Desktop or Cursor** (not CLI):
 
 ### Test 1: Resource Counts
+
 ```
 "Using Archon, query: How many skills, MCPs, and total resources?"
 Expected: 39 skills, 36 MCPs, 107 resources
 ```
 
 ### Test 2: Brain Architecture
+
 ```
 "Using Archon, query: What are the four layers of the Repository Brain?"
 Expected: Knowledge, Enforcement, Decision, Management
 ```
 
 ### Test 3: Relationships
+
 ```
 "Using Archon, query: Which MCPs support the rag-implementer skill?"
 Expected: vector-database-mcp, embedding-generator-mcp, semantic-search-mcp
 ```
 
 ### Test 4: Integration Pattern
+
 ```
 "Using Archon, query: How do Archon and Skills work together?"
 Expected: Archon (WHAT/WHEN) + Skills (HOW) two-layer architecture
 ```
 
 ### Test 5: Latest Context
+
 ```
 "Using Archon, query: What is the plan for analyzing si-systems-v5?"
 Expected: Details from SESSION-2025-10-25-SI-SYSTEMS-BRAIN-RESEARCH.md
@@ -134,24 +142,29 @@ Expected: Details from SESSION-2025-10-25-SI-SYSTEMS-BRAIN-RESEARCH.md
 See `META/ARCHON-SYNC-MANIFEST.md` for complete list. Summary:
 
 **Priority 1 (Essential):**
+
 - 6 registry JSON files (single source of truth)
 
 **Priority 2 (Strategic):**
+
 - Repository Brain architecture
 - Project context and roadmap
 - Archon integration guide
 - Latest session context
 
 **Priority 3 (High Value):**
-- All 39 SKILLS/*/SKILL.md files
+
+- All 39 SKILLS/\*/SKILL.md files
 - Key skill documentation
 
 **Priority 4 (Reference):**
+
 - Architecture patterns
 - Best practices
 - Standards
 
 **Priority 5 (Optional):**
+
 - Code examples
 - Components
 - Integrations

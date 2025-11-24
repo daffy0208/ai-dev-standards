@@ -37,16 +37,23 @@
  * const files = await fs.listDirectory('/path/to/project')
  *
  * // Search files
- * const matches = await fs.searchFiles('/path/to/project', '**/*.ts')
+ * const matches = await fs.searchFiles('/path/to/project', '**\/*.ts')
  * ```
  */
 
 import * as fs from 'fs/promises'
 import * as path from 'path'
-import { createReadStream, createWriteStream } from 'fs'
+import { createReadStream, createWriteStream, watch as fsWatch } from 'fs'
 import { glob } from 'glob'
 import { createGzip, createGunzip } from 'zlib'
 import { pipeline } from 'stream/promises'
+
+const logInfo = (...messages: unknown[]): void => {
+  const formatted = messages.map(message =>
+    typeof message === 'string' ? message : JSON.stringify(message, null, 2)
+  )
+  process.stdout.write(`${formatted.join(' ')}\n`)
+}
 
 export interface FileSystemConfig {
   allowedPaths: string[]
@@ -90,9 +97,7 @@ export class FileSystemTool {
   private backupPath: string
 
   constructor(config: FileSystemConfig) {
-    this.allowedPaths = new Set(
-      config.allowedPaths.map(p => path.resolve(p))
-    )
+    this.allowedPaths = new Set(config.allowedPaths.map(p => path.resolve(p)))
     this.enableBackups = config.enableBackups ?? true
     this.backupPath = config.backupPath || path.join(process.cwd(), '.backups')
   }
@@ -104,14 +109,14 @@ export class FileSystemTool {
     const resolvedPath = path.resolve(filePath)
 
     // Check if path is within allowed directories
-    const isAllowed = Array.from(this.allowedPaths).some(allowedPath =>
-      resolvedPath.startsWith(allowedPath)
+    // Fix: Check path boundaries to prevent traversal attacks
+    // e.g., /allowed/path should not match /allowed/path-evil
+    const isAllowed = Array.from(this.allowedPaths).some(
+      allowedPath => resolvedPath === allowedPath || resolvedPath.startsWith(allowedPath + path.sep)
     )
 
     if (!isAllowed) {
-      throw new Error(
-        `Access denied: ${filePath} is outside allowed paths`
-      )
+      throw new Error(`Access denied: ${filePath} is outside allowed paths`)
     }
 
     return resolvedPath
@@ -124,15 +129,19 @@ export class FileSystemTool {
     if (!this.enableBackups) return
 
     try {
-      const exists = await fs.access(filePath).then(() => true).catch(() => false)
+      const exists = await fs
+        .access(filePath)
+        .then(() => true)
+        .catch(() => false)
       if (!exists) return
 
       const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
-      const backupDir = path.join(this.backupPath, path.dirname(filePath))
-      const backupFile = path.join(
-        backupDir,
-        `${path.basename(filePath)}.${timestamp}.backup`
-      )
+      // Fix: Get relative path from root to preserve directory structure
+      // path.dirname(filePath) is absolute, so path.join discards this.backupPath
+      const resolvedPath = path.resolve(filePath)
+      const relativePath = path.relative(path.parse(resolvedPath).root, resolvedPath)
+      const backupDir = path.join(this.backupPath, path.dirname(relativePath))
+      const backupFile = path.join(backupDir, `${path.basename(filePath)}.${timestamp}.backup`)
 
       await fs.mkdir(backupDir, { recursive: true })
       await fs.copyFile(filePath, backupFile)
@@ -144,16 +153,10 @@ export class FileSystemTool {
   /**
    * Read file
    */
-  async readFile(
-    filePath: string,
-    options: ReadOptions = {}
-  ): Promise<string | Buffer | any> {
+  async readFile(filePath: string, options: ReadOptions = {}): Promise<string | Buffer | any> {
     const validPath = this.validatePath(filePath)
 
-    const content = await fs.readFile(
-      validPath,
-      options.encoding || 'utf-8'
-    )
+    const content = await fs.readFile(validPath, options.encoding || 'utf-8')
 
     if (options.json) {
       return JSON.parse(content.toString())
@@ -186,11 +189,7 @@ export class FileSystemTool {
       finalContent = JSON.stringify(content, null, 2)
     }
 
-    await fs.writeFile(
-      validPath,
-      finalContent,
-      options.encoding || 'utf-8'
-    )
+    await fs.writeFile(validPath, finalContent, options.encoding || 'utf-8')
   }
 
   /**
@@ -271,26 +270,33 @@ export class FileSystemTool {
       nodir: !options.includeDirectories
     })
 
-    const limited = options.maxResults
-      ? matches.slice(0, options.maxResults)
-      : matches
+    const limited = options.maxResults ? matches.slice(0, options.maxResults) : matches
 
     const results: FileInfo[] = []
 
     for (const match of limited) {
-      const stats = await fs.stat(match)
+      // Fix: Validate each matched path to prevent sandbox bypass
+      // Absolute globs can return paths outside the sandbox
+      try {
+        const validMatch = this.validatePath(match)
+        const stats = await fs.stat(validMatch)
 
-      results.push({
-        path: match,
-        name: path.basename(match),
-        size: stats.size,
-        isDirectory: stats.isDirectory(),
-        isFile: stats.isFile(),
-        created: stats.birthtime,
-        modified: stats.mtime,
-        accessed: stats.atime,
-        extension: stats.isFile() ? path.extname(match) : undefined
-      })
+        results.push({
+          path: validMatch,
+          name: path.basename(validMatch),
+          size: stats.size,
+          isDirectory: stats.isDirectory(),
+          isFile: stats.isFile(),
+          created: stats.birthtime,
+          modified: stats.mtime,
+          accessed: stats.atime,
+          extension: stats.isFile() ? path.extname(validMatch) : undefined
+        })
+      } catch (error) {
+        // Skip files outside allowed paths
+        console.warn(`Skipping disallowed path: ${match}`)
+        continue
+      }
     }
 
     return results
@@ -383,11 +389,7 @@ export class FileSystemTool {
 
     await fs.mkdir(path.dirname(validDest), { recursive: true })
 
-    await pipeline(
-      createReadStream(validSource),
-      createGzip(),
-      createWriteStream(validDest)
-    )
+    await pipeline(createReadStream(validSource), createGzip(), createWriteStream(validDest))
 
     return validDest
   }
@@ -402,11 +404,7 @@ export class FileSystemTool {
 
     await fs.mkdir(path.dirname(validDest), { recursive: true })
 
-    await pipeline(
-      createReadStream(validSource),
-      createGunzip(),
-      createWriteStream(validDest)
-    )
+    await pipeline(createReadStream(validSource), createGunzip(), createWriteStream(validDest))
 
     return validDest
   }
@@ -420,13 +418,14 @@ export class FileSystemTool {
   ): Promise<() => void> {
     const validPath = this.validatePath(filePath)
 
-    const watcher = fs.watch(validPath, (event, filename) => {
+    // Use callback-based watch from 'fs' module (not 'fs/promises')
+    const watcher = fsWatch(validPath, (event, filename) => {
       callback(event, filename || '')
     })
 
     // Return cleanup function
-    return async () => {
-      ;(await watcher).close()
+    return () => {
+      watcher.close()
     }
   }
 
@@ -458,7 +457,8 @@ export class FileSystemTool {
  */
 export const fileSystemToolDefinition = {
   name: 'filesystem',
-  description: 'Perform file system operations like reading, writing, listing, and searching files. All operations are restricted to allowed paths for safety.',
+  description:
+    'Perform file system operations like reading, writing, listing, and searching files. All operations are restricted to allowed paths for safety.',
   parameters: {
     type: 'object',
     properties: {
@@ -511,10 +511,7 @@ export const fileSystemToolDefinition = {
 /**
  * Execute tool (for AI frameworks)
  */
-export async function executeFileSystemTool(
-  args: any,
-  config: FileSystemConfig
-): Promise<any> {
+export async function executeFileSystemTool(args: any, config: FileSystemConfig): Promise<any> {
   const fs = new FileSystemTool(config)
 
   switch (args.action) {
@@ -568,35 +565,41 @@ export async function examples() {
 
   // Example 1: Read text file
   const content = await fs.readFile('./README.md')
-  console.log('File content:', content)
+  logInfo('File content:', content)
 
   // Example 2: Read JSON file
   const data = await fs.readFile('./package.json', { json: true })
-  console.log('JSON data:', data)
+  logInfo('JSON data:', data)
 
   // Example 3: Write file
   await fs.writeFile('./output.txt', 'Hello, World!')
-  console.log('File written')
+  logInfo('File written')
 
   // Example 4: Write JSON file
   await fs.writeFile('./data.json', { name: 'John', age: 30 }, { json: true })
-  console.log('JSON written')
+  logInfo('JSON written')
 
   // Example 5: List directory
   const files = await fs.listDirectory('./')
-  console.log('Files:', files.map(f => f.name))
+  logInfo(
+    'Files:',
+    files.map(f => f.name)
+  )
 
   // Example 6: List directory recursively
   const allFiles = await fs.listDirectory('./', { recursive: true })
-  console.log(`Found ${allFiles.length} files`)
+  logInfo(`Found ${allFiles.length} files`)
 
   // Example 7: Search files
   const tsFiles = await fs.searchFiles('./', '**/*.ts')
-  console.log('TypeScript files:', tsFiles.map(f => f.path))
+  logInfo(
+    'TypeScript files:',
+    tsFiles.map(f => f.path)
+  )
 
   // Example 8: Get file info
   const info = await fs.getFileInfo('./package.json')
-  console.log('File info:', {
+  logInfo('File info:', {
     name: info.name,
     size: info.size,
     modified: info.modified
@@ -604,21 +607,21 @@ export async function examples() {
 
   // Example 9: Check existence
   const exists = await fs.exists('./README.md')
-  console.log('File exists:', exists)
+  logInfo('File exists:', exists)
 
   // Example 10: Copy file
   await fs.copyFile('./README.md', './README.backup.md')
-  console.log('File copied')
+  logInfo('File copied')
 
   // Example 11: Create directory
   await fs.createDirectory('./output')
-  console.log('Directory created')
+  logInfo('Directory created')
 
   // Example 12: Compress file
   const compressed = await fs.compressFile('./README.md')
-  console.log('Compressed to:', compressed)
+  logInfo('Compressed to:', compressed)
 
   // Example 13: Read directory tree
   const tree = await fs.readTree('./src')
-  console.log('Directory tree:', JSON.stringify(tree, null, 2))
+  logInfo('Directory tree:', JSON.stringify(tree, null, 2))
 }

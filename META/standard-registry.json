@@ -13,10 +13,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "authentication",
-        "architecture-patterns"
-      ]
+      "tags": ["authentication", "architecture-patterns"]
     },
     {
       "name": "database-design-patterns",
@@ -28,10 +25,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "database",
-        "architecture-patterns"
-      ]
+      "tags": ["database", "architecture-patterns"]
     },
     {
       "name": "error-tracking",
@@ -43,10 +37,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "error",
-        "architecture-patterns"
-      ]
+      "tags": ["error", "architecture-patterns"]
     },
     {
       "name": "event-driven-architecture",
@@ -58,10 +49,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "event",
-        "architecture-patterns"
-      ]
+      "tags": ["event", "architecture-patterns"]
     },
     {
       "name": "logging-strategy",
@@ -73,10 +61,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "logging",
-        "architecture-patterns"
-      ]
+      "tags": ["logging", "architecture-patterns"]
     },
     {
       "name": "microservices-pattern",
@@ -88,10 +73,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "microservices",
-        "architecture-patterns"
-      ]
+      "tags": ["microservices", "architecture-patterns"]
     },
     {
       "name": "monitoring-and-alerting",
@@ -103,10 +85,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "monitoring",
-        "architecture-patterns"
-      ]
+      "tags": ["monitoring", "architecture-patterns"]
     },
     {
       "name": "rag-pattern",
@@ -118,10 +97,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "rag",
-        "architecture-patterns"
-      ]
+      "tags": ["rag", "architecture-patterns"]
     },
     {
       "name": "real-time-systems",
@@ -133,10 +109,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "real",
-        "architecture-patterns"
-      ]
+      "tags": ["real", "architecture-patterns"]
     },
     {
       "name": "serverless-pattern",
@@ -148,10 +121,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "serverless",
-        "architecture-patterns"
-      ]
+      "tags": ["serverless", "architecture-patterns"]
     },
     {
       "name": "database-best-practices",
@@ -163,10 +133,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "database",
-        "best-practices"
-      ]
+      "tags": ["database", "best-practices"]
     },
     {
       "name": "mcp-code-execution-best-practices",
@@ -178,10 +145,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "mcp",
-        "best-practices"
-      ]
+      "tags": ["mcp", "best-practices"]
     },
     {
       "name": "security-best-practices",
@@ -193,10 +157,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "security",
-        "best-practices"
-      ]
+      "tags": ["security", "best-practices"]
     },
     {
       "name": "testing-best-practices",
@@ -208,10 +169,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "testing",
-        "best-practices"
-      ]
+      "tags": ["testing", "best-practices"]
     },
     {
       "name": "naming-conventions",
@@ -223,10 +181,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "naming",
-        "coding-conventions"
-      ]
+      "tags": ["naming", "coding-conventions"]
     },
     {
       "name": "python-style-guide",
@@ -238,10 +193,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "python",
-        "coding-conventions"
-      ]
+      "tags": ["python", "coding-conventions"]
     },
     {
       "name": "react-patterns",
@@ -253,10 +205,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "react",
-        "coding-conventions"
-      ]
+      "tags": ["react", "coding-conventions"]
     },
     {
       "name": "typescript-style-guide",
@@ -268,10 +217,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "typescript",
-        "coding-conventions"
-      ]
+      "tags": ["typescript", "coding-conventions"]
     },
     {
       "name": "code-organization",
@@ -283,10 +229,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "code",
-        "project-structure"
-      ]
+      "tags": ["code", "project-structure"]
     },
     {
       "name": "fastapi-project-structure",
@@ -298,10 +241,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "fastapi",
-        "project-structure"
-      ]
+      "tags": ["fastapi", "project-structure"]
     },
     {
       "name": "nextjs-app-structure",
@@ -313,10 +253,7 @@
       "status": "active",
       "related_skills": [],
       "related_playbooks": [],
-      "tags": [
-        "nextjs",
-        "project-structure"
-      ]
+      "tags": ["nextjs", "project-structure"]
     }
   ],
   "categories": {

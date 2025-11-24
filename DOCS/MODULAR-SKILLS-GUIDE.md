@@ -9,12 +9,14 @@ This guide explains the modular skills pattern for managing large skills using p
 ## The Problem
 
 Some skills in ai-dev-standards are large (>500 lines):
+
 - supabase-developer: 1501 lines
 - design-system-architect: 1365 lines
 - forensic-data-engineer: 1194 lines
 - technical-writer: 1019 lines
 
 **Issues with large skills:**
+
 - Hit context window limits
 - Slower to load
 - Harder to maintain
@@ -25,11 +27,13 @@ Some skills in ai-dev-standards are large (>500 lines):
 ## The Solution: Modular Pattern
 
 **Progressive Disclosure Pattern:**
+
 - Keep core skill methodology in SKILL.md (<500 lines)
 - Move detailed content to `resources/` directory
 - Reference resources as needed
 
 **Benefits:**
+
 - Reduced context window usage
 - Faster initial skill loading
 - Better maintainability
@@ -63,6 +67,7 @@ SKILLS/skill-name/
 ### Step 1: Analyze Current Structure
 
 Identify sections in SKILL.md:
+
 - Core methodology (keep in SKILL.md)
 - Detailed examples (move to resources/)
 - Advanced topics (move to resources/)
@@ -73,6 +78,7 @@ Identify sections in SKILL.md:
 ### Step 2: Extract Content
 
 **Keep in SKILL.md:**
+
 - YAML frontmatter
 - When to use this skill
 - Core step-by-step methodology
@@ -80,6 +86,7 @@ Identify sections in SKILL.md:
 - References to resources
 
 **Move to resources/:**
+
 - Detailed code examples
 - Architecture deep dives
 - Comprehensive troubleshooting
@@ -162,21 +169,25 @@ name: Supabase Developer
 # Supabase Developer
 
 ## When to Use
+
 [Quick overview]
 
 ## Core Workflow
 
 ### 1. Authentication
+
 [Core methodology - 30 lines]
 
 **Detailed guidance:** See `resources/authentication.md`
 
 ### 2. Database Design
+
 [Core methodology - 30 lines]
 
 **Detailed guidance:** See `resources/database-design.md`
 
 ### 3. Storage
+
 [Core methodology - 20 lines]
 
 **Detailed guidance:** See `resources/storage.md`
@@ -184,13 +195,15 @@ name: Supabase Developer
 [...continues for other sections...]
 
 ## Quick Examples
+
 [5-10 essential examples]
 
 ## Resources
+
 - `resources/authentication.md` - Complete auth patterns
 - `resources/database-design.md` - Schema design & RLS
 - `resources/storage.md` - File storage
-[...list all resources...]
+  [...list all resources...]
 ```
 
 ---
@@ -200,6 +213,7 @@ name: Supabase Developer
 ### 1. Keep SKILL.md Focused
 
 **Good:**
+
 ```markdown
 ## Authentication
 
@@ -213,6 +227,7 @@ name: Supabase Developer
 ```
 
 **Bad (too detailed for SKILL.md):**
+
 ```markdown
 ## Authentication
 
@@ -222,6 +237,7 @@ name: Supabase Developer
 ### 2. Make Resources Self-Contained
 
 Each resource file should:
+
 - Be independently readable
 - Have clear purpose
 - Include examples
@@ -230,11 +246,13 @@ Each resource file should:
 ### 3. Use Clear Naming
 
 **Good:**
+
 - `authentication.md` (clear purpose)
 - `database-design.md` (specific topic)
 - `troubleshooting.md` (obvious use)
 
 **Bad:**
+
 - `part1.md` (unclear)
 - `misc.md` (too generic)
 - `notes.md` (vague)
@@ -242,6 +260,7 @@ Each resource file should:
 ### 4. Maintain Consistency
 
 All modular skills should follow same structure:
+
 - SKILL.md always has core methodology
 - resources/ always contains detailed content
 - Cross-references always use same format
@@ -251,19 +270,16 @@ All modular skills should follow same structure:
 ## Implementation Priority
 
 **High Priority (>1000 lines):**
+
 1. supabase-developer (1501 lines)
 2. design-system-architect (1365 lines)
 3. forensic-data-engineer (1194 lines)
 4. technical-writer (1019 lines)
 
-**Medium Priority (700-1000 lines):**
-5. testing-strategist (910 lines)
-6. api-integration-builder (900 lines)
-7. quality-auditor (898 lines)
-8. mobile-developer (884 lines)
-9. data-engineer (862 lines)
+**Medium Priority (700-1000 lines):** 5. testing-strategist (910 lines) 6. api-integration-builder (900 lines) 7. quality-auditor (898 lines) 8. mobile-developer (884 lines) 9. data-engineer (862 lines)
 
 **Later (if needed):**
+
 - Skills under 700 lines can stay monolithic
 
 ---
@@ -289,11 +305,13 @@ Converting a skill? Use this checklist:
 ## Measuring Success
 
 **Before modularization:**
+
 - Large SKILL.md files (>1000 lines)
 - Slow context window loading
 - Hard to find specific information
 
 **After modularization:**
+
 - SKILL.md < 500 lines
 - Fast initial loading
 - Easy to find specific topics in resources/
@@ -381,6 +399,7 @@ The showcase repository uses this pattern:
 ```
 
 **Key insights:**
+
 - Main SKILL.md stays focused
 - Resources are topic-specific
 - Users load only what they need

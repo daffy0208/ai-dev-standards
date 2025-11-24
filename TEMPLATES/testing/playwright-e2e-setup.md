@@ -11,6 +11,7 @@ npm init playwright@latest
 ```
 
 This will:
+
 - Install Playwright
 - Create `playwright.config.ts`
 - Create example test in `tests/`
@@ -49,11 +50,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
 
   // Reporter
-  reporter: [
-    ['html'],
-    ['list'],
-    process.env.CI ? ['github'] : ['list'],
-  ],
+  reporter: [['html'], ['list'], process.env.CI ? ['github'] : ['list']],
 
   // Shared settings
   use: {
@@ -67,35 +64,35 @@ export default defineConfig({
     screenshot: 'only-on-failure',
 
     // Video on failure
-    video: 'retain-on-failure',
+    video: 'retain-on-failure'
   },
 
   // Configure projects for major browsers
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'] }
     },
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      use: { ...devices['Desktop Firefox'] }
     },
 
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      use: { ...devices['Desktop Safari'] }
     },
 
     // Mobile viewports
     {
       name: 'Mobile Chrome',
-      use: { ...devices['Pixel 5'] },
+      use: { ...devices['Pixel 5'] }
     },
     {
       name: 'Mobile Safari',
-      use: { ...devices['iPhone 12'] },
-    },
+      use: { ...devices['iPhone 12'] }
+    }
   ],
 
   // Run local dev server before tests
@@ -103,8 +100,8 @@ export default defineConfig({
     command: 'npm run dev',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
-    timeout: 120 * 1000,
-  },
+    timeout: 120 * 1000
+  }
 })
 ```
 
@@ -180,12 +177,14 @@ test.describe('Authentication', () => {
 
   test('user can log out', async ({ page, context }) => {
     // Login first (using API for speed)
-    await context.addCookies([{
-      name: 'auth-token',
-      value: 'test-token',
-      domain: 'localhost',
-      path: '/',
-    }])
+    await context.addCookies([
+      {
+        name: 'auth-token',
+        value: 'test-token',
+        domain: 'localhost',
+        path: '/'
+      }
+    ])
 
     await page.goto('/dashboard')
 
@@ -372,12 +371,14 @@ type AuthFixtures = {
 export const test = base.extend<AuthFixtures>({
   authenticatedPage: async ({ page, context }, use) => {
     // Setup: Login
-    await context.addCookies([{
-      name: 'auth-token',
-      value: 'test-token',
-      domain: 'localhost',
-      path: '/',
-    }])
+    await context.addCookies([
+      {
+        name: 'auth-token',
+        value: 'test-token',
+        domain: 'localhost',
+        path: '/'
+      }
+    ])
 
     await page.goto('/dashboard')
 
@@ -385,7 +386,7 @@ export const test = base.extend<AuthFixtures>({
     await use(page)
 
     // Teardown happens automatically
-  },
+  }
 })
 
 // Usage
@@ -408,8 +409,8 @@ test('API: create user', async ({ request }) => {
   const response = await request.post('/api/users', {
     data: {
       email: 'test@example.com',
-      name: 'Test User',
-    },
+      name: 'Test User'
+    }
   })
 
   expect(response.ok()).toBeTruthy()
@@ -418,7 +419,7 @@ test('API: create user', async ({ request }) => {
   const body = await response.json()
   expect(body).toMatchObject({
     email: 'test@example.com',
-    name: 'Test User',
+    name: 'Test User'
   })
 })
 ```
@@ -591,6 +592,7 @@ test('mobile menu works', async ({ page }) => {
 
 **Cause:** Race conditions, animations
 **Solution:**
+
 - Use `waitFor` with specific conditions
 - Disable animations in test mode
 - Increase timeout for specific actions
@@ -599,6 +601,7 @@ test('mobile menu works', async ({ page }) => {
 
 **Cause:** Selector changed or element not loaded
 **Solution:**
+
 - Use stable selectors (data-testid)
 - Check element exists before interacting
 - Verify page loaded correctly
@@ -607,6 +610,7 @@ test('mobile menu works', async ({ page }) => {
 
 **Cause:** Element never appears, API never responds
 **Solution:**
+
 - Increase timeout in config
 - Check if dev server is running
 - Verify network requests complete

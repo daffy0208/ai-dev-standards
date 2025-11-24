@@ -5,6 +5,23 @@ const path = require('path')
 const { glob } = require('glob')
 const { validateReportPath } = require('../utils/path-validation')
 
+const defaultDeps = {
+  chalk,
+  ora,
+  fs,
+  path,
+  glob,
+  validateReportPath,
+  exit: code => process.exit(code)
+}
+
+function createAnalyzeCommand(overrides = {}) {
+  const deps = { ...defaultDeps, ...overrides }
+  return async function runAnalyze(options) {
+    return analyzeCommandInternal(options, deps)
+  }
+}
+
 /**
  * Analyze Command
  *
@@ -16,7 +33,9 @@ const { validateReportPath } = require('../utils/path-validation')
  * - Accessibility problems
  * - Code quality issues
  */
-async function analyzeCommand(options) {
+async function analyzeCommandInternal(options, deps) {
+  const { chalk, ora, fs, path, glob, validateReportPath, exit } = deps
+
   console.log(chalk.blue(`\n🔍 Analyzing project: ${chalk.bold(options.directory)}\n`))
 
   const spinner = ora('Scanning project...').start()
@@ -26,7 +45,7 @@ async function analyzeCommand(options) {
 
     // Check if it's a valid project
     const packageJsonPath = path.join(projectPath, 'package.json')
-    if (!await fs.pathExists(packageJsonPath)) {
+    if (!(await fs.pathExists(packageJsonPath))) {
       spinner.fail('Not a valid Node.js project')
       console.log(chalk.red('\n❌ No package.json found\n'))
       process.exit(1)
@@ -41,7 +60,7 @@ async function analyzeCommand(options) {
 
     // 1. Check for tests
     spinner.text = 'Checking test coverage...'
-    const hasTests = await checkForTests(projectPath)
+    const hasTests = await checkForTests(projectPath, { glob })
     if (!hasTests) {
       issues.push({
         type: 'missing-tests',
@@ -87,7 +106,7 @@ async function analyzeCommand(options) {
 
     // 5. Check for unused dependencies
     spinner.text = 'Checking dependencies...'
-    const unusedDeps = await findUnusedDependencies(projectPath, packageJson)
+    const unusedDeps = await findUnusedDependencies(projectPath, packageJson, { fs, path, glob })
     if (unusedDeps.length > 0) {
       warnings.push({
         type: 'unused-deps',
@@ -99,17 +118,17 @@ async function analyzeCommand(options) {
 
     // 6. Check for security best practices
     spinner.text = 'Checking security...'
-    const securityIssues = await checkSecurity(projectPath, packageJson)
+    const securityIssues = await checkSecurity(projectPath, { fs, path, glob })
     issues.push(...securityIssues)
 
     // 7. Check for accessibility
     spinner.text = 'Checking accessibility...'
-    const a11yIssues = await checkAccessibility(projectPath)
+    const a11yIssues = await checkAccessibility(projectPath, { fs, path, glob })
     warnings.push(...a11yIssues)
 
     // 8. Check for performance optimizations
     spinner.text = 'Checking performance...'
-    const perfRecommendations = await checkPerformance(projectPath, packageJson)
+    const perfRecommendations = await checkPerformance(projectPath, packageJson, { fs, path, glob })
     recommendations.push(...perfRecommendations)
 
     spinner.succeed('Analysis complete')
@@ -157,7 +176,7 @@ async function analyzeCommand(options) {
     // Auto-fix option
     if (options.fix && (issues.length > 0 || warnings.length > 0)) {
       console.log(chalk.bold('\n🔧 Auto-fixing issues...\n'))
-      await autoFix(projectPath, issues, warnings)
+      await autoFix(projectPath, issues, warnings, { chalk })
     }
 
     // Save report
@@ -175,18 +194,18 @@ async function analyzeCommand(options) {
     }
 
     console.log()
-
   } catch (error) {
     spinner.fail('Analysis failed')
     console.error(chalk.red(`\n❌ Error: ${error.message}\n`))
-    process.exit(1)
+    exit(1)
   }
 }
 
 /**
  * Check for test files
  */
-async function checkForTests(projectPath) {
+async function checkForTests(projectPath, deps) {
+  const { glob } = deps
   const testPatterns = [
     '**/*.test.{js,jsx,ts,tsx}',
     '**/*.spec.{js,jsx,ts,tsx}',
@@ -204,7 +223,8 @@ async function checkForTests(projectPath) {
 /**
  * Find unused dependencies
  */
-async function findUnusedDependencies(projectPath, packageJson) {
+async function findUnusedDependencies(projectPath, packageJson, deps) {
+  const { glob, fs, path } = deps
   const dependencies = Object.keys(packageJson.dependencies || {})
   const unused = []
 
@@ -217,7 +237,8 @@ async function findUnusedDependencies(projectPath, packageJson) {
   for (const dep of dependencies) {
     let found = false
 
-    for (const file of jsFiles.slice(0, 100)) { // Check first 100 files
+    for (const file of jsFiles.slice(0, 100)) {
+      // Check first 100 files
       const content = await fs.readFile(path.join(projectPath, file), 'utf8')
       if (content.includes(`'${dep}'`) || content.includes(`"${dep}"`)) {
         found = true
@@ -236,7 +257,8 @@ async function findUnusedDependencies(projectPath, packageJson) {
 /**
  * Check security best practices
  */
-async function checkSecurity(projectPath, packageJson) {
+async function checkSecurity(projectPath, deps) {
+  const { glob, fs, path } = deps
   const issues = []
 
   // Check for hardcoded secrets
@@ -264,7 +286,8 @@ async function checkSecurity(projectPath, packageJson) {
 /**
  * Check accessibility
  */
-async function checkAccessibility(projectPath) {
+async function checkAccessibility(projectPath, deps) {
+  const { glob, fs, path } = deps
   const warnings = []
 
   const components = await glob('**/*.{jsx,tsx}', {
@@ -300,7 +323,8 @@ async function checkAccessibility(projectPath) {
 /**
  * Check performance optimizations
  */
-async function checkPerformance(projectPath, packageJson) {
+async function checkPerformance(projectPath, packageJson, deps) {
+  const { glob, fs, path } = deps
   const recommendations = []
 
   // Check for Next.js Image component
@@ -330,7 +354,8 @@ async function checkPerformance(projectPath, packageJson) {
 /**
  * Auto-fix issues
  */
-async function autoFix(projectPath, issues, warnings) {
+async function autoFix(projectPath, issues, warnings, deps) {
+  const { chalk } = deps
   for (const issue of issues) {
     if (issue.type === 'missing-tests') {
       console.log(chalk.cyan('  • Adding test setup...'))
@@ -348,4 +373,5 @@ async function autoFix(projectPath, issues, warnings) {
   console.log(chalk.green('\n✅ Auto-fix complete'))
 }
 
-module.exports = analyzeCommand
+module.exports = createAnalyzeCommand()
+module.exports.createAnalyzeCommand = createAnalyzeCommand

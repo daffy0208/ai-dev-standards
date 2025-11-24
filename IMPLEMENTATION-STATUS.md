@@ -1,32 +1,31 @@
 # MCP Patterns Implementation: Status Report
 
 **Date**: 2025-11-14 (Updated)
-**Status**: Phases 1-4 Complete + Core Infrastructure (40% overall progress)
-**Current**: Phase 5-11 Infrastructure Complete, Ready for Testing
+**Status**: MVP build in progress (~40% complete)
+**Current Focus**: CLI workflows + semantic-search MCP pilot + brain/registry stability
 
 ---
 
 ## Executive Summary
 
-**Major milestone achieved!** Phases 1-4 complete plus core infrastructure from Phases 5, 10-11. Foundation for MCP patterns is now fully operational with:
+We have comprehensive documentation and registry scaffolding, but the production-grade implementation is still underway. The immediate goal is to ship a **minimal viable release** covering:
 
-- ✅ **Complete documentation suite** (~81K words)
-- ✅ **Brain orchestrator with automatic pattern selection**
-- ✅ **CLI generators updated for both patterns**
-- ✅ **All 50 MCPs tagged with pattern metadata**
-- ✅ **All 64 skills tagged with pattern preferences**
-- ✅ **Security infrastructure templates**
-- ✅ **Configuration files for hybrid approach**
-- ✅ **Root README updated with MCP patterns info**
+1. CLI project setup + diagnostics (`setup`, `doctor`, `analyze`) and shared React components.
+2. The first code-execution MCP (`semantic-search-mcp`) fully tested inside the sandbox.
+3. Reliable brain orchestration + registry validation in CI.
+
+Everything else (the remaining MCP catalog, advanced pipelines, template work, etc.) is paused until this slice ships with docs, tests, and lint all green.
 
 ### Latest Session Accomplishments (Phases 3-4 + Infrastructure)
 
 **Phase 3: CLI Generators** ✅
+
 - Updated `mcp-generator.js` with pattern support (direct vs code-execution)
 - Updated `project-generator.js` with MCP pattern configuration
 - Created `tool-file-generator.js` for Code Execution pattern tool files
 
 **Phase 4: Registry Updates** ✅
+
 - Updated `mcp-server.schema.json` with pattern fields
 - Created `update-mcp-registry-patterns.cjs` script
 - Created `update-skill-registry-patterns.cjs` script
@@ -34,29 +33,40 @@
 - **Executed registry updates** - all 50 MCPs and 64 skills now have pattern metadata
 
 **Phase 5: Security Infrastructure** ✅
+
 - Created `/SECURITY/` directory structure
 - Created Docker sandbox template
 - Created PII tokenization template
 - Security README with 4-layer model
 
 **Phase 10: Configuration** ✅
+
 - Created `config/mcp-patterns.json` with hybrid configuration
 - Created `config/security-layers.json` with security settings
 - Auto-select disabled by default for safety
 
 **Phase 11: Root Updates** ✅
+
 - Updated `README.md` with comprehensive MCP patterns section
 - Added quick start guides and links to documentation
 - Current state statistics included (50 MCPs, 64 skills, 5 Tier 1 candidates)
 
+**Testing & CI Enhancements** ✅
+
+- Added a dedicated `npm run test:cli` script (and CI step) so the CLI + semantic-search suites run consistently in GitHub Actions and locally.
+- Documented the dependency-injection testing approach for CLI commands in both `README.md` and `CONTRIBUTING.md`, covering temporary directories, mocked prompts/spinners, and the `create*Command` factories.
+- Added `npm run test:semantic-search:docker`, which builds the `mcp-sandbox` image, executes the Python tools inside the sandbox, and optionally runs a Pinecone round-trip when API credentials are available. The CI workflow runs this smoke test on the Node 20 job.
+
 ### Previous Session Accomplishments (Phases 1-2)
 
 **Phase 1 (Documentation)** ✅
+
 - Created `/DOCS/mcp-patterns/` directory with 12 comprehensive guides (~81K words)
 - Integrated extracted Anthropic documentation
 - Added cross-references to existing documentation
 
 **Phase 2 (Brain Orchestrator)** ✅
+
 - Created `approach-selector.ts` (320 lines) - automatic pattern selection
 - Created `complexity-analyzer.ts` (450 lines) - task complexity analysis
 - Created `pattern-router.ts` (380 lines) - routing with statistics
@@ -126,6 +136,7 @@ All files created in `/DOCS/mcp-patterns/`:
 #### Key Content Created
 
 **README.md** (2,500 words):
+
 - Master navigation document
 - Quick decision guide
 - Current state analysis (50 MCPs, 64 skills)
@@ -134,6 +145,7 @@ All files created in `/DOCS/mcp-patterns/`:
 - FAQ section
 
 **00-mcp-patterns-overview.md** (3,800 words):
+
 - Detailed pattern comparison
 - Architecture diagrams
 - Token consumption examples
@@ -141,6 +153,7 @@ All files created in `/DOCS/mcp-patterns/`:
 - Migration path explanation
 
 **02-mcp-direct-pattern.md** (4,200 words):
+
 - Documents current Direct MCP implementation
 - Lists all 50 MCPs by category
 - Performance profiling
@@ -149,6 +162,7 @@ All files created in `/DOCS/mcp-patterns/`:
 - Migration candidates identified
 
 **03-mcp-code-execution-pattern.md** (5,000 words):
+
 - Complete Code Execution explanation
 - Progressive discovery details
 - Token comparison (95%+ savings potential)
@@ -157,6 +171,7 @@ All files created in `/DOCS/mcp-patterns/`:
 - Pilot migration recommendations
 
 **10-mcp-implementation-roadmap.md** (3,500 words):
+
 - Custom 12-week implementation plan
 - Tier 1 migration candidates (5 MCPs identified)
 - Resource requirements (15 engineer-weeks)
@@ -198,11 +213,13 @@ All files created in `/DOCS/mcp-patterns/`:
 ```
 
 **Update existing file**:
+
 ```typescript
-/scripts/brain/mcp-integrator.ts  // Add pattern selection logic
+;/scripts/abinr / mcp - integrator.ts // Add pattern selection logic
 ```
 
 **Create tests**:
+
 ```typescript
 /tests/unit/brain/
 ├── approach-selector.test.ts
@@ -213,12 +230,14 @@ All files created in `/DOCS/mcp-patterns/`:
 ### Phase 3: CLI Generator Updates
 
 **Update 2 files**:
+
 ```javascript
 /CLI/generators/mcp-generator.js      // Add --pattern flag
 /CLI/generators/project-generator.js  // Add pattern questions
 ```
 
 **Create 1 file**:
+
 ```javascript
 /CLI/generators/tool-file-generator.js  // Generate tool files
 ```
@@ -226,6 +245,7 @@ All files created in `/DOCS/mcp-patterns/`:
 ### Phase 4: Registry Updates
 
 **Update schemas and registries**:
+
 ```json
 /SCHEMAS/mcp-server.schema.json       // Add pattern fields
 /META/mcp-registry.json               // Add pattern to all 50 MCPs
@@ -246,6 +266,7 @@ See detailed plan in original roadmap document.
 Simply say: **"Continue with Phase 1 completion"**
 
 I will:
+
 1. Update existing documentation files with cross-references
 2. Add notes to root-level files pointing to new locations
 3. Then proceed to Phase 2 (Brain Enhancement)
@@ -260,6 +281,7 @@ Reference this file (`/IMPLEMENTATION-STATUS.md`) to understand context.
 ### Option 3: Targeted Implementation
 
 Pick specific phases to focus on:
+
 - **"Implement Phase 2 only"** - Brain orchestrator
 - **"Implement Phase 4 only"** - Registries
 - **"Implement security infrastructure"** - Phase 5
@@ -267,6 +289,7 @@ Pick specific phases to focus on:
 ### Option 4: Automated Continuation
 
 I can create a script that:
+
 1. Reads this status file
 2. Identifies remaining tasks
 3. Executes them systematically
@@ -307,22 +330,22 @@ Say: **"Create automation script for remaining phases"**
 
 ### By Phase
 
-| Phase | Files to Create/Update | Est. Time | Complexity |
-|-------|----------------------|-----------|------------|
-| Phase 1 (remaining) | 10 files | 2 hours | Low |
-| Phase 2 | 7 files | 4 hours | Medium |
-| Phase 3 | 3 files | 2 hours | Low |
-| Phase 4 | 4 files | 3 hours | Medium |
-| Phase 5 | 20 files | 8 hours | High |
-| Phase 6 | 15 files | 6 hours | Medium |
-| Phase 7 | 10 files | 4 hours | Medium |
-| Phase 8 | 12 files | 4 hours | Low |
-| Phase 9 | 15 files | 6 hours | Medium |
-| Phase 10 | 5 files | 2 hours | Low |
-| Phase 11 | 3 files | 1 hour | Low |
-| Phase 12 | 10 files | 3 hours | Low |
-| Phase 13 | 8 files | 4 hours | Medium |
-| Phase 14 | 6 files | 3 hours | Low |
+| Phase               | Files to Create/Update | Est. Time | Complexity |
+| ------------------- | ---------------------- | --------- | ---------- |
+| Phase 1 (remaining) | 10 files               | 2 hours   | Low        |
+| Phase 2             | 7 files                | 4 hours   | Medium     |
+| Phase 3             | 3 files                | 2 hours   | Low        |
+| Phase 4             | 4 files                | 3 hours   | Medium     |
+| Phase 5             | 20 files               | 8 hours   | High       |
+| Phase 6             | 15 files               | 6 hours   | Medium     |
+| Phase 7             | 10 files               | 4 hours   | Medium     |
+| Phase 8             | 12 files               | 4 hours   | Low        |
+| Phase 9             | 15 files               | 6 hours   | Medium     |
+| Phase 10            | 5 files                | 2 hours   | Low        |
+| Phase 11            | 3 files                | 1 hour    | Low        |
+| Phase 12            | 10 files               | 3 hours   | Low        |
+| Phase 13            | 8 files                | 4 hours   | Medium     |
+| Phase 14            | 6 files                | 3 hours   | Low        |
 
 **Total Remaining**: ~110 files, ~52 hours of implementation
 
@@ -339,6 +362,7 @@ Say: **"Create automation script for remaining phases"**
 ### 1. Hybrid Approach Selected
 
 **Decision**: Use both Direct MCP and Code Execution patterns
+
 - Keep 40 MCPs on Direct MCP (simple, infrequent)
 - Migrate 10 MCPs to Code Execution (complex, frequent)
 - Brain orchestrator auto-selects pattern
@@ -349,6 +373,7 @@ Say: **"Create automation script for remaining phases"**
 
 **Decision**: `semantic-search-mcp` as first migration
 **Why**:
+
 - Complex enough to validate benefits
 - Not mission-critical (safe to experiment)
 - Clear success metrics
@@ -357,6 +382,7 @@ Say: **"Create automation script for remaining phases"**
 ### 3. Tier 1 Migrations Prioritized
 
 **5 MCPs identified**:
+
 1. semantic-search-mcp (pilot)
 2. market-analyzer-mcp
 3. user-insight-analyzer-mcp
@@ -368,6 +394,7 @@ Say: **"Create automation script for remaining phases"**
 ### 4. Security Model Defined
 
 **4-layer model adopted**:
+
 1. Sandbox isolation (Docker/gVisor)
 2. PII tokenization (automatic)
 3. Access control (RBAC)
@@ -402,11 +429,13 @@ Cost Savings:
 ### How to Measure
 
 1. **Establish baseline** (before any migration):
+
    ```bash
    npm run benchmark:baseline
    ```
 
 2. **Measure after each migration**:
+
    ```bash
    npm run benchmark:compare <mcp-name>
    ```
@@ -445,6 +474,7 @@ Cost Savings:
 ### Overall Risk Level: **Low to Medium**
 
 Mitigated by:
+
 - Phased approach
 - Pilot validation
 - Rollback capability
@@ -532,6 +562,7 @@ Mitigated by:
 **Questions? Want to continue?**
 
 Just say:
+
 - **"Continue implementation"** - I'll pick up where we left off
 - **"Show me Phase [X] details"** - I'll explain that specific phase
 - **"Create [specific component]"** - I'll build that piece

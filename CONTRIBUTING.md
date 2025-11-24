@@ -13,6 +13,7 @@ Thank you for your interest in contributing! This document provides guidelines a
 ```
 
 This automatically:
+
 - Installs all dependencies
 - Sets up Git hooks for automation
 - Validates your environment
@@ -66,11 +67,13 @@ On every commit, the pre-commit hook automatically:
 ### Key Rules
 
 ✅ **DO:**
+
 - Add new skills to `SKILLS/` directory
 - Add new MCPs to `MCP-SERVERS/` directory
 - Let automation update documentation
 
 ❌ **DON'T:**
+
 - Manually edit resource counts in documentation
 - Manually edit registry files in `META/`
 - Skip automation (except emergencies)
@@ -115,6 +118,15 @@ cd ..
 ```bash
 # Run all tests
 npm test
+
+# Run the CLI & MCP suites (doctor/generate/update/setup/etc.)
+npm run test:cli
+
+# Run the code-execution docker smoke test (requires Docker)
+npm run test:semantic-search:docker
+
+# Run the semantic-search demo (indexes sample docs + search)
+npm run demo:semantic-search
 
 # Run tests in watch mode (recommended for development)
 npm run test:watch
@@ -180,7 +192,19 @@ npm run update:all
 
 **Important:** Always run `npm run validate` before committing. The pre-commit hook will block commits if validation fails.
 
-### 7. Pre-Commit Hooks
+### 7. Testing CLI Commands
+
+The CLI now exposes dependency-injected command factories (e.g., `createDoctorCommand`, `createUpdateCommand`) to make commands testable without hitting real file systems or shelling out. To add or update tests:
+
+1. **Use the factory export** from `CLI/commands/<name>.js` and pass overrides for `fs`, `path`, `chalk`, `ora`, `inquirer`, etc.
+2. **Operate inside temp directories** (`fs.mkdtempSync(path.join(os.tmpdir(), ...))`) so tests can create `.ai-dev.json`, `.claude/`, `.codex/`, etc. without polluting the repo.
+3. **Mock prompts/spinners** by injecting stubbed `inquirer.prompt` responses and lightweight `ora` mocks (see `tests/cli/update-command.test.ts` for an example helper).
+4. **Run the full CLI suite** via `npm run test:cli` so every PR exercises `doctor`, `analyze`, `setup`, `sync`, `init`, `context`, `update`, and the Semantic Search MCP smoke test.
+5. **Avoid `process.chdir` in tests**—pass a custom `cwd()` dependency or adjust commands to accept paths instead of mutating global state.
+
+Following this pattern keeps CLI behavior deterministic and ensures GitHub Actions enforces the same coverage you see locally.
+
+### 8. Pre-Commit Hooks
 
 The repository uses automated pre-commit hooks to maintain code quality and documentation consistency.
 
@@ -224,11 +248,13 @@ npm run validate:fix && npm run lint:fix
 In emergencies, you can skip validation using either method:
 
 **Method 1: In commit message**
+
 ```bash
 git commit -m "emergency fix [skip-validation]"
 ```
 
 **Method 2: Environment variable**
+
 ```bash
 SKIP_VALIDATION=1 git commit -m "emergency fix"
 ```
@@ -238,6 +264,7 @@ SKIP_VALIDATION=1 git commit -m "emergency fix"
 #### Hook Execution Time
 
 The pre-commit hook is optimized to run in under 5 seconds on most systems:
+
 - Documentation validation: ~1-2 seconds
 - ESLint: ~1-2 seconds
 - TypeScript checking: ~1-2 seconds
@@ -259,16 +286,19 @@ npm run install-hooks
 #### Troubleshooting
 
 **Hook not running:**
+
 - Ensure the hook is executable: `chmod +x .git/hooks/pre-commit`
 - Check that you're in the repository root
 - Try reinstalling: `npm run install-hooks`
 
 **Hook too slow:**
+
 - The hook should complete in under 5 seconds
 - If slower, check for large file changes or network issues
 - Consider using `[skip-validation]` for large refactors, then fix separately
 
 **Existing custom hooks:**
+
 - The installer detects existing hooks and offers to merge or backup
 - Your custom hooks are backed up with timestamp: `.git/hooks/pre-commit.backup-YYYYMMDD-HHMMSS`
 - You can manually merge hooks if needed
@@ -421,7 +451,7 @@ describe('FeatureName', () => {
 
 ### Documentation Style
 
-```typescript
+````typescript
 /**
  * Validates email address and returns lowercase version
  *
@@ -438,7 +468,7 @@ describe('FeatureName', () => {
 export function validateEmail(email: string): string {
   // Implementation
 }
-```
+````
 
 ---
 
@@ -460,20 +490,24 @@ export function validateEmail(email: string): string {
 
 ```markdown
 ## Description
+
 [Describe your changes]
 
 ## Type of Change
+
 - [ ] Bug fix
 - [ ] New feature
 - [ ] Breaking change
 - [ ] Documentation update
 
 ## Testing
+
 - [ ] Unit tests added
 - [ ] Integration tests added
 - [ ] All tests pass
 
 ## Checklist
+
 - [ ] Code follows style guidelines
 - [ ] Self-review completed
 - [ ] Comments added where needed
@@ -598,7 +632,7 @@ function getUserData() {}
 const MAX_RETRIES = 3
 
 // kebab-case for file names
-api-caller-tool.ts
+api - caller - tool.ts
 ```
 
 ---

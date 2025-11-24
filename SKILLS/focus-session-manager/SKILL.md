@@ -19,18 +19,22 @@ ADHD brains are prone to hyperfocus (ignoring breaks, health) and time blindness
 ## The Focus Problem
 
 ### Problem 1: Hyperfocus Burnout
+
 **Issue:** Code for 4 hours straight without break
 **Result:** Exhaustion, health issues, reduced quality
 
 ### Problem 2: Time Blindness
+
 **Issue:** "I'll work for 30 min" → Actually 3 hours
 **Result:** Missed meetings, forgotten commitments, burnout
 
 ### Problem 3: Break Resistance
+
 **Issue:** "Just one more thing" never stops
 **Result:** No breaks, deteriorating health, reduced productivity
 
 ### Problem 4: Disrupted Flow
+
 **Issue:** Harsh timer interruptions break concentration
 **Result:** Frustration, ignoring timers, no break system
 
@@ -57,6 +61,7 @@ Next break: 14:25 (in 25 min)
 ### Visible Time Display
 
 **Status bar shows:**
+
 ```
 ⏱️ 23:45 | 🧠 Focus Session 1/4 | 💧 Water reminder soon
 ```
@@ -64,16 +69,19 @@ Next break: 14:25 (in 25 min)
 ### Session Types (Auto-Detected)
 
 **Deep Work:** Complex coding, architecture
+
 - Duration: 45-90 minutes
 - Break: 15 minutes
 - Best for: New features, debugging
 
 **Quick Tasks:** Bug fixes, updates
+
 - Duration: 25 minutes
 - Break: 5 minutes
 - Best for: Small fixes, reviews
 
 **Learning:** Reading docs, tutorials
+
 - Duration: 30 minutes
 - Break: 10 minutes
 - Best for: New tech, research
@@ -104,6 +112,7 @@ Next break: 14:25 (in 25 min)
 🟡 Break suggestion available
 
 Good stopping point detected:
+
 - ✅ Just committed code
 - ✅ Tests passing
 - ✅ Natural pause point
@@ -119,23 +128,27 @@ Take 5-minute break?
 ### Break Types
 
 **Micro-Break (2 minutes):**
+
 - Look away from screen (20-20-20 rule)
 - Stretch in chair
 - No leaving desk
 
 **Short Break (5 minutes):**
+
 - Stand up
 - Walk around
 - Get water
 - Bathroom
 
 **Medium Break (15 minutes):**
+
 - Walk outside
 - Snack
 - Different room
 - Social interaction
 
 **Long Break (30-60 minutes):**
+
 - Meal
 - Exercise
 - Complete context switch
@@ -151,6 +164,7 @@ Your brain has been focused for 25 min.
 Short break will improve next session.
 
 Break activities:
+
 - [ ] Stand and stretch
 - [ ] Get water
 - [ ] Look out window (eyes)
@@ -165,12 +179,14 @@ Resume automatically after break.
 ### Break Enforcement Levels
 
 **Level 1: Gentle Reminder (25-45 min)**
+
 ```
 💭 Reminder: Break time soon
 [Dismissable, comes back in 10 min]
 ```
 
 **Level 2: Strong Suggestion (45-90 min)**
+
 ```
 ⚠️ You've been coding for 60 minutes
 Break highly recommended
@@ -178,6 +194,7 @@ Break highly recommended
 ```
 
 **Level 3: Health Alert (90+ min)**
+
 ```
 🚨 HEALTH ALERT: 90 min no break
 
@@ -196,6 +213,7 @@ Required actions:
 ```
 
 **Level 4: Forced Break (3+ hours)**
+
 ```
 🛑 MANDATORY BREAK
 
@@ -226,8 +244,9 @@ You've been deeply focused for 90 minutes.
 This is good for productivity BUT...
 
 Health check required:
-- [ ] When did you last drink water? ____
-- [ ] When did you last move? ____
+
+- [ ] When did you last drink water? \_\_\_\_
+- [ ] When did you last move? \_\_\_\_
 - [ ] Are your eyes strained? Y/N
 - [ ] Do you need bathroom? Y/N
 
@@ -253,11 +272,13 @@ I notice you've been working on button.css
 for 2 hours with 12 commits and 5 reverts.
 
 Questions:
+
 - Is this P0 for shipping? YES/NO
 - Could this be "good enough" now? YES/NO
 - Are you stuck in perfectionism? YES/NO
 
 Maybe time to:
+
 - Commit current state
 - Move to next task
 - Come back later with fresh eyes
@@ -278,6 +299,7 @@ Total available: 6 hours
 Sessions planned: 4
 
 Morning (9am - 12pm):
+
 - Session 1: Build dashboard UI (45 min) 🔨
   Break: 10 min
 - Session 2: Connect to API (45 min) 🔨
@@ -286,6 +308,7 @@ Morning (9am - 12pm):
   Break: Lunch (60 min)
 
 Afternoon (1pm - 5pm):
+
 - Session 4: Write tests (45 min) 🧪
   Break: 10 min
 - Session 5: Code review (30 min) 👀
@@ -303,16 +326,19 @@ Realistic and achievable! 💪
 
 ```markdown
 Morning Energy: High ⚡⚡⚡
+
 - Schedule: Complex tasks (new features)
 - Session length: 45-90 min
 - Break length: 10 min
 
 Afternoon Energy: Medium ⚡⚡
+
 - Schedule: Medium tasks (bug fixes)
 - Session length: 30-45 min
 - Break length: 15 min
 
 Evening Energy: Low ⚡
+
 - Schedule: Easy tasks (docs, reviews)
 - Session length: 25 min
 - Break length: 5-10 min
@@ -388,6 +414,7 @@ Clock will count down.
 💧 Hydration Check
 
 When did you last drink water?
+
 - Just now: Reset timer
 - 30 min ago: Doing okay
 - 1+ hour ago: Go drink NOW
@@ -407,6 +434,7 @@ Dehydration affects focus.
 
 You've been sitting for 90 minutes.
 This affects:
+
 - Blood flow
 - Energy levels
 - Back health
@@ -431,6 +459,7 @@ Best: Go outside
 ☀️ Good morning! Let's start work.
 
 Quick setup (2 minutes):
+
 1. Review today's plan ✅
 2. Set focus goal: 4 hours
 3. Pick first task ✅
@@ -452,12 +481,14 @@ Let's do this! 💪
 🌙 Wrapping up for the day?
 
 Today's stats:
+
 - Focus time: 4.5 hours ✅
 - Sessions completed: 6
 - Breaks taken: 5
 - Tasks completed: 7
 
 Tomorrow setup:
+
 - First task: Test password reset (30 min)
 - Should be quick! Easy start.
 
@@ -499,16 +530,19 @@ Ready for Task B!
 ### Focus Mode Levels
 
 **Level 1: Normal (Default)**
+
 - Notifications: On
 - Chat: Available
 - Interruptions: Allowed
 
 **Level 2: Focus Mode**
+
 - Notifications: Snoozed
 - Chat: Away status
 - Interruptions: Emergency only
 
 **Level 3: Deep Work Mode**
+
 - Notifications: Off
 - Chat: Do not disturb
 - Interruptions: None
@@ -543,11 +577,13 @@ Time lost: 5 minutes
 Session time remaining: 15 minutes
 
 Quick reset:
+
 - [ ] Close Twitter
 - [ ] Take 2-minute break
 - [ ] Resume with fresh focus
 
 Or:
+
 - [ ] Take full break now (5 min)
 - [ ] Resume with new session
 
@@ -579,6 +615,7 @@ Top productive hours:
 Distraction time: 30 min (acceptable)
 
 Health score: 9/10 (excellent!)
+
 - Took all breaks ✅
 - Drank water ✅
 - Eye breaks ✅
@@ -603,10 +640,12 @@ Weekly average: 3.7 hours/day
 Trend: +15% vs last week 📈
 
 Best times for deep work:
+
 - 9-11am (morning energy)
 - 2-4pm (post-lunch focus)
 
 Avoid scheduling deep work:
+
 - 11am-1pm (pre-lunch slump)
 - 4-5pm (end of day fatigue)
 
@@ -643,6 +682,7 @@ Let's code! 🚀
 Session paused automatically.
 
 Are you:
+
 - Taking a break? (Timer paused)
 - In a meeting? (Session saved)
 - Distracted? (Gentle reminder)
@@ -672,6 +712,7 @@ See you tomorrow! 🌙
 ## Success Metrics
 
 You're using this well when:
+
 - ✅ Taking regular breaks (not skipping)
 - ✅ Hyperfocus sessions < 90 min
 - ✅ Health checks completed (water, eyes, movement)

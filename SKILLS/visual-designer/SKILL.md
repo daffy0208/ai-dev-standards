@@ -21,6 +21,7 @@ Visual design serves the user experience. Every color, font, and spacing decisio
 ### Color Theory Basics
 
 **Color Wheel:**
+
 - **Complementary:** Opposite colors (blue + orange) - high contrast
 - **Analogous:** Adjacent colors (blue + green + teal) - harmonious
 - **Triadic:** Three evenly spaced colors - balanced
@@ -29,6 +30,7 @@ Visual design serves the user experience. Every color, font, and spacing decisio
 ### Creating a Color Palette
 
 **60-30-10 Rule:**
+
 - 60% Primary color (dominant)
 - 30% Secondary color (supporting)
 - 10% Accent color (call-to-action)
@@ -70,6 +72,7 @@ Visual design serves the user experience. Every color, font, and spacing decisio
 ### Accessible Color Contrast
 
 **WCAG Requirements:**
+
 - Normal text (< 18pt): 4.5:1 contrast ratio
 - Large text (≥ 18pt or 14pt bold): 3:1 contrast ratio
 - UI components: 3:1 contrast ratio
@@ -89,6 +92,7 @@ Visual design serves the user experience. Every color, font, and spacing decisio
 ```
 
 **Tools:**
+
 - [Coolors.co](https://coolors.co/) - Generate palettes
 - [Color Contrast Checker](https://webaim.org/resources/contrastchecker/)
 - [Adobe Color](https://color.adobe.com/)
@@ -114,6 +118,7 @@ Visual design serves the user experience. Every color, font, and spacing decisio
 ```
 
 **Dark Mode Checklist:**
+
 - [ ] Reduce pure white (#fff) → use off-white (#f9fafb)
 - [ ] Reduce pure black (#000) → use dark gray (#111827)
 - [ ] Increase contrast on dark backgrounds
@@ -127,6 +132,7 @@ Visual design serves the user experience. Every color, font, and spacing decisio
 ### Font Pairing Principles
 
 **Golden Rule:** Maximum 2 fonts
+
 - **Heading font:** Distinctive, attention-grabbing
 - **Body font:** Readable, neutral
 
@@ -156,11 +162,11 @@ Visual design serves the user experience. Every color, font, and spacing decisio
 **Scale ratio:** 1.25 (Major Third)
 
 ```css
---text-xs: 0.64rem;   /* 10.24px */
---text-sm: 0.8rem;    /* 12.8px */
---text-base: 1rem;    /* 16px */
---text-lg: 1.25rem;   /* 20px */
---text-xl: 1.563rem;  /* 25px */
+--text-xs: 0.64rem; /* 10.24px */
+--text-sm: 0.8rem; /* 12.8px */
+--text-base: 1rem; /* 16px */
+--text-lg: 1.25rem; /* 20px */
+--text-xl: 1.563rem; /* 25px */
 --text-2xl: 1.953rem; /* 31.25px */
 --text-3xl: 2.441rem; /* 39px */
 --text-4xl: 3.052rem; /* 48.83px */
@@ -177,7 +183,9 @@ Visual design serves the user experience. Every color, font, and spacing decisio
 
 ```css
 /* Headings: Tighter line-height */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   line-height: 1.2;
 }
 
@@ -235,23 +243,24 @@ h1 {
 ### 8pt Grid System
 
 **Why 8pt?**
+
 - Most screens are divisible by 8
 - Creates visual rhythm
 - Easier to maintain consistency
 
 ```css
---space-1: 0.25rem;  /* 4px */
---space-2: 0.5rem;   /* 8px */
---space-3: 0.75rem;  /* 12px */
---space-4: 1rem;     /* 16px */
---space-5: 1.25rem;  /* 20px */
---space-6: 1.5rem;   /* 24px */
---space-8: 2rem;     /* 32px */
---space-10: 2.5rem;  /* 40px */
---space-12: 3rem;    /* 48px */
---space-16: 4rem;    /* 64px */
---space-20: 5rem;    /* 80px */
---space-24: 6rem;    /* 96px */
+--space-1: 0.25rem; /* 4px */
+--space-2: 0.5rem; /* 8px */
+--space-3: 0.75rem; /* 12px */
+--space-4: 1rem; /* 16px */
+--space-5: 1.25rem; /* 20px */
+--space-6: 1.5rem; /* 24px */
+--space-8: 2rem; /* 32px */
+--space-10: 2.5rem; /* 40px */
+--space-12: 3rem; /* 48px */
+--space-16: 4rem; /* 64px */
+--space-20: 5rem; /* 80px */
+--space-24: 6rem; /* 96px */
 ```
 
 **Usage:**
@@ -302,6 +311,7 @@ p + p {
 ### Visual Hierarchy
 
 **Establish importance through:**
+
 1. **Size:** Larger = more important
 2. **Weight:** Bolder = more important
 3. **Color:** Brighter = more important
@@ -399,10 +409,10 @@ p {
 ```css
 /* Mobile first */
 :root {
-  --breakpoint-sm: 640px;   /* Small devices */
-  --breakpoint-md: 768px;   /* Tablets */
-  --breakpoint-lg: 1024px;  /* Laptops */
-  --breakpoint-xl: 1280px;  /* Desktops */
+  --breakpoint-sm: 640px; /* Small devices */
+  --breakpoint-md: 768px; /* Tablets */
+  --breakpoint-lg: 1024px; /* Laptops */
+  --breakpoint-xl: 1280px; /* Desktops */
   --breakpoint-2xl: 1536px; /* Large screens */
 }
 
@@ -441,10 +451,10 @@ p {
 ### Border Radius
 
 ```css
---radius-sm: 0.25rem;  /* 4px - small elements */
---radius-md: 0.5rem;   /* 8px - buttons, inputs */
---radius-lg: 0.75rem;  /* 12px - cards */
---radius-xl: 1rem;     /* 16px - modals */
+--radius-sm: 0.25rem; /* 4px - small elements */
+--radius-md: 0.5rem; /* 8px - buttons, inputs */
+--radius-lg: 0.75rem; /* 12px - cards */
+--radius-xl: 1rem; /* 16px - modals */
 --radius-full: 9999px; /* Fully rounded */
 
 /* Usage */
@@ -482,8 +492,12 @@ p {
 
 /* Fade in */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .fade-in {
@@ -496,6 +510,7 @@ p {
 ## Design Principles
 
 ### 1. Contrast
+
 Create clear distinction between elements
 
 ```css
@@ -513,6 +528,7 @@ Create clear distinction between elements
 ```
 
 ### 2. Alignment
+
 Align elements to create order
 
 ```css
@@ -525,6 +541,7 @@ Align elements to create order
 ```
 
 ### 3. Repetition
+
 Repeat visual elements for consistency
 
 ```css
@@ -537,6 +554,7 @@ Repeat visual elements for consistency
 ```
 
 ### 4. Proximity
+
 Group related elements
 
 ```css
@@ -637,17 +655,20 @@ Group related elements
 ## Design Tools
 
 ### Color Tools
+
 - [Coolors](https://coolors.co/) - Generate palettes
 - [Color Hunt](https://colorhunt.co/) - Curated palettes
 - [Adobe Color](https://color.adobe.com/) - Color wheel
 - [Contrast Checker](https://webaim.org/resources/contrastchecker/)
 
 ### Typography Tools
+
 - [Google Fonts](https://fonts.google.com/)
 - [Font Pair](https://www.fontpair.co/) - Font combinations
 - [Type Scale](https://type-scale.com/) - Generate type scales
 
 ### Design Systems
+
 - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
 - [Radix Colors](https://www.radix-ui.com/colors) - Color system
 - [Open Color](https://yeun.github.io/open-color/) - Color scheme
@@ -657,6 +678,7 @@ Group related elements
 ## Visual Design Checklist
 
 ### Colors
+
 - [ ] Primary, secondary, accent colors defined
 - [ ] Neutral grays (50-900) defined
 - [ ] Semantic colors (success, warning, error)
@@ -664,6 +686,7 @@ Group related elements
 - [ ] Dark mode colors defined
 
 ### Typography
+
 - [ ] 1-2 fonts maximum
 - [ ] Type scale defined (8-10 sizes)
 - [ ] Font weights specified
@@ -671,12 +694,14 @@ Group related elements
 - [ ] Max-width for readability (65ch)
 
 ### Spacing
+
 - [ ] 8pt grid system used
 - [ ] Consistent spacing scale
 - [ ] Adequate whitespace
 - [ ] Vertical rhythm maintained
 
 ### Components
+
 - [ ] Button styles consistent
 - [ ] Form inputs styled consistently
 - [ ] Cards have proper elevation
@@ -684,6 +709,7 @@ Group related elements
 - [ ] Focus states visible
 
 ### Responsive
+
 - [ ] Mobile-first approach
 - [ ] Breakpoints defined
 - [ ] Touch targets ≥ 44px
@@ -694,11 +720,13 @@ Group related elements
 ## Related Resources
 
 **Skills:**
+
 - `design-system-architect` - Building design systems
 - `ux-designer` - User experience design
 - `accessibility-engineer` - Color contrast, readability
 
 **External:**
+
 - [Refactoring UI](https://www.refactoringui.com/)
 - [Design Systems Repo](https://designsystemsrepo.com/)
 - [Laws of UX](https://lawsofux.com/)

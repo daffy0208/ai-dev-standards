@@ -1,0 +1,24 @@
+{
+  "$schema": "https://raw.githubusercontent.com/todogroup/repolinter/master/rulesets/schema.json",
+  "version": 2,
+  "extends": "/home/david/.npm-global/lib/node_modules/repolinter/rulesets/default.json",
+  "axioms": {
+    "linguist": "language",
+    "licensee": "license",
+    "packagers": "packager"
+  },
+  "rules": {
+    "source-license-headers-exist": {
+      "level": "off",
+      "rule": {
+        "type": "file-starts-with",
+        "options": {
+          "globsAll": ["**/*.js", "!node_modules/**"],
+          "lineCount": 5,
+          "patterns": ["Copyright", "License"],
+          "flags": "i"
+        }
+      }
+    }
+  }
+}

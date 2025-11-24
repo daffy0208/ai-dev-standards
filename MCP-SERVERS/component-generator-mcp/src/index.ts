@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
+import { Server } from '@modelcontextprotocol/sdk/server/index.js'
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
+import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js'
 
 const server = new Server(
   { name: 'component-generator-mcp', version: '1.0.0' },
   { capabilities: { tools: {} } }
-);
+)
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: [
@@ -70,63 +70,73 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
       }
     }
   ]
-}));
+}))
 
-server.setRequestHandler(CallToolRequestSchema, async (request) => {
+server.setRequestHandler(CallToolRequestSchema, async request => {
   try {
-    const { name, arguments: args } = request.params;
+    const { name, arguments: args } = request.params
 
     switch (name) {
       case 'generate_component':
         return {
-          content: [{
-            type: 'text',
-            text: `Component generation configured for: ${args?.name}\nOutputDir: ${args?.outputDir || './components'}`
-          }]
-        };
+          content: [
+            {
+              type: 'text',
+              text: `Component generation configured for: ${args?.name}\nOutputDir: ${args?.outputDir || './components'}`
+            }
+          ]
+        }
 
       case 'generate_hook':
         return {
-          content: [{
-            type: 'text',
-            text: `Hook generation configured for: ${args?.name}`
-          }]
-        };
+          content: [
+            {
+              type: 'text',
+              text: `Hook generation configured for: ${args?.name}`
+            }
+          ]
+        }
 
       case 'generate_context':
         return {
-          content: [{
-            type: 'text',
-            text: `Context generation configured for: ${args?.name}`
-          }]
-        };
+          content: [
+            {
+              type: 'text',
+              text: `Context generation configured for: ${args?.name}`
+            }
+          ]
+        }
 
       case 'generate_page':
         return {
-          content: [{
-            type: 'text',
-            text: `Page generation configured for path: ${args?.path}`
-          }]
-        };
+          content: [
+            {
+              type: 'text',
+              text: `Page generation configured for path: ${args?.path}`
+            }
+          ]
+        }
 
       default:
-        throw new Error(`Unknown tool: ${name}`);
+        throw new Error(`Unknown tool: ${name}`)
     }
   } catch (error) {
     return {
-      content: [{ type: 'text', text: `Error: ${error instanceof Error ? error.message : String(error)}` }],
+      content: [
+        { type: 'text', text: `Error: ${error instanceof Error ? error.message : String(error)}` }
+      ],
       isError: true
-    };
+    }
   }
-});
+})
 
 async function main() {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error('component-generator-mcp running on stdio');
+  const transport = new StdioServerTransport()
+  await server.connect(transport)
+  console.error('component-generator-mcp running on stdio')
 }
 
-main().catch((error) => {
-  console.error('Server error:', error);
-  process.exit(1);
-});
+main().catch(error => {
+  console.error('Server error:', error)
+  process.exit(1)
+})

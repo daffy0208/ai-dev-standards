@@ -1,3 +1,8 @@
+import { createLogger } from './logger-tool'
+import { MetricsCollector } from './metrics-tool'
+import { Tracer } from './tracer-tool'
+import { ErrorTracker } from './error-tracker-tool'
+
 /**
  * Observability Tools - Main Entry Point
  *
@@ -35,8 +40,8 @@ export {
   LogLevelString,
   LogEntry,
   LoggerOptions,
-  LogOutput,
-} from './logger-tool';
+  LogOutput
+} from './logger-tool'
 
 // ============================================================================
 // METRICS EXPORTS
@@ -57,8 +62,8 @@ export {
   Timer,
   HistogramSnapshot,
   MetricSnapshot,
-  MetricsCollectorOptions,
-} from './metrics-tool';
+  MetricsCollectorOptions
+} from './metrics-tool'
 
 // ============================================================================
 // TRACER EXPORTS
@@ -81,8 +86,8 @@ export {
   Span,
   TraceContext,
   Trace,
-  TracerOptions,
-} from './tracer-tool';
+  TracerOptions
+} from './tracer-tool'
 
 // ============================================================================
 // ERROR TRACKER EXPORTS
@@ -104,8 +109,8 @@ export {
   ErrorOccurrence,
   ErrorGroup,
   ErrorReport,
-  ErrorTrackerOptions,
-} from './error-tracker-tool';
+  ErrorTrackerOptions
+} from './error-tracker-tool'
 
 // ============================================================================
 // CONVENIENCE FACTORY
@@ -130,14 +135,14 @@ export {
  * ```
  */
 export function createObservabilitySuite(config: {
-  service: string;
-  environment?: string;
-  logLevel?: 'debug' | 'info' | 'warn' | 'error' | 'fatal';
-  logFormat?: 'json' | 'pretty';
-  traceSampleRate?: number;
-  metricsEnabled?: boolean;
-  tracingEnabled?: boolean;
-  errorTrackingEnabled?: boolean;
+  service: string
+  environment?: string
+  logLevel?: 'debug' | 'info' | 'warn' | 'error' | 'fatal'
+  logFormat?: 'json' | 'pretty'
+  traceSampleRate?: number
+  metricsEnabled?: boolean
+  tracingEnabled?: boolean
+  errorTrackingEnabled?: boolean
 }) {
   const {
     service,
@@ -147,40 +152,35 @@ export function createObservabilitySuite(config: {
     traceSampleRate = 1.0,
     metricsEnabled = true,
     tracingEnabled = true,
-    errorTrackingEnabled = true,
-  } = config;
-
-  const { createLogger } = require('./logger-tool');
-  const { MetricsCollector } = require('./metrics-tool');
-  const { Tracer } = require('./tracer-tool');
-  const { ErrorTracker } = require('./error-tracker-tool');
+    errorTrackingEnabled = true
+  } = config
 
   return {
     logger: createLogger({
       level: logLevel,
       service,
-      format: logFormat,
+      format: logFormat
     }),
 
     metrics: new MetricsCollector({
       service,
       enabled: metricsEnabled,
-      defaultLabels: { environment },
+      defaultLabels: { environment }
     }),
 
     tracer: new Tracer({
       service,
       enabled: tracingEnabled,
       sampleRate: traceSampleRate,
-      defaultAttributes: { environment },
+      defaultAttributes: { environment }
     }),
 
     errorTracker: new ErrorTracker({
       service,
       environment,
-      enabled: errorTrackingEnabled,
-    }),
-  };
+      enabled: errorTrackingEnabled
+    })
+  }
 }
 
 // ============================================================================
@@ -191,125 +191,122 @@ export function createObservabilitySuite(config: {
  * Create Express middleware for automatic observability
  */
 export function createExpressMiddleware(observability: {
-  logger: any;
-  metrics: any;
-  tracer: any;
-  errorTracker: any;
+  logger: any
+  metrics: any
+  tracer: any
+  errorTracker: any
 }) {
-  const { logger, metrics, tracer, errorTracker } = observability;
+  const { logger, metrics, tracer, errorTracker } = observability
 
-  const requestCounter = metrics.counter('http_requests_total');
-  const requestDuration = metrics.histogram('http_request_duration_ms');
+  const requestCounter = metrics.counter('http_requests_total')
+  const requestDuration = metrics.histogram('http_request_duration_ms')
 
   return {
     // Main observability middleware
     middleware: (req: any, res: any, next: any) => {
-      const requestId = Math.random().toString(36).substring(7);
-      const startTime = Date.now();
+      const requestId = Math.random().toString(36).substring(7)
+      const startTime = Date.now()
 
       // Add logger
       req.logger = logger.child({
         requestId,
         method: req.method,
-        path: req.path,
-      });
+        path: req.path
+      })
 
       // Start span
       const span = tracer.startSpan('http_request', {
         attributes: {
           'http.method': req.method,
           'http.url': req.url,
-          'http.target': req.path,
-        },
-      });
-      tracer.setActiveSpan(span);
-      req.span = span;
+          'http.target': req.path
+        }
+      })
+      tracer.setActiveSpan(span)
+      req.span = span
 
       // Start timer
       const endTimer = requestDuration.startTimer({
         method: req.method,
-        path: req.path,
-      });
+        path: req.path
+      })
 
       // Add breadcrumb
       errorTracker.addBreadcrumb({
         type: 'http',
         message: `${req.method} ${req.path}`,
-        data: { url: req.url, method: req.method },
-      });
+        data: { url: req.url, method: req.method }
+      })
 
       // On response finish
       res.on('finish', () => {
-        const duration = Date.now() - startTime;
+        const duration = Date.now() - startTime
 
         req.logger.info('Request completed', {
           statusCode: res.statusCode,
-          duration,
-        });
+          duration
+        })
 
         requestCounter.inc({
           method: req.method,
           path: req.path,
-          status: res.statusCode.toString(),
-        });
+          status: res.statusCode.toString()
+        })
 
-        span.setAttribute('http.status_code', res.statusCode);
-        span.end();
+        span.setAttribute('http.status_code', res.statusCode)
+        span.end()
 
-        endTimer();
-      });
+        endTimer()
+      })
 
-      next();
+      next()
     },
 
     // Error handler middleware
     errorHandler: (err: any, req: any, res: any, next: any) => {
-      req.logger.error('Request error', {}, err);
-      req.span.recordException(err);
+      req.logger.error('Request error', {}, err)
+      req.span.recordException(err)
 
       errorTracker.captureException(err, {
         severity: 'error',
         context: {
           requestId: req.requestId,
           path: req.path,
-          method: req.method,
-        },
-      });
+          method: req.method
+        }
+      })
 
-      res.status(500).json({ error: 'Internal server error' });
+      res.status(500).json({ error: 'Internal server error' })
     },
 
     // Metrics endpoint
     metricsEndpoint: (req: any, res: any) => {
-      res.set('Content-Type', 'text/plain');
-      res.send(metrics.exportPrometheus());
-    },
-  };
+      res.set('Content-Type', 'text/plain')
+      res.send(metrics.exportPrometheus())
+    }
+  }
 }
 
 /**
  * Create React error boundary props
  */
-export function createErrorBoundaryProps(observability: {
-  logger: any;
-  errorTracker: any;
-}) {
-  const { logger, errorTracker } = observability;
+export function createErrorBoundaryProps(observability: { logger: any; errorTracker: any }) {
+  const { logger, errorTracker } = observability
 
   return {
     onError: (error: Error, info: any) => {
       logger.error('React error boundary caught error', {
         error: error.message,
-        componentStack: info.componentStack,
-      });
+        componentStack: info.componentStack
+      })
 
       errorTracker.captureException(error, {
         severity: 'error',
         context: {
-          componentStack: info.componentStack,
+          componentStack: info.componentStack
         },
-        tags: { boundary: 'react' },
-      });
-    },
-  };
+        tags: { boundary: 'react' }
+      })
+    }
+  }
 }

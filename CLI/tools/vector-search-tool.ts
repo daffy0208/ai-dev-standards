@@ -21,9 +21,9 @@
  * ```
  */
 
-import { Tool } from 'langchain/tools'
-import { VectorStore } from 'langchain/vectorstores/base'
-import type { Document } from 'langchain/document'
+import { Tool } from '@langchain/core/tools'
+import { VectorStore } from '@langchain/core/vectorstores'
+import type { Document } from '@langchain/core/documents'
 
 export interface VectorSearchToolParams {
   vectorStore: VectorStore
@@ -75,21 +75,19 @@ Returns the most relevant document excerpts.`
       }
 
       // Format results
-      const formattedResults = filteredResults.map(
-        ([doc, score], index) => {
-          const metadata = doc.metadata
-          const source = metadata.source || 'Unknown'
-          return [
-            `Result ${index + 1} (Similarity: ${score.toFixed(3)}):`,
-            `Source: ${source}`,
-            `Content: ${doc.pageContent}`,
-            metadata.title ? `Title: ${metadata.title}` : null,
-            '---',
-          ]
-            .filter(Boolean)
-            .join('\n')
-        }
-      )
+      const formattedResults = filteredResults.map(([doc, score], index) => {
+        const metadata = doc.metadata
+        const source = metadata.source || 'Unknown'
+        return [
+          `Result ${index + 1} (Similarity: ${score.toFixed(3)}):`,
+          `Source: ${source}`,
+          `Content: ${doc.pageContent}`,
+          metadata.title ? `Title: ${metadata.title}` : null,
+          '---'
+        ]
+          .filter(Boolean)
+          .join('\n')
+      })
 
       return formattedResults.join('\n\n')
     } catch (error) {
@@ -108,6 +106,6 @@ export function createVectorSearchTool(
 ): VectorSearchTool {
   return new VectorSearchTool({
     vectorStore,
-    ...options,
+    ...options
   })
 }

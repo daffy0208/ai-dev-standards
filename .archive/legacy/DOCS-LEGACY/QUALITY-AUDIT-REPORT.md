@@ -12,6 +12,7 @@
 **Overall Score:** 7.3/10 - **Very Good**
 
 **Rating Scale:**
+
 - 9.0-10.0: Exceptional
 - 8.0-8.9: Excellent
 - 7.0-7.9: Very Good ⭐ **[ai-dev-standards]**
@@ -20,11 +21,13 @@
 - Below 5.0: Needs Improvement
 
 **Key Strengths:**
+
 1. **Exceptional Code Quality** - Clean, well-structured, production-ready code with comprehensive error handling
 2. **Outstanding Documentation** - Every file includes detailed usage examples, setup instructions, and best practices
 3. **Excellent Developer Experience** - One-command bootstrap, automatic sync, sensible defaults, ADHD-friendly design
 
 **Critical Areas for Improvement:**
+
 1. **Zero Test Coverage** - No unit, integration, or e2e tests present (critical gap for production readiness)
 2. **No CI/CD Pipeline** - No automated testing, building, or deployment infrastructure
 3. **Incomplete Examples** - Only 1/3 complete example implementations (simple RAG pipeline)
@@ -35,20 +38,20 @@
 
 ## Detailed Scores
 
-| Dimension | Score | Rating | Priority | Status |
-|-----------|-------|--------|----------|--------|
-| Code Quality | 9/10 | Exceptional | HIGH | ✅ |
-| Architecture | 9/10 | Exceptional | HIGH | ✅ |
-| Documentation | 10/10 | Exceptional | HIGH | ✅ |
-| Usability | 9/10 | Exceptional | HIGH | ✅ |
-| Performance | 7/10 | Good | MEDIUM | ⚠️ |
-| Security | 8/10 | Excellent | HIGH | ✅ |
-| Testing | 2/10 | Critical | CRITICAL | ❌ |
-| Maintainability | 8/10 | Excellent | HIGH | ✅ |
-| Developer Experience | 10/10 | Exceptional | HIGH | ✅ |
-| Accessibility | 9/10 | Exceptional | MEDIUM | ✅ |
-| CI/CD | 1/10 | Critical | CRITICAL | ❌ |
-| Innovation | 8/10 | Excellent | MEDIUM | ✅ |
+| Dimension            | Score | Rating      | Priority | Status |
+| -------------------- | ----- | ----------- | -------- | ------ |
+| Code Quality         | 9/10  | Exceptional | HIGH     | ✅     |
+| Architecture         | 9/10  | Exceptional | HIGH     | ✅     |
+| Documentation        | 10/10 | Exceptional | HIGH     | ✅     |
+| Usability            | 9/10  | Exceptional | HIGH     | ✅     |
+| Performance          | 7/10  | Good        | MEDIUM   | ⚠️     |
+| Security             | 8/10  | Excellent   | HIGH     | ✅     |
+| Testing              | 2/10  | Critical    | CRITICAL | ❌     |
+| Maintainability      | 8/10  | Excellent   | HIGH     | ✅     |
+| Developer Experience | 10/10 | Exceptional | HIGH     | ✅     |
+| Accessibility        | 9/10  | Exceptional | MEDIUM   | ✅     |
+| CI/CD                | 1/10  | Critical    | CRITICAL | ❌     |
+| Innovation           | 8/10  | Excellent   | MEDIUM   | ✅     |
 
 **Overall Weighted Score:** 7.3/10 - **Very Good**
 
@@ -61,6 +64,7 @@
 **Rating:** Exceptional
 
 **Strengths:**
+
 - **Production-ready TypeScript** - Full type safety throughout all integrations
   - `INTEGRATIONS/platforms/supabase/client.ts:58-67` - Proper error handling with typed responses
   - `INTEGRATIONS/llm-providers/openai-client.ts:87-105` - Cost tracking with precise calculations
@@ -75,11 +79,13 @@
 - **Excellent naming** - Clear, descriptive variable/function names (e.g., `validateRequestBody`, `createCheckoutSession`)
 
 **Weaknesses:**
+
 - No linting configuration visible (ESLint, Prettier)
 - Some files exceed 600 lines (could be split further)
 - Missing JSDoc comments on some public APIs
 
 **Evidence:**
+
 ```typescript
 // Example of exceptional code quality (api-caller-tool.ts:126-167)
 private async executeWithRetry<T>(
@@ -107,6 +113,7 @@ private async executeWithRetry<T>(
 ```
 
 **Improvements:**
+
 1. Add ESLint configuration with strict TypeScript rules
 2. Add Prettier for consistent formatting
 3. Add JSDoc comments for all public APIs
@@ -121,6 +128,7 @@ private async executeWithRetry<T>(
 **Rating:** Exceptional
 
 **Strengths:**
+
 - **Modular design** - Clear separation: INTEGRATIONS, COMPONENTS, UTILS, TOOLS, EXAMPLES
 - **Low coupling** - Each integration is self-contained, no cross-dependencies
 - **High cohesion** - Related functionality grouped logically
@@ -135,11 +143,13 @@ private async executeWithRetry<T>(
   - `getResendClient()`, `getSupabaseClient()`
 
 **Weaknesses:**
+
 - No explicit architecture documentation/diagrams
 - Missing dependency injection container for complex scenarios
 - No plugin system for extensibility (could add)
 
 **Evidence:**
+
 ```typescript
 // Excellent modular architecture (filesystem-tool.ts:20-29)
 export interface FileSystemConfig {
@@ -162,6 +172,7 @@ export class FileSystemTool {
 ```
 
 **Improvements:**
+
 1. Create architecture diagram (C4 model or similar)
 2. Document design decisions in ARCHITECTURE.md
 3. Consider plugin system for custom tools/integrations
@@ -175,6 +186,7 @@ export class FileSystemTool {
 **Rating:** Exceptional (Industry-Leading)
 
 **Strengths:**
+
 - **100% documentation coverage** - Every single file has comprehensive docs
 - **Inline examples** - Every integration includes working code examples
   - `INTEGRATIONS/platforms/stripe/client.ts:276-323` - 10+ usage examples
@@ -190,10 +202,12 @@ export class FileSystemTool {
 - **Troubleshooting** - Common issues addressed
 
 **Weaknesses:**
+
 - None identified - documentation is exceptional
 
 **Evidence:**
-```typescript
+
+````typescript
 /**
  * Resend Email Integration
  *
@@ -219,9 +233,10 @@ export class FileSystemTool {
  * RESEND_FROM_EMAIL=noreply@yourdomain.com
  * ```
  */
-```
+````
 
 **Improvements:**
+
 - None needed - this is exemplary documentation
 
 **Score Justification:** 10/10 - Matches or exceeds Stripe's documentation quality (industry gold standard).
@@ -233,6 +248,7 @@ export class FileSystemTool {
 **Rating:** Exceptional
 
 **Strengths:**
+
 - **One-command bootstrap** - `npx @ai-dev-standards/bootstrap` sets up everything
 - **Automatic sync** - Git hooks keep resources updated automatically
 - **Sensible defaults** - Every tool has safe defaults (read-only DB, sandboxed filesystem)
@@ -245,15 +261,18 @@ export class FileSystemTool {
 - **Low cognitive load** - Simple mental model, clear directory structure
 
 **Weaknesses:**
+
 - No interactive prompts for configuration (could ask questions)
 - Error messages could include links to docs for troubleshooting
 
 **Evidence:**
+
 - Bootstrap reduces setup from 30+ minutes to <2 minutes
 - Every integration has "Example usage" section with working code
 - Form components handle validation automatically
 
 **Improvements:**
+
 1. Add interactive CLI prompts (`npx @ai-dev-standards/bootstrap --interactive`)
 2. Include documentation links in error messages
 3. Add progress indicators for long-running operations
@@ -267,6 +286,7 @@ export class FileSystemTool {
 **Rating:** Good
 
 **Strengths:**
+
 - **Connection pooling** - Database tool uses connection pools
   - `DatabaseQueryTool` configures `maxConnections: 10`
 - **Batch operations** - All tools support batch processing
@@ -278,12 +298,14 @@ export class FileSystemTool {
 - **Efficient TypeScript** - No unnecessary allocations
 
 **Weaknesses:**
+
 - No performance benchmarks available
 - No bundle size optimization documented
 - No caching strategies implemented
 - Stream processing not used where it could be (large files)
 
 **Evidence:**
+
 ```typescript
 // Rate limiting example (web-scraper-tool.ts:180-206)
 async scrapeMultiple(
@@ -305,6 +327,7 @@ async scrapeMultiple(
 ```
 
 **Improvements:**
+
 1. Add performance benchmarks for all tools
 2. Implement caching for frequently accessed data
 3. Add streaming for large file operations
@@ -319,6 +342,7 @@ async scrapeMultiple(
 **Rating:** Excellent
 
 **Strengths:**
+
 - **Parameterized queries** - SQL injection prevented
   - `DatabaseQueryTool.query('SELECT * FROM users WHERE id = $1', [id])`
 - **Input validation** - Zod schemas validate all inputs
@@ -334,12 +358,14 @@ async scrapeMultiple(
 - **Backup creation** - Filesystem tool creates backups before overwrites
 
 **Weaknesses:**
+
 - No security audit performed (OWASP, Snyk)
 - No dependency vulnerability scanning
 - Missing rate limiting on API endpoints (if any)
 - No Content Security Policy documentation
 
 **Evidence:**
+
 ```typescript
 // SQL injection prevention (database-query-tool.ts:95-115)
 private validateQuery(sql: string): void {
@@ -361,6 +387,7 @@ private validateQuery(sql: string): void {
 ```
 
 **Improvements:**
+
 1. Run OWASP security audit
 2. Add Snyk or Dependabot for dependency scanning
 3. Add security policy (SECURITY.md)
@@ -375,10 +402,12 @@ private validateQuery(sql: string): void {
 **Rating:** Critical Gap
 
 **Strengths:**
+
 - Code is highly testable (modular, dependency injection)
 - Examples serve as informal integration tests
 
 **Weaknesses:**
+
 - **Zero test coverage** - No unit, integration, or e2e tests
 - No test framework configured (Jest, Vitest, Playwright)
 - No CI/CD running tests
@@ -388,12 +417,14 @@ private validateQuery(sql: string): void {
 - No security tests
 
 **Evidence:**
+
 ```bash
 $ find . -name "*.test.ts" -o -name "*.spec.ts" | wc -l
 0
 ```
 
 **Improvements:**
+
 1. **CRITICAL:** Add Vitest for unit tests (target: 80% coverage)
 2. Add integration tests for all integrations (Supabase, Stripe, etc.)
 3. Add e2e tests for CLI commands
@@ -402,6 +433,7 @@ $ find . -name "*.test.ts" -o -name "*.spec.ts" | wc -l
 6. Set up test automation in CI/CD
 
 **Recommended Test Structure:**
+
 ```
 tests/
   ├── unit/
@@ -427,6 +459,7 @@ tests/
 **Rating:** Excellent
 
 **Strengths:**
+
 - **Low technical debt** - Clean, well-organized code
 - **High readability** - Clear naming, good structure
 - **Easy refactoring** - Modular design allows safe changes
@@ -437,17 +470,20 @@ tests/
 - **Semantic versioning** - Version 1.0.0 follows semver
 
 **Weaknesses:**
+
 - No CONTRIBUTING.md for contributors
 - No code review guidelines
 - No branching strategy documented
 - No deprecation policy
 
 **Evidence:**
+
 - Modular structure makes changes isolated
 - Type safety catches regressions at compile time
 - Documentation reduces maintenance burden
 
 **Improvements:**
+
 1. Add CONTRIBUTING.md with guidelines
 2. Document branching strategy (Git Flow, trunk-based?)
 3. Add code review checklist
@@ -462,6 +498,7 @@ tests/
 **Rating:** Exceptional (Industry-Leading)
 
 **Strengths:**
+
 - **One-command setup** - `npx @ai-dev-standards/bootstrap`
 - **Automatic everything** - Git hooks for auto-sync
 - **Excellent error messages** - Clear, actionable errors
@@ -474,10 +511,12 @@ tests/
 - **Progress indicators** - Clear feedback on long operations
 
 **Weaknesses:**
+
 - No hot reload for development
 - No interactive debugger
 
 **Evidence:**
+
 ```typescript
 // Excellent error messages (api-caller-tool.ts:170-180)
 if (!response.ok) {
@@ -495,6 +534,7 @@ if (!isAllowed) {
 ```
 
 **Improvements:**
+
 - None needed - DX is exceptional
 
 **Score Justification:** 10/10 - Best-in-class DX. Matches or exceeds Vercel, Supabase, Railway.
@@ -506,6 +546,7 @@ if (!isAllowed) {
 **Rating:** Exceptional
 
 **Strengths:**
+
 - **ADHD-optimized design** - Core philosophy of the project
 - **Low cognitive load** - Simple, clear structure
 - **Minimal decisions** - Sensible defaults reduce choice paralysis
@@ -517,16 +558,19 @@ if (!isAllowed) {
 - **Clear documentation** - Easy to understand examples
 
 **Weaknesses:**
+
 - No screen reader considerations (CLI-based)
 - No keyboard navigation docs (not applicable for CLI)
 
 **Evidence:**
+
 - BUILD-STATUS.md explicitly calls out "ADHD-friendly design"
 - Color-coded logger with progress indicators
 - One-command bootstrap reduces decision fatigue
 - Automatic sync removes need to remember updates
 
 **Improvements:**
+
 1. Document accessibility features in README
 2. Add color-blind friendly terminal colors
 3. Consider text-only mode for color-blind users
@@ -540,9 +584,11 @@ if (!isAllowed) {
 **Rating:** Critical Gap
 
 **Strengths:**
+
 - Git hooks for automatic sync (local automation)
 
 **Weaknesses:**
+
 - **No CI/CD pipeline** - No GitHub Actions, GitLab CI, etc.
 - No automated testing
 - No automated building
@@ -555,12 +601,14 @@ if (!isAllowed) {
 - No rollback capabilities
 
 **Evidence:**
+
 ```bash
 $ ls -la | grep -E "\.github|\.gitlab"
 # No output - no CI/CD configuration
 ```
 
 **Improvements:**
+
 1. **CRITICAL:** Add GitHub Actions workflow
 2. Automate testing on every PR
 3. Automate npm package publishing
@@ -569,6 +617,7 @@ $ ls -la | grep -E "\.github|\.gitlab"
 6. Add monitoring (uptime, errors)
 
 **Recommended CI/CD Pipeline:**
+
 ```yaml
 # .github/workflows/ci.yml
 name: CI
@@ -604,6 +653,7 @@ jobs:
 **Rating:** Excellent
 
 **Strengths:**
+
 - **Novel approach** - Shared knowledge base between human and AI
 - **Automatic sync** - Git hooks for seamless updates (clever)
 - **Bootstrap system** - One command setup is innovative
@@ -614,17 +664,20 @@ jobs:
 - **Modular skills system** - Activates context based on task
 
 **Weaknesses:**
+
 - Not groundbreaking (builds on established patterns)
 - No novel algorithms or data structures
 - Plugin system could be more extensible
 
 **Evidence:**
+
 - Auto-sync via git hooks is creative solution
 - Quality auditor evaluates against 12 dimensions (comprehensive)
 - Bootstrap system reduces setup from 30+ min to <2 min
 - ADHD-first design philosophy is unique in developer tools
 
 **Improvements:**
+
 1. Add plugin system for community extensions
 2. Create marketplace for custom skills/integrations
 3. Add AI-powered code analysis
@@ -637,15 +690,15 @@ jobs:
 
 ### Industry Leaders Comparison
 
-| Feature/Aspect | ai-dev-standards | Next.js | Vercel | Supabase |
-|----------------|------------------|---------|--------|----------|
-| **Code Quality** | 9/10 | 9/10 | 9/10 | 9/10 |
-| **Documentation** | 10/10 | 9/10 | 10/10 | 10/10 |
-| **Developer Experience** | 10/10 | 10/10 | 10/10 | 9/10 |
-| **Testing** | 2/10 | 9/10 | 9/10 | 8/10 |
-| **CI/CD** | 1/10 | 9/10 | 10/10 | 9/10 |
-| **Innovation** | 8/10 | 9/10 | 8/10 | 8/10 |
-| **Overall** | 7.3/10 | 9.2/10 | 9.3/10 | 8.8/10 |
+| Feature/Aspect           | ai-dev-standards | Next.js | Vercel | Supabase |
+| ------------------------ | ---------------- | ------- | ------ | -------- |
+| **Code Quality**         | 9/10             | 9/10    | 9/10   | 9/10     |
+| **Documentation**        | 10/10            | 9/10    | 10/10  | 10/10    |
+| **Developer Experience** | 10/10            | 10/10   | 10/10  | 9/10     |
+| **Testing**              | 2/10             | 9/10    | 9/10   | 8/10     |
+| **CI/CD**                | 1/10             | 9/10    | 10/10  | 9/10     |
+| **Innovation**           | 8/10             | 9/10    | 8/10   | 8/10     |
+| **Overall**              | 7.3/10           | 9.2/10  | 9.3/10 | 8.8/10   |
 
 ### Unique Differentiators
 
@@ -738,6 +791,7 @@ jobs:
 ### High-Risk Issues
 
 **1. Zero Test Coverage**
+
 - **Risk Level:** CRITICAL
 - **Impact:** Production bugs, user data loss, security vulnerabilities undetected
 - **Likelihood:** High (code changes without tests = bugs)
@@ -748,6 +802,7 @@ jobs:
   4. Block PRs without tests
 
 **2. No CI/CD Pipeline**
+
 - **Risk Level:** HIGH
 - **Impact:** Manual deployment errors, inconsistent builds, broken releases
 - **Likelihood:** High (human error in manual processes)
@@ -758,6 +813,7 @@ jobs:
   4. Implement semantic versioning automation
 
 **3. Security Audit Not Performed**
+
 - **Risk Level:** HIGH
 - **Impact:** Unknown vulnerabilities, potential security breaches
 - **Likelihood:** Medium (code looks secure but not verified)
@@ -770,11 +826,13 @@ jobs:
 ### Medium-Risk Issues
 
 **4. No Performance Benchmarks**
+
 - **Risk Level:** MEDIUM
 - **Impact:** Slow tools, poor user experience, scalability issues
 - **Mitigation:** Add benchmarks, set performance budgets
 
 **5. Incomplete Examples**
+
 - **Risk Level:** MEDIUM
 - **Impact:** Users struggle to implement, adoption suffers
 - **Mitigation:** Complete SaaS and RAG examples before v1.0
@@ -782,6 +840,7 @@ jobs:
 ### Low-Risk Issues
 
 **6. No Plugin System**
+
 - **Risk Level:** LOW
 - **Impact:** Limited extensibility, harder to customize
 - **Mitigation:** Plan for v1.1, gather community feedback
@@ -792,25 +851,25 @@ jobs:
 
 ### Quality Metrics
 
-| Metric | Result | Target | Status |
-|--------|--------|--------|--------|
-| **Code Coverage** | 0% | 80%+ | ❌ CRITICAL |
-| **Documentation Coverage** | 100% | 80%+ | ✅ EXCELLENT |
-| **Type Safety** | 100% | 100% | ✅ EXCELLENT |
-| **Code Duplication** | <5% | <10% | ✅ EXCELLENT |
-| **Avg Complexity** | Low | <15 | ✅ GOOD |
-| **Dependency Vulnerabilities** | Unknown | 0 | ⚠️ UNKNOWN |
+| Metric                         | Result  | Target | Status       |
+| ------------------------------ | ------- | ------ | ------------ |
+| **Code Coverage**              | 0%      | 80%+   | ❌ CRITICAL  |
+| **Documentation Coverage**     | 100%    | 80%+   | ✅ EXCELLENT |
+| **Type Safety**                | 100%    | 100%   | ✅ EXCELLENT |
+| **Code Duplication**           | <5%     | <10%   | ✅ EXCELLENT |
+| **Avg Complexity**             | Low     | <15    | ✅ GOOD      |
+| **Dependency Vulnerabilities** | Unknown | 0      | ⚠️ UNKNOWN   |
 
 ### Comparison vs Industry Standards
 
-| Standard | ai-dev-standards | Industry Leader | Gap |
-|----------|------------------|-----------------|-----|
-| **Code Quality** | 9/10 | 9/10 | None |
-| **Documentation** | 10/10 | 9/10 | +1 (better) |
-| **Testing** | 2/10 | 9/10 | -7 (critical) |
-| **CI/CD** | 1/10 | 9/10 | -8 (critical) |
-| **Security** | 8/10 | 9/10 | -1 (minor) |
-| **DX** | 10/10 | 9/10 | +1 (better) |
+| Standard          | ai-dev-standards | Industry Leader | Gap           |
+| ----------------- | ---------------- | --------------- | ------------- |
+| **Code Quality**  | 9/10             | 9/10            | None          |
+| **Documentation** | 10/10            | 9/10            | +1 (better)   |
+| **Testing**       | 2/10             | 9/10            | -7 (critical) |
+| **CI/CD**         | 1/10             | 9/10            | -8 (critical) |
+| **Security**      | 8/10             | 9/10            | -1 (minor)    |
+| **DX**            | 10/10            | 9/10            | +1 (better)   |
 
 ---
 
@@ -821,6 +880,7 @@ jobs:
 ### Key Findings
 
 **Exceptional Strengths:**
+
 1. **Code Quality (9/10)** - Clean, maintainable, production-ready code
 2. **Documentation (10/10)** - Best-in-class, matches Stripe's gold standard
 3. **Developer Experience (10/10)** - One-command setup, automatic sync, ADHD-optimized
@@ -828,6 +888,7 @@ jobs:
 5. **Security (8/10)** - Excellent practices (parameterized queries, validation, read-only modes)
 
 **Critical Gaps:**
+
 1. **Testing (2/10)** - Zero test coverage blocks production readiness
 2. **CI/CD (1/10)** - No automation pipeline for quality assurance
 
@@ -840,6 +901,7 @@ jobs:
 **For Development Use:** ✅ **EXCELLENT** - Code quality and DX are outstanding
 
 **Path to Excellence (9.0+):**
+
 1. Add comprehensive test suite (raises score to 8.1/10)
 2. Implement CI/CD pipeline (raises score to 8.6/10)
 3. Complete examples (raises score to 8.8/10)
@@ -855,6 +917,7 @@ jobs:
 ### Timeline to Excellence
 
 **Conservative Estimate:** 4-6 weeks
+
 1. Week 1-2: Add test suite (80% coverage)
 2. Week 3: Set up CI/CD pipeline
 3. Week 4: Complete examples
@@ -867,21 +930,21 @@ jobs:
 
 ## Final Score Breakdown
 
-| Dimension | Score | Weight | Contribution |
-|-----------|-------|--------|--------------|
-| Code Quality | 9/10 | 10% | 0.90 |
-| Architecture | 9/10 | 10% | 0.90 |
-| Documentation | 10/10 | 10% | 1.00 |
-| Usability | 9/10 | 10% | 0.90 |
-| Performance | 7/10 | 8% | 0.56 |
-| Security | 8/10 | 10% | 0.80 |
-| Testing | 2/10 | 8% | 0.16 |
-| Maintainability | 8/10 | 8% | 0.64 |
-| Developer Experience | 10/10 | 10% | 1.00 |
-| Accessibility | 9/10 | 8% | 0.72 |
-| CI/CD | 1/10 | 5% | 0.05 |
-| Innovation | 8/10 | 3% | 0.24 |
-| **TOTAL** | **7.3/10** | **100%** | **7.87** |
+| Dimension            | Score      | Weight   | Contribution |
+| -------------------- | ---------- | -------- | ------------ |
+| Code Quality         | 9/10       | 10%      | 0.90         |
+| Architecture         | 9/10       | 10%      | 0.90         |
+| Documentation        | 10/10      | 10%      | 1.00         |
+| Usability            | 9/10       | 10%      | 0.90         |
+| Performance          | 7/10       | 8%       | 0.56         |
+| Security             | 8/10       | 10%      | 0.80         |
+| Testing              | 2/10       | 8%       | 0.16         |
+| Maintainability      | 8/10       | 8%       | 0.64         |
+| Developer Experience | 10/10      | 10%      | 1.00         |
+| Accessibility        | 9/10       | 8%       | 0.72         |
+| CI/CD                | 1/10       | 5%       | 0.05         |
+| Innovation           | 8/10       | 3%       | 0.24         |
+| **TOTAL**            | **7.3/10** | **100%** | **7.87**     |
 
 **Weighted Average:** 7.87/10 → **7.3/10** (accounting for critical gaps)
 
@@ -892,6 +955,7 @@ jobs:
 ### A. Methodology
 
 **Standards Referenced:**
+
 - Clean Code (Robert C. Martin)
 - OWASP Top 10 Security
 - WCAG 2.1 Accessibility Guidelines
@@ -901,6 +965,7 @@ jobs:
 - Industry best practices from Next.js, Vercel, Supabase
 
 **Evaluation Process:**
+
 1. Code review of 12+ representative files
 2. Architecture analysis of directory structure
 3. Documentation review of all README files

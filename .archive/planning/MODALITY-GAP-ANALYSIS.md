@@ -9,11 +9,13 @@
 ## Executive Summary
 
 **Current Coverage:**
+
 - ✅ Text/Code (excellent)
 - ✅ Visual Design (good with new skills)
 - ✅ 2D Web/Mobile (excellent)
 
 **Missing Modalities:**
+
 - 🔴 Voice/Audio (zero coverage)
 - 🔴 Video (zero coverage)
 - 🔴 3D/Spatial (zero coverage)
@@ -33,6 +35,7 @@
 
 **Why Critical:**
 Voice is the next major interface paradigm:
+
 - Voice assistants (Alexa, Google Assistant, Siri)
 - Voice commands in apps
 - Accessibility (hands-free)
@@ -40,6 +43,7 @@ Voice is the next major interface paradigm:
 - Voice-first apps (podcasts, audiobooks)
 
 **Current Pain Points:**
+
 - "How do I add voice commands to my app?"
 - "Build a voice interface for accessibility"
 - "Integrate with Alexa/Google Assistant"
@@ -51,6 +55,7 @@ Voice is the next major interface paradigm:
 # voice-interface-builder Skill
 
 ## Phase 1: Speech Recognition (STT)
+
 - Web Speech API (browser-based)
 - OpenAI Whisper integration
 - Google Cloud Speech-to-Text
@@ -59,6 +64,7 @@ Voice is the next major interface paradigm:
 - Noise handling and accuracy
 
 ## Phase 2: Natural Language Understanding (NLU)
+
 - Intent recognition
 - Entity extraction
 - Context management
@@ -66,6 +72,7 @@ Voice is the next major interface paradigm:
 - Error handling (misheard commands)
 
 ## Phase 3: Text-to-Speech (TTS)
+
 - OpenAI TTS
 - ElevenLabs (realistic voices)
 - Google Cloud TTS
@@ -74,6 +81,7 @@ Voice is the next major interface paradigm:
 - SSML markup (pauses, emphasis)
 
 ## Phase 4: Voice UI Patterns
+
 - Wake words ("Hey Siri")
 - Command structure ("Play music")
 - Confirmations ("Did you mean...?")
@@ -81,6 +89,7 @@ Voice is the next major interface paradigm:
 - Voice feedback (earcons)
 
 ## Phase 5: Platform Integration
+
 - Alexa Skills development
 - Google Actions
 - Siri Shortcuts
@@ -88,6 +97,7 @@ Voice is the next major interface paradigm:
 ```
 
 **Use Cases:**
+
 ```
 You: "Add voice commands to search products"
 Claude (using voice-interface-builder):
@@ -103,6 +113,7 @@ Claude:
 ```
 
 **MCP Needed:**
+
 - Speech-to-text MCP (Whisper integration)
 - Text-to-speech MCP (ElevenLabs, OpenAI)
 - Voice analytics MCP (track usage, accuracy)
@@ -116,6 +127,7 @@ Claude:
 
 **Why Important:**
 Content creation increasingly includes audio:
+
 - Podcasts
 - Audio courses
 - Voiceovers for videos
@@ -128,12 +140,14 @@ Content creation increasingly includes audio:
 # audio-producer Skill
 
 ## Phase 1: Audio Generation
+
 - Text-to-speech for content (podcasts, courses)
 - AI voice cloning (ElevenLabs)
 - Background music generation (Suno, Udio)
 - Sound effects (UI sounds, transitions)
 
 ## Phase 2: Audio Editing
+
 - Editing tools (Audacity, Adobe Audition)
 - Noise reduction
 - Leveling and compression
@@ -141,12 +155,14 @@ Content creation increasingly includes audio:
 - Multi-track mixing
 
 ## Phase 3: Audio Optimization
+
 - Format conversion (MP3, AAC, WAV)
 - Bitrate optimization
 - Loudness normalization (LUFS)
 - Streaming optimization
 
 ## Phase 4: Distribution
+
 - Podcast RSS feeds
 - Audio CDN setup
 - Transcription generation
@@ -154,12 +170,14 @@ Content creation increasingly includes audio:
 ```
 
 **Use Cases:**
+
 - "Generate podcast episode from blog post"
 - "Create voiceover for product video"
 - "Generate UI sound effects"
 - "Convert text course to audio"
 
 **MCP Needed:**
+
 - Audio generation MCP (TTS, music)
 - Audio editing MCP (effects, mixing)
 - Podcast distribution MCP
@@ -177,6 +195,7 @@ Content creation increasingly includes audio:
 
 **Why Critical:**
 Video is dominant content format:
+
 - Product demos
 - Tutorial videos
 - Social media (TikTok, YouTube, Instagram)
@@ -184,6 +203,7 @@ Video is dominant content format:
 - User onboarding
 
 **Current Pain Points:**
+
 - "Create product demo video"
 - "Generate tutorial from documentation"
 - "Make social media videos"
@@ -195,12 +215,14 @@ Video is dominant content format:
 # video-producer Skill
 
 ## Phase 1: Video Generation
+
 - AI video generation (Runway, Pika, Sora when available)
 - Screen recording (for tutorials)
 - Slide-to-video conversion
 - Text-to-video (announcements)
 
 ## Phase 2: Video Editing
+
 - Cutting and trimming
 - Transitions and effects
 - Adding captions/subtitles
@@ -208,6 +230,7 @@ Video is dominant content format:
 - Voiceover sync
 
 ## Phase 3: Video Optimization
+
 - Compression (H.264, H.265)
 - Format conversion
 - Thumbnail generation
@@ -215,6 +238,7 @@ Video is dominant content format:
 - Adaptive bitrate streaming
 
 ## Phase 4: Distribution
+
 - YouTube upload automation
 - Social media formats (TikTok vertical, Instagram square)
 - Video embedding
@@ -222,6 +246,7 @@ Video is dominant content format:
 ```
 
 **Use Cases:**
+
 ```
 You: "Create product demo video from screenshots"
 Claude (using video-producer):
@@ -239,6 +264,7 @@ Claude:
 ```
 
 **MCP Needed:**
+
 - Video generation MCP (AI video tools)
 - Screen recording MCP
 - Video editing MCP (FFmpeg wrapper)
@@ -253,6 +279,7 @@ Claude:
 
 **Why Important:**
 Live streaming growing for:
+
 - Product launches
 - Live coding
 - Webinars
@@ -265,6 +292,7 @@ Live streaming growing for:
 # livestream-engineer Skill
 
 ## Phase 1: Streaming Setup
+
 - OBS configuration
 - Stream key setup (Twitch, YouTube)
 - Scenes and sources
@@ -272,6 +300,7 @@ Live streaming growing for:
 - Overlays and graphics
 
 ## Phase 2: Production
+
 - Multi-camera switching
 - Screen sharing
 - Guest integration (StreamYard, Restream)
@@ -279,12 +308,14 @@ Live streaming growing for:
 - Donations/alerts
 
 ## Phase 3: Technical Setup
+
 - Bitrate optimization
 - Latency management (RTMP vs WebRTC)
 - Backup streaming
 - Recording simultaneously
 
 ## Phase 4: Post-Production
+
 - Stream archiving
 - Clip generation
 - Highlight reels
@@ -292,6 +323,7 @@ Live streaming growing for:
 ```
 
 **Use Cases:**
+
 - "Set up live coding stream"
 - "Configure webinar with Q&A"
 - "Stream product launch event"
@@ -309,6 +341,7 @@ Live streaming growing for:
 
 **Why Important:**
 Spatial computing is next platform:
+
 - Apple Vision Pro
 - Meta Quest
 - AR filters (Instagram, Snapchat)
@@ -321,12 +354,14 @@ Spatial computing is next platform:
 # spatial-developer Skill
 
 ## Phase 1: 3D Fundamentals
+
 - 3D coordinate systems
 - Meshes, materials, lighting
 - 3D file formats (glTF, FBX, OBJ)
 - Performance optimization
 
 ## Phase 2: AR Development
+
 - ARKit (iOS)
 - ARCore (Android)
 - WebXR (browser AR)
@@ -335,6 +370,7 @@ Spatial computing is next platform:
 - Face tracking (filters)
 
 ## Phase 3: VR Development
+
 - Unity/Unreal for VR
 - Hand tracking
 - Teleportation and movement
@@ -342,6 +378,7 @@ Spatial computing is next platform:
 - Comfort and motion sickness
 
 ## Phase 4: Spatial Web
+
 - WebXR development
 - 3D model embedding (model-viewer)
 - 360° photos/videos
@@ -349,6 +386,7 @@ Spatial computing is next platform:
 ```
 
 **Use Cases:**
+
 ```
 You: "Add 3D product viewer to e-commerce site"
 Claude (using spatial-developer):
@@ -364,6 +402,7 @@ Claude:
 ```
 
 **MCP Needed:**
+
 - 3D model optimization MCP
 - AR/VR testing MCP
 - Spatial analytics MCP
@@ -377,12 +416,14 @@ Claude:
 
 **Why Important:**
 3D visualization for:
+
 - Data visualization (3D charts)
 - Architecture/CAD
 - Product design
 - Scientific visualization
 
 **What It Should Cover:**
+
 - Three.js development
 - D3.js 3D charts
 - Blender integration
@@ -402,6 +443,7 @@ Claude:
 
 **Why Important:**
 Every app needs dashboards and analytics:
+
 - Business dashboards
 - User analytics
 - Real-time monitoring
@@ -413,12 +455,14 @@ Every app needs dashboards and analytics:
 # data-visualizer Skill
 
 ## Phase 1: Chart Selection
+
 - Chart type decision tree (bar, line, pie, scatter, etc.)
 - When to use each chart type
 - Accessibility considerations
 - Interactive vs static
 
 ## Phase 2: Visualization Libraries
+
 - Chart.js (simple charts)
 - Recharts (React)
 - D3.js (custom visualizations)
@@ -426,6 +470,7 @@ Every app needs dashboards and analytics:
 - ApexCharts (modern dashboards)
 
 ## Phase 3: Dashboard Design
+
 - Layout patterns (grid, tabs, cards)
 - KPI design
 - Filters and controls
@@ -433,6 +478,7 @@ Every app needs dashboards and analytics:
 - Export options (PDF, Excel)
 
 ## Phase 4: Data Processing
+
 - Aggregation strategies
 - Time series handling
 - Large dataset optimization
@@ -440,6 +486,7 @@ Every app needs dashboards and analytics:
 ```
 
 **Use Cases:**
+
 ```
 You: "Build analytics dashboard for SaaS"
 Claude (using data-visualizer):
@@ -457,6 +504,7 @@ Claude:
 ```
 
 **MCP Needed:**
+
 - Chart generation MCP
 - Data processing MCP
 - Dashboard template MCP
@@ -474,6 +522,7 @@ Claude:
 
 **Why Growing:**
 IoT applications expanding:
+
 - Smart home devices
 - Industrial IoT
 - Wearables
@@ -486,6 +535,7 @@ IoT applications expanding:
 # iot-developer Skill
 
 ## Phase 1: Hardware Basics
+
 - Microcontrollers (Arduino, ESP32, Raspberry Pi)
 - Sensors (temperature, motion, light)
 - Actuators (motors, LEDs, relays)
@@ -493,6 +543,7 @@ IoT applications expanding:
 - Connectivity (WiFi, BLE, LoRa)
 
 ## Phase 2: Firmware Development
+
 - Arduino programming
 - MicroPython
 - FreeRTOS
@@ -500,6 +551,7 @@ IoT applications expanding:
 - Power optimization
 
 ## Phase 3: Cloud Integration
+
 - MQTT protocol
 - AWS IoT Core
 - Azure IoT Hub
@@ -507,6 +559,7 @@ IoT applications expanding:
 - Device management
 
 ## Phase 4: Edge Computing
+
 - Edge processing
 - Local inference (TensorFlow Lite)
 - Offline operation
@@ -514,6 +567,7 @@ IoT applications expanding:
 ```
 
 **Use Cases:**
+
 - "Build temperature monitoring system"
 - "Create smart home device"
 - "Implement industrial sensor network"
@@ -531,6 +585,7 @@ IoT applications expanding:
 
 **Why Important:**
 Global apps need translation:
+
 - Multi-language support
 - Cultural adaptation
 - Currency/date formats
@@ -542,6 +597,7 @@ Global apps need translation:
 # localization-engineer Skill
 
 ## Phase 1: i18n Setup
+
 - React Intl
 - next-intl
 - i18next
@@ -549,6 +605,7 @@ Global apps need translation:
 - Translation file structure (JSON, YAML)
 
 ## Phase 2: Translation Management
+
 - Translation workflow
 - Professional translation services
 - Machine translation (DeepL, Google Translate)
@@ -556,6 +613,7 @@ Global apps need translation:
 - Context for translators
 
 ## Phase 3: Formatting
+
 - Date/time formatting (by locale)
 - Number formatting
 - Currency formatting
@@ -563,6 +621,7 @@ Global apps need translation:
 - RTL layout (Arabic, Hebrew)
 
 ## Phase 4: Cultural Adaptation
+
 - Color meanings by culture
 - Image localization
 - Content adaptation
@@ -570,6 +629,7 @@ Global apps need translation:
 ```
 
 **Use Cases:**
+
 ```
 You: "Add French translation to app"
 Claude (using localization-engineer):
@@ -586,6 +646,7 @@ Claude:
 ```
 
 **MCP Needed:**
+
 - Translation MCP (DeepL, Google Translate)
 - Translation memory MCP
 - Locale data MCP
@@ -603,6 +664,7 @@ Claude:
 
 **Why Important:**
 Good docs = good product:
+
 - API documentation
 - User guides
 - Video tutorials
@@ -615,6 +677,7 @@ Good docs = good product:
 # technical-writer Skill
 
 ## Phase 1: Documentation Types
+
 - API docs (OpenAPI/Swagger)
 - User guides
 - Tutorials (step-by-step)
@@ -622,6 +685,7 @@ Good docs = good product:
 - Release notes
 
 ## Phase 2: Documentation Tools
+
 - Markdown/MDX
 - Docusaurus
 - GitBook
@@ -630,6 +694,7 @@ Good docs = good product:
 - Mintlify
 
 ## Phase 3: Content Strategy
+
 - Information architecture
 - Writing style (concise, clear)
 - Code examples
@@ -637,6 +702,7 @@ Good docs = good product:
 - Search optimization
 
 ## Phase 4: Interactive Docs
+
 - API playground (try it live)
 - Code sandboxes
 - Interactive tutorials
@@ -644,6 +710,7 @@ Good docs = good product:
 ```
 
 **Use Cases:**
+
 ```
 You: "Generate API documentation from code"
 Claude (using technical-writer):
@@ -661,6 +728,7 @@ Claude:
 ```
 
 **MCP Needed:**
+
 - Documentation generator MCP
 - Screenshot automation MCP
 - Video tutorial MCP
@@ -678,6 +746,7 @@ Claude:
 
 **Why Critical:**
 Accessibility is legal requirement + moral imperative:
+
 - Screen reader support
 - Keyboard navigation
 - Voice control
@@ -689,12 +758,14 @@ Accessibility is legal requirement + moral imperative:
 # accessibility-engineer Skill
 
 ## Phase 1: WCAG Compliance
+
 - WCAG 2.1 AA/AAA standards
 - Automated testing (axe, Lighthouse)
 - Manual testing procedures
 - Remediation strategies
 
 ## Phase 2: Screen Reader Support
+
 - ARIA attributes (labels, roles, states)
 - Semantic HTML
 - Focus management
@@ -702,6 +773,7 @@ Accessibility is legal requirement + moral imperative:
 - Screen reader testing (NVDA, JAWS, VoiceOver)
 
 ## Phase 3: Keyboard Navigation
+
 - Tab order
 - Focus indicators
 - Keyboard shortcuts
@@ -709,12 +781,14 @@ Accessibility is legal requirement + moral imperative:
 - Modal trapping
 
 ## Phase 4: Alternative Input
+
 - Voice control (Dragon NaturallySpeaking)
 - Switch access
 - Eye tracking
 - Assistive technology compatibility
 
 ## Phase 5: Inclusive Design
+
 - Color blind considerations
 - Motion sensitivity
 - Cognitive accessibility
@@ -722,6 +796,7 @@ Accessibility is legal requirement + moral imperative:
 ```
 
 **Use Cases:**
+
 ```
 You: "Make this app WCAG 2.1 AA compliant"
 Claude (using accessibility-engineer):
@@ -740,6 +815,7 @@ Claude:
 ```
 
 **MCP Needed:**
+
 - Accessibility testing MCP (axe-core)
 - Screen reader simulation MCP
 - Compliance reporting MCP
@@ -757,12 +833,14 @@ Claude:
 
 **Why Specialized:**
 Games are a major platform:
+
 - Web games (HTML5)
 - Mobile games
 - Desktop games
 - Gamification
 
 **What It Should Cover:**
+
 - Unity development
 - Unreal Engine
 - Phaser.js (web games)
@@ -779,23 +857,24 @@ Games are a major platform:
 
 ### Priority Matrix
 
-| Modality | P0 Skills | P1 Skills | P2 Skills | Total Value |
-|----------|-----------|-----------|-----------|-------------|
-| Voice/Audio | voice-interface-builder | audio-producer | - | 8/10 |
-| Video | video-producer | livestream-engineer | - | 8/10 |
-| 3D/Spatial | - | spatial-developer, 3d-visualizer | - | 7/10 |
-| Data/Analytics | - | data-visualizer | - | 8/10 |
-| Hardware/IoT | - | - | iot-developer | 6/10 |
-| Localization | - | localization-engineer | - | 7/10 |
-| Documentation | - | technical-writer | - | 8/10 |
-| Accessibility | accessibility-engineer | - | - | 9/10 |
-| Gaming | - | - | game-developer | 4/10 |
+| Modality       | P0 Skills               | P1 Skills                        | P2 Skills      | Total Value |
+| -------------- | ----------------------- | -------------------------------- | -------------- | ----------- |
+| Voice/Audio    | voice-interface-builder | audio-producer                   | -              | 8/10        |
+| Video          | video-producer          | livestream-engineer              | -              | 8/10        |
+| 3D/Spatial     | -                       | spatial-developer, 3d-visualizer | -              | 7/10        |
+| Data/Analytics | -                       | data-visualizer                  | -              | 8/10        |
+| Hardware/IoT   | -                       | -                                | iot-developer  | 6/10        |
+| Localization   | -                       | localization-engineer            | -              | 7/10        |
+| Documentation  | -                       | technical-writer                 | -              | 8/10        |
+| Accessibility  | accessibility-engineer  | -                                | -              | 9/10        |
+| Gaming         | -                       | -                                | game-developer | 4/10        |
 
 ---
 
 ## Recommended Build Order
 
 ### Phase 1: Accessibility (Week 1-2) 🔴
+
 **Build:** accessibility-engineer skill
 **Why:** Legal requirement, affects everyone
 **Value:** 9/10
@@ -803,6 +882,7 @@ Games are a major platform:
 ---
 
 ### Phase 2: Documentation (Week 3-4) 🟡
+
 **Build:** technical-writer skill
 **Why:** Every product needs docs
 **Value:** 8/10
@@ -810,6 +890,7 @@ Games are a major platform:
 ---
 
 ### Phase 3: Data Visualization (Week 5-6) 🟡
+
 **Build:** data-visualizer skill
 **Why:** Common need, dashboards everywhere
 **Value:** 8/10
@@ -817,6 +898,7 @@ Games are a major platform:
 ---
 
 ### Phase 4: Voice (Week 7-8) 🟡
+
 **Build:** voice-interface-builder skill
 **Why:** Growing rapidly, accessibility benefit
 **Value:** 8/10
@@ -824,6 +906,7 @@ Games are a major platform:
 ---
 
 ### Phase 5: Video (Week 9-10) 🟡
+
 **Build:** video-producer skill
 **Why:** Video-first content strategy
 **Value:** 8/10
@@ -831,6 +914,7 @@ Games are a major platform:
 ---
 
 ### Phase 6: Localization (Week 11-12) 🟢
+
 **Build:** localization-engineer skill
 **Why:** Global reach
 **Value:** 7/10
@@ -838,6 +922,7 @@ Games are a major platform:
 ---
 
 ### Phase 7: Spatial Computing (Months 4-5) 🟢
+
 **Build:** spatial-developer skill
 **Why:** Future platform (Vision Pro, AR/VR)
 **Value:** 7/10
@@ -883,21 +968,25 @@ Games are a major platform:
 ## Cross-Modality Synergies
 
 ### Synergy 1: Voice + Accessibility
+
 - Voice control for motor disabilities
 - Screen reader integration
 - Voice commands for navigation
 
 ### Synergy 2: Video + Documentation
+
 - Tutorial videos from docs
 - Code walkthrough videos
 - Interactive video docs
 
 ### Synergy 3: 3D + E-commerce
+
 - Product visualization
 - AR try-on
 - Virtual showrooms
 
 ### Synergy 4: Voice + Video
+
 - Voiceover generation
 - Live captions
 - Audio descriptions for accessibility
@@ -909,19 +998,23 @@ Games are a major platform:
 **What others are doing:**
 
 **Vercel v0:**
+
 - ✅ Text/code generation
 - ❌ No voice, video, 3D
 
 **GitHub Copilot:**
+
 - ✅ Code generation
 - ❌ No multi-modal support
 
 **ChatGPT:**
+
 - ✅ Voice mode
 - ✅ Image generation
 - ❌ No video, 3D, code integration
 
 **Our Opportunity:**
+
 - ✅ Integrated multi-modal skills
 - ✅ Developer-focused
 - ✅ Production-ready guidance
@@ -932,21 +1025,25 @@ Games are a major platform:
 ## Success Metrics
 
 ### After Accessibility Skill
+
 - [ ] 90% of projects WCAG AA compliant
 - [ ] Screen reader usage increases 40%
 - [ ] Accessibility bugs reduced 80%
 
 ### After Voice Skill
+
 - [ ] 30% of apps add voice features
 - [ ] Voice search adoption 50%
 - [ ] Accessibility improvements (hands-free)
 
 ### After Video Skill
+
 - [ ] Tutorial video creation time: 8 hours → 1 hour
 - [ ] Video content creation increases 3x
 - [ ] User onboarding improves 40%
 
 ### After Documentation Skill
+
 - [ ] Documentation coverage: 40% → 90%
 - [ ] Support tickets reduced 30%
 - [ ] Developer onboarding faster 50%
@@ -956,18 +1053,14 @@ Games are a major platform:
 ## Next Steps
 
 **Immediate (This Quarter):**
+
 1. Build accessibility-engineer skill (P0)
 2. Build technical-writer skill (high value)
 3. Build data-visualizer skill (common need)
 
-**Next Quarter:**
-4. Build voice-interface-builder skill
-5. Build video-producer skill
-6. Build localization-engineer skill
+**Next Quarter:** 4. Build voice-interface-builder skill 5. Build video-producer skill 6. Build localization-engineer skill
 
-**Future:**
-7. Build spatial-developer skill (Vision Pro launch)
-8. Build iot-developer skill (if demand)
+**Future:** 7. Build spatial-developer skill (Vision Pro launch) 8. Build iot-developer skill (if demand)
 
 ---
 
@@ -976,21 +1069,25 @@ Games are a major platform:
 Before building each modality:
 
 **Accessibility:**
+
 - ❓ "How compliant is your app with WCAG?"
 - ❓ "Have you tested with screen readers?"
 - ❓ "Is keyboard navigation complete?"
 
 **Voice:**
+
 - ❓ "Would voice commands improve your UX?"
 - ❓ "Are you considering voice search?"
 - ❓ "Need hands-free interaction?"
 
 **Video:**
+
 - ❓ "Do you create tutorial videos?"
 - ❓ "How long does video production take?"
 - ❓ "Use video for onboarding?"
 
 **Documentation:**
+
 - ❓ "How complete is your documentation?"
 - ❓ "How many support tickets could docs prevent?"
 - ❓ "Time spent writing docs vs coding?"
@@ -1000,6 +1097,7 @@ Before building each modality:
 ## Conclusion
 
 **Critical Modalities to Add:**
+
 1. 🔴 Accessibility (P0 - legal requirement)
 2. 🟡 Documentation (P1 - every product)
 3. 🟡 Data Visualization (P1 - common need)
@@ -1007,12 +1105,14 @@ Before building each modality:
 5. 🟡 Video (P1 - content strategy)
 
 **Expected Impact:**
+
 - Cover 95% of modern app development needs
 - Enable multi-modal experiences
 - Future-proof for spatial computing
 - Improve accessibility compliance
 
 **Want me to start building:**
+
 - accessibility-engineer skill?
 - technical-writer skill?
 - voice-interface-builder skill?

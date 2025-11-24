@@ -6,7 +6,7 @@ import {
   CallToolRequestSchema,
   ListResourcesRequestSchema,
   ListToolsRequestSchema,
-  ReadResourceRequestSchema,
+  ReadResourceRequestSchema
 } from '@modelcontextprotocol/sdk/types.js'
 import * as fs from 'fs'
 import * as path from 'path'
@@ -28,25 +28,39 @@ const typographyBestPractices = {
         perfectFourth: 1.333,
         augmentedFourth: 1.414,
         perfectFifth: 1.5,
-        goldenRatio: 1.618,
-      },
+        goldenRatio: 1.618
+      }
     },
-    tailwindScale: ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl', '7xl', '8xl', '9xl'],
+    tailwindScale: [
+      'xs',
+      'sm',
+      'base',
+      'lg',
+      'xl',
+      '2xl',
+      '3xl',
+      '4xl',
+      '5xl',
+      '6xl',
+      '7xl',
+      '8xl',
+      '9xl'
+    ]
   },
   readability: {
     lineHeight: {
       body: { min: 1.5, ideal: 1.6, max: 1.8 },
-      headings: { min: 1.2, ideal: 1.3, max: 1.5 },
+      headings: { min: 1.2, ideal: 1.3, max: 1.5 }
     },
     lineLength: {
       min: 45,
       ideal: 66,
-      max: 75,
+      max: 75
     },
     paragraphSpacing: {
       min: '1em',
-      ideal: '1.5em',
-    },
+      ideal: '1.5em'
+    }
   },
   fontStacks: {
     system: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
@@ -54,8 +68,8 @@ const typographyBestPractices = {
     oldStyle: '"Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052, serif',
     humanist: 'Seravek, "Gill Sans Nova", Ubuntu, Calibri, sans-serif',
     geometric: 'Avenir, Montserrat, Corbel, sans-serif',
-    monospace: '"SF Mono", Monaco, "Cascadia Code", "Roboto Mono", monospace',
-  },
+    monospace: '"SF Mono", Monaco, "Cascadia Code", "Roboto Mono", monospace'
+  }
 }
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
@@ -69,11 +83,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
           cssFiles: {
             type: 'array',
             items: { type: 'string' },
-            description: 'Array of CSS file paths to analyze',
-          },
+            description: 'Array of CSS file paths to analyze'
+          }
         },
-        required: ['cssFiles'],
-      },
+        required: ['cssFiles']
+      }
     },
     {
       name: 'detect_font_usage',
@@ -83,11 +97,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           projectPath: {
             type: 'string',
-            description: 'Root path of the project',
-          },
+            description: 'Root path of the project'
+          }
         },
-        required: ['projectPath'],
-      },
+        required: ['projectPath']
+      }
     },
     {
       name: 'suggest_type_scale',
@@ -98,15 +112,15 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
           currentSizes: {
             type: 'array',
             items: { type: 'number' },
-            description: 'Array of font sizes currently used (in px)',
+            description: 'Array of font sizes currently used (in px)'
           },
           ratio: {
             type: 'string',
-            description: 'Type scale ratio (e.g., "majorThird", "perfectFourth")',
-          },
+            description: 'Type scale ratio (e.g., "majorThird", "perfectFourth")'
+          }
         },
-        required: ['currentSizes'],
-      },
+        required: ['currentSizes']
+      }
     },
     {
       name: 'check_readability',
@@ -116,21 +130,21 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           fontSize: {
             type: 'number',
-            description: 'Font size in pixels',
+            description: 'Font size in pixels'
           },
           lineHeight: {
             type: 'number',
-            description: 'Line height value',
+            description: 'Line height value'
           },
           lineLength: {
             type: 'number',
-            description: 'Line length in characters',
-          },
+            description: 'Line length in characters'
+          }
         },
-        required: ['fontSize'],
-      },
-    },
-  ],
+        required: ['fontSize']
+      }
+    }
+  ]
 }))
 
 server.setRequestHandler(ListResourcesRequestSchema, async () => ({
@@ -139,27 +153,27 @@ server.setRequestHandler(ListResourcesRequestSchema, async () => ({
       uri: 'typography://best-practices',
       name: 'Typography Best Practices',
       description: 'Typography guidelines and best practices',
-      mimeType: 'application/json',
-    },
-  ],
+      mimeType: 'application/json'
+    }
+  ]
 }))
 
-server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
+server.setRequestHandler(ReadResourceRequestSchema, async request => {
   if (request.params.uri === 'typography://best-practices') {
     return {
       contents: [
         {
           uri: request.params.uri,
           mimeType: 'application/json',
-          text: JSON.stringify(typographyBestPractices, null, 2),
-        },
-      ],
+          text: JSON.stringify(typographyBestPractices, null, 2)
+        }
+      ]
     }
   }
   throw new Error(`Unknown resource: ${request.params.uri}`)
 })
 
-server.setRequestHandler(CallToolRequestSchema, async (request) => {
+server.setRequestHandler(CallToolRequestSchema, async request => {
   const { name, arguments: args } = request.params
 
   try {
@@ -169,9 +183,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           content: [
             {
               type: 'text',
-              text: JSON.stringify(analyzeTypography((args as any).cssFiles), null, 2),
-            },
-          ],
+              text: JSON.stringify(analyzeTypography((args as any).cssFiles), null, 2)
+            }
+          ]
         }
 
       case 'detect_font_usage':
@@ -179,9 +193,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           content: [
             {
               type: 'text',
-              text: JSON.stringify(detectFontUsage((args as any).projectPath), null, 2),
-            },
-          ],
+              text: JSON.stringify(detectFontUsage((args as any).projectPath), null, 2)
+            }
+          ]
         }
 
       case 'suggest_type_scale':
@@ -193,9 +207,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
                 suggestTypeScale((args as any).currentSizes, (args as any).ratio),
                 null,
                 2
-              ),
-            },
-          ],
+              )
+            }
+          ]
         }
 
       case 'check_readability':
@@ -203,9 +217,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           content: [
             {
               type: 'text',
-              text: JSON.stringify(checkReadability(args as any), null, 2),
-            },
-          ],
+              text: JSON.stringify(checkReadability(args as any), null, 2)
+            }
+          ]
         }
 
       default:
@@ -216,10 +230,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       content: [
         {
           type: 'text',
-          text: `Error: ${error instanceof Error ? error.message : String(error)}`,
-        },
+          text: `Error: ${error instanceof Error ? error.message : String(error)}`
+        }
       ],
-      isError: true,
+      isError: true
     }
   }
 })
@@ -230,7 +244,7 @@ function analyzeTypography(cssFiles: string[]) {
     fontSizes: new Set(),
     lineHeights: new Set(),
     fontWeights: new Set(),
-    issues: [],
+    issues: []
   }
 
   for (const file of cssFiles) {
@@ -269,7 +283,9 @@ function analyzeTypography(cssFiles: string[]) {
   }
 
   if (analysis.fontSizes.size > 8) {
-    analysis.issues.push(`Too many font sizes (${analysis.fontSizes.size}). Recommend using a type scale.`)
+    analysis.issues.push(
+      `Too many font sizes (${analysis.fontSizes.size}). Recommend using a type scale.`
+    )
   }
 
   return {
@@ -279,7 +295,7 @@ function analyzeTypography(cssFiles: string[]) {
     lineHeights: Array.from(analysis.lineHeights),
     fontWeights: Array.from(analysis.fontWeights),
     issues: analysis.issues,
-    recommendations: generateRecommendations(analysis),
+    recommendations: generateRecommendations(analysis)
   }
 }
 
@@ -297,7 +313,12 @@ function detectFontUsage(projectPath: string) {
 
       if (stat.isDirectory() && !item.startsWith('.') && item !== 'node_modules') {
         scanDirectory(fullPath)
-      } else if (item.endsWith('.css') || item.endsWith('.scss') || item.endsWith('.tsx') || item.endsWith('.jsx')) {
+      } else if (
+        item.endsWith('.css') ||
+        item.endsWith('.scss') ||
+        item.endsWith('.tsx') ||
+        item.endsWith('.jsx')
+      ) {
         const content = fs.readFileSync(fullPath, 'utf-8')
         const matches = content.matchAll(/font-family:\s*([^;]+);/g)
         for (const match of matches) {
@@ -314,14 +335,16 @@ function detectFontUsage(projectPath: string) {
     success: true,
     fonts: Array.from(fonts),
     filesScanned: files.length,
-    totalFonts: fonts.size,
+    totalFonts: fonts.size
   }
 }
 
 function suggestTypeScale(currentSizes: number[], ratio?: string) {
   const baseSize = 16
   const selectedRatio = ratio
-    ? typographyBestPractices.typeScales.modularScale.ratios[ratio as keyof typeof typographyBestPractices.typeScales.modularScale.ratios]
+    ? typographyBestPractices.typeScales.modularScale.ratios[
+        ratio as keyof typeof typographyBestPractices.typeScales.modularScale.ratios
+      ]
     : 1.25
 
   const scale = []
@@ -336,7 +359,7 @@ function suggestTypeScale(currentSizes: number[], ratio?: string) {
     ratioValue: selectedRatio,
     suggestedScale: scale,
     currentSizes,
-    recommendations: `Use ${scale.join(', ')} for consistent type hierarchy`,
+    recommendations: `Use ${scale.join(', ')} for consistent type hierarchy`
   }
 }
 
@@ -378,7 +401,7 @@ function checkReadability(params: { fontSize: number; lineHeight?: number; lineL
     lineLength,
     readable: issues.length === 0,
     issues,
-    recommendations,
+    recommendations
   }
 }
 
@@ -405,7 +428,7 @@ async function main() {
   console.error('typography-analyzer-mcp running on stdio')
 }
 
-main().catch((error) => {
+main().catch(error => {
   console.error('Server error:', error)
   process.exit(1)
 })

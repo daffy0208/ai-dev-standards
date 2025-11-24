@@ -34,35 +34,35 @@
  * ```
  */
 
-import * as React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from './utils';
+import * as React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from './utils'
 
 const progressVariants = cva('transition-all duration-300', {
   variants: {
     variant: {
       linear: 'w-full',
-      circular: 'flex items-center justify-center',
+      circular: 'flex items-center justify-center'
     },
     color: {
       primary: '',
       success: '',
       warning: '',
       error: '',
-      info: '',
+      info: ''
     },
     size: {
       sm: '',
       md: '',
-      lg: '',
-    },
+      lg: ''
+    }
   },
   defaultVariants: {
     variant: 'linear',
     color: 'primary',
-    size: 'md',
-  },
-});
+    size: 'md'
+  }
+})
 
 export interface ProgressProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>,
@@ -70,22 +70,22 @@ export interface ProgressProps
   /**
    * Progress value (0-100)
    */
-  value?: number;
+  value?: number
 
   /**
    * Label for the progress
    */
-  label?: string;
+  label?: string
 
   /**
    * Show percentage value
    */
-  showValue?: boolean;
+  showValue?: boolean
 
   /**
    * Indeterminate (loading) state
    */
-  indeterminate?: boolean;
+  indeterminate?: boolean
 }
 
 // Color maps for linear progress
@@ -94,8 +94,8 @@ const linearColorMap = {
   success: 'bg-green-600',
   warning: 'bg-yellow-600',
   error: 'bg-red-600',
-  info: 'bg-cyan-600',
-};
+  info: 'bg-cyan-600'
+}
 
 // Color maps for circular progress
 const circularColorMap = {
@@ -103,15 +103,15 @@ const circularColorMap = {
   success: 'text-green-600',
   warning: 'text-yellow-600',
   error: 'text-red-600',
-  info: 'text-cyan-600',
-};
+  info: 'text-cyan-600'
+}
 
 // Size maps for circular progress
 const circularSizeMap = {
   sm: { size: 40, strokeWidth: 4 },
   md: { size: 64, strokeWidth: 6 },
-  lg: { size: 96, strokeWidth: 8 },
-};
+  lg: { size: 96, strokeWidth: 8 }
+}
 
 /**
  * Progress component for showing completion status
@@ -131,16 +131,16 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
     },
     ref
   ) => {
-    const progressId = React.useId();
-    const normalizedValue = Math.max(0, Math.min(100, value));
+    const progressId = React.useId()
+    const normalizedValue = Math.max(0, Math.min(100, value))
 
     // Linear progress variant
     if (variant === 'linear') {
       const heightMap = {
         sm: 'h-1',
         md: 'h-2',
-        lg: 'h-3',
-      };
+        lg: 'h-3'
+      }
 
       return (
         <div ref={ref} className={cn('w-full', className)} {...props}>
@@ -148,17 +148,12 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
           {(label || showValue) && (
             <div className="flex items-center justify-between mb-2">
               {label && (
-                <label
-                  htmlFor={progressId}
-                  className="text-sm font-medium text-gray-700"
-                >
+                <label htmlFor={progressId} className="text-sm font-medium text-gray-700">
                   {label}
                 </label>
               )}
               {showValue && !indeterminate && (
-                <span className="text-sm text-gray-500">
-                  {normalizedValue}%
-                </span>
+                <span className="text-sm text-gray-500">{normalizedValue}%</span>
               )}
             </div>
           )}
@@ -171,10 +166,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
             aria-valuemin={0}
             aria-valuemax={100}
             aria-label={label || 'Progress'}
-            className={cn(
-              'w-full rounded-full bg-gray-200 overflow-hidden',
-              heightMap[size!]
-            )}
+            className={cn('w-full rounded-full bg-gray-200 overflow-hidden', heightMap[size!])}
           >
             <div
               className={cn(
@@ -184,9 +176,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
               )}
               style={{
                 width: indeterminate ? '100%' : `${normalizedValue}%`,
-                animation: indeterminate
-                  ? 'indeterminate 1.5s ease-in-out infinite'
-                  : undefined,
+                animation: indeterminate ? 'indeterminate 1.5s ease-in-out infinite' : undefined
               }}
             />
           </div>
@@ -208,15 +198,15 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
             `}</style>
           )}
         </div>
-      );
+      )
     }
 
     // Circular progress variant
     if (variant === 'circular') {
-      const { size: svgSize, strokeWidth } = circularSizeMap[size!];
-      const radius = (svgSize - strokeWidth) / 2;
-      const circumference = 2 * Math.PI * radius;
-      const offset = circumference - (normalizedValue / 100) * circumference;
+      const { size: svgSize, strokeWidth } = circularSizeMap[size!]
+      const radius = (svgSize - strokeWidth) / 2
+      const circumference = 2 * Math.PI * radius
+      const offset = circumference - (normalizedValue / 100) * circumference
 
       return (
         <div
@@ -268,7 +258,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
               style={{
                 strokeDasharray: indeterminate
                   ? `${circumference * 0.25} ${circumference * 0.75}`
-                  : circumference,
+                  : circumference
               }}
             />
           </svg>
@@ -282,7 +272,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
                 {
                   'text-xs': size === 'sm',
                   'text-sm': size === 'md',
-                  'text-base': size === 'lg',
+                  'text-base': size === 'lg'
                 }
               )}
             >
@@ -297,11 +287,11 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
             </p>
           )}
         </div>
-      );
+      )
     }
 
-    return null;
+    return null
   }
-);
+)
 
-Progress.displayName = 'Progress';
+Progress.displayName = 'Progress'

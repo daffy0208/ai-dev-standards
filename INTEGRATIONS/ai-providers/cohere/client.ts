@@ -43,11 +43,7 @@ export type EmbeddingModel =
   | 'embed-english-v2.0'
   | 'embed-english-light-v2.0'
 
-export type InputType =
-  | 'search_document'
-  | 'search_query'
-  | 'classification'
-  | 'clustering'
+export type InputType = 'search_document' | 'search_query' | 'classification' | 'clustering'
 
 export interface CohereClientOptions {
   /**
@@ -129,8 +125,9 @@ export interface RerankResult {
 
 export interface RerankResponse {
   results: RerankResult[]
-  meta: {
-    apiVersion: { version: string }
+  meta?: {
+    apiVersion?: { version: string }
+    [key: string]: any
   }
 }
 
@@ -177,7 +174,7 @@ export class CohereClient {
   constructor(options: CohereClientOptions = {}) {
     this.options = {
       apiKey: options.apiKey || process.env.COHERE_API_KEY || '',
-      timeout: options.timeout || 30000,
+      timeout: options.timeout || 30000
     }
 
     if (!this.options.apiKey) {
@@ -185,7 +182,7 @@ export class CohereClient {
     }
 
     this.client = new CohereSdk({
-      token: this.options.apiKey,
+      token: this.options.apiKey
     })
   }
 
@@ -197,13 +194,17 @@ export class CohereClient {
       texts: options.texts,
       model: options.model || 'embed-english-v3.0',
       inputType: options.inputType || 'search_document',
-      truncate: options.truncate || 'END',
+      truncate: options.truncate || 'END'
     })
 
+    const embeddings = Array.isArray(response.embeddings)
+      ? response.embeddings
+      : response.embeddings?.float || []
+
     return {
-      embeddings: response.embeddings,
+      embeddings,
       texts: options.texts,
-      model: options.model || 'embed-english-v3.0',
+      model: options.model || 'embed-english-v3.0'
     }
   }
 
@@ -217,16 +218,21 @@ export class CohereClient {
       topN: options.topN,
       model: options.model || 'rerank-english-v2.0',
       maxChunksPerDoc: options.maxChunksPerDoc,
-      returnDocuments: options.returnDocuments ?? true,
+      returnDocuments: options.returnDocuments ?? true
     })
 
     return {
-      results: response.results.map((result) => ({
+      results: response.results.map(result => ({
         index: result.index,
         relevanceScore: result.relevanceScore,
-        document: result.document,
+        document: result.document
       })),
-      meta: response.meta,
+      meta: response.meta
+        ? {
+            apiVersion: response.meta.apiVersion,
+            ...response.meta
+          }
+        : undefined
     }
   }
 
@@ -238,16 +244,26 @@ export class CohereClient {
       inputs: options.inputs,
       examples: options.examples,
       model: options.model,
-      truncate: options.truncate || 'END',
+      truncate: options.truncate || 'END'
     })
 
     return {
-      classifications: response.classifications.map((classification) => ({
-        input: classification.input,
-        prediction: classification.prediction,
-        confidence: classification.confidence,
-        labels: classification.labels || {},
-      })),
+      classifications: response.classifications.map(classification => {
+        const labels = classification.labels || {}
+        const normalizedLabels: ClassifyResult['labels'] = Object.fromEntries(
+          Object.entries(labels).map(([label, value]) => [
+            label,
+            { confidence: value.confidence ?? 0 }
+          ])
+        )
+
+        return {
+          input: classification.input,
+          prediction: classification.prediction,
+          confidence: classification.confidence,
+          labels: normalizedLabels
+        }
+      })
     }
   }
 
@@ -262,7 +278,7 @@ export class CohereClient {
     const embedResponse = await this.embed({
       texts: [text1, text2],
       model: options?.model || 'embed-english-v3.0',
-      inputType: 'clustering',
+      inputType: 'clustering'
     })
 
     const [embedding1, embedding2] = embedResponse.embeddings
@@ -292,7 +308,7 @@ export class CohereClient {
       const response = await this.embed({
         texts: batch,
         model: options?.model,
-        inputType: options?.inputType,
+        inputType: options?.inputType
       })
 
       allEmbeddings.push(...response.embeddings)
@@ -316,7 +332,7 @@ export class CohereClient {
     // Generate embeddings
     const embeddings = await this.embedBatch(texts, {
       model: options?.model,
-      inputType: 'clustering',
+      inputType: 'clustering'
     })
 
     // Simple k-means clustering
@@ -339,7 +355,7 @@ export class CohereClient {
     const allTexts = [query, ...texts]
     const embeddings = await this.embedBatch(allTexts, {
       model: options?.model,
-      inputType: 'search_query',
+      inputType: 'search_query'
     })
 
     const queryEmbedding = embeddings[0]
@@ -349,7 +365,7 @@ export class CohereClient {
     const similarities = textEmbeddings.map((embedding, index) => ({
       text: texts[index],
       score: this.cosineSimilarity(queryEmbedding, embedding),
-      index,
+      index
     }))
 
     // Sort by score descending

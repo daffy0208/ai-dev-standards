@@ -3,6 +3,7 @@
 **Purpose:** Build new MCP servers following ai-dev-standards conventions and best practices
 
 **When to use:**
+
 - Creating new MCP servers
 - Scaffolding MCP infrastructure
 - Following TypeScript + MCP SDK patterns
@@ -13,6 +14,7 @@
 ## Agent Role
 
 You are an MCP server development specialist. Your mission is to create production-ready MCP servers that:
+
 - Follow ai-dev-standards conventions
 - Implement the MCP protocol correctly
 - Include proper TypeScript types
@@ -141,6 +143,7 @@ server.run().catch(console.error);
 ### 3. Configuration Files
 
 **package.json:**
+
 ```json
 {
   "name": "[mcp-name]",
@@ -164,6 +167,7 @@ server.run().catch(console.error);
 ```
 
 **tsconfig.json:**
+
 ```json
 {
   "compilerOptions": {
@@ -184,6 +188,7 @@ server.run().catch(console.error);
 ```
 
 **manifest.yaml:**
+
 ```yaml
 name: [mcp-name]
 version: 1.0.0
@@ -203,17 +208,18 @@ dependencies:
     - related-skill
   mcps:
     - dependency-mcp
-  
+
 examples:
   - description: Example usage
-    input: "Example command"
-    output: "Expected result"
+    input: 'Example command'
+    output: 'Expected result'
 ```
 
 ### 4. Documentation
 
 **README.md Template:**
-```markdown
+
+````markdown
 # [MCP Name]
 
 **Purpose:** [One-line description]
@@ -229,20 +235,22 @@ examples:
 **Description:** What this tool does
 
 **Parameters:**
+
 - `param1` (string, required): Parameter description
 - `param2` (number, optional): Parameter description
 
 **Returns:**
+
 - Success response with results
 - Error messages if failure
 
 **Example:**
 \`\`\`typescript
 {
-  "name": "tool_name",
-  "arguments": {
-    "param1": "value"
-  }
+"name": "tool_name",
+"arguments": {
+"param1": "value"
+}
 }
 \`\`\`
 
@@ -260,17 +268,17 @@ Add to `.claude/mcp-settings.json`:
 
 \`\`\`json
 {
-  "mcpServers": {
-    "[mcp-name]": {
-      "command": "node",
-      "args": [
-        "/path/to/ai-dev-standards/MCP-SERVERS/[mcp-name]/dist/index.js"
-      ],
-      "env": {
-        "CONFIG_VAR": "value"
-      }
-    }
-  }
+"mcpServers": {
+"[mcp-name]": {
+"command": "node",
+"args": [
+"/path/to/ai-dev-standards/MCP-SERVERS/[mcp-name]/dist/index.js"
+],
+"env": {
+"CONFIG_VAR": "value"
+}
+}
+}
 }
 \`\`\`
 
@@ -293,11 +301,14 @@ Use with brain-mcp or directly via Claude Desktop
 ### 5. Registry Integration
 
 **Update META/mcp-registry.json:**
+
 ```bash
 npm run sync:mcps
 ```
+````
 
 **Update skill-rules.json if needed:**
+
 ```bash
 cd .claude/hooks
 node generate-skill-rules.cjs
@@ -331,35 +342,41 @@ Creating a new MCP? Use this checklist:
 ## Tool Design Best Practices
 
 ### Tool Naming
+
 - Use `snake_case` for tool names
 - Be descriptive: `analyze_code` not `analyze`
 - Verb-based: `get_data`, `update_config`, `validate_input`
 
 ### Input Schema
+
 - Use JSON Schema
 - Mark required fields
 - Provide descriptions for all parameters
 - Use appropriate types (string, number, boolean, object, array)
 
 ### Error Handling
+
 ```typescript
 try {
   // Tool logic
   return {
-    content: [{ type: "text", text: "Success" }]
-  };
+    content: [{ type: 'text', text: 'Success' }]
+  }
 } catch (error) {
   return {
-    content: [{ 
-      type: "text", 
-      text: `Error: ${error.message}` 
-    }],
+    content: [
+      {
+        type: 'text',
+        text: `Error: ${error.message}`
+      }
+    ],
     isError: true
-  };
+  }
 }
 ```
 
 ### Response Format
+
 ```typescript
 // Success
 {
@@ -381,21 +398,25 @@ try {
 ## Common MCP Patterns
 
 ### 1. File Operations MCP
+
 - Tools: read_file, write_file, list_files
 - Use proper path validation
 - Handle errors gracefully
 
 ### 2. API Integration MCP
+
 - Tools: api_call, authenticate, parse_response
 - Implement rate limiting
 - Cache responses when appropriate
 
 ### 3. Data Processing MCP
+
 - Tools: transform_data, validate_data, export_data
 - Stream large data sets
 - Provide progress updates
 
 ### 4. Analysis MCP
+
 - Tools: analyze, report, suggest
 - Return structured data
 - Include confidence scores
@@ -405,6 +426,7 @@ try {
 ## Testing
 
 **Manual Testing:**
+
 ```bash
 # Build
 npm run build
@@ -416,18 +438,19 @@ node dist/index.js
 ```
 
 **Integration Testing:**
+
 ```typescript
 // test.ts
-import { MCPServer } from './dist/index.js';
+import { MCPServer } from './dist/index.js'
 
 async function test() {
-  const server = new MCPServer(config);
+  const server = new MCPServer(config)
   // Test tools
-  const result = await server.handleToolName({ param1: "test" });
-  console.log(result);
+  const result = await server.handleToolName({ param1: 'test' })
+  console.log(result)
 }
 
-test();
+test()
 ```
 
 ---
@@ -435,6 +458,7 @@ test();
 ## Agent Tools
 
 You have access to:
+
 - **Create files:** Scaffold MCP structure
 - **Run commands:** npm install, build, test
 - **Edit files:** Implement tools and handlers

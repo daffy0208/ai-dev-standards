@@ -5,24 +5,27 @@
 ### Required Steps
 
 1. **Import validation utilities:**
+
 ```javascript
 const {
-  sanitizeName,           // Path traversal prevention
-  validateIdentifier,     // JavaScript identifier validation
-  validateComponentName,  // Component-specific validation
-  toPascalCase,          // Convert to PascalCase
-  toSnakeCase,           // Convert to snake_case
-  toKebabCase            // Convert to kebab-case
+  sanitizeName, // Path traversal prevention
+  validateIdentifier, // JavaScript identifier validation
+  validateComponentName, // Component-specific validation
+  toPascalCase, // Convert to PascalCase
+  toSnakeCase, // Convert to snake_case
+  toKebabCase // Convert to kebab-case
 } = require('../utils/validation')
 ```
 
 2. **Sanitize all user input:**
+
 ```javascript
 // ALWAYS do this first
 const sanitizedName = sanitizeName(name, 'resource type')
 ```
 
 3. **Validate identifiers if used in code:**
+
 ```javascript
 // For JavaScript/TypeScript classes or functions
 validateIdentifier(identifier, 'context name')
@@ -32,6 +35,7 @@ validatePythonIdentifier(identifier, 'context name')
 ```
 
 4. **Convert naming conventions as needed:**
+
 ```javascript
 // For React components: kebab-case → PascalCase
 const componentName = toPascalCase(sanitizedName)
@@ -63,6 +67,7 @@ User Input Received
 ## Generator Patterns
 
 ### Pattern 1: Directory Name Only (MCPs)
+
 ```javascript
 // Name is only used for directories, not in code
 const sanitizedName = sanitizeName(name, 'MCP server')
@@ -72,6 +77,7 @@ path: `MCP-SERVERS/${sanitizedName}-mcp/index.js`
 ```
 
 ### Pattern 2: Used in JavaScript Code (Components, Integrations)
+
 ```javascript
 // Name is used in class names
 const sanitizedName = sanitizeName(name, 'component')
@@ -84,6 +90,7 @@ code: `export class ${identifier} { ... }`
 ```
 
 ### Pattern 3: Multi-Language Support (Tools)
+
 ```javascript
 const sanitizedName = sanitizeName(name, 'tool')
 
@@ -102,12 +109,14 @@ if (framework === 'crewai') {
 ## Common Mistakes to Avoid
 
 ### ❌ DON'T: Skip sanitization
+
 ```javascript
 // WRONG - directly use user input
 path: `components/${name}/index.tsx`
 ```
 
 ### ✅ DO: Always sanitize first
+
 ```javascript
 // CORRECT
 const sanitizedName = sanitizeName(name, 'component')
@@ -115,12 +124,14 @@ path: `components/${sanitizedName}/index.tsx`
 ```
 
 ### ❌ DON'T: Validate before sanitizing
+
 ```javascript
 // WRONG - validate raw input
 validateIdentifier(name, 'component')
 ```
 
 ### ✅ DO: Sanitize then validate
+
 ```javascript
 // CORRECT
 const sanitizedName = sanitizeName(name, 'component')
@@ -129,6 +140,7 @@ validateIdentifier(identifier, 'component')
 ```
 
 ### ❌ DON'T: Use sanitizedName with hyphens as identifier
+
 ```javascript
 // WRONG - hyphens are not valid in identifiers
 const sanitizedName = sanitizeName('my-component', 'component')
@@ -136,6 +148,7 @@ validateIdentifier(sanitizedName) // Will fail!
 ```
 
 ### ✅ DO: Convert to appropriate case first
+
 ```javascript
 // CORRECT
 const sanitizedName = sanitizeName('my-component', 'component')
@@ -148,8 +161,10 @@ validateIdentifier(identifier) // Pass!
 ## Validation Functions Reference
 
 ### sanitizeName(name, resourceType)
+
 **Purpose:** Prevent path traversal attacks
 **Checks:**
+
 - Not empty
 - Max 100 chars
 - No `/` or `\`
@@ -161,8 +176,10 @@ validateIdentifier(identifier) // Pass!
 **Use:** ALWAYS use this first for any user input
 
 ### validateIdentifier(identifier, context)
+
 **Purpose:** Prevent code injection (JavaScript)
 **Checks:**
+
 - Valid JS identifier regex
 - No reserved keywords (32 keywords)
 - Can start with letter, `$`, or `_`
@@ -171,8 +188,10 @@ validateIdentifier(identifier) // Pass!
 **Use:** When name is used in JavaScript/TypeScript code
 
 ### validatePythonIdentifier(identifier, context)
+
 **Purpose:** Prevent code injection (Python)
 **Checks:**
+
 - Valid Python identifier regex
 - No reserved keywords (35 keywords)
 - Must start with letter or `_`
@@ -181,8 +200,10 @@ validateIdentifier(identifier) // Pass!
 **Use:** When name is used in Python code (CrewAI tools)
 
 ### validateComponentName(name)
+
 **Purpose:** React component validation
 **Does:**
+
 1. Calls `sanitizeName()`
 2. Converts to PascalCase
 3. Calls `validateIdentifier()`
@@ -192,9 +213,9 @@ validateIdentifier(identifier) // Pass!
 ### Case Conversion Functions
 
 ```javascript
-toPascalCase('my-component')   // 'MyComponent'
-toSnakeCase('MyComponent')     // 'my_component'
-toKebabCase('MyComponent')     // 'my-component'
+toPascalCase('my-component') // 'MyComponent'
+toSnakeCase('MyComponent') // 'my_component'
+toKebabCase('MyComponent') // 'my-component'
 ```
 
 ---
@@ -217,20 +238,20 @@ try {
 ## Testing Your Generator
 
 ### 1. Add security tests
+
 ```javascript
 // In your generator test file
 const generator = new YourGenerator()
 
 // Test path traversal
-expect(() => generator.generate({ name: '../../../etc/passwd' }))
-  .toThrow('path separators')
+expect(() => generator.generate({ name: '../../../etc/passwd' })).toThrow('path separators')
 
 // Test code injection
-expect(() => generator.generate({ name: 'class' }))
-  .toThrow('reserved keyword')
+expect(() => generator.generate({ name: 'class' })).toThrow('reserved keyword')
 ```
 
 ### 2. Add valid generation tests
+
 ```javascript
 // Test legitimate use cases
 const files = await generator.generate({ name: 'my-resource' })
@@ -238,6 +259,7 @@ expect(files.length).toBeGreaterThan(0)
 ```
 
 ### 3. Run existing test suites
+
 ```bash
 node CLI/test-security.js
 node CLI/test-valid-generation.js
@@ -265,6 +287,7 @@ When adding a new generator:
 ## Examples from Existing Generators
 
 ### Component Generator (Full Validation)
+
 ```javascript
 const { sanitizeName, validateComponentName, validateIdentifier } = require('../utils/validation')
 
@@ -288,6 +311,7 @@ async generate(config) {
 ```
 
 ### MCP Generator (Directory Only)
+
 ```javascript
 const { sanitizeName } = require('../utils/validation')
 
@@ -306,6 +330,7 @@ async generate(config) {
 ```
 
 ### Tool Generator (Multi-Language)
+
 ```javascript
 const { sanitizeName, validateIdentifier, validatePythonIdentifier, toPascalCase, toSnakeCase } = require('../utils/validation')
 

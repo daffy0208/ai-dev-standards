@@ -20,11 +20,13 @@ Practical examples showing how to use different agents for common development ta
 ## New Repository Onboarding
 
 ### Scenario
+
 You've just cloned a new React/Node.js project and need to understand it quickly.
 
 ### Approach
 
 **Phase 1: Quick Overview (5 minutes)**
+
 ```
 Agent: Explore (Quick)
 Task: "Give me an overview of this project - what it does,
@@ -38,6 +40,7 @@ Expected Output:
 ```
 
 **Phase 2: Deep Dive on Key Areas (30 minutes)**
+
 ```
 Agent: Explore (Medium)
 Task: "Explore the authentication system - how users log in,
@@ -51,6 +54,7 @@ Expected Output:
 ```
 
 **Phase 3: Get Started (Ongoing)**
+
 ```
 Agent: General-Purpose
 Task: "Set up my local development environment following
@@ -68,11 +72,13 @@ Actions:
 ## Bug Investigation
 
 ### Scenario
+
 Users report authentication failing with special characters in passwords.
 
 ### Approach
 
 **Phase 1: Locate Code (5 minutes)**
+
 ```
 Agent: General-Purpose
 Task: "Find all code related to password validation and
@@ -84,6 +90,7 @@ Tools Used:
 ```
 
 **Phase 2: Analyze Issue (10 minutes)**
+
 ```
 Agent: General-Purpose
 Task: "Analyze the password validation code and identify
@@ -96,6 +103,7 @@ Expected:
 ```
 
 **Phase 3: Fix (15 minutes)**
+
 ```
 Agent: General-Purpose
 Skill: security-engineer
@@ -114,11 +122,13 @@ Actions:
 ## Feature Implementation
 
 ### Scenario
+
 Add user profile picture upload with image optimization.
 
 ### Approach
 
 **Phase 1: Understand Current System (15 minutes)**
+
 ```
 Agent: Explore (Medium)
 Task: "Explore how file uploads currently work in this app,
@@ -132,6 +142,7 @@ Output:
 ```
 
 **Phase 2: Design Implementation (10 minutes)**
+
 ```
 Agent: General-Purpose
 Skill: frontend-builder
@@ -146,6 +157,7 @@ Output:
 ```
 
 **Phase 3: Implement (1-2 hours)**
+
 ```
 Agent: General-Purpose
 Skills: frontend-builder, api-designer
@@ -165,11 +177,13 @@ Components:
 ## Refactoring
 
 ### Scenario
+
 Refactor legacy authentication code to use modern patterns.
 
 ### Approach
 
 **Phase 1: Map Current System (30 minutes)**
+
 ```
 Agent: Explore (Very Thorough)
 Task: "Map all authentication code including dependencies,
@@ -183,6 +197,7 @@ Output:
 ```
 
 **Phase 2: Plan Refactoring (20 minutes)**
+
 ```
 Agent: General-Purpose
 Task: "Create a safe refactoring plan that maintains
@@ -196,6 +211,7 @@ Output:
 ```
 
 **Phase 3: Execute Refactoring (Variable)**
+
 ```
 Agent: General-Purpose
 Skill: testing-strategist
@@ -214,11 +230,13 @@ Approach:
 ## Security Audit
 
 ### Scenario
+
 Conduct comprehensive security audit before production launch.
 
 ### Approach
 
 **Phase 1: Gather Information (45 minutes)**
+
 ```
 Agent: Explore (Very Thorough)
 Focus: Security-critical code
@@ -235,6 +253,7 @@ Areas:
 ```
 
 **Phase 2: Security Analysis (30 minutes)**
+
 ```
 Agent: General-Purpose
 Skill: security-engineer
@@ -255,6 +274,7 @@ Checks:
 ```
 
 **Phase 3: Fix Issues (Variable)**
+
 ```
 Agent: General-Purpose
 Skill: security-engineer
@@ -272,11 +292,13 @@ Priority:
 ## Performance Optimization
 
 ### Scenario
+
 Application is slow, need to identify and fix bottlenecks.
 
 ### Approach
 
 **Phase 1: Understand System (20 minutes)**
+
 ```
 Agent: Explore (Medium)
 Focus: Performance-critical paths
@@ -291,6 +313,7 @@ Areas:
 ```
 
 **Phase 2: Identify Bottlenecks (15 minutes)**
+
 ```
 Agent: General-Purpose
 Skill: performance-optimizer
@@ -304,6 +327,7 @@ Tools:
 ```
 
 **Phase 3: Optimize (Variable)**
+
 ```
 Agent: General-Purpose
 Skill: performance-optimizer
@@ -323,11 +347,13 @@ Optimizations:
 ## Documentation Generation
 
 ### Scenario
+
 Need comprehensive documentation for entire project.
 
 ### Approach
 
 **Phase 1: Comprehensive Analysis (1 hour)**
+
 ```
 Agent: Explore (Very Thorough)
 Task: "Analyze entire codebase to understand architecture,
@@ -342,6 +368,7 @@ Output:
 ```
 
 **Phase 2: Generate Documentation (2 hours)**
+
 ```
 Agent: General-Purpose
 Skill: technical-writer
@@ -365,11 +392,13 @@ Documents:
 ## Architecture Analysis
 
 ### Scenario
+
 Evaluate current architecture and recommend improvements.
 
 ### Approach
 
 **Phase 1: Map Architecture (1 hour)**
+
 ```
 Agent: Explore (Very Thorough)
 Task: "Map complete system architecture including:
@@ -386,6 +415,7 @@ Output:
 ```
 
 **Phase 2: Analysis (30 minutes)**
+
 ```
 Agent: General-Purpose
 Skill: dark-matter-analyzer
@@ -403,6 +433,7 @@ Focus:
 ```
 
 **Phase 3: Recommendations (20 minutes)**
+
 ```
 Agent: General-Purpose
 Task: "Generate prioritized recommendations for
@@ -420,11 +451,13 @@ Output:
 ## Migration Planning
 
 ### Scenario
+
 Migrate from REST API to GraphQL.
 
 ### Approach
 
 **Phase 1: Inventory Current System (45 minutes)**
+
 ```
 Agent: Explore (Very Thorough)
 Focus: API layer
@@ -439,6 +472,7 @@ Output:
 ```
 
 **Phase 2: Design Migration (30 minutes)**
+
 ```
 Agent: General-Purpose
 Skill: api-designer
@@ -453,6 +487,7 @@ Output:
 ```
 
 **Phase 3: Incremental Migration (Ongoing)**
+
 ```
 Agent: General-Purpose
 Skills: api-designer, testing-strategist
@@ -471,11 +506,13 @@ Approach:
 ## Code Review Preparation
 
 ### Scenario
+
 Preparing code changes for review before submitting PR.
 
 ### Approach
 
 **Phase 1: Self-Review (10 minutes)**
+
 ```
 Agent: General-Purpose
 Task: "Review my changes in the following files for:
@@ -488,6 +525,7 @@ Files: [list of changed files]
 ```
 
 **Phase 2: Impact Analysis (15 minutes)**
+
 ```
 Agent: Explore (Medium)
 Focus: Changed files and dependencies
@@ -502,6 +540,7 @@ Output:
 ```
 
 **Phase 3: Prepare PR (10 minutes)**
+
 ```
 Agent: General-Purpose
 Skill: technical-writer
@@ -522,6 +561,7 @@ Output:
 ## Workflow Patterns
 
 ### Pattern 1: Explore → Skill → Implement
+
 ```
 1. Explore Agent → Understand codebase
 2. Specialized Skill → Analyze findings
@@ -531,6 +571,7 @@ Output:
 **Use When:** Starting new task in existing codebase
 
 ### Pattern 2: Quick Check → Deep Dive
+
 ```
 1. Explore (Quick) → Get overview
 2. Explore (Medium) → Focus on area of interest
@@ -540,6 +581,7 @@ Output:
 **Use When:** Progressive investigation needed
 
 ### Pattern 3: Multi-Skill Coordination
+
 ```
 1. General-Purpose + archon-manager → Plan work
 2. General-Purpose + multiple skills → Execute tasks
@@ -553,6 +595,7 @@ Output:
 ## Tips for Better Results
 
 ### 1. Be Specific
+
 ```
 Bad:  "Explore this codebase"
 Good: "Explore authentication flow including user login,
@@ -560,6 +603,7 @@ Good: "Explore authentication flow including user login,
 ```
 
 ### 2. Provide Context
+
 ```
 Bad:  "Fix the bug"
 Good: "Fix authentication bug where users with email addresses
@@ -568,6 +612,7 @@ Good: "Fix authentication bug where users with email addresses
 ```
 
 ### 3. Choose Right Agent
+
 ```
 New codebase → Explore Agent
 Ongoing work → General-Purpose Agent
@@ -576,6 +621,7 @@ Configuration → Setup Agent
 ```
 
 ### 4. Progressive Approach
+
 ```
 Start simple → Quick exploration
 Add detail → Medium exploration
@@ -584,6 +630,7 @@ Implement → General-purpose agent
 ```
 
 ### 5. Combine Resources
+
 ```
 Agents + Skills + MCPs + Tools + Components
 = Powerful development workflow
@@ -594,30 +641,35 @@ Agents + Skills + MCPs + Tools + Components
 ## Common Mistakes
 
 ### Mistake 1: Wrong Agent Choice
+
 ```
 Problem: Using Explore for implementation
 Solution: Explore to understand, General-Purpose to implement
 ```
 
 ### Mistake 2: Too Broad Scope
+
 ```
 Problem: "Explore entire monorepo" (takes forever)
 Solution: "Explore authentication service in /services/auth"
 ```
 
 ### Mistake 3: Not Using Skills
+
 ```
 Problem: Asking general agent to do specialized task
 Solution: Invoke appropriate skill for specialized work
 ```
 
 ### Mistake 4: Skipping Exploration
+
 ```
 Problem: Diving into implementation without understanding
 Solution: Quick exploration first, then implement
 ```
 
 ### Mistake 5: Wrong Thoroughness Level
+
 ```
 Problem: Using Very Thorough for simple check (slow)
 Solution: Match thoroughness to task importance
@@ -627,17 +679,17 @@ Solution: Match thoroughness to task importance
 
 ## Quick Reference
 
-| Task | Agent | Mode | Time | Skills |
-|------|-------|------|------|--------|
-| New repo overview | Explore | Quick | 5 min | - |
-| Understand feature | Explore | Medium | 15 min | - |
-| Architecture mapping | Explore | Very Thorough | 45 min | - |
-| Bug fix | General-Purpose | - | Variable | - |
-| Feature implementation | General-Purpose | - | Variable | frontend-builder |
-| Security audit | Explore + General | Very Thorough | 1 hr | security-engineer |
-| Performance tuning | General-Purpose | - | Variable | performance-optimizer |
-| Refactoring | Explore + General | Very Thorough | Variable | testing-strategist |
-| Documentation | Explore + General | Very Thorough | 2 hrs | technical-writer |
+| Task                   | Agent             | Mode          | Time     | Skills                |
+| ---------------------- | ----------------- | ------------- | -------- | --------------------- |
+| New repo overview      | Explore           | Quick         | 5 min    | -                     |
+| Understand feature     | Explore           | Medium        | 15 min   | -                     |
+| Architecture mapping   | Explore           | Very Thorough | 45 min   | -                     |
+| Bug fix                | General-Purpose   | -             | Variable | -                     |
+| Feature implementation | General-Purpose   | -             | Variable | frontend-builder      |
+| Security audit         | Explore + General | Very Thorough | 1 hr     | security-engineer     |
+| Performance tuning     | General-Purpose   | -             | Variable | performance-optimizer |
+| Refactoring            | Explore + General | Very Thorough | Variable | testing-strategist    |
+| Documentation          | Explore + General | Very Thorough | 2 hrs    | technical-writer      |
 
 ---
 

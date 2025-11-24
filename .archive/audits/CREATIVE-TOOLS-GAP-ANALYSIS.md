@@ -9,10 +9,12 @@
 ## Executive Summary
 
 **Current State:**
+
 - ✅ Have: ux-designer (wireframes/flows), frontend-builder (code), user-researcher
 - ❌ Missing: Visual design, design systems, creative tooling, design-to-code workflows
 
 **Critical Gaps:**
+
 - 🎨 No visual design skill (colors, typography, layouts)
 - 🧩 No design system skill (component libraries, tokens)
 - 🖼️ No creative tools integration (Figma, Adobe, etc.)
@@ -26,6 +28,7 @@
 
 **Why Critical:**
 Frontend developers need design guidance for:
+
 - Color palettes and theming
 - Typography scales
 - Spacing systems
@@ -33,6 +36,7 @@ Frontend developers need design guidance for:
 - Design principles
 
 **Current Pain Points:**
+
 - "What colors should I use?"
 - "How do I choose fonts?"
 - "Is this spacing consistent?"
@@ -44,6 +48,7 @@ Frontend developers need design guidance for:
 # visual-designer Skill
 
 ## Phase 1: Color Systems
+
 - Color theory basics (complementary, analogous, triadic)
 - Creating color palettes (60-30-10 rule)
 - Accessible color contrast (WCAG AA/AAA)
@@ -51,11 +56,13 @@ Frontend developers need design guidance for:
 - Brand color extraction
 
 Tools:
+
 - Coolors.co integration
 - Adobe Color API
 - Contrast checker
 
 ## Phase 2: Typography
+
 - Font pairing principles
 - Type scale generation (modular scale)
 - Line height and spacing
@@ -63,11 +70,13 @@ Tools:
 - Web font optimization
 
 Tools:
+
 - Google Fonts recommendations
 - Font pairing tools
 - Type scale calculators
 
 ## Phase 3: Layout & Composition
+
 - Grid systems (8pt, 12-column)
 - Visual hierarchy
 - Whitespace principles
@@ -75,12 +84,14 @@ Tools:
 - Responsive breakpoints
 
 ## Phase 4: Design Systems
+
 - Design tokens (colors, spacing, typography)
 - Component variants
 - Style guides
 - Documentation
 
 ## Phase 5: Visual Polish
+
 - Shadows and elevation
 - Border radius consistency
 - Micro-interactions
@@ -89,12 +100,14 @@ Tools:
 ```
 
 **Use Cases:**
+
 - "Create a color palette for my SaaS app"
 - "Suggest font pairings for this design"
 - "Is my spacing system consistent?"
 - "Generate design tokens for Tailwind"
 
 **MCP Integrations Needed:**
+
 - Color palette generation MCP
 - Typography recommendation MCP
 - Design token export MCP
@@ -109,12 +122,14 @@ Tools:
 
 **Why Critical:**
 Design systems are essential for:
+
 - Consistent UI across app
 - Faster development
 - Component reusability
 - Brand coherence
 
 **Current Pain Points:**
+
 - "How do I build a design system?"
 - "What components should I create first?"
 - "How do I organize my component library?"
@@ -126,30 +141,35 @@ Design systems are essential for:
 # design-system-architect Skill
 
 ## Phase 1: Foundation
+
 - Design tokens (colors, spacing, typography, shadows)
 - Token naming conventions
 - Token organization (semantic vs primitive)
 - Platform-agnostic token structure
 
 ## Phase 2: Component Library Structure
+
 - Atomic design methodology (atoms, molecules, organisms)
 - Component prioritization (P0: Button, Input → P2: DataTable)
 - Variant strategies
 - Composition patterns
 
 ## Phase 3: Implementation
+
 - CSS-in-JS vs CSS modules vs Tailwind
 - Component API design
 - Prop naming conventions
 - TypeScript types for components
 
 ## Phase 4: Documentation
+
 - Storybook setup
 - Component playground
 - Usage examples
 - Accessibility notes
 
 ## Phase 5: Maintenance
+
 - Versioning strategy
 - Breaking change management
 - Migration guides
@@ -158,19 +178,21 @@ Design systems are essential for:
 
 **Component Priority Matrix:**
 
-| Priority | Components | Rationale |
-|----------|------------|-----------|
-| P0 | Button, Input, Select, Checkbox | Form basics |
-| P1 | Modal, Toast, Dropdown, Tabs | Common interactions |
-| P2 | DataTable, Chart, Calendar | Complex widgets |
+| Priority | Components                      | Rationale           |
+| -------- | ------------------------------- | ------------------- |
+| P0       | Button, Input, Select, Checkbox | Form basics         |
+| P1       | Modal, Toast, Dropdown, Tabs    | Common interactions |
+| P2       | DataTable, Chart, Calendar      | Complex widgets     |
 
 **Use Cases:**
+
 - "Design a design system for my startup"
 - "What components should I build first?"
 - "Create design tokens for my brand"
 - "Set up Storybook for component library"
 
 **MCP Integrations Needed:**
+
 - Figma token extractor MCP
 - Storybook generator MCP
 - Component analyzer MCP
@@ -184,11 +206,13 @@ Design systems are essential for:
 
 **Why Critical:**
 Design-to-code workflow is a major bottleneck:
+
 - Designers work in Figma
 - Developers manually translate to code
 - High error rate and time waste
 
 **Current Pain Points:**
+
 - "How do I implement this Figma design?"
 - "Extract design tokens from Figma"
 - "Get spacing/color values from design"
@@ -197,6 +221,7 @@ Design-to-code workflow is a major bottleneck:
 **What It Should Include:**
 
 **A. Figma MCP Server**
+
 ```
 figma-mcp/
   ├── server.py (MCP server implementation)
@@ -208,6 +233,7 @@ figma-mcp/
 ```
 
 **Capabilities:**
+
 1. **Design Token Extraction**
    - Colors → CSS variables, Tailwind config
    - Typography → font stacks, sizes, weights
@@ -230,6 +256,7 @@ figma-mcp/
    - Layout structure
 
 **Use Cases:**
+
 ```
 You: "Extract design tokens from Figma file [URL]"
 Claude (using Figma MCP):
@@ -244,6 +271,7 @@ Claude (using Figma MCP):
 ```
 
 **Technical Stack:**
+
 - Figma REST API
 - Python MCP server
 - Token transformers (Style Dictionary)
@@ -257,6 +285,7 @@ Claude (using Figma MCP):
 
 **Why Critical:**
 Frontend needs images, icons, illustrations, but no tooling:
+
 - Icon generation
 - Image optimization
 - Stock photo search
@@ -265,6 +294,7 @@ Frontend needs images, icons, illustrations, but no tooling:
 **What It Should Include:**
 
 **A. Icon Generation MCP**
+
 ```
 Capabilities:
 - Search icon libraries (Heroicons, Lucide, Font Awesome)
@@ -274,6 +304,7 @@ Capabilities:
 ```
 
 **B. Image Optimization MCP**
+
 ```
 Capabilities:
 - Resize images for responsive
@@ -284,6 +315,7 @@ Capabilities:
 ```
 
 **C. Stock Photo MCP**
+
 ```
 Capabilities:
 - Search Unsplash, Pexels
@@ -293,6 +325,7 @@ Capabilities:
 ```
 
 **D. SVG Manipulation MCP**
+
 ```
 Capabilities:
 - Optimize SVG code
@@ -302,6 +335,7 @@ Capabilities:
 ```
 
 **Use Cases:**
+
 ```
 You: "Find icons for home, settings, profile"
 Claude (using Icon MCP):
@@ -332,6 +366,7 @@ Claude (using Stock Photo MCP):
 
 **Why Important:**
 Every product needs brand identity:
+
 - Logo concepts
 - Color palette
 - Typography
@@ -344,18 +379,21 @@ Every product needs brand identity:
 # brand-designer Skill
 
 ## Phase 1: Brand Strategy
+
 - Target audience definition
 - Brand personality (Sinclair's brand archetypes)
 - Competitive analysis
 - Positioning statement
 
 ## Phase 2: Visual Identity
+
 - Logo design principles
 - Color psychology
 - Font selection for brand
 - Visual style direction (minimalist, bold, playful, etc.)
 
 ## Phase 3: Brand Guidelines
+
 - Logo usage rules
 - Color palette (primary, secondary, neutral)
 - Typography hierarchy
@@ -363,6 +401,7 @@ Every product needs brand identity:
 - Do's and don'ts
 
 ## Phase 4: Application
+
 - Website design direction
 - Marketing materials
 - Social media templates
@@ -370,6 +409,7 @@ Every product needs brand identity:
 ```
 
 **Use Cases:**
+
 - "Create a brand identity for my startup"
 - "Suggest logo concepts for [product]"
 - "Define brand colors for [industry]"
@@ -383,6 +423,7 @@ Every product needs brand identity:
 
 **Why Important:**
 Design isn't just visual - copy matters:
+
 - Headlines and CTAs
 - Microcopy (button text, errors)
 - Marketing copy
@@ -394,6 +435,7 @@ Design isn't just visual - copy matters:
 # copywriter Skill
 
 ## Phase 1: Microcopy
+
 - Button text ("Get Started" vs "Sign Up")
 - Form labels and placeholders
 - Error messages (helpful, not blaming)
@@ -401,6 +443,7 @@ Design isn't just visual - copy matters:
 - Empty states
 
 ## Phase 2: Marketing Copy
+
 - Headlines (value prop in 10 words)
 - Subheadlines (how it works)
 - CTAs (action-oriented)
@@ -408,12 +451,14 @@ Design isn't just visual - copy matters:
 - Social proof
 
 ## Phase 3: Voice & Tone
+
 - Brand voice definition
 - Tone adaptation (error vs success)
 - Writing principles
 - Style guide
 
 ## Phase 4: SEO Copy
+
 - Meta titles and descriptions
 - Alt text for images
 - Header hierarchy (H1, H2, H3)
@@ -421,6 +466,7 @@ Design isn't just visual - copy matters:
 ```
 
 **Use Cases:**
+
 - "Write a headline for landing page"
 - "Improve this error message"
 - "Create CTA text for signup button"
@@ -435,6 +481,7 @@ Design isn't just visual - copy matters:
 
 **Why Important:**
 Motion brings UI to life:
+
 - Micro-interactions
 - Page transitions
 - Loading animations
@@ -446,24 +493,28 @@ Motion brings UI to life:
 # animation-designer Skill
 
 ## Phase 1: Animation Principles
+
 - 12 principles of animation (squash, stretch, timing, etc.)
 - Easing functions (ease-in-out, spring, etc.)
 - Duration guidelines (fast: 200ms, medium: 300ms, slow: 500ms)
 - When to animate vs when not to
 
 ## Phase 2: CSS Animations
+
 - Transitions
 - Keyframe animations
 - Transform and opacity (GPU-accelerated)
 - Animation performance
 
 ## Phase 3: JavaScript Animations
+
 - Framer Motion (React)
 - GSAP
 - React Spring
 - View Transitions API
 
 ## Phase 4: Micro-interactions
+
 - Button feedback
 - Form validation animations
 - Loading states
@@ -472,6 +523,7 @@ Motion brings UI to life:
 ```
 
 **Use Cases:**
+
 - "Add micro-interactions to this button"
 - "Create a loading animation"
 - "Animate page transitions"
@@ -488,12 +540,14 @@ Motion brings UI to life:
 
 **Why Important:**
 Accessibility is required but often missed:
+
 - Color contrast checking
 - ARIA attributes
 - Keyboard navigation
 - Screen reader testing
 
 **Capabilities:**
+
 ```
 Tools:
 - analyze-contrast (check WCAG compliance)
@@ -504,6 +558,7 @@ Tools:
 ```
 
 **Use Cases:**
+
 ```
 You: "Check if these colors meet WCAG AA"
 Claude (using A11y MCP):
@@ -525,12 +580,14 @@ Claude (using A11y MCP):
 
 **Why Important:**
 Generating boilerplate components wastes time:
+
 - Create component files
 - Add TypeScript types
 - Generate stories
 - Add tests
 
 **Capabilities:**
+
 ```
 Tools:
 - create-component (generates component + types + tests + story)
@@ -540,6 +597,7 @@ Tools:
 ```
 
 **Use Cases:**
+
 ```
 You: "Create a Button component with variants"
 Claude (using Component Generator MCP):
@@ -565,11 +623,13 @@ Claude (using Component Generator MCP):
 
 **Why Important:**
 Visual regression testing prevents UI bugs:
+
 - Catch visual changes
 - Cross-browser testing
 - Responsive testing
 
 **Capabilities:**
+
 ```
 Tools:
 - capture-screenshot (page or component)
@@ -579,6 +639,7 @@ Tools:
 ```
 
 **Use Cases:**
+
 ```
 You: "Capture screenshots of all components"
 Claude (using Screenshot MCP):
@@ -602,63 +663,70 @@ Claude (using Screenshot MCP):
 
 ### Skills Roadmap
 
-| Priority | Skill | Category | Effort | Value |
-|----------|-------|----------|--------|-------|
-| P0 | visual-designer | Design | 2 weeks | 9/10 |
-| P0 | design-system-architect | Design | 3 weeks | 9/10 |
-| P1 | brand-designer | Design | 2 weeks | 7/10 |
-| P1 | copywriter | Content | 1 week | 7/10 |
-| P1 | animation-designer | Design | 1 week | 6/10 |
+| Priority | Skill                   | Category | Effort  | Value |
+| -------- | ----------------------- | -------- | ------- | ----- |
+| P0       | visual-designer         | Design   | 2 weeks | 9/10  |
+| P0       | design-system-architect | Design   | 3 weeks | 9/10  |
+| P1       | brand-designer          | Design   | 2 weeks | 7/10  |
+| P1       | copywriter              | Content  | 1 week  | 7/10  |
+| P1       | animation-designer      | Design   | 1 week  | 6/10  |
 
 ---
 
 ### MCPs Roadmap
 
-| Priority | MCP | Category | Effort | Value |
-|----------|-----|----------|--------|-------|
-| P0 | figma-mcp | Integration | 2 weeks | 10/10 |
-| P0 | creative-assets-mcp | Assets | 2 weeks | 8/10 |
-| P1 | accessibility-checker-mcp | Quality | 1 week | 8/10 |
-| P1 | component-generator-mcp | Productivity | 1 week | 7/10 |
-| P1 | screenshot-testing-mcp | Testing | 1 week | 6/10 |
+| Priority | MCP                       | Category     | Effort  | Value |
+| -------- | ------------------------- | ------------ | ------- | ----- |
+| P0       | figma-mcp                 | Integration  | 2 weeks | 10/10 |
+| P0       | creative-assets-mcp       | Assets       | 2 weeks | 8/10  |
+| P1       | accessibility-checker-mcp | Quality      | 1 week  | 8/10  |
+| P1       | component-generator-mcp   | Productivity | 1 week  | 7/10  |
+| P1       | screenshot-testing-mcp    | Testing      | 1 week  | 6/10  |
 
 ---
 
 ### Tools & Integrations Needed
 
 **Design Tools:**
+
 - Figma API integration ⭐
 - Adobe XD integration
 - Sketch integration (lower priority)
 
 **Color Tools:**
+
 - Coolors.co API
 - Adobe Color API
 - Contrast checker library
 
 **Typography Tools:**
+
 - Google Fonts API
 - Font pairing database
 - Type scale calculator
 
 **Icon Libraries:**
+
 - Heroicons
 - Lucide Icons
 - Font Awesome
 - Custom icon generator (DALL-E)
 
 **Image Tools:**
+
 - Unsplash API
 - Pexels API
 - Image optimization (Sharp, ImageMagick)
 - DALL-E integration
 
 **Component Tools:**
+
 - Storybook
 - Style Dictionary (design tokens)
 - Plop.js (component generator)
 
 **Accessibility Tools:**
+
 - axe-core
 - WAVE API
 - Lighthouse CI
@@ -670,12 +738,14 @@ Claude (using Screenshot MCP):
 ### Phase 1: Visual Design Foundation (Weeks 1-2)
 
 **Deliverables:**
+
 1. visual-designer skill
 2. Color palette generation tool
 3. Typography recommendation system
 4. Design token documentation
 
 **Why First:**
+
 - Foundational for all frontend work
 - Immediate value for every project
 - Enables other design work
@@ -685,12 +755,14 @@ Claude (using Screenshot MCP):
 ### Phase 2: Design Systems (Weeks 3-5)
 
 **Deliverables:**
+
 1. design-system-architect skill
 2. Component library template
 3. Storybook setup guide
 4. Design token workflow
 
 **Why Second:**
+
 - Builds on visual design foundation
 - Scales frontend development
 - Long-term productivity gain
@@ -700,12 +772,14 @@ Claude (using Screenshot MCP):
 ### Phase 3: Design-to-Code (Weeks 6-7)
 
 **Deliverables:**
+
 1. Figma MCP server
 2. Design token extraction
 3. Component generation from Figma
 4. Asset export workflow
 
 **Why Third:**
+
 - Requires design foundation
 - Biggest time saver
 - High user demand
@@ -715,12 +789,14 @@ Claude (using Screenshot MCP):
 ### Phase 4: Creative Assets (Weeks 8-9)
 
 **Deliverables:**
+
 1. Creative assets MCP
 2. Icon library integration
 3. Image optimization workflow
 4. Stock photo integration
 
 **Why Fourth:**
+
 - Nice to have vs must have
 - Quick wins once MCP framework established
 
@@ -729,12 +805,14 @@ Claude (using Screenshot MCP):
 ### Phase 5: Polish & Quality (Weeks 10-12)
 
 **Deliverables:**
+
 1. Accessibility checker MCP
 2. Screenshot testing MCP
 3. animation-designer skill
 4. copywriter skill
 
 **Why Last:**
+
 - Polish and quality improvements
 - Lower priority than foundation
 
@@ -743,26 +821,31 @@ Claude (using Screenshot MCP):
 ## Success Metrics
 
 ### After Phase 1 (Visual Design)
+
 - [ ] 70% of projects use visual-designer skill
 - [ ] Design consistency scores improve 50%
 - [ ] Time to create color palette: 2 hours → 30 minutes
 
 ### After Phase 2 (Design Systems)
+
 - [ ] 50% of projects adopt design system approach
 - [ ] Component reusability increases 60%
 - [ ] New component creation time: 2 hours → 30 minutes
 
 ### After Phase 3 (Figma Integration)
+
 - [ ] Design-to-code time reduced 70%
 - [ ] Fewer design implementation errors (80% reduction)
 - [ ] Designer-developer handoff friction reduced 60%
 
 ### After Phase 4 (Creative Assets)
+
 - [ ] Asset sourcing time: 1 hour → 15 minutes
 - [ ] Image optimization automated 90%
 - [ ] Icon consistency improved 80%
 
 ### After Phase 5 (Polish)
+
 - [ ] Accessibility compliance: 40% → 90%
 - [ ] Visual regression bugs reduced 70%
 - [ ] Animation usage increases 40%
@@ -774,20 +857,22 @@ Claude (using Screenshot MCP):
 ### Scenario 1: New SaaS Landing Page
 
 **Without Creative Tools:**
+
 1. Manually choose colors (2 hours trial & error)
 2. Find fonts on Google Fonts (1 hour)
 3. Build components from scratch (8 hours)
 4. Find stock images (1 hour)
 5. Manually check contrast (30 min)
-**Total: 12.5 hours**
+   **Total: 12.5 hours**
 
 **With Creative Tools:**
+
 1. visual-designer generates palette (5 min)
 2. Typography recommendations (5 min)
 3. Component library template (30 min)
 4. Stock photo MCP finds images (5 min)
 5. A11y MCP checks contrast (2 min)
-**Total: 47 minutes** ⚡
+   **Total: 47 minutes** ⚡
 
 **Time Saved: 92%**
 
@@ -796,18 +881,20 @@ Claude (using Screenshot MCP):
 ### Scenario 2: Design System for Startup
 
 **Without Tools:**
+
 1. Define design tokens manually (4 hours)
 2. Build 15 components (40 hours)
 3. Set up Storybook (4 hours)
 4. Document components (8 hours)
-**Total: 56 hours**
+   **Total: 56 hours**
 
 **With Tools:**
+
 1. design-system-architect guides setup (1 hour)
 2. Component generator creates skeleton (2 hours)
 3. Storybook auto-configured (30 min)
 4. Documentation generated (1 hour)
-**Total: 4.5 hours**
+   **Total: 4.5 hours**
 
 **Time Saved: 92%**
 
@@ -816,18 +903,20 @@ Claude (using Screenshot MCP):
 ### Scenario 3: Figma to Production
 
 **Without Figma MCP:**
+
 1. Manually extract colors, spacing (1 hour)
 2. Estimate measurements (30 min)
 3. Recreate layouts by eye (4 hours)
 4. Back-and-forth with designer (2 hours)
-**Total: 7.5 hours**
+   **Total: 7.5 hours**
 
 **With Figma MCP:**
+
 1. Extract tokens automatically (2 min)
 2. Get exact measurements (1 min)
 3. Generate component structure (5 min)
 4. Designer approves (30 min)
-**Total: 38 minutes**
+   **Total: 38 minutes**
 
 **Time Saved: 92%**
 
@@ -838,24 +927,28 @@ Claude (using Screenshot MCP):
 **What other tools offer:**
 
 **v0.dev (Vercel):**
+
 - ✅ AI component generation
 - ✅ Design to code
 - ❌ No design system building
 - ❌ No Figma integration
 
 **Builder.io:**
+
 - ✅ Visual editor
 - ✅ Design to code
 - ❌ No design tokens
 - ❌ Proprietary platform
 
 **Galileo AI:**
+
 - ✅ Figma to code
 - ✅ Design generation
 - ❌ No design system guidance
 - ❌ Expensive
 
 **Our Opportunity:**
+
 - ✅ Design system methodology (not just generation)
 - ✅ Figma integration with design tokens
 - ✅ Integrated with ai-dev-standards (full stack)
@@ -937,19 +1030,17 @@ def search_stock_photos(query: str, count: int = 5) -> list:
 ## Next Steps
 
 **This Week:**
+
 1. Create visual-designer skill
 2. Document color system approach
 3. Build typography recommendation system
 
-**Next Week:**
-4. Create design-system-architect skill
-5. Build component library template
+**Next Week:** 4. Create design-system-architect skill 5. Build component library template
 
-**Month 2:**
-6. Build Figma MCP server (highest value)
-7. Implement design token extraction
+**Month 2:** 6. Build Figma MCP server (highest value) 7. Implement design token extraction
 
 **Want me to start building any of these?**
+
 - visual-designer skill
 - design-system-architect skill
 - Figma MCP server

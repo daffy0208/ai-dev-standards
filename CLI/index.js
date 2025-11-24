@@ -29,6 +29,7 @@ const updateCommand = require('./commands/update')
 const checkUpdatesCommand = require('./commands/check-updates')
 const selfUpdateCommand = require('./commands/self-update')
 const contextCommand = require('./commands/context')
+const geminiCommand = require('./commands/gemini')
 
 const program = new Command()
 
@@ -50,7 +51,9 @@ if (!process.argv.includes('--silent')) {
 
 program
   .name('ai-dev')
-  .description('AI-powered development standards CLI - Generate production-ready code automatically')
+  .description(
+    'AI-powered development standards CLI - Generate production-ready code automatically'
+  )
   .version(packageJson.version)
 
 // ===========================
@@ -174,14 +177,25 @@ program
       limit: parseInt(options.limit, 10),
       olderThan: parseInt(options.olderThan, 10),
       sessionId: options.sessionId
-    };
-    contextCommand(action, opts);
+    }
+    contextCommand(action, opts)
   })
+
+// ===========================
+// GEMINI COMMAND
+// ===========================
+program
+  .command('gemini <prompt>')
+  .description('Talk to Gemini Pro')
+  .option('-m, --model <model>', 'Model to use', 'gemini-pro')
+  .action(geminiCommand)
 
 // ===========================
 // HELP EXAMPLES
 // ===========================
-program.addHelpText('after', `
+program.addHelpText(
+  'after',
+  `
 
 ${chalk.bold('Examples:')}
 
@@ -236,7 +250,8 @@ ${chalk.bold('ADHD-Friendly:')}
   ${chalk.green('✓')} No manual configuration
   ${chalk.green('✓')} Auto-detects what you need
   ${chalk.green('✓')} Instant working code
-`)
+`
+)
 
 // Parse arguments (ASYNC FIX: use parseAsync for async commands)
 async function main() {
@@ -248,7 +263,7 @@ async function main() {
   }
 }
 
-main().catch((error) => {
+main().catch(error => {
   console.error(chalk.red(`\n❌ Error: ${error.message}\n`))
   process.exit(1)
 })

@@ -89,12 +89,9 @@ async function main() {
   )
 
   // Test 3: Absolute path
-  await runAsyncTest(
-    'Test 3: MCP with absolute path (/etc/shadow)',
-    async () => {
-      await mcpGen.generate({ name: '/etc/shadow' })
-    }
-  )
+  await runAsyncTest('Test 3: MCP with absolute path (/etc/shadow)', async () => {
+    await mcpGen.generate({ name: '/etc/shadow' })
+  })
 
   // Test 4: Relative path in middle
   await runAsyncTest(
@@ -105,20 +102,14 @@ async function main() {
   )
 
   // Test 5: Parent directory reference
-  await runAsyncTest(
-    'Test 5: Component with parent reference (..)',
-    async () => {
-      await componentGen.generate({ name: '..' })
-    }
-  )
+  await runAsyncTest('Test 5: Component with parent reference (..)', async () => {
+    await componentGen.generate({ name: '..' })
+  })
 
   // Test 6: Hidden file attempt
-  await runAsyncTest(
-    'Test 6: Component starting with dot (.hidden)',
-    async () => {
-      await componentGen.generate({ name: '.hidden' })
-    }
-  )
+  await runAsyncTest('Test 6: Component starting with dot (.hidden)', async () => {
+    await componentGen.generate({ name: '.hidden' })
+  })
 
   // ============================================================================
   // CODE INJECTION TESTS
@@ -128,60 +119,39 @@ async function main() {
   console.log(chalk.gray('━'.repeat(50)))
 
   // Test 7: Reserved keyword - class
-  await runAsyncTest(
-    'Test 7: Component with reserved keyword (class)',
-    async () => {
-      await componentGen.generate({ name: 'class' })
-    }
-  )
+  await runAsyncTest('Test 7: Component with reserved keyword (class)', async () => {
+    await componentGen.generate({ name: 'class' })
+  })
 
   // Test 8: Reserved keyword - function
-  await runAsyncTest(
-    'Test 8: Component with reserved keyword (function)',
-    async () => {
-      await componentGen.generate({ name: 'function' })
-    }
-  )
+  await runAsyncTest('Test 8: Component with reserved keyword (function)', async () => {
+    await componentGen.generate({ name: 'function' })
+  })
 
   // Test 9: Reserved keyword - return
-  await runAsyncTest(
-    'Test 9: Integration with reserved keyword (return)',
-    async () => {
-      await integrationGen.generate({ name: 'return' })
-    }
-  )
+  await runAsyncTest('Test 9: Integration with reserved keyword (return)', async () => {
+    await integrationGen.generate({ name: 'return' })
+  })
 
   // Test 10: Invalid identifier - starts with number
-  await runAsyncTest(
-    'Test 10: Component starting with number (123test)',
-    async () => {
-      await componentGen.generate({ name: '123test' })
-    }
-  )
+  await runAsyncTest('Test 10: Component starting with number (123test)', async () => {
+    await componentGen.generate({ name: '123test' })
+  })
 
   // Test 11: Invalid identifier - special characters
-  await runAsyncTest(
-    'Test 11: Component with special characters (test@component)',
-    async () => {
-      await componentGen.generate({ name: 'test@component' })
-    }
-  )
+  await runAsyncTest('Test 11: Component with special characters (test@component)', async () => {
+    await componentGen.generate({ name: 'test@component' })
+  })
 
   // Test 12: Invalid identifier - spaces
-  await runAsyncTest(
-    'Test 12: Component with spaces (my component)',
-    async () => {
-      await componentGen.generate({ name: 'my component' })
-    }
-  )
+  await runAsyncTest('Test 12: Component with spaces (my component)', async () => {
+    await componentGen.generate({ name: 'my component' })
+  })
 
   // Test 13: SQL injection attempt
-  await runAsyncTest(
-    "Test 13: Component with SQL injection ('; DROP TABLE users;--)",
-    async () => {
-      await componentGen.generate({ name: "'; DROP TABLE users;--" })
-    }
-  )
+  await runAsyncTest("Test 13: Component with SQL injection ('; DROP TABLE users;--)", async () => {
+    await componentGen.generate({ name: "'; DROP TABLE users;--" })
+  })
 
   // Test 14: Script injection attempt
   await runAsyncTest(
@@ -199,37 +169,28 @@ async function main() {
   console.log(chalk.gray('━'.repeat(50)))
 
   // Test 15: Invalid prop name - reserved keyword
-  await runAsyncTest(
-    'Test 15: Component with reserved keyword prop (class)',
-    async () => {
-      await componentGen.generate({
-        name: 'TestComponent',
-        props: { 'class': 'string' }
-      })
-    }
-  )
+  await runAsyncTest('Test 15: Component with reserved keyword prop (class)', async () => {
+    await componentGen.generate({
+      name: 'TestComponent',
+      props: { class: 'string' }
+    })
+  })
 
   // Test 16: Invalid prop name - starts with number
-  await runAsyncTest(
-    'Test 16: Component with number-starting prop (1name)',
-    async () => {
-      await componentGen.generate({
-        name: 'TestComponent',
-        props: { '1name': 'string' }
-      })
-    }
-  )
+  await runAsyncTest('Test 16: Component with number-starting prop (1name)', async () => {
+    await componentGen.generate({
+      name: 'TestComponent',
+      props: { '1name': 'string' }
+    })
+  })
 
   // Test 17: Invalid prop name - special characters
-  await runAsyncTest(
-    'Test 17: Component with special character prop (on@click)',
-    async () => {
-      await componentGen.generate({
-        name: 'TestComponent',
-        props: { 'on@click': 'string' }
-      })
-    }
-  )
+  await runAsyncTest('Test 17: Component with special character prop (on@click)', async () => {
+    await componentGen.generate({
+      name: 'TestComponent',
+      props: { 'on@click': 'string' }
+    })
+  })
 
   // ============================================================================
   // EDGE CASES
@@ -239,44 +200,29 @@ async function main() {
   console.log(chalk.gray('━'.repeat(50)))
 
   // Test 18: Empty name
-  await runAsyncTest(
-    'Test 18: Component with empty name',
-    async () => {
-      await componentGen.generate({ name: '' })
-    }
-  )
+  await runAsyncTest('Test 18: Component with empty name', async () => {
+    await componentGen.generate({ name: '' })
+  })
 
   // Test 19: Whitespace only
-  await runAsyncTest(
-    'Test 19: Component with whitespace only',
-    async () => {
-      await componentGen.generate({ name: '   ' })
-    }
-  )
+  await runAsyncTest('Test 19: Component with whitespace only', async () => {
+    await componentGen.generate({ name: '   ' })
+  })
 
   // Test 20: Very long name (over 100 chars)
-  await runAsyncTest(
-    'Test 20: Component with very long name (>100 chars)',
-    async () => {
-      await componentGen.generate({ name: 'A'.repeat(101) })
-    }
-  )
+  await runAsyncTest('Test 20: Component with very long name (>100 chars)', async () => {
+    await componentGen.generate({ name: 'A'.repeat(101) })
+  })
 
   // Test 21: Null input
-  await runAsyncTest(
-    'Test 21: Component with null name',
-    async () => {
-      await componentGen.generate({ name: null })
-    }
-  )
+  await runAsyncTest('Test 21: Component with null name', async () => {
+    await componentGen.generate({ name: null })
+  })
 
   // Test 22: Undefined input
-  await runAsyncTest(
-    'Test 22: Component with undefined name',
-    async () => {
-      await componentGen.generate({ name: undefined })
-    }
-  )
+  await runAsyncTest('Test 22: Component with undefined name', async () => {
+    await componentGen.generate({ name: undefined })
+  })
 
   // ============================================================================
   // RESULTS SUMMARY
@@ -306,19 +252,24 @@ async function main() {
     console.log(chalk.red('Some attacks were not blocked. Review the failures above.\n'))
 
     console.log(chalk.bold.red('\nFailed Tests:'))
-    testResults.filter(r => r.result === 'FAIL').forEach(r => {
-      console.log(chalk.red(`  ❌ ${r.test}`))
-      console.log(chalk.gray(`     Reason: ${r.reason}`))
-    })
+    testResults
+      .filter(r => r.result === 'FAIL')
+      .forEach(r => {
+        console.log(chalk.red(`  ❌ ${r.test}`))
+        console.log(chalk.gray(`     Reason: ${r.reason}`))
+      })
   }
 
   // Print detailed error messages for passed tests (proof of blocking)
   console.log(chalk.bold.cyan('\n📋 VALIDATION ERROR MESSAGES (Proof of Protection)'))
   console.log(chalk.gray('━'.repeat(50)))
-  testResults.filter(r => r.result === 'PASS').slice(0, 5).forEach(r => {
-    console.log(chalk.blue(`\n${r.test}:`))
-    console.log(chalk.gray(`  ${r.error}`))
-  })
+  testResults
+    .filter(r => r.result === 'PASS')
+    .slice(0, 5)
+    .forEach(r => {
+      console.log(chalk.blue(`\n${r.test}:`))
+      console.log(chalk.gray(`  ${r.error}`))
+    })
   console.log(chalk.gray('\n... (showing first 5 error messages)\n'))
 
   process.exit(failed > 0 ? 1 : 0)

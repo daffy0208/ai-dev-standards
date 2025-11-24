@@ -14,17 +14,20 @@ The ai-dev-standards repository uses a **unified, two-tier validation system** t
 **Purpose:** Fast feedback for pre-commit hooks and rapid iteration
 
 **What it checks:**
+
 - Registry consistency (skills, MCPs, components)
 - Documentation counts and accuracy
 - Configuration file correctness (.cursorrules, .claude/claude.md)
 - Basic CLI validation
 
 **When to use:**
+
 - Before committing code
 - During rapid development iterations
 - When you need fast feedback
 
 **Command:**
+
 ```bash
 npm run validate:quick
 ```
@@ -38,6 +41,7 @@ npm run validate:quick
 **Purpose:** Comprehensive validation for CI/CD pipelines and pre-push checks
 
 **What it checks:**
+
 - Everything in Quick Validation +
 - ESLint code quality checks
 - TypeScript type checking
@@ -47,12 +51,14 @@ npm run validate:quick
 - End-to-end workflow verification
 
 **When to use:**
+
 - Before pushing to remote
 - In CI/CD pipelines
 - Before creating pull requests
 - When validating agent behavior
 
 **Command:**
+
 ```bash
 npm run validate        # Default (runs full)
 npm run validate:full   # Explicit alias
@@ -101,6 +107,7 @@ Avg Latency:    50ms
 ### Creating Your Own Evals
 
 See [DOCS/AGENT-VALIDATION.md](./AGENT-VALIDATION.md) for:
+
 - How to create golden datasets
 - Grading criteria (Exact, Contains, Regex, LLM-Graded)
 - Running evals independently
@@ -109,40 +116,48 @@ See [DOCS/AGENT-VALIDATION.md](./AGENT-VALIDATION.md) for:
 
 ## Quick Reference
 
-| Command | Speed | Use Case | Runs In |
-|---------|-------|----------|---------|
-| `npm run validate:quick` | 10-30s | Pre-commit | Git hooks |
-| `npm run validate` | 2-5min | Default validation | Manual / CI |
-| `npm run validate:full` | 2-5min | Comprehensive check | CI/CD |
-| `npm run validate:fix` | Variable | Auto-sync registries | Manual |
+| Command                  | Speed    | Use Case             | Runs In     |
+| ------------------------ | -------- | -------------------- | ----------- |
+| `npm run validate:quick` | 10-30s   | Pre-commit           | Git hooks   |
+| `npm run validate`       | 2-5min   | Default validation   | Manual / CI |
+| `npm run validate:full`  | 2-5min   | Comprehensive check  | CI/CD       |
+| `npm run validate:fix`   | Variable | Auto-sync registries | Manual      |
 
 ---
 
 ## Understanding Validation Failures
 
 ### Registry Errors
+
 ```bash
 ❌ Skill agent-evaluator path must start with SKILLS/
 ```
+
 **Fix:** Run `npm run validate:fix` to auto-sync registries
 
 ### Type Errors
+
 ```bash
 ❌ Type checking failed! Fix type errors above.
 ```
+
 **Fix:** Check TypeScript errors in output, fix manually
 
 ### Linting Errors
+
 ```bash
 ❌ Linting failed! Run 'npm run lint:fix' to auto-fix issues.
 ```
+
 **Fix:** Run `npm run lint:fix`
 
 ### Agent Evaluation Failures
+
 ```bash
 ❌ Test T002: FAIL (score: 0.60)
     Expected semantic similarity > 0.80
 ```
+
 **Fix:** Review golden dataset in `tests/fixtures/`, update prompts or expected outputs
 
 ---
@@ -201,7 +216,7 @@ jobs:
         with:
           node-version: '18'
       - run: npm install
-      - run: npm run validate  # Runs full validation
+      - run: npm run validate # Runs full validation
 ```
 
 ---
@@ -229,4 +244,4 @@ A: `node scripts/run-agent-evals.js --dataset tests/fixtures/golden-dataset-exam
 A: Use `npm run validate:quick` for fast feedback. Reserve full validation for pre-push/CI.
 
 **Q: Is this system AI-model specific (Gemini/Claude/Codex)?**
-A: **No.** The validation system is standard Node.js/Bash. It works identically regardless of which AI you use to interact with the repo. The scripts validate the *code*, not the *AI*.
+A: **No.** The validation system is standard Node.js/Bash. It works identically regardless of which AI you use to interact with the repo. The scripts validate the _code_, not the _AI_.

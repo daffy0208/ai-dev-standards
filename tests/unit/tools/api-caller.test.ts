@@ -6,6 +6,14 @@
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { ApiCallerTool } from '../../../TOOLS/custom-tools/api-caller-tool'
+import {
+  assignFetchMock,
+  createFetchMock,
+  createJsonResponse,
+  getFetchMock,
+  mockRejectedFetch,
+  mockResolvedFetch
+} from '../../helpers/mock-fetch'
 
 describe('ApiCallerTool', () => {
   let api: ApiCallerTool
@@ -23,14 +31,9 @@ describe('ApiCallerTool', () => {
     it('should make successful GET request', async () => {
       const mockData = { id: 1, name: 'Test' }
 
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: true,
-        status: 200,
-        statusText: 'OK',
-        json: async () => mockData,
-        headers: new Headers(),
-        url: 'https://api.example.com/users'
-      })
+      mockResolvedFetch(
+        createJsonResponse(mockData, { status: 200, url: 'https://api.example.com/users' })
+      )
 
       const result = await api.get('https://api.example.com/users')
 
@@ -41,31 +44,27 @@ describe('ApiCallerTool', () => {
     })
 
     it('should handle query parameters', async () => {
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: true,
-        status: 200,
-        statusText: 'OK',
-        json: async () => ({}),
-        headers: new Headers(),
-        url: 'https://api.example.com/users?page=1&limit=10'
-      })
+      const fetchMock = mockResolvedFetch(
+        createJsonResponse({}, { url: 'https://api.example.com/users?page=1&limit=10' })
+      )
 
       await api.get('https://api.example.com/users', {
         params: { page: 1, limit: 10 }
       })
 
-      expect(global.fetch).toHaveBeenCalledWith(
+      expect(fetchMock).toHaveBeenCalledWith(
         'https://api.example.com/users?page=1&limit=10',
         expect.any(Object)
       )
     })
 
     it('should handle 404 error', async () => {
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: false,
-        status: 404,
-        statusText: 'Not Found'
-      })
+      mockResolvedFetch(
+        createJsonResponse(
+          {},
+          { status: 404, statusText: 'Not Found', url: 'https://api.example.com/users/999' }
+        )
+      )
 
       await expect(api.get('https://api.example.com/users/999')).rejects.toThrow('HTTP 404')
     })
@@ -76,14 +75,13 @@ describe('ApiCallerTool', () => {
       const mockData = { id: 1, name: 'Created' }
       const requestBody = { name: 'New User' }
 
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: true,
-        status: 201,
-        statusText: 'Created',
-        json: async () => mockData,
-        headers: new Headers(),
-        url: 'https://api.example.com/users'
-      })
+      const fetchMock = mockResolvedFetch(
+        createJsonResponse(mockData, {
+          status: 201,
+          statusText: 'Created',
+          url: 'https://api.example.com/users'
+        })
+      )
 
       const result = await api.post('https://api.example.com/users', {
         body: requestBody
@@ -92,7 +90,7 @@ describe('ApiCallerTool', () => {
       expect(result.data).toEqual(mockData)
       expect(result.status).toBe(201)
 
-      const fetchCall = (global.fetch as any).mock.calls[0]
+      const fetchCall = fetchMock.mock.calls[0]
       expect(fetchCall[1].method).toBe('POST')
       expect(fetchCall[1].body).toBe(JSON.stringify(requestBody))
     })
@@ -102,21 +100,14 @@ describe('ApiCallerTool', () => {
     it('should make successful PUT request', async () => {
       const mockData = { id: 1, name: 'Updated' }
 
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: true,
-        status: 200,
-        statusText: 'OK',
-        json: async () => mockData,
-        headers: new Headers(),
-        url: 'https://api.example.com/users/1'
-      })
+      mockResolvedFetch(createJsonResponse(mockData, { url: 'https://api.example.com/users/1' }))
 
       const result = await api.put('https://api.example.com/users/1', {
         body: { name: 'Updated' }
       })
 
       expect(result.data).toEqual(mockData)
-      expect((global.fetch as any).mock.calls[0][1].method).toBe('PUT')
+      expect(getFetchMock().mock.calls[0][1]?.method).toBe('PUT')
     })
   })
 
@@ -124,94 +115,64 @@ describe('ApiCallerTool', () => {
     it('should make successful PATCH request', async () => {
       const mockData = { id: 1, name: 'Patched' }
 
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: true,
-        status: 200,
-        statusText: 'OK',
-        json: async () => mockData,
-        headers: new Headers(),
-        url: 'https://api.example.com/users/1'
-      })
+      mockResolvedFetch(createJsonResponse(mockData, { url: 'https://api.example.com/users/1' }))
 
       const result = await api.patch('https://api.example.com/users/1', {
         body: { name: 'Patched' }
       })
 
       expect(result.data).toEqual(mockData)
-      expect((global.fetch as any).mock.calls[0][1].method).toBe('PATCH')
+      expect(getFetchMock().mock.calls[0][1]?.method).toBe('PATCH')
     })
   })
 
   describe('DELETE requests', () => {
     it('should make successful DELETE request', async () => {
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: true,
-        status: 204,
-        statusText: 'No Content',
-        json: async () => ({}),
-        headers: new Headers(),
-        url: 'https://api.example.com/users/1'
-      })
+      mockResolvedFetch(
+        createJsonResponse(
+          {},
+          { status: 204, statusText: 'No Content', url: 'https://api.example.com/users/1' }
+        )
+      )
 
       const result = await api.delete('https://api.example.com/users/1')
 
       expect(result.status).toBe(204)
-      expect((global.fetch as any).mock.calls[0][1].method).toBe('DELETE')
+      expect(getFetchMock().mock.calls[0][1]?.method).toBe('DELETE')
     })
   })
 
   describe('Authentication', () => {
     it('should add Bearer token', async () => {
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: true,
-        status: 200,
-        statusText: 'OK',
-        json: async () => ({}),
-        headers: new Headers(),
-        url: 'https://api.example.com/protected'
-      })
+      mockResolvedFetch(createJsonResponse({}, { url: 'https://api.example.com/protected' }))
 
       await api.get('https://api.example.com/protected', {
         auth: { type: 'bearer', token: 'test-token' }
       })
 
-      const fetchCall = (global.fetch as any).mock.calls[0]
+      const fetchCall = getFetchMock().mock.calls[0]
       expect(fetchCall[1].headers['Authorization']).toBe('Bearer test-token')
     })
 
     it('should add API key header', async () => {
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: true,
-        status: 200,
-        statusText: 'OK',
-        json: async () => ({}),
-        headers: new Headers(),
-        url: 'https://api.example.com/protected'
-      })
+      mockResolvedFetch(createJsonResponse({}, { url: 'https://api.example.com/protected' }))
 
       await api.get('https://api.example.com/protected', {
         auth: { type: 'apiKey', key: 'X-API-Key', value: 'secret' }
       })
 
-      const fetchCall = (global.fetch as any).mock.calls[0]
+      const fetchCall = getFetchMock().mock.calls[0]
       expect(fetchCall[1].headers['X-API-Key']).toBe('secret')
     })
 
     it('should add Basic auth', async () => {
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: true,
-        status: 200,
-        statusText: 'OK',
-        json: async () => ({}),
-        headers: new Headers(),
-        url: 'https://api.example.com/protected'
-      })
+      mockResolvedFetch(createJsonResponse({}, { url: 'https://api.example.com/protected' }))
 
       await api.get('https://api.example.com/protected', {
         auth: { type: 'basic', username: 'user', password: 'pass' }
       })
 
-      const fetchCall = (global.fetch as any).mock.calls[0]
+      const fetchCall = getFetchMock().mock.calls[0]
       const expectedAuth = 'Basic ' + Buffer.from('user:pass').toString('base64')
       expect(fetchCall[1].headers['Authorization']).toBe(expectedAuth)
     })
@@ -219,14 +180,7 @@ describe('ApiCallerTool', () => {
 
   describe('Custom headers', () => {
     it('should add custom headers', async () => {
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: true,
-        status: 200,
-        statusText: 'OK',
-        json: async () => ({}),
-        headers: new Headers(),
-        url: 'https://api.example.com/data'
-      })
+      mockResolvedFetch(createJsonResponse({}, { url: 'https://api.example.com/data' }))
 
       await api.get('https://api.example.com/data', {
         headers: {
@@ -235,7 +189,7 @@ describe('ApiCallerTool', () => {
         }
       })
 
-      const fetchCall = (global.fetch as any).mock.calls[0]
+      const fetchCall = getFetchMock().mock.calls[0]
       expect(fetchCall[1].headers['X-Custom-Header']).toBe('value')
       expect(fetchCall[1].headers['Accept-Language']).toBe('en-US')
     })
@@ -245,22 +199,20 @@ describe('ApiCallerTool', () => {
     it.skip('should timeout after specified duration', async () => {
       // TODO: Timeout implementation needs to be fixed to properly abort fetch
       // Currently the fetch completes before the timeout triggers
-      global.fetch = vi.fn().mockImplementation(() => {
-        return new Promise((resolve) => {
-          setTimeout(() => resolve({
-            ok: true,
-            status: 200,
-            statusText: 'OK',
-            json: async () => ({}),
-            headers: new Headers(),
-            url: 'https://api.example.com/slow'
-          }), 5000)
+      const fetchMock = createFetchMock()
+      fetchMock.mockImplementation(() => {
+        return new Promise(resolve => {
+          setTimeout(
+            () => resolve(createJsonResponse({}, { url: 'https://api.example.com/slow' })),
+            5000
+          )
         })
       })
+      assignFetchMock(fetchMock)
 
-      await expect(
-        api.get('https://api.example.com/slow', { timeout: 100 })
-      ).rejects.toThrow('timeout')
+      await expect(api.get('https://api.example.com/slow', { timeout: 100 })).rejects.toThrow(
+        'timeout'
+      )
     }, 10000)
   })
 
@@ -268,20 +220,17 @@ describe('ApiCallerTool', () => {
     it('should retry on failure', async () => {
       let attempts = 0
 
-      global.fetch = vi.fn().mockImplementation(() => {
+      const fetchMock = createFetchMock()
+      fetchMock.mockImplementation(() => {
         attempts++
         if (attempts < 3) {
           return Promise.reject(new Error('Network error'))
         }
-        return Promise.resolve({
-          ok: true,
-          status: 200,
-          statusText: 'OK',
-          json: async () => ({ success: true }),
-          headers: new Headers(),
-          url: 'https://api.example.com/unstable'
-        })
+        return Promise.resolve(
+          createJsonResponse({ success: true }, { url: 'https://api.example.com/unstable' })
+        )
       })
+      assignFetchMock(fetchMock)
 
       const result = await api.get('https://api.example.com/unstable', {
         retry: { attempts: 3, delayMs: 10 }
@@ -292,7 +241,7 @@ describe('ApiCallerTool', () => {
     })
 
     it('should fail after max retries', async () => {
-      global.fetch = vi.fn().mockRejectedValue(new Error('Network error'))
+      const fetchMock = mockRejectedFetch(new Error('Network error'))
 
       await expect(
         api.get('https://api.example.com/failing', {
@@ -300,14 +249,15 @@ describe('ApiCallerTool', () => {
         })
       ).rejects.toThrow('Network error')
 
-      expect(global.fetch).toHaveBeenCalledTimes(2)
+      expect(fetchMock).toHaveBeenCalledTimes(2)
     })
 
     it('should use exponential backoff', async () => {
       const delays: number[] = []
       let attempts = 0
 
-      global.fetch = vi.fn().mockImplementation(() => {
+      const fetchMock = createFetchMock()
+      fetchMock.mockImplementation(() => {
         attempts++
         const start = Date.now()
         return new Promise((_, reject) => {
@@ -319,6 +269,7 @@ describe('ApiCallerTool', () => {
           }, 0)
         })
       })
+      assignFetchMock(fetchMock)
 
       await expect(
         api.get('https://api.example.com/failing', {
@@ -334,16 +285,12 @@ describe('ApiCallerTool', () => {
 
   describe('Batch requests', () => {
     it('should execute multiple requests in parallel', async () => {
-      global.fetch = vi.fn().mockImplementation((url) => {
-        return Promise.resolve({
-          ok: true,
-          status: 200,
-          statusText: 'OK',
-          json: async () => ({ url }),
-          headers: new Headers(),
-          url
-        })
+      const fetchMock = createFetchMock()
+      fetchMock.mockImplementation((url: RequestInfo | URL) => {
+        const normalizedUrl = typeof url === 'string' ? url : url.toString()
+        return Promise.resolve(createJsonResponse({ url: normalizedUrl }, { url: normalizedUrl }))
       })
+      assignFetchMock(fetchMock)
 
       const requests = [
         { url: 'https://api.example.com/users/1', method: 'GET' as const },
@@ -362,28 +309,22 @@ describe('ApiCallerTool', () => {
 
   describe('Response type handling', () => {
     it('should parse JSON by default', async () => {
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: true,
-        status: 200,
-        statusText: 'OK',
-        json: async () => ({ key: 'value' }),
-        headers: new Headers(),
-        url: 'https://api.example.com/data'
-      })
+      mockResolvedFetch(
+        createJsonResponse({ key: 'value' }, { url: 'https://api.example.com/data' })
+      )
 
       const result = await api.get('https://api.example.com/data')
       expect(result.data).toEqual({ key: 'value' })
     })
 
     it('should handle text response', async () => {
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: true,
-        status: 200,
-        statusText: 'OK',
-        text: async () => 'plain text',
-        headers: new Headers(),
-        url: 'https://api.example.com/data'
-      })
+      mockResolvedFetch(
+        createJsonResponse('plain text', {
+          url: 'https://api.example.com/data',
+          textBody: 'plain text',
+          headers: { 'Content-Type': 'text/plain' }
+        })
+      )
 
       const result = await api.get('https://api.example.com/data', {
         responseType: 'text'
@@ -395,23 +336,22 @@ describe('ApiCallerTool', () => {
 
   describe('Error handling', () => {
     it('should throw on HTTP error', async () => {
-      global.fetch = vi.fn().mockResolvedValue({
-        ok: false,
-        status: 500,
-        statusText: 'Internal Server Error'
-      })
+      mockResolvedFetch(
+        createJsonResponse(
+          {},
+          { status: 500, statusText: 'Internal Server Error', url: 'https://api.example.com/error' }
+        )
+      )
 
-      await expect(
-        api.get('https://api.example.com/error')
-      ).rejects.toThrow('HTTP 500: Internal Server Error')
+      await expect(api.get('https://api.example.com/error')).rejects.toThrow(
+        'HTTP 500: Internal Server Error'
+      )
     })
 
     it('should throw on network error', async () => {
-      global.fetch = vi.fn().mockRejectedValue(new Error('Network failed'))
+      mockRejectedFetch(new Error('Network failed'))
 
-      await expect(
-        api.get('https://api.example.com/unreachable')
-      ).rejects.toThrow('Network failed')
+      await expect(api.get('https://api.example.com/unreachable')).rejects.toThrow('Network failed')
     })
   })
 })

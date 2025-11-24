@@ -1,11 +1,25 @@
 const chalk = require('chalk')
 const ora = require('ora')
 const inquirer = require('inquirer')
-const fs = require('fs-extra')
-const path = require('path')
 const execa = require('execa')
 
 const ProjectGenerator = require('../generators/project-generator')
+
+const defaultDeps = {
+  chalk,
+  ora,
+  inquirer,
+  execa,
+  projectGeneratorFactory: () => new ProjectGenerator(),
+  exit: code => process.exit(code)
+}
+
+function createInitCommand(overrides = {}) {
+  const deps = { ...defaultDeps, ...overrides }
+  return async function runInit(projectType, projectName, options) {
+    return initCommandInternal(projectType, projectName, options, deps)
+  }
+}
 
 /**
  * Init Command
@@ -17,18 +31,22 @@ const ProjectGenerator = require('../generators/project-generator')
  * - dashboard: Analytics dashboard
  * - mobile-app: React Native app
  */
-async function initCommand(projectType, projectName, options) {
-  console.log(chalk.blue(`\n🚀 Initializing ${projectType}: ${chalk.bold(projectName || 'my-project')}\n`))
+async function initCommandInternal(projectType, projectName, options, deps) {
+  const { chalk, ora, inquirer, execa, projectGeneratorFactory, exit } = deps
+
+  console.log(
+    chalk.blue(`\n🚀 Initializing ${projectType}: ${chalk.bold(projectName || 'my-project')}\n`)
+  )
 
   const name = projectName || `my-${projectType}`
 
   try {
     // Ask for project configuration
-    const config = await promptProjectConfig(projectType, options)
+    const config = await promptProjectConfig(projectType, options, deps)
 
     // Generate project
     const spinner = ora('Generating project...').start()
-    const generator = new ProjectGenerator()
+    const generator = projectGeneratorFactory()
     const projectPath = await generator.generate({
       type: projectType,
       name,
@@ -65,51 +83,52 @@ async function initCommand(projectType, projectName, options) {
 
     // Show next steps
     showNextSteps(projectType, name, config)
-
   } catch (error) {
     console.error(chalk.red(`\n❌ Error: ${error.message}\n`))
-    process.exit(1)
+    throw error
   }
 }
 
 /**
  * Prompt for project configuration
  */
-async function promptProjectConfig(projectType, options) {
-  const config = {}
-
+async function promptProjectConfig(projectType, options, deps = defaultDeps) {
   switch (projectType) {
     case 'saas-starter':
     case 'saas':
-      return await promptSaasConfig(options)
+      return await promptSaasConfig(options, deps)
 
     case 'rag-system':
     case 'rag':
-      return await promptRagConfig(options)
+      return await promptRagConfig(options, deps)
 
     case 'api-service':
     case 'api':
-      return await promptApiConfig(options)
+      return await promptApiConfig(options, deps)
 
     case 'dashboard':
-      return await promptDashboardConfig(options)
+      return await promptDashboardConfig(options, deps)
 
     case 'mobile-app':
     case 'mobile':
-      return await promptMobileConfig(options)
+      return await promptMobileConfig(options, deps)
 
     default:
       console.log(chalk.yellow(`\n⚠️  Unknown project type: ${projectType}`))
-      console.log(chalk.gray('Available types: saas-starter, rag-system, api-service, dashboard, mobile-app\n'))
-      process.exit(1)
+      console.log(
+        chalk.gray(
+          'Available types: saas-starter, rag-system, api-service, dashboard, mobile-app\n'
+        )
+      )
+      throw new Error('Unknown project type')
   }
 }
 
 /**
  * SaaS Starter Config
  */
-async function promptSaasConfig(options) {
-  const answers = await inquirer.prompt([
+async function promptSaasConfig(options, deps = defaultDeps) {
+  const answers = await deps.inquirer.prompt([
     {
       type: 'list',
       name: 'auth',
@@ -123,7 +142,7 @@ async function promptSaasConfig(options) {
       message: 'Payment provider:',
       choices: ['stripe', 'paddle', 'lemon-squeezy', 'none'],
       default: options.payments || 'stripe',
-      when: (answers) => answers.auth !== 'none'
+      when: answers => answers.auth !== 'none'
     },
     {
       type: 'list',
@@ -160,8 +179,8 @@ async function promptSaasConfig(options) {
 /**
  * RAG System Config
  */
-async function promptRagConfig(options) {
-  const answers = await inquirer.prompt([
+async function promptRagConfig(options, deps = defaultDeps) {
+  const answers = await deps.inquirer.prompt([
     {
       type: 'list',
       name: 'vectorDb',
@@ -204,8 +223,8 @@ async function promptRagConfig(options) {
 /**
  * API Service Config
  */
-async function promptApiConfig(options) {
-  const answers = await inquirer.prompt([
+async function promptApiConfig(_options, deps = defaultDeps) {
+  const answers = await deps.inquirer.prompt([
     {
       type: 'list',
       name: 'type',
@@ -226,7 +245,7 @@ async function promptApiConfig(options) {
       message: 'ORM/Query builder:',
       choices: ['prisma', 'drizzle', 'typeorm', 'none'],
       default: 'prisma',
-      when: (answers) => answers.database !== 'none'
+      when: answers => answers.database !== 'none'
     },
     {
       type: 'checkbox',
@@ -249,8 +268,8 @@ async function promptApiConfig(options) {
 /**
  * Dashboard Config
  */
-async function promptDashboardConfig(options) {
-  const answers = await inquirer.prompt([
+async function promptDashboardConfig(_options, deps = defaultDeps) {
+  const answers = await deps.inquirer.prompt([
     {
       type: 'list',
       name: 'chartLibrary',
@@ -278,8 +297,8 @@ async function promptDashboardConfig(options) {
 /**
  * Mobile App Config
  */
-async function promptMobileConfig(options) {
-  const answers = await inquirer.prompt([
+async function promptMobileConfig(_options, deps = defaultDeps) {
+  const answers = await deps.inquirer.prompt([
     {
       type: 'list',
       name: 'framework',
@@ -320,19 +339,29 @@ function showNextSteps(projectType, name, config) {
   console.log(chalk.gray(`  1. ${chalk.cyan(`cd ${name}`)}`))
 
   if (projectType === 'saas-starter' || projectType === 'saas') {
-    console.log(chalk.gray(`  2. Copy ${chalk.cyan(`.env.example`)} to ${chalk.cyan(`.env.local`)}`))
-    if (config.auth !== 'none') {
-      console.log(chalk.gray(`  3. Add ${chalk.cyan(config.auth.toUpperCase())} credentials to .env.local`))
+    console.log(
+      chalk.gray(`  2. Copy ${chalk.cyan(`.env.example`)} to ${chalk.cyan(`.env.local`)}`)
+    )
+    if (config?.auth && config.auth !== 'none') {
+      console.log(
+        chalk.gray(`  3. Add ${chalk.cyan(config.auth.toUpperCase())} credentials to .env.local`)
+      )
     }
-    if (config.payments !== 'none') {
-      console.log(chalk.gray(`  4. Add ${chalk.cyan(config.payments.toUpperCase())} keys to .env.local`))
+    if (config?.payments && config.payments !== 'none') {
+      console.log(
+        chalk.gray(`  4. Add ${chalk.cyan(config.payments.toUpperCase())} keys to .env.local`)
+      )
     }
     console.log(chalk.gray(`  5. ${chalk.cyan(`npm run dev`)}`))
     console.log(chalk.gray(`  6. Open ${chalk.cyan(`http://localhost:3000`)}`))
   } else if (projectType === 'rag-system' || projectType === 'rag') {
     console.log(chalk.gray(`  2. Add API keys to ${chalk.cyan(`.env.local`)}:`))
-    console.log(chalk.gray(`     - ${config.vectorDb.toUpperCase()}_API_KEY`))
-    console.log(chalk.gray(`     - ${config.llmProvider.toUpperCase()}_API_KEY`))
+    if (config?.vectorDb) {
+      console.log(chalk.gray(`     - ${config.vectorDb.toUpperCase()}_API_KEY`))
+    }
+    if (config?.llmProvider) {
+      console.log(chalk.gray(`     - ${config.llmProvider.toUpperCase()}_API_KEY`))
+    }
     console.log(chalk.gray(`  3. ${chalk.cyan(`npm run ingest`)} - Ingest your documents`))
     console.log(chalk.gray(`  4. ${chalk.cyan(`npm run dev`)} - Start the server`))
     console.log(chalk.gray(`  5. Test queries at ${chalk.cyan(`http://localhost:3000`)}`))
@@ -344,4 +373,5 @@ function showNextSteps(projectType, name, config) {
   console.log(chalk.bold(`\n🎉 Your ${projectType} is ready! Happy coding!\n`))
 }
 
-module.exports = initCommand
+module.exports = createInitCommand()
+module.exports.createInitCommand = createInitCommand

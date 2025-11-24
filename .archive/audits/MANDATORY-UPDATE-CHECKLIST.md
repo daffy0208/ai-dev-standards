@@ -7,6 +7,7 @@
 ## When This Applies
 
 Run this checklist if you:
+
 - ✅ Added a new skill
 - ✅ Added a new MCP
 - ✅ Removed a skill or MCP
@@ -88,12 +89,14 @@ bash scripts/validate-sync.sh
 ```
 
 This script will:
+
 - ✅ Extract counts from registries
 - ✅ Check all 14 critical files
 - ✅ Verify relationship mapping is correct
 - 🚫 **BLOCK your commit if anything is wrong**
 
 **If validation fails:**
+
 1. Read the error messages carefully
 2. Update the files mentioned
 3. Run validation again
@@ -160,6 +163,7 @@ git commit -m "feat: Add my-new-skill"
 ## Files That MUST Be Updated (Complete List)
 
 ### Critical (14 files):
+
 1. META/skill-registry.json
 2. META/mcp-registry.json
 3. META/relationship-mapping.json
@@ -176,10 +180,12 @@ git commit -m "feat: Add my-new-skill"
 14. TEMPLATES/cursorrules-saas.md
 
 ### If creating skill (2 files):
+
 - SKILLS/{name}/SKILL.md
 - SKILLS/{name}/README.md
 
 ### If creating MCP (4 files):
+
 - MCP-SERVERS/{name}/src/index.ts
 - MCP-SERVERS/{name}/README.md
 - MCP-SERVERS/{name}/package.json
@@ -192,6 +198,7 @@ git commit -m "feat: Add my-new-skill"
 ## Accountability
 
 This checklist exists because:
+
 1. **Manual processes fail** - humans forget
 2. **Promises without enforcement fail** - good intentions aren't enough
 3. **Automated validation works** - computers don't forget

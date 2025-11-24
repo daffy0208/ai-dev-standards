@@ -21,7 +21,7 @@ export class PIITokenizer {
 
     // Email addresses
     const emailRegex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g
-    tokenized = tokenized.replace(emailRegex, (match) => {
+    tokenized = tokenized.replace(emailRegex, match => {
       const token = this.generateToken('EMAIL')
       mapping[token] = match
       return token
@@ -29,7 +29,7 @@ export class PIITokenizer {
 
     // Phone numbers
     const phoneRegex = /\b\d{3}[-.]?\d{3}[-.]?\d{4}\b/g
-    tokenized = tokenized.replace(phoneRegex, (match) => {
+    tokenized = tokenized.replace(phoneRegex, match => {
       const token = this.generateToken('PHONE')
       mapping[token] = match
       return token
@@ -37,7 +37,7 @@ export class PIITokenizer {
 
     // SSN
     const ssnRegex = /\b\d{3}-\d{2}-\d{4}\b/g
-    tokenized = tokenized.replace(ssnRegex, (match) => {
+    tokenized = tokenized.replace(ssnRegex, match => {
       const token = this.generateToken('SSN')
       mapping[token] = match
       return token

@@ -85,6 +85,7 @@ npm run test:smoke -- --env=staging
 ```
 
 **Staging Verification:**
+
 - [ ] All tests pass on staging
 - [ ] Manual testing complete
 - [ ] No errors in logs
@@ -95,10 +96,12 @@ npm run test:smoke -- --env=staging
 ### Step 2: Production Deployment
 
 **Deployment Window:**
+
 - **Preferred:** Tuesday-Thursday, 10am-2pm (low traffic)
 - **Avoid:** Friday (weekend risk), Monday (post-weekend issues), after 4pm (no support)
 
 **Deployment Command:**
+
 ```bash
 # Production deployment
 git checkout main
@@ -116,6 +119,7 @@ vercel --prod
 ```
 
 **Immediate Verification (5 minutes):**
+
 ```bash
 # Health check
 curl https://example.com/api/health
@@ -132,6 +136,7 @@ curl https://example.com/api/health
 ### Step 3: Post-Deployment Monitoring (30 minutes)
 
 **Watch For:**
+
 - [ ] Error rate spike (should stay < 1%)
 - [ ] Response time increase (should be < +20%)
 - [ ] Memory/CPU usage spike
@@ -139,6 +144,7 @@ curl https://example.com/api/health
 - [ ] Customer support tickets spike
 
 **Monitoring Checklist:**
+
 ```markdown
 ⏱️ 5 min: Error rate normal? ✅
 ⏱️ 10 min: Response times good? ✅
@@ -150,6 +156,7 @@ curl https://example.com/api/health
 ### Step 4: Rollback (If Issues Detected)
 
 **Triggers for Rollback:**
+
 - Error rate > 5%
 - Critical feature broken
 - Database corruption
@@ -157,6 +164,7 @@ curl https://example.com/api/health
 - Performance degradation > 50%
 
 **Rollback Process:**
+
 ```bash
 # Option 1: Vercel rollback
 vercel rollback
@@ -171,6 +179,7 @@ vercel promote [previous-deployment-url] --prod
 ```
 
 **After Rollback:**
+
 - [ ] Verify rollback successful
 - [ ] Investigate root cause
 - [ ] Fix issue
@@ -184,12 +193,14 @@ vercel promote [previous-deployment-url] --prod
 ### Feature Deployment (New Feature)
 
 **Additional Checks:**
+
 - [ ] Feature flag enabled for 5% of users first
 - [ ] Analytics tracking added
 - [ ] Documentation updated
 - [ ] Support team trained
 
 **Gradual Rollout:**
+
 ```typescript
 // Day 1: 5% of users
 if (Math.random() < 0.05 || user.betaTester) {
@@ -208,6 +219,7 @@ return <NewFeature />
 ### Hotfix Deployment (Emergency Fix)
 
 **Fast-Track Process:**
+
 - [ ] Fix verified on staging (minimum 10 min)
 - [ ] Code review by 1+ engineer (not author)
 - [ ] Tests pass
@@ -215,6 +227,7 @@ return <NewFeature />
 - [ ] Monitor closely for 60 minutes
 
 **Hotfix Branch:**
+
 ```bash
 git checkout main
 git pull origin main
@@ -237,6 +250,7 @@ vercel --prod
 ### Database Migration Deployment
 
 **Additional Steps:**
+
 - [ ] Backup database before migration
 - [ ] Migration tested on staging with production-like data
 - [ ] Migration is reversible
@@ -244,6 +258,7 @@ vercel --prod
 - [ ] Migration runs in transaction (if possible)
 
 **Migration Process:**
+
 ```bash
 # Backup database
 pg_dump $DATABASE_URL > backup_$(date +%Y%m%d_%H%M%S).sql
@@ -264,18 +279,21 @@ psql $DATABASE_URL < backup_20251022_143000.sql
 ## Deployment Environments
 
 ### Development
+
 - **URL:** localhost:3000
 - **Database:** Local PostgreSQL
 - **Purpose:** Active development
 - **Auto-deploy:** No
 
 ### Staging
+
 - **URL:** staging.example.com
 - **Database:** Staging DB (production-like data)
 - **Purpose:** Pre-production testing
 - **Auto-deploy:** Yes (on push to `staging` branch)
 
 ### Production
+
 - **URL:** example.com
 - **Database:** Production DB
 - **Purpose:** Live users
@@ -288,6 +306,7 @@ psql $DATABASE_URL < backup_20251022_143000.sql
 ### Issue: Deployment Fails with Build Error
 
 **Solution:**
+
 ```bash
 # Check build locally first
 npm run build
@@ -301,6 +320,7 @@ npm run build
 ### Issue: Database Connection Fails After Deploy
 
 **Solution:**
+
 ```bash
 # Check connection string
 echo $DATABASE_URL
@@ -316,6 +336,7 @@ DATABASE_CONNECTION_LIMIT=10
 ### Issue: Environment Variables Not Loading
 
 **Solution:**
+
 ```bash
 # Vercel: Check environment variables in dashboard
 vercel env ls
@@ -330,6 +351,7 @@ vercel env pull
 ### Issue: Deployment Slow (> 5 minutes)
 
 **Solution:**
+
 ```bash
 # Check build logs for bottlenecks
 # Common causes:
@@ -441,6 +463,7 @@ jobs:
 ## Deployment Metrics
 
 **Track These:**
+
 - Deployment frequency (goal: daily)
 - Deployment success rate (goal: > 95%)
 - Time to deploy (goal: < 10 minutes)
@@ -448,6 +471,7 @@ jobs:
 - Mean time to recovery (goal: < 30 minutes)
 
 **Review Monthly:**
+
 - What caused failed deployments?
 - What caused rollbacks?
 - How can we improve process?
@@ -464,6 +488,7 @@ jobs:
 - **CTO:** @carol (Slack, +1-555-0789)
 
 **External Services:**
+
 - **Vercel Support:** support@vercel.com
 - **Database Provider:** [contact info]
 - **CDN Provider:** [contact info]
@@ -473,6 +498,7 @@ jobs:
 ## Post-Deployment
 
 **After Successful Deploy:**
+
 - [ ] Update CHANGELOG.md
 - [ ] Tag release in Git
 - [ ] Post in #engineering Slack channel
@@ -480,6 +506,7 @@ jobs:
 - [ ] Schedule next deployment
 
 **After Failed Deploy:**
+
 - [ ] Document what went wrong
 - [ ] Update deployment checklist
 - [ ] Create tickets for improvements

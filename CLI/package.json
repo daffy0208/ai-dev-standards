@@ -35,7 +35,8 @@
     "joi": "^17.11.0",
     "ora": "^5.4.1",
     "prettier": "^3.1.1",
-    "yaml": "^2.3.4"
+    "yaml": "^2.3.4",
+    "@google/generative-ai": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^20.10.5",

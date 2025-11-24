@@ -8,6 +8,7 @@
 ## Already Installed & Configured ✅
 
 ### MCPs (3)
+
 1. **domain-memory-agent** - Knowledge base with semantic search for 7092 markdown files
 2. **project-health-auditor** - Code health and complexity analysis
 3. **workflow-orchestrator** - DAG-based workflow automation
@@ -19,18 +20,22 @@
 ## High Priority - Recommended to Install
 
 ### 1. agent-context-manager (HIGHEST PRIORITY)
+
 **Type:** Plugin (auto-loads AGENTS.md files)
 **Why You Need This:**
+
 - Your repo has 70+ skills - each needs agent-specific instructions
 - Currently using CLAUDE.md for everything (gets cluttered)
 - This lets you create AGENTS.md files that auto-load
 
 **What It Does:**
+
 - Automatically loads `AGENTS.md` files alongside `CLAUDE.md`
 - Separate agent-specific rules from general project context
 - Three-layer system: auto-load, hooks, manual sync
 
 **How to Use:**
+
 ```bash
 # 1. Install
 /plugin install agent-context-manager@claude-code-plugins-plus
@@ -46,18 +51,22 @@ Create .claude/AGENTS.md with agent-specific rules
 ---
 
 ### 2. ai-sdk-agents (HIGH PRIORITY)
+
 **Type:** Plugin (multi-agent orchestration)
 **Why You Need This:**
+
 - You already have agent-orchestrator-mcp
 - This provides alternative approach using Vercel AI SDK v5
 - Enables handoffs, routing, coordination across LLMs
 
 **What It Does:**
+
 - Specialized agents hand off tasks automatically
 - Intelligent routing to best-suited agent
 - Coordinate complex workflows across multiple models
 
 **Slash Commands:**
+
 - `/ai-agents-setup` - Initialize multi-agent structure
 - `/ai-agent-create [name] [specialization]` - Create new agent
 - `/ai-agents-test` - Test multi-agent system
@@ -69,16 +78,19 @@ Create .claude/AGENTS.md with agent-specific rules
 ### 3. Remaining Marketplace MCPs
 
 #### ai-experiment-logger
+
 **Status:** Available, not installed
 **Value:** Track experiments when testing your 70+ skills
 **Use Case:** Log which skills work best for different tasks
 
 #### conversational-api-debugger
+
 **Status:** Available, not installed
 **Value:** Interactive debugging of API issues
 **Use Case:** Debug your MCP tool calls interactively
 
 #### design-to-code
+
 **Status:** Available, not installed
 **Value:** Lower - unless you're building UI-heavy projects
 **Use Case:** Convert Figma designs to React components
@@ -90,14 +102,17 @@ Create .claude/AGENTS.md with agent-specific rules
 ### Plugin Packs
 
 #### ai-ml-engineering-pack
+
 **Type:** Plugin pack (12 plugins)
 **What's Included:**
+
 - Prompt Engineering (3): architect, optimizer, template generator
 - LLM Integration (3): integration expert, model selector, API scaffold
 - RAG Systems (3): architect, vector DB expert, pipeline generator
 - AI Safety (3): safety expert, prompt injection defender, monitoring
 
 **Why Consider:**
+
 - Your repo is focused on AI development standards
 - These plugins teach best practices for prompt engineering, RAG, safety
 - Could inform your own skill development
@@ -105,6 +120,7 @@ Create .claude/AGENTS.md with agent-specific rules
 **Cost:** Mentioned as paid ($79) but may vary for marketplace version
 
 **Recommendation:** Test individual plugins first:
+
 ```bash
 /plugin install prompt-architect@claude-code-plugins-plus
 /plugin install rag-architect@claude-code-plugins-plus
@@ -115,14 +131,17 @@ Create .claude/AGENTS.md with agent-specific rules
 ### Individual AI/ML Plugins
 
 #### prompt-architect
+
 **Value:** Design advanced prompts using CoT, few-shot patterns
 **Use Case:** Improve prompts for your 70+ skills
 
 #### rag-architect
+
 **Value:** Design RAG systems (you already have embedding/vector MCPs)
 **Use Case:** Enhance your existing semantic-search capabilities
 
 #### experiment-tracking-setup
+
 **Value:** Set up ML experiment tracking
 **Use Case:** Track performance of different skill configurations
 
@@ -131,6 +150,7 @@ Create .claude/AGENTS.md with agent-specific rules
 ## Lower Priority
 
 ### Skill Enhancers
+
 - file-to-code
 - research-to-deploy
 - calendar-to-workflow
@@ -139,6 +159,7 @@ Create .claude/AGENTS.md with agent-specific rules
 **Reason:** Generic workflow tools, not specific to your AI standards repository
 
 ### Other Packs
+
 - devops-automation-pack
 - security-pro-pack
 - fullstack-starter-pack
@@ -151,6 +172,7 @@ Create .claude/AGENTS.md with agent-specific rules
 ## Installation Priority Order
 
 ### Phase 1 (Do Now)
+
 1. ✅ **Test marketplace MCPs** - Restart Claude Code to verify they load
 2. **Install agent-context-manager** - Most valuable for organizing 70+ skills
    ```bash
@@ -158,6 +180,7 @@ Create .claude/AGENTS.md with agent-specific rules
    ```
 
 ### Phase 2 (This Week)
+
 3. **Install ai-sdk-agents** - Modern multi-agent orchestration
    ```bash
    /plugin install ai-sdk-agents@claude-code-plugins-plus
@@ -169,6 +192,7 @@ Create .claude/AGENTS.md with agent-specific rules
    ```
 
 ### Phase 3 (Next Week)
+
 5. **Test individual AI/ML plugins**
    ```bash
    /plugin install prompt-architect@claude-code-plugins-plus
@@ -176,6 +200,7 @@ Create .claude/AGENTS.md with agent-specific rules
    ```
 
 ### Phase 4 (Future)
+
 6. **Evaluate ai-ml-engineering-pack** - If individual plugins prove valuable
 
 ---
@@ -183,6 +208,7 @@ Create .claude/AGENTS.md with agent-specific rules
 ## What NOT to Install
 
 ### Avoid These (Low Value for Your Project)
+
 - Crypto plugins (27 plugins)
 - Finance plugins
 - Business tools
@@ -197,6 +223,7 @@ Create .claude/AGENTS.md with agent-specific rules
 ## Key Insight: Your Repository's Purpose
 
 **ai-dev-standards is:**
+
 - A framework library of AI development standards
 - 70+ reusable skills
 - 49 MCP servers
@@ -223,6 +250,7 @@ Create .claude/AGENTS.md with agent-specific rules
 After restarting Claude Code, test the 3 installed MCPs:
 
 ### domain-memory-agent
+
 ```
 "Use domain-memory-agent to store this document:
 Title: 'Testing Marketplace MCPs'
@@ -233,6 +261,7 @@ Tags: ['marketplace', 'mcp', 'testing']"
 ```
 
 ### project-health-auditor
+
 ```
 "Use project-health-auditor to analyze code health in the SKILLS directory"
 "Use project-health-auditor to identify high-complexity files"
@@ -240,6 +269,7 @@ Tags: ['marketplace', 'mcp', 'testing']"
 ```
 
 ### workflow-orchestrator
+
 ```
 "Use workflow-orchestrator to create a workflow for:
 1. Build all MCPs
@@ -254,17 +284,20 @@ Tags: ['marketplace', 'mcp', 'testing']"
 ## Summary
 
 **Already Done:**
+
 - ✅ 3 marketplace MCPs installed and configured
 - ✅ 52 total MCPs in Claude Code (49 repo + 3 marketplace)
 - ✅ Configuration files updated
 
 **Next Steps:**
+
 1. Restart Claude Code to load marketplace MCPs
 2. Test the 3 marketplace MCPs
 3. Install agent-context-manager (highest value)
 4. Consider ai-sdk-agents for multi-agent patterns
 
 **Avoid:**
+
 - Don't install every plugin "just because"
 - Focus on plugins that enhance your AI standards repository
 - Skip production app/deployment/business domain plugins
@@ -274,6 +307,7 @@ Tags: ['marketplace', 'mcp', 'testing']"
 ## Configuration Summary
 
 **Total MCPs:** 52
+
 - Repository MCPs: 49 (in MCP-SERVERS/)
 - Marketplace MCPs: 3 (domain-memory-agent, project-health-auditor, workflow-orchestrator)
 

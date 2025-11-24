@@ -9,6 +9,7 @@
 ### Triggers
 
 **Immediate Rollback (No Discussion):**
+
 - ❌ Error rate > 10%
 - ❌ Data corruption detected
 - ❌ Security vulnerability exposed
@@ -17,6 +18,7 @@
 - ❌ Payment processing down
 
 **Consider Rollback (Evaluate First):**
+
 - ⚠️ Error rate 5-10%
 - ⚠️ Performance degradation > 50%
 - ⚠️ Non-critical feature broken
@@ -24,6 +26,7 @@
 - ⚠️ Unexpected behavior in production
 
 **Don't Rollback (Fix Forward):**
+
 - ✅ Minor UI bug
 - ✅ Typo in text
 - ✅ Non-functional cosmetic issue
@@ -34,15 +37,15 @@
 
 ## Rollback Decision Matrix
 
-| Issue | Severity | Users Affected | Rollback? | Timeline |
-|-------|----------|----------------|-----------|----------|
-| API down | P0 | All | Yes | Immediate |
-| Payment failing | P0 | All checkout | Yes | Immediate |
-| Data corruption | P0 | Any | Yes | Immediate |
-| Major feature broken | P1 | Many | Yes | < 15 min |
-| Performance -50% | P1 | All (slow) | Yes | < 30 min |
-| Minor feature broken | P2 | Few | Maybe | Evaluate |
-| UI glitch | P3 | Few | No | Fix forward |
+| Issue                | Severity | Users Affected | Rollback? | Timeline    |
+| -------------------- | -------- | -------------- | --------- | ----------- |
+| API down             | P0       | All            | Yes       | Immediate   |
+| Payment failing      | P0       | All checkout   | Yes       | Immediate   |
+| Data corruption      | P0       | Any            | Yes       | Immediate   |
+| Major feature broken | P1       | Many           | Yes       | < 15 min    |
+| Performance -50%     | P1       | All (slow)     | Yes       | < 30 min    |
+| Minor feature broken | P2       | Few            | Maybe     | Evaluate    |
+| UI glitch            | P3       | Few            | No        | Fix forward |
 
 ---
 
@@ -55,6 +58,7 @@
 **Speed:** 2-5 minutes
 
 **Process:**
+
 ```bash
 # Option A: Vercel/Netlify automatic
 vercel rollback
@@ -69,6 +73,7 @@ vercel promote [previous-deployment-url] --prod
 ```
 
 **Verification:**
+
 ```bash
 # Check deployment
 curl https://api.example.com/health
@@ -125,23 +130,25 @@ npm run migrate:rollback
 ```
 
 **Migration File Structure (Reversible):**
+
 ```typescript
 // migrations/20251022_add_user_phone.ts
 
 export async function up(db) {
-  await db.schema.table('users', (table) => {
+  await db.schema.table('users', table => {
     table.string('phone', 20).nullable()
   })
 }
 
 export async function down(db) {
-  await db.schema.table('users', (table) => {
+  await db.schema.table('users', table => {
     table.dropColumn('phone')
   })
 }
 ```
 
 **Run Down Migration:**
+
 ```bash
 npx knex migrate:rollback --all
 # Or specific migration
@@ -318,6 +325,7 @@ IC: @alice
 
 ```markdown
 ⏱️ 15:25 UPDATE
+
 - Application rolled back: ✅
 - Database rolling back: 🔄
 - ETA: 3 minutes
@@ -381,11 +389,13 @@ Monitoring: 30 min
 ### Scenario 1: Broken API Endpoint
 
 **Symptoms:**
+
 - 500 errors on specific endpoint
 - Error rate 15%
 - Sentry alerts
 
 **Rollback:**
+
 ```bash
 # Quick rollback (code only)
 vercel rollback
@@ -405,11 +415,13 @@ curl https://api.example.com/api/users
 ### Scenario 2: Database Migration Failure
 
 **Symptoms:**
+
 - Application crashes on startup
 - Database connection errors
 - Migration script failed halfway
 
 **Rollback:**
+
 ```bash
 # 1. Check migration status
 npx prisma migrate status
@@ -437,11 +449,13 @@ npx prisma studio
 ### Scenario 3: Performance Degradation
 
 **Symptoms:**
+
 - Response times 3x normal
 - Timeout errors
 - Database slow query log full
 
 **Rollback:**
+
 ```bash
 # 1. Quick rollback
 vercel rollback
@@ -464,11 +478,13 @@ curl -w "\nTime: %{time_total}s\n" https://api.example.com/api/products
 ### Scenario 4: Feature Flag Gone Wrong
 
 **Symptoms:**
+
 - New feature causing issues
 - Error rate spike
 - User complaints
 
 **Rollback:**
+
 ```bash
 # Don't rollback entire deployment!
 # Just disable feature flag
@@ -589,6 +605,7 @@ vercel rollback
 ## Rollback Procedure for v2.4.3
 
 If issues occur:
+
 1. Run: `vercel rollback`
 2. Database migration is reversible (has down script)
 3. If needed: `npx knex migrate:rollback`
@@ -688,12 +705,14 @@ if (Math.random() < 0.1) {
 ## Rollback Metrics
 
 **Track:**
+
 - Rollback frequency (goal: < 5% of deployments)
 - Time to rollback (goal: < 5 minutes)
 - Rollback success rate (goal: 100%)
 - Repeat rollbacks (same issue twice = process problem)
 
 **Review Monthly:**
+
 - Why did we rollback?
 - How can we prevent it?
 - Was rollback procedure smooth?
@@ -710,6 +729,7 @@ if (Math.random() < 0.1) {
 - **CTO:** @carol (Slack: /msg @carol, Phone: +1-555-0789)
 
 **Platform Support:**
+
 - **Vercel:** support@vercel.com, Slack: vercel.com/support
 - **AWS:** Open support ticket, Phone: 1-800-AWS-HELP
 - **Database Provider:** [contact info]

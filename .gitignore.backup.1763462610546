@@ -1,0 +1,130 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+.eggs/
+*.so
+*.dylib
+*.dll
+
+# TypeScript build artifacts (compiled from .ts sources)
+*.js.map
+*.d.ts
+*.d.ts.map
+# But keep specific JS files that are source
+!CLI/**/*.js
+!scripts/**/*.cjs
+!scripts/**/*.js
+!*.config.js
+!*.config.cjs
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+
+# Testing
+.coverage
+.pytest_cache/
+coverage/
+.nyc_output/
+htmlcov/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+tmp/
+
+# OS files
+Thumbs.db
+.Spotlight-V100
+.Trashes
+*:Zone.Identifier
+
+# AI Dev CLI files (created during testing)
+.ai-dev.json
+.ai-dev-cache/
+*.backup
+
+# Build artifacts and compressed files
+*.meta.json.gz
+
+# npm/yarn lock files (we use package.json only)
+package-lock.json
+yarn.lock
+
+# Keep .gitkeep files
+!.gitkeep
+
+# Build outputs and reports
+html/
+portal/
+test-output/
+REPORTS/
+*.report.json
+*-REPORT.json
+*-SUMMARY.md
+verification-*.md
+
+# Allow archived status reports to be tracked
+!.archive/status-reports/
+!.archive/status-reports/**
+
+# Orchestration system (keep structure, ignore active requests/results)
+orchestration-requests/pending/*.json
+orchestration-requests/in-progress/*.json
+orchestration-requests/completed/*.json
+orchestration-requests/failed/*.json
+orchestration-results/*.json
+!orchestration-requests/**/.gitkeep
+!orchestration-results/.gitkeep
+
+# Hooks dependencies
+.claude/hooks/node_modules/
+.claude/hooks/package-lock.json
+
+# Claude context data (local session tracking)
+.claude/context/
+
+# Generated MCP settings (environment-specific)
+.claude/mcp-settings.json
+
+# MCP Code Execution - Skills Storage
+# Ignore generated skill files but keep structure and README
+skills/*.py
+skills/*.txt
+skills/*.json
+!skills/
+!skills/README.md

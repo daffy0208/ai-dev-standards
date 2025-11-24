@@ -10,27 +10,27 @@ When you run `ai-dev sync`, it updates **everything** your project needs to stay
 
 These files are automatically kept in sync:
 
-| File | What It Does | Merge Strategy |
-|------|--------------|----------------|
-| **claude.md** | Skills available to Claude | Append new skills |
-| **mcp-settings.json** | MCP server configurations | Add new MCPs |
-| **.cursorrules** | Cursor IDE best practices | Replace with latest |
-| **.gitignore** | Files to ignore in git | Merge patterns (no duplicates) |
-| **.env.example** | Environment variable template | Merge new variables |
-| **.prettierrc** | Code formatting rules | Replace with latest |
-| **.eslintrc.json** | Linting rules | Smart merge (preserves custom rules) |
+| File                  | What It Does                  | Merge Strategy                       |
+| --------------------- | ----------------------------- | ------------------------------------ |
+| **claude.md**         | Skills available to Claude    | Append new skills                    |
+| **mcp-settings.json** | MCP server configurations     | Add new MCPs                         |
+| **.cursorrules**      | Cursor IDE best practices     | Replace with latest                  |
+| **.gitignore**        | Files to ignore in git        | Merge patterns (no duplicates)       |
+| **.env.example**      | Environment variable template | Merge new variables                  |
+| **.prettierrc**       | Code formatting rules         | Replace with latest                  |
+| **.eslintrc.json**    | Linting rules                 | Smart merge (preserves custom rules) |
 
 ### 🔧 Optionally Updated (On Request)
 
 These files update when you explicitly sync them:
 
-| File | What It Does | When to Update |
-|------|--------------|----------------|
-| **tsconfig.json** | TypeScript configuration | Major TypeScript updates |
-| **tailwind.config.js** | Tailwind CSS setup | New Tailwind features |
-| **package.json** | Dependencies | New recommended packages |
-| **jest.config.js** | Test configuration | Testing strategy changes |
-| **playwright.config.ts** | E2E test setup | Playwright updates |
+| File                     | What It Does             | When to Update           |
+| ------------------------ | ------------------------ | ------------------------ |
+| **tsconfig.json**        | TypeScript configuration | Major TypeScript updates |
+| **tailwind.config.js**   | Tailwind CSS setup       | New Tailwind features    |
+| **package.json**         | Dependencies             | New recommended packages |
+| **jest.config.js**       | Test configuration       | Testing strategy changes |
+| **playwright.config.ts** | E2E test setup           | Playwright updates       |
 
 ---
 
@@ -99,6 +99,7 @@ ai-dev update all
 ### **.cursorrules** - Cursor IDE Rules
 
 **What it contains:**
+
 - TypeScript best practices
 - React patterns (functional components, hooks)
 - Code style guidelines
@@ -110,6 +111,7 @@ ai-dev update all
 **Strategy:** Replace (you get latest best practices)
 
 **Example:**
+
 ```
 # AI Dev Standards - Cursor Rules
 
@@ -133,18 +135,20 @@ ai-dev update all
 ### **.gitignore** - Git Ignore Patterns
 
 **What it contains:**
+
 - node_modules/
 - Build artifacts (.next/, dist/)
-- Environment files (.env*)
+- Environment files (.env\*)
 - IDE files (.vscode/, .idea/)
 - OS files (.DS_Store)
-- Temporary files (*.tmp, *.log)
+- Temporary files (_.tmp, _.log)
 - AI Dev Standards cache (.ai-dev.json, .ai-dev-cache/)
 
 **Auto-updated:** YES (every sync)
 **Strategy:** Merge (no duplicates, preserves custom patterns)
 
 **Example:**
+
 ```
 # Auto-merged with your existing patterns
 
@@ -161,6 +165,7 @@ node_modules/
 ### **.env.example** - Environment Variables
 
 **What it contains:**
+
 - All supported integrations
 - API keys for Supabase, Stripe, OpenAI, etc.
 - Database URLs
@@ -170,6 +175,7 @@ node_modules/
 **Strategy:** Merge (adds new variables, keeps existing)
 
 **Example:**
+
 ```
 # App
 NEXT_PUBLIC_APP_URL=http://localhost:3000
@@ -188,6 +194,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=
 ### **tsconfig.json** - TypeScript Config
 
 **What it contains:**
+
 - Strict mode enabled
 - Module resolution
 - Path aliases (@/components, @/lib)
@@ -197,6 +204,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=
 **Strategy:** Smart merge (preserves your custom paths)
 
 **When to update:**
+
 ```bash
 ai-dev update tsconfig
 ```
@@ -206,6 +214,7 @@ ai-dev update tsconfig
 ### **.prettierrc** - Code Formatting
 
 **What it contains:**
+
 - No semicolons
 - Single quotes
 - 100 character line width
@@ -216,6 +225,7 @@ ai-dev update tsconfig
 **Strategy:** Replace
 
 **Example:**
+
 ```json
 {
   "semi": false,
@@ -230,6 +240,7 @@ ai-dev update tsconfig
 ### **.eslintrc.json** - Linting Rules
 
 **What it contains:**
+
 - Next.js defaults
 - TypeScript rules
 - No unused variables
@@ -244,6 +255,7 @@ ai-dev update tsconfig
 ### **tailwind.config.js** - Tailwind CSS
 
 **What it contains:**
+
 - Content paths
 - Theme extensions (colors, spacing)
 - Custom utilities
@@ -253,6 +265,7 @@ ai-dev update tsconfig
 **Strategy:** Smart merge (preserves your custom theme)
 
 **When to update:**
+
 ```bash
 ai-dev update tailwind-config
 ```
@@ -274,12 +287,14 @@ These files are **NEVER** touched by auto-sync:
 ## 🎨 Merge Strategies Explained
 
 ### **Replace**
+
 ```
 Old file is completely replaced with new version.
 Use for: .cursorrules, .prettierrc
 ```
 
 ### **Merge**
+
 ```
 New lines added to existing file.
 Duplicates removed.
@@ -288,6 +303,7 @@ Use for: .gitignore, .env.example
 ```
 
 ### **Smart Merge**
+
 ```
 JSON objects merged intelligently.
 New keys added.
@@ -359,6 +375,7 @@ When the version in `META/registry.json` is newer, an update is available.
 ### Scenario: New Best Practice Added
 
 **In ai-dev-standards repo:**
+
 ```bash
 # Update .cursorrules with new pattern
 # Update registry version: 1.0.0 → 1.1.0
@@ -367,6 +384,7 @@ git push
 ```
 
 **In your project:**
+
 ```bash
 git pull  # Pull your code changes
 

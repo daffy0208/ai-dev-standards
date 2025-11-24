@@ -21,6 +21,7 @@ Use RAG when you need LLMs to access fresh, domain-specific, or proprietary know
 ### STOP: Have You Validated the Need for RAG?
 
 **Before implementing RAG, confirm:**
+
 - [ ] **Problem validated** - Completed `product-strategist` Phase 1 (problem discovery)
 - [ ] **Users need AI search** - Tested with simpler alternatives (see below)
 - [ ] **ROI justified** - Calculated cost vs benefit of RAG vs alternatives
@@ -30,24 +31,28 @@ Use RAG when you need LLMs to access fresh, domain-specific, or proprietary know
 RAG is powerful but expensive. Try cheaper alternatives first:
 
 **1. FAQ Page / Documentation (1 day, $0)**
+
 - Create well-organized FAQ or docs
 - Add search with Cmd+F
 - **Works for:** <50 common questions, static content
 - **Test:** Do users find answers? If yes, stop here.
 
 **2. Simple Keyword Search (2-3 days, $0-20/month)**
+
 - Use Algolia, Typesense, or PostgreSQL full-text search
 - Good enough for 80% of use cases
 - **Works for:** <100k documents, keyword matching sufficient
 - **Test:** Do users get relevant results? If yes, stop here.
 
 **3. Manual Curation (Concierge MVP) (1 week, $0)**
+
 - Manually answer user questions
 - Build FAQ from common questions
 - **Works for:** <100 users, validating if users want AI
 - **Test:** Do users value your answers enough to pay? If yes, consider RAG.
 
 **4. Simple Semantic Search (1 week, $30-50/month)**
+
 - Use OpenAI embeddings + Postgres pgvector
 - Skip complex retrieval, re-ranking, etc.
 - **Works for:** <50k documents, basic semantic search
@@ -56,16 +61,19 @@ RAG is powerful but expensive. Try cheaper alternatives first:
 ### Cost Reality Check
 
 **Naive RAG (Prototype):**
+
 - **Time:** 1-2 weeks
 - **Cost:** $50-150/month (vector DB + embeddings + API calls)
 - **When:** Prototype, <10k documents, proof of concept
 
 **Advanced RAG (Production):**
+
 - **Time:** 3-4 weeks
 - **Cost:** $200-500/month (hybrid search, re-ranking, monitoring)
 - **When:** Production, 10k-1M documents, validated demand
 
 **Modular RAG (Enterprise):**
+
 - **Time:** 6-8 weeks
 - **Cost:** $500-2000+/month (multiple KBs, specialized modules)
 - **When:** Enterprise, 1M+ documents, mission-critical
@@ -94,6 +102,7 @@ Do users need to search your content?
 ### Validation Checklist
 
 Only proceed with RAG implementation if:
+
 - [ ] Tested simpler alternatives (FAQ, keyword search, manual curation)
 - [ ] Users confirmed they need AI-powered search (not just you think they do)
 - [ ] Calculated ROI: cost of RAG < value users get
@@ -114,18 +123,21 @@ Only proceed with RAG implementation if:
 **Goal**: Create well-structured knowledge foundation
 
 **Actions**:
+
 - Map data sources (internal: docs, databases, APIs / external: web, feeds)
 - Filter noise, select authoritative content (prevent "data dump fallacy")
 - Define chunking strategy: semantic chunking based on structure
 - Add metadata: tags, timestamps, source identifiers, categories
 
 **Validation**:
+
 - [ ] All data sources catalogued and prioritized
 - [ ] Data quality assessed (accuracy, completeness, freshness)
 - [ ] Chunking strategy tested with sample documents
 - [ ] Metadata schema validated for search effectiveness
 
 **Common Chunking Strategies**:
+
 - Fixed-size: 500-1000 tokens, 50-100 token overlap
 - Semantic: By paragraph, section headers, or topic boundaries
 - Recursive: Split by structure (markdown headers, code blocks)
@@ -137,17 +149,20 @@ Only proceed with RAG implementation if:
 **Goal**: Choose optimal embedding approach for semantic understanding
 
 **Actions**:
+
 - Select embedding model: `text-embedding-3-large` (1536 dim) for general, domain-specific for specialized
 - Plan multi-modal needs (text, code, images, tables)
 - Decide on fine-tuning: use domain data if general embeddings underperform
 - Establish similarity benchmarks
 
 **Validation**:
+
 - [ ] Embedding model benchmarked on domain data
 - [ ] Retrieval accuracy tested with known query-document pairs
 - [ ] Storage and compute costs validated
 
 **Model Selection**:
+
 - General: OpenAI `text-embedding-3-large`, `text-embedding-3-small`
 - Code: `code-search-babbage-code-001` or StarEncoder
 - Multilingual: `multilingual-e5-large`
@@ -159,18 +174,21 @@ Only proceed with RAG implementation if:
 **Goal**: Implement scalable vector database
 
 **Actions**:
+
 - Choose vector DB (Pinecone, Weaviate, Qdrant, Chroma, pgvector)
 - Configure index: HNSW for speed, IVF for scale
 - Plan scalability: data growth and query volume
 - Implement backup, recovery, security
 
 **Validation**:
+
 - [ ] Vector store benchmarked under expected load
 - [ ] Index optimized for retrieval speed and accuracy
 - [ ] Backup and recovery tested
 - [ ] Security controls implemented
 
 **Vector DB Decision**:
+
 - Managed cloud → Pinecone
 - Self-hosted, feature-rich → Weaviate
 - Lightweight, local → Chroma
@@ -184,6 +202,7 @@ Only proceed with RAG implementation if:
 **Goal**: Build sophisticated retrieval beyond simple similarity search
 
 **Actions**:
+
 - Implement hybrid retrieval: semantic search + keyword (BM25)
 - Add query enhancement: expansion, reformulation, multi-query
 - Apply contextual filtering: metadata, temporal constraints, relevance ranking
@@ -191,12 +210,14 @@ Only proceed with RAG implementation if:
 - Handle edge cases: no relevant results found
 
 **Advanced Techniques**:
+
 - **Re-ranking**: Use cross-encoder after initial retrieval (e.g., `cross-encoder/ms-marco-MiniLM-L-12-v2`)
 - **Query routing**: Route different query types to specialized strategies
 - **Ensemble methods**: Combine multiple retrieval approaches
 - **Adaptive retrieval**: Adjust top-k based on query complexity
 
 **Validation**:
+
 - [ ] Retrieval accuracy tested across diverse query types
 - [ ] Hybrid retrieval outperforms single-method baselines
 - [ ] Query latency meets requirements (<500ms ideal)
@@ -209,6 +230,7 @@ Only proceed with RAG implementation if:
 **Goal**: Transform retrieved chunks into optimal LLM context
 
 **Actions**:
+
 - Rank and select: prioritize by relevance score, recency, source authority
 - Synthesize: merge related chunks, avoid redundancy
 - Compress: use LLMLingua or similar for token optimization
@@ -216,12 +238,14 @@ Only proceed with RAG implementation if:
 - Adapt dynamically: adjust context based on conversation history
 
 **Context Engineering Integration**:
+
 - Blend RAG results with system instructions and user prompts
 - Maintain conversation coherence across multi-turn interactions
 - Implement context persistence for follow-up queries
 - Balance context size vs. information density
 
 **Validation**:
+
 - [ ] Context relevance validated against human judgments
 - [ ] Token optimization maintains accuracy
 - [ ] Multi-turn conversations maintain coherence
@@ -234,24 +258,28 @@ Only proceed with RAG implementation if:
 **Goal**: Measure RAG system performance comprehensively
 
 **Retrieval Quality**:
+
 - **Precision@K**: Fraction of top-K results that are relevant
 - **Recall@K**: Fraction of relevant docs in top-K
 - **MRR (Mean Reciprocal Rank)**: Average rank of first relevant result
 - **NDCG**: Ranking quality with graded relevance
 
 **Generation Quality**:
+
 - **Faithfulness**: Generated content accuracy vs. sources
 - **Answer Relevance**: Response relevance to query
 - **Context Utilization**: How effectively LLM uses retrieved info
 - **Hallucination Rate**: Frequency of unsupported claims
 
 **System Performance**:
+
 - **End-to-End Latency**: Query to answer (<3 seconds target)
 - **Retrieval Latency**: Time to retrieve and rank (<500ms)
 - **Token Efficiency**: Information density per token
 - **Cost Per Query**: Combined retrieval + generation costs
 
 **Validation**:
+
 - [ ] Baseline metrics established
 - [ ] A/B testing framework for config comparisons
 - [ ] Automated evaluation pipeline deployed
@@ -264,24 +292,28 @@ Only proceed with RAG implementation if:
 **Goal**: Deploy with enterprise-grade reliability and security
 
 **Deployment**:
+
 - Containerize with Docker/Kubernetes
 - Implement load balancing across RAG instances
 - Add caching for frequent queries
 - Graceful degradation: fallback to base model on component failure
 
 **Security**:
+
 - Role-based access controls for knowledge base
 - Data masking and PII protection
 - Audit logging for compliance
 - Prompt injection defense
 
 **Monitoring**:
+
 - Real-time metrics dashboard (latency, cost, accuracy)
 - Query analysis for patterns and failure modes
 - Cost tracking and optimization alerts
 - Performance profiling for bottlenecks
 
 **Validation**:
+
 - [ ] Production handles expected traffic
 - [ ] Security prevents unauthorized access
 - [ ] Monitoring provides actionable insights
@@ -294,24 +326,28 @@ Only proceed with RAG implementation if:
 **Goal**: Establish processes for ongoing enhancement
 
 **Data Pipeline**:
+
 - Automated knowledge base updates (real-time or scheduled)
 - Quality monitoring: detect data drift and degradation
 - Source diversification: add new data sources
 - Feedback integration: user corrections and preferences
 
 **Model Evolution**:
+
 - Evaluate and migrate to improved embeddings
 - Fine-tune on domain data regularly
 - Upgrade architecture: Naive → Advanced → Modular RAG
 - Expand multi-modal support (images, audio, video)
 
 **Optimization**:
+
 - Analyze query patterns, optimize for common needs
 - Improve cache hit rates
 - Tune vector indices regularly
 - Balance performance vs. costs
 
 **Validation**:
+
 - [ ] Automated improvement pipelines functioning
 - [ ] Performance trends show improvement
 - [ ] User satisfaction increasing
@@ -320,26 +356,31 @@ Only proceed with RAG implementation if:
 ## Key RAG Principles
 
 ### 1. Relevance Over Volume
+
 - Quality curation > massive datasets
 - Remove outdated/low-quality content continuously
 - Prioritize most relevant info to prevent "lost in the middle"
 
 ### 2. Semantic Understanding
+
 - Use embeddings for true semantic matching, not just keywords
 - Recognize query intent (factual, analytical, creative)
 - Adapt retrieval strategy based on context
 
 ### 3. Multi-Modal Intelligence
+
 - Handle text, images, code, tables, structured data
 - Enable cross-modal retrieval (text query → image results)
 - Preserve document structure and formatting
 
 ### 4. Temporal Awareness
+
 - Prioritize recent info for time-sensitive topics
 - Maintain historical access when relevant
 - Integrate real-time data feeds for dynamic domains
 
 ### 5. Transparency & Trust
+
 - Always provide source citations
 - Indicate confidence levels
 - Explain why specific information was selected
@@ -369,6 +410,7 @@ Only proceed with RAG implementation if:
 ## Critical Success Rules
 
 **Non-Negotiable**:
+
 1. ✅ Source attribution for every response
 2. ✅ Validate generated content against sources (prevent hallucination)
 3. ✅ Filter sensitive data before retrieval
@@ -379,6 +421,7 @@ Only proceed with RAG implementation if:
 8. ✅ Comprehensive testing before production
 
 **Quality Gates**:
+
 - Before Production: >85% accuracy on evaluation dataset
 - Ongoing: User satisfaction >4.0/5.0
 - Performance: 95th percentile <5 seconds
@@ -388,12 +431,14 @@ Only proceed with RAG implementation if:
 ## Advanced Patterns
 
 ### Modular RAG Architecture
+
 - **Search Module**: Query understanding and reformulation
 - **Memory Module**: Long-term conversation persistence
 - **Routing Module**: Query routing to specialized knowledge bases
 - **Predict Module**: Anticipatory pre-loading based on context
 
 ### Hybrid RAG + Fine-tuning
+
 - RAG for dynamic, frequently changing knowledge
 - Fine-tuning for domain-specific reasoning patterns
 - Combine strengths for maximum effectiveness
@@ -401,13 +446,16 @@ Only proceed with RAG implementation if:
 ## Related Resources
 
 **Related Skills**:
+
 - `multi-agent-architect` - For complex RAG orchestration
 - `knowledge-graph-builder` - For structured knowledge integration
 - `performance-optimizer` - For RAG system optimization
 
 **Related Patterns**:
+
 - `META/DECISION-FRAMEWORK.md` - Vector DB and embedding selection
 - `STANDARDS/architecture-patterns/rag-pattern.md` - RAG architecture details (when created)
 
 **Related Playbooks**:
+
 - `PLAYBOOKS/deploy-rag-system.md` - RAG deployment procedure (when created)

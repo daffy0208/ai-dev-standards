@@ -7,13 +7,8 @@
     {
       "name": "3d-visualizer",
       "description": "Expert in Three.js, 3D graphics, and interactive 3D visualizations",
-      "triggers": [
-        "3d-visualizer",
-        "3d visualizer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["3d-visualizer", "3d visualizer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -21,23 +16,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "accessibility-engineer",
       "description": "Implement accessibility (a11y) best practices to make applications usable by everyone. Use when building UIs, conducting accessibility audits, or ensuring WCAG compliance. Covers screen readers, keyboard navigation, ARIA attributes, and inclusive design patterns.",
-      "triggers": [
-        "accessibility-engineer",
-        "accessibility engineer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["accessibility-engineer", "accessibility engineer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -45,23 +31,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "animation-designer",
       "description": "Expert in web animations, transitions, and motion design using Framer Motion and CSS",
-      "triggers": [
-        "animation-designer",
-        "animation designer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["animation-designer", "animation designer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -69,23 +46,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "api-designer",
       "description": "Design REST and GraphQL APIs. Use when creating backend APIs, defining API contracts, or integrating third-party services. Covers endpoint design, authentication, versioning, documentation, and best practices.",
-      "triggers": [
-        "api-designer",
-        "api designer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["api-designer", "api designer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -93,23 +61,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "api-integration-builder",
       "description": "Build reliable third-party API integrations including OAuth, webhooks, rate limiting, error handling, and data sync. Use when integrating with external services (Slack, Stripe, Gmail, etc.), building API connections, handling webhooks, or implementing OAuth flows.",
-      "triggers": [
-        "api-integration-builder",
-        "api integration builder"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["api-integration-builder", "api integration builder"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -117,12 +76,8 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "archon-manager",
@@ -148,23 +103,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "asset-manager",
       "description": "Organize design assets, optimize images and fonts, maintain brand asset libraries, implement version control for assets, and enforce naming conventions. Keep design assets organized and production-ready.",
-      "triggers": [
-        "asset-manager",
-        "asset manager"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["asset-manager", "asset manager"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -172,23 +118,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "audio-producer",
       "description": "Expert in web audio, audio processing, and interactive sound design",
-      "triggers": [
-        "audio-producer",
-        "audio producer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["audio-producer", "audio producer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -196,12 +133,8 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "bmad-method",
@@ -213,9 +146,7 @@
         "\"business architecture design\"",
         "\"align architecture with business model\""
       ],
-      "tags": [
-        "business-architecture"
-      ],
+      "tags": ["business-architecture"],
       "category": "business-architecture",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -223,23 +154,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "brand-designer",
       "description": "Expert in brand identity, logo design, and visual brand systems",
-      "triggers": [
-        "brand-designer",
-        "brand designer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["brand-designer", "brand designer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -247,25 +169,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "capability-graph-builder",
       "description": "Build queryable capability graphs from manifests using Codex for relationship inference between skills, resources, and capabilities.",
-      "triggers": [
-        "capability-graph-builder",
-        "capability graph builder"
-      ],
-      "tags": [
-        "graph",
-        "codex",
-        "orchestration"
-      ],
+      "triggers": ["capability-graph-builder", "capability graph builder"],
+      "tags": ["graph", "codex", "orchestration"],
       "category": "ai-native",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -273,12 +184,8 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "codex-review-workflow",
@@ -290,12 +197,7 @@
         "\"validate with codex\"",
         "\"codex cli\""
       ],
-      "tags": [
-        "automation",
-        "code-review",
-        "quality",
-        "testing"
-      ],
+      "tags": ["automation", "code-review", "quality", "testing"],
       "category": "automation",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -303,23 +205,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "context-preserver",
       "description": "Automatically save and restore development context to minimize cognitive load when resuming work. Use when switching tasks, taking breaks, or returning after interruptions. Captures mental state, file locations, and next steps. Designed for ADHD developers with high context-switching costs.",
-      "triggers": [
-        "context-preserver",
-        "context preserver"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["context-preserver", "context preserver"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -327,23 +220,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "copywriter",
       "description": "Expert in writing compelling copy for web, marketing, and product",
-      "triggers": [
-        "copywriter",
-        "copywriter"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["copywriter", "copywriter"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -351,23 +235,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "customer-feedback-analyzer",
       "description": "Synthesize user feedback from multiple channels and identify patterns to inform product decisions. Use when analyzing feedback, prioritizing feature requests, conducting NPS surveys, or understanding user sentiment. Covers feedback collection, categorization, prioritization frameworks, and closing the feedback loop.",
-      "triggers": [
-        "customer-feedback-analyzer",
-        "customer feedback analyzer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["customer-feedback-analyzer", "customer feedback analyzer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -375,23 +250,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "customer-support-builder",
       "description": "Build scalable customer support systems including help centers, chatbots, ticketing systems, and self-service knowledge bases. Use when designing support infrastructure, reducing support load, improving customer satisfaction, or scaling support without linear hiring.",
-      "triggers": [
-        "customer-support-builder",
-        "customer support builder"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["customer-support-builder", "customer support builder"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -399,23 +265,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "dark-matter-analyzer",
       "description": "Analyze repositories to reveal unseen patterns, strategic drift, and organizational health. Use when assessing repository coherence, diagnosing project issues, identifying documentation inflation, or understanding why a codebase feels misaligned with its stated goals.",
-      "triggers": [
-        "dark-matter-analyzer",
-        "dark matter analyzer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["dark-matter-analyzer", "dark matter analyzer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -423,23 +280,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "data-engineer",
       "description": "Expert in data pipelines, ETL processes, and data infrastructure",
-      "triggers": [
-        "data-engineer",
-        "data engineer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["data-engineer", "data engineer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -447,23 +295,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "data-visualizer",
       "description": "Expert in creating charts, dashboards, and data visualizations using modern libraries",
-      "triggers": [
-        "data-visualizer",
-        "data visualizer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["data-visualizer", "data visualizer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -471,23 +310,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "deployment-advisor",
       "description": "Choose deployment strategy and infrastructure. Use when deciding where to deploy applications, setting up CI/CD, or configuring production environments. Covers Vercel, Railway, AWS, Cloudflare Workers, and Docker.",
-      "triggers": [
-        "deployment-advisor",
-        "deployment advisor"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["deployment-advisor", "deployment advisor"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -495,23 +325,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "design-system-architect",
       "description": "Build scalable, maintainable design systems that unify product experiences. Use when creating component libraries, design tokens, or establishing design standards. Covers atomic design, Storybook, theming, and design system governance.",
-      "triggers": [
-        "design-system-architect",
-        "design system architect"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["design-system-architect", "design system architect"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -519,23 +340,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "figma-developer",
       "description": "Extract components from Figma, convert designs to React components, sync design tokens, and generate code from designs. Bridge the gap between design and code with automated workflows.",
-      "triggers": [
-        "figma-developer",
-        "figma developer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["figma-developer", "figma developer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -543,23 +355,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "focus-session-manager",
       "description": "Automatically manage focus sessions, breaks, and hyperfocus protection. Uses ADHD-optimized Pomodoro technique with flexible timers, health reminders, and gentle interruptions. Protects against hyperfocus burnout while maximizing productive time.",
-      "triggers": [
-        "focus-session-manager",
-        "focus session manager"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["focus-session-manager", "focus session manager"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -567,23 +370,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "forensic-data-engineer",
       "description": "Expert in data forensics, anomaly detection, audit trail analysis, fraud detection, and breach investigation",
-      "triggers": [
-        "forensic-data-engineer",
-        "forensic data engineer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["forensic-data-engineer", "forensic data engineer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -591,12 +385,8 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "framework-orchestrator",
@@ -608,9 +398,7 @@
         "\"coordinate skills\"",
         "\"project orchestration\""
       ],
-      "tags": [
-        "orchestration"
-      ],
+      "tags": ["orchestration"],
       "category": "orchestration",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -618,23 +406,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "frontend-builder",
       "description": "Build modern React/Next.js frontends. Use when creating web applications, choosing frontend stack, structuring components, or implementing UI/UX designs. Covers React, Next.js, Tailwind CSS, and component patterns.",
-      "triggers": [
-        "frontend-builder",
-        "frontend builder"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["frontend-builder", "frontend builder"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -642,23 +421,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "go-to-market-planner",
       "description": "Plan product launches and go-to-market strategy. Use when launching products, entering new markets, or planning marketing campaigns. Covers positioning, channels, messaging, and launch execution.",
-      "triggers": [
-        "go-to-market-planner",
-        "go to market planner"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["go-to-market-planner", "go to market planner"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -666,23 +436,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "growth-experimenter",
       "description": "Run systematic growth experiments to increase acquisition, activation, retention, and revenue. Use when optimizing conversion funnels, running A/B tests, improving metrics, or when users mention growth, experimentation, optimization, or scaling user acquisition.",
-      "triggers": [
-        "growth-experimenter",
-        "growth experimenter"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["growth-experimenter", "growth experimenter"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -690,23 +451,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "iot-developer",
       "description": "Expert in IoT development, microcontrollers, sensors, and MQTT protocols",
-      "triggers": [
-        "iot-developer",
-        "iot developer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["iot-developer", "iot developer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -714,23 +466,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "knowledge-base-manager",
       "description": "Design, build, and maintain comprehensive knowledge bases. Bridges document-based (RAG) and entity-based (graph) knowledge systems. Use when building knowledge-intensive applications, managing organizational knowledge, or creating intelligent information systems.",
-      "triggers": [
-        "knowledge-base-manager",
-        "knowledge base manager"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["knowledge-base-manager", "knowledge base manager"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -738,23 +481,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "knowledge-graph-builder",
       "description": "Design and build knowledge graphs. Use when modeling complex relationships, building semantic search, or creating knowledge bases. Covers schema design, entity relationships, and graph database selection.",
-      "triggers": [
-        "knowledge-graph-builder",
-        "knowledge graph builder"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["knowledge-graph-builder", "knowledge graph builder"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -762,23 +496,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "livestream-engineer",
       "description": "Expert in live streaming, WebRTC, and real-time video/audio",
-      "triggers": [
-        "livestream-engineer",
-        "livestream engineer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["livestream-engineer", "livestream engineer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -786,23 +511,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "localization-engineer",
       "description": "Expert in internationalization (i18n), multi-language support, and localization",
-      "triggers": [
-        "localization-engineer",
-        "localization engineer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["localization-engineer", "localization engineer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -810,25 +526,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "manifest-generator",
       "description": "Auto-generate capability manifests from skill/MCP descriptions using Codex-powered semantic analysis and structured extraction.",
-      "triggers": [
-        "manifest-generator",
-        "manifest generator"
-      ],
-      "tags": [
-        "codex",
-        "automation",
-        "manifest"
-      ],
+      "triggers": ["manifest-generator", "manifest generator"],
+      "tags": ["codex", "automation", "manifest"],
       "category": "ai-native",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -836,23 +541,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "mobile-developer",
       "description": "Expert in React Native, Expo, and cross-platform mobile development",
-      "triggers": [
-        "mobile-developer",
-        "mobile developer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["mobile-developer", "mobile developer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -860,23 +556,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "multi-agent-architect",
       "description": "Design and orchestrate multi-agent systems. Use when building complex AI systems requiring specialization, parallel processing, or collaborative problem-solving. Covers agent coordination, communication patterns, and task delegation strategies.",
-      "triggers": [
-        "multi-agent-architect",
-        "multi agent architect"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["multi-agent-architect", "multi agent architect"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -884,23 +571,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "mvp-builder",
       "description": "Rapid MVP development and feature prioritization for fast product validation. Use when building minimum viable products, prioritizing features, validating ideas quickly, or when users need to ship products fast while avoiding over-engineering.",
-      "triggers": [
-        "mvp-builder",
-        "mvp builder"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["mvp-builder", "mvp builder"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -908,26 +586,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "orchestration-planner",
       "description": "Plan multi-step workflows using capability graph and Codex-powered goal decomposition with HTN-style hierarchical task planning.",
-      "triggers": [
-        "orchestration-planner",
-        "orchestration planner"
-      ],
-      "tags": [
-        "codex",
-        "planning",
-        "orchestration",
-        "htn"
-      ],
+      "triggers": ["orchestration-planner", "orchestration planner"],
+      "tags": ["codex", "planning", "orchestration", "htn"],
       "category": "ai-native",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -935,23 +601,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "performance-optimizer",
       "description": "Optimize application performance and scalability. Use when investigating slow applications, scaling bottlenecks, or improving response times. Covers profiling, caching, database optimization, and frontend performance.",
-      "triggers": [
-        "performance-optimizer",
-        "performance optimizer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["performance-optimizer", "performance optimizer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -959,23 +616,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "pricing-strategist",
       "description": "Design and optimize pricing strategies for SaaS products including tiering, packaging, value metrics, and experimentation. Use when setting initial pricing, optimizing conversion, expanding revenue, or when users ask about pricing strategy, monetization, or revenue optimization.",
-      "triggers": [
-        "pricing-strategist",
-        "pricing strategist"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["pricing-strategist", "pricing strategist"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -983,23 +631,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "product-analyst",
       "description": "Track user metrics and provide data-driven insights for product decisions. Use when measuring product health, analyzing user behavior, conducting cohort analysis, or optimizing key metrics. Covers acquisition, engagement, retention, revenue metrics, and data-driven decision making.",
-      "triggers": [
-        "product-analyst",
-        "product analyst"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["product-analyst", "product analyst"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1007,23 +646,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "product-analytics",
       "description": "Measure what matters with proper event tracking, funnels, cohorts, and metrics. Use when setting up analytics, tracking features, or understanding behavior.",
-      "triggers": [
-        "product-analytics",
-        "product analytics"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["product-analytics", "product analytics"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1031,23 +661,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "product-strategist",
       "description": "Validate product-market fit and strategic direction. Use when defining new products, validating problem-solution fit, prioritizing features, or making build-vs-buy decisions. Focuses on discovery and validation before development.",
-      "triggers": [
-        "product-strategist",
-        "product strategist"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["product-strategist", "product strategist"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1055,23 +676,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "prototype-designer",
       "description": "Create interactive prototypes, design user flows, implement prototype testing strategies, and manage handoff to development. Validate ideas before building.",
-      "triggers": [
-        "prototype-designer",
-        "prototype designer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["prototype-designer", "prototype designer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1079,12 +691,8 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "prp-generator",
@@ -1096,9 +704,7 @@
         "\"create prp\"",
         "\"generate requirements\""
       ],
-      "tags": [
-        "requirements"
-      ],
+      "tags": ["requirements"],
       "category": "requirements",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1106,12 +712,8 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "quality-assurance",
@@ -1124,9 +726,7 @@
         "\"code quality\"",
         "\"validation gates\""
       ],
-      "tags": [
-        "quality"
-      ],
+      "tags": ["quality"],
       "category": "quality",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1134,12 +734,8 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "quality-auditor",
@@ -1155,9 +751,7 @@
         "appraise",
         "measure against standards"
       ],
-      "tags": [
-        "Quality & Standards"
-      ],
+      "tags": ["Quality & Standards"],
       "category": "Quality & Standards",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1165,23 +759,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "rag-implementer",
       "description": "Implement retrieval-augmented generation systems. Use when building knowledge-intensive applications, document search, Q&A systems, or need to ground LLM responses in external data. Covers embedding strategy, vector stores, retrieval pipelines, and evaluation.",
-      "triggers": [
-        "rag-implementer",
-        "rag implementer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["rag-implementer", "rag implementer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1189,23 +774,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "release-manager",
       "description": "Ship features safely with progressive rollouts, feature flags, and canary deployments. Use when deploying risky features or need gradual rollouts.",
-      "triggers": [
-        "release-manager",
-        "release manager"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["release-manager", "release manager"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1213,12 +789,8 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "security-architect",
@@ -1231,9 +803,7 @@
         "\"secure coding\"",
         "\"compliance validation\""
       ],
-      "tags": [
-        "security"
-      ],
+      "tags": ["security"],
       "category": "security",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1241,23 +811,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "security-engineer",
       "description": "Implement security best practices across the application stack. Use when securing APIs, implementing authentication, preventing vulnerabilities, or conducting security reviews. Covers OWASP Top 10, auth patterns, input validation, encryption, and security monitoring.",
-      "triggers": [
-        "security-engineer",
-        "security engineer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["security-engineer", "security engineer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1265,25 +826,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "skill-validator",
       "description": "Validates that a skill or MCP implementation matches its manifest by running Codex-powered semantic comparisons across descriptions, preconditions, effects, and API surface.",
-      "triggers": [
-        "skill-validator",
-        "skill validator"
-      ],
-      "tags": [
-        "codex",
-        "validation",
-        "quality"
-      ],
+      "triggers": ["skill-validator", "skill validator"],
+      "tags": ["codex", "validation", "quality"],
       "category": "testing",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1291,23 +841,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "spatial-developer",
       "description": "Expert in AR/VR, WebXR, and spatial computing for Vision Pro and web",
-      "triggers": [
-        "spatial-developer",
-        "spatial developer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["spatial-developer", "spatial developer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1315,29 +856,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "supabase-developer",
       "description": "Build full-stack applications with Supabase (PostgreSQL, Auth, Storage, Real-time, Edge Functions). Use when implementing authentication, database design with RLS, file storage, real-time features, or serverless functions.",
-      "triggers": [
-        "supabase-developer",
-        "supabase developer",
-        "supabase dev"
-      ],
-      "tags": [
-        "backend",
-        "database",
-        "authentication",
-        "storage",
-        "real-time",
-        "serverless"
-      ],
+      "triggers": ["supabase-developer", "supabase developer", "supabase dev"],
+      "tags": ["backend", "database", "authentication", "storage", "real-time", "serverless"],
       "category": "backend",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1345,25 +871,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "system-diagnostician",
       "description": "Performs Codex-assisted project health diagnostics, identifies capability gaps, and produces prioritized improvement plans.",
-      "triggers": [
-        "system-diagnostician",
-        "system diagnostician"
-      ],
-      "tags": [
-        "diagnostics",
-        "capability-planning",
-        "project-health"
-      ],
+      "triggers": ["system-diagnostician", "system diagnostician"],
+      "tags": ["diagnostics", "capability-planning", "project-health"],
       "category": "analysis",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1371,23 +886,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "task-breakdown-specialist",
       "description": "Break large tasks into ADHD-friendly micro-tasks that minimize activation energy and maximize momentum. Use when feeling overwhelmed, can't start a task, or need to make progress visible. Optimized for ADHD developers with 15-minute task chunking and dopamine-driven ordering.",
-      "triggers": [
-        "task-breakdown-specialist",
-        "task breakdown specialist"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["task-breakdown-specialist", "task breakdown specialist"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1395,23 +901,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "technical-writer",
       "description": "Create clear, comprehensive technical documentation for developers and users. Use when documenting APIs, writing user guides, creating tutorials, or setting up documentation sites. Covers API docs, user guides, architecture documentation, and documentation best practices.",
-      "triggers": [
-        "technical-writer",
-        "technical writer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["technical-writer", "technical writer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1419,23 +916,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "testing-strategist",
       "description": "Design and implement comprehensive testing strategies. Use when setting up tests, choosing test types, implementing TDD, or improving code quality. Covers unit tests, integration tests, E2E tests, test-driven development, and testing best practices.",
-      "triggers": [
-        "testing-strategist",
-        "testing strategist"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["testing-strategist", "testing strategist"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1443,23 +931,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "usability-tester",
       "description": "Conduct usability tests and identify UX issues through systematic observation. Use when testing user flows, validating designs, identifying friction points, or ensuring users can complete core tasks. Covers test planning, think-aloud protocol, task scenarios, and severity rating.",
-      "triggers": [
-        "usability-tester",
-        "usability tester"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["usability-tester", "usability tester"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1467,23 +946,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "user-researcher",
       "description": "Conduct user research and validation. Use when discovering user needs, validating assumptions, creating personas, or understanding pain points. Covers interviews, surveys, analysis, and synthesis.",
-      "triggers": [
-        "user-researcher",
-        "user researcher"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["user-researcher", "user researcher"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1491,23 +961,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "ux-designer",
       "description": "Design user experiences and interfaces. Use when creating user journeys, wireframes, prototypes, or improving usability. Covers user flows, information architecture, interaction design, and accessibility.",
-      "triggers": [
-        "ux-designer",
-        "ux designer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["ux-designer", "ux designer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1515,23 +976,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "video-producer",
       "description": "Expert in video playback, streaming, and video player customization",
-      "triggers": [
-        "video-producer",
-        "video producer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["video-producer", "video producer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1539,23 +991,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "visual-designer",
       "description": "Design beautiful, consistent user interfaces with proper color theory, typography, spacing, and visual hierarchy. Use when creating design systems, choosing colors and fonts, or establishing visual direction. Covers color theory, typography scales, spacing systems, and design principles.",
-      "triggers": [
-        "visual-designer",
-        "visual designer"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["visual-designer", "visual designer"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1563,23 +1006,14 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     },
     {
       "name": "voice-interface-builder",
       "description": "Expert in building voice interfaces, speech recognition, and text-to-speech systems",
-      "triggers": [
-        "voice-interface-builder",
-        "voice interface builder"
-      ],
-      "tags": [
-        "specialized"
-      ],
+      "triggers": ["voice-interface-builder", "voice interface builder"],
+      "tags": ["specialized"],
       "category": "specialized",
       "difficulty": "intermediate",
       "estimated_time": "1-3 hours",
@@ -1587,12 +1021,8 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
-      "frameworks": [
-        "all"
-      ],
-      "languages": [
-        "all"
-      ]
+      "frameworks": ["all"],
+      "languages": ["all"]
     }
   ]
 }

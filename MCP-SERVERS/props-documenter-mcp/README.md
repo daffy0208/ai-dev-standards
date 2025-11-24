@@ -19,16 +19,16 @@ npm run build
 
 ## Tools
 
-| Tool | Description |
-|------|-------------|
-| `extract_props` | Extract prop definitions from component |
-| `generate_props_table` | Generate markdown props documentation |
-| `add_jsdoc` | Add JSDoc comments to props |
+| Tool                   | Description                             |
+| ---------------------- | --------------------------------------- |
+| `extract_props`        | Extract prop definitions from component |
+| `generate_props_table` | Generate markdown props documentation   |
+| `add_jsdoc`            | Add JSDoc comments to props             |
 
 ## Resources
 
-| Resource | Description |
-|----------|-------------|
+| Resource                        | Description               |
+| ------------------------------- | ------------------------- |
 | `props://prop-type-definitions` | Common prop type patterns |
 
 ## Supported Skills
@@ -83,11 +83,11 @@ npm run build
 ```markdown
 # Button Props
 
-| Prop | Type | Required | Default | Description |
-|------|------|----------|---------|-------------|
-| `variant` | `"primary" \| "secondary"` | | - | Visual style variant |
-| `size` | `"sm" \| "md" \| "lg"` | | `"md"` | Button size |
-| `children` | `React.ReactNode` | ✓ | - | Button content |
+| Prop       | Type                       | Required | Default | Description          |
+| ---------- | -------------------------- | -------- | ------- | -------------------- |
+| `variant`  | `"primary" \| "secondary"` |          | -       | Visual style variant |
+| `size`     | `"sm" \| "md" \| "lg"`     |          | `"md"`  | Button size          |
+| `children` | `React.ReactNode`          | ✓        | -       | Button content       |
 ```
 
 ## Common Prop Types

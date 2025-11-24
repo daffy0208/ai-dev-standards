@@ -139,9 +139,7 @@ console.log('Deployment deleted')
 const deployments = await vercel.listDeployments('my-app')
 
 // Find the last successful production deployment
-const previousDeployment = deployments.find(
-  d => d.state === 'READY' && d.target === 'production'
-)
+const previousDeployment = deployments.find(d => d.state === 'READY' && d.target === 'production')
 
 // Rollback to it
 if (previousDeployment) {
@@ -314,6 +312,7 @@ new VercelClient(options?: VercelClientOptions)
 ```
 
 Options:
+
 - `token` (string, optional): Vercel API token. Defaults to `VERCEL_TOKEN` env var
 - `teamId` (string, optional): Team ID for team accounts. Defaults to `VERCEL_TEAM_ID` env var
 - `apiUrl` (string, optional): API base URL. Defaults to `https://api.vercel.com`
@@ -407,9 +406,7 @@ async function safeDeployment(projectName: string) {
 
   // Get current production deployment
   const deployments = await vercel.listDeployments(projectName)
-  const currentProd = deployments.find(
-    d => d.state === 'READY' && d.target === 'production'
-  )
+  const currentProd = deployments.find(d => d.state === 'READY' && d.target === 'production')
 
   try {
     // Create new deployment
@@ -447,10 +444,7 @@ async function safeDeployment(projectName: string) {
 ### Environment Sync
 
 ```typescript
-async function syncEnvironmentVariables(
-  projectName: string,
-  newEnvVars: Record<string, string>
-) {
+async function syncEnvironmentVariables(projectName: string, newEnvVars: Record<string, string>) {
   const vercel = new VercelClient()
 
   // Get existing env vars
@@ -480,6 +474,7 @@ async function syncEnvironmentVariables(
 ## Error Handling
 
 The client includes automatic retry logic with exponential backoff for:
+
 - Rate limit errors (429)
 - Server errors (500+)
 - Network timeouts
@@ -499,6 +494,7 @@ try {
 ## Rate Limits
 
 Vercel API has rate limits:
+
 - 100 requests per 10 seconds (per token)
 - 20 deployments per minute
 

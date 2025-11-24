@@ -1,8 +1,6 @@
 const Handlebars = require('handlebars')
-const path = require('path')
-const fs = require('fs-extra')
 const prettier = require('prettier')
-const { sanitizeName, validateComponentName, validateIdentifier } = require('../utils/validation')
+const { validateComponentName, validateIdentifier } = require('../utils/validation')
 
 /**
  * Component Generator
@@ -23,15 +21,15 @@ class ComponentGenerator {
    * Register Handlebars helpers
    */
   registerHelpers() {
-    Handlebars.registerHelper('capitalize', function(str) {
+    Handlebars.registerHelper('capitalize', function (str) {
       return str.charAt(0).toUpperCase() + str.slice(1)
     })
 
-    Handlebars.registerHelper('lowercase', function(str) {
+    Handlebars.registerHelper('lowercase', function (str) {
       return str.toLowerCase()
     })
 
-    Handlebars.registerHelper('kebabCase', function(str) {
+    Handlebars.registerHelper('kebabCase', function (str) {
       return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
     })
   }
@@ -40,7 +38,7 @@ class ComponentGenerator {
    * Generate component files
    */
   async generate(config) {
-    const { name, props = {}, withTests = true, withStorybook = false, template = 'default' } = config
+    const { name, props = {}, withTests = true, withStorybook = false } = config
 
     // Validate and sanitize component name (SECURITY: prevent path traversal)
     const sanitizedName = validateComponentName(name)
@@ -88,27 +86,27 @@ class ComponentGenerator {
    */
   generateComponent(name, props) {
     const propNames = Object.keys(props)
-    const hasProps = propNames.length > 0
-
     return `import { z } from 'zod'
 
 const ${name.toLowerCase()}PropsSchema = z.object({
-${Object.entries(props).map(([key, type]) => {
-  if (type === 'string') {
-    return `  ${key}: z.string()`
-  } else if (type === 'number') {
-    return `  ${key}: z.number()`
-  } else if (type === 'boolean') {
-    return `  ${key}: z.boolean().optional()`
-  } else if (Array.isArray(type)) {
-    return `  ${key}: z.enum([${type.map(v => `'${v}'`).join(', ')}]).optional()`
-  } else if (type === 'ReactNode') {
+${Object.entries(props)
+  .map(([key, type]) => {
+    if (type === 'string') {
+      return `  ${key}: z.string()`
+    } else if (type === 'number') {
+      return `  ${key}: z.number()`
+    } else if (type === 'boolean') {
+      return `  ${key}: z.boolean().optional()`
+    } else if (Array.isArray(type)) {
+      return `  ${key}: z.enum([${type.map(v => `'${v}'`).join(', ')}]).optional()`
+    } else if (type === 'ReactNode') {
+      return `  ${key}: z.any()`
+    } else if (type === 'function') {
+      return `  ${key}: z.function().args(z.any()).returns(z.void()).optional()`
+    }
     return `  ${key}: z.any()`
-  } else if (type === 'function') {
-    return `  ${key}: z.function().args(z.any()).returns(z.void()).optional()`
-  }
-  return `  ${key}: z.any()`
-}).join(',\n')}
+  })
+  .join(',\n')}
 })
 
 export type ${name}Props = z.infer<typeof ${name.toLowerCase()}PropsSchema>
@@ -153,16 +151,22 @@ describe('${name}', () => {
   // Add className to your component props if you want to test it
 })
 
-${Object.keys(props).length > 0 ? `const mockProps = {
-${Object.entries(props).map(([key, type]) => {
-  if (type === 'string') return `  ${key}: 'test-${key}'`
-  if (type === 'number') return `  ${key}: 42`
-  if (type === 'boolean') return `  ${key}: true`
-  if (Array.isArray(type)) return `  ${key}: '${type[0]}'`
-  if (type === 'function') return `  ${key}: jest.fn()`
-  return `  ${key}: null`
-}).join(',\n')}
-}` : ''}
+${
+  Object.keys(props).length > 0
+    ? `const mockProps = {
+${Object.entries(props)
+  .map(([key, type]) => {
+    if (type === 'string') return `  ${key}: 'test-${key}'`
+    if (type === 'number') return `  ${key}: 42`
+    if (type === 'boolean') return `  ${key}: true`
+    if (Array.isArray(type)) return `  ${key}: '${type[0]}'`
+    if (type === 'function') return `  ${key}: jest.fn()`
+    return `  ${key}: null`
+  })
+  .join(',\n')}
+}`
+    : ''
+}
 `
   }
 
@@ -178,21 +182,24 @@ const meta: Meta<typeof ${name}> = {
   component: ${name},
   tags: ['autodocs'],
   argTypes: {
-${Object.entries(props).map(([key, type]) => {
-  if (Array.isArray(type)) {
-    return `    ${key}: {
+${Object.entries(props)
+  .map(([key, type]) => {
+    if (Array.isArray(type)) {
+      return `    ${key}: {
       control: 'select',
       options: [${type.map(v => `'${v}'`).join(', ')}]
     }`
-  } else if (type === 'boolean') {
-    return `    ${key}: { control: 'boolean' }`
-  } else if (type === 'number') {
-    return `    ${key}: { control: 'number' }`
-  } else if (type === 'string') {
-    return `    ${key}: { control: 'text' }`
-  }
-  return ''
-}).filter(Boolean).join(',\n')}
+    } else if (type === 'boolean') {
+      return `    ${key}: { control: 'boolean' }`
+    } else if (type === 'number') {
+      return `    ${key}: { control: 'number' }`
+    } else if (type === 'string') {
+      return `    ${key}: { control: 'text' }`
+    }
+    return ''
+  })
+  .filter(Boolean)
+  .join(',\n')}
   }
 }
 
@@ -201,23 +208,34 @@ type Story = StoryObj<typeof ${name}>
 
 export const Default: Story = {
   args: {
-${Object.entries(props).map(([key, type]) => {
-  if (type === 'string') return `    ${key}: 'Example ${key}'`
-  if (type === 'number') return `    ${key}: 42`
-  if (type === 'boolean') return `    ${key}: false`
-  if (Array.isArray(type)) return `    ${key}: '${type[0]}'`
-  return ''
-}).filter(Boolean).join(',\n')}
+${Object.entries(props)
+  .map(([key, type]) => {
+    if (type === 'string') return `    ${key}: 'Example ${key}'`
+    if (type === 'number') return `    ${key}: 42`
+    if (type === 'boolean') return `    ${key}: false`
+    if (Array.isArray(type)) return `    ${key}: '${type[0]}'`
+    return ''
+  })
+  .filter(Boolean)
+  .join(',\n')}
   }
 }
 
-${Array.isArray(props.variant) ? props.variant.map(variant => `
+${
+  Array.isArray(props.variant)
+    ? props.variant
+        .map(
+          variant => `
 export const ${variant.charAt(0).toUpperCase() + variant.slice(1)}: Story = {
   args: {
     ...Default.args,
     variant: '${variant}'
   }
-}`).join('\n') : ''}
+}`
+        )
+        .join('\n')
+    : ''
+}
 `
   }
 

@@ -11,6 +11,7 @@ Helps you build and launch MVPs in 1-2 weeks by prioritizing ruthlessly and choo
 ## When to Use
 
 Use this skill when you need to:
+
 - Prioritize features for an MVP
 - Decide what to build vs defer
 - Choose the fastest path to validation
@@ -45,17 +46,21 @@ mvp-builder/
 ## Prerequisites
 
 **Knowledge:**
+
 - Basic product development understanding
 
 **Tools:**
+
 - None required (skill helps choose tools)
 
 **Related Skills:**
+
 - None required (good starting point)
 
 ## Success Criteria
 
 You've successfully used this skill when:
+
 - ✅ Features categorized as P0/P1/P2
 - ✅ MVP pattern chosen with clear reasoning
 - ✅ P0 features built in 1-2 weeks
@@ -65,12 +70,14 @@ You've successfully used this skill when:
 ## Common Workflows
 
 ### Workflow 1: New Product Idea
+
 1. Use mvp-builder to prioritize features
 2. Build P0 features only
 3. Use `deployment-advisor` to deploy
 4. Use `go-to-market-planner` to launch
 
 ### Workflow 2: Feature Prioritization
+
 1. Use mvp-builder P0/P1/P2 matrix
 2. Build P0 features
 3. Validate before building P1
@@ -78,11 +85,13 @@ You've successfully used this skill when:
 ## Key Concepts
 
 **P0 vs P1 vs P2:**
+
 - P0 = Must have for core value prop (build now)
 - P1 = Important but can wait (ship v1.1)
 - P2 = Nice to have (ship v2+)
 
 **5 MVP Patterns:**
+
 1. Concierge (manual service)
 2. Wizard of Oz (fake automation)
 3. Landing Page (email capture)
@@ -92,14 +101,17 @@ You've successfully used this skill when:
 ## Troubleshooting
 
 **Skill not activating?**
+
 - Try explicitly requesting: "Use the mvp-builder skill to..."
 - Mention keywords: "MVP", "prioritization", "features"
 
 **Too many features in P0?**
+
 - Reassess: Does it prove/disprove your riskiest assumption?
 - If no, move to P1
 
 **Can't decide on MVP pattern?**
+
 - Default to Single-Feature MVP (most common)
 - Or Landing Page MVP (fastest validation)
 

@@ -7,15 +7,18 @@ Streamline design-to-development handoff with automated spec extraction, code ge
 ### Tools
 
 #### `extractSpecs`
+
 Extract detailed specifications from design files (Figma, Sketch, Adobe XD).
 
 **Parameters:**
+
 - `designFile` (string, required): URL or path to design file
 - `componentName` (string): Specific component (optional)
 - `includeAnnotations` (boolean): Include designer comments
 - `format` (string): Output format - json, markdown, html
 
 **Example:**
+
 ```typescript
 {
   designFile: "https://www.figma.com/file/abc123/MyDesign",
@@ -26,9 +29,11 @@ Extract detailed specifications from design files (Figma, Sketch, Adobe XD).
 ```
 
 #### `generateCode`
+
 Generate component code from design specifications.
 
 **Parameters:**
+
 - `component` (string, required): Component name or spec ID
 - `framework` (string, required): react, vue, svelte, angular, html, react-native
 - `styleApproach` (string): css-modules, styled-components, tailwind, emotion, sass
@@ -36,6 +41,7 @@ Generate component code from design specifications.
 - `responsive` (boolean): Include responsive breakpoints
 
 **Example:**
+
 ```typescript
 {
   component: "Button",
@@ -47,15 +53,18 @@ Generate component code from design specifications.
 ```
 
 #### `compareDesignVsCode`
+
 Compare implemented code against design specifications.
 
 **Parameters:**
+
 - `designFile` (string, required): URL or path to design
 - `codeFile` (string, required): Path to component code
 - `checkAspects` (array): Aspects to compare - colors, typography, spacing, dimensions, layout
 - `tolerance` (number): Tolerance in pixels
 
 **Example:**
+
 ```typescript
 {
   designFile: "https://www.figma.com/file/abc123/MyDesign",
@@ -66,14 +75,17 @@ Compare implemented code against design specifications.
 ```
 
 #### `generateStyleGuide`
+
 Generate comprehensive style guide documentation.
 
 **Parameters:**
+
 - `designFile` (string, required): URL or path to design
 - `sections` (array): colors, typography, components, spacing, icons, patterns
 - `format` (string): markdown, html, pdf, storybook
 
 **Example:**
+
 ```typescript
 {
   designFile: "https://www.figma.com/file/abc123/MyDesign",
@@ -85,9 +97,11 @@ Generate comprehensive style guide documentation.
 ### Resources
 
 #### `design-handoff://specs`
+
 All extracted design specifications with metadata.
 
 #### `design-handoff://workflow`
+
 Best practices for design-to-development handoff process.
 
 ## Setup
@@ -122,10 +136,10 @@ npm run build
 
 ```typescript
 const specs = await extractSpecs({
-  designFile: "https://www.figma.com/file/abc/Design",
+  designFile: 'https://www.figma.com/file/abc/Design',
   includeAnnotations: true,
-  format: "json"
-});
+  format: 'json'
+})
 
 // Result: Complete specifications including:
 // - Colors: #4F46E5, #EC4899, #10B981
@@ -139,12 +153,12 @@ const specs = await extractSpecs({
 
 ```typescript
 const code = await generateCode({
-  component: "Button",
-  framework: "react",
-  styleApproach: "tailwind",
+  component: 'Button',
+  framework: 'react',
+  styleApproach: 'tailwind',
   typescript: true,
   responsive: true
-});
+})
 
 // Result: Production-ready component code
 ```
@@ -153,11 +167,11 @@ const code = await generateCode({
 
 ```typescript
 const comparison = await compareDesignVsCode({
-  designFile: "https://www.figma.com/file/abc/Design",
-  codeFile: "./src/components/Button.tsx",
-  checkAspects: ["colors", "typography", "spacing"],
+  designFile: 'https://www.figma.com/file/abc/Design',
+  codeFile: './src/components/Button.tsx',
+  checkAspects: ['colors', 'typography', 'spacing'],
   tolerance: 2
-});
+})
 
 // Result: List of differences with severity levels
 ```
@@ -166,10 +180,10 @@ const comparison = await compareDesignVsCode({
 
 ```typescript
 const styleGuide = await generateStyleGuide({
-  designFile: "https://www.figma.com/file/abc/Design",
-  sections: ["colors", "typography", "components"],
-  format: "markdown"
-});
+  designFile: 'https://www.figma.com/file/abc/Design',
+  sections: ['colors', 'typography', 'components'],
+  format: 'markdown'
+})
 
 // Result: Comprehensive style guide
 ```
@@ -179,30 +193,35 @@ const styleGuide = await generateStyleGuide({
 ### What Gets Extracted
 
 **Colors:**
+
 - Brand colors with hex values
 - Color roles (primary, secondary, etc.)
 - Dark mode variants
 - Accessibility contrast ratios
 
 **Typography:**
+
 - Font families and weights
 - Font sizes and scales
 - Line heights
 - Letter spacing
 
 **Spacing:**
+
 - Padding values
 - Margin values
 - Gap sizes
 - Grid systems
 
 **Components:**
+
 - Component dimensions
 - States (default, hover, active, disabled)
 - Variants
 - Composition rules
 
 **Assets:**
+
 - Icons (SVG preferred)
 - Images (optimized formats)
 - Illustrations
@@ -213,28 +232,23 @@ const styleGuide = await generateStyleGuide({
 ### Supported Frameworks
 
 **React:**
+
 ```tsx
-import React from 'react';
-import styles from './Button.module.css';
+import React from 'react'
+import styles from './Button.module.css'
 
 interface ButtonProps {
-  variant?: 'primary' | 'secondary';
-  children: React.ReactNode;
+  variant?: 'primary' | 'secondary'
+  children: React.ReactNode
 }
 
-export const Button: React.FC<ButtonProps> = ({
-  variant = 'primary',
-  children
-}) => {
-  return (
-    <button className={`${styles.button} ${styles[variant]}`}>
-      {children}
-    </button>
-  );
-};
+export const Button: React.FC<ButtonProps> = ({ variant = 'primary', children }) => {
+  return <button className={`${styles.button} ${styles[variant]}`}>{children}</button>
+}
 ```
 
 **Vue:**
+
 ```vue
 <template>
   <button :class="['button', variant]">
@@ -254,6 +268,7 @@ withDefaults(defineProps<Props>(), {
 ```
 
 **Svelte:**
+
 ```svelte
 <script lang="ts">
   export let variant: 'primary' | 'secondary' = 'primary';
@@ -267,6 +282,7 @@ withDefaults(defineProps<Props>(), {
 ### Styling Approaches
 
 **CSS Modules:**
+
 ```css
 .button {
   padding: 0.75rem 1.5rem;
@@ -281,20 +297,20 @@ withDefaults(defineProps<Props>(), {
 ```
 
 **Tailwind:**
+
 ```tsx
-<button className="px-6 py-3 rounded-lg font-semibold bg-primary text-white">
-  {children}
-</button>
+<button className="px-6 py-3 rounded-lg font-semibold bg-primary text-white">{children}</button>
 ```
 
 **Styled Components:**
+
 ```tsx
 const Button = styled.button<{ variant: string }>`
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
   font-weight: 600;
-  background: ${props => props.variant === 'primary' ? 'var(--color-primary)' : 'transparent'};
-`;
+  background: ${props => (props.variant === 'primary' ? 'var(--color-primary)' : 'transparent')};
+`
 ```
 
 ## Design vs Code Comparison
@@ -302,28 +318,33 @@ const Button = styled.button<{ variant: string }>`
 ### Comparison Aspects
 
 **Colors:**
+
 - Exact hex matching
 - Color role verification
 - Dark mode consistency
 
 **Typography:**
+
 - Font family matching
 - Size accuracy (±1px tolerance)
 - Weight matching
 - Line height verification
 
 **Spacing:**
+
 - Padding accuracy
 - Margin consistency
 - Gap sizes
 - Tolerance-based matching (default 2px)
 
 **Dimensions:**
+
 - Width/height matching
 - Aspect ratios
 - Min/max constraints
 
 **Layout:**
+
 - Flexbox properties
 - Grid layouts
 - Positioning
@@ -341,30 +362,35 @@ const Button = styled.button<{ variant: string }>`
 ### Sections
 
 **Colors:**
+
 - Swatches with hex codes
 - Usage guidelines
 - Accessibility notes
 - Dark mode variants
 
 **Typography:**
+
 - Type scale visualization
 - Font pairing rules
 - Line length recommendations
 - Responsive sizing
 
 **Components:**
+
 - Component previews
 - Props/API documentation
 - Usage examples
 - Do's and don'ts
 
 **Spacing:**
+
 - Spacing scale
 - Grid system
 - Layout patterns
 - Responsive rules
 
 **Icons:**
+
 - Icon library
 - Usage guidelines
 - Sizes and variants
@@ -395,6 +421,7 @@ const Button = styled.button<{ variant: string }>`
 ## Common Handoff Issues
 
 ### Design Issues
+
 - Missing states (hover, disabled)
 - Inconsistent spacing
 - No responsive specs
@@ -402,6 +429,7 @@ const Button = styled.button<{ variant: string }>`
 - Unclear interactions
 
 ### Development Issues
+
 - Hard-coded values
 - Wrong colors
 - Missing states
@@ -409,6 +437,7 @@ const Button = styled.button<{ variant: string }>`
 - Non-responsive
 
 ### Solutions
+
 - Use this MCP for automated extraction
 - Compare design vs code regularly
 - Maintain design token library

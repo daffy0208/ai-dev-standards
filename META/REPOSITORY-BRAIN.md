@@ -10,7 +10,9 @@
 ## The Critical Need
 
 ### The Problem
+
 We have 105 resources (38 skills, 35 MCPs, tools, components, integrations) but **no central brain** to:
+
 - ✅ Know the complete state at all times
 - ✅ Understand all relationships between components
 - ✅ Decide when to use which skill/MCP/pattern
@@ -19,10 +21,13 @@ We have 105 resources (38 skills, 35 MCPs, tools, components, integrations) but 
 - ✅ Enforce processes automatically
 
 ### The Risk
+
 **Without a brain**: Massive drift, documentation falls behind, processes forgotten, tool loses value
 
 ### The Solution
+
 **Repository Brain**: Hybrid intelligence system combining:
+
 1. **Knowledge Layer** - Complete understanding (registries + mappings)
 2. **Decision Layer** - Workflow orchestration (rules + AI)
 3. **Enforcement Layer** - Automated validation (scripts + hooks)
@@ -77,11 +82,13 @@ We have 105 resources (38 skills, 35 MCPs, tools, components, integrations) but 
 ## Layer 1: Knowledge (Foundation)
 
 ### Purpose
+
 Single source of truth for current state
 
 ### Components
 
 **1. Registries** (What exists)
+
 - `META/skill-registry.json` - All 38 skills
 - `META/mcp-registry.json` - All 35 MCPs
 - `META/tool-registry.json` - All tools
@@ -89,17 +96,20 @@ Single source of truth for current state
 - `META/integration-registry.json` - All integrations
 
 **2. Mappings** (How they relate)
+
 - `META/relationship-mapping.json` - Complete dependency graph
 - Skills → MCPs → Tools → Components → Integrations
 - File dependencies (which files need updating when)
 
 **3. Metadata** (Context)
+
 - Triggers (when skills activate)
 - Tags (categorization)
 - Related resources (cross-references)
 - Status (active/deprecated)
 
 ### Brain Capabilities at This Layer
+
 ```javascript
 // Query current state
 brain.getSkillCount() → 38
@@ -118,11 +128,13 @@ brain.checkSync() → {inSync: true/false, outdated: [...]}
 ## Layer 2: Enforcement (Automation)
 
 ### Purpose
+
 Automatically enforce correctness, prevent drift
 
 ### Components
 
 **1. Validation Scripts**
+
 ```bash
 # scripts/validate-sync.sh
 # BLOCKS commits if registries/docs out of sync
@@ -130,6 +142,7 @@ Automatically enforce correctness, prevent drift
 ```
 
 **2. Pre-Commit Hooks**
+
 ```bash
 # .git/hooks/pre-commit
 #!/bin/bash
@@ -139,6 +152,7 @@ bash scripts/validate-examples.sh || exit 1
 ```
 
 **3. CI/CD Checks**
+
 ```yaml
 # .github/workflows/validation.yml
 - Validate all registries
@@ -148,6 +162,7 @@ bash scripts/validate-examples.sh || exit 1
 ```
 
 **4. Automated Tests**
+
 ```bash
 # scripts/test-brain.sh
 - Test that brain can query all resources
@@ -156,6 +171,7 @@ bash scripts/validate-examples.sh || exit 1
 ```
 
 ### Brain Capabilities at This Layer
+
 ```javascript
 // Enforce rules
 brain.runValidation() → {passed: true/false, errors: [...]}
@@ -171,20 +187,22 @@ brain.healthCheck() → {status: 'healthy'|'degraded'|'critical', issues: [...]}
 ## Layer 3: Decision (Intelligence)
 
 ### Purpose
+
 Decide WHICH workflow, WHICH skills, WHICH patterns to use
 
 ### Components
 
 **1. Workflow Decision Engine**
+
 ```typescript
 // scripts/brain/workflow-engine.ts
 interface WorkflowDecision {
-  scenario: string;
-  workflow: string[];
-  skills: string[];
-  mcps: string[];
-  patterns: string[];
-  reasoning: string;
+  scenario: string
+  workflow: string[]
+  skills: string[]
+  mcps: string[]
+  patterns: string[]
+  reasoning: string
 }
 
 class WorkflowEngine {
@@ -195,6 +213,7 @@ class WorkflowEngine {
 ```
 
 **Example Decisions**:
+
 ```
 Scenario: "Add new feature to existing app"
 → Workflow: [Load context, Check playbooks, Invoke skills, Build, Test, Validate]
@@ -205,6 +224,7 @@ Scenario: "Add new feature to existing app"
 ```
 
 **2. Skill Selection Engine**
+
 ```typescript
 class SkillSelector {
   select(task: string, context: Context): string[] {
@@ -216,6 +236,7 @@ class SkillSelector {
 ```
 
 **3. MCP Integration Engine**
+
 ```typescript
 class MCPIntegrator {
   getRequiredMCPs(skills: string[]): string[] {
@@ -227,6 +248,7 @@ class MCPIntegrator {
 ```
 
 **4. Pattern Matcher**
+
 ```typescript
 class PatternMatcher {
   matchPattern(problem: string): Pattern[] {
@@ -237,6 +259,7 @@ class PatternMatcher {
 ```
 
 ### Brain Capabilities at This Layer
+
 ```javascript
 // Make decisions
 brain.decideWorkflow('add authentication') → WorkflowDecision
@@ -253,11 +276,13 @@ brain.explainDecision(decision) → "Using mvp-builder because..."
 ## Layer 4: Management (Archon)
 
 ### Purpose
+
 Strategic planning, task management, context preservation
 
 ### Components
 
 **1. Archon Project for ai-dev-standards**
+
 ```json
 {
   "project_name": "ai-dev-standards",
@@ -275,17 +300,20 @@ Strategic planning, task management, context preservation
 ```
 
 **2. Task Orchestration**
+
 - Archon decides WHAT to work on (priority, dependencies)
 - Brain decides HOW to work on it (workflow, tools)
 - Enforcement ensures quality (validation, tests)
 
 **3. Context & History**
+
 - All decisions logged in Archon
 - RAG queries for research
 - Code example search
 - Learning accumulation
 
 ### Brain Capabilities at This Layer
+
 ```javascript
 // Strategic planning
 brain.getNextTask() → Task from Archon
@@ -305,83 +333,88 @@ brain.getLearnings() → Accumulated knowledge
 ### Scenario: User asks "Add Supabase skill"
 
 #### Step 1: Management Layer (Archon)
+
 ```typescript
 // Get task from Archon
-const task = brain.getNextTask();
+const task = brain.getNextTask()
 // → {id: 'P0-4', title: 'Add Supabase skill', priority: 'P0'}
 
 // Research
-const research = brain.researchTask('Supabase development patterns');
+const research = brain.researchTask('Supabase development patterns')
 // → RAG results: existing integrations, patterns, examples
 
 // Update status
-brain.updateTaskStatus('P0-4', 'doing');
+brain.updateTaskStatus('P0-4', 'doing')
 ```
 
 #### Step 2: Decision Layer (Intelligence)
+
 ```typescript
 // Decide workflow
-const workflow = brain.decideWorkflow('add new skill');
+const workflow = brain.decideWorkflow('add new skill')
 // → ['Check official MCPs', 'Create skill', 'Update registries', 'Validate']
 
 // Select skills for guidance
-const guidanceSkills = brain.selectSkills('database development');
+const guidanceSkills = brain.selectSkills('database development')
 // → ['api-designer', 'security-engineer', 'data-engineer']
 
 // Determine files to update
-const filesToUpdate = brain.getFilesToUpdate('add skill');
+const filesToUpdate = brain.getFilesToUpdate('add skill')
 // → All 20 files from MANDATORY-UPDATE-CHECKLIST.md
 ```
 
 #### Step 3: Enforcement Layer (Validation)
+
 ```typescript
 // Before starting
-brain.validateCurrentState();
+brain.validateCurrentState()
 // → Ensures clean starting point
 
 // During development
-brain.trackChanges(['SKILLS/supabase-developer/', 'META/skill-registry.json']);
+brain.trackChanges(['SKILLS/supabase-developer/', 'META/skill-registry.json'])
 
 // Before committing
-const validation = brain.runValidation();
+const validation = brain.runValidation()
 if (!validation.passed) {
-  throw new Error('Validation failed: ' + validation.errors);
+  throw new Error('Validation failed: ' + validation.errors)
 }
 // → validate-sync.sh runs, checks all 14 files
 ```
 
 #### Step 4: Knowledge Layer (State Update)
+
 ```typescript
 // Update registries
 brain.addSkill({
   name: 'supabase-developer',
   description: 'Build with Supabase...',
   triggers: ['supabase', 'postgresql', 'backend'],
-  related_skills: ['api-designer', 'security-engineer'],
+  related_skills: ['api-designer', 'security-engineer']
   // ...
-});
+})
 
 // Update relationships
 brain.updateRelationships('supabase-developer', {
   required_mcps: ['supabase-mcp'], // NOTE: Using official MCP
   related_skills: ['api-designer', 'security-engineer']
-});
+})
 
 // Verify state
-brain.getSkillCount(); // → 39 (was 38)
-brain.checkSync(); // → true (all docs updated)
+brain.getSkillCount() // → 39 (was 38)
+brain.checkSync() // → true (all docs updated)
 ```
 
 #### Step 5: Management Layer (Complete)
+
 ```typescript
 // Mark task complete
-brain.updateTaskStatus('P0-4', 'review');
+brain.updateTaskStatus('P0-4', 'review')
 
 // After user approval
-brain.updateTaskStatus('P0-4', 'done');
+brain.updateTaskStatus('P0-4', 'done')
 
 // Get next task
-const nextTask = brain.getNextTask();
+const nextTask = brain.getNextTask()
 ```
 
 ---
@@ -393,6 +426,7 @@ const nextTask = brain.getNextTask();
 **Goal**: Basic brain infrastructure
 
 **Tasks**:
+
 1. ✅ Create `scripts/brain/` directory
 2. ✅ Implement `brain-core.ts` - Core brain class
 3. ✅ Implement `knowledge-layer.ts` - Registry queries
@@ -406,6 +440,7 @@ const nextTask = brain.getNextTask();
 **Goal**: Decision-making capabilities
 
 **Tasks**:
+
 1. ✅ Implement `workflow-engine.ts` - Workflow decisions
 2. ✅ Implement `skill-selector.ts` - Skill selection
 3. ✅ Implement `mcp-integrator.ts` - MCP dependencies
@@ -419,6 +454,7 @@ const nextTask = brain.getNextTask();
 **Goal**: Full strategic + tactical orchestration
 
 **Tasks**:
+
 1. ✅ Set up Archon project for ai-dev-standards
 2. ✅ Implement `archon-layer.ts` - Archon API wrapper
 3. ✅ Create task templates for common work
@@ -432,6 +468,7 @@ const nextTask = brain.getNextTask();
 **Goal**: Fully automated drift prevention
 
 **Tasks**:
+
 1. ✅ Set up git hooks (pre-commit, pre-push)
 2. ✅ Create CI/CD workflows
 3. ✅ Implement health monitoring
@@ -584,6 +621,7 @@ $ brain dependencies skill rag-implementer
 ### How the Brain Prevents Drift
 
 **1. Continuous Validation**
+
 ```bash
 # Runs automatically on every commit
 brain validate
@@ -594,16 +632,18 @@ brain validate
 ```
 
 **2. Proactive Updates**
+
 ```typescript
 // Brain detects when update needed
 if (brain.detectDrift()) {
-  const fixes = brain.generateFixes();
-  brain.applyFixes(fixes);
-  brain.validate(); // Ensure fixed
+  const fixes = brain.generateFixes()
+  brain.applyFixes(fixes)
+  brain.validate() // Ensure fixed
 }
 ```
 
 **3. Relationship Integrity**
+
 ```typescript
 // When adding skill
 brain.addSkill({...});
@@ -613,11 +653,12 @@ brain.validate(); // Automatic
 ```
 
 **4. Documentation Sync**
+
 ```typescript
 // Single source of truth
-const skillCount = brain.getSkillCount(); // From registry
-brain.updateAllDocsWithCount(skillCount); // Propagate everywhere
-brain.verifySync(); // Ensure consistency
+const skillCount = brain.getSkillCount() // From registry
+brain.updateAllDocsWithCount(skillCount) // Propagate everywhere
+brain.verifySync() // Ensure consistency
 ```
 
 ### Drift Detection
@@ -666,6 +707,7 @@ The brain is working when:
 5. **Human Oversight** (user decisions, approvals)
 
 **Result**: A self-aware, self-maintaining, intelligent repository that:
+
 - Knows its complete state
 - Makes correct decisions
 - Enforces quality automatically
@@ -678,20 +720,14 @@ The brain is working when:
 ## Next Steps
 
 **Immediate**:
+
 1. Create `scripts/brain/` directory structure
 2. Implement Layer 1 (Knowledge queries)
 3. Implement basic CLI (`brain status`)
 
-**This Week**:
-4. Implement Layer 2 (Enforcement wrapper)
-5. Implement Layer 3 (Decision engine basics)
-6. Set up git hooks
+**This Week**: 4. Implement Layer 2 (Enforcement wrapper) 5. Implement Layer 3 (Decision engine basics) 6. Set up git hooks
 
-**Next Week**:
-7. Implement Layer 4 (Archon integration)
-8. Full brain CLI
-9. Complete documentation
-10. Demonstrate brain in action
+**Next Week**: 7. Implement Layer 4 (Archon integration) 8. Full brain CLI 9. Complete documentation 10. Demonstrate brain in action
 
 ---
 

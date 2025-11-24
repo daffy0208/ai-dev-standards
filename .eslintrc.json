@@ -20,11 +20,7 @@
     "plugin:react-hooks/recommended",
     "prettier"
   ],
-  "plugins": [
-    "@typescript-eslint",
-    "react",
-    "react-hooks"
-  ],
+  "plugins": ["@typescript-eslint", "react", "react-hooks"],
   "settings": {
     "react": {
       "version": "detect"
@@ -62,10 +58,24 @@
   ],
   "overrides": [
     {
-      "files": ["CLI/**/*.js", "scripts/**/*.js", "scripts/**/*.cjs"],
+      "files": [
+        "CLI/**/*.js",
+        "scripts/**/*.js",
+        "scripts/**/*.ts",
+        "scripts/**/*.cjs",
+        "UTILS/scripts/**/*.ts",
+        "UTILS/scripts/**/*.js",
+        "CLI/scripts/**/*.ts"
+      ],
       "rules": {
         "no-console": "off",
         "@typescript-eslint/no-var-requires": "off"
+      }
+    },
+    {
+      "files": ["tests/**/*.ts", "tests/**/*.tsx"],
+      "rules": {
+        "@typescript-eslint/ban-ts-comment": "off"
       }
     }
   ]

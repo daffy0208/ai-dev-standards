@@ -27,6 +27,13 @@
 
 import Stripe from 'stripe'
 
+const logInfo = (...messages: unknown[]): void => {
+  const formatted = messages.map(message =>
+    typeof message === 'string' ? message : JSON.stringify(message, null, 2)
+  )
+  process.stdout.write(`${formatted.join(' ')}\n`)
+}
+
 export interface StripeConfig {
   secretKey?: string
   apiVersion?: string
@@ -42,8 +49,10 @@ export class StripeClient {
       throw new Error('STRIPE_SECRET_KEY is required')
     }
 
+    const apiVersion = (config.apiVersion ?? '2023-10-16') as Stripe.StripeConfig['apiVersion']
+
     this.stripe = new Stripe(secretKey, {
-      apiVersion: '2024-11-20.acacia',
+      apiVersion,
       typescript: true
     })
   }
@@ -207,10 +216,12 @@ export class StripeClient {
       product: params.productId,
       unit_amount: params.amount,
       currency: params.currency || 'usd',
-      recurring: params.interval ? {
-        interval: params.interval,
-        interval_count: params.intervalCount || 1
-      } : undefined
+      recurring: params.interval
+        ? {
+            interval: params.interval,
+            interval_count: params.intervalCount || 1
+          }
+        : undefined
     })
   }
 
@@ -295,10 +306,7 @@ export class StripeClient {
   /**
    * Billing Portal
    */
-  async createBillingPortalSession(params: {
-    customerId: string
-    returnUrl: string
-  }) {
+  async createBillingPortalSession(params: { customerId: string; returnUrl: string }) {
     return this.stripe.billingPortal.sessions.create({
       customer: params.customerId,
       return_url: params.returnUrl
@@ -346,14 +354,11 @@ export class StripeClient {
     timestamp?: number
     action?: 'increment' | 'set'
   }) {
-    return this.stripe.subscriptionItems.createUsageRecord(
-      params.subscriptionItemId,
-      {
-        quantity: params.quantity,
-        timestamp: params.timestamp || Math.floor(Date.now() / 1000),
-        action: params.action || 'increment'
-      }
-    )
+    return this.stripe.subscriptionItems.createUsageRecord(params.subscriptionItemId, {
+      quantity: params.quantity,
+      timestamp: params.timestamp || Math.floor(Date.now() / 1000),
+      action: params.action || 'increment'
+    })
   }
 }
 
@@ -395,7 +400,7 @@ export async function examples() {
     metadata: { userId: '123' }
   })
 
-  console.log('Customer created:', customer.id)
+  logInfo('Customer created:', customer.id)
 
   // Create one-time payment
   const paymentIntent = await stripe.createPaymentIntent({
@@ -404,7 +409,7 @@ export async function examples() {
     description: 'Premium Plan'
   })
 
-  console.log('Payment Intent:', paymentIntent.client_secret)
+  logInfo('Payment Intent:', paymentIntent.client_secret)
 
   // Create subscription
   const subscription = await stripe.createSubscription({
@@ -413,23 +418,21 @@ export async function examples() {
     trialPeriodDays: 14
   })
 
-  console.log('Subscription created:', subscription.id)
+  logInfo('Subscription created:', subscription.id)
 
   // Create checkout session
   const session = await stripe.createCheckoutSession({
     customerEmail: 'user@example.com',
-    lineItems: [
-      { priceId: 'price_123', quantity: 1 }
-    ],
+    lineItems: [{ priceId: 'price_123', quantity: 1 }],
     mode: 'subscription',
     successUrl: 'https://example.com/success',
     cancelUrl: 'https://example.com/cancel'
   })
 
-  console.log('Checkout URL:', session.url)
+  logInfo('Checkout URL:', session.url)
 
   // Format price
-  console.log('Price:', formatPrice(2999)) // $29.99
+  logInfo('Price:', formatPrice(2999)) // $29.99
 }
 
 // Export singleton instance

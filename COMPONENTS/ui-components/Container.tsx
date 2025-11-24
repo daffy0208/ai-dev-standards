@@ -1,6 +1,6 @@
-import React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from './utils';
+import React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from './utils'
 
 const containerVariants = cva('w-full mx-auto', {
   variants: {
@@ -10,51 +10,44 @@ const containerVariants = cva('w-full mx-auto', {
       lg: 'max-w-screen-lg',
       xl: 'max-w-screen-xl',
       '2xl': 'max-w-screen-2xl',
-      full: 'max-w-full',
+      full: 'max-w-full'
     },
     padding: {
       none: 'px-0',
       sm: 'px-4',
       md: 'px-6',
       lg: 'px-8',
-      xl: 'px-12',
+      xl: 'px-12'
     },
     centerContent: {
       true: 'flex items-center justify-center',
-      false: '',
-    },
+      false: ''
+    }
   },
   defaultVariants: {
     maxWidth: 'xl',
     padding: 'md',
-    centerContent: false,
-  },
-});
+    centerContent: false
+  }
+})
 
-export interface ContainerProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof containerVariants> {
-  /** Apply container to a specific element type */
-  as?: keyof JSX.IntrinsicElements;
-}
+export type ContainerProps = React.HTMLAttributes<HTMLDivElement> &
+  VariantProps<typeof containerVariants>
 
 const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
-  (
-    { className, maxWidth, padding, centerContent, as: Component = 'div', children, ...props },
-    ref
-  ) => {
+  ({ className, maxWidth, padding, centerContent, children, ...props }, ref) => {
     return (
-      <Component
+      <div
         className={cn(containerVariants({ maxWidth, padding, centerContent }), className)}
         ref={ref}
         {...props}
       >
         {children}
-      </Component>
-    );
+      </div>
+    )
   }
-);
+)
 
-Container.displayName = 'Container';
+Container.displayName = 'Container'
 
-export { Container, containerVariants };
+export { Container, containerVariants }

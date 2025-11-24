@@ -13,7 +13,7 @@
  * ```
  */
 
-import { Tool } from 'langchain/tools'
+import { Tool } from '@langchain/core/tools'
 
 export interface TypeScale {
   name: string
@@ -61,7 +61,7 @@ Returns complete type scale with CSS variables and Tailwind config.`
     'perfect-fourth': 1.333,
     'augmented-fourth': 1.414,
     'perfect-fifth': 1.5,
-    'golden-ratio': 1.618,
+    'golden-ratio': 1.618
   }
 
   async _call(input: string): Promise<string> {
@@ -127,7 +127,7 @@ Returns complete type scale with CSS variables and Tailwind config.`
       { name: '3xl', steps: 4, usage: 'H2 headings' },
       { name: '4xl', steps: 5, usage: 'H1 headings' },
       { name: '5xl', steps: 6, usage: 'Hero headings, display text' },
-      { name: '6xl', steps: 7, usage: 'Extra large display text' },
+      { name: '6xl', steps: 7, usage: 'Extra large display text' }
     ]
 
     const scale: TypeScale[] = levels.map(level => {
@@ -141,7 +141,7 @@ Returns complete type scale with CSS variables and Tailwind config.`
         rem: `${Math.round(rem * 1000) / 1000}rem`,
         px: `${Math.round(size)}px`,
         lineHeight: lineHeight.toFixed(2),
-        usage: level.usage,
+        usage: level.usage
       }
     })
 
@@ -151,7 +151,7 @@ Returns complete type scale with CSS variables and Tailwind config.`
       ratioName,
       scale,
       cssVariables: this.generateCssVariables(scale),
-      tailwindConfig: this.generateTailwindConfig(scale),
+      tailwindConfig: this.generateTailwindConfig(scale)
     }
   }
 
@@ -163,7 +163,10 @@ Returns complete type scale with CSS variables and Tailwind config.`
 
     for (const [name, value] of entries) {
       if (Math.abs(value - ratio) < 0.001) {
-        return name.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+        return name
+          .split('-')
+          .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+          .join(' ')
       }
     }
 
@@ -202,7 +205,9 @@ Returns complete type scale with CSS variables and Tailwind config.`
    * Generate Tailwind config
    */
   private generateTailwindConfig(scale: TypeScale[]): string {
-    const sizes = scale.map(s => `    ${s.name}: ['${s.rem}', { lineHeight: '${s.lineHeight}' }],`).join('\n')
+    const sizes = scale
+      .map(s => `    ${s.name}: ['${s.rem}', { lineHeight: '${s.lineHeight}' }],`)
+      .join('\n')
 
     return `module.exports = {
   theme: {
@@ -234,7 +239,7 @@ export const TYPOGRAPHIC_RATIOS = {
   PERFECT_FOURTH: 1.333,
   AUGMENTED_FOURTH: 1.414,
   PERFECT_FIFTH: 1.5,
-  GOLDEN_RATIO: 1.618,
+  GOLDEN_RATIO: 1.618
 } as const
 
 /**

@@ -23,7 +23,9 @@ export default defineConfig({
         'node_modules/',
         'tests/',
         '**/*.test.ts',
+        '**/*.test.tsx',
         '**/*.spec.ts',
+        '**/*.spec.tsx',
         '**/examples.ts',
         'CLI/node_modules/',
         '**/*.config.ts',
@@ -45,8 +47,11 @@ export default defineConfig({
     // Test patterns
     include: [
       'tests/**/*.test.ts',
+      'tests/**/*.test.tsx',
       'tests/**/*.spec.ts',
-      'scripts/brain/**/*.test.ts'
+      'tests/**/*.spec.tsx',
+      'scripts/brain/**/*.test.ts',
+      'MCP-SERVERS/**/tests/**/*.test.ts'
     ],
 
     // Timeout for tests
@@ -56,7 +61,7 @@ export default defineConfig({
     hookTimeout: 10000,
 
     // Reporter
-    reporter: ['verbose', 'json', 'html'],
+    reporters: ['verbose', 'json', 'html'],
 
     // Parallel execution
     pool: 'threads',

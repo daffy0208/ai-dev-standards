@@ -17,6 +17,7 @@ Comprehensive error tracking and debugging strategy for production applications.
 ## Error Types
 
 ### 1. Handled Errors
+
 Expected errors with graceful handling:
 
 ```typescript
@@ -35,6 +36,7 @@ try {
 ```
 
 ### 2. Unhandled Errors
+
 Unexpected errors that crash the app:
 
 ```typescript
@@ -43,6 +45,7 @@ const data = JSON.parse(invalidJSON)
 ```
 
 ### 3. Promise Rejections
+
 Unhandled promise rejections:
 
 ```typescript
@@ -58,11 +61,13 @@ fetch('/api/users').then(res => res.json())
 ### Sentry (Recommended)
 
 **Installation:**
+
 ```bash
 npm install @sentry/nextjs
 ```
 
 **Configuration:**
+
 ```typescript
 // sentry.client.config.ts
 import * as Sentry from '@sentry/nextjs'
@@ -80,10 +85,7 @@ Sentry.init({
   tracesSampleRate: process.env.NODE_ENV === 'production' ? 0.1 : 1.0,
 
   // Ignore known errors
-  ignoreErrors: [
-    'ResizeObserver loop limit exceeded',
-    'Non-Error promise rejection captured'
-  ],
+  ignoreErrors: ['ResizeObserver loop limit exceeded', 'Non-Error promise rejection captured'],
 
   // Before send hook (sanitize data)
   beforeSend(event, hint) {
@@ -99,6 +101,7 @@ Sentry.init({
 ```
 
 **Usage:**
+
 ```typescript
 try {
   await processPayment(order)
@@ -124,11 +127,15 @@ try {
 ```typescript
 import { datadogLogs } from '@datadog/browser-logs'
 
-datadogLogs.logger.error('Payment failed', {
-  error: error.message,
-  stack: error.stack,
-  orderId: order.id
-}, error)
+datadogLogs.logger.error(
+  'Payment failed',
+  {
+    error: error.message,
+    stack: error.stack,
+    orderId: order.id
+  },
+  error
+)
 ```
 
 ### CloudWatch (AWS)
@@ -138,19 +145,23 @@ import { CloudWatchLogs } from 'aws-sdk'
 
 const logs = new CloudWatchLogs()
 
-await logs.putLogEvents({
-  logGroupName: '/aws/lambda/my-function',
-  logStreamName: streamName,
-  logEvents: [{
-    message: JSON.stringify({
-      level: 'ERROR',
-      message: error.message,
-      stack: error.stack,
-      context: { userId, orderId }
-    }),
-    timestamp: Date.now()
-  }]
-}).promise()
+await logs
+  .putLogEvents({
+    logGroupName: '/aws/lambda/my-function',
+    logStreamName: streamName,
+    logEvents: [
+      {
+        message: JSON.stringify({
+          level: 'ERROR',
+          message: error.message,
+          stack: error.stack,
+          context: { userId, orderId }
+        }),
+        timestamp: Date.now()
+      }
+    ]
+  })
+  .promise()
 ```
 
 ---
@@ -160,8 +171,9 @@ await logs.putLogEvents({
 ### ✅ Always Track
 
 **Unhandled Exceptions:**
+
 ```typescript
-process.on('uncaughtException', (error) => {
+process.on('uncaughtException', error => {
   Sentry.captureException(error)
   process.exit(1)
 })
@@ -172,6 +184,7 @@ process.on('unhandledRejection', (reason, promise) => {
 ```
 
 **API Errors:**
+
 ```typescript
 app.use((error, req, res, next) => {
   Sentry.captureException(error, {
@@ -192,6 +205,7 @@ app.use((error, req, res, next) => {
 ```
 
 **Database Errors:**
+
 ```typescript
 try {
   await db.user.create({ data: userData })
@@ -210,6 +224,7 @@ try {
 ```
 
 **External API Failures:**
+
 ```typescript
 try {
   const response = await stripe.charges.create(chargeData)
@@ -229,6 +244,7 @@ try {
 ```
 
 **Frontend Errors:**
+
 ```typescript
 // React Error Boundary
 class ErrorBoundary extends React.Component {
@@ -309,11 +325,7 @@ Group similar errors together:
 
 ```typescript
 Sentry.captureException(error, {
-  fingerprint: [
-    '{{ default }}',
-    error.code,
-    error.statusCode?.toString()
-  ]
+  fingerprint: ['{{ default }}', error.code, error.statusCode?.toString()]
 })
 
 // Errors with same code/status grouped together
@@ -339,6 +351,7 @@ beforeSend(event) {
 ### Sentry Alerts
 
 **Example: Alert on new errors**
+
 ```
 Condition: A new issue is created
 Frequency: Immediately
@@ -346,6 +359,7 @@ Action: Send to Slack #incidents
 ```
 
 **Example: Alert on error spike**
+
 ```
 Condition: Number of events > 100 in 1 hour
 Frequency: Once per issue
@@ -355,19 +369,23 @@ Action: Email on-call engineer
 ### Alert Levels
 
 **Critical (P0):**
+
 - Payment processing errors
 - Database connection failures
 - Authentication system down
 
 **High (P1):**
+
 - New error never seen before
 - Error rate spike (3x normal)
 
 **Medium (P2):**
+
 - Known intermittent errors
 - Non-critical API failures
 
 **Low (P3):**
+
 - Warnings
 - Deprecation notices
 
@@ -567,6 +585,7 @@ Receive alert: "Payment processing error spike"
 ## Error Tracking Checklist
 
 ### Setup
+
 - [ ] Error tracking tool configured (Sentry, Datadog)
 - [ ] Source maps uploaded
 - [ ] User context tracked
@@ -574,12 +593,14 @@ Receive alert: "Payment processing error spike"
 - [ ] Ignored errors configured (false positives)
 
 ### Monitoring
+
 - [ ] Alerts configured for critical errors
 - [ ] Dashboard shows error trends
 - [ ] On-call rotation defined
 - [ ] Runbooks for common errors
 
 ### Process
+
 - [ ] New errors triaged within 24 hours
 - [ ] Critical errors resolved immediately
 - [ ] Post-mortems for major incidents
@@ -590,6 +611,7 @@ Receive alert: "Payment processing error spike"
 ## Common Errors to Track
 
 ### Authentication Errors
+
 ```typescript
 Sentry.captureMessage('Login failed', {
   level: 'warning',
@@ -601,6 +623,7 @@ Sentry.captureMessage('Login failed', {
 ```
 
 ### Payment Errors
+
 ```typescript
 Sentry.captureException(error, {
   level: 'error',
@@ -613,6 +636,7 @@ Sentry.captureException(error, {
 ```
 
 ### API Errors
+
 ```typescript
 Sentry.captureException(error, {
   tags: {
@@ -628,14 +652,17 @@ Sentry.captureException(error, {
 ## Related Resources
 
 **Patterns:**
+
 - `/STANDARDS/architecture-patterns/logging-strategy.md`
 - `/STANDARDS/architecture-patterns/monitoring-and-alerting.md`
 
 **Skills:**
+
 - `/SKILLS/security-engineer/` - Security error handling
 - `/SKILLS/testing-strategist/` - Error reproduction
 
 **External:**
+
 - [Sentry Documentation](https://docs.sentry.io/)
 - [Error Handling Best Practices](https://www.joyent.com/node-js/production/design/errors)
 

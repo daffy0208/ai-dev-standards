@@ -21,21 +21,25 @@ claude-code --skill localization-engineer
 ## Common Tasks
 
 ### Setup i18n
+
 ```
 "Set up internationalization for a Next.js app with English, Spanish, and Japanese"
 ```
 
 ### Add Translations
+
 ```
 "Create translation files for the navigation menu and auth pages"
 ```
 
 ### Language Switcher
+
 ```
 "Build a language switcher dropdown with flags"
 ```
 
 ### Format Dates
+
 ```
 "Format this date according to the user's locale"
 ```

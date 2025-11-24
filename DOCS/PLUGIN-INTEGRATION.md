@@ -75,8 +75,8 @@ This guide explains how the Claude Code Plugins Plus marketplace is integrated w
       "enhances_skills": ["skill-1", "skill-2"],
       "install_command": "/plugin install ...",
       "status": "recommended|optional",
-      "mcp_server": true,  // if MCP server
-      "auto_activates": true  // if agent skill
+      "mcp_server": true, // if MCP server
+      "auto_activates": true // if agent skill
     }
   ],
   "metadata": {
@@ -106,6 +106,7 @@ node scripts/test-plugins.cjs
 ```
 
 **Checks:**
+
 - Plugin installation status
 - MCP server processes running
 - AI instruction templates loaded
@@ -121,6 +122,7 @@ node scripts/update-plugin-relationships.cjs
 ```
 
 **Updates:**
+
 - plugin_to_skill mappings
 - plugin_to_mcp mappings
 - Plugin metadata in relationship file
@@ -134,6 +136,7 @@ node scripts/validate-complete-system.cjs
 ```
 
 **Validates:**
+
 - All existing registries (skills, MCPs, tools, etc.)
 - Plugin registry consistency
 - Plugin-to-skill relationships
@@ -144,11 +147,13 @@ node scripts/validate-complete-system.cjs
 When adding new plugins to the marketplace:
 
 1. **Install the plugin:**
+
    ```bash
    /plugin install plugin-name@claude-code-plugins-plus
    ```
 
 2. **Add to plugin-registry.json:**
+
    ```json
    {
      "id": "new-plugin",
@@ -164,11 +169,13 @@ When adding new plugins to the marketplace:
    ```
 
 3. **Update relationships:**
+
    ```bash
    node scripts/update-plugin-relationships.cjs
    ```
 
 4. **Validate:**
+
    ```bash
    node scripts/validate-complete-system.cjs
    node scripts/test-plugins.cjs
@@ -183,17 +190,20 @@ When adding new plugins to the marketplace:
 ## Plugin Types
 
 ### AI Instruction Templates (4 plugins)
+
 - Loaded on-demand when Claude needs guidance
 - No separate process required
 - Automatically available after installation
 
 ### MCP Server Plugins (4 plugins)
+
 - Run as Node.js processes
 - Provide executable tools and capabilities
 - Require Node.js runtime
 - Check if running: `ps aux | grep mcp`
 
 ### Agent Skills (2 plugins)
+
 - Auto-activate based on context
 - No manual invocation needed
 - Integrated into Claude's capability set
@@ -228,6 +238,7 @@ With plugins integrated, total resources are now:
 ### Plugin Not Found
 
 If `/plugin install` fails:
+
 1. Verify marketplace is added: `/plugin marketplace add jeremylongshore/claude-code-plugins`
 2. Check plugin name spelling
 3. Confirm internet connection
@@ -235,6 +246,7 @@ If `/plugin install` fails:
 ### MCP Server Not Running
 
 If MCP server plugin isn't working:
+
 1. Check if Node.js is installed: `node --version`
 2. Look for process: `ps aux | grep plugin-name`
 3. Check Claude Code logs
@@ -243,6 +255,7 @@ If MCP server plugin isn't working:
 ### Plugin Not Enhancing Skill
 
 If plugin isn't working with a skill:
+
 1. Verify plugin-registry.json has correct `enhances_skills` array
 2. Run `node scripts/update-plugin-relationships.cjs`
 3. Check relationship-mapping.json for plugin_to_skill entry

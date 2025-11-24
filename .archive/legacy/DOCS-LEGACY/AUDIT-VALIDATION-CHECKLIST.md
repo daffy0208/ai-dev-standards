@@ -13,6 +13,7 @@
 **Previous Audit Result:** 8.6/10 (Excellent)
 
 **What It Missed:**
+
 - **81% of skills were invisible** (29 out of 36 skills not in registry)
 - **CLI returned mock data** instead of real registry
 - **README documented skills that weren't discoverable**
@@ -32,6 +33,7 @@
 **For repositories with registries (like ai-dev-standards):**
 
 #### Skills
+
 ```bash
 # Count skills in directory
 SKILL_COUNT=$(ls -1 SKILLS/ | grep -v "_TEMPLATE" | wc -l)
@@ -52,16 +54,19 @@ fi
 - [ ] Each registry entry has valid path, description, version
 
 #### MCPs
+
 - [ ] All MCPs in MCP-SERVERS/ are in registry
 - [ ] Each MCP has required fields (name, path, description)
 - [ ] No orphaned registry entries (registered but missing file)
 
 #### Playbooks
+
 - [ ] All playbooks in PLAYBOOKS/ are in registry
 - [ ] Each playbook referenced in skills actually exists
 - [ ] Cross-references are valid
 
 #### Patterns
+
 - [ ] All patterns in STANDARDS/ are in registry
 - [ ] Decision framework references existing patterns
 - [ ] Skills reference existing patterns
@@ -77,6 +82,7 @@ fi
 **Skills without tools are aspirational, not actionable.**
 
 #### Check Ratio
+
 ```bash
 # Count skills and MCPs
 SKILL_COUNT=$(jq '.skills | length' META/registry.json)
@@ -120,12 +126,14 @@ Core skills that need tools to be actionable:
 #### Scoring Impact
 
 **If Skill-MCP ratio >5:1:**
+
 - Completeness dimension: Maximum 5/10
 - Developer Experience: Maximum 6/10
 - Overall score: Capped at 7/10
 - Status: "Aspirational but not fully actionable"
 
 **Why this is critical:**
+
 - Skills describe HOW but don't provide tools to DO
 - AI can advise but can't execute
 - Users must manually implement everything
@@ -143,6 +151,7 @@ Core skills that need tools to be actionable:
 - [ ] Update commands return all resources, not subset
 
 **Check with:**
+
 ```bash
 # Search for TODO comments indicating mock data
 grep -r "TODO: Fetch from" CLI/commands/
@@ -164,6 +173,7 @@ grep -A5 "fetchAvailableSkills\|fetchAvailableMcps" CLI/commands/
 - [ ] Links point to valid files
 
 **Check with:**
+
 ```bash
 # Extract skill mentions from README
 grep -oE '[a-z]+-[a-z]+(-[a-z]+)*' README.md | sort -u
@@ -191,6 +201,7 @@ jq '.skills[].name' META/registry.json | sort
 - [ ] Tests would catch orphaned registry entries
 
 **Required tests:**
+
 ```typescript
 // tests/registry-validation.test.ts
 
@@ -209,11 +220,13 @@ it('should have skills reference each other correctly')
 ### 1. Code Quality (1-10)
 
 **Additional Checks:**
+
 - [ ] No hardcoded data that should come from config/registry
 - [ ] Dynamic loading from registry vs static imports
 - [ ] Resource paths constructed dynamically
 
 **Common Issues:**
+
 - Hardcoded skill lists in multiple places (sync.js, update.js, etc.)
 - Mock data used for "quick testing" never removed
 - Static arrays instead of reading from files
@@ -223,11 +236,13 @@ it('should have skills reference each other correctly')
 ### 2. Architecture (1-10)
 
 **Additional Checks:**
+
 - [ ] Single source of truth for resources (registry)
 - [ ] No duplicate resource definitions
 - [ ] Clear data flow: files → registry → consumers
 
 **Red Flags:**
+
 - Resources defined in multiple places
 - No central registry
 - Each consumer maintains own list
@@ -237,11 +252,13 @@ it('should have skills reference each other correctly')
 ### 3. Documentation (1-10)
 
 **Additional Checks:**
+
 - [ ] README accuracy validated against reality
 - [ ] No documentation for non-existent features
 - [ ] Examples use resources that exist
 
 **This dimension should have caught:**
+
 - README mentions "product-strategist" → Not in registry → Score -2
 - README mentions "api-designer" → Not in registry → Score -2
 - "12 skills available" but only 7 discoverable → Score -3
@@ -251,12 +268,14 @@ it('should have skills reference each other correctly')
 ### 4. Testing (1-10)
 
 **Additional Checks:**
+
 - [ ] Tests validate registry completeness
 - [ ] Tests catch missing resources
 - [ ] Tests verify CLI data sources
 - [ ] Tests check cross-references
 
 **This dimension should have caught:**
+
 - No tests for registry completeness → Score -5
 - No tests verifying CLI reads registry → Score -2
 - No integration tests for discovery → Score -2
@@ -266,11 +285,13 @@ it('should have skills reference each other correctly')
 ### 5. CI/CD (1-10)
 
 **Additional Checks:**
+
 - [ ] CI validates registry on every PR
 - [ ] Build fails if resources missing
 - [ ] Automated checks prevent regression
 
 **This dimension should have caught:**
+
 - No CI validation of registry → Score -3
 - Can merge PR with incomplete registry → Score -2
 - No automated discovery checks → Score -3
@@ -280,11 +301,13 @@ it('should have skills reference each other correctly')
 ### 6. Developer Experience (1-10)
 
 **Additional Checks:**
+
 - [ ] Developers can discover all resources
 - [ ] Clear error messages when resource missing
 - [ ] Tools help maintain registry completeness
 
 **This dimension should have caught:**
+
 - 81% of skills invisible → Score -6
 - CLI returns 3 skills instead of 36 → Score -2
 - No tooling to maintain registry → Score -1
@@ -307,6 +330,7 @@ it('should have skills reference each other correctly')
 ### Overall Score Impact
 
 **If Resource Discovery scores <5/10:**
+
 - Overall score MUST be capped at 6/10 maximum
 - Audit must flag as "CRITICAL ISSUE - NOT PRODUCTION READY"
 - Must include remediation plan
@@ -326,32 +350,38 @@ If users can't discover resources, nothing else matters. A repository with excel
 ## Resource Discovery Validation
 
 ### Registry Completeness
+
 - Skills: X in directory, Y in registry (Match: ✅/❌)
 - MCPs: X in directory, Y in registry (Match: ✅/❌)
 - Playbooks: X in directory, Y in registry (Match: ✅/❌)
 - Patterns: X in directory, Y in registry (Match: ✅/❌)
 
 ### CLI Integration
+
 - CLI reads from registry: ✅/❌
 - No mock data: ✅/❌
 - Bootstrap references registry: ✅/❌
 
 ### Documentation Accuracy
+
 - README documents only available resources: ✅/❌
 - No dead references: ✅/❌
 - Examples use valid resources: ✅/❌
 
 ### Cross-References
+
 - Skill references valid: ✅/❌
 - Playbook references valid: ✅/❌
 - Pattern references valid: ✅/❌
 
 ### Automated Validation
+
 - Registry tests exist: ✅/❌
 - CI validates registry: ✅/❌
 - Tests would catch issues: ✅/❌
 
 ### Score: X/10
+
 ### Critical Issues: [List any failures]
 ```
 
@@ -435,6 +465,7 @@ Start Audit
 **"Existence ≠ Discoverability"**
 
 Just because a resource exists in the codebase doesn't mean users can find it. The audit must validate both:
+
 - ✅ Resources exist
 - ✅ Resources are discoverable
 
@@ -448,11 +479,13 @@ Just because a resource exists in the codebase doesn't mean users can find it. T
 ## CRITICAL: Resource Discovery Gap Found
 
 ### Issue
+
 - X resources exist in directories
 - Y resources in registry
-- Z resources missing (((X-Y)/X * 100)% invisible)
+- Z resources missing (((X-Y)/X \* 100)% invisible)
 
 ### Impact
+
 - Projects cannot discover Z resources
 - CLI returns incomplete data
 - Users miss out on available functionality
@@ -475,7 +508,9 @@ Just because a resource exists in the codebase doesn't mean users can find it. T
    - [ ] Create monitoring dashboard
 
 ### Verification
+
 After fixes:
+
 - [ ] `npm run test:registry` passes
 - [ ] CI includes registry validation
 - [ ] Manual count matches registry count

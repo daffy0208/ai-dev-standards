@@ -13,6 +13,7 @@ Automatically saves and restores your development context every 15 minutes. Elim
 **Always active!** This skill runs automatically in the background.
 
 Specifically helps when:
+
 - Taking breaks (lunch, bathroom, walk)
 - Switching between projects
 - Getting interrupted (meetings, urgent bugs)
@@ -41,6 +42,7 @@ Specifically helps when:
 ## Key Features
 
 ### Automatic Saves (Every 15 Minutes)
+
 - Current file + line number
 - What you're working on
 - What you just finished
@@ -49,6 +51,7 @@ Specifically helps when:
 - WIP git commit
 
 ### One-Command Resume (< 5 Minutes)
+
 - Opens exact file at exact line
 - Shows mental state notes
 - Starts dev server
@@ -56,6 +59,7 @@ Specifically helps when:
 - Restores context
 
 ### Interruption Protection
+
 - Meeting in 15 min? Auto-save triggered
 - Got interrupted? Context preserved
 - Lost focus? Easy to reset
@@ -67,11 +71,7 @@ Specifically helps when:
   "file": "src/components/login.tsx:42",
   "doing": "Adding API call to /auth/login",
   "just_finished": "Email validation",
-  "next_steps": [
-    "Add fetch call",
-    "Handle errors",
-    "Add loading state"
-  ],
+  "next_steps": ["Add fetch call", "Handle errors", "Add loading state"],
   "progress": "60% complete",
   "estimated_remaining": "45 minutes"
 }
@@ -80,6 +80,7 @@ Specifically helps when:
 ## Resume Time: < 5 Minutes
 
 **Before (no context preservation):**
+
 - 5 min: "What was I doing?"
 - 10 min: Reading code to remember
 - 5 min: Finding the right file
@@ -87,6 +88,7 @@ Specifically helps when:
 - **Total: 30 minutes lost**
 
 **After (automatic context preservation):**
+
 - 30 sec: Run ./resume.sh
 - 1 min: Read context notes
 - 2 min: Scan code quickly
@@ -98,6 +100,7 @@ Specifically helps when:
 ## Automation Features
 
 ### Trigger 1: Every 15 Minutes (Background)
+
 ```
 [Auto-save running...]
 ✅ Context saved
@@ -105,6 +108,7 @@ Specifically helps when:
 ```
 
 ### Trigger 2: Before Meetings (Auto-Detect)
+
 ```
 [Meeting in 15 min detected]
 Auto-saving context...
@@ -113,6 +117,7 @@ Resume: ./resume.sh
 ```
 
 ### Trigger 3: On Inactivity (10 min idle)
+
 ```
 [No activity for 10 min]
 Interruption detected!
@@ -120,6 +125,7 @@ Context preserved automatically
 ```
 
 ### Trigger 4: End of Day (5pm prompt)
+
 ```
 [17:00] Wrapping up for the day?
 - Save today's progress ✅
@@ -159,6 +165,7 @@ Your project will have:
 ## Common Scenarios
 
 ### Scenario 1: Lunch Break
+
 ```bash
 # Before lunch
 ./save-context.sh --break lunch
@@ -174,6 +181,7 @@ Your project will have:
 ```
 
 ### Scenario 2: Urgent Production Bug
+
 ```
 You: "Production bug, need to switch NOW"
 
@@ -186,6 +194,7 @@ After bug: ./resume-auth-work.sh
 ```
 
 ### Scenario 3: Lost Focus (ADHD Wander)
+
 ```
 [Browsing docs for 20 min]
 
@@ -199,6 +208,7 @@ Next step: Add email input (5 min)
 ## Git Integration
 
 ### Automatic WIP Commits
+
 ```bash
 # Every 15 min:
 git commit -m "WIP: Adding API call [15:30]"
@@ -208,6 +218,7 @@ git commit -m "PAUSE: About to add error handling [16:00]"
 ```
 
 ### Resume from History
+
 ```bash
 git log -1 --pretty=%B
 # Shows: What you were doing last
@@ -216,6 +227,7 @@ git log -1 --pretty=%B
 ## Success Metrics
 
 You're using this well when:
+
 - ✅ Resume time < 5 minutes (was 30 min)
 - ✅ Never lose your place
 - ✅ Take breaks without anxiety
@@ -225,7 +237,9 @@ You're using this well when:
 ## Tips
 
 ### Take More Breaks
+
 Now that resume is easy (5 min), you can take breaks without fear:
+
 - Bathroom breaks
 - Water breaks
 - Stretch breaks
@@ -235,6 +249,7 @@ Now that resume is easy (5 min), you can take breaks without fear:
 **After:** Take breaks freely (quick resume)
 
 ### Share Context
+
 ```bash
 ./export-context.sh
 # Generates: context-snapshot.md
@@ -242,6 +257,7 @@ Now that resume is easy (5 min), you can take breaks without fear:
 ```
 
 ### Browse History
+
 ```bash
 ./context-history.sh
 # See past work sessions

@@ -39,11 +39,13 @@ This directory contains historical working documents from the development of ai-
 ## Why These Were Archived
 
 **Repository Cleanup (2025-10-27):**
+
 - 31 files in root directory → 8 essential files
 - 23 files in META/ directory → 4 core documents
 - Total: 74 files moved to archive
 
 **Reasons:**
+
 1. **Clutter Reduction:** Working documents don't belong in root/META
 2. **Professional Appearance:** GitHub front page should show only essential files
 3. **Clarity:** Clear distinction between user-facing and developer-working documents
@@ -52,6 +54,7 @@ This directory contains historical working documents from the development of ai-
 ## What Remains in Root
 
 **User-Facing Files:**
+
 - `README.md` - Main documentation
 - `CHANGELOG.md` - Version history
 - `INSTALL.md` - Installation guide
@@ -63,6 +66,7 @@ This directory contains historical working documents from the development of ai-
 ## What Remains in META
 
 **Core Context Documents:**
+
 - `PROJECT-CONTEXT.md` - Repository overview for AI assistants
 - `HOW-TO-USE.md` - Navigation and usage guide
 - `DECISION-FRAMEWORK.md` - Technology decision guidance
@@ -73,6 +77,7 @@ Plus registry JSON files (skill-registry.json, mcp-registry.json, etc.)
 ## Accessing Historical Information
 
 If you need information from archived documents:
+
 ```bash
 # Search archived files
 grep -r "search term" .archive/
@@ -90,11 +95,13 @@ find .archive -type f | wc -l
 ### Notable Historical Documents
 
 **For Understanding Evolution:**
+
 - `audits/COMPREHENSIVE-AUDIT-REPORT.json` - Complete repository assessment
 - `planning/MASTER-ROADMAP.md` - Original vision and goals
 - `legacy/DOCS-LEGACY/` - Superseded documentation versions
 
 **For Decision Context:**
+
 - `audits/GAP-ANALYSIS.md` - Feature gap identification
 - `planning/VALIDATION-SYSTEM-PROOF.md` - Validation system design
 - `sessions/` - Development session contexts
@@ -102,6 +109,7 @@ find .archive -type f | wc -l
 ## Should I Add New Files Here?
 
 **No.** This is a historical archive only. New documents should go in appropriate locations:
+
 - User documentation → `DOCS/`
 - Developer notes → Keep local or in issues
 - Planning → Use GitHub Projects/Issues

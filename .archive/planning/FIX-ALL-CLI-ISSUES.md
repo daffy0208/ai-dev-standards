@@ -3,18 +3,22 @@
 ## Immediate Fixes Required
 
 ### 1. update.js - fetchAvailableSkills() and fetchAvailableMcps()
+
 **Current:** Returns 3 hardcoded skills
 **Required:** Fetch from GitHub like sync.js
 
 ### 2. Add GitHub fetch utility
+
 **Create:** CLI/utils/github-fetch.js
 **Purpose:** Centralized GitHub fetching for all commands
 
 ### 3. Add CLI validation
+
 **Update:** scripts/validate-all.cjs
 **Add:** 3 new validation checks for CLI
 
 ### 4. Add integration tests
+
 **Create:** tests/integration/cli.test.js
 **Purpose:** Test CLI commands actually work
 

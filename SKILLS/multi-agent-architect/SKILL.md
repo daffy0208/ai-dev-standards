@@ -15,6 +15,7 @@ Design systems where multiple specialized agents collaborate to solve complex pr
 ## When to Use Multi-Agent Systems
 
 ### Use Multi-Agent When:
+
 - ✅ Task requires multiple specializations (research + writing + coding)
 - ✅ Parallel processing speeds up solution (independent subtasks)
 - ✅ Need self-correction through peer review
@@ -22,6 +23,7 @@ Design systems where multiple specialized agents collaborate to solve complex pr
 - ✅ Scaling single-agent becomes unwieldy
 
 ### Don't Use Multi-Agent When:
+
 - ❌ Single agent can handle task efficiently
 - ❌ Task is simple and linear
 - ❌ Communication overhead > parallelization benefit
@@ -40,6 +42,7 @@ User Query → Researcher → Analyst → Writer → Editor → Output
 ```
 
 **Example**: Research report generation
+
 1. Researcher: Gather sources
 2. Analyst: Synthesize findings
 3. Writer: Draft report
@@ -64,6 +67,7 @@ User Query → Researcher → Analyst → Writer → Editor → Output
 ```
 
 **Example**: Market research across competitors
+
 - Manager: Decompose into per-competitor analysis
 - Workers: Research competitor A, B, C in parallel
 - Aggregator: Combine findings
@@ -84,6 +88,7 @@ Coder ↔ Reviewer ↔ Tester
 ```
 
 **Example**: Code generation with review
+
 1. Coder: Write initial code
 2. Reviewer: Check for issues
 3. Tester: Validate functionality
@@ -107,6 +112,7 @@ Selector (pick best)
 ```
 
 **Example**: Creative brainstorming
+
 - 5 agents generate different approaches
 - Selector evaluates and picks best
 
@@ -336,21 +342,27 @@ result = app.invoke({"input": "Analyze AI market trends"})
 ## Best Practices
 
 ### 1. Clear Agent Roles
+
 Each agent should have specific expertise and responsibilities
 
 ### 2. Minimize Communication
+
 More agents = more coordination overhead. Start simple.
 
 ### 3. Idempotent Operations
+
 Agents should be restartable without side effects
 
 ### 4. Failure Handling
+
 Design for agent failures (retry, fallback, skip)
 
 ### 5. Observable Execution
+
 Log agent decisions, trace execution flow
 
 ### 6. Cost Management
+
 Track token usage per agent, optimize expensive calls
 
 ---
@@ -411,6 +423,7 @@ class TrackedAgent(Agent):
 ```
 
 **Key Metrics**:
+
 - Agent execution time
 - Token usage per agent
 - Success/failure rates
@@ -422,14 +435,17 @@ class TrackedAgent(Agent):
 ## Related Resources
 
 **Related Skills**:
+
 - `rag-implementer` - For knowledge-grounded agents
 - `knowledge-graph-builder` - For agent knowledge bases
 - `api-designer` - For agent communication APIs
 
 **Related Patterns**:
+
 - `META/DECISION-FRAMEWORK.md` - Framework selection (CrewAI vs LangGraph)
 - `STANDARDS/architecture-patterns/multi-agent-pattern.md` - Agent architectures (when created)
 
 **Related Playbooks**:
+
 - `PLAYBOOKS/deploy-multi-agent-system.md` - Deployment guide (when created)
 - `PLAYBOOKS/debug-agent-workflows.md` - Debugging procedures (when created)

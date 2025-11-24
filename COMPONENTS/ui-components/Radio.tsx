@@ -1,6 +1,6 @@
-import React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from './utils';
+import React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from './utils'
 
 const radioVariants = cva(
   'peer shrink-0 rounded-full border border-gray-300 bg-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-600 disabled:cursor-not-allowed disabled:opacity-50',
@@ -9,49 +9,49 @@ const radioVariants = cva(
       size: {
         sm: 'h-4 w-4',
         md: 'h-5 w-5',
-        lg: 'h-6 w-6',
+        lg: 'h-6 w-6'
       },
       checked: {
         true: 'border-blue-600 bg-white',
-        false: 'border-gray-300 bg-white',
-      },
+        false: 'border-gray-300 bg-white'
+      }
     },
     defaultVariants: {
       size: 'md',
-      checked: false,
-    },
+      checked: false
+    }
   }
-);
+)
 
 const radioIndicatorVariants = cva('rounded-full bg-blue-600 transition-transform', {
   variants: {
     size: {
       sm: 'h-2 w-2',
       md: 'h-2.5 w-2.5',
-      lg: 'h-3 w-3',
+      lg: 'h-3 w-3'
     },
     checked: {
       true: 'scale-100',
-      false: 'scale-0',
-    },
+      false: 'scale-0'
+    }
   },
   defaultVariants: {
     size: 'md',
-    checked: false,
-  },
-});
+    checked: false
+  }
+})
 
 export interface RadioProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'type'>,
     VariantProps<typeof radioVariants> {
   /** Label text */
-  label?: string;
+  label?: string
   /** Label position */
-  labelPosition?: 'left' | 'right';
+  labelPosition?: 'left' | 'right'
   /** Label className */
-  labelClassName?: string;
+  labelClassName?: string
   /** Description text below label */
-  description?: string;
+  description?: string
 }
 
 const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
@@ -85,7 +85,7 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
           </div>
         </div>
       </div>
-    );
+    )
 
     if (label || description) {
       return (
@@ -110,29 +110,29 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
             </div>
           )}
         </label>
-      );
+      )
     }
 
-    return radioElement;
+    return radioElement
   }
-);
+)
 
-Radio.displayName = 'Radio';
+Radio.displayName = 'Radio'
 
 // RadioGroup Component
 export interface RadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Current value */
-  value?: string;
+  value?: string
   /** Default value (uncontrolled) */
-  defaultValue?: string;
+  defaultValue?: string
   /** Change handler */
-  onValueChange?: (value: string) => void;
+  onValueChange?: (value: string) => void
   /** Disabled state */
-  disabled?: boolean;
+  disabled?: boolean
   /** Layout direction */
-  orientation?: 'horizontal' | 'vertical';
+  orientation?: 'horizontal' | 'vertical'
   /** Spacing between items */
-  spacing?: 'sm' | 'md' | 'lg';
+  spacing?: 'sm' | 'md' | 'lg'
 }
 
 const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
@@ -150,23 +150,23 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     },
     ref
   ) => {
-    const [uncontrolledValue, setUncontrolledValue] = React.useState(defaultValue ?? '');
+    const [uncontrolledValue, setUncontrolledValue] = React.useState(defaultValue ?? '')
 
-    const isControlled = controlledValue !== undefined;
-    const value = isControlled ? controlledValue : uncontrolledValue;
+    const isControlled = controlledValue !== undefined
+    const value = isControlled ? controlledValue : uncontrolledValue
 
     const spacingMap = {
       sm: 'gap-2',
       md: 'gap-3',
-      lg: 'gap-4',
-    };
+      lg: 'gap-4'
+    }
 
     const handleChange = (newValue: string) => {
       if (!isControlled) {
-        setUncontrolledValue(newValue);
+        setUncontrolledValue(newValue)
       }
-      onValueChange?.(newValue);
-    };
+      onValueChange?.(newValue)
+    }
 
     return (
       <div
@@ -180,25 +180,25 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
         ref={ref}
         {...props}
       >
-        {React.Children.map(children, (child) => {
+        {React.Children.map(children, child => {
           if (React.isValidElement(child) && child.type === Radio) {
             return React.cloneElement(child as React.ReactElement<RadioProps>, {
               checked: child.props.value === value,
               disabled: disabled || child.props.disabled,
               onChange: () => {
                 if (child.props.value) {
-                  handleChange(child.props.value);
+                  handleChange(child.props.value)
                 }
-              },
-            });
+              }
+            })
           }
-          return child;
+          return child
         })}
       </div>
-    );
+    )
   }
-);
+)
 
-RadioGroup.displayName = 'RadioGroup';
+RadioGroup.displayName = 'RadioGroup'
 
-export { Radio, RadioGroup, radioVariants };
+export { Radio, RadioGroup, radioVariants }

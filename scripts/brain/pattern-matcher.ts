@@ -6,106 +6,104 @@
  */
 
 export interface ArchitecturePattern {
-  name: string;
-  description: string;
-  useCases: string[];
-  skills: string[];
-  mcps: string[];
-  components: string[];
-  integrations: string[];
-  complexity: 'simple' | 'moderate' | 'complex';
+  name: string
+  description: string
+  useCases: string[]
+  skills: string[]
+  mcps: string[]
+  components: string[]
+  integrations: string[]
+  complexity: 'simple' | 'moderate' | 'complex'
   tradeoffs: {
-    pros: string[];
-    cons: string[];
-  };
-  when_to_use: string[];
-  when_not_to_use: string[];
-  estimated_time: string;
-  reference: string;
+    pros: string[]
+    cons: string[]
+  }
+  when_to_use: string[]
+  when_not_to_use: string[]
+  estimated_time: string
+  reference: string
 }
 
 export interface PatternMatch {
-  pattern: ArchitecturePattern;
-  score: number;
-  matchReasons: string[];
-  confidence: number;
+  pattern: ArchitecturePattern
+  score: number
+  matchReasons: string[]
+  confidence: number
 }
 
 export class PatternMatcher {
-  private patterns: ArchitecturePattern[];
+  private patterns: ArchitecturePattern[]
 
   constructor() {
-    this.patterns = this.initializePatterns();
+    this.patterns = this.initializePatterns()
   }
 
   /**
    * Match patterns to a problem description
    */
   match(problemDescription: string): PatternMatch[] {
-    const lowerProblem = problemDescription.toLowerCase();
+    const lowerProblem = problemDescription.toLowerCase()
 
     const scored = this.patterns.map(pattern => {
-      let score = 0;
-      const matchReasons: string[] = [];
+      let score = 0
+      const matchReasons: string[] = []
 
       // Check use cases
       for (const useCase of pattern.useCases) {
         if (lowerProblem.includes(useCase.toLowerCase())) {
-          score += 15;
-          matchReasons.push(`Use case match: "${useCase}"`);
+          score += 15
+          matchReasons.push(`Use case match: "${useCase}"`)
         }
       }
 
       // Check when_to_use conditions
       for (const condition of pattern.when_to_use) {
-        const keywords = condition.toLowerCase().split(/\s+/);
-        const matchCount = keywords.filter(kw => lowerProblem.includes(kw)).length;
+        const keywords = condition.toLowerCase().split(/\s+/)
+        const matchCount = keywords.filter(kw => lowerProblem.includes(kw)).length
         if (matchCount >= keywords.length * 0.6) {
-          score += 10;
-          matchReasons.push(`Condition match: "${condition}"`);
+          score += 10
+          matchReasons.push(`Condition match: "${condition}"`)
         }
       }
 
       // Check pattern name and description
       if (lowerProblem.includes(pattern.name.toLowerCase())) {
-        score += 20;
-        matchReasons.push(`Pattern name in description`);
+        score += 20
+        matchReasons.push(`Pattern name in description`)
       }
 
-      const confidence = Math.min(100, Math.round((score / 30) * 100));
+      const confidence = Math.min(100, Math.round((score / 30) * 100))
 
       return {
         pattern,
         score,
         matchReasons,
         confidence
-      };
-    });
+      }
+    })
 
-    return scored
-      .filter(m => m.score > 0)
-      .sort((a, b) => b.score - a.score);
+    return scored.filter(m => m.score > 0).sort((a, b) => b.score - a.score)
   }
 
   /**
    * Get pattern by name
    */
   getPattern(name: string): ArchitecturePattern | null {
-    return this.patterns.find(p => p.name === name) || null;
+    return this.patterns.find(p => p.name === name) || null
   }
 
   /**
    * Get all patterns
    */
   getAllPatterns(): ArchitecturePattern[] {
-    return this.patterns;
+    return this.patterns
   }
 
   /**
    * Get patterns by complexity
    */
   getPatternsByComplexity(complexity: string): ArchitecturePattern[] {
-    return this.patterns.filter(p => p.complexity === complexity);
+    return this.patterns.filter(p => p.complexity === complexity)
   }
 
   /**
@@ -191,11 +189,7 @@ export class PatternMatcher {
           'Parallel processing beneficial',
           'Need quality over speed'
         ],
-        when_not_to_use: [
-          'Simple single-step tasks',
-          'Low budget',
-          'Real-time responses required'
-        ],
+        when_not_to_use: ['Simple single-step tasks', 'Low budget', 'Real-time responses required'],
         estimated_time: '2-3 weeks',
         reference: 'SKILLS/multi-agent-architect/SKILL.md'
       },
@@ -301,12 +295,7 @@ export class PatternMatcher {
         integrations: ['supabase'],
         complexity: 'complex',
         tradeoffs: {
-          pros: [
-            'Independent scaling',
-            'Team autonomy',
-            'Technology diversity',
-            'Fault isolation'
-          ],
+          pros: ['Independent scaling', 'Team autonomy', 'Technology diversity', 'Fault isolation'],
           cons: [
             'Distributed system complexity',
             'Network overhead',
@@ -320,11 +309,7 @@ export class PatternMatcher {
           'Independent deployment critical',
           'Service isolation important'
         ],
-        when_not_to_use: [
-          'Small team',
-          'Simple application',
-          'Tight coupling acceptable'
-        ],
+        when_not_to_use: ['Small team', 'Simple application', 'Tight coupling acceptable'],
         estimated_time: '2-3 months',
         reference: 'STANDARDS/architecture-patterns/'
       },
@@ -344,12 +329,7 @@ export class PatternMatcher {
         integrations: [],
         complexity: 'simple',
         tradeoffs: {
-          pros: [
-            'No server management',
-            'Pay-per-use pricing',
-            'Auto-scaling',
-            'Fast deployment'
-          ],
+          pros: ['No server management', 'Pay-per-use pricing', 'Auto-scaling', 'Fast deployment'],
           cons: [
             'Cold start latency',
             'Vendor lock-in',
@@ -457,42 +437,48 @@ export class PatternMatcher {
         estimated_time: '2-3 weeks',
         reference: 'SKILLS/api-designer/SKILL.md'
       }
-    ];
+    ]
   }
 
   /**
    * TYPE SAFETY FIX 3: Compare patterns with proper typing
    */
   comparePatterns(patternNames: string[]): {
-    comparison: Record<string, {
-      complexity: string;
-      estimated_time: string;
-      pros_count: number;
-      cons_count: number;
-      skills_required: number;
-    }>;
-    recommendation: string;
-    reasoning: string;
+    comparison: Record<
+      string,
+      {
+        complexity: string
+        estimated_time: string
+        pros_count: number
+        cons_count: number
+        skills_required: number
+      }
+    >
+    recommendation: string
+    reasoning: string
   } {
     const patterns = patternNames
       .map(name => this.getPattern(name))
-      .filter(Boolean) as ArchitecturePattern[];
+      .filter(Boolean) as ArchitecturePattern[]
 
     if (patterns.length === 0) {
       return {
         comparison: {},
         recommendation: '',
         reasoning: 'No patterns found to compare'
-      };
+      }
     }
 
-    const comparison: Record<string, {
-      complexity: string;
-      estimated_time: string;
-      pros_count: number;
-      cons_count: number;
-      skills_required: number;
-    }> = {};
+    const comparison: Record<
+      string,
+      {
+        complexity: string
+        estimated_time: string
+        pros_count: number
+        cons_count: number
+        skills_required: number
+      }
+    > = {}
 
     for (const pattern of patterns) {
       comparison[pattern.name] = {
@@ -501,21 +487,21 @@ export class PatternMatcher {
         pros_count: pattern.tradeoffs.pros.length,
         cons_count: pattern.tradeoffs.cons.length,
         skills_required: pattern.skills.length
-      };
+      }
     }
 
     // Recommend simplest pattern by default
     const simplest = patterns.reduce((prev, curr) => {
-      const complexityOrder = { simple: 1, moderate: 2, complex: 3 };
-      return complexityOrder[curr.complexity] < complexityOrder[prev.complexity] ? curr : prev;
-    });
+      const complexityOrder = { simple: 1, moderate: 2, complex: 3 }
+      return complexityOrder[curr.complexity] < complexityOrder[prev.complexity] ? curr : prev
+    })
 
-    const reasoning = `Recommended ${simplest.name} due to ${simplest.complexity} complexity and ${simplest.estimated_time} estimated time`;
+    const reasoning = `Recommended ${simplest.name} due to ${simplest.complexity} complexity and ${simplest.estimated_time} estimated time`
 
     return {
       comparison,
       recommendation: simplest.name,
       reasoning
-    };
+    }
   }
 }

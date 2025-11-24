@@ -12,59 +12,71 @@ An **agent** is an autonomous AI system that can perceive its environment, make 
 ## Types of Agents
 
 ### 1. Task-Oriented Agents
+
 Execute specific, well-defined tasks with clear inputs and outputs.
 
 **Examples:**
+
 - Code review agent
 - Test generation agent
 - Documentation writer agent
 - Bug finder agent
 
 **When to use:**
+
 - Single-purpose automation
 - Repeatable workflows
 - Quality assurance tasks
 - Code analysis operations
 
 ### 2. Skill-Based Agents
+
 Embody domain expertise and methodologies. Each agent represents a specialized capability.
 
 **Examples:**
+
 - `mvp-builder` - Rapid product development
 - `rag-implementer` - Retrieval-augmented generation systems
 - `frontend-builder` - React/Next.js development
 - `security-engineer` - Security best practices
 
 **When to use:**
+
 - Domain-specific development
 - Following established methodologies
 - Applying specialized knowledge
 - Complex multi-step workflows
 
 ### 3. Tool-Powered Agents
+
 Agents that leverage MCP (Model Context Protocol) servers to extend their capabilities.
 
 **Examples:**
+
 - Agent with vector database tools (Pinecone, Weaviate)
 - Agent with web scraping tools
 - Agent with code analysis tools
 - Agent with deployment tools
 
 **When to use:**
+
 - Need external tool integration
 - API interactions required
 - Database operations
 - File system manipulations
 
 ### 4. Multi-Agent Systems
+
 Coordinated groups of agents working together on complex problems.
 
 **Examples:**
+
 - Product team: strategist + designer + builder + tester
 - RAG pipeline: chunker + embedder + retriever + generator
 - CI/CD system: linter + tester + builder + deployer
 
 **When to use:**
+
 - Complex problems requiring specialization
 - Parallel processing opportunities
 - Different expertise domains needed
@@ -96,18 +108,21 @@ Coordinated groups of agents working together on complex problems.
 ### How They Work Together
 
 **Agent** = Execution pattern + Decision making
+
 - Determines WHEN to act
 - Orchestrates multiple steps
 - Handles context switching
 - Manages state and memory
 
 **Skill** = Domain knowledge + Methodology
+
 - Defines HOW to approach problems
 - Provides expertise and best practices
 - Structures thinking and workflow
 - Documents patterns and templates
 
 **MCP** = Executable tools + External capabilities
+
 - Provides WHAT tools are available
 - Interfaces with external systems
 - Executes concrete operations
@@ -191,6 +206,7 @@ Coordinated groups of agents working together on complex problems.
 ## Agent Implementation Patterns
 
 ### 1. ReAct Pattern (Reason + Act)
+
 ```
 Thought: I need to check if tests exist
 Action: Run `find . -name "*.test.js"`
@@ -203,6 +219,7 @@ Action: Approve pull request
 ```
 
 ### 2. Plan-Execute Pattern
+
 ```
 Planning Phase:
 1. Analyze codebase structure
@@ -216,6 +233,7 @@ Execution Phase:
 ```
 
 ### 3. Hierarchical Agent Pattern
+
 ```
 Manager Agent
 ├── Planning Agent (creates roadmap)
@@ -227,6 +245,7 @@ Manager Agent
 ```
 
 ### 4. Feedback Loop Pattern
+
 ```
 1. Agent attempts task
 2. Validation check
@@ -238,18 +257,22 @@ Manager Agent
 ## Relationship to Other Concepts
 
 ### Agents vs Skills
+
 - **Agent** = WHO executes the task (the actor)
 - **Skill** = HOW to approach the task (the knowledge)
 
 ### Agents vs MCPs
+
 - **Agent** = Orchestrator that decides WHEN and WHICH tools to use
 - **MCP** = Individual tool that provides specific capabilities
 
 ### Agents vs Tools
+
 - **Agent** = High-level decision maker with memory and state
 - **Tool** = Stateless function with specific input/output
 
 ### Agents vs Workflows
+
 - **Agent** = Adaptive, can change course based on results
 - **Workflow** = Fixed sequence of steps, deterministic
 
@@ -340,6 +363,7 @@ When you need a new agent, consider:
 This AGENT.md file should be:
 
 1. **Registered in META/combined-registry.json**
+
    ```json
    {
      "agents": [
@@ -358,8 +382,8 @@ This AGENT.md file should be:
    - Document agent composition patterns
 
 3. **Referenced in documentation**
-   - Link from SKILLS/*/SKILL.md files
-   - Reference from MCP-SERVERS/*/README.md
+   - Link from SKILLS/\*/SKILL.md files
+   - Reference from MCP-SERVERS/\*/README.md
    - Include in DOCS/ARCHITECTURE.md
 
 4. **Used in development workflows**

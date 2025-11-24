@@ -71,7 +71,7 @@ Returns detailed analysis including complexity metrics, issues, and suggestions.
       complexity: this.calculateComplexity(code),
       issues: this.findIssues(code),
       metrics: this.calculateMetrics(code),
-      suggestions: this.generateSuggestions(code),
+      suggestions: this.generateSuggestions(code)
     }
   }
 
@@ -96,14 +96,14 @@ Returns detailed analysis including complexity metrics, issues, and suggestions.
     const halstead = {
       difficulty: (operators / 2) * (operands / vocabulary),
       volume: length * Math.log2(vocabulary),
-      effort: 0,
+      effort: 0
     }
     halstead.effort = halstead.difficulty * halstead.volume
 
     return {
       cyclomatic,
       cognitive,
-      halstead,
+      halstead
     }
   }
 
@@ -143,7 +143,7 @@ Returns detailed analysis including complexity metrics, issues, and suggestions.
           message: 'Remove console.log statement',
           line: lineNumber,
           column: line.indexOf('console.log'),
-          rule: 'no-console',
+          rule: 'no-console'
         })
       }
 
@@ -154,7 +154,7 @@ Returns detailed analysis including complexity metrics, issues, and suggestions.
           message: 'Use const or let instead of var',
           line: lineNumber,
           column: line.indexOf('var'),
-          rule: 'no-var',
+          rule: 'no-var'
         })
       }
 
@@ -165,7 +165,7 @@ Returns detailed analysis including complexity metrics, issues, and suggestions.
           message: 'Line exceeds 100 characters',
           line: lineNumber,
           column: 100,
-          rule: 'max-len',
+          rule: 'max-len'
         })
       }
 
@@ -176,12 +176,17 @@ Returns detailed analysis including complexity metrics, issues, and suggestions.
           message: 'Use === instead of ==',
           line: lineNumber,
           column: line.search(/[^=!]==(?!=)/),
-          rule: 'eqeqeq',
+          rule: 'eqeqeq'
         })
       }
 
       // Check for missing semicolon (simplified)
-      if (line.trim() && !line.trim().endsWith(';') && !line.trim().endsWith('{') && !line.trim().endsWith('}')) {
+      if (
+        line.trim() &&
+        !line.trim().endsWith(';') &&
+        !line.trim().endsWith('{') &&
+        !line.trim().endsWith('}')
+      ) {
         const lastChar = line.trim().slice(-1)
         if (![',', ':', ')', ']'].includes(lastChar)) {
           issues.push({
@@ -189,7 +194,7 @@ Returns detailed analysis including complexity metrics, issues, and suggestions.
             message: 'Consider adding semicolon',
             line: lineNumber,
             column: line.length,
-            rule: 'semi',
+            rule: 'semi'
           })
         }
       }
@@ -224,7 +229,7 @@ Returns detailed analysis including complexity metrics, issues, and suggestions.
       commentLines,
       blankLines,
       functions,
-      classes,
+      classes
     }
   }
 
@@ -244,7 +249,9 @@ Returns detailed analysis including complexity metrics, issues, and suggestions.
 
     // Complexity warnings
     if (complexity.cyclomatic > 10) {
-      suggestions.push('High cyclomatic complexity detected. Consider refactoring into smaller functions')
+      suggestions.push(
+        'High cyclomatic complexity detected. Consider refactoring into smaller functions'
+      )
     }
 
     if (complexity.cognitive > 15) {
@@ -289,7 +296,9 @@ Returns detailed analysis including complexity metrics, issues, and suggestions.
     if (analysis.issues.length > 0) {
       parts.push('ISSUES FOUND:')
       analysis.issues.forEach(issue => {
-        parts.push(`  [${issue.type.toUpperCase()}] Line ${issue.line}: ${issue.message} (${issue.rule})`)
+        parts.push(
+          `  [${issue.type.toUpperCase()}] Line ${issue.line}: ${issue.message} (${issue.rule})`
+        )
       })
       parts.push('')
     }

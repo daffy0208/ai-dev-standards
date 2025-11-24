@@ -6,6 +6,7 @@ For new SaaS applications - includes MVP prioritization and go-to-market plannin
 # Project: [Your SaaS Name]
 
 ## AI Development Standards
+
 Repository: ~/ai-dev-standards/
 Status: Active
 
@@ -31,11 +32,13 @@ Status: Active
 
 **Example:**
 ```
+
 Task: "Add user authentication"
 Step 1: Use graph_query_by_effect("implements_authentication")
 Step 2: Returns: security-engineer, api-designer
 Step 3: Use graph_get_dependencies("security-engineer")
 Step 4: Implement using security-engineer skill
+
 ```
 
 **Brain-MCP Tools Available:**
@@ -165,16 +168,18 @@ See registries in `META/` for complete details:
 
 ### File Structure
 ```
-/app                 # Next.js 14 App Router
-  /api              # API routes
-  /[route]          # Pages
+
+/app # Next.js 14 App Router
+/api # API routes
+/[route] # Pages
 /components
-  /ui               # shadcn/ui components
-  /features         # Feature-specific components
+/ui # shadcn/ui components
+/features # Feature-specific components
 /lib
-  /db               # Database utilities
-  /api              # API client utilities
-/types              # TypeScript types
+/db # Database utilities
+/api # API client utilities
+/types # TypeScript types
+
 ```
 
 ### Naming

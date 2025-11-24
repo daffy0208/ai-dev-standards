@@ -14,7 +14,11 @@
  * ```
  */
 
-import { BaseMCPServer, validateArgs, createErrorResponse } from '../../COMPONENTS/mcp-servers/base-mcp-server'
+import {
+  BaseMCPServer,
+  validateArgs,
+  createErrorResponse
+} from '../../COMPONENTS/mcp-servers/base-mcp-server'
 import * as fs from 'fs/promises'
 import * as path from 'path'
 
@@ -45,7 +49,8 @@ class FontOptimizerMCPServer extends BaseMCPServer {
     // Subset font tool
     this.addTool({
       name: 'subsetFont',
-      description: 'Create a font subset containing only specified characters. Reduces font file size.',
+      description:
+        'Create a font subset containing only specified characters. Reduces font file size.',
       inputSchema: {
         type: 'object',
         properties: {

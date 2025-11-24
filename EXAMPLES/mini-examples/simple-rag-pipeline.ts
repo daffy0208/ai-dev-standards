@@ -21,20 +21,30 @@
  */
 
 import OpenAI from 'openai'
+import { Buffer } from 'buffer'
 import { encoding_for_model } from 'tiktoken'
+
+const logInfo = (...messages: unknown[]): void => {
+  const formatted = messages.map(message =>
+    typeof message === 'string' ? message : JSON.stringify(message, null, 2)
+  )
+  process.stdout.write(`${formatted.join(' ')}\n`)
+}
+
+type Metadata = Record<string, unknown>
 
 // Types
 interface Document {
   id: string
   content: string
-  metadata: Record<string, any>
+  metadata: Metadata
 }
 
 interface Chunk {
   id: string
   content: string
   embedding?: number[]
-  metadata: Record<string, any>
+  metadata: Metadata
 }
 
 interface SearchResult {
@@ -48,7 +58,7 @@ interface SearchResult {
 export class SimpleRAGPipeline {
   private openai: OpenAI
   private chunks: Chunk[] = []
-  private encoder: any
+  private encoder: ReturnType<typeof encoding_for_model>
 
   constructor(apiKey?: string) {
     this.openai = new OpenAI({
@@ -73,7 +83,11 @@ export class SimpleRAGPipeline {
 
       for (let i = 0; i < tokens.length; i += chunkSize - overlap) {
         const chunkTokens = tokens.slice(i, i + chunkSize)
-        const chunkText = this.encoder.decode(chunkTokens)
+        const decodedChunk = this.encoder.decode(chunkTokens)
+        const chunkText =
+          typeof decodedChunk === 'string'
+            ? decodedChunk
+            : Buffer.from(decodedChunk).toString('utf-8')
 
         chunks.push({
           id: `${doc.id}-${chunks.length}`,
@@ -95,7 +109,7 @@ export class SimpleRAGPipeline {
    * Step 2: Generate embeddings for chunks
    */
   async generateEmbeddings(chunks: Chunk[]): Promise<void> {
-    console.log(`Generating embeddings for ${chunks.length} chunks...`)
+    logInfo(`Generating embeddings for ${chunks.length} chunks...`)
 
     // Process in batches to avoid rate limits
     const batchSize = 100
@@ -111,7 +125,7 @@ export class SimpleRAGPipeline {
         chunk.embedding = response.data[idx].embedding
       })
 
-      console.log(`  Processed ${Math.min(i + batchSize, chunks.length)}/${chunks.length}`)
+      logInfo(`  Processed ${Math.min(i + batchSize, chunks.length)}/${chunks.length}`)
     }
 
     this.chunks = chunks
@@ -149,9 +163,7 @@ export class SimpleRAGPipeline {
     const results = await this.search(question, topK)
 
     // Build context from search results
-    const context = results
-      .map((r, i) => `[${i + 1}] ${r.chunk.content}`)
-      .join('\n\n')
+    const context = results.map((r, i) => `[${i + 1}] ${r.chunk.content}`).join('\n\n')
 
     // Generate response with LLM
     const response = await this.openai.chat.completions.create({
@@ -221,15 +233,15 @@ export async function example() {
     }
   ]
 
-  console.log('Step 1: Chunking documents...')
+  logInfo('Step 1: Chunking documents...')
   const chunks = await rag.chunkDocuments(documents, 200, 50)
-  console.log(`Created ${chunks.length} chunks\n`)
+  logInfo(`Created ${chunks.length} chunks\n`)
 
-  console.log('Step 2: Generating embeddings...')
+  logInfo('Step 2: Generating embeddings...')
   await rag.generateEmbeddings(chunks)
-  console.log('Embeddings generated!\n')
+  logInfo('Embeddings generated!\n')
 
-  console.log('Step 3: Querying...')
+  logInfo('Step 3: Querying...')
   const questions = [
     'How tall is the Eiffel Tower?',
     'What is Paris known for?',
@@ -237,9 +249,9 @@ export async function example() {
   ]
 
   for (const question of questions) {
-    console.log(`\nQ: ${question}`)
+    logInfo(`\nQ: ${question}`)
     const answer = await rag.query(question)
-    console.log(`A: ${answer}`)
+    logInfo(`A: ${answer}`)
   }
 }
 

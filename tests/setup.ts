@@ -1,3 +1,5 @@
+import '@testing-library/jest-dom/vitest'
+
 /**
  * Test Setup
  *
@@ -5,6 +7,7 @@
  */
 
 import { beforeAll, afterAll, afterEach } from 'vitest'
+import { createJsonResponse, mockRejectedFetch, mockResolvedFetch } from './helpers/mock-fetch'
 
 // Set test environment variables
 process.env.NODE_ENV = 'test'
@@ -36,21 +39,15 @@ afterEach(() => {
 // Global test utilities
 export const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
-export const mockFetch = (response: any, status = 200) => {
-  global.fetch = vi.fn().mockResolvedValue({
-    ok: status >= 200 && status < 300,
-    status,
-    statusText: status === 200 ? 'OK' : 'Error',
-    json: async () => response,
-    text: async () => JSON.stringify(response),
-    headers: new Headers(),
-    url: 'https://test.example.com'
-  })
-}
+export const mockFetch = <T>(response: T, status = 200) =>
+  mockResolvedFetch(
+    createJsonResponse(response, {
+      status,
+      url: 'https://test.example.com'
+    })
+  )
 
-export const mockFetchError = (error: Error) => {
-  global.fetch = vi.fn().mockRejectedValue(error)
-}
+export const mockFetchError = (error: Error) => mockRejectedFetch(error)
 
 // Helper to create temporary test directory
 export const createTempDir = async () => {

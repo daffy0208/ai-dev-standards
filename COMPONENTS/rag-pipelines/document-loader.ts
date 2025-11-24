@@ -34,7 +34,9 @@ import { JSONLoader } from 'langchain/document_loaders/fs/json'
 import { CSVLoader } from 'langchain/document_loaders/fs/csv'
 import { DocxLoader } from 'langchain/document_loaders/fs/docx'
 import { CheerioWebBaseLoader } from 'langchain/document_loaders/web/cheerio'
-import type { Document } from 'langchain/document'
+import type { Document } from '@langchain/core/documents'
+
+type SupportedDocumentType = 'pdf' | 'docx' | 'txt' | 'md' | 'json' | 'csv' | 'html'
 
 export interface LoaderOptions {
   /**
@@ -46,6 +48,11 @@ export interface LoaderOptions {
    * File extensions to include (default: all supported)
    */
   includeExtensions?: string[]
+
+  /**
+   * Friendly alias for includeExtensions
+   */
+  fileTypes?: string[]
 
   /**
    * File extensions to exclude
@@ -65,22 +72,12 @@ export interface LoaderOptions {
 
 export class DocumentLoader {
   private readonly DEFAULT_MAX_SIZE = 10 * 1024 * 1024 // 10MB
-  private readonly SUPPORTED_EXTENSIONS = [
-    '.pdf',
-    '.txt',
-    '.md',
-    '.json',
-    '.csv',
-    '.docx',
-  ]
+  private readonly SUPPORTED_EXTENSIONS = ['.pdf', '.txt', '.md', '.json', '.csv', '.docx']
 
   /**
    * Load a single file
    */
-  async loadFile(
-    filePath: string,
-    options: LoaderOptions = {}
-  ): Promise<Document[]> {
+  async loadFile(filePath: string, options: LoaderOptions = {}): Promise<Document[]> {
     const ext = extname(filePath).toLowerCase()
 
     if (!this.isSupportedExt(ext, options)) {
@@ -91,9 +88,7 @@ export class DocumentLoader {
     const stats = await this.getFileStats(filePath)
     const maxSize = options.maxFileSize || this.DEFAULT_MAX_SIZE
     if (stats.size > maxSize) {
-      throw new Error(
-        `File too large: ${stats.size} bytes (max: ${maxSize} bytes)`
-      )
+      throw new Error(`File too large: ${stats.size} bytes (max: ${maxSize} bytes)`)
     }
 
     // Load document based on type
@@ -110,12 +105,35 @@ export class DocumentLoader {
   }
 
   /**
-   * Load all files from a directory
+   * Load helper that automatically detects source type
    */
-  async loadDirectory(
-    dirPath: string,
+  async load(
+    source: string,
+    type?: SupportedDocumentType,
     options: LoaderOptions = {}
   ): Promise<Document[]> {
+    if (this.isUrl(source) || type === 'html') {
+      return await this.loadUrl(source, options)
+    }
+
+    try {
+      const { stat } = await import('fs/promises')
+      const stats = await stat(source)
+
+      if (stats.isDirectory()) {
+        return await this.loadDirectory(source, options)
+      }
+    } catch {
+      // Ignore and fall back to file loading errors below
+    }
+
+    return await this.loadFile(source, options)
+  }
+
+  /**
+   * Load all files from a directory
+   */
+  async loadDirectory(dirPath: string, options: LoaderOptions = {}): Promise<Document[]> {
     const files = await this.getFiles(dirPath, options.recursive)
     const allDocs: Document[] = []
 
@@ -135,10 +153,7 @@ export class DocumentLoader {
   /**
    * Load document from URL
    */
-  async loadUrl(
-    url: string,
-    options: LoaderOptions = {}
-  ): Promise<Document[]> {
+  async loadUrl(url: string, options: LoaderOptions = {}): Promise<Document[]> {
     const loader = new CheerioWebBaseLoader(url)
     const docs = await loader.load()
 
@@ -155,10 +170,7 @@ export class DocumentLoader {
   /**
    * Load multiple URLs
    */
-  async loadUrls(
-    urls: string[],
-    options: LoaderOptions = {}
-  ): Promise<Document[]> {
+  async loadUrls(urls: string[], options: LoaderOptions = {}): Promise<Document[]> {
     const allDocs: Document[] = []
 
     for (const url of urls) {
@@ -177,10 +189,7 @@ export class DocumentLoader {
   /**
    * Load document based on file extension
    */
-  private async loadByExtension(
-    filePath: string,
-    ext: string
-  ): Promise<Document[]> {
+  private async loadByExtension(filePath: string, ext: string): Promise<Document[]> {
     switch (ext) {
       case '.pdf':
         return await new PDFLoader(filePath).load()
@@ -206,10 +215,7 @@ export class DocumentLoader {
   /**
    * Get all files in directory (optionally recursive)
    */
-  private async getFiles(
-    dirPath: string,
-    recursive: boolean = false
-  ): Promise<string[]> {
+  private async getFiles(dirPath: string, recursive: boolean = false): Promise<string[]> {
     const entries = await readdir(dirPath, { withFileTypes: true })
     const files: string[] = []
 
@@ -237,7 +243,12 @@ export class DocumentLoader {
     }
 
     // Check include list or default supported
-    const allowedExts = options.includeExtensions || this.SUPPORTED_EXTENSIONS
+    const include = options.includeExtensions || options.fileTypes
+    const allowedExts = include
+      ? include.map(extension =>
+          extension.startsWith('.') ? extension.toLowerCase() : `.${extension.toLowerCase()}`
+        )
+      : this.SUPPORTED_EXTENSIONS
     return allowedExts.includes(ext)
   }
 
@@ -247,6 +258,10 @@ export class DocumentLoader {
   private async getFileStats(filePath: string) {
     const { stat } = await import('fs/promises')
     return await stat(filePath)
+  }
+
+  private isUrl(source: string): boolean {
+    return source.startsWith('http://') || source.startsWith('https://')
   }
 }
 

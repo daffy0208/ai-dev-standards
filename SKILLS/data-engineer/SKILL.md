@@ -12,18 +12,21 @@ I help you build robust data pipelines, ETL processes, and data infrastructure.
 ## What I Do
 
 **Data Pipelines:**
+
 - Extract, Transform, Load (ETL) processes
 - Data ingestion from multiple sources
 - Batch and real-time processing
 - Data quality validation
 
 **Data Infrastructure:**
+
 - Database schema design
 - Data warehousing
 - Caching strategies
 - Data replication
 
 **Analytics:**
+
 - Data aggregation
 - Metrics calculation
 - Report generation
@@ -58,7 +61,7 @@ export async function syncCustomers() {
   // EXTRACT: Fetch data from external API
   const response = await fetch('https://api.example.com/customers', {
     headers: {
-      'Authorization': `Bearer ${process.env.API_KEY}`
+      Authorization: `Bearer ${process.env.API_KEY}`
     }
   })
 
@@ -158,7 +161,7 @@ export async function incrementalSync() {
   const response = await fetch(
     `https://api.example.com/customers?modified_since=${since.toISOString()}`,
     {
-      headers: { 'Authorization': `Bearer ${process.env.API_KEY}` }
+      headers: { Authorization: `Bearer ${process.env.API_KEY}` }
     }
   )
 
@@ -188,6 +191,7 @@ export async function incrementalSync() {
 ```
 
 **Benefits:**
+
 - Faster (only process changes)
 - Lower API costs
 - Reduced database load
@@ -266,7 +270,7 @@ export function cleanPhone(phone: string): string {
 export function cleanName(name: string): string {
   return name
     .trim()
-    .replace(/\s+/g, ' ')  // Multiple spaces → single space
+    .replace(/\s+/g, ' ') // Multiple spaces → single space
     .split(' ')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join(' ')
@@ -294,9 +298,13 @@ export async function enrichCustomer(customer: RawCustomer) {
   // Add lifecycle stage
   const daysSinceSignup = differenceInDays(new Date(), customer.signupDate)
   const lifecycleStage =
-    daysSinceSignup < 7 ? 'new' :
-    daysSinceSignup < 30 ? 'active' :
-    daysSinceSignup < 90 ? 'engaged' : 'dormant'
+    daysSinceSignup < 7
+      ? 'new'
+      : daysSinceSignup < 30
+        ? 'active'
+        : daysSinceSignup < 90
+          ? 'engaged'
+          : 'dormant'
 
   // Add lifetime value
   const orders = await db.orders.findMany({
@@ -379,14 +387,16 @@ export function validateCustomer(data: unknown): ValidatedCustomer {
 
 // In ETL pipeline
 const rawData = await fetchFromAPI()
-const validatedData = rawData.map(record => {
-  try {
-    return validateCustomer(record)
-  } catch (error) {
-    console.error(`Validation failed for record ${record.id}:`, error)
-    return null
-  }
-}).filter(Boolean)
+const validatedData = rawData
+  .map(record => {
+    try {
+      return validateCustomer(record)
+    } catch (error) {
+      console.error(`Validation failed for record ${record.id}:`, error)
+      return null
+    }
+  })
+  .filter(Boolean)
 ```
 
 ### Data Quality Checks
@@ -539,7 +549,7 @@ export async function populateWarehouse() {
     },
     where: {
       createdAt: {
-        gte: new Date(Date.now() - 24 * 60 * 60 * 1000)  // Last 24 hours
+        gte: new Date(Date.now() - 24 * 60 * 60 * 1000) // Last 24 hours
       }
     }
   })
@@ -557,7 +567,7 @@ export async function populateWarehouse() {
           unitPrice: item.price,
           totalAmount: item.quantity * item.price,
           discountAmount: item.discount || 0,
-          netAmount: (item.quantity * item.price) - (item.discount || 0)
+          netAmount: item.quantity * item.price - (item.discount || 0)
         }
       })
     }
@@ -565,7 +575,7 @@ export async function populateWarehouse() {
 }
 
 function formatDateId(date: Date): string {
-  return date.toISOString().split('T')[0]  // "2025-10-22"
+  return date.toISOString().split('T')[0] // "2025-10-22"
 }
 ```
 
@@ -599,14 +609,14 @@ export async function processBatch<T>(
 // Usage
 await processBatch(
   customers,
-  async (customer) => {
+  async customer => {
     await db.customers.upsert({
       where: { id: customer.id },
       create: customer,
       update: customer
     })
   },
-  100  // Process 100 at a time
+  100 // Process 100 at a time
 )
 ```
 
@@ -704,10 +714,7 @@ interface PipelineRun {
   errorMessage?: string
 }
 
-export async function trackPipeline<T>(
-  name: string,
-  pipeline: () => Promise<T>
-): Promise<T> {
+export async function trackPipeline<T>(name: string, pipeline: () => Promise<T>): Promise<T> {
   const run: PipelineRun = {
     pipelineName: name,
     startTime: new Date(),
@@ -822,9 +829,7 @@ export async function processWithRetry<T>(
       }
 
       // Exponential backoff
-      await new Promise(resolve =>
-        setTimeout(resolve, 1000 * Math.pow(2, attempt))
-      )
+      await new Promise(resolve => setTimeout(resolve, 1000 * Math.pow(2, attempt)))
     }
   }
 }
@@ -835,6 +840,7 @@ export async function processWithRetry<T>(
 ## When to Use Me
 
 **Perfect for:**
+
 - Building ETL pipelines
 - Data migration projects
 - Analytics infrastructure
@@ -842,6 +848,7 @@ export async function processWithRetry<T>(
 - Real-time data processing
 
 **I'll help you:**
+
 - Design data pipelines
 - Transform and clean data
 - Build data warehouses

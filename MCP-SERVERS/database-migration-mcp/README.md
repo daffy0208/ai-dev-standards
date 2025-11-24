@@ -31,9 +31,9 @@ npm install && npm run build
 ## Usage Example
 
 ```javascript
-await migrations.configure({ orm: 'prisma', projectPath: './app' });
-await migrations.generate_migration({ name: 'add_users_table' });
-await migrations.run_migrations();
+await migrations.configure({ orm: 'prisma', projectPath: './app' })
+await migrations.generate_migration({ name: 'add_users_table' })
+await migrations.run_migrations()
 ```
 
 ## Related

@@ -21,6 +21,7 @@ npm install && npm run build
 ## Tools
 
 ### 1. configure
+
 ```typescript
 {
   projectPath: string;
@@ -29,7 +30,9 @@ npm install && npm run build
 ```
 
 ### 2. create_tokens
+
 Create design token set.
+
 ```typescript
 {
   name: string;
@@ -44,7 +47,9 @@ Create design token set.
 ```
 
 ### 3. export_tokens
+
 Export tokens to format.
+
 ```typescript
 {
   tokenSet: string;
@@ -54,7 +59,9 @@ Export tokens to format.
 ```
 
 ### 4. create_theme
+
 Create theme from token set.
+
 ```typescript
 {
   name: string;
@@ -64,7 +71,9 @@ Create theme from token set.
 ```
 
 ### 5. validate_tokens
+
 Check token usage and consistency.
+
 ```typescript
 {
   tokenSet: string;
@@ -74,7 +83,9 @@ Check token usage and consistency.
 ```
 
 ### 6. find_token_usage
+
 Find where tokens are used.
+
 ```typescript
 {
   tokenName: string;
@@ -83,7 +94,9 @@ Find where tokens are used.
 ```
 
 ### 7. generate_tailwind_config
+
 Create Tailwind config from tokens.
+
 ```typescript
 {
   tokenSet: string;
@@ -94,7 +107,7 @@ Create Tailwind config from tokens.
 ## Usage Example
 
 ```javascript
-await tokenManager.configure({ projectPath: './design-system' });
+await tokenManager.configure({ projectPath: './design-system' })
 
 // Create token set
 await tokenManager.create_tokens({
@@ -112,14 +125,14 @@ await tokenManager.create_tokens({
       lg: '2rem'
     }
   }
-});
+})
 
 // Export as CSS variables
 await tokenManager.export_tokens({
   tokenSet: 'brand',
   format: 'css',
   outputPath: './src/tokens.css'
-});
+})
 
 // Create dark theme
 await tokenManager.create_theme({
@@ -131,7 +144,7 @@ await tokenManager.create_theme({
       secondary: '#34D399'
     }
   }
-});
+})
 ```
 
 ## Token Categories

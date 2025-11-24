@@ -1,5 +1,12 @@
 const prettier = require('prettier')
-const { sanitizeName, validateIdentifier, validatePythonIdentifier, validateFramework, toPascalCase, toSnakeCase } = require('../utils/validation')
+const {
+  sanitizeName,
+  validateIdentifier,
+  validatePythonIdentifier,
+  validateFramework,
+  toPascalCase,
+  toSnakeCase
+} = require('../utils/validation')
 
 /**
  * Tool Generator
@@ -71,9 +78,12 @@ class ToolGenerator {
    */
   generateLangChainTool(name, category) {
     const toolName = name.replace(/-/g, '_')
-    const className = name.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('')
+    const className = name
+      .split('-')
+      .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+      .join('')
 
-    return `import { Tool } from 'langchain/tools'
+    return `import { Tool } from '@langchain/core/tools'
 import { z } from 'zod'
 
 /**
@@ -129,7 +139,10 @@ export const ${toolName}Tool = new ${className}Tool()
    */
   generateCrewAITool(name, category) {
     const toolName = name.replace(/-/g, '_')
-    const className = name.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('')
+    const className = name
+      .split('-')
+      .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+      .join('')
 
     return `from crewai_tools import BaseTool
 from typing import Type, Any
@@ -175,7 +188,10 @@ ${toolName}_tool = ${className}Tool()
    * Generate custom tool
    */
   generateCustomTool(name, category) {
-    const className = name.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('')
+    const className = name
+      .split('-')
+      .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+      .join('')
 
     return `/**
  * ${className} Tool
@@ -245,7 +261,10 @@ export const ${name.replace(/-/g, '_')}Tool = new ${className}Tool()
    * Generate README
    */
   generateReadme(name, framework, category) {
-    const className = name.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('')
+    const className = name
+      .split('-')
+      .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+      .join('')
 
     return `# ${className} Tool
 
@@ -258,7 +277,9 @@ ${className} tool for ${name.replace(/-/g, ' ')}.
 
 ## Usage
 
-${framework === 'langchain' ? `
+${
+  framework === 'langchain'
+    ? `
 \`\`\`typescript
 import { ${name.replace(/-/g, '_')}Tool } from './tools/langchain-tools/${name}-tool'
 
@@ -276,7 +297,9 @@ const result = await agent.call({
   input: 'Use the ${name} tool to process this data'
 })
 \`\`\`
-` : framework === 'crewai' ? `
+`
+    : framework === 'crewai'
+      ? `
 \`\`\`python
 from tools.crewai_tools.${name}_tool import ${name.replace(/-/g, '_')}_tool
 
@@ -291,7 +314,8 @@ agent = Agent(
 # Execute
 result = agent.execute_task(task)
 \`\`\`
-` : `
+`
+      : `
 \`\`\`typescript
 import { ${name.replace(/-/g, '_')}Tool } from './tools/custom-tools/${name}-tool'
 
@@ -305,7 +329,8 @@ const result = await ${name.replace(/-/g, '_')}Tool.execute({
 
 console.log(result)
 \`\`\`
-`}
+`
+}
 
 ## Input Schema
 

@@ -21,21 +21,25 @@ claude-code --skill 3d-visualizer
 ## Common Tasks
 
 ### Build 3D Scene
+
 ```
 "Create a 3D scene with lighting, camera controls, and animated objects"
 ```
 
 ### Product Viewer
+
 ```
 "Build a 360° product viewer that loads a GLB model"
 ```
 
 ### 3D Chart
+
 ```
 "Create a 3D bar chart visualization"
 ```
 
 ### Optimize Performance
+
 ```
 "Optimize this 3D scene with 1000+ objects using instanced meshes"
 ```

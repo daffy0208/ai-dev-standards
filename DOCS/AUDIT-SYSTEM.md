@@ -9,6 +9,7 @@
 ## Purpose
 
 This document consolidates the audit and quality assurance system for ai-dev-standards. It provides:
+
 1. **Validation checklist** for quality audits
 2. **Current system status** and trust measures
 3. **Testing procedures** for registry completeness
@@ -20,18 +21,21 @@ This document consolidates the audit and quality assurance system for ai-dev-sta
 ## ✅ Current System Status
 
 ### Registry Validation
+
 - ✅ **100% resource discoverability** (all 36 skills + 3 MCPs tracked)
 - ✅ **Automated validation** via tests/registry-validation.test.ts
 - ✅ **CI/CD enforcement** blocks merges if validation fails
 - ✅ **30/30 tests passing** (Phase 1 + Phase 2)
 
 ### Relationship Metadata (Phase 2)
+
 - ✅ **3/3 MCPs** have `enables` field
 - ✅ **18/36 skills** have `requires` field
 - ✅ **9/9 components** have `dependencies` field
 - ✅ **3/3 installers** have structured manifests
 
 ### Known Gaps
+
 - ⚠️ **12:1 skill-to-MCP ratio** (36 skills, 3 MCPs) — See BUILD_FOCUS.md for resolution plan
 - ⚠️ **18 skills lack relationship metadata** — Low priority (methodologies only)
 - ⚠️ **CLI has TODOs** — Needs refactor to fetch from actual registry
@@ -41,6 +45,7 @@ This document consolidates the audit and quality assurance system for ai-dev-sta
 ## 🔍 Quality Audit Checklist
 
 ### Phase 0: Resource Discovery (MANDATORY)
+
 **Before scoring anything, verify all resources are discoverable.**
 
 ```bash
@@ -55,12 +60,14 @@ cat META/registry.json | jq '{skills: (.skills | length), mcps: (.mcpServers | l
 ```
 
 **Pass Criteria:**
+
 - [ ] All tests pass (30/30)
 - [ ] Skills in registry = Skills in SKILLS/ directory
 - [ ] MCPs in registry = MCPs in MCP-SERVERS/ directory
 - [ ] No "TODO: Fetch from actual repo" in CLI code
 
 ### Phase 1: Registry Completeness
+
 ```bash
 # Validate all categories are registered
 node scripts/update-registry.js --dry-run
@@ -71,11 +78,13 @@ cat META/registry.json | jq '.skills | length'
 ```
 
 **Pass Criteria:**
+
 - [ ] Directory count = Registry count for all categories
 - [ ] No files missing from registry
 - [ ] Registry lastUpdated is recent (<7 days)
 
 ### Phase 2: Relationship Validation
+
 ```bash
 # Check MCPs have enables field
 cat META/registry.json | jq '.mcpServers[] | select(.enables == null)'
@@ -85,11 +94,13 @@ cat META/registry.json | jq '.skills[] | select(.requires != null) | .name' | wc
 ```
 
 **Pass Criteria:**
+
 - [ ] All MCPs list skills they enable
 - [ ] High-priority skills have relationship metadata
 - [ ] Components declare dependencies
 
 ### Phase 3: Cross-Reference Validation
+
 ```bash
 # Verify MCP enables reference existing skills
 npm run test:registry | grep "enables reference"
@@ -99,6 +110,7 @@ npm run test:registry | grep "requires reference"
 ```
 
 **Pass Criteria:**
+
 - [ ] MCP enables field only references real skills
 - [ ] Skill requires field only references real components
 - [ ] No broken references
@@ -108,6 +120,7 @@ npm run test:registry | grep "requires reference"
 ## 🧪 Test Procedures
 
 ### Running Tests
+
 ```bash
 # Full validation suite
 npm run test:registry
@@ -117,12 +130,15 @@ npm run test:watch tests/registry-validation.test.ts
 ```
 
 ### Test Coverage
+
 - **24 Phase 1 tests:** Registry completeness
 - **6 Phase 2 tests:** Relationship validation
 - **Total:** 30 tests covering all resource types
 
 ### Adding New Tests
+
 When adding new resource types:
+
 1. Add category to META/registry.json
 2. Add validation test in tests/registry-validation.test.ts
 3. Update this checklist
@@ -132,12 +148,14 @@ When adding new resource types:
 ## 🚨 Trust Measures
 
 ### What We Fixed (Oct 2025)
+
 1. **81% invisible skills** → 100% discoverable
 2. **CLI mock data** → Registry-based (partially complete)
 3. **No relationship tracking** → Phase 2 metadata system
 4. **No validation** → Comprehensive test suite + CI/CD
 
 ### Current Confidence Levels
+
 - **Registry accuracy:** HIGH (automated validation)
 - **Resource discovery:** HIGH (100% coverage)
 - **Relationship integrity:** MEDIUM (18/36 skills mapped)
@@ -149,6 +167,7 @@ When adding new resource types:
 ## 📊 Quality Scoring Framework
 
 ### Scoring Dimensions (When Needed)
+
 1. **Resource Discovery** (0-10) — Are all resources findable?
 2. **Documentation** (0-10) — Is it clear and accurate?
 3. **Validation** (0-10) — Are there tests?
@@ -164,6 +183,7 @@ When adding new resource types:
 ## 🔧 Remediation Templates
 
 ### When Registry Validation Fails
+
 ```bash
 # 1. Identify the gap
 npm run test:registry
@@ -183,6 +203,7 @@ npm run test:registry
 ```
 
 ### When Relationship Validation Fails
+
 ```bash
 # Use helper scripts
 node scripts/add-skill-requirements.js
@@ -205,12 +226,14 @@ node scripts/add-component-dependencies.js
 ## 🎯 Success Criteria
 
 **The audit system is successful when:**
+
 1. Tests catch gaps before users do
 2. Registry is always accurate (automated sync)
 3. Relationship metadata enables discovery
 4. External users can find what they need
 
 **The audit system has failed when:**
+
 1. User discovers resource that isn't in registry
 2. Tests pass but system doesn't work
 3. Documentation claims capabilities that don't exist
@@ -220,12 +243,14 @@ node scripts/add-component-dependencies.js
 ## 📚 Reference
 
 **Key Files:**
+
 - `META/registry.json` - Central source of truth
 - `tests/registry-validation.test.ts` - Validation suite
 - `META/relationship-mapping.json` - Dependency map
 - `.github/workflows/ci.yml` - CI/CD enforcement
 
 **Related Docs:**
+
 - BUILD_FOCUS.md - Current execution priorities
 - SKILL-MCP-GAP-ANALYSIS.md - Known gaps
 - ECOSYSTEM-PARITY-ANALYSIS.md - System relationships

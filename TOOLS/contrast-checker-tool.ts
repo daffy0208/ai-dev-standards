@@ -16,7 +16,7 @@
  * ```
  */
 
-import { Tool } from 'langchain/tools'
+import { Tool } from '@langchain/core/tools'
 
 export interface ContrastResult {
   foreground: string
@@ -92,7 +92,7 @@ WCAG Standards:
       wcagLevel: this.getWcagLevel(contrastRatio),
       normalText: this.checkCompliance(contrastRatio, 4.5, 7),
       largeText: this.checkCompliance(contrastRatio, 3, 4.5),
-      uiComponents: this.checkCompliance(contrastRatio, 3, 3),
+      uiComponents: this.checkCompliance(contrastRatio, 3, 3)
     }
 
     // Generate suggestions if not AAA compliant for normal text
@@ -103,7 +103,11 @@ WCAG Standards:
     return result
   }
 
-  private checkCompliance(ratio: number, aaThreshold: number, aaaThreshold: number): WcagCompliance {
+  private checkCompliance(
+    ratio: number,
+    aaThreshold: number,
+    aaaThreshold: number
+  ): WcagCompliance {
     const aa = ratio >= aaThreshold
     const aaa = ratio >= aaaThreshold
 
@@ -138,9 +142,11 @@ WCAG Standards:
 
   private getLuminance(hex: string): number {
     const rgb = this.hexToRgb(hex)
-    const [r, g, b] = [rgb.r, rgb.g, rgb.b].map((val) => {
+    const [r, g, b] = [rgb.r, rgb.g, rgb.b].map(val => {
       const normalized = val / 255
-      return normalized <= 0.03928 ? normalized / 12.92 : Math.pow((normalized + 0.055) / 1.055, 2.4)
+      return normalized <= 0.03928
+        ? normalized / 12.92
+        : Math.pow((normalized + 0.055) / 1.055, 2.4)
     })
 
     return 0.2126 * r + 0.7152 * g + 0.0722 * b
@@ -154,7 +160,7 @@ WCAG Standards:
     return {
       r: parseInt(result[1], 16),
       g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16),
+      b: parseInt(result[3], 16)
     }
   }
 
@@ -171,7 +177,7 @@ WCAG Standards:
       suggestions.push({
         color: darkerFgHex,
         contrastRatio: darkerContrast,
-        description: 'Darker foreground color',
+        description: 'Darker foreground color'
       })
     }
 
@@ -183,7 +189,7 @@ WCAG Standards:
       suggestions.push({
         color: lighterFgHex,
         contrastRatio: lighterContrast,
-        description: 'Lighter foreground color',
+        description: 'Lighter foreground color'
       })
     }
 
@@ -193,7 +199,7 @@ WCAG Standards:
       suggestions.push({
         color: '#000000',
         contrastRatio: blackContrast,
-        description: 'Pure black foreground',
+        description: 'Pure black foreground'
       })
     }
 
@@ -202,7 +208,7 @@ WCAG Standards:
       suggestions.push({
         color: '#FFFFFF',
         contrastRatio: whiteContrast,
-        description: 'Pure white foreground',
+        description: 'Pure white foreground'
       })
     }
 
@@ -216,7 +222,7 @@ WCAG Standards:
     return {
       r: Math.min(255, Math.max(0, Math.round(rgb.r * factor))),
       g: Math.min(255, Math.max(0, Math.round(rgb.g * factor))),
-      b: Math.min(255, Math.max(0, Math.round(rgb.b * factor))),
+      b: Math.min(255, Math.max(0, Math.round(rgb.b * factor)))
     }
   }
 

@@ -13,6 +13,7 @@ Automatically manages focus sessions, breaks, and hyperfocus protection. Tracks 
 **Always active!** Runs automatically in the background.
 
 Protects against:
+
 - Hyperfocus burnout (coding 4+ hours straight)
 - Time blindness (losing track of time)
 - Skipping breaks (health issues)
@@ -38,12 +39,14 @@ Mode: Deep Work
 ## Key Features
 
 ### Auto-Tracking
+
 - ✅ Starts when you code
 - ✅ Tracks focus time
 - ✅ Schedules breaks
 - ✅ Pauses on inactivity
 
 ### Smart Break Reminders
+
 ```
 [After 45 min]
 
@@ -58,6 +61,7 @@ Take 10-min break?
 ```
 
 ### Hyperfocus Protection
+
 ```
 [After 90 min]
 
@@ -72,6 +76,7 @@ Health check: Water, movement, eyes
 ```
 
 ### Health Monitoring
+
 - 💧 Water reminders (every 60 min)
 - 👁️ Eye breaks (20-20-20 rule)
 - 🚶 Movement alerts (every 90 min)
@@ -79,16 +84,19 @@ Health check: Water, movement, eyes
 ## Session Types
 
 ### Deep Work (45-90 min)
+
 - Complex coding, new features
 - Break: 15 minutes
 - Auto-detected for new files
 
 ### Quick Tasks (25 min)
+
 - Bug fixes, small changes
 - Break: 5 minutes
 - Auto-detected for existing files
 
 ### Learning (30 min)
+
 - Reading docs, tutorials
 - Break: 10 minutes
 - Auto-detected for browser activity
@@ -96,24 +104,28 @@ Health check: Water, movement, eyes
 ## Break Levels
 
 ### Level 1: Gentle (25-45 min)
+
 ```
 💭 Break time soon
 [Dismissable]
 ```
 
 ### Level 2: Strong (45-90 min)
+
 ```
 ⚠️ Break recommended
 [Dismissable 2x, then escalates]
 ```
 
 ### Level 3: Required (90+ min)
+
 ```
 🚨 Health alert
 [Must acknowledge health check]
 ```
 
 ### Level 4: Forced (3+ hours)
+
 ```
 🛑 Mandatory 15-min break
 [Context saved, timer enforced]
@@ -122,6 +134,7 @@ Health check: Water, movement, eyes
 ## Automation
 
 ### Auto-Start
+
 ```
 [VS Code opened]
 ✅ Session started
@@ -130,6 +143,7 @@ Health check: Water, movement, eyes
 ```
 
 ### Auto-Break Detection
+
 ```
 [Natural stopping point found]
 ✅ Code committed
@@ -138,6 +152,7 @@ Health check: Water, movement, eyes
 ```
 
 ### Auto-Pause
+
 ```
 [10 min inactive]
 ⏸️ Session paused
@@ -146,6 +161,7 @@ Resume anytime
 ```
 
 ### Auto-End
+
 ```
 [5:00pm]
 📊 Day summary
@@ -171,24 +187,28 @@ Health score: 9/10 Excellent!
 ## ADHD-Optimized Features
 
 ### Flexible Timers
+
 - Not rigid 25 min
 - Adapts to your task
 - Flow-aware breaks
 - Gentle suggestions
 
 ### Dismissable Reminders
+
 - Can extend session
 - Won't break flow state
 - But escalates if ignored
 - Health first
 
 ### Context Preservation
+
 - Auto-saves before break
 - Easy resume after
 - No lost progress
 - No anxiety
 
 ### Visual Time
+
 ```
 Status bar: ⏱️ 23:45 | 🧠 Session 1/4 | 💧 Water soon
 ```
@@ -196,6 +216,7 @@ Status bar: ⏱️ 23:45 | 🧠 Session 1/4 | 💧 Water soon
 ## Health Benefits
 
 **Before (no break system):**
+
 - 4+ hour sessions
 - Eye strain
 - Back pain
@@ -203,6 +224,7 @@ Status bar: ⏱️ 23:45 | 🧠 Session 1/4 | 💧 Water soon
 - Burnout
 
 **After (automated breaks):**
+
 - Regular breaks (5-15 min)
 - Eye health protected
 - Movement maintained
@@ -212,7 +234,9 @@ Status bar: ⏱️ 23:45 | 🧠 Session 1/4 | 💧 Water soon
 ## Tips
 
 ### Trust the Breaks
+
 Breaks feel like wasted time but they:
+
 - ✅ Increase focus quality
 - ✅ Prevent mistakes
 - ✅ Improve creativity
@@ -222,7 +246,9 @@ Breaks feel like wasted time but they:
 **Math:** 10-min break = 30 min better focus
 
 ### Use Break Time Well
+
 Good breaks:
+
 - Walk outside (best)
 - Stretch/move
 - Get water/snack
@@ -230,12 +256,15 @@ Good breaks:
 - Social interaction
 
 Bad breaks:
+
 - More screen time
 - Social media scrolling
 - Work-related reading
 
 ### Ignore the Break Guilt
+
 ADHD brains often feel:
+
 - "I should keep working"
 - "This is momentum loss"
 - "Breaks are for weak people"
@@ -245,6 +274,7 @@ ADHD brains often feel:
 ## Success Metrics
 
 You're using this well when:
+
 - ✅ Taking breaks regularly (not skipping)
 - ✅ End-of-day energy higher
 - ✅ Health checks completed

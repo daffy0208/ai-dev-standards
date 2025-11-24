@@ -45,14 +45,17 @@ Start here
 ### Normalization Forms
 
 **1NF (First Normal Form):**
+
 - Atomic values (no arrays in columns)
 - Each row is unique (has primary key)
 
 **2NF (Second Normal Form):**
+
 - Meets 1NF
 - No partial dependencies (all non-key columns depend on entire primary key)
 
 **3NF (Third Normal Form):**
+
 - Meets 2NF
 - No transitive dependencies (non-key columns don't depend on other non-key columns)
 
@@ -126,11 +129,13 @@ CREATE TABLE orders (
 ```
 
 **When to denormalize:**
+
 - ✅ Read-heavy data (orders rarely change user info)
 - ✅ Reduce JOIN overhead (performance bottleneck)
 - ✅ Historical snapshots (order should keep user name at time of order)
 
 **When NOT to denormalize:**
+
 - ❌ Frequently updated data (creates update anomalies)
 - ❌ Write-heavy tables (more data to update)
 
@@ -200,6 +205,7 @@ WHERE to_tsvector('english', name || ' ' || description)
 ### Index Best Practices
 
 ✅ **DO:**
+
 - Index foreign keys (used in JOINs)
 - Index columns in WHERE clauses
 - Index columns in ORDER BY
@@ -207,6 +213,7 @@ WHERE to_tsvector('english', name || ' ' || description)
 - Monitor slow queries (identify missing indexes)
 
 ❌ **DON'T:**
+
 - Over-index (slows writes, uses storage)
 - Index low-cardinality columns (boolean, enum with few values)
 - Duplicate indexes
@@ -293,7 +300,7 @@ LIMIT 20;
 
 ```typescript
 // Prisma transaction
-await db.$transaction(async (tx) => {
+await db.$transaction(async tx => {
   // Deduct from source account
   await tx.account.update({
     where: { id: sourceId },
@@ -428,11 +435,13 @@ CREATE TABLE users (
 ```
 
 **Pros:**
+
 - ✅ Smaller (4 bytes vs 16 bytes)
 - ✅ Sequential (better for indexes)
 - ✅ Human-readable
 
 **Cons:**
+
 - ❌ Predictable (security risk: users/1, users/2)
 - ❌ Not globally unique (conflicts when merging databases)
 - ❌ Reveals business info (10,000th user)
@@ -447,11 +456,13 @@ CREATE TABLE users (
 ```
 
 **Pros:**
+
 - ✅ Globally unique (can generate client-side)
 - ✅ Unpredictable (security)
 - ✅ Easy to merge databases
 
 **Cons:**
+
 - ❌ Larger (16 bytes)
 - ❌ Random (worse for index performance)
 - ❌ Not human-readable
@@ -538,14 +549,14 @@ async function getUser(id: string) {
 const db = new PrismaClient({
   datasources: {
     db: {
-      url: process.env.DATABASE_URL,
-    },
+      url: process.env.DATABASE_URL
+    }
   },
   // Connection pool size
   pool: {
     min: 2,
-    max: 10,
-  },
+    max: 10
+  }
 })
 
 // Always use a single PrismaClient instance
@@ -585,11 +596,13 @@ const db = new PrismaClient({
 ### When to Embed vs Reference
 
 **Embed when:**
+
 - ✅ 1-to-few relationship (user has 2-3 addresses)
 - ✅ Data accessed together (always load addresses with user)
 - ✅ Child data rarely changes
 
 **Reference when:**
+
 - ✅ 1-to-many or many-to-many (user has 100s of posts)
 - ✅ Data accessed independently
 - ✅ Child data frequently changes
@@ -602,6 +615,7 @@ const db = new PrismaClient({
 ### Zero-Downtime Migrations
 
 **Step 1: Additive changes (safe)**
+
 ```sql
 -- Add new column (nullable)
 ALTER TABLE users ADD COLUMN phone VARCHAR(20);
@@ -614,6 +628,7 @@ CREATE INDEX CONCURRENTLY idx_users_phone ON users(phone);
 ```
 
 **Step 2: Dual-write period**
+
 ```typescript
 // Write to both old and new schema
 await db.user.update({
@@ -626,6 +641,7 @@ await db.user.update({
 ```
 
 **Step 3: Backfill data**
+
 ```sql
 -- Backfill old rows (in batches)
 UPDATE users
@@ -635,12 +651,14 @@ WHERE phone IS NULL
 ```
 
 **Step 4: Make non-nullable**
+
 ```sql
 -- After backfill complete
 ALTER TABLE users ALTER COLUMN phone SET NOT NULL;
 ```
 
 **Step 5: Remove old column**
+
 ```sql
 -- After verification
 ALTER TABLE users DROP COLUMN legacy_phone;
@@ -668,6 +686,7 @@ CREATE TABLE schema_migrations (
 ## Best Practices Checklist
 
 ### Schema Design
+
 - [ ] Use UUIDs for primary keys (security + distribution)
 - [ ] Add created_at/updated_at to all tables
 - [ ] Use soft deletes (deleted_at) for audit trail
@@ -675,6 +694,7 @@ CREATE TABLE schema_migrations (
 - [ ] Use meaningful column names (user_id not uid)
 
 ### Indexing
+
 - [ ] Index all foreign keys
 - [ ] Index columns in WHERE/ORDER BY
 - [ ] Use composite indexes for multi-column queries
@@ -682,6 +702,7 @@ CREATE TABLE schema_migrations (
 - [ ] Don't over-index (slows writes)
 
 ### Performance
+
 - [ ] Use connection pooling
 - [ ] Batch operations when possible
 - [ ] Select only needed columns
@@ -689,6 +710,7 @@ CREATE TABLE schema_migrations (
 - [ ] Use EXPLAIN to analyze queries
 
 ### Data Integrity
+
 - [ ] Use foreign key constraints
 - [ ] Use CHECK constraints for validation
 - [ ] Use NOT NULL where appropriate
@@ -696,6 +718,7 @@ CREATE TABLE schema_migrations (
 - [ ] Implement optimistic locking for concurrent updates
 
 ### Migrations
+
 - [ ] Version control all migrations
 - [ ] Test migrations on staging first
 - [ ] Use zero-downtime migration strategy
@@ -707,14 +730,17 @@ CREATE TABLE schema_migrations (
 ## Related Resources
 
 **Skills:**
+
 - `/SKILLS/api-designer/` - API database interactions
 - `/SKILLS/performance-optimizer/` - Database optimization
 - `/SKILLS/security-engineer/` - SQL injection prevention
 
 **Patterns:**
+
 - `/STANDARDS/best-practices/database-best-practices.md`
 
 **External:**
+
 - [PostgreSQL Documentation](https://www.postgresql.org/docs/)
 - [Prisma Best Practices](https://www.prisma.io/docs/guides/performance-and-optimization)
 - [Use The Index, Luke](https://use-the-index-luke.com/)

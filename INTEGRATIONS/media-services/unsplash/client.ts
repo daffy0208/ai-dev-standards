@@ -245,7 +245,7 @@ export class UnsplashClient {
     this.options = {
       accessKey: options.accessKey,
       timeout: options.timeout ?? 30000,
-      baseUrl: options.baseUrl ?? 'https://api.unsplash.com',
+      baseUrl: options.baseUrl ?? 'https://api.unsplash.com'
     }
 
     if (!this.options.accessKey) {
@@ -263,7 +263,7 @@ export class UnsplashClient {
       query,
       page: String(options.page || 1),
       per_page: String(options.perPage || 10),
-      order_by: options.orderBy || 'relevant',
+      order_by: options.orderBy || 'relevant'
     })
 
     if (options.color) params.append('color', options.color)
@@ -276,7 +276,7 @@ export class UnsplashClient {
     return {
       total: data.total,
       totalPages: data.total_pages,
-      results: data.results.map((photo: any) => this.transformPhoto(photo)),
+      results: data.results.map((photo: any) => this.transformPhoto(photo))
     }
   }
 
@@ -297,7 +297,7 @@ export class UnsplashClient {
     const data = await response.json()
 
     if (Array.isArray(data)) {
-      return data.map((photo) => this.transformPhoto(photo))
+      return data.map(photo => this.transformPhoto(photo))
     }
 
     return this.transformPhoto(data)
@@ -323,20 +323,22 @@ export class UnsplashClient {
       id: data.id,
       downloads: data.downloads,
       views: data.views,
-      likes: data.likes,
+      likes: data.likes
     }
   }
 
   /**
    * List collections
    */
-  async listCollections(options: {
-    page?: number
-    perPage?: number
-  } = {}): Promise<Collection[]> {
+  async listCollections(
+    options: {
+      page?: number
+      perPage?: number
+    } = {}
+  ): Promise<Collection[]> {
     const params = new URLSearchParams({
       page: String(options.page || 1),
-      per_page: String(options.perPage || 10),
+      per_page: String(options.perPage || 10)
     })
 
     const response = await this.fetch(`/collections?${params}`)
@@ -354,7 +356,7 @@ export class UnsplashClient {
   ): Promise<Photo[]> {
     const params = new URLSearchParams({
       page: String(options.page || 1),
-      per_page: String(options.perPage || 10),
+      per_page: String(options.perPage || 10)
     })
 
     const response = await this.fetch(`/collections/${id}/photos?${params}`)
@@ -437,16 +439,14 @@ export class UnsplashClient {
     const response = await fetch(url, {
       headers: {
         Authorization: `Client-ID ${this.options.accessKey}`,
-        'Accept-Version': 'v1',
+        'Accept-Version': 'v1'
       },
-      signal: AbortSignal.timeout(this.options.timeout),
+      signal: AbortSignal.timeout(this.options.timeout)
     })
 
     if (!response.ok) {
       const error = await response.json().catch(() => ({ errors: [response.statusText] }))
-      throw new Error(
-        `Unsplash API error: ${error.errors?.join(', ') || response.statusText}`
-      )
+      throw new Error(`Unsplash API error: ${error.errors?.join(', ') || response.statusText}`)
     }
 
     return response
@@ -473,7 +473,7 @@ export class UnsplashClient {
         self: data.links.self,
         html: data.links.html,
         download: data.links.download,
-        downloadLocation: data.links.download_location,
+        downloadLocation: data.links.download_location
       },
       user: {
         id: data.user.id,
@@ -483,8 +483,8 @@ export class UnsplashClient {
         bio: data.user.bio,
         location: data.user.location,
         profileImage: data.user.profile_image,
-        links: data.user.links,
-      },
+        links: data.user.links
+      }
     }
   }
 
@@ -512,9 +512,9 @@ export class UnsplashClient {
         bio: data.user.bio,
         location: data.user.location,
         profileImage: data.user.profile_image,
-        links: data.user.links,
+        links: data.user.links
       },
-      links: data.links,
+      links: data.links
     }
   }
 }
@@ -522,12 +522,10 @@ export class UnsplashClient {
 /**
  * Create Unsplash client from environment variables
  */
-export function createUnsplashClient(
-  options: Partial<UnsplashClientOptions> = {}
-): UnsplashClient {
+export function createUnsplashClient(options: Partial<UnsplashClientOptions> = {}): UnsplashClient {
   return new UnsplashClient({
     accessKey: options.accessKey || process.env.UNSPLASH_ACCESS_KEY || '',
     timeout: options.timeout,
-    baseUrl: options.baseUrl,
+    baseUrl: options.baseUrl
   })
 }

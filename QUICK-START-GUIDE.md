@@ -1,83 +1,123 @@
-# Code Execution MCP - Quick Start Guide
+# Semantic Search (Code Execution) – Quick Start
 
-**TL;DR**: Infrastructure is ready. Your first MCP is generated. Start using it!
+This guide walks through the current, working slice of the Code Execution pattern:
 
----
+- `semantic-search-mcp` (TypeScript server + Pinecone/in-memory vector stores)
+- CLI smoke validation (`doctor`, `analyze`)
 
-## What You Have Now
-
-### ✅ Infrastructure (Ready)
-- **Docker sandbox**: `mcp-sandbox` image built and tested
-- **Skills storage**: `/home/david/projects/ai-dev-standards/skills`
-- **IPython**: 9.7.0 installed in container
-- **Config**: Code Execution enabled in `/config/mcp-patterns.json`
-
-### ✅ First MCP (Ready)
-- **Name**: `semantic-search-mcp`
-- **Location**: `/MCP-SERVERS/semantic-search-mcp/`
-- **Tools**: 3 working tools (vector_embed, similarity_search, index_documents)
-- **Status**: Tested and working
+Everything else is paused until this MVP lands.
 
 ---
 
-## Quick Commands
+## Prerequisites
 
-### Test Tools
+| Requirement                 | Notes                                                                                                                              |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Node.js ≥ 18                | CLI + tests                                                                                                                        |
+| Docker (optional)           | For the `mcp-sandbox` image                                                                                                        |
+| Pinecone account (optional) | Set `PINECONE_API_KEY` + `PINECONE_INDEX` for real vector storage. Without them the MCP uses an in-memory store for local testing. |
+
+Copy `.env.example` in the repo root (or your project) and fill in Pinecone keys if you have them:
+
 ```bash
-# Test vector embedding
-cd MCP-SERVERS/semantic-search-mcp/servers/semantic-search/tools
-docker run --rm -v $(pwd):/workspace/tools mcp-sandbox python /workspace/tools/vector_embed.py
-
-# Test similarity search
-docker run --rm -v $(pwd):/workspace/tools mcp-sandbox python /workspace/tools/similarity_search.py
-
-# Test document indexing
-docker run --rm -v $(pwd):/workspace/tools mcp-sandbox python /workspace/tools/index_documents.py
-```
-
-### Generate New MCP
-```bash
-# General format
-node scripts/generate-code-execution-mcp.cjs <name> "<description>"
-
-# Examples
-node scripts/generate-code-execution-mcp.cjs vector-database "Vector database operations"
-node scripts/generate-code-execution-mcp.cjs api-validator "API validation tools"
-```
-
-### Check Status
-```bash
-# Docker image
-docker images | grep mcp-sandbox
-
-# Skills directory
-ls -la skills/
-
-# Configuration
-cat config/mcp-patterns.json | grep -A 10 code-execution
+cp .env.example .env
+export PINECONE_API_KEY=...    # optional but recommended
+export PINECONE_INDEX=...      # optional but recommended
 ```
 
 ---
 
-## Next 3 Actions
+## 1. Run CLI Smoke Tests
 
-### 1. Use the MCP
-Test `semantic-search-mcp` with real data:
 ```bash
-cd MCP-SERVERS/semantic-search-mcp
-# Integrate with Claude Code or test standalone
+npm install
+npm test                  # runs registry tests + CLI smoke + vector-store tests
+npm run typecheck
 ```
 
-### 2. Generate Priority MCPs
+If the smoke suite fails make sure `AI_DEV_SKIP_NPM_OUTDATED=1` is set (the tests do that automatically). For manual runs you can call:
+
 ```bash
-# Your top 5 priorities (from config):
-node scripts/generate-code-execution-mcp.cjs vector-database "Vector DB integration"
-node scripts/generate-code-execution-mcp.cjs api-validator "API validation"
-node scripts/generate-code-execution-mcp.cjs deployment-orchestrator "Deployment tools"
-node scripts/generate-code-execution-mcp.cjs brain "Orchestration and routing"
+AI_DEV_SKIP_NPM_OUTDATED=1 node CLI/bin/cli.js doctor
+AI_DEV_SKIP_NPM_OUTDATED=1 node CLI/bin/cli.js analyze --directory .
 ```
 
-### 3. Watch Skills Build
+---
+
+## 2. Configure Semantic Search MCP
+
+1. Update your Claude Code MCP settings:
+
+```json
+{
+  "mcpServers": {
+    "semantic-search": {
+      "command": "mcp-code-execution",
+      "args": [
+        "--servers-path",
+        "/path/to/ai-dev-standards/MCP-SERVERS/semantic-search-mcp/servers"
+      ],
+      "env": {
+        "SKILLS_PATH": "/path/to/ai-dev-standards/MCP-SERVERS/semantic-search-mcp/skills",
+        "PINECONE_API_KEY": "your-api-key",
+        "PINECONE_INDEX": "your-index-name"
+      }
+    }
+  }
+}
+```
+
+2. If you don’t have Pinecone access yet, leave those env vars empty—the MCP will store vectors in-memory for the session (useful for local experiments, not production).
+
+---
+
+## 3. Run the CLI Demo (Optional)
+
+Want to see the TypeScript server run end-to-end without wiring up an MCP client yet? Use the demo script:
+
+```bash
+npm run demo:semantic-search
+```
+
+The script:
+
+- Configures the MCP (topK/reranker)
+- Indexes three example documents using deterministic embeddings
+- Runs a semantic search and prints the results as a table
+
+Use this flow as a template for your own documents or to verify that embeddings + search behave as expected before integrating the MCP into Claude/Cursor.
+
+## 4. Validate the Docker Sandbox
+
+```bash
+npm run test:semantic-search:docker
+```
+
+This builds the `mcp-sandbox` image (first run only), mounts the semantic-search Python tools, and executes them inside Docker. When `PINECONE_API_KEY`, `PINECONE_INDEX`, and `PINECONE_DIMENSION` are set, the script also performs a Pinecone upsert/query round trip.
+
+GitHub Actions runs this job on the Node 20 matrix entry, but run it locally whenever you touch the sandbox Dockerfile or the Python tools.
+
+> CI Tip: Add `PINECONE_API_KEY`, `PINECONE_INDEX`, and `PINECONE_DIMENSION` as GitHub Actions secrets to enable the live Pinecone check in the workflow.
+
+For a full walkthrough of the CLI demo + docker validation, see [DOCS/SEMANTIC-SEARCH-USAGE.md](DOCS/SEMANTIC-SEARCH-USAGE.md).
+
+## 5. Use the MCP
+
+- `configure` – set defaults (`topK`, reranker options).
+- `index_document` – pass `{ id, text, embedding, metadata }`. Pair it with the CLI or your own embedding pipeline.
+- `search` / `hybrid_search` – send embeddings, receive ranked results. Output includes whether Pinecone or memory was used.
+- `list_documents` – works only when using the in-memory store (Pinecone doesn’t expose listing via API).
+
+For local testing you can call the handlers directly or use Claude Code’s MCP UI. When running without Pinecone, embeddings are whatever you provide—there’s no automatic embedding generation.
+
+---
+
+## 6. What’s Next?
+
+1. **Finish MCP catalog** – Once semantic search is stable we’ll adapt the generator script to output real tools for vector-database, api-validator, deployment-orchestrator, and brain MCPs.
+2. **CLI coverage** – Additional smoke tests (e.g., `setup`) and documentation examples.
+3. **Docker validation** – End-to-end scripts that run the MCP inside `mcp-sandbox` with Pinecone credentials.
+
 ```bash
 # As you use MCPs, skills will be saved here:
 watch -n 5 'ls -lh skills/'
@@ -90,13 +130,13 @@ watch -n 5 'ls -lh skills/'
 
 ### Code Execution vs Direct MCP
 
-| Feature | Direct MCP | Code Execution |
-|---------|-----------|----------------|
-| Tools loaded | All upfront | On-demand |
-| Token usage (first run) | Baseline | 40-60% less |
-| Token usage (with skills) | Baseline | 85-95% less |
-| Scalability | ~50 tools max | 1000+ tools |
-| Setup time | 0 | Done! (6 hours) |
+| Feature                   | Direct MCP    | Code Execution  |
+| ------------------------- | ------------- | --------------- |
+| Tools loaded              | All upfront   | On-demand       |
+| Token usage (first run)   | Baseline      | 40-60% less     |
+| Token usage (with skills) | Baseline      | 85-95% less     |
+| Scalability               | ~50 tools max | 1000+ tools     |
+| Setup time                | 0             | Done! (6 hours) |
 
 **You chose Code Execution: Token efficient from day 1!**
 
@@ -105,16 +145,19 @@ watch -n 5 'ls -lh skills/'
 ## Important Files
 
 ### Documentation
+
 - **Setup complete**: `/CODE-EXECUTION-SETUP-COMPLETE.md` (detailed)
 - **This file**: Quick reference
 - **Full docs**: `/DOCS/mcp-patterns/` (~81K words)
 
 ### Generated MCP
+
 - **Main README**: `/MCP-SERVERS/semantic-search-mcp/README.md`
 - **Tool list**: `/MCP-SERVERS/semantic-search-mcp/servers/semantic-search/tool_list.txt`
 - **Tools**: `/MCP-SERVERS/semantic-search-mcp/servers/semantic-search/tools/`
 
 ### Configuration
+
 - **MCP config**: `/config/mcp-patterns.json` (Code Execution enabled)
 - **Docker**: `/SECURITY/sandbox/docker-sandbox.dockerfile`
 - **Skills**: `/skills/README.md`
@@ -124,6 +167,7 @@ watch -n 5 'ls -lh skills/'
 ## Common Tasks
 
 ### Add a New Tool to Existing MCP
+
 ```bash
 # 1. Create tool file
 cd MCP-SERVERS/semantic-search-mcp/servers/semantic-search/tools
@@ -138,12 +182,14 @@ docker run --rm -v $(pwd):/workspace/tools mcp-sandbox python /workspace/tools/m
 ```
 
 ### View Skills Generated
+
 ```bash
 ls -la skills/
 cat skills/some_generated_skill.py
 ```
 
 ### Rebuild Docker Image
+
 ```bash
 docker build -f SECURITY/sandbox/docker-sandbox.dockerfile -t mcp-sandbox .
 ```
@@ -153,6 +199,7 @@ docker build -f SECURITY/sandbox/docker-sandbox.dockerfile -t mcp-sandbox .
 ## Troubleshooting
 
 ### Tool fails in Docker
+
 ```bash
 # Check tool file syntax
 python MCP-SERVERS/semantic-search-mcp/servers/semantic-search/tools/vector_embed.py
@@ -162,11 +209,13 @@ docker run --rm -v $(pwd):/workspace -it mcp-sandbox ls /workspace
 ```
 
 ### Skills not being created
+
 - Skills are created BY USAGE (not automatically)
 - Use your MCPs → Skills will appear in `/skills/`
 - First few runs won't have skills (being learned)
 
 ### Docker image too large
+
 ```bash
 # Current size: 311MB (acceptable)
 # If needed, remove unused packages:
@@ -178,11 +227,13 @@ docker build -f SECURITY/sandbox/docker-sandbox.dockerfile -t mcp-sandbox-slim .
 ## Resources
 
 ### Learn More
+
 1. **Pattern details**: `/DOCS/mcp-patterns/03-mcp-code-execution-pattern.md`
 2. **Progressive discovery**: `/DOCS/mcp-patterns/06-mcp-progressive-discovery-patterns.md`
 3. **Security**: `/DOCS/mcp-patterns/07-mcp-security-privacy-best-practices.md`
 
 ### Get Help
+
 - **Brain orchestrator**: Automatic pattern selection (if enabled)
 - **Documentation**: ~81K words in `/DOCS/mcp-patterns/`
 - **Examples**: See `semantic-search-mcp` pilot
