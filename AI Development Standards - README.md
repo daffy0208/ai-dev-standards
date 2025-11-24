@@ -91,15 +91,14 @@ Template/installer refresh – Revisit the project templates once the CLI comman
 Choose your usage method:
 
 1. 🔗 Integration Usage (Recommended)
-Integrate ai-dev-standards into your projects for automatic skill activation, resource syncing, and AI assistant integration. One command sets up everything.
+   Integrate ai-dev-standards into your projects for automatic skill activation, resource syncing, and AI assistant integration. One command sets up everything.
 
 ✅ Best for: Active development, new and existing projects
 ✅ Features: Auto-sync, automatic skill activation, brain-MCP integration, project analysis
 ✅ Setup time: 2 minutes
 ✅ Updates: Automatic via git hooks
 cd /your/project
-bash ~/ai-dev-standards/setup-project.sh
-2. 📚 Standalone Usage
+bash ~/ai-dev-standards/setup-project.sh 2. 📚 Standalone Usage
 Use ai-dev-standards as a reference library without integrating it into your projects. Browse and manually reference resources.
 
 ✅ Best for: Learning, exploring, manual reference
@@ -107,11 +106,12 @@ Use ai-dev-standards as a reference library without integrating it into your pro
 ✅ Setup time: 1 minute (just clone)
 ✅ Updates: Manual via git pull
 cd ~/ai-dev-standards
-./scripts/check-updates.sh  # Check for updates
+./scripts/check-updates.sh # Check for updates
 🔄 Checking for Updates
 Both usage modes support automatic update checking:
 
 # From ai-dev-standards directory or any project
+
 ./scripts/check-updates.sh
 Shows what's new, version changes, and provides update instructions for your usage mode.
 
@@ -130,41 +130,43 @@ Search META/skill-registry.json - Find relevant skills
 Reference appropriate standards and patterns as needed
 Repository Structure
 ai-dev-standards/
-├── META/                           # Core context and navigation
-│   ├── PROJECT-CONTEXT.md          # For AI: How to use this repository
-│   ├── HOW-TO-USE.md               # Navigation guide
-│   ├── DECISION-FRAMEWORK.md       # Technology decision guidance
-│   └── skill-registry.json         # Searchable skill catalog
+├── META/ # Core context and navigation
+│ ├── PROJECT-CONTEXT.md # For AI: How to use this repository
+│ ├── HOW-TO-USE.md # Navigation guide
+│ ├── DECISION-FRAMEWORK.md # Technology decision guidance
+│ └── skill-registry.json # Searchable skill catalog
 │
-├── SKILLS/                         # Specialized methodologies (64 skills)
-│   ├── mvp-builder/                # MVP development and feature prioritization
-│   ├── rag-implementer/            # Retrieval-augmented generation systems
-│   ├── product-strategist/         # Product-market fit validation
-│   ├── api-designer/               # REST and GraphQL API design
-│   ├── frontend-builder/           # React/Next.js development
-│   ├── deployment-advisor/         # Infrastructure and deployment strategy
-│   ├── quality-auditor/            # Comprehensive quality audits
-│   ├── security-auditor/           # Security assessment and hardening
-│   ├── performance-optimizer/      # Performance and scalability
-│   ├── multi-agent-architect/      # Multi-agent system orchestration
-│   └── [54 more skills...]         # See META/skill-registry.json for complete list
+├── SKILLS/ # Specialized methodologies (64 skills)
+│ ├── mvp-builder/ # MVP development and feature prioritization
+│ ├── rag-implementer/ # Retrieval-augmented generation systems
+│ ├── product-strategist/ # Product-market fit validation
+│ ├── api-designer/ # REST and GraphQL API design
+│ ├── frontend-builder/ # React/Next.js development
+│ ├── deployment-advisor/ # Infrastructure and deployment strategy
+│ ├── quality-auditor/ # Comprehensive quality audits
+│ ├── security-auditor/ # Security assessment and hardening
+│ ├── performance-optimizer/ # Performance and scalability
+│ ├── multi-agent-architect/ # Multi-agent system orchestration
+│ └── [54 more skills...] # See META/skill-registry.json for complete list
 │
 ├── STANDARDS/
-│   ├── architecture-patterns/      # System design patterns
-│   │   └── rag-pattern.md          # RAG architecture styles and components
-│   ├── best-practices/             # Quality and security standards
-│   │   └── mcp-code-execution-best-practices.md  # MCP code execution guidelines
-│   └── [future standards]/
+│ ├── architecture-patterns/ # System design patterns
+│ │ └── rag-pattern.md # RAG architecture styles and components
+│ ├── best-practices/ # Quality and security standards
+│ │ └── mcp-code-execution-best-practices.md # MCP code execution guidelines
+│ └── [future standards]/
 │
-├── PLAYBOOKS/                      # Operational procedures (7+ playbooks)
-├── TEMPLATES/                      # Project starters (cursorrules templates)
-├── COMPONENTS/                     # Reusable implementations (72 components in current catalog)
-└── EXAMPLES/                       # Reference implementations (sample projects)
+├── PLAYBOOKS/ # Operational procedures (7+ playbooks)
+├── TEMPLATES/ # Project starters (cursorrules templates)
+├── COMPONENTS/ # Reusable implementations (72 components in current catalog)
+└── EXAMPLES/ # Reference implementations (sample projects)
 🧠 Repository Brain & Orchestrator
 The Repository Brain is an intelligence system that manages, understands, and orchestrates the 238 core resources inside your project, backed by the full 360-resource repository catalog (238 core + 122 supporting resources). It helps Claude automatically discover and use the right skills, MCPs, tools, and components for any task.
 
 Quick Setup
+
 # One command to configure everything
+
 ./scripts/configure-mcp-paths.sh
 This will:
 
@@ -175,11 +177,11 @@ How It Works
 The brain operates through MCP tools that Claude can invoke:
 
 Claude asks: "What skills for building an MVP?"
-    ↓
+↓
 Uses: brain_select_skills(taskDescription: "build MVP")
-    ↓
+↓
 Brain returns: mvp-builder, product-strategist, frontend-builder
-    ↓
+↓
 Claude reads those skill files and applies their methodologies
 Available Brain Tools
 Discovery:
@@ -203,12 +205,12 @@ Ask: "Use brain_relationships to show dependencies for rag-implementer"
 Ask: "Use brain_search to find authentication resources"
 Option 2: Through CLI
 
-brain status                    # Current state
-brain search "authentication"   # Search resources
+brain status # Current state
+brain search "authentication" # Search resources
 brain select-skills "build MVP" # Get skill recommendations
 brain relationships rag-implementer # Show dependencies
 brain patterns "need knowledge base" # Match architecture patterns
-brain workflow "implement RAG"  # Get detailed workflow
+brain workflow "implement RAG" # Get detailed workflow
 Architecture (4 Layers)
 Layer 1: Knowledge - Complete understanding of repository state (registries + mappings)
 Layer 2: Enforcement - Automated validation and drift prevention
@@ -374,8 +376,8 @@ Claude:
 4. Uses frontend-builder skill for React/Next.js structure
 5. Uses deployment-advisor skill to recommend Vercel + Railway
 6. Follows best practices for security and performance
-Implementing AI Features
-User: "Add AI-powered search to our knowledge base"
+   Implementing AI Features
+   User: "Add AI-powered search to our knowledge base"
 
 Claude:
 
@@ -385,8 +387,8 @@ Claude:
 4. Suggests Pinecone (vector DB) + OpenAI embeddings
 5. Implements with citations and source attribution
 6. Sets up evaluation metrics
-Designing Complex Systems
-User: "Build a multi-agent system for market research"
+   Designing Complex Systems
+   User: "Build a multi-agent system for market research"
 
 Claude:
 
@@ -395,8 +397,8 @@ Claude:
 3. Designs: Manager → [Competitor A, B, C researchers] → Aggregator
 4. Implements with CrewAI
 5. Adds monitoring and cost tracking
-Decision Framework
-This repository provides clear guidance for technology decisions:
+   Decision Framework
+   This repository provides clear guidance for technology decisions:
 
 Should I use RAG?
 Knowledge in base model? → No RAG needed
@@ -461,31 +463,31 @@ Clear decision criteria provided
 Trade-offs explicitly documented
 Roadmap
 Phase 1: Foundation ✅ (Complete)
- 64 specialized skills extracted and adapted
- RAG architecture pattern documented
- Meta files and navigation created
- Decision framework established
- Registry system for resource discovery
+64 specialized skills extracted and adapted
+RAG architecture pattern documented
+Meta files and navigation created
+Decision framework established
+Registry system for resource discovery
 Phase 2: Quality & Trust ✅ (Complete)
- Automated registry validation tests
- CI/CD enforcement (blocks incomplete registry)
- Quality auditor with Phase 0 mandatory checks
- Audit validation checklist
- Cost efficiency guardrails
- Validation-first development playbook
+Automated registry validation tests
+CI/CD enforcement (blocks incomplete registry)
+Quality auditor with Phase 0 mandatory checks
+Audit validation checklist
+Cost efficiency guardrails
+Validation-first development playbook
 Phase 3: MCP Development ✅ (COMPLETE)
- RAG & AI MCPs (vector-database, embedding-generator, semantic-search, knowledge-base)
- Product MCPs (feature-prioritizer, user-insight-analyzer, market-analyzer)
- Engineering MCPs (openapi-generator, api-validator, component-generator)
- Quality MCPs (performance-profiler, security-scanner, code-quality-scanner)
- Design MCPs (wireframe-generator, design-token-manager, asset-optimizer)
+RAG & AI MCPs (vector-database, embedding-generator, semantic-search, knowledge-base)
+Product MCPs (feature-prioritizer, user-insight-analyzer, market-analyzer)
+Engineering MCPs (openapi-generator, api-validator, component-generator)
+Quality MCPs (performance-profiler, security-scanner, code-quality-scanner)
+Design MCPs (wireframe-generator, design-token-manager, asset-optimizer)
 Achieved: 50 MCPs providing 85% skill coverage (exceeded 30 MCP goal!)
 Phase 4: Enhancement (Planned)
- Additional architecture patterns
- Operational playbooks expansion
- Project templates
- Integration guides
- Example implementations
+Additional architecture patterns
+Operational playbooks expansion
+Project templates
+Integration guides
+Example implementations
 Contributing
 Adding a New Skill
 Must provide specialized methodology not covered by existing skills
@@ -508,7 +510,7 @@ Testing CLI Commands
 Run npm run test:cli to execute the full CLI + semantic-search MCP suite (doctor, analyze, setup, sync, init, context, update, etc.).
 Run npm run test:semantic-search:docker to execute the code-execution docker smoke test (requires Docker and builds the mcp-sandbox image on first run).
 Run npm run demo:semantic-search for a quick index+search walkthrough without setting up an MCP client yet.
-When adding CLI tests, import the relevant create*Command factory (e.g., createUpdateCommand) and inject mocked dependencies (fs, path, chalk, ora, inquirer) plus a custom cwd() to keep tests sandboxed.
+When adding CLI tests, import the relevant create\*Command factory (e.g., createUpdateCommand) and inject mocked dependencies (fs, path, chalk, ora, inquirer) plus a custom cwd() to keep tests sandboxed.
 Use temporary directories (see tests/cli/update-command.test.ts) to create .ai-dev.json, .claude/, .codex/, and other artifacts without polluting the repo.
 Avoid calling process.chdir inside tests—pass paths through injection or helper arguments instead.
 See the detailed guidance in CONTRIBUTING.md (Testing CLI Commands) for reusable helpers and patterns.

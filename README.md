@@ -13,13 +13,13 @@
 
 **Total: 199 Resources**
 
-| Category | Count | Description |
-|----------|-------|-------------|
-| **Skills** | 64 | Specialized AI methodologies and workflows |
-| **MCPs** | 51 | Model Context Protocol servers (executable tools) |
-| **Tools** | 4 | Core utility scripts |
-| **Components** | 75 | Reusable UI and system components |
-| **Integrations** | 5 | Third-party service connectors |
+| Category         | Count | Description                                       |
+| ---------------- | ----- | ------------------------------------------------- |
+| **Skills**       | 64    | Specialized AI methodologies and workflows        |
+| **MCPs**         | 51    | Model Context Protocol servers (executable tools) |
+| **Tools**        | 4     | Core utility scripts                              |
+| **Components**   | 75    | Reusable UI and system components                 |
+| **Integrations** | 5     | Third-party service connectors                    |
 
 **MCP Coverage:** 79.7% (51 MCPs supporting 64 Skills)
 
@@ -28,7 +28,9 @@
 ## ✨ What's New in 3.1.0
 
 ### 🎯 Agent Evaluation System (Phase 5.12)
+
 Implement Eval-Driven Development (EDD) for continuous agent quality assurance:
+
 - Automated testing against golden datasets
 - Multiple grading strategies (exact, regex, LLM-based)
 - Performance metrics and regression tracking
@@ -40,6 +42,7 @@ node scripts/run-agent-evals.js --dataset tests/fixtures/golden-dataset-example.
 ```
 
 ### ⚡ Two-Tier Validation System
+
 - **Quick Validation** (10-30s): Registry consistency, documentation
 - **Full Validation** (2-5min): Includes linting, type checking, tests, agent evals
 
@@ -49,6 +52,7 @@ npm run validate:full   # Comprehensive checks
 ```
 
 ### 📚 Enhanced Documentation
+
 - `.claude/CLAUDE.md` - Complete Claude Code configuration guide
 - `FINAL-RESOURCE-COUNTS.md` - Resource tracking and metrics
 - `DOCS/VALIDATION-SYSTEM.md` - Validation methodology
@@ -85,6 +89,7 @@ git clone https://github.com/daffy0208/ai-dev-standards.git ~/ai-dev-standards
 
 1. Open your project in Claude Code
 2. Reference this repository in your project instructions:
+
    ```markdown
    You have access to ai-dev-standards at ~/ai-dev-standards
 
@@ -101,7 +106,9 @@ git clone https://github.com/daffy0208/ai-dev-standards.git ~/ai-dev-standards
 Think of this as **a shared knowledge base** between you and Claude:
 
 ### 🎓 64 Specialized Skills
+
 Methodologies Claude follows automatically:
+
 - **Product**: mvp-builder, product-strategist, go-to-market-planner
 - **AI/ML**: rag-implementer, multi-agent-architect, knowledge-graph-builder
 - **Development**: frontend-builder, api-designer, backend-architect
@@ -110,7 +117,9 @@ Methodologies Claude follows automatically:
 - **Quality**: testing-strategist, quality-auditor, agent-evaluator
 
 ### 🔧 51 MCP Servers
+
 Executable tools that extend Claude's capabilities:
+
 - **Search**: semantic-search-mcp, dark-matter-analyzer-mcp
 - **Quality**: code-quality-scanner-mcp, security-scanner-mcp, test-runner-mcp
 - **AI/Data**: vector-database-mcp, embedding-generator-mcp, knowledge-base-mcp
@@ -118,7 +127,9 @@ Executable tools that extend Claude's capabilities:
 - **DevOps**: deployment-orchestrator-mcp, database-migration-mcp
 
 ### 📐 Architecture Patterns
+
 Proven approaches for complex systems:
+
 - RAG architectures (Naive, Advanced, Modular)
 - Multi-agent coordination patterns
 - Event-driven systems
@@ -126,6 +137,7 @@ Proven approaches for complex systems:
 - Authentication patterns
 
 ### 🛡️ Quality Assurance
+
 - Automated validation system (2-tier)
 - Agent evaluation framework (EDD)
 - Security best practices
@@ -137,6 +149,7 @@ Proven approaches for complex systems:
 ## 💡 Key Features
 
 ### ⚡ Automated Validation
+
 ```bash
 # Quick validation (10-30 seconds)
 npm run validate:quick
@@ -149,6 +162,7 @@ node scripts/run-agent-evals.js --dataset tests/fixtures/golden-dataset-example.
 ```
 
 **Validates:**
+
 - ✅ Registry consistency
 - ✅ Documentation accuracy
 - ✅ Code quality (ESLint)
@@ -157,6 +171,7 @@ node scripts/run-agent-evals.js --dataset tests/fixtures/golden-dataset-example.
 - ✅ **Agent performance (NEW)**
 
 ### 🤖 Agent Evaluation System
+
 Test AI agents against golden datasets to ensure consistent, high-quality outputs:
 
 ```javascript
@@ -173,18 +188,21 @@ Test AI agents against golden datasets to ensure consistent, high-quality output
 ```
 
 **Features:**
+
 - Multiple grading types (exact match, contains, regex, LLM-graded)
 - Performance metrics (latency, success rate, score)
 - Historical tracking and regression detection
 - Custom dataset support
 
 ### 📊 Comprehensive Documentation
+
 - **For Developers**: `DOCS/GETTING-STARTED.md`, `DOCS/QUICK-START.md`
 - **For AI**: `META/PROJECT-CONTEXT.md`, `META/HOW-TO-USE.md`
 - **Configuration**: `.claude/CLAUDE.md`, `FINAL-RESOURCE-COUNTS.md`
 - **Validation**: `DOCS/VALIDATION-SYSTEM.md`
 
 ### 🎯 Smart Resource Discovery
+
 ```bash
 # Find skills for a task
 grep -r "mvp" META/skill-registry.json
@@ -293,6 +311,7 @@ Claude uses:
 ## 🔍 Finding Skills
 
 ### By Task
+
 ```bash
 # Search skills by keyword
 grep -i "authentication" META/skill-registry.json
@@ -301,7 +320,9 @@ grep -i "testing" META/skill-registry.json
 ```
 
 ### By Category
+
 View `META/skill-registry.json` for complete categorization:
+
 - **Product & Business** (8 skills)
 - **AI & Machine Learning** (10 skills)
 - **Frontend Development** (6 skills)
@@ -311,6 +332,7 @@ View `META/skill-registry.json` for complete categorization:
 - **Quality & Testing** (12 skills)
 
 ### Auto-Discovery
+
 Skills activate automatically based on your conversation with Claude. Just describe what you want to build!
 
 ---
@@ -320,10 +342,13 @@ Skills activate automatically based on your conversation with Claude. Just descr
 ### Two-Tier Approach
 
 #### Tier 1: Quick Validation (10-30 seconds)
+
 ```bash
 npm run validate:quick
 ```
+
 **Checks:**
+
 - Registry consistency
 - Documentation accuracy
 - Configuration files
@@ -332,10 +357,13 @@ npm run validate:quick
 **Use when:** Before commits, during rapid development
 
 #### Tier 2: Full Validation (2-5 minutes)
+
 ```bash
 npm run validate:full
 ```
+
 **Checks:**
+
 - Everything in Tier 1 +
 - ESLint code quality
 - TypeScript type checking
@@ -361,6 +389,7 @@ node scripts/run-agent-evals.js --dataset tests/fixtures/golden-dataset-example.
 ```
 
 **Output:**
+
 ```
 📊 Summary
 ----------------------------------------
@@ -382,22 +411,26 @@ See `DOCS/VALIDATION-SYSTEM.md` for complete methodology.
 ## 📚 Documentation
 
 ### Getting Started
+
 - `DOCS/QUICK-START.md` - 5-minute quick start
 - `DOCS/GETTING-STARTED.md` - Comprehensive setup guide
 - `DOCS/EXISTING-PROJECTS.md` - Integration for existing projects
 
 ### Validation & Quality
+
 - `DOCS/VALIDATION-SYSTEM.md` - Validation methodology
 - `DOCS/AGENT-VALIDATION.md` - Agent evaluation guide (NEW!)
 - `.claude/commands/validate.md` - Validation command reference
 
 ### Configuration
+
 - `.claude/CLAUDE.md` - Claude Code configuration (NEW!)
 - `FINAL-RESOURCE-COUNTS.md` - Resource metrics (NEW!)
 - `META/PROJECT-CONTEXT.md` - For AI assistants
 - `META/HOW-TO-USE.md` - Navigation guide
 
 ### Development
+
 - `CONTRIBUTING.md` - Contribution guidelines
 - `DOCS/MCP-DEVELOPMENT-ROADMAP.md` - MCP development guide
 - `DOCS/TROUBLESHOOTING.md` - Common issues
@@ -456,7 +489,7 @@ Create your own agent evaluation datasets:
       "input": "Your test prompt",
       "expected": "Expected output or pattern",
       "grading": {
-        "type": "contains",  // or "exact", "regex", "llm-graded"
+        "type": "contains", // or "exact", "regex", "llm-graded"
         "threshold": 0.8
       },
       "tags": ["category", "feature"]
@@ -470,12 +503,14 @@ Create your own agent evaluation datasets:
 ## 📊 Quality Metrics
 
 ### Resource Coverage
+
 - **Skills**: 64 specialized methodologies
 - **MCPs**: 51 executable tools
 - **MCP Coverage**: 79.7% (51 MCPs / 64 Skills)
 - **Documentation**: 100% of skills documented
 
 ### Validation Status
+
 - ✅ **Registry Validation**: Passing
 - ✅ **Type Checking**: Passing
 - ✅ **Linting**: Passing (790 warnings, 0 errors)
@@ -483,6 +518,7 @@ Create your own agent evaluation datasets:
 - ✅ **Test Coverage**: 78%
 
 ### Performance
+
 - **Agent Evaluation**: 47ms avg latency
 - **Quick Validation**: 10-30 seconds
 - **Full Validation**: 2-5 minutes
@@ -570,6 +606,7 @@ MIT License - see [LICENSE](LICENSE) for details
 ## 🙏 Acknowledgments
 
 This repository synthesizes best practices from:
+
 - Claude Code official patterns
 - Production software development
 - AI-assisted development research
@@ -590,18 +627,21 @@ This repository synthesizes best practices from:
 ## 🔗 Quick Links
 
 ### For Developers
+
 - [Quick Start](DOCS/QUICK-START.md)
 - [Getting Started](DOCS/GETTING-STARTED.md)
 - [Validation System](DOCS/VALIDATION-SYSTEM.md)
 - [Troubleshooting](DOCS/TROUBLESHOOTING.md)
 
 ### For AI Assistants
+
 - [Project Context](META/PROJECT-CONTEXT.md)
 - [How to Use](META/HOW-TO-USE.md)
 - [Skill Registry](META/skill-registry.json)
 - [MCP Registry](META/mcp-registry.json)
 
 ### Configuration
+
 - [Claude Code Config](.claude/CLAUDE.md)
 - [Resource Counts](FINAL-RESOURCE-COUNTS.md)
 - [Validation Command](.claude/commands/validate.md)
