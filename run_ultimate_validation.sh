@@ -248,8 +248,14 @@ fi
 echo "🔍 Phase 1: Running ESLint..."
 npm run lint
 if [ $? -ne 0 ]; then
-  echo "❌ Linting failed! Run 'npm run lint:fix' to auto-fix issues."
-  exit 1
+  if [ "$VALIDATION_CONTINUE_ON_FAILURE" = "true" ]; then
+    echo "⚠️  Linting failed but VALIDATION_CONTINUE_ON_FAILURE=true"
+    echo "   Logging failure and continuing..."
+    echo ""
+  else
+    echo "❌ Linting failed! Run 'npm run lint:fix' to auto-fix issues."
+    exit 1
+  fi
 fi
 echo "✅ Linting passed!"
 

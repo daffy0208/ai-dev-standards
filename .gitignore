@@ -128,3 +128,7 @@ skills/*.txt
 skills/*.json
 !skills/
 !skills/README.md
+
+# Validation system
+.validation-history/
+.validation-report-*.html
