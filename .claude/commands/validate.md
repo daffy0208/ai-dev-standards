@@ -1591,14 +1591,89 @@ npx knip --no-exit-code
 echo "✅ Unused code detection complete (review output above)"
 ```
 
-### 5.12: PIV Loop Automation Testing
+### 5.12: Agent Evaluation (Eval-Driven Development)
+
+**AI AGENT QUALITY ASSURANCE:** Run AI agents against a golden dataset to ensure consistent, high-quality outputs. Implements Eval-Driven Development (EDD) methodology for continuous agent improvement.
+
+```bash
+echo ""
+echo "════════════════════════════════════════════════════════════════"
+echo "🔍 Phase 5.12: Agent Evaluation (Eval-Driven Development)"
+echo "════════════════════════════════════════════════════════════════"
+echo ""
+echo "Running Agent Evaluations against Golden Dataset..."
+echo "Executing model-graded evals..."
+echo ""
+
+###############################################################################
+# Agent Evaluation: Test AI agents against known-good examples
+#
+# This phase runs the agent evaluation system which:
+# 1. Loads a golden dataset with expected inputs/outputs
+# 2. Runs the AI agent against each test case
+# 3. Grades outputs using exact match, regex, or LLM-based grading
+# 4. Reports pass/fail rates and performance metrics
+#
+# See: DOCS/VALIDATION-SYSTEM.md for methodology
+###############################################################################
+
+AGENT_EVAL_AVAILABLE=false
+AGENT_EVAL_SKIP_REASON=""
+
+# Check if agent eval script exists
+if [ ! -f "scripts/run-agent-evals.js" ]; then
+  AGENT_EVAL_SKIP_REASON="Agent eval script not found"
+elif [ ! -f "tests/fixtures/golden-dataset-example.json" ]; then
+  AGENT_EVAL_SKIP_REASON="Golden dataset not found"
+else
+  AGENT_EVAL_AVAILABLE=true
+fi
+
+if [ "$AGENT_EVAL_AVAILABLE" = false ]; then
+  echo "⚠️  Skipping Agent Evaluation: $AGENT_EVAL_SKIP_REASON"
+  echo ""
+  echo "ℹ️  To enable Agent Evaluation:"
+  echo "   • Ensure scripts/run-agent-evals.js exists"
+  echo "   • Ensure tests/fixtures/golden-dataset-example.json exists"
+  echo "   • See DOCS/VALIDATION-SYSTEM.md for setup"
+  echo ""
+else
+  # Run agent evaluations in mock mode for validation
+  # In production, remove --mock to run actual agent
+  if node scripts/run-agent-evals.js --dataset tests/fixtures/golden-dataset-example.json --mock; then
+    echo ""
+    echo "✅ Agent Evaluation PASSED"
+  else
+    AGENT_EVAL_EXIT_CODE=$?
+    echo ""
+    echo "❌ Agent Evaluation FAILED (exit code: $AGENT_EVAL_EXIT_CODE)"
+
+    if [ "$VALIDATION_CONTINUE_ON_FAILURE" = "true" ]; then
+      echo "⚠️  Continuing due to VALIDATION_CONTINUE_ON_FAILURE=true"
+    else
+      echo ""
+      echo "Agent evaluation ensures AI agent quality and consistency."
+      echo "Review the eval results above and fix failing test cases."
+      echo ""
+      echo "To view detailed results:"
+      echo "  cat .validation-history/agent-eval-report.json"
+      echo ""
+      exit 1
+    fi
+  fi
+fi
+
+echo ""
+```
+
+### 5.13: PIV Loop Automation Testing
 
 **ULTIMATE E2E VALIDATION:** Test the complete Prime → Implement → Validate workflow that AI agents use for autonomous development.
 
 ```bash
 echo ""
 echo "════════════════════════════════════════════════════════════════"
-echo "🔍 Phase 5.12: PIV Loop Automation Testing"
+echo "🔍 Phase 5.13: PIV Loop Automation Testing"
 echo "════════════════════════════════════════════════════════════════"
 echo ""
 echo "Testing the complete AI coding workflow: Prime → Plan → Execute"

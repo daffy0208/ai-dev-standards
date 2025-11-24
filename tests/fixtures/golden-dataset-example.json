@@ -1,0 +1,192 @@
+{
+  "version": "1.0.0",
+  "description": "Example golden dataset for AI agent evaluation",
+  "metadata": {
+    "created": "2025-11-24",
+    "author": "AI Dev Standards Team",
+    "purpose": "Demonstrate Eval-Driven Development (EDD) for AI agents"
+  },
+  "tests": [
+    {
+      "id": "T001",
+      "category": "code-generation",
+      "description": "Generate a simple React component",
+      "input": "Create a React button component with TypeScript",
+      "expected": "import React from 'react';",
+      "grading": {
+        "type": "contains",
+        "threshold": 0.8
+      },
+      "tags": ["react", "typescript", "component"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "T002",
+      "category": "code-analysis",
+      "description": "Identify code smells in a function",
+      "input": "Analyze this code for issues: function getData() { var x = 1; return fetch('/api'); }",
+      "expected": "var",
+      "grading": {
+        "type": "contains",
+        "threshold": 0.7
+      },
+      "tags": ["code-review", "best-practices"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "T003",
+      "category": "documentation",
+      "description": "Generate API documentation",
+      "input": "Document this function: async function fetchUser(id: string): Promise<User>",
+      "expected": "Fetches.*user",
+      "grading": {
+        "type": "regex",
+        "threshold": 0.8
+      },
+      "tags": ["documentation", "api"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "T004",
+      "category": "refactoring",
+      "description": "Suggest refactoring for nested conditionals",
+      "input": "Refactor this nested if statement: if (user) { if (user.isActive) { if (user.hasPermission) { doAction(); } } }",
+      "expected": "Early return",
+      "grading": {
+        "type": "llm-graded",
+        "threshold": 0.7,
+        "criteria": "Suggests early returns or guard clauses to reduce nesting"
+      },
+      "tags": ["refactoring", "clean-code"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "T005",
+      "category": "debugging",
+      "description": "Identify the bug in async code",
+      "input": "Find the bug: async function loadData() { const data = fetch('/api/data'); return data.json(); }",
+      "expected": "await",
+      "grading": {
+        "type": "contains",
+        "threshold": 0.8
+      },
+      "tags": ["debugging", "async", "javascript"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "T006",
+      "category": "architecture",
+      "description": "Recommend architecture pattern for real-time chat",
+      "input": "What architecture pattern should I use for a real-time chat application?",
+      "expected": "WebSocket",
+      "grading": {
+        "type": "llm-graded",
+        "threshold": 0.7,
+        "criteria": "Mentions WebSockets or real-time messaging patterns"
+      },
+      "tags": ["architecture", "real-time", "websockets"],
+      "difficulty": "hard"
+    },
+    {
+      "id": "T007",
+      "category": "security",
+      "description": "Identify security vulnerability",
+      "input": "What's wrong with this code? const query = 'SELECT * FROM users WHERE id = ' + userId;",
+      "expected": "SQL injection",
+      "grading": {
+        "type": "contains",
+        "threshold": 0.9
+      },
+      "tags": ["security", "sql", "vulnerabilities"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "T008",
+      "category": "testing",
+      "description": "Write a unit test for a function",
+      "input": "Write a unit test for: function add(a: number, b: number): number { return a + b; }",
+      "expected": "expect",
+      "grading": {
+        "type": "contains",
+        "threshold": 0.7
+      },
+      "tags": ["testing", "unit-test", "jest"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "T009",
+      "category": "performance",
+      "description": "Optimize a loop",
+      "input": "Optimize this code: for(let i=0; i<arr.length; i++) { if(arr[i].id === targetId) return arr[i]; }",
+      "expected": "find",
+      "grading": {
+        "type": "llm-graded",
+        "threshold": 0.7,
+        "criteria": "Suggests using Array.find() or similar built-in method"
+      },
+      "tags": ["performance", "optimization", "javascript"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "T010",
+      "category": "git",
+      "description": "Explain git rebase",
+      "input": "Explain when to use git rebase vs git merge",
+      "expected": "history",
+      "grading": {
+        "type": "llm-graded",
+        "threshold": 0.7,
+        "criteria": "Explains the difference between linear history (rebase) and merge commits"
+      },
+      "tags": ["git", "version-control"],
+      "difficulty": "medium"
+    }
+  ],
+  "categories": {
+    "code-generation": {
+      "description": "Test agent's ability to generate code from natural language",
+      "weight": 1.2
+    },
+    "code-analysis": {
+      "description": "Test agent's ability to analyze and understand code",
+      "weight": 1.1
+    },
+    "documentation": {
+      "description": "Test agent's ability to write clear documentation",
+      "weight": 1.0
+    },
+    "refactoring": {
+      "description": "Test agent's ability to suggest code improvements",
+      "weight": 1.1
+    },
+    "debugging": {
+      "description": "Test agent's ability to identify and fix bugs",
+      "weight": 1.3
+    },
+    "architecture": {
+      "description": "Test agent's knowledge of software architecture",
+      "weight": 1.2
+    },
+    "security": {
+      "description": "Test agent's ability to identify security issues",
+      "weight": 1.4
+    },
+    "testing": {
+      "description": "Test agent's ability to write tests",
+      "weight": 1.0
+    },
+    "performance": {
+      "description": "Test agent's ability to optimize code",
+      "weight": 1.1
+    },
+    "git": {
+      "description": "Test agent's knowledge of git and version control",
+      "weight": 0.9
+    }
+  },
+  "usage": {
+    "basic": "node scripts/run-agent-evals.js --dataset tests/fixtures/golden-dataset-example.json --mock",
+    "production": "node scripts/run-agent-evals.js --dataset tests/fixtures/golden-dataset-example.json",
+    "verbose": "node scripts/run-agent-evals.js --dataset tests/fixtures/golden-dataset-example.json --mock --verbose"
+  }
+}
