@@ -85,15 +85,11 @@ for (const artboard of artboards) {
 ### Export Artboard
 
 ```typescript
-const rendition = await client.exportArtboard(
-  'doc-id',
-  'artboard-id',
-  {
-    format: 'png',
-    scale: 2,
-    quality: 100
-  }
-)
+const rendition = await client.exportArtboard('doc-id', 'artboard-id', {
+  format: 'png',
+  scale: 2,
+  quality: 100
+})
 
 console.log('Download URL:', rendition.url)
 
@@ -210,9 +206,15 @@ for (const color of colors) {
 }
 
 function rgbaToHex(color: any): string {
-  const r = Math.round(color.r * 255).toString(16).padStart(2, '0')
-  const g = Math.round(color.g * 255).toString(16).padStart(2, '0')
-  const b = Math.round(color.b * 255).toString(16).padStart(2, '0')
+  const r = Math.round(color.r * 255)
+    .toString(16)
+    .padStart(2, '0')
+  const g = Math.round(color.g * 255)
+    .toString(16)
+    .padStart(2, '0')
+  const b = Math.round(color.b * 255)
+    .toString(16)
+    .padStart(2, '0')
   return `#${r}${g}${b}`
 }
 ```
@@ -252,6 +254,7 @@ console.log('Link ID:', link.id)
 ```
 
 **Access Levels:**
+
 - `view` - View only (default)
 - `edit` - Can edit (requires permissions)
 
@@ -347,6 +350,7 @@ try {
 ## Rate Limits
 
 Adobe XD API has rate limits:
+
 - **100 requests per minute** per user
 - **1000 requests per hour** per user
 
@@ -399,13 +403,13 @@ async function withRetry<T>(fn: () => Promise<T>, maxRetries = 3): Promise<T> {
 
 ## Comparison with Other Tools
 
-| Feature | Adobe XD | Figma | Sketch |
-|---------|----------|-------|--------|
-| File Access | Cloud only | Cloud | Local |
-| Export | API | API | CLI required |
-| Auth | OAuth 2.0 | Access token | N/A |
-| Real-time | No | Yes | No |
-| Platform | Cross-platform | Web/Desktop | macOS only |
+| Feature     | Adobe XD       | Figma        | Sketch       |
+| ----------- | -------------- | ------------ | ------------ |
+| File Access | Cloud only     | Cloud        | Local        |
+| Export      | API            | API          | CLI required |
+| Auth        | OAuth 2.0      | Access token | N/A          |
+| Real-time   | No             | Yes          | No           |
+| Platform    | Cross-platform | Web/Desktop  | macOS only   |
 
 ---
 
@@ -461,15 +465,19 @@ app.listen(3000)
 ## Troubleshooting
 
 ### Invalid Access Token
+
 Ensure token is not expired. Implement refresh token flow.
 
 ### Document Not Found
+
 Check document ID and ensure it's saved to Creative Cloud.
 
 ### Export URLs Expire
+
 Rendition URLs are temporary. Download immediately.
 
 ### Missing Resources
+
 Ensure colors/styles are saved as document assets.
 
 ---

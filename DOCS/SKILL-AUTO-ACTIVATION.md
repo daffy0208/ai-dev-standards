@@ -11,6 +11,7 @@ This guide explains the skill auto-activation system that makes ai-dev-standards
 **Problem it solves:** Skills are excellent but require users to remember to mention them or hope Claude decides to use them.
 
 **Solution:** A hooks-based system that automatically suggests relevant skills based on:
+
 - Keywords in your prompts
 - Files you're working with
 - Project context
@@ -107,6 +108,7 @@ chmod +x your-project/.claude/hooks/skill-activation-prompt.sh
 **Keywords detected:** "RAG", "search"
 
 **Skills suggested:**
+
 - `rag-implementer` (matches "RAG")
 - `knowledge-base-manager` (matches "search")
 - `vector-database-mcp` (related to RAG)
@@ -116,11 +118,13 @@ chmod +x your-project/.claude/hooks/skill-activation-prompt.sh
 **User edits:** `MCP-SERVERS/vector-database-mcp/src/index.ts`
 
 **Path patterns matched:**
+
 - `**/vector/**/*` → suggests `rag-implementer`
 - `**/MCP-SERVERS/**/*` → suggests relevant MCP skills
 - `**/*.ts` → suggests TypeScript-related skills
 
 **Skills suggested:**
+
 - `rag-implementer`
 - `mcp-server-builder`
 - `typescript-expert`
@@ -132,12 +136,14 @@ chmod +x your-project/.claude/hooks/skill-activation-prompt.sh
 **User edits:** `backend/api/routes/auth.ts`
 
 **Triggers matched:**
+
 - Keyword: "authentication" → `security-engineer`
 - Keyword: "API" → `api-designer`
 - Path: `**/api/**/*.ts` → `api-designer`
 - Path: `**/auth/**/*` → `security-engineer`
 
 **Skills suggested:**
+
 - `security-engineer` (highest priority - keyword + path match)
 - `api-designer` (high priority - keyword + path match)
 
@@ -150,16 +156,9 @@ chmod +x your-project/.claude/hooks/skill-activation-prompt.sh
 ```json
 {
   "skill-name": {
-    "promptTriggers": [
-      "keyword1",
-      "keyword2",
-      "phrase to match"
-    ],
+    "promptTriggers": ["keyword1", "keyword2", "phrase to match"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/ path/**/*",
-        "**/*.extension"
-      ]
+      "pathPatterns": ["**/ path/**/*", "**/*.extension"]
     }
   }
 }
@@ -170,14 +169,7 @@ chmod +x your-project/.claude/hooks/skill-activation-prompt.sh
 ```json
 {
   "rag-implementer": {
-    "promptTriggers": [
-      "rag-implementer",
-      "rag implementer",
-      "ui",
-      "vector",
-      "embedding",
-      "llm"
-    ],
+    "promptTriggers": ["rag-implementer", "rag implementer", "ui", "vector", "embedding", "llm"],
     "fileTriggers": {
       "pathPatterns": [
         "**/rag/**/*",
@@ -198,14 +190,9 @@ You can customize skill-rules.json to add more triggers:
 ```json
 {
   "your-custom-skill": {
-    "promptTriggers": [
-      "custom trigger",
-      "another keyword"
-    ],
+    "promptTriggers": ["custom trigger", "another keyword"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/your-feature/**/*"
-      ]
+      "pathPatterns": ["**/your-feature/**/*"]
     }
   }
 }
@@ -226,6 +213,7 @@ node generate-skill-rules.cjs
 ```
 
 This script:
+
 - Reads `META/skill-registry.json`
 - Extracts triggers and descriptions
 - Maps skills to file path patterns
@@ -239,9 +227,9 @@ For skills that need specific path patterns not auto-detected:
 2. Add to the `pathMappings` object:
    ```javascript
    const pathMappings = {
-     'your-skill': ['**/custom-path/**/*', '**/*.custom'],
+     'your-skill': ['**/custom-path/**/*', '**/*.custom']
      // ... existing mappings
-   };
+   }
    ```
 3. Regenerate: `node generate-skill-rules.cjs`
 
@@ -252,12 +240,14 @@ For skills that need specific path patterns not auto-detected:
 ### Skills Not Activating
 
 **Check 1: Is the hook installed?**
+
 ```bash
 ls -la .claude/hooks/skill-activation-prompt.sh
 # Should exist and be executable (rwx)
 ```
 
 **Check 2: Are dependencies installed?**
+
 ```bash
 cd .claude/hooks
 npm list
@@ -265,12 +255,14 @@ npm list
 ```
 
 **Check 3: Is settings.json configured?**
+
 ```bash
 cat .claude/settings.json
 # Should contain UserPromptSubmit hook configuration
 ```
 
 **Check 4: Does skill-rules.json exist?**
+
 ```bash
 cat .claude/skills/skill-rules.json | jq '. | keys | length'
 # Should show 64 (or number of skills)
@@ -281,12 +273,14 @@ cat .claude/skills/skill-rules.json | jq '. | keys | length'
 If you see hook execution errors:
 
 1. **Check TypeScript compilation:**
+
    ```bash
    cd .claude/hooks
    npx tsc --noEmit
    ```
 
 2. **Check permissions:**
+
    ```bash
    chmod +x .claude/hooks/skill-activation-prompt.sh
    ```
@@ -300,7 +294,7 @@ If you see hook execution errors:
 Enable debug mode by editing `skill-activation-prompt.ts`:
 
 ```typescript
-const DEBUG = true; // Set to true
+const DEBUG = true // Set to true
 
 // This will log activation decisions to console
 ```
@@ -318,11 +312,13 @@ const DEBUG = true; // Set to true
 ### Optimizing Path Patterns
 
 **Bad (slow):**
+
 ```json
 "pathPatterns": ["**/*"]  // Matches everything
 ```
 
 **Good (fast):**
+
 ```json
 "pathPatterns": [
   "**/specific-directory/**/*",
@@ -343,20 +339,20 @@ The hook is configured to suggest top 3-5 most relevant skills to avoid overwhel
 You can customize `skill-activation-prompt.ts` for your needs:
 
 **Example: Add priority weighting**
+
 ```typescript
 // Weight matches by type
-const score = 
-  (promptMatches.length * 2) + // Prompt matches worth more
-  (fileMatches.length * 1);     // File matches worth less
+const score =
+  promptMatches.length * 2 + // Prompt matches worth more
+  fileMatches.length * 1 // File matches worth less
 ```
 
 **Example: Add skill categories**
+
 ```typescript
 // Only suggest skills from certain categories
-const allowedCategories = ['frontend', 'backend'];
-const relevantSkills = skills.filter(s => 
-  allowedCategories.includes(s.category)
-);
+const allowedCategories = ['frontend', 'backend']
+const relevantSkills = skills.filter(s => allowedCategories.includes(s.category))
 ```
 
 ### Integration with Other Hooks
@@ -393,20 +389,21 @@ You can chain hooks in settings.json:
 ❌ Users forget skill names  
 ❌ Skills underutilized  
 ❌ Inconsistent Claude responses  
-❌ Manual skill invocation required  
+❌ Manual skill invocation required
 
 ### After Auto-Activation
 
 ✅ Skills activate automatically  
 ✅ Context-aware suggestions  
 ✅ Consistent, high-quality responses  
-✅ Seamless developer experience  
+✅ Seamless developer experience
 
 ---
 
 ## Metrics
 
 **Current Status:**
+
 - ✅ 64 skills with auto-activation rules
 - ✅ 100% skill coverage in skill-rules.json
 - ✅ Hooks installed and configured
@@ -414,6 +411,7 @@ You can chain hooks in settings.json:
 - ✅ Documentation complete
 
 **Expected Impact:**
+
 - 📈 3-5x increase in skill usage
 - 🎯 90%+ skill activation accuracy
 - ⚡ < 100ms activation overhead
@@ -433,14 +431,17 @@ You can chain hooks in settings.json:
 ## Next Phases
 
 ### Phase 2: Modular Skills (Planned)
+
 - Refactor large skills using progressive disclosure
 - Apply 500-line rule for better performance
 
 ### Phase 3: Specialized Agents (Planned)
+
 - Add autonomous agents for complex tasks
 - Code review, refactoring, documentation agents
 
 ### Phase 4: File Tracking (Planned)
+
 - Track file changes across sessions
 - Maintain context automatically
 

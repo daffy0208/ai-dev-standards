@@ -1,10 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const registryPath = path.join(__dirname, '..', 'META', 'registry.json');
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const registryPath = path.join(__dirname, '..', 'META', 'registry.json')
 
 // Skill requirements mapping
 const skillRequirements = {
@@ -33,13 +33,19 @@ const skillRequirements = {
     standards: ['serverless-pattern']
   },
   'performance-optimizer': {
-    mcps: { existing: [], planned: ['performance-profiler', 'bundle-analyzer', 'lighthouse-runner'] },
+    mcps: {
+      existing: [],
+      planned: ['performance-profiler', 'bundle-analyzer', 'lighthouse-runner']
+    },
     components: [],
     integrations: [],
     standards: ['database-design-patterns']
   },
   'security-engineer': {
-    mcps: { existing: [], planned: ['vulnerability-scanner', 'dependency-auditor', 'secrets-detector'] },
+    mcps: {
+      existing: [],
+      planned: ['vulnerability-scanner', 'dependency-auditor', 'secrets-detector']
+    },
     components: [],
     integrations: ['platforms'],
     standards: ['authentication-patterns']
@@ -57,7 +63,10 @@ const skillRequirements = {
     standards: []
   },
   'multi-agent-architect': {
-    mcps: { existing: [], planned: ['agent-orchestrator', 'agent-monitor', 'conversation-manager'] },
+    mcps: {
+      existing: [],
+      planned: ['agent-orchestrator', 'agent-monitor', 'conversation-manager']
+    },
     components: ['agents', 'workflows'],
     integrations: ['llm-providers'],
     standards: ['event-driven-architecture']
@@ -69,13 +78,19 @@ const skillRequirements = {
     standards: []
   },
   'data-engineer': {
-    mcps: { existing: [], planned: ['etl-pipeline-builder', 'data-quality-checker', 'schema-migrator'] },
+    mcps: {
+      existing: [],
+      planned: ['etl-pipeline-builder', 'data-quality-checker', 'schema-migrator']
+    },
     components: [],
     integrations: ['platforms'],
     standards: ['database-design-patterns']
   },
   'user-researcher': {
-    mcps: { existing: [], planned: ['interview-scheduler', 'feedback-aggregator', 'persona-generator'] },
+    mcps: {
+      existing: [],
+      planned: ['interview-scheduler', 'feedback-aggregator', 'persona-generator']
+    },
     components: [],
     integrations: [],
     standards: []
@@ -87,13 +102,19 @@ const skillRequirements = {
     standards: []
   },
   'ux-designer': {
-    mcps: { existing: [], planned: ['wireframe-generator', 'design-system-checker', 'user-flow-visualizer'] },
+    mcps: {
+      existing: [],
+      planned: ['wireframe-generator', 'design-system-checker', 'user-flow-visualizer']
+    },
     components: ['ui-components'],
     integrations: [],
     standards: []
   },
   'design-system-architect': {
-    mcps: { existing: ['component-generator'], planned: ['component-cataloger', 'design-token-manager'] },
+    mcps: {
+      existing: ['component-generator'],
+      planned: ['component-cataloger', 'design-token-manager']
+    },
     components: ['ui-components'],
     integrations: [],
     standards: []
@@ -104,26 +125,26 @@ const skillRequirements = {
     integrations: [],
     standards: []
   }
-};
+}
 
 // Read registry
-const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'))
 
 // Add requires to skills that don't have it yet
-let updated = 0;
+let updated = 0
 for (const skill of registry.skills) {
   if (skillRequirements[skill.name] && !skill.requires) {
-    skill.requires = skillRequirements[skill.name];
-    updated++;
-    console.log(`✅ Added requires to: ${skill.name}`);
+    skill.requires = skillRequirements[skill.name]
+    updated++
+    console.log(`✅ Added requires to: ${skill.name}`)
   }
 }
 
 // Update timestamp
-registry.lastUpdated = new Date().toISOString();
+registry.lastUpdated = new Date().toISOString()
 
 // Write back
-fs.writeFileSync(registryPath, JSON.stringify(registry, null, 2));
+fs.writeFileSync(registryPath, JSON.stringify(registry, null, 2))
 
-console.log(`\n✅ Updated ${updated} skills with requirements`);
-console.log(`📝 Total skills with requires: ${registry.skills.filter(s => s.requires).length}/36`);
+console.log(`\n✅ Updated ${updated} skills with requirements`)
+console.log(`📝 Total skills with requires: ${registry.skills.filter(s => s.requires).length}/36`)

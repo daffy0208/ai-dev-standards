@@ -38,10 +38,10 @@
 
 import type { VectorStore } from 'langchain/vectorstores/base'
 import type { Document } from 'langchain/document'
-import { DocumentLoader } from './document-loader'
-import { TextChunker } from './text-chunker'
-import { EmbeddingPipeline } from './embedding-pipeline'
-import { RetrievalPipeline } from './retrieval-pipeline'
+import { DocumentLoader } from './document-loader.js'
+import { TextChunker } from './text-chunker.js'
+import { EmbeddingPipeline } from './embedding-pipeline.js'
+import { RetrievalPipeline } from './retrieval-pipeline.js'
 
 export type EmbeddingProvider = 'openai' | 'cohere' | 'huggingface'
 export type ChunkingStrategy = 'fixed' | 'recursive' | 'markdown' | 'token' | 'semantic'
@@ -200,7 +200,7 @@ export class RAGOrchestrator {
       rerank: options.rerank ?? true,
       cacheEmbeddings: options.cacheEmbeddings ?? true,
       batchSize: options.batchSize || 100,
-      onProgress: options.onProgress,
+      onProgress: options.onProgress
     }
 
     // Initialize components
@@ -209,7 +209,7 @@ export class RAGOrchestrator {
     this.chunker = new TextChunker({
       chunkSize: this.options.chunkSize,
       chunkOverlap: this.options.chunkOverlap,
-      strategy: this.options.chunkingStrategy,
+      strategy: this.options.chunkingStrategy
     })
 
     this.embeddingPipeline = new EmbeddingPipeline({
@@ -217,20 +217,20 @@ export class RAGOrchestrator {
       model: this.options.embeddingModel,
       batchSize: this.options.batchSize,
       cache: this.options.cacheEmbeddings,
-      onProgress: (progress) => {
+      onProgress: progress => {
         this.options.onProgress?.({
           stage: 'embedding',
           current: progress.current,
           total: progress.total,
-          message: `Generating embeddings: ${progress.current}/${progress.total}`,
+          message: `Generating embeddings: ${progress.current}/${progress.total}`
         })
-      },
+      }
     })
 
     this.retrievalPipeline = new RetrievalPipeline({
       vectorStore: this.options.vectorStore,
       searchType: this.options.searchType,
-      rerank: this.options.rerank,
+      rerank: this.options.rerank
     })
   }
 
@@ -258,12 +258,12 @@ export class RAGOrchestrator {
           const docs = await this.loader.load(input.path, input.type)
 
           // Add metadata
-          docs.forEach((doc) => {
+          docs.forEach(doc => {
             doc.metadata = {
               ...doc.metadata,
               ...input.metadata,
               source: input.path,
-              indexed_at: new Date().toISOString(),
+              indexed_at: new Date().toISOString()
             }
           })
 
@@ -309,7 +309,7 @@ export class RAGOrchestrator {
       await this.options.vectorStore.addDocuments(allChunks)
 
       // Track indexed documents
-      inputs.forEach((input) => this.indexedDocuments.add(input.path))
+      inputs.forEach(input => this.indexedDocuments.add(input.path))
 
       this.reportProgress('complete', allChunks.length, allChunks.length, 'Indexing complete')
 
@@ -321,7 +321,7 @@ export class RAGOrchestrator {
         chunksCreated: totalChunks,
         embeddingsGenerated: totalEmbeddings,
         timeMs,
-        errors,
+        errors
       }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : String(error)
@@ -350,16 +350,16 @@ export class RAGOrchestrator {
     // Load all files from directory
     const documents = await this.loader.loadDirectory(directoryPath, {
       recursive: options?.recursive,
-      fileTypes: options?.fileTypes,
+      fileTypes: options?.fileTypes
     })
 
     // Convert to DocumentInput format
-    const inputs: DocumentInput[] = documents.map((doc) => ({
+    const inputs: DocumentInput[] = documents.map(doc => ({
       path: doc.metadata.source as string,
       metadata: {
         ...doc.metadata,
-        ...options?.metadata,
-      },
+        ...options?.metadata
+      }
     }))
 
     return this.indexDocuments(inputs)
@@ -378,10 +378,10 @@ export class RAGOrchestrator {
     if (options.scoreThreshold !== undefined) {
       const filtered = documents
         .map((doc, i) => ({ doc, score: scores[i] }))
-        .filter((item) => item.score >= options.scoreThreshold!)
+        .filter(item => item.score >= options.scoreThreshold!)
 
-      documents = filtered.map((item) => item.doc)
-      scores = filtered.map((item) => item.score)
+      documents = filtered.map(item => item.doc)
+      scores = filtered.map(item => item.score)
     }
 
     // Apply topK if specified
@@ -394,7 +394,7 @@ export class RAGOrchestrator {
       scores,
       query: result.query,
       expandedQueries: result.expandedQueries,
-      metadata: result.metadata,
+      metadata: result.metadata
     }
   }
 
@@ -453,7 +453,7 @@ export class RAGOrchestrator {
       embeddingProvider: this.options.embeddingProvider,
       embeddingModel: this.options.embeddingModel,
       chunkSize: this.options.chunkSize,
-      chunkOverlap: this.options.chunkOverlap,
+      chunkOverlap: this.options.chunkOverlap
     }
   }
 
@@ -470,7 +470,7 @@ export class RAGOrchestrator {
       stage,
       current,
       total,
-      message,
+      message
     })
   }
 }
@@ -484,7 +484,7 @@ export function createRAGOrchestrator(
 ): RAGOrchestrator {
   return new RAGOrchestrator({
     vectorStore,
-    ...options,
+    ...options
   })
 }
 
@@ -549,9 +549,8 @@ export class RAGMonitor {
   getMetrics() {
     return {
       ...this.metrics,
-      cacheHitRate: this.metrics.queryCount > 0
-        ? this.metrics.cacheHits / this.metrics.queryCount
-        : 0
+      cacheHitRate:
+        this.metrics.queryCount > 0 ? this.metrics.cacheHits / this.metrics.queryCount : 0
     }
   }
 

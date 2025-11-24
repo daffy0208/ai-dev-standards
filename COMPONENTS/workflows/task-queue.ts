@@ -83,7 +83,7 @@ export class TaskQueue {
       retryDelay: options.retryDelay || 1000,
       timeout: options.timeout || 30000,
       onTaskComplete: options.onTaskComplete,
-      onTaskError: options.onTaskError,
+      onTaskError: options.onTaskError
     }
   }
 
@@ -99,7 +99,7 @@ export class TaskQueue {
       ...task,
       priority: task.priority || 'normal',
       status: 'pending',
-      attempts: 0,
+      attempts: 0
     }
 
     this.tasks.set(task.id, queuedTask)
@@ -183,9 +183,7 @@ export class TaskQueue {
     if (pendingTasks.length === 0) return null
 
     // Filter tasks whose dependencies are met
-    const readyTasks = pendingTasks.filter(task =>
-      this.areDependenciesMet(task)
-    )
+    const readyTasks = pendingTasks.filter(task => this.areDependenciesMet(task))
 
     if (readyTasks.length === 0) return null
 
@@ -195,7 +193,7 @@ export class TaskQueue {
         urgent: 4,
         high: 3,
         normal: 2,
-        low: 1,
+        low: 1
       }
       return priorityOrder[b.priority!] - priorityOrder[a.priority!]
     })
@@ -269,15 +267,10 @@ export class TaskQueue {
   /**
    * Execute function with timeout
    */
-  private async executeWithTimeout<T>(
-    promise: Promise<T>,
-    timeout: number
-  ): Promise<T> {
+  private async executeWithTimeout<T>(promise: Promise<T>, timeout: number): Promise<T> {
     return Promise.race([
       promise,
-      new Promise<T>((_, reject) =>
-        setTimeout(() => reject(new Error('Task timeout')), timeout)
-      ),
+      new Promise<T>((_, reject) => setTimeout(() => reject(new Error('Task timeout')), timeout))
     ])
   }
 
@@ -306,7 +299,7 @@ export class TaskQueue {
       pending: tasks.filter(t => t.status === 'pending' || t.status === 'retry').length,
       running: this.running.size,
       completed: this.completed.size,
-      failed: this.failed.size,
+      failed: this.failed.size
     }
   }
 

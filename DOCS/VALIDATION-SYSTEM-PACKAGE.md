@@ -5,16 +5,19 @@
 The ai-dev-standards validation system is now ready for deployment to any repository. This package includes:
 
 ### Core Validation Engine
+
 - ✅ `.claude/commands/validate.md` - Main validation command with 5 phases
 - ✅ Wave 2 Features: HTML Dashboard, Historical Metrics, Self-Correction, PIV Loop
 - ✅ `VALIDATION_CONTINUE_ON_FAILURE` mode for testing
 
 ### Installation & Deployment
+
 - ✅ `INSTALLERS/install-validation-system.sh` - Automated installer
 - ✅ `DOCS/VALIDATION-DEPLOYMENT-GUIDE.md` - Complete deployment documentation
 - ✅ `DOCS/VALIDATION-QUICK-START.md` - 1-minute quick start guide
 
 ### Configuration Templates
+
 - ✅ `TEMPLATES/validation-configs/react-nextjs.json` - Frontend projects
 - ✅ `TEMPLATES/validation-configs/nodejs-api.json` - Backend APIs
 - ✅ `TEMPLATES/validation-configs/typescript-library.json` - npm libraries
@@ -64,6 +67,7 @@ npm install --save-dev eslint typescript prettier vitest @vitest/ui @vitest/cove
 All Wave 2 features have been tested and confirmed working:
 
 ### ✅ HTML Dashboard Generation
+
 - **File:** `.validation-report-TIMESTAMP.html`
 - **Features:**
   - Real-time metrics visualization
@@ -73,6 +77,7 @@ All Wave 2 features have been tested and confirmed working:
   - Error summaries
 
 ### ✅ Historical Metrics Tracking
+
 - **Directory:** `.validation-history/`
 - **Files:** `metrics-TIMESTAMP.json`
 - **Tracks:**
@@ -83,16 +88,19 @@ All Wave 2 features have been tested and confirmed working:
   - Build times
 
 ### ✅ Self-Correction Mechanisms
+
 - Automatic retry logic for transient failures
 - Auto-healing for common issues
 - Progressive backoff for retries
 
 ### ✅ PIV Loop Automation
+
 - Plan-Implement-Verify workflow
 - Automated validation cycles
 - Continuous quality monitoring
 
 ### ✅ Continue-on-Failure Mode
+
 - `VALIDATION_CONTINUE_ON_FAILURE=true`
 - Allows testing full workflow despite errors
 - Useful for development and Wave 2 feature verification
@@ -100,26 +108,31 @@ All Wave 2 features have been tested and confirmed working:
 ## 🎯 Validation Phases
 
 ### Phase 1: Linting (ESLint)
+
 - Code quality checks
 - Style consistency
 - Best practices enforcement
 
 ### Phase 2: Type Checking (TypeScript)
+
 - Type safety validation
 - Interface consistency
 - Type inference verification
 
 ### Phase 3: Formatting (Prettier)
+
 - Code formatting consistency
 - Style guide adherence
 - Automated formatting verification
 
 ### Phase 4: Unit Testing (Vitest)
+
 - Unit test execution
 - Coverage reporting (80%+ targets)
 - Test quality metrics
 
 ### Phase 5: E2E Testing
+
 - 5.1: CLI Command Testing
 - 5.2: Registry Validation
 - 5.3: Brain Orchestrator Testing
@@ -143,7 +156,7 @@ Edit `vitest.config.ts`:
 export default defineConfig({
   test: {
     coverage: {
-      lines: 80,      // Change as needed
+      lines: 80, // Change as needed
       functions: 80,
       branches: 75,
       statements: 80
@@ -163,8 +176,8 @@ Edit `.claude/commands/validate.md`:
 echo "🔍 Phase 5.13: Testing database migrations..."
 npm run test:db
 if [ $? -ne 0 ]; then
-  echo "❌ Database tests failed!"
-  exit 1
+echo "❌ Database tests failed!"
+exit 1
 fi
 echo "✅ Database tests passed!"
 \`\`\`
@@ -178,7 +191,7 @@ Use provided templates in `TEMPLATES/validation-configs/` as a starting point an
 
 ### GitHub Actions Example
 
-```yaml
+````yaml
 name: Validation
 
 on: [push, pull_request]
@@ -200,7 +213,7 @@ jobs:
         with:
           name: validation-report
           path: .validation-report-*.html
-```
+````
 
 ## 📚 Documentation
 
@@ -218,6 +231,7 @@ export VALIDATION_CONTINUE_ON_FAILURE=true
 ```
 
 **Results:**
+
 - ✅ All phases executed
 - ✅ HTML dashboard generated (`.validation-report-20251121-115949.html`)
 - ✅ Historical metrics saved (`.validation-history/metrics-20251121-115949.json`)
@@ -263,16 +277,12 @@ Create `package.json`:
   "bin": {
     "install-validation": "./INSTALLERS/install-validation-system.sh"
   },
-  "files": [
-    ".claude/commands/validate.md",
-    "INSTALLERS/",
-    "DOCS/",
-    "TEMPLATES/"
-  ]
+  "files": [".claude/commands/validate.md", "INSTALLERS/", "DOCS/", "TEMPLATES/"]
 }
 ```
 
 Install:
+
 ```bash
 npx @your-org/validation-system install
 ```
@@ -280,6 +290,7 @@ npx @your-org/validation-system install
 ### Option 2: GitHub Release
 
 Create a release with:
+
 - `validation-system-v1.0.0.zip`
 - Contains all files above
 - Download and extract to use

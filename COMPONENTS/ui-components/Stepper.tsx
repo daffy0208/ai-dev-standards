@@ -43,56 +43,56 @@
  * ```
  */
 
-import * as React from 'react';
-import { cn } from './utils';
+import * as React from 'react'
+import { cn } from './utils'
 
 export interface Step {
   /**
    * Step label
    */
-  label: string;
+  label: string
 
   /**
    * Optional description
    */
-  description?: string;
+  description?: string
 
   /**
    * Custom icon for the step
    */
-  icon?: React.ReactNode;
+  icon?: React.ReactNode
 }
 
 export interface StepperProps {
   /**
    * Array of steps
    */
-  steps: Step[];
+  steps: Step[]
 
   /**
    * Current active step index (0-based)
    */
-  currentStep: number;
+  currentStep: number
 
   /**
    * Orientation of the stepper
    */
-  orientation?: 'horizontal' | 'vertical';
+  orientation?: 'horizontal' | 'vertical'
 
   /**
    * Allow clicking on steps to navigate
    */
-  clickable?: boolean;
+  clickable?: boolean
 
   /**
    * Callback when step is clicked (if clickable)
    */
-  onStepClick?: (stepIndex: number) => void;
+  onStepClick?: (stepIndex: number) => void
 
   /**
    * Additional CSS classes
    */
-  className?: string;
+  className?: string
 }
 
 /**
@@ -100,27 +100,20 @@ export interface StepperProps {
  */
 export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
   (
-    {
-      steps,
-      currentStep,
-      orientation = 'horizontal',
-      clickable = false,
-      onStepClick,
-      className,
-    },
+    { steps, currentStep, orientation = 'horizontal', clickable = false, onStepClick, className },
     ref
   ) => {
     const handleStepClick = (index: number) => {
       if (clickable && onStepClick) {
-        onStepClick(index);
+        onStepClick(index)
       }
-    };
+    }
 
     const getStepState = (index: number): 'completed' | 'current' | 'upcoming' => {
-      if (index < currentStep) return 'completed';
-      if (index === currentStep) return 'current';
-      return 'upcoming';
-    };
+      if (index < currentStep) return 'completed'
+      if (index === currentStep) return 'current'
+      return 'upcoming'
+    }
 
     // Check icon for completed steps
     const CompletedIcon = () => (
@@ -136,18 +129,14 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
           clipRule="evenodd"
         />
       </svg>
-    );
+    )
 
     if (orientation === 'vertical') {
       return (
-        <nav
-          ref={ref}
-          aria-label="Progress"
-          className={cn('space-y-4', className)}
-        >
+        <nav ref={ref} aria-label="Progress" className={cn('space-y-4', className)}>
           {steps.map((step, index) => {
-            const state = getStepState(index);
-            const isClickable = clickable && state !== 'upcoming';
+            const state = getStepState(index)
+            const isClickable = clickable && state !== 'upcoming'
 
             return (
               <div key={index} className="relative flex items-start">
@@ -173,11 +162,10 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
                       'border-2 transition-all',
                       'focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2',
                       {
-                        'bg-blue-600 border-blue-600':
-                          state === 'completed' || state === 'current',
+                        'bg-blue-600 border-blue-600': state === 'completed' || state === 'current',
                         'bg-white border-gray-300': state === 'upcoming',
                         'cursor-pointer hover:bg-blue-700': isClickable,
-                        'cursor-default': !isClickable,
+                        'cursor-default': !isClickable
                       }
                     )}
                     aria-current={state === 'current' ? 'step' : undefined}
@@ -209,38 +197,26 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
                   >
                     {step.label}
                   </h3>
-                  {step.description && (
-                    <p className="text-sm text-gray-500">{step.description}</p>
-                  )}
+                  {step.description && <p className="text-sm text-gray-500">{step.description}</p>}
                 </div>
               </div>
-            );
+            )
           })}
         </nav>
-      );
+      )
     }
 
     // Horizontal orientation
     return (
-      <nav
-        ref={ref}
-        aria-label="Progress"
-        className={cn('w-full', className)}
-      >
+      <nav ref={ref} aria-label="Progress" className={cn('w-full', className)}>
         <ol className="flex items-center w-full">
           {steps.map((step, index) => {
-            const state = getStepState(index);
-            const isClickable = clickable && state !== 'upcoming';
-            const isLast = index === steps.length - 1;
+            const state = getStepState(index)
+            const isClickable = clickable && state !== 'upcoming'
+            const isLast = index === steps.length - 1
 
             return (
-              <li
-                key={index}
-                className={cn(
-                  'flex items-center',
-                  !isLast && 'flex-1'
-                )}
-              >
+              <li key={index} className={cn('flex items-center', !isLast && 'flex-1')}>
                 <div className="flex flex-col items-center">
                   {/* Step indicator */}
                   <button
@@ -252,11 +228,10 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
                       'border-2 transition-all',
                       'focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2',
                       {
-                        'bg-blue-600 border-blue-600':
-                          state === 'completed' || state === 'current',
+                        'bg-blue-600 border-blue-600': state === 'completed' || state === 'current',
                         'bg-white border-gray-300': state === 'upcoming',
                         'cursor-pointer hover:bg-blue-700': isClickable,
-                        'cursor-default': !isClickable,
+                        'cursor-default': !isClickable
                       }
                     )}
                     aria-current={state === 'current' ? 'step' : undefined}
@@ -288,9 +263,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
                       {step.label}
                     </h3>
                     {step.description && (
-                      <p className="text-xs text-gray-500 whitespace-nowrap">
-                        {step.description}
-                      </p>
+                      <p className="text-xs text-gray-500 whitespace-nowrap">{step.description}</p>
                     )}
                   </div>
                 </div>
@@ -306,12 +279,12 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
                   />
                 )}
               </li>
-            );
+            )
           })}
         </ol>
       </nav>
-    );
+    )
   }
-);
+)
 
-Stepper.displayName = 'Stepper';
+Stepper.displayName = 'Stepper'

@@ -7,6 +7,7 @@
 ## 🚀 5-Minute Setup
 
 Choose your platform:
+
 - **[Claude Code](#setup-for-claude-code)** - Desktop IDE with inline editing
 - **[Codex CLI](#setup-for-codex-cli)** - Terminal-first automation and scripting
 
@@ -40,6 +41,7 @@ EOF
 **⚠️ Replace `/ABSOLUTE/PATH/TO/ai-dev-standards` with YOUR actual path!**
 
 Example paths:
+
 - macOS/Linux: `/Users/yourname/ai-dev-standards`
 - Windows (WSL): `/home/yourname/projects/ai-dev-standards`
 - Windows: `C:\\Users\\yourname\\ai-dev-standards`
@@ -94,9 +96,11 @@ Status: Active
 ### Example Conversation Flow:
 
 ```
+
 User: "I need to add authentication to my app"
 
 You (Claude):
+
 1. First, let me use brain_select_skills to find the best approach...
    [Uses brain_select_skills with "implement authentication"]
 
@@ -114,6 +118,7 @@ You (Claude):
 
 5. Now let me load the security-engineer skill and implement following its methodology...
    [Reads ~/ai-dev-standards/SKILLS/security-engineer/SKILL.md]
+
 ```
 
 ### When to Use Each Tool:
@@ -207,6 +212,7 @@ codex exec "Use brain_status to check connection"
 ```
 
 Should show:
+
 ```
 Skills: 64
 MCPs: 51
@@ -222,6 +228,7 @@ Health: HEALTHY
 Use natural language prompts directly in the chat:
 
 #### 1️⃣ Starting a New Feature
+
 ```
 I need to [describe your feature].
 
@@ -231,12 +238,14 @@ apply the recommended skills from ai-dev-standards.
 ```
 
 #### 2️⃣ Exploring What's Available
+
 ```
 Use graph_query_by_domain to show me all capabilities in the "[domain]" domain.
 Domains: ai, security, frontend, backend, database, testing, deployment, data
 ```
 
 #### 3️⃣ RAG/AI Implementation
+
 ```
 I want to implement [RAG system / AI feature / etc.].
 
@@ -247,12 +256,14 @@ I want to implement [RAG system / AI feature / etc.].
 ```
 
 #### 4️⃣ Finding the Right Skill
+
 ```
 Use brain_search to find skills related to "[your topic]".
 Show me the top 3 matches and their descriptions.
 ```
 
 #### 5️⃣ Understanding Dependencies
+
 ```
 For the [skill-name] skill:
 1. Use graph_get_dependencies to show what it needs
@@ -261,6 +272,7 @@ For the [skill-name] skill:
 ```
 
 #### 6️⃣ Architecture Decisions
+
 ```
 I need to decide between [option A] and [option B] for [feature].
 
@@ -276,26 +288,31 @@ I need to decide between [option A] and [option B] for [feature].
 Use `codex exec` with quoted prompts:
 
 #### 1️⃣ Starting a New Feature
+
 ```bash
 codex exec "I need to implement authentication. Use brain_select_skills to recommend the best skills, then check dependencies with graph_get_dependencies."
 ```
 
 #### 2️⃣ Exploring What's Available
+
 ```bash
 codex exec "Use graph_query_by_domain to show all capabilities in the 'ai' domain"
 ```
 
 #### 3️⃣ RAG/AI Implementation
+
 ```bash
 codex exec "I want to implement a RAG system. First use brain_select_skills, then show dependencies, then create an implementation plan following the recommended skill methodologies."
 ```
 
 #### 4️⃣ Finding the Right Skill
+
 ```bash
 codex exec "Use brain_search to find skills related to 'security'. Show the top 3 matches."
 ```
 
 #### 5️⃣ Automated Review Workflow
+
 ```bash
 # Run iterative code review using Codex
 cd /path/to/ai-dev-standards
@@ -303,6 +320,7 @@ cd /path/to/ai-dev-standards
 ```
 
 #### 6️⃣ Scripted Brain Queries
+
 ```bash
 # Save brain output to a file
 codex exec "Use graph_get_dependencies for rag-implementer" > dependencies.txt
@@ -319,16 +337,19 @@ codex exec "Based on those skills, use graph_composition_chains to show workflow
 ### Test 1: Check Brain Access
 
 **Claude Code Prompt:**
+
 ```
 Use brain_status to show me the current ai-dev-standards repository status.
 ```
 
 **Codex CLI Command:**
+
 ```bash
 codex exec "Use brain_status"
 ```
 
 **Expected Response (Both):**
+
 ```
 Repository Status:
   Skills: 64
@@ -345,16 +366,19 @@ Repository Status:
 ### Test 2: Get Recommendations
 
 **Claude Code Prompt:**
+
 ```
 Use brain_select_skills with taskDescription "build a REST API with authentication"
 ```
 
 **Codex CLI Command:**
+
 ```bash
 codex exec "Use brain_select_skills with taskDescription 'build a REST API with authentication'"
 ```
 
 **Expected Response (Both):**
+
 ```
 Recommended Skills:
   • api-designer (REST API design)
@@ -373,16 +397,19 @@ Required MCPs:
 ### Test 3: Check Graph Access
 
 **Claude Code Prompt:**
+
 ```
 Use graph_stats to show me the capability graph statistics.
 ```
 
 **Codex CLI Command:**
+
 ```bash
 codex exec "Use graph_stats"
 ```
 
 **Expected Response (Both):**
+
 ```
 Capability Graph Statistics:
   Total Capabilities: 113
@@ -400,6 +427,7 @@ Capability Graph Statistics:
 ### Example 1: Building a SaaS App
 
 **Your prompt:**
+
 ```
 I'm building a SaaS application for team task management. I need:
 - User authentication
@@ -412,6 +440,7 @@ an implementation plan following those skill methodologies.
 ```
 
 **Claude will:**
+
 1. Use `brain_select_skills` → Recommends mvp-builder, frontend-builder, api-designer, etc.
 2. Use `graph_get_dependencies` → Shows required MCPs
 3. Use `graph_composition_chains` → Shows optimal workflow
@@ -423,6 +452,7 @@ an implementation plan following those skill methodologies.
 ### Example 2: Adding RAG to Existing App
 
 **Your prompt:**
+
 ```
 I have an existing Express + React app. I want to add AI-powered search over
 our documentation (1000 pages, need <3s response time).
@@ -434,6 +464,7 @@ our documentation (1000 pages, need <3s response time).
 ```
 
 **Claude will:**
+
 1. Query brain → Recommends rag-implementer
 2. Check dependencies → vector-database-mcp, embedding-generator-mcp, etc.
 3. Load RAG pattern from `STANDARDS/architecture-patterns/rag-pattern.md`
@@ -445,6 +476,7 @@ our documentation (1000 pages, need <3s response time).
 ### Example 3: Security Review
 
 **Your prompt:**
+
 ```
 I need a security review of my API. Use the brain to:
 1. Find security-related skills
@@ -453,6 +485,7 @@ I need a security review of my API. Use the brain to:
 ```
 
 **Claude will:**
+
 1. Use `brain_search` with "security"
 2. Find security-engineer skill
 3. Load security patterns and checklists
@@ -466,6 +499,7 @@ I need a security review of my API. Use the brain to:
 ### Issue: "MCP server not found"
 
 **Fix:**
+
 ```bash
 # Check MCP is built
 cd /path/to/ai-dev-standards/MCP-SERVERS/brain-mcp
@@ -479,6 +513,7 @@ npm run build
 ### Issue: "Brain CLI not found"
 
 **Fix:**
+
 ```bash
 # Build brain CLI
 cd /path/to/ai-dev-standards/scripts/brain
@@ -489,6 +524,7 @@ npm run build
 ### Issue: "Capability graph missing"
 
 **Fix:**
+
 ```bash
 # Check graph exists
 ls /path/to/ai-dev-standards/META/capability-graph.json
@@ -499,6 +535,7 @@ ls /path/to/ai-dev-standards/META/capability-graph.json
 ### Issue: Claude doesn't use the tools automatically
 
 **Solution:** Be explicit in your prompts:
+
 ```
 ❌ Bad: "Add authentication"
 ✅ Good: "Use brain_select_skills to find auth skills, then implement"
@@ -535,17 +572,23 @@ Share this with your team:
 
 **When starting ANY feature:**
 ```
+
 Use brain_select_skills to recommend skills for [your task]
+
 ```
 
 **When exploring options:**
 ```
+
 Use graph_query_by_domain to explore [domain] capabilities
+
 ```
 
 **When planning architecture:**
 ```
+
 Use graph_composition_chains to see what works together
+
 ```
 
 ## Available Domains
@@ -561,16 +604,16 @@ performance, monitoring, documentation, devops, ux, design
 
 ## 🤔 Claude Code vs Codex: Which Should I Use?
 
-| Use Case | Best Tool | Why |
-|----------|-----------|-----|
-| **Heavy Code Editing** | Claude Code | Rich IDE experience, inline edits |
-| **Terminal Automation** | Codex CLI | Scriptable, CI/CD integration |
-| **Interactive Development** | Claude Code | Better for back-and-forth conversation |
-| **Code Reviews** | Codex CLI | Automated review scripts available |
-| **Quick Queries** | Codex CLI | Fast one-liners in terminal |
-| **Complex Multi-file Changes** | Claude Code | Better context management |
-| **CI/CD Pipelines** | Codex CLI | Easy to script and automate |
-| **Learning/Exploring** | Claude Code | More conversational |
+| Use Case                       | Best Tool   | Why                                    |
+| ------------------------------ | ----------- | -------------------------------------- |
+| **Heavy Code Editing**         | Claude Code | Rich IDE experience, inline edits      |
+| **Terminal Automation**        | Codex CLI   | Scriptable, CI/CD integration          |
+| **Interactive Development**    | Claude Code | Better for back-and-forth conversation |
+| **Code Reviews**               | Codex CLI   | Automated review scripts available     |
+| **Quick Queries**              | Codex CLI   | Fast one-liners in terminal            |
+| **Complex Multi-file Changes** | Claude Code | Better context management              |
+| **CI/CD Pipelines**            | Codex CLI   | Easy to script and automate            |
+| **Learning/Exploring**         | Claude Code | More conversational                    |
 
 ### Hybrid Workflow (Best of Both)
 
@@ -593,6 +636,7 @@ cd /path/to/ai-dev-standards
 ## 🎉 You're Ready!
 
 The brain will now intelligently guide your development in **both Claude Code and Codex**:
+
 - **Recommends** the right skills for your tasks
 - **Shows** what dependencies you need
 - **Suggests** what works well together
@@ -600,6 +644,7 @@ The brain will now intelligently guide your development in **both Claude Code an
 - **Orchestrates** complex workflows automatically
 
 **Next Steps:**
+
 - **Claude Code users:** Start your next feature by asking "Use brain_select_skills to recommend skills for [your task]"
 - **Codex users:** Try `codex exec "Use brain_select_skills with taskDescription 'your task'"`
 

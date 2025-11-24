@@ -7,6 +7,7 @@ Quick reference for common tasks and scenarios.
 ## Setup Commands
 
 ### New Project
+
 ```bash
 # Minimal setup
 cp ~/ai-dev-standards/TEMPLATES/cursorrules-minimal.md .cursorrules
@@ -19,6 +20,7 @@ cp ~/ai-dev-standards/TEMPLATES/cursorrules-ai-rag.md .cursorrules
 ```
 
 ### Existing Project
+
 ```bash
 # Document existing codebase
 cp ~/ai-dev-standards/TEMPLATES/cursorrules-existing-project.md .cursorrules
@@ -271,20 +273,20 @@ Follow-up:
 
 ### When to Use Which Skill
 
-| Scenario | Skill | Example Prompt |
-|----------|-------|----------------|
-| Feature prioritization | `mvp-builder` | "Should we build this feature?" |
-| Product validation | `product-strategist` | "How do we validate this idea?" |
-| Launch planning | `go-to-market-planner` | "Plan our product launch" |
-| AI search/RAG | `rag-implementer` | "Add AI search to docs" |
-| Multi-agent systems | `multi-agent-architect` | "Design agent workflow" |
-| Knowledge graphs | `knowledge-graph-builder` | "Model our data as graph" |
-| React/Next.js | `frontend-builder` | "Build this component" |
-| REST/GraphQL APIs | `api-designer` | "Design the API" |
-| Infrastructure | `deployment-advisor` | "Where should I deploy?" |
-| Performance issues | `performance-optimizer` | "Why is this slow?" |
-| User research | `user-researcher` | "How to interview users?" |
-| UX design | `ux-designer` | "Design user flow" |
+| Scenario               | Skill                     | Example Prompt                  |
+| ---------------------- | ------------------------- | ------------------------------- |
+| Feature prioritization | `mvp-builder`             | "Should we build this feature?" |
+| Product validation     | `product-strategist`      | "How do we validate this idea?" |
+| Launch planning        | `go-to-market-planner`    | "Plan our product launch"       |
+| AI search/RAG          | `rag-implementer`         | "Add AI search to docs"         |
+| Multi-agent systems    | `multi-agent-architect`   | "Design agent workflow"         |
+| Knowledge graphs       | `knowledge-graph-builder` | "Model our data as graph"       |
+| React/Next.js          | `frontend-builder`        | "Build this component"          |
+| REST/GraphQL APIs      | `api-designer`            | "Design the API"                |
+| Infrastructure         | `deployment-advisor`      | "Where should I deploy?"        |
+| Performance issues     | `performance-optimizer`   | "Why is this slow?"             |
+| User research          | `user-researcher`         | "How to interview users?"       |
+| UX design              | `ux-designer`             | "Design user flow"              |
 
 ---
 
@@ -294,6 +296,7 @@ Follow-up:
 
 ```markdown
 ## Tech Stack
+
 - Frontend: Next.js 14, TypeScript, Tailwind
 - Backend: Next.js API routes, Prisma
 - Database: PostgreSQL (Railway)
@@ -304,10 +307,11 @@ Follow-up:
 
 ### Document Code Patterns
 
-```markdown
+````markdown
 ## Code Conventions
 
 ### Component Pattern (MATCH THIS)
+
 ```typescript
 interface TaskCardProps {
   task: Task;
@@ -318,7 +322,9 @@ export function TaskCard({ task, onEdit }: TaskCardProps) {
   return <div>{task.title}</div>;
 }
 ```
-```
+````
+
+````
 
 ---
 
@@ -333,23 +339,26 @@ When adding features:
 - ✅ Match existing patterns
 - ✅ Add new code in new files
 - ❌ Don't refactor surrounding code
-```
+````
 
 ---
 
 ### Document Custom Utilities
 
-```markdown
+````markdown
 ## Custom Utilities (USE THESE)
 
 ### Date Formatting
+
 ```typescript
 // ✅ USE THIS:
-import { formatDate } from '@/lib/date';
+import { formatDate } from '@/lib/date'
 
 // ❌ DON'T reinvent:
-new Date().toLocaleDateString();
+new Date().toLocaleDateString()
 ```
+````
+
 ```
 
 ---
@@ -358,27 +367,35 @@ new Date().toLocaleDateString();
 
 ### Test 1: Skills Loaded
 ```
+
 You: "What skills are available?"
 Expected: Claude lists all 12 skills
+
 ```
 
 ### Test 2: Skill Activation
 ```
+
 You: "Use the mvp-builder skill to prioritize features"
 Expected: Claude references P0/P1/P2 matrix
+
 ```
 
 ### Test 3: Pattern Consultation
 ```
+
 You: "Should I use RAG for this?"
 Expected: Claude references rag-pattern.md
+
 ```
 
 ### Test 4: Code Conventions
 ```
+
 You: "Show me how to create a component"
 Expected: Claude uses YOUR exact pattern from .cursorrules
-```
+
+````
 
 ---
 
@@ -396,7 +413,7 @@ Repository: ~/ai-dev-standards/
 # NOT:
 Repository: ./ai-dev-standards/  ❌
 Repository: ai-dev-standards/    ❌
-```
+````
 
 ---
 
@@ -405,6 +422,7 @@ Repository: ai-dev-standards/    ❌
 **Problem:** Claude doesn't use skills automatically
 
 **Fix:** Be explicit:
+
 ```
 "Use the [skill-name] skill to..."
 "Reference rag-pattern.md for this"
@@ -418,12 +436,14 @@ Repository: ai-dev-standards/    ❌
 **Problem:** Asked to add feature, Claude refactors entire codebase
 
 **Fix:** Add to .cursorrules:
+
 ```markdown
 ## Instructions for Claude
 
 **NEVER refactor existing code unless explicitly asked.**
 
 When adding features:
+
 - Match existing patterns exactly
 - Don't "improve" working code
 - Focus on the requested feature only
@@ -436,13 +456,16 @@ When adding features:
 **Problem:** New code doesn't match existing style
 
 **Fix:** Show examples in .cursorrules:
+
 ```markdown
 ## Code Conventions (CRITICAL: MATCH THESE)
 
 ### ✅ DO THIS (our pattern):
+
 [paste actual example from your code]
 
 ### ❌ DON'T DO THIS:
+
 [show what to avoid]
 ```
 
@@ -451,6 +474,7 @@ When adding features:
 ## Quick Commands
 
 ### Setup
+
 ```bash
 # Copy template
 cp ~/ai-dev-standards/TEMPLATES/[template-name].md .cursorrules
@@ -463,6 +487,7 @@ code .cursorrules
 ```
 
 ### Usage
+
 ```bash
 # Open project in Claude Code
 cursor .
@@ -535,30 +560,35 @@ code .
 ## Copy-Paste Prompts
 
 ### Feature Evaluation
+
 ```
 Use the mvp-builder skill to evaluate if we should build [feature].
 Consider: effort, impact, current roadmap, user demand.
 ```
 
 ### Architecture Decision
+
 ```
 Use DECISION-FRAMEWORK.md to help me decide between [option A] and [option B]
 for [use case]. Explain trade-offs.
 ```
 
 ### Code Review
+
 ```
 Review this code against ai-dev-standards best practices.
 Check: security, performance, tests, existing patterns.
 ```
 
 ### Performance Fix
+
 ```
 Use performance-optimizer skill to fix [slow operation].
 Profile, identify bottleneck, recommend solutions ranked by effort/impact.
 ```
 
 ### Add AI Feature
+
 ```
 Use rag-implementer skill and rag-pattern.md to add AI-powered [feature].
 Data: [describe data], Users: [count], Budget: [amount].

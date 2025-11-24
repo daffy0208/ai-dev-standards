@@ -28,7 +28,15 @@ export interface AdobeFontsClientOptions {
   apiKey?: string
 }
 
-export type FontClassification = 'serif' | 'sans-serif' | 'slab-serif' | 'script' | 'blackletter' | 'monospace' | 'display' | 'decorative'
+export type FontClassification =
+  | 'serif'
+  | 'sans-serif'
+  | 'slab-serif'
+  | 'script'
+  | 'blackletter'
+  | 'monospace'
+  | 'display'
+  | 'decorative'
 
 export interface FontFamily {
   id: string
@@ -79,11 +87,14 @@ export class AdobeFontsClient {
   /**
    * Search fonts by name or classification
    */
-  async searchFonts(query: string, options?: {
-    classification?: FontClassification
-    foundry?: string
-    limit?: number
-  }): Promise<FontSearchResult[]> {
+  async searchFonts(
+    query: string,
+    options?: {
+      classification?: FontClassification
+      foundry?: string
+      limit?: number
+    }
+  ): Promise<FontSearchResult[]> {
     const normalizedQuery = query.toLowerCase().trim()
 
     // Get all fonts
@@ -125,7 +136,7 @@ export class AdobeFontsClient {
 
         results.push({
           ...font,
-          matchScore,
+          matchScore
         })
       }
     }
@@ -245,9 +256,9 @@ export class AdobeFontsClient {
           { id: '1', name: 'Light', weight: 300, style: 'normal' },
           { id: '2', name: 'Book', weight: 400, style: 'normal' },
           { id: '3', name: 'Medium', weight: 500, style: 'normal' },
-          { id: '4', name: 'Bold', weight: 700, style: 'normal' },
+          { id: '4', name: 'Bold', weight: 700, style: 'normal' }
         ],
-        description: 'Geometric sans-serif with clean lines',
+        description: 'Geometric sans-serif with clean lines'
       },
       {
         id: 'proxima-nova',
@@ -262,9 +273,9 @@ export class AdobeFontsClient {
           { id: '3', name: 'Regular', weight: 400, style: 'normal' },
           { id: '4', name: 'Semibold', weight: 600, style: 'normal' },
           { id: '5', name: 'Bold', weight: 700, style: 'normal' },
-          { id: '6', name: 'Black', weight: 900, style: 'normal' },
+          { id: '6', name: 'Black', weight: 900, style: 'normal' }
         ],
-        description: 'Modern sans-serif bridging geometric and humanist',
+        description: 'Modern sans-serif bridging geometric and humanist'
       },
       {
         id: 'adobe-garamond',
@@ -277,9 +288,9 @@ export class AdobeFontsClient {
           { id: '1', name: 'Regular', weight: 400, style: 'normal' },
           { id: '2', name: 'Italic', weight: 400, style: 'italic' },
           { id: '3', name: 'Semibold', weight: 600, style: 'normal' },
-          { id: '4', name: 'Bold', weight: 700, style: 'normal' },
+          { id: '4', name: 'Bold', weight: 700, style: 'normal' }
         ],
-        description: 'Classic old-style serif typeface',
+        description: 'Classic old-style serif typeface'
       },
       {
         id: 'myriad-pro',
@@ -291,9 +302,9 @@ export class AdobeFontsClient {
         variations: [
           { id: '1', name: 'Regular', weight: 400, style: 'normal' },
           { id: '2', name: 'Semibold', weight: 600, style: 'normal' },
-          { id: '3', name: 'Bold', weight: 700, style: 'normal' },
+          { id: '3', name: 'Bold', weight: 700, style: 'normal' }
         ],
-        description: 'Humanist sans-serif, Adobe brand font',
+        description: 'Humanist sans-serif, Adobe brand font'
       },
       {
         id: 'source-sans-pro',
@@ -308,10 +319,10 @@ export class AdobeFontsClient {
           { id: '3', name: 'Regular', weight: 400, style: 'normal' },
           { id: '4', name: 'Semibold', weight: 600, style: 'normal' },
           { id: '5', name: 'Bold', weight: 700, style: 'normal' },
-          { id: '6', name: 'Black', weight: 900, style: 'normal' },
+          { id: '6', name: 'Black', weight: 900, style: 'normal' }
         ],
-        description: 'First open source font family from Adobe',
-      },
+        description: 'First open source font family from Adobe'
+      }
     ]
   }
 

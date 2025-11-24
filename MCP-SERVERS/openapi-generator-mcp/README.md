@@ -37,6 +37,7 @@ Add to your Claude MCP settings:
 ## Tools
 
 ### 1. initialize_spec
+
 Create new OpenAPI specification.
 
 ```typescript
@@ -52,6 +53,7 @@ Create new OpenAPI specification.
 ```
 
 ### 2. add_endpoint
+
 Add API endpoint.
 
 ```typescript
@@ -69,6 +71,7 @@ Add API endpoint.
 ```
 
 ### 3. add_schema
+
 Add reusable schema/model.
 
 ```typescript
@@ -87,6 +90,7 @@ Add reusable schema/model.
 ```
 
 ### 4. add_security
+
 Add security scheme.
 
 ```typescript
@@ -101,6 +105,7 @@ Add security scheme.
 ```
 
 ### 5. scan_express_app
+
 Extract endpoints from Express.js code.
 
 ```typescript
@@ -111,18 +116,21 @@ Extract endpoints from Express.js code.
 ```
 
 ### 6. scan_fastapi_app
+
 Extract endpoints from FastAPI code.
 
 ```typescript
 {
-  filePath: string; // './app/main.py'
+  filePath: string // './app/main.py'
 }
 ```
 
 ### 7. validate_spec
+
 Validate current OpenAPI spec.
 
 ### 8. export_spec
+
 Export specification to file.
 
 ```typescript
@@ -133,6 +141,7 @@ Export specification to file.
 ```
 
 ### 9. generate_examples
+
 Auto-generate example values for schemas.
 
 ## Usage Example
@@ -145,17 +154,17 @@ await generator.initialize_spec({
   description: 'API for managing tasks',
   servers: [
     { url: 'https://api.example.com', description: 'Production' },
-    { url: 'http://localhost:3000', description: 'Development' },
-  ],
-});
+    { url: 'http://localhost:3000', description: 'Development' }
+  ]
+})
 
 // 2. Add security
 await generator.add_security({
   name: 'bearerAuth',
   type: 'http',
   scheme: 'bearer',
-  bearerFormat: 'JWT',
-});
+  bearerFormat: 'JWT'
+})
 
 // 3. Add schemas
 await generator.add_schema({
@@ -166,11 +175,11 @@ await generator.add_schema({
       id: { type: 'string', format: 'uuid' },
       title: { type: 'string' },
       completed: { type: 'boolean' },
-      createdAt: { type: 'string', format: 'date-time' },
+      createdAt: { type: 'string', format: 'date-time' }
     },
-    required: ['id', 'title', 'completed'],
-  },
-});
+    required: ['id', 'title', 'completed']
+  }
+})
 
 // 4. Add endpoints
 await generator.add_endpoint({
@@ -178,53 +187,55 @@ await generator.add_endpoint({
   path: '/tasks',
   summary: 'List all tasks',
   responses: {
-    '200': {
+    200: {
       description: 'List of tasks',
       content: {
         'application/json': {
           schema: {
             type: 'array',
-            items: { $ref: '#/components/schemas/Task' },
-          },
-        },
-      },
-    },
+            items: { $ref: '#/components/schemas/Task' }
+          }
+        }
+      }
+    }
   },
   tags: ['Tasks'],
-  security: [{ bearerAuth: [] }],
-});
+  security: [{ bearerAuth: [] }]
+})
 
 // 5. Generate examples
-await generator.generate_examples();
+await generator.generate_examples()
 
 // 6. Validate
-await generator.validate_spec();
+await generator.validate_spec()
 
 // 7. Export
 await generator.export_spec({
   outputPath: './docs/openapi.json',
-  format: 'json',
-});
+  format: 'json'
+})
 ```
 
 ## Code Scanning
 
 ### Express.js
+
 ```javascript
 // app.js
-app.get('/users', (req, res) => {});
-app.post('/users', (req, res) => {});
-app.get('/users/:id', (req, res) => {});
+app.get('/users', (req, res) => {})
+app.post('/users', (req, res) => {})
+app.get('/users/:id', (req, res) => {})
 ```
 
 ```javascript
 await generator.scan_express_app({
-  filePath: './src/app.js',
-});
+  filePath: './src/app.js'
+})
 // Extracts: GET /users, POST /users, GET /users/:id
 ```
 
 ### FastAPI
+
 ```python
 # main.py
 @app.get('/users')
@@ -238,8 +249,8 @@ def create_user():
 
 ```javascript
 await generator.scan_fastapi_app({
-  filePath: './app/main.py',
-});
+  filePath: './app/main.py'
+})
 // Extracts: GET /users, POST /users
 ```
 
@@ -248,12 +259,14 @@ await generator.scan_fastapi_app({
 ## OpenAPI 3.0 Features
 
 ### Parameter Types
+
 - **Path:** `/users/{id}` - Required, in URL
 - **Query:** `/users?limit=10` - Optional, for filtering
 - **Header:** `Authorization: Bearer token`
 - **Cookie:** Session cookies
 
 ### Request Body
+
 ```json
 {
   "content": {
@@ -265,6 +278,7 @@ await generator.scan_fastapi_app({
 ```
 
 ### Responses
+
 ```json
 {
   "200": {
@@ -284,6 +298,7 @@ await generator.scan_fastapi_app({
 ### Security Schemes
 
 **Bearer Token (JWT):**
+
 ```javascript
 {
   type: 'http',
@@ -293,6 +308,7 @@ await generator.scan_fastapi_app({
 ```
 
 **API Key:**
+
 ```javascript
 {
   type: 'apiKey',
@@ -302,6 +318,7 @@ await generator.scan_fastapi_app({
 ```
 
 **OAuth2:**
+
 ```javascript
 {
   type: 'oauth2',
@@ -321,12 +338,14 @@ await generator.scan_fastapi_app({
 ## Best Practices
 
 ### Spec Organization
+
 - **Tags:** Group related endpoints
 - **Schemas:** Reuse models with `$ref`
 - **Examples:** Provide realistic data
 - **Descriptions:** Explain non-obvious behavior
 
 ### Endpoint Design
+
 - **Summary:** One-line description
 - **Description:** Detailed explanation
 - **Parameters:** Document all inputs
@@ -334,6 +353,7 @@ await generator.scan_fastapi_app({
 - **Security:** Specify auth requirements
 
 ### Schema Design
+
 - **Required fields:** Mark mandatory properties
 - **Formats:** Use string formats (email, date-time, uuid)
 - **Validation:** Add min/max, pattern constraints
@@ -395,4 +415,3 @@ npm test
 - **Enables:** api-designer skill
 - **Works with:** api-validator-mcp (validate requests/responses)
 - **Use case:** API documentation, client generation, API design
-

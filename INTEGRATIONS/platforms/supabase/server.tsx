@@ -63,8 +63,8 @@ export function createServerClient() {
           } catch (error) {
             // Handle cookies() error in Server Components
           }
-        },
-      },
+        }
+      }
     }
   )
 }
@@ -88,8 +88,8 @@ export function createRouteHandlerClient() {
         },
         remove(name: string, options: CookieOptions) {
           cookieStore.set({ name, value: '', ...options })
-        },
-      },
+        }
+      }
     }
   )
 }
@@ -111,8 +111,8 @@ export function createMiddlewareClient(req: Request, res: Response) {
         },
         remove(name: string, options: CookieOptions) {
           setCookie(res, name, '', { ...options, maxAge: 0 })
-        },
-      },
+        }
+      }
     }
   )
 }
@@ -124,19 +124,14 @@ function getCookie(req: Request, name: string): string | undefined {
   const cookies = req.headers.get('cookie')
   if (!cookies) return undefined
 
-  const cookie = cookies.split(';').find((c) => c.trim().startsWith(`${name}=`))
+  const cookie = cookies.split(';').find(c => c.trim().startsWith(`${name}=`))
   return cookie?.split('=')[1]
 }
 
 /**
  * Helper: Set cookie in response
  */
-function setCookie(
-  res: Response,
-  name: string,
-  value: string,
-  options: CookieOptions
-) {
+function setCookie(res: Response, name: string, value: string, options: CookieOptions) {
   const cookie = `${name}=${value}; Path=${options.path || '/'}; ${
     options.maxAge ? `Max-Age=${options.maxAge};` : ''
   } ${options.httpOnly ? 'HttpOnly;' : ''} ${options.secure ? 'Secure;' : ''} ${
@@ -155,7 +150,9 @@ export const serverAuth = {
    */
   async getUser() {
     const supabase = createServerClient()
-    const { data: { user } } = await supabase.auth.getUser()
+    const {
+      data: { user }
+    } = await supabase.auth.getUser()
     return user
   },
 
@@ -164,7 +161,9 @@ export const serverAuth = {
    */
   async getSession() {
     const supabase = createServerClient()
-    const { data: { session } } = await supabase.auth.getSession()
+    const {
+      data: { session }
+    } = await supabase.auth.getSession()
     return session
   },
 
@@ -187,7 +186,7 @@ export const serverAuth = {
     if (!user) return false
 
     // Assuming roles are stored in user metadata
-    const userRoles = user.user_metadata?.roles as string[] || []
+    const userRoles = (user.user_metadata?.roles as string[]) || []
     return userRoles.includes(role)
   },
 

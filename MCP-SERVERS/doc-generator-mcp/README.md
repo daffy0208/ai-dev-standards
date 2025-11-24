@@ -21,6 +21,7 @@ npm install && npm run build
 ## Tools
 
 ### 1. configure
+
 ```typescript
 {
   projectPath: string;
@@ -30,7 +31,9 @@ npm install && npm run build
 ```
 
 ### 2. generate_api_docs
+
 Generate API documentation from code comments.
+
 ```typescript
 {
   paths: string[];  // files or directories
@@ -40,7 +43,9 @@ Generate API documentation from code comments.
 ```
 
 ### 3. generate_diagram
+
 Create diagrams from code structure.
+
 ```typescript
 {
   type: 'architecture' | 'class' | 'sequence' | 'erd';
@@ -50,7 +55,9 @@ Create diagrams from code structure.
 ```
 
 ### 4. generate_changelog
+
 Build changelog from git commits.
+
 ```typescript
 {
   fromTag?: string;
@@ -61,7 +68,9 @@ Build changelog from git commits.
 ```
 
 ### 5. extract_readme_sections
+
 Extract sections from README for reuse.
+
 ```typescript
 {
   readmePath: string;
@@ -70,7 +79,9 @@ Extract sections from README for reuse.
 ```
 
 ### 6. validate_docs
+
 Check documentation completeness.
+
 ```typescript
 {
   paths: string[];
@@ -81,26 +92,26 @@ Check documentation completeness.
 ## Usage Example
 
 ```javascript
-await docGen.configure({ projectPath: './my-app' });
+await docGen.configure({ projectPath: './my-app' })
 
 // Generate API docs
 await docGen.generate_api_docs({
   paths: ['src/api'],
   outputPath: './docs/api.md'
-});
+})
 
 // Create architecture diagram
 await docGen.generate_diagram({
   type: 'architecture',
   sourcePath: 'src',
   outputPath: './docs/architecture.md'
-});
+})
 
 // Build changelog
 await docGen.generate_changelog({
   fromTag: 'v1.0.0',
   format: 'keepachangelog'
-});
+})
 ```
 
 ## Diagram Types

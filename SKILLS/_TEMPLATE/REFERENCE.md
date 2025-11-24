@@ -29,10 +29,12 @@ Discussion of alternative methods or approaches not covered in main skill.
 #### Approach A
 
 **Pros:**
+
 - Advantage 1
 - Advantage 2
 
 **Cons:**
+
 - Limitation 1
 - Limitation 2
 
@@ -66,6 +68,7 @@ Discussion of alternative methods or approaches not covered in main skill.
 **Outcome:** [What was achieved]
 
 **Lessons Learned:**
+
 - Insight 1
 - Insight 2
 - Insight 3
@@ -83,24 +86,29 @@ Discussion of alternative methods or approaches not covered in main skill.
 ### Implementation Considerations
 
 **Performance:**
+
 - Consideration 1
 - Consideration 2
 
 **Security:**
+
 - Security aspect 1
 - Security aspect 2
 
 **Scalability:**
+
 - Scaling consideration 1
 - Scaling consideration 2
 
 ### Integration Points
 
 **With Other Skills:**
+
 - How this skill works with `skill-name`
 - Handoff patterns and data exchange
 
 **With External Tools:**
+
 - Tool integration patterns
 - Configuration requirements
 

@@ -9,6 +9,7 @@
 ## When to Use
 
 ✅ **Use microservices when:**
+
 - Large team (10+ developers)
 - Need independent scaling (different services have different loads)
 - Multiple programming languages required
@@ -16,6 +17,7 @@
 - Clear service boundaries (bounded contexts)
 
 ❌ **Don't use when:**
+
 - Small team (< 5 developers) - overhead too high
 - Simple application - monolith is fine
 - Tight coupling required - microservices add latency
@@ -45,6 +47,7 @@ Microservices:
 ### Service Boundaries
 
 **Good Service (Single Responsibility):**
+
 ```
 Order Service:
 - Create order
@@ -56,6 +59,7 @@ Database: orders table
 ```
 
 **Bad Service (Too Broad):**
+
 ```
 E-commerce Service:
 - Users
@@ -75,6 +79,7 @@ Database: all tables
 ### 1. Synchronous (REST/gRPC)
 
 **REST APIs:**
+
 ```typescript
 // Order Service calls Payment Service
 async function createOrder(orderData: OrderData) {
@@ -108,6 +113,7 @@ async function createOrder(orderData: OrderData) {
 ### 2. Asynchronous (Message Queue)
 
 **Event-Driven:**
+
 ```typescript
 // Order Service publishes event
 async function createOrder(orderData: OrderData) {
@@ -124,12 +130,12 @@ async function createOrder(orderData: OrderData) {
 }
 
 // Payment Service subscribes
-await consumeEvents('order.created', async (event) => {
+await consumeEvents('order.created', async event => {
   await processPayment(event.data)
 })
 
 // Email Service subscribes
-await consumeEvents('order.created', async (event) => {
+await consumeEvents('order.created', async event => {
   await sendOrderConfirmation(event.data.userId)
 })
 ```
@@ -147,20 +153,24 @@ Client → API Gateway → [User Service, Product Service, Order Service]
 ```
 
 **Implementation (Next.js API Routes as Gateway):**
+
 ```typescript
 // app/api/products/[id]/route.ts
 export async function GET(req: Request, { params }: { params: { id: string } }) {
   // Call Product Service
-  const product = await fetch(`http://product-service/products/${params.id}`)
-    .then(res => res.json())
+  const product = await fetch(`http://product-service/products/${params.id}`).then(res =>
+    res.json()
+  )
 
   // Call Inventory Service
-  const inventory = await fetch(`http://inventory-service/stock/${params.id}`)
-    .then(res => res.json())
+  const inventory = await fetch(`http://inventory-service/stock/${params.id}`).then(res =>
+    res.json()
+  )
 
   // Call Review Service
-  const reviews = await fetch(`http://review-service/reviews?productId=${params.id}`)
-    .then(res => res.json())
+  const reviews = await fetch(`http://review-service/reviews?productId=${params.id}`).then(res =>
+    res.json()
+  )
 
   // Aggregate response
   return Response.json({
@@ -180,6 +190,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
 **Solutions:**
 
 ### 1. Environment Variables (Simple)
+
 ```bash
 # .env
 USER_SERVICE_URL=http://user-service:3001
@@ -188,12 +199,14 @@ ORDER_SERVICE_URL=http://order-service:3003
 ```
 
 ### 2. DNS (Docker/Kubernetes)
+
 ```typescript
 // Services discover via service name
 const response = await fetch('http://user-service/api/users/123')
 ```
 
 ### 3. Service Registry (Consul, Eureka)
+
 ```typescript
 import { Consul } from 'consul'
 
@@ -222,6 +235,7 @@ const userServiceUrl = `http://${services[0].ServiceAddress}:${services[0].Servi
 ### Database Per Service
 
 **Each service owns its data:**
+
 ```
 User Service    → Users DB (PostgreSQL)
 Product Service → Products DB (PostgreSQL)
@@ -229,11 +243,13 @@ Order Service   → Orders DB (PostgreSQL)
 ```
 
 **Benefits:**
+
 - Independent scaling
 - Technology flexibility (different DBs)
 - Clear ownership
 
 **Challenges:**
+
 - No joins across services
 - Distributed transactions hard
 - Data duplication
@@ -245,6 +261,7 @@ Order Service   → Orders DB (PostgreSQL)
 **Example:** Create order = Reserve inventory + Charge payment + Update order
 
 **Choreography Saga:**
+
 ```typescript
 // Order Service
 async function createOrder(orderData) {
@@ -256,7 +273,7 @@ async function createOrder(orderData) {
 }
 
 // Inventory Service
-await consumeEvents('order.created', async (event) => {
+await consumeEvents('order.created', async event => {
   try {
     await reserveInventory(event.data.items)
     await publishEvent('inventory.reserved', { orderId: event.data.orderId })
@@ -266,7 +283,7 @@ await consumeEvents('order.created', async (event) => {
 })
 
 // Payment Service
-await consumeEvents('inventory.reserved', async (event) => {
+await consumeEvents('inventory.reserved', async event => {
   try {
     await chargePayment(event.data)
     await publishEvent('payment.succeeded', { orderId: event.data.orderId })
@@ -276,14 +293,14 @@ await consumeEvents('inventory.reserved', async (event) => {
 })
 
 // Order Service (listen for completion or failure)
-await consumeEvents('payment.succeeded', async (event) => {
+await consumeEvents('payment.succeeded', async event => {
   await db.orders.update({
     where: { id: event.data.orderId },
     data: { status: 'completed' }
   })
 })
 
-await consumeEvents('payment.failed', async (event) => {
+await consumeEvents('payment.failed', async event => {
   await db.orders.update({
     where: { id: event.data.orderId },
     data: { status: 'failed' }
@@ -307,14 +324,14 @@ services:
   api-gateway:
     build: ./api-gateway
     ports:
-      - "3000:3000"
+      - '3000:3000'
     environment:
       - USER_SERVICE_URL=http://user-service:3001
 
   user-service:
     build: ./user-service
     ports:
-      - "3001:3001"
+      - '3001:3001'
     environment:
       - DATABASE_URL=postgresql://user:pass@user-db:5432/users
 
@@ -328,12 +345,12 @@ services:
   product-service:
     build: ./product-service
     ports:
-      - "3002:3002"
+      - '3002:3002'
 
   order-service:
     build: ./order-service
     ports:
-      - "3003:3003"
+      - '3003:3003'
 ```
 
 ### Kubernetes (Production)
@@ -355,16 +372,16 @@ spec:
         app: order-service
     spec:
       containers:
-      - name: order-service
-        image: order-service:1.0.0
-        ports:
-        - containerPort: 3003
-        env:
-        - name: DATABASE_URL
-          valueFrom:
-            secretKeyRef:
-              name: order-db-secret
-              key: url
+        - name: order-service
+          image: order-service:1.0.0
+          ports:
+            - containerPort: 3003
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: order-db-secret
+                  key: url
 ---
 apiVersion: v1
 kind: Service
@@ -374,8 +391,8 @@ spec:
   selector:
     app: order-service
   ports:
-  - port: 80
-    targetPort: 3003
+    - port: 80
+      targetPort: 3003
   type: ClusterIP
 ```
 
@@ -406,7 +423,7 @@ sdk.start()
 const tracer = trace.getTracer('order-service')
 
 export async function createOrder(orderData) {
-  return await tracer.startActiveSpan('create-order', async (span) => {
+  return await tracer.startActiveSpan('create-order', async span => {
     span.setAttribute('order.userId', orderData.userId)
 
     const order = await db.orders.create({ data: orderData })
@@ -414,7 +431,7 @@ export async function createOrder(orderData) {
     // Call other service (trace propagates)
     await fetch('http://payment-service/charge', {
       headers: {
-        'traceparent': span.spanContext().traceId // Propagate trace
+        traceparent: span.spanContext().traceId // Propagate trace
       }
     })
 
@@ -471,13 +488,16 @@ export async function GET() {
 
   const healthy = dbHealthy && userServiceHealthy
 
-  return Response.json({
-    status: healthy ? 'healthy' : 'unhealthy',
-    checks: {
-      database: dbHealthy ? 'up' : 'down',
-      userService: userServiceHealthy ? 'up' : 'down'
-    }
-  }, { status: healthy ? 200 : 503 })
+  return Response.json(
+    {
+      status: healthy ? 'healthy' : 'unhealthy',
+      checks: {
+        database: dbHealthy ? 'up' : 'down',
+        userService: userServiceHealthy ? 'up' : 'down'
+      }
+    },
+    { status: healthy ? 200 : 503 }
+  )
 }
 ```
 
@@ -490,8 +510,7 @@ import CircuitBreaker from 'opossum'
 
 const breaker = new CircuitBreaker(
   async (userId: string) => {
-    return await fetch(`http://user-service/users/${userId}`)
-      .then(res => res.json())
+    return await fetch(`http://user-service/users/${userId}`).then(res => res.json())
   },
   {
     timeout: 3000,
@@ -543,6 +562,7 @@ Step 6: Repeat for next service
 ```
 
 **Example:**
+
 ```
 Iteration 1:
 Client → API Gateway → Monolith (users, products, orders)
@@ -563,6 +583,7 @@ Monolith deleted! ✅
 ## Trade-offs
 
 ### Pros
+
 - ✅ Independent scaling
 - ✅ Independent deployment
 - ✅ Technology flexibility
@@ -570,6 +591,7 @@ Monolith deleted! ✅
 - ✅ Fault isolation
 
 ### Cons
+
 - ❌ Complexity (distributed systems hard)
 - ❌ Network latency (service-to-service calls)
 - ❌ Data consistency challenges
@@ -580,14 +602,14 @@ Monolith deleted! ✅
 
 ## Decision Matrix: Monolith vs Microservices
 
-| Factor | Monolith | Microservices |
-|--------|----------|---------------|
-| Team Size | < 10 | 10+ |
-| Complexity | Simple-Medium | Medium-High |
-| Deployment | All at once | Independent |
-| Scaling | Vertical | Horizontal |
+| Factor            | Monolith       | Microservices    |
+| ----------------- | -------------- | ---------------- |
+| Team Size         | < 10           | 10+              |
+| Complexity        | Simple-Medium  | Medium-High      |
+| Deployment        | All at once    | Independent      |
+| Scaling           | Vertical       | Horizontal       |
 | Development Speed | Fast initially | Slower initially |
-| Operational Cost | Low | High |
+| Operational Cost  | Low            | High             |
 
 **Rule of Thumb:** Start monolith, migrate to microservices when you feel the pain.
 

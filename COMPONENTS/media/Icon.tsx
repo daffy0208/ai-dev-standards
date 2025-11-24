@@ -32,12 +32,12 @@ const iconVariants = cva('inline-flex items-center justify-center', {
       md: 'w-5 h-5',
       lg: 'w-6 h-6',
       xl: 'w-8 h-8',
-      '2xl': 'w-10 h-10',
-    },
+      '2xl': 'w-10 h-10'
+    }
   },
   defaultVariants: {
-    size: 'md',
-  },
+    size: 'md'
+  }
 })
 
 export interface IconProps extends VariantProps<typeof iconVariants> {
@@ -88,7 +88,7 @@ export const Icon = React.forwardRef<HTMLSpanElement, IconProps>(
       className,
       ariaLabel,
       ariaDescription,
-      onClick,
+      onClick
     },
     ref
   ) => {
@@ -104,7 +104,7 @@ export const Icon = React.forwardRef<HTMLSpanElement, IconProps>(
         md: 20,
         lg: 24,
         xl: 32,
-        '2xl': 40,
+        '2xl': 40
       }
       return sizeMap[size || 'md'] || 20
     }
@@ -181,14 +181,8 @@ export const Icon = React.forwardRef<HTMLSpanElement, IconProps>(
 
           // Add currentColor support
           if (!color) {
-            svg = svg.replace(
-              /stroke="[^"]*"/g,
-              'stroke="currentColor"'
-            )
-            svg = svg.replace(
-              /fill="[^"]*"/g,
-              'fill="currentColor"'
-            )
+            svg = svg.replace(/stroke="[^"]*"/g, 'stroke="currentColor"')
+            svg = svg.replace(/fill="[^"]*"/g, 'fill="currentColor"')
           }
 
           if (isMounted) {

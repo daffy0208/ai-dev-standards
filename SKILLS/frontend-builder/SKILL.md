@@ -11,15 +11,19 @@ Build maintainable, performant React and Next.js frontends.
 ## Core Principles
 
 ### 1. Component Composition
+
 Break UI into small, reusable, single-purpose components
 
 ### 2. State Proximity
+
 Keep state as close to where it's used as possible
 
 ### 3. Performance by Default
+
 Optimize rendering, code splitting, and asset loading
 
 ### 4. Developer Experience
+
 Clear naming, consistent patterns, helpful errors
 
 ## Framework Selection
@@ -27,12 +31,14 @@ Clear naming, consistent patterns, helpful errors
 ### React (Vite) vs. Next.js
 
 **Use React + Vite when**:
+
 - Client-side only application
 - No SEO requirements
 - Simple deployment (static hosting)
 - Faster initial setup
 
 **Use Next.js when**:
+
 - SEO important (marketing sites, blogs, e-commerce)
 - Server-side rendering needed
 - API routes required
@@ -48,6 +54,7 @@ Clear naming, consistent patterns, helpful errors
 ### Component Types
 
 **1. Page Components** (Route entry points):
+
 ```typescript
 // app/users/page.tsx (Next.js App Router)
 export default function UsersPage() {
@@ -62,6 +69,7 @@ export default function UsersPage() {
 ```
 
 **2. Feature Components** (Business logic):
+
 ```typescript
 // components/features/UserList.tsx
 export function UserList() {
@@ -78,6 +86,7 @@ export function UserList() {
 ```
 
 **3. UI Components** (Reusable, no business logic):
+
 ```typescript
 // components/ui/button.tsx
 export function Button({ children, variant = 'primary', ...props }) {
@@ -610,6 +619,7 @@ const [isLoading, setIsLoading] = useState<boolean>(false)
 ## Summary
 
 Great frontends:
+
 - ✅ Use Next.js for most projects (SEO, performance, DX)
 - ✅ Break UI into small, typed components
 - ✅ Choose appropriate state management (useState → Context → Zustand)
@@ -624,14 +634,17 @@ Great frontends:
 ## Related Resources
 
 **Related Skills**:
+
 - `api-designer` - For designing backend APIs to consume
 - `ux-designer` - For creating UX designs to implement
 - `deployment-advisor` - For hosting Next.js/React apps
 
 **Related Patterns**:
+
 - `META/DECISION-FRAMEWORK.md` - Frontend framework selection
 - `STANDARDS/architecture-patterns/component-patterns.md` - Component design patterns (when created)
 
 **Related Playbooks**:
+
 - `PLAYBOOKS/setup-nextjs-project.md` - Next.js project setup (when created)
 - `PLAYBOOKS/optimize-frontend-performance.md` - Performance optimization (when created)

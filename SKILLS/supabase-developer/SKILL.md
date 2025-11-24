@@ -54,6 +54,7 @@ Supabase is an open-source Firebase alternative providing PostgreSQL database, a
 ### 1. Database (PostgreSQL)
 
 Supabase uses PostgreSQL with extensions:
+
 - **PostgREST**: Auto-generates REST API from schema
 - **pg_graphql**: Optional GraphQL support
 - **Extensions**: pgvector for embeddings, pg_cron for scheduled jobs
@@ -61,6 +62,7 @@ Supabase uses PostgreSQL with extensions:
 ### 2. Authentication
 
 Built-in auth with multiple providers:
+
 - Email/password with confirmation
 - Magic links (passwordless)
 - OAuth (Google, GitHub, etc.)
@@ -70,6 +72,7 @@ Built-in auth with multiple providers:
 ### 3. Row Level Security (RLS)
 
 PostgreSQL policies that enforce data access at the database level:
+
 - User can only read their own data
 - Admin can read all data
 - Public read, authenticated write
@@ -77,6 +80,7 @@ PostgreSQL policies that enforce data access at the database level:
 ### 4. Storage
 
 S3-compatible object storage with RLS:
+
 - Public and private buckets
 - File size and type restrictions
 - Image transformations on the fly
@@ -85,6 +89,7 @@ S3-compatible object storage with RLS:
 ### 5. Real-time
 
 WebSocket-based subscriptions:
+
 - Database changes (INSERT, UPDATE, DELETE)
 - Broadcast messages to channels
 - Presence tracking (who's online)
@@ -92,6 +97,7 @@ WebSocket-based subscriptions:
 ### 6. Edge Functions
 
 Deno-based serverless functions:
+
 - Deploy globally at the edge
 - TypeScript/JavaScript runtime
 - Background jobs and webhooks
@@ -179,8 +185,8 @@ export function createClient() {
       cookies: {
         get(name: string) {
           return cookieStore.get(name)?.value
-        },
-      },
+        }
+      }
     }
   )
 }
@@ -203,8 +209,8 @@ async function signUp(email: string, password: string) {
     email,
     password,
     options: {
-      emailRedirectTo: 'https://yourapp.com/auth/callback',
-    },
+      emailRedirectTo: 'https://yourapp.com/auth/callback'
+    }
   })
 
   if (error) throw error
@@ -215,7 +221,7 @@ async function signUp(email: string, password: string) {
 async function signIn(email: string, password: string) {
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
-    password,
+    password
   })
 
   if (error) throw error
@@ -240,9 +246,9 @@ async function signInWithGoogle() {
       redirectTo: 'https://yourapp.com/auth/callback',
       queryParams: {
         access_type: 'offline',
-        prompt: 'consent',
-      },
-    },
+        prompt: 'consent'
+      }
+    }
   })
 
   if (error) throw error
@@ -259,8 +265,8 @@ async function signInWithMagicLink(email: string) {
   const { data, error } = await supabase.auth.signInWithOtp({
     email,
     options: {
-      emailRedirectTo: 'https://yourapp.com/auth/callback',
-    },
+      emailRedirectTo: 'https://yourapp.com/auth/callback'
+    }
   })
 
   if (error) throw error
@@ -273,13 +279,19 @@ async function signInWithMagicLink(email: string) {
 ```typescript
 // Get current session
 async function getSession() {
-  const { data: { session }, error } = await supabase.auth.getSession()
+  const {
+    data: { session },
+    error
+  } = await supabase.auth.getSession()
   return session
 }
 
 // Get current user
 async function getUser() {
-  const { data: { user }, error } = await supabase.auth.getUser()
+  const {
+    data: { user },
+    error
+  } = await supabase.auth.getUser()
   return user
 }
 
@@ -312,7 +324,7 @@ export async function middleware(req: NextRequest) {
   const supabase = createMiddlewareClient({ req, res })
 
   const {
-    data: { session },
+    data: { session }
   } = await supabase.auth.getSession()
 
   // Protected routes
@@ -324,7 +336,7 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/profile/:path*'],
+  matcher: ['/dashboard/:path*', '/profile/:path*']
 }
 ```
 
@@ -488,7 +500,7 @@ const { data, error } = await supabase
   .insert({
     title: 'My First Post',
     content: 'Hello World!',
-    user_id: userId,
+    user_id: userId
   })
   .select()
   .single()
@@ -509,24 +521,16 @@ const { data, error } = await supabase
   .select()
 
 // Delete
-const { error } = await supabase
-  .from('posts')
-  .delete()
-  .eq('id', postId)
+const { error } = await supabase.from('posts').delete().eq('id', postId)
 
 // Count
-const { count } = await supabase
-  .from('posts')
-  .select('*', { count: 'exact', head: true })
+const { count } = await supabase.from('posts').select('*', { count: 'exact', head: true })
 
 // Full-text search
-const { data } = await supabase
-  .from('posts')
-  .select('*')
-  .textSearch('content', 'supabase', {
-    type: 'websearch',
-    config: 'english',
-  })
+const { data } = await supabase.from('posts').select('*').textSearch('content', 'supabase', {
+  type: 'websearch',
+  config: 'english'
+})
 ```
 
 ---
@@ -588,17 +592,11 @@ CREATE POLICY "Users can upload their own documents"
 
 ```typescript
 // Upload file
-async function uploadFile(
-  bucket: string,
-  path: string,
-  file: File
-) {
-  const { data, error } = await supabase.storage
-    .from(bucket)
-    .upload(path, file, {
-      cacheControl: '3600',
-      upsert: false,
-    })
+async function uploadFile(bucket: string, path: string, file: File) {
+  const { data, error } = await supabase.storage.from(bucket).upload(path, file, {
+    cacheControl: '3600',
+    upsert: false
+  })
 
   if (error) throw error
   return data
@@ -606,9 +604,7 @@ async function uploadFile(
 
 // Download file
 async function downloadFile(bucket: string, path: string) {
-  const { data, error } = await supabase.storage
-    .from(bucket)
-    .download(path)
+  const { data, error } = await supabase.storage.from(bucket).download(path)
 
   if (error) throw error
   return data
@@ -616,22 +612,14 @@ async function downloadFile(bucket: string, path: string) {
 
 // Get public URL
 function getPublicUrl(bucket: string, path: string) {
-  const { data } = supabase.storage
-    .from(bucket)
-    .getPublicUrl(path)
+  const { data } = supabase.storage.from(bucket).getPublicUrl(path)
 
   return data.publicUrl
 }
 
 // Get signed URL (private files)
-async function getSignedUrl(
-  bucket: string,
-  path: string,
-  expiresIn: number = 3600
-) {
-  const { data, error } = await supabase.storage
-    .from(bucket)
-    .createSignedUrl(path, expiresIn)
+async function getSignedUrl(bucket: string, path: string, expiresIn: number = 3600) {
+  const { data, error } = await supabase.storage.from(bucket).createSignedUrl(path, expiresIn)
 
   if (error) throw error
   return data.signedUrl
@@ -639,22 +627,18 @@ async function getSignedUrl(
 
 // Delete file
 async function deleteFile(bucket: string, path: string) {
-  const { error } = await supabase.storage
-    .from(bucket)
-    .remove([path])
+  const { error } = await supabase.storage.from(bucket).remove([path])
 
   if (error) throw error
 }
 
 // List files
 async function listFiles(bucket: string, folder: string = '') {
-  const { data, error } = await supabase.storage
-    .from(bucket)
-    .list(folder, {
-      limit: 100,
-      offset: 0,
-      sortBy: { column: 'created_at', order: 'desc' },
-    })
+  const { data, error } = await supabase.storage.from(bucket).list(folder, {
+    limit: 100,
+    offset: 0,
+    sortBy: { column: 'created_at', order: 'desc' }
+  })
 
   if (error) throw error
   return data
@@ -674,15 +658,13 @@ function getTransformedImage(
     quality?: number
   }
 ) {
-  const { data } = supabase.storage
-    .from(bucket)
-    .getPublicUrl(path, {
-      transform: {
-        width: options.width,
-        height: options.height,
-        quality: options.quality || 80,
-      },
-    })
+  const { data } = supabase.storage.from(bucket).getPublicUrl(path, {
+    transform: {
+      width: options.width,
+      height: options.height,
+      quality: options.quality || 80
+    }
+  })
 
   return data.publicUrl
 }
@@ -705,9 +687,9 @@ const subscription = supabase
     {
       event: 'INSERT',
       schema: 'public',
-      table: 'posts',
+      table: 'posts'
     },
-    (payload) => {
+    payload => {
       console.log('New post created:', payload.new)
       // Update UI with new post
     }
@@ -722,9 +704,9 @@ supabase
     {
       event: '*', // INSERT, UPDATE, DELETE
       schema: 'public',
-      table: 'comments',
+      table: 'comments'
     },
-    (payload) => {
+    payload => {
       console.log('Change detected:', payload)
     }
   )
@@ -739,9 +721,9 @@ supabase
       event: '*',
       schema: 'public',
       table: 'posts',
-      filter: `user_id=eq.${userId}`,
+      filter: `user_id=eq.${userId}`
     },
-    (payload) => {
+    payload => {
       console.log('My post changed:', payload)
     }
   )
@@ -761,12 +743,12 @@ const channel = supabase.channel('room-1')
 channel.send({
   type: 'broadcast',
   event: 'message',
-  payload: { text: 'Hello!', user: 'John' },
+  payload: { text: 'Hello!', user: 'John' }
 })
 
 // Receive broadcast messages
 channel
-  .on('broadcast', { event: 'message' }, (payload) => {
+  .on('broadcast', { event: 'message' }, payload => {
     console.log('Message received:', payload)
   })
   .subscribe()
@@ -779,9 +761,9 @@ channel
 const channel = supabase.channel('online-users', {
   config: {
     presence: {
-      key: userId,
-    },
-  },
+      key: userId
+    }
+  }
 })
 
 // Track current user presence
@@ -796,11 +778,11 @@ channel
   .on('presence', { event: 'leave' }, ({ key, leftPresences }) => {
     console.log('User left:', key, leftPresences)
   })
-  .subscribe(async (status) => {
+  .subscribe(async status => {
     if (status === 'SUBSCRIBED') {
       await channel.track({
         user: userId,
-        online_at: new Date().toISOString(),
+        online_at: new Date().toISOString()
       })
     }
   })
@@ -825,7 +807,7 @@ await channel.untrack()
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
-serve(async (req) => {
+serve(async req => {
   try {
     // Create Supabase client with service role
     const supabaseClient = createClient(
@@ -836,25 +818,23 @@ serve(async (req) => {
     // Get user from auth header
     const authHeader = req.headers.get('Authorization')!
     const token = authHeader.replace('Bearer ', '')
-    const { data: { user } } = await supabaseClient.auth.getUser(token)
+    const {
+      data: { user }
+    } = await supabaseClient.auth.getUser(token)
 
     // Your logic here
-    const { data, error } = await supabaseClient
-      .from('posts')
-      .select('*')
-      .eq('user_id', user?.id)
+    const { data, error } = await supabaseClient.from('posts').select('*').eq('user_id', user?.id)
 
     if (error) throw error
 
-    return new Response(
-      JSON.stringify({ data }),
-      { headers: { 'Content-Type': 'application/json' } }
-    )
+    return new Response(JSON.stringify({ data }), {
+      headers: { 'Content-Type': 'application/json' }
+    })
   } catch (error) {
-    return new Response(
-      JSON.stringify({ error: error.message }),
-      { status: 400, headers: { 'Content-Type': 'application/json' } }
-    )
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' }
+    })
   }
 })
 ```
@@ -928,16 +908,13 @@ async function addEmbedding(postId: string, text: string) {
   // Generate embedding
   const response = await openai.embeddings.create({
     model: 'text-embedding-3-small',
-    input: text,
+    input: text
   })
 
   const embedding = response.data[0].embedding
 
   // Store in Supabase
-  await supabase
-    .from('posts')
-    .update({ embedding })
-    .eq('id', postId)
+  await supabase.from('posts').update({ embedding }).eq('id', postId)
 }
 
 // Semantic search
@@ -945,7 +922,7 @@ async function semanticSearch(query: string) {
   // Generate query embedding
   const response = await openai.embeddings.create({
     model: 'text-embedding-3-small',
-    input: query,
+    input: query
   })
 
   const queryEmbedding = response.data[0].embedding
@@ -954,7 +931,7 @@ async function semanticSearch(query: string) {
   const { data } = await supabase.rpc('match_posts', {
     query_embedding: queryEmbedding,
     match_threshold: 0.7,
-    match_count: 10,
+    match_count: 10
   })
 
   return data
@@ -1042,16 +1019,14 @@ CREATE POLICY "Users can only access their data"
 
 ```typescript
 // ❌ WRONG - No validation
-await supabase
-  .from('posts')
-  .insert({ title: userInput })
+await supabase.from('posts').insert({ title: userInput })
 
 // ✅ CORRECT - Validate first
 import { z } from 'zod'
 
 const schema = z.object({
   title: z.string().min(1).max(100),
-  content: z.string().min(10).max(10000),
+  content: z.string().min(10).max(10000)
 })
 
 const validated = schema.parse(userInput)
@@ -1100,24 +1075,17 @@ CREATE INDEX posts_content_fts_idx ON posts USING gin(to_tsvector('english', con
 
 ```typescript
 // ❌ WRONG - Select everything
-const { data } = await supabase
-  .from('posts')
-  .select('*')
+const { data } = await supabase.from('posts').select('*')
 
 // ✅ CORRECT - Select specific columns
-const { data } = await supabase
-  .from('posts')
-  .select('id, title, created_at')
+const { data } = await supabase.from('posts').select('id, title, created_at')
 ```
 
 ### 3. Use Pagination
 
 ```typescript
 // Offset pagination
-const { data } = await supabase
-  .from('posts')
-  .select('*')
-  .range(0, 9)
+const { data } = await supabase.from('posts').select('*').range(0, 9)
 
 // Cursor pagination (better for large datasets)
 const { data } = await supabase
@@ -1138,12 +1106,10 @@ function usePosts() {
   return useQuery({
     queryKey: ['posts'],
     queryFn: async () => {
-      const { data } = await supabase
-        .from('posts')
-        .select('*')
+      const { data } = await supabase.from('posts').select('*')
       return data
     },
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 5 * 60 * 1000 // 5 minutes
   })
 }
 ```
@@ -1163,14 +1129,16 @@ jest.mock('@supabase/supabase-js', () => ({
     from: jest.fn(() => ({
       select: jest.fn(() => ({
         eq: jest.fn(() => ({
-          single: jest.fn(() => Promise.resolve({
-            data: { id: '1', title: 'Test' },
-            error: null,
-          })),
-        })),
-      })),
-    })),
-  })),
+          single: jest.fn(() =>
+            Promise.resolve({
+              data: { id: '1', title: 'Test' },
+              error: null
+            })
+          )
+        }))
+      }))
+    }))
+  }))
 }))
 
 test('fetches post by id', async () => {
@@ -1218,15 +1186,11 @@ function useCreatePost() {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: async (newPost) => {
-      const { data } = await supabase
-        .from('posts')
-        .insert(newPost)
-        .select()
-        .single()
+    mutationFn: async newPost => {
+      const { data } = await supabase.from('posts').insert(newPost).select().single()
       return data
     },
-    onMutate: async (newPost) => {
+    onMutate: async newPost => {
       // Cancel outgoing refetches
       await queryClient.cancelQueries({ queryKey: ['posts'] })
 
@@ -1234,7 +1198,7 @@ function useCreatePost() {
       const previousPosts = queryClient.getQueryData(['posts'])
 
       // Optimistically update
-      queryClient.setQueryData(['posts'], (old) => [...old, newPost])
+      queryClient.setQueryData(['posts'], old => [...old, newPost])
 
       return { previousPosts }
     },
@@ -1245,7 +1209,7 @@ function useCreatePost() {
     onSettled: () => {
       // Refetch after mutation
       queryClient.invalidateQueries({ queryKey: ['posts'] })
-    },
+    }
   })
 }
 ```
@@ -1320,6 +1284,7 @@ CREATE TRIGGER audit_posts
 **Symptom**: Can't query data even with correct policies
 
 **Solution**:
+
 ```sql
 -- Check if RLS is enabled
 SELECT tablename, rowsecurity
@@ -1338,6 +1303,7 @@ SELECT * FROM your_table;
 ### Issue: "JWT expired" Errors
 
 **Solution**:
+
 ```typescript
 // Auto-refresh tokens
 supabase.auth.onAuthStateChange((event, session) => {
@@ -1353,6 +1319,7 @@ const { data, error } = await supabase.auth.refreshSession()
 ### Issue: Storage Upload Fails
 
 **Solution**:
+
 ```typescript
 // Check file size (default: 50MB)
 // Check MIME type restrictions
@@ -1365,6 +1332,7 @@ const { data: buckets } = await supabase.storage.listBuckets()
 ### Issue: Real-time Not Working
 
 **Solution**:
+
 ```sql
 -- Enable replication for table
 ALTER PUBLICATION supabase_realtime ADD TABLE posts;
@@ -1462,11 +1430,11 @@ export function useAuth() {
       setUser(session?.user ?? null)
     })
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setUser(session?.user ?? null)
-      }
-    )
+    const {
+      data: { subscription }
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null)
+    })
 
     return () => subscription.unsubscribe()
   }, [])
@@ -1495,6 +1463,7 @@ This skill covers the complete Supabase development lifecycle:
 **Key Takeaway**: Supabase provides a complete backend platform with PostgreSQL at its core. Row Level Security is your primary security layer—design RLS policies carefully to ensure data is secure by default.
 
 For complex scenarios, combine this skill with:
+
 - **api-designer** for custom API endpoints
 - **security-engineer** for advanced security reviews
 - **performance-optimizer** for scaling large applications

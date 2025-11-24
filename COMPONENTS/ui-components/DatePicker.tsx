@@ -31,52 +31,52 @@
  * ```
  */
 
-import * as React from 'react';
-import { cn } from './utils';
+import * as React from 'react'
+import { cn } from './utils'
 
 export interface DatePickerProps {
   /**
    * Picker mode - single date or range
    */
-  mode?: 'single' | 'range';
+  mode?: 'single' | 'range'
 
   /**
    * Current date value(s)
    */
-  value?: Date | [Date, Date] | null;
+  value?: Date | [Date, Date] | null
 
   /**
    * Callback when date changes
    */
-  onChange?: (date: Date | [Date, Date] | null) => void;
+  onChange?: (date: Date | [Date, Date] | null) => void
 
   /**
    * Label for the date picker
    */
-  label?: string;
+  label?: string
 
   /**
    * Minimum selectable date
    */
-  minDate?: Date;
+  minDate?: Date
 
   /**
    * Maximum selectable date
    */
-  maxDate?: Date;
+  maxDate?: Date
 
   /**
    * Whether the picker is disabled
    */
-  disabled?: boolean;
+  disabled?: boolean
 
   /**
    * Additional CSS classes
    */
-  className?: string;
+  className?: string
 }
 
-const DAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+const DAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
 const MONTHS = [
   'January',
   'February',
@@ -89,163 +89,147 @@ const MONTHS = [
   'September',
   'October',
   'November',
-  'December',
-];
+  'December'
+]
 
 /**
  * DatePicker component for selecting dates
  */
 export const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
   (
-    {
-      mode = 'single',
-      value,
-      onChange,
-      label,
-      minDate,
-      maxDate,
-      disabled = false,
-      className,
-    },
+    { mode = 'single', value, onChange, label, minDate, maxDate, disabled = false, className },
     ref
   ) => {
-    const pickerId = React.useId();
-    const [isOpen, setIsOpen] = React.useState(false);
-    const [viewDate, setViewDate] = React.useState(new Date());
-    const containerRef = React.useRef<HTMLDivElement>(null);
+    const pickerId = React.useId()
+    const [isOpen, setIsOpen] = React.useState(false)
+    const [viewDate, setViewDate] = React.useState(new Date())
+    const containerRef = React.useRef<HTMLDivElement>(null)
 
     // Normalize value
     const normalizedValue: [Date | null, Date | null] = React.useMemo(() => {
       if (mode === 'range') {
         if (Array.isArray(value) && value.length === 2) {
-          return [value[0], value[1]];
+          return [value[0], value[1]]
         }
-        return [null, null];
+        return [null, null]
       }
-      return [value instanceof Date ? value : null, null];
-    }, [mode, value]);
+      return [value instanceof Date ? value : null, null]
+    }, [mode, value])
 
-    const [rangeStart, rangeEnd] = normalizedValue;
+    const [rangeStart, rangeEnd] = normalizedValue
 
     // Close on outside click
     React.useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
-        if (
-          containerRef.current &&
-          !containerRef.current.contains(event.target as Node)
-        ) {
-          setIsOpen(false);
+        if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+          setIsOpen(false)
         }
-      };
+      }
 
       if (isOpen) {
-        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('mousedown', handleClickOutside)
       }
 
       return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-      };
-    }, [isOpen]);
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
+    }, [isOpen])
 
     // Get days in month
     const getDaysInMonth = (date: Date): number => {
-      return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-    };
+      return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
+    }
 
     // Get first day of month (0 = Sunday)
     const getFirstDayOfMonth = (date: Date): number => {
-      return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
-    };
+      return new Date(date.getFullYear(), date.getMonth(), 1).getDay()
+    }
 
     // Check if date is selectable
     const isDateSelectable = (date: Date): boolean => {
-      if (minDate && date < minDate) return false;
-      if (maxDate && date > maxDate) return false;
-      return true;
-    };
+      if (minDate && date < minDate) return false
+      if (maxDate && date > maxDate) return false
+      return true
+    }
 
     // Check if date is selected
     const isDateSelected = (date: Date): boolean => {
       if (mode === 'range') {
-        if (!rangeStart || !rangeEnd) return false;
-        return date >= rangeStart && date <= rangeEnd;
+        if (!rangeStart || !rangeEnd) return false
+        return date >= rangeStart && date <= rangeEnd
       }
-      if (!rangeStart) return false;
+      if (!rangeStart) return false
       return (
         date.getDate() === rangeStart.getDate() &&
         date.getMonth() === rangeStart.getMonth() &&
         date.getFullYear() === rangeStart.getFullYear()
-      );
-    };
+      )
+    }
 
     // Check if date is in range (for styling)
     const isDateInRange = (date: Date): boolean => {
-      if (mode !== 'range' || !rangeStart || !rangeEnd) return false;
-      return date > rangeStart && date < rangeEnd;
-    };
+      if (mode !== 'range' || !rangeStart || !rangeEnd) return false
+      return date > rangeStart && date < rangeEnd
+    }
 
     // Check if date is today
     const isToday = (date: Date): boolean => {
-      const today = new Date();
+      const today = new Date()
       return (
         date.getDate() === today.getDate() &&
         date.getMonth() === today.getMonth() &&
         date.getFullYear() === today.getFullYear()
-      );
-    };
+      )
+    }
 
     // Handle date click
     const handleDateClick = (date: Date) => {
-      if (!isDateSelectable(date) || !onChange) return;
+      if (!isDateSelectable(date) || !onChange) return
 
       if (mode === 'range') {
         if (!rangeStart || (rangeStart && rangeEnd)) {
-          onChange([date, date]);
+          onChange([date, date])
         } else {
           if (date < rangeStart) {
-            onChange([date, rangeStart]);
+            onChange([date, rangeStart])
           } else {
-            onChange([rangeStart, date]);
+            onChange([rangeStart, date])
           }
         }
       } else {
-        onChange(date);
-        setIsOpen(false);
+        onChange(date)
+        setIsOpen(false)
       }
-    };
+    }
 
     // Navigate month
     const navigateMonth = (delta: number) => {
-      setViewDate(
-        new Date(viewDate.getFullYear(), viewDate.getMonth() + delta, 1)
-      );
-    };
+      setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() + delta, 1))
+    }
 
     // Format date for display
     const formatDate = (date: Date | null): string => {
-      if (!date) return '';
+      if (!date) return ''
       return date.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'short',
-        day: 'numeric',
-      });
-    };
+        day: 'numeric'
+      })
+    }
 
     // Generate calendar days
-    const calendarDays: (Date | null)[] = [];
-    const daysInMonth = getDaysInMonth(viewDate);
-    const firstDay = getFirstDayOfMonth(viewDate);
+    const calendarDays: (Date | null)[] = []
+    const daysInMonth = getDaysInMonth(viewDate)
+    const firstDay = getFirstDayOfMonth(viewDate)
 
     // Add empty cells for days before first of month
     for (let i = 0; i < firstDay; i++) {
-      calendarDays.push(null);
+      calendarDays.push(null)
     }
 
     // Add days of month
     for (let day = 1; day <= daysInMonth; day++) {
-      calendarDays.push(
-        new Date(viewDate.getFullYear(), viewDate.getMonth(), day)
-      );
+      calendarDays.push(new Date(viewDate.getFullYear(), viewDate.getMonth(), day))
     }
 
     // Display value
@@ -256,7 +240,7 @@ export const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
           : 'Select dates'
         : rangeStart
           ? formatDate(rangeStart)
-          : 'Select date';
+          : 'Select date'
 
     return (
       <div ref={ref} className={cn('relative w-full', className)}>
@@ -328,12 +312,7 @@ export const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
                   )}
                   aria-label="Previous month"
                 >
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -356,12 +335,7 @@ export const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
                   )}
                   aria-label="Next month"
                 >
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -373,13 +347,9 @@ export const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
               </div>
 
               {/* Calendar Grid */}
-              <div
-                className="grid grid-cols-7 gap-1"
-                role="grid"
-                aria-label="Calendar days"
-              >
+              <div className="grid grid-cols-7 gap-1" role="grid" aria-label="Calendar days">
                 {/* Day headers */}
-                {DAYS.map((day) => (
+                {DAYS.map(day => (
                   <div
                     key={day}
                     className="text-xs font-medium text-gray-500 text-center p-2"
@@ -392,13 +362,13 @@ export const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 {/* Calendar days */}
                 {calendarDays.map((date, index) => {
                   if (!date) {
-                    return <div key={`empty-${index}`} role="gridcell" />;
+                    return <div key={`empty-${index}`} role="gridcell" />
                   }
 
-                  const selectable = isDateSelectable(date);
-                  const selected = isDateSelected(date);
-                  const inRange = isDateInRange(date);
-                  const today = isToday(date);
+                  const selectable = isDateSelectable(date)
+                  const selected = isDateSelected(date)
+                  const inRange = isDateInRange(date)
+                  const today = isToday(date)
 
                   return (
                     <button
@@ -421,15 +391,15 @@ export const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
                     >
                       {date.getDate()}
                     </button>
-                  );
+                  )
                 })}
               </div>
             </div>
           )}
         </div>
       </div>
-    );
+    )
   }
-);
+)
 
-DatePicker.displayName = 'DatePicker';
+DatePicker.displayName = 'DatePicker'

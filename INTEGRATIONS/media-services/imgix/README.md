@@ -39,7 +39,7 @@ const client = createImgixClient()
 const client = new ImgixClient({
   domain: 'your-domain.imgix.net',
   secureUrlToken: 'your_token', // Optional
-  useHttps: true,
+  useHttps: true
 })
 ```
 
@@ -54,7 +54,7 @@ const url = client.buildUrl('image.jpg', {
   w: 800,
   h: 600,
   fit: 'crop',
-  auto: 'format,compress',
+  auto: 'format,compress'
 })
 ```
 
@@ -65,7 +65,7 @@ const url = client.buildUrl('image.jpg', {
 const srcset = client.buildSrcSet('image.jpg', {
   w: 1200,
   fit: 'crop',
-  auto: 'format,compress',
+  auto: 'format,compress'
 })
 
 // Returns: "https://domain.imgix.net/image.jpg?w=100... 100w, ..."
@@ -75,7 +75,7 @@ const srcset = client.buildSrcSet(
   'image.jpg',
   { fit: 'crop' },
   {
-    widths: [320, 640, 1024, 1920],
+    widths: [320, 640, 1024, 1920]
   }
 )
 
@@ -84,7 +84,7 @@ const srcset = client.buildSrcSet(
   'image.jpg',
   { w: 800 },
   {
-    devicePixelRatios: [1, 2, 3],
+    devicePixelRatios: [1, 2, 3]
   }
 )
 ```
@@ -94,19 +94,19 @@ const srcset = client.buildSrcSet(
 ```typescript
 // Auto format selection
 const url = client.buildUrl('image.jpg', {
-  auto: 'format',
+  auto: 'format'
 })
 
 // Specific format
 const webp = client.buildUrl('image.jpg', {
   fm: 'webp',
-  q: 85,
+  q: 85
 })
 
 // All formats
 const formats = client.buildFormatUrls('image.jpg', {
   w: 800,
-  h: 600,
+  h: 600
 })
 
 console.log(formats.webp) // WebP URL
@@ -126,7 +126,7 @@ const placeholder = client.buildUrl('image.jpg', {
   w: 64,
   blur: 200,
   q: 30,
-  auto: 'format,compress',
+  auto: 'format,compress'
 })
 ```
 
@@ -137,26 +137,26 @@ const placeholder = client.buildUrl('image.jpg', {
 const crop = client.buildUrl('image.jpg', {
   w: 800,
   h: 600,
-  fit: 'crop', // Fill area, crop excess
+  fit: 'crop' // Fill area, crop excess
 })
 
 const scale = client.buildUrl('image.jpg', {
   w: 800,
   h: 600,
-  fit: 'scale', // Exact dimensions, may distort
+  fit: 'scale' // Exact dimensions, may distort
 })
 
 const max = client.buildUrl('image.jpg', {
   w: 800,
   h: 600,
-  fit: 'max', // Fit within bounds
+  fit: 'max' // Fit within bounds
 })
 
 // Smart crop with face detection
 const faces = client.buildUrl('portrait.jpg', {
   w: 400,
   h: 400,
-  fit: 'facearea',
+  fit: 'facearea'
 })
 
 // Crop modes
@@ -164,14 +164,14 @@ const topCrop = client.buildUrl('image.jpg', {
   w: 800,
   h: 600,
   fit: 'crop',
-  crop: 'top',
+  crop: 'top'
 })
 
 const facesCrop = client.buildUrl('group.jpg', {
   w: 800,
   h: 600,
   fit: 'crop',
-  crop: 'faces',
+  crop: 'faces'
 })
 ```
 
@@ -180,29 +180,29 @@ const facesCrop = client.buildUrl('group.jpg', {
 ```typescript
 // Blur
 const blur = client.buildUrl('image.jpg', {
-  blur: 100,
+  blur: 100
 })
 
 // Brightness, contrast, saturation
 const adjusted = client.buildUrl('image.jpg', {
   bri: 20, // Brightness
   con: 10, // Contrast
-  sat: -20, // Saturation
+  sat: -20 // Saturation
 })
 
 // Sharpen
 const sharp = client.buildUrl('image.jpg', {
-  sharp: 50,
+  sharp: 50
 })
 
 // Rotation
 const rotated = client.buildUrl('image.jpg', {
-  rot: 90,
+  rot: 90
 })
 
 // Flip
 const flipped = client.buildUrl('image.jpg', {
-  flip: 'h', // horizontal
+  flip: 'h' // horizontal
 })
 ```
 
@@ -214,20 +214,20 @@ const withText = client.buildUrl('image.jpg', {
   txt: 'Hello World',
   'txt-font': 'Helvetica',
   'txt-size': 48,
-  'txt-color': 'ffffff',
+  'txt-color': 'ffffff'
 })
 
 // Watermark
 const watermarked = client.buildUrl('image.jpg', {
   mark: 'logo.png',
   'mark-align': 'bottom,right',
-  'mark-pad': 20,
+  'mark-pad': 20
 })
 
 // Blend layers
 const blended = client.buildUrl('base.jpg', {
   blend: 'overlay.png',
-  'blend-mode': 'overlay',
+  'blend-mode': 'overlay'
 })
 ```
 
@@ -239,17 +239,17 @@ const withBg = client.buildUrl('image.png', {
   w: 800,
   h: 600,
   fit: 'fill',
-  bg: 'ffffff',
+  bg: 'ffffff'
 })
 
 // Border
 const withBorder = client.buildUrl('image.jpg', {
-  border: '10,ff0000', // 10px red border
+  border: '10,ff0000' // 10px red border
 })
 
 // Rounded corners
 const rounded = client.buildUrl('image.jpg', {
-  'corner-radius': 20,
+  'corner-radius': 20
 })
 
 // Circular
@@ -257,7 +257,7 @@ const circular = client.buildUrl('avatar.jpg', {
   w: 200,
   h: 200,
   fit: 'crop',
-  'corner-radius': '100',
+  'corner-radius': '100'
 })
 ```
 
@@ -314,13 +314,13 @@ const circular = client.buildUrl('avatar.jpg', {
 // Automatic optimization
 const optimized = client.buildUrl('image.jpg', {
   auto: 'format,compress',
-  q: 85,
+  q: 85
 })
 
 // Responsive with DPR
 const responsive = client.buildSrcSet('image.jpg', {
   w: 1200,
-  auto: 'format,compress',
+  auto: 'format,compress'
 })
 ```
 
@@ -333,7 +333,7 @@ const placeholder = client.buildPlaceholder('image.jpg')
 // Full image
 const full = client.buildUrl('image.jpg', {
   w: 1920,
-  auto: 'format,compress',
+  auto: 'format,compress'
 })
 ```
 
@@ -343,11 +343,11 @@ const full = client.buildUrl('image.jpg', {
 // Picture element with format support
 const formats = client.buildFormatUrls('image.jpg', {
   w: 1200,
-  fit: 'crop',
+  fit: 'crop'
 })
 
 const srcset = client.buildSrcSet('image.jpg', {
-  fit: 'crop',
+  fit: 'crop'
 })
 ```
 
@@ -373,14 +373,8 @@ const srcset = client.buildSrcSet('image.jpg', {
 
 ```html
 <picture>
-  <source
-    type="image/avif"
-    srcset="https://domain.imgix.net/image.jpg?w=800&fm=avif"
-  />
-  <source
-    type="image/webp"
-    srcset="https://domain.imgix.net/image.jpg?w=800&fm=webp"
-  />
+  <source type="image/avif" srcset="https://domain.imgix.net/image.jpg?w=800&fm=avif" />
+  <source type="image/webp" srcset="https://domain.imgix.net/image.jpg?w=800&fm=webp" />
   <img src="https://domain.imgix.net/image.jpg?w=800&fm=jpg" alt="Description" />
 </picture>
 ```

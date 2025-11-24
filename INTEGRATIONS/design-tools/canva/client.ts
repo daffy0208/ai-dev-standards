@@ -127,7 +127,7 @@ export class CanvaClient {
     this.options = {
       accessToken: options.accessToken || process.env.CANVA_ACCESS_TOKEN || '',
       timeout: options.timeout || 30000,
-      baseUrl: options.baseUrl || 'https://api.canva.com/v1',
+      baseUrl: options.baseUrl || 'https://api.canva.com/v1'
     }
 
     if (!this.options.accessToken) {
@@ -146,11 +146,13 @@ export class CanvaClient {
   /**
    * List user designs
    */
-  async listDesigns(options: {
-    folder_id?: string
-    limit?: number
-    continuation?: string
-  } = {}): Promise<{ designs: CanvaDesign[]; continuation?: string }> {
+  async listDesigns(
+    options: {
+      folder_id?: string
+      limit?: number
+      continuation?: string
+    } = {}
+  ): Promise<{ designs: CanvaDesign[]; continuation?: string }> {
     const params = new URLSearchParams()
     if (options.folder_id) params.set('folder_id', options.folder_id)
     if (options.limit) params.set('limit', options.limit.toString())
@@ -171,8 +173,8 @@ export class CanvaClient {
         template_id: options.template_id,
         width: options.width,
         height: options.height,
-        folder_id: options.folder_id,
-      }),
+        folder_id: options.folder_id
+      })
     })
     return response.design
   }
@@ -192,15 +194,15 @@ export class CanvaClient {
         quality,
         pages,
         width: options.width,
-        height: options.height,
-      }),
+        height: options.height
+      })
     })
 
     return {
       id: response.export.id,
       format,
       url: response.export.url,
-      status: response.export.status,
+      status: response.export.status
     }
   }
 
@@ -219,7 +221,7 @@ export class CanvaClient {
           id: exportResult.id,
           format: exportResult.format,
           url: exportResult.url,
-          status: exportResult.status,
+          status: exportResult.status
         }
       }
 
@@ -228,7 +230,7 @@ export class CanvaClient {
       }
 
       // Wait before polling again
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      await new Promise(resolve => setTimeout(resolve, 2000))
     }
 
     throw new Error('Export timeout exceeded')
@@ -237,10 +239,7 @@ export class CanvaClient {
   /**
    * Export and wait for completion
    */
-  async exportDesignAndWait(
-    designId: string,
-    options: ExportOptions = {}
-  ): Promise<ExportResult> {
+  async exportDesignAndWait(designId: string, options: ExportOptions = {}): Promise<ExportResult> {
     const exportResult = await this.exportDesign(designId, options)
     return this.waitForExport(exportResult.id)
   }
@@ -298,7 +297,7 @@ export class CanvaClient {
   async createFolder(name: string): Promise<CanvaFolder> {
     const response = await this.request('/folders', {
       method: 'POST',
-      body: JSON.stringify({ name }),
+      body: JSON.stringify({ name })
     })
     return response.folder
   }
@@ -372,9 +371,9 @@ export class CanvaClient {
       headers: {
         Authorization: `Bearer ${this.options.accessToken}`,
         'Content-Type': 'application/json',
-        ...options.headers,
+        ...options.headers
       },
-      signal: AbortSignal.timeout(this.options.timeout),
+      signal: AbortSignal.timeout(this.options.timeout)
     })
 
     if (!response.ok) {

@@ -65,22 +65,12 @@ export interface LoaderOptions {
 
 export class DocumentLoader {
   private readonly DEFAULT_MAX_SIZE = 10 * 1024 * 1024 // 10MB
-  private readonly SUPPORTED_EXTENSIONS = [
-    '.pdf',
-    '.txt',
-    '.md',
-    '.json',
-    '.csv',
-    '.docx',
-  ]
+  private readonly SUPPORTED_EXTENSIONS = ['.pdf', '.txt', '.md', '.json', '.csv', '.docx']
 
   /**
    * Load a single file
    */
-  async loadFile(
-    filePath: string,
-    options: LoaderOptions = {}
-  ): Promise<Document[]> {
+  async loadFile(filePath: string, options: LoaderOptions = {}): Promise<Document[]> {
     const ext = extname(filePath).toLowerCase()
 
     if (!this.isSupportedExt(ext, options)) {
@@ -91,9 +81,7 @@ export class DocumentLoader {
     const stats = await this.getFileStats(filePath)
     const maxSize = options.maxFileSize || this.DEFAULT_MAX_SIZE
     if (stats.size > maxSize) {
-      throw new Error(
-        `File too large: ${stats.size} bytes (max: ${maxSize} bytes)`
-      )
+      throw new Error(`File too large: ${stats.size} bytes (max: ${maxSize} bytes)`)
     }
 
     // Load document based on type
@@ -112,10 +100,7 @@ export class DocumentLoader {
   /**
    * Load all files from a directory
    */
-  async loadDirectory(
-    dirPath: string,
-    options: LoaderOptions = {}
-  ): Promise<Document[]> {
+  async loadDirectory(dirPath: string, options: LoaderOptions = {}): Promise<Document[]> {
     const files = await this.getFiles(dirPath, options.recursive)
     const allDocs: Document[] = []
 
@@ -135,10 +120,7 @@ export class DocumentLoader {
   /**
    * Load document from URL
    */
-  async loadUrl(
-    url: string,
-    options: LoaderOptions = {}
-  ): Promise<Document[]> {
+  async loadUrl(url: string, options: LoaderOptions = {}): Promise<Document[]> {
     const loader = new CheerioWebBaseLoader(url)
     const docs = await loader.load()
 
@@ -155,10 +137,7 @@ export class DocumentLoader {
   /**
    * Load multiple URLs
    */
-  async loadUrls(
-    urls: string[],
-    options: LoaderOptions = {}
-  ): Promise<Document[]> {
+  async loadUrls(urls: string[], options: LoaderOptions = {}): Promise<Document[]> {
     const allDocs: Document[] = []
 
     for (const url of urls) {
@@ -177,10 +156,7 @@ export class DocumentLoader {
   /**
    * Load document based on file extension
    */
-  private async loadByExtension(
-    filePath: string,
-    ext: string
-  ): Promise<Document[]> {
+  private async loadByExtension(filePath: string, ext: string): Promise<Document[]> {
     switch (ext) {
       case '.pdf':
         return await new PDFLoader(filePath).load()
@@ -206,10 +182,7 @@ export class DocumentLoader {
   /**
    * Get all files in directory (optionally recursive)
    */
-  private async getFiles(
-    dirPath: string,
-    recursive: boolean = false
-  ): Promise<string[]> {
+  private async getFiles(dirPath: string, recursive: boolean = false): Promise<string[]> {
     const entries = await readdir(dirPath, { withFileTypes: true })
     const files: string[] = []
 

@@ -40,11 +40,11 @@ Takes high-level goals and decomposes them into executable workflows using the c
 
 ```yaml
 inputs:
-  goal: string                    # User goal (e.g., "implement RAG")
-  project_state: object           # Current project state (files, dependencies, env vars)
-  capability_graph: string        # Path to capability-graph.json
-  preferences: object             # User preferences (cost_weight, risk_tolerance, etc.)
-  context: array                  # Recently used capabilities (for cooldown)
+  goal: string # User goal (e.g., "implement RAG")
+  project_state: object # Current project state (files, dependencies, env vars)
+  capability_graph: string # Path to capability-graph.json
+  preferences: object # User preferences (cost_weight, risk_tolerance, etc.)
+  context: array # Recently used capabilities (for cooldown)
 ```
 
 ## Process
@@ -365,13 +365,13 @@ function scoreCapability(capability, context) {
   if (lastUsed) {
     const stepsSince = context.currentStep - lastUsed
     if (stepsSince < 3) {
-      score *= 0.7  // 30% penalty
+      score *= 0.7 // 30% penalty
     }
   }
 
   // Novelty bonus: prefer capabilities not yet used in this plan
   if (!context.usedCapabilities.has(capability.name)) {
-    score *= 1.2  // 20% bonus
+    score *= 1.2 // 20% bonus
   }
 
   return score
@@ -425,9 +425,9 @@ function scoreCapability(capability, context) {
   "scores": {
     "utility": 0.78,
     "cost_score": 0.65,
-    "latency_score": 0.70,
-    "risk_score": 0.80,
-    "diversity_score": 0.80
+    "latency_score": 0.7,
+    "risk_score": 0.8,
+    "diversity_score": 0.8
   }
 }
 ```

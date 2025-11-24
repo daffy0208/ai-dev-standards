@@ -120,7 +120,7 @@
  * ```
  */
 
-import { randomUUID } from 'crypto';
+import { randomUUID } from 'crypto'
 
 /**
  * Span status codes
@@ -128,7 +128,7 @@ import { randomUUID } from 'crypto';
 export enum SpanStatusCode {
   UNSET = 0,
   OK = 1,
-  ERROR = 2,
+  ERROR = 2
 }
 
 /**
@@ -139,7 +139,7 @@ export enum SpanKind {
   SERVER = 1,
   CLIENT = 2,
   PRODUCER = 3,
-  CONSUMER = 4,
+  CONSUMER = 4
 }
 
 /**
@@ -147,11 +147,11 @@ export enum SpanKind {
  */
 export interface SpanEvent {
   /** Event name */
-  name: string;
+  name: string
   /** Timestamp in milliseconds */
-  timestamp: number;
+  timestamp: number
   /** Event attributes */
-  attributes?: Record<string, any>;
+  attributes?: Record<string, any>
 }
 
 /**
@@ -159,11 +159,11 @@ export interface SpanEvent {
  */
 export interface SpanLink {
   /** Trace ID of linked span */
-  traceId: string;
+  traceId: string
   /** Span ID of linked span */
-  spanId: string;
+  spanId: string
   /** Link attributes */
-  attributes?: Record<string, any>;
+  attributes?: Record<string, any>
 }
 
 /**
@@ -171,9 +171,9 @@ export interface SpanLink {
  */
 export interface SpanStatus {
   /** Status code */
-  code: SpanStatusCode;
+  code: SpanStatusCode
   /** Status message */
-  message?: string;
+  message?: string
 }
 
 /**
@@ -181,15 +181,15 @@ export interface SpanStatus {
  */
 export interface SpanOptions {
   /** Span kind */
-  kind?: SpanKind;
+  kind?: SpanKind
   /** Initial attributes */
-  attributes?: Record<string, any>;
+  attributes?: Record<string, any>
   /** Parent span or span ID */
-  parent?: Span | string;
+  parent?: Span | string
   /** Links to other spans */
-  links?: SpanLink[];
+  links?: SpanLink[]
   /** Start timestamp (defaults to now) */
-  startTime?: number;
+  startTime?: number
 }
 
 /**
@@ -197,42 +197,42 @@ export interface SpanOptions {
  */
 export interface Span {
   /** Span ID */
-  readonly spanId: string;
+  readonly spanId: string
   /** Trace ID */
-  readonly traceId: string;
+  readonly traceId: string
   /** Parent span ID */
-  readonly parentSpanId?: string;
+  readonly parentSpanId?: string
   /** Span name */
-  readonly name: string;
+  readonly name: string
   /** Span kind */
-  readonly kind: SpanKind;
+  readonly kind: SpanKind
   /** Start timestamp */
-  readonly startTime: number;
+  readonly startTime: number
   /** End timestamp */
-  endTime?: number;
+  endTime?: number
   /** Span attributes */
-  attributes: Record<string, any>;
+  attributes: Record<string, any>
   /** Span events */
-  events: SpanEvent[];
+  events: SpanEvent[]
   /** Span links */
-  links: SpanLink[];
+  links: SpanLink[]
   /** Span status */
-  status: SpanStatus;
+  status: SpanStatus
 
   /** Set a single attribute */
-  setAttribute(key: string, value: any): Span;
+  setAttribute(key: string, value: any): Span
   /** Set multiple attributes */
-  setAttributes(attributes: Record<string, any>): Span;
+  setAttributes(attributes: Record<string, any>): Span
   /** Add an event */
-  addEvent(name: string, attributes?: Record<string, any>): Span;
+  addEvent(name: string, attributes?: Record<string, any>): Span
   /** Set span status */
-  setStatus(status: SpanStatus): Span;
+  setStatus(status: SpanStatus): Span
   /** Record an exception */
-  recordException(error: Error): Span;
+  recordException(error: Error): Span
   /** End the span */
-  end(endTime?: number): void;
+  end(endTime?: number): void
   /** Check if span is recording */
-  isRecording(): boolean;
+  isRecording(): boolean
 }
 
 /**
@@ -240,13 +240,13 @@ export interface Span {
  */
 export interface TraceContext {
   /** Trace ID */
-  traceId: string;
+  traceId: string
   /** Span ID */
-  spanId: string;
+  spanId: string
   /** Trace flags */
-  traceFlags?: number;
+  traceFlags?: number
   /** Trace state */
-  traceState?: string;
+  traceState?: string
 }
 
 /**
@@ -254,17 +254,17 @@ export interface TraceContext {
  */
 export interface Trace {
   /** Trace ID */
-  traceId: string;
+  traceId: string
   /** Root span */
-  rootSpan: Span;
+  rootSpan: Span
   /** All spans in trace */
-  spans: Span[];
+  spans: Span[]
   /** Trace start time */
-  startTime: number;
+  startTime: number
   /** Trace end time */
-  endTime?: number;
+  endTime?: number
   /** Service name */
-  service: string;
+  service: string
 }
 
 /**
@@ -272,69 +272,65 @@ export interface Trace {
  */
 export interface TracerOptions {
   /** Service name */
-  service?: string;
+  service?: string
   /** Enable/disable tracing */
-  enabled?: boolean;
+  enabled?: boolean
   /** Default attributes for all spans */
-  defaultAttributes?: Record<string, any>;
+  defaultAttributes?: Record<string, any>
   /** Sample rate (0-1, default: 1) */
-  sampleRate?: number;
+  sampleRate?: number
 }
 
 /**
  * Internal span implementation
  */
 class SpanImpl implements Span {
-  public readonly spanId: string;
-  public readonly traceId: string;
-  public readonly parentSpanId?: string;
-  public readonly name: string;
-  public readonly kind: SpanKind;
-  public readonly startTime: number;
-  public endTime?: number;
-  public attributes: Record<string, any>;
-  public events: SpanEvent[];
-  public links: SpanLink[];
-  public status: SpanStatus;
-  private recording: boolean;
+  public readonly spanId: string
+  public readonly traceId: string
+  public readonly parentSpanId?: string
+  public readonly name: string
+  public readonly kind: SpanKind
+  public readonly startTime: number
+  public endTime?: number
+  public attributes: Record<string, any>
+  public events: SpanEvent[]
+  public links: SpanLink[]
+  public status: SpanStatus
+  private recording: boolean
 
-  constructor(
-    name: string,
-    traceId: string,
-    options: SpanOptions = {}
-  ) {
-    this.spanId = randomUUID().replace(/-/g, '').substring(0, 16);
-    this.traceId = traceId;
-    this.name = name;
-    this.kind = options.kind || SpanKind.INTERNAL;
-    this.startTime = options.startTime || Date.now();
-    this.attributes = options.attributes || {};
-    this.events = [];
-    this.links = options.links || [];
-    this.status = { code: SpanStatusCode.UNSET };
-    this.recording = true;
+  constructor(name: string, traceId: string, options: SpanOptions = {}) {
+    this.spanId = randomUUID().replace(/-/g, '').substring(0, 16)
+    this.traceId = traceId
+    this.name = name
+    this.kind = options.kind || SpanKind.INTERNAL
+    this.startTime = options.startTime || Date.now()
+    this.attributes = options.attributes || {}
+    this.events = []
+    this.links = options.links || []
+    this.status = { code: SpanStatusCode.UNSET }
+    this.recording = true
 
     if (options.parent) {
       if (typeof options.parent === 'string') {
-        this.parentSpanId = options.parent;
+        this.parentSpanId = options.parent
       } else {
-        this.parentSpanId = options.parent.spanId;
+        this.parentSpanId = options.parent.spanId
       }
     }
   }
 
   setAttribute(key: string, value: any): Span {
     if (this.recording) {
-      this.attributes[key] = value;
+      this.attributes[key] = value
     }
-    return this;
+    return this
   }
 
   setAttributes(attributes: Record<string, any>): Span {
     if (this.recording) {
-      Object.assign(this.attributes, attributes);
+      Object.assign(this.attributes, attributes)
     }
-    return this;
+    return this
   }
 
   addEvent(name: string, attributes?: Record<string, any>): Span {
@@ -342,17 +338,17 @@ class SpanImpl implements Span {
       this.events.push({
         name,
         timestamp: Date.now(),
-        attributes,
-      });
+        attributes
+      })
     }
-    return this;
+    return this
   }
 
   setStatus(status: SpanStatus): Span {
     if (this.recording) {
-      this.status = status;
+      this.status = status
     }
-    return this;
+    return this
   }
 
   recordException(error: Error): Span {
@@ -360,29 +356,29 @@ class SpanImpl implements Span {
       this.addEvent('exception', {
         'exception.type': error.name,
         'exception.message': error.message,
-        'exception.stacktrace': error.stack,
-      });
+        'exception.stacktrace': error.stack
+      })
       this.setStatus({
         code: SpanStatusCode.ERROR,
-        message: error.message,
-      });
+        message: error.message
+      })
     }
-    return this;
+    return this
   }
 
   end(endTime?: number): void {
     if (this.recording) {
-      this.endTime = endTime || Date.now();
-      this.recording = false;
+      this.endTime = endTime || Date.now()
+      this.recording = false
 
       if (this.status.code === SpanStatusCode.UNSET) {
-        this.status.code = SpanStatusCode.OK;
+        this.status.code = SpanStatusCode.OK
       }
     }
   }
 
   isRecording(): boolean {
-    return this.recording;
+    return this.recording
   }
 }
 
@@ -390,19 +386,19 @@ class SpanImpl implements Span {
  * Main tracer class
  */
 export class Tracer {
-  private service: string;
-  private enabled: boolean;
-  private defaultAttributes: Record<string, any>;
-  private sampleRate: number;
-  private traces = new Map<string, Trace>();
-  private activeSpans = new Map<string, Span>();
-  private activeContext: Span | null = null;
+  private service: string
+  private enabled: boolean
+  private defaultAttributes: Record<string, any>
+  private sampleRate: number
+  private traces = new Map<string, Trace>()
+  private activeSpans = new Map<string, Span>()
+  private activeContext: Span | null = null
 
   constructor(options: TracerOptions = {}) {
-    this.service = options.service || 'unknown';
-    this.enabled = options.enabled !== false;
-    this.defaultAttributes = options.defaultAttributes || {};
-    this.sampleRate = options.sampleRate !== undefined ? options.sampleRate : 1.0;
+    this.service = options.service || 'unknown'
+    this.enabled = options.enabled !== false
+    this.defaultAttributes = options.defaultAttributes || {}
+    this.sampleRate = options.sampleRate !== undefined ? options.sampleRate : 1.0
   }
 
   /**
@@ -410,18 +406,18 @@ export class Tracer {
    */
   startSpan(name: string, options: SpanOptions = {}): Span {
     if (!this.enabled || !this.shouldSample()) {
-      return this.createNoopSpan();
+      return this.createNoopSpan()
     }
 
     // Get parent from options or active context
-    const parent = options.parent || this.activeContext;
+    const parent = options.parent || this.activeContext
 
     // Create trace ID
-    let traceId: string;
+    let traceId: string
     if (parent) {
-      traceId = typeof parent === 'string' ? parent : parent.traceId;
+      traceId = typeof parent === 'string' ? parent : parent.traceId
     } else {
-      traceId = randomUUID().replace(/-/g, '');
+      traceId = randomUUID().replace(/-/g, '')
     }
 
     // Create span
@@ -431,12 +427,12 @@ export class Tracer {
       attributes: {
         ...this.defaultAttributes,
         'service.name': this.service,
-        ...options.attributes,
-      },
-    });
+        ...options.attributes
+      }
+    })
 
     // Store span
-    this.activeSpans.set(span.spanId, span);
+    this.activeSpans.set(span.spanId, span)
 
     // Create or update trace
     if (!this.traces.has(traceId)) {
@@ -445,35 +441,35 @@ export class Tracer {
         rootSpan: span,
         spans: [span],
         startTime: span.startTime,
-        service: this.service,
-      });
+        service: this.service
+      })
     } else {
-      const trace = this.traces.get(traceId)!;
-      trace.spans.push(span);
+      const trace = this.traces.get(traceId)!
+      trace.spans.push(span)
     }
 
-    return span;
+    return span
   }
 
   /**
    * End a span
    */
   endSpan(span: Span, endTime?: number): void {
-    span.end(endTime);
-    this.activeSpans.delete(span.spanId);
+    span.end(endTime)
+    this.activeSpans.delete(span.spanId)
 
     // Update trace end time
-    const trace = this.traces.get(span.traceId);
+    const trace = this.traces.get(span.traceId)
     if (trace) {
-      const allEnded = trace.spans.every(s => s.endTime !== undefined);
+      const allEnded = trace.spans.every(s => s.endTime !== undefined)
       if (allEnded) {
-        trace.endTime = Math.max(...trace.spans.map(s => s.endTime || 0));
+        trace.endTime = Math.max(...trace.spans.map(s => s.endTime || 0))
       }
     }
 
     // Clear active context if this was the active span
     if (this.activeContext?.spanId === span.spanId) {
-      this.activeContext = null;
+      this.activeContext = null
     }
   }
 
@@ -481,14 +477,14 @@ export class Tracer {
    * Get active span
    */
   getActiveSpan(): Span | null {
-    return this.activeContext;
+    return this.activeContext
   }
 
   /**
    * Set active span for context
    */
   setActiveSpan(span: Span | null): void {
-    this.activeContext = span;
+    this.activeContext = span
   }
 
   /**
@@ -498,96 +494,97 @@ export class Tracer {
     return {
       traceId: span.traceId,
       spanId: span.spanId,
-      traceFlags: 1, // Sampled
-    };
+      traceFlags: 1 // Sampled
+    }
   }
 
   /**
    * Extract context from headers (W3C Trace Context format)
    */
   extractContext(headers: Record<string, string>): TraceContext | null {
-    const traceparent = headers.traceparent || headers['traceparent'];
-    if (!traceparent) return null;
+    const traceparent = headers.traceparent || headers['traceparent']
+    if (!traceparent) return null
 
-    const parts = traceparent.split('-');
-    if (parts.length !== 4) return null;
+    const parts = traceparent.split('-')
+    if (parts.length !== 4) return null
 
-    const [version, traceId, spanId, traceFlags] = parts;
-    if (version !== '00') return null;
+    const [version, traceId, spanId, traceFlags] = parts
+    if (version !== '00') return null
 
     return {
       traceId,
       spanId,
       traceFlags: parseInt(traceFlags, 16),
-      traceState: headers.tracestate || headers['tracestate'],
-    };
+      traceState: headers.tracestate || headers['tracestate']
+    }
   }
 
   /**
    * Inject context into headers (W3C Trace Context format)
    */
-  injectContext(context: TraceContext, headers: Record<string, string> = {}): Record<string, string> {
-    const traceFlags = (context.traceFlags || 1).toString(16).padStart(2, '0');
-    headers.traceparent = `00-${context.traceId}-${context.spanId}-${traceFlags}`;
+  injectContext(
+    context: TraceContext,
+    headers: Record<string, string> = {}
+  ): Record<string, string> {
+    const traceFlags = (context.traceFlags || 1).toString(16).padStart(2, '0')
+    headers.traceparent = `00-${context.traceId}-${context.spanId}-${traceFlags}`
 
     if (context.traceState) {
-      headers.tracestate = context.traceState;
+      headers.tracestate = context.traceState
     }
 
-    return headers;
+    return headers
   }
 
   /**
    * Get a specific trace
    */
   getTrace(traceId: string): Trace | undefined {
-    return this.traces.get(traceId);
+    return this.traces.get(traceId)
   }
 
   /**
    * Get all traces
    */
   getAllTraces(): Trace[] {
-    return Array.from(this.traces.values());
+    return Array.from(this.traces.values())
   }
 
   /**
    * Export trace as JSON
    */
   exportTraceJSON(traceId: string): string {
-    const trace = this.traces.get(traceId);
-    if (!trace) return '{}';
+    const trace = this.traces.get(traceId)
+    if (!trace) return '{}'
 
-    return JSON.stringify(trace, null, 2);
+    return JSON.stringify(trace, null, 2)
   }
 
   /**
    * Export all traces as JSON
    */
   exportJSON(): string {
-    return JSON.stringify(this.getAllTraces(), null, 2);
+    return JSON.stringify(this.getAllTraces(), null, 2)
   }
 
   /**
    * Export trace in OpenTelemetry format
    */
   exportOpenTelemetry(traceId: string): any {
-    const trace = this.traces.get(traceId);
-    if (!trace) return null;
+    const trace = this.traces.get(traceId)
+    if (!trace) return null
 
     return {
       resourceSpans: [
         {
           resource: {
-            attributes: [
-              { key: 'service.name', value: { stringValue: this.service } },
-            ],
+            attributes: [{ key: 'service.name', value: { stringValue: this.service } }]
           },
           scopeSpans: [
             {
               scope: {
                 name: 'tracer',
-                version: '1.0.0',
+                version: '1.0.0'
               },
               spans: trace.spans.map(span => ({
                 traceId: span.traceId,
@@ -599,7 +596,7 @@ export class Tracer {
                 endTimeUnixNano: span.endTime ? span.endTime * 1000000 : undefined,
                 attributes: Object.entries(span.attributes).map(([key, value]) => ({
                   key,
-                  value: this.convertValue(value),
+                  value: this.convertValue(value)
                 })),
                 events: span.events.map(event => ({
                   name: event.name,
@@ -607,9 +604,9 @@ export class Tracer {
                   attributes: event.attributes
                     ? Object.entries(event.attributes).map(([key, value]) => ({
                         key,
-                        value: this.convertValue(value),
+                        value: this.convertValue(value)
                       }))
-                    : [],
+                    : []
                 })),
                 links: span.links.map(link => ({
                   traceId: link.traceId,
@@ -617,40 +614,40 @@ export class Tracer {
                   attributes: link.attributes
                     ? Object.entries(link.attributes).map(([key, value]) => ({
                         key,
-                        value: this.convertValue(value),
+                        value: this.convertValue(value)
                       }))
-                    : [],
+                    : []
                 })),
                 status: {
                   code: span.status.code,
-                  message: span.status.message,
-                },
-              })),
-            },
-          ],
-        },
-      ],
-    };
+                  message: span.status.message
+                }
+              }))
+            }
+          ]
+        }
+      ]
+    }
   }
 
   /**
    * Convert value to OpenTelemetry format
    */
   private convertValue(value: any): any {
-    if (typeof value === 'string') return { stringValue: value };
-    if (typeof value === 'number') return { intValue: value };
-    if (typeof value === 'boolean') return { boolValue: value };
-    return { stringValue: String(value) };
+    if (typeof value === 'string') return { stringValue: value }
+    if (typeof value === 'number') return { intValue: value }
+    if (typeof value === 'boolean') return { boolValue: value }
+    return { stringValue: String(value) }
   }
 
   /**
    * Clear old traces
    */
   clearOldTraces(maxAge: number = 3600000): void {
-    const now = Date.now();
+    const now = Date.now()
     for (const [traceId, trace] of this.traces) {
       if (trace.endTime && now - trace.endTime > maxAge) {
-        this.traces.delete(traceId);
+        this.traces.delete(traceId)
       }
     }
   }
@@ -659,16 +656,16 @@ export class Tracer {
    * Clear all traces
    */
   clear(): void {
-    this.traces.clear();
-    this.activeSpans.clear();
-    this.activeContext = null;
+    this.traces.clear()
+    this.activeSpans.clear()
+    this.activeContext = null
   }
 
   /**
    * Check if should sample this trace
    */
   private shouldSample(): boolean {
-    return Math.random() < this.sampleRate;
+    return Math.random() < this.sampleRate
   }
 
   /**
@@ -691,8 +688,8 @@ export class Tracer {
       setStatus: () => this.createNoopSpan(),
       recordException: () => this.createNoopSpan(),
       end: () => {},
-      isRecording: () => false,
-    };
+      isRecording: () => false
+    }
   }
 }
 
@@ -702,5 +699,5 @@ export class Tracer {
 export const defaultTracer = new Tracer({
   service: process.env.SERVICE_NAME || 'unknown',
   enabled: process.env.TRACING_ENABLED !== 'false',
-  sampleRate: parseFloat(process.env.TRACE_SAMPLE_RATE || '1.0'),
-});
+  sampleRate: parseFloat(process.env.TRACE_SAMPLE_RATE || '1.0')
+})

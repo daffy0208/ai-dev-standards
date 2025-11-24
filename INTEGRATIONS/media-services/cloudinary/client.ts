@@ -273,7 +273,7 @@ export class CloudinaryClient {
       apiKey: options.apiKey,
       apiSecret: options.apiSecret,
       secure: options.secure ?? true,
-      timeout: options.timeout ?? 30000,
+      timeout: options.timeout ?? 30000
     }
 
     if (!this.options.cloudName || !this.options.apiKey || !this.options.apiSecret) {
@@ -310,8 +310,7 @@ export class CloudinaryClient {
     if (options.publicId) formData.append('public_id', options.publicId)
     if (options.folder) formData.append('folder', options.folder)
     if (options.tags) formData.append('tags', options.tags.join(','))
-    if (options.overwrite !== undefined)
-      formData.append('overwrite', options.overwrite.toString())
+    if (options.overwrite !== undefined) formData.append('overwrite', options.overwrite.toString())
     if (options.useFilename !== undefined)
       formData.append('use_filename', options.useFilename.toString())
     if (options.uniqueFilename !== undefined)
@@ -331,7 +330,7 @@ export class CloudinaryClient {
     const response = await fetch(url, {
       method: 'POST',
       body: formData,
-      signal: AbortSignal.timeout(this.options.timeout),
+      signal: AbortSignal.timeout(this.options.timeout)
     })
 
     if (!response.ok) {
@@ -353,7 +352,7 @@ export class CloudinaryClient {
       bytes: data.bytes,
       type: data.type,
       url: data.url,
-      secureUrl: data.secure_url,
+      secureUrl: data.secure_url
     }
   }
 
@@ -410,7 +409,7 @@ export class CloudinaryClient {
     const response = await fetch(url, {
       method: 'POST',
       body: formData,
-      signal: AbortSignal.timeout(this.options.timeout),
+      signal: AbortSignal.timeout(this.options.timeout)
     })
 
     if (!response.ok) {
@@ -421,7 +420,7 @@ export class CloudinaryClient {
     const data = await response.json()
 
     return {
-      result: data.result,
+      result: data.result
     }
   }
 
@@ -435,13 +434,13 @@ export class CloudinaryClient {
       baseOptions?: TransformOptions
     }
   ): Array<{ url: string; width: number }> {
-    return options.widths.map((width) => ({
+    return options.widths.map(width => ({
       url: this.url(publicId, {
         ...options.baseOptions,
         width,
-        crop: options.baseOptions?.crop || 'scale',
+        crop: options.baseOptions?.crop || 'scale'
       }),
-      width,
+      width
     }))
   }
 
@@ -488,7 +487,7 @@ export class CloudinaryClient {
 
     const sortedParams = Object.keys(params)
       .sort()
-      .map((key) => `${key}=${params[key]}`)
+      .map(key => `${key}=${params[key]}`)
       .join('&')
 
     const stringToSign = sortedParams + this.options.apiSecret
@@ -498,7 +497,7 @@ export class CloudinaryClient {
     const data = encoder.encode(stringToSign)
     const hashBuffer = await crypto.subtle.digest('SHA-1', data)
     const hashArray = Array.from(new Uint8Array(hashBuffer))
-    const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
 
     return hashHex
   }
@@ -524,6 +523,6 @@ export function createCloudinaryClient(
     apiKey: options.apiKey || process.env.CLOUDINARY_API_KEY || '',
     apiSecret: options.apiSecret || process.env.CLOUDINARY_API_SECRET || '',
     secure: options.secure,
-    timeout: options.timeout,
+    timeout: options.timeout
   })
 }

@@ -42,12 +42,14 @@ ai-dev sync --dry-run
 ```
 
 **What it syncs:**
+
 - Skills (to `claude.md`)
 - MCP configurations (to `mcp-settings.json`)
 - Config files (`.cursorrules`, `.gitignore`, `.env.example`, etc.)
 - Tool configurations
 
 **Example output:**
+
 ```
 🔄 Syncing with ai-dev-standards...
 
@@ -96,6 +98,7 @@ ai-dev update all
 ```
 
 **Examples:**
+
 ```bash
 # Just update skills without touching configs
 ai-dev update skills
@@ -130,6 +133,7 @@ ai-dev generate integration <name>
 **Examples:**
 
 #### Generate a Skill
+
 ```bash
 ai-dev generate skill api-designer
 
@@ -146,6 +150,7 @@ Design REST and GraphQL APIs with authentication, versioning, and documentation.
 ```
 
 #### Generate an MCP
+
 ```bash
 ai-dev generate mcp supabase-manager
 
@@ -169,6 +174,7 @@ SUPABASE_KEY=
 ```
 
 #### Generate a Tool
+
 ```bash
 ai-dev generate tool schema-validator
 
@@ -177,6 +183,7 @@ ai-dev generate tool schema-validator
 ```
 
 #### Generate an Integration
+
 ```bash
 ai-dev generate integration stripe
 
@@ -215,6 +222,7 @@ ai-dev setup openai
 ```
 
 **Example: Setup Supabase**
+
 ```bash
 $ ai-dev setup supabase
 
@@ -246,6 +254,7 @@ $ ai-dev setup supabase
 ```
 
 **Example: Setup Stripe**
+
 ```bash
 $ ai-dev setup stripe
 
@@ -298,6 +307,7 @@ ai-dev list installed
 ```
 
 **Example output:**
+
 ```bash
 $ ai-dev list skills
 
@@ -343,6 +353,7 @@ ai-dev config reset
 ```
 
 **Examples:**
+
 ```bash
 # Enable auto-approve (no prompts)
 ai-dev config set preferences.autoApprove true
@@ -361,6 +372,7 @@ ai-dev config show
 ```
 
 **Config keys:**
+
 - `tracking` - What to sync (skills, mcps, cursorrules, gitignore, tools)
 - `frequency` - When to sync (git-hook, manual)
 - `preferences.autoApprove` - Skip confirmation prompts
@@ -385,6 +397,7 @@ ai-dev search database
 ```
 
 **Example output:**
+
 ```bash
 $ ai-dev search api
 
@@ -424,6 +437,7 @@ ai-dev info integration stripe
 ```
 
 **Example output:**
+
 ```bash
 $ ai-dev info skill api-designer
 
@@ -471,6 +485,7 @@ ai-dev doctor --fix
 ```
 
 **Example output:**
+
 ```bash
 $ ai-dev doctor
 
@@ -544,6 +559,7 @@ ai-dev <command> --dry-run
 ## Common Workflows
 
 ### Initial Setup (New Project)
+
 ```bash
 # 1. Bootstrap everything
 npx @ai-dev-standards/bootstrap
@@ -555,6 +571,7 @@ ai-dev list installed
 ```
 
 ### Daily Workflow
+
 ```bash
 # Pull latest code
 git pull
@@ -565,6 +582,7 @@ ai-dev sync
 ```
 
 ### Add New Feature (e.g., Supabase)
+
 ```bash
 # 1. Setup integration
 ai-dev setup supabase
@@ -579,6 +597,7 @@ npm install
 ```
 
 ### Update Config Files
+
 ```bash
 # Update just cursor rules
 ai-dev update cursorrules
@@ -588,6 +607,7 @@ ai-dev update config-files
 ```
 
 ### Troubleshooting
+
 ```bash
 # 1. Run diagnostics
 ai-dev doctor
@@ -620,6 +640,7 @@ AI_DEV_AUTO_APPROVE=true
 ```
 
 **Example:**
+
 ```bash
 # Sync without prompts
 AI_DEV_AUTO_APPROVE=true ai-dev sync
@@ -635,13 +656,7 @@ The `.ai-dev.json` file stores your project's configuration:
 {
   "version": "1.0.0",
   "lastSync": "2025-10-22T12:00:00Z",
-  "tracking": [
-    "skills",
-    "mcps",
-    "cursorrules",
-    "gitignore",
-    "tools"
-  ],
+  "tracking": ["skills", "mcps", "cursorrules", "gitignore", "tools"],
   "frequency": "git-hook",
   "installed": {
     "skills": ["api-designer", "mvp-builder"],
@@ -658,6 +673,7 @@ The `.ai-dev.json` file stores your project's configuration:
 ```
 
 **Edit manually or use:**
+
 ```bash
 ai-dev config set <key> <value>
 ```
@@ -678,6 +694,7 @@ ai-dev config set <key> <value>
 ## Tips & Tricks
 
 ### Auto-Approve All Updates
+
 ```bash
 # Add to .ai-dev.json
 ai-dev config set preferences.autoApprove true
@@ -687,12 +704,14 @@ export AI_DEV_AUTO_APPROVE=true
 ```
 
 ### Sync Only Skills
+
 ```bash
 ai-dev config set tracking "skills"
 ai-dev sync
 ```
 
 ### Backup Before Major Changes
+
 ```bash
 # Auto-backup is enabled by default
 ai-dev sync  # Creates .cursorrules.backup, etc.
@@ -702,6 +721,7 @@ mv .cursorrules.backup .cursorrules
 ```
 
 ### CI/CD Integration
+
 ```bash
 # .github/workflows/sync.yml
 name: Sync AI Dev Standards

@@ -21,6 +21,7 @@ npm install && npm run build
 ## Tools
 
 ### 1. configure
+
 ```typescript
 {
   theme?: 'light' | 'dark' | 'custom';
@@ -31,7 +32,9 @@ npm install && npm run build
 ```
 
 ### 2. create_chart
+
 Create a single chart.
+
 ```typescript
 {
   type: 'bar' | 'line' | 'pie' | 'scatter' | 'area' | 'radar';
@@ -44,7 +47,9 @@ Create a single chart.
 ```
 
 ### 3. create_dashboard
+
 Create multi-chart dashboard.
+
 ```typescript
 {
   layout: '2x2' | '1x3' | 'custom';
@@ -55,7 +60,9 @@ Create multi-chart dashboard.
 ```
 
 ### 4. transform_data
+
 Process data for visualization.
+
 ```typescript
 {
   data: any[];
@@ -65,17 +72,21 @@ Process data for visualization.
 ```
 
 ### 5. export_chart
+
 Export chart to file.
+
 ```typescript
 {
-  chartId: string;
-  format: 'svg' | 'png' | 'html' | 'json';
-  outputPath: string;
+  chartId: string
+  format: 'svg' | 'png' | 'html' | 'json'
+  outputPath: string
 }
 ```
 
 ### 6. apply_theme
+
 Apply theme to charts.
+
 ```typescript
 {
   theme: {
@@ -89,7 +100,7 @@ Apply theme to charts.
 ## Usage Example
 
 ```javascript
-await chartBuilder.configure({ theme: 'dark', library: 'recharts' });
+await chartBuilder.configure({ theme: 'dark', library: 'recharts' })
 
 // Create bar chart
 const chart = await chartBuilder.create_chart({
@@ -102,14 +113,14 @@ const chart = await chartBuilder.create_chart({
   xAxis: 'month',
   yAxis: ['sales', 'expenses'],
   title: 'Monthly Performance'
-});
+})
 
 // Export as SVG
 await chartBuilder.export_chart({
   chartId: chart.id,
   format: 'svg',
   outputPath: './reports/monthly-sales.svg'
-});
+})
 ```
 
 ## Chart Types

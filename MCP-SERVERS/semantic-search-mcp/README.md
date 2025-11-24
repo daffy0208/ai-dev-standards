@@ -10,7 +10,6 @@ Semantic search MCP server with vector database integration and similarity searc
 
 - 🛠️ Provides tools for semantic-search operations
 
-
 - 🔄 Progressive discovery with tool file navigation
 - 💾 Persistent skill library support
 
@@ -31,7 +30,10 @@ Add to your Claude Code MCP settings:
   "mcpServers": {
     "semantic-search": {
       "command": "mcp-code-execution",
-      "args": ["--servers-path", "/home/david/projects/ai-dev-standards/MCP-SERVERS/semantic-search-mcp/servers"],
+      "args": [
+        "--servers-path",
+        "/home/david/projects/ai-dev-standards/MCP-SERVERS/semantic-search-mcp/servers"
+      ],
       "env": {
         "SKILLS_PATH": "/home/david/projects/ai-dev-standards/MCP-SERVERS/semantic-search-mcp/skills"
       }
@@ -42,20 +44,15 @@ Add to your Claude Code MCP settings:
 
 ## Usage
 
-
 ### Tools
 
 ```javascript
 // Use the semantic-search tool
-await semantic-search_action({
-  input: 'your-input-here'
-})
+;(await semantic) -
+  search_action({
+    input: 'your-input-here'
+  })
 ```
-
-
-
-
-
 
 ## Configuration
 

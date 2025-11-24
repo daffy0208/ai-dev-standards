@@ -25,14 +25,26 @@ class ProjectGenerator {
     const sanitizedName = sanitizeName(name, 'project')
 
     // Validate project type
-    const validType = validateProjectType(type, ['saas-starter', 'saas', 'rag-system', 'rag', 'api-service', 'api', 'dashboard', 'mobile-app', 'mobile'])
+    const validType = validateProjectType(type, [
+      'saas-starter',
+      'saas',
+      'rag-system',
+      'rag',
+      'api-service',
+      'api',
+      'dashboard',
+      'mobile-app',
+      'mobile'
+    ])
 
     // Validate project identifier
     validateIdentifier(sanitizedName, 'project name')
 
     // Validate MCP pattern
     if (!['direct', 'code-execution', 'hybrid'].includes(mcpPattern)) {
-      throw new Error(`Invalid MCP pattern: ${mcpPattern}. Must be 'direct', 'code-execution', or 'hybrid'`)
+      throw new Error(
+        `Invalid MCP pattern: ${mcpPattern}. Must be 'direct', 'code-execution', or 'hybrid'`
+      )
     }
 
     const projectPath = path.join(process.cwd(), sanitizedName)
@@ -82,70 +94,93 @@ class ProjectGenerator {
     const { auth = 'supabase', payments = 'stripe', email = 'resend', features = [] } = options
 
     // package.json
-    await this.writeFile(projectPath, 'package.json', JSON.stringify({
-      "name": name,
-      "version": "0.1.0",
-      "private": true,
-      "scripts": {
-        "dev": "next dev",
-        "build": "next build",
-        "start": "next start",
-        "lint": "next lint",
-        "test": "jest"
-      },
-      "dependencies": {
-        "next": "14.0.4",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "@supabase/supabase-js": auth === 'supabase' ? "^2.38.4" : undefined,
-        "stripe": payments === 'stripe' ? "^14.8.0" : undefined,
-        "resend": email === 'resend' ? "^2.0.0" : undefined,
-        "zod": "^3.22.4",
-        "tailwindcss": "^3.3.6"
-      },
-      "devDependencies": {
-        "typescript": "^5.3.3",
-        "@types/node": "^20.10.5",
-        "@types/react": "^18.2.45",
-        "jest": "^29.7.0",
-        "eslint": "^8.55.0"
-      }
-    }, null, 2))
+    await this.writeFile(
+      projectPath,
+      'package.json',
+      JSON.stringify(
+        {
+          name: name,
+          version: '0.1.0',
+          private: true,
+          scripts: {
+            dev: 'next dev',
+            build: 'next build',
+            start: 'next start',
+            lint: 'next lint',
+            test: 'jest'
+          },
+          dependencies: {
+            next: '14.0.4',
+            react: '^18.2.0',
+            'react-dom': '^18.2.0',
+            '@supabase/supabase-js': auth === 'supabase' ? '^2.38.4' : undefined,
+            stripe: payments === 'stripe' ? '^14.8.0' : undefined,
+            resend: email === 'resend' ? '^2.0.0' : undefined,
+            zod: '^3.22.4',
+            tailwindcss: '^3.3.6'
+          },
+          devDependencies: {
+            typescript: '^5.3.3',
+            '@types/node': '^20.10.5',
+            '@types/react': '^18.2.45',
+            jest: '^29.7.0',
+            eslint: '^8.55.0'
+          }
+        },
+        null,
+        2
+      )
+    )
 
     // tsconfig.json
-    await this.writeFile(projectPath, 'tsconfig.json', JSON.stringify({
-      "compilerOptions": {
-        "target": "ES2020",
-        "lib": ["ES2020", "DOM", "DOM.Iterable"],
-        "jsx": "preserve",
-        "module": "ESNext",
-        "moduleResolution": "bundler",
-        "resolveJsonModule": true,
-        "allowJs": true,
-        "strict": true,
-        "noEmit": true,
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "paths": {
-          "@/*": ["./*"]
-        }
-      },
-      "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-      "exclude": ["node_modules"]
-    }, null, 2))
+    await this.writeFile(
+      projectPath,
+      'tsconfig.json',
+      JSON.stringify(
+        {
+          compilerOptions: {
+            target: 'ES2020',
+            lib: ['ES2020', 'DOM', 'DOM.Iterable'],
+            jsx: 'preserve',
+            module: 'ESNext',
+            moduleResolution: 'bundler',
+            resolveJsonModule: true,
+            allowJs: true,
+            strict: true,
+            noEmit: true,
+            esModuleInterop: true,
+            skipLibCheck: true,
+            paths: {
+              '@/*': ['./*']
+            }
+          },
+          include: ['next-env.d.ts', '**/*.ts', '**/*.tsx'],
+          exclude: ['node_modules']
+        },
+        null,
+        2
+      )
+    )
 
     // next.config.js
-    await this.writeFile(projectPath, 'next.config.js', `/** @type {import('next').NextConfig} */
+    await this.writeFile(
+      projectPath,
+      'next.config.js',
+      `/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
 }
 
 module.exports = nextConfig
-`)
+`
+    )
 
     // tailwind.config.js
-    await this.writeFile(projectPath, 'tailwind.config.js', `/** @type {import('tailwindcss').Config} */
+    await this.writeFile(
+      projectPath,
+      'tailwind.config.js',
+      `/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
@@ -156,31 +191,47 @@ module.exports = {
   },
   plugins: [],
 }
-`)
+`
+    )
 
     // .env.example
     const envContent = `# App
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 
-${auth === 'supabase' ? `# Supabase
+${
+  auth === 'supabase'
+    ? `# Supabase
 NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
-` : ''}
+`
+    : ''
+}
 
-${payments === 'stripe' ? `# Stripe
+${
+  payments === 'stripe'
+    ? `# Stripe
 STRIPE_SECRET_KEY=your-stripe-secret-key
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your-stripe-publishable-key
 STRIPE_WEBHOOK_SECRET=your-stripe-webhook-secret
-` : ''}
+`
+    : ''
+}
 
-${email === 'resend' ? `# Resend
+${
+  email === 'resend'
+    ? `# Resend
 RESEND_API_KEY=your-resend-api-key
-` : ''}
+`
+    : ''
+}
 `
     await this.writeFile(projectPath, '.env.example', envContent)
 
     // app/layout.tsx
-    await this.writeFile(projectPath, 'app/layout.tsx', `import './globals.css'
+    await this.writeFile(
+      projectPath,
+      'app/layout.tsx',
+      `import './globals.css'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -199,10 +250,14 @@ export default function RootLayout({
     </html>
   )
 }
-`)
+`
+    )
 
     // app/page.tsx
-    await this.writeFile(projectPath, 'app/page.tsx', `export default function Home() {
+    await this.writeFile(
+      projectPath,
+      'app/page.tsx',
+      `export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
       <h1 className="text-4xl font-bold mb-4">${name}</h1>
@@ -210,17 +265,25 @@ export default function RootLayout({
     </main>
   )
 }
-`)
+`
+    )
 
     // app/globals.css
-    await this.writeFile(projectPath, 'app/globals.css', `@tailwind base;
+    await this.writeFile(
+      projectPath,
+      'app/globals.css',
+      `@tailwind base;
 @tailwind components;
 @tailwind utilities;
-`)
+`
+    )
 
     // README.md
     const mcpPattern = options.mcpPattern || 'direct'
-    await this.writeFile(projectPath, 'README.md', `# ${name}
+    await this.writeFile(
+      projectPath,
+      'README.md',
+      `# ${name}
 
 Full-stack SaaS application built with:
 - Next.js 14 (App Router)
@@ -234,7 +297,9 @@ Full-stack SaaS application built with:
 
 **Pattern:** ${mcpPattern === 'code-execution' ? 'Code Execution (Advanced)' : mcpPattern === 'hybrid' ? 'Hybrid (Both Patterns)' : 'Direct MCP (Traditional)'}
 
-${mcpPattern === 'code-execution' ? `
+${
+  mcpPattern === 'code-execution'
+    ? `
 This project is configured to use the Code Execution pattern for:
 - Token efficiency (40-60% reduction first run, 85-95% with skills)
 - Progressive discovery of tools
@@ -242,17 +307,21 @@ This project is configured to use the Code Execution pattern for:
 - Sandboxed code execution
 
 See \`/DOCS/mcp-patterns/\` for complete documentation.
-` : mcpPattern === 'hybrid' ? `
+`
+    : mcpPattern === 'hybrid'
+      ? `
 This project uses a hybrid approach:
 - Simple, infrequent operations: Direct MCP
 - Complex, frequent operations: Code Execution pattern
 - Automatic pattern selection via Brain orchestrator
 
 See \`/DOCS/mcp-patterns/09-brain-orchestrator-mcp-integration.md\` for details.
-` : `
+`
+      : `
 This project uses the traditional Direct MCP pattern.
 All tools are loaded into context upfront.
-`}
+`
+}
 
 ## Getting Started
 
@@ -290,39 +359,53 @@ Deploy to Vercel:
 \`\`\`bash
 vercel
 \`\`\`
-`)
+`
+    )
   }
 
   /**
    * Generate RAG System
    */
   async generateRagSystem(projectPath, name, options) {
-    const { vectorDb = 'pinecone', llmProvider = 'openai', framework = 'langchain', features = [] } = options
+    const {
+      vectorDb = 'pinecone',
+      llmProvider = 'openai',
+      framework = 'langchain',
+      features = []
+    } = options
 
     // package.json
-    await this.writeFile(projectPath, 'package.json', JSON.stringify({
-      "name": name,
-      "version": "0.1.0",
-      "scripts": {
-        "dev": "next dev",
-        "build": "next build",
-        "ingest": "tsx scripts/ingest.ts",
-        "query": "tsx scripts/query.ts"
-      },
-      "dependencies": {
-        "next": "14.0.4",
-        "react": "^18.2.0",
-        "langchain": framework === 'langchain' ? "^0.1.0" : undefined,
-        "@pinecone-database/pinecone": vectorDb === 'pinecone' ? "^1.1.3" : undefined,
-        "openai": llmProvider === 'openai' ? "^4.20.1" : undefined,
-        "@anthropic-ai/sdk": llmProvider === 'anthropic' ? "^0.9.1" : undefined,
-        "pdf-parse": "^1.1.1"
-      },
-      "devDependencies": {
-        "typescript": "^5.3.3",
-        "tsx": "^4.7.0"
-      }
-    }, null, 2))
+    await this.writeFile(
+      projectPath,
+      'package.json',
+      JSON.stringify(
+        {
+          name: name,
+          version: '0.1.0',
+          scripts: {
+            dev: 'next dev',
+            build: 'next build',
+            ingest: 'tsx scripts/ingest.ts',
+            query: 'tsx scripts/query.ts'
+          },
+          dependencies: {
+            next: '14.0.4',
+            react: '^18.2.0',
+            langchain: framework === 'langchain' ? '^0.1.0' : undefined,
+            '@pinecone-database/pinecone': vectorDb === 'pinecone' ? '^1.1.3' : undefined,
+            openai: llmProvider === 'openai' ? '^4.20.1' : undefined,
+            '@anthropic-ai/sdk': llmProvider === 'anthropic' ? '^0.9.1' : undefined,
+            'pdf-parse': '^1.1.1'
+          },
+          devDependencies: {
+            typescript: '^5.3.3',
+            tsx: '^4.7.0'
+          }
+        },
+        null,
+        2
+      )
+    )
 
     // .env.example
     const envContent = `# Vector Database
@@ -335,7 +418,10 @@ ${llmProvider.toUpperCase()}_API_KEY=your-api-key
     await this.writeFile(projectPath, '.env.example', envContent)
 
     // Create docs directory with sample document
-    await this.writeFile(projectPath, 'docs/document1.txt', `# Sample Document
+    await this.writeFile(
+      projectPath,
+      'docs/document1.txt',
+      `# Sample Document
 
 This is a sample document for your RAG system.
 
@@ -358,10 +444,14 @@ This sample document demonstrates how documents are processed:
 - You can then query this content using natural language
 
 Add more meaningful content here to test your RAG system!
-`)
+`
+    )
 
     // scripts/ingest.ts
-    await this.writeFile(projectPath, 'scripts/ingest.ts', `import { readFile } from 'fs/promises'
+    await this.writeFile(
+      projectPath,
+      'scripts/ingest.ts',
+      `import { readFile } from 'fs/promises'
 import { createVectorStore, ingestDocument } from '../lib/rag'
 
 async function main() {
@@ -382,10 +472,14 @@ async function main() {
 }
 
 main()
-`)
+`
+    )
 
     // lib/rag.ts
-    await this.writeFile(projectPath, 'lib/rag.ts', `import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
+    await this.writeFile(
+      projectPath,
+      'lib/rag.ts',
+      `import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
 import { PineconeStore } from 'langchain/vectorstores/pinecone'
 import { Pinecone } from '@pinecone-database/pinecone'
 
@@ -414,10 +508,14 @@ export async function queryDocuments(query: string, topK = 5) {
   const vectorStore = await createVectorStore()
   return await vectorStore.similaritySearch(query, topK)
 }
-`)
+`
+    )
 
     // README.md
-    await this.writeFile(projectPath, 'README.md', `# ${name}
+    await this.writeFile(
+      projectPath,
+      'README.md',
+      `# ${name}
 
 RAG System built with:
 - ${framework}
@@ -460,7 +558,8 @@ ${features.includes('conversational') ? '- Conversational retrieval' : ''}
 ${features.includes('hybrid') ? '- Hybrid search' : ''}
 ${features.includes('citations') ? '- Citation tracking' : ''}
 ${features.includes('ui') ? '- Web UI' : ''}
-`)
+`
+    )
   }
 
   /**

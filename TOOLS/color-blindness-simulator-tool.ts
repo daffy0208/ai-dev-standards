@@ -68,50 +68,50 @@ Types simulated:
       type: 'protanopia',
       name: 'Protanopia',
       description: 'Red-blind (missing L-cones)',
-      affectedPopulation: '~1% of males',
+      affectedPopulation: '~1% of males'
     },
     {
       type: 'protanomaly',
       name: 'Protanomaly',
       description: 'Red-weak (anomalous L-cones)',
-      affectedPopulation: '~1% of males',
+      affectedPopulation: '~1% of males'
     },
     {
       type: 'deuteranopia',
       name: 'Deuteranopia',
       description: 'Green-blind (missing M-cones)',
-      affectedPopulation: '~1% of males',
+      affectedPopulation: '~1% of males'
     },
     {
       type: 'deuteranomaly',
       name: 'Deuteranomaly',
       description: 'Green-weak (anomalous M-cones)',
-      affectedPopulation: '~5% of males',
+      affectedPopulation: '~5% of males'
     },
     {
       type: 'tritanopia',
       name: 'Tritanopia',
       description: 'Blue-blind (missing S-cones)',
-      affectedPopulation: '~0.001% of population',
+      affectedPopulation: '~0.001% of population'
     },
     {
       type: 'tritanomaly',
       name: 'Tritanomaly',
       description: 'Blue-weak (anomalous S-cones)',
-      affectedPopulation: '~0.01% of population',
+      affectedPopulation: '~0.01% of population'
     },
     {
       type: 'achromatopsia',
       name: 'Achromatopsia',
       description: 'Complete color blindness (no cones)',
-      affectedPopulation: '~0.003% of population',
+      affectedPopulation: '~0.003% of population'
     },
     {
       type: 'achromatomaly',
       name: 'Achromatomaly',
       description: 'Partial color blindness (weak cones)',
-      affectedPopulation: 'Rare',
-    },
+      affectedPopulation: 'Rare'
+    }
   ]
 
   async _call(input: string): Promise<string> {
@@ -150,7 +150,7 @@ Types simulated:
         affectedPopulation: cvdType.affectedPopulation,
         originalColor: color,
         simulatedColor,
-        difference,
+        difference
       })
     }
 
@@ -161,7 +161,7 @@ Types simulated:
       originalColor: color,
       simulations,
       recommendations,
-      contrastIssues,
+      contrastIssues
     }
   }
 
@@ -172,7 +172,7 @@ Types simulated:
     const linear = {
       r: this.srgbToLinear(rgb.r / 255),
       g: this.srgbToLinear(rgb.g / 255),
-      b: this.srgbToLinear(rgb.b / 255),
+      b: this.srgbToLinear(rgb.b / 255)
     }
 
     // Apply CVD transformation matrices
@@ -183,7 +183,7 @@ Types simulated:
         transformed = {
           r: 0.567 * linear.r + 0.433 * linear.g,
           g: 0.558 * linear.r + 0.442 * linear.g,
-          b: 0.242 * linear.g + 0.758 * linear.b,
+          b: 0.242 * linear.g + 0.758 * linear.b
         }
         break
 
@@ -191,7 +191,7 @@ Types simulated:
         transformed = {
           r: 0.817 * linear.r + 0.183 * linear.g,
           g: 0.333 * linear.r + 0.667 * linear.g,
-          b: 0.125 * linear.g + 0.875 * linear.b,
+          b: 0.125 * linear.g + 0.875 * linear.b
         }
         break
 
@@ -199,7 +199,7 @@ Types simulated:
         transformed = {
           r: 0.625 * linear.r + 0.375 * linear.g,
           g: 0.7 * linear.r + 0.3 * linear.g,
-          b: 0.3 * linear.g + 0.7 * linear.b,
+          b: 0.3 * linear.g + 0.7 * linear.b
         }
         break
 
@@ -207,7 +207,7 @@ Types simulated:
         transformed = {
           r: 0.8 * linear.r + 0.2 * linear.g,
           g: 0.258 * linear.r + 0.742 * linear.g,
-          b: 0.142 * linear.g + 0.858 * linear.b,
+          b: 0.142 * linear.g + 0.858 * linear.b
         }
         break
 
@@ -215,7 +215,7 @@ Types simulated:
         transformed = {
           r: 0.95 * linear.r + 0.05 * linear.g,
           g: 0.433 * linear.g + 0.567 * linear.b,
-          b: 0.475 * linear.g + 0.525 * linear.b,
+          b: 0.475 * linear.g + 0.525 * linear.b
         }
         break
 
@@ -223,23 +223,27 @@ Types simulated:
         transformed = {
           r: 0.967 * linear.r + 0.033 * linear.g,
           g: 0.733 * linear.g + 0.267 * linear.b,
-          b: 0.183 * linear.g + 0.817 * linear.b,
+          b: 0.183 * linear.g + 0.817 * linear.b
         }
         break
 
-      case 'achromatopsia': // Complete color blindness
+      case 'achromatopsia': {
+        // Complete color blindness
         const gray = 0.299 * linear.r + 0.587 * linear.g + 0.114 * linear.b
         transformed = { r: gray, g: gray, b: gray }
         break
+      }
 
-      case 'achromatomaly': // Partial color blindness
+      case 'achromatomaly': {
+        // Partial color blindness
         const grayPartial = 0.299 * linear.r + 0.587 * linear.g + 0.114 * linear.b
         transformed = {
           r: 0.618 * linear.r + 0.382 * grayPartial,
           g: 0.618 * linear.g + 0.382 * grayPartial,
-          b: 0.618 * linear.b + 0.382 * grayPartial,
+          b: 0.618 * linear.b + 0.382 * grayPartial
         }
         break
+      }
 
       default:
         transformed = linear
@@ -249,7 +253,7 @@ Types simulated:
     const srgb = {
       r: Math.round(this.linearToSrgb(transformed.r) * 255),
       g: Math.round(this.linearToSrgb(transformed.g) * 255),
-      b: Math.round(this.linearToSrgb(transformed.b) * 255),
+      b: Math.round(this.linearToSrgb(transformed.b) * 255)
     }
 
     return this.rgbToHex(srgb)
@@ -279,7 +283,7 @@ Types simulated:
     const recommendations: string[] = []
 
     // Check for significant changes
-    const significantChanges = simulations.filter((sim) => sim.difference > 50)
+    const significantChanges = simulations.filter(sim => sim.difference > 50)
 
     if (significantChanges.length > 0) {
       recommendations.push(
@@ -290,10 +294,12 @@ Types simulated:
 
     // Check for near-complete desaturation
     const desaturated = simulations.filter(
-      (sim) => sim.type === 'achromatopsia' || sim.type === 'achromatomaly'
+      sim => sim.type === 'achromatopsia' || sim.type === 'achromatomaly'
     )
     if (desaturated.length > 0) {
-      recommendations.push('Ensure sufficient contrast ratios for users with complete color blindness')
+      recommendations.push(
+        'Ensure sufficient contrast ratios for users with complete color blindness'
+      )
     }
 
     // General recommendations
@@ -308,14 +314,14 @@ Types simulated:
     const issues: string[] = []
 
     // Check if colors become too similar
-    const protanSimulations = simulations.filter((s) => s.type.startsWith('protan'))
-    const deutanSimulations = simulations.filter((s) => s.type.startsWith('deutan'))
+    const protanSimulations = simulations.filter(s => s.type.startsWith('protan'))
+    const deutanSimulations = simulations.filter(s => s.type.startsWith('deutan'))
 
-    if (protanSimulations.some((s) => s.difference > 75)) {
+    if (protanSimulations.some(s => s.difference > 75)) {
       issues.push('Significant color shift for red-blind users (protanopia/protanomaly)')
     }
 
-    if (deutanSimulations.some((s) => s.difference > 75)) {
+    if (deutanSimulations.some(s => s.difference > 75)) {
       issues.push('Significant color shift for green-blind users (deuteranopia/deuteranomaly)')
     }
 
@@ -330,7 +336,7 @@ Types simulated:
     return {
       r: parseInt(result[1], 16),
       g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16),
+      b: parseInt(result[3], 16)
     }
   }
 

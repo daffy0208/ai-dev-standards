@@ -9,11 +9,11 @@ tags:
   - quality
   - testing
 triggers:
-  - "review with codex"
-  - "run codex review"
-  - "automated code review"
-  - "validate with codex"
-  - "codex cli"
+  - 'review with codex'
+  - 'run codex review'
+  - 'automated code review'
+  - 'validate with codex'
+  - 'codex cli'
 prerequisites:
   - Codex CLI installed and available
   - Git repository (or --skip-git-repo-check flag)
@@ -38,6 +38,7 @@ Automated code review workflow using OpenAI Codex CLI. Implements iterative fix-
 ## When to Use This Skill
 
 ✅ **Use this skill when:**
+
 - User explicitly requests Codex CLI review (e.g., "Review this with Codex")
 - Implementing features that require automated code validation
 - Building code that must meet specific quality standards
@@ -45,6 +46,7 @@ Automated code review workflow using OpenAI Codex CLI. Implements iterative fix-
 - Validating security, bugs, and best practices automatically
 
 ❌ **Skip this skill when:**
+
 - User only wants manual code review
 - Codex CLI is not available in the environment
 - Task is purely exploratory or research-based
@@ -65,6 +67,7 @@ This skill follows a structured 6-step process:
 Implement the user's requested feature using standard best practices. Ensure code is well-structured before submitting for review.
 
 **Track progress with TodoWrite:**
+
 - Implement the requested feature/fix
 - Run initial Codex CLI review
 - Fix issues found in review (if any)
@@ -95,6 +98,7 @@ codex exec "Review <file_name>..." -c model="o3"
 ```
 
 **Key points:**
+
 - Be specific in prompts about what to review
 - Request line numbers and specific examples
 - Use appropriate timeout (120000ms = 2 minutes recommended)
@@ -104,19 +108,23 @@ codex exec "Review <file_name>..." -c model="o3"
 Codex CLI returns structured markdown output with **variable formats**. Look for:
 
 **Critical issue indicators (MUST FIX):**
+
 - Sections: **Bug**, **Security**, **Key Issues**, **Key Findings**
 - Severity markers: "High:", "Medium:", "critical", "vulnerability"
 
 **Quality improvements (LOWER PRIORITY):**
+
 - Sections: **Maintainability**, **Usability**, **Best Practices**, **Suggestions**
 - Severity markers: "Low:"
 
 **Confirmation indicators (success):**
+
 - Sections: **Resolved Checks**, **Review**, **Review Findings**
 - Phrases: "No remaining findings", "All issues resolved", "All [N] issues look resolved"
 - Check marks (✅) or confirmation language
 
 **Decision criteria:**
+
 - **Complete:** No Bug/Security/Key Issues sections AND only suggestions remain
 - **Complete:** Resolved Checks with all previous issues confirmed fixed
 - **Complete:** Phrases like "No remaining findings" or "All issues resolved"
@@ -125,12 +133,14 @@ Codex CLI returns structured markdown output with **variable formats**. Look for
 ### 4. Fix Identified Issues
 
 For each issue identified:
+
 1. Locate the problematic code
 2. Understand the issue
 3. Apply the fix using Edit tool
 4. Document what changed and why
 
 **Best practices:**
+
 - Fix all issues in a single iteration before re-reviewing
 - Prioritize critical errors over warnings
 - Explain each fix clearly to the user
@@ -145,11 +155,13 @@ codex exec "Review the updated <file_name> code. Check if the previous issues ha
 ```
 
 This helps Codex:
+
 - Focus on whether specific issues were resolved
 - Identify any new problems introduced
 - Provide clear pass/fail confirmation
 
 Analyze results:
+
 - **All issues fixed:** Mark workflow complete, report success
 - **Issues remain:** Determine whether to iterate (check limits)
 
@@ -158,11 +170,13 @@ Analyze results:
 **Maximum iterations:** 2 review cycles (initial + 1 re-review)
 
 **Why limit:**
+
 - Prevents infinite loops
 - Some issues require human judgment
 - Complex problems need architectural changes
 
 **When max reached:**
+
 1. Mark current task status in TodoWrite
 2. Summarize what was fixed and what remains
 3. Show final Codex CLI output to user
@@ -273,16 +287,19 @@ codex exec "..." --skip-git-repo-check
 ## Error Handling
 
 **Codex CLI not found:**
+
 - Check: `which codex` or `codex --version`
 - Inform user Codex CLI unavailable
 - Offer to complete task without automated review
 
 **Git repository error:**
+
 - Error: "Not inside trusted directory and --skip-git-repo-check not specified"
 - Solution: Run `git init`
 - Alternative: Add `--skip-git-repo-check`
 
 **Codex CLI errors:**
+
 - Common errors:
   - `unexpected argument` - Check syntax, use `codex exec` not `codex review`
   - Authentication errors - User may need `codex login`
@@ -290,11 +307,13 @@ codex exec "..." --skip-git-repo-check
 - If persistent, ask user for guidance
 
 **Ambiguous results:**
+
 - If unsure about pass/fail, err on side of caution
 - Look for "Key Issues" vs "Suggestions" sections
 - Show output to user and ask for clarification
 
 **Long-running reviews:**
+
 - Codex may take 30-120 seconds for complex reviews
 - Use appropriate timeout (120000ms recommended)
 
@@ -325,10 +344,12 @@ codex exec "..." --skip-git-repo-check
 ## Tools & Dependencies
 
 **Required:**
+
 - Codex CLI (OpenAI)
 - Git (for repository context)
 
 **Recommended:**
+
 - TodoWrite tool (progress tracking)
 - Edit tool (applying fixes)
 

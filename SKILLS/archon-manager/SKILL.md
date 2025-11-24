@@ -34,11 +34,13 @@ required_integrations:
 **Master Archon MCP for strategic project management and knowledge operations.**
 
 Archon is the command center for AI coding assistants, providing:
+
 - **Strategic Layer**: Project management, task tracking, priority-based workflow (WHAT/WHEN)
 - **Knowledge Layer**: RAG queries, web crawling, document processing, code examples
 - **Integration Layer**: Connects Claude Code, Cursor, Windsurf with unified context
 
 **The Two-Layer Architecture**:
+
 - **Archon** (this skill) = Strategic (WHAT to build, WHEN)
 - **Skills** = Tactical (HOW to build well)
 - Together = Optimal outcomes
@@ -170,6 +172,7 @@ docker compose up --build -d
 #### 1.3 Connect to AI Assistant
 
 **For Claude Code** (.claude/mcp-settings.json):
+
 ```json
 {
   "mcpServers": {
@@ -190,7 +193,7 @@ docker compose up --build -d
 
 ```typescript
 // Test Archon connection
-archon:list_projects()
+archon: list_projects()
 // Should return empty list or existing projects
 ```
 
@@ -204,14 +207,14 @@ archon:list_projects()
 
 ```typescript
 // Using Archon MCP tool
-archon:create_project({
-  name: "My Application",
-  description: "Full-stack web application for task management",
-  status: "active",
+archon: create_project({
+  name: 'My Application',
+  description: 'Full-stack web application for task management',
+  status: 'active',
   metadata: {
-    tech_stack: ["Next.js", "Supabase", "TypeScript"],
+    tech_stack: ['Next.js', 'Supabase', 'TypeScript'],
     team_size: 1,
-    target_launch: "2025-12-01"
+    target_launch: '2025-12-01'
   }
 })
 
@@ -222,28 +225,28 @@ archon:create_project({
 
 ```typescript
 // Create major features
-archon:create_feature({
-  project_id: "uuid",
-  name: "User Authentication",
-  description: "Complete auth system with email/OAuth",
-  priority: "P0",
-  estimated_effort: "2 days"
+archon: create_feature({
+  project_id: 'uuid',
+  name: 'User Authentication',
+  description: 'Complete auth system with email/OAuth',
+  priority: 'P0',
+  estimated_effort: '2 days'
 })
 
-archon:create_feature({
-  project_id: "uuid",
-  name: "Task Management",
-  description: "CRUD operations for tasks",
-  priority: "P0",
-  estimated_effort: "3 days"
+archon: create_feature({
+  project_id: 'uuid',
+  name: 'Task Management',
+  description: 'CRUD operations for tasks',
+  priority: 'P0',
+  estimated_effort: '3 days'
 })
 
-archon:create_feature({
-  project_id: "uuid",
-  name: "Team Collaboration",
-  description: "Share tasks with team members",
-  priority: "P1",
-  estimated_effort: "4 days"
+archon: create_feature({
+  project_id: 'uuid',
+  name: 'Team Collaboration',
+  description: 'Share tasks with team members',
+  priority: 'P1',
+  estimated_effort: '4 days'
 })
 ```
 
@@ -251,21 +254,21 @@ archon:create_feature({
 
 ```typescript
 // Use AI-assisted task generation
-archon:generate_tasks({
-  feature_id: "auth-feature-uuid",
-  instructions: "Break down authentication into implementation tasks",
+archon: generate_tasks({
+  feature_id: 'auth-feature-uuid',
+  instructions: 'Break down authentication into implementation tasks',
   use_ai: true
 })
 
 // Or create manually
-archon:create_task({
-  feature_id: "auth-feature-uuid",
-  title: "Implement email/password signup",
-  description: "Create signup form, API endpoint, database schema",
-  priority: "P0",
-  status: "todo",
+archon: create_task({
+  feature_id: 'auth-feature-uuid',
+  title: 'Implement email/password signup',
+  description: 'Create signup form, API endpoint, database schema',
+  priority: 'P0',
+  status: 'todo',
   estimated_hours: 4,
-  skills_to_use: ["api-designer", "security-engineer", "frontend-builder"]
+  skills_to_use: ['api-designer', 'security-engineer', 'frontend-builder']
 })
 ```
 
@@ -279,11 +282,11 @@ archon:create_task({
 
 ```typescript
 // Crawl entire documentation site
-archon:crawl_website({
-  url: "https://nextjs.org/docs",
+archon: crawl_website({
+  url: 'https://nextjs.org/docs',
   max_depth: 3,
   follow_sitemap: true,
-  tags: ["nextjs", "documentation"]
+  tags: ['nextjs', 'documentation']
 })
 
 // Archon automatically:
@@ -299,11 +302,11 @@ archon:crawl_website({
 
 ```typescript
 // Upload PDFs (design docs, specs, research papers)
-archon:add_document({
-  file_path: "/path/to/architecture-spec.pdf",
-  type: "pdf",
-  tags: ["architecture", "design"],
-  project_id: "uuid"
+archon: add_document({
+  file_path: '/path/to/architecture-spec.pdf',
+  type: 'pdf',
+  tags: ['architecture', 'design'],
+  project_id: 'uuid'
 })
 
 // Archon automatically:
@@ -317,10 +320,10 @@ archon:add_document({
 
 ```typescript
 // Extract code examples from repos or docs
-archon:extract_code_examples({
-  source_url: "https://github.com/vercel/next.js/tree/canary/examples",
-  tags: ["nextjs", "examples"],
-  language_filter: ["typescript", "javascript"]
+archon: extract_code_examples({
+  source_url: 'https://github.com/vercel/next.js/tree/canary/examples',
+  tags: ['nextjs', 'examples'],
+  language_filter: ['typescript', 'javascript']
 })
 ```
 
@@ -328,11 +331,11 @@ archon:extract_code_examples({
 
 ```typescript
 // Tag and categorize
-archon:update_source({
-  source_id: "uuid",
-  tags: ["authentication", "security", "best-practices"],
-  category: "implementation-guides",
-  version: "1.0"
+archon: update_source({
+  source_id: 'uuid',
+  tags: ['authentication', 'security', 'best-practices'],
+  category: 'implementation-guides',
+  version: '1.0'
 })
 ```
 
@@ -443,24 +446,24 @@ const nextTask = archon:get_next_task({
 
 ```typescript
 // Broad research query
-archon:perform_rag_query({
-  query: "How to implement real-time features in Next.js",
+archon: perform_rag_query({
+  query: 'How to implement real-time features in Next.js',
   match_count: 10,
   similarity_threshold: 0.7
 })
 
 // Specific technical query
-archon:perform_rag_query({
-  query: "Next.js middleware authentication example code",
+archon: perform_rag_query({
+  query: 'Next.js middleware authentication example code',
   match_count: 3,
-  filter_tags: ["nextjs", "authentication", "code-example"]
+  filter_tags: ['nextjs', 'authentication', 'code-example']
 })
 
 // Architecture decision query
-archon:perform_rag_query({
-  query: "PostgreSQL vs MongoDB for user data",
+archon: perform_rag_query({
+  query: 'PostgreSQL vs MongoDB for user data',
   match_count: 5,
-  filter_tags: ["database", "architecture"]
+  filter_tags: ['database', 'architecture']
 })
 ```
 
@@ -468,16 +471,16 @@ archon:perform_rag_query({
 
 ```typescript
 // Query within project context
-archon:perform_rag_query({
-  query: "How should we structure our authentication?",
-  project_id: "uuid",  // Uses project's knowledge base
+archon: perform_rag_query({
+  query: 'How should we structure our authentication?',
+  project_id: 'uuid', // Uses project's knowledge base
   match_count: 5
 })
 
 // Query specific feature context
-archon:perform_rag_query({
-  query: "Best practices for this feature",
-  feature_id: "auth-feature-uuid",
+archon: perform_rag_query({
+  query: 'Best practices for this feature',
+  feature_id: 'auth-feature-uuid',
   match_count: 3
 })
 ```
@@ -486,18 +489,18 @@ archon:perform_rag_query({
 
 ```typescript
 // Version project documentation
-archon:create_doc_version({
-  project_id: "uuid",
-  document_name: "Architecture Decision Record",
-  content: "...",
-  version: "1.0.0",
-  tags: ["architecture", "decisions"]
+archon: create_doc_version({
+  project_id: 'uuid',
+  document_name: 'Architecture Decision Record',
+  content: '...',
+  version: '1.0.0',
+  tags: ['architecture', 'decisions']
 })
 
 // Query historical context
-archon:get_doc_history({
-  project_id: "uuid",
-  document_name: "Architecture Decision Record"
+archon: get_doc_history({
+  project_id: 'uuid',
+  document_name: 'Architecture Decision Record'
 })
 ```
 
@@ -511,8 +514,8 @@ archon:get_doc_history({
 
 ```typescript
 // Get project overview
-archon:get_project_metrics({
-  project_id: "uuid"
+archon: get_project_metrics({
+  project_id: 'uuid'
 })
 // Returns:
 // {
@@ -536,21 +539,22 @@ archon:get_project_metrics({
 
 ```typescript
 // Tasks completed per week
-archon:get_velocity({
-  project_id: "uuid",
-  time_period: "week"
+archon: get_velocity({
+  project_id: 'uuid',
+  time_period: 'week'
 })
 
 // Burndown chart data
-archon:get_burndown({
-  project_id: "uuid",
-  sprint_id: "sprint-1"
+archon: get_burndown({
+  project_id: 'uuid',
+  sprint_id: 'sprint-1'
 })
 ```
 
 #### 6.3 Real-Time Updates
 
 Archon uses Socket.IO for real-time progress updates:
+
 - Task status changes
 - Knowledge base additions
 - Project metrics updates
@@ -581,12 +585,12 @@ archon:update_task({ task_id: nextTask.id, status: "review" })
 
 ```typescript
 // Team lead creates project structure
-archon:create_project({ name: "Team Project" })
-archon:create_feature({ name: "Backend API", assigned_to: "developer-1" })
-archon:create_feature({ name: "Frontend UI", assigned_to: "developer-2" })
+archon: create_project({ name: 'Team Project' })
+archon: create_feature({ name: 'Backend API', assigned_to: 'developer-1' })
+archon: create_feature({ name: 'Frontend UI', assigned_to: 'developer-2' })
 
 // Each team member queries same knowledge base
-archon:perform_rag_query({ query: "...", project_id: "uuid" })
+archon: perform_rag_query({ query: '...', project_id: 'uuid' })
 
 // Real-time sync of task status across team
 ```
@@ -611,24 +615,24 @@ archon:perform_rag_query({ query: "...", project_id: "uuid" })
 
 ```typescript
 // Projects
-archon:create_project({name, description, status, metadata})
-archon:list_projects()
-archon:get_project({project_id})
-archon:update_project({project_id, updates})
-archon:delete_project({project_id})
+archon: create_project({ name, description, status, metadata })
+archon: list_projects()
+archon: get_project({ project_id })
+archon: update_project({ project_id, updates })
+archon: delete_project({ project_id })
 
 // Features
-archon:create_feature({project_id, name, description, priority})
-archon:list_features({project_id})
-archon:update_feature({feature_id, updates})
+archon: create_feature({ project_id, name, description, priority })
+archon: list_features({ project_id })
+archon: update_feature({ feature_id, updates })
 
 // Tasks
-archon:create_task({feature_id, title, description, priority, status})
-archon:get_next_task({project_id, filter_by, sort_by})
-archon:get_task({task_id})
-archon:update_task({task_id, updates})
-archon:list_tasks({project_id, filter_by, filter_value})
-archon:generate_tasks({feature_id, instructions, use_ai})
+archon: create_task({ feature_id, title, description, priority, status })
+archon: get_next_task({ project_id, filter_by, sort_by })
+archon: get_task({ task_id })
+archon: update_task({ task_id, updates })
+archon: list_tasks({ project_id, filter_by, filter_value })
+archon: generate_tasks({ feature_id, instructions, use_ai })
 ```
 
 ### Knowledge Management
@@ -652,9 +656,9 @@ archon:delete_source({source_id})
 ### Metrics & Analytics
 
 ```typescript
-archon:get_project_metrics({project_id})
-archon:get_velocity({project_id, time_period})
-archon:get_burndown({project_id, sprint_id})
+archon: get_project_metrics({ project_id })
+archon: get_velocity({ project_id, time_period })
+archon: get_burndown({ project_id, sprint_id })
 ```
 
 ---
@@ -684,16 +688,19 @@ Project: "E-commerce Platform"
 ### 2. Use Priority Effectively
 
 **P0 (Critical)**: Must have for MVP, blocks everything
+
 - Core value proposition features
 - Critical bugs
 - Security vulnerabilities
 
 **P1 (High Value)**: Important, high impact
+
 - Significant enhancements
 - Important optimizations
 - Major integrations
 
 **P2 (Nice to Have)**: Can wait
+
 - Polish and refinement
 - Minor features
 - Non-critical improvements
@@ -702,12 +709,12 @@ Project: "E-commerce Platform"
 
 ```typescript
 // Add diverse sources
-archon:crawl_website({url: "https://docs.framework.com"})
-archon:add_document({file_path: "architecture-spec.pdf"})
-archon:extract_code_examples({source_url: "https://github.com/..."})
+archon: crawl_website({ url: 'https://docs.framework.com' })
+archon: add_document({ file_path: 'architecture-spec.pdf' })
+archon: extract_code_examples({ source_url: 'https://github.com/...' })
 
 // Tag consistently
-tags: ["category", "technology", "type"]
+tags: ['category', 'technology', 'type']
 // e.g., ["authentication", "nextjs", "tutorial"]
 ```
 
@@ -755,6 +762,7 @@ Update status immediately when changing.
 **Symptoms**: MCP tools not available in AI assistant
 
 **Solutions**:
+
 1. Check Docker containers running: `docker ps`
 2. Verify ports not blocked: 3737, 8181, 8051, 8052
 3. Check MCP configuration in `.claude/mcp-settings.json`
@@ -766,6 +774,7 @@ Update status immediately when changing.
 **Symptoms**: Empty results from `perform_rag_query`
 
 **Solutions**:
+
 1. Verify knowledge base has content: `archon:list_sources()`
 2. Check embeddings generated (wait for processing)
 3. Lower `similarity_threshold` (default 0.7, try 0.5)
@@ -777,6 +786,7 @@ Update status immediately when changing.
 **Symptoms**: `get_next_task` returns empty
 
 **Solutions**:
+
 1. Verify project exists: `archon:list_projects()`
 2. Check task status filters
 3. Ensure tasks created for correct feature/project
@@ -787,6 +797,7 @@ Update status immediately when changing.
 **Symptoms**: RAG queries or task operations slow
 
 **Solutions**:
+
 1. Check Docker resource allocation
 2. Optimize knowledge base (remove duplicates)
 3. Use `match_count` appropriately (5-10, not 100)
@@ -800,16 +811,19 @@ Update status immediately when changing.
 ### Using Archon + Skills Together
 
 **Archon provides** (Strategic):
+
 - WHAT to build (task from priority queue)
 - WHEN to build it (P0/P1/P2 ordering)
 - Context (RAG queries, project knowledge)
 
 **Skills provide** (Tactical):
+
 - HOW to build well (best practices, patterns)
 - Domain expertise (security, performance, etc.)
 - Quality standards (testing, validation)
 
 **Example Workflow**:
+
 ```typescript
 // 1. Strategic (Archon)
 const task = archon:get_next_task({project_id: "uuid"})
@@ -835,9 +849,9 @@ archon:update_task({task_id: task.id, status: "done"})
 When creating tasks in Archon, specify `skills_to_use`:
 
 ```typescript
-archon:create_task({
-  title: "Implement authentication API",
-  skills_to_use: ["api-designer", "security-engineer"],
+archon: create_task({
+  title: 'Implement authentication API',
+  skills_to_use: ['api-designer', 'security-engineer']
   // ...
 })
 ```
@@ -866,24 +880,24 @@ You're using Archon effectively when:
 
 ```typescript
 // Daily workflow
-archon:get_next_task({project_id})
-archon:perform_rag_query({query, match_count: 5})
-archon:update_task({task_id, status: "doing"})
+archon: get_next_task({ project_id })
+archon: perform_rag_query({ query, match_count: 5 })
+archon: update_task({ task_id, status: 'doing' })
 // ... work ...
-archon:update_task({task_id, status: "done"})
+archon: update_task({ task_id, status: 'done' })
 
 // Project setup
-archon:create_project({name, description})
-archon:create_feature({project_id, name, priority: "P0"})
-archon:create_task({feature_id, title, priority: "P0"})
+archon: create_project({ name, description })
+archon: create_feature({ project_id, name, priority: 'P0' })
+archon: create_task({ feature_id, title, priority: 'P0' })
 
 // Knowledge building
-archon:crawl_website({url, tags})
-archon:add_document({file_path, tags})
+archon: crawl_website({ url, tags })
+archon: add_document({ file_path, tags })
 
 // Progress tracking
-archon:get_project_metrics({project_id})
-archon:list_tasks({project_id, filter_by: "status", filter_value: "done"})
+archon: get_project_metrics({ project_id })
+archon: list_tasks({ project_id, filter_by: 'status', filter_value: 'done' })
 ```
 
 ### Priority Guidelines
@@ -903,12 +917,14 @@ todo → doing (working) → review (validate) → done (complete)
 ## Summary
 
 Archon is the strategic command center that:
+
 - Manages WHAT to build and WHEN (priority queue)
 - Provides context through RAG (knowledge base)
 - Tracks progress and metrics
 - Coordinates AI assistants
 
 Combined with Skills (HOW to build well), Archon enables:
+
 - Strategic coherence (all work aligned with goals)
 - Tactical excellence (domain expertise + best practices)
 - Context preservation (no lost knowledge)

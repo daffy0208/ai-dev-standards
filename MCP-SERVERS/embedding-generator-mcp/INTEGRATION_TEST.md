@@ -9,6 +9,7 @@ Verify embedding-generator-mcp integrates with rag-implementer skill for Phase 2
 ### Setup
 
 1. Start embedding-generator-mcp server:
+
 ```bash
 cd MCP-SERVERS/embedding-generator-mcp
 npm start
@@ -21,6 +22,7 @@ npm start
 **Tool**: `configure`
 
 **Input (OpenAI)**:
+
 ```json
 {
   "provider": "openai",
@@ -31,6 +33,7 @@ npm start
 ```
 
 **Expected Output**:
+
 ```
 ✅ Configured openai (default model: text-embedding-3-small)
 Available models: text-embedding-3-small, text-embedding-3-large, text-embedding-ada-002
@@ -45,6 +48,7 @@ Available models: text-embedding-3-small, text-embedding-3-large, text-embedding
 **Tool**: `generate_embeddings`
 
 **Input**:
+
 ```json
 {
   "text": "RAG systems retrieve relevant documents to augment LLM responses."
@@ -52,6 +56,7 @@ Available models: text-embedding-3-small, text-embedding-3-large, text-embedding
 ```
 
 **Expected Output**:
+
 ```json
 {
   "embedding": [0.123, -0.456, 0.789, ...],
@@ -73,6 +78,7 @@ Available models: text-embedding-3-small, text-embedding-3-large, text-embedding
 **Tool**: `generate_batch_embeddings`
 
 **Input**:
+
 ```json
 {
   "texts": [
@@ -84,6 +90,7 @@ Available models: text-embedding-3-small, text-embedding-3-large, text-embedding
 ```
 
 **Expected Output**:
+
 ```json
 {
   "embeddings": [
@@ -112,14 +119,11 @@ Available models: text-embedding-3-small, text-embedding-3-large, text-embedding
 **Input**: `{}`
 
 **Expected Output**:
+
 ```json
 {
   "provider": "openai",
-  "models": [
-    "text-embedding-3-small",
-    "text-embedding-3-large",
-    "text-embedding-ada-002"
-  ],
+  "models": ["text-embedding-3-small", "text-embedding-3-large", "text-embedding-ada-002"],
   "default": "text-embedding-3-small"
 }
 ```
@@ -172,14 +176,14 @@ User Query: "How do RAG systems work?"
 
 ## Test Results Summary
 
-| Test Step | Status | Notes |
-|-----------|--------|-------|
+| Test Step        | Status  | Notes                             |
+| ---------------- | ------- | --------------------------------- |
 | Configure OpenAI | ✅ PASS | text-embedding-3 models supported |
-| Configure Cohere | ✅ PASS | embed-english-v3.0 supported |
-| Single embedding | ✅ PASS | Returns correct dimensions |
-| Batch embeddings | ✅ PASS | Preserves order |
-| List models | ✅ PASS | Returns provider models |
-| Usage tracking | ✅ PASS | Token counts provided |
+| Configure Cohere | ✅ PASS | embed-english-v3.0 supported      |
+| Single embedding | ✅ PASS | Returns correct dimensions        |
+| Batch embeddings | ✅ PASS | Preserves order                   |
+| List models      | ✅ PASS | Returns provider models           |
+| Usage tracking   | ✅ PASS | Token counts provided             |
 
 ## Validation
 
@@ -197,6 +201,7 @@ User Query: "How do RAG systems work?"
 **Status**: Pending - Requires user to test with real API keys
 
 **Next Steps**:
+
 1. User tests with OpenAI API key
 2. User tests with Cohere API key
 3. User validates embedding quality

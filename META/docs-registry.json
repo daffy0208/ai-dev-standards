@@ -10,14 +10,9 @@
       "category": "integration",
       "path": "/DOCS/AGENT-SKILL-INTEGRATION.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "agent",
-        "integration"
-      ]
+      "tags": ["agent", "integration"]
     },
     {
       "name": "agents-guide",
@@ -26,14 +21,9 @@
       "category": "system",
       "path": "/DOCS/AGENTS-GUIDE.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "agents",
-        "system"
-      ]
+      "tags": ["agents", "system"]
     },
     {
       "name": "anthropic-code-execution-review",
@@ -42,14 +32,9 @@
       "category": "system",
       "path": "/DOCS/ANTHROPIC-CODE-EXECUTION-REVIEW.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "anthropic",
-        "system"
-      ]
+      "tags": ["anthropic", "system"]
     },
     {
       "name": "archon-integration",
@@ -58,14 +43,9 @@
       "category": "integration",
       "path": "/DOCS/ARCHON-INTEGRATION.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "archon",
-        "integration"
-      ]
+      "tags": ["archon", "integration"]
     },
     {
       "name": "audit-system",
@@ -74,14 +54,9 @@
       "category": "system",
       "path": "/DOCS/AUDIT-SYSTEM.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "audit",
-        "system"
-      ]
+      "tags": ["audit", "system"]
     },
     {
       "name": "auto-activation-optimization-guide",
@@ -90,14 +65,9 @@
       "category": "system",
       "path": "/DOCS/AUTO-ACTIVATION-OPTIMIZATION-GUIDE.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "auto",
-        "system"
-      ]
+      "tags": ["auto", "system"]
     },
     {
       "name": "auto-sync-guide",
@@ -106,14 +76,9 @@
       "category": "system",
       "path": "/DOCS/AUTO-SYNC-GUIDE.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "auto",
-        "system"
-      ]
+      "tags": ["auto", "system"]
     },
     {
       "name": "bootstrap",
@@ -122,14 +87,9 @@
       "category": "getting-started",
       "path": "/DOCS/BOOTSTRAP.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "bootstrap",
-        "getting-started"
-      ]
+      "tags": ["bootstrap", "getting-started"]
     },
     {
       "name": "brain-mcp-integration",
@@ -138,14 +98,9 @@
       "category": "integration",
       "path": "/DOCS/BRAIN-MCP-INTEGRATION.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "brain",
-        "integration"
-      ]
+      "tags": ["brain", "integration"]
     },
     {
       "name": "brain-orchestrator-troubleshooting",
@@ -154,14 +109,9 @@
       "category": "system",
       "path": "/DOCS/BRAIN-ORCHESTRATOR-TROUBLESHOOTING.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "brain",
-        "system"
-      ]
+      "tags": ["brain", "system"]
     },
     {
       "name": "brain-quick-reference",
@@ -170,14 +120,9 @@
       "category": "getting-started",
       "path": "/DOCS/BRAIN-QUICK-REFERENCE.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "brain",
-        "getting-started"
-      ]
+      "tags": ["brain", "getting-started"]
     },
     {
       "name": "cheat-sheet",
@@ -186,14 +131,9 @@
       "category": "reference",
       "path": "/DOCS/CHEAT-SHEET.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "cheat",
-        "reference"
-      ]
+      "tags": ["cheat", "reference"]
     },
     {
       "name": "ci-cd-setup",
@@ -202,14 +142,9 @@
       "category": "deployment",
       "path": "/DOCS/CI-CD-SETUP.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "ci",
-        "deployment"
-      ]
+      "tags": ["ci", "deployment"]
     },
     {
       "name": "claude-code-agents",
@@ -218,14 +153,9 @@
       "category": "system",
       "path": "/DOCS/CLAUDE-CODE-AGENTS.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "claude",
-        "system"
-      ]
+      "tags": ["claude", "system"]
     },
     {
       "name": "claude-code-orchestration",
@@ -234,14 +164,9 @@
       "category": "system",
       "path": "/DOCS/CLAUDE-CODE-ORCHESTRATION.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "claude",
-        "system"
-      ]
+      "tags": ["claude", "system"]
     },
     {
       "name": "cli-quickstart",
@@ -250,14 +175,9 @@
       "category": "cli",
       "path": "/DOCS/CLI-QUICKSTART.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "cli",
-        "cli"
-      ]
+      "tags": ["cli", "cli"]
     },
     {
       "name": "cli-reference",
@@ -266,14 +186,9 @@
       "category": "cli",
       "path": "/DOCS/CLI-REFERENCE.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "cli",
-        "cli"
-      ]
+      "tags": ["cli", "cli"]
     },
     {
       "name": "configuration-audit",
@@ -282,14 +197,9 @@
       "category": "system",
       "path": "/DOCS/CONFIGURATION-AUDIT.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "configuration",
-        "system"
-      ]
+      "tags": ["configuration", "system"]
     },
     {
       "name": "deployment",
@@ -298,14 +208,9 @@
       "category": "deployment",
       "path": "/DOCS/DEPLOYMENT.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "deployment",
-        "deployment"
-      ]
+      "tags": ["deployment", "deployment"]
     },
     {
       "name": "existing-projects",
@@ -314,14 +219,9 @@
       "category": "integration",
       "path": "/DOCS/EXISTING-PROJECTS.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "existing",
-        "integration"
-      ]
+      "tags": ["existing", "integration"]
     },
     {
       "name": "file-tracking-guide",
@@ -330,14 +230,9 @@
       "category": "system",
       "path": "/DOCS/FILE-TRACKING-GUIDE.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "file",
-        "system"
-      ]
+      "tags": ["file", "system"]
     },
     {
       "name": "getting-started",
@@ -346,14 +241,9 @@
       "category": "getting-started",
       "path": "/DOCS/GETTING-STARTED.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "getting",
-        "getting-started"
-      ]
+      "tags": ["getting", "getting-started"]
     },
     {
       "name": "index",
@@ -362,14 +252,9 @@
       "category": "reference",
       "path": "/DOCS/INDEX.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "index",
-        "reference"
-      ]
+      "tags": ["index", "reference"]
     },
     {
       "name": "installation-and-updates",
@@ -378,14 +263,9 @@
       "category": "system",
       "path": "/DOCS/INSTALLATION-AND-UPDATES.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "installation",
-        "system"
-      ]
+      "tags": ["installation", "system"]
     },
     {
       "name": "integration-guide",
@@ -394,14 +274,9 @@
       "category": "integration",
       "path": "/DOCS/INTEGRATION-GUIDE.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "integration",
-        "integration"
-      ]
+      "tags": ["integration", "integration"]
     },
     {
       "name": "marketplace-installation-guide",
@@ -410,14 +285,9 @@
       "category": "system",
       "path": "/DOCS/MARKETPLACE-INSTALLATION-GUIDE.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "marketplace",
-        "system"
-      ]
+      "tags": ["marketplace", "system"]
     },
     {
       "name": "marketplace-recommendations",
@@ -426,14 +296,9 @@
       "category": "system",
       "path": "/DOCS/MARKETPLACE-RECOMMENDATIONS.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "marketplace",
-        "system"
-      ]
+      "tags": ["marketplace", "system"]
     },
     {
       "name": "mcp-code-execution-guide",
@@ -442,14 +307,9 @@
       "category": "system",
       "path": "/DOCS/MCP-CODE-EXECUTION-GUIDE.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "mcp",
-        "system"
-      ]
+      "tags": ["mcp", "system"]
     },
     {
       "name": "mcp-configuration-guide",
@@ -458,14 +318,9 @@
       "category": "system",
       "path": "/DOCS/MCP-CONFIGURATION-GUIDE.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "mcp",
-        "system"
-      ]
+      "tags": ["mcp", "system"]
     },
     {
       "name": "mcp-development-roadmap",
@@ -474,14 +329,9 @@
       "category": "planning",
       "path": "/DOCS/MCP-DEVELOPMENT-ROADMAP.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "mcp",
-        "planning"
-      ]
+      "tags": ["mcp", "planning"]
     },
     {
       "name": "mcp-powered-health-check",
@@ -490,14 +340,9 @@
       "category": "system",
       "path": "/DOCS/MCP-POWERED-HEALTH-CHECK.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "mcp",
-        "system"
-      ]
+      "tags": ["mcp", "system"]
     },
     {
       "name": "modular-skills-guide",
@@ -506,14 +351,9 @@
       "category": "system",
       "path": "/DOCS/MODULAR-SKILLS-GUIDE.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "modular",
-        "system"
-      ]
+      "tags": ["modular", "system"]
     },
     {
       "name": "optimization-implementation-complete",
@@ -522,14 +362,9 @@
       "category": "system",
       "path": "/DOCS/OPTIMIZATION-IMPLEMENTATION-COMPLETE.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "optimization",
-        "system"
-      ]
+      "tags": ["optimization", "system"]
     },
     {
       "name": "phase-2-3-complete",
@@ -538,14 +373,9 @@
       "category": "system",
       "path": "/DOCS/PHASE-2-3-COMPLETE.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "phase",
-        "system"
-      ]
+      "tags": ["phase", "system"]
     },
     {
       "name": "plugin-integration",
@@ -554,14 +384,9 @@
       "category": "integration",
       "path": "/DOCS/PLUGIN-INTEGRATION.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "plugin",
-        "integration"
-      ]
+      "tags": ["plugin", "integration"]
     },
     {
       "name": "quick-start",
@@ -570,14 +395,9 @@
       "category": "getting-started",
       "path": "/DOCS/QUICK-START.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "quick",
-        "getting-started"
-      ]
+      "tags": ["quick", "getting-started"]
     },
     {
       "name": "readme",
@@ -586,14 +406,9 @@
       "category": "reference",
       "path": "/DOCS/README.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "readme",
-        "reference"
-      ]
+      "tags": ["readme", "reference"]
     },
     {
       "name": "resource-guide",
@@ -602,14 +417,9 @@
       "category": "system",
       "path": "/DOCS/RESOURCE-GUIDE.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "resource",
-        "system"
-      ]
+      "tags": ["resource", "system"]
     },
     {
       "name": "security",
@@ -618,14 +428,9 @@
       "category": "security",
       "path": "/DOCS/SECURITY.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "security",
-        "security"
-      ]
+      "tags": ["security", "security"]
     },
     {
       "name": "skill-auto-activation",
@@ -634,14 +439,9 @@
       "category": "system",
       "path": "/DOCS/SKILL-AUTO-ACTIVATION.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "skill",
-        "system"
-      ]
+      "tags": ["skill", "system"]
     },
     {
       "name": "system-overview",
@@ -650,14 +450,9 @@
       "category": "system",
       "path": "/DOCS/SYSTEM-OVERVIEW.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "system",
-        "system"
-      ]
+      "tags": ["system", "system"]
     },
     {
       "name": "system-status-2025-10-29",
@@ -666,14 +461,9 @@
       "category": "system",
       "path": "/DOCS/SYSTEM-STATUS-2025-10-29.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "system",
-        "system"
-      ]
+      "tags": ["system", "system"]
     },
     {
       "name": "troubleshooting",
@@ -682,14 +472,9 @@
       "category": "system",
       "path": "/DOCS/TROUBLESHOOTING.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "troubleshooting",
-        "system"
-      ]
+      "tags": ["troubleshooting", "system"]
     },
     {
       "name": "readme",
@@ -698,14 +483,9 @@
       "category": "reference",
       "path": "/DOCS/api/README.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "readme",
-        "reference"
-      ]
+      "tags": ["readme", "reference"]
     },
     {
       "name": "readme",
@@ -714,14 +494,9 @@
       "category": "reference",
       "path": "/DOCS/concepts/README.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "readme",
-        "reference"
-      ]
+      "tags": ["readme", "reference"]
     },
     {
       "name": "readme",
@@ -730,14 +505,9 @@
       "category": "reference",
       "path": "/DOCS/guides/README.md",
       "status": "active",
-      "audience": [
-        "developers"
-      ],
+      "audience": ["developers"],
       "related_skills": [],
-      "tags": [
-        "readme",
-        "reference"
-      ]
+      "tags": ["readme", "reference"]
     }
   ],
   "categories": {

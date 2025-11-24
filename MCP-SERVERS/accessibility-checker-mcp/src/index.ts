@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
+import { Server } from '@modelcontextprotocol/sdk/server/index.js'
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
+import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js'
 
 const server = new Server(
   { name: 'accessibility-checker-mcp', version: '1.0.0' },
   { capabilities: { tools: {} } }
-);
+)
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: [
@@ -60,63 +60,73 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
       }
     }
   ]
-}));
+}))
 
-server.setRequestHandler(CallToolRequestSchema, async (request) => {
+server.setRequestHandler(CallToolRequestSchema, async request => {
   try {
-    const { name, arguments: args } = request.params;
+    const { name, arguments: args } = request.params
 
     switch (name) {
       case 'check_wcag_compliance':
         return {
-          content: [{
-            type: 'text',
-            text: 'WCAG compliance checking configured. Use axe-core for automated testing.'
-          }]
-        };
+          content: [
+            {
+              type: 'text',
+              text: 'WCAG compliance checking configured. Use axe-core for automated testing.'
+            }
+          ]
+        }
 
       case 'check_color_contrast':
         return {
-          content: [{
-            type: 'text',
-            text: `Color contrast check for ${args?.foreground} on ${args?.background}`
-          }]
-        };
+          content: [
+            {
+              type: 'text',
+              text: `Color contrast check for ${args?.foreground} on ${args?.background}`
+            }
+          ]
+        }
 
       case 'check_keyboard_navigation':
         return {
-          content: [{
-            type: 'text',
-            text: 'Keyboard navigation check configured'
-          }]
-        };
+          content: [
+            {
+              type: 'text',
+              text: 'Keyboard navigation check configured'
+            }
+          ]
+        }
 
       case 'check_aria_attributes':
         return {
-          content: [{
-            type: 'text',
-            text: 'ARIA attribute validation configured'
-          }]
-        };
+          content: [
+            {
+              type: 'text',
+              text: 'ARIA attribute validation configured'
+            }
+          ]
+        }
 
       default:
-        throw new Error(`Unknown tool: ${name}`);
+        throw new Error(`Unknown tool: ${name}`)
     }
   } catch (error) {
     return {
-      content: [{ type: 'text', text: `Error: ${error instanceof Error ? error.message : String(error)}` }],
+      content: [
+        { type: 'text', text: `Error: ${error instanceof Error ? error.message : String(error)}` }
+      ],
       isError: true
-    };
+    }
   }
-});
+})
 
 async function main() {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error('accessibility-checker-mcp running on stdio');
+  const transport = new StdioServerTransport()
+  await server.connect(transport)
+  console.error('accessibility-checker-mcp running on stdio')
 }
 
-main().catch((error) => {
-  console.error('Server error:', error);
-  process.exit(1);
-});
+main().catch(error => {
+  console.error('Server error:', error)
+  process.exit(1)
+})

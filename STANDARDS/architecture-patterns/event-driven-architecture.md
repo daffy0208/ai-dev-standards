@@ -9,6 +9,7 @@
 ## When to Use
 
 ✅ **Use event-driven architecture when:**
+
 - Need to decouple services (microservices)
 - Building real-time systems (notifications, updates)
 - Require audit trails (event sourcing)
@@ -16,6 +17,7 @@
 - Integration across systems (pub/sub)
 
 ❌ **Don't use when:**
+
 - Simple CRUD applications
 - Need immediate consistency
 - Debugging/tracing is critical
@@ -37,6 +39,7 @@ Order Service → RabbitMQ → [Email Service, Inventory Service, Analytics]
 ### Implementation (Node.js + RabbitMQ)
 
 **Producer:**
+
 ```typescript
 import amqp from 'amqplib'
 
@@ -54,12 +57,7 @@ export async function publishEvent(eventType: string, data: any) {
     id: crypto.randomUUID()
   }
 
-  channel.publish(
-    exchange,
-    eventType,
-    Buffer.from(JSON.stringify(event)),
-    { persistent: true }
-  )
+  channel.publish(exchange, eventType, Buffer.from(JSON.stringify(event)), { persistent: true })
 
   console.log(`Published event: ${eventType}`, event.id)
   await channel.close()
@@ -75,6 +73,7 @@ await publishEvent('order.created', {
 ```
 
 **Consumer:**
+
 ```typescript
 import amqp from 'amqplib'
 
@@ -89,7 +88,7 @@ export async function consumeEvents(eventType: string, handler: (event: any) => 
   await channel.assertQueue(queue, { durable: true })
   await channel.bindQueue(queue, exchange, eventType)
 
-  channel.consume(queue, async (msg) => {
+  channel.consume(queue, async msg => {
     if (msg) {
       try {
         const event = JSON.parse(msg.content.toString())
@@ -106,12 +105,12 @@ export async function consumeEvents(eventType: string, handler: (event: any) => 
 }
 
 // Usage - Email Service
-await consumeEvents('order.created', async (event) => {
+await consumeEvents('order.created', async event => {
   await sendOrderConfirmationEmail(event.data.userId, event.data.orderId)
 })
 
 // Usage - Inventory Service
-await consumeEvents('order.created', async (event) => {
+await consumeEvents('order.created', async event => {
   await decrementInventory(event.data.orderId)
 })
 ```
@@ -128,6 +127,7 @@ await consumeEvents('order.created', async (event) => {
 ### Implementation
 
 **Event Store:**
+
 ```typescript
 // events table
 interface Event {
@@ -193,6 +193,7 @@ function applyEvent(state: OrderState, event: Event): OrderState {
 ```
 
 **Example Usage:**
+
 ```typescript
 // Create order
 await appendEvent({
@@ -224,6 +225,7 @@ const order = await rebuildAggregate('order_123')
 ### Concept
 
 Separate read and write operations:
+
 - **Commands:** Change state (write)
 - **Queries:** Read state (read)
 
@@ -240,6 +242,7 @@ Queries ← ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘
 ### Implementation
 
 **Write Model (Commands):**
+
 ```typescript
 // Command handlers (write operations)
 export async function createOrder(command: CreateOrderCommand) {
@@ -268,6 +271,7 @@ export async function createOrder(command: CreateOrderCommand) {
 ```
 
 **Read Model (Queries):**
+
 ```typescript
 // Read model (optimized for queries)
 // Updated by event handlers
@@ -282,7 +286,7 @@ interface OrderReadModel {
 }
 
 // Event handler updates read model
-await consumeEvents('order.created', async (event) => {
+await consumeEvents('order.created', async event => {
   await db.orders.create({
     data: {
       id: event.aggregateId,
@@ -311,27 +315,30 @@ export async function getOrdersByUser(userId: string) {
 
 ### RabbitMQ vs SQS vs Kafka
 
-| Feature | RabbitMQ | AWS SQS | Apache Kafka |
-|---------|----------|---------|--------------|
-| **Best For** | General pub/sub | AWS ecosystem | High throughput |
-| **Ordering** | Yes | FIFO queues | Yes (partitions) |
-| **Persistence** | Yes | Yes | Yes (long-term) |
-| **Complexity** | Medium | Low | High |
-| **Cost** | Self-hosted | Pay per message | Self-hosted |
+| Feature         | RabbitMQ        | AWS SQS         | Apache Kafka     |
+| --------------- | --------------- | --------------- | ---------------- |
+| **Best For**    | General pub/sub | AWS ecosystem   | High throughput  |
+| **Ordering**    | Yes             | FIFO queues     | Yes (partitions) |
+| **Persistence** | Yes             | Yes             | Yes (long-term)  |
+| **Complexity**  | Medium          | Low             | High             |
+| **Cost**        | Self-hosted     | Pay per message | Self-hosted      |
 
 ### When to Use Each
 
 **RabbitMQ:**
+
 - General event-driven systems
 - Multiple consumers per event
 - Need flexible routing
 
 **SQS:**
+
 - AWS-only infrastructure
 - Simple queue needs
 - Want managed service
 
 **Kafka:**
+
 - High-volume event streaming
 - Event replay needed
 - Analytics pipelines
@@ -343,6 +350,7 @@ export async function getOrdersByUser(userId: string) {
 ### Event Design
 
 **Good Event:**
+
 ```typescript
 {
   id: 'evt_123',
@@ -363,6 +371,7 @@ export async function getOrdersByUser(userId: string) {
 ```
 
 **Event Naming:**
+
 - Past tense: `order.created` (not `create.order`)
 - Specific: `payment.succeeded` (not `payment.done`)
 - Versioned: `order.created.v2` if schema changes
@@ -396,6 +405,7 @@ async function handleOrderCreated(event: Event) {
 ### Error Handling
 
 **Dead Letter Queue:**
+
 ```typescript
 // Retry logic
 let retries = 0
@@ -429,6 +439,7 @@ async function processWithRetry(event: Event) {
 ## Trade-offs
 
 ### Pros
+
 - ✅ Loose coupling (services independent)
 - ✅ Scalability (async processing)
 - ✅ Audit trail (event history)
@@ -436,6 +447,7 @@ async function processWithRetry(event: Event) {
 - ✅ Real-time capabilities (push updates)
 
 ### Cons
+
 - ❌ Eventual consistency (not immediate)
 - ❌ Complexity (debugging harder)
 - ❌ Message ordering challenges

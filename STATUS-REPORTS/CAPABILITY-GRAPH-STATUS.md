@@ -19,12 +19,12 @@ Your **capability graph** is now operational! This is a queryable graph structur
 
 ### Relationship Types
 
-| Type | Count | Meaning |
-|------|-------|---------|
-| **composes_with** | 74 | Works well together |
-| **enables** | 57 | Makes something possible |
-| **requires** | 24 | Needs this to function |
-| **conflicts_with** | 14 | Can't coexist |
+| Type               | Count | Meaning                  |
+| ------------------ | ----- | ------------------------ |
+| **composes_with**  | 74    | Works well together      |
+| **enables**        | 57    | Makes something possible |
+| **requires**       | 24    | Needs this to function   |
+| **conflicts_with** | 14    | Can't coexist            |
 
 ---
 
@@ -37,6 +37,7 @@ You asked about **OpenGraph** - here's how graph concepts power your Brain and O
 **Purpose:** Maps all resources and their relationships
 
 **Structure:**
+
 ```
 Nodes (Capabilities):
   - Skills (mvp-builder, rag-implementer, etc.)
@@ -51,6 +52,7 @@ Edges (Relationships):
 ```
 
 **Used By:**
+
 - Brain Layer 3 (Decision Engine) for skill selection
 - Orchestration Planner for HTN planning
 - Skill Validator for consistency checking
@@ -60,11 +62,13 @@ Edges (Relationships):
 **Purpose:** Store domain knowledge with entity relationships
 
 **Structure:**
+
 ```
 (Person) -[WORKS_FOR]-> (Organization) -[LOCATED_IN]-> (Location)
 ```
 
 **Used By:**
+
 - RAG systems for grounding LLM responses
 - Knowledge-base-manager skill
 - Semantic search systems
@@ -124,28 +128,32 @@ We generated 6 new manifests for critical skills:
 ## Query Examples
 
 ### Find AI/RAG Capabilities
+
 ```python
 graph['domains']['ai']
-# → ['archon-manager', 'capability-graph-builder', 
+# → ['archon-manager', 'capability-graph-builder',
 #    'knowledge-base-manager', 'rag-implementer', ...]
 ```
 
 ### Find Who Implements Authentication
+
 ```python
 graph['effects']['implements_authentication']
 # → ['api-designer', 'security-engineer']
 ```
 
 ### Find What Composes with api-designer
+
 ```python
-[e for e in graph['edges'] 
+[e for e in graph['edges']
  if e['from'] == 'api-designer' and e['type'] == 'composes_with']
 # → ['frontend-builder', 'security-engineer', 'testing-strategist', ...]
 ```
 
 ### Find Dependencies
+
 ```python
-[e for e in graph['edges'] 
+[e for e in graph['edges']
  if e['to'] == 'rag-implementer' and e['type'] == 'requires']
 # → ['openai-integration', 'pinecone-mcp', 'embedding-generator-mcp']
 ```
@@ -228,12 +236,12 @@ Generate manifests for remaining 46 skills:
 
 ### Capability Graph vs Knowledge Graph
 
-| Aspect | Capability Graph | Knowledge Graph |
-|--------|-----------------|----------------|
-| **Purpose** | Map resources | Store knowledge |
-| **Nodes** | Skills, MCPs, Tools | Entities, Concepts |
-| **Edges** | requires, enables | relationships |
-| **Used By** | Brain, Orchestrator | RAG, LLMs |
+| Aspect      | Capability Graph                              | Knowledge Graph                 |
+| ----------- | --------------------------------------------- | ------------------------------- |
+| **Purpose** | Map resources                                 | Store knowledge                 |
+| **Nodes**   | Skills, MCPs, Tools                           | Entities, Concepts              |
+| **Edges**   | requires, enables                             | relationships                   |
+| **Used By** | Brain, Orchestrator                           | RAG, LLMs                       |
 | **Example** | `rag-implementer requires openai-integration` | `Person WORKS_FOR Organization` |
 
 ### How Brain Uses the Graph
@@ -260,7 +268,7 @@ Generate manifests for remaining 46 skills:
 ✅ **Validated** - Structure correct, queries working  
 ✅ **Integrated** - Brain can query graph  
 ⏳ **Expand** - Need 46 more manifests (71% to go)  
-⏳ **Enhance** - Inference, validation, visualization  
+⏳ **Enhance** - Inference, validation, visualization
 
 ---
 
@@ -269,7 +277,7 @@ Generate manifests for remaining 46 skills:
 - **Graph File:** `META/capability-graph.json`
 - **Manifests:** `SKILLS/*/manifest.yaml`
 - **Brain CLI:** `scripts/brain/brain.ts`
-- **Documentation:** 
+- **Documentation:**
   - `META/REPOSITORY-BRAIN.md` - Brain architecture
   - `DOCS/CLAUDE-CODE-ORCHESTRATION.md` - Orchestration system
   - `SKILLS/capability-graph-builder/SKILL.md` - Graph builder skill

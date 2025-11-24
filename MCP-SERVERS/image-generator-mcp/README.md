@@ -7,15 +7,18 @@ AI-powered image generation MCP server supporting multiple providers (OpenAI DAL
 ### Tools
 
 #### `generateImage`
+
 Generate images from text prompts with customizable styles and sizes.
 
 **Parameters:**
+
 - `prompt` (string, required): Text description of the image
 - `style` (string): Visual style - realistic, artistic, cartoon, abstract, photographic
 - `size` (string): Image dimensions - 256x256, 512x512, 1024x1024, 1024x1792, 1792x1024
 - `provider` (string): AI provider - dalle, midjourney, stable-diffusion
 
 **Example:**
+
 ```typescript
 {
   prompt: "A futuristic cityscape at night with neon lights",
@@ -26,15 +29,18 @@ Generate images from text prompts with customizable styles and sizes.
 ```
 
 #### `editImage`
+
 Edit existing images using AI with text prompts and optional masking.
 
 **Parameters:**
+
 - `imageUrl` (string, required): URL or path to the image
 - `prompt` (string, required): Description of edits to make
 - `mask` (string, optional): Mask URL indicating edit area
 - `provider` (string): AI provider - dalle, stable-diffusion
 
 **Example:**
+
 ```typescript
 {
   imageUrl: "https://example.com/image.png",
@@ -45,14 +51,17 @@ Edit existing images using AI with text prompts and optional masking.
 ```
 
 #### `upscaleImage`
+
 Upscale images to higher resolution with AI enhancement.
 
 **Parameters:**
+
 - `imageUrl` (string, required): URL or path to the image
 - `scale` (number, required): Upscaling factor - 2, 4, or 8
 - `enhanceDetails` (boolean): Apply AI detail enhancement
 
 **Example:**
+
 ```typescript
 {
   imageUrl: "https://example.com/image.png",
@@ -62,14 +71,17 @@ Upscale images to higher resolution with AI enhancement.
 ```
 
 #### `generateVariations`
+
 Generate multiple variations of an existing image.
 
 **Parameters:**
+
 - `imageUrl` (string, required): URL or path to source image
 - `count` (number, required): Number of variations (1-10)
 - `variationType` (string): Type - style, color, composition, similar
 
 **Example:**
+
 ```typescript
 {
   imageUrl: "https://example.com/image.png",
@@ -81,9 +93,11 @@ Generate multiple variations of an existing image.
 ### Resources
 
 #### `image-generator://history`
+
 JSON list of all generated images with metadata.
 
 #### `image-generator://config`
+
 Configuration guide for setting up image generation providers.
 
 ## Setup
@@ -131,10 +145,10 @@ Add to your MCP settings:
 
 ## Provider Comparison
 
-| Provider | Best For | Max Size | Cost | Speed |
-|----------|----------|----------|------|-------|
-| DALL-E 3 | Photorealism, accuracy | 1792x1024 | $$ | Fast |
-| Midjourney | Artistic, creative | 2048x2048 | $ | Medium |
+| Provider         | Best For                   | Max Size  | Cost   | Speed  |
+| ---------------- | -------------------------- | --------- | ------ | ------ |
+| DALL-E 3         | Photorealism, accuracy     | 1792x1024 | $$     | Fast   |
+| Midjourney       | Artistic, creative         | 2048x2048 | $      | Medium |
 | Stable Diffusion | Custom models, flexibility | Unlimited | Free/$ | Varies |
 
 ## Supported Skills
@@ -157,11 +171,13 @@ Add to your MCP settings:
 ### Prompt Engineering
 
 **Good prompts:**
+
 - Be specific: "A modern minimalist office with natural lighting"
 - Include style: "in the style of architectural photography"
 - Specify details: "with wooden furniture and green plants"
 
 **Avoid:**
+
 - Vague prompts: "nice office"
 - Contradictions: "dark bright room"
 - Too complex: combining 10+ concepts
@@ -185,6 +201,7 @@ Add to your MCP settings:
 ## Error Handling
 
 The server handles common errors:
+
 - Missing API keys
 - Invalid parameters
 - Rate limiting
@@ -224,6 +241,7 @@ MIT
 ## Support
 
 For issues and questions:
+
 - Check provider documentation
 - Review configuration guide
 - Test with simple prompts first

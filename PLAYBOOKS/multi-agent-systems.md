@@ -82,35 +82,33 @@ graph TB
 **Cons**: Single point of failure, potential bottleneck
 
 ```typescript
-import { AgentOrchestrator } from './orchestrator';
+import { AgentOrchestrator } from './orchestrator'
 
 class CentralizedOrchestrator extends AgentOrchestrator {
-  private agents: Map<string, Agent> = new Map();
+  private agents: Map<string, Agent> = new Map()
 
   async processTask(task: Task): Promise<Result> {
     // 1. Decompose task
-    const subtasks = this.decomposeTask(task);
+    const subtasks = this.decomposeTask(task)
 
     // 2. Assign to agents
     const assignments = subtasks.map(subtask => ({
       agent: this.selectAgent(subtask),
       subtask
-    }));
+    }))
 
     // 3. Execute in parallel
     const results = await Promise.all(
-      assignments.map(({ agent, subtask }) =>
-        agent.execute(subtask)
-      )
-    );
+      assignments.map(({ agent, subtask }) => agent.execute(subtask))
+    )
 
     // 4. Combine results
-    return this.combineResults(results);
+    return this.combineResults(results)
   }
 
   private selectAgent(subtask: Subtask): Agent {
     // Route based on subtask type
-    return this.agents.get(subtask.type)!;
+    return this.agents.get(subtask.type)!
   }
 }
 ```
@@ -134,28 +132,27 @@ graph LR
 
 ```typescript
 class DecentralizedAgent {
-  private peers: Map<string, Agent> = new Map();
-  private inbox: Queue<Message> = new Queue();
+  private peers: Map<string, Agent> = new Map()
+  private inbox: Queue<Message> = new Queue()
 
   async processMessage(message: Message): Promise<void> {
     if (message.type === 'task') {
       // Can I handle this?
       if (this.canHandle(message.task)) {
-        const result = await this.execute(message.task);
-        await this.sendToPeers({ type: 'result', result });
+        const result = await this.execute(message.task)
+        await this.sendToPeers({ type: 'result', result })
       } else {
         // Forward to suitable peer
-        const peer = this.findSuitablePeer(message.task);
-        await peer.sendMessage(message);
+        const peer = this.findSuitablePeer(message.task)
+        await peer.sendMessage(message)
       }
     } else if (message.type === 'result') {
-      await this.handleResult(message.result);
+      await this.handleResult(message.result)
     }
   }
 
   private findSuitablePeer(task: Task): Agent {
-    return Array.from(this.peers.values())
-      .find(peer => peer.canHandle(task))!;
+    return Array.from(this.peers.values()).find(peer => peer.canHandle(task))!
   }
 }
 ```
@@ -181,40 +178,36 @@ graph TB
 
 ```typescript
 class ManagerAgent extends Agent {
-  private teamLeads: TeamLeadAgent[] = [];
+  private teamLeads: TeamLeadAgent[] = []
 
   async processTask(task: Task): Promise<Result> {
     // Decompose into major components
-    const components = this.decomposeIntoComponents(task);
+    const components = this.decomposeIntoComponents(task)
 
     // Assign to team leads
     const teamResults = await Promise.all(
-      components.map((component, i) =>
-        this.teamLeads[i].processComponent(component)
-      )
-    );
+      components.map((component, i) => this.teamLeads[i].processComponent(component))
+    )
 
     // Aggregate results
-    return this.aggregateResults(teamResults);
+    return this.aggregateResults(teamResults)
   }
 }
 
 class TeamLeadAgent extends Agent {
-  private workers: WorkerAgent[] = [];
+  private workers: WorkerAgent[] = []
 
   async processComponent(component: Component): Promise<Result> {
     // Decompose into tasks
-    const tasks = this.decomposeIntoTasks(component);
+    const tasks = this.decomposeIntoTasks(component)
 
     // Distribute to workers
     const taskResults = await Promise.all(
-      tasks.map((task, i) =>
-        this.workers[i % this.workers.length].executeTask(task)
-      )
-    );
+      tasks.map((task, i) => this.workers[i % this.workers.length].executeTask(task))
+    )
 
     // Combine worker results
-    return this.combineResults(taskResults);
+    return this.combineResults(taskResults)
   }
 }
 ```
@@ -235,25 +228,25 @@ graph LR
 
 ```typescript
 class PipelineOrchestrator {
-  private pipeline: Agent[] = [];
+  private pipeline: Agent[] = []
 
   async processThroughPipeline(input: any): Promise<any> {
-    let result = input;
+    let result = input
 
     for (const agent of this.pipeline) {
-      result = await agent.process(result);
+      result = await agent.process(result)
 
       // Validate intermediate results
       if (!this.validateResult(result)) {
-        throw new Error(`Agent ${agent.name} produced invalid result`);
+        throw new Error(`Agent ${agent.name} produced invalid result`)
       }
     }
 
-    return result;
+    return result
   }
 
   addStage(agent: Agent): void {
-    this.pipeline.push(agent);
+    this.pipeline.push(agent)
   }
 }
 ```
@@ -266,35 +259,35 @@ class PipelineOrchestrator {
 
 ```typescript
 interface Message {
-  id: string;
-  from: string;
-  to: string | string[]; // Single recipient or broadcast
-  type: 'task' | 'result' | 'query' | 'status' | 'error';
-  timestamp: number;
-  payload: any;
+  id: string
+  from: string
+  to: string | string[] // Single recipient or broadcast
+  type: 'task' | 'result' | 'query' | 'status' | 'error'
+  timestamp: number
+  payload: any
   metadata?: {
-    priority?: 'low' | 'medium' | 'high';
-    ttl?: number; // Time to live in ms
-    correlationId?: string; // Link related messages
-  };
+    priority?: 'low' | 'medium' | 'high'
+    ttl?: number // Time to live in ms
+    correlationId?: string // Link related messages
+  }
 }
 
 interface TaskMessage extends Message {
-  type: 'task';
+  type: 'task'
   payload: {
-    task: Task;
-    context?: any;
-    deadline?: number;
-  };
+    task: Task
+    context?: any
+    deadline?: number
+  }
 }
 
 interface ResultMessage extends Message {
-  type: 'result';
+  type: 'result'
   payload: {
-    result: any;
-    confidence?: number;
-    metadata?: any;
-  };
+    result: any
+    confidence?: number
+    metadata?: any
+  }
 }
 ```
 
@@ -302,55 +295,55 @@ interface ResultMessage extends Message {
 
 ```typescript
 class MessageBroker {
-  private queues: Map<string, Queue<Message>> = new Map();
-  private subscriptions: Map<string, Set<string>> = new Map();
-  private messageHandlers: Map<string, (msg: Message) => Promise<void>> = new Map();
+  private queues: Map<string, Queue<Message>> = new Map()
+  private subscriptions: Map<string, Set<string>> = new Map()
+  private messageHandlers: Map<string, (msg: Message) => Promise<void>> = new Map()
 
   // Publish message to topic
   async publish(topic: string, message: Message): Promise<void> {
-    const subscribers = this.subscriptions.get(topic) || new Set();
+    const subscribers = this.subscriptions.get(topic) || new Set()
 
     await Promise.all(
-      Array.from(subscribers).map(async (subscriberId) => {
-        const queue = this.queues.get(subscriberId);
+      Array.from(subscribers).map(async subscriberId => {
+        const queue = this.queues.get(subscriberId)
         if (queue) {
-          await queue.enqueue(message);
+          await queue.enqueue(message)
         }
       })
-    );
+    )
   }
 
   // Subscribe to topic
   subscribe(topic: string, subscriberId: string): void {
     if (!this.subscriptions.has(topic)) {
-      this.subscriptions.set(topic, new Set());
+      this.subscriptions.set(topic, new Set())
     }
-    this.subscriptions.get(topic)!.add(subscriberId);
+    this.subscriptions.get(topic)!.add(subscriberId)
 
     if (!this.queues.has(subscriberId)) {
-      this.queues.set(subscriberId, new Queue());
+      this.queues.set(subscriberId, new Queue())
     }
   }
 
   // Register message handler
   onMessage(agentId: string, handler: (msg: Message) => Promise<void>): void {
-    this.messageHandlers.set(agentId, handler);
-    this.startMessageProcessor(agentId);
+    this.messageHandlers.set(agentId, handler)
+    this.startMessageProcessor(agentId)
   }
 
   private async startMessageProcessor(agentId: string): Promise<void> {
-    const queue = this.queues.get(agentId);
-    const handler = this.messageHandlers.get(agentId);
+    const queue = this.queues.get(agentId)
+    const handler = this.messageHandlers.get(agentId)
 
-    if (!queue || !handler) return;
+    if (!queue || !handler) return
 
     while (true) {
-      const message = await queue.dequeue();
+      const message = await queue.dequeue()
       if (message) {
         try {
-          await handler(message);
+          await handler(message)
         } catch (error) {
-          console.error(`Error processing message in ${agentId}:`, error);
+          console.error(`Error processing message in ${agentId}:`, error)
         }
       }
     }
@@ -362,8 +355,8 @@ class MessageBroker {
 
 ```typescript
 class Agent {
-  private id: string;
-  private broker: MessageBroker;
+  private id: string
+  private broker: MessageBroker
 
   async sendMessage(to: string, message: Partial<Message>): Promise<void> {
     await this.broker.publish(to, {
@@ -372,39 +365,36 @@ class Agent {
       to,
       timestamp: Date.now(),
       ...message
-    } as Message);
+    } as Message)
   }
 
   async sendTask(to: string, task: Task): Promise<string> {
-    const correlationId = generateId();
+    const correlationId = generateId()
 
     await this.sendMessage(to, {
       type: 'task',
       payload: { task },
       metadata: { correlationId }
-    });
+    })
 
-    return correlationId;
+    return correlationId
   }
 
   async waitForResult(correlationId: string, timeout: number = 30000): Promise<any> {
     return new Promise((resolve, reject) => {
       const timer = setTimeout(() => {
-        reject(new Error('Timeout waiting for result'));
-      }, timeout);
+        reject(new Error('Timeout waiting for result'))
+      }, timeout)
 
       const handler = (message: Message) => {
-        if (
-          message.type === 'result' &&
-          message.metadata?.correlationId === correlationId
-        ) {
-          clearTimeout(timer);
-          resolve(message.payload.result);
+        if (message.type === 'result' && message.metadata?.correlationId === correlationId) {
+          clearTimeout(timer)
+          resolve(message.payload.result)
         }
-      };
+      }
 
-      this.broker.onMessage(this.id, handler);
-    });
+      this.broker.onMessage(this.id, handler)
+    })
   }
 }
 ```
@@ -417,31 +407,30 @@ class Agent {
 
 ```typescript
 class LoadBalancer {
-  private agents: Map<string, AgentInfo> = new Map();
+  private agents: Map<string, AgentInfo> = new Map()
 
   // Round-robin distribution
   roundRobin(): Agent {
-    const available = Array.from(this.agents.values())
-      .filter(info => info.status === 'idle');
+    const available = Array.from(this.agents.values()).filter(info => info.status === 'idle')
 
     if (available.length === 0) {
-      throw new Error('No available agents');
+      throw new Error('No available agents')
     }
 
-    return available[this.currentIndex++ % available.length].agent;
+    return available[this.currentIndex++ % available.length].agent
   }
 
   // Least connections
   leastConnections(): Agent {
     const available = Array.from(this.agents.values())
       .filter(info => info.status === 'idle')
-      .sort((a, b) => a.activeConnections - b.activeConnections);
+      .sort((a, b) => a.activeConnections - b.activeConnections)
 
     if (available.length === 0) {
-      throw new Error('No available agents');
+      throw new Error('No available agents')
     }
 
-    return available[0].agent;
+    return available[0].agent
   }
 
   // Weighted distribution (by capability)
@@ -451,24 +440,24 @@ class LoadBalancer {
         agent: info.agent,
         weight: info.capabilities[taskType] || 0
       }))
-      .filter(c => c.weight > 0);
+      .filter(c => c.weight > 0)
 
     if (capabilities.length === 0) {
-      throw new Error(`No agents capable of ${taskType}`);
+      throw new Error(`No agents capable of ${taskType}`)
     }
 
     // Select based on weights
-    const totalWeight = capabilities.reduce((sum, c) => sum + c.weight, 0);
-    let random = Math.random() * totalWeight;
+    const totalWeight = capabilities.reduce((sum, c) => sum + c.weight, 0)
+    let random = Math.random() * totalWeight
 
     for (const { agent, weight } of capabilities) {
-      random -= weight;
+      random -= weight
       if (random <= 0) {
-        return agent;
+        return agent
       }
     }
 
-    return capabilities[0].agent;
+    return capabilities[0].agent
   }
 }
 ```
@@ -476,41 +465,41 @@ class LoadBalancer {
 ### Task Queue with Priority
 
 ```typescript
-import { TaskQueue } from '../COMPONENTS/workflows/task-queue';
+import { TaskQueue } from '../COMPONENTS/workflows/task-queue'
 
 class PriorityTaskQueue extends TaskQueue {
-  private highPriority: Task[] = [];
-  private normalPriority: Task[] = [];
-  private lowPriority: Task[] = [];
+  private highPriority: Task[] = []
+  private normalPriority: Task[] = []
+  private lowPriority: Task[] = []
 
   async enqueue(task: Task): Promise<void> {
-    const priority = task.metadata?.priority || 'normal';
+    const priority = task.metadata?.priority || 'normal'
 
     switch (priority) {
       case 'high':
-        this.highPriority.push(task);
-        break;
+        this.highPriority.push(task)
+        break
       case 'low':
-        this.lowPriority.push(task);
-        break;
+        this.lowPriority.push(task)
+        break
       default:
-        this.normalPriority.push(task);
+        this.normalPriority.push(task)
     }
 
-    await this.processNext();
+    await this.processNext()
   }
 
   async dequeue(): Promise<Task | null> {
     if (this.highPriority.length > 0) {
-      return this.highPriority.shift()!;
+      return this.highPriority.shift()!
     }
     if (this.normalPriority.length > 0) {
-      return this.normalPriority.shift()!;
+      return this.normalPriority.shift()!
     }
     if (this.lowPriority.length > 0) {
-      return this.lowPriority.shift()!;
+      return this.lowPriority.shift()!
     }
-    return null;
+    return null
   }
 
   getQueueStats(): QueueStats {
@@ -519,7 +508,7 @@ class PriorityTaskQueue extends TaskQueue {
       normal: this.normalPriority.length,
       low: this.lowPriority.length,
       total: this.highPriority.length + this.normalPriority.length + this.lowPriority.length
-    };
+    }
   }
 }
 ```
@@ -528,42 +517,40 @@ class PriorityTaskQueue extends TaskQueue {
 
 ```typescript
 class WorkStealingScheduler {
-  private agentQueues: Map<string, Task[]> = new Map();
+  private agentQueues: Map<string, Task[]> = new Map()
 
   async assignTask(task: Task): Promise<void> {
     // Assign to agent with smallest queue
-    const agentId = this.findLightestQueue();
-    this.agentQueues.get(agentId)!.push(task);
+    const agentId = this.findLightestQueue()
+    this.agentQueues.get(agentId)!.push(task)
   }
 
   async stealWork(idleAgentId: string): Promise<Task | null> {
     // Find agent with most work
-    const busiestAgent = this.findBusiestQueue();
+    const busiestAgent = this.findBusiestQueue()
 
-    if (!busiestAgent) return null;
+    if (!busiestAgent) return null
 
-    const queue = this.agentQueues.get(busiestAgent)!;
+    const queue = this.agentQueues.get(busiestAgent)!
 
     // Steal from end (newest tasks)
     if (queue.length > 1) {
-      return queue.pop()!;
+      return queue.pop()!
     }
 
-    return null;
+    return null
   }
 
   private findLightestQueue(): string {
-    return Array.from(this.agentQueues.entries())
-      .sort((a, b) => a[1].length - b[1].length)[0][0];
+    return Array.from(this.agentQueues.entries()).sort((a, b) => a[1].length - b[1].length)[0][0]
   }
 
   private findBusiestQueue(): string | null {
-    const entries = Array.from(this.agentQueues.entries())
-      .filter(([_, queue]) => queue.length > 1);
+    const entries = Array.from(this.agentQueues.entries()).filter(([_, queue]) => queue.length > 1)
 
-    if (entries.length === 0) return null;
+    if (entries.length === 0) return null
 
-    return entries.sort((a, b) => b[1].length - a[1].length)[0][0];
+    return entries.sort((a, b) => b[1].length - a[1].length)[0][0]
   }
 }
 ```
@@ -576,71 +563,69 @@ class WorkStealingScheduler {
 
 ```typescript
 class SharedMemory {
-  private store: Map<string, any> = new Map();
-  private locks: Map<string, boolean> = new Map();
-  private subscribers: Map<string, Set<(value: any) => void>> = new Map();
+  private store: Map<string, any> = new Map()
+  private locks: Map<string, boolean> = new Map()
+  private subscribers: Map<string, Set<(value: any) => void>> = new Map()
 
   // Read with optional consistency guarantee
   async read(key: string): Promise<any> {
-    return this.store.get(key);
+    return this.store.get(key)
   }
 
   // Write with locking
   async write(key: string, value: any): Promise<void> {
-    await this.acquireLock(key);
+    await this.acquireLock(key)
 
     try {
-      this.store.set(key, value);
-      await this.notifySubscribers(key, value);
+      this.store.set(key, value)
+      await this.notifySubscribers(key, value)
     } finally {
-      this.releaseLock(key);
+      this.releaseLock(key)
     }
   }
 
   // Atomic update
   async update(key: string, updater: (current: any) => any): Promise<void> {
-    await this.acquireLock(key);
+    await this.acquireLock(key)
 
     try {
-      const current = this.store.get(key);
-      const updated = updater(current);
-      this.store.set(key, updated);
-      await this.notifySubscribers(key, updated);
+      const current = this.store.get(key)
+      const updated = updater(current)
+      this.store.set(key, updated)
+      await this.notifySubscribers(key, updated)
     } finally {
-      this.releaseLock(key);
+      this.releaseLock(key)
     }
   }
 
   // Subscribe to changes
   subscribe(key: string, callback: (value: any) => void): () => void {
     if (!this.subscribers.has(key)) {
-      this.subscribers.set(key, new Set());
+      this.subscribers.set(key, new Set())
     }
-    this.subscribers.get(key)!.add(callback);
+    this.subscribers.get(key)!.add(callback)
 
     // Return unsubscribe function
     return () => {
-      this.subscribers.get(key)?.delete(callback);
-    };
+      this.subscribers.get(key)?.delete(callback)
+    }
   }
 
   private async acquireLock(key: string): Promise<void> {
     while (this.locks.get(key)) {
-      await new Promise(resolve => setTimeout(resolve, 10));
+      await new Promise(resolve => setTimeout(resolve, 10))
     }
-    this.locks.set(key, true);
+    this.locks.set(key, true)
   }
 
   private releaseLock(key: string): void {
-    this.locks.set(key, false);
+    this.locks.set(key, false)
   }
 
   private async notifySubscribers(key: string, value: any): Promise<void> {
-    const callbacks = this.subscribers.get(key);
+    const callbacks = this.subscribers.get(key)
     if (callbacks) {
-      await Promise.all(
-        Array.from(callbacks).map(cb => cb(value))
-      );
+      await Promise.all(Array.from(callbacks).map(cb => cb(value)))
     }
   }
 }
@@ -649,56 +634,56 @@ class SharedMemory {
 ### Distributed State (Redis)
 
 ```typescript
-import { createClient, RedisClientType } from 'redis';
+import { createClient, RedisClientType } from 'redis'
 
 class DistributedState {
-  private client: RedisClientType;
+  private client: RedisClientType
 
   constructor(url: string) {
-    this.client = createClient({ url });
+    this.client = createClient({ url })
   }
 
   async connect(): Promise<void> {
-    await this.client.connect();
+    await this.client.connect()
   }
 
   async get(key: string): Promise<any> {
-    const value = await this.client.get(key);
-    return value ? JSON.parse(value) : null;
+    const value = await this.client.get(key)
+    return value ? JSON.parse(value) : null
   }
 
   async set(key: string, value: any, ttl?: number): Promise<void> {
-    const serialized = JSON.stringify(value);
+    const serialized = JSON.stringify(value)
     if (ttl) {
-      await this.client.setEx(key, ttl, serialized);
+      await this.client.setEx(key, ttl, serialized)
     } else {
-      await this.client.set(key, serialized);
+      await this.client.set(key, serialized)
     }
   }
 
   async update(key: string, updater: (current: any) => any): Promise<void> {
     // Use Redis transaction for atomicity
-    await this.client.watch(key);
+    await this.client.watch(key)
 
-    const current = await this.get(key);
-    const updated = updater(current);
+    const current = await this.get(key)
+    const updated = updater(current)
 
-    const multi = this.client.multi();
-    multi.set(key, JSON.stringify(updated));
-    await multi.exec();
+    const multi = this.client.multi()
+    multi.set(key, JSON.stringify(updated))
+    await multi.exec()
   }
 
   async subscribe(channel: string, handler: (message: any) => void): Promise<void> {
-    const subscriber = this.client.duplicate();
-    await subscriber.connect();
+    const subscriber = this.client.duplicate()
+    await subscriber.connect()
 
-    await subscriber.subscribe(channel, (message) => {
-      handler(JSON.parse(message));
-    });
+    await subscriber.subscribe(channel, message => {
+      handler(JSON.parse(message))
+    })
   }
 
   async publish(channel: string, message: any): Promise<void> {
-    await this.client.publish(channel, JSON.stringify(message));
+    await this.client.publish(channel, JSON.stringify(message))
   }
 }
 ```
@@ -711,31 +696,28 @@ class DistributedState {
 
 ```typescript
 class ResilientAgent extends Agent {
-  async executeWithRetry(
-    task: Task,
-    maxAttempts: number = 3
-  ): Promise<Result> {
-    let lastError: Error;
+  async executeWithRetry(task: Task, maxAttempts: number = 3): Promise<Result> {
+    let lastError: Error
 
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
       try {
-        return await this.execute(task);
+        return await this.execute(task)
       } catch (error) {
-        lastError = error as Error;
+        lastError = error as Error
 
         if (attempt < maxAttempts) {
-          const backoff = Math.pow(2, attempt) * 1000; // Exponential backoff
-          console.log(`Attempt ${attempt} failed, retrying in ${backoff}ms`);
-          await this.sleep(backoff);
+          const backoff = Math.pow(2, attempt) * 1000 // Exponential backoff
+          console.log(`Attempt ${attempt} failed, retrying in ${backoff}ms`)
+          await this.sleep(backoff)
         }
       }
     }
 
-    throw new Error(`Failed after ${maxAttempts} attempts: ${lastError!.message}`);
+    throw new Error(`Failed after ${maxAttempts} attempts: ${lastError!.message}`)
   }
 
   private sleep(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms))
   }
 }
 ```
@@ -744,10 +726,10 @@ class ResilientAgent extends Agent {
 
 ```typescript
 class CircuitBreaker {
-  private failures: number = 0;
-  private successCount: number = 0;
-  private state: 'closed' | 'open' | 'half-open' = 'closed';
-  private lastFailureTime: number = 0;
+  private failures: number = 0
+  private successCount: number = 0
+  private state: 'closed' | 'open' | 'half-open' = 'closed'
+  private lastFailureTime: number = 0
 
   constructor(
     private threshold: number = 5,
@@ -758,45 +740,45 @@ class CircuitBreaker {
   async execute<T>(fn: () => Promise<T>): Promise<T> {
     if (this.state === 'open') {
       if (Date.now() - this.lastFailureTime > this.timeout) {
-        this.state = 'half-open';
-        this.successCount = 0;
+        this.state = 'half-open'
+        this.successCount = 0
       } else {
-        throw new Error('Circuit breaker is OPEN');
+        throw new Error('Circuit breaker is OPEN')
       }
     }
 
     try {
-      const result = await fn();
-      this.onSuccess();
-      return result;
+      const result = await fn()
+      this.onSuccess()
+      return result
     } catch (error) {
-      this.onFailure();
-      throw error;
+      this.onFailure()
+      throw error
     }
   }
 
   private onSuccess(): void {
-    this.failures = 0;
+    this.failures = 0
 
     if (this.state === 'half-open') {
-      this.successCount++;
+      this.successCount++
       if (this.successCount >= this.successThreshold) {
-        this.state = 'closed';
+        this.state = 'closed'
       }
     }
   }
 
   private onFailure(): void {
-    this.failures++;
-    this.lastFailureTime = Date.now();
+    this.failures++
+    this.lastFailureTime = Date.now()
 
     if (this.failures >= this.threshold) {
-      this.state = 'open';
+      this.state = 'open'
     }
   }
 
   getState(): string {
-    return this.state;
+    return this.state
   }
 }
 ```
@@ -805,31 +787,29 @@ class CircuitBreaker {
 
 ```typescript
 class DegradableOrchestrator {
-  private primaryAgents: Agent[] = [];
-  private fallbackAgents: Agent[] = [];
+  private primaryAgents: Agent[] = []
+  private fallbackAgents: Agent[] = []
 
   async processWithFallback(task: Task): Promise<Result> {
     // Try primary agents
     try {
-      return await this.processWith(this.primaryAgents, task);
+      return await this.processWith(this.primaryAgents, task)
     } catch (error) {
-      console.warn('Primary agents failed, trying fallback:', error);
+      console.warn('Primary agents failed, trying fallback:', error)
 
       // Fall back to simpler agents
       try {
-        return await this.processWith(this.fallbackAgents, task);
+        return await this.processWith(this.fallbackAgents, task)
       } catch (fallbackError) {
         // Return partial result or cached result
-        return this.getPartialResult(task);
+        return this.getPartialResult(task)
       }
     }
   }
 
   private async processWith(agents: Agent[], task: Task): Promise<Result> {
-    const results = await Promise.all(
-      agents.map(agent => agent.execute(task))
-    );
-    return this.combineResults(results);
+    const results = await Promise.all(agents.map(agent => agent.execute(task)))
+    return this.combineResults(results)
   }
 
   private getPartialResult(task: Task): Result {
@@ -837,7 +817,7 @@ class DegradableOrchestrator {
     return {
       status: 'partial',
       message: 'Returning cached or partial result due to system degradation'
-    };
+    }
   }
 }
 ```
@@ -850,9 +830,9 @@ class DegradableOrchestrator {
 
 ```typescript
 class ResearchOrchestrator {
-  private researchAgent: Agent;
-  private analysisAgent: Agent;
-  private synthesisAgent: Agent;
+  private researchAgent: Agent
+  private analysisAgent: Agent
+  private synthesisAgent: Agent
 
   async conductResearch(query: string): Promise<Report> {
     // 1. Research phase
@@ -860,22 +840,22 @@ class ResearchOrchestrator {
       type: 'research',
       query,
       sources: ['web', 'papers', 'docs']
-    });
+    })
 
     // 2. Analysis phase
     const analysis = await this.analysisAgent.execute({
       type: 'analyze',
       data: researchResults
-    });
+    })
 
     // 3. Synthesis phase
     const report = await this.synthesisAgent.execute({
       type: 'synthesize',
       research: researchResults,
       analysis
-    });
+    })
 
-    return report;
+    return report
   }
 }
 ```
@@ -884,10 +864,10 @@ class ResearchOrchestrator {
 
 ```typescript
 class CodeReviewOrchestrator {
-  private linterAgent: Agent;
-  private securityAgent: Agent;
-  private performanceAgent: Agent;
-  private summarizer: Agent;
+  private linterAgent: Agent
+  private securityAgent: Agent
+  private performanceAgent: Agent
+  private summarizer: Agent
 
   async reviewCode(code: string): Promise<ReviewReport> {
     // Run all reviews in parallel
@@ -895,7 +875,7 @@ class CodeReviewOrchestrator {
       this.linterAgent.execute({ type: 'lint', code }),
       this.securityAgent.execute({ type: 'security-scan', code }),
       this.performanceAgent.execute({ type: 'perf-analysis', code })
-    ]);
+    ])
 
     // Summarize findings
     const summary = await this.summarizer.execute({
@@ -905,7 +885,7 @@ class CodeReviewOrchestrator {
         security: securityResults,
         performance: perfResults
       }
-    });
+    })
 
     return {
       lint: lintResults,
@@ -913,7 +893,7 @@ class CodeReviewOrchestrator {
       performance: perfResults,
       summary,
       overallScore: this.calculateScore(lintResults, securityResults, perfResults)
-    };
+    }
   }
 }
 ```
@@ -922,15 +902,15 @@ class CodeReviewOrchestrator {
 
 ```typescript
 class IterativeRefinementOrchestrator {
-  private generatorAgent: Agent;
-  private criticAgent: Agent;
-  private maxIterations: number = 3;
+  private generatorAgent: Agent
+  private criticAgent: Agent
+  private maxIterations: number = 3
 
   async refineOutput(prompt: string, criteria: any): Promise<Output> {
     let output = await this.generatorAgent.execute({
       type: 'generate',
       prompt
-    });
+    })
 
     for (let i = 0; i < this.maxIterations; i++) {
       // Critic reviews output
@@ -938,11 +918,11 @@ class IterativeRefinementOrchestrator {
         type: 'critique',
         output,
         criteria
-      });
+      })
 
       // Check if output meets criteria
       if (critique.score >= criteria.threshold) {
-        return output;
+        return output
       }
 
       // Refine based on feedback
@@ -950,10 +930,10 @@ class IterativeRefinementOrchestrator {
         type: 'refine',
         output,
         feedback: critique.feedback
-      });
+      })
     }
 
-    return output; // Return best effort after max iterations
+    return output // Return best effort after max iterations
   }
 }
 ```
@@ -965,34 +945,34 @@ class IterativeRefinementOrchestrator {
 ### Unit Testing Agents
 
 ```typescript
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi } from 'vitest'
 
 describe('ResearchAgent', () => {
   it('should return relevant research results', async () => {
     const agent = new ResearchAgent({
       apiKey: 'test-key'
-    });
+    })
 
     const result = await agent.execute({
       type: 'research',
       query: 'machine learning',
       sources: ['papers']
-    });
+    })
 
-    expect(result.papers).toBeDefined();
-    expect(result.papers.length).toBeGreaterThan(0);
-  });
+    expect(result.papers).toBeDefined()
+    expect(result.papers.length).toBeGreaterThan(0)
+  })
 
   it('should handle API failures gracefully', async () => {
     const agent = new ResearchAgent({
       apiKey: 'invalid-key'
-    });
+    })
 
-    await expect(
-      agent.execute({ type: 'research', query: 'test' })
-    ).rejects.toThrow('API authentication failed');
-  });
-});
+    await expect(agent.execute({ type: 'research', query: 'test' })).rejects.toThrow(
+      'API authentication failed'
+    )
+  })
+})
 ```
 
 ### Integration Testing
@@ -1004,16 +984,16 @@ describe('Multi-Agent Orchestration', () => {
       researchAgent: new MockResearchAgent(),
       analysisAgent: new MockAnalysisAgent(),
       synthesisAgent: new MockSynthesisAgent()
-    });
+    })
 
-    const report = await orchestrator.conductResearch('AI safety');
+    const report = await orchestrator.conductResearch('AI safety')
 
-    expect(report.research).toBeDefined();
-    expect(report.analysis).toBeDefined();
-    expect(report.synthesis).toBeDefined();
-    expect(report.synthesis).toContain('AI safety');
-  });
-});
+    expect(report.research).toBeDefined()
+    expect(report.analysis).toBeDefined()
+    expect(report.synthesis).toBeDefined()
+    expect(report.synthesis).toContain('AI safety')
+  })
+})
 ```
 
 ### Load Testing
@@ -1021,26 +1001,24 @@ describe('Multi-Agent Orchestration', () => {
 ```typescript
 describe('System Load', () => {
   it('should handle concurrent requests', async () => {
-    const orchestrator = new LoadBalancedOrchestrator();
+    const orchestrator = new LoadBalancedOrchestrator()
 
     const requests = Array.from({ length: 100 }, (_, i) => ({
       id: i,
       query: `test query ${i}`
-    }));
+    }))
 
-    const startTime = Date.now();
-    const results = await Promise.all(
-      requests.map(req => orchestrator.process(req))
-    );
-    const duration = Date.now() - startTime;
+    const startTime = Date.now()
+    const results = await Promise.all(requests.map(req => orchestrator.process(req)))
+    const duration = Date.now() - startTime
 
-    expect(results.length).toBe(100);
-    expect(duration).toBeLessThan(10000); // Under 10 seconds
+    expect(results.length).toBe(100)
+    expect(duration).toBeLessThan(10000) // Under 10 seconds
 
-    const avgLatency = duration / 100;
-    console.log(`Average latency: ${avgLatency}ms`);
-  });
-});
+    const avgLatency = duration / 100
+    console.log(`Average latency: ${avgLatency}ms`)
+  })
+})
 ```
 
 ---
@@ -1051,30 +1029,30 @@ describe('System Load', () => {
 
 ```typescript
 class AgentMonitor {
-  private metrics: Map<string, AgentMetrics> = new Map();
+  private metrics: Map<string, AgentMetrics> = new Map()
 
   recordExecution(agentId: string, duration: number, success: boolean): void {
-    const metrics = this.getOrCreateMetrics(agentId);
+    const metrics = this.getOrCreateMetrics(agentId)
 
-    metrics.totalExecutions++;
-    metrics.totalDuration += duration;
-    metrics.avgDuration = metrics.totalDuration / metrics.totalExecutions;
+    metrics.totalExecutions++
+    metrics.totalDuration += duration
+    metrics.avgDuration = metrics.totalDuration / metrics.totalExecutions
 
     if (success) {
-      metrics.successCount++;
+      metrics.successCount++
     } else {
-      metrics.failureCount++;
+      metrics.failureCount++
     }
 
-    metrics.successRate = metrics.successCount / metrics.totalExecutions;
+    metrics.successRate = metrics.successCount / metrics.totalExecutions
   }
 
   getMetrics(agentId: string): AgentMetrics {
-    return this.metrics.get(agentId)!;
+    return this.metrics.get(agentId)!
   }
 
   getAllMetrics(): Map<string, AgentMetrics> {
-    return this.metrics;
+    return this.metrics
   }
 
   private getOrCreateMetrics(agentId: string): AgentMetrics {
@@ -1086,9 +1064,9 @@ class AgentMonitor {
         totalDuration: 0,
         avgDuration: 0,
         successRate: 0
-      });
+      })
     }
-    return this.metrics.get(agentId)!;
+    return this.metrics.get(agentId)!
   }
 }
 ```
@@ -1098,23 +1076,23 @@ class AgentMonitor {
 ```typescript
 // Horizontal scaling with worker pools
 class ScalableOrchestrator {
-  private workerPool: WorkerPool;
+  private workerPool: WorkerPool
 
   constructor(config: { minWorkers: number; maxWorkers: number }) {
-    this.workerPool = new WorkerPool(config);
+    this.workerPool = new WorkerPool(config)
   }
 
   async process(task: Task): Promise<Result> {
     // Auto-scale based on queue length
-    await this.workerPool.autoScale();
+    await this.workerPool.autoScale()
 
     // Distribute to available worker
-    const worker = await this.workerPool.acquireWorker();
+    const worker = await this.workerPool.acquireWorker()
 
     try {
-      return await worker.execute(task);
+      return await worker.execute(task)
     } finally {
-      this.workerPool.releaseWorker(worker);
+      this.workerPool.releaseWorker(worker)
     }
   }
 }
@@ -1168,16 +1146,16 @@ class ScalableOrchestrator {
 class DeadlockDetector {
   async detectDeadlock(waitGraph: Map<string, string[]>): Promise<boolean> {
     // Check for cycles in wait graph
-    const visited = new Set<string>();
-    const stack = new Set<string>();
+    const visited = new Set<string>()
+    const stack = new Set<string>()
 
     for (const node of waitGraph.keys()) {
       if (this.hasCycle(node, waitGraph, visited, stack)) {
-        return true;
+        return true
       }
     }
 
-    return false;
+    return false
   }
 
   private hasCycle(
@@ -1186,22 +1164,22 @@ class DeadlockDetector {
     visited: Set<string>,
     stack: Set<string>
   ): boolean {
-    visited.add(node);
-    stack.add(node);
+    visited.add(node)
+    stack.add(node)
 
-    const neighbors = graph.get(node) || [];
+    const neighbors = graph.get(node) || []
     for (const neighbor of neighbors) {
       if (!visited.has(neighbor)) {
         if (this.hasCycle(neighbor, graph, visited, stack)) {
-          return true;
+          return true
         }
       } else if (stack.has(neighbor)) {
-        return true; // Cycle detected
+        return true // Cycle detected
       }
     }
 
-    stack.delete(node);
-    return false;
+    stack.delete(node)
+    return false
   }
 }
 ```
@@ -1219,15 +1197,18 @@ class DeadlockDetector {
 ## Related Resources
 
 ### Skills
+
 - multi-agent-architect
 - agent-orchestrator
 - workflow-designer
 
 ### MCPs
+
 - agent-orchestrator-mcp
 - message-broker-mcp
 
 ### Components
+
 - `/COMPONENTS/workflows/task-queue.ts`
 - `/COMPONENTS/mcp-servers/base-mcp-server.ts`
 

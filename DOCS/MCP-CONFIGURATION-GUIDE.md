@@ -36,12 +36,14 @@ This file is used across all Claude Desktop sessions.
 ## Configured MCP Servers (34 Total)
 
 ### AI & Knowledge Management (4)
+
 1. **embedding-generator-mcp** - Generate embeddings for RAG systems
 2. **semantic-search-mcp** - Semantic search capabilities
 3. **vector-database-mcp** - Vector database operations
 4. **graph-database-mcp** - Graph database management
 
 ### Development Tools (8)
+
 5. **agent-orchestrator-mcp** - Multi-agent coordination
 6. **api-validator-mcp** - REST/GraphQL API validation
 7. **code-quality-scanner-mcp** - Code quality analysis
@@ -52,6 +54,7 @@ This file is used across all Claude Desktop sessions.
 12. **openapi-generator-mcp** - OpenAPI spec generation
 
 ### Design & UI (6)
+
 13. **3d-asset-manager-mcp** - 3D model management
 14. **animation-library-mcp** - Animation utilities
 15. **asset-optimizer-mcp** - Image/asset optimization
@@ -60,6 +63,7 @@ This file is used across all Claude Desktop sessions.
 18. **wireframe-generator-mcp** - UI wireframe generation
 
 ### Testing & Quality (4)
+
 19. **accessibility-checker-mcp** - WCAG compliance checking
 20. **performance-profiler-mcp** - Performance profiling
 21. **screenshot-testing-mcp** - Visual regression testing
@@ -67,17 +71,20 @@ This file is used across all Claude Desktop sessions.
 23. **test-runner-mcp** - Test execution and reporting
 
 ### Product & Analytics (3)
+
 24. **feature-prioritizer-mcp** - Feature prioritization (P0/P1/P2)
 25. **market-analyzer-mcp** - Market analysis
 26. **user-insight-analyzer-mcp** - User feedback analysis
 
 ### Media & Content (4)
+
 27. **audio-processor-mcp** - Audio processing
 28. **video-optimizer-mcp** - Video optimization
 29. **streaming-setup-mcp** - Live streaming setup
 30. **seo-analyzer-mcp** - SEO analysis
 
 ### Specialized (5)
+
 31. **chart-builder-mcp** - Data visualization
 32. **i18n-manager-mcp** - Internationalization
 33. **iot-device-manager-mcp** - IoT device management
@@ -93,9 +100,7 @@ Each MCP server is configured with:
 {
   "server-name-mcp": {
     "command": "node",
-    "args": [
-      "C:\\Users\\{username}\\...\\MCP-SERVERS\\{server-name}-mcp\\dist\\index.js"
-    ]
+    "args": ["C:\\Users\\{username}\\...\\MCP-SERVERS\\{server-name}-mcp\\dist\\index.js"]
   }
 }
 ```
@@ -103,11 +108,13 @@ Each MCP server is configured with:
 ### Path Structure
 
 **Windows Path Format:**
+
 ```
 C:\\Users\\david\\OneDrive - Qolcom\\AI\\AI_Development_Projects\\ai-dev-standards\\MCP-SERVERS\\{mcp-name}\\dist\\index.js
 ```
 
 **Linux/WSL Path Format:**
+
 ```
 /mnt/c/Users/david/OneDrive - Qolcom/AI/AI_Development_Projects/ai-dev-standards/MCP-SERVERS/{mcp-name}/dist/index.js
 ```
@@ -138,6 +145,7 @@ When working in the ai-dev-standards directory:
 ### Verifying MCPs Are Loaded
 
 1. **Check MCP Resources:**
+
    ```
    ListMcpResourcesTool
    ```
@@ -167,12 +175,14 @@ When working in the ai-dev-standards directory:
    - MCPs should load on startup
 
 2. **Check Paths Are Correct**
+
    ```bash
    # Verify dist/index.js exists
    ls -la ./MCP-SERVERS/*/dist/index.js
    ```
 
 3. **Rebuild MCPs**
+
    ```bash
    # If dist files are missing, rebuild all MCPs
    cd MCP-SERVERS
@@ -185,6 +195,7 @@ When working in the ai-dev-standards directory:
    ```
 
 4. **Check Logs for Errors**
+
    ```bash
    # Windows
    cat C:/Users/david/AppData/Roaming/Claude/logs/mcp.log
@@ -200,17 +211,20 @@ When working in the ai-dev-standards directory:
 **Solutions:**
 
 1. **Check Dependencies**
+
    ```bash
    cd MCP-SERVERS/{mcp-name}
    npm install
    ```
 
 2. **Rebuild TypeScript**
+
    ```bash
    npm run build
    ```
 
 3. **Test Manually**
+
    ```bash
    node dist/index.js
    ```
@@ -299,9 +313,7 @@ Add to `.claude/mcp-settings.json` (and `.codex/mcp-settings.json`):
   "mcpServers": {
     "my-new-mcp": {
       "command": "node",
-      "args": [
-        "C:\\Users\\david\\...\\MCP-SERVERS\\my-new-mcp\\dist\\index.js"
-      ]
+      "args": ["C:\\Users\\david\\...\\MCP-SERVERS\\my-new-mcp\\dist\\index.js"]
     }
   }
 }
@@ -321,10 +333,7 @@ Add to `META/mcp-registry.json`:
   "features": ["tools", "resources"],
   "path": "/MCP-SERVERS/my-new-mcp",
   "status": "active",
-  "capabilities": [
-    "Capability 1",
-    "Capability 2"
-  ]
+  "capabilities": ["Capability 1", "Capability 2"]
 }
 ```
 
@@ -368,6 +377,7 @@ Same structure as project-level configuration.
 ### 1. Keep Paths Absolute
 
 Always use absolute paths in configuration:
+
 ```json
 "args": ["C:\\Users\\...\\full\\path\\to\\index.js"]
 ```
@@ -375,6 +385,7 @@ Always use absolute paths in configuration:
 ### 2. Use Windows Path Format
 
 Even in WSL, use Windows path format with escaped backslashes:
+
 ```json
 "C:\\Users\\david\\..."
 ```
@@ -394,6 +405,7 @@ When adding multiple MCPs, add a few at a time and test before adding more.
 ### 6. Backup Configurations
 
 Keep backups of working configurations:
+
 ```bash
 cp claude_desktop_config.json claude_desktop_config.json.backup
 ```
@@ -404,18 +416,18 @@ cp claude_desktop_config.json claude_desktop_config.json.backup
 
 Each skill in the repository is supported by one or more MCPs:
 
-| Skill | Supporting MCPs |
-|-------|----------------|
-| **3d-visualizer** | 3d-asset-manager-mcp |
-| **accessibility-engineer** | accessibility-checker-mcp |
-| **api-designer** | api-validator-mcp, openapi-generator-mcp |
-| **rag-implementer** | embedding-generator-mcp, semantic-search-mcp, vector-database-mcp |
-| **performance-optimizer** | performance-profiler-mcp |
-| **security-engineer** | security-scanner-mcp |
-| **testing-strategist** | test-runner-mcp, screenshot-testing-mcp |
-| **mvp-builder** | feature-prioritizer-mcp |
-| **multi-agent-architect** | agent-orchestrator-mcp |
-| **knowledge-graph-builder** | graph-database-mcp |
+| Skill                       | Supporting MCPs                                                   |
+| --------------------------- | ----------------------------------------------------------------- |
+| **3d-visualizer**           | 3d-asset-manager-mcp                                              |
+| **accessibility-engineer**  | accessibility-checker-mcp                                         |
+| **api-designer**            | api-validator-mcp, openapi-generator-mcp                          |
+| **rag-implementer**         | embedding-generator-mcp, semantic-search-mcp, vector-database-mcp |
+| **performance-optimizer**   | performance-profiler-mcp                                          |
+| **security-engineer**       | security-scanner-mcp                                              |
+| **testing-strategist**      | test-runner-mcp, screenshot-testing-mcp                           |
+| **mvp-builder**             | feature-prioritizer-mcp                                           |
+| **multi-agent-architect**   | agent-orchestrator-mcp                                            |
+| **knowledge-graph-builder** | graph-database-mcp                                                |
 
 See `META/mcp-registry.json` for complete mapping.
 
@@ -479,6 +491,7 @@ To reduce resource usage, comment out unused MCPs:
 ✅ **Backup of original configuration created**
 
 **Next Steps:**
+
 1. Restart Claude Desktop to load MCPs
 2. Verify MCPs are available with `ListMcpResourcesTool`
 3. Test specific MCPs with your skills

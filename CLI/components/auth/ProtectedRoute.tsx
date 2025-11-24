@@ -112,13 +112,15 @@ export function ProtectedRoute({
 
   // Show loading state
   if (isLoading) {
-    return fallback || (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
+    return (
+      fallback || (
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
+            <p className="mt-4 text-gray-600">Loading...</p>
+          </div>
         </div>
-      </div>
+      )
     )
   }
 
@@ -178,10 +180,7 @@ export function withAuth<P extends object>(
 ) {
   return function ProtectedComponent(props: P) {
     return (
-      <ProtectedRoute
-        requiredRole={options?.requiredRole}
-        redirectTo={options?.redirectTo}
-      >
+      <ProtectedRoute requiredRole={options?.requiredRole} redirectTo={options?.redirectTo}>
         <Component {...props} />
       </ProtectedRoute>
     )
@@ -193,7 +192,7 @@ export function withAuth<P extends object>(
  */
 export function useRequireAuth(requiredRole?: string) {
   const router = useRouter()
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<unknown>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -284,7 +283,7 @@ export function ProfilePage() {
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Profile</h1>
-      <p>Email: {user?.email}</p>
+      <p>Email: {(user as any)?.email}</p>
     </div>
   )
 }

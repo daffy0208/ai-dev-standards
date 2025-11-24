@@ -1,76 +1,77 @@
 #!/usr/bin/env node
 
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { Server } from '@modelcontextprotocol/sdk/server/index.js'
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
   ListResourcesRequestSchema,
-  ReadResourceRequestSchema,
-} from '@modelcontextprotocol/sdk/types.js';
+  ReadResourceRequestSchema
+} from '@modelcontextprotocol/sdk/types.js'
 
 interface Illustration {
-  id: string;
-  description: string;
-  style: string;
-  imageUrl: string;
-  svgData?: string;
+  id: string
+  description: string
+  style: string
+  imageUrl: string
+  svgData?: string
   metadata: {
-    colors: string[];
-    dimensions: { width: number; height: number };
-    elements: string[];
-  };
-  timestamp: string;
+    colors: string[]
+    dimensions: { width: number; height: number }
+    elements: string[]
+  }
+  timestamp: string
 }
 
-const illustrationLibrary: Illustration[] = [];
+const illustrationLibrary: Illustration[] = []
 
 const server = new Server(
   { name: 'illustration-generator-mcp', version: '1.0.0' },
   { capabilities: { tools: {}, resources: {} } }
-);
+)
 
 // Tools Handler
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: [
     {
       name: 'generateIllustration',
-      description: 'Generate custom illustration from text description with various artistic styles',
+      description:
+        'Generate custom illustration from text description with various artistic styles',
       inputSchema: {
         type: 'object',
         properties: {
           description: {
             type: 'string',
-            description: 'Detailed description of the illustration',
+            description: 'Detailed description of the illustration'
           },
           style: {
             type: 'string',
             description: 'Illustration style',
-            enum: ['flat', '3d', 'hand-drawn', 'minimalist', 'geometric', 'isometric', 'line-art'],
+            enum: ['flat', '3d', 'hand-drawn', 'minimalist', 'geometric', 'isometric', 'line-art']
           },
           colorPalette: {
             type: 'array',
             description: 'Color palette for the illustration',
-            items: { type: 'string' },
+            items: { type: 'string' }
           },
           aspectRatio: {
             type: 'string',
             description: 'Aspect ratio',
-            enum: ['1:1', '16:9', '4:3', '3:2', '9:16'],
+            enum: ['1:1', '16:9', '4:3', '3:2', '9:16']
           },
           complexity: {
             type: 'string',
             description: 'Level of detail',
-            enum: ['simple', 'moderate', 'detailed', 'complex'],
+            enum: ['simple', 'moderate', 'detailed', 'complex']
           },
           format: {
             type: 'string',
             description: 'Output format',
-            enum: ['svg', 'png', 'jpg', 'webp'],
-          },
+            enum: ['svg', 'png', 'jpg', 'webp']
+          }
         },
-        required: ['description', 'style'],
-      },
+        required: ['description', 'style']
+      }
     },
     {
       name: 'generateCharacter',
@@ -86,31 +87,31 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
               gender: { type: 'string' },
               profession: { type: 'string' },
               personality: { type: 'string' },
-              clothing: { type: 'string' },
-            },
+              clothing: { type: 'string' }
+            }
           },
           style: {
             type: 'string',
             description: 'Character style',
-            enum: ['cartoon', 'realistic', 'anime', 'chibi', 'pixel-art', 'vector'],
+            enum: ['cartoon', 'realistic', 'anime', 'chibi', 'pixel-art', 'vector']
           },
           pose: {
             type: 'string',
             description: 'Character pose',
-            enum: ['standing', 'sitting', 'walking', 'running', 'custom'],
+            enum: ['standing', 'sitting', 'walking', 'running', 'custom']
           },
           expression: {
             type: 'string',
             description: 'Facial expression',
-            enum: ['happy', 'sad', 'neutral', 'excited', 'angry', 'surprised'],
+            enum: ['happy', 'sad', 'neutral', 'excited', 'angry', 'surprised']
           },
           backgroundColor: {
             type: 'string',
-            description: 'Background color or transparent',
-          },
+            description: 'Background color or transparent'
+          }
         },
-        required: ['traits', 'style'],
-      },
+        required: ['traits', 'style']
+      }
     },
     {
       name: 'generateScene',
@@ -120,35 +121,35 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           description: {
             type: 'string',
-            description: 'Scene description',
+            description: 'Scene description'
           },
           environment: {
             type: 'string',
             description: 'Environment type',
-            enum: ['indoor', 'outdoor', 'urban', 'nature', 'abstract', 'workspace'],
+            enum: ['indoor', 'outdoor', 'urban', 'nature', 'abstract', 'workspace']
           },
           timeOfDay: {
             type: 'string',
             description: 'Lighting and time',
-            enum: ['morning', 'afternoon', 'evening', 'night'],
+            enum: ['morning', 'afternoon', 'evening', 'night']
           },
           mood: {
             type: 'string',
             description: 'Overall mood',
-            enum: ['calm', 'energetic', 'mysterious', 'professional', 'playful'],
+            enum: ['calm', 'energetic', 'mysterious', 'professional', 'playful']
           },
           perspective: {
             type: 'string',
             description: 'View perspective',
-            enum: ['front', 'side', 'top-down', 'isometric', '3-quarter'],
+            enum: ['front', 'side', 'top-down', 'isometric', '3-quarter']
           },
           includeCharacters: {
             type: 'boolean',
-            description: 'Include people in the scene',
-          },
+            description: 'Include people in the scene'
+          }
         },
-        required: ['description'],
-      },
+        required: ['description']
+      }
     },
     {
       name: 'customizeIllustration',
@@ -158,7 +159,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           illustrationId: {
             type: 'string',
-            description: 'ID of the illustration to customize',
+            description: 'ID of the illustration to customize'
           },
           modifications: {
             type: 'object',
@@ -170,22 +171,22 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
                 type: 'object',
                 properties: {
                   add: { type: 'array', items: { type: 'string' } },
-                  remove: { type: 'array', items: { type: 'string' } },
-                },
+                  remove: { type: 'array', items: { type: 'string' } }
+                }
               },
-              scale: { type: 'number' },
-            },
-          },
+              scale: { type: 'number' }
+            }
+          }
         },
-        required: ['illustrationId', 'modifications'],
-      },
-    },
-  ],
-}));
+        required: ['illustrationId', 'modifications']
+      }
+    }
+  ]
+}))
 
-server.setRequestHandler(CallToolRequestSchema, async (request) => {
+server.setRequestHandler(CallToolRequestSchema, async request => {
   try {
-    const { name, arguments: args } = request.params;
+    const { name, arguments: args } = request.params
 
     switch (name) {
       case 'generateIllustration': {
@@ -195,11 +196,11 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           colorPalette = ['#4F46E5', '#EC4899', '#10B981', '#F59E0B'],
           aspectRatio = '16:9',
           complexity = 'moderate',
-          format = 'svg',
-        } = args as any;
+          format = 'svg'
+        } = args as any
 
         if (!description || !style) {
-          throw new Error('Missing required arguments: description, style');
+          throw new Error('Missing required arguments: description, style')
         }
 
         // Calculate dimensions based on aspect ratio
@@ -208,26 +209,29 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           '16:9': { width: 1600, height: 900 },
           '4:3': { width: 1200, height: 900 },
           '3:2': { width: 1200, height: 800 },
-          '9:16': { width: 900, height: 1600 },
-        };
+          '9:16': { width: 900, height: 1600 }
+        }
 
-        const dimensions = aspectMap[aspectRatio] || { width: 800, height: 600 };
+        const dimensions = aspectMap[aspectRatio] || { width: 800, height: 600 }
 
         const illustration: Illustration = {
           id: `ill-${Date.now()}`,
           description,
           style,
           imageUrl: `https://placeholder.example.com/illustrations/${Date.now()}.${format}`,
-          svgData: format === 'svg' ? `<svg width="${dimensions.width}" height="${dimensions.height}" xmlns="http://www.w3.org/2000/svg"><!-- ${description} --></svg>` : undefined,
+          svgData:
+            format === 'svg'
+              ? `<svg width="${dimensions.width}" height="${dimensions.height}" xmlns="http://www.w3.org/2000/svg"><!-- ${description} --></svg>`
+              : undefined,
           metadata: {
             colors: colorPalette,
             dimensions,
-            elements: ['background', 'foreground', 'details'],
+            elements: ['background', 'foreground', 'details']
           },
-          timestamp: new Date().toISOString(),
-        };
+          timestamp: new Date().toISOString()
+        }
 
-        illustrationLibrary.push(illustration);
+        illustrationLibrary.push(illustration)
 
         const result = {
           success: true,
@@ -237,14 +241,14 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             style,
             complexity,
             format,
-            aspectRatio,
+            aspectRatio
           },
-          note: 'This is a placeholder. Integrate with AI illustration services for custom graphics.',
-        };
+          note: 'This is a placeholder. Integrate with AI illustration services for custom graphics.'
+        }
 
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
-        };
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
+        }
       }
 
       case 'generateCharacter': {
@@ -253,11 +257,11 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           style,
           pose = 'standing',
           expression = 'neutral',
-          backgroundColor = 'transparent',
-        } = args as any;
+          backgroundColor = 'transparent'
+        } = args as any
 
         if (!traits || !style) {
-          throw new Error('Missing required arguments: traits, style');
+          throw new Error('Missing required arguments: traits, style')
         }
 
         const character: Illustration = {
@@ -268,12 +272,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           metadata: {
             colors: backgroundColor === 'transparent' ? [] : [backgroundColor],
             dimensions: { width: 800, height: 1200 },
-            elements: ['character', 'clothing', 'accessories'],
+            elements: ['character', 'clothing', 'accessories']
           },
-          timestamp: new Date().toISOString(),
-        };
+          timestamp: new Date().toISOString()
+        }
 
-        illustrationLibrary.push(character);
+        illustrationLibrary.push(character)
 
         const result = {
           success: true,
@@ -283,14 +287,14 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             traits,
             pose,
             expression,
-            style,
+            style
           },
-          note: 'This is a placeholder. Integrate with character generation AI for custom characters.',
-        };
+          note: 'This is a placeholder. Integrate with character generation AI for custom characters.'
+        }
 
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
-        };
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
+        }
       }
 
       case 'generateScene': {
@@ -300,11 +304,11 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           timeOfDay = 'afternoon',
           mood = 'professional',
           perspective = 'front',
-          includeCharacters = false,
-        } = args as any;
+          includeCharacters = false
+        } = args as any
 
         if (!description) {
-          throw new Error('Missing required argument: description');
+          throw new Error('Missing required argument: description')
         }
 
         const scene: Illustration = {
@@ -319,13 +323,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
               'environment',
               'lighting',
               includeCharacters ? 'characters' : 'empty',
-              'objects',
-            ],
+              'objects'
+            ]
           },
-          timestamp: new Date().toISOString(),
-        };
+          timestamp: new Date().toISOString()
+        }
 
-        illustrationLibrary.push(scene);
+        illustrationLibrary.push(scene)
 
         const result = {
           success: true,
@@ -336,26 +340,26 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             timeOfDay,
             mood,
             perspective,
-            includeCharacters,
+            includeCharacters
           },
-          note: 'This is a placeholder. Integrate with scene generation AI for complete environments.',
-        };
+          note: 'This is a placeholder. Integrate with scene generation AI for complete environments.'
+        }
 
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
-        };
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
+        }
       }
 
       case 'customizeIllustration': {
-        const { illustrationId, modifications } = args as any;
+        const { illustrationId, modifications } = args as any
 
         if (!illustrationId || !modifications) {
-          throw new Error('Missing required arguments: illustrationId, modifications');
+          throw new Error('Missing required arguments: illustrationId, modifications')
         }
 
-        const original = illustrationLibrary.find(ill => ill.id === illustrationId);
+        const original = illustrationLibrary.find(ill => ill.id === illustrationId)
         if (!original) {
-          throw new Error(`Illustration not found: ${illustrationId}`);
+          throw new Error(`Illustration not found: ${illustrationId}`)
         }
 
         const customized: Illustration = {
@@ -364,12 +368,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           imageUrl: `https://placeholder.example.com/illustrations/modified-${Date.now()}.png`,
           metadata: {
             ...original.metadata,
-            colors: modifications.colorScheme || original.metadata.colors,
+            colors: modifications.colorScheme || original.metadata.colors
           },
-          timestamp: new Date().toISOString(),
-        };
+          timestamp: new Date().toISOString()
+        }
 
-        illustrationLibrary.push(customized);
+        illustrationLibrary.push(customized)
 
         const result = {
           success: true,
@@ -377,31 +381,31 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           data: {
             original,
             customized,
-            modifications,
+            modifications
           },
-          note: 'This is a placeholder. Integrate with AI editing services for customization.',
-        };
+          note: 'This is a placeholder. Integrate with AI editing services for customization.'
+        }
 
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
-        };
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
+        }
       }
 
       default:
-        throw new Error(`Unknown tool: ${name}`);
+        throw new Error(`Unknown tool: ${name}`)
     }
   } catch (error) {
     return {
       content: [
         {
           type: 'text',
-          text: `Error: ${error instanceof Error ? error.message : String(error)}`,
-        },
+          text: `Error: ${error instanceof Error ? error.message : String(error)}`
+        }
       ],
-      isError: true,
-    };
+      isError: true
+    }
   }
-});
+})
 
 // Resources Handler
 server.setRequestHandler(ListResourcesRequestSchema, async () => ({
@@ -410,19 +414,19 @@ server.setRequestHandler(ListResourcesRequestSchema, async () => ({
       uri: 'illustration-generator://library',
       name: 'Illustration Library',
       description: 'All generated illustrations',
-      mimeType: 'application/json',
+      mimeType: 'application/json'
     },
     {
       uri: 'illustration-generator://styles',
       name: 'Style Guide',
       description: 'Available illustration styles and best practices',
-      mimeType: 'text/plain',
-    },
-  ],
-}));
+      mimeType: 'text/plain'
+    }
+  ]
+}))
 
-server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
-  const { uri } = request.params;
+server.setRequestHandler(ReadResourceRequestSchema, async request => {
+  const { uri } = request.params
 
   if (uri === 'illustration-generator://library') {
     return {
@@ -433,14 +437,14 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
           text: JSON.stringify(
             {
               illustrations: illustrationLibrary,
-              count: illustrationLibrary.length,
+              count: illustrationLibrary.length
             },
             null,
             2
-          ),
-        },
-      ],
-    };
+          )
+        }
+      ]
+    }
   }
 
   if (uri === 'illustration-generator://styles') {
@@ -549,28 +553,28 @@ Best Practices:
 6. Provide alt text
 7. Optimize file sizes
 8. Use appropriate formats
-`;
+`
     return {
       contents: [
         {
           uri,
           mimeType: 'text/plain',
-          text: guide,
-        },
-      ],
-    };
+          text: guide
+        }
+      ]
+    }
   }
 
-  throw new Error(`Unknown resource: ${uri}`);
-});
+  throw new Error(`Unknown resource: ${uri}`)
+})
 
 async function main() {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error('illustration-generator-mcp v1.0.0 running on stdio');
+  const transport = new StdioServerTransport()
+  await server.connect(transport)
+  console.error('illustration-generator-mcp v1.0.0 running on stdio')
 }
 
-main().catch((error) => {
-  console.error('Server error:', error);
-  process.exit(1);
-});
+main().catch(error => {
+  console.error('Server error:', error)
+  process.exit(1)
+})

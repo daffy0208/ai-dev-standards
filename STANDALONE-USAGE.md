@@ -17,6 +17,7 @@ In standalone mode, you use ai-dev-standards as a **reference library** and **kn
 - Manually copy/adapt resources into your projects
 
 **When to use standalone mode:**
+
 - Learning about AI-assisted development patterns
 - Researching specific methodologies (RAG, MVP building, API design)
 - Looking for implementation examples
@@ -189,6 +190,7 @@ grep -r "deployment" DOCS/ --include="*.md"
 3. Apply the concepts in your own code
 
 **Example:**
+
 ```bash
 # Read about MVP building
 cat SKILLS/mvp-builder/README.md
@@ -204,6 +206,7 @@ cat SKILLS/mvp-builder/README.md
 3. Customize for your needs
 
 **Example:**
+
 ```bash
 # Copy a component
 cp -r COMPONENTS/auth/LoginForm src/components/
@@ -230,12 +233,12 @@ cd ~/my-project
 When working with Claude or other AI assistants:
 
 ```
-"I'm building a REST API. Can you reference the api-designer skill 
+"I'm building a REST API. Can you reference the api-designer skill
 from ~/ai-dev-standards/SKILLS/api-designer/ and help me design it?"
 ```
 
 ```
-"Look at ~/ai-dev-standards/STANDARDS/architecture-patterns/rag-pattern.md 
+"Look at ~/ai-dev-standards/STANDARDS/architecture-patterns/rag-pattern.md
 and help me choose the right RAG architecture for my use case."
 ```
 
@@ -253,6 +256,7 @@ cd ~/ai-dev-standards
 ```
 
 This will:
+
 - Check for new commits in the remote repository
 - Show what's changed since your last update
 - Provide instructions for updating
@@ -377,6 +381,7 @@ ai-tool --context ~/ai-dev-standards/SKILLS/api-designer/skill.md \
 ### 64 Specialized Skills
 
 Methodologies covering:
+
 - **Product Development**: MVP building, product strategy, go-to-market planning
 - **AI Development**: RAG implementation, multi-agent systems, knowledge graphs
 - **Technical Development**: API design, frontend building, backend architecture
@@ -386,6 +391,7 @@ Methodologies covering:
 ### 50 MCP Servers
 
 Automation tools for:
+
 - AI/ML operations (vector databases, embeddings, semantic search)
 - Product management (feature prioritization, user insights, market analysis)
 - Engineering (API generation, validation, component generation)
@@ -395,6 +401,7 @@ Automation tools for:
 ### 72 Components
 
 React components for:
+
 - Authentication and authorization
 - Forms and inputs
 - Error handling and feedback
@@ -405,6 +412,7 @@ React components for:
 ### 28 Service Integrations
 
 Pre-configured connections to:
+
 - OpenAI (AI/ML services)
 - Supabase (database and auth)
 - Stripe (payments)
@@ -422,6 +430,7 @@ Development utilities and automation scripts.
 ### "brain command not found"
 
 Install the brain CLI:
+
 ```bash
 cd ~/ai-dev-standards/MCP-SERVERS/brain-mcp
 npm install
@@ -432,6 +441,7 @@ npm link
 ### "Permission denied" when running scripts
 
 Make scripts executable:
+
 ```bash
 chmod +x scripts/*.sh
 ```
@@ -439,6 +449,7 @@ chmod +x scripts/*.sh
 ### "npm install fails"
 
 Ensure you have Node.js 18+ and npm 9+:
+
 ```bash
 node --version  # Should be >= 18.0.0
 npm --version   # Should be >= 9.0.0
@@ -447,6 +458,7 @@ npm --version   # Should be >= 9.0.0
 ### Updates not showing
 
 Make sure you're on the main branch:
+
 ```bash
 git checkout main
 git fetch origin
@@ -475,14 +487,14 @@ Found a bug or have an improvement? See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## 📝 Comparison: Standalone vs Integration
 
-| Feature | Standalone Mode | Integration Mode |
-|---------|----------------|------------------|
-| **Setup** | Clone + browse | Clone + run setup script |
-| **Usage** | Manual reference | Automatic skill activation |
-| **Updates** | Manual git pull | Auto-sync via git hooks |
-| **AI Integration** | Manual prompts | Automatic via MCP |
-| **Best For** | Learning, browsing | Active development |
-| **Overhead** | Minimal | Adds files to project |
+| Feature            | Standalone Mode    | Integration Mode           |
+| ------------------ | ------------------ | -------------------------- |
+| **Setup**          | Clone + browse     | Clone + run setup script   |
+| **Usage**          | Manual reference   | Automatic skill activation |
+| **Updates**        | Manual git pull    | Auto-sync via git hooks    |
+| **AI Integration** | Manual prompts     | Automatic via MCP          |
+| **Best For**       | Learning, browsing | Active development         |
+| **Overhead**       | Minimal            | Adds files to project      |
 
 ---
 

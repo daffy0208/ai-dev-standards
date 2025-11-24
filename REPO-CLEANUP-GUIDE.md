@@ -82,20 +82,23 @@ gh repo view daffy0208/ai-dev-standards --json deleteBranchOnMerge
 ### Step-by-Step Screenshots
 
 1. **Go to Settings Tab**
+
    ```
    Repository → Settings (⚙️ gear icon in top menu)
    ```
 
 2. **Find Pull Requests Section**
+
    ```
    Scroll down to "Pull Requests" section
    (Usually located after "Features" and before "Archives")
    ```
 
 3. **Enable the Setting**
+
    ```
    ☑️ Automatically delete head branches
-   
+
    Description shown:
    "Deleted branches will still be able to be restored."
    ```

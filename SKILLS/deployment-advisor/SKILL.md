@@ -23,22 +23,26 @@ Choose the right deployment strategy for your application scale and requirements
 **Recommended Platforms**:
 
 **Vercel** (Next.js, React, static sites):
+
 - Push to GitHub → auto deploy
 - Edge functions, image optimization
 - Free SSL, global CDN
 - $0 for hobby, $20/mo for team
 
 **Netlify** (Static sites, Jamstack):
+
 - Similar to Vercel, better for non-Next.js
 - Form handling, split testing
 - Serverless functions
 
 **Railway** (Full-stack, databases):
+
 - Deploys anything (Node, Python, Go, Rust)
 - Integrated PostgreSQL, Redis, MongoDB
 - $5/mo for 512MB RAM + usage
 
 **Cloudflare Pages** (Static + Workers):
+
 - Free unlimited bandwidth
 - Edge functions (Workers)
 - Fastest CDN globally
@@ -54,24 +58,28 @@ Choose the right deployment strategy for your application scale and requirements
 **Recommended Platforms**:
 
 **AWS Amplify** (Full-stack web apps):
+
 - Managed hosting + backend
 - Authentication, APIs, databases
 - Auto-scaling, monitoring
 - $50-200/mo typical
 
 **Google Cloud Run** (Containerized apps):
+
 - Pay only for actual usage
 - Scales to zero
 - Automatic HTTPS
 - $20-100/mo for small traffic
 
 **Fly.io** (Distributed apps):
+
 - Global deployment (closer to users)
 - PostgreSQL, Redis included
 - Docker-based
 - $50-200/mo
 
 **Render** (Simpler alternative to AWS):
+
 - Auto-deploy from Git
 - PostgreSQL, Redis, cron jobs
 - Free tier available
@@ -88,18 +96,21 @@ Choose the right deployment strategy for your application scale and requirements
 **Recommended Platforms**:
 
 **AWS ECS** (Containers, no Kubernetes complexity):
+
 - Fargate (serverless containers)
 - Full AWS ecosystem
 - Fine-grained control
 - $500-2000/mo typical
 
 **AWS EKS / Google GKE** (Kubernetes):
+
 - Full orchestration
 - Multi-region, auto-scaling
 - Complex but powerful
 - $1000-5000+/mo
 
 **DigitalOcean App Platform** (Mid-tier simplicity):
+
 - Kubernetes-powered, no K8s knowledge needed
 - Cheaper than AWS
 - Good middle ground
@@ -200,12 +211,14 @@ Choose the right deployment strategy for your application scale and requirements
 **Platforms**: Vercel, Netlify, Railway, Render
 
 **Setup** (5 minutes):
+
 1. Connect GitHub/GitLab repo
 2. Configure build command: `npm run build`
 3. Configure output directory: `dist` or `.next`
 4. Push to main branch → auto deploy
 
 **Environment Variables**:
+
 ```bash
 DATABASE_URL=postgresql://...
 API_KEY=secret_key
@@ -213,6 +226,7 @@ NODE_ENV=production
 ```
 
 **Preview Deployments**:
+
 - Every pull request gets preview URL
 - Test before merging to production
 
@@ -260,6 +274,7 @@ jobs:
 ### Tier 3: Enterprise CI/CD
 
 **Features**:
+
 - Multi-environment (dev, staging, prod)
 - Blue-green deployments
 - Canary releases
@@ -267,11 +282,13 @@ jobs:
 - Security scanning (SAST, DAST)
 
 **Pipeline Stages**:
+
 ```
 Build → Test → Security Scan → Stage Deploy → Integration Tests → Prod Deploy
 ```
 
 **Tools**:
+
 - GitHub Actions, GitLab CI, CircleCI
 - ArgoCD (GitOps for Kubernetes)
 - Terraform (Infrastructure as Code)
@@ -281,6 +298,7 @@ Build → Test → Security Scan → Stage Deploy → Integration Tests → Prod
 ## Deployment Checklist
 
 ### Pre-Launch
+
 - [ ] Environment variables configured
 - [ ] Database migrations tested
 - [ ] SSL/HTTPS enabled
@@ -290,6 +308,7 @@ Build → Test → Security Scan → Stage Deploy → Integration Tests → Prod
 - [ ] Backup strategy defined
 
 ### Launch Day
+
 - [ ] Deploy to production
 - [ ] Verify all pages load
 - [ ] Test critical user flows
@@ -298,6 +317,7 @@ Build → Test → Security Scan → Stage Deploy → Integration Tests → Prod
 - [ ] Have rollback plan ready
 
 ### Post-Launch
+
 - [ ] Monitor logs for errors
 - [ ] Check performance (response times)
 - [ ] Verify analytics tracking
@@ -359,6 +379,7 @@ Frontend (Vercel) → Service 1 (Cloud Run) → Database
 ## Cost Optimization
 
 ### Free Tier Strategy
+
 - Vercel: Free for personal projects
 - Supabase: 500MB DB, 50K API requests/day
 - Railway: $5 credit/month (enough for small API)
@@ -367,6 +388,7 @@ Frontend (Vercel) → Service 1 (Cloud Run) → Database
 **Total**: $0-5/month for MVP
 
 ### Production Cost Optimization
+
 - Use caching (Redis, CDN) to reduce compute
 - Optimize images (Next.js Image, Cloudinary)
 - Database connection pooling (PgBouncer)
@@ -378,6 +400,7 @@ Frontend (Vercel) → Service 1 (Cloud Run) → Database
 ## Security Best Practices
 
 ### Must-Haves
+
 - ✅ HTTPS only (automatic on most platforms)
 - ✅ Environment variables for secrets (never commit)
 - ✅ Database encryption at rest
@@ -385,6 +408,7 @@ Frontend (Vercel) → Service 1 (Cloud Run) → Database
 - ✅ Rate limiting on APIs
 
 ### Recommended
+
 - Security headers (helmet.js for Node)
 - DDoS protection (Cloudflare)
 - Automated vulnerability scanning
@@ -396,16 +420,19 @@ Frontend (Vercel) → Service 1 (Cloud Run) → Database
 ## Monitoring & Observability
 
 ### Tier 1: Basic Monitoring
+
 - Platform dashboards (Vercel Analytics, Railway Metrics)
 - Error tracking: Sentry ($0-26/mo)
 - Uptime monitoring: UptimeRobot (free), Better Uptime
 
 ### Tier 2: Enhanced Monitoring
+
 - APM: New Relic, Datadog ($15-100/mo)
 - Log aggregation: LogTail, Papertrail
 - Custom metrics and alerting
 
 ### Tier 3: Enterprise Observability
+
 - Full stack: Datadog, New Relic ($300-1000+/mo)
 - Distributed tracing (OpenTelemetry)
 - Custom dashboards (Grafana)
@@ -435,14 +462,17 @@ Frontend (Vercel) → Service 1 (Cloud Run) → Database
 ## Related Resources
 
 **Related Skills**:
+
 - `frontend-builder` - For building apps to deploy
 - `api-designer` - For API architecture
 - `performance-optimizer` - For optimizing deployed apps
 
 **Related Patterns**:
+
 - `META/DECISION-FRAMEWORK.md` - Platform selection guidance
 - `STANDARDS/architecture-patterns/deployment-patterns.md` - Deployment architectures (when created)
 
 **Related Playbooks**:
+
 - `PLAYBOOKS/deploy-to-vercel.md` - Vercel deployment guide (when created)
 - `PLAYBOOKS/setup-cicd.md` - CI/CD setup procedure (when created)

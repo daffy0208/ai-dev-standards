@@ -99,18 +99,18 @@
 /**
  * Metric label type
  */
-export type Labels = Record<string, string | number>;
+export type Labels = Record<string, string | number>
 
 /**
  * Base metric options
  */
 export interface MetricOptions {
   /** Description of the metric */
-  description?: string;
+  description?: string
   /** Unit of measurement */
-  unit?: string;
+  unit?: string
   /** Labels to apply to all metric instances */
-  labels?: Labels;
+  labels?: Labels
 }
 
 /**
@@ -118,7 +118,7 @@ export interface MetricOptions {
  */
 export interface HistogramOptions extends MetricOptions {
   /** Bucket boundaries for histogram */
-  buckets?: number[];
+  buckets?: number[]
 }
 
 /**
@@ -126,9 +126,9 @@ export interface HistogramOptions extends MetricOptions {
  */
 export interface Counter {
   /** Increment counter by value (default: 1) */
-  inc(labels?: Labels, value?: number): void;
+  inc(labels?: Labels, value?: number): void
   /** Get current value */
-  get(labels?: Labels): number;
+  get(labels?: Labels): number
 }
 
 /**
@@ -136,15 +136,15 @@ export interface Counter {
  */
 export interface Gauge {
   /** Set gauge to specific value */
-  set(value: number, labels?: Labels): void;
+  set(value: number, labels?: Labels): void
   /** Increment gauge */
-  inc(labels?: Labels, value?: number): void;
+  inc(labels?: Labels, value?: number): void
   /** Decrement gauge */
-  dec(labels?: Labels, value?: number): void;
+  dec(labels?: Labels, value?: number): void
   /** Get current value */
-  get(labels?: Labels): number;
+  get(labels?: Labels): number
   /** Set to current timestamp */
-  setToCurrentTime(labels?: Labels): void;
+  setToCurrentTime(labels?: Labels): void
 }
 
 /**
@@ -152,11 +152,11 @@ export interface Gauge {
  */
 export interface Histogram {
   /** Observe a value */
-  observe(value: number, labels?: Labels): void;
+  observe(value: number, labels?: Labels): void
   /** Start a timer, returns function to end and record */
-  startTimer(labels?: Labels): () => void;
+  startTimer(labels?: Labels): () => void
   /** Get histogram statistics */
-  get(labels?: Labels): HistogramSnapshot;
+  get(labels?: Labels): HistogramSnapshot
 }
 
 /**
@@ -164,42 +164,42 @@ export interface Histogram {
  */
 export interface Timer {
   /** Start timing, returns function to end and record */
-  start(labels?: Labels): () => number;
+  start(labels?: Labels): () => number
   /** Observe a duration directly */
-  observe(durationMs: number, labels?: Labels): void;
+  observe(durationMs: number, labels?: Labels): void
 }
 
 /**
  * Histogram snapshot with statistics
  */
 export interface HistogramSnapshot {
-  count: number;
-  sum: number;
-  min: number;
-  max: number;
-  avg: number;
-  buckets: Record<number, number>;
+  count: number
+  sum: number
+  min: number
+  max: number
+  avg: number
+  buckets: Record<number, number>
   percentiles?: {
-    p50: number;
-    p90: number;
-    p95: number;
-    p99: number;
-  };
+    p50: number
+    p90: number
+    p95: number
+    p99: number
+  }
 }
 
 /**
  * Metric snapshot for export
  */
 export interface MetricSnapshot {
-  name: string;
-  type: 'counter' | 'gauge' | 'histogram';
-  description?: string;
-  unit?: string;
+  name: string
+  type: 'counter' | 'gauge' | 'histogram'
+  description?: string
+  unit?: string
   values: Array<{
-    labels: Labels;
-    value: number | HistogramSnapshot;
-    timestamp: number;
-  }>;
+    labels: Labels
+    value: number | HistogramSnapshot
+    timestamp: number
+  }>
 }
 
 /**
@@ -207,20 +207,20 @@ export interface MetricSnapshot {
  */
 export interface MetricsCollectorOptions {
   /** Service or application name */
-  service?: string;
+  service?: string
   /** Default labels for all metrics */
-  defaultLabels?: Labels;
+  defaultLabels?: Labels
   /** Enable/disable metrics collection */
-  enabled?: boolean;
+  enabled?: boolean
   /** Metric prefix */
-  prefix?: string;
+  prefix?: string
 }
 
 /**
  * Internal counter implementation
  */
 class CounterMetric implements Counter {
-  private values = new Map<string, number>();
+  private values = new Map<string, number>()
 
   constructor(
     private name: string,
@@ -228,33 +228,32 @@ class CounterMetric implements Counter {
   ) {}
 
   inc(labels: Labels = {}, value: number = 1): void {
-    const key = this.serializeLabels(labels);
-    const current = this.values.get(key) || 0;
-    this.values.set(key, current + value);
+    const key = this.serializeLabels(labels)
+    const current = this.values.get(key) || 0
+    this.values.set(key, current + value)
   }
 
   get(labels: Labels = {}): number {
-    const key = this.serializeLabels(labels);
-    return this.values.get(key) || 0;
+    const key = this.serializeLabels(labels)
+    return this.values.get(key) || 0
   }
 
   getAll(): Map<string, { labels: Labels; value: number }> {
-    const result = new Map<string, { labels: Labels; value: number }>();
+    const result = new Map<string, { labels: Labels; value: number }>()
     for (const [key, value] of this.values) {
-      result.set(key, { labels: this.deserializeLabels(key), value });
+      result.set(key, { labels: this.deserializeLabels(key), value })
     }
-    return result;
+    return result
   }
 
   private serializeLabels(labels: Labels): string {
     return JSON.stringify(
-      Object.entries({ ...this.options.labels, ...labels })
-        .sort(([a], [b]) => a.localeCompare(b))
-    );
+      Object.entries({ ...this.options.labels, ...labels }).sort(([a], [b]) => a.localeCompare(b))
+    )
   }
 
   private deserializeLabels(key: string): Labels {
-    return Object.fromEntries(JSON.parse(key));
+    return Object.fromEntries(JSON.parse(key))
   }
 }
 
@@ -262,7 +261,7 @@ class CounterMetric implements Counter {
  * Internal gauge implementation
  */
 class GaugeMetric implements Gauge {
-  private values = new Map<string, number>();
+  private values = new Map<string, number>()
 
   constructor(
     private name: string,
@@ -270,46 +269,45 @@ class GaugeMetric implements Gauge {
   ) {}
 
   set(value: number, labels: Labels = {}): void {
-    const key = this.serializeLabels(labels);
-    this.values.set(key, value);
+    const key = this.serializeLabels(labels)
+    this.values.set(key, value)
   }
 
   inc(labels: Labels = {}, value: number = 1): void {
-    const key = this.serializeLabels(labels);
-    const current = this.values.get(key) || 0;
-    this.values.set(key, current + value);
+    const key = this.serializeLabels(labels)
+    const current = this.values.get(key) || 0
+    this.values.set(key, current + value)
   }
 
   dec(labels: Labels = {}, value: number = 1): void {
-    this.inc(labels, -value);
+    this.inc(labels, -value)
   }
 
   get(labels: Labels = {}): number {
-    const key = this.serializeLabels(labels);
-    return this.values.get(key) || 0;
+    const key = this.serializeLabels(labels)
+    return this.values.get(key) || 0
   }
 
   setToCurrentTime(labels: Labels = {}): void {
-    this.set(Date.now(), labels);
+    this.set(Date.now(), labels)
   }
 
   getAll(): Map<string, { labels: Labels; value: number }> {
-    const result = new Map<string, { labels: Labels; value: number }>();
+    const result = new Map<string, { labels: Labels; value: number }>()
     for (const [key, value] of this.values) {
-      result.set(key, { labels: this.deserializeLabels(key), value });
+      result.set(key, { labels: this.deserializeLabels(key), value })
     }
-    return result;
+    return result
   }
 
   private serializeLabels(labels: Labels): string {
     return JSON.stringify(
-      Object.entries({ ...this.options.labels, ...labels })
-        .sort(([a], [b]) => a.localeCompare(b))
-    );
+      Object.entries({ ...this.options.labels, ...labels }).sort(([a], [b]) => a.localeCompare(b))
+    )
   }
 
   private deserializeLabels(key: string): Labels {
-    return Object.fromEntries(JSON.parse(key));
+    return Object.fromEntries(JSON.parse(key))
   }
 }
 
@@ -317,35 +315,35 @@ class GaugeMetric implements Gauge {
  * Internal histogram implementation
  */
 class HistogramMetric implements Histogram {
-  private observations = new Map<string, number[]>();
-  private buckets: number[];
+  private observations = new Map<string, number[]>()
+  private buckets: number[]
 
   constructor(
     private name: string,
     private options: HistogramOptions = {}
   ) {
-    this.buckets = options.buckets || [10, 50, 100, 500, 1000, 5000, 10000];
-    this.buckets.sort((a, b) => a - b);
+    this.buckets = options.buckets || [10, 50, 100, 500, 1000, 5000, 10000]
+    this.buckets.sort((a, b) => a - b)
   }
 
   observe(value: number, labels: Labels = {}): void {
-    const key = this.serializeLabels(labels);
-    const observations = this.observations.get(key) || [];
-    observations.push(value);
-    this.observations.set(key, observations);
+    const key = this.serializeLabels(labels)
+    const observations = this.observations.get(key) || []
+    observations.push(value)
+    this.observations.set(key, observations)
   }
 
   startTimer(labels: Labels = {}): () => void {
-    const start = Date.now();
+    const start = Date.now()
     return () => {
-      const duration = Date.now() - start;
-      this.observe(duration, labels);
-    };
+      const duration = Date.now() - start
+      this.observe(duration, labels)
+    }
   }
 
   get(labels: Labels = {}): HistogramSnapshot {
-    const key = this.serializeLabels(labels);
-    const observations = this.observations.get(key) || [];
+    const key = this.serializeLabels(labels)
+    const observations = this.observations.get(key) || []
 
     if (observations.length === 0) {
       return {
@@ -354,28 +352,28 @@ class HistogramMetric implements Histogram {
         min: 0,
         max: 0,
         avg: 0,
-        buckets: {},
-      };
+        buckets: {}
+      }
     }
 
-    const sorted = [...observations].sort((a, b) => a - b);
-    const sum = observations.reduce((acc, val) => acc + val, 0);
-    const count = observations.length;
+    const sorted = [...observations].sort((a, b) => a - b)
+    const sum = observations.reduce((acc, val) => acc + val, 0)
+    const count = observations.length
 
     // Calculate bucket counts
-    const buckets: Record<number, number> = {};
+    const buckets: Record<number, number> = {}
     for (const bucket of this.buckets) {
-      buckets[bucket] = sorted.filter(v => v <= bucket).length;
+      buckets[bucket] = sorted.filter(v => v <= bucket).length
     }
-    buckets['+Inf'] = count;
+    buckets['+Inf'] = count
 
     // Calculate percentiles
     const percentiles = {
       p50: this.percentile(sorted, 0.5),
       p90: this.percentile(sorted, 0.9),
       p95: this.percentile(sorted, 0.95),
-      p99: this.percentile(sorted, 0.99),
-    };
+      p99: this.percentile(sorted, 0.99)
+    }
 
     return {
       count,
@@ -384,33 +382,32 @@ class HistogramMetric implements Histogram {
       max: sorted[sorted.length - 1],
       avg: sum / count,
       buckets,
-      percentiles,
-    };
+      percentiles
+    }
   }
 
   getAll(): Map<string, { labels: Labels; value: HistogramSnapshot }> {
-    const result = new Map<string, { labels: Labels; value: HistogramSnapshot }>();
+    const result = new Map<string, { labels: Labels; value: HistogramSnapshot }>()
     for (const key of this.observations.keys()) {
-      const labels = this.deserializeLabels(key);
-      result.set(key, { labels, value: this.get(labels) });
+      const labels = this.deserializeLabels(key)
+      result.set(key, { labels, value: this.get(labels) })
     }
-    return result;
+    return result
   }
 
   private percentile(sorted: number[], p: number): number {
-    const index = Math.ceil(sorted.length * p) - 1;
-    return sorted[Math.max(0, index)];
+    const index = Math.ceil(sorted.length * p) - 1
+    return sorted[Math.max(0, index)]
   }
 
   private serializeLabels(labels: Labels): string {
     return JSON.stringify(
-      Object.entries({ ...this.options.labels, ...labels })
-        .sort(([a], [b]) => a.localeCompare(b))
-    );
+      Object.entries({ ...this.options.labels, ...labels }).sort(([a], [b]) => a.localeCompare(b))
+    )
   }
 
   private deserializeLabels(key: string): Labels {
-    return Object.fromEntries(JSON.parse(key));
+    return Object.fromEntries(JSON.parse(key))
   }
 }
 
@@ -418,22 +415,22 @@ class HistogramMetric implements Histogram {
  * Main metrics collector class
  */
 export class MetricsCollector {
-  private counters = new Map<string, CounterMetric>();
-  private gauges = new Map<string, GaugeMetric>();
-  private histograms = new Map<string, HistogramMetric>();
-  private service?: string;
-  private defaultLabels: Labels;
-  private enabled: boolean;
-  private prefix: string;
+  private counters = new Map<string, CounterMetric>()
+  private gauges = new Map<string, GaugeMetric>()
+  private histograms = new Map<string, HistogramMetric>()
+  private service?: string
+  private defaultLabels: Labels
+  private enabled: boolean
+  private prefix: string
 
   constructor(options: MetricsCollectorOptions = {}) {
-    this.service = options.service;
-    this.defaultLabels = options.defaultLabels || {};
-    this.enabled = options.enabled !== false;
-    this.prefix = options.prefix || '';
+    this.service = options.service
+    this.defaultLabels = options.defaultLabels || {}
+    this.enabled = options.enabled !== false
+    this.prefix = options.prefix || ''
 
     if (this.service) {
-      this.defaultLabels.service = this.service;
+      this.defaultLabels.service = this.service
     }
   }
 
@@ -441,96 +438,96 @@ export class MetricsCollector {
    * Create or get a counter metric
    */
   counter(name: string, options: MetricOptions = {}): Counter {
-    const fullName = this.prefix + name;
+    const fullName = this.prefix + name
 
     if (!this.counters.has(fullName)) {
       const mergedOptions = {
         ...options,
-        labels: { ...this.defaultLabels, ...options.labels },
-      };
-      this.counters.set(fullName, new CounterMetric(fullName, mergedOptions));
+        labels: { ...this.defaultLabels, ...options.labels }
+      }
+      this.counters.set(fullName, new CounterMetric(fullName, mergedOptions))
     }
 
-    return this.counters.get(fullName)!;
+    return this.counters.get(fullName)!
   }
 
   /**
    * Create or get a gauge metric
    */
   gauge(name: string, options: MetricOptions = {}): Gauge {
-    const fullName = this.prefix + name;
+    const fullName = this.prefix + name
 
     if (!this.gauges.has(fullName)) {
       const mergedOptions = {
         ...options,
-        labels: { ...this.defaultLabels, ...options.labels },
-      };
-      this.gauges.set(fullName, new GaugeMetric(fullName, mergedOptions));
+        labels: { ...this.defaultLabels, ...options.labels }
+      }
+      this.gauges.set(fullName, new GaugeMetric(fullName, mergedOptions))
     }
 
-    return this.gauges.get(fullName)!;
+    return this.gauges.get(fullName)!
   }
 
   /**
    * Create or get a histogram metric
    */
   histogram(name: string, options: HistogramOptions = {}): Histogram {
-    const fullName = this.prefix + name;
+    const fullName = this.prefix + name
 
     if (!this.histograms.has(fullName)) {
       const mergedOptions = {
         ...options,
-        labels: { ...this.defaultLabels, ...options.labels },
-      };
-      this.histograms.set(fullName, new HistogramMetric(fullName, mergedOptions));
+        labels: { ...this.defaultLabels, ...options.labels }
+      }
+      this.histograms.set(fullName, new HistogramMetric(fullName, mergedOptions))
     }
 
-    return this.histograms.get(fullName)!;
+    return this.histograms.get(fullName)!
   }
 
   /**
    * Create a timer (histogram-based)
    */
   timer(name: string, options: HistogramOptions = {}): Timer {
-    const histogram = this.histogram(name, options);
+    const histogram = this.histogram(name, options)
 
     return {
       start: (labels?: Labels) => {
-        const startTime = Date.now();
+        const startTime = Date.now()
         return () => {
-          const duration = Date.now() - startTime;
-          histogram.observe(duration, labels);
-          return duration;
-        };
+          const duration = Date.now() - startTime
+          histogram.observe(duration, labels)
+          return duration
+        }
       },
       observe: (durationMs: number, labels?: Labels) => {
-        histogram.observe(durationMs, labels);
-      },
-    };
+        histogram.observe(durationMs, labels)
+      }
+    }
   }
 
   /**
    * Collect all metrics
    */
   collect(): MetricSnapshot[] {
-    if (!this.enabled) return [];
+    if (!this.enabled) return []
 
-    const snapshots: MetricSnapshot[] = [];
-    const timestamp = Date.now();
+    const snapshots: MetricSnapshot[] = []
+    const timestamp = Date.now()
 
     // Collect counters
     for (const [name, counter] of this.counters) {
       const values = Array.from(counter.getAll().values()).map(({ labels, value }) => ({
         labels,
         value,
-        timestamp,
-      }));
+        timestamp
+      }))
 
       snapshots.push({
         name,
         type: 'counter',
-        values,
-      });
+        values
+      })
     }
 
     // Collect gauges
@@ -538,14 +535,14 @@ export class MetricsCollector {
       const values = Array.from(gauge.getAll().values()).map(({ labels, value }) => ({
         labels,
         value,
-        timestamp,
-      }));
+        timestamp
+      }))
 
       snapshots.push({
         name,
         type: 'gauge',
-        values,
-      });
+        values
+      })
     }
 
     // Collect histograms
@@ -553,92 +550,90 @@ export class MetricsCollector {
       const values = Array.from(histogram.getAll().values()).map(({ labels, value }) => ({
         labels,
         value,
-        timestamp,
-      }));
+        timestamp
+      }))
 
       snapshots.push({
         name,
         type: 'histogram',
-        values,
-      });
+        values
+      })
     }
 
-    return snapshots;
+    return snapshots
   }
 
   /**
    * Export metrics as JSON
    */
   exportJSON(): string {
-    return JSON.stringify(this.collect(), null, 2);
+    return JSON.stringify(this.collect(), null, 2)
   }
 
   /**
    * Export metrics in Prometheus format
    */
   exportPrometheus(): string {
-    const snapshots = this.collect();
-    const lines: string[] = [];
+    const snapshots = this.collect()
+    const lines: string[] = []
 
     for (const snapshot of snapshots) {
       // Add HELP line
       if (snapshot.description) {
-        lines.push(`# HELP ${snapshot.name} ${snapshot.description}`);
+        lines.push(`# HELP ${snapshot.name} ${snapshot.description}`)
       }
 
       // Add TYPE line
-      lines.push(`# TYPE ${snapshot.name} ${snapshot.type}`);
+      lines.push(`# TYPE ${snapshot.name} ${snapshot.type}`)
 
       // Add metric values
       for (const { labels, value } of snapshot.values) {
         if (snapshot.type === 'histogram' && typeof value === 'object') {
-          const hist = value as HistogramSnapshot;
-          const labelStr = this.formatPrometheusLabels(labels);
+          const hist = value as HistogramSnapshot
+          const labelStr = this.formatPrometheusLabels(labels)
 
           // Bucket counts
           for (const [bucket, count] of Object.entries(hist.buckets)) {
-            const bucketLabels = { ...labels, le: bucket };
+            const bucketLabels = { ...labels, le: bucket }
             lines.push(
               `${snapshot.name}_bucket${this.formatPrometheusLabels(bucketLabels)} ${count}`
-            );
+            )
           }
 
           // Sum and count
-          lines.push(`${snapshot.name}_sum${labelStr} ${hist.sum}`);
-          lines.push(`${snapshot.name}_count${labelStr} ${hist.count}`);
+          lines.push(`${snapshot.name}_sum${labelStr} ${hist.sum}`)
+          lines.push(`${snapshot.name}_count${labelStr} ${hist.count}`)
         } else {
-          const labelStr = this.formatPrometheusLabels(labels);
-          lines.push(`${snapshot.name}${labelStr} ${value}`);
+          const labelStr = this.formatPrometheusLabels(labels)
+          lines.push(`${snapshot.name}${labelStr} ${value}`)
         }
       }
 
-      lines.push('');
+      lines.push('')
     }
 
-    return lines.join('\n');
+    return lines.join('\n')
   }
 
   /**
    * Format labels for Prometheus
    */
   private formatPrometheusLabels(labels: Labels): string {
-    const entries = Object.entries(labels);
-    if (entries.length === 0) return '';
+    const entries = Object.entries(labels)
+    if (entries.length === 0) return ''
 
-    const formatted = entries
-      .map(([key, value]) => `${key}="${value}"`)
-      .join(',');
+    const formatted = entries.map(([key, value]) => `${key}="${value}"`).join(',')
 
-    return `{${formatted}}`;
+    return `{${formatted}}`
   }
 
   /**
    * Clear all metrics
    */
   clear(): void {
-    this.counters.clear();
-    this.gauges.clear();
-    this.histograms.clear();
+    this.counters.clear()
+    this.gauges.clear()
+    this.histograms.clear()
   }
 }
 
@@ -647,5 +642,5 @@ export class MetricsCollector {
  */
 export const defaultMetrics = new MetricsCollector({
   service: process.env.SERVICE_NAME,
-  enabled: process.env.METRICS_ENABLED !== 'false',
-});
+  enabled: process.env.METRICS_ENABLED !== 'false'
+})

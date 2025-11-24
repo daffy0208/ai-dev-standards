@@ -1,23 +1,23 @@
 #!/usr/bin/env node
 
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { Server } from '@modelcontextprotocol/sdk/server/index.js'
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
   ListResourcesRequestSchema,
-  ReadResourceRequestSchema,
-} from '@modelcontextprotocol/sdk/types.js';
+  ReadResourceRequestSchema
+} from '@modelcontextprotocol/sdk/types.js'
 
 interface Theme {
-  id: string;
-  name: string;
-  colors: any;
-  typography: any;
-  spacing: any;
-  effects: any;
-  accessibility: any;
-  timestamp: string;
+  id: string
+  name: string
+  colors: any
+  typography: any
+  spacing: any
+  effects: any
+  accessibility: any
+  timestamp: string
 }
 
 const themePresets: Theme[] = [
@@ -26,20 +26,20 @@ const themePresets: Theme[] = [
     name: 'Modern Tech',
     colors: {
       primary: { light: '#6366F1', DEFAULT: '#4F46E5', dark: '#4338CA' },
-      secondary: { light: '#F472B6', DEFAULT: '#EC4899', dark: '#DB2777' },
+      secondary: { light: '#F472B6', DEFAULT: '#EC4899', dark: '#DB2777' }
     },
     typography: { fontFamily: { sans: 'Inter, sans-serif' } },
     spacing: { base: '0.25rem' },
     effects: { shadow: { sm: '0 1px 2px rgba(0,0,0,0.05)' } },
     accessibility: { contrastRatio: 4.5 },
-    timestamp: new Date().toISOString(),
-  },
-];
+    timestamp: new Date().toISOString()
+  }
+]
 
 const server = new Server(
   { name: 'theme-builder-mcp', version: '1.0.0' },
   { capabilities: { tools: {}, resources: {} } }
-);
+)
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: [
@@ -54,23 +54,29 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
             properties: {
               primary: { type: 'string', description: 'Primary brand color' },
               secondary: { type: 'string', description: 'Secondary brand color' },
-              neutral: { type: 'string', description: 'Neutral/gray color' },
+              neutral: { type: 'string', description: 'Neutral/gray color' }
             },
-            description: 'Base brand colors',
+            description: 'Base brand colors'
           },
           preferences: {
             type: 'object',
             properties: {
               style: { type: 'string', enum: ['modern', 'classic', 'playful', 'minimal', 'bold'] },
               colorScale: { type: 'number', description: 'Number of shades (5-11)' },
-              includeSemanticColors: { type: 'boolean', description: 'Include success/warning/error' },
-              roundness: { type: 'string', enum: ['sharp', 'slightly-rounded', 'rounded', 'very-rounded'] },
-              density: { type: 'string', enum: ['compact', 'comfortable', 'spacious'] },
-            },
-          },
+              includeSemanticColors: {
+                type: 'boolean',
+                description: 'Include success/warning/error'
+              },
+              roundness: {
+                type: 'string',
+                enum: ['sharp', 'slightly-rounded', 'rounded', 'very-rounded']
+              },
+              density: { type: 'string', enum: ['compact', 'comfortable', 'spacious'] }
+            }
+          }
         },
-        required: ['baseColors'],
-      },
+        required: ['baseColors']
+      }
     },
     {
       name: 'createDarkMode',
@@ -80,21 +86,21 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           lightTheme: {
             type: 'object',
-            description: 'Light theme object to convert',
+            description: 'Light theme object to convert'
           },
           strategy: {
             type: 'string',
             enum: ['invert', 'shift', 'custom'],
-            description: 'Dark mode generation strategy',
+            description: 'Dark mode generation strategy'
           },
           preserveColors: {
             type: 'array',
             items: { type: 'string' },
-            description: 'Colors to keep unchanged',
-          },
+            description: 'Colors to keep unchanged'
+          }
         },
-        required: ['lightTheme'],
-      },
+        required: ['lightTheme']
+      }
     },
     {
       name: 'validateThemeAccessibility',
@@ -104,23 +110,23 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           theme: {
             type: 'object',
-            description: 'Theme to validate',
+            description: 'Theme to validate'
           },
           level: {
             type: 'string',
             enum: ['AA', 'AAA'],
-            description: 'WCAG compliance level',
+            description: 'WCAG compliance level'
           },
           checkAspects: {
             type: 'array',
             items: {
               type: 'string',
-              enum: ['contrast', 'color-blindness', 'touch-targets', 'focus-indicators'],
-            },
-          },
+              enum: ['contrast', 'color-blindness', 'touch-targets', 'focus-indicators']
+            }
+          }
         },
-        required: ['theme'],
-      },
+        required: ['theme']
+      }
     },
     {
       name: 'exportThemeTokens',
@@ -130,37 +136,34 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           theme: {
             type: 'object',
-            description: 'Theme to export',
+            description: 'Theme to export'
           },
           format: {
             type: 'string',
             enum: ['css', 'scss', 'js', 'json', 'tailwind', 'style-dictionary', 'figma-tokens'],
-            description: 'Output format',
+            description: 'Output format'
           },
           includeComments: {
             type: 'boolean',
-            description: 'Include usage comments',
-          },
+            description: 'Include usage comments'
+          }
         },
-        required: ['theme', 'format'],
-      },
-    },
-  ],
-}));
+        required: ['theme', 'format']
+      }
+    }
+  ]
+}))
 
-server.setRequestHandler(CallToolRequestSchema, async (request) => {
+server.setRequestHandler(CallToolRequestSchema, async request => {
   try {
-    const { name, arguments: args } = request.params;
+    const { name, arguments: args } = request.params
 
     switch (name) {
       case 'generateTheme': {
-        const {
-          baseColors,
-          preferences = {},
-        } = args as any;
+        const { baseColors, preferences = {} } = args as any
 
         if (!baseColors) {
-          throw new Error('Missing required argument: baseColors');
+          throw new Error('Missing required argument: baseColors')
         }
 
         const {
@@ -168,8 +171,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           colorScale = 9,
           includeSemanticColors = true,
           roundness = 'rounded',
-          density = 'comfortable',
-        } = preferences;
+          density = 'comfortable'
+        } = preferences
 
         // Generate color scales
         const theme: Theme = {
@@ -182,13 +185,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             ...(includeSemanticColors && {
               success: generateColorScale('#10B981', colorScale),
               warning: generateColorScale('#F59E0B', colorScale),
-              error: generateColorScale('#EF4444', colorScale),
-            }),
+              error: generateColorScale('#EF4444', colorScale)
+            })
           },
           typography: {
             fontFamily: {
               sans: style === 'classic' ? 'Georgia, serif' : 'Inter, sans-serif',
-              mono: 'JetBrains Mono, monospace',
+              mono: 'JetBrains Mono, monospace'
             },
             fontSize: {
               xs: '0.75rem',
@@ -196,8 +199,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
               base: '1rem',
               lg: '1.125rem',
               xl: '1.25rem',
-              '2xl': '1.5rem',
-            },
+              '2xl': '1.5rem'
+            }
           },
           spacing: generateSpacingScale(density),
           effects: {
@@ -205,33 +208,33 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             shadow: {
               sm: '0 1px 2px rgba(0,0,0,0.05)',
               md: '0 4px 6px rgba(0,0,0,0.1)',
-              lg: '0 10px 15px rgba(0,0,0,0.1)',
-            },
+              lg: '0 10px 15px rgba(0,0,0,0.1)'
+            }
           },
           accessibility: {
             contrastRatio: 4.5,
             focusRingWidth: '2px',
-            focusRingColor: baseColors.primary || '#4F46E5',
+            focusRingColor: baseColors.primary || '#4F46E5'
           },
-          timestamp: new Date().toISOString(),
-        };
+          timestamp: new Date().toISOString()
+        }
 
         const result = {
           success: true,
           message: 'Theme generated successfully',
-          data: { theme, preferences },
-        };
+          data: { theme, preferences }
+        }
 
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
-        };
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
+        }
       }
 
       case 'createDarkMode': {
-        const { lightTheme, strategy = 'shift', preserveColors = [] } = args as any;
+        const { lightTheme, strategy = 'shift', preserveColors = [] } = args as any
 
         if (!lightTheme) {
-          throw new Error('Missing required argument: lightTheme');
+          throw new Error('Missing required argument: lightTheme')
         }
 
         const darkTheme: Theme = {
@@ -239,59 +242,69 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           id: `${lightTheme.id}-dark`,
           name: `${lightTheme.name} (Dark)`,
           colors: convertToDarkMode(lightTheme.colors, strategy, preserveColors),
-          timestamp: new Date().toISOString(),
-        };
+          timestamp: new Date().toISOString()
+        }
 
         const result = {
           success: true,
           message: 'Dark mode theme created',
-          data: { lightTheme, darkTheme, strategy },
-        };
+          data: { lightTheme, darkTheme, strategy }
+        }
 
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
-        };
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
+        }
       }
 
       case 'validateThemeAccessibility': {
-        const { theme, level = 'AA', checkAspects = ['contrast', 'color-blindness'] } = args as any;
+        const { theme, level = 'AA', checkAspects = ['contrast', 'color-blindness'] } = args as any
 
         if (!theme) {
-          throw new Error('Missing required argument: theme');
+          throw new Error('Missing required argument: theme')
         }
 
         const issues = [
-          { aspect: 'contrast', issue: 'Secondary text on primary: 3.2:1 (needs 4.5:1)', severity: 'high' },
-          { aspect: 'touch-targets', issue: 'Button min size: 40x40px (needs 44x44px)', severity: 'medium' },
-        ];
+          {
+            aspect: 'contrast',
+            issue: 'Secondary text on primary: 3.2:1 (needs 4.5:1)',
+            severity: 'high'
+          },
+          {
+            aspect: 'touch-targets',
+            issue: 'Button min size: 40x40px (needs 44x44px)',
+            severity: 'medium'
+          }
+        ]
 
-        const passed = issues.filter(i => i.severity !== 'high').length === issues.length;
+        const passed = issues.filter(i => i.severity !== 'high').length === issues.length
 
         const result = {
           success: true,
-          message: passed ? 'Theme passes accessibility validation' : 'Theme has accessibility issues',
+          message: passed
+            ? 'Theme passes accessibility validation'
+            : 'Theme has accessibility issues',
           data: {
             passed,
             level,
             checkAspects,
             issues,
-            score: `${Math.max(0, 100 - issues.length * 10)}%`,
-          },
-        };
+            score: `${Math.max(0, 100 - issues.length * 10)}%`
+          }
+        }
 
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
-        };
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
+        }
       }
 
       case 'exportThemeTokens': {
-        const { theme, format, includeComments = true } = args as any;
+        const { theme, format, includeComments = true } = args as any
 
         if (!theme || !format) {
-          throw new Error('Missing required arguments: theme, format');
+          throw new Error('Missing required arguments: theme, format')
         }
 
-        const tokens = exportToFormat(theme, format, includeComments);
+        const tokens = exportToFormat(theme, format, includeComments)
 
         const result = {
           success: true,
@@ -299,30 +312,30 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           data: {
             format,
             tokens,
-            fileName: `theme.${getFileExtension(format)}`,
-          },
-        };
+            fileName: `theme.${getFileExtension(format)}`
+          }
+        }
 
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
-        };
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
+        }
       }
 
       default:
-        throw new Error(`Unknown tool: ${name}`);
+        throw new Error(`Unknown tool: ${name}`)
     }
   } catch (error) {
     return {
       content: [
         {
           type: 'text',
-          text: `Error: ${error instanceof Error ? error.message : String(error)}`,
-        },
+          text: `Error: ${error instanceof Error ? error.message : String(error)}`
+        }
       ],
-      isError: true,
-    };
+      isError: true
+    }
   }
-});
+})
 
 server.setRequestHandler(ListResourcesRequestSchema, async () => ({
   resources: [
@@ -330,19 +343,19 @@ server.setRequestHandler(ListResourcesRequestSchema, async () => ({
       uri: 'theme-builder://presets',
       name: 'Theme Presets',
       description: 'Curated theme presets for quick start',
-      mimeType: 'application/json',
+      mimeType: 'application/json'
     },
     {
       uri: 'theme-builder://guide',
       name: 'Theme Design Guide',
       description: 'Best practices for theme design',
-      mimeType: 'text/plain',
-    },
-  ],
-}));
+      mimeType: 'text/plain'
+    }
+  ]
+}))
 
-server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
-  const { uri } = request.params;
+server.setRequestHandler(ReadResourceRequestSchema, async request => {
+  const { uri } = request.params
 
   if (uri === 'theme-builder://presets') {
     return {
@@ -350,10 +363,10 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
         {
           uri,
           mimeType: 'application/json',
-          text: JSON.stringify({ presets: themePresets }, null, 2),
-        },
-      ],
-    };
+          text: JSON.stringify({ presets: themePresets }, null, 2)
+        }
+      ]
+    }
   }
 
   if (uri === 'theme-builder://guide') {
@@ -416,39 +429,39 @@ Best Practices:
 5. Create dark mode with strategy
 6. Export as design tokens
 7. Document usage guidelines
-`;
+`
     return {
       contents: [
         {
           uri,
           mimeType: 'text/plain',
-          text: guide,
-        },
-      ],
-    };
+          text: guide
+        }
+      ]
+    }
   }
 
-  throw new Error(`Unknown resource: ${uri}`);
-});
+  throw new Error(`Unknown resource: ${uri}`)
+})
 
 function generateColorScale(baseColor: string, steps: number): any {
-  const scale: any = {};
-  const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
+  const scale: any = {}
+  const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
   for (let i = 0; i < steps; i++) {
-    scale[shades[i]] = baseColor; // Placeholder, use color manipulation library
+    scale[shades[i]] = baseColor // Placeholder, use color manipulation library
   }
-  return scale;
+  return scale
 }
 
 function generateSpacingScale(density: string): any {
-  const base = density === 'compact' ? 0.2 : density === 'spacious' ? 0.3 : 0.25;
+  const base = density === 'compact' ? 0.2 : density === 'spacious' ? 0.3 : 0.25
   return {
     xs: `${base}rem`,
     sm: `${base * 2}rem`,
     md: `${base * 4}rem`,
     lg: `${base * 6}rem`,
-    xl: `${base * 8}rem`,
-  };
+    xl: `${base * 8}rem`
+  }
 }
 
 function generateBorderRadius(roundness: string): any {
@@ -456,28 +469,28 @@ function generateBorderRadius(roundness: string): any {
     sharp: '0',
     'slightly-rounded': '0.25rem',
     rounded: '0.5rem',
-    'very-rounded': '1rem',
-  };
+    'very-rounded': '1rem'
+  }
   return {
     sm: values[roundness],
     md: values[roundness],
-    lg: values[roundness],
-  };
+    lg: values[roundness]
+  }
 }
 
 function convertToDarkMode(lightColors: any, strategy: string, preserve: string[]): any {
   // Placeholder dark mode conversion
-  return lightColors;
+  return lightColors
 }
 
 function exportToFormat(theme: Theme, format: string, includeComments: boolean): string {
   if (format === 'css') {
-    return `:root {\n  --color-primary: ${theme.colors.primary[500]};\n}`;
+    return `:root {\n  --color-primary: ${theme.colors.primary[500]};\n}`
   }
   if (format === 'json') {
-    return JSON.stringify(theme, null, 2);
+    return JSON.stringify(theme, null, 2)
   }
-  return 'Theme tokens';
+  return 'Theme tokens'
 }
 
 function getFileExtension(format: string): string {
@@ -488,18 +501,18 @@ function getFileExtension(format: string): string {
     json: 'json',
     tailwind: 'js',
     'style-dictionary': 'json',
-    'figma-tokens': 'json',
-  };
-  return extensions[format] || 'txt';
+    'figma-tokens': 'json'
+  }
+  return extensions[format] || 'txt'
 }
 
 async function main() {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error('theme-builder-mcp v1.0.0 running on stdio');
+  const transport = new StdioServerTransport()
+  await server.connect(transport)
+  console.error('theme-builder-mcp v1.0.0 running on stdio')
 }
 
-main().catch((error) => {
-  console.error('Server error:', error);
-  process.exit(1);
-});
+main().catch(error => {
+  console.error('Server error:', error)
+  process.exit(1)
+})

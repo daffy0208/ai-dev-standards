@@ -7,9 +7,11 @@ Convert light mode designs to accessible dark mode with automatic color adjustme
 ### Tools
 
 #### `convertToDarkMode`
+
 Convert complete light mode palette to dark mode.
 
 **Parameters:**
+
 - `lightColors` (object, required):
   - `background` (string): Background color
   - `surface` (string): Surface/card color
@@ -21,6 +23,7 @@ Convert complete light mode palette to dark mode.
 - `contrastTarget` (number): Target contrast ratio (default: 4.5)
 
 **Example:**
+
 ```typescript
 {
   lightColors: {
@@ -37,14 +40,17 @@ Convert complete light mode palette to dark mode.
 ```
 
 #### `suggestDarkVariant`
+
 Suggest optimal dark mode variant for a single color.
 
 **Parameters:**
+
 - `lightColor` (string, required): Hex color to convert
 - `role` (string, required): background, surface, text, primary, accent
 - `adjacentColors` (array): Nearby colors for contrast checking
 
 **Example:**
+
 ```typescript
 {
   lightColor: "#4F46E5",
@@ -54,14 +60,17 @@ Suggest optimal dark mode variant for a single color.
 ```
 
 #### `validateDarkContrast`
+
 Validate dark mode for WCAG accessibility compliance.
 
 **Parameters:**
+
 - `darkTheme` (object, required): Dark mode theme to validate
 - `wcagLevel` (string): AA or AAA
 - `checkCombinations` (array): Specific color pairs to check
 
 **Example:**
+
 ```typescript
 {
   darkTheme: { /* theme object */ },
@@ -73,14 +82,17 @@ Validate dark mode for WCAG accessibility compliance.
 ```
 
 #### `generateDarkPalette`
+
 Generate complete dark mode palette from brand color.
 
 **Parameters:**
+
 - `brandColor` (string, required): Primary brand color
 - `style` (string): pure-black, true-dark, soft-dark, blue-tinted, warm-dark
 - `includeSemantics` (boolean): Include success/warning/error colors
 
 **Example:**
+
 ```typescript
 {
   brandColor: "#4F46E5",
@@ -92,9 +104,11 @@ Generate complete dark mode palette from brand color.
 ### Resources
 
 #### `dark-mode://examples`
+
 Curated examples of excellent dark mode implementations.
 
 #### `dark-mode://guide`
+
 Comprehensive guide to dark mode design principles.
 
 ## Setup
@@ -130,15 +144,15 @@ npm run build
 ```typescript
 const darkColors = await convertToDarkMode({
   lightColors: {
-    background: "#FFFFFF",
-    surface: "#F9FAFB",
-    text: "#111827",
-    primary: "#4F46E5",
-    secondary: "#EC4899"
+    background: '#FFFFFF',
+    surface: '#F9FAFB',
+    text: '#111827',
+    primary: '#4F46E5',
+    secondary: '#EC4899'
   },
-  strategy: "auto",
+  strategy: 'auto',
   preserveBrand: true
-});
+})
 
 // Result:
 // {
@@ -154,10 +168,10 @@ const darkColors = await convertToDarkMode({
 
 ```typescript
 const palette = await generateDarkPalette({
-  brandColor: "#4F46E5",
-  style: "true-dark",
+  brandColor: '#4F46E5',
+  style: 'true-dark',
   includeSemantics: true
-});
+})
 
 // Result: Complete dark mode palette
 ```
@@ -167,8 +181,8 @@ const palette = await generateDarkPalette({
 ```typescript
 const validation = await validateDarkContrast({
   darkTheme: palette,
-  wcagLevel: "AA"
-});
+  wcagLevel: 'AA'
+})
 
 // Check if passes: validation.data.passed
 ```
@@ -176,30 +190,35 @@ const validation = await validateDarkContrast({
 ## Dark Mode Styles
 
 ### Pure Black (#000000)
+
 **Use for:** OLED optimization, maximum battery savings
 **Pros:** Best for OLED, high contrast, modern
 **Cons:** Can be harsh, stark
 **Example:** Twitter, Reddit
 
 ### True Dark (#0D1117)
+
 **Use for:** General purpose, reduced eye strain
 **Pros:** Balanced, professional, GitHub-style
 **Cons:** None, most versatile
 **Example:** GitHub, Linear
 
 ### Soft Dark (#1A1A1A)
+
 **Use for:** Warmer feel, less technical
 **Pros:** Comfortable, approachable
 **Cons:** Less "dark mode" feel
 **Example:** Spotify, Medium
 
 ### Blue Tinted (#0A1929)
+
 **Use for:** Technical products, professional tools
 **Pros:** Distinctive, reduces yellow light
 **Cons:** Can tint other colors
 **Example:** Material-UI dark
 
 ### Warm Dark (#1A1612)
+
 **Use for:** Creative apps, reading apps
 **Pros:** Cozy, reduces blue light
 **Cons:** May feel dated
@@ -210,6 +229,7 @@ const validation = await validateDarkContrast({
 ### Auto Strategy (Recommended)
 
 Intelligently converts based on color role:
+
 - **Backgrounds:** Inverts to dark
 - **Text:** Inverts to light (not pure white)
 - **Brand colors:** Preserves or slightly adjusts
@@ -218,6 +238,7 @@ Intelligently converts based on color role:
 ### Invert Strategy
 
 Flips lightness on HSL scale:
+
 - Light (90%) → Dark (10%)
 - Dark (10%) → Light (90%)
 - Maintains hue and saturation
@@ -225,6 +246,7 @@ Flips lightness on HSL scale:
 ### Desaturate Strategy
 
 Reduces color intensity for dark mode:
+
 - Decreases saturation 10-30%
 - Useful for vibrant light themes
 - Prevents oversaturation
@@ -232,6 +254,7 @@ Reduces color intensity for dark mode:
 ### Shift Hue Strategy
 
 Rotates hue for dark mode feel:
+
 - Shifts toward cooler tones
 - Adds blue tint
 - Creates cohesive dark feel
@@ -239,6 +262,7 @@ Rotates hue for dark mode feel:
 ### Custom Strategy
 
 Hand-pick each color:
+
 - Full control
 - Brand-specific
 - Most work required
@@ -279,16 +303,16 @@ Dark mode uses lightness, not shadows, for elevation:
 
 ```css
 /* Background layer */
-background: #0D1117;
+background: #0d1117;
 
 /* Surface layer (cards, panels) */
-surface-1: #161B22;  /* +2% lightness */
+surface-1: #161b22; /* +2% lightness */
 
 /* Elevated surface (dialogs, popovers) */
-surface-2: #21262D;  /* +4% lightness */
+surface-2: #21262d; /* +4% lightness */
 
 /* Highest surface (tooltips) */
-surface-3: #30363D;  /* +6% lightness */
+surface-3: #30363d; /* +6% lightness */
 ```
 
 ## Color Adjustments
@@ -297,12 +321,12 @@ surface-3: #30363D;  /* +6% lightness */
 
 ```typescript
 // Light mode
-background: "#FFFFFF"  (100% lightness)
-surface: "#F9FAFB"     (98% lightness)
+background: '#FFFFFF'(100 % lightness)
+surface: '#F9FAFB'(98 % lightness)
 
 // Dark mode
-background: "#0D1117"  (5% lightness)
-surface: "#161B22"     (8% lightness)
+background: '#0D1117'(5 % lightness)
+surface: '#161B22'(8 % lightness)
 ```
 
 ### Text Colors
@@ -331,18 +355,22 @@ primary: "#6366F1"     (HSL: 239, 84%, 67%)
 ## Semantic Colors
 
 ### Success (Green)
+
 - Light: `#10B981`
 - Dark: `#3FB950`
 
 ### Warning (Amber)
+
 - Light: `#F59E0B`
 - Dark: `#D29922`
 
 ### Error (Red)
+
 - Light: `#EF4444`
 - Dark: `#F85149`
 
 ### Info (Blue)
+
 - Light: `#3B82F6`
 - Dark: `#58A6FF`
 
@@ -353,24 +381,24 @@ primary: "#6366F1"     (HSL: 239, 84%, 67%)
 ```css
 /* Light mode */
 :root {
-  --color-background: #FFFFFF;
+  --color-background: #ffffff;
   --color-text: #111827;
-  --color-primary: #4F46E5;
+  --color-primary: #4f46e5;
 }
 
 /* Dark mode */
-:root[data-theme="dark"] {
-  --color-background: #0D1117;
-  --color-text: #C9D1D9;
-  --color-primary: #6366F1;
+:root[data-theme='dark'] {
+  --color-background: #0d1117;
+  --color-text: #c9d1d9;
+  --color-primary: #6366f1;
 }
 
 /* Or with media query */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: #0D1117;
-    --color-text: #C9D1D9;
-    --color-primary: #6366F1;
+    --color-background: #0d1117;
+    --color-text: #c9d1d9;
+    --color-primary: #6366f1;
   }
 }
 ```
@@ -378,33 +406,27 @@ primary: "#6366F1"     (HSL: 239, 84%, 67%)
 ### React Implementation
 
 ```tsx
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
 function useDarkMode() {
   const [isDark, setIsDark] = useState(
-    () => localStorage.getItem('theme') === 'dark' ||
-    window.matchMedia('(prefers-color-scheme: dark)').matches
-  );
+    () =>
+      localStorage.getItem('theme') === 'dark' ||
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+  )
 
   useEffect(() => {
-    document.documentElement.setAttribute(
-      'data-theme',
-      isDark ? 'dark' : 'light'
-    );
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  }, [isDark]);
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light')
+    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  }, [isDark])
 
-  return [isDark, setIsDark] as const;
+  return [isDark, setIsDark] as const
 }
 
 function App() {
-  const [isDark, setIsDark] = useDarkMode();
+  const [isDark, setIsDark] = useDarkMode()
 
-  return (
-    <button onClick={() => setIsDark(!isDark)}>
-      {isDark ? '☀️' : '🌙'} Toggle Theme
-    </button>
-  );
+  return <button onClick={() => setIsDark(!isDark)}>{isDark ? '☀️' : '🌙'} Toggle Theme</button>
 }
 ```
 
@@ -423,7 +445,7 @@ module.exports = {
 
         // Dark mode
         'dark-background': '#0D1117',
-        'dark-text': '#C9D1D9',
+        'dark-text': '#C9D1D9'
       }
     }
   }
@@ -431,9 +453,7 @@ module.exports = {
 ```
 
 ```tsx
-<div className="bg-background dark:bg-dark-background text-text dark:text-dark-text">
-  Content
-</div>
+<div className="bg-background dark:bg-dark-background text-text dark:text-dark-text">Content</div>
 ```
 
 ## Best Practices

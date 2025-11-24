@@ -43,6 +43,7 @@ Start here
 ## Pattern 1: Session-Based Authentication
 
 ### When to Use
+
 - ✅ Traditional web applications (server-side rendering)
 - ✅ When you need server-side session management
 - ✅ When security is paramount (easier to revoke sessions)
@@ -78,8 +79,8 @@ export async function getSession() {
       secure: process.env.NODE_ENV === 'production',
       httpOnly: true,
       sameSite: 'lax',
-      maxAge: 60 * 60 * 24 * 7, // 7 days
-    },
+      maxAge: 60 * 60 * 24 * 7 // 7 days
+    }
   })
 }
 
@@ -117,12 +118,14 @@ export async function requireAuth() {
 ### Pros & Cons
 
 **Pros:**
+
 - ✅ Server controls sessions (easy to revoke)
 - ✅ Simpler to implement for web apps
 - ✅ No token expiry issues
 - ✅ Stateful (know all active sessions)
 
 **Cons:**
+
 - ❌ Not stateless (harder to scale horizontally)
 - ❌ Requires session store (Redis, database)
 - ❌ CSRF protection needed
@@ -133,6 +136,7 @@ export async function requireAuth() {
 ## Pattern 2: JWT (JSON Web Tokens)
 
 ### When to Use
+
 - ✅ RESTful APIs consumed by mobile/SPA
 - ✅ Microservices architecture
 - ✅ Stateless authentication needed
@@ -199,7 +203,10 @@ export async function POST(request: Request) {
 
   // Store refresh token in httpOnly cookie
   const response = Response.json({ accessToken })
-  response.headers.set('Set-Cookie', `refreshToken=${refreshToken}; HttpOnly; Secure; SameSite=Strict; Max-Age=${7 * 24 * 60 * 60}; Path=/api/auth/refresh`)
+  response.headers.set(
+    'Set-Cookie',
+    `refreshToken=${refreshToken}; HttpOnly; Secure; SameSite=Strict; Max-Age=${7 * 24 * 60 * 60}; Path=/api/auth/refresh`
+  )
 
   return response
 }
@@ -227,6 +234,7 @@ export async function middleware(request: NextRequest) {
 ### Access Token + Refresh Token Pattern
 
 **Why both?**
+
 - Access token: Short-lived (15min) - sent with every request
 - Refresh token: Long-lived (7d) - used to get new access token
 
@@ -264,12 +272,14 @@ export async function POST(request: Request) {
 ### Pros & Cons
 
 **Pros:**
+
 - ✅ Stateless (no session store needed)
 - ✅ Easy to scale horizontally
 - ✅ Works across domains
 - ✅ Perfect for mobile/SPA
 
 **Cons:**
+
 - ❌ Can't revoke tokens before expiry (use short expiry + refresh tokens)
 - ❌ Token can grow large with too many claims
 - ❌ Need to handle refresh token rotation
@@ -279,6 +289,7 @@ export async function POST(request: Request) {
 ## Pattern 3: OAuth 2.0 / OpenID Connect
 
 ### When to Use
+
 - ✅ Social login (Google, GitHub, Facebook)
 - ✅ Third-party integrations
 - ✅ Enterprise SSO
@@ -306,17 +317,17 @@ export const authOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!
     }),
     GitHubProvider({
       clientId: process.env.GITHUB_CLIENT_ID!,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET!
     }),
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" }
+        email: { label: 'Email', type: 'email' },
+        password: { label: 'Password', type: 'password' }
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
@@ -345,12 +356,12 @@ export const authOptions = {
     }
   },
   pages: {
-    signIn: '/auth/signin',
+    signIn: '/auth/signin'
   },
   session: {
     strategy: 'jwt',
-    maxAge: 30 * 24 * 60 * 60, // 30 days
-  },
+    maxAge: 30 * 24 * 60 * 60 // 30 days
+  }
 }
 
 const handler = NextAuth(authOptions)
@@ -373,12 +384,14 @@ export async function GET(request: Request) {
 ### Pros & Cons
 
 **Pros:**
+
 - ✅ No password management (delegated to provider)
 - ✅ Better UX (one-click login)
 - ✅ Trusted providers (Google, GitHub, etc.)
 - ✅ Reduced liability (no password storage)
 
 **Cons:**
+
 - ❌ Dependency on third-party
 - ❌ More complex to implement
 - ❌ Users need account with provider
@@ -389,6 +402,7 @@ export async function GET(request: Request) {
 ## Pattern 4: Magic Link (Passwordless)
 
 ### When to Use
+
 - ✅ Consumer apps (better UX than passwords)
 - ✅ Reduce password fatigue
 - ✅ Email-based verification
@@ -479,12 +493,14 @@ export async function GET(request: Request) {
 ### Pros & Cons
 
 **Pros:**
+
 - ✅ No password to remember
 - ✅ No password storage/hashing
 - ✅ Better UX for users
 - ✅ Email-based verification
 
 **Cons:**
+
 - ❌ Requires email access (not always available)
 - ❌ Less secure than passwords (if email compromised)
 - ❌ Can't log in offline
@@ -495,6 +511,7 @@ export async function GET(request: Request) {
 ## Pattern 5: WebAuthn / Passkeys
 
 ### When to Use
+
 - ✅ Maximum security (phishing-resistant)
 - ✅ Passwordless future
 - ✅ Hardware security keys
@@ -517,7 +534,7 @@ import {
   generateRegistrationOptions,
   verifyRegistrationResponse,
   generateAuthenticationOptions,
-  verifyAuthenticationResponse,
+  verifyAuthenticationResponse
 } from '@simplewebauthn/server'
 
 // Registration
@@ -531,7 +548,7 @@ export async function POST(request: Request) {
     rpID: 'example.com',
     userID: user.id,
     userName: user.email,
-    attestationType: 'none',
+    attestationType: 'none'
   })
 
   await db.user.update({
@@ -552,7 +569,7 @@ export async function POST(request: Request) {
     response,
     expectedChallenge: user.currentChallenge,
     expectedOrigin: 'https://example.com',
-    expectedRPID: 'example.com',
+    expectedRPID: 'example.com'
   })
 
   if (verification.verified) {
@@ -561,7 +578,7 @@ export async function POST(request: Request) {
         userId: user.id,
         credentialID: verification.registrationInfo.credentialID,
         credentialPublicKey: verification.registrationInfo.credentialPublicKey,
-        counter: verification.registrationInfo.counter,
+        counter: verification.registrationInfo.counter
       }
     })
   }
@@ -574,19 +591,20 @@ export async function POST(request: Request) {
 
 ## Comparison Matrix
 
-| Pattern | Stateless | Mobile-Friendly | Scalability | Security | UX | Complexity |
-|---------|-----------|-----------------|-------------|----------|-----|-----------|
-| Session | ❌ No | ⚠️ Medium | ⚠️ Medium | ✅ High | ✅ Good | ✅ Low |
-| JWT | ✅ Yes | ✅ High | ✅ High | ⚠️ Medium | ✅ Good | ⚠️ Medium |
-| OAuth | ✅ Yes | ✅ High | ✅ High | ✅ High | ✅ Excellent | ❌ High |
-| Magic Link | ⚠️ Hybrid | ✅ High | ✅ High | ⚠️ Medium | ⚠️ Medium | ⚠️ Medium |
-| WebAuthn | ✅ Yes | ✅ High | ✅ High | ✅ Highest | ⚠️ Medium | ❌ High |
+| Pattern    | Stateless | Mobile-Friendly | Scalability | Security   | UX           | Complexity |
+| ---------- | --------- | --------------- | ----------- | ---------- | ------------ | ---------- |
+| Session    | ❌ No     | ⚠️ Medium       | ⚠️ Medium   | ✅ High    | ✅ Good      | ✅ Low     |
+| JWT        | ✅ Yes    | ✅ High         | ✅ High     | ⚠️ Medium  | ✅ Good      | ⚠️ Medium  |
+| OAuth      | ✅ Yes    | ✅ High         | ✅ High     | ✅ High    | ✅ Excellent | ❌ High    |
+| Magic Link | ⚠️ Hybrid | ✅ High         | ✅ High     | ⚠️ Medium  | ⚠️ Medium    | ⚠️ Medium  |
+| WebAuthn   | ✅ Yes    | ✅ High         | ✅ High     | ✅ Highest | ⚠️ Medium    | ❌ High    |
 
 ---
 
 ## Best Practices
 
 ### Password Security
+
 - ✅ Use bcrypt with 12+ rounds
 - ✅ Minimum 8 characters (enforce complexity)
 - ✅ Check against breached passwords (haveibeenpwned.com API)
@@ -595,6 +613,7 @@ export async function POST(request: Request) {
 - ❌ Never log passwords
 
 ### Token Security
+
 - ✅ Use short expiry for access tokens (15min)
 - ✅ Use refresh tokens for long sessions
 - ✅ Store refresh tokens in httpOnly cookies
@@ -603,6 +622,7 @@ export async function POST(request: Request) {
 - ❌ Don't store tokens in localStorage (XSS risk)
 
 ### Session Security
+
 - ✅ Use httpOnly, secure, sameSite cookies
 - ✅ Regenerate session ID after login
 - ✅ Implement session timeout
@@ -614,14 +634,17 @@ export async function POST(request: Request) {
 ## Related Resources
 
 **Skills:**
+
 - `security-engineer` - Security implementation guidance
 - `api-designer` - API authentication patterns
 - `frontend-builder` - Client-side auth handling
 
 **Patterns:**
+
 - `/STANDARDS/best-practices/security-best-practices.md`
 
 **External:**
+
 - [OAuth 2.0](https://oauth.net/2/)
 - [NextAuth.js](https://next-auth.js.org/)
 - [SimpleWebAuthn](https://simplewebauthn.dev/)

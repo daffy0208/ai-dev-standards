@@ -1,69 +1,70 @@
 #!/usr/bin/env node
 
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { Server } from '@modelcontextprotocol/sdk/server/index.js'
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
   ListResourcesRequestSchema,
-  ReadResourceRequestSchema,
-} from '@modelcontextprotocol/sdk/types.js';
+  ReadResourceRequestSchema
+} from '@modelcontextprotocol/sdk/types.js'
 
 interface ImageGenerationResult {
-  imageUrl: string;
-  prompt: string;
-  style: string;
-  size: string;
-  provider: string;
-  timestamp: string;
+  imageUrl: string
+  prompt: string
+  style: string
+  size: string
+  provider: string
+  timestamp: string
 }
 
 interface ImageHistory {
-  images: ImageGenerationResult[];
-  totalGenerated: number;
+  images: ImageGenerationResult[]
+  totalGenerated: number
 }
 
 const imageHistory: ImageHistory = {
   images: [],
-  totalGenerated: 0,
-};
+  totalGenerated: 0
+}
 
 const server = new Server(
   { name: 'image-generator-mcp', version: '1.0.0' },
   { capabilities: { tools: {}, resources: {} } }
-);
+)
 
 // Tools Handler
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: [
     {
       name: 'generateImage',
-      description: 'Generate an image from a text prompt using AI image generation services (OpenAI DALL-E, Midjourney, Stable Diffusion)',
+      description:
+        'Generate an image from a text prompt using AI image generation services (OpenAI DALL-E, Midjourney, Stable Diffusion)',
       inputSchema: {
         type: 'object',
         properties: {
           prompt: {
             type: 'string',
-            description: 'Text description of the image to generate',
+            description: 'Text description of the image to generate'
           },
           style: {
             type: 'string',
             description: 'Visual style (realistic, artistic, cartoon, abstract, photographic)',
-            enum: ['realistic', 'artistic', 'cartoon', 'abstract', 'photographic'],
+            enum: ['realistic', 'artistic', 'cartoon', 'abstract', 'photographic']
           },
           size: {
             type: 'string',
             description: 'Image dimensions',
-            enum: ['256x256', '512x512', '1024x1024', '1024x1792', '1792x1024'],
+            enum: ['256x256', '512x512', '1024x1024', '1024x1792', '1792x1024']
           },
           provider: {
             type: 'string',
             description: 'AI image generation provider',
-            enum: ['dalle', 'midjourney', 'stable-diffusion'],
-          },
+            enum: ['dalle', 'midjourney', 'stable-diffusion']
+          }
         },
-        required: ['prompt'],
-      },
+        required: ['prompt']
+      }
     },
     {
       name: 'editImage',
@@ -73,24 +74,24 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           imageUrl: {
             type: 'string',
-            description: 'URL or path to the image to edit',
+            description: 'URL or path to the image to edit'
           },
           prompt: {
             type: 'string',
-            description: 'Description of the edits to make',
+            description: 'Description of the edits to make'
           },
           mask: {
             type: 'string',
-            description: 'Optional mask URL indicating area to edit',
+            description: 'Optional mask URL indicating area to edit'
           },
           provider: {
             type: 'string',
             description: 'AI image generation provider',
-            enum: ['dalle', 'stable-diffusion'],
-          },
+            enum: ['dalle', 'stable-diffusion']
+          }
         },
-        required: ['imageUrl', 'prompt'],
-      },
+        required: ['imageUrl', 'prompt']
+      }
     },
     {
       name: 'upscaleImage',
@@ -100,20 +101,20 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           imageUrl: {
             type: 'string',
-            description: 'URL or path to the image to upscale',
+            description: 'URL or path to the image to upscale'
           },
           scale: {
             type: 'number',
             description: 'Upscaling factor (2x, 4x, 8x)',
-            enum: [2, 4, 8],
+            enum: [2, 4, 8]
           },
           enhanceDetails: {
             type: 'boolean',
-            description: 'Apply AI detail enhancement',
-          },
+            description: 'Apply AI detail enhancement'
+          }
         },
-        required: ['imageUrl', 'scale'],
-      },
+        required: ['imageUrl', 'scale']
+      }
     },
     {
       name: 'generateVariations',
@@ -123,41 +124,36 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           imageUrl: {
             type: 'string',
-            description: 'URL or path to the source image',
+            description: 'URL or path to the source image'
           },
           count: {
             type: 'number',
             description: 'Number of variations to generate (1-10)',
             minimum: 1,
-            maximum: 10,
+            maximum: 10
           },
           variationType: {
             type: 'string',
             description: 'Type of variations',
-            enum: ['style', 'color', 'composition', 'similar'],
-          },
+            enum: ['style', 'color', 'composition', 'similar']
+          }
         },
-        required: ['imageUrl', 'count'],
-      },
-    },
-  ],
-}));
+        required: ['imageUrl', 'count']
+      }
+    }
+  ]
+}))
 
-server.setRequestHandler(CallToolRequestSchema, async (request) => {
+server.setRequestHandler(CallToolRequestSchema, async request => {
   try {
-    const { name, arguments: args } = request.params;
+    const { name, arguments: args } = request.params
 
     switch (name) {
       case 'generateImage': {
-        const {
-          prompt,
-          style = 'realistic',
-          size = '1024x1024',
-          provider = 'dalle',
-        } = args as any;
+        const { prompt, style = 'realistic', size = '1024x1024', provider = 'dalle' } = args as any
 
         if (!prompt) {
-          throw new Error('Missing required argument: prompt');
+          throw new Error('Missing required argument: prompt')
         }
 
         // Simulate image generation (in production, call actual API)
@@ -167,11 +163,11 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           style,
           size,
           provider,
-          timestamp: new Date().toISOString(),
-        };
+          timestamp: new Date().toISOString()
+        }
 
-        imageHistory.images.push(result);
-        imageHistory.totalGenerated++;
+        imageHistory.images.push(result)
+        imageHistory.totalGenerated++
 
         return {
           content: [
@@ -182,21 +178,21 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
                   success: true,
                   message: `Image generated successfully with ${provider}`,
                   data: result,
-                  note: 'This is a placeholder. Configure API keys for: OPENAI_API_KEY, MIDJOURNEY_API_KEY, or STABLE_DIFFUSION_API_KEY',
+                  note: 'This is a placeholder. Configure API keys for: OPENAI_API_KEY, MIDJOURNEY_API_KEY, or STABLE_DIFFUSION_API_KEY'
                 },
                 null,
                 2
-              ),
-            },
-          ],
-        };
+              )
+            }
+          ]
+        }
       }
 
       case 'editImage': {
-        const { imageUrl, prompt, mask, provider = 'dalle' } = args as any;
+        const { imageUrl, prompt, mask, provider = 'dalle' } = args as any
 
         if (!imageUrl || !prompt) {
-          throw new Error('Missing required arguments: imageUrl, prompt');
+          throw new Error('Missing required arguments: imageUrl, prompt')
         }
 
         const result = {
@@ -208,21 +204,21 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             prompt,
             mask: mask || null,
             provider,
-            timestamp: new Date().toISOString(),
+            timestamp: new Date().toISOString()
           },
-          note: 'This is a placeholder. Configure API keys for image editing services.',
-        };
+          note: 'This is a placeholder. Configure API keys for image editing services.'
+        }
 
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
-        };
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
+        }
       }
 
       case 'upscaleImage': {
-        const { imageUrl, scale, enhanceDetails = true } = args as any;
+        const { imageUrl, scale, enhanceDetails = true } = args as any
 
         if (!imageUrl || !scale) {
-          throw new Error('Missing required arguments: imageUrl, scale');
+          throw new Error('Missing required arguments: imageUrl, scale')
         }
 
         const result = {
@@ -235,28 +231,28 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             enhanceDetails,
             originalSize: '512x512',
             newSize: `${512 * scale}x${512 * scale}`,
-            timestamp: new Date().toISOString(),
+            timestamp: new Date().toISOString()
           },
-          note: 'This is a placeholder. Configure upscaling service API key.',
-        };
+          note: 'This is a placeholder. Configure upscaling service API key.'
+        }
 
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
-        };
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
+        }
       }
 
       case 'generateVariations': {
-        const { imageUrl, count, variationType = 'similar' } = args as any;
+        const { imageUrl, count, variationType = 'similar' } = args as any
 
         if (!imageUrl || !count) {
-          throw new Error('Missing required arguments: imageUrl, count');
+          throw new Error('Missing required arguments: imageUrl, count')
         }
 
         const variations = Array.from({ length: count }, (_, i) => ({
           url: `https://placeholder.example.com/images/variation-${i + 1}-${Date.now()}.png`,
           variationType,
-          index: i + 1,
-        }));
+          index: i + 1
+        }))
 
         const result = {
           success: true,
@@ -265,31 +261,31 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             originalUrl: imageUrl,
             variations,
             variationType,
-            timestamp: new Date().toISOString(),
+            timestamp: new Date().toISOString()
           },
-          note: 'This is a placeholder. Configure API keys for variation generation.',
-        };
+          note: 'This is a placeholder. Configure API keys for variation generation.'
+        }
 
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
-        };
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
+        }
       }
 
       default:
-        throw new Error(`Unknown tool: ${name}`);
+        throw new Error(`Unknown tool: ${name}`)
     }
   } catch (error) {
     return {
       content: [
         {
           type: 'text',
-          text: `Error: ${error instanceof Error ? error.message : String(error)}`,
-        },
+          text: `Error: ${error instanceof Error ? error.message : String(error)}`
+        }
       ],
-      isError: true,
-    };
+      isError: true
+    }
   }
-});
+})
 
 // Resources Handler
 server.setRequestHandler(ListResourcesRequestSchema, async () => ({
@@ -298,19 +294,19 @@ server.setRequestHandler(ListResourcesRequestSchema, async () => ({
       uri: 'image-generator://history',
       name: 'Image Generation History',
       description: 'List of all generated images',
-      mimeType: 'application/json',
+      mimeType: 'application/json'
     },
     {
       uri: 'image-generator://config',
       name: 'Configuration Guide',
       description: 'Setup instructions for image generation providers',
-      mimeType: 'text/plain',
-    },
-  ],
-}));
+      mimeType: 'text/plain'
+    }
+  ]
+}))
 
-server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
-  const { uri } = request.params;
+server.setRequestHandler(ReadResourceRequestSchema, async request => {
+  const { uri } = request.params
 
   if (uri === 'image-generator://history') {
     return {
@@ -318,10 +314,10 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
         {
           uri,
           mimeType: 'application/json',
-          text: JSON.stringify(imageHistory, null, 2),
-        },
-      ],
-    };
+          text: JSON.stringify(imageHistory, null, 2)
+        }
+      ]
+    }
   }
 
   if (uri === 'image-generator://config') {
@@ -361,28 +357,28 @@ Example Usage:
     size: "1024x1024",
     provider: "dalle"
   })
-`;
+`
     return {
       contents: [
         {
           uri,
           mimeType: 'text/plain',
-          text: config,
-        },
-      ],
-    };
+          text: config
+        }
+      ]
+    }
   }
 
-  throw new Error(`Unknown resource: ${uri}`);
-});
+  throw new Error(`Unknown resource: ${uri}`)
+})
 
 async function main() {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error('image-generator-mcp v1.0.0 running on stdio');
+  const transport = new StdioServerTransport()
+  await server.connect(transport)
+  console.error('image-generator-mcp v1.0.0 running on stdio')
 }
 
-main().catch((error) => {
-  console.error('Server error:', error);
-  process.exit(1);
-});
+main().catch(error => {
+  console.error('Server error:', error)
+  process.exit(1)
+})

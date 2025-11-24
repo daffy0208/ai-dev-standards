@@ -2,7 +2,12 @@
 
 import { Server } from '@modelcontextprotocol/sdk/server/index.js'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
-import { CallToolRequestSchema, ListResourcesRequestSchema, ListToolsRequestSchema, ReadResourceRequestSchema } from '@modelcontextprotocol/sdk/types.js'
+import {
+  CallToolRequestSchema,
+  ListResourcesRequestSchema,
+  ListToolsRequestSchema,
+  ReadResourceRequestSchema
+} from '@modelcontextprotocol/sdk/types.js'
 
 interface DevicePreset {
   name: string
@@ -24,10 +29,13 @@ const devicePresets: DevicePreset[] = [
   { name: 'MacBook Pro 14"', width: 1512, height: 982, category: 'desktop' },
   { name: 'MacBook Pro 16"', width: 1728, height: 1117, category: 'desktop' },
   { name: 'Desktop HD', width: 1920, height: 1080, category: 'desktop' },
-  { name: 'Desktop 4K', width: 3840, height: 2160, category: 'desktop' },
+  { name: 'Desktop 4K', width: 3840, height: 2160, category: 'desktop' }
 ]
 
-const server = new Server({ name: 'responsive-preview-mcp', version: '1.0.0' }, { capabilities: { tools: {}, resources: {} } })
+const server = new Server(
+  { name: 'responsive-preview-mcp', version: '1.0.0' },
+  { capabilities: { tools: {}, resources: {} } }
+)
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: [
@@ -40,10 +48,10 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
           url: { type: 'string', description: 'URL to preview' },
           breakpoint: { type: 'string', description: 'Breakpoint name or device preset' },
           width: { type: 'number', description: 'Custom width (optional)' },
-          height: { type: 'number', description: 'Custom height (optional)' },
+          height: { type: 'number', description: 'Custom height (optional)' }
         },
-        required: ['url', 'breakpoint'],
-      },
+        required: ['url', 'breakpoint']
+      }
     },
     {
       name: 'capture_all_breakpoints',
@@ -52,10 +60,14 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         type: 'object',
         properties: {
           url: { type: 'string', description: 'URL to capture' },
-          breakpoints: { type: 'array', items: { type: 'string' }, description: 'Breakpoint list (optional)' },
+          breakpoints: {
+            type: 'array',
+            items: { type: 'string' },
+            description: 'Breakpoint list (optional)'
+          }
         },
-        required: ['url'],
-      },
+        required: ['url']
+      }
     },
     {
       name: 'compare_breakpoints',
@@ -65,12 +77,12 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           url1: { type: 'string', description: 'First URL' },
           url2: { type: 'string', description: 'Second URL' },
-          breakpoint: { type: 'string', description: 'Breakpoint to compare' },
+          breakpoint: { type: 'string', description: 'Breakpoint to compare' }
         },
-        required: ['url1', 'url2', 'breakpoint'],
-      },
-    },
-  ],
+        required: ['url1', 'url2', 'breakpoint']
+      }
+    }
+  ]
 }))
 
 server.setRequestHandler(ListResourcesRequestSchema, async () => ({
@@ -79,41 +91,69 @@ server.setRequestHandler(ListResourcesRequestSchema, async () => ({
       uri: 'devices://presets',
       name: 'Device Presets',
       description: 'Common device sizes for responsive testing',
-      mimeType: 'application/json',
-    },
-  ],
+      mimeType: 'application/json'
+    }
+  ]
 }))
 
-server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
+server.setRequestHandler(ReadResourceRequestSchema, async request => {
   if (request.params.uri === 'devices://presets') {
     return {
-      contents: [{ uri: request.params.uri, mimeType: 'application/json', text: JSON.stringify({ devices: devicePresets }, null, 2) }],
+      contents: [
+        {
+          uri: request.params.uri,
+          mimeType: 'application/json',
+          text: JSON.stringify({ devices: devicePresets }, null, 2)
+        }
+      ]
     }
   }
   throw new Error(`Unknown resource: ${request.params.uri}`)
 })
 
-server.setRequestHandler(CallToolRequestSchema, async (request) => {
+server.setRequestHandler(CallToolRequestSchema, async request => {
   const { name, arguments: args } = request.params
   try {
     switch (name) {
       case 'preview_at_breakpoint':
-        return { content: [{ type: 'text', text: JSON.stringify(previewAtBreakpoint(args as any), null, 2) }] }
+        return {
+          content: [
+            { type: 'text', text: JSON.stringify(previewAtBreakpoint(args as any), null, 2) }
+          ]
+        }
       case 'capture_all_breakpoints':
-        return { content: [{ type: 'text', text: JSON.stringify(captureAllBreakpoints(args as any), null, 2) }] }
+        return {
+          content: [
+            { type: 'text', text: JSON.stringify(captureAllBreakpoints(args as any), null, 2) }
+          ]
+        }
       case 'compare_breakpoints':
-        return { content: [{ type: 'text', text: JSON.stringify(compareBreakpoints(args as any), null, 2) }] }
+        return {
+          content: [
+            { type: 'text', text: JSON.stringify(compareBreakpoints(args as any), null, 2) }
+          ]
+        }
       default:
         throw new Error(`Unknown tool: ${name}`)
     }
   } catch (error) {
-    return { content: [{ type: 'text', text: `Error: ${error instanceof Error ? error.message : String(error)}` }], isError: true }
+    return {
+      content: [
+        { type: 'text', text: `Error: ${error instanceof Error ? error.message : String(error)}` }
+      ],
+      isError: true
+    }
   }
 })
 
-function previewAtBreakpoint(params: { url: string; breakpoint: string; width?: number; height?: number }) {
+function previewAtBreakpoint(params: {
+  url: string
+  breakpoint: string
+  width?: number
+  height?: number
+}) {
   const { url, breakpoint, width, height } = params
-  const device = devicePresets.find((d) => d.name.toLowerCase() === breakpoint.toLowerCase())
+  const device = devicePresets.find(d => d.name.toLowerCase() === breakpoint.toLowerCase())
 
   const dimensions = device
     ? { width: device.width, height: device.height, device: device.name }
@@ -124,22 +164,22 @@ function previewAtBreakpoint(params: { url: string; breakpoint: string; width?: 
     url,
     dimensions,
     message: `Preview simulated at ${dimensions.device} (${dimensions.width}x${dimensions.height})`,
-    note: 'Use Playwright/Puppeteer for actual screenshot capture',
+    note: 'Use Playwright/Puppeteer for actual screenshot capture'
   }
 }
 
 function captureAllBreakpoints(params: { url: string; breakpoints?: string[] }) {
   const { url, breakpoints } = params
   const devicesToCapture = breakpoints
-    ? devicePresets.filter((d) => breakpoints.includes(d.name))
-    : devicePresets.filter((d) => ['mobile', 'tablet', 'desktop'].includes(d.category))
+    ? devicePresets.filter(d => breakpoints.includes(d.name))
+    : devicePresets.filter(d => ['mobile', 'tablet', 'desktop'].includes(d.category))
 
-  const captures = devicesToCapture.map((device) => ({
+  const captures = devicesToCapture.map(device => ({
     device: device.name,
     width: device.width,
     height: device.height,
     category: device.category,
-    status: 'simulated',
+    status: 'simulated'
   }))
 
   return {
@@ -147,13 +187,13 @@ function captureAllBreakpoints(params: { url: string; breakpoints?: string[] }) 
     url,
     captures,
     total: captures.length,
-    note: 'Use Playwright/Puppeteer for actual screenshot capture',
+    note: 'Use Playwright/Puppeteer for actual screenshot capture'
   }
 }
 
 function compareBreakpoints(params: { url1: string; url2: string; breakpoint: string }) {
   const { url1, url2, breakpoint } = params
-  const device = devicePresets.find((d) => d.name.toLowerCase() === breakpoint.toLowerCase())
+  const device = devicePresets.find(d => d.name.toLowerCase() === breakpoint.toLowerCase())
 
   if (!device) {
     throw new Error(`Device preset not found: ${breakpoint}`)
@@ -165,10 +205,10 @@ function compareBreakpoints(params: { url1: string; url2: string; breakpoint: st
       url1,
       url2,
       device: device.name,
-      dimensions: { width: device.width, height: device.height },
+      dimensions: { width: device.width, height: device.height }
     },
     message: `Comparison simulated at ${device.name}`,
-    note: 'Use Playwright/Puppeteer for actual visual comparison',
+    note: 'Use Playwright/Puppeteer for actual visual comparison'
   }
 }
 
@@ -178,7 +218,7 @@ async function main() {
   console.error('responsive-preview-mcp running on stdio')
 }
 
-main().catch((error) => {
+main().catch(error => {
   console.error('Server error:', error)
   process.exit(1)
 })

@@ -35,10 +35,7 @@ const emailSchema = z.object({
   email: z.string().email('Invalid email address')
 })
 
-export function PasswordResetRequest({
-  onSuccess,
-  onError
-}: PasswordResetRequestProps) {
+export function PasswordResetRequest({ onSuccess, onError }: PasswordResetRequestProps) {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
@@ -56,7 +53,7 @@ export function PasswordResetRequest({
     } catch (err) {
       if (err instanceof z.ZodError) {
         const errors: Record<string, string> = {}
-        err.errors.forEach((error) => {
+        err.errors.forEach(error => {
           if (error.path[0]) {
             errors[error.path[0] as string] = error.message
           }
@@ -96,8 +93,18 @@ export function PasswordResetRequest({
       <div className="w-full max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
         <div className="text-center">
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            <svg
+              className="w-8 h-8 text-green-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
             </svg>
           </div>
           <h2 className="text-2xl font-bold mb-2">Check Your Email</h2>
@@ -107,10 +114,7 @@ export function PasswordResetRequest({
           <p className="text-sm text-gray-500 mb-6">
             Click the link in the email to reset your password. The link expires in 1 hour.
           </p>
-          <a
-            href="/auth/login"
-            className="text-blue-600 hover:text-blue-800 font-medium"
-          >
+          <a href="/auth/login" className="text-blue-600 hover:text-blue-800 font-medium">
             Back to sign in
           </a>
         </div>
@@ -140,7 +144,7 @@ export function PasswordResetRequest({
             id="email"
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
             className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
               fieldErrors.email
                 ? 'border-red-500 focus:ring-red-500'
@@ -150,9 +154,7 @@ export function PasswordResetRequest({
             required
             disabled={loading}
           />
-          {fieldErrors.email && (
-            <p className="mt-1 text-sm text-red-600">{fieldErrors.email}</p>
-          )}
+          {fieldErrors.email && <p className="mt-1 text-sm text-red-600">{fieldErrors.email}</p>}
         </div>
 
         <button
@@ -181,23 +183,22 @@ export interface PasswordResetUpdateProps {
   onError?: (error: Error) => void
 }
 
-const passwordUpdateSchema = z.object({
-  password: z.string()
-    .min(8, 'Password must be at least 8 characters')
-    .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
-    .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
-    .regex(/[0-9]/, 'Password must contain at least one number'),
-  confirmPassword: z.string()
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ['confirmPassword']
-})
+const passwordUpdateSchema = z
+  .object({
+    password: z
+      .string()
+      .min(8, 'Password must be at least 8 characters')
+      .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+      .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
+      .regex(/[0-9]/, 'Password must contain at least one number'),
+    confirmPassword: z.string()
+  })
+  .refine(data => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ['confirmPassword']
+  })
 
-export function PasswordResetUpdate({
-  token,
-  onSuccess,
-  onError
-}: PasswordResetUpdateProps) {
+export function PasswordResetUpdate({ token, onSuccess, onError }: PasswordResetUpdateProps) {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -218,7 +219,14 @@ export function PasswordResetUpdate({
   }
 
   const passwordStrength = calculatePasswordStrength(password)
-  const strengthColors = ['bg-gray-200', 'bg-red-500', 'bg-orange-500', 'bg-yellow-500', 'bg-green-500', 'bg-green-600']
+  const strengthColors = [
+    'bg-gray-200',
+    'bg-red-500',
+    'bg-orange-500',
+    'bg-yellow-500',
+    'bg-green-500',
+    'bg-green-600'
+  ]
   const strengthLabels = ['', 'Very Weak', 'Weak', 'Fair', 'Strong', 'Very Strong']
 
   const handleSubmit = async (e: FormEvent) => {
@@ -232,7 +240,7 @@ export function PasswordResetUpdate({
     } catch (err) {
       if (err instanceof z.ZodError) {
         const errors: Record<string, string> = {}
-        err.errors.forEach((error) => {
+        err.errors.forEach(error => {
           if (error.path[0]) {
             errors[error.path[0] as string] = error.message
           }
@@ -272,14 +280,22 @@ export function PasswordResetUpdate({
       <div className="w-full max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
         <div className="text-center">
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            <svg
+              className="w-8 h-8 text-green-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
             </svg>
           </div>
           <h2 className="text-2xl font-bold mb-2">Password Updated!</h2>
-          <p className="text-gray-600 mb-6">
-            Your password has been successfully updated.
-          </p>
+          <p className="text-gray-600 mb-6">Your password has been successfully updated.</p>
           <a
             href="/auth/login"
             className="inline-block py-2 px-6 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md"
@@ -294,9 +310,7 @@ export function PasswordResetUpdate({
   return (
     <div className="w-full max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-2 text-center">Set New Password</h2>
-      <p className="text-gray-600 mb-6 text-center">
-        Choose a strong password for your account
-      </p>
+      <p className="text-gray-600 mb-6 text-center">Choose a strong password for your account</p>
 
       {error && (
         <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
@@ -315,7 +329,7 @@ export function PasswordResetUpdate({
               id="password"
               type={showPassword ? 'text' : 'password'}
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value)}
               className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
                 fieldErrors.password
                   ? 'border-red-500 focus:ring-red-500'
@@ -363,7 +377,7 @@ export function PasswordResetUpdate({
             id="confirmPassword"
             type={showPassword ? 'text' : 'password'}
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={e => setConfirmPassword(e.target.value)}
             className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
               fieldErrors.confirmPassword
                 ? 'border-red-500 focus:ring-red-500'

@@ -35,35 +35,35 @@
  * ```
  */
 
-import * as React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from './utils';
+import * as React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from './utils'
 
 const skeletonVariants = cva('bg-gray-200', {
   variants: {
     variant: {
       text: 'rounded h-4',
       circle: 'rounded-full',
-      rectangle: 'rounded-md',
+      rectangle: 'rounded-md'
     },
     animation: {
       pulse: 'animate-pulse',
       wave: 'animate-shimmer',
-      none: '',
+      none: ''
     },
     size: {
       sm: '',
       md: '',
       lg: '',
-      xl: '',
-    },
+      xl: ''
+    }
   },
   defaultVariants: {
     variant: 'text',
     animation: 'pulse',
-    size: 'md',
-  },
-});
+    size: 'md'
+  }
+})
 
 export interface SkeletonProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>,
@@ -71,17 +71,17 @@ export interface SkeletonProps
   /**
    * Width of the skeleton (CSS value)
    */
-  width?: string | number;
+  width?: string | number
 
   /**
    * Height of the skeleton (CSS value)
    */
-  height?: string | number;
+  height?: string | number
 
   /**
    * Number of lines (for text variant)
    */
-  lines?: number;
+  lines?: number
 }
 
 // Size maps for circle variant
@@ -89,16 +89,16 @@ const circleSizeMap = {
   sm: 'w-8 h-8',
   md: 'w-12 h-12',
   lg: 'w-16 h-16',
-  xl: 'w-24 h-24',
-};
+  xl: 'w-24 h-24'
+}
 
 // Height maps for text variant
 const textHeightMap = {
   sm: 'h-3',
   md: 'h-4',
   lg: 'h-5',
-  xl: 'h-6',
-};
+  xl: 'h-6'
+}
 
 /**
  * Skeleton component for loading states
@@ -120,20 +120,20 @@ export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
   ) => {
     // Build inline styles
     const inlineStyles: React.CSSProperties = {
-      ...style,
-    };
+      ...style
+    }
 
     if (width !== undefined) {
-      inlineStyles.width = typeof width === 'number' ? `${width}px` : width;
+      inlineStyles.width = typeof width === 'number' ? `${width}px` : width
     }
 
     if (height !== undefined) {
-      inlineStyles.height = typeof height === 'number' ? `${height}px` : height;
+      inlineStyles.height = typeof height === 'number' ? `${height}px` : height
     }
 
     // Apply size-based dimensions for circle variant
-    const circleClass = variant === 'circle' ? circleSizeMap[size!] : '';
-    const textHeightClass = variant === 'text' ? textHeightMap[size!] : '';
+    const circleClass = variant === 'circle' ? circleSizeMap[size!] : ''
+    const textHeightClass = variant === 'text' ? textHeightMap[size!] : ''
 
     // Single skeleton
     if (lines <= 1) {
@@ -154,7 +154,7 @@ export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
         >
           <span className="sr-only">Loading...</span>
         </div>
-      );
+      )
     }
 
     // Multiple lines (text variant only)
@@ -171,29 +171,26 @@ export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
           <span className="sr-only">Loading...</span>
           {Array.from({ length: lines }, (_, index) => {
             // Make last line shorter (80% width)
-            const isLastLine = index === lines - 1;
-            const lineWidth = isLastLine ? '80%' : width || '100%';
+            const isLastLine = index === lines - 1
+            const lineWidth = isLastLine ? '80%' : width || '100%'
 
             return (
               <div
                 key={index}
-                className={cn(
-                  skeletonVariants({ variant, animation }),
-                  textHeightClass
-                )}
+                className={cn(skeletonVariants({ variant, animation }), textHeightClass)}
                 style={{ width: lineWidth, ...style }}
               />
-            );
+            )
           })}
         </div>
-      );
+      )
     }
 
-    return null;
+    return null
   }
-);
+)
 
-Skeleton.displayName = 'Skeleton';
+Skeleton.displayName = 'Skeleton'
 
 /**
  * Pre-built skeleton compositions
@@ -203,9 +200,9 @@ Skeleton.displayName = 'Skeleton';
  * Avatar skeleton with text
  */
 export const SkeletonAvatar: React.FC<{
-  size?: 'sm' | 'md' | 'lg' | 'xl';
-  showText?: boolean;
-  className?: string;
+  size?: 'sm' | 'md' | 'lg' | 'xl'
+  showText?: boolean
+  className?: string
 }> = ({ size = 'md', showText = true, className }) => (
   <div className={cn('flex items-center gap-3', className)}>
     <Skeleton variant="circle" size={size} animation="pulse" />
@@ -216,15 +213,15 @@ export const SkeletonAvatar: React.FC<{
       </div>
     )}
   </div>
-);
+)
 
-SkeletonAvatar.displayName = 'SkeletonAvatar';
+SkeletonAvatar.displayName = 'SkeletonAvatar'
 
 /**
  * Card skeleton
  */
 export const SkeletonCard: React.FC<{
-  className?: string;
+  className?: string
 }> = ({ className }) => (
   <div className={cn('border border-gray-200 rounded-lg p-4 space-y-4', className)}>
     <Skeleton variant="rectangle" width="100%" height={200} />
@@ -237,32 +234,32 @@ export const SkeletonCard: React.FC<{
       <Skeleton variant="text" width="20%" />
     </div>
   </div>
-);
+)
 
-SkeletonCard.displayName = 'SkeletonCard';
+SkeletonCard.displayName = 'SkeletonCard'
 
 /**
  * Table row skeleton
  */
 export const SkeletonTableRow: React.FC<{
-  columns?: number;
-  className?: string;
+  columns?: number
+  className?: string
 }> = ({ columns = 4, className }) => (
   <div className={cn('flex items-center gap-4 py-3', className)}>
     {Array.from({ length: columns }, (_, index) => (
       <Skeleton key={index} variant="text" className="flex-1" />
     ))}
   </div>
-);
+)
 
-SkeletonTableRow.displayName = 'SkeletonTableRow';
+SkeletonTableRow.displayName = 'SkeletonTableRow'
 
 /**
  * List item skeleton
  */
 export const SkeletonListItem: React.FC<{
-  showAvatar?: boolean;
-  className?: string;
+  showAvatar?: boolean
+  className?: string
 }> = ({ showAvatar = true, className }) => (
   <div className={cn('flex items-center gap-3 py-3', className)}>
     {showAvatar && <Skeleton variant="circle" size="md" />}
@@ -271,13 +268,13 @@ export const SkeletonListItem: React.FC<{
       <Skeleton variant="text" width="50%" size="sm" />
     </div>
   </div>
-);
+)
 
-SkeletonListItem.displayName = 'SkeletonListItem';
+SkeletonListItem.displayName = 'SkeletonListItem'
 
 // Add shimmer animation styles
 if (typeof document !== 'undefined') {
-  const style = document.createElement('style');
+  const style = document.createElement('style')
   style.textContent = `
     @keyframes shimmer {
       0% {
@@ -297,6 +294,6 @@ if (typeof document !== 'undefined') {
       background-size: 1000px 100%;
       animation: shimmer 2s infinite linear;
     }
-  `;
-  document.head.appendChild(style);
+  `
+  document.head.appendChild(style)
 }

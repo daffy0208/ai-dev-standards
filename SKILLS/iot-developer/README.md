@@ -21,21 +21,25 @@ claude-code --skill iot-developer
 ## Common Tasks
 
 ### Connect Sensor
+
 ```
 "Read temperature from a DHT22 sensor and publish to MQTT"
 ```
 
 ### Build Dashboard
+
 ```
 "Create a real-time dashboard showing sensor data from multiple IoT devices"
 ```
 
 ### Control Devices
+
 ```
 "Implement light control via MQTT with on/off toggle"
 ```
 
 ### Smart Home
+
 ```
 "Build a smart home dashboard with temperature, lights, and thermostat control"
 ```
@@ -52,7 +56,7 @@ claude-code --skill iot-developer
 
 ```typescript
 // Real-time sensor dashboard
-mqtt.subscribe('home/temperature', (temp) => {
+mqtt.subscribe('home/temperature', temp => {
   setTemperature(temp)
 })
 ```

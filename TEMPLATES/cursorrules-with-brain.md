@@ -5,6 +5,7 @@
 # Project AI Configuration
 
 ## AI Development Standards Integration
+
 Repository: ~/ai-dev-standards/
 Status: Active
 
@@ -15,20 +16,24 @@ Status: Active
 #### Available Brain Tools (USE THESE PROACTIVELY):
 
 **For any task, ALWAYS start with:**
+
 - `brain_select_skills({ taskDescription: "..." })` - Get intelligent skill recommendations
 
 **For exploration:**
+
 - `brain_search({ query: "..." })` - Search all skills/MCPs/tools
 - `graph_query_by_domain({ domain: "ai|security|frontend|backend|..." })` - Find by domain
 - `graph_query_by_effect({ effect: "..." })` - Find by effect produced
 
 **For details:**
+
 - `brain_show_skill({ skillName: "..." })` - Get skill details
 - `brain_relationships({ skillName: "..." })` - Show dependencies
 - `graph_get_dependencies({ capabilityId: "..." })` - Get full dependency tree
 - `graph_composition_chains({ capabilityId: "..." })` - Find what works well together
 
 **For validation:**
+
 - `brain_status({})` - Check repository health
 - `graph_stats({})` - Get graph statistics (113 capabilities)
 - `graph_validate({})` - Validate graph consistency
@@ -49,6 +54,7 @@ Status: Active
 ```
 
 **Example:**
+
 ```
 User: "Add authentication to my app"
 
@@ -75,21 +81,22 @@ You:
 
 ### When to Use Each Tool:
 
-| Situation | Tool | Example |
-|-----------|------|---------|
-| Starting any task | `brain_select_skills` | "implement RAG system" |
-| User asks "what's available" | `graph_query_by_domain` | domain: "ai" |
-| Need dependencies | `graph_get_dependencies` | "rag-implementer" |
-| Planning workflow | `graph_composition_chains` | "security-engineer" |
-| Searching | `brain_search` | "authentication" |
-| Skill details | `brain_show_skill` | "api-designer" |
-| Check status | `brain_status` | (no args) |
+| Situation                    | Tool                       | Example                |
+| ---------------------------- | -------------------------- | ---------------------- |
+| Starting any task            | `brain_select_skills`      | "implement RAG system" |
+| User asks "what's available" | `graph_query_by_domain`    | domain: "ai"           |
+| Need dependencies            | `graph_get_dependencies`   | "rag-implementer"      |
+| Planning workflow            | `graph_composition_chains` | "security-engineer"    |
+| Searching                    | `brain_search`             | "authentication"       |
+| Skill details                | `brain_show_skill`         | "api-designer"         |
+| Check status                 | `brain_status`             | (no args)              |
 
 ---
 
 ### Usage Rules:
 
 **DO:**
+
 - ✅ ALWAYS use brain_select_skills when starting a task
 - ✅ Load and follow skill methodologies precisely
 - ✅ Check dependencies before implementing
@@ -97,6 +104,7 @@ You:
 - ✅ Use graph tools to discover relationships
 
 **DON'T:**
+
 - ❌ Guess which skills exist - query the brain
 - ❌ Skip the brain tools - they're there to help
 - ❌ Implement without checking for existing skills/patterns
@@ -107,6 +115,7 @@ You:
 ## Project-Specific Context
 
 **Tech Stack:**
+
 - Frontend: [e.g., Next.js 14, React, TypeScript, Tailwind]
 - Backend: [e.g., Node.js, Express, Supabase]
 - Database: [e.g., PostgreSQL, MongoDB]
@@ -114,22 +123,26 @@ You:
 - Deployment: [e.g., Vercel, Railway, AWS]
 
 **Current Phase:**
+
 - [ ] Planning/Design
 - [ ] MVP Development
 - [ ] Feature Expansion
 - [ ] Production/Scaling
 
 **Key Features/Requirements:**
+
 1. [Feature 1]
 2. [Feature 2]
 3. [Feature 3]
 
 **Priorities:**
+
 - P0 (Must Have): [list]
 - P1 (Should Have): [list]
 - P2 (Nice to Have): [list]
 
 **Known Constraints:**
+
 - [e.g., Budget: $X/month for services]
 - [e.g., Timeline: Launch in X weeks]
 - [e.g., Team: X developers]
@@ -139,6 +152,7 @@ You:
 ## Available Domains in Graph
 
 Use with `graph_query_by_domain`:
+
 - `ai` - AI/ML, RAG, embeddings, LLMs
 - `security` - Auth, encryption, OWASP, compliance
 - `frontend` - React, UI, design systems, UX
@@ -179,6 +193,7 @@ graph_composition_chains({ capabilityId: "skill-name" })
 ## Example Workflows
 
 ### Building a New Feature:
+
 ```
 User: "Build [feature]"
 
@@ -191,6 +206,7 @@ Claude:
 ```
 
 ### Adding AI/RAG:
+
 ```
 User: "Add AI search to docs"
 
@@ -203,6 +219,7 @@ Claude:
 ```
 
 ### Security Review:
+
 ```
 User: "Review security"
 
@@ -242,12 +259,14 @@ Claude:
 ## Troubleshooting
 
 **If brain tools don't work:**
+
 1. Check `.claude/mcp-settings.json` exists and has correct paths
 2. Verify paths are absolute (not relative)
 3. Restart Claude Code
 4. Test with: `brain_status({})`
 
 **If skills aren't found:**
+
 1. Verify ~/ai-dev-standards/ path is correct
 2. Check you have latest version (git pull)
 3. Ensure skill exists in META/skill-registry.json

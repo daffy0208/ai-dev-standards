@@ -24,6 +24,7 @@ ai-dev add component Button \
 ```
 
 This creates:
+
 - ✅ `Button.tsx` - Component with Zod validation
 - ✅ `Button.test.tsx` - Tests with React Testing Library
 - ✅ `Button.stories.tsx` - Storybook stories

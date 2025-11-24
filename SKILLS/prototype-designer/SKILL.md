@@ -14,6 +14,7 @@ Validate ideas through interactive prototypes before writing code.
 **Test before you build.**
 
 Prototypes let you:
+
 - Validate assumptions
 - Test with real users
 - Iterate faster than code
@@ -26,24 +27,26 @@ Prototypes let you:
 
 ### Tool Comparison
 
-| Tool | Best For | Learning Curve | Fidelity |
-|------|----------|---------------|----------|
-| **Figma** | Full designs, collaboration | Medium | High |
-| **Framer** | Code-based, advanced interactions | High | Very High |
-| **ProtoPie** | Complex interactions, sensors | Medium | Very High |
-| **Adobe XD** | Adobe ecosystem users | Low | High |
-| **InVision** | Design handoff, simple clicks | Low | Medium |
-| **Axure** | Complex logic, documentation | High | High |
+| Tool         | Best For                          | Learning Curve | Fidelity  |
+| ------------ | --------------------------------- | -------------- | --------- |
+| **Figma**    | Full designs, collaboration       | Medium         | High      |
+| **Framer**   | Code-based, advanced interactions | High           | Very High |
+| **ProtoPie** | Complex interactions, sensors     | Medium         | Very High |
+| **Adobe XD** | Adobe ecosystem users             | Low            | High      |
+| **InVision** | Design handoff, simple clicks     | Low            | Medium    |
+| **Axure**    | Complex logic, documentation      | High           | High      |
 
 ### Quick Start Recommendations
 
 **Beginner:** Start with Figma
+
 - Built-in to design tool
 - No separate app needed
 - Intuitive interactions
 - Free for individuals
 
 **Advanced:** Graduate to Framer or ProtoPie
+
 - More complex interactions
 - Variable support
 - Conditional logic
@@ -275,6 +278,7 @@ Prototype:
 ### When to Use Framer
 
 Use Framer for:
+
 - Complex animations
 - Code-driven interactions
 - Real data integration
@@ -286,30 +290,32 @@ Use Framer for:
 ```tsx
 // components/Counter.tsx
 
-import { useState } from "react"
+import { useState } from 'react'
 
 export function Counter() {
   const [count, setCount] = useState(0)
 
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      gap: 16
-    }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 16
+      }}
+    >
       <h1 style={{ fontSize: 48 }}>{count}</h1>
-      <div style={{ display: "flex", gap: 8 }}>
+      <div style={{ display: 'flex', gap: 8 }}>
         <button
           onClick={() => setCount(count - 1)}
           style={{
-            padding: "12px 24px",
+            padding: '12px 24px',
             fontSize: 16,
             borderRadius: 8,
-            border: "none",
-            cursor: "pointer",
-            background: "#0066cc",
-            color: "white"
+            border: 'none',
+            cursor: 'pointer',
+            background: '#0066cc',
+            color: 'white'
           }}
         >
           -
@@ -317,13 +323,13 @@ export function Counter() {
         <button
           onClick={() => setCount(count + 1)}
           style={{
-            padding: "12px 24px",
+            padding: '12px 24px',
             fontSize: 16,
             borderRadius: 8,
-            border: "none",
-            cursor: "pointer",
-            background: "#0066cc",
-            color: "white"
+            border: 'none',
+            cursor: 'pointer',
+            background: '#0066cc',
+            color: 'white'
           }}
         >
           +
@@ -339,7 +345,7 @@ export function Counter() {
 ```tsx
 // components/AnimatedCard.tsx
 
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion'
 
 export function AnimatedCard() {
   return (
@@ -352,11 +358,11 @@ export function AnimatedCard() {
       style={{
         width: 300,
         height: 200,
-        background: "white",
+        background: 'white',
         borderRadius: 16,
         padding: 24,
-        boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-        cursor: "pointer"
+        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+        cursor: 'pointer'
       }}
     >
       <h2>Card Title</h2>
@@ -373,11 +379,13 @@ export function AnimatedCard() {
 ### Usability Testing Plan
 
 **1. Define Goals:**
+
 - What do you want to learn?
 - What tasks should users complete?
 - What metrics will you measure?
 
 **2. Recruit Participants:**
+
 - 5-8 participants (enough to find major issues)
 - Match your target audience
 - Diverse backgrounds
@@ -388,14 +396,17 @@ export function AnimatedCard() {
 # Prototype Usability Test Script
 
 ## Introduction (2 min)
+
 "Thank you for helping us test this prototype. There are no wrong answers - we're testing the design, not you. Please think aloud as you complete tasks."
 
 ## Tasks (20 min)
 
 ### Task 1: Sign Up
+
 "Imagine you want to create an account. Show me how you would do that."
 
 Success criteria:
+
 - [ ] Found sign up button
 - [ ] Entered email
 - [ ] Entered password
@@ -403,15 +414,18 @@ Success criteria:
 - [ ] Reached dashboard
 
 ### Task 2: Find Settings
+
 "You want to change your notification preferences. Show me how you would do that."
 
 Success criteria:
+
 - [ ] Navigated to settings
 - [ ] Found notifications section
 - [ ] Changed setting
 - [ ] Saved changes
 
 ## Questions (5 min)
+
 1. What was the easiest part?
 2. What was the hardest part?
 3. What would you change?
@@ -419,6 +433,7 @@ Success criteria:
 ```
 
 **4. Conduct Tests:**
+
 - Record sessions (with permission)
 - Take notes
 - Don't help unless stuck
@@ -446,7 +461,7 @@ const results: TestResult[] = [
     timeSeconds: 45,
     errors: ['Missed verification step'],
     feedback: 'Form was clear but verification was confusing'
-  },
+  }
   // ...
 ]
 
@@ -467,11 +482,13 @@ function analyzeResults(results: TestResult[]) {
 ### Remote Testing Tools
 
 **Unmoderated:**
+
 - **UserTesting.com** - Recruit + test
 - **Maze** - Analytics for prototypes
 - **Lookback** - Session recording
 
 **Moderated:**
+
 - **Zoom** - Screen sharing
 - **Google Meet** - Built-in recording
 - **Loom** - Async feedback
@@ -488,15 +505,18 @@ function analyzeResults(results: TestResult[]) {
 # Prototype Documentation
 
 ## User Flows
+
 - [Sign Up Flow](figma-link)
 - [Purchase Flow](figma-link)
 
 ## Interactions
+
 - Button hover: Scale 1.05, 200ms ease-out
 - Page transition: Slide right, 300ms ease-in-out
 - Error shake: Translate X ±10px, 3 times, 100ms
 
 ## States
+
 - Default
 - Hover
 - Active
@@ -505,10 +525,12 @@ function analyzeResults(results: TestResult[]) {
 - Error
 
 ## Animations
+
 - Fade in: opacity 0→1, 300ms
 - Slide up: translateY 20px→0, 400ms ease-out
 
 ## Breakpoints
+
 - Mobile: 375px - 767px
 - Tablet: 768px - 1023px
 - Desktop: 1024px+
@@ -517,6 +539,7 @@ function analyzeResults(results: TestResult[]) {
 **2. Annotate Prototype:**
 
 In Figma:
+
 - Add notes explaining complex interactions
 - Document edge cases
 - Show error states
@@ -572,16 +595,19 @@ export const interactions = {
 ## Tech Stack Recommendations
 
 ### Animations
+
 - **Framer Motion** - React animations
 - **GSAP** - Advanced animations
 - **CSS Transitions** - Simple effects
 
 ### State Management
+
 - **useState** - Local component state
 - **Zustand** - Global state
 - **React Query** - Server state
 
 ### Forms
+
 - **React Hook Form** - Form validation
 - **Zod** - Schema validation
 
@@ -593,13 +619,13 @@ export const interactions = {
 import { motion } from 'framer-motion'
 
 export function Button({ children, onClick }) {
-  return (
-    <motion.button
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      transition={{ duration: 0.2 }}
-      onClick={onClick}
-      style={{
+return (
+<motion.button
+whileHover={{ scale: 1.05 }}
+whileTap={{ scale: 0.95 }}
+transition={{ duration: 0.2 }}
+onClick={onClick}
+style={{
         padding: '12px 24px',
         borderRadius: 8,
         border: 'none',
@@ -608,11 +634,10 @@ export function Button({ children, onClick }) {
         fontSize: 16,
         fontWeight: 600,
         cursor: 'pointer'
-      }}
-    >
-      {children}
-    </motion.button>
-  )
+      }} >
+{children}
+</motion.button>
+)
 }
 \`\`\`
 ```
@@ -626,6 +651,7 @@ export function Button({ children, onClick }) {
 Begin with sketches/wireframes before high-fidelity prototypes.
 
 **Progression:**
+
 1. Paper sketches (1-2 hours)
 2. Wireframes (half day)
 3. High-fidelity design (1-2 days)
@@ -636,12 +662,14 @@ Begin with sketches/wireframes before high-fidelity prototypes.
 ### 2. Focus on Critical Paths
 
 Prototype the most important user flows first:
+
 - Sign up / Login
 - Core feature usage
 - Purchase / Checkout
 - Onboarding
 
 Skip:
+
 - Settings pages
 - Admin panels
 - Edge cases (initially)
@@ -649,6 +677,7 @@ Skip:
 ### 3. Use Real Content
 
 Avoid "Lorem ipsum" - use realistic:
+
 - Text lengths
 - Image dimensions
 - Data variations
@@ -663,6 +692,7 @@ Avoid "Lorem ipsum" - use realistic:
 ### 5. Maintain Prototype
 
 Keep prototype updated as:
+
 - Designs change
 - Feedback comes in
 - Features are added
@@ -708,21 +738,25 @@ Keep prototype updated as:
 ## Tools & Resources
 
 **Prototyping:**
+
 - [Figma](https://www.figma.com/) - All-in-one design
 - [Framer](https://www.framer.com/) - Code-based prototyping
 - [ProtoPie](https://www.protopie.io/) - Advanced interactions
 
 **Testing:**
+
 - [Maze](https://maze.co/) - Prototype testing
 - [UserTesting](https://www.usertesting.com/) - User research
 - [Hotjar](https://www.hotjar.com/) - Heatmaps & recordings
 
 **Animation:**
+
 - [Lottie](https://lottiefiles.com/) - Animation library
 - [Principle](https://principleformac.com/) - Animation tool
 - [Jitter](https://jitter.video/) - Motion design
 
 **Related Skills:**
+
 - `ux-designer` - User experience design
 - `frontend-builder` - Implementing prototypes
 - `user-researcher` - Testing & validation

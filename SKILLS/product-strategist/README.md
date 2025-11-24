@@ -11,6 +11,7 @@ Systematically validates product ideas before development by testing problem sev
 ## When to Use
 
 Use this skill when you need to:
+
 - Validate a new product idea before building
 - Assess problem-solution fit
 - Define MVP scope and prioritize features
@@ -63,18 +64,22 @@ product-strategist/
 ## Prerequisites
 
 **Knowledge:**
+
 - Basic product development understanding
 - Customer interview skills (or willingness to learn)
 
 **Tools:**
+
 - None required (skill guides validation process)
 
 **Related Skills:**
+
 - None required (good starting point)
 
 ## Success Criteria
 
 You've successfully used this skill when:
+
 - ✅ All 5 validation phases completed with gates checked
 - ✅ Problem validated: 70%+ of interviewees confirm severity
 - ✅ Solution validated: 50%+ of testers would pay
@@ -86,18 +91,21 @@ You've successfully used this skill when:
 ## Common Workflows
 
 ### Workflow 1: New Product Idea
+
 1. Use product-strategist for all 5 validation phases
 2. If validation passes, use `mvp-builder` to build
 3. Use `go-to-market-planner` to launch
 4. Track product-market fit post-launch
 
 ### Workflow 2: Feature Prioritization
+
 1. Use product-strategist Phase 5 (MVP Definition)
 2. Apply must-have/should-have/nice-to-have framework
 3. Build must-haves only
 4. Validate before building should-haves
 
 ### Workflow 3: Pivot Decision
+
 1. Use product-strategist Phase 1 to re-validate problem
 2. If problem invalid, explore adjacent problems
 3. Re-run all 5 phases for new direction
@@ -106,6 +114,7 @@ You've successfully used this skill when:
 ## Key Concepts
 
 **5 Validation Phases:**
+
 1. **Problem Validation**: Is the problem severe enough?
 2. **Solution Validation**: Does your solution work?
 3. **Market Validation**: Is the market large enough?
@@ -114,6 +123,7 @@ You've successfully used this skill when:
 
 **The "Mom Test":**
 Ask about past behavior, not future intentions:
+
 - ✅ "Tell me about the last time you..."
 - ❌ "Would you use this product?"
 
@@ -121,11 +131,13 @@ Ask about past behavior, not future intentions:
 Score problems on frequency, impact, urgency, willingness to pay, and current workarounds. Need 4-5 "High" scores to build.
 
 **Market Sizing:**
+
 - **TAM**: Total addressable market (global)
 - **SAM**: Serviceable addressable market (reachable)
 - **SOM**: Serviceable obtainable market (realistic in 1-3 years)
 
 **Unit Economics:**
+
 - **LTV**: Customer Lifetime Value
 - **CAC**: Customer Acquisition Cost
 - **Ratio**: LTV:CAC must be ≥ 3:1
@@ -133,31 +145,37 @@ Score problems on frequency, impact, urgency, willingness to pay, and current wo
 ## Troubleshooting
 
 **Skill not activating?**
+
 - Try explicitly requesting: "Use the product-strategist skill to..."
 - Mention keywords: "product validation", "product-market fit", "discovery"
 
 **Problem validation failing?**
+
 - You may be talking to friends/family (confirmation bias)
 - Try recruiting strangers who actually have the problem
 - Ask about past behavior, not future intentions
 
 **Solution validation weak?**
+
 - Test with prototype, not just description
 - Watch users try to complete tasks
 - Ask "Would you pay $X for this?" to test pricing
 
 **Market too small?**
+
 - Consider adjacent markets or use cases
 - Expand geographic scope
 - Target different customer segments
 - May need to pivot
 
 **LTV:CAC ratio poor?**
+
 - Increase LTV: higher prices, longer retention, upsells
 - Decrease CAC: organic channels, referrals, product-led growth
 - May indicate market not ready or competition too strong
 
 **MVP scope too large?**
+
 - Re-apply must-have/should-have/nice-to-have filter
 - Remove features that don't directly solve core problem
 - Remember: MVP validates assumptions, not delights users

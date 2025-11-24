@@ -13,6 +13,7 @@ Build for everyone - accessibility is not optional.
 **Accessibility is a civil right, not a feature.**
 
 1 in 4 adults in the US has a disability. Accessible design benefits everyone:
+
 - Blind users (screen readers)
 - Low vision users (zoom, high contrast)
 - Deaf users (captions)
@@ -228,6 +229,7 @@ function Modal({ isOpen, onClose, children }) {
 ### Common ARIA Attributes
 
 **aria-label** - Provides accessible name:
+
 ```jsx
 <button aria-label="Close dialog">
   <XIcon /> {/* Visual only */}
@@ -237,6 +239,7 @@ function Modal({ isOpen, onClose, children }) {
 ```
 
 **aria-labelledby** - References another element:
+
 ```jsx
 <h2 id="dialog-title">Delete Account</h2>
 <div role="dialog" aria-labelledby="dialog-title">
@@ -245,6 +248,7 @@ function Modal({ isOpen, onClose, children }) {
 ```
 
 **aria-describedby** - Additional description:
+
 ```jsx
 <input
   type="password"
@@ -256,6 +260,7 @@ function Modal({ isOpen, onClose, children }) {
 ```
 
 **aria-live** - Announce dynamic content:
+
 ```jsx
 // Polite: Wait for user to finish
 <div aria-live="polite">
@@ -269,6 +274,7 @@ function Modal({ isOpen, onClose, children }) {
 ```
 
 **aria-expanded** - Collapsible content:
+
 ```jsx
 <button
   aria-expanded={isOpen}
@@ -284,6 +290,7 @@ function Modal({ isOpen, onClose, children }) {
 ```
 
 **aria-hidden** - Hide from screen readers:
+
 ```jsx
 // Decorative icons
 <span aria-hidden="true">★</span>
@@ -410,10 +417,7 @@ function EmailInput({ error }) {
   <figcaption>
     <details>
       <summary>Detailed description</summary>
-      <p>
-        Q1: $100k, Q2: $150k, Q3: $180k, Q4: $220k.
-        Shows 50% growth year-over-year.
-      </p>
+      <p>Q1: $100k, Q2: $150k, Q3: $180k, Q4: $220k. Shows 50% growth year-over-year.</p>
     </details>
   </figcaption>
 </figure>
@@ -424,13 +428,7 @@ function EmailInput({ error }) {
 ```jsx
 <video controls>
   <source src="video.mp4" type="video/mp4" />
-  <track
-    kind="captions"
-    src="captions.vtt"
-    srclang="en"
-    label="English"
-    default
-  />
+  <track kind="captions" src="captions.vtt" srclang="en" label="English" default />
 </video>
 ```
 
@@ -465,17 +463,20 @@ it('has no accessibility violations', async () => {
 ### Manual Testing
 
 **Keyboard Navigation:**
+
 - Tab through entire page
 - Enter/Space to activate buttons
 - Arrow keys for radio groups
 - Esc to close modals
 
 **Screen Reader Testing:**
+
 - **NVDA** (Windows, free)
 - **JAWS** (Windows, paid)
 - **VoiceOver** (Mac, built-in)
 
 **Screen Reader Shortcuts:**
+
 - Navigate by headings: H (next), Shift+H (previous)
 - Navigate by landmarks: D (next), Shift+D (previous)
 - List all links: Insert+F7 (NVDA)
@@ -552,12 +553,14 @@ it('has no accessibility violations', async () => {
 ## Accessibility Checklist
 
 ### Semantic HTML
+
 - [ ] Proper heading hierarchy (h1 → h2 → h3)
 - [ ] Semantic landmarks (header, nav, main, footer)
 - [ ] Lists use ul/ol/li
 - [ ] Buttons for actions, links for navigation
 
 ### Keyboard
+
 - [ ] All interactive elements keyboard accessible
 - [ ] Visible focus indicators
 - [ ] Logical tab order
@@ -565,28 +568,33 @@ it('has no accessibility violations', async () => {
 - [ ] No keyboard traps
 
 ### ARIA
+
 - [ ] Semantic HTML used first (ARIA only when needed)
 - [ ] All interactive widgets have roles
 - [ ] Dynamic content has aria-live
 - [ ] Forms have proper labels and descriptions
 
 ### Color & Contrast
+
 - [ ] Text contrast ≥ 4.5:1 (normal), ≥ 3:1 (large)
 - [ ] Don't use color alone to convey info
 - [ ] Focus indicators visible
 
 ### Images & Media
+
 - [ ] All images have alt text
 - [ ] Decorative images have empty alt
 - [ ] Videos have captions
 - [ ] Audio has transcripts
 
 ### Forms
+
 - [ ] All inputs have labels
 - [ ] Error messages associated with inputs
 - [ ] Required fields indicated
 
 ### Testing
+
 - [ ] Keyboard navigation tested
 - [ ] Screen reader tested
 - [ ] Automated tools run (axe, Lighthouse)
@@ -608,11 +616,13 @@ it('has no accessibility violations', async () => {
 ## Related Resources
 
 **Skills:**
+
 - `ux-designer` - Accessible design patterns
 - `frontend-builder` - Accessible React components
 - `testing-strategist` - Accessibility testing
 
 **External:**
+
 - [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
 - [MDN Accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility)
 - [A11y Project](https://www.a11yproject.com/)

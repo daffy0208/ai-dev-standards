@@ -9,10 +9,12 @@ This guide explains the specialized agents system in ai-dev-standards - autonomo
 ## What Are Specialized Agents?
 
 **Agents vs Skills:**
+
 - **Skills** provide inline guidance (you follow instructions)
 - **Agents** work autonomously (they do the work for you)
 
 **When to use agents:**
+
 - Complex tasks requiring multiple steps
 - Autonomous validation and testing
 - Code reviews and refactoring
@@ -62,15 +64,15 @@ Tell Claude to use a specific agent:
 
 ## Agent Selection Guide
 
-| Task Type | Recommended Agent |
-|-----------|------------------|
-| Code review | code-architecture-reviewer |
-| Refactoring | code-refactor-master |
-| Documentation | documentation-architect |
-| Frontend errors | frontend-error-fixer |
-| Registry validation | registry-validator-agent |
-| Skill testing | skill-tester-agent |
-| MCP creation | mcp-builder-agent |
+| Task Type           | Recommended Agent          |
+| ------------------- | -------------------------- |
+| Code review         | code-architecture-reviewer |
+| Refactoring         | code-refactor-master       |
+| Documentation       | documentation-architect    |
+| Frontend errors     | frontend-error-fixer       |
+| Registry validation | registry-validator-agent   |
+| Skill testing       | skill-tester-agent         |
+| MCP creation        | mcp-builder-agent          |
 
 ---
 

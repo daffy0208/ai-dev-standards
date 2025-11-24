@@ -56,44 +56,46 @@ This guide documents the proven integration pattern between **Archon MCP Server*
 **Goal:** Understand WHAT to build and WHY
 
 **Steps:**
+
 1. Get next priority task from Archon
 2. Conduct Archon research (RAG queries + code examples)
 3. Understand project context and requirements
 4. Update task status to "doing"
 
 **Archon Commands:**
+
 ```typescript
 // 1. List tasks by priority
-archon:manage_task({
-  action: "list",
-  filter_by: "status",
-  filter_value: "todo"
-});
+archon: manage_task({
+  action: 'list',
+  filter_by: 'status',
+  filter_value: 'todo'
+})
 
 // 2. Get task details
-archon:manage_task({
-  action: "get",
-  task_id: "[task_id]"
-});
+archon: manage_task({
+  action: 'get',
+  task_id: '[task_id]'
+})
 
 // 3. Research the domain
-archon:perform_rag_query({
-  query: "[relevant topic]",
+archon: perform_rag_query({
+  query: '[relevant topic]',
   match_count: 5
-});
+})
 
 // 4. Find code examples
-archon:search_code_examples({
-  query: "[implementation pattern]",
+archon: search_code_examples({
+  query: '[implementation pattern]',
   match_count: 3
-});
+})
 
 // 5. Mark as doing
-archon:manage_task({
-  action: "update",
-  task_id: "[task_id]",
-  update_fields: { status: "doing" }
-});
+archon: manage_task({
+  action: 'update',
+  task_id: '[task_id]',
+  update_fields: { status: 'doing' }
+})
 ```
 
 ---
@@ -103,17 +105,20 @@ archon:manage_task({
 **Goal:** Implement with domain expertise and best practices
 
 **Steps:**
+
 1. Identify required domain expertise
 2. Invoke relevant skill(s) for implementation guidance
 3. Implement following both Archon research + Skill guidance
 4. Apply patterns and best practices from skills
 
 **Skill Selection:**
+
 - Use task-to-skill mapping (see below)
 - Limit to 2-3 skills per task (avoid information overload)
 - Invoke primary skills first, then quality skills
 
 **Example:**
+
 ```
 Task: "Build Visualization Dashboard"
 
@@ -131,6 +136,7 @@ Skills to invoke:
 **Goal:** Ensure quality before marking complete
 
 **Steps:**
+
 1. Apply quality skill checks (testing, security, performance, a11y)
 2. Run validation (tests pass, code quality, documentation)
 3. Update Archon task to "review"
@@ -138,6 +144,7 @@ Skills to invoke:
 5. Get next task and repeat
 
 **Quality Skills:**
+
 - `testing-strategist` - Test coverage and quality
 - `security-engineer` - Security review
 - `performance-optimizer` - Performance checks
@@ -145,27 +152,28 @@ Skills to invoke:
 - `quality-auditor` - Comprehensive audit
 
 **Archon Commands:**
+
 ```typescript
 // 1. Mark for review
-archon:manage_task({
-  action: "update",
-  task_id: "[task_id]",
-  update_fields: { status: "review" }
-});
+archon: manage_task({
+  action: 'update',
+  task_id: '[task_id]',
+  update_fields: { status: 'review' }
+})
 
 // 2. After user approval
-archon:manage_task({
-  action: "update",
-  task_id: "[task_id]",
-  update_fields: { status: "done" }
-});
+archon: manage_task({
+  action: 'update',
+  task_id: '[task_id]',
+  update_fields: { status: 'done' }
+})
 
 // 3. Get next task
-archon:manage_task({
-  action: "list",
-  filter_by: "status",
-  filter_value: "todo"
-});
+archon: manage_task({
+  action: 'list',
+  filter_by: 'status',
+  filter_value: 'todo'
+})
 ```
 
 ---
@@ -174,38 +182,38 @@ archon:manage_task({
 
 ### By Task Type
 
-| Task Type | Primary Skills | Quality Skills |
-|-----------|----------------|----------------|
-| **Frontend/UI** | frontend-builder, visual-designer, ux-designer | accessibility-engineer |
-| **API Development** | api-designer, security-engineer | testing-strategist |
-| **Performance Work** | performance-optimizer | quality-auditor |
-| **Testing** | testing-strategist | quality-auditor |
-| **RAG/Knowledge** | rag-implementer, knowledge-base-manager | data-engineer |
-| **Knowledge Graphs** | knowledge-graph-builder, knowledge-base-manager | data-engineer |
-| **Data/Analytics** | data-engineer, data-visualizer | performance-optimizer |
-| **Documentation** | technical-writer | quality-auditor |
-| **Strategy/MVP** | mvp-builder, product-strategist | user-researcher |
-| **Deployment** | deployment-advisor, security-engineer | testing-strategist |
+| Task Type            | Primary Skills                                  | Quality Skills         |
+| -------------------- | ----------------------------------------------- | ---------------------- |
+| **Frontend/UI**      | frontend-builder, visual-designer, ux-designer  | accessibility-engineer |
+| **API Development**  | api-designer, security-engineer                 | testing-strategist     |
+| **Performance Work** | performance-optimizer                           | quality-auditor        |
+| **Testing**          | testing-strategist                              | quality-auditor        |
+| **RAG/Knowledge**    | rag-implementer, knowledge-base-manager         | data-engineer          |
+| **Knowledge Graphs** | knowledge-graph-builder, knowledge-base-manager | data-engineer          |
+| **Data/Analytics**   | data-engineer, data-visualizer                  | performance-optimizer  |
+| **Documentation**    | technical-writer                                | quality-auditor        |
+| **Strategy/MVP**     | mvp-builder, product-strategist                 | user-researcher        |
+| **Deployment**       | deployment-advisor, security-engineer           | testing-strategist     |
 
 ### By Project Phase
 
-| Phase | Skills to Use |
-|-------|---------------|
-| **Discovery** | product-strategist, user-researcher |
-| **Design** | ux-designer, visual-designer, api-designer |
-| **Implementation** | frontend-builder, api-designer, data-engineer |
-| **Quality** | testing-strategist, security-engineer, performance-optimizer |
-| **Launch** | deployment-advisor, go-to-market-planner, technical-writer |
+| Phase              | Skills to Use                                                |
+| ------------------ | ------------------------------------------------------------ |
+| **Discovery**      | product-strategist, user-researcher                          |
+| **Design**         | ux-designer, visual-designer, api-designer                   |
+| **Implementation** | frontend-builder, api-designer, data-engineer                |
+| **Quality**        | testing-strategist, security-engineer, performance-optimizer |
+| **Launch**         | deployment-advisor, go-to-market-planner, technical-writer   |
 
 ### By Quality Concern
 
-| Concern | Skill |
-|---------|-------|
-| Security | security-engineer |
-| Performance | performance-optimizer |
+| Concern       | Skill                  |
+| ------------- | ---------------------- |
+| Security      | security-engineer      |
+| Performance   | performance-optimizer  |
 | Accessibility | accessibility-engineer |
-| Testing | testing-strategist |
-| Documentation | technical-writer |
+| Testing       | testing-strategist     |
+| Documentation | technical-writer       |
 
 ---
 
@@ -246,6 +254,7 @@ archon:manage_task({
 **Problem:** Using one layer without the other
 
 **Impact:**
+
 - Archon only: Strategic but lacks implementation expertise
 - Skills only: Tactical but lacks project context and priorities
 
@@ -325,29 +334,29 @@ Result: Informed + expert implementation
 
 ```typescript
 // 1. Get task
-archon:manage_task({ action: "get", task_id: "dash-123" });
+archon: manage_task({ action: 'get', task_id: 'dash-123' })
 // Result: "Build real-time visualization dashboard for analytics"
 
 // 2. Research domain
-archon:perform_rag_query({
-  query: "React real-time data visualization best practices",
+archon: perform_rag_query({
+  query: 'React real-time data visualization best practices',
   match_count: 5
-});
+})
 // Result: General patterns, library comparisons
 
 // 3. Find code examples
-archon:search_code_examples({
-  query: "dashboard component React TypeScript",
+archon: search_code_examples({
+  query: 'dashboard component React TypeScript',
   match_count: 3
-});
+})
 // Result: Existing dashboard implementations
 
 // 4. Mark as doing
-archon:manage_task({
-  action: "update",
-  task_id: "dash-123",
-  update_fields: { status: "doing" }
-});
+archon: manage_task({
+  action: 'update',
+  task_id: 'dash-123',
+  update_fields: { status: 'doing' }
+})
 ```
 
 #### Phase 2: Skills Consultation (10 min)
@@ -360,6 +369,7 @@ Invoke Skills:
 ```
 
 **Combined Insights:**
+
 - Archon: Project uses Chart.js, existing patterns in codebase
 - frontend-builder: Component structure, state management
 - data-visualizer: Chart selection, real-time update patterns
@@ -368,6 +378,7 @@ Invoke Skills:
 #### Phase 3: Implementation (2 hours)
 
 Build dashboard following:
+
 - Archon's code examples as starting point
 - frontend-builder's architecture patterns
 - data-visualizer's chart recommendations
@@ -387,27 +398,27 @@ Fix issues found, optimize rendering.
 
 ```typescript
 // 1. Mark for review
-archon:manage_task({
-  action: "update",
-  task_id: "dash-123",
-  update_fields: { status: "review" }
-});
+archon: manage_task({
+  action: 'update',
+  task_id: 'dash-123',
+  update_fields: { status: 'review' }
+})
 
 // 2. User approves
 
 // 3. Mark done
-archon:manage_task({
-  action: "update",
-  task_id: "dash-123",
-  update_fields: { status: "done" }
-});
+archon: manage_task({
+  action: 'update',
+  task_id: 'dash-123',
+  update_fields: { status: 'done' }
+})
 
 // 4. Get next task
-archon:manage_task({
-  action: "list",
-  filter_by: "status",
-  filter_value: "todo"
-});
+archon: manage_task({
+  action: 'list',
+  filter_by: 'status',
+  filter_value: 'todo'
+})
 ```
 
 **Total Time:** ~2.5 hours
@@ -419,25 +430,30 @@ archon:manage_task({
 ## Benefits of Integration
 
 ### 1. Strategic Coherence
+
 - All work aligns with project goals (via Archon)
 - Clear priorities (P0/P1/P2)
 - No wasted effort on wrong things
 
 ### 2. Tactical Excellence
+
 - Domain-specific best practices (via Skills)
 - Proven patterns and methodologies
 - Quality standards built-in
 
 ### 3. Compound Intelligence
+
 - Archon provides "what" and "why"
 - Skills provide "how" and "how well"
 - Together = optimal solutions
 
 ### 4. Quality Assurance
+
 - Multi-layer validation
 - Both automated checks (Skills) and human review (Archon workflow)
 
 ### 5. Knowledge Accumulation
+
 - Archon stores project-specific learnings
 - Skills provide evergreen methodologies
 - Learning compounds over time

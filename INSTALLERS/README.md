@@ -7,9 +7,11 @@
 ## Available Installers
 
 ### 1. bootstrap
+
 **Purpose:** Complete ai-dev-standards setup in any project
 
 **What It Installs:**
+
 - ✅ All 36 skills
 - ✅ All 3 MCPs (with more coming)
 - ✅ Selected components
@@ -18,16 +20,19 @@
 - ✅ Project structure (.ai-dev/, .claude/)
 
 **When to Use:**
+
 - Starting a new project
 - Adding ai-dev-standards to existing project
 - Want full feature set
 
 **Usage:**
+
 ```bash
 npx @ai-dev-standards/bootstrap
 ```
 
 **What It Creates:**
+
 ```
 your-project/
 ├── .ai-dev/
@@ -52,6 +57,7 @@ your-project/
 **Purpose:** Deploy the validation system to any repository
 
 **What It Installs:**
+
 - ✅ Validation command (`.claude/commands/validate.md`)
 - ✅ HTML Dashboard generation
 - ✅ Historical metrics tracking
@@ -61,12 +67,14 @@ your-project/
 - ✅ Configuration files (if missing)
 
 **When to Use:**
+
 - Ensuring code quality across repositories
 - Setting up CI/CD validation
 - Tracking code health over time
 - Deploying consistent standards
 
 **Usage:**
+
 ```bash
 # One-line install (recommended)
 curl -fsSL https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main/INSTALLERS/install-validation-system.sh | bash
@@ -78,6 +86,7 @@ curl -fsSL https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main/INS
 ```
 
 **What It Creates:**
+
 ```
 your-project/
 ├── .claude/commands/
@@ -91,6 +100,7 @@ your-project/
 ```
 
 **Enables:**
+
 - `/validate` command in Claude Code
 - HTML dashboard with real-time metrics
 - Historical trend tracking
@@ -100,11 +110,13 @@ your-project/
 **Time:** ~1-2 minutes
 
 **Documentation:**
+
 - Quick Start: `DOCS/VALIDATION-QUICK-START.md`
 - Full Guide: `DOCS/VALIDATION-DEPLOYMENT-GUIDE.md`
 - Templates: `TEMPLATES/validation-configs/`
 
 **Environment Variables:**
+
 - `VALIDATION_GITHUB_ORG` - GitHub organization (default: daffy0208)
 - `VALIDATION_GITHUB_REPO` - Repository name (default: ai-dev-standards)
 - `VALIDATION_GITHUB_BRANCH` - Branch (default: main)
@@ -112,9 +124,11 @@ your-project/
 ---
 
 ### 3. create-rag-system
+
 **Purpose:** Set up complete RAG system from scratch
 
 **What It Installs:**
+
 - ✅ rag-implementer skill
 - ✅ Vector database MCPs (when available)
 - ✅ Embedding generator MCPs (when available)
@@ -124,17 +138,20 @@ your-project/
 - ✅ RAG project template
 
 **When to Use:**
+
 - Building document search system
 - Adding semantic search to application
 - Creating knowledge base chatbot
 - Implementing AI-powered Q&A
 
 **Usage:**
+
 ```bash
 npx @ai-dev-standards/create-rag-system
 ```
 
 **Interactive Prompts:**
+
 - Select vector database (Pinecone, Weaviate, Chroma, pgvector)
 - Select LLM provider (OpenAI, Anthropic, Cohere)
 - Select RAG architecture (Naive, Advanced, Modular)
@@ -142,6 +159,7 @@ npx @ai-dev-standards/create-rag-system
 - Set up API keys
 
 **What It Creates:**
+
 ```
 your-rag-project/
 ├── .ai-dev/
@@ -165,6 +183,7 @@ your-rag-project/
 ```
 
 **Enables:**
+
 - rag-implementer skill → AI guidance on RAG implementation
 - RAG components → Pre-built pipeline code
 - Vector DB integrations → Connect to your chosen database
@@ -173,11 +192,13 @@ your-rag-project/
 **Time:** ~5 minutes
 
 **Cost:** Setup is free, but runtime costs apply:
+
 - Embeddings: ~$0.0001 per 1K tokens (OpenAI)
 - Vector DB: $0-70/month (depends on provider)
 - LLM queries: $0.001-0.03 per 1K tokens
 
 **Next Steps After Install:**
+
 1. Add API keys to `.env`
 2. Run embedding pipeline: `npm run embed-documents`
 3. Test search: `npm run test-search`
@@ -186,9 +207,11 @@ your-rag-project/
 ---
 
 ### 3. create-saas
+
 **Purpose:** Complete SaaS project setup with all essentials
 
 **What It Installs:**
+
 - ✅ **Product Skills:** mvp-builder, product-strategist
 - ✅ **Development Skills:** frontend-builder, api-designer, deployment-advisor
 - ✅ **Integrations:** Auth (Clerk/Supabase), Payments (Stripe), Email (Resend)
@@ -196,17 +219,20 @@ your-rag-project/
 - ✅ **SaaS Template:** Full project structure
 
 **When to Use:**
+
 - Starting new SaaS product
 - Building subscription-based application
 - Need user management + payments
 - Want production-ready starter
 
 **Usage:**
+
 ```bash
 npx @ai-dev-standards/create-saas
 ```
 
 **Interactive Prompts:**
+
 - Select stack (Next.js, Remix, Astro)
 - Select auth provider (Clerk, Supabase, Auth0)
 - Select database (Supabase, Neon, Planet Scale)
@@ -215,6 +241,7 @@ npx @ai-dev-standards/create-saas
 - Configure deployment (Vercel, Railway, Fly.io)
 
 **What It Creates:**
+
 ```
 your-saas-project/
 ├── .ai-dev/
@@ -257,6 +284,7 @@ your-saas-project/
 ```
 
 **Enables:**
+
 - User authentication (sign up, sign in, SSO)
 - Subscription management (plans, billing, invoices)
 - Database (user data, application data)
@@ -267,6 +295,7 @@ your-saas-project/
 **Time:** ~10 minutes
 
 **Cost:** Development setup is free, but services require:
+
 - Auth: $0-25/month (Clerk) or $0 (Supabase free tier)
 - Database: $0-10/month (Supabase/Neon free tiers)
 - Payments: Free (Stripe fees apply to transactions)
@@ -274,6 +303,7 @@ your-saas-project/
 - Hosting: $0-20/month (Vercel hobby tier free)
 
 **Next Steps After Install:**
+
 1. Add all API keys to `.env`
 2. Run database migrations: `npm run db:push`
 3. Start development: `npm run dev`
@@ -285,18 +315,18 @@ your-saas-project/
 
 ## Comparison Table
 
-| Feature | bootstrap | install-validation | create-rag-system | create-saas |
-|---------|-----------|-------------------|-------------------|-------------|
-| **Purpose** | Full setup | Quality/CI | AI/RAG | SaaS product |
-| **Skills** | All 36 | None | RAG-specific (1) | Product/Dev (5) |
-| **Setup Time** | 2-3 min | 1-2 min | 5 min | 10 min |
-| **Project Type** | Any | Any | AI/RAG | SaaS |
-| **Integrations** | Optional | None | Required | Required |
-| **Cost (Dev)** | $0 | $0 | $0 | $0 |
-| **Cost (Prod)** | Varies | $0 | $70-500/mo | $50-300/mo |
-| **Complexity** | Low | Very Low | Medium | High |
-| **Production-Ready** | With config | Yes | With API keys | Yes |
-| **CI/CD Ready** | No | Yes | No | Yes |
+| Feature              | bootstrap   | install-validation | create-rag-system | create-saas     |
+| -------------------- | ----------- | ------------------ | ----------------- | --------------- |
+| **Purpose**          | Full setup  | Quality/CI         | AI/RAG            | SaaS product    |
+| **Skills**           | All 36      | None               | RAG-specific (1)  | Product/Dev (5) |
+| **Setup Time**       | 2-3 min     | 1-2 min            | 5 min             | 10 min          |
+| **Project Type**     | Any         | Any                | AI/RAG            | SaaS            |
+| **Integrations**     | Optional    | None               | Required          | Required        |
+| **Cost (Dev)**       | $0          | $0                 | $0                | $0              |
+| **Cost (Prod)**      | Varies      | $0                 | $70-500/mo        | $50-300/mo      |
+| **Complexity**       | Low         | Very Low           | Medium            | High            |
+| **Production-Ready** | With config | Yes                | With API keys     | Yes             |
+| **CI/CD Ready**      | No          | Yes                | No                | Yes             |
 
 ---
 
@@ -305,6 +335,7 @@ your-saas-project/
 ### Pattern 1: New Project from Scratch
 
 **SaaS Application:**
+
 ```bash
 # 1. Create SaaS project
 npx @ai-dev-standards/create-saas my-saas-app
@@ -327,6 +358,7 @@ npm run dev
 ```
 
 **RAG System:**
+
 ```bash
 # 1. Create RAG system
 npx @ai-dev-standards/create-rag-system my-rag-app
@@ -353,6 +385,7 @@ npm run test-search "your query here"
 ### Pattern 2: Add to Existing Project
 
 **Add Full ai-dev-standards:**
+
 ```bash
 # Navigate to existing project
 cd my-existing-project
@@ -369,6 +402,7 @@ git commit -m "Add ai-dev-standards"
 ```
 
 **Add Just RAG:**
+
 ```bash
 # Navigate to existing project
 cd my-existing-project
@@ -384,6 +418,7 @@ npx @ai-dev-standards/create-rag-system --add-to-existing
 ## Command-Line Options
 
 ### bootstrap
+
 ```bash
 npx @ai-dev-standards/bootstrap [options]
 
@@ -402,6 +437,7 @@ Options:
 ```
 
 ### create-rag-system
+
 ```bash
 npx @ai-dev-standards/create-rag-system [options]
 
@@ -420,6 +456,7 @@ Options:
 ```
 
 ### create-saas
+
 ```bash
 npx @ai-dev-standards/create-saas [options]
 
@@ -450,6 +487,7 @@ Options:
 ## Troubleshooting
 
 ### bootstrap fails
+
 ```bash
 # Check Node version (need >=18)
 node --version
@@ -465,6 +503,7 @@ ls -la .
 ```
 
 ### create-rag-system fails
+
 ```bash
 # Verify API keys are set
 cat .env | grep -E "OPENAI_API_KEY|PINECONE_API_KEY"
@@ -477,6 +516,7 @@ npm run test-embeddings
 ```
 
 ### create-saas fails
+
 ```bash
 # Verify all required API keys
 npm run check-env

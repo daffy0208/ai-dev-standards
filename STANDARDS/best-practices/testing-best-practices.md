@@ -39,6 +39,7 @@ Unit (70%)       → 200+ tests  → Business logic, components, utilities
 ### ✅ DO Test
 
 **Business Logic:**
+
 ```typescript
 // ✅ Test calculations, transformations, validations
 function calculateDiscount(price: number, tier: string) {
@@ -51,6 +52,7 @@ function validateEmail(email: string) {
 ```
 
 **API Endpoints:**
+
 ```typescript
 // ✅ Test request → response flow
 POST /api/users → 201 Created
@@ -59,6 +61,7 @@ DELETE /api/users/:id → requires auth
 ```
 
 **Edge Cases:**
+
 ```typescript
 // ✅ Test boundaries and errors
 calculateTotal([]) // empty array
@@ -67,6 +70,7 @@ parseDate('invalid') // invalid format
 ```
 
 **User Interactions:**
+
 ```typescript
 // ✅ Test critical user flows
 - User can complete checkout
@@ -77,12 +81,14 @@ parseDate('invalid') // invalid format
 ### ❌ DON'T Test
 
 **Third-Party Code:**
+
 ```typescript
 // ❌ Don't test React, Next.js, libraries
 // They have their own tests
 ```
 
 **Implementation Details:**
+
 ```typescript
 // ❌ Don't test private methods
 // ❌ Don't test internal state
@@ -90,6 +96,7 @@ parseDate('invalid') // invalid format
 ```
 
 **Simple Getters/Setters:**
+
 ```typescript
 // ❌ Don't test trivial code
 get name() { return this._name }
@@ -170,9 +177,7 @@ describe('User creation', () => {
 
   it('throws error for duplicate email', async () => {
     await createUser({ email: 'test@example.com' })
-    await expect(
-      createUser({ email: 'test@example.com' })
-    ).rejects.toThrow()
+    await expect(createUser({ email: 'test@example.com' })).rejects.toThrow()
   })
 })
 ```
@@ -257,14 +262,14 @@ jest.mock('./UserService') // Don't mock your own code!
 
 ### Target Coverage by Code Type
 
-| Code Type | Coverage Target | Rationale |
-|-----------|----------------|-----------|
-| Business logic | 90%+ | Critical, high value |
-| Auth/security | 95%+ | Cannot fail |
-| API routes | 80%+ | Integration tests cover |
-| UI components | 70%+ | Test behavior, not rendering |
-| Utils/helpers | 80%+ | High reuse, must work |
-| Config files | 0% | No logic to test |
+| Code Type      | Coverage Target | Rationale                    |
+| -------------- | --------------- | ---------------------------- |
+| Business logic | 90%+            | Critical, high value         |
+| Auth/security  | 95%+            | Cannot fail                  |
+| API routes     | 80%+            | Integration tests cover      |
+| UI components  | 70%+            | Test behavior, not rendering |
+| Utils/helpers  | 80%+            | High reuse, must work        |
+| Config files   | 0%              | No logic to test             |
 
 ### Coverage Configuration
 
@@ -598,15 +603,18 @@ npx playwright codegen example.com   # Record test
 ## Related Resources
 
 **Skills:**
+
 - `/SKILLS/testing-strategist/` - Testing methodology
 - `/SKILLS/security-engineer/` - Security testing
 - `/SKILLS/api-designer/` - API testing
 
 **Templates:**
+
 - `/TEMPLATES/testing/jest-nextjs-setup.md`
 - `/TEMPLATES/testing/playwright-e2e-setup.md`
 
 **External:**
+
 - [Jest Best Practices](https://jestjs.io/docs/testing-best-practices)
 - [React Testing Library Guide](https://testing-library.com/docs/react-testing-library/intro)
 - [Playwright Best Practices](https://playwright.dev/docs/best-practices)

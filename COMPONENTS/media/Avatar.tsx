@@ -79,14 +79,14 @@ const sizeMap: Record<AvatarSize, { size: number; fontSize: number; statusSize: 
   sm: { size: 32, fontSize: 12, statusSize: 8 },
   md: { size: 48, fontSize: 16, statusSize: 12 },
   lg: { size: 64, fontSize: 24, statusSize: 14 },
-  xl: { size: 96, fontSize: 32, statusSize: 18 },
+  xl: { size: 96, fontSize: 32, statusSize: 18 }
 }
 
 const statusColors: Record<AvatarStatus, string> = {
   online: '#10b981', // green
   offline: '#6b7280', // gray
   busy: '#ef4444', // red
-  away: '#f59e0b', // yellow
+  away: '#f59e0b' // yellow
 }
 
 /**
@@ -117,7 +117,7 @@ function stringToColor(str: string): string {
     '#6366f1', // indigo
     '#8b5cf6', // purple
     '#ec4899', // pink
-    '#06b6d4', // cyan
+    '#06b6d4' // cyan
   ]
 
   return colors[Math.abs(hash) % colors.length]
@@ -132,7 +132,7 @@ export const Avatar: React.FC<AvatarProps> = ({
   backgroundColor,
   textColor = '#ffffff',
   className,
-  onClick,
+  onClick
 }) => {
   const [imageError, setImageError] = useState(false)
   const { size: pixelSize, fontSize, statusSize } = sizeMap[size]
@@ -152,14 +152,14 @@ export const Avatar: React.FC<AvatarProps> = ({
         position: 'relative',
         display: 'inline-flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
       }}
       onClick={onClick}
       role={onClick ? 'button' : undefined}
       tabIndex={onClick ? 0 : undefined}
       onKeyDown={
         onClick
-          ? (e) => {
+          ? e => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault()
                 onClick()
@@ -183,14 +183,14 @@ export const Avatar: React.FC<AvatarProps> = ({
           fontSize: `${fontSize}px`,
           fontWeight: 600,
           cursor: onClick ? 'pointer' : 'default',
-          transition: 'transform 0.2s',
+          transition: 'transform 0.2s'
         }}
-        onMouseEnter={(e) => {
+        onMouseEnter={e => {
           if (onClick) {
             e.currentTarget.style.transform = 'scale(1.05)'
           }
         }}
-        onMouseLeave={(e) => {
+        onMouseLeave={e => {
           if (onClick) {
             e.currentTarget.style.transform = 'scale(1)'
           }
@@ -206,7 +206,7 @@ export const Avatar: React.FC<AvatarProps> = ({
             style={{
               width: '100%',
               height: '100%',
-              objectFit: 'cover',
+              objectFit: 'cover'
             }}
           />
         )}
@@ -224,7 +224,7 @@ export const Avatar: React.FC<AvatarProps> = ({
             borderRadius: '50%',
             backgroundColor: statusColors[status],
             border: '2px solid white',
-            boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+            boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
           }}
           role="status"
           aria-label={`Status: ${status}`}

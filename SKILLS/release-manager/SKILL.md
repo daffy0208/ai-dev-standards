@@ -47,12 +47,12 @@ const featureFlags = {
 
 function isFeatureEnabled(feature, user) {
   const flag = featureFlags[feature]
-  
+
   // Check user group
   if (user.groups.some(g => flag.userGroups.includes(g))) {
     return true
   }
-  
+
   // Check rollout percentage
   const hash = hashUserId(user.id)
   return (hash % 100) < (flag.rollout * 100)
@@ -69,9 +69,9 @@ function isFeatureEnabled(feature, user) {
 ## Deployment Strategies
 
 ### Blue-Green Deployment
+
 ```yaml
-Process:
-  1. Deploy to "green" environment
+Process: 1. Deploy to "green" environment
   2. Test green thoroughly
   3. Switch traffic to green
   4. Keep blue as rollback
@@ -81,9 +81,9 @@ Cons: 2x infrastructure cost
 ```
 
 ### Canary Deployment
+
 ```yaml
-Process:
-  1. Deploy to 5% of servers
+Process: 1. Deploy to 5% of servers
   2. Monitor for 1 hour
   3. If good, deploy to 25%
   4. Monitor for 1 hour
@@ -102,8 +102,7 @@ Criteria for Rollback:
   - Critical bug discovered
   - Negative user feedback
 
-Rollback Process:
-  1. Disable feature flag immediately
+Rollback Process: 1. Disable feature flag immediately
   2. Notify team
   3. Investigate issue
   4. Fix and redeploy
@@ -112,6 +111,7 @@ Rollback Process:
 ## Release Checklist
 
 ### Pre-Release
+
 - [ ] Code reviewed
 - [ ] Tests passing
 - [ ] Staging tested
@@ -120,6 +120,7 @@ Rollback Process:
 - [ ] Monitoring alerts set
 
 ### During Release
+
 - [ ] Deploy to 5% first
 - [ ] Watch error rate
 - [ ] Monitor performance
@@ -127,6 +128,7 @@ Rollback Process:
 - [ ] Gradually increase
 
 ### Post-Release
+
 - [ ] Monitor for 24 hours
 - [ ] Collect feedback
 - [ ] Remove feature flag
@@ -164,9 +166,9 @@ External:
 ## Summary
 
 Safe releases:
+
 - ✅ Start small (5%)
 - ✅ Monitor closely
 - ✅ Rollback readily
 - ✅ Feature flags everywhere
 - ✅ Document process
-

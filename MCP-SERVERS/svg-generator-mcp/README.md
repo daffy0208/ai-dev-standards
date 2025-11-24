@@ -7,9 +7,11 @@ Generate, optimize, and manage SVG graphics for icons, illustrations, and patter
 ### Tools
 
 #### `generateSvgIcon`
+
 Generate SVG icons from text descriptions with customizable styles.
 
 **Parameters:**
+
 - `description` (string, required): Icon description
 - `style` (string): Icon style - line, solid, duotone, outline
 - `size` (number): Icon size in pixels (default: 24)
@@ -17,6 +19,7 @@ Generate SVG icons from text descriptions with customizable styles.
 - `strokeWidth` (number): Stroke width for outline styles (default: 2)
 
 **Example:**
+
 ```typescript
 {
   description: "shopping cart",
@@ -28,15 +31,18 @@ Generate SVG icons from text descriptions with customizable styles.
 ```
 
 #### `generateSvgIllustration`
+
 Generate SVG illustrations from text prompts with various styles.
 
 **Parameters:**
+
 - `prompt` (string, required): Illustration description
 - `style` (string): Style - flat, minimalist, geometric, isometric, abstract
 - `colorScheme` (array): Array of colors to use
 - `complexity` (string): Complexity level - simple, medium, detailed
 
 **Example:**
+
 ```typescript
 {
   prompt: "A person working on a laptop",
@@ -47,15 +53,18 @@ Generate SVG illustrations from text prompts with various styles.
 ```
 
 #### `generateSvgPattern`
+
 Generate SVG patterns for backgrounds and fills.
 
 **Parameters:**
+
 - `type` (string, required): Pattern type - dots, lines, grid, waves, hexagons, triangles
 - `colors` (array): Pattern colors
 - `density` (string): Pattern density - low, medium, high
 - `size` (number): Pattern tile size in pixels
 
 **Example:**
+
 ```typescript
 {
   type: "dots",
@@ -66,9 +75,11 @@ Generate SVG patterns for backgrounds and fills.
 ```
 
 #### `optimizeSvg`
+
 Optimize SVG code by removing unnecessary elements and reducing file size.
 
 **Parameters:**
+
 - `svgContent` (string, required): SVG code to optimize
 - `options` (object): Optimization options
   - `removeComments` (boolean): Remove XML comments
@@ -78,6 +89,7 @@ Optimize SVG code by removing unnecessary elements and reducing file size.
   - `precision` (number): Decimal precision
 
 **Example:**
+
 ```typescript
 {
   svgContent: "<svg>...</svg>",
@@ -92,9 +104,11 @@ Optimize SVG code by removing unnecessary elements and reducing file size.
 ### Resources
 
 #### `svg-generator://templates`
+
 JSON collection of common SVG shapes, icons, and patterns.
 
 #### `svg-generator://guide`
+
 Best practices guide for SVG generation and optimization.
 
 ## Setup
@@ -142,21 +156,25 @@ Add to your MCP settings:
 ### Icon Styles
 
 **Line Icons**
+
 - Simple outlines
 - 2px stroke width
 - Best for: UI navigation, actions
 
 **Solid Icons**
+
 - Filled shapes
 - No stroke
 - Best for: Emphasis, primary actions
 
 **Duotone Icons**
+
 - Two-color combinations
 - Depth and hierarchy
 - Best for: Feature illustrations
 
 **Outline Icons**
+
 - Detailed strokes
 - Varying widths
 - Best for: Complex representations
@@ -164,26 +182,31 @@ Add to your MCP settings:
 ### Illustration Styles
 
 **Flat**
+
 - Simple shapes, solid colors
 - No gradients or shadows
 - Best for: Modern, clean designs
 
 **Minimalist**
+
 - Essential elements only
 - Limited color palette
 - Best for: Elegant, focused designs
 
 **Geometric**
+
 - Shapes and angles
 - Mathematical precision
 - Best for: Technical, abstract concepts
 
 **Isometric**
+
 - 3D perspective
 - Consistent angles
 - Best for: Architecture, diagrams
 
 **Abstract**
+
 - Non-representational
 - Creative freedom
 - Best for: Backgrounds, decorative
@@ -191,26 +214,31 @@ Add to your MCP settings:
 ## Pattern Types
 
 ### Dots
+
 - Repeating circles
 - Adjustable spacing
 - Use for: Subtle backgrounds
 
 ### Lines
+
 - Parallel or diagonal lines
 - Various angles
 - Use for: Texture, depth
 
 ### Grid
+
 - Intersecting lines
 - Graph paper effect
 - Use for: Technical backgrounds
 
 ### Waves
+
 - Sinusoidal curves
 - Flowing motion
 - Use for: Dynamic backgrounds
 
 ### Geometric
+
 - Triangles, hexagons
 - Tessellation
 - Use for: Modern patterns
@@ -220,6 +248,7 @@ Add to your MCP settings:
 ### File Size Reduction
 
 The `optimizeSvg` tool can reduce SVG file sizes by:
+
 - Removing comments and metadata (5-10%)
 - Simplifying paths (10-30%)
 - Reducing precision (5-15%)
@@ -231,11 +260,13 @@ The `optimizeSvg` tool can reduce SVG file sizes by:
 ### Best Practices
 
 1. **ViewBox Usage**
+
    ```svg
    <svg viewBox="0 0 24 24" width="24" height="24">
    ```
 
 2. **Color Management**
+
    ```svg
    <path stroke="currentColor" />
    ```
@@ -273,20 +304,20 @@ The `optimizeSvg` tool can reduce SVG file sizes by:
 ### React Component
 
 ```tsx
-import { generateSvgIcon } from '@/lib/svg-generator';
+import { generateSvgIcon } from '@/lib/svg-generator'
 
 function Icon({ name }: { name: string }) {
-  const [svg, setSvg] = useState('');
+  const [svg, setSvg] = useState('')
 
   useEffect(() => {
     generateSvgIcon({
       description: name,
       style: 'line',
       size: 24
-    }).then(result => setSvg(result.data.svg));
-  }, [name]);
+    }).then(result => setSvg(result.data.svg))
+  }, [name])
 
-  return <div dangerouslySetInnerHTML={{ __html: svg }} />;
+  return <div dangerouslySetInnerHTML={{ __html: svg }} />
 }
 ```
 
@@ -360,11 +391,11 @@ Add custom SVG templates to the templates array in index.ts:
 For production-grade optimization, integrate SVGO:
 
 ```typescript
-import { optimize } from 'svgo';
+import { optimize } from 'svgo'
 
 const result = optimize(svgString, {
   plugins: ['preset-default']
-});
+})
 ```
 
 ## License

@@ -11,6 +11,7 @@ Guides implementation of production-ready Retrieval-Augmented Generation (RAG) s
 ## When to Use
 
 Use this skill when you need to:
+
 - Build knowledge-intensive applications
 - Create document search and Q&A systems
 - Ground LLM responses in external/proprietary data
@@ -64,21 +65,25 @@ rag-implementer/
 ## Prerequisites
 
 **Knowledge:**
+
 - Understanding of embeddings and vector similarity
 - Basic LLM concepts
 - API integration experience
 
 **Tools:**
+
 - Vector database account (Pinecone, Weaviate, etc.)
 - LLM API access (Anthropic Claude, OpenAI)
 - Embedding API access (OpenAI, Cohere, etc.)
 
 **Related Skills:**
+
 - None required, but `multi-agent-architect` helps for complex systems
 
 ## Success Criteria
 
 You've successfully used this skill when:
+
 - ✅ All 8 RAG phases completed with validation gates checked
 - ✅ Retrieval quality: Precision@5 >70%, MRR >0.6
 - ✅ Generation quality: Faithfulness >85%, hallucination <10%
@@ -89,18 +94,21 @@ You've successfully used this skill when:
 ## Common Workflows
 
 ### Workflow 1: Document Q&A System
+
 1. Use rag-implementer Phases 1-3 for data prep and vector store
 2. Implement hybrid retrieval (Phase 4)
 3. Deploy with monitoring (Phase 7)
 4. Use `deployment-advisor` for hosting decisions
 
 ### Workflow 2: Code Search Assistant
+
 1. Use rag-implementer with code-specific embeddings
 2. Add syntax-aware chunking (Phase 1)
 3. Implement multi-modal retrieval for code + docs
 4. Use `api-designer` for building search API
 
 ### Workflow 3: Real-Time Knowledge Base
+
 1. Use rag-implementer with streaming data sources
 2. Implement automated updates (Phase 8)
 3. Add temporal awareness for freshness weighting
@@ -109,16 +117,19 @@ You've successfully used this skill when:
 ## Key Concepts
 
 **RAG vs. Fine-tuning vs. Prompting:**
+
 - **RAG**: Dynamic knowledge, frequently updated data, source attribution needed
 - **Fine-tuning**: Static knowledge, reasoning patterns, domain-specific behavior
 - **Prompting**: General knowledge already in LLM, task-specific instructions
 
 **3 RAG Architectures:**
+
 1. **Naive RAG**: Simple retrieval → context → generation
 2. **Advanced RAG**: Query enhancement, re-ranking, hybrid search
 3. **Modular RAG**: Specialized modules (search, memory, routing, prediction)
 
 **8 RAG Phases:**
+
 1. Knowledge base design
 2. Embedding strategy
 3. Vector store setup
@@ -131,28 +142,33 @@ You've successfully used this skill when:
 ## Troubleshooting
 
 **Skill not activating?**
+
 - Try explicitly requesting: "Use the rag-implementer skill to..."
 - Mention keywords: "RAG", "vector database", "retrieval", "embeddings"
 
 **Low retrieval accuracy?**
+
 - Check embedding model performance on domain data
 - Implement hybrid search (semantic + keyword)
 - Add re-ranking with cross-encoder
 - Review chunking strategy
 
 **High latency?**
+
 - Reduce top-k retrieval count (try 3-5 instead of 10)
 - Implement caching for frequent queries
 - Use faster vector DB (Qdrant for performance)
 - Optimize context assembly
 
 **High hallucination rate?**
+
 - Validate faithfulness against sources
 - Add explicit source citation requirements
 - Implement confidence scoring
 - Use temperature=0 for factual queries
 
 **Context too large?**
+
 - Use context compression (LLMLingua)
 - Remove redundant chunks
 - Prioritize by relevance score

@@ -24,12 +24,8 @@
       "estimated_effort": "2 days",
       "estimated_hours": 16,
       "dependencies": [],
-      "deliverables": [
-        "File or feature to deliver"
-      ],
-      "acceptance_criteria": [
-        "Clear criteria for done"
-      ],
+      "deliverables": ["File or feature to deliver"],
+      "acceptance_criteria": ["Clear criteria for done"],
       "archon_workflow": [
         "1. Research: archon:perform_rag_query('topic')",
         "2. Research: archon:search_code_examples('pattern')",
@@ -49,11 +45,7 @@
   },
   "success_criteria": {
     "rci_target": 80,
-    "criteria": [
-      "All P0 tasks completed",
-      "Quality metrics met",
-      "User validation passed"
-    ]
+    "criteria": ["All P0 tasks completed", "Quality metrics met", "User validation passed"]
   },
   "integration_workflow": {
     "proven_pattern": "Archon (WHAT/WHEN) + Skills (HOW)",

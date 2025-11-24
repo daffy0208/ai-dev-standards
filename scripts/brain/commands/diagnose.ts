@@ -6,11 +6,11 @@
  * Wrapper for SKILLS/system-diagnostician/diagnose.sh
  */
 
-import * as path from 'path';
-import { exec } from 'child_process';
-import { promisify } from 'util';
+import * as path from 'path'
+import { exec } from 'child_process'
+import { promisify } from 'util'
 
-const execAsync = promisify(exec);
+const execAsync = promisify(exec)
 
 const COLORS = {
   reset: '\x1b[0m',
@@ -18,27 +18,27 @@ const COLORS = {
   red: '\x1b[31m',
   green: '\x1b[32m',
   yellow: '\x1b[33m',
-  cyan: '\x1b[36m',
-};
+  cyan: '\x1b[36m'
+}
 
 function colorize(text: string, color: keyof typeof COLORS): string {
-  return `${COLORS[color]}${text}${COLORS.reset}`;
+  return `${COLORS[color]}${text}${COLORS.reset}`
 }
 
 function printHeader(text: string) {
-  console.log(colorize(`\n━━━ ${text} ━━━\n`, 'bright'));
+  console.log(colorize(`\n━━━ ${text} ━━━\n`, 'bright'))
 }
 
 function printSuccess(text: string) {
-  console.log(colorize(`✓ ${text}`, 'green'));
+  console.log(colorize(`✓ ${text}`, 'green'))
 }
 
 function printError(text: string) {
-  console.log(colorize(`✗ ${text}`, 'red'));
+  console.log(colorize(`✗ ${text}`, 'red'))
 }
 
 function printInfo(text: string) {
-  console.log(colorize(`→ ${text}`, 'cyan'));
+  console.log(colorize(`→ ${text}`, 'cyan'))
 }
 
 export function printUsage() {
@@ -99,42 +99,42 @@ ${colorize('Description:', 'bright')}
   - Prioritized action plan
   - Quick wins (high impact, low effort)
   - Critical issues requiring immediate attention
-`);
+`)
 }
 
 export async function execute(args: string[], rootPath: string): Promise<void> {
   // Parse arguments
-  let projectPath = '.';
-  let graphPath = '';
-  let focusAreas = '';
-  let includeMetrics = false;
-  let outputPath = '';
+  let projectPath = '.'
+  let graphPath = ''
+  let focusAreas = ''
+  let includeMetrics = false
+  let outputPath = ''
 
   for (let i = 0; i < args.length; i++) {
     switch (args[i]) {
       case '--graph':
-        graphPath = args[++i];
-        break;
+        graphPath = args[++i]
+        break
       case '--focus':
-        focusAreas = args[++i];
-        break;
+        focusAreas = args[++i]
+        break
       case '--metrics':
-        includeMetrics = true;
-        break;
+        includeMetrics = true
+        break
       case '--output':
-        outputPath = args[++i];
-        break;
+        outputPath = args[++i]
+        break
       case '--help':
       case '-h':
-        printUsage();
-        return;
+        printUsage()
+        return
       default:
         if (!args[i].startsWith('--')) {
-          projectPath = args[i];
+          projectPath = args[i]
         } else {
-          printError(`Unknown option: ${args[i]}`);
-          printUsage();
-          process.exit(1);
+          printError(`Unknown option: ${args[i]}`)
+          printUsage()
+          process.exit(1)
         }
     }
   }
@@ -142,69 +142,69 @@ export async function execute(args: string[], rootPath: string): Promise<void> {
   // Resolve paths
   const fullProjectPath = path.isAbsolute(projectPath)
     ? projectPath
-    : path.resolve(process.cwd(), projectPath);
+    : path.resolve(process.cwd(), projectPath)
 
-  const scriptPath = path.resolve(rootPath, 'SKILLS/system-diagnostician/diagnose.sh');
+  const scriptPath = path.resolve(rootPath, 'SKILLS/system-diagnostician/diagnose.sh')
 
-  printHeader('Project Health Diagnostic');
-  printInfo(`Project: ${fullProjectPath}`);
+  printHeader('Project Health Diagnostic')
+  printInfo(`Project: ${fullProjectPath}`)
   if (graphPath) {
-    printInfo(`Graph: ${graphPath}`);
+    printInfo(`Graph: ${graphPath}`)
   }
   if (focusAreas) {
-    printInfo(`Focus: ${focusAreas}`);
+    printInfo(`Focus: ${focusAreas}`)
   }
   if (includeMetrics) {
-    printInfo('Metrics: enabled');
+    printInfo('Metrics: enabled')
   }
 
   try {
     // Build command
-    let cmd = `bash "${scriptPath}" "${fullProjectPath}"`;
+    let cmd = `bash "${scriptPath}" "${fullProjectPath}"`
 
     if (graphPath) {
       const fullGraphPath = path.isAbsolute(graphPath)
         ? graphPath
-        : path.resolve(rootPath, graphPath);
-      cmd += ` --graph "${fullGraphPath}"`;
+        : path.resolve(rootPath, graphPath)
+      cmd += ` --graph "${fullGraphPath}"`
     }
 
     if (focusAreas) {
-      cmd += ` --focus "${focusAreas}"`;
+      cmd += ` --focus "${focusAreas}"`
     }
 
     if (includeMetrics) {
-      cmd += ' --metrics';
+      cmd += ' --metrics'
     }
 
     if (outputPath) {
       const fullOutputPath = path.isAbsolute(outputPath)
         ? outputPath
-        : path.resolve(rootPath, outputPath);
-      cmd += ` --output "${fullOutputPath}"`;
+        : path.resolve(rootPath, outputPath)
+      cmd += ` --output "${fullOutputPath}"`
     }
 
-    printInfo('Analyzing project health...\n');
+    printInfo('Analyzing project health...\n')
 
     // Execute the script
     const { stdout, stderr } = await execAsync(cmd, {
       cwd: rootPath,
-      maxBuffer: 10 * 1024 * 1024, // 10MB buffer
-    });
+      maxBuffer: 10 * 1024 * 1024 // 10MB buffer
+    })
 
     if (stdout) {
-      console.log(stdout);
+      console.log(stdout)
     }
     if (stderr) {
-      console.error(stderr);
+      console.error(stderr)
     }
 
-    printSuccess('Diagnostic complete!');
+    printSuccess('Diagnostic complete!')
   } catch (error) {
-    const err = error as any;
-    printError('Diagnostic failed');
-    if (err.stdout) console.log(err.stdout);
-    if (err.stderr) console.error(err.stderr);
-    process.exit(1);
+    const err = error as any
+    printError('Diagnostic failed')
+    if (err.stdout) console.log(err.stdout)
+    if (err.stderr) console.error(err.stderr)
+    process.exit(1)
   }
 }

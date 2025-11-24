@@ -21,21 +21,25 @@ claude-code --skill data-engineer
 ## Common Tasks
 
 ### Build ETL Pipeline
+
 ```
 "Create an ETL pipeline that syncs customers from Stripe to our database daily"
 ```
 
 ### Data Transformation
+
 ```
 "Transform raw order data: clean emails, enrich with geo data, calculate lifetime value"
 ```
 
 ### Data Warehouse
+
 ```
 "Design a star schema for sales analytics with date, customer, product, and location dimensions"
 ```
 
 ### Data Quality
+
 ```
 "Add data quality checks: no duplicate emails, valid phone numbers, no orphaned records"
 ```

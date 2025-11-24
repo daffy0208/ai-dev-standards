@@ -105,6 +105,7 @@ For `curl -fsSL https://ai-dev-standards.com/bootstrap.sh | bash` to work:
    - Set custom domain: `ai-dev-standards.com`
 
 2. **Add bootstrap.sh to root:**
+
    ```bash
    cp CLI/bootstrap.sh bootstrap.sh
    git add bootstrap.sh
@@ -122,6 +123,7 @@ For `curl -fsSL https://ai-dev-standards.com/bootstrap.sh | bash` to work:
 1. **Set up hosting** (Vercel, Netlify, etc.)
 
 2. **Deploy:**
+
    ```bash
    # Create public/ directory
    mkdir -p public
@@ -286,6 +288,7 @@ jobs:
 ### 1. Update Version
 
 Follow semantic versioning:
+
 - **Patch** (1.0.x): Bug fixes
 - **Minor** (1.x.0): New features (backward compatible)
 - **Major** (x.0.0): Breaking changes
@@ -314,15 +317,18 @@ Create/update `CHANGELOG.md`:
 ## [1.1.0] - 2025-10-22
 
 ### Added
+
 - Auto-bootstrap system
 - Git hook for auto-sync
 - CLI commands for sync, update, generate
 - 7 config file templates
 
 ### Fixed
+
 - ESM module compatibility issues
 
 ### Changed
+
 - Improved documentation
 ```
 
@@ -459,13 +465,7 @@ bash /path/to/ai-dev-standards/CLI/bootstrap.sh
   "bin": {
     "ai-dev": "./index.js"
   },
-  "keywords": [
-    "ai",
-    "development",
-    "standards",
-    "cli",
-    "claude"
-  ],
+  "keywords": ["ai", "development", "standards", "cli", "claude"],
   "repository": {
     "type": "git",
     "url": "https://github.com/your-username/ai-dev-standards"

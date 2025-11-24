@@ -207,10 +207,12 @@ export class StripeClient {
       product: params.productId,
       unit_amount: params.amount,
       currency: params.currency || 'usd',
-      recurring: params.interval ? {
-        interval: params.interval,
-        interval_count: params.intervalCount || 1
-      } : undefined
+      recurring: params.interval
+        ? {
+            interval: params.interval,
+            interval_count: params.intervalCount || 1
+          }
+        : undefined
     })
   }
 
@@ -295,10 +297,7 @@ export class StripeClient {
   /**
    * Billing Portal
    */
-  async createBillingPortalSession(params: {
-    customerId: string
-    returnUrl: string
-  }) {
+  async createBillingPortalSession(params: { customerId: string; returnUrl: string }) {
     return this.stripe.billingPortal.sessions.create({
       customer: params.customerId,
       return_url: params.returnUrl
@@ -346,14 +345,11 @@ export class StripeClient {
     timestamp?: number
     action?: 'increment' | 'set'
   }) {
-    return this.stripe.subscriptionItems.createUsageRecord(
-      params.subscriptionItemId,
-      {
-        quantity: params.quantity,
-        timestamp: params.timestamp || Math.floor(Date.now() / 1000),
-        action: params.action || 'increment'
-      }
-    )
+    return this.stripe.subscriptionItems.createUsageRecord(params.subscriptionItemId, {
+      quantity: params.quantity,
+      timestamp: params.timestamp || Math.floor(Date.now() / 1000),
+      action: params.action || 'increment'
+    })
   }
 }
 
@@ -418,9 +414,7 @@ export async function examples() {
   // Create checkout session
   const session = await stripe.createCheckoutSession({
     customerEmail: 'user@example.com',
-    lineItems: [
-      { priceId: 'price_123', quantity: 1 }
-    ],
+    lineItems: [{ priceId: 'price_123', quantity: 1 }],
     mode: 'subscription',
     successUrl: 'https://example.com/success',
     cancelUrl: 'https://example.com/cancel'

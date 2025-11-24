@@ -62,7 +62,7 @@ Standard breakpoints checked:
     { name: 'Tablet', minWidth: '768px', found: false },
     { name: 'Desktop', minWidth: '1024px', found: false },
     { name: 'Wide Desktop', minWidth: '1280px', found: false },
-    { name: 'Ultra Wide', minWidth: '1536px', found: false },
+    { name: 'Ultra Wide', minWidth: '1536px', found: false }
   ]
 
   async _call(input: string): Promise<string> {
@@ -92,7 +92,8 @@ Standard breakpoints checked:
     const breakpointMap = new Map<string, BreakpointUsage>()
 
     // Match media queries: @media (min-width: 768px), (max-width: 1024px), etc.
-    const mediaQueryRegex = /@media[^{]*\((min-width|max-width):\s*(\d+(?:\.\d+)?)(px|em|rem)\)[^{]*/gi
+    const mediaQueryRegex =
+      /@media[^{]*\((min-width|max-width):\s*(\d+(?:\.\d+)?)(px|em|rem)\)[^{]*/gi
     const matches = content.matchAll(mediaQueryRegex)
 
     // Extract breakpoints
@@ -106,7 +107,7 @@ Standard breakpoints checked:
           minWidth: type === 'min-width' ? key : undefined,
           maxWidth: type === 'max-width' ? key : undefined,
           occurrences: 0,
-          locations: [],
+          locations: []
         })
       }
 
@@ -128,7 +129,7 @@ Standard breakpoints checked:
           breakpoint: `${breakpoint} (${key})`,
           minWidth: key,
           occurrences: 0,
-          locations: [],
+          locations: []
         })
       }
 
@@ -139,7 +140,7 @@ Standard breakpoints checked:
 
     const uniqueBreakpoints = Array.from(breakpointMap.values())
     const standardBreakpoints = this.checkStandardBreakpoints(uniqueBreakpoints)
-    const missingBreakpoints = standardBreakpoints.filter((bp) => !bp.found).map((bp) => bp.name)
+    const missingBreakpoints = standardBreakpoints.filter(bp => !bp.found).map(bp => bp.name)
     const customBreakpoints = this.findCustomBreakpoints(uniqueBreakpoints, standardBreakpoints)
     const recommendations = this.generateRecommendations(standardBreakpoints, customBreakpoints)
 
@@ -150,7 +151,7 @@ Standard breakpoints checked:
       standardBreakpoints,
       missingBreakpoints,
       customBreakpoints,
-      recommendations,
+      recommendations
     }
   }
 
@@ -160,14 +161,14 @@ Standard breakpoints checked:
       md: '768px',
       lg: '1024px',
       xl: '1280px',
-      '2xl': '1536px',
+      '2xl': '1536px'
     }
     return map[breakpoint] || breakpoint
   }
 
   private checkStandardBreakpoints(uniqueBreakpoints: BreakpointUsage[]): StandardBreakpoint[] {
-    return this.standardBreakpoints.map((standard) => {
-      const found = uniqueBreakpoints.some((bp) => {
+    return this.standardBreakpoints.map(standard => {
+      const found = uniqueBreakpoints.some(bp => {
         const bpValue = parseInt(bp.minWidth || bp.maxWidth || '0')
         const standardValue = parseInt(standard.minWidth)
         return Math.abs(bpValue - standardValue) <= 50 // Allow 50px tolerance
@@ -181,9 +182,9 @@ Standard breakpoints checked:
     uniqueBreakpoints: BreakpointUsage[],
     standardBreakpoints: StandardBreakpoint[]
   ): BreakpointUsage[] {
-    return uniqueBreakpoints.filter((bp) => {
+    return uniqueBreakpoints.filter(bp => {
       const bpValue = parseInt(bp.minWidth || bp.maxWidth || '0')
-      return !standardBreakpoints.some((standard) => {
+      return !standardBreakpoints.some(standard => {
         const standardValue = parseInt(standard.minWidth)
         return Math.abs(bpValue - standardValue) <= 50
       })
@@ -197,10 +198,10 @@ Standard breakpoints checked:
     const recommendations: string[] = []
 
     // Missing standard breakpoints
-    const missing = standardBreakpoints.filter((bp) => !bp.found)
+    const missing = standardBreakpoints.filter(bp => !bp.found)
     if (missing.length > 0) {
       recommendations.push(
-        `Add missing standard breakpoints: ${missing.map((bp) => `${bp.name} (${bp.minWidth})`).join(', ')}`
+        `Add missing standard breakpoints: ${missing.map(bp => `${bp.name} (${bp.minWidth})`).join(', ')}`
       )
     }
 
@@ -260,7 +261,9 @@ Standard breakpoints checked:
         output.push(`  ${bp.breakpoint}`)
         output.push(`    Type: ${bp.minWidth ? 'min-width' : 'max-width'}`)
         output.push(`    Occurrences: ${bp.occurrences}`)
-        output.push(`    Locations: ${bp.locations.slice(0, 3).join(', ')}${bp.locations.length > 3 ? '...' : ''}`)
+        output.push(
+          `    Locations: ${bp.locations.slice(0, 3).join(', ')}${bp.locations.length > 3 ? '...' : ''}`
+        )
         output.push('')
       }
     }

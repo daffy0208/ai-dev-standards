@@ -9,11 +9,13 @@ This document describes the Claude Code-based orchestration system that eliminat
 ### The Problem We Solved
 
 **Before**: Orchestration required OpenAI Codex CLI + separate API key
+
 - Cost: $9/M tokens (Codex)
 - Complexity: Separate API management
 - Dependency: External service required
 
 **After**: Orchestration uses Claude Code (you're already paying for)
+
 - Cost: Included in Claude Code usage
 - Simplicity: Single system, no extra keys
 - Integration: Native to development workflow
@@ -48,14 +50,14 @@ ai-dev-standards/
 
 ## Request Types
 
-| Type | Purpose | When to Use |
-|------|---------|-------------|
-| `plan` | Create execution plan for complex goals | Multi-step feature implementation |
-| `validate` | Validate skill implementation vs manifest | Before releasing skills |
-| `diagnose` | Run project health diagnostics | Regular health checks |
-| `generate_manifest` | Generate capability manifest from code | New skills without manifests |
-| `build_capability_graph` | Build capability graph from all skills | After adding/modifying skills |
-| `analyze_project` | Deep analysis of project state | Strategic planning |
+| Type                     | Purpose                                   | When to Use                       |
+| ------------------------ | ----------------------------------------- | --------------------------------- |
+| `plan`                   | Create execution plan for complex goals   | Multi-step feature implementation |
+| `validate`               | Validate skill implementation vs manifest | Before releasing skills           |
+| `diagnose`               | Run project health diagnostics            | Regular health checks             |
+| `generate_manifest`      | Generate capability manifest from code    | New skills without manifests      |
+| `build_capability_graph` | Build capability graph from all skills    | After adding/modifying skills     |
+| `analyze_project`        | Deep analysis of project state            | Strategic planning                |
 
 ## Usage Guide
 
@@ -78,6 +80,7 @@ Using the utility script:
 ```
 
 Output:
+
 ```
 ✓ Created orchestration request: 1730217845123
   Type: plan
@@ -99,6 +102,7 @@ Execute orchestration request 1730217845123
 ```
 
 Claude Code will:
+
 1. Read `orchestration-requests/pending/1730217845123.json`
 2. Move it to `in-progress/`
 3. Analyze the goal and context
@@ -114,6 +118,7 @@ cat orchestration-results/1730217845123.json
 ```
 
 Example result for `plan` type:
+
 ```json
 {
   "request_id": "1730217845123",
@@ -166,12 +171,14 @@ Brain commands still call Codex CLI (old way). They need to be modified to use t
 ### How to Modify Brain Commands
 
 **Before** (using Codex):
+
 ```bash
 # scripts/brain/commands/orchestration.sh
 codex exec "Create plan for: $GOAL"
 ```
 
 **After** (using Claude Code):
+
 ```bash
 # scripts/brain/commands/orchestration.sh
 ./scripts/orchestration/create-request.sh plan "$GOAL"
@@ -190,6 +197,7 @@ echo "Request created. Execute it via Claude Code."
 See `SCHEMAS/orchestration-request.schema.json` for full schema.
 
 Key fields:
+
 - `id`: Unique timestamp-based ID
 - `type`: Request type (plan|validate|diagnose|etc)
 - `goal`: User's goal description
@@ -202,6 +210,7 @@ Key fields:
 See `SCHEMAS/orchestration-result.schema.json` for full schema.
 
 Key fields:
+
 - `request_id`: Links back to request
 - `status`: success|partial_success|failed
 - `result_type`: Type of data returned
@@ -401,6 +410,7 @@ Claude Code can prioritize urgent requests when multiple are pending.
 ## Support
 
 For issues or questions:
+
 1. Review this documentation
 2. Check request/result schemas
 3. Examine example requests
@@ -409,6 +419,7 @@ For issues or questions:
 ## Conclusion
 
 The Claude Code orchestration system provides:
+
 - Zero additional cost
 - Simpler architecture
 - Native integration

@@ -37,6 +37,7 @@ Add to your Claude MCP settings:
 ## Tools
 
 ### 1. configure
+
 Configure scanner settings.
 
 ```typescript
@@ -48,6 +49,7 @@ Configure scanner settings.
 ```
 
 ### 2. scan_dependencies
+
 Audit project dependencies for known vulnerabilities.
 
 ```typescript
@@ -58,6 +60,7 @@ Audit project dependencies for known vulnerabilities.
 ```
 
 Returns:
+
 ```json
 {
   "vulnerabilities": {
@@ -80,6 +83,7 @@ Returns:
 ```
 
 ### 3. scan_secrets
+
 Scan codebase for exposed secrets.
 
 ```typescript
@@ -90,6 +94,7 @@ Scan codebase for exposed secrets.
 ```
 
 Returns:
+
 ```json
 {
   "secretsFound": 3,
@@ -113,6 +118,7 @@ Returns:
 ```
 
 ### 4. scan_owasp
+
 Check for OWASP Top 10 vulnerabilities.
 
 ```typescript
@@ -122,6 +128,7 @@ Check for OWASP Top 10 vulnerabilities.
 ```
 
 Returns:
+
 ```json
 {
   "issues": [
@@ -146,6 +153,7 @@ Returns:
 ```
 
 ### 5. scan_code_patterns
+
 Detect insecure code patterns.
 
 ```typescript
@@ -155,6 +163,7 @@ Detect insecure code patterns.
 ```
 
 ### 6. generate_report
+
 Generate comprehensive security report.
 
 ```typescript
@@ -166,6 +175,7 @@ Generate comprehensive security report.
 ```
 
 ### 7. risk_assessment
+
 Calculate overall security risk score.
 
 ```typescript
@@ -182,84 +192,94 @@ await scanner.configure({
   projectPath: './my-app',
   projectType: 'node',
   severity: 'medium'
-});
+})
 
 // 2. Scan dependencies
 const deps = await scanner.scan_dependencies({
   production: true
-});
-console.log(`Found ${deps.vulnerabilities.critical} critical vulnerabilities`);
+})
+console.log(`Found ${deps.vulnerabilities.critical} critical vulnerabilities`)
 
 // 3. Scan for secrets
 const secrets = await scanner.scan_secrets({
   exclude: ['node_modules', '.git']
-});
-console.log(`Found ${secrets.secretsFound} exposed secrets`);
+})
+console.log(`Found ${secrets.secretsFound} exposed secrets`)
 
 // 4. OWASP scan
-const owasp = await scanner.scan_owasp();
-console.log(`Found ${owasp.issues.length} OWASP issues`);
+const owasp = await scanner.scan_owasp()
+console.log(`Found ${owasp.issues.length} OWASP issues`)
 
 // 5. Generate report
 await scanner.generate_report({
   format: 'html',
   outputPath: './security-report.html'
-});
+})
 
 // 6. Risk assessment
-const risk = await scanner.risk_assessment();
-console.log(`Overall risk score: ${risk.score}/100`);
+const risk = await scanner.risk_assessment()
+console.log(`Overall risk score: ${risk.score}/100`)
 ```
 
 ## OWASP Top 10 Coverage
 
 ### A01:2021 - Broken Access Control
+
 - Missing authorization checks
 - Insecure direct object references
 - Directory traversal
 
 ### A02:2021 - Cryptographic Failures
+
 - Weak encryption algorithms
 - Hardcoded secrets
 - Insecure password storage
 
 ### A03:2021 - Injection
+
 - SQL injection
 - NoSQL injection
 - Command injection
 - XSS vulnerabilities
 
 ### A04:2021 - Insecure Design
+
 - Missing rate limiting
 - Lack of input validation
 - Insecure defaults
 
 ### A05:2021 - Security Misconfiguration
+
 - Default credentials
 - Verbose error messages
 - Missing security headers
 
 ### A06:2021 - Vulnerable Components
+
 - Outdated dependencies
 - Known CVEs
 - Unpatched libraries
 
 ### A07:2021 - Authentication Failures
+
 - Weak password policies
 - Missing MFA
 - Session fixation
 
 ### A08:2021 - Software Integrity Failures
+
 - Unsigned packages
 - No integrity checks
 - Insecure CI/CD
 
 ### A09:2021 - Logging Failures
+
 - Insufficient logging
 - Logging sensitive data
 - No monitoring
 
 ### A10:2021 - Server-Side Request Forgery
+
 - SSRF vulnerabilities
 - Unvalidated URLs
 
@@ -279,21 +299,25 @@ console.log(`Overall risk score: ${risk.score}/100`);
 ## Dependency Scanning
 
 ### Node.js
+
 - Uses `npm audit` or `yarn audit`
 - Checks package-lock.json / yarn.lock
 - Identifies transitive dependencies
 
 ### Python
+
 - Uses `pip-audit` or `safety`
 - Checks requirements.txt / Pipfile.lock
 
 ### Generic
+
 - Scans for known vulnerable patterns
 - Version-based CVE matching
 
 ## Integration with Security Engineer Skill
 
 This MCP enables the `security-engineer` skill by providing:
+
 - Automated vulnerability scanning
 - Real-time security checks
 - Best practice enforcement
@@ -327,24 +351,28 @@ Let me help you fix these issues...
 ## Best Practices
 
 ### Secrets Management
+
 - Never commit secrets to version control
 - Use environment variables
 - Rotate keys regularly
 - Use secret management services (Vault, AWS Secrets Manager)
 
 ### Dependency Security
+
 - Run audits regularly
 - Keep dependencies up to date
 - Use lock files
 - Review security advisories
 
 ### Code Security
+
 - Validate all inputs
 - Use parameterized queries
 - Implement proper authentication
 - Follow least privilege principle
 
 ### CI/CD Integration
+
 - Run security scans on every commit
 - Block deployment on critical issues
 - Generate security reports
@@ -384,4 +412,3 @@ npm test
 - **Enables:** security-engineer skill
 - **Use case:** Security auditing, vulnerability management, compliance
 - **Integration:** CI/CD pipelines, pre-commit hooks
-

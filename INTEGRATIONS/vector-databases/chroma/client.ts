@@ -113,12 +113,12 @@ export class ChromaClient {
       // Client-server mode
       this.client = new Chroma({
         path: config.url,
-        auth: config.auth ? { provider: 'token', credentials: config.auth } : undefined,
+        auth: config.auth ? { provider: 'token', credentials: config.auth } : undefined
       })
     } else {
       // Embedded mode
       this.client = new Chroma({
-        path: config.path || './chroma_db',
+        path: config.path || './chroma_db'
       })
     }
   }
@@ -126,14 +126,11 @@ export class ChromaClient {
   /**
    * Create a new collection
    */
-  async createCollection(
-    name: string,
-    config: CollectionConfig = {}
-  ): Promise<void> {
+  async createCollection(name: string, config: CollectionConfig = {}): Promise<void> {
     const collection = await this.client.createCollection({
       name,
       metadata: config.metadata,
-      embeddingFunction: config.embeddingFunction,
+      embeddingFunction: config.embeddingFunction
     })
 
     this.collections.set(name, collection)
@@ -142,10 +139,7 @@ export class ChromaClient {
   /**
    * Get or create collection
    */
-  async getOrCreateCollection(
-    name: string,
-    config: CollectionConfig = {}
-  ): Promise<Collection> {
+  async getOrCreateCollection(name: string, config: CollectionConfig = {}): Promise<Collection> {
     if (this.collections.has(name)) {
       return this.collections.get(name)!
     }
@@ -153,7 +147,7 @@ export class ChromaClient {
     const collection = await this.client.getOrCreateCollection({
       name,
       metadata: config.metadata,
-      embeddingFunction: config.embeddingFunction,
+      embeddingFunction: config.embeddingFunction
     })
 
     this.collections.set(name, collection)
@@ -179,34 +173,28 @@ export class ChromaClient {
   /**
    * Add vectors to collection
    */
-  async addVectors(
-    collectionName: string,
-    params: AddVectorsParams
-  ): Promise<void> {
+  async addVectors(collectionName: string, params: AddVectorsParams): Promise<void> {
     const collection = await this.getOrCreateCollection(collectionName)
 
     await collection.add({
       ids: params.ids,
       embeddings: params.embeddings,
       metadatas: params.metadatas,
-      documents: params.documents,
+      documents: params.documents
     })
   }
 
   /**
    * Update vectors in collection
    */
-  async updateVectors(
-    collectionName: string,
-    params: AddVectorsParams
-  ): Promise<void> {
+  async updateVectors(collectionName: string, params: AddVectorsParams): Promise<void> {
     const collection = await this.getOrCreateCollection(collectionName)
 
     await collection.update({
       ids: params.ids,
       embeddings: params.embeddings,
       metadatas: params.metadatas,
-      documents: params.documents,
+      documents: params.documents
     })
   }
 
@@ -231,7 +219,7 @@ export class ChromaClient {
         ids: params.ids.slice(i, endIdx),
         embeddings: params.embeddings.slice(i, endIdx),
         metadatas: params.metadatas?.slice(i, endIdx),
-        documents: params.documents?.slice(i, endIdx),
+        documents: params.documents?.slice(i, endIdx)
       })
 
       if (options.onProgress) {
@@ -243,10 +231,7 @@ export class ChromaClient {
   /**
    * Legacy alias for upsert (backward compatibility)
    */
-  async upsertVectors(
-    collectionName: string,
-    params: AddVectorsParams
-  ): Promise<void> {
+  async upsertVectors(collectionName: string, params: AddVectorsParams): Promise<void> {
     return this.upsert(collectionName, params)
   }
 
@@ -275,7 +260,7 @@ export class ChromaClient {
       nResults,
       where,
       whereDocument: options.whereDocument,
-      include: options.include || ['metadatas', 'documents', 'distances'],
+      include: options.include || ['metadatas', 'documents', 'distances']
     })
 
     return results as QueryResult
@@ -298,7 +283,7 @@ export class ChromaClient {
 
     return await collection.get({
       ids,
-      include: options.include || ['metadatas', 'documents'],
+      include: options.include || ['metadatas', 'documents']
     })
   }
 
@@ -325,7 +310,7 @@ export class ChromaClient {
       where: options.where,
       limit: options.limit,
       offset: options.offset,
-      include: options.include || ['metadatas', 'documents'],
+      include: options.include || ['metadatas', 'documents']
     })
   }
 
@@ -340,10 +325,7 @@ export class ChromaClient {
   /**
    * Delete vectors by filter
    */
-  async deleteByFilter(
-    collectionName: string,
-    where: Record<string, any>
-  ): Promise<void> {
+  async deleteByFilter(collectionName: string, where: Record<string, any>): Promise<void> {
     const collection = await this.getOrCreateCollection(collectionName)
     await collection.delete({ where })
   }
@@ -450,11 +432,7 @@ export function l2Distance(a: number[], b: number[]): number {
  * Chunk text into overlapping segments
  * Useful for processing long documents before embedding
  */
-export function chunkText(
-  text: string,
-  chunkSize: number = 500,
-  overlap: number = 50
-): string[] {
+export function chunkText(text: string, chunkSize: number = 500, overlap: number = 50): string[] {
   const chunks: string[] = []
   const words = text.split(/\s+/)
 
@@ -500,7 +478,7 @@ export function createChromaClient(): ChromaClient {
   return new ChromaClient({
     path: process.env.CHROMA_PATH || './chroma_db',
     url: process.env.CHROMA_URL,
-    auth: process.env.CHROMA_AUTH_TOKEN,
+    auth: process.env.CHROMA_AUTH_TOKEN
   })
 }
 
@@ -514,16 +492,18 @@ export async function examples() {
   await client.createCollection('documents', {
     metadata: {
       description: 'Document embeddings',
-      'hnsw:space': 'cosine', // Distance metric
-    },
+      'hnsw:space': 'cosine' // Distance metric
+    }
   })
 
   // Example 2: Batch upsert with progress tracking
   const documents = Array.from({ length: 1000 }, (_, i) => ({
     id: `doc_${i}`,
-    embedding: Array(384).fill(0).map(() => Math.random()),
+    embedding: Array(384)
+      .fill(0)
+      .map(() => Math.random()),
     metadata: { index: i, category: 'test' },
-    document: `Document ${i} content`,
+    document: `Document ${i} content`
   }))
 
   await client.upsert(
@@ -532,22 +512,24 @@ export async function examples() {
       ids: documents.map(d => d.id),
       embeddings: documents.map(d => d.embedding),
       metadatas: documents.map(d => d.metadata),
-      documents: documents.map(d => d.document),
+      documents: documents.map(d => d.document)
     },
     {
       batchSize: 100,
       onProgress: (current, total) => {
-        console.log(`Progress: ${current}/${total} (${Math.round(current / total * 100)}%)`)
-      },
+        console.log(`Progress: ${current}/${total} (${Math.round((current / total) * 100)}%)`)
+      }
     }
   )
 
   // Example 3: Search with filtering
-  const queryVector = Array(384).fill(0).map(() => Math.random())
+  const queryVector = Array(384)
+    .fill(0)
+    .map(() => Math.random())
   const results = await client.search('documents', queryVector, {
     limit: 5,
     filter: { category: 'test' },
-    include: ['metadatas', 'documents', 'distances'],
+    include: ['metadatas', 'documents', 'distances']
   })
 
   console.log('Search results:', results)

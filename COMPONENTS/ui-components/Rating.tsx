@@ -39,54 +39,54 @@
  * ```
  */
 
-import * as React from 'react';
-import { cn } from './utils';
+import * as React from 'react'
+import { cn } from './utils'
 
 export interface RatingProps {
   /**
    * Current rating value
    */
-  value?: number;
+  value?: number
 
   /**
    * Callback when rating changes
    */
-  onChange?: (value: number) => void;
+  onChange?: (value: number) => void
 
   /**
    * Maximum rating value
    */
-  max?: number;
+  max?: number
 
   /**
    * Allow half-star ratings
    */
-  allowHalf?: boolean;
+  allowHalf?: boolean
 
   /**
    * Read-only mode (no interaction)
    */
-  readOnly?: boolean;
+  readOnly?: boolean
 
   /**
    * Label for the rating
    */
-  label?: string;
+  label?: string
 
   /**
    * Size variant
    */
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg'
 
   /**
    * Whether the rating is disabled
    */
-  disabled?: boolean;
+  disabled?: boolean
 
   /**
    * Additional CSS classes
    */
-  className?: string;
+  className?: string
 }
 
 /**
@@ -103,97 +103,94 @@ export const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
       label,
       size = 'md',
       disabled = false,
-      className,
+      className
     },
     ref
   ) => {
-    const ratingId = React.useId();
-    const [hoverValue, setHoverValue] = React.useState<number | null>(null);
-    const [isHovering, setIsHovering] = React.useState(false);
+    const ratingId = React.useId()
+    const [hoverValue, setHoverValue] = React.useState<number | null>(null)
+    const [isHovering, setIsHovering] = React.useState(false)
 
-    const displayValue = isHovering && hoverValue !== null ? hoverValue : value;
+    const displayValue = isHovering && hoverValue !== null ? hoverValue : value
 
     // Size map
     const sizeMap = {
       sm: 'w-4 h-4',
       md: 'w-6 h-6',
-      lg: 'w-8 h-8',
-    };
+      lg: 'w-8 h-8'
+    }
 
     // Handle star click
     const handleClick = (starValue: number) => {
-      if (readOnly || disabled || !onChange) return;
-      onChange(starValue);
-    };
+      if (readOnly || disabled || !onChange) return
+      onChange(starValue)
+    }
 
     // Handle mouse move (for half-star)
-    const handleMouseMove = (
-      e: React.MouseEvent<HTMLButtonElement>,
-      starIndex: number
-    ) => {
-      if (readOnly || disabled || !allowHalf) return;
+    const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>, starIndex: number) => {
+      if (readOnly || disabled || !allowHalf) return
 
-      const rect = e.currentTarget.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const isLeftHalf = x < rect.width / 2;
+      const rect = e.currentTarget.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const isLeftHalf = x < rect.width / 2
 
-      setHoverValue(starIndex + (isLeftHalf ? 0.5 : 1));
-    };
+      setHoverValue(starIndex + (isLeftHalf ? 0.5 : 1))
+    }
 
     // Handle mouse enter/leave
     const handleMouseEnter = () => {
       if (!readOnly && !disabled) {
-        setIsHovering(true);
+        setIsHovering(true)
       }
-    };
+    }
 
     const handleMouseLeave = () => {
-      setIsHovering(false);
-      setHoverValue(null);
-    };
+      setIsHovering(false)
+      setHoverValue(null)
+    }
 
     // Keyboard navigation
     const handleKeyDown = (e: React.KeyboardEvent, starIndex: number) => {
-      if (readOnly || disabled || !onChange) return;
+      if (readOnly || disabled || !onChange) return
 
-      let newValue = value;
+      let newValue = value
 
       if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
-        newValue = Math.min(max, value + (allowHalf ? 0.5 : 1));
-        e.preventDefault();
+        newValue = Math.min(max, value + (allowHalf ? 0.5 : 1))
+        e.preventDefault()
       } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
-        newValue = Math.max(0, value - (allowHalf ? 0.5 : 1));
-        e.preventDefault();
+        newValue = Math.max(0, value - (allowHalf ? 0.5 : 1))
+        e.preventDefault()
       } else if (e.key === 'Home') {
-        newValue = 0;
-        e.preventDefault();
+        newValue = 0
+        e.preventDefault()
       } else if (e.key === 'End') {
-        newValue = max;
-        e.preventDefault();
+        newValue = max
+        e.preventDefault()
       }
 
       if (newValue !== value) {
-        onChange(newValue);
+        onChange(newValue)
       }
-    };
+    }
 
     // Generate star elements
     const stars = Array.from({ length: max }, (_, index) => {
-      const starValue = index + 1;
-      const fillPercentage = Math.min(100, Math.max(0, (displayValue - index) * 100));
+      const starValue = index + 1
+      const fillPercentage = Math.min(100, Math.max(0, (displayValue - index) * 100))
 
-      const isFilled = fillPercentage === 100;
-      const isHalfFilled = fillPercentage > 0 && fillPercentage < 100;
-      const isEmpty = fillPercentage === 0;
+      const isFilled = fillPercentage === 100
+      const isHalfFilled = fillPercentage > 0 && fillPercentage < 100
+      const isEmpty = fillPercentage === 0
 
       return (
         <button
           key={index}
           type="button"
           onClick={() => handleClick(starValue)}
-          onMouseMove={(e) => handleMouseMove(e, index)}
+          onMouseMove={e => handleMouseMove(e, index)}
           onMouseEnter={handleMouseEnter}
-          onKeyDown={(e) => handleKeyDown(e, index)}
+          onKeyDown={e => handleKeyDown(e, index)}
           disabled={readOnly || disabled}
           className={cn(
             'relative focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 rounded',
@@ -219,15 +216,11 @@ export const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
             <div
               className="absolute inset-0 overflow-hidden"
               style={{
-                width: `${fillPercentage}%`,
+                width: `${fillPercentage}%`
               }}
             >
               <svg
-                className={cn(
-                  sizeMap[size],
-                  'text-yellow-400',
-                  isHovering && 'text-yellow-500'
-                )}
+                className={cn(sizeMap[size], 'text-yellow-400', isHovering && 'text-yellow-500')}
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 aria-hidden="true"
@@ -237,8 +230,8 @@ export const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
             </div>
           )}
         </button>
-      );
-    });
+      )
+    })
 
     return (
       <div ref={ref} className={cn('inline-flex flex-col', className)}>
@@ -275,8 +268,8 @@ export const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
           )}
         </div>
       </div>
-    );
+    )
   }
-);
+)
 
-Rating.displayName = 'Rating';
+Rating.displayName = 'Rating'

@@ -13,12 +13,7 @@
     },
     "pii_tokenization": {
       "enabled": false,
-      "patterns": [
-        "email",
-        "phone",
-        "ssn",
-        "credit_card"
-      ],
+      "patterns": ["email", "phone", "ssn", "credit_card"],
       "log_detections": true
     },
     "access_control": {

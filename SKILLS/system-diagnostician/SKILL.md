@@ -40,10 +40,10 @@ Performs comprehensive project health analysis to diagnose issues, identify miss
 
 ```yaml
 inputs:
-  project_path: string           # Path to project directory
-  capability_graph: string       # Path to capability-graph.json
-  focus_areas: array             # Optional: ["security", "performance", "testing"]
-  include_metrics: boolean       # Include detailed metrics (default: false)
+  project_path: string # Path to project directory
+  capability_graph: string # Path to capability-graph.json
+  focus_areas: array # Optional: ["security", "performance", "testing"]
+  include_metrics: boolean # Include detailed metrics (default: false)
 ```
 
 ## Process
@@ -300,11 +300,11 @@ const dimensions = {
     factors: ['coverage', 'test_quality', 'test_types']
   },
   documentation: {
-    weight: 0.10,
+    weight: 0.1,
     factors: ['readme', 'api_docs', 'code_comments']
   },
   security: {
-    weight: 0.20,
+    weight: 0.2,
     factors: ['vulnerabilities', 'auth', 'input_validation']
   },
   performance: {
@@ -316,11 +316,11 @@ const dimensions = {
     factors: ['linting', 'typing', 'complexity']
   },
   architecture: {
-    weight: 0.10,
+    weight: 0.1,
     factors: ['structure', 'patterns', 'scalability']
   },
   dependencies: {
-    weight: 0.10,
+    weight: 0.1,
     factors: ['up_to_date', 'security', 'bloat']
   },
   ci_cd: {
@@ -358,13 +358,9 @@ function calculatePriority(gap) {
     "overall_health": 0.68,
     "dimensions": {
       "testing": {
-        "score": 0.40,
+        "score": 0.4,
         "status": "needs_improvement",
-        "issues": [
-          "Only 15% test coverage",
-          "No E2E tests",
-          "Missing integration tests"
-        ],
+        "issues": ["Only 15% test coverage", "No E2E tests", "Missing integration tests"],
         "recommendations": [
           "Add unit tests for API routes",
           "Set up Playwright for E2E testing",
@@ -372,7 +368,7 @@ function calculatePriority(gap) {
         ]
       },
       "security": {
-        "score": 0.50,
+        "score": 0.5,
         "status": "critical",
         "issues": [
           "No input validation on API routes",
@@ -415,7 +411,7 @@ function calculatePriority(gap) {
       "suggested_capabilities": ["technical-writer"],
       "impact": "medium",
       "effort": "low",
-      "priority_score": 0.50
+      "priority_score": 0.5
     }
   ],
   "critical_issues": [

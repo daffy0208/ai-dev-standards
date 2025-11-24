@@ -9,6 +9,7 @@ Pre-configured validation setups for different project types.
 **For:** Frontend applications using React or Next.js
 
 **Includes:**
+
 - Next.js ESLint configuration
 - React Testing Library setup
 - Playwright for E2E testing
@@ -22,6 +23,7 @@ Pre-configured validation setups for different project types.
 **For:** Backend REST/GraphQL APIs using Express, Fastify, etc.
 
 **Includes:**
+
 - Node.js environment configuration
 - Supertest for API testing
 - Integration test setup
@@ -34,6 +36,7 @@ Pre-configured validation setups for different project types.
 **For:** Published npm packages and reusable libraries
 
 **Includes:**
+
 - Strict TypeScript configuration
 - Type declaration generation
 - Source maps for debugging
@@ -84,14 +87,15 @@ Edit the `vitestConfig.test.coverage` section:
 
 ```json
 {
-  "lines": 80,      // Minimum line coverage %
-  "functions": 80,  // Minimum function coverage %
-  "branches": 75,   // Minimum branch coverage %
-  "statements": 80  // Minimum statement coverage %
+  "lines": 80, // Minimum line coverage %
+  "functions": 80, // Minimum function coverage %
+  "branches": 75, // Minimum branch coverage %
+  "statements": 80 // Minimum statement coverage %
 }
 ```
 
 **Recommendations:**
+
 - **Startups/MVPs:** 60-70% (move fast)
 - **Production Apps:** 80-85% (balanced)
 - **Critical Systems:** 90%+ (high reliability)
@@ -125,6 +129,7 @@ Common rule adjustments:
 ### TypeScript Strictness Levels
 
 **Strict (Libraries & Critical Systems):**
+
 ```json
 {
   "strict": true,
@@ -137,6 +142,7 @@ Common rule adjustments:
 ```
 
 **Moderate (Most Applications):**
+
 ```json
 {
   "strict": true,
@@ -146,6 +152,7 @@ Common rule adjustments:
 ```
 
 **Relaxed (Rapid Prototyping):**
+
 ```json
 {
   "strict": false,
@@ -156,6 +163,7 @@ Common rule adjustments:
 ### Test Environment Configuration
 
 **Frontend (Browser):**
+
 ```json
 {
   "test": {
@@ -166,6 +174,7 @@ Common rule adjustments:
 ```
 
 **Backend (Node.js):**
+
 ```json
 {
   "test": {
@@ -175,13 +184,12 @@ Common rule adjustments:
 ```
 
 **Universal (Both):**
+
 ```json
 {
   "test": {
     "environment": "node",
-    "environmentMatchGlobs": [
-      ["**/*.browser.test.ts", "jsdom"]
-    ]
+    "environmentMatchGlobs": [["**/*.browser.test.ts", "jsdom"]]
   }
 }
 ```
@@ -191,12 +199,14 @@ Common rule adjustments:
 ### From Jest to Vitest
 
 1. Replace Jest dependencies:
+
    ```bash
    npm uninstall jest @types/jest
    npm install --save-dev vitest @vitest/coverage-v8
    ```
 
 2. Update test scripts:
+
    ```json
    {
      "test": "vitest run",
@@ -208,6 +218,7 @@ Common rule adjustments:
 3. Rename `jest.config.js` to `vitest.config.ts`
 
 4. Update imports in tests:
+
    ```typescript
    // Before (Jest)
    import { describe, it, expect } from '@jest/globals'

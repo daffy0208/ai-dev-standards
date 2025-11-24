@@ -11,6 +11,7 @@ One-sentence description of the skill's purpose.
 ## When to Use
 
 Use this skill when you need to:
+
 - [Primary use case]
 - [Secondary use case]
 - [Tertiary use case]
@@ -42,26 +43,31 @@ skill-name/
 ## Prerequisites
 
 **Knowledge:**
+
 - [Required understanding]
 - [Helpful background]
 
 **Tools:**
+
 - [Required software/access]
 - [Optional tools]
 
 **Related Skills:**
 Should understand these skills first:
+
 - `prerequisite-skill-1`
 - `prerequisite-skill-2`
 
 ## Common Workflows
 
 ### Workflow 1: [Common Task]
+
 1. Use this skill to [action]
 2. Then use `related-skill` to [action]
 3. Finish with [outcome]
 
 ### Workflow 2: [Another Common Task]
+
 1. [Step]
 2. [Step]
 3. [Outcome]
@@ -69,6 +75,7 @@ Should understand these skills first:
 ## Success Criteria
 
 You've successfully used this skill when:
+
 - ✅ [Measurable outcome 1]
 - ✅ [Measurable outcome 2]
 - ✅ [Measurable outcome 3]
@@ -76,10 +83,12 @@ You've successfully used this skill when:
 ## Troubleshooting
 
 **Skill not activating?**
+
 - Check description triggers in SKILL.md
 - Try explicitly requesting: "Use the [skill-name] skill to..."
 
 **Need help?**
+
 - Review EXAMPLES.md for similar scenarios
 - Check REFERENCE.md for deep dives
 - Consult related skills listed above
@@ -87,11 +96,13 @@ You've successfully used this skill when:
 ## Related Resources
 
 **In This Repository:**
+
 - `STANDARDS/architecture-patterns/[related-pattern].md`
 - `PLAYBOOKS/[related-playbook].md`
 - `SKILLS/[related-skill]/`
 
 **External Resources:**
+
 - [Link to relevant documentation]
 - [Link to tool/framework]
 

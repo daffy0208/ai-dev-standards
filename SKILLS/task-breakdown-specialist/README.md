@@ -11,6 +11,7 @@ Automatically breaks large, overwhelming tasks into tiny, achievable micro-tasks
 ## When to Use
 
 Use this skill when:
+
 - Feeling overwhelmed by task size
 - Can't start a task (activation energy too high)
 - Need to make progress visible
@@ -46,21 +47,25 @@ Total: ~2 hours (ADHD-realistic estimate)
 ## Key Concepts
 
 **Activation Energy** - The effort needed to start a task
+
 - Large tasks = high activation energy = procrastination
 - Tiny tasks = low activation energy = easy to start
 
 **Quick Wins** - Tasks that take 2-5 minutes
+
 - Build momentum
 - Provide immediate dopamine
 - Establish "I'm productive" mindset
 - Always start with 3 quick wins
 
 **ADHD Tax** - Reality-based time estimates
+
 - Multiply neurotypical estimates by 1.5-2x
 - Accounts for distractions, context switching, "where was I?"
 - Better to overestimate and finish early (dopamine!)
 
 **Progress Visualization** - Make work visible
+
 - Checklists ✅
 - Progress bars ████████░░ 80%
 - Time tracking
@@ -82,6 +87,7 @@ Break tasks into time buckets:
 ### Good Task Breakdown
 
 ✅ **DO:**
+
 - Start with quick wins (2-5 min tasks)
 - Keep tasks ≤ 15 minutes
 - Use clear "done" criteria
@@ -90,6 +96,7 @@ Break tasks into time buckets:
 - Mix easy and hard tasks
 
 ❌ **DON'T:**
+
 - Start with hard tasks (high activation energy)
 - Make tasks vague ("work on dashboard")
 - Use wishful time estimates
@@ -104,16 +111,19 @@ Break tasks into time buckets:
 ✅ Good:
 
 Quick Wins (2 min total):
+
 - [ ] Create dashboard.tsx (30 sec) 🟢
 - [ ] Add to nav menu (1 min) 🟢
 - [ ] Add heading (30 sec) 🟢
 
 Core Work (45 min total):
+
 - [ ] Build layout (15 min) 🟡
 - [ ] Fetch user data (15 min) 🟡
 - [ ] Display stats (15 min) 🟡
 
 Polish (15 min total):
+
 - [ ] Add loading state (5 min) 🟢
 - [ ] Handle errors (10 min) 🟡
 
@@ -123,6 +133,7 @@ Total: ~60 min (realistic: 90 min with ADHD tax)
 ## Automation Features
 
 **Claude automatically:**
+
 - ✅ Breaks down large tasks when you describe them
 - ✅ Adds 3 quick wins to start
 - ✅ Includes ADHD-realistic time estimates
@@ -130,6 +141,7 @@ Total: ~60 min (realistic: 90 min with ADHD tax)
 - ✅ Reorders tasks for momentum
 
 **You just:**
+
 - Describe what you need to do
 - Start with the first tiny task
 - Get dopamine from checking off tasks
@@ -161,6 +173,7 @@ Better to overestimate! Finishing early = dopamine
 6. Repeat
 
 **Example:**
+
 ```
 1. Overwhelming: "Build checkout flow"
 2. First action: "Create checkout.tsx file" (30 sec)
@@ -174,6 +187,7 @@ Better to overestimate! Finishing early = dopamine
 ## Common Patterns
 
 ### Feature Breakdown
+
 1. Identify components that change
 2. Break each into micro-tasks
 3. Start with quick wins
@@ -181,6 +195,7 @@ Better to overestimate! Finishing early = dopamine
 5. Polish and ship
 
 ### Bug Fix Breakdown
+
 1. Reproduce (5-10 min)
 2. Investigate (10-20 min)
 3. Fix (20-30 min)
@@ -188,6 +203,7 @@ Better to overestimate! Finishing early = dopamine
 5. Deploy (5-10 min)
 
 ### Learning Breakdown
+
 1. Overview (watch video, read intro)
 2. Hands-on (build simple example)
 3. Apply (use in real project)
@@ -195,16 +211,19 @@ Better to overestimate! Finishing early = dopamine
 ## Tools & Templates
 
 **Daily Task Template:**
+
 ```markdown
 # Today
 
 ONE Main Goal: [most important thing]
 
 Morning Quick Wins:
+
 - [ ] Task 1 (2 min) 🟢
 - [ ] Task 2 (5 min) 🟢
 
 Main Work:
+
 - [ ] Task 3 (30 min) 🟡
 
 Wins Log: [completed tasks for dopamine]
@@ -213,6 +232,7 @@ Wins Log: [completed tasks for dopamine]
 ## Success Metrics
 
 You're using this skill well when:
+
 - ✅ Starting tasks feels easy
 - ✅ You complete multiple tasks per session
 - ✅ Time estimates are realistic

@@ -45,18 +45,21 @@ Use this skill when you need to:
 ### 3-Phase Process
 
 **Phase 1: Discovery (10 min)**
+
 - Read all documentation
 - Examine codebase
 - Test functionality
 - Review supporting materials
 
 **Phase 2: Evaluation (30-60 min)**
+
 - Score each of 12 dimensions (1-10)
 - Provide evidence for each score
 - Identify strengths and weaknesses
 - Compare against industry leaders
 
 **Phase 3: Synthesis (20 min)**
+
 - Create comprehensive report
 - Prioritize improvements
 - Provide actionable recommendations
@@ -177,33 +180,39 @@ for production deployment.
 ## Report Structure
 
 ### Executive Summary
+
 - Overall score + rating
 - Top 3 strengths
 - Top 3 weaknesses
 - Final recommendation
 
 ### Detailed Scores
+
 - Table with all 12 dimensions
 - Individual scores + ratings
 - Priority levels
 
 ### Dimension Analysis
+
 - Each dimension examined
 - Strengths + weaknesses
 - Evidence cited
 - Specific improvements
 
 ### Recommendations
+
 - **Immediate** - Quick wins (1-2 weeks)
 - **Short-term** - Important improvements (1-3 months)
 - **Long-term** - Strategic changes (3-12 months)
 
 ### Comparative Analysis
+
 - Industry leader comparison
 - Benchmark against similar tools
 - Unique differentiators
 
 ### Risk Assessment
+
 - High/medium/low risk issues
 - Impact analysis
 - Mitigation strategies
@@ -215,24 +224,29 @@ for production deployment.
 The skill compares against established standards:
 
 **Code Quality:**
+
 - Clean Code (Robert Martin)
 - Code Complete (Steve McConnell)
 - SonarQube quality gates
 
 **Security:**
+
 - OWASP Top 10
 - SANS Top 25
 - CWE/SANS
 
 **Accessibility:**
+
 - WCAG 2.1 (AA/AAA)
 - ADHD-friendly design principles
 
 **Testing:**
+
 - Test Pyramid (Mike Cohn)
 - 80% minimum coverage
 
 **Performance:**
+
 - Core Web Vitals (Google)
 - RAIL model
 
@@ -312,6 +326,7 @@ Comprehensive security audit:
 - ❌ Replace human judgment (it augments, not replaces)
 
 **This skill provides:**
+
 - ✅ Comprehensive manual review
 - ✅ Expert evaluation framework
 - ✅ Structured assessment
@@ -383,6 +398,7 @@ See `EXAMPLES/quality-audit-report-sample.md` for a complete example report.
 ### Q: How often should I audit?
 
 **A:**
+
 - **Pre-launch:** Always
 - **Major releases:** Every time
 - **Ongoing:** Quarterly or bi-annually
@@ -411,6 +427,7 @@ See `EXAMPLES/quality-audit-report-sample.md` for a complete example report.
 ## Changelog
 
 ### v1.0.0 (2025-10-22)
+
 - Initial release
 - 12-dimension evaluation framework
 - Comprehensive scoring rubric

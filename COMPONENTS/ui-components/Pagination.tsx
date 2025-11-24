@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from './utils';
+import React, { useMemo } from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from './utils'
 
 /**
  * Pagination Component
@@ -57,20 +57,17 @@ import { cn } from './utils';
  * ```
  */
 
-const paginationVariants = cva(
-  'flex items-center',
-  {
-    variants: {
-      variant: {
-        default: 'space-x-1',
-        compact: 'space-x-0.5',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-    },
+const paginationVariants = cva('flex items-center', {
+  variants: {
+    variant: {
+      default: 'space-x-1',
+      compact: 'space-x-0.5'
+    }
+  },
+  defaultVariants: {
+    variant: 'default'
   }
-);
+})
 
 const paginationButtonVariants = cva(
   'inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-600 disabled:pointer-events-none disabled:opacity-50',
@@ -78,39 +75,39 @@ const paginationButtonVariants = cva(
     variants: {
       variant: {
         default: 'h-9 min-w-[36px] rounded-md text-sm',
-        compact: 'h-8 min-w-[32px] rounded text-xs',
+        compact: 'h-8 min-w-[32px] rounded text-xs'
       },
       state: {
         default: 'bg-transparent hover:bg-gray-100 text-gray-700',
         active: 'bg-blue-600 text-white hover:bg-blue-700',
-        disabled: 'opacity-50 cursor-not-allowed',
-      },
+        disabled: 'opacity-50 cursor-not-allowed'
+      }
     },
     defaultVariants: {
       variant: 'default',
-      state: 'default',
-    },
+      state: 'default'
+    }
   }
-);
+)
 
 export interface PaginationProps extends VariantProps<typeof paginationVariants> {
   /** Current active page (1-indexed) */
-  currentPage: number;
+  currentPage: number
   /** Total number of pages */
-  totalPages: number;
+  totalPages: number
   /** Callback fired when page changes */
-  onPageChange: (page: number) => void;
+  onPageChange: (page: number) => void
   /** Number of page buttons to show on each side of current page */
-  siblingCount?: number;
+  siblingCount?: number
   /** Whether to show first/last page buttons */
-  showFirstLast?: boolean;
+  showFirstLast?: boolean
   /** Whether to show previous/next page buttons */
-  showPrevNext?: boolean;
+  showPrevNext?: boolean
   /** Additional CSS classes */
-  className?: string;
+  className?: string
 }
 
-const ELLIPSIS = '...';
+const ELLIPSIS = '...'
 
 const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
   (
@@ -129,77 +126,77 @@ const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
   ) => {
     // Generate page numbers array with ellipsis
     const pageNumbers = useMemo(() => {
-      const totalNumbers = siblingCount * 2 + 3; // siblings on each side + current + first + last
-      const totalBlocks = totalNumbers + 2; // + 2 ellipsis
+      const totalNumbers = siblingCount * 2 + 3 // siblings on each side + current + first + last
+      const totalBlocks = totalNumbers + 2 // + 2 ellipsis
 
       if (totalPages <= totalBlocks) {
         // Show all pages if total pages is less than total blocks
-        return Array.from({ length: totalPages }, (_, i) => i + 1);
+        return Array.from({ length: totalPages }, (_, i) => i + 1)
       }
 
-      const leftSiblingIndex = Math.max(currentPage - siblingCount, 1);
-      const rightSiblingIndex = Math.min(currentPage + siblingCount, totalPages);
+      const leftSiblingIndex = Math.max(currentPage - siblingCount, 1)
+      const rightSiblingIndex = Math.min(currentPage + siblingCount, totalPages)
 
-      const shouldShowLeftEllipsis = leftSiblingIndex > 2;
-      const shouldShowRightEllipsis = rightSiblingIndex < totalPages - 1;
+      const shouldShowLeftEllipsis = leftSiblingIndex > 2
+      const shouldShowRightEllipsis = rightSiblingIndex < totalPages - 1
 
-      const firstPageIndex = 1;
-      const lastPageIndex = totalPages;
+      const firstPageIndex = 1
+      const lastPageIndex = totalPages
 
       if (!shouldShowLeftEllipsis && shouldShowRightEllipsis) {
-        const leftItemCount = 3 + 2 * siblingCount;
-        const leftRange = Array.from({ length: leftItemCount }, (_, i) => i + 1);
-        return [...leftRange, ELLIPSIS, lastPageIndex];
+        const leftItemCount = 3 + 2 * siblingCount
+        const leftRange = Array.from({ length: leftItemCount }, (_, i) => i + 1)
+        return [...leftRange, ELLIPSIS, lastPageIndex]
       }
 
       if (shouldShowLeftEllipsis && !shouldShowRightEllipsis) {
-        const rightItemCount = 3 + 2 * siblingCount;
+        const rightItemCount = 3 + 2 * siblingCount
         const rightRange = Array.from(
           { length: rightItemCount },
           (_, i) => totalPages - rightItemCount + i + 1
-        );
-        return [firstPageIndex, ELLIPSIS, ...rightRange];
+        )
+        return [firstPageIndex, ELLIPSIS, ...rightRange]
       }
 
       if (shouldShowLeftEllipsis && shouldShowRightEllipsis) {
         const middleRange = Array.from(
           { length: rightSiblingIndex - leftSiblingIndex + 1 },
           (_, i) => leftSiblingIndex + i
-        );
-        return [firstPageIndex, ELLIPSIS, ...middleRange, ELLIPSIS, lastPageIndex];
+        )
+        return [firstPageIndex, ELLIPSIS, ...middleRange, ELLIPSIS, lastPageIndex]
       }
 
-      return [];
-    }, [currentPage, totalPages, siblingCount]);
+      return []
+    }, [currentPage, totalPages, siblingCount])
 
-    const canGoPrevious = currentPage > 1;
-    const canGoNext = currentPage < totalPages;
+    const canGoPrevious = currentPage > 1
+    const canGoNext = currentPage < totalPages
 
     const handlePageClick = (page: number | string) => {
       if (typeof page === 'number' && page !== currentPage) {
-        onPageChange(page);
+        onPageChange(page)
       }
-    };
+    }
 
     const handlePrevious = () => {
       if (canGoPrevious) {
-        onPageChange(currentPage - 1);
+        onPageChange(currentPage - 1)
       }
-    };
+    }
 
     const handleNext = () => {
       if (canGoNext) {
-        onPageChange(currentPage + 1);
+        onPageChange(currentPage + 1)
       }
-    };
+    }
 
     const handleFirst = () => {
-      onPageChange(1);
-    };
+      onPageChange(1)
+    }
 
     const handleLast = () => {
-      onPageChange(totalPages);
-    };
+      onPageChange(totalPages)
+    }
 
     return (
       <nav
@@ -221,7 +218,7 @@ const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
                 className={cn(
                   paginationButtonVariants({
                     variant,
-                    state: !canGoPrevious ? 'disabled' : 'default',
+                    state: !canGoPrevious ? 'disabled' : 'default'
                   }),
                   'px-2'
                 )}
@@ -255,7 +252,7 @@ const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
                 className={cn(
                   paginationButtonVariants({
                     variant,
-                    state: !canGoPrevious ? 'disabled' : 'default',
+                    state: !canGoPrevious ? 'disabled' : 'default'
                   }),
                   'px-2'
                 )}
@@ -279,9 +276,9 @@ const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
 
           {/* Page numbers */}
           {pageNumbers.map((pageNumber, index) => {
-            const isEllipsis = pageNumber === ELLIPSIS;
-            const isActive = pageNumber === currentPage;
-            const key = isEllipsis ? `ellipsis-${index}` : `page-${pageNumber}`;
+            const isEllipsis = pageNumber === ELLIPSIS
+            const isActive = pageNumber === currentPage
+            const key = isEllipsis ? `ellipsis-${index}` : `page-${pageNumber}`
 
             return (
               <li key={key}>
@@ -304,7 +301,7 @@ const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
                     className={cn(
                       paginationButtonVariants({
                         variant,
-                        state: isActive ? 'active' : 'default',
+                        state: isActive ? 'active' : 'default'
                       })
                     )}
                   >
@@ -312,7 +309,7 @@ const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
                   </button>
                 )}
               </li>
-            );
+            )
           })}
 
           {/* Next page button */}
@@ -326,7 +323,7 @@ const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
                 className={cn(
                   paginationButtonVariants({
                     variant,
-                    state: !canGoNext ? 'disabled' : 'default',
+                    state: !canGoNext ? 'disabled' : 'default'
                   }),
                   'px-2'
                 )}
@@ -359,7 +356,7 @@ const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
                 className={cn(
                   paginationButtonVariants({
                     variant,
-                    state: !canGoNext ? 'disabled' : 'default',
+                    state: !canGoNext ? 'disabled' : 'default'
                   }),
                   'px-2'
                 )}
@@ -383,10 +380,10 @@ const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
           )}
         </ul>
       </nav>
-    );
+    )
   }
-);
+)
 
-Pagination.displayName = 'Pagination';
+Pagination.displayName = 'Pagination'
 
-export { Pagination, paginationButtonVariants };
+export { Pagination, paginationButtonVariants }

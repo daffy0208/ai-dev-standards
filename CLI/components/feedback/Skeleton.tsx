@@ -36,12 +36,7 @@ export interface SkeletonProps {
 /**
  * Base skeleton component
  */
-export function Skeleton({
-  className = '',
-  width,
-  height,
-  circle = false
-}: SkeletonProps) {
+export function Skeleton({ className = '', width, height, circle = false }: SkeletonProps) {
   const style: React.CSSProperties = {
     width: width ? (typeof width === 'number' ? `${width}px` : width) : undefined,
     height: height ? (typeof height === 'number' ? `${height}px` : height) : undefined
@@ -68,11 +63,7 @@ export function SkeletonText({
   return (
     <div className={`space-y-2 ${className}`}>
       {Array.from({ length: lines }).map((_, i) => (
-        <Skeleton
-          key={i}
-          height={16}
-          width={i === lines - 1 ? '80%' : '100%'}
-        />
+        <Skeleton key={i} height={16} width={i === lines - 1 ? '80%' : '100%'} />
       ))}
     </div>
   )
@@ -107,13 +98,7 @@ export function SkeletonCard({ hasImage = true }: { hasImage?: boolean }) {
 /**
  * Table skeleton
  */
-export function SkeletonTable({
-  rows = 5,
-  columns = 4
-}: {
-  rows?: number
-  columns?: number
-}) {
+export function SkeletonTable({ rows = 5, columns = 4 }: { rows?: number; columns?: number }) {
   return (
     <div className="space-y-2">
       {/* Header */}
@@ -380,6 +365,8 @@ export function SkeletonExamples() {
       <div>
         <h3 className="font-medium mb-4">With Shimmer</h3>
         <SkeletonWithShimmer height={100} width={300} />
+        {/* eslint-disable-next-line react/no-unknown-property */}
+        {/* @ts-expect-error */}
         <style jsx global>{`
           @keyframes shimmer {
             100% {

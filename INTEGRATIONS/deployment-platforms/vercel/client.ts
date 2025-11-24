@@ -183,7 +183,7 @@ export class VercelClient {
   async createDeployment(options: CreateDeploymentOptions): Promise<Deployment> {
     const body: any = {
       name: options.name,
-      target: options.target || 'preview',
+      target: options.target || 'preview'
     }
 
     if (options.gitSource) {
@@ -218,7 +218,7 @@ export class VercelClient {
    */
   async listDeployments(projectName: string): Promise<Deployment[]> {
     const response = await this.request('GET', '/v6/deployments', {
-      projectId: projectName,
+      projectId: projectName
     })
     return response.deployments
   }
@@ -259,7 +259,9 @@ export class VercelClient {
     const deployment = await this.getDeployment(deploymentId)
 
     if (deployment.state !== 'READY') {
-      throw new Error(`Cannot rollback to deployment ${deploymentId}: state is ${deployment.state}, must be READY`)
+      throw new Error(
+        `Cannot rollback to deployment ${deploymentId}: state is ${deployment.state}, must be READY`
+      )
     }
 
     // Promote the deployment by creating an alias to the production domain
@@ -327,7 +329,7 @@ export class VercelClient {
    */
   async addDomain(projectName: string, domain: string): Promise<Domain> {
     return this.request('POST', `/v9/projects/${projectName}/domains`, {
-      name: domain,
+      name: domain
     })
   }
 
@@ -424,13 +426,13 @@ export class VercelClient {
 
     const headers: HeadersInit = {
       Authorization: `Bearer ${this.token}`,
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     }
 
     const options: RequestInit = {
       method,
       headers,
-      signal: AbortSignal.timeout(this.timeout),
+      signal: AbortSignal.timeout(this.timeout)
     }
 
     if (body && ['POST', 'PATCH', 'PUT'].includes(method)) {
@@ -460,7 +462,10 @@ export class VercelClient {
       return response.json()
     } catch (error: any) {
       // Retry on network errors or timeouts
-      if ((error.name === 'AbortError' || error.name === 'TypeError') && retryCount < this.maxRetries) {
+      if (
+        (error.name === 'AbortError' || error.name === 'TypeError') &&
+        retryCount < this.maxRetries
+      ) {
         const delay = Math.pow(2, retryCount) * 1000
         await new Promise(resolve => setTimeout(resolve, delay))
         return this.request(method, endpoint, body, retryCount + 1)

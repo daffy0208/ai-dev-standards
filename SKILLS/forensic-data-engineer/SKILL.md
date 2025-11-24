@@ -12,18 +12,21 @@ I help you investigate data anomalies, detect fraud, analyze audit trails, and e
 ## What I Do
 
 **Forensic Analysis:**
+
 - Anomaly detection and pattern recognition
 - Fraud detection and prevention
 - Breach investigation and root cause analysis
 - Data integrity verification
 
 **Audit & Compliance:**
+
 - Audit trail analysis and reconstruction
 - Chain of custody maintenance
 - Regulatory compliance (GDPR, SOC2, HIPAA)
 - Access control auditing
 
 **Data Recovery:**
+
 - Forensic recovery of deleted data
 - Historical data reconstruction
 - Change detection and unauthorized modifications
@@ -178,11 +181,11 @@ export async function detectTransactionAnomalies(transaction: Transaction) {
     const timeDiff = transaction.timestamp.getTime() - lastTransaction.timestamp.getTime()
     const distance = calculateDistance(lastTransaction.location, transaction.location)
     const maxPossibleSpeed = 900 // km/h (commercial flight)
-    const requiredSpeed = (distance / (timeDiff / 3600000)) // km/h
+    const requiredSpeed = distance / (timeDiff / 3600000) // km/h
 
     if (requiredSpeed > maxPossibleSpeed) {
       anomalies.push(
-        `Impossible travel: ${distance}km in ${timeDiff/60000} minutes (${requiredSpeed.toFixed(0)} km/h required)`
+        `Impossible travel: ${distance}km in ${timeDiff / 60000} minutes (${requiredSpeed.toFixed(0)} km/h required)`
       )
     }
   }
@@ -215,7 +218,7 @@ export async function detectTransactionAnomalies(transaction: Transaction) {
 }
 
 async function getUserTransactionStats(userId: string) {
-  const result = await db.$queryRaw<[{mean: number, stddev: number}]>`
+  const result = await db.$queryRaw<[{ mean: number; stddev: number }]>`
     SELECT
       AVG(amount)::float as mean,
       STDDEV(amount)::float as stddev
@@ -622,16 +625,15 @@ export class BreachInvestigator {
     const byUser = groupBy(accesses, 'userId')
 
     for (const [userId, userAccesses] of Object.entries(byUser)) {
-      const sorted = userAccesses.sort((a, b) =>
-        a.timestamp.getTime() - b.timestamp.getTime()
-      )
+      const sorted = userAccesses.sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime())
 
       // Check for rapid sequential access
       if (sorted.length > 100) {
-        const duration = sorted[sorted.length - 1].timestamp.getTime() -
-                        sorted[0].timestamp.getTime()
+        const duration =
+          sorted[sorted.length - 1].timestamp.getTime() - sorted[0].timestamp.getTime()
 
-        if (duration < 60000) { // Less than 1 minute
+        if (duration < 60000) {
+          // Less than 1 minute
           return {
             userId,
             recordCount: sorted.length,
@@ -679,17 +681,13 @@ export class BreachInvestigator {
     affectedTable: string
   }): Promise<ImpactAssessment> {
     const sensitiveFields = ['ssn', 'password', 'creditCard', 'email', 'phone']
-    const hasSensitiveData = config.compromisedFields.some(f =>
-      sensitiveFields.includes(f)
-    )
+    const hasSensitiveData = config.compromisedFields.some(f => sensitiveFields.includes(f))
 
     return {
       severity: hasSensitiveData ? 'CRITICAL' : 'HIGH',
       affectedUsers: config.affectedRecords,
       requiresNotification: true,
-      regulatoryImplications: hasSensitiveData
-        ? ['GDPR', 'CCPA', 'State Breach Laws']
-        : [],
+      regulatoryImplications: hasSensitiveData ? ['GDPR', 'CCPA', 'State Breach Laws'] : [],
       estimatedCost: this.estimateBreachCost(config.affectedRecords)
     }
   }
@@ -748,9 +746,10 @@ export class ChangeDetector {
       }
 
       // Check 2: Bulk operations
-      const recentChanges = changes.filter(c =>
-        c.userId === change.userId &&
-        Math.abs(c.timestamp.getTime() - change.timestamp.getTime()) < 60000
+      const recentChanges = changes.filter(
+        c =>
+          c.userId === change.userId &&
+          Math.abs(c.timestamp.getTime() - change.timestamp.getTime()) < 60000
       )
 
       if (recentChanges.length > 50) {
@@ -792,17 +791,23 @@ export class ChangeDetector {
     })
 
     // Group by table and action
-    const summary = changes.reduce((acc, change) => {
-      const key = `${change.tableName}:${change.action}`
-      acc[key] = (acc[key] || 0) + 1
-      return acc
-    }, {} as Record<string, number>)
+    const summary = changes.reduce(
+      (acc, change) => {
+        const key = `${change.tableName}:${change.action}`
+        acc[key] = (acc[key] || 0) + 1
+        return acc
+      },
+      {} as Record<string, number>
+    )
 
     // Group by user
-    const byUser = changes.reduce((acc, change) => {
-      acc[change.userId] = (acc[change.userId] || 0) + 1
-      return acc
-    }, {} as Record<string, number>)
+    const byUser = changes.reduce(
+      (acc, change) => {
+        acc[change.userId] = (acc[change.userId] || 0) + 1
+        return acc
+      },
+      {} as Record<string, number>
+    )
 
     return {
       totalChanges: changes.length,
@@ -899,9 +904,8 @@ export class ForensicRecovery {
       timeline.push({
         timestamp: event.timestamp,
         action: event.action,
-        changes: event.action === 'UPDATE'
-          ? this.diffObjects(event.oldValue, event.newValue)
-          : null,
+        changes:
+          event.action === 'UPDATE' ? this.diffObjects(event.oldValue, event.newValue) : null,
         state: structuredClone(currentState)
       })
     }
@@ -921,17 +925,11 @@ export class ForensicRecovery {
     return changes
   }
 
-  async rollbackToTimestamp(
-    tableName: string,
-    recordId: string,
-    timestamp: Date
-  ) {
+  async rollbackToTimestamp(tableName: string, recordId: string, timestamp: Date) {
     const timeline = await this.reconstructHistory(tableName, recordId)
 
     // Find state at target timestamp
-    const targetState = timeline
-      .filter(t => t.timestamp <= timestamp)
-      .pop()?.state
+    const targetState = timeline.filter(t => t.timestamp <= timestamp).pop()?.state
 
     if (!targetState) {
       throw new Error('No state found at target timestamp')
@@ -1035,17 +1033,8 @@ export class GDPRCompliance {
         'Marketing (with consent)',
         'Legal compliance'
       ],
-      dataCategories: [
-        'Identity data',
-        'Contact data',
-        'Financial data',
-        'Usage data'
-      ],
-      recipients: [
-        'Payment processors',
-        'Email service providers',
-        'Analytics providers'
-      ],
+      dataCategories: ['Identity data', 'Contact data', 'Financial data', 'Usage data'],
+      recipients: ['Payment processors', 'Email service providers', 'Analytics providers'],
       retentionPeriods: {
         activeUsers: '5 years after last activity',
         deletedUsers: '1 year (anonymized)',
@@ -1127,8 +1116,7 @@ export class ThreatDetector {
     })
 
     for (const change of privilegeChanges) {
-      if (change.newValue?.role === 'ADMIN' &&
-          change.oldValue?.role !== 'ADMIN') {
+      if (change.newValue?.role === 'ADMIN' && change.oldValue?.role !== 'ADMIN') {
         threats.push({
           type: 'PRIVILEGE_ESCALATION',
           severity: 'CRITICAL',
@@ -1164,6 +1152,7 @@ export class ThreatDetector {
 ## When to Use Me
 
 **Perfect for:**
+
 - Security incident investigation
 - Fraud detection and prevention
 - Compliance auditing (GDPR, SOC2, HIPAA)
@@ -1172,6 +1161,7 @@ export class ThreatDetector {
 - Data integrity verification
 
 **I'll help you:**
+
 - Build audit trail systems
 - Detect anomalies and fraud
 - Track data lineage

@@ -11,6 +11,7 @@ Guides deployment platform selection and infrastructure setup from MVP (Vercel, 
 ## When to Use
 
 Use this skill when you need to:
+
 - Choose where to deploy an application
 - Set up CI/CD pipelines
 - Configure production environments
@@ -65,21 +66,25 @@ deployment-advisor/
 ## Prerequisites
 
 **Knowledge:**
+
 - Basic command line
 - Git basics
 - Understanding of your application stack
 
 **Tools:**
+
 - GitHub/GitLab account
 - Platform account (Vercel, Railway, AWS, etc.)
 - Domain name (optional for MVP)
 
 **Related Skills:**
+
 - `frontend-builder` or `api-designer` for building apps to deploy
 
 ## Success Criteria
 
 You've successfully used this skill when:
+
 - ✅ Deployment platform chosen based on tier and requirements
 - ✅ Application successfully deployed to production
 - ✅ CI/CD pipeline configured (auto-deploy from Git)
@@ -93,6 +98,7 @@ You've successfully used this skill when:
 ## Common Workflows
 
 ### Workflow 1: MVP Launch (Tier 1)
+
 1. Use deployment-advisor to choose platform (Vercel for Next.js)
 2. Connect GitHub repo to Vercel
 3. Configure build settings
@@ -102,6 +108,7 @@ You've successfully used this skill when:
 7. **Cost**: $0-20/month
 
 ### Workflow 2: Growing Product (Tier 2)
+
 1. Migrate from Tier 1 platform or start fresh
 2. Choose Railway or Cloud Run
 3. Set up GitHub Actions for CI/CD
@@ -111,6 +118,7 @@ You've successfully used this skill when:
 7. **Cost**: $50-200/month
 
 ### Workflow 3: Enterprise Scale (Tier 3)
+
 1. Use deployment-advisor enterprise guidance
 2. Set up AWS ECS or Kubernetes (EKS/GKE)
 3. Implement Infrastructure as Code (Terraform)
@@ -122,22 +130,26 @@ You've successfully used this skill when:
 ## Key Concepts
 
 **Deployment Tiers:**
+
 - **Tier 1** (<1K users): Simple platforms, auto-deploy, minimal config
 - **Tier 2** (1K-100K): Managed services, scaling, monitoring
 - **Tier 3** (100K+): Container orchestration, multi-region, HA
 
 **Platform Categories:**
+
 - **Static Hosting**: Vercel, Netlify, Cloudflare Pages
 - **Managed PaaS**: Railway, Render, Fly.io, AWS Amplify
 - **Containers**: Cloud Run, AWS ECS/Fargate
 - **Orchestration**: Kubernetes (EKS, GKE, AKS)
 
 **CI/CD Levels:**
+
 - **Level 1**: Git push → auto deploy (Vercel, Railway built-in)
 - **Level 2**: GitHub Actions → test → deploy (custom workflows)
 - **Level 3**: Multi-stage, security scans, gradual rollout
 
 **Deployment Patterns:**
+
 - **Jamstack**: Static frontend + API backend
 - **Serverless**: Edge functions + serverless DB
 - **Traditional**: Monolith on single platform
@@ -146,10 +158,12 @@ You've successfully used this skill when:
 ## Troubleshooting
 
 **Skill not activating?**
+
 - Try explicitly requesting: "Use the deployment-advisor skill to..."
 - Mention keywords: "deployment", "hosting", "infrastructure", "CI/CD"
 
 **Can't choose between platforms?**
+
 - Start with tier based on user count
 - Match platform to app type (see decision framework)
 - Default recommendations:
@@ -158,6 +172,7 @@ You've successfully used this skill when:
   - Microservices → Cloud Run
 
 **Deployment failing?**
+
 - Check build logs for errors
 - Verify environment variables set correctly
 - Ensure build command matches local setup
@@ -165,6 +180,7 @@ You've successfully used this skill when:
 - Review platform-specific requirements
 
 **High costs?**
+
 - Review usage metrics (compute, bandwidth, storage)
 - Implement caching (Redis, CDN)
 - Optimize images (Next.js Image component)
@@ -172,6 +188,7 @@ You've successfully used this skill when:
 - Consider cheaper platform for your tier
 
 **Slow performance?**
+
 - Add CDN (built-in on most platforms)
 - Enable caching (Redis for API responses)
 - Optimize database queries
@@ -179,6 +196,7 @@ You've successfully used this skill when:
 - Consider multi-region deployment
 
 **Security concerns?**
+
 - Ensure HTTPS enabled (automatic on modern platforms)
 - Store secrets in environment variables (never commit)
 - Enable security headers (helmet.js for Node)
@@ -187,6 +205,7 @@ You've successfully used this skill when:
 - Use platform-provided DDoS protection
 
 **Need to scale beyond current tier?**
+
 - Monitor key metrics (response time, error rate, costs)
 - Plan migration 2-3 months before limits
 - Test new platform with staging environment

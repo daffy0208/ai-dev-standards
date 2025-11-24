@@ -772,7 +772,10 @@ export class FlyClient {
       return result
     } catch (error: any) {
       // Retry on network errors or timeouts
-      if ((error.name === 'AbortError' || error.name === 'TypeError') && retryCount < this.maxRetries) {
+      if (
+        (error.name === 'AbortError' || error.name === 'TypeError') &&
+        retryCount < this.maxRetries
+      ) {
         const delay = Math.pow(2, retryCount) * 1000
         await new Promise(resolve => setTimeout(resolve, delay))
         return this.graphql(query, variables, retryCount + 1)

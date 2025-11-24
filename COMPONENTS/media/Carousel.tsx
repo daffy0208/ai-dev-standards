@@ -121,7 +121,7 @@ export const Carousel: React.FC<CarouselProps> = ({
   loop = true,
   className,
   height = '400px',
-  onSlideChange,
+  onSlideChange
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
@@ -225,7 +225,7 @@ export const Carousel: React.FC<CarouselProps> = ({
         position: 'relative',
         width: '100%',
         height: typeof height === 'number' ? `${height}px` : height,
-        overflow: 'hidden',
+        overflow: 'hidden'
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -242,7 +242,7 @@ export const Carousel: React.FC<CarouselProps> = ({
           display: 'flex',
           height: '100%',
           transform: `translateX(-${currentIndex * 100}%)`,
-          transition: `transform ${transitionDuration}ms ease-in-out`,
+          transition: `transform ${transitionDuration}ms ease-in-out`
         }}
       >
         {items.map((item, index) => (
@@ -251,7 +251,7 @@ export const Carousel: React.FC<CarouselProps> = ({
             style={{
               minWidth: '100%',
               height: '100%',
-              position: 'relative',
+              position: 'relative'
             }}
             aria-hidden={index !== currentIndex}
           >
@@ -265,7 +265,7 @@ export const Carousel: React.FC<CarouselProps> = ({
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
-                  cursor: item.onClick ? 'pointer' : 'default',
+                  cursor: item.onClick ? 'pointer' : 'default'
                 }}
                 onClick={item.onClick}
               />
@@ -284,7 +284,7 @@ export const Carousel: React.FC<CarouselProps> = ({
                   padding: '12px 24px',
                   borderRadius: '8px',
                   maxWidth: '80%',
-                  textAlign: 'center',
+                  textAlign: 'center'
                 }}
               >
                 {item.caption}
@@ -315,12 +315,12 @@ export const Carousel: React.FC<CarouselProps> = ({
             justifyContent: 'center',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
             zIndex: 10,
-            transition: 'background 0.2s',
+            transition: 'background 0.2s'
           }}
-          onMouseEnter={(e) => {
+          onMouseEnter={e => {
             e.currentTarget.style.background = 'rgba(255, 255, 255, 1)'
           }}
-          onMouseLeave={(e) => {
+          onMouseLeave={e => {
             e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)'
           }}
           aria-label="Previous slide"
@@ -350,12 +350,12 @@ export const Carousel: React.FC<CarouselProps> = ({
             justifyContent: 'center',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
             zIndex: 10,
-            transition: 'background 0.2s',
+            transition: 'background 0.2s'
           }}
-          onMouseEnter={(e) => {
+          onMouseEnter={e => {
             e.currentTarget.style.background = 'rgba(255, 255, 255, 1)'
           }}
-          onMouseLeave={(e) => {
+          onMouseLeave={e => {
             e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)'
           }}
           aria-label="Next slide"
@@ -374,7 +374,7 @@ export const Carousel: React.FC<CarouselProps> = ({
             transform: 'translateX(-50%)',
             display: 'flex',
             gap: '8px',
-            zIndex: 10,
+            zIndex: 10
           }}
           role="tablist"
           aria-label="Slide indicators"
@@ -391,7 +391,7 @@ export const Carousel: React.FC<CarouselProps> = ({
                 background: index === currentIndex ? 'white' : 'transparent',
                 cursor: 'pointer',
                 padding: 0,
-                transition: 'background 0.3s',
+                transition: 'background 0.3s'
               }}
               role="tab"
               aria-selected={index === currentIndex}
@@ -413,7 +413,7 @@ export const Carousel: React.FC<CarouselProps> = ({
             padding: '4px 8px',
             borderRadius: '4px',
             fontSize: '12px',
-            zIndex: 10,
+            zIndex: 10
           }}
           aria-live="polite"
         >

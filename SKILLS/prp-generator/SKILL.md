@@ -4,11 +4,11 @@ description: Guides creation of Product Requirements Prompts (PRPs) - comprehens
 version: 1.0.0
 category: requirements
 triggers:
-  - "prp-generator"
-  - "prp generator"
-  - "product requirements prompt"
-  - "create prp"
-  - "generate requirements"
+  - 'prp-generator'
+  - 'prp generator'
+  - 'product requirements prompt'
+  - 'create prp'
+  - 'generate requirements'
 dependencies:
   required_mcps: []
   required_tools: []
@@ -26,6 +26,7 @@ The PRP Generator helps you create comprehensive Product Requirements Prompts - 
 ## When to Use This Skill
 
 Use PRP Generator when:
+
 - Starting a new product or major feature
 - Requirements are unclear or scattered
 - Need to communicate requirements to development team
@@ -71,6 +72,7 @@ Let's dive into each:
 **Purpose:** High-level context and pattern classification
 
 **What to Include:**
+
 - Project name and one-sentence description
 - Pattern classification (A, B, or C)
 - Timeline estimate
@@ -78,6 +80,7 @@ Let's dive into each:
 - Business context
 
 **Example:**
+
 ```
 Project: Customer Support Chatbot
 Pattern: C (AI-Native System)
@@ -93,6 +96,7 @@ Context: Reduce support ticket volume by 40% while maintaining customer satisfac
 **Purpose:** Clearly define the problem being solved
 
 **Template:**
+
 ```
 [User type] faces [problem] when [situation].
 This causes [negative outcome].
@@ -100,6 +104,7 @@ We know this because [evidence].
 ```
 
 **Example:**
+
 ```
 Customer support agents face long response times when customers ask common questions about billing, account setup, and feature usage. This causes customer frustration and agent burnout handling repetitive inquiries.
 
@@ -117,11 +122,13 @@ We know this because:
 **Purpose:** Define measurable outcomes
 
 **Structure:**
+
 - Primary metric (North Star)
 - Secondary metrics
 - Minimum success thresholds
 
 **Example:**
+
 ```
 Primary Metric:
 - Reduce support ticket volume by 40% within 3 months of launch
@@ -143,11 +150,13 @@ Minimum Success:
 **Purpose:** Capture user needs in job-to-be-done format
 
 **Template:**
+
 ```
 When [situation], I want to [action], so I can [outcome].
 ```
 
 **Example:**
+
 ```
 Customer Stories:
 1. When I have a billing question, I want instant answers, so I can resolve issues without waiting.
@@ -167,11 +176,13 @@ Agent Stories:
 **Purpose:** What the system must do
 
 **Categories:**
+
 - Core features (P0 - must have)
 - Important features (P1 - should have)
 - Nice-to-have (P2 - could have)
 
 **Example:**
+
 ```
 P0 (Core - MVP):
 - FR-001: System answers common questions from knowledge base
@@ -197,6 +208,7 @@ P2 (Nice-to-have - Future):
 **Purpose:** How the system should perform
 
 **Categories:**
+
 - Performance
 - Security
 - Scalability
@@ -204,6 +216,7 @@ P2 (Nice-to-have - Future):
 - Usability
 
 **Example:**
+
 ```
 Performance:
 - NFR-001: Response time <2 seconds for 95th percentile
@@ -236,6 +249,7 @@ Usability:
 **Purpose:** Technology limitations and requirements
 
 **What to Include:**
+
 - Existing systems to integrate with
 - Technology stack requirements
 - Infrastructure constraints
@@ -243,6 +257,7 @@ Usability:
 - Timeline constraints
 
 **Example:**
+
 ```
 Integrations:
 - Must integrate with existing Zendesk system
@@ -275,12 +290,14 @@ Timeline:
 **Purpose:** What data is needed and how it's managed
 
 **Structure:**
+
 - Data sources
 - Data models
 - Data privacy
 - Data retention
 
 **Example:**
+
 ```
 Data Sources:
 - Knowledge base articles (500+ articles in Notion)
@@ -312,12 +329,14 @@ Data Security:
 **Purpose:** How users interact with the system
 
 **What to Include:**
+
 - User flows
 - Interface requirements
 - Design constraints
 - Accessibility needs
 
 **Example:**
+
 ```
 Customer Interface:
 - Chat widget in bottom-right corner
@@ -351,11 +370,13 @@ Design Constraints:
 **Purpose:** Identify potential blockers and dependencies
 
 **Structure:**
+
 - Risks with mitigation plans
 - Assumptions to validate
 - Dependencies on external factors
 
 **Example:**
+
 ```
 Risks:
 1. AI hallucination risk
@@ -392,6 +413,7 @@ Dependencies:
 **Why Important:** Prevents scope creep and sets expectations
 
 **Example:**
+
 ```
 Out of Scope for MVP:
 - Voice/phone support integration (post-MVP)
@@ -416,12 +438,14 @@ Explicitly NOT Building:
 **Purpose:** Document unknowns that need answers
 
 **Structure:**
+
 - Question
 - Who can answer
 - When answer needed by
 - Impact if not answered
 
 **Example:**
+
 ```
 Open Questions:
 
@@ -463,21 +487,26 @@ Q5: Are agents allowed to edit AI-generated responses?
 # PRP: CSV Export Feature
 
 ## 1. Project Overview
+
 Pattern A (Simple Feature)
 Timeline: 2-3 days
 Add CSV export button to user dashboard
 
 ## 2. Problem Statement
+
 Users need to export data for offline analysis. Currently they must manually copy-paste.
 
 ## 3. Success Criteria
+
 - 80% of users who click export get successful download
 - <5s export time for typical dataset (1000 rows)
 
 ## 4. User Stories
+
 When viewing my data, I want to click "Export CSV", so I can analyze it in Excel.
 
 ## 5. Functional Requirements
+
 FR-001: Export button in dashboard toolbar
 FR-002: Exports all visible columns
 FR-003: Respects current filters
@@ -490,7 +519,7 @@ FR-004: Filename includes timestamp
 
 ### Example 2: New Product (Pattern B)
 
-*See customer support chatbot example throughout sections above*
+_See customer support chatbot example throughout sections above_
 
 ---
 
@@ -502,27 +531,33 @@ FR-004: Filename includes timestamp
 # PRP: Multi-Agent Research Assistant
 
 ## 1. Project Overview
+
 Pattern C (AI-Native System)
 Timeline: 14-16 weeks
 Multi-agent system with specialized agents for research, synthesis, and fact-checking
 
 ## 2. Problem Statement
+
 Researchers spend 60% of their time finding and synthesizing papers instead of analysis. Current tools return overwhelming results without quality filtering.
 
 ## 3. Success Criteria
+
 Primary: Reduce research time from 8 hours to 2 hours per topic
 Secondary:
+
 - 90% accuracy in paper relevance
 - 85% user satisfaction
 - <30s for initial results
 - 5+ papers synthesized per query
 
 ## 4. User Stories
+
 - When I enter a research topic, I want a synthesized summary with sources, so I can quickly understand the landscape
 - When results are vague, I want follow-up questions suggested, so I can refine my search
 - When I find a relevant paper, I want related papers suggested, so I can explore deeper
 
 ## 5. Functional Requirements (AI-specific)
+
 FR-001: Search agent queries multiple academic databases
 FR-002: Filter agent scores paper relevance (0-100)
 FR-003: Synthesis agent creates 500-word summary
@@ -530,18 +565,21 @@ FR-004: Fact-check agent validates key claims
 FR-005: Orchestrator coordinates agents and resolves conflicts
 
 ## 6. Non-Functional Requirements (AI-specific)
+
 NFR-001: Agent coordination latency <5s
 NFR-002: RAG retrieval accuracy >90%
 NFR-003: Handle 50 concurrent research sessions
 NFR-004: LLM token budget: $10/research session maximum
 
 ## 7. Technical Constraints (AI-specific)
+
 - LLM: GPT-4 for synthesis, GPT-3.5 for filtering
 - Vector DB: Pinecone (1M vectors)
 - Agent framework: LangChain or CrewAI
 - Academic APIs: Semantic Scholar, arXiv
 
 ## 8. Data Requirements (AI-specific)
+
 - Paper embeddings: title + abstract + keywords
 - Citation network graph for related papers
 - User research history for personalization
@@ -555,26 +593,34 @@ NFR-004: LLM token budget: $10/research session maximum
 ## Best Practices
 
 ### 1. Start with Problem, Not Solution
+
 Write problem statement before functional requirements. Understand "why" before "what".
 
 ### 2. Make Success Criteria Measurable
+
 Bad: "Improve user experience"
 Good: "Increase task completion rate from 60% to 85%"
 
 ### 3. Use Jobs-to-be-Done Format
+
 Captures user intent, not just feature requests.
 
 ### 4. Be Explicit About Out of Scope
+
 Prevents future arguments about "I thought we were building X".
 
 ### 5. Document All Open Questions
+
 Don't hide unknowns. Make them visible and track resolution.
 
 ### 6. Update PRP as You Learn
+
 PRPs evolve. Update when you discover new information.
 
 ### 7. Review with Stakeholders
+
 Validate PRP with:
+
 - Product Manager (business requirements)
 - Engineering Lead (technical feasibility)
 - Designer (UX requirements)
@@ -585,22 +631,27 @@ Validate PRP with:
 ## Common Pitfalls
 
 ### 1. Writing Solutions Instead of Requirements
+
 **Antipattern:** "Use React with Redux for state management"
 **Better:** "System must handle real-time updates across multiple views"
 
 ### 2. Vague Success Criteria
+
 **Antipattern:** "Users should be happy"
 **Better:** "NPS score >50, task completion rate >80%"
 
 ### 3. Missing Non-Functional Requirements
+
 **Antipattern:** Only listing features
 **Better:** Include performance, security, scalability
 
 ### 4. Assuming Knowledge
+
 **Antipattern:** "Obviously we need authentication"
 **Better:** Explicitly state all requirements
 
 ### 5. Mixing Pattern Complexity
+
 **Antipattern:** Pattern A with Pattern C orchestration
 **Better:** Match PRP depth to pattern complexity
 
@@ -620,6 +671,7 @@ Validate PRP with:
 ## Deliverables
 
 A complete PRP document containing:
+
 1. All 12 sections filled out
 2. Pattern classification (A, B, or C)
 3. Reviewed by key stakeholders
@@ -631,6 +683,7 @@ A complete PRP document containing:
 ## Success Metrics
 
 You've created a good PRP when:
+
 - Developers can build from it without constant clarification
 - Stakeholders agree on scope and success criteria
 - Risks and assumptions are surfaced early

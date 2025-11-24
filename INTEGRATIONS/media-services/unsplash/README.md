@@ -42,7 +42,7 @@ const client = createUnsplashClient()
 
 // Or with explicit options
 const client = new UnsplashClient({
-  accessKey: 'your_access_key',
+  accessKey: 'your_access_key'
 })
 ```
 
@@ -58,11 +58,11 @@ const results = await client.search('mountain', {
   page: 1,
   orientation: 'landscape',
   color: 'blue',
-  orderBy: 'relevant',
+  orderBy: 'relevant'
 })
 
 console.log(`Found ${results.total} photos`)
-results.results.forEach((photo) => {
+results.results.forEach(photo => {
   console.log(photo.urls.regular)
   console.log(client.getAttribution(photo))
 })
@@ -77,18 +77,18 @@ const photo = await client.random()
 // Random photo by query
 const photo = await client.random({
   query: 'mountain',
-  orientation: 'landscape',
+  orientation: 'landscape'
 })
 
 // Multiple random photos
 const photos = await client.random({
   query: 'nature',
-  count: 10,
+  count: 10
 })
 
 // Random from collection
 const photo = await client.random({
-  collections: '1163637', // Collection ID
+  collections: '1163637' // Collection ID
 })
 ```
 
@@ -109,12 +109,12 @@ console.log(photo.urls.regular)
 // List collections
 const collections = await client.listCollections({
   perPage: 10,
-  page: 1,
+  page: 1
 })
 
 // Get photos from collection
 const photos = await client.getCollectionPhotos('collection-id', {
-  perPage: 20,
+  perPage: 20
 })
 ```
 
@@ -137,7 +137,7 @@ const blob = await response.blob()
 ```typescript
 // Get URL with specific size
 const url = client.getUrl(photo, {
-  size: 'regular', // raw, full, regular, small, thumb
+  size: 'regular' // raw, full, regular, small, thumb
 })
 
 // Custom dimensions
@@ -146,7 +146,7 @@ const url = client.getUrl(photo, {
   height: 600,
   crop: true,
   quality: 85,
-  format: 'webp',
+  format: 'webp'
 })
 ```
 
@@ -204,22 +204,22 @@ interface SearchOptions {
 ```typescript
 // Landscape photos
 const results = await client.search('beach', {
-  orientation: 'landscape',
+  orientation: 'landscape'
 })
 
 // Black and white photos
 const results = await client.search('architecture', {
-  color: 'black_and_white',
+  color: 'black_and_white'
 })
 
 // Blue tones
 const results = await client.search('ocean', {
-  color: 'blue',
+  color: 'blue'
 })
 
 // Latest photos
 const results = await client.search('technology', {
-  orderBy: 'latest',
+  orderBy: 'latest'
 })
 ```
 
@@ -272,7 +272,7 @@ const large = client.getUrl(photo, { width: 1200 })
 const webp = client.getUrl(photo, {
   width: 800,
   format: 'webp',
-  quality: 85,
+  quality: 85
 })
 ```
 
@@ -305,7 +305,7 @@ function PhotoSearch() {
       try {
         const results = await client.search(query, {
           perPage: 20,
-          orientation: 'landscape',
+          orientation: 'landscape'
         })
         setPhotos(results.results)
       } catch (error) {
@@ -323,14 +323,14 @@ function PhotoSearch() {
       <input
         type="text"
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={e => setQuery(e.target.value)}
         placeholder="Search photos..."
       />
 
       {loading && <p>Loading...</p>}
 
       <div className="grid grid-cols-3 gap-4">
-        {photos.map((photo) => (
+        {photos.map(photo => (
           <div key={photo.id}>
             <img
               src={client.getUrl(photo, { width: 400 })}
@@ -338,7 +338,7 @@ function PhotoSearch() {
             />
             <p
               dangerouslySetInnerHTML={{
-                __html: client.getAttributionHtml(photo),
+                __html: client.getAttributionHtml(photo)
               }}
             />
           </div>

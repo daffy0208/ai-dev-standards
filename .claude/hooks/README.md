@@ -7,21 +7,26 @@ This directory contains hooks that enable skill auto-activation for ai-dev-stand
 ## What's Here
 
 ### skill-activation-prompt.ts
+
 TypeScript hook that analyzes user prompts and open files to automatically suggest relevant skills from the 64 available skills.
 
 **How it works:**
+
 1. Reads `.claude/skills/skill-rules.json`
 2. Matches user prompt against `promptTriggers`
 3. Matches open file paths against `fileTriggers.pathPatterns`
 4. Returns top relevant skills for Claude to activate
 
 ### skill-activation-prompt.sh
+
 Shell wrapper that executes the TypeScript hook. Claude Code calls this script.
 
 ### generate-skill-rules.cjs
+
 Utility script to generate `skill-rules.json` from `META/skill-registry.json`.
 
 **Usage:**
+
 ```bash
 node generate-skill-rules.cjs
 ```
@@ -41,6 +46,7 @@ This regenerates the skill rules whenever skills are added or updated.
 When you run `setup-project.sh` from ai-dev-standards, hooks are automatically installed.
 
 **Manual installation:**
+
 ```bash
 # Copy hooks
 cp -r path/to/ai-dev-standards/.claude/hooks your-project/.claude/
@@ -91,6 +97,7 @@ Hooks are configured in `.claude/settings.json`:
 - `tsx` - For executing TypeScript directly
 
 Install with:
+
 ```bash
 npm install
 ```
@@ -105,15 +112,13 @@ Edit `.claude/hooks/generate-skill-rules.cjs`:
 
 ```javascript
 const pathMappings = {
-  'your-skill-name': [
-    '**/your-directory/**/*',
-    '**/*.your-extension'
-  ],
+  'your-skill-name': ['**/your-directory/**/*', '**/*.your-extension']
   // ... existing mappings
-};
+}
 ```
 
 Then regenerate:
+
 ```bash
 node generate-skill-rules.cjs
 ```
@@ -125,14 +130,9 @@ You can directly edit `.claude/skills/skill-rules.json`:
 ```json
 {
   "skill-name": {
-    "promptTriggers": [
-      "new keyword",
-      "another trigger"
-    ],
+    "promptTriggers": ["new keyword", "another trigger"],
     "fileTriggers": {
-      "pathPatterns": [
-        "**/new-path/**/*"
-      ]
+      "pathPatterns": ["**/new-path/**/*"]
     }
   }
 }
@@ -145,12 +145,14 @@ You can directly edit `.claude/skills/skill-rules.json`:
 ### Hook Not Executing
 
 Check permissions:
+
 ```bash
 ls -la skill-activation-prompt.sh
 # Should show rwxr-xr-x (executable)
 ```
 
 Make executable if needed:
+
 ```bash
 chmod +x skill-activation-prompt.sh
 ```
@@ -158,6 +160,7 @@ chmod +x skill-activation-prompt.sh
 ### TypeScript Errors
 
 Compile check:
+
 ```bash
 npx tsc --noEmit
 ```
@@ -165,6 +168,7 @@ npx tsc --noEmit
 ### Dependencies Missing
 
 Reinstall:
+
 ```bash
 npm install
 ```
@@ -177,6 +181,7 @@ npm install
 **Acceptable threshold:** < 200ms
 
 If slower, consider:
+
 - Reducing number of path patterns in skill-rules.json
 - Simplifying promptTriggers
 
@@ -187,6 +192,7 @@ If slower, consider:
 ### Testing the Hook
 
 Run directly:
+
 ```bash
 ./skill-activation-prompt.sh
 ```
@@ -194,8 +200,9 @@ Run directly:
 ### Debugging
 
 Edit `skill-activation-prompt.ts` and set:
+
 ```typescript
-const DEBUG = true;
+const DEBUG = true
 ```
 
 This logs activation decisions.

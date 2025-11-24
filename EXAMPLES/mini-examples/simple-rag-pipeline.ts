@@ -149,9 +149,7 @@ export class SimpleRAGPipeline {
     const results = await this.search(question, topK)
 
     // Build context from search results
-    const context = results
-      .map((r, i) => `[${i + 1}] ${r.chunk.content}`)
-      .join('\n\n')
+    const context = results.map((r, i) => `[${i + 1}] ${r.chunk.content}`).join('\n\n')
 
     // Generate response with LLM
     const response = await this.openai.chat.completions.create({

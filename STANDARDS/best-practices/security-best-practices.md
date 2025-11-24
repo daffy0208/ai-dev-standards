@@ -19,6 +19,7 @@ This document provides a comprehensive security checklist and best practices for
 Copy this checklist for every production deployment:
 
 ### Authentication & Authorization
+
 - [ ] Passwords hashed with bcrypt (12+ rounds) or argon2
 - [ ] JWT tokens use RS256 (not HS256), short expiry (15min)
 - [ ] Session cookies are HttpOnly, Secure, SameSite=Strict
@@ -30,6 +31,7 @@ Copy this checklist for every production deployment:
 - [ ] Multi-factor authentication available for sensitive accounts
 
 ### Input Validation & Sanitization
+
 - [ ] All user input validated with schema library (Zod, Yup, Joi)
 - [ ] SQL queries use parameterized queries or ORM
 - [ ] File uploads whitelist allowed types and enforce size limits
@@ -39,6 +41,7 @@ Copy this checklist for every production deployment:
 - [ ] JSON payload size limited (10MB max)
 
 ### Configuration
+
 - [ ] No secrets in code or version control (.env in .gitignore)
 - [ ] Environment variables for all configuration
 - [ ] Security headers configured (CSP, HSTS, X-Frame-Options, X-Content-Type-Options)
@@ -49,6 +52,7 @@ Copy this checklist for every production deployment:
 - [ ] Error messages don't leak sensitive info
 
 ### Data Protection
+
 - [ ] PII encrypted at rest (AES-256-GCM)
 - [ ] TLS 1.3 for all connections
 - [ ] Database backups encrypted
@@ -57,6 +61,7 @@ Copy this checklist for every production deployment:
 - [ ] Sensitive data not logged (passwords, tokens, PII)
 
 ### Monitoring & Logging
+
 - [ ] Audit logging for security events (login, logout, permission changes)
 - [ ] Error tracking configured (Sentry, Datadog)
 - [ ] Alerts for suspicious patterns (failed logins, 500 errors)
@@ -64,6 +69,7 @@ Copy this checklist for every production deployment:
 - [ ] Logs don't contain sensitive data
 
 ### Dependencies & Infrastructure
+
 - [ ] All dependencies up to date (`npm audit` clean)
 - [ ] Dependabot enabled for automated updates
 - [ ] No known CVEs in dependencies
@@ -80,6 +86,7 @@ Copy this checklist for every production deployment:
 **Vulnerability:** Users can access resources they shouldn't.
 
 **Prevention:**
+
 ```typescript
 // ❌ Bad: Trusting client-provided data
 app.delete('/api/posts/:id', async (req, res) => {
@@ -102,6 +109,7 @@ app.delete('/api/posts/:id', requireAuth, async (req, res) => {
 ```
 
 **Checklist:**
+
 - [ ] Verify permissions on every request (server-side)
 - [ ] Use least privilege principle
 - [ ] Disable directory listing
@@ -114,6 +122,7 @@ app.delete('/api/posts/:id', requireAuth, async (req, res) => {
 **Vulnerability:** Sensitive data exposed due to weak/missing encryption.
 
 **Prevention:**
+
 ```typescript
 // ❌ Bad: Plain text password
 await db.user.create({
@@ -136,6 +145,7 @@ await db.user.create({
 ```
 
 **Checklist:**
+
 - [ ] Use TLS 1.3 everywhere (HTTPS)
 - [ ] Hash passwords with bcrypt/argon2 (never MD5/SHA1)
 - [ ] Encrypt PII at rest (SSN, credit cards, health data)
@@ -149,6 +159,7 @@ await db.user.create({
 **Vulnerability:** Malicious input executes unintended commands.
 
 **Prevention:**
+
 ```typescript
 // ❌ Bad: SQL injection vulnerability
 const query = `SELECT * FROM users WHERE email = '${email}'`
@@ -172,6 +183,7 @@ const user = await db.user.findOne({ email })
 ```
 
 **Checklist:**
+
 - [ ] Use parameterized queries (never concatenate SQL)
 - [ ] Use ORM (Prisma, TypeORM, Sequelize)
 - [ ] Validate all input with schema library
@@ -185,6 +197,7 @@ const user = await db.user.findOne({ email })
 **Vulnerability:** Fundamental flaws in architecture/design.
 
 **Prevention:**
+
 - Threat modeling during design phase
 - Security requirements defined upfront
 - Defense in depth (multiple layers of security)
@@ -192,6 +205,7 @@ const user = await db.user.findOne({ email })
 - Fail securely (deny access on error)
 
 **Example: Password Reset**
+
 ```typescript
 // ❌ Bad: Security questions (guessable)
 if (answer === user.securityAnswer) {
@@ -220,6 +234,7 @@ await sendEmail({
 **Vulnerability:** Insecure default configs, missing patches, exposed error messages.
 
 **Prevention:**
+
 ```typescript
 // ✅ Security headers (Next.js middleware)
 export function middleware(req: NextRequest) {
@@ -234,10 +249,7 @@ export function middleware(req: NextRequest) {
     'Content-Security-Policy',
     "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
   )
-  res.headers.set(
-    'Strict-Transport-Security',
-    'max-age=31536000; includeSubDomains; preload'
-  )
+  res.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload')
 
   return res
 }
@@ -256,6 +268,7 @@ try {
 ```
 
 **Checklist:**
+
 - [ ] Remove default accounts/passwords
 - [ ] Disable directory listing
 - [ ] Set security headers (CSP, HSTS, etc.)
@@ -268,6 +281,7 @@ try {
 ### 6. Vulnerable and Outdated Components
 
 **Prevention:**
+
 ```bash
 # Check for vulnerabilities
 npm audit
@@ -289,6 +303,7 @@ updates:
 ```
 
 **Checklist:**
+
 - [ ] Run `npm audit` before every deployment
 - [ ] Enable Dependabot or Renovate
 - [ ] Remove unused dependencies
@@ -300,9 +315,11 @@ updates:
 ### 7. Identification and Authentication Failures
 
 **Prevention:**
+
 ```typescript
 // ✅ Strong password requirements
-const PasswordSchema = z.string()
+const PasswordSchema = z
+  .string()
   .min(8, 'At least 8 characters')
   .max(100, 'Max 100 characters')
   .regex(/[A-Z]/, 'Needs uppercase letter')
@@ -330,6 +347,7 @@ const mfaToken = speakeasy.totp({
 ```
 
 **Checklist:**
+
 - [ ] Enforce strong passwords (min 8 chars, complexity)
 - [ ] Implement MFA for admin/sensitive accounts
 - [ ] Rate limit login attempts (5 per 15min)
@@ -342,6 +360,7 @@ const mfaToken = speakeasy.totp({
 ### 8. Software and Data Integrity Failures
 
 **Prevention:**
+
 ```typescript
 // ✅ Verify npm packages
 npm install --ignore-scripts // Prevent install scripts
@@ -363,6 +382,7 @@ function verifyFileHash(file: Buffer, expectedHash: string): boolean {
 ```
 
 **Checklist:**
+
 - [ ] Use lock files (package-lock.json)
 - [ ] Verify package signatures
 - [ ] Use SRI for CDN resources
@@ -374,6 +394,7 @@ function verifyFileHash(file: Buffer, expectedHash: string): boolean {
 ### 9. Security Logging and Monitoring Failures
 
 **Prevention:**
+
 ```typescript
 // ✅ Audit logging
 async function auditLog(event: {
@@ -410,6 +431,7 @@ await auditLog({
 ```
 
 **Checklist:**
+
 - [ ] Log all authentication events
 - [ ] Log authorization failures
 - [ ] Log input validation failures
@@ -423,6 +445,7 @@ await auditLog({
 ### 10. Server-Side Request Forgery (SSRF)
 
 **Prevention:**
+
 ```typescript
 // ❌ Bad: User-controlled URL
 const response = await fetch(req.body.url) // SSRF vulnerability!
@@ -447,9 +470,10 @@ const response = await fetch(req.body.url)
 ```
 
 **Checklist:**
+
 - [ ] Validate and whitelist URLs
 - [ ] Disable HTTP redirects
-- [ ] Don't allow access to internal IPs (127.0.0.1, 192.168.*, 10.*)
+- [ ] Don't allow access to internal IPs (127.0.0.1, 192.168._, 10._)
 - [ ] Use network segmentation
 
 ---
@@ -457,6 +481,7 @@ const response = await fetch(req.body.url)
 ## Security Testing Checklist
 
 ### Automated Testing
+
 ```bash
 # Run security audit
 npm audit
@@ -472,6 +497,7 @@ lighthouse https://example.com --only-categories=security
 ```
 
 ### Manual Testing
+
 - [ ] Try SQL injection: `' OR '1'='1`
 - [ ] Try XSS: `<script>alert('XSS')</script>`
 - [ ] Try path traversal: `../../etc/passwd`
@@ -484,6 +510,7 @@ lighthouse https://example.com --only-categories=security
 ## Framework-Specific Best Practices
 
 ### Next.js
+
 ```typescript
 // middleware.ts
 export function middleware(request: NextRequest) {
@@ -502,6 +529,7 @@ export function middleware(request: NextRequest) {
 ```
 
 ### Express
+
 ```typescript
 import helmet from 'helmet'
 import rateLimit from 'express-rate-limit'
@@ -514,6 +542,7 @@ app.use(mongoSanitize()) // Prevent NoSQL injection
 ```
 
 ### FastAPI
+
 ```python
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -554,6 +583,7 @@ async def login(credentials: Credentials):
 5. **Review:** Post-mortem to prevent recurrence
 
 ### Security Incident Template
+
 ```markdown
 # Security Incident Report
 
@@ -562,9 +592,11 @@ async def login(credentials: Credentials):
 **Affected Systems:** [List systems]
 
 ## Summary
+
 [Brief description of incident]
 
 ## Timeline
+
 - HH:MM - Incident detected
 - HH:MM - Team notified
 - HH:MM - Systems contained
@@ -572,20 +604,24 @@ async def login(credentials: Credentials):
 - HH:MM - Incident resolved
 
 ## Root Cause
+
 [What caused the vulnerability]
 
 ## Impact
+
 - Users affected: [number]
 - Data exposed: [type and scope]
 - Downtime: [duration]
 
 ## Remediation
+
 - [ ] Vulnerability patched
 - [ ] Affected users notified
 - [ ] Logs reviewed
 - [ ] Systems monitored
 
 ## Prevention
+
 [How to prevent this in the future]
 ```
 
@@ -594,6 +630,7 @@ async def login(credentials: Credentials):
 ## Compliance & Regulations
 
 ### GDPR (EU)
+
 - [ ] Data minimization (collect only what's needed)
 - [ ] Right to erasure (delete user data on request)
 - [ ] Data portability (export user data)
@@ -601,12 +638,14 @@ async def login(credentials: Credentials):
 - [ ] Breach notification (72 hours)
 
 ### HIPAA (Healthcare - US)
+
 - [ ] Encrypt all PHI at rest and in transit
 - [ ] Access controls and audit logging
 - [ ] Business associate agreements
 - [ ] Incident response plan
 
 ### PCI DSS (Payment Cards)
+
 - [ ] Don't store full card numbers (use tokenization)
 - [ ] PCI-compliant payment processor (Stripe, Square)
 - [ ] Quarterly security scans
@@ -617,6 +656,7 @@ async def login(credentials: Credentials):
 ## Security Tools & Resources
 
 ### Recommended Tools
+
 - **OWASP ZAP:** Web vulnerability scanner
 - **Snyk:** Dependency vulnerability scanning
 - **Sentry:** Error tracking and monitoring
@@ -625,6 +665,7 @@ async def login(credentials: Credentials):
 - **AWS Secrets Manager / Vault:** Secret management
 
 ### Learning Resources
+
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 - [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/)
 - [Security Headers](https://securityheaders.com/)
@@ -635,11 +676,13 @@ async def login(credentials: Credentials):
 ## Related Resources
 
 **Skills:**
+
 - `/SKILLS/security-engineer/` - Security implementation guidance
 - `/SKILLS/api-designer/` - API security patterns
 - `/SKILLS/testing-strategist/` - Security testing
 
 **Patterns:**
+
 - `/STANDARDS/architecture-patterns/authentication-patterns.md`
 
 ---

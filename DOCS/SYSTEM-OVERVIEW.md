@@ -13,6 +13,7 @@ A **complete, automated system** for maintaining AI development standards across
 ### The Problem We Solved
 
 ❌ **Before:**
+
 - Manually copying skills to each project
 - Outdated `.cursorrules` and config files
 - Inconsistent best practices across projects
@@ -20,6 +21,7 @@ A **complete, automated system** for maintaining AI development standards across
 - Developers forgetting to sync configurations
 
 ✅ **After:**
+
 - One command installs everything: `npx @ai-dev-standards/bootstrap`
 - Automatic updates via git hooks
 - Always current with latest best practices
@@ -178,20 +180,21 @@ ai-dev-standards/
 
 **Commands:**
 
-| Command | Description | Status |
-|---------|-------------|--------|
-| `ai-dev sync` | Sync all components | ✅ Working |
-| `ai-dev update <type>` | Update specific components | ✅ Working |
+| Command                         | Description                | Status     |
+| ------------------------------- | -------------------------- | ---------- |
+| `ai-dev sync`                   | Sync all components        | ✅ Working |
+| `ai-dev update <type>`          | Update specific components | ✅ Working |
 | `ai-dev generate <type> <name>` | Generate skills/MCPs/tools | ✅ Working |
-| `ai-dev setup <service>` | Interactive setup | ✅ Working |
-| `ai-dev list <type>` | List components | ✅ Working |
-| `ai-dev config <action>` | Manage configuration | ✅ Working |
-| `ai-dev search <query>` | Search content | ✅ Working |
-| `ai-dev info <component>` | Show details | ✅ Working |
-| `ai-dev doctor` | Diagnose issues | 🚧 Planned |
-| `ai-dev clean` | Clean cache | 🚧 Planned |
+| `ai-dev setup <service>`        | Interactive setup          | ✅ Working |
+| `ai-dev list <type>`            | List components            | ✅ Working |
+| `ai-dev config <action>`        | Manage configuration       | ✅ Working |
+| `ai-dev search <query>`         | Search content             | ✅ Working |
+| `ai-dev info <component>`       | Show details               | ✅ Working |
+| `ai-dev doctor`                 | Diagnose issues            | 🚧 Planned |
+| `ai-dev clean`                  | Clean cache                | 🚧 Planned |
 
 **Features:**
+
 - ✅ Version tracking via registry.json
 - ✅ Smart merge strategies (replace, merge, smart-merge)
 - ✅ Backup before updates
@@ -208,6 +211,7 @@ ai-dev-standards/
 
 **Package:** `@ai-dev-standards/bootstrap`
 **Entry Points:**
+
 - Node.js: `CLI/bootstrap.js`
 - Bash: `CLI/bootstrap.sh`
 - NPX: `INSTALLERS/bootstrap/index.js`
@@ -286,11 +290,11 @@ git pull origin main
   "version": "1.0.0",
   "lastSync": "2025-10-22T12:00:00Z",
   "tracking": [
-    "skills",      // Track skill updates
-    "mcps",        // Track MCP updates
+    "skills", // Track skill updates
+    "mcps", // Track MCP updates
     "cursorrules", // Track .cursorrules updates
-    "gitignore",   // Track .gitignore updates
-    "tools"        // Track tool updates
+    "gitignore", // Track .gitignore updates
+    "tools" // Track tool updates
   ],
   "frequency": "git-hook", // When to sync
   "installed": {
@@ -300,9 +304,9 @@ git pull origin main
     "integrations": ["stripe"]
   },
   "preferences": {
-    "autoApprove": false,       // Prompt before updates
-    "notifications": true,      // Show notifications
-    "backupBeforeSync": true    // Backup files first
+    "autoApprove": false, // Prompt before updates
+    "notifications": true, // Show notifications
+    "backupBeforeSync": true // Backup files first
   }
 }
 ```
@@ -322,14 +326,14 @@ ai-dev sync --yes --silent || echo "⚠️ Sync failed"
 
 **Auto-Updated Files:**
 
-| File | Strategy | Frequency |
-|------|----------|-----------|
-| `.cursorrules` | Replace | Every sync |
-| `.gitignore` | Merge | Every sync |
-| `.env.example` | Merge | Every sync |
-| `.prettierrc` | Replace | Every sync |
-| `.eslintrc.json` | Smart merge | Every sync |
-| `tsconfig.json` | Smart merge | On request |
+| File                 | Strategy    | Frequency  |
+| -------------------- | ----------- | ---------- |
+| `.cursorrules`       | Replace     | Every sync |
+| `.gitignore`         | Merge       | Every sync |
+| `.env.example`       | Merge       | Every sync |
+| `.prettierrc`        | Replace     | Every sync |
+| `.eslintrc.json`     | Smart merge | Every sync |
+| `tsconfig.json`      | Smart merge | On request |
 | `tailwind.config.js` | Smart merge | On request |
 
 **Merge Strategies:**
@@ -353,6 +357,7 @@ ai-dev sync --yes --silent || echo "⚠️ Sync failed"
    - Used for: `tsconfig.json`, `.eslintrc.json`
 
 **Backup System:**
+
 - ✅ Creates `.filename.backup` before updates
 - ✅ Preserves original if something breaks
 - ✅ Easy rollback: `mv .cursorrules.backup .cursorrules`
@@ -498,9 +503,11 @@ $ ai-dev sync
 **Why This System is Perfect for ADHD:**
 
 1. **One Command Setup:**
+
    ```bash
    npx @ai-dev-standards/bootstrap
    ```
+
    - No multi-step processes to forget
    - No decisions to make
    - Just works

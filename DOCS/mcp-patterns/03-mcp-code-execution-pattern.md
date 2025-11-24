@@ -11,6 +11,7 @@ The **Code Execution** pattern is an advanced MCP implementation where agents di
 ### 1. Tools as Code Files
 
 Instead of:
+
 ```yaml
 # Direct MCP: Tool in context
 Tool: get_document
@@ -21,6 +22,7 @@ Returns: {...}
 ```
 
 We have:
+
 ```typescript
 // Code Execution: Tool as file
 // /servers/google-drive/getDocument.ts
@@ -31,14 +33,14 @@ We have:
  * @returns Document content as text
  */
 async function getDocument(documentId: string): Promise<string> {
-    const client = await getMcpClient('google-drive');
-    const result = await client.call_tool('get_document', {
-        document_id: documentId
-    });
-    return result.content;
+  const client = await getMcpClient('google-drive')
+  const result = await client.call_tool('get_document', {
+    document_id: documentId
+  })
+  return result.content
 }
 
-export { getDocument };
+export { getDocument }
 ```
 
 **Agent Only Loads This File If Needed** (200 tokens when read)
@@ -48,22 +50,24 @@ export { getDocument };
 Agent discovers tools through:
 
 **Method A: Filesystem Navigation**
+
 ```typescript
 // Agent explores filesystem
-const servers = await fs.readdir('/servers');
+const servers = await fs.readdir('/servers')
 // Returns: ['google-drive', 'notion', 'salesforce', ...]
 
-const driveTools = await fs.readdir('/servers/google-drive');
+const driveTools = await fs.readdir('/servers/google-drive')
 // Returns: ['getDocument.ts', 'createDocument.ts', ...]
 
 // Agent reads only what it needs
-const toolCode = await fs.readFile('/servers/google-drive/getDocument.ts');
+const toolCode = await fs.readFile('/servers/google-drive/getDocument.ts')
 ```
 
 **Method B: Semantic Search**
+
 ```typescript
 // Agent searches by intent
-const tools = await search_tools("read a Google Drive document");
+const tools = await search_tools('read a Google Drive document')
 // Returns: [
 //   {path: '/servers/google-drive/getDocument.ts', relevance: 0.95},
 //   {path: '/servers/google-drive/readFile.ts', relevance: 0.87}
@@ -107,17 +111,17 @@ After completing a task, agent can create a reusable skill:
  * Created: 2025-11-14
  * Used: 47 times
  */
-import { getDocument } from '../servers/google-drive/getDocument';
-import { createPage } from '../servers/notion/createPage';
+import { getDocument } from '../servers/google-drive/getDocument'
+import { createPage } from '../servers/notion/createPage'
 
 export async function copyDriveToNotion(
-    driveDocId: string,
-    notionDbId: string,
-    title: string
-): Promise<{id: string, url: string}> {
-    const content = await getDocument(driveDocId);
-    const page = await createPage(notionDbId, {Title: title}, content);
-    return page;
+  driveDocId: string,
+  notionDbId: string,
+  title: string
+): Promise<{ id: string; url: string }> {
+  const content = await getDocument(driveDocId)
+  const page = await createPage(notionDbId, { Title: title }, content)
+  return page
 }
 ```
 
@@ -199,6 +203,7 @@ export async function copyDriveToNotion(
 ### Example Task: "Copy Drive doc to Notion"
 
 **Direct MCP**:
+
 ```
 Context loaded:
 ├─ All 50 MCP servers
@@ -217,6 +222,7 @@ COST: ~$0.32
 ```
 
 **Code Execution (First Run)**:
+
 ```
 Context loaded:
 └─ Available servers list: 200 tokens
@@ -240,6 +246,7 @@ COST: ~$0.015
 ```
 
 **Code Execution (With Skill)**:
+
 ```
 Context loaded:
 └─ Available skills list: 150 tokens
@@ -307,6 +314,7 @@ Improvement: 3.3x faster ✅
 ### 5. Enhanced Security
 
 4-layer security model:
+
 1. Sandbox isolation
 2. PII tokenization
 3. Access control (RBAC)
@@ -319,6 +327,7 @@ See [Security Guide](./07-mcp-security-privacy-best-practices.md)
 ### 1. Infrastructure Requirements
 
 ❌ **Complex setup needed**:
+
 - Sandbox environment (Docker/gVisor/E2B)
 - Persistent storage (/mnt/skills)
 - IPython or Node interpreter
@@ -329,6 +338,7 @@ See [Security Guide](./07-mcp-security-privacy-best-practices.md)
 ### 2. Prompt Engineering
 
 ❌ **Requires careful prompting**:
+
 - Agent must understand progressive discovery
 - Must create appropriate skills
 - Must reuse skills effectively
@@ -338,6 +348,7 @@ See [Security Guide](./07-mcp-security-privacy-best-practices.md)
 ### 3. Security Complexity
 
 ❌ **4-layer security essential**:
+
 - Sandbox could be compromised
 - PII could leak in logs
 - Access controls must be enforced
@@ -346,6 +357,7 @@ See [Security Guide](./07-mcp-security-privacy-best-practices.md)
 ### 4. Operational Overhead
 
 ❌ **Ongoing maintenance**:
+
 - Sandbox management
 - Skill library curation
 - Performance monitoring
@@ -358,6 +370,7 @@ See [Security Guide](./07-mcp-security-privacy-best-practices.md)
 ### Perfect Candidates (from our 50 MCPs)
 
 **High Priority**:
+
 1. **market-analyzer-mcp** - Large data analysis
 2. **user-insight-analyzer-mcp** - Customer data (PII)
 3. **semantic-search-mcp** - Large corpus operations
@@ -365,6 +378,7 @@ See [Security Guide](./07-mcp-security-privacy-best-practices.md)
 5. **agent-orchestrator-mcp** - Complex coordination
 
 **Characteristics**:
+
 - ✅ 5+ tools
 - ✅ > 10KB data
 - ✅ High frequency usage
@@ -374,6 +388,7 @@ See [Security Guide](./07-mcp-security-privacy-best-practices.md)
 ### Keep Direct MCP
 
 **Low Priority (don't migrate)**:
+
 - Simple generators (1-3 tools)
 - One-off operations
 - Real-time chat interactions
@@ -416,29 +431,34 @@ See [Security Guide](./07-mcp-security-privacy-best-practices.md)
 For each MCP to migrate:
 
 1. **Create /servers/ structure**
+
    ```bash
    mkdir -p /servers/google-drive
    ```
 
 2. **Create README.md**
+
    ```markdown
    # Google Drive MCP Server
+
    Provides access to Google Drive files
 
    ## Tools
+
    - getDocument - Retrieve document content
    - createDocument - Create new document
-   ...
+     ...
    ```
 
 3. **Convert each tool to .ts file**
+
    ```typescript
    // /servers/google-drive/getDocument.ts
    async function getDocument(id: string): Promise<string> {
-       const client = await getMcpClient('google-drive');
-       return await client.call_tool('get_document', {id});
+     const client = await getMcpClient('google-drive')
+     return await client.call_tool('get_document', { id })
    }
-   export { getDocument };
+   export { getDocument }
    ```
 
 4. **Update registry**
@@ -458,11 +478,13 @@ See [Migration Guide](./04-mcp-migration-guide.md) for complete process.
 ### If We Migrate 10 High-Complexity MCPs
 
 **Assumptions**:
+
 - 10 MCPs with 5+ tools each
 - Used 500 times/month combined
 - Currently using Direct MCP
 
 **Current State (Direct MCP)**:
+
 ```yaml
 Per Run: 110,000 tokens
 Monthly: 500 × 110K = 55M tokens
@@ -470,6 +492,7 @@ Cost: $165/month
 ```
 
 **After Migration (Code Execution)**:
+
 ```yaml
 Month 1 (building skills):
   - Per run: 12,000 tokens average
@@ -510,6 +533,7 @@ Recommend starting with **ONE MCP**:
 **Best First Candidate**: `semantic-search-mcp`
 
 **Why**:
+
 - ✅ Complex (multiple search operations)
 - ✅ Large data (corpus searches)
 - ✅ Repeated patterns
@@ -517,12 +541,14 @@ Recommend starting with **ONE MCP**:
 - ✅ Clear success metrics
 
 **Pilot Steps**:
+
 1. Week 1: Set up sandbox + storage
 2. Week 2: Convert semantic-search-mcp
 3. Week 3: Test and measure
 4. Week 4: Evaluate results
 
 **Success Criteria**:
+
 - Token reduction >40%
 - Error rate ≤ baseline
 - Latency ≤ baseline
@@ -576,18 +602,18 @@ Our `brain-mcp` can automatically choose pattern:
 ```typescript
 // brain-mcp enhancement
 const decision = await selectMCPPattern({
-    task_description: "Analyze market trends",
-    estimated_complexity: 7,
-    data_size_kb: 50,
-    frequency: "daily"
-});
+  task_description: 'Analyze market trends',
+  estimated_complexity: 7,
+  data_size_kb: 50,
+  frequency: 'daily'
+})
 
 if (decision.pattern === 'code-execution') {
-    // Use Code Execution approach
-    executeWithCodeExecution(task);
+  // Use Code Execution approach
+  executeWithCodeExecution(task)
 } else {
-    // Use Direct MCP
-    executeWithDirectMCP(task);
+  // Use Direct MCP
+  executeWithDirectMCP(task)
 }
 ```
 
@@ -598,6 +624,7 @@ See [Brain Integration Guide](./09-brain-orchestrator-mcp-integration.md)
 Code Execution is a powerful pattern for complex, high-frequency workflows with large data. It's not a replacement for Direct MCP, but a complementary approach for specific use cases.
 
 **For ai-dev-standards**:
+
 - Keep most of our 50 MCPs on Direct MCP
 - Migrate 5-10 high-complexity MCPs to Code Execution
 - Use brain orchestrator to choose automatically
@@ -606,6 +633,7 @@ Code Execution is a powerful pattern for complex, high-frequency workflows with 
 ---
 
 **Related Documentation:**
+
 - [Migration Guide](./04-mcp-migration-guide.md) - How to convert
 - [Filesystem Structure](./05-mcp-filesystem-structure.md) - Tool organization
 - [Progressive Discovery](./06-mcp-progressive-discovery-patterns.md) - Scaling to 1000+ tools

@@ -22,7 +22,7 @@ import {
   paginationSchema,
   validate,
   validateSafe
-} from '../../../UTILS/validation/schemas'
+} from '../../../UTILS/validation/schemas.js'
 
 describe('Basic Field Schemas', () => {
   describe('emailSchema', () => {
@@ -327,8 +327,8 @@ describe('Helper Functions', () => {
       const result = validateSafe(emailSchema, 'invalid')
       expect(result.success).toBe(false)
       if (!result.success) {
-        expect(result.errors).toBeDefined()
-        expect(Array.isArray(result.errors)).toBe(true)
+        expect((result as any).errors).toBeDefined()
+        expect(Array.isArray((result as any).errors)).toBe(true)
       }
     })
   })

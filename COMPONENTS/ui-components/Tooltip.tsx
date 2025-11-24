@@ -31,45 +31,45 @@
  * ```
  */
 
-import * as React from 'react';
-import { createPortal } from 'react-dom';
-import { cn } from './utils';
+import * as React from 'react'
+import { createPortal } from 'react-dom'
+import { cn } from './utils'
 
 export interface TooltipProps {
   /**
    * Tooltip content
    */
-  content: React.ReactNode;
+  content: React.ReactNode
 
   /**
    * Element that triggers the tooltip
    */
-  children: React.ReactElement;
+  children: React.ReactElement
 
   /**
    * Tooltip placement
    */
-  placement?: 'top' | 'bottom' | 'left' | 'right';
+  placement?: 'top' | 'bottom' | 'left' | 'right'
 
   /**
    * Delay before showing tooltip (ms)
    */
-  delay?: number;
+  delay?: number
 
   /**
    * Whether to show arrow pointing to trigger
    */
-  showArrow?: boolean;
+  showArrow?: boolean
 
   /**
    * Additional CSS classes for tooltip
    */
-  className?: string;
+  className?: string
 
   /**
    * Disable the tooltip
    */
-  disabled?: boolean;
+  disabled?: boolean
 }
 
 /**
@@ -84,124 +84,124 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       delay = 200,
       showArrow = true,
       className,
-      disabled = false,
+      disabled = false
     },
     ref
   ) => {
-    const [visible, setVisible] = React.useState(false);
-    const [mounted, setMounted] = React.useState(false);
-    const [position, setPosition] = React.useState({ top: 0, left: 0 });
-    const triggerRef = React.useRef<HTMLElement>(null);
-    const tooltipRef = React.useRef<HTMLDivElement>(null);
-    const timeoutRef = React.useRef<NodeJS.Timeout>();
-    const tooltipId = React.useId();
+    const [visible, setVisible] = React.useState(false)
+    const [mounted, setMounted] = React.useState(false)
+    const [position, setPosition] = React.useState({ top: 0, left: 0 })
+    const triggerRef = React.useRef<HTMLElement>(null)
+    const tooltipRef = React.useRef<HTMLDivElement>(null)
+    const timeoutRef = React.useRef<NodeJS.Timeout>()
+    const tooltipId = React.useId()
 
     // Handle mounting for portal
     React.useEffect(() => {
-      setMounted(true);
-      return () => setMounted(false);
-    }, []);
+      setMounted(true)
+      return () => setMounted(false)
+    }, [])
 
     // Calculate tooltip position
     const updatePosition = React.useCallback(() => {
-      if (!triggerRef.current || !visible) return;
+      if (!triggerRef.current || !visible) return
 
-      const triggerRect = triggerRef.current.getBoundingClientRect();
-      const tooltipWidth = 200; // Default max width
-      const tooltipHeight = 40; // Estimated height
-      const gap = showArrow ? 12 : 8; // Gap between trigger and tooltip
+      const triggerRect = triggerRef.current.getBoundingClientRect()
+      const tooltipWidth = 200 // Default max width
+      const tooltipHeight = 40 // Estimated height
+      const gap = showArrow ? 12 : 8 // Gap between trigger and tooltip
 
-      let top = 0;
-      let left = 0;
+      let top = 0
+      let left = 0
 
       switch (placement) {
         case 'top':
-          top = triggerRect.top - tooltipHeight - gap;
-          left = triggerRect.left + triggerRect.width / 2 - tooltipWidth / 2;
-          break;
+          top = triggerRect.top - tooltipHeight - gap
+          left = triggerRect.left + triggerRect.width / 2 - tooltipWidth / 2
+          break
         case 'bottom':
-          top = triggerRect.bottom + gap;
-          left = triggerRect.left + triggerRect.width / 2 - tooltipWidth / 2;
-          break;
+          top = triggerRect.bottom + gap
+          left = triggerRect.left + triggerRect.width / 2 - tooltipWidth / 2
+          break
         case 'left':
-          top = triggerRect.top + triggerRect.height / 2 - tooltipHeight / 2;
-          left = triggerRect.left - tooltipWidth - gap;
-          break;
+          top = triggerRect.top + triggerRect.height / 2 - tooltipHeight / 2
+          left = triggerRect.left - tooltipWidth - gap
+          break
         case 'right':
-          top = triggerRect.top + triggerRect.height / 2 - tooltipHeight / 2;
-          left = triggerRect.right + gap;
-          break;
+          top = triggerRect.top + triggerRect.height / 2 - tooltipHeight / 2
+          left = triggerRect.right + gap
+          break
       }
 
       // Keep tooltip within viewport
-      const padding = 8;
-      if (left < padding) left = padding;
+      const padding = 8
+      if (left < padding) left = padding
       if (left + tooltipWidth > window.innerWidth - padding) {
-        left = window.innerWidth - tooltipWidth - padding;
+        left = window.innerWidth - tooltipWidth - padding
       }
-      if (top < padding) top = padding;
+      if (top < padding) top = padding
 
-      setPosition({ top, left });
-    }, [visible, placement, showArrow]);
+      setPosition({ top, left })
+    }, [visible, placement, showArrow])
 
     React.useEffect(() => {
       if (visible) {
-        updatePosition();
-        window.addEventListener('scroll', updatePosition, true);
-        window.addEventListener('resize', updatePosition);
+        updatePosition()
+        window.addEventListener('scroll', updatePosition, true)
+        window.addEventListener('resize', updatePosition)
         return () => {
-          window.removeEventListener('scroll', updatePosition, true);
-          window.removeEventListener('resize', updatePosition);
-        };
+          window.removeEventListener('scroll', updatePosition, true)
+          window.removeEventListener('resize', updatePosition)
+        }
       }
-    }, [visible, updatePosition]);
+    }, [visible, updatePosition])
 
     // Show tooltip with delay
     const handleMouseEnter = () => {
-      if (disabled) return;
+      if (disabled) return
       timeoutRef.current = setTimeout(() => {
-        setVisible(true);
-      }, delay);
-    };
+        setVisible(true)
+      }, delay)
+    }
 
     // Hide tooltip
     const handleMouseLeave = () => {
       if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
+        clearTimeout(timeoutRef.current)
       }
-      setVisible(false);
-    };
+      setVisible(false)
+    }
 
     // Cleanup timeout on unmount
     React.useEffect(() => {
       return () => {
         if (timeoutRef.current) {
-          clearTimeout(timeoutRef.current);
+          clearTimeout(timeoutRef.current)
         }
-      };
-    }, []);
+      }
+    }, [])
 
     // Clone child element with event handlers
     const trigger = React.cloneElement(children, {
       ref: triggerRef,
       onMouseEnter: (e: React.MouseEvent) => {
-        handleMouseEnter();
-        children.props.onMouseEnter?.(e);
+        handleMouseEnter()
+        children.props.onMouseEnter?.(e)
       },
       onMouseLeave: (e: React.MouseEvent) => {
-        handleMouseLeave();
-        children.props.onMouseLeave?.(e);
+        handleMouseLeave()
+        children.props.onMouseLeave?.(e)
       },
       onFocus: (e: React.FocusEvent) => {
-        if (!disabled) setVisible(true);
-        children.props.onFocus?.(e);
+        if (!disabled) setVisible(true)
+        children.props.onFocus?.(e)
       },
       onBlur: (e: React.FocusEvent) => {
-        setVisible(false);
-        children.props.onBlur?.(e);
+        setVisible(false)
+        children.props.onBlur?.(e)
       },
-      'aria-describedby': visible ? tooltipId : undefined,
-    });
+      'aria-describedby': visible ? tooltipId : undefined
+    })
 
     const tooltipContent = visible && mounted && (
       <div
@@ -216,7 +216,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
         )}
         style={{
           top: `${position.top}px`,
-          left: `${position.left}px`,
+          left: `${position.left}px`
         }}
       >
         {content}
@@ -232,15 +232,15 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
           />
         )}
       </div>
-    );
+    )
 
     return (
       <>
         {trigger}
         {mounted && createPortal(tooltipContent, document.body)}
       </>
-    );
+    )
   }
-);
+)
 
-Tooltip.displayName = 'Tooltip';
+Tooltip.displayName = 'Tooltip'

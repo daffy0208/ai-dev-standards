@@ -59,6 +59,7 @@ Each dimension is scored on a **1-10 scale**:
 ### Scoring Criteria
 
 **Be rigorous and objective:**
+
 - Compare against **industry leaders** (not average tools)
 - Reference **established standards** (OWASP, WCAG, IEEE, ISO)
 - Consider **real-world usage** and edge cases
@@ -77,6 +78,7 @@ Each dimension is scored on a **1-10 scale**:
 **For ai-dev-standards or similar repositories with resource registries:**
 
 1. **Verify Registry Completeness**
+
    ```bash
    # Run automated validation
    npm run test:registry
@@ -127,6 +129,7 @@ If ANY of these are true, the audit MUST score 0/10 for "Resource Discovery" and
 
 **Why This Failed Before:**
 The previous audit gave 8.6/10 despite 81% of skills being invisible because it didn't check resource discovery. This check would have caught:
+
 - 29 skills existed but weren't in registry (81% invisible)
 - CLI returning 3 hardcoded skills instead of 36 from registry
 - README mentioning 9 skills that weren't discoverable
@@ -169,6 +172,7 @@ For each of the 12 dimensions:
 #### 1. Code Quality
 
 **Evaluate:**
+
 - Code structure and organization
 - Naming conventions
 - Code duplication
@@ -179,6 +183,7 @@ For each of the 12 dimensions:
 - SOLID principles adherence
 
 **Scoring rubric:**
+
 - **10**: Perfect structure, zero duplication, excellent patterns
 - **8**: Well-structured, minimal issues, good patterns
 - **6**: Acceptable structure, some code smells
@@ -186,6 +191,7 @@ For each of the 12 dimensions:
 - **2**: Chaotic, unmaintainable code
 
 **Evidence required:**
+
 - Specific file examples
 - Metrics (if available)
 - Pattern identification
@@ -195,6 +201,7 @@ For each of the 12 dimensions:
 #### 2. Architecture
 
 **Evaluate:**
+
 - System design
 - Modularity and separation of concerns
 - Scalability potential
@@ -205,6 +212,7 @@ For each of the 12 dimensions:
 - Architectural patterns
 
 **Scoring rubric:**
+
 - **10**: Exemplary architecture, highly scalable, perfect modularity
 - **8**: Solid architecture, good separation, scalable
 - **6**: Adequate architecture, some coupling
@@ -212,6 +220,7 @@ For each of the 12 dimensions:
 - **2**: Fundamentally flawed architecture
 
 **Evidence required:**
+
 - Architecture diagrams (if available)
 - Component analysis
 - Dependency analysis
@@ -221,6 +230,7 @@ For each of the 12 dimensions:
 #### 3. Documentation
 
 **Evaluate:**
+
 - Completeness (covers all features)
 - Clarity (easy to understand)
 - Accuracy (matches implementation)
@@ -231,6 +241,7 @@ For each of the 12 dimensions:
 - Architecture documentation
 
 **Scoring rubric:**
+
 - **10**: Comprehensive, crystal clear, excellent examples
 - **8**: Very good coverage, clear, good examples
 - **6**: Adequate coverage, some gaps
@@ -238,6 +249,7 @@ For each of the 12 dimensions:
 - **2**: Minimal or misleading documentation
 
 **Evidence required:**
+
 - Documentation inventory
 - Missing sections identified
 - Quality assessment of examples
@@ -247,6 +259,7 @@ For each of the 12 dimensions:
 #### 4. Usability
 
 **Evaluate:**
+
 - Learning curve
 - Installation ease
 - Configuration complexity
@@ -257,6 +270,7 @@ For each of the 12 dimensions:
 - User interface (if applicable)
 
 **Scoring rubric:**
+
 - **10**: Incredibly intuitive, zero friction, delightful UX
 - **8**: Very easy to use, minimal learning curve
 - **6**: Usable but requires learning
@@ -264,6 +278,7 @@ For each of the 12 dimensions:
 - **2**: Nearly unusable, extremely frustrating
 
 **Evidence required:**
+
 - Time-to-first-success measurement
 - Pain points identified
 - User journey analysis
@@ -273,6 +288,7 @@ For each of the 12 dimensions:
 #### 5. Performance
 
 **Evaluate:**
+
 - Execution speed
 - Resource usage (CPU, memory)
 - Startup time
@@ -283,6 +299,7 @@ For each of the 12 dimensions:
 - Bundle size (if applicable)
 
 **Scoring rubric:**
+
 - **10**: Blazingly fast, minimal resources, highly optimized
 - **8**: Very fast, efficient resource usage
 - **6**: Acceptable performance
@@ -290,6 +307,7 @@ For each of the 12 dimensions:
 - **2**: Unusably slow, resource exhaustion
 
 **Evidence required:**
+
 - Performance benchmarks
 - Resource measurements
 - Bottleneck identification
@@ -299,6 +317,7 @@ For each of the 12 dimensions:
 #### 6. Security
 
 **Evaluate:**
+
 - Vulnerability assessment
 - Input validation
 - Authentication/authorization
@@ -309,6 +328,7 @@ For each of the 12 dimensions:
 - Security best practices
 
 **Scoring rubric:**
+
 - **10**: Fort Knox, zero vulnerabilities, exemplary practices
 - **8**: Very secure, minor concerns
 - **6**: Adequate security, some issues
@@ -316,6 +336,7 @@ For each of the 12 dimensions:
 - **2**: Critical security flaws
 
 **Evidence required:**
+
 - Vulnerability scan results
 - Security checklist
 - Specific issues found
@@ -325,6 +346,7 @@ For each of the 12 dimensions:
 #### 7. Testing
 
 **Evaluate:**
+
 - Test coverage (unit, integration, e2e)
 - Test quality
 - Test automation
@@ -335,6 +357,7 @@ For each of the 12 dimensions:
 - Security tests
 
 **Scoring rubric:**
+
 - **10**: Comprehensive, automated, excellent coverage (>90%)
 - **8**: Very good coverage (>80%), automated
 - **6**: Adequate coverage (>60%)
@@ -342,6 +365,7 @@ For each of the 12 dimensions:
 - **2**: Minimal or no tests
 
 **Evidence required:**
+
 - Coverage reports
 - Test inventory
 - Quality assessment
@@ -351,6 +375,7 @@ For each of the 12 dimensions:
 #### 8. Maintainability
 
 **Evaluate:**
+
 - Technical debt
 - Code readability
 - Refactorability
@@ -361,6 +386,7 @@ For each of the 12 dimensions:
 - Versioning strategy
 
 **Scoring rubric:**
+
 - **10**: Zero debt, highly maintainable, excellent guidelines
 - **8**: Low debt, easy to maintain
 - **6**: Moderate debt, maintainable
@@ -368,6 +394,7 @@ For each of the 12 dimensions:
 - **2**: Unmaintainable, abandoned
 
 **Evidence required:**
+
 - Technical debt analysis
 - Maintainability metrics
 - Contribution difficulty assessment
@@ -377,6 +404,7 @@ For each of the 12 dimensions:
 #### 9. Developer Experience (DX)
 
 **Evaluate:**
+
 - Setup ease
 - Debugging experience
 - Error messages
@@ -387,6 +415,7 @@ For each of the 12 dimensions:
 - Developer documentation
 
 **Scoring rubric:**
+
 - **10**: Amazing DX, delightful to work with
 - **8**: Excellent DX, very productive
 - **6**: Good DX, some friction
@@ -394,6 +423,7 @@ For each of the 12 dimensions:
 - **2**: Terrible DX, actively hostile
 
 **Evidence required:**
+
 - Setup time measurement
 - Developer pain points
 - Tooling assessment
@@ -403,6 +433,7 @@ For each of the 12 dimensions:
 #### 10. Accessibility
 
 **Evaluate:**
+
 - ADHD-friendly design
 - WCAG compliance (if UI)
 - Cognitive load
@@ -413,6 +444,7 @@ For each of the 12 dimensions:
 - Simplicity vs complexity
 
 **Scoring rubric:**
+
 - **10**: Universally accessible, ADHD-optimized
 - **8**: Highly accessible, inclusive
 - **6**: Meets accessibility standards
@@ -420,6 +452,7 @@ For each of the 12 dimensions:
 - **2**: Inaccessible to many users
 
 **Evidence required:**
+
 - WCAG audit results
 - ADHD-friendliness checklist
 - Usability for diverse users
@@ -429,6 +462,7 @@ For each of the 12 dimensions:
 #### 11. CI/CD
 
 **Evaluate:**
+
 - Automation level
 - Build pipeline
 - Testing automation
@@ -439,6 +473,7 @@ For each of the 12 dimensions:
 - Infrastructure as code
 
 **Scoring rubric:**
+
 - **10**: Fully automated, zero-touch deployments
 - **8**: Highly automated, minimal manual steps
 - **6**: Partially automated
@@ -446,6 +481,7 @@ For each of the 12 dimensions:
 - **2**: No automation
 
 **Evidence required:**
+
 - Pipeline configuration
 - Deployment frequency
 - Failure rate
@@ -455,6 +491,7 @@ For each of the 12 dimensions:
 #### 12. Innovation
 
 **Evaluate:**
+
 - Novel approaches
 - Creative solutions
 - Forward-thinking design
@@ -465,6 +502,7 @@ For each of the 12 dimensions:
 - Inspiration factor
 
 **Scoring rubric:**
+
 - **10**: Groundbreaking, sets new standards
 - **8**: Highly innovative, pushes boundaries
 - **6**: Some innovation
@@ -472,6 +510,7 @@ For each of the 12 dimensions:
 - **2**: Derivative, no innovation
 
 **Evidence required:**
+
 - Novel features identified
 - Comparison with alternatives
 - Industry impact assessment
@@ -483,33 +522,39 @@ For each of the 12 dimensions:
 **Create comprehensive report:**
 
 #### Executive Summary
+
 - Overall score (weighted average)
 - Key strengths (top 3)
 - Critical weaknesses (top 3)
 - Recommendation (Excellent / Good / Needs Work / Not Recommended)
 
 #### Detailed Scores
+
 - Table with all 12 dimensions
 - Score + justification for each
 - Evidence cited
 
 #### Strengths Analysis
+
 - What's done exceptionally well
 - Competitive advantages
 - Areas to highlight
 
 #### Weaknesses Analysis
+
 - What needs improvement
 - Critical issues
 - Risk areas
 
 #### Recommendations
+
 - Prioritized improvement list
 - Quick wins (easy, high impact)
 - Long-term strategic improvements
 - Benchmark comparisons
 
 #### Comparative Analysis
+
 - How it compares to industry leaders
 - Similar tools comparison
 - Unique differentiators
@@ -534,6 +579,7 @@ For each of the 12 dimensions:
 **Overall Score:** [X.X]/10 - [Rating]
 
 **Rating Scale:**
+
 - 9.0-10.0: Exceptional
 - 8.0-8.9: Excellent
 - 7.0-7.9: Very Good
@@ -542,11 +588,13 @@ For each of the 12 dimensions:
 - Below 5.0: Needs Improvement
 
 **Key Strengths:**
+
 1. [Strength 1]
 2. [Strength 2]
 3. [Strength 3]
 
 **Critical Areas for Improvement:**
+
 1. [Weakness 1]
 2. [Weakness 2]
 3. [Weakness 3]
@@ -557,20 +605,20 @@ For each of the 12 dimensions:
 
 ## Detailed Scores
 
-| Dimension | Score | Rating | Priority |
-|-----------|-------|--------|----------|
-| Code Quality | X/10 | [Rating] | [High/Medium/Low] |
-| Architecture | X/10 | [Rating] | [High/Medium/Low] |
-| Documentation | X/10 | [Rating] | [High/Medium/Low] |
-| Usability | X/10 | [Rating] | [High/Medium/Low] |
-| Performance | X/10 | [Rating] | [High/Medium/Low] |
-| Security | X/10 | [Rating] | [High/Medium/Low] |
-| Testing | X/10 | [Rating] | [High/Medium/Low] |
-| Maintainability | X/10 | [Rating] | [High/Medium/Low] |
-| Developer Experience | X/10 | [Rating] | [High/Medium/Low] |
-| Accessibility | X/10 | [Rating] | [High/Medium/Low] |
-| CI/CD | X/10 | [Rating] | [High/Medium/Low] |
-| Innovation | X/10 | [Rating] | [High/Medium/Low] |
+| Dimension            | Score | Rating   | Priority          |
+| -------------------- | ----- | -------- | ----------------- |
+| Code Quality         | X/10  | [Rating] | [High/Medium/Low] |
+| Architecture         | X/10  | [Rating] | [High/Medium/Low] |
+| Documentation        | X/10  | [Rating] | [High/Medium/Low] |
+| Usability            | X/10  | [Rating] | [High/Medium/Low] |
+| Performance          | X/10  | [Rating] | [High/Medium/Low] |
+| Security             | X/10  | [Rating] | [High/Medium/Low] |
+| Testing              | X/10  | [Rating] | [High/Medium/Low] |
+| Maintainability      | X/10  | [Rating] | [High/Medium/Low] |
+| Developer Experience | X/10  | [Rating] | [High/Medium/Low] |
+| Accessibility        | X/10  | [Rating] | [High/Medium/Low] |
+| CI/CD                | X/10  | [Rating] | [High/Medium/Low] |
+| Innovation           | X/10  | [Rating] | [High/Medium/Low] |
 
 **Overall Score:** [Weighted Average]/10
 
@@ -583,18 +631,22 @@ For each of the 12 dimensions:
 **Rating:** [Excellent/Good/Acceptable/Poor]
 
 **Strengths:**
+
 - [Specific strength with file reference]
 - [Another strength]
 
 **Weaknesses:**
+
 - [Specific weakness with file reference]
 - [Another weakness]
 
 **Evidence:**
+
 - [Specific code examples]
 - [Metrics if available]
 
 **Improvements:**
+
 1. [Specific actionable improvement]
 2. [Another improvement]
 
@@ -609,9 +661,9 @@ For each of the 12 dimensions:
 ### Industry Leaders Comparison
 
 | Feature/Aspect | [This Tool] | [Leader 1] | [Leader 2] |
-|----------------|-------------|------------|------------|
-| [Aspect 1] | [Score] | [Score] | [Score] |
-| [Aspect 2] | [Score] | [Score] | [Score] |
+| -------------- | ----------- | ---------- | ---------- |
+| [Aspect 1]     | [Score]     | [Score]    | [Score]    |
+| [Aspect 2]     | [Score]     | [Score]    | [Score]    |
 
 ### Unique Differentiators
 
@@ -662,6 +714,7 @@ For each of the 12 dimensions:
 ### High-Risk Issues
 
 **[Issue 1]:**
+
 - **Risk Level:** Critical/High/Medium/Low
 - **Impact:** [Description]
 - **Mitigation:** [Specific steps]
@@ -680,16 +733,16 @@ For each of the 12 dimensions:
 
 ### Performance Benchmarks
 
-| Metric | Result | Industry Standard | Status |
-|--------|--------|-------------------|--------|
-| [Metric 1] | [Value] | [Standard] | ✅/⚠️/❌ |
+| Metric     | Result  | Industry Standard | Status   |
+| ---------- | ------- | ----------------- | -------- |
+| [Metric 1] | [Value] | [Standard]        | ✅/⚠️/❌ |
 
 ### Quality Metrics
 
-| Metric | Result | Target | Status |
-|--------|--------|--------|--------|
-| Code Coverage | [X]% | 80%+ | ✅/⚠️/❌ |
-| Complexity | [X] | <15 | ✅/⚠️/❌ |
+| Metric        | Result | Target | Status   |
+| ------------- | ------ | ------ | -------- |
+| Code Coverage | [X]%   | 80%+   | ✅/⚠️/❌ |
+| Complexity    | [X]    | <15    | ✅/⚠️/❌ |
 
 ---
 
@@ -704,14 +757,16 @@ For each of the 12 dimensions:
 ## Appendices
 
 ### A. Methodology
+
 [Explain audit process and standards used]
 
 ### B. Tools Used
+
 [List any tools used for analysis]
 
 ### C. References
-[Industry standards referenced]
 
+[Industry standards referenced]
 ```
 
 ---
@@ -721,6 +776,7 @@ For each of the 12 dimensions:
 ### For ADHD-Friendly Tools
 
 **Additional criteria:**
+
 - One-command simplicity (10/10 = single command)
 - Automatic everything (10/10 = zero manual steps)
 - Clear visual feedback (10/10 = progress indicators, colors)
@@ -731,6 +787,7 @@ For each of the 12 dimensions:
 ### For Developer Tools
 
 **Additional criteria:**
+
 - Setup time (<5 min = 10/10)
 - Documentation quality
 - Error message quality
@@ -740,6 +797,7 @@ For each of the 12 dimensions:
 ### For Frameworks/Libraries
 
 **Additional criteria:**
+
 - Bundle size
 - Tree-shaking support
 - TypeScript support
@@ -751,31 +809,37 @@ For each of the 12 dimensions:
 ## Industry Standards Referenced
 
 ### Code Quality
+
 - Clean Code (Robert Martin)
 - Code Complete (Steve McConnell)
 - SonarQube quality gates
 
 ### Architecture
+
 - Clean Architecture (Robert Martin)
 - Domain-Driven Design (Eric Evans)
 - Microservices patterns
 
 ### Security
+
 - OWASP Top 10
 - SANS Top 25
 - CWE/SANS
 
 ### Accessibility
+
 - WCAG 2.1 (AA/AAA)
 - ADHD-friendly design principles
 - Inclusive design guidelines
 
 ### Testing
+
 - Test Pyramid (Mike Cohn)
 - Testing best practices (Martin Fowler)
 - 80% minimum coverage
 
 ### Performance
+
 - Core Web Vitals
 - RAIL model (Google)
 - Performance budgets
@@ -839,6 +903,7 @@ Default weights for overall score:
 ## Anti-Patterns to Identify
 
 **Code:**
+
 - God objects
 - Spaghetti code
 - Copy-paste programming
@@ -846,18 +911,21 @@ Default weights for overall score:
 - Global state abuse
 
 **Architecture:**
+
 - Tight coupling
 - Circular dependencies
 - Missing abstractions
 - Over-engineering
 
 **Security:**
+
 - Hardcoded secrets
 - SQL injection vulnerabilities
 - XSS vulnerabilities
 - Missing authentication
 
 **Testing:**
+
 - No tests
 - Flaky tests
 - Test duplication
@@ -887,6 +955,7 @@ You hold tools to the **highest standards** because:
 - **Below 5/10 needs work** - Significant improvements required
 
 Compare against industry leaders like:
+
 - **Code Quality:** Linux kernel, SQLite
 - **Documentation:** Stripe, Tailwind CSS
 - **Usability:** Vercel, Netlify

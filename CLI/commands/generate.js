@@ -39,9 +39,11 @@ async function generateCommand(options) {
   try {
     // Read config file
     const configPath = path.resolve(process.cwd(), options.config)
-    if (!await fs.pathExists(configPath)) {
+    if (!(await fs.pathExists(configPath))) {
       console.log(chalk.red(`❌ Config file not found: ${options.config}`))
-      console.log(chalk.yellow(`\nCreate ${chalk.cyan('ai-dev.config.yaml')} with your configuration.`))
+      console.log(
+        chalk.yellow(`\nCreate ${chalk.cyan('ai-dev.config.yaml')} with your configuration.`)
+      )
       console.log(chalk.gray('\nExample:\n'))
       console.log(chalk.gray('components:'))
       console.log(chalk.gray('  - name: Button'))
@@ -129,7 +131,6 @@ async function generateCommand(options) {
     }
 
     console.log(chalk.green(`\n✅ Successfully generated ${totalFiles} files\n`))
-
   } catch (error) {
     console.error(chalk.red(`\n❌ Error: ${error.message}\n`))
     if (error.stack) {

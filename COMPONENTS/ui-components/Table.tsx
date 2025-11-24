@@ -95,35 +95,35 @@
  * ```
  */
 
-import React from 'react';
-import { cn } from './utils';
+import React from 'react'
+import { cn } from './utils'
 
 /**
  * Table column configuration
  */
 export interface TableColumn<T = any> {
   /** Unique key for the column (maps to data object key) */
-  key: string;
+  key: string
   /** Column header label */
-  label: string;
+  label: string
   /** Enable sorting for this column */
-  sortable?: boolean;
+  sortable?: boolean
   /** Custom render function for cell content */
-  render?: (value: any, row: T, index: number) => React.ReactNode;
+  render?: (value: any, row: T, index: number) => React.ReactNode
   /** Column width (CSS value) */
-  width?: string;
+  width?: string
   /** Column alignment */
-  align?: 'left' | 'center' | 'right';
+  align?: 'left' | 'center' | 'right'
   /** Custom className for cells */
-  className?: string;
+  className?: string
 }
 
 /**
  * Sort configuration
  */
 export interface SortConfig {
-  key: string;
-  direction: 'asc' | 'desc';
+  key: string
+  direction: 'asc' | 'desc'
 }
 
 /**
@@ -131,31 +131,31 @@ export interface SortConfig {
  */
 export interface TableProps<T = any> {
   /** Array of column configurations */
-  columns: TableColumn<T>[];
+  columns: TableColumn<T>[]
   /** Array of data objects */
-  data: T[];
+  data: T[]
   /** Enable sorting functionality */
-  sortable?: boolean;
+  sortable?: boolean
   /** Sort change handler */
-  onSort?: (sortConfig: SortConfig | null) => void;
+  onSort?: (sortConfig: SortConfig | null) => void
   /** Custom className */
-  className?: string;
+  className?: string
   /** Enable striped rows */
-  striped?: boolean;
+  striped?: boolean
   /** Enable bordered cells */
-  bordered?: boolean;
+  bordered?: boolean
   /** Enable compact spacing */
-  compact?: boolean;
+  compact?: boolean
   /** Enable hover effect on rows */
-  hoverable?: boolean;
+  hoverable?: boolean
   /** Loading state */
-  loading?: boolean;
+  loading?: boolean
   /** Empty state message */
-  emptyMessage?: string;
+  emptyMessage?: string
   /** Row click handler */
-  onRowClick?: (row: T, index: number) => void;
+  onRowClick?: (row: T, index: number) => void
   /** Custom row className */
-  rowClassName?: string | ((row: T, index: number) => string);
+  rowClassName?: string | ((row: T, index: number) => string)
 }
 
 export function Table<T = any>({
@@ -171,32 +171,32 @@ export function Table<T = any>({
   loading = false,
   emptyMessage = 'No data available',
   onRowClick,
-  rowClassName,
+  rowClassName
 }: TableProps<T>) {
-  const [internalSortConfig, setInternalSortConfig] = React.useState<SortConfig | null>(null);
+  const [internalSortConfig, setInternalSortConfig] = React.useState<SortConfig | null>(null)
 
-  const currentSortConfig = onSort ? undefined : internalSortConfig;
+  const currentSortConfig = onSort ? undefined : internalSortConfig
 
   const handleSort = (columnKey: string) => {
-    if (!sortable) return;
+    if (!sortable) return
 
     const newSortConfig: SortConfig =
       currentSortConfig?.key === columnKey && currentSortConfig.direction === 'asc'
         ? { key: columnKey, direction: 'desc' }
-        : { key: columnKey, direction: 'asc' };
+        : { key: columnKey, direction: 'asc' }
 
     if (onSort) {
-      onSort(newSortConfig);
+      onSort(newSortConfig)
     } else {
-      setInternalSortConfig(newSortConfig);
+      setInternalSortConfig(newSortConfig)
     }
-  };
+  }
 
   const getSortIcon = (columnKey: string, isSortable: boolean) => {
-    if (!sortable || !isSortable) return null;
+    if (!sortable || !isSortable) return null
 
-    const isActive = currentSortConfig?.key === columnKey;
-    const direction = currentSortConfig?.direction;
+    const isActive = currentSortConfig?.key === columnKey
+    const direction = currentSortConfig?.direction
 
     return (
       <span className="ml-1 inline-flex flex-col" aria-hidden="true">
@@ -221,39 +221,36 @@ export function Table<T = any>({
           <path d="M15 10l-5 5-5-5h10z" />
         </svg>
       </span>
-    );
-  };
+    )
+  }
 
   const getAlignmentClass = (align?: string) => {
     switch (align) {
       case 'center':
-        return 'text-center';
+        return 'text-center'
       case 'right':
-        return 'text-right';
+        return 'text-right'
       default:
-        return 'text-left';
+        return 'text-left'
     }
-  };
+  }
 
   const getRowClassName = (row: T, index: number) => {
     if (typeof rowClassName === 'function') {
-      return rowClassName(row, index);
+      return rowClassName(row, index)
     }
-    return rowClassName;
-  };
+    return rowClassName
+  }
 
   return (
     <div className={cn('w-full overflow-x-auto', className)}>
       <table
-        className={cn(
-          'w-full border-collapse',
-          bordered && 'border border-gray-300'
-        )}
+        className={cn('w-full border-collapse', bordered && 'border border-gray-300')}
         role="table"
       >
         <thead className="bg-gray-50">
           <tr>
-            {columns.map((column) => (
+            {columns.map(column => (
               <th
                 key={column.key}
                 scope="col"
@@ -275,10 +272,10 @@ export function Table<T = any>({
                     : undefined
                 }
                 tabIndex={column.sortable && sortable ? 0 : undefined}
-                onKeyDown={(e) => {
+                onKeyDown={e => {
                   if (column.sortable && sortable && (e.key === 'Enter' || e.key === ' ')) {
-                    e.preventDefault();
-                    handleSort(column.key);
+                    e.preventDefault()
+                    handleSort(column.key)
                   }
                 }}
               >
@@ -351,18 +348,16 @@ export function Table<T = any>({
                 )}
                 onClick={() => onRowClick?.(row, rowIndex)}
                 tabIndex={onRowClick ? 0 : undefined}
-                onKeyDown={(e) => {
+                onKeyDown={e => {
                   if (onRowClick && (e.key === 'Enter' || e.key === ' ')) {
-                    e.preventDefault();
-                    onRowClick(row, rowIndex);
+                    e.preventDefault()
+                    onRowClick(row, rowIndex)
                   }
                 }}
               >
-                {columns.map((column) => {
-                  const value = (row as any)[column.key];
-                  const content = column.render
-                    ? column.render(value, row, rowIndex)
-                    : value;
+                {columns.map(column => {
+                  const value = (row as any)[column.key]
+                  const content = column.render ? column.render(value, row, rowIndex) : value
 
                   return (
                     <td
@@ -377,7 +372,7 @@ export function Table<T = any>({
                     >
                       {content}
                     </td>
-                  );
+                  )
                 })}
               </tr>
             ))
@@ -388,7 +383,7 @@ export function Table<T = any>({
   )
 }
 
-Table.displayName = 'Table';
+Table.displayName = 'Table'
 
 /**
  * Hook for managing table sorting state
@@ -406,33 +401,33 @@ Table.displayName = 'Table';
  * ```
  */
 export function useTableSort<T>(data: T[]) {
-  const [sortConfig, setSortConfig] = React.useState<SortConfig | null>(null);
+  const [sortConfig, setSortConfig] = React.useState<SortConfig | null>(null)
 
   const sortedData = React.useMemo(() => {
-    if (!sortConfig) return data;
+    if (!sortConfig) return data
 
     return [...data].sort((a, b) => {
-      const aValue = (a as any)[sortConfig.key];
-      const bValue = (b as any)[sortConfig.key];
+      const aValue = (a as any)[sortConfig.key]
+      const bValue = (b as any)[sortConfig.key]
 
-      if (aValue === null || aValue === undefined) return 1;
-      if (bValue === null || bValue === undefined) return -1;
+      if (aValue === null || aValue === undefined) return 1
+      if (bValue === null || bValue === undefined) return -1
 
       if (typeof aValue === 'string' && typeof bValue === 'string') {
         return sortConfig.direction === 'asc'
           ? aValue.localeCompare(bValue)
-          : bValue.localeCompare(aValue);
+          : bValue.localeCompare(aValue)
       }
 
-      if (aValue < bValue) return sortConfig.direction === 'asc' ? -1 : 1;
-      if (aValue > bValue) return sortConfig.direction === 'asc' ? 1 : -1;
-      return 0;
-    });
-  }, [data, sortConfig]);
+      if (aValue < bValue) return sortConfig.direction === 'asc' ? -1 : 1
+      if (aValue > bValue) return sortConfig.direction === 'asc' ? 1 : -1
+      return 0
+    })
+  }, [data, sortConfig])
 
   return {
     sortedData,
     sortConfig,
-    handleSort: setSortConfig,
-  };
+    handleSort: setSortConfig
+  }
 }

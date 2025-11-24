@@ -81,10 +81,7 @@ export class ClaudeClient {
     })
   }
 
-  async sendMessage(
-    messages: ClaudeMessage[],
-    systemPrompt?: string
-  ): Promise<ClaudeResponse> {
+  async sendMessage(messages: ClaudeMessage[], systemPrompt?: string): Promise<ClaudeResponse> {
     try {
       const response = await this.client.messages.create({
         model: this.config.model,
@@ -186,9 +183,7 @@ export async function example() {
 
   // Simple message
   const response = await client.sendMessage(
-    [
-      { role: 'user', content: 'What is the capital of France?' }
-    ],
+    [{ role: 'user', content: 'What is the capital of France?' }],
     'You are a helpful geography expert.'
   )
 
@@ -198,11 +193,9 @@ export async function example() {
 
   // Streaming example
   console.log('\nStreaming example:')
-  for await (const chunk of client.streamMessage(
-    [
-      { role: 'user', content: 'Count from 1 to 5' }
-    ]
-  )) {
+  for await (const chunk of client.streamMessage([
+    { role: 'user', content: 'Count from 1 to 5' }
+  ])) {
     process.stdout.write(chunk)
   }
 

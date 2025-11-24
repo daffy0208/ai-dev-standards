@@ -15,17 +15,18 @@ Make applications fast, scalable, and cost-efficient.
 ## Performance Budget
 
 ### Web Vitals (Target Metrics)
+
 ```yaml
 Core Web Vitals:
-  Largest Contentful Paint (LCP): < 2.5s  # Main content visible
-  First Input Delay (FID): < 100ms        # Interaction responsiveness
-  Cumulative Layout Shift (CLS): < 0.1    # Visual stability
+  Largest Contentful Paint (LCP): < 2.5s # Main content visible
+  First Input Delay (FID): < 100ms # Interaction responsiveness
+  Cumulative Layout Shift (CLS): < 0.1 # Visual stability
 
 Additional Metrics:
-  First Contentful Paint (FCP): < 1.8s    # First content rendered
-  Time to Interactive (TTI): < 3.8s       # Fully interactive
-  Total Blocking Time (TBT): < 200ms      # Main thread blocked
-  Speed Index: < 3.4s                     # Visual progress
+  First Contentful Paint (FCP): < 1.8s # First content rendered
+  Time to Interactive (TTI): < 3.8s # Fully interactive
+  Total Blocking Time (TBT): < 200ms # Main thread blocked
+  Speed Index: < 3.4s # Visual progress
 
 Backend Metrics:
   API Response Time (P95): < 500ms
@@ -42,6 +43,7 @@ Backend Metrics:
 ### Frontend Profiling
 
 **Chrome DevTools**:
+
 ```javascript
 // 1. Performance tab → Record → Reload page
 // 2. Analyze:
@@ -56,6 +58,7 @@ lighthouse https://yoursite.com --view
 ```
 
 **React DevTools Profiler**:
+
 ```javascript
 // Wrap component to profile
 import { Profiler } from 'react'
@@ -64,7 +67,7 @@ function onRenderCallback(id, phase, actualDuration) {
   console.log(`${id} (${phase}) took ${actualDuration}ms`)
 }
 
-<Profiler id="ExpensiveComponent" onRender={onRenderCallback}>
+;<Profiler id="ExpensiveComponent" onRender={onRenderCallback}>
   <ExpensiveComponent />
 </Profiler>
 ```
@@ -72,6 +75,7 @@ function onRenderCallback(id, phase, actualDuration) {
 ### Backend Profiling
 
 **Node.js Profiling**:
+
 ```bash
 # Generate CPU profile
 node --prof app.js
@@ -85,6 +89,7 @@ npm i -g 0x
 ```
 
 **Python Profiling**:
+
 ```python
 import cProfile
 import pstats
@@ -100,6 +105,7 @@ p.sort_stats('cumulative').print_stats(20)
 ### Database Profiling
 
 **PostgreSQL**:
+
 ```sql
 -- Enable query logging
 ALTER DATABASE yourdb SET log_min_duration_statement = 100; -- Log queries >100ms
@@ -116,6 +122,7 @@ LIMIT 20;
 ```
 
 **MongoDB**:
+
 ```javascript
 // Enable profiling
 db.setProfilingLevel(1, { slowms: 100 })
@@ -155,9 +162,9 @@ CREATE INDEX idx_active_users ON users(created_at) WHERE is_active = true;
 
 ```typescript
 // ❌ Bad: N+1 query problem (101 database queries)
-const users = await User.findAll()  // 1 query
+const users = await User.findAll() // 1 query
 for (const user of users) {
-  user.posts = await Post.findAll({ where: { userId: user.id } })  // N queries
+  user.posts = await Post.findAll({ where: { userId: user.id } }) // N queries
 }
 
 // ✅ Good: Eager loading (2 queries)
@@ -166,7 +173,7 @@ const users = await User.findAll({
 })
 
 // ✅ Better: DataLoader (batching + caching)
-const userLoader = new DataLoader(async (userIds) => {
+const userLoader = new DataLoader(async userIds => {
   const users = await User.findAll({ where: { id: userIds } })
   return userIds.map(id => users.find(u => u.id === id))
 })
@@ -205,9 +212,9 @@ SELECT * FROM users WHERE email = 'user@example.com';
 import { Pool } from 'pg'
 
 const pool = new Pool({
-  max: 20,                     // Maximum connections
-  min: 5,                      // Minimum connections
-  idleTimeoutMillis: 30000,    // Close idle connections after 30s
+  max: 20, // Maximum connections
+  min: 5, // Minimum connections
+  idleTimeoutMillis: 30000, // Close idle connections after 30s
   connectionTimeoutMillis: 2000 // Error if can't connect in 2s
 })
 
@@ -270,7 +277,7 @@ async function getUser(id: string): Promise<User> {
 // Cache invalidation
 async function updateUser(id: string, data: Partial<User>) {
   await db.users.update(id, data)
-  await redis.del(`user:${id}`)  // Invalidate cache
+  await redis.del(`user:${id}`) // Invalidate cache
 }
 ```
 
@@ -474,7 +481,7 @@ import { FixedSizeList } from 'react-window'
 ```typescript
 // ❌ Bad: Synchronous (slow response)
 app.post('/send-email', async (req, res) => {
-  await sendEmail(req.body)  // 3 seconds
+  await sendEmail(req.body) // 3 seconds
   res.json({ success: true })
 })
 
@@ -489,7 +496,7 @@ app.post('/send-email', async (req, res) => {
 })
 
 // Process jobs in background worker
-emailQueue.process('send', async (job) => {
+emailQueue.process('send', async job => {
   await sendEmail(job.data)
 })
 ```
@@ -499,7 +506,7 @@ emailQueue.process('send', async (job) => {
 ```typescript
 // 1. Compression
 import compression from 'compression'
-app.use(compression())  // Gzip responses
+app.use(compression()) // Gzip responses
 
 // 2. Pagination
 app.get('/api/posts', async (req, res) => {
@@ -541,7 +548,7 @@ import rateLimit from 'express-rate-limit'
 // General API rate limit
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100,                 // 100 requests per window
+  max: 100, // 100 requests per window
   message: 'Too many requests, please try again later'
 })
 
@@ -550,7 +557,7 @@ app.use('/api/', apiLimiter)
 // Stricter limit for expensive endpoints
 const authLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
-  max: 5,                   // 5 requests per hour
+  max: 5, // 5 requests per hour
   skipSuccessfulRequests: true
 })
 
@@ -564,12 +571,14 @@ app.post('/api/auth/login', authLimiter, loginHandler)
 ### Application Performance Monitoring (APM)
 
 **Tools**:
+
 - **Sentry**: Error tracking + performance
 - **New Relic**: Full-stack APM
 - **Datadog**: Infrastructure + APM
 - **Vercel Analytics**: Next.js optimized
 
 **Custom Monitoring**:
+
 ```typescript
 // Track response times
 app.use((req, res, next) => {
@@ -622,6 +631,7 @@ Alerting Thresholds:
 ## Optimization Checklist
 
 ### Frontend ✅
+
 - [ ] Lighthouse score > 90
 - [ ] LCP < 2.5s
 - [ ] FID < 100ms
@@ -632,6 +642,7 @@ Alerting Thresholds:
 - [ ] Critical CSS inlined
 
 ### Backend ✅
+
 - [ ] P95 response time < 500ms
 - [ ] Database queries indexed
 - [ ] N+1 queries eliminated
@@ -641,6 +652,7 @@ Alerting Thresholds:
 - [ ] API responses compressed
 
 ### Database ✅
+
 - [ ] Slow query log enabled
 - [ ] All queries < 100ms (P95)
 - [ ] Indexes on foreign keys
@@ -649,6 +661,7 @@ Alerting Thresholds:
 - [ ] Connection pool sized correctly
 
 ### Caching ✅
+
 - [ ] Redis/Memcached configured
 - [ ] CDN for static assets
 - [ ] HTTP cache headers set
@@ -656,6 +669,7 @@ Alerting Thresholds:
 - [ ] Cache invalidation strategy
 
 ### Infrastructure ✅
+
 - [ ] Auto-scaling configured
 - [ ] Load balancer healthy
 - [ ] Monitoring/alerting active
@@ -667,14 +681,17 @@ Alerting Thresholds:
 ## Related Resources
 
 **Related Skills**:
+
 - `deployment-advisor` - For infrastructure optimization
 - `frontend-builder` - For React performance patterns
 - `api-designer` - For API optimization
 
 **Related Patterns**:
+
 - `META/DECISION-FRAMEWORK.md` - Scaling decisions
 - `STANDARDS/architecture-patterns/caching-patterns.md` - Caching strategies (when created)
 
 **Related Playbooks**:
+
 - `PLAYBOOKS/optimize-database-performance.md` - DB optimization steps (when created)
 - `PLAYBOOKS/frontend-performance-audit.md` - Frontend audit procedure (when created)

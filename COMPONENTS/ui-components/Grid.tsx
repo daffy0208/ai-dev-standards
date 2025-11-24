@@ -1,6 +1,6 @@
-import React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from './utils';
+import React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from './utils'
 
 const gridVariants = cva('grid', {
   variants: {
@@ -16,7 +16,7 @@ const gridVariants = cva('grid', {
       9: 'grid-cols-9',
       10: 'grid-cols-10',
       11: 'grid-cols-11',
-      12: 'grid-cols-12',
+      12: 'grid-cols-12'
     },
     gap: {
       0: 'gap-0',
@@ -29,53 +29,42 @@ const gridVariants = cva('grid', {
       8: 'gap-8',
       10: 'gap-10',
       12: 'gap-12',
-      16: 'gap-16',
+      16: 'gap-16'
     },
     autoFit: {
       true: 'grid-cols-[repeat(auto-fit,minmax(0,1fr))]',
-      false: '',
+      false: ''
     },
     autoFill: {
       true: 'grid-cols-[repeat(auto-fill,minmax(0,1fr))]',
-      false: '',
-    },
+      false: ''
+    }
   },
   defaultVariants: {
     cols: 1,
     gap: 4,
     autoFit: false,
-    autoFill: false,
-  },
-});
+    autoFill: false
+  }
+})
 
 export interface GridProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof gridVariants> {
   /** Minimum column width for auto-fit/auto-fill (e.g., '250px') */
-  minColWidth?: string;
+  minColWidth?: string
   /** Responsive column configuration */
   responsive?: {
-    sm?: number;
-    md?: number;
-    lg?: number;
-    xl?: number;
-  };
+    sm?: number
+    md?: number
+    lg?: number
+    xl?: number
+  }
 }
 
 const Grid = React.forwardRef<HTMLDivElement, GridProps>(
   (
-    {
-      className,
-      cols,
-      gap,
-      autoFit,
-      autoFill,
-      minColWidth,
-      responsive,
-      style,
-      children,
-      ...props
-    },
+    { className, cols, gap, autoFit, autoFill, minColWidth, responsive, style, children, ...props },
     ref
   ) => {
     // Build responsive classes
@@ -84,11 +73,11 @@ const Grid = React.forwardRef<HTMLDivElement, GridProps>(
           responsive.sm && `sm:grid-cols-${responsive.sm}`,
           responsive.md && `md:grid-cols-${responsive.md}`,
           responsive.lg && `lg:grid-cols-${responsive.lg}`,
-          responsive.xl && `xl:grid-cols-${responsive.xl}`,
+          responsive.xl && `xl:grid-cols-${responsive.xl}`
         ]
           .filter(Boolean)
           .join(' ')
-      : '';
+      : ''
 
     // Build style for auto-fit/auto-fill with minColWidth
     const gridStyle =
@@ -97,27 +86,23 @@ const Grid = React.forwardRef<HTMLDivElement, GridProps>(
             ...style,
             gridTemplateColumns: `repeat(${
               autoFit ? 'auto-fit' : 'auto-fill'
-            }, minmax(${minColWidth}, 1fr))`,
+            }, minmax(${minColWidth}, 1fr))`
           }
-        : style;
+        : style
 
     return (
       <div
-        className={cn(
-          gridVariants({ cols, gap, autoFit, autoFill }),
-          responsiveClasses,
-          className
-        )}
+        className={cn(gridVariants({ cols, gap, autoFit, autoFill }), responsiveClasses, className)}
         ref={ref}
         style={gridStyle}
         {...props}
       >
         {children}
       </div>
-    );
+    )
   }
-);
+)
 
-Grid.displayName = 'Grid';
+Grid.displayName = 'Grid'
 
-export { Grid, gridVariants };
+export { Grid, gridVariants }

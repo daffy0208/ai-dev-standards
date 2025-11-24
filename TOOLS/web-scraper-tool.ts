@@ -120,7 +120,8 @@ export class WebScraperTool {
   }): Promise<Page> {
     const browser = await this.ensureBrowser()
     const context = await browser.newContext({
-      userAgent: options.userAgent || 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+      userAgent:
+        options.userAgent || 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
       extraHTTPHeaders: options.headers || {}
     })
 
@@ -228,9 +229,7 @@ export class WebScraperTool {
         if (options.multiple) {
           // Extract multiple elements
           const elements = await page.$$(selector)
-          const values = await Promise.all(
-            elements.map(el => el.textContent())
-          )
+          const values = await Promise.all(elements.map(el => el.textContent()))
           data[key] = values.filter(Boolean) as string[]
         } else {
           // Extract single element
@@ -316,7 +315,7 @@ export class WebScraperTool {
         )
       )
 
-      results.push(...batchResults.filter(Boolean) as ScrapeResult[])
+      results.push(...(batchResults.filter(Boolean) as ScrapeResult[]))
 
       // Rate limiting delay
       if (i + concurrency < urls.length) {
@@ -343,7 +342,8 @@ export class WebScraperTool {
  */
 export const webScraperToolDefinition = {
   name: 'web_scraper',
-  description: 'Scrape web pages and extract content. Can retrieve HTML, text, or markdown format. Can also take screenshots and extract specific elements.',
+  description:
+    'Scrape web pages and extract content. Can retrieve HTML, text, or markdown format. Can also take screenshots and extract specific elements.',
   parameters: {
     type: 'object',
     properties: {
@@ -407,13 +407,9 @@ export async function executeWebScraperTool(args: any): Promise<any> {
         })
 
       case 'evaluate':
-        return await scraper.evaluate(
-          args.url,
-          args.script,
-          {
-            waitForSelector: args.waitForSelector
-          }
-        )
+        return await scraper.evaluate(args.url, args.script, {
+          waitForSelector: args.waitForSelector
+        })
 
       default:
         throw new Error(`Unknown action: ${args.action}`)
@@ -450,24 +446,19 @@ export async function examples() {
     console.log('Products:', products.data)
 
     // Example 3: Execute JavaScript
-    const data = await scraper.evaluate(
-      'https://example.com',
-      () => {
+    const data = await scraper.evaluate('https://example.com', async (page) => {
+      return await page.evaluate(() => {
         return {
           title: document.title,
           links: Array.from(document.querySelectorAll('a')).map(a => a.href)
         }
-      }
-    )
+      })
+    })
     console.log('Custom data:', data)
 
     // Example 4: Scrape multiple pages with rate limiting
     const results = await scraper.scrapeMultiple(
-      [
-        'https://example.com/page1',
-        'https://example.com/page2',
-        'https://example.com/page3'
-      ],
+      ['https://example.com/page1', 'https://example.com/page2', 'https://example.com/page3'],
       {
         format: 'markdown',
         concurrency: 2,

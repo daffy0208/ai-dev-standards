@@ -34,12 +34,12 @@ QDRANT_API_KEY=your-api-key  # Optional
 ### Basic Setup
 
 ```typescript
-import { QdrantClient } from './client';
+import { QdrantClient } from './client'
 
 const client = new QdrantClient({
   url: process.env.QDRANT_URL || 'http://localhost:6333',
-  apiKey: process.env.QDRANT_API_KEY  // Optional for local
-});
+  apiKey: process.env.QDRANT_API_KEY // Optional for local
+})
 ```
 
 ### Create Collection
@@ -47,12 +47,13 @@ const client = new QdrantClient({
 ```typescript
 // Create with Cosine similarity
 await client.createCollection('documents', {
-  size: 1536,  // OpenAI ada-002 dimensions
+  size: 1536, // OpenAI ada-002 dimensions
   distance: 'Cosine'
-});
+})
 
 // Create with advanced options
-await client.createCollection('documents', 
+await client.createCollection(
+  'documents',
   {
     size: 1536,
     distance: 'Cosine'
@@ -64,7 +65,7 @@ await client.createCollection('documents',
     },
     replication_factor: 2
   }
-);
+)
 ```
 
 ### Upsert Vectors
@@ -103,7 +104,7 @@ await client.upsert('documents', [
 const results = await client.search('documents', {
   vector: queryVector,
   limit: 10
-});
+})
 
 // Search with metadata filters
 const filtered = await client.search('documents', {
@@ -115,26 +116,22 @@ const filtered = await client.search('documents', {
     ]
   },
   limit: 10,
-  score_threshold: 0.7  // Minimum similarity score
-});
+  score_threshold: 0.7 // Minimum similarity score
+})
 
 // Complex boolean filters
 const complex = await client.search('documents', {
   vector: queryVector,
   filter: {
-    must: [
-      { key: 'category', match: { value: 'tech' } }
-    ],
+    must: [{ key: 'category', match: { value: 'tech' } }],
     should: [
       { key: 'tags', match: { value: 'ML' } },
       { key: 'tags', match: { value: 'AI' } }
     ],
-    must_not: [
-      { key: 'author', match: { value: 'spam-user' } }
-    ]
+    must_not: [{ key: 'author', match: { value: 'spam-user' } }]
   },
   limit: 5
-});
+})
 ```
 
 ### Batch Search
@@ -145,7 +142,7 @@ const batchResults = await client.batchSearch('documents', [
   { vector: query1, limit: 5 },
   { vector: query2, limit: 5 },
   { vector: query3, limit: 5 }
-]);
+])
 
 // batchResults[0] = results for query1
 // batchResults[1] = results for query2
@@ -161,7 +158,7 @@ const rangeFilter = {
     { key: 'price', range: { gte: 10, lt: 100 } },
     { key: 'rating', range: { gte: 4.0 } }
   ]
-};
+}
 
 // Geo filters
 const geoFilter = {
@@ -170,29 +167,21 @@ const geoFilter = {
       key: 'location',
       geo_radius: {
         center: { lat: 51.5074, lon: -0.1278 },
-        radius: 5000  // meters
+        radius: 5000 // meters
       }
     }
   ]
-};
+}
 ```
 
 ### Payload Operations
 
 ```typescript
 // Update payload for specific points
-await client.updatePayload(
-  'documents',
-  { views: 1000, featured: true },
-  ['doc-1', 'doc-2']
-);
+await client.updatePayload('documents', { views: 1000, featured: true }, ['doc-1', 'doc-2'])
 
 // Delete payload fields
-await client.deletePayload(
-  'documents',
-  ['temporary_field'],
-  ['doc-1']
-);
+await client.deletePayload('documents', ['temporary_field'], ['doc-1'])
 ```
 
 ### Payload Indexing
@@ -201,23 +190,23 @@ await client.deletePayload(
 // Create index for faster filtered searches
 await client.createPayloadIndex('documents', 'category', {
   type: 'keyword'
-});
+})
 
 await client.createPayloadIndex('documents', 'year', {
   type: 'integer'
-});
+})
 
 await client.createPayloadIndex('documents', 'title', {
   type: 'text'
-});
+})
 ```
 
 ### Scroll Through Collection
 
 ```typescript
 // Iterate through all points
-let offset = undefined;
-let allPoints = [];
+let offset = undefined
+let allPoints = []
 
 do {
   const { points, next_offset } = await client.scroll('documents', {
@@ -225,94 +214,84 @@ do {
     offset,
     with_payload: true,
     with_vector: false
-  });
-  
-  allPoints = allPoints.concat(points);
-  offset = next_offset;
-} while (offset);
+  })
 
-console.log(`Total points: ${allPoints.length}`);
+  allPoints = allPoints.concat(points)
+  offset = next_offset
+} while (offset)
+
+console.log(`Total points: ${allPoints.length}`)
 ```
 
 ### Retrieve by IDs
 
 ```typescript
 // Get specific points
-const points = await client.retrieve(
-  'documents',
-  ['doc-1', 'doc-2', 'doc-3'],
-  {
-    with_payload: true,
-    with_vector: false  // Set true if you need vectors
-  }
-);
+const points = await client.retrieve('documents', ['doc-1', 'doc-2', 'doc-3'], {
+  with_payload: true,
+  with_vector: false // Set true if you need vectors
+})
 ```
 
 ### Delete Operations
 
 ```typescript
 // Delete by IDs
-await client.delete('documents', ['doc-1', 'doc-2']);
+await client.delete('documents', ['doc-1', 'doc-2'])
 
 // Delete by filter
 await client.deleteByFilter('documents', {
-  must: [
-    { key: 'category', match: { value: 'spam' } }
-  ]
-});
+  must: [{ key: 'category', match: { value: 'spam' } }]
+})
 
 // Clear entire collection
-await client.clearCollection('documents');
+await client.clearCollection('documents')
 ```
 
 ### Snapshots
 
 ```typescript
 // Create snapshot
-const snapshotName = await client.createSnapshot('documents');
-console.log(`Created snapshot: ${snapshotName}`);
+const snapshotName = await client.createSnapshot('documents')
+console.log(`Created snapshot: ${snapshotName}`)
 
 // List snapshots
-const snapshots = await client.listSnapshots('documents');
+const snapshots = await client.listSnapshots('documents')
 
 // Delete snapshot
-await client.deleteSnapshot('documents', snapshotName);
+await client.deleteSnapshot('documents', snapshotName)
 ```
 
 ### Collection Management
 
 ```typescript
 // Get collection info
-const info = await client.getCollection('documents');
-console.log(`Vectors: ${info.vectors_count}`);
-console.log(`Points: ${info.points_count}`);
+const info = await client.getCollection('documents')
+console.log(`Vectors: ${info.vectors_count}`)
+console.log(`Points: ${info.points_count}`)
 
 // List all collections
-const collections = await client.listCollections();
+const collections = await client.listCollections()
 
 // Count points
-const count = await client.count('documents');
+const count = await client.count('documents')
 const filtered = await client.count('documents', {
   must: [{ key: 'category', match: { value: 'tech' } }]
-});
+})
 
 // Delete collection
-await client.deleteCollection('documents');
+await client.deleteCollection('documents')
 ```
 
 ### Progress Tracking
 
 ```typescript
 // Track progress during large upserts
-await client.upsert(
-  'documents',
-  largeVectorArray,
-  {
-    onProgress: (progress) => {
-      console.log(`Progress: ${progress.percentage}% (${progress.processed}/${progress.total})`);
-    }
+await client.upsert('documents', largeVectorArray, {
+  onProgress: progress => {
+    console.log(`Progress: ${progress.percentage}% (${progress.processed}/${progress.total})`)
   }
-);
+})
 ```
 
 ## Distance Metrics

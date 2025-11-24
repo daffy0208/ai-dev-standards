@@ -66,10 +66,7 @@ console.log('Railway API is accessible:', isHealthy)
 #### Create Project
 
 ```typescript
-const project = await railway.createProject(
-  'my-web-app',
-  'Full-stack web application'
-)
+const project = await railway.createProject('my-web-app', 'Full-stack web application')
 
 console.log('Project created:', project.id)
 console.log('Name:', project.name)
@@ -110,22 +107,15 @@ console.log('Project deleted')
 
 ```typescript
 // Create empty service
-const service = await railway.createService(
-  'proj_xxx',
-  'api-service'
-)
+const service = await railway.createService('proj_xxx', 'api-service')
 
 // Create service from GitHub
-const service = await railway.createService(
-  'proj_xxx',
-  'frontend',
-  {
-    source: {
-      repo: 'username/repo',
-      branch: 'main'
-    }
+const service = await railway.createService('proj_xxx', 'frontend', {
+  source: {
+    repo: 'username/repo',
+    branch: 'main'
   }
-)
+})
 
 console.log('Service created:', service.id)
 ```
@@ -239,12 +229,7 @@ const streamLogs = async (deploymentId: string) => {
 #### Set Variable
 
 ```typescript
-await railway.setVariable(
-  'proj_xxx',
-  'env_xxx',
-  'DATABASE_URL',
-  'postgres://localhost/mydb'
-)
+await railway.setVariable('proj_xxx', 'env_xxx', 'DATABASE_URL', 'postgres://localhost/mydb')
 
 console.log('Variable set')
 ```
@@ -262,11 +247,7 @@ for (const variable of variables) {
 #### Delete Variable
 
 ```typescript
-await railway.deleteVariable(
-  'proj_xxx',
-  'env_xxx',
-  'OLD_API_KEY'
-)
+await railway.deleteVariable('proj_xxx', 'env_xxx', 'OLD_API_KEY')
 
 console.log('Variable deleted')
 ```
@@ -302,6 +283,7 @@ new RailwayClient(options?: RailwayClientOptions)
 ```
 
 Options:
+
 - `token` (string, optional): Railway API token. Defaults to `RAILWAY_TOKEN` env var
 - `apiUrl` (string, optional): API base URL. Defaults to `https://backboard.railway.app/graphql/v2`
 
@@ -355,10 +337,7 @@ async function setupApplication() {
   const railway = new RailwayClient()
 
   // Create project
-  const project = await railway.createProject(
-    'my-fullstack-app',
-    'Next.js app with Postgres'
-  )
+  const project = await railway.createProject('my-fullstack-app', 'Next.js app with Postgres')
   console.log('Created project:', project.id)
 
   // Provision database
@@ -366,16 +345,12 @@ async function setupApplication() {
   console.log('Provisioned database:', database.id)
 
   // Create service
-  const service = await railway.createService(
-    project.id,
-    'web',
-    {
-      source: {
-        repo: 'username/my-app',
-        branch: 'main'
-      }
+  const service = await railway.createService(project.id, 'web', {
+    source: {
+      repo: 'username/my-app',
+      branch: 'main'
     }
-  )
+  })
   console.log('Created service:', service.id)
 
   // Get default environment (usually 'production')
@@ -533,7 +508,8 @@ class CustomRailwayClient extends RailwayClient {
 
 const client = new CustomRailwayClient()
 
-const result = await client.customQuery(`
+const result = await client.customQuery(
+  `
   query($projectId: String!) {
     project(id: $projectId) {
       name
@@ -549,12 +525,15 @@ const result = await client.customQuery(`
       }
     }
   }
-`, { projectId: 'proj_xxx' })
+`,
+  { projectId: 'proj_xxx' }
+)
 ```
 
 ## Error Handling
 
 The client includes automatic retry logic with exponential backoff for:
+
 - Rate limit errors (429)
 - Server errors (500+)
 - GraphQL errors
@@ -576,6 +555,7 @@ try {
 ## Rate Limits
 
 Railway API has rate limits:
+
 - 100 requests per minute (per token)
 - Higher limits for Pro accounts
 
@@ -660,11 +640,13 @@ console.log('Variables:', variables)
 ## Railway CLI Integration
 
 This client complements the Railway CLI. Use CLI for:
+
 - Initial project setup
 - Local development
 - Interactive debugging
 
 Use this client for:
+
 - Automated deployments
 - CI/CD pipelines
 - Programmatic management

@@ -22,13 +22,13 @@ curl -fsSL https://raw.githubusercontent.com/daffy0208/ai-dev-standards/main/INS
 
 ### Run
 
-```bash
+````bash
 # In Claude Code
 /validate
 
 # Or directly
 awk '/^```bash$/,/^```$/' .claude/commands/validate.md | grep -v '```' | bash
-```
+````
 
 ### View Results
 
@@ -51,6 +51,7 @@ ls .validation-history/
 ## Customize for Your Project
 
 Edit `.claude/commands/validate.md` to:
+
 - Add/remove validation phases
 - Adjust coverage thresholds
 - Add custom test suites
@@ -59,12 +60,14 @@ Edit `.claude/commands/validate.md` to:
 ## Common Use Cases
 
 ### Frontend (React/Next.js)
+
 ```bash
 # Already configured! Just run:
 /validate
 ```
 
 ### Backend (Node.js API)
+
 ```bash
 # Add to package.json:
 "test:integration": "vitest run --config vitest.integration.config.ts"
@@ -73,6 +76,7 @@ Edit `.claude/commands/validate.md` to:
 ```
 
 ### Monorepo
+
 ```bash
 # Run validation in each package:
 for pkg in packages/*; do
@@ -95,21 +99,21 @@ export VALIDATION_CONTINUE_ON_FAILURE=true
 
 ### GitHub Actions
 
-```yaml
+````yaml
 - name: Run Validation
   run: |
     awk '/^```bash$/,/^```$/' .claude/commands/validate.md | grep -v '```' > validate.sh
     bash validate.sh
-```
+````
 
 ### GitLab CI
 
-```yaml
+````yaml
 validate:
   script:
     - awk '/^```bash$/,/^```$/' .claude/commands/validate.md | grep -v '```' > validate.sh
     - bash validate.sh
-```
+````
 
 ## Troubleshooting
 

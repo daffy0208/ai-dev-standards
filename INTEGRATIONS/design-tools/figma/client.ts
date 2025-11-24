@@ -174,7 +174,7 @@ export class FigmaClient {
     this.options = {
       accessToken: options.accessToken || process.env.FIGMA_ACCESS_TOKEN || '',
       timeout: options.timeout || 30000,
-      baseUrl: options.baseUrl || 'https://api.figma.com/v1',
+      baseUrl: options.baseUrl || 'https://api.figma.com/v1'
     }
 
     if (!this.options.accessToken) {
@@ -240,7 +240,7 @@ export class FigmaClient {
         id,
         name: node?.name || id,
         url,
-        format,
+        format
       })
     }
 
@@ -257,7 +257,7 @@ export class FigmaClient {
       colors: [],
       typography: [],
       spacing: [],
-      effects: [],
+      effects: []
     }
 
     // Extract color styles
@@ -270,7 +270,7 @@ export class FigmaClient {
           tokens.colors.push({
             name: style.name,
             value: this.rgbToHex(color),
-            rgb: color,
+            rgb: color
           })
         }
       }
@@ -284,7 +284,7 @@ export class FigmaClient {
             fontSize: node.style.fontSize,
             fontWeight: node.style.fontWeight,
             lineHeight: node.style.lineHeightPx,
-            letterSpacing: node.style.letterSpacing,
+            letterSpacing: node.style.letterSpacing
           })
         }
       }
@@ -295,7 +295,7 @@ export class FigmaClient {
           tokens.effects.push({
             name: style.name,
             type: style.styleType,
-            value: node.effects,
+            value: node.effects
           })
         }
       }
@@ -455,7 +455,13 @@ export class FigmaClient {
     spacing: DesignTokens['spacing'],
     visited = new Set<number>()
   ): void {
-    const layoutProps = ['paddingLeft', 'paddingRight', 'paddingTop', 'paddingBottom', 'itemSpacing']
+    const layoutProps = [
+      'paddingLeft',
+      'paddingRight',
+      'paddingTop',
+      'paddingBottom',
+      'itemSpacing'
+    ]
 
     for (const prop of layoutProps) {
       if (node[prop] && typeof node[prop] === 'number') {
@@ -464,7 +470,7 @@ export class FigmaClient {
           visited.add(value)
           spacing.push({
             name: `spacing-${value}`,
-            value,
+            value
           })
         }
       }
@@ -488,9 +494,9 @@ export class FigmaClient {
       headers: {
         'X-Figma-Token': this.options.accessToken,
         'Content-Type': 'application/json',
-        ...options.headers,
+        ...options.headers
       },
-      signal: AbortSignal.timeout(this.options.timeout),
+      signal: AbortSignal.timeout(this.options.timeout)
     })
 
     if (!response.ok) {

@@ -138,6 +138,7 @@ Get popular fonts by category.
 ## Popular Fonts
 
 ### Sans-Serif
+
 - Roboto
 - Open Sans
 - Montserrat
@@ -146,21 +147,25 @@ Get popular fonts by category.
 - Poppins
 
 ### Serif
+
 - Merriweather
 - Playfair Display
 - Lora
 - Crimson Text
 
 ### Monospace
+
 - Source Code Pro
 - Roboto Mono
 - JetBrains Mono
 
 ### Display
+
 - Bebas Neue
 - Pacifico
 
 ### Handwriting
+
 - Dancing Script
 - Shadows Into Light
 

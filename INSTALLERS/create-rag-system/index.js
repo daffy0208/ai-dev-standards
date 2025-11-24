@@ -6,6 +6,7 @@
  * Usage: npx @ai-dev-standards/create-rag-system my-rag-app
  */
 
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { execSync } = require('child_process')
 
 const projectName = process.argv[2] || 'my-rag-system'

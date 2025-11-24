@@ -413,6 +413,7 @@ async function generateSocialGraphic(text: string, templateId: string) {
 ### Design ID
 
 From Canva URL:
+
 ```
 https://www.canva.com/design/ABC123XYZ/edit
                           ^^^^^^^^^
@@ -448,6 +449,7 @@ try {
 ## Rate Limits
 
 Canva API rate limits:
+
 - **100 requests per minute**
 - **1000 requests per hour**
 
@@ -501,19 +503,20 @@ async function withRetry<T>(fn: () => Promise<T>): Promise<T> {
 
 ## Comparison with Other Tools
 
-| Feature | Canva | Figma | Adobe XD |
-|---------|-------|-------|----------|
-| Target Audience | Everyone | Designers | Designers |
-| API Complexity | Simple | Medium | Complex |
-| Export Formats | Many | Limited | Medium |
-| Design Control | Limited | Full | Medium |
-| Templates | Extensive | Limited | Medium |
+| Feature         | Canva     | Figma     | Adobe XD  |
+| --------------- | --------- | --------- | --------- |
+| Target Audience | Everyone  | Designers | Designers |
+| API Complexity  | Simple    | Medium    | Complex   |
+| Export Formats  | Many      | Limited   | Medium    |
+| Design Control  | Limited   | Full      | Medium    |
+| Templates       | Extensive | Limited   | Medium    |
 
 ---
 
 ## Use Cases
 
 ### Perfect For:
+
 - Automated social media graphics
 - Marketing material generation
 - Brand asset distribution
@@ -521,6 +524,7 @@ async function withRetry<T>(fn: () => Promise<T>): Promise<T> {
 - Non-technical users creating designs
 
 ### Not Ideal For:
+
 - Complex design programmatic manipulation
 - Component-based design systems
 - Developer handoff workflows
@@ -574,15 +578,19 @@ app.listen(3000)
 ## Troubleshooting
 
 ### Invalid Access Token
+
 Check token expiry. Implement refresh token flow.
 
 ### Design Not Found
+
 Ensure design ID is correct and user has access.
 
 ### Export Timeout
+
 Increase `maxWaitTime` in `waitForExport()`.
 
 ### Missing Brand Assets
+
 Ensure brand kit is set up in Canva account settings.
 
 ---

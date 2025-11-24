@@ -156,7 +156,10 @@ const artboard = await client.getArtboard('./design.sketch', 'Homepage')
 
 if (artboard) {
   console.log('Found artboard:', artboard.name)
-  console.log('Layers:', artboard.layers.map(l => l.name))
+  console.log(
+    'Layers:',
+    artboard.layers.map(l => l.name)
+  )
 }
 ```
 
@@ -164,15 +167,11 @@ if (artboard) {
 
 ```typescript
 // Requires Sketch CLI
-const exports = await client.exportArtboards(
-  './design.sketch',
-  ['Homepage', 'About', 'Contact'],
-  {
-    format: 'png',
-    scale: 2, // 2x resolution
-    outputDir: './exports'
-  }
-)
+const exports = await client.exportArtboards('./design.sketch', ['Homepage', 'About', 'Contact'], {
+  format: 'png',
+  scale: 2, // 2x resolution
+  outputDir: './exports'
+})
 
 console.log('Exported:', exports)
 // ['./exports/Homepage.png', './exports/About.png', './exports/Contact.png']
@@ -297,7 +296,9 @@ async function generateColorPalette(sketchFile: string) {
   for (const color of tokens.colors) {
     console.log(`## ${color.name}`)
     console.log(`- Hex: ${color.value}`)
-    console.log(`- RGB: rgb(${Math.round(color.rgba.r * 255)}, ${Math.round(color.rgba.g * 255)}, ${Math.round(color.rgba.b * 255)})`)
+    console.log(
+      `- RGB: rgb(${Math.round(color.rgba.r * 255)}, ${Math.round(color.rgba.g * 255)}, ${Math.round(color.rgba.b * 255)})`
+    )
     console.log()
   }
 }
@@ -346,6 +347,7 @@ console.log('Document:', document)
 ### 1. Export Requires Sketch CLI
 
 Image export requires the Sketch CLI (`sketchtool`):
+
 - Only available on macOS
 - Requires Sketch app to be installed
 - Alternative: Parse file and render programmatically
@@ -353,6 +355,7 @@ Image export requires the Sketch CLI (`sketchtool`):
 ### 2. Complex Styles
 
 Some advanced Sketch features may not be fully supported:
+
 - Gradients
 - Pattern fills
 - Complex blend modes
@@ -373,6 +376,7 @@ Ensure the file is a valid .sketch file (not .sketch.zip or other format).
 ### "JSZip is required"
 
 Install jszip:
+
 ```bash
 npm install jszip
 ```
@@ -384,6 +388,7 @@ Export features require Sketch CLI. Install from [Sketch CLI](https://www.sketch
 ### Missing Colors/Styles
 
 Colors and styles must be saved to the document. Ensure they're in:
+
 - Document Colors (not layer colors)
 - Text Styles (not inline styles)
 - Layer Styles
@@ -392,13 +397,13 @@ Colors and styles must be saved to the document. Ensure they're in:
 
 ## Comparison with Figma
 
-| Feature | Sketch | Figma |
-|---------|--------|-------|
-| File Access | Local files | API (cloud) |
-| Export | Requires CLI | API endpoint |
-| Real-time | No | Yes (webhooks) |
-| Collaboration | Limited | Built-in |
-| Platform | macOS only | Cross-platform |
+| Feature       | Sketch       | Figma          |
+| ------------- | ------------ | -------------- |
+| File Access   | Local files  | API (cloud)    |
+| Export        | Requires CLI | API endpoint   |
+| Real-time     | No           | Yes (webhooks) |
+| Collaboration | Limited      | Built-in       |
+| Platform      | macOS only   | Cross-platform |
 
 ---
 

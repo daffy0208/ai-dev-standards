@@ -36,59 +36,59 @@
  * ```
  */
 
-import * as React from 'react';
-import { cn } from './utils';
+import * as React from 'react'
+import { cn } from './utils'
 
 export interface SliderProps {
   /**
    * Slider mode - single value or range
    */
-  mode?: 'single' | 'range';
+  mode?: 'single' | 'range'
 
   /**
    * Current value(s)
    */
-  value?: number | [number, number];
+  value?: number | [number, number]
 
   /**
    * Callback when value changes
    */
-  onChange?: (value: number | [number, number]) => void;
+  onChange?: (value: number | [number, number]) => void
 
   /**
    * Minimum value
    */
-  min?: number;
+  min?: number
 
   /**
    * Maximum value
    */
-  max?: number;
+  max?: number
 
   /**
    * Step increment
    */
-  step?: number;
+  step?: number
 
   /**
    * Label for the slider
    */
-  label?: string;
+  label?: string
 
   /**
    * Show current value(s)
    */
-  showValue?: boolean;
+  showValue?: boolean
 
   /**
    * Whether the slider is disabled
    */
-  disabled?: boolean;
+  disabled?: boolean
 
   /**
    * Additional CSS classes
    */
-  className?: string;
+  className?: string
 }
 
 /**
@@ -106,149 +106,144 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       label,
       showValue = false,
       disabled = false,
-      className,
+      className
     },
     ref
   ) => {
-    const sliderId = React.useId();
-    const trackRef = React.useRef<HTMLDivElement>(null);
+    const sliderId = React.useId()
+    const trackRef = React.useRef<HTMLDivElement>(null)
 
     // Normalize value
     const normalizedValue: [number, number] = React.useMemo(() => {
       if (mode === 'range') {
-        return Array.isArray(value) ? value : [min, max];
+        return Array.isArray(value) ? value : [min, max]
       }
-      return [typeof value === 'number' ? value : min, max];
-    }, [mode, value, min, max]);
+      return [typeof value === 'number' ? value : min, max]
+    }, [mode, value, min, max])
 
-    const [isDragging, setIsDragging] = React.useState<number | null>(null);
+    const [isDragging, setIsDragging] = React.useState<number | null>(null)
 
     // Calculate percentage position
     const getPercentage = (val: number): number => {
-      return ((val - min) / (max - min)) * 100;
-    };
+      return ((val - min) / (max - min)) * 100
+    }
 
     // Get value from position
     const getValueFromPosition = (clientX: number): number => {
-      if (!trackRef.current) return min;
+      if (!trackRef.current) return min
 
-      const rect = trackRef.current.getBoundingClientRect();
-      const percentage = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-      const rawValue = min + percentage * (max - min);
-      const steppedValue = Math.round(rawValue / step) * step;
-      return Math.max(min, Math.min(max, steppedValue));
-    };
+      const rect = trackRef.current.getBoundingClientRect()
+      const percentage = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width))
+      const rawValue = min + percentage * (max - min)
+      const steppedValue = Math.round(rawValue / step) * step
+      return Math.max(min, Math.min(max, steppedValue))
+    }
 
     // Handle mouse/touch move
     const handleMove = React.useCallback(
       (clientX: number) => {
-        if (isDragging === null || !onChange) return;
+        if (isDragging === null || !onChange) return
 
-        const newValue = getValueFromPosition(clientX);
+        const newValue = getValueFromPosition(clientX)
 
         if (mode === 'range') {
-          const [low, high] = normalizedValue;
+          const [low, high] = normalizedValue
           if (isDragging === 0) {
-            onChange([Math.min(newValue, high), high]);
+            onChange([Math.min(newValue, high), high])
           } else {
-            onChange([low, Math.max(newValue, low)]);
+            onChange([low, Math.max(newValue, low)])
           }
         } else {
-          onChange(newValue);
+          onChange(newValue)
         }
       },
       [isDragging, normalizedValue, mode, onChange, getValueFromPosition]
-    );
+    )
 
     // Mouse events
     const handleMouseDown = (index: number) => {
-      if (disabled) return;
-      setIsDragging(index);
-    };
+      if (disabled) return
+      setIsDragging(index)
+    }
 
     React.useEffect(() => {
-      if (isDragging === null) return;
+      if (isDragging === null) return
 
       const handleMouseMove = (e: MouseEvent) => {
-        handleMove(e.clientX);
-      };
+        handleMove(e.clientX)
+      }
 
       const handleMouseUp = () => {
-        setIsDragging(null);
-      };
+        setIsDragging(null)
+      }
 
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
+      document.addEventListener('mousemove', handleMouseMove)
+      document.addEventListener('mouseup', handleMouseUp)
 
       return () => {
-        document.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
-      };
-    }, [isDragging, handleMove]);
+        document.removeEventListener('mousemove', handleMouseMove)
+        document.removeEventListener('mouseup', handleMouseUp)
+      }
+    }, [isDragging, handleMove])
 
     // Touch events
     const handleTouchMove = (e: React.TouchEvent) => {
       if (isDragging !== null && e.touches.length > 0) {
-        handleMove(e.touches[0].clientX);
+        handleMove(e.touches[0].clientX)
       }
-    };
+    }
 
     // Keyboard events
     const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
-      if (disabled || !onChange) return;
+      if (disabled || !onChange) return
 
-      let delta = 0;
+      let delta = 0
       if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
-        delta = step;
-        e.preventDefault();
+        delta = step
+        e.preventDefault()
       } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
-        delta = -step;
-        e.preventDefault();
+        delta = -step
+        e.preventDefault()
       } else if (e.key === 'Home') {
-        delta = min - normalizedValue[index];
-        e.preventDefault();
+        delta = min - normalizedValue[index]
+        e.preventDefault()
       } else if (e.key === 'End') {
-        delta = max - normalizedValue[index];
-        e.preventDefault();
+        delta = max - normalizedValue[index]
+        e.preventDefault()
       } else if (e.key === 'PageUp') {
-        delta = (max - min) * 0.1;
-        e.preventDefault();
+        delta = (max - min) * 0.1
+        e.preventDefault()
       } else if (e.key === 'PageDown') {
-        delta = -(max - min) * 0.1;
-        e.preventDefault();
+        delta = -(max - min) * 0.1
+        e.preventDefault()
       }
 
       if (delta !== 0) {
-        const currentValue = normalizedValue[index];
-        const newValue = Math.max(min, Math.min(max, currentValue + delta));
+        const currentValue = normalizedValue[index]
+        const newValue = Math.max(min, Math.min(max, currentValue + delta))
 
         if (mode === 'range') {
-          const [low, high] = normalizedValue;
+          const [low, high] = normalizedValue
           if (index === 0) {
-            onChange([Math.min(newValue, high), high]);
+            onChange([Math.min(newValue, high), high])
           } else {
-            onChange([low, Math.max(newValue, low)]);
+            onChange([low, Math.max(newValue, low)])
           }
         } else {
-          onChange(newValue);
+          onChange(newValue)
         }
       }
-    };
+    }
 
-    const leftPercentage = getPercentage(normalizedValue[0]);
-    const rightPercentage = mode === 'range' ? getPercentage(normalizedValue[1]) : 100;
+    const leftPercentage = getPercentage(normalizedValue[0])
+    const rightPercentage = mode === 'range' ? getPercentage(normalizedValue[1]) : 100
 
     return (
       <div ref={ref} className={cn('w-full', className)}>
         {/* Label */}
         {label && (
           <div className="flex items-center justify-between mb-2">
-            <label
-              className={cn(
-                'text-sm font-medium text-gray-700',
-                disabled && 'opacity-50'
-              )}
-            >
+            <label className={cn('text-sm font-medium text-gray-700', disabled && 'opacity-50')}>
               {label}
             </label>
             {showValue && (
@@ -278,7 +273,7 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
             )}
             style={{
               left: `${mode === 'range' ? leftPercentage : 0}%`,
-              right: `${100 - rightPercentage}%`,
+              right: `${100 - rightPercentage}%`
             }}
           />
 
@@ -306,7 +301,7 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
               onMouseDown={() => handleMouseDown(0)}
               onTouchStart={() => setIsDragging(0)}
               onTouchEnd={() => setIsDragging(null)}
-              onKeyDown={(e) => handleKeyDown(e, 0)}
+              onKeyDown={e => handleKeyDown(e, 0)}
             />
           )}
 
@@ -332,22 +327,20 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
               'w-5 h-5 rounded-full bg-white border-2 border-blue-600 shadow-md',
               'transition-transform hover:scale-110 focus:scale-110',
               'focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2',
-              disabled
-                ? 'cursor-not-allowed border-gray-400'
-                : 'cursor-grab active:cursor-grabbing'
+              disabled ? 'cursor-not-allowed border-gray-400' : 'cursor-grab active:cursor-grabbing'
             )}
             style={{
-              left: `${mode === 'range' ? rightPercentage : leftPercentage}%`,
+              left: `${mode === 'range' ? rightPercentage : leftPercentage}%`
             }}
             onMouseDown={() => handleMouseDown(mode === 'range' ? 1 : 0)}
             onTouchStart={() => setIsDragging(mode === 'range' ? 1 : 0)}
             onTouchEnd={() => setIsDragging(null)}
-            onKeyDown={(e) => handleKeyDown(e, mode === 'range' ? 1 : 0)}
+            onKeyDown={e => handleKeyDown(e, mode === 'range' ? 1 : 0)}
           />
         </div>
       </div>
-    );
+    )
   }
-);
+)
 
-Slider.displayName = 'Slider';
+Slider.displayName = 'Slider'

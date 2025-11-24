@@ -30,6 +30,7 @@ npx @ai-dev-standards/bootstrap
 ```
 
 This will automatically:
+
 - ✅ Install the ai-dev CLI
 - ✅ Create `.ai-dev.json` configuration
 - ✅ Set up `.claude/` directory with skills
@@ -71,6 +72,7 @@ npm link
 This makes the `ai-dev` command available globally.
 
 **Verify installation:**
+
 ```bash
 ai-dev --version
 ```
@@ -90,6 +92,7 @@ ai-dev sync
 ```
 
 This will:
+
 1. Ask what you want to track (skills, MCPs, tools, components, integrations)
 2. Create `.ai-dev.json` configuration
 3. Set up `.claude/` directory
@@ -102,6 +105,7 @@ ai-dev sync --yes
 ```
 
 This uses default settings:
+
 - Tracks: skills, MCPs, tools, components, integrations
 - Frequency: git-hook (auto-sync on pull)
 
@@ -110,26 +114,31 @@ This uses default settings:
 Create a `.cursorrules` file in your project root. Choose a template:
 
 **For New Projects (MVP/SaaS):**
+
 ```bash
 cp ~/ai-dev-standards/TEMPLATES/cursorrules-saas.md .cursorrules
 ```
 
 **For Existing Projects:**
+
 ```bash
 cp ~/ai-dev-standards/TEMPLATES/cursorrules-existing-project.md .cursorrules
 ```
 
 **For Quick Testing:**
+
 ```bash
 cp ~/ai-dev-standards/TEMPLATES/cursorrules-quick-test.md .cursorrules
 ```
 
 **For AI/RAG Projects:**
+
 ```bash
 cp ~/ai-dev-standards/TEMPLATES/cursorrules-ai-rag.md .cursorrules
 ```
 
 **For Minimal Setup:**
+
 ```bash
 cp ~/ai-dev-standards/TEMPLATES/cursorrules-minimal.md .cursorrules
 ```
@@ -137,26 +146,31 @@ cp ~/ai-dev-standards/TEMPLATES/cursorrules-minimal.md .cursorrules
 ### Step 6: Customize Your `.cursorrules`
 
 Edit `.cursorrules` and fill in:
+
 - Project name
 - Tech stack
 - Current phase
 - Any project-specific context
 
 **Example customization:**
+
 ```markdown
 # Project: TaskMaster Pro
 
 ## AI Development Standards
+
 Repository: ~/ai-dev-standards/
 Status: Active
 
 ### Tech Stack
+
 - Frontend: Next.js 14, TypeScript, Tailwind CSS
 - Backend: Next.js API Routes
 - Database: PostgreSQL (Supabase)
 - Deployment: Vercel
 
 ### Current Phase
+
 - [x] Planning
 - [x] MVP Development
 - [ ] Beta Launch (Week 9)
@@ -170,6 +184,7 @@ Status: Active
 ### Recommended Setup Flow
 
 1. **Create your project directory:**
+
 ```bash
 mkdir my-new-project
 cd my-new-project
@@ -177,6 +192,7 @@ git init
 ```
 
 2. **Initialize your project:**
+
 ```bash
 # For Node.js/TypeScript
 npm init -y
@@ -188,6 +204,7 @@ npx create-next-app@latest . --typescript --tailwind --app --src-dir
 ```
 
 3. **Set up ai-dev-standards:**
+
 ```bash
 # Copy template
 cp ~/ai-dev-standards/TEMPLATES/cursorrules-saas.md .cursorrules
@@ -200,12 +217,14 @@ cp ~/ai-dev-standards/.gitignore .gitignore
 ```
 
 4. **Customize `.cursorrules`:**
+
 - Fill in project name
 - Define tech stack
 - Set MVP scope and P0/P1/P2 features
 - Define target customer
 
 5. **Start coding with AI assistance:**
+
 ```bash
 # Open in VS Code or Cursor
 code .
@@ -216,21 +235,25 @@ cursor .
 ### Template Recommendations by Project Type
 
 **SaaS Applications:**
+
 - Template: `cursorrules-saas.md`
 - Best for: B2B SaaS, consumer apps
 - Includes: MVP matrix, go-to-market, monetization
 
 **AI/RAG Projects:**
+
 - Template: `cursorrules-ai-rag.md`
 - Best for: AI search, chatbots, document Q&A
 - Includes: RAG architecture, vector DBs, LLM config
 
 **Internal Tools:**
+
 - Template: `cursorrules-existing-project.md`
 - Best for: Company internal tools, utilities
 - Includes: Existing codebase documentation
 
 **Prototypes/MVPs:**
+
 - Template: `cursorrules-minimal.md`
 - Best for: Quick prototypes, proof of concepts
 - Includes: Essential configuration only
@@ -242,17 +265,20 @@ cursor .
 ### Step-by-Step Integration
 
 1. **Navigate to your existing project:**
+
 ```bash
 cd /path/to/existing/project
 ```
 
 2. **Backup your current config (if you have one):**
+
 ```bash
 # Backup existing .cursorrules if present
 [ -f .cursorrules ] && cp .cursorrules .cursorrules.backup
 ```
 
 3. **Copy the existing-project template:**
+
 ```bash
 cp ~/ai-dev-standards/TEMPLATES/cursorrules-existing-project.md .cursorrules
 ```
@@ -265,6 +291,7 @@ Edit the `.cursorrules` file and fill in:
 ## Existing Project Status
 
 ### Basic Info
+
 - **Project Name:** TaskMaster Pro
 - **Age:** Built in 2022, launched 2023, now in production
 - **Stage:** Production
@@ -273,11 +300,13 @@ Edit the `.cursorrules` file and fill in:
 - **Business:** $10k MRR SaaS
 
 ### What This Project Does
+
 Task management SaaS for remote teams. Users create projects,
 assign tasks, track progress with Kanban boards, and get automated
 reports. Serves 5k teams.
 
 ### Current Tech Stack
+
 - Frontend: React 18, Material-UI
 - Backend: Node.js, Express
 - Database: PostgreSQL
@@ -285,6 +314,7 @@ reports. Serves 5k teams.
 - CI/CD: GitHub Actions
 
 ### Why We're Using ai-dev-standards
+
 - [x] Faster feature development
 - [x] Add AI features (smart task suggestions)
 - [x] Better code quality on new features
@@ -292,17 +322,20 @@ reports. Serves 5k teams.
 - [ ] Better documentation
 
 ### Current Goals
+
 1. Add AI-powered task suggestions (RAG)
 2. Improve performance of dashboard queries
 3. Build mobile app (React Native)
 ```
 
 5. **Initialize ai-dev sync:**
+
 ```bash
 ai-dev sync
 ```
 
 Choose what to track:
+
 - ✅ Skills (recommended for all projects)
 - ✅ MCPs (if adding AI features)
 - ✅ Tools (if need automation)
@@ -312,6 +345,7 @@ Choose what to track:
 6. **Gradually adopt practices:**
 
 **Don't refactor everything at once!** Use ai-dev-standards for:
+
 - New features
 - Bug fixes in modified files
 - New components
@@ -322,16 +356,19 @@ Let Claude suggest improvements based on standards as you work.
 ### Migration Strategy
 
 **Week 1: Setup & Documentation**
+
 - Set up `.cursorrules`
 - Document existing architecture
 - Identify pain points
 
 **Week 2-3: Apply to New Work**
+
 - Use skills for new features
 - Apply standards to new code
 - Don't touch old code yet
 
 **Week 4+: Gradual Improvement**
+
 - Refactor files you're already changing
 - Apply standards when fixing bugs
 - Improve code as you touch it
@@ -343,11 +380,13 @@ Let Claude suggest improvements based on standards as you work.
 ### Verify Setup is Working
 
 1. **Check ai-dev configuration:**
+
 ```bash
 cat .ai-dev.json
 ```
 
 Should show:
+
 ```json
 {
   "version": "1.3.0",
@@ -366,11 +405,13 @@ Should show:
 ```
 
 2. **Check `.claude/` directory:**
+
 ```bash
 ls -la .claude/
 ```
 
 Should show:
+
 ```
 .claude/
   claude.md          # All 37 skills listed
@@ -378,6 +419,7 @@ Should show:
 ```
 
 3. **Verify `.cursorrules` exists:**
+
 ```bash
 cat .cursorrules | head -20
 ```
@@ -397,6 +439,7 @@ cursor .  # Cursor
 **Test prompts:**
 
 1. **Test skill activation:**
+
 ```
 You: "I need to build an MVP for a task management app. What should I focus on first?"
 ```
@@ -404,6 +447,7 @@ You: "I need to build an MVP for a task management app. What should I focus on f
 Claude should activate the `mvp-builder` skill and provide P0/P1/P2 prioritization.
 
 2. **Test resource discovery:**
+
 ```
 You: "What skills are available in this project?"
 ```
@@ -411,6 +455,7 @@ You: "What skills are available in this project?"
 Claude should list all 37 skills from the registry.
 
 3. **Test integration suggestions:**
+
 ```
 You: "I want to add user authentication. What should I use?"
 ```
@@ -426,17 +471,21 @@ Claude should reference the decision framework and suggest integrations like Sup
 Skills activate automatically based on your task. You can also explicitly request them:
 
 **Automatic activation:**
+
 ```
 You: "I need to implement a RAG system for document search"
 ```
+
 Claude will automatically activate the `rag-implementer` skill.
 
 **Explicit activation:**
+
 ```
 You: "Use the mvp-builder skill to help me prioritize features"
 ```
 
 **Available skills (37 total):**
+
 - Product: mvp-builder, product-strategist, go-to-market-planner
 - AI/Data: rag-implementer, knowledge-graph-builder, multi-agent-architect
 - Frontend: frontend-builder, ux-designer, visual-designer
@@ -449,16 +498,19 @@ You: "Use the mvp-builder skill to help me prioritize features"
 MCPs are executable tools that Claude can use. Examples:
 
 **Vector Database MCP:**
+
 ```
 You: "Store these documents in a vector database for semantic search"
 ```
 
 **Component Generator MCP:**
+
 ```
 You: "Generate a login form component with validation"
 ```
 
 **Deployment Orchestrator MCP:**
+
 ```
 You: "Deploy this to production"
 ```
@@ -486,17 +538,20 @@ Claude will use the integration code from `INTEGRATIONS/platforms/supabase/`.
 ### Keeping Up to Date
 
 **Automatic sync (recommended):**
+
 ```bash
 # Already set up if you chose git-hook frequency
 # Syncs automatically after every git pull
 ```
 
 **Manual sync:**
+
 ```bash
 ai-dev sync
 ```
 
 **Check for updates:**
+
 ```bash
 ai-dev sync --check
 ```
@@ -508,6 +563,7 @@ ai-dev sync --check
 ### Issue: Claude doesn't see the skills
 
 **Solution 1: Verify .cursorrules path**
+
 ```bash
 # Check if .cursorrules exists
 ls -la .cursorrules
@@ -519,28 +575,33 @@ grep "ai-dev-standards" .cursorrules
 **Solution 2: Use absolute paths**
 
 In `.cursorrules`, use full paths:
+
 ```markdown
 Repository: /home/username/ai-dev-standards/
 ```
 
 Not relative paths like:
+
 ```markdown
-Repository: ~/ai-dev-standards/  # May not work
+Repository: ~/ai-dev-standards/ # May not work
 ```
 
 **Solution 3: Restart Claude/Cursor**
+
 - Close and reopen your editor
 - Claude Code reloads `.cursorrules` on restart
 
 ### Issue: ai-dev command not found
 
 **Solution:**
+
 ```bash
 cd ~/ai-dev-standards/CLI
 npm link
 ```
 
 Or use npx:
+
 ```bash
 npx ~/ai-dev-standards/CLI/index.js sync
 ```
@@ -548,6 +609,7 @@ npx ~/ai-dev-standards/CLI/index.js sync
 ### Issue: Git hook not working
 
 **Solution: Reinstall git hook**
+
 ```bash
 # Check if hook exists
 cat .git/hooks/post-merge
@@ -559,12 +621,15 @@ ai-dev sync --setup-hooks
 ### Issue: Can't find ai-dev-standards repository
 
 **Solution: Update path in .cursorrules**
+
 ```markdown
 ## AI Development Standards
+
 Repository: /full/path/to/ai-dev-standards/
 ```
 
 Replace with your actual path:
+
 ```bash
 # Find it with:
 find ~ -name "ai-dev-standards" -type d 2>/dev/null
@@ -573,6 +638,7 @@ find ~ -name "ai-dev-standards" -type d 2>/dev/null
 ### Issue: Sync fails with registry errors
 
 **Solution: Update ai-dev-standards**
+
 ```bash
 cd ~/ai-dev-standards
 git pull origin main
@@ -581,6 +647,7 @@ git pull origin main
 ### Issue: Skills not activating correctly
 
 **Checklist:**
+
 1. ✅ `.cursorrules` exists in project root
 2. ✅ `.cursorrules` references ai-dev-standards path
 3. ✅ Path in `.cursorrules` is correct and absolute
@@ -598,6 +665,7 @@ Edit `.cursorrules` to focus on specific skills:
 
 ```markdown
 ### Primary Skills for This Project
+
 - **mvp-builder** - Feature prioritization
 - **rag-implementer** - AI features
 - **frontend-builder** - React/Next.js
@@ -613,16 +681,18 @@ Add your own coding standards:
 ## Our Coding Conventions
 
 ### File Naming
+
 - Components: PascalCase (LoginForm.tsx)
 - Utilities: camelCase (formatDate.ts)
 - Constants: UPPER_SNAKE_CASE (API_URL.ts)
 
 ### Folder Structure
+
 src/
-  components/    # React components
-  lib/          # Utilities and helpers
-  app/          # Next.js app router pages
-  api/          # API routes
+components/ # React components
+lib/ # Utilities and helpers
+app/ # Next.js app router pages
+api/ # API routes
 ```
 
 ### Integrating with CI/CD
@@ -635,8 +705,8 @@ name: Sync AI Dev Standards
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Daily
-  workflow_dispatch:      # Manual trigger
+    - cron: '0 0 * * *' # Daily
+  workflow_dispatch: # Manual trigger
 
 jobs:
   sync:
@@ -778,16 +848,19 @@ Claude will automatically reference the standards, skills, and resources to prov
 ## Getting Help
 
 ### Documentation
+
 - **Main README:** `~/ai-dev-standards/README.md`
 - **CLI Guide:** `~/ai-dev-standards/DOCS/CLI.md`
 - **Bootstrap Guide:** `~/ai-dev-standards/DOCS/BOOTSTRAP.md`
 - **Decision Framework:** `~/ai-dev-standards/META/DECISION-FRAMEWORK.md`
 
 ### Community
+
 - **GitHub Issues:** https://github.com/daffy0208/ai-dev-standards/issues
 - **Discussions:** https://github.com/daffy0208/ai-dev-standards/discussions
 
 ### Quick Questions
+
 - Check `META/PROJECT-CONTEXT.md` for system overview
 - Check `META/HOW-TO-USE.md` for navigation guide
 - Check specific skill files in `SKILLS/[skill-name]/SKILL.md`

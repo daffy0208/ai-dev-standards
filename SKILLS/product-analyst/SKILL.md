@@ -16,6 +16,7 @@ Measure user behavior and product health to inform data-driven decisions.
 **The ONE metric that best captures value delivered to users.**
 
 Your North Star should:
+
 - ✅ Represent real customer value
 - ✅ Correlate with revenue
 - ✅ Be measurable frequently (daily/weekly)
@@ -51,6 +52,7 @@ Social:
 ```
 
 **How to choose your North Star**:
+
 1. What action represents core value?
 2. If users do this more, do they get more value?
 3. Does this predict revenue?
@@ -59,6 +61,7 @@ Social:
 ## Key Metrics by Category
 
 ### Acquisition Metrics
+
 **Goal**: Get users into the product
 
 ```yaml
@@ -82,6 +85,7 @@ Targets:
 ```
 
 ### Activation Metrics
+
 **Goal**: Get users to "aha moment"
 
 ```yaml
@@ -107,6 +111,7 @@ Targets:
 ```
 
 ### Engagement Metrics
+
 **Goal**: Keep users coming back
 
 ```yaml
@@ -131,6 +136,7 @@ Session Frequency Targets:
 ```
 
 ### Retention Metrics
+
 **Goal**: Prevent churn
 
 ```yaml
@@ -169,6 +175,7 @@ Net Retention:
 ```
 
 ### Revenue Metrics
+
 **Goal**: Monetize effectively
 
 ```yaml
@@ -201,6 +208,7 @@ Targets:
 ```
 
 ### Satisfaction Metrics
+
 **Goal**: Keep customers happy
 
 ```yaml
@@ -320,31 +328,29 @@ Action: Roll out Week 2 changes to all users.
 **Test hypotheses systematically:**
 
 ```yaml
-1. Form Hypothesis:
-   "Adding social proof to homepage will increase sign-ups by 10%"
+1. Form Hypothesis: 'Adding social proof to homepage will increase sign-ups by 10%'
 
 2. Design Experiment:
-   - Control: Current homepage
-   - Treatment: Homepage + customer testimonials
-   - Split: 50/50 traffic
-   - Primary Metric: Sign-up rate
-   - Duration: 2 weeks or 1,000 visitors per variant
+  - Control: Current homepage
+  - Treatment: Homepage + customer testimonials
+  - Split: 50/50 traffic
+  - Primary Metric: Sign-up rate
+  - Duration: 2 weeks or 1,000 visitors per variant
 
 3. Run Test:
-   - Don't peek early (wait for significance)
-   - Monitor for bugs/issues
+  - Don't peek early (wait for significance)
+  - Monitor for bugs/issues
 
 4. Analyze Results:
-   Control:    1,000 visitors → 20 sign-ups (2.0%)
-   Treatment:  1,000 visitors → 25 sign-ups (2.5%)
+  Control: 1,000 visitors → 20 sign-ups (2.0%)
+  Treatment: 1,000 visitors → 25 sign-ups (2.5%)
 
-   Lift: +25% relative
-   P-value: 0.04 (significant at p<0.05)
+  Lift: +25% relative
+  P-value: 0.04 (significant at p<0.05)
 
-   Decision: WIN - Ship it!
+  Decision: WIN - Ship it!
 
-5. Document Learning:
-   "Social proof increases sign-ups by 25%. Apply to all high-intent pages."
+5. Document Learning: 'Social proof increases sign-ups by 25%. Apply to all high-intent pages.'
 
 Minimum Sample Size:
   - 100+ conversions per variant minimum
@@ -354,6 +360,7 @@ Minimum Sample Size:
 ## Dashboard Design
 
 ### Executive Dashboard
+
 ```yaml
 Top Metrics (Big Numbers):
   - North Star Metric: 12,500 WAU
@@ -371,6 +378,7 @@ Alerts:
 ```
 
 ### Product Dashboard
+
 ```yaml
 Engagement:
   - DAU: 3,200
@@ -394,6 +402,7 @@ Funnels:
 ```
 
 ### Marketing Dashboard
+
 ```yaml
 Acquisition:
   - Visitors: 50,000
@@ -491,6 +500,7 @@ Quarterly:
 ## Summary
 
 Great product analysis:
+
 - ✅ One North Star Metric everyone tracks
 - ✅ AARRR framework (Acquisition, Activation, Retention, Revenue, Referral)
 - ✅ Cohort analysis over time

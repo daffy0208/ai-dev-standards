@@ -20,17 +20,20 @@ npm run build
 Scan repository to gather signals and metrics for Dark Matter analysis.
 
 **Parameters:**
+
 - `path` (required): Path to repository root
 - `depth`: Analysis depth - `quick`, `medium`, or `deep` (default: `medium`)
 - `include_patterns`: File patterns to include (e.g., `["*.ts", "*.md"]`)
 - `exclude_patterns`: Patterns to exclude (e.g., `["node_modules", "dist"]`)
 
 **Returns:**
+
 - Repository metrics (file counts, ratios, debt markers)
 - Pattern detection results
 - Timestamp and metadata
 
 **Example:**
+
 ```javascript
 {
   path: "./my-project",
@@ -44,17 +47,20 @@ Scan repository to gather signals and metrics for Dark Matter analysis.
 Calculate Repository Coherence Index (RCI) score.
 
 **Parameters:**
+
 - `repository_path`: Path to repository (uses last scanned if omitted)
 
 **Returns:**
+
 - Overall RCI score (0-100)
 - Component scores: Intent Alignment, Task Reality Sync, Technical Health
 - Status: COHERENT, MONITOR, MISALIGNED, or INCOHERENT
 
 **Example:**
+
 ```javascript
 {
-  repository_path: "./my-project"
+  repository_path: './my-project'
 }
 ```
 
@@ -63,15 +69,18 @@ Calculate Repository Coherence Index (RCI) score.
 Detect organizational patterns and weak signals.
 
 **Parameters:**
+
 - `focus`: Pattern focus area - `all`, `documentation`, `execution`, `drift`, or `suppression` (default: `all`)
 
 **Returns:**
+
 - List of detected patterns with severity, interpretation, confidence, and evidence
 
 **Example:**
+
 ```javascript
 {
-  focus: "documentation"
+  focus: 'documentation'
 }
 ```
 
@@ -80,14 +89,17 @@ Detect organizational patterns and weak signals.
 Generate comprehensive Dark Matter analysis report.
 
 **Parameters:**
+
 - `format`: Output format - `markdown`, `json`, or `text` (default: `markdown`)
 - `output_path`: Path to save report (optional, returns inline if omitted)
 - `include_sections`: Sections to include (default: all)
 
 **Returns:**
+
 - Formatted report with all analysis layers
 
 **Example:**
+
 ```javascript
 {
   format: "markdown",
@@ -100,17 +112,20 @@ Generate comprehensive Dark Matter analysis report.
 Analyze documentation patterns for inflation, redundancy, and coherence.
 
 **Parameters:**
+
 - `path` (required): Path to documentation directory
 
 **Returns:**
+
 - Documentation metrics
 - Inflation risk assessment
 - File-by-file analysis
 
 **Example:**
+
 ```javascript
 {
-  path: "./docs"
+  path: './docs'
 }
 ```
 
@@ -119,14 +134,17 @@ Analyze documentation patterns for inflation, redundancy, and coherence.
 Quick coherence check between stated intent and observed behavior.
 
 **Parameters:**
+
 - `readme_path` (required): Path to README file
 - `repository_path` (required): Path to repository root
 
 **Returns:**
+
 - Coherence checks
 - Warning messages for detected issues
 
 **Example:**
+
 ```javascript
 {
   readme_path: "./README.md",
@@ -137,33 +155,37 @@ Quick coherence check between stated intent and observed behavior.
 ## Pattern Types Detected
 
 ### Documentation Inflation
+
 - **Signal:** Many documentation files with high average length
 - **Severity:** Medium to High
 - **Interpretation:** Planning outpaces execution; over-planning or avoidance
 
 ### Execution Deficit
+
 - **Signal:** High doc-to-code ratio (>0.5)
 - **Severity:** High to Critical
 - **Interpretation:** More documentation than implementation; aspirational vs actionable
 
 ### Suppression Pattern
+
 - **Signal:** High count of TODO/FIXME/HACK markers
 - **Severity:** Medium to High
 - **Interpretation:** Time pressure, fatigue, or incomplete implementations
 
 ### Test Deficiency
+
 - **Signal:** Low test-to-code ratio (<0.3)
 - **Severity:** Medium to High
 - **Interpretation:** Rushed implementation or avoidance of validation
 
 ## RCI Score Interpretation
 
-| Score | Status | Meaning |
-|-------|--------|---------|
-| 85-100 | ✅ COHERENT | Healthy, aligned, sustainable rhythm |
-| 70-84 | 🟡 MONITOR | Early drift present, watch for patterns |
-| 50-69 | 🟠 MISALIGNED | Intent and reality diverging, realignment needed |
-| <50 | 🔴 INCOHERENT | Major realignment required, context rebuild needed |
+| Score  | Status        | Meaning                                            |
+| ------ | ------------- | -------------------------------------------------- |
+| 85-100 | ✅ COHERENT   | Healthy, aligned, sustainable rhythm               |
+| 70-84  | 🟡 MONITOR    | Early drift present, watch for patterns            |
+| 50-69  | 🟠 MISALIGNED | Intent and reality diverging, realignment needed   |
+| <50    | 🔴 INCOHERENT | Major realignment required, context rebuild needed |
 
 ## Usage with Claude
 
@@ -195,6 +217,7 @@ npm test
 The server runs via stdio transport and is designed to be invoked by MCP-compatible clients like Claude Desktop.
 
 Add to your MCP configuration:
+
 ```json
 {
   "mcpServers": {
@@ -209,6 +232,7 @@ Add to your MCP configuration:
 ## Development
 
 ### Project Structure
+
 ```
 dark-matter-analyzer-mcp/
 ├── src/
@@ -233,6 +257,7 @@ To add new pattern detection:
 ### Testing
 
 Tests validate:
+
 - Pattern detection logic
 - RCI calculation accuracy
 - Severity classification
@@ -240,6 +265,7 @@ Tests validate:
 - Real-world scenarios
 
 Run tests:
+
 ```bash
 npm test
 ```
@@ -247,51 +273,55 @@ npm test
 ## Examples
 
 ### Quick Health Check
+
 ```javascript
 // Scan repository
 await mcp.call('scan_repository', {
   path: './my-project',
   depth: 'quick'
-});
+})
 
 // Get RCI
-await mcp.call('calculate_rci', {});
+await mcp.call('calculate_rci', {})
 ```
 
 ### Deep Analysis with Report
+
 ```javascript
 // Deep scan
 await mcp.call('scan_repository', {
   path: './my-project',
   depth: 'deep',
   exclude_patterns: ['node_modules', 'dist', '.git']
-});
+})
 
 // Detect patterns
 const patterns = await mcp.call('detect_patterns', {
   focus: 'all'
-});
+})
 
 // Generate report
 await mcp.call('generate_report', {
   format: 'markdown',
   output_path: './dark_matter_report.md'
-});
+})
 ```
 
 ### Documentation Analysis
+
 ```javascript
 await mcp.call('analyze_documentation', {
   path: './docs'
-});
+})
 ```
 
 ### Coherence Check
+
 ```javascript
 await mcp.call('check_coherence', {
   readme_path: './README.md',
   repository_path: './'
-});
+})
 ```
 
 ## Metrics Collected
@@ -299,7 +329,7 @@ await mcp.call('check_coherence', {
 - **Total files** in repository
 - **Code files** (ts, js, py, java, go, rs, cpp, c)
 - **Documentation files** (.md)
-- **Test files** (*.test.*, *.spec.*)
+- **Test files** (_.test._, _.spec._)
 - **Doc-to-code ratio**
 - **Average documentation length**
 - **Technical debt markers** (TODO, FIXME, HACK, XXX)
@@ -320,6 +350,7 @@ MIT
 ## Contributing
 
 Contributions welcome! Please ensure:
+
 - Tests pass (`npm test`)
 - TypeScript compiles (`npm run build`)
 - New patterns include interpretation and confidence scores
@@ -327,4 +358,4 @@ Contributions welcome! Please ensure:
 
 ---
 
-*"Dark Matter Mode remains a mirror — it does not predict, it illuminates."*
+_"Dark Matter Mode remains a mirror — it does not predict, it illuminates."_

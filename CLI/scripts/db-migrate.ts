@@ -29,13 +29,7 @@
  */
 
 import { execSync } from 'child_process'
-import {
-  existsSync,
-  mkdirSync,
-  readFileSync,
-  writeFileSync,
-  readdirSync,
-} from 'fs'
+import { existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from 'fs'
 import { join } from 'path'
 
 export type DatabaseType = 'postgres' | 'mysql' | 'mongodb'
@@ -85,7 +79,7 @@ export class DatabaseMigration {
       database: options.database || process.env.DATABASE_URL || '',
       migrationsDir: options.migrationsDir || './migrations',
       tableName: options.tableName || 'schema_migrations',
-      dryRun: options.dryRun ?? false,
+      dryRun: options.dryRun ?? false
     }
 
     // Create migrations directory if it doesn't exist
@@ -129,9 +123,7 @@ export class DatabaseMigration {
     }
 
     // Filter to specific migration if specified
-    const migrationsToRun = options?.to
-      ? pending.filter((m) => m.id <= options.to!)
-      : pending
+    const migrationsToRun = options?.to ? pending.filter(m => m.id <= options.to!) : pending
 
     for (const migration of migrationsToRun) {
       console.log(`Migrating: ${migration.name}`)
@@ -176,7 +168,7 @@ export class DatabaseMigration {
 
     if (options?.to) {
       // Rollback to specific migration
-      migrationsToRollback = executed.filter((m) => m.id > options.to!)
+      migrationsToRollback = executed.filter(m => m.id > options.to!)
     } else if (options?.steps) {
       // Rollback specific number of steps
       migrationsToRollback = executed.slice(-options.steps)
@@ -218,7 +210,7 @@ export class DatabaseMigration {
   async status(): Promise<void> {
     const all = this.getAllMigrations()
     const executed = await this.getExecutedMigrations()
-    const executedIds = new Set(executed.map((m) => m.id))
+    const executedIds = new Set(executed.map(m => m.id))
 
     console.log('Migration Status:\n')
     console.log('ID               | Name                    | Status')
@@ -260,7 +252,7 @@ export class DatabaseMigration {
     let sql: string
 
     switch (this.options.type) {
-      case 'postgres':
+      case 'postgres': {
         sql = `
           CREATE TABLE IF NOT EXISTS ${this.options.tableName} (
             id TEXT PRIMARY KEY,
@@ -269,8 +261,9 @@ export class DatabaseMigration {
           )
         `
         break
+      }
 
-      case 'mysql':
+      case 'mysql': {
         sql = `
           CREATE TABLE IF NOT EXISTS ${this.options.tableName} (
             id VARCHAR(255) PRIMARY KEY,
@@ -279,10 +272,12 @@ export class DatabaseMigration {
           )
         `
         break
+      }
 
-      case 'mongodb':
+      case 'mongodb': {
         // MongoDB doesn't need table creation
         return
+      }
 
       default:
         throw new Error(`Unsupported database type: ${this.options.type}`)
@@ -298,10 +293,10 @@ export class DatabaseMigration {
    */
   private getAllMigrations(): Migration[] {
     const files = readdirSync(this.options.migrationsDir)
-      .filter((f) => f.endsWith('.sql'))
+      .filter(f => f.endsWith('.sql'))
       .sort()
 
-    return files.map((file) => {
+    return files.map(file => {
       const [id, ...nameParts] = file.replace('.sql', '').split('_')
       const name = nameParts.join('_')
       const content = readFileSync(join(this.options.migrationsDir, file), 'utf-8')
@@ -316,7 +311,7 @@ export class DatabaseMigration {
         name,
         timestamp: parseInt(id),
         up,
-        down,
+        down
       }
     })
   }
@@ -331,13 +326,15 @@ export class DatabaseMigration {
 
     switch (this.options.type) {
       case 'postgres':
-      case 'mysql':
+      case 'mysql': {
         sql = `SELECT id, name, executed_at FROM ${this.options.tableName} ORDER BY executed_at`
         break
+      }
 
-      case 'mongodb':
+      case 'mongodb': {
         // MongoDB query would go here
         return []
+      }
 
       default:
         throw new Error(`Unsupported database type: ${this.options.type}`)
@@ -354,9 +351,9 @@ export class DatabaseMigration {
   private async getPendingMigrations(): Promise<Migration[]> {
     const all = this.getAllMigrations()
     const executed = await this.getExecutedMigrations()
-    const executedIds = new Set(executed.map((m) => m.id))
+    const executedIds = new Set(executed.map(m => m.id))
 
-    return all.filter((m) => !executedIds.has(m.id))
+    return all.filter(m => !executedIds.has(m.id))
   }
 
   /**
@@ -366,17 +363,20 @@ export class DatabaseMigration {
     let command: string
 
     switch (this.options.type) {
-      case 'postgres':
+      case 'postgres': {
         command = `psql ${this.options.database} -c "${sql.replace(/"/g, '\\"')}"`
         break
+      }
 
-      case 'mysql':
+      case 'mysql': {
         command = `mysql ${this.options.database} -e "${sql.replace(/"/g, '\\"')}"`
         break
+      }
 
-      case 'mongodb':
+      case 'mongodb': {
         command = `mongo ${this.options.database} --eval "${sql.replace(/"/g, '\\"')}"`
         break
+      }
 
       default:
         throw new Error(`Unsupported database type: ${this.options.type}`)
@@ -414,7 +414,7 @@ export async function runMigrations(): Promise<void> {
   const args = process.argv.slice(3)
 
   const migration = new DatabaseMigration({
-    dryRun: args.includes('--dry-run'),
+    dryRun: args.includes('--dry-run')
   })
 
   switch (command) {
@@ -425,9 +425,10 @@ export async function runMigrations(): Promise<void> {
       break
     }
 
-    case 'up':
+    case 'up': {
       await migration.up()
       break
+    }
 
     case 'down': {
       const stepsIndex = args.indexOf('--steps')
@@ -438,11 +439,12 @@ export async function runMigrations(): Promise<void> {
       break
     }
 
-    case 'status':
+    case 'status': {
       await migration.status()
       break
+    }
 
-    default:
+    default: {
       console.log('Usage:')
       console.log('  generate --name <name>  Generate new migration')
       console.log('  up                      Run pending migrations')
@@ -452,12 +454,13 @@ export async function runMigrations(): Promise<void> {
       console.log('  status                  Show migration status')
       console.log('  --dry-run               Show SQL without executing')
       process.exit(1)
+    }
   }
 }
 
 // Run if executed directly
 if (require.main === module) {
-  runMigrations().catch((error) => {
+  runMigrations().catch(error => {
     console.error('Migration failed:', error)
     process.exit(1)
   })

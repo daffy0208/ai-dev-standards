@@ -20,7 +20,7 @@
  * - Path traversal prevention
  *
  * Usage:
- * ```typescript
+ * ```text
  * import { FileSystemTool } from './filesystem-tool'
  *
  * const fs = new FileSystemTool({
@@ -90,9 +90,7 @@ export class FileSystemTool {
   private backupPath: string
 
   constructor(config: FileSystemConfig) {
-    this.allowedPaths = new Set(
-      config.allowedPaths.map(p => path.resolve(p))
-    )
+    this.allowedPaths = new Set(config.allowedPaths.map(p => path.resolve(p)))
     this.enableBackups = config.enableBackups ?? true
     this.backupPath = config.backupPath || path.join(process.cwd(), '.backups')
   }
@@ -109,9 +107,7 @@ export class FileSystemTool {
     )
 
     if (!isAllowed) {
-      throw new Error(
-        `Access denied: ${filePath} is outside allowed paths`
-      )
+      throw new Error(`Access denied: ${filePath} is outside allowed paths`)
     }
 
     return resolvedPath
@@ -124,15 +120,15 @@ export class FileSystemTool {
     if (!this.enableBackups) return
 
     try {
-      const exists = await fs.access(filePath).then(() => true).catch(() => false)
+      const exists = await fs
+        .access(filePath)
+        .then(() => true)
+        .catch(() => false)
       if (!exists) return
 
       const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
       const backupDir = path.join(this.backupPath, path.dirname(filePath))
-      const backupFile = path.join(
-        backupDir,
-        `${path.basename(filePath)}.${timestamp}.backup`
-      )
+      const backupFile = path.join(backupDir, `${path.basename(filePath)}.${timestamp}.backup`)
 
       await fs.mkdir(backupDir, { recursive: true })
       await fs.copyFile(filePath, backupFile)
@@ -144,16 +140,10 @@ export class FileSystemTool {
   /**
    * Read file
    */
-  async readFile(
-    filePath: string,
-    options: ReadOptions = {}
-  ): Promise<string | Buffer | any> {
+  async readFile(filePath: string, options: ReadOptions = {}): Promise<string | Buffer | any> {
     const validPath = this.validatePath(filePath)
 
-    const content = await fs.readFile(
-      validPath,
-      options.encoding || 'utf-8'
-    )
+    const content = await fs.readFile(validPath, options.encoding || 'utf-8')
 
     if (options.json) {
       return JSON.parse(content.toString())
@@ -186,11 +176,7 @@ export class FileSystemTool {
       finalContent = JSON.stringify(content, null, 2)
     }
 
-    await fs.writeFile(
-      validPath,
-      finalContent,
-      options.encoding || 'utf-8'
-    )
+    await fs.writeFile(validPath, finalContent, options.encoding || 'utf-8')
   }
 
   /**
@@ -271,9 +257,7 @@ export class FileSystemTool {
       nodir: !options.includeDirectories
     })
 
-    const limited = options.maxResults
-      ? matches.slice(0, options.maxResults)
-      : matches
+    const limited = options.maxResults ? matches.slice(0, options.maxResults) : matches
 
     const results: FileInfo[] = []
 
@@ -383,11 +367,7 @@ export class FileSystemTool {
 
     await fs.mkdir(path.dirname(validDest), { recursive: true })
 
-    await pipeline(
-      createReadStream(validSource),
-      createGzip(),
-      createWriteStream(validDest)
-    )
+    await pipeline(createReadStream(validSource), createGzip(), createWriteStream(validDest))
 
     return validDest
   }
@@ -402,11 +382,7 @@ export class FileSystemTool {
 
     await fs.mkdir(path.dirname(validDest), { recursive: true })
 
-    await pipeline(
-      createReadStream(validSource),
-      createGunzip(),
-      createWriteStream(validDest)
-    )
+    await pipeline(createReadStream(validSource), createGunzip(), createWriteStream(validDest))
 
     return validDest
   }
@@ -458,7 +434,8 @@ export class FileSystemTool {
  */
 export const fileSystemToolDefinition = {
   name: 'filesystem',
-  description: 'Perform file system operations like reading, writing, listing, and searching files. All operations are restricted to allowed paths for safety.',
+  description:
+    'Perform file system operations like reading, writing, listing, and searching files. All operations are restricted to allowed paths for safety.',
   parameters: {
     type: 'object',
     properties: {
@@ -511,10 +488,7 @@ export const fileSystemToolDefinition = {
 /**
  * Execute tool (for AI frameworks)
  */
-export async function executeFileSystemTool(
-  args: any,
-  config: FileSystemConfig
-): Promise<any> {
+export async function executeFileSystemTool(args: any, config: FileSystemConfig): Promise<any> {
   const fs = new FileSystemTool(config)
 
   switch (args.action) {
@@ -584,7 +558,10 @@ export async function examples() {
 
   // Example 5: List directory
   const files = await fs.listDirectory('./')
-  console.log('Files:', files.map(f => f.name))
+  console.log(
+    'Files:',
+    files.map(f => f.name)
+  )
 
   // Example 6: List directory recursively
   const allFiles = await fs.listDirectory('./', { recursive: true })
@@ -592,7 +569,10 @@ export async function examples() {
 
   // Example 7: Search files
   const tsFiles = await fs.searchFiles('./', '**/*.ts')
-  console.log('TypeScript files:', tsFiles.map(f => f.path))
+  console.log(
+    'TypeScript files:',
+    tsFiles.map(f => f.path)
+  )
 
   // Example 8: Get file info
   const info = await fs.getFileInfo('./package.json')

@@ -28,15 +28,10 @@ import {
   RecursiveCharacterTextSplitter,
   CharacterTextSplitter,
   MarkdownTextSplitter,
-  TokenTextSplitter,
+  TokenTextSplitter
 } from 'langchain/text_splitter'
 
-export type ChunkStrategy =
-  | 'fixed'
-  | 'recursive'
-  | 'markdown'
-  | 'token'
-  | 'semantic'
+export type ChunkStrategy = 'fixed' | 'recursive' | 'markdown' | 'token' | 'semantic'
 
 export interface ChunkerOptions {
   /**
@@ -102,7 +97,7 @@ export class TextChunker {
       strategy: options.strategy || 'recursive',
       separators: options.separators || ['\n\n', '\n', '. ', ' ', ''],
       keepSeparator: options.keepSeparator ?? false,
-      metadata: options.metadata,
+      metadata: options.metadata
     }
   }
 
@@ -123,8 +118,8 @@ export class TextChunker {
         ...options.metadata,
         chunk_index: index,
         chunk_count: chunks.length,
-        char_count: chunk.length,
-      },
+        char_count: chunk.length
+      }
     }))
   }
 
@@ -144,7 +139,7 @@ export class TextChunker {
           ...chunk.metadata,
           chunk_index: index,
           chunk_count: chunks.length,
-          char_count: chunk.pageContent.length,
+          char_count: chunk.pageContent.length
         }
       })
 
@@ -165,7 +160,7 @@ export class TextChunker {
     const splitter = new CharacterTextSplitter({
       separator,
       chunkSize: this.options.chunkSize,
-      chunkOverlap: this.options.chunkOverlap,
+      chunkOverlap: this.options.chunkOverlap
     })
 
     const chunks = await splitter.splitText(text)
@@ -178,8 +173,8 @@ export class TextChunker {
         chunk_index: index,
         chunk_count: chunks.length,
         char_count: chunk.length,
-        separator,
-      },
+        separator
+      }
     }))
   }
 
@@ -192,7 +187,7 @@ export class TextChunker {
   ): Promise<ChunkResult[]> {
     const splitter = new MarkdownTextSplitter({
       chunkSize: this.options.chunkSize,
-      chunkOverlap: this.options.chunkOverlap,
+      chunkOverlap: this.options.chunkOverlap
     })
 
     const chunks = await splitter.splitText(markdownText)
@@ -205,8 +200,8 @@ export class TextChunker {
         chunk_index: index,
         chunk_count: chunks.length,
         char_count: chunk.length,
-        format: 'markdown',
-      },
+        format: 'markdown'
+      }
     }))
   }
 
@@ -223,7 +218,7 @@ export class TextChunker {
     const splitter = new TokenTextSplitter({
       chunkSize: this.options.chunkSize,
       chunkOverlap: this.options.chunkOverlap,
-      encodingName: options.encodingName || 'cl100k_base',
+      encodingName: options.encodingName || 'cl100k_base'
     })
 
     const chunks = await splitter.splitText(text)
@@ -236,8 +231,8 @@ export class TextChunker {
         chunk_index: index,
         chunk_count: chunks.length,
         char_count: chunk.length,
-        chunking_method: 'token',
-      },
+        chunking_method: 'token'
+      }
     }))
   }
 
@@ -254,7 +249,7 @@ export class TextChunker {
         return new CharacterTextSplitter({
           separator: ' ',
           chunkSize: this.options.chunkSize,
-          chunkOverlap: this.options.chunkOverlap,
+          chunkOverlap: this.options.chunkOverlap
         })
 
       case 'recursive':
@@ -262,19 +257,19 @@ export class TextChunker {
           separators: this.options.separators,
           chunkSize: this.options.chunkSize,
           chunkOverlap: this.options.chunkOverlap,
-          keepSeparator: this.options.keepSeparator,
+          keepSeparator: this.options.keepSeparator
         })
 
       case 'markdown':
         return new MarkdownTextSplitter({
           chunkSize: this.options.chunkSize,
-          chunkOverlap: this.options.chunkOverlap,
+          chunkOverlap: this.options.chunkOverlap
         })
 
       case 'token':
         return new TokenTextSplitter({
           chunkSize: this.options.chunkSize,
-          chunkOverlap: this.options.chunkOverlap,
+          chunkOverlap: this.options.chunkOverlap
         })
 
       case 'semantic':
@@ -283,7 +278,7 @@ export class TextChunker {
         return new RecursiveCharacterTextSplitter({
           separators: ['\n\n', '\n', '. ', ' ', ''],
           chunkSize: this.options.chunkSize,
-          chunkOverlap: this.options.chunkOverlap,
+          chunkOverlap: this.options.chunkOverlap
         })
 
       default:
@@ -364,9 +359,7 @@ export class ChunkingUtils {
     const sentences = text.match(/[^.!?]+[.!?]+/g) || []
     const paragraphs = text.split(/\n\n+/).filter(p => p.trim().length > 0)
 
-    const avgSentenceLength = sentences.length > 0
-      ? totalChars / sentences.length
-      : totalChars
+    const avgSentenceLength = sentences.length > 0 ? totalChars / sentences.length : totalChars
 
     let strategy: ChunkStrategy = 'recursive'
     let recommendedChunkSize = 1000
@@ -444,10 +437,7 @@ export class ChunkingUtils {
   /**
    * Merge small chunks
    */
-  static mergeSmallChunks(
-    chunks: ChunkResult[],
-    minSize: number = 100
-  ): ChunkResult[] {
+  static mergeSmallChunks(chunks: ChunkResult[], minSize: number = 100): ChunkResult[] {
     const merged: ChunkResult[] = []
     let current: ChunkResult | null = null
 

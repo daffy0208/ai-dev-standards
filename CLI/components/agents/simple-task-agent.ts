@@ -35,7 +35,7 @@ export interface AgentConfig {
 
 export interface TaskInput {
   task: string
-  context?: Record<string, any>
+  context?: Record<string, unknown>
   conversationHistory?: Array<{ role: string; content: string }>
 }
 
@@ -58,7 +58,8 @@ export class SimpleTaskAgent {
     this.config = {
       temperature: 0.7,
       maxTokens: 2000,
-      systemPrompt: 'You are a helpful AI assistant that completes tasks accurately and efficiently.',
+      systemPrompt:
+        'You are a helpful AI assistant that completes tasks accurately and efficiently.',
       maxRetries: 3,
       ...config
     }
@@ -118,7 +119,7 @@ export class SimpleTaskAgent {
     throw new Error('Unexpected execution path')
   }
 
-  private buildPrompt(task: string, context?: Record<string, any>): string {
+  private buildPrompt(task: string, context?: Record<string, unknown>): string {
     let prompt = task
 
     if (context && Object.keys(context).length > 0) {
@@ -129,7 +130,9 @@ export class SimpleTaskAgent {
     return prompt
   }
 
-  private async callLLM(messages: Array<{ role: string; content: string }>) {
+  private async callLLM(
+    _messages: Array<{ role: string; content: string }>
+  ): Promise<{ content: string; tokensUsed: number }> {
     // Placeholder - integrate with OpenAI, Anthropic, or other LLM provider
     // Example with OpenAI:
     // const response = await openai.chat.completions.create({
@@ -161,7 +164,8 @@ export async function example() {
     name: 'DataAnalyzer',
     model: 'gpt-4',
     temperature: 0.3,
-    systemPrompt: 'You are a data analysis expert. Analyze data and provide clear, actionable insights.'
+    systemPrompt:
+      'You are a data analysis expert. Analyze data and provide clear, actionable insights.'
   })
 
   const result = await agent.execute({

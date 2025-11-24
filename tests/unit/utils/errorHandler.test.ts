@@ -5,18 +5,7 @@
  */
 
 import { describe, it, expect } from 'vitest'
-import {
-  ApiError,
-  ValidationError,
-  AuthenticationError,
-  AuthorizationError,
-  NotFoundError,
-  ConflictError,
-  RateLimitError,
-  ServerError,
-  handleApiError,
-  isApiError
-} from '../../../UTILS/api/errorHandler'
+import { ApiError, ValidationError, AuthenticationError, AuthorizationError, NotFoundError, ConflictError, RateLimitError, ServerError, handleApiError, isApiError } from '../../../UTILS/api/errorHandler.js'
 
 describe('ApiError Classes', () => {
   describe('ApiError', () => {
@@ -124,9 +113,7 @@ describe('handleApiError', () => {
   })
 
   it('should handle ValidationError with details', () => {
-    const validationErrors = [
-      { field: 'email', message: 'Invalid' }
-    ]
+    const validationErrors = [{ field: 'email', message: 'Invalid' }]
     const error = new ValidationError('Validation failed', validationErrors)
     const response = handleApiError(error)
 

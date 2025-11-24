@@ -21,21 +21,25 @@ claude-code --skill spatial-developer
 ## Common Tasks
 
 ### Build VR Scene
+
 ```
 "Create a WebXR VR scene with hand tracking and controllers"
 ```
 
 ### AR Experience
+
 ```
 "Build an AR app that places 3D objects in the real world"
 ```
 
 ### Vision Pro App
+
 ```
 "Create a visionOS app with spatial UI and SharePlay"
 ```
 
 ### Spatial Audio
+
 ```
 "Add positional audio to this 3D scene"
 ```

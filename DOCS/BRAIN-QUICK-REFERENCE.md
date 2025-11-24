@@ -17,7 +17,7 @@ You: "I need to add authentication to my app"
 
 Claude:
 1. Uses: brain_select_skills(taskDescription: "implement authentication")
-2. Gets: security-engineer, api-designer  
+2. Gets: security-engineer, api-designer
 3. Uses: brain_relationships(skillName: "security-engineer")
 4. Gets: security-scanner-mcp, api-validator-mcp
 5. Reads: SKILLS/security-engineer/SKILL.md
@@ -59,51 +59,51 @@ Claude:
 
 ## Brain Tools Cheat Sheet
 
-| Tool | Use When | Example |
-|------|----------|---------|
-| `brain_select_skills` | Starting any task | "build MVP", "implement RAG", "add auth" |
-| `brain_search` | Finding specific resources | "authentication", "testing", "deployment" |
-| `brain_relationships` | Need dependencies | Show MCPs for "rag-implementer" |
-| `brain_show_skill` | Need details | Get info on "mvp-builder" |
-| `graph_query_by_domain` | Exploring domain | "ai", "security", "frontend" |
-| `graph_query_by_effect` | Need specific effect | "implements_authentication" |
-| `brain_status` | Check repository | Skills count, health status |
+| Tool                    | Use When                   | Example                                   |
+| ----------------------- | -------------------------- | ----------------------------------------- |
+| `brain_select_skills`   | Starting any task          | "build MVP", "implement RAG", "add auth"  |
+| `brain_search`          | Finding specific resources | "authentication", "testing", "deployment" |
+| `brain_relationships`   | Need dependencies          | Show MCPs for "rag-implementer"           |
+| `brain_show_skill`      | Need details               | Get info on "mvp-builder"                 |
+| `graph_query_by_domain` | Exploring domain           | "ai", "security", "frontend"              |
+| `graph_query_by_effect` | Need specific effect       | "implements_authentication"               |
+| `brain_status`          | Check repository           | Skills count, health status               |
 
 ## Task → Skills Mapping
 
-| Task | Use brain_select_skills | Returns |
-|------|------------------------|---------|
-| Build MVP | "build MVP" | mvp-builder, product-strategist |
-| Add Auth | "implement authentication" | security-engineer, api-designer |
-| RAG System | "implement RAG system" | rag-implementer, knowledge-base-manager |
-| API Design | "design REST API" | api-designer, security-engineer |
-| Frontend | "build React frontend" | frontend-builder, ux-designer |
-| Tests | "add tests" | testing-strategist |
-| Deploy | "deploy to production" | deployment-advisor |
-| Optimize | "improve performance" | performance-optimizer |
-| Multi-Agent | "build multi-agent system" | multi-agent-architect |
-| Knowledge Graph | "build knowledge graph" | knowledge-graph-builder |
+| Task            | Use brain_select_skills    | Returns                                 |
+| --------------- | -------------------------- | --------------------------------------- |
+| Build MVP       | "build MVP"                | mvp-builder, product-strategist         |
+| Add Auth        | "implement authentication" | security-engineer, api-designer         |
+| RAG System      | "implement RAG system"     | rag-implementer, knowledge-base-manager |
+| API Design      | "design REST API"          | api-designer, security-engineer         |
+| Frontend        | "build React frontend"     | frontend-builder, ux-designer           |
+| Tests           | "add tests"                | testing-strategist                      |
+| Deploy          | "deploy to production"     | deployment-advisor                      |
+| Optimize        | "improve performance"      | performance-optimizer                   |
+| Multi-Agent     | "build multi-agent system" | multi-agent-architect                   |
+| Knowledge Graph | "build knowledge graph"    | knowledge-graph-builder                 |
 
 ## Domain → Capabilities
 
-| Domain | Use graph_query_by_domain | Returns |
-|--------|---------------------------|---------|
-| `ai` | AI/ML capabilities | rag-implementer, multi-agent-architect, etc. |
-| `security` | Security capabilities | security-engineer, security-auditor, etc. |
-| `frontend` | Frontend capabilities | frontend-builder, ux-designer, etc. |
-| `backend` | Backend capabilities | api-designer, database-architect, etc. |
-| `testing` | Testing capabilities | testing-strategist, quality-auditor, etc. |
-| `devops` | DevOps capabilities | deployment-advisor, ci-cd-engineer, etc. |
+| Domain     | Use graph_query_by_domain | Returns                                      |
+| ---------- | ------------------------- | -------------------------------------------- |
+| `ai`       | AI/ML capabilities        | rag-implementer, multi-agent-architect, etc. |
+| `security` | Security capabilities     | security-engineer, security-auditor, etc.    |
+| `frontend` | Frontend capabilities     | frontend-builder, ux-designer, etc.          |
+| `backend`  | Backend capabilities      | api-designer, database-architect, etc.       |
+| `testing`  | Testing capabilities      | testing-strategist, quality-auditor, etc.    |
+| `devops`   | DevOps capabilities       | deployment-advisor, ci-cd-engineer, etc.     |
 
 ## Effect → Capabilities
 
-| Effect | Use graph_query_by_effect | Finds |
-|--------|---------------------------|-------|
-| `implements_authentication` | Skills that add auth | security-engineer, api-designer |
-| `creates_vector_index` | Skills that add vector DB | rag-implementer, knowledge-base-manager |
-| `adds_tests` | Skills that add tests | testing-strategist |
-| `optimizes_performance` | Skills that improve perf | performance-optimizer |
-| `generates_api_docs` | Skills that document APIs | api-designer, doc-generator |
+| Effect                      | Use graph_query_by_effect | Finds                                   |
+| --------------------------- | ------------------------- | --------------------------------------- |
+| `implements_authentication` | Skills that add auth      | security-engineer, api-designer         |
+| `creates_vector_index`      | Skills that add vector DB | rag-implementer, knowledge-base-manager |
+| `adds_tests`                | Skills that add tests     | testing-strategist                      |
+| `optimizes_performance`     | Skills that improve perf  | performance-optimizer                   |
+| `generates_api_docs`        | Skills that document APIs | api-designer, doc-generator             |
 
 ## CLI Commands
 
@@ -116,7 +116,7 @@ npm run brain -- status
 # Search
 npm run brain -- search "authentication"
 
-# Skill selection  
+# Skill selection
 npm run brain -- select-skills "build RAG system"
 
 # Relationships
@@ -139,6 +139,7 @@ npm run brain -- analyze "build AI chatbot with auth"
 Copy `TEMPLATES/claude-instructions-with-brain.md` to `.claude/instructions.md`
 
 Claude will then automatically:
+
 1. Use brain tools to discover skills
 2. Read skill files
 3. Apply methodologies
@@ -147,6 +148,7 @@ Claude will then automatically:
 ### Option 2: Prompting Pattern
 
 Train yourself to always ask:
+
 ```
 "Use brain_select_skills to find skills for [task]"
 "Use brain_relationships to get dependencies"
@@ -155,8 +157,10 @@ Train yourself to always ask:
 ### Option 3: Custom Prompt
 
 Add to your project's context:
+
 ```markdown
 When implementing features:
+
 1. Use brain_select_skills to find relevant skills
 2. Use brain_relationships to find required MCPs
 3. Read skill files from SKILLS/ directory
@@ -258,24 +262,28 @@ Claude uses brain:
 ## Key Insights
 
 ### What the Brain IS:
+
 - ✅ Skill discovery system
-- ✅ Dependency mapper  
+- ✅ Dependency mapper
 - ✅ Resource search engine
 - ✅ Workflow recommender
 
 ### What the Brain IS NOT:
+
 - ❌ Automatic code generator
 - ❌ Self-executing system
 - ❌ AI that codes without guidance
 - ❌ Replacement for Claude's judgment
 
 ### The Brain's Role:
+
 1. **Discovers** which skills to use
 2. **Maps** what MCPs are needed
 3. **Guides** Claude to load skills
 4. **Recommends** proven methodologies
 
 ### Claude's Role:
+
 1. **Interprets** the task
 2. **Invokes** brain tools
 3. **Reads** skill files
@@ -285,11 +293,13 @@ Claude uses brain:
 ## Summary
 
 **Setup Once:**
+
 ```bash
 ./scripts/configure-mcp-paths.sh
 ```
 
 **Use Always:**
+
 ```
 "Use brain_select_skills to find skills for [task]"
 ```
@@ -298,6 +308,7 @@ Claude uses brain:
 Claude discovers skills → Reads files → Applies proven methodologies → Delivers better results
 
 See full documentation:
+
 - Troubleshooting: `DOCS/BRAIN-ORCHESTRATOR-TROUBLESHOOTING.md`
 - Project Template: `TEMPLATES/claude-instructions-with-brain.md`
 - Brain CLI: `scripts/brain/README.md`

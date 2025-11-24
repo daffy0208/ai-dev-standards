@@ -85,7 +85,7 @@ Returns: Tool results, resource contents, or list of available capabilities.`
       serverUrl: options.serverUrl,
       serverName: options.serverName || 'mcp-server',
       authToken: options.authToken || '',
-      timeout: options.timeout || 30000,
+      timeout: options.timeout || 30000
     }
   }
 
@@ -127,7 +127,7 @@ Returns: Tool results, resource contents, or list of available capabilities.`
   async callTool(toolName: string, args: Record<string, any>): Promise<string> {
     const response = await this.request('tools/call', {
       name: toolName,
-      arguments: args,
+      arguments: args
     })
 
     if (response.error) {
@@ -166,7 +166,7 @@ Returns: Tool results, resource contents, or list of available capabilities.`
       return 'No tools available'
     }
 
-    const formatted = tools.map((tool) => {
+    const formatted = tools.map(tool => {
       const params = Object.keys(tool.inputSchema.properties || {}).join(', ')
       return `- ${tool.name}(${params}): ${tool.description}`
     })
@@ -190,7 +190,7 @@ Returns: Tool results, resource contents, or list of available capabilities.`
       return 'No resources available'
     }
 
-    const formatted = resources.map((resource) => {
+    const formatted = resources.map(resource => {
       return `- ${resource.uri} (${resource.name}): ${resource.description || 'No description'}`
     })
 
@@ -213,8 +213,8 @@ Returns: Tool results, resource contents, or list of available capabilities.`
       return 'No prompts available'
     }
 
-    const formatted = prompts.map((prompt) => {
-      const args = prompt.arguments?.map((arg) => arg.name).join(', ') || ''
+    const formatted = prompts.map(prompt => {
+      const args = prompt.arguments?.map(arg => arg.name).join(', ') || ''
       return `- ${prompt.name}(${args}): ${prompt.description || 'No description'}`
     })
 
@@ -224,13 +224,10 @@ Returns: Tool results, resource contents, or list of available capabilities.`
   /**
    * Get a prompt
    */
-  async getPrompt(
-    promptName: string,
-    args?: Record<string, string>
-  ): Promise<string> {
+  async getPrompt(promptName: string, args?: Record<string, string>): Promise<string> {
     const response = await this.request('prompts/get', {
       name: promptName,
-      arguments: args,
+      arguments: args
     })
 
     if (response.error) {
@@ -244,14 +241,11 @@ Returns: Tool results, resource contents, or list of available capabilities.`
   /**
    * Make request to MCP server
    */
-  private async request(
-    endpoint: string,
-    body?: any
-  ): Promise<any> {
+  private async request(endpoint: string, body?: any): Promise<any> {
     const url = `${this.options.serverUrl}/${endpoint}`
 
     const headers: HeadersInit = {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     }
 
     if (this.options.authToken) {
@@ -266,7 +260,7 @@ Returns: Tool results, resource contents, or list of available capabilities.`
         method: 'POST',
         headers,
         body: body ? JSON.stringify(body) : undefined,
-        signal: controller.signal,
+        signal: controller.signal
       })
 
       clearTimeout(timeoutId)
@@ -324,11 +318,7 @@ export class MultiServerMCPClient {
   /**
    * Call tool on specific server
    */
-  async callTool(
-    serverName: string,
-    toolName: string,
-    args: Record<string, any>
-  ): Promise<string> {
+  async callTool(serverName: string, toolName: string, args: Record<string, any>): Promise<string> {
     const client = this.clients.get(serverName)
     if (!client) {
       throw new Error(`Server not found: ${serverName}`)

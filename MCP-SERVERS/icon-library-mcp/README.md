@@ -16,11 +16,13 @@ MCP server providing icon search and retrieval across multiple icon libraries (H
 Search for icons by name across libraries.
 
 **Arguments:**
+
 - `query` (string, required): Search query for icon name or keywords
 - `library` (string, optional): Icon library to search ('heroicons', 'lucide', 'font-awesome', 'all')
 - `limit` (number, optional): Maximum results (default: 20)
 
 **Returns:**
+
 ```json
 {
   "success": true,
@@ -42,12 +44,14 @@ Search for icons by name across libraries.
 Get SVG content for a specific icon.
 
 **Arguments:**
+
 - `name` (string, required): Icon name (kebab-case)
 - `library` (string, required): Icon library
 - `variant` (string, optional): Icon variant (e.g., 'outline', 'solid')
 - `size` (number, optional): Icon size in pixels (default: 24)
 
 **Returns:**
+
 ```json
 {
   "success": true,

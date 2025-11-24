@@ -163,7 +163,9 @@ export class ${className} {
     })
   }
 
-  ${withAuth ? `
+  ${
+    withAuth
+      ? `
   /**
    * Authenticate user
    */
@@ -180,7 +182,9 @@ export class ${className} {
   async getCurrentUser() {
     return this.request<any>('/auth/me')
   }
-  ` : ''}
+  `
+      : ''
+  }
 }
 
 // Export singleton instance
@@ -304,7 +308,9 @@ const updated = await ${name}Client.updateData('123', {
 await ${name}Client.deleteData('123')
 \`\`\`
 
-${withAuth ? `
+${
+  withAuth
+    ? `
 ## Authentication
 
 \`\`\`typescript
@@ -317,7 +323,9 @@ const { token, user } = await ${name}Client.authenticate({
 // Get current user
 const currentUser = await ${name}Client.getCurrentUser()
 \`\`\`
-` : ''}
+`
+    : ''
+}
 
 ## Error Handling
 

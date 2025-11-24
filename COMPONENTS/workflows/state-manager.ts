@@ -41,14 +41,21 @@
  * ```
  */
 
-export type StateChangeListener<T = any> = (newValue: T, oldValue: T | undefined, path: string) => void
+export type StateChangeListener<T = any> = (
+  newValue: T,
+  oldValue: T | undefined,
+  path: string
+) => void
 export type StateValidator = (state: Record<string, any>) => void | Promise<void>
 
 /**
  * Custom error class for state errors
  */
 export class StateError extends Error {
-  constructor(message: string, public path?: string) {
+  constructor(
+    message: string,
+    public path?: string
+  ) {
     super(message)
     this.name = 'StateError'
   }
@@ -103,9 +110,9 @@ interface Subscription {
  * State Manager
  */
 export class StateManager {
-  private options: Required<Omit<StateOptions,
-    'initialState' | 'validation' | 'onChange' | 'onError' | 'persistencePath'
-  >> & {
+  private options: Required<
+    Omit<StateOptions, 'initialState' | 'validation' | 'onChange' | 'onError' | 'persistencePath'>
+  > & {
     initialState?: Record<string, any>
     validation?: StateValidator
     onChange?: StateChangeListener
@@ -131,7 +138,7 @@ export class StateManager {
       validation: options.validation,
       onChange: options.onChange,
       onError: options.onError,
-      debounceMs: options.debounceMs || 0,
+      debounceMs: options.debounceMs || 0
     }
 
     // Initialize state
@@ -183,7 +190,7 @@ export class StateManager {
       type: 'set',
       path,
       oldValue,
-      newValue: value,
+      newValue: value
     })
 
     // Notify subscribers
@@ -215,7 +222,7 @@ export class StateManager {
       type: 'delete',
       path,
       oldValue,
-      newValue: undefined,
+      newValue: undefined
     })
 
     // Notify subscribers
@@ -263,7 +270,7 @@ export class StateManager {
       type: 'delete',
       path: '*',
       oldValue: oldState,
-      newValue: undefined,
+      newValue: undefined
     })
 
     // Notify all subscribers
@@ -288,7 +295,7 @@ export class StateManager {
       id,
       path,
       pattern,
-      listener: listener as StateChangeListener,
+      listener: listener as StateChangeListener
     })
 
     return id
@@ -321,7 +328,7 @@ export class StateManager {
     const snapshot: StateSnapshot = {
       timestamp: Date.now(),
       state: JSON.parse(JSON.stringify(this.state)),
-      metadata,
+      metadata
     }
 
     this.snapshots.push(snapshot)
@@ -479,10 +486,7 @@ export class StateManager {
    */
   diff(snapshot: StateSnapshot): Record<string, { old: any; new: any }> {
     const diff: Record<string, { old: any; new: any }> = {}
-    const allPaths = new Set([
-      ...this.getAllPaths(snapshot.state),
-      ...this.getAllPaths(this.state),
-    ])
+    const allPaths = new Set([...this.getAllPaths(snapshot.state), ...this.getAllPaths(this.state)])
 
     for (const path of allPaths) {
       const oldValue = this.getNestedValue(snapshot.state, path)
@@ -558,10 +562,7 @@ export class StateManager {
   private pathToRegex(pattern: string): RegExp {
     // Support wildcards: 'user.*' matches 'user.name', 'user.email', etc.
     // Support '**': 'user.**' matches 'user.profile.name', etc.
-    const escaped = pattern
-      .replace(/\./g, '\\.')
-      .replace(/\*\*/g, '.*')
-      .replace(/\*/g, '[^.]*')
+    const escaped = pattern.replace(/\./g, '\\.').replace(/\*\*/g, '.*').replace(/\*/g, '[^.]*')
 
     return new RegExp(`^${escaped}$`)
   }
@@ -675,6 +676,7 @@ export class StateManager {
     // Node.js: file system
     if (this.options.persistencePath && typeof require !== 'undefined') {
       try {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
         const fs = require('fs').promises
         await fs.writeFile(this.options.persistencePath, serialized, 'utf8')
       } catch (error) {
@@ -697,6 +699,7 @@ export class StateManager {
     // Node.js: file system
     if (!serialized && this.options.persistencePath && typeof require !== 'undefined') {
       try {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
         const fs = require('fs')
         serialized = fs.readFileSync(this.options.persistencePath, 'utf8')
       } catch (error) {

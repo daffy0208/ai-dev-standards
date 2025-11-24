@@ -20,6 +20,7 @@ cp ~/ai-dev-standards/TEMPLATES/cursorrules-existing-project.md .cursorrules
 # Project: [Your Existing Project Name]
 
 ## AI Development Standards
+
 Repository: ~/ai-dev-standards/
 Status: Active (Existing Project)
 
@@ -45,11 +46,13 @@ Status: Active (Existing Project)
 
 **Example:**
 ```
+
 Task: "Add user authentication"
 Step 1: Use graph_query_by_effect("implements_authentication")
 Step 2: Returns: security-engineer, api-designer
 Step 3: Use graph_get_dependencies("security-engineer")
 Step 4: Implement using security-engineer skill
+
 ```
 
 **Brain-MCP Tools Available:**
@@ -154,38 +157,40 @@ track progress with Kanban boards, and get automated reports. Serves 5k teams."
 
 ### Directory Layout
 ```
+
 [Document your actual structure]
 
 Example for Next.js:
 /src
-  /components
-    /ui              # Reusable UI components
-    /features        # Feature-specific components
-  /pages
-    /api             # API routes
-  /lib
-    /db.ts           # Database client
-    /api.ts          # API utilities
-  /hooks             # Custom React hooks
-  /types             # TypeScript types
-  /utils             # Utility functions
+/components
+/ui # Reusable UI components
+/features # Feature-specific components
+/pages
+/api # API routes
+/lib
+/db.ts # Database client
+/api.ts # API utilities
+/hooks # Custom React hooks
+/types # TypeScript types
+/utils # Utility functions
 /prisma
-  /schema.prisma
+/schema.prisma
 /public
 
 Example for separate frontend/backend:
 /frontend
-  /src
-    /components
-    /pages
-    /hooks
+/src
+/components
+/pages
+/hooks
 /backend
-  /src
-    /routes
-    /controllers
-    /models
-    /services
-```
+/src
+/routes
+/controllers
+/models
+/services
+
+````
 
 ### Key Directories Explained
 - `/components/ui/` - [e.g., "Shared UI components like Button, Input, Modal"]
@@ -222,9 +227,10 @@ export function TaskList({ userId, filter }: TaskListProps) {
 Example:
 export default function TaskList(props) { ... }  // Don't use default export
 const TaskList: React.FC = () => { ... }  // Don't use React.FC
-```
+````
 
 #### File Naming
+
 - Components: [e.g., "PascalCase - TaskList.tsx"]
 - Hooks: [e.g., "camelCase with use prefix - useTaskList.ts"]
 - Utils: [e.g., "camelCase - formatDate.ts"]
@@ -243,6 +249,7 @@ const TaskList: React.FC = () => { ... }  // Don't use React.FC
 [e.g., "Use React Hook Form with Zod validation"]
 
 #### API Route Pattern
+
 ```typescript
 // ✅ Our standard API route pattern:
 [Show your actual API pattern]
@@ -271,6 +278,7 @@ export default async function handler(req, res) {
 ```
 
 #### Database Patterns
+
 - Table naming: [e.g., "snake_case - user_tasks"]
 - Timestamps: [e.g., "created_at, updated_at (auto-managed by Prisma)"]
 - Soft deletes: [e.g., "Use deleted_at timestamp" or "Hard delete"]
@@ -285,27 +293,30 @@ export default async function handler(req, res) {
 [Document your custom utilities so Claude uses them instead of reinventing]
 
 #### Date/Time
+
 ```typescript
 // ✅ USE THIS:
-import { formatDate } from '@/lib/date';
-formatDate(date, 'short'); // "Jan 15"
-formatDate(date, 'long');  // "January 15, 2024"
+import { formatDate } from '@/lib/date'
+formatDate(date, 'short') // "Jan 15"
+formatDate(date, 'long') // "January 15, 2024"
 
 // ❌ DON'T reinvent:
-new Date().toLocaleDateString();
+new Date().toLocaleDateString()
 ```
 
 #### API Calls
+
 ```typescript
 // ✅ USE THIS:
-import { api } from '@/lib/api';
-const data = await api.get('/tasks');
+import { api } from '@/lib/api'
+const data = await api.get('/tasks')
 
 // ❌ DON'T use raw fetch:
-fetch('/api/tasks');
+fetch('/api/tasks')
 ```
 
 #### Error Handling
+
 ```typescript
 // ✅ USE THIS:
 import { handleError } from '@/lib/errors';
@@ -316,10 +327,11 @@ catch (err) { console.error(err); }
 ```
 
 #### Validation
+
 ```typescript
 // ✅ USE THIS:
-import { TaskSchema } from '@/lib/validations';
-const validated = TaskSchema.parse(data);
+import { TaskSchema } from '@/lib/validations'
+const validated = TaskSchema.parse(data)
 
 // ❌ DON'T write manual validation
 ```
@@ -331,16 +343,19 @@ const validated = TaskSchema.parse(data);
 ## Known Technical Debt
 
 ### High Priority (Fix First)
+
 - [ ] [e.g., "Search is slow (5s for 10k+ records)"]
 - [ ] [e.g., "Auth flow confusing (40% drop-off on signup)"]
 - [ ] [e.g., "No tests for payment flow (high risk)"]
 
 ### Medium Priority
+
 - [ ] [e.g., "Inconsistent error handling across API routes"]
 - [ ] [e.g., "Mixed state management (Redux + Context + local state)"]
 - [ ] [e.g., "Large bundle size (500kb, should be <200kb)"]
 
 ### Low Priority (Nice to Have)
+
 - [ ] [e.g., "Upgrade Next.js 13 → 14"]
 - [ ] [e.g., "Migrate styled-components → Tailwind fully"]
 - [ ] [e.g., "Add E2E tests (only have unit tests)"]
@@ -350,16 +365,19 @@ const validated = TaskSchema.parse(data);
 ## Current Roadmap
 
 ### This Month
+
 - [ ] [e.g., "Fix search performance"]
 - [ ] [e.g., "Add team collaboration features"]
 - [ ] [e.g., "Improve mobile responsiveness"]
 
 ### Next Quarter
+
 - [ ] [e.g., "Launch mobile app"]
 - [ ] [e.g., "Add enterprise SSO"]
 - [ ] [e.g., "Build public API"]
 
 ### Backlog (Future)
+
 - [ ] [e.g., "AI-powered features"]
 - [ ] [e.g., "White-label option"]
 - [ ] [e.g., "Integrations (Slack, Teams, etc.)"]
@@ -371,6 +389,7 @@ const validated = TaskSchema.parse(data);
 ### General Principles
 
 **ALWAYS:**
+
 - ✅ Read existing similar code BEFORE writing new code
 - ✅ Match existing patterns exactly (even if not ideal)
 - ✅ Ask before major refactors or new dependencies
@@ -381,6 +400,7 @@ const validated = TaskSchema.parse(data);
 - ✅ Keep changes small and focused
 
 **NEVER:**
+
 - ❌ Refactor working code without being asked
 - ❌ Add new dependencies without discussion
 - ❌ Change existing API contracts
@@ -394,6 +414,7 @@ const validated = TaskSchema.parse(data);
 ### Task-Specific Instructions
 
 #### When Adding Features
+
 1. **Check for similar features first** - Find existing code doing similar things
 2. **Use mvp-builder skill** - Is this P0/P1/P2 on roadmap?
 3. **Match existing patterns** - Same file structure, naming, conventions
@@ -401,12 +422,14 @@ const validated = TaskSchema.parse(data);
 5. **Add tests** - Unit tests for components, integration for APIs
 
 #### When Fixing Bugs
+
 1. **Understand root cause** - Read surrounding code, don't just patch symptoms
 2. **Minimal changes** - Fix the bug, don't refactor everything
 3. **Add regression test** - Prevent bug from returning
 4. **Document the fix** - Comment explaining why bug occurred
 
 #### When Refactoring
+
 1. **Only if explicitly asked** - Don't refactor unless told to
 2. **Use performance-optimizer skill** - For performance refactors
 3. **Incremental changes** - One module at a time, small PRs
@@ -414,6 +437,7 @@ const validated = TaskSchema.parse(data);
 5. **Backwards compatible** - Don't break existing usage
 
 #### When Optimizing Performance
+
 1. **Use performance-optimizer skill**
 2. **Profile first** - Identify actual bottleneck, don't guess
 3. **Start with low-hanging fruit** - Database indexes, caching, etc.
@@ -421,6 +445,7 @@ const validated = TaskSchema.parse(data);
 5. **Monitor costs** - Ensure optimization doesn't increase costs
 
 #### When Adding AI Features
+
 1. **Use rag-implementer skill** - For RAG/search features
 2. **Consult rag-pattern.md** - Choose right architecture
 3. **Integrate with existing patterns** - Match API route style
@@ -428,6 +453,7 @@ const validated = TaskSchema.parse(data);
 5. **Monitor costs** - Track LLM + embedding costs
 
 #### When Reviewing Code
+
 1. Check against ai-dev-standards best practices
 2. Verify matches existing conventions (above)
 3. Check security (auth, validation, injection prevention)
@@ -439,9 +465,11 @@ const validated = TaskSchema.parse(data);
 ## Migration Strategy
 
 ### Phase 1: Documentation (Week 1) - CURRENT PHASE
+
 **Goal:** Get familiar, don't change code yet
 
 Tasks:
+
 - [x] Create this .cursorrules file
 - [ ] Document 10+ undocumented functions (with Claude's help)
 - [ ] Generate README for each major module
@@ -449,18 +477,22 @@ Tasks:
 - [ ] Write tests for critical untested code
 
 ### Phase 2: New Features Only (Weeks 2-4)
+
 **Goal:** Use ai-dev-standards for new work only
 
 Tasks:
+
 - [ ] All new features use appropriate skills
 - [ ] New code follows best practices
 - [ ] Claude reviews all PRs before human review
 - [ ] Track: Are new features higher quality?
 
 ### Phase 3: Gradual Improvement (Month 2+)
+
 **Goal:** Slowly improve existing code
 
 Tasks:
+
 - [ ] Fix 1 technical debt item per week
 - [ ] Migrate 1 module to better patterns per sprint
 - [ ] Increase test coverage 5% per month
@@ -473,16 +505,19 @@ Tasks:
 Track these to measure impact:
 
 **Week 1:**
+
 - [ ] .cursorrules created and documented
 - [ ] 10+ functions documented
 - [ ] Team understands how to use ai-dev-standards
 
 **Month 1:**
+
 - [ ] 3+ features built faster with ai-dev-standards
 - [ ] Code reviews 30% faster
 - [ ] Fewer bugs in new features
 
 **Quarter 1:**
+
 - [ ] Technical debt reduced 25%
 - [ ] Test coverage +20%
 - [ ] Feature velocity +30%
@@ -495,21 +530,25 @@ Track these to measure impact:
 [Add any special context, quirks, or important information]
 
 ### Important Quirks
+
 - [e.g., "User IDs are UUIDs, not integers"]
 - [e.g., "All dates stored in UTC, converted in UI"]
 - [e.g., "Soft deletes used everywhere (deleted_at column)"]
 
 ### Business Rules
+
 - [e.g., "Free tier: 10 tasks max, Pro: unlimited"]
 - [e.g., "Tasks auto-archive after 90 days of inactivity"]
 - [e.g., "File uploads limited to 10MB"]
 
 ### Security Requirements
+
 - [e.g., "All API routes must check session.user.id"]
 - [e.g., "Rate limit: 100 req/min per user"]
 - [e.g., "PII must be encrypted at rest"]
 
 ### Performance Targets
+
 - [e.g., "API routes: <500ms (p95)"]
 - [e.g., "Page load: <2s (p90)"]
 - [e.g., "Database queries: <100ms average"]
@@ -519,20 +558,24 @@ Track these to measure impact:
 ## Team Context
 
 ### Who Works on This
+
 - [e.g., "3 fullstack developers"]
 - [e.g., "1 designer (handles all UI/UX)"]
 - [e.g., "Solo developer"]
 
 ### Code Review Process
+
 - [e.g., "All PRs need 1 approval before merge"]
 - [e.g., "Claude reviews first, then human review"]
 - [e.g., "Merge to dev, deploy to staging, then prod"]
 
 ### Deployment Process
+
 - [e.g., "Push to main → Auto-deploy to production (Vercel)"]
 - [e.g., "Manual deploy via Railway dashboard"]
 - [e.g., "CI/CD via GitHub Actions"]
-```
+
+````
 
 ---
 
@@ -541,7 +584,7 @@ Track these to measure impact:
 1. **Copy to your project:**
    ```bash
    cp ~/ai-dev-standards/TEMPLATES/cursorrules-existing-project.md /your/project/.cursorrules
-   ```
+````
 
 2. **Fill in all `[bracketed]` sections:**
    - Start with "Basic Info" and "Tech Stack"
@@ -550,6 +593,7 @@ Track these to measure impact:
    - Add your roadmap
 
 3. **Start with documentation tasks:**
+
    ```
    You: "Document the functions in /lib/db.ts using JSDoc"
    You: "Create a README for the /components/features/ directory"
@@ -557,6 +601,7 @@ Track these to measure impact:
    ```
 
 4. **Move to new features:**
+
    ```
    You: "Use the mvp-builder skill to evaluate this feature request"
    You: "Add a new API endpoint following our existing pattern"
@@ -575,18 +620,21 @@ Track these to measure impact:
 After creating .cursorrules, test it:
 
 **Test 1:**
+
 ```
 You: "What are our existing code conventions?"
 Expected: Claude lists your patterns from .cursorrules
 ```
 
 **Test 2:**
+
 ```
 You: "Show me an example of how to create a new component"
 Expected: Claude uses your exact pattern from the template
 ```
 
 **Test 3:**
+
 ```
 You: "What technical debt should we prioritize?"
 Expected: Claude references your "Known Technical Debt" section

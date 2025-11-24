@@ -158,7 +158,7 @@
  * ```
  */
 
-import { createHash } from 'crypto';
+import { createHash } from 'crypto'
 
 /**
  * Error severity levels
@@ -168,7 +168,7 @@ export enum ErrorSeverity {
   INFO = 'info',
   WARNING = 'warning',
   ERROR = 'error',
-  FATAL = 'fatal',
+  FATAL = 'fatal'
 }
 
 /**
@@ -180,7 +180,7 @@ export enum BreadcrumbType {
   HTTP = 'http',
   USER = 'user',
   ERROR = 'error',
-  QUERY = 'query',
+  QUERY = 'query'
 }
 
 /**
@@ -188,17 +188,17 @@ export enum BreadcrumbType {
  */
 export interface Breadcrumb {
   /** Breadcrumb type */
-  type?: BreadcrumbType;
+  type?: BreadcrumbType
   /** Category for grouping */
-  category?: string;
+  category?: string
   /** Breadcrumb message */
-  message: string;
+  message: string
   /** Additional data */
-  data?: Record<string, any>;
+  data?: Record<string, any>
   /** Timestamp */
-  timestamp: number;
+  timestamp: number
   /** Severity level */
-  level?: ErrorSeverity;
+  level?: ErrorSeverity
 }
 
 /**
@@ -207,27 +207,27 @@ export interface Breadcrumb {
 export interface ErrorContext {
   /** User information */
   user?: {
-    id?: string;
-    email?: string;
-    username?: string;
-    [key: string]: any;
-  };
+    id?: string
+    email?: string
+    username?: string
+    [key: string]: any
+  }
   /** Request information */
   request?: {
-    url?: string;
-    method?: string;
-    headers?: Record<string, string>;
-    data?: any;
-  };
+    url?: string
+    method?: string
+    headers?: Record<string, string>
+    data?: any
+  }
   /** Environment information */
   environment?: {
-    platform?: string;
-    os?: string;
-    browser?: string;
-    version?: string;
-  };
+    platform?: string
+    os?: string
+    browser?: string
+    version?: string
+  }
   /** Custom context */
-  [key: string]: any;
+  [key: string]: any
 }
 
 /**
@@ -235,15 +235,15 @@ export interface ErrorContext {
  */
 export interface ErrorOptions {
   /** Error severity */
-  severity?: ErrorSeverity;
+  severity?: ErrorSeverity
   /** Error tags for filtering */
-  tags?: Record<string, string>;
+  tags?: Record<string, string>
   /** Additional context */
-  context?: Record<string, any>;
+  context?: Record<string, any>
   /** Fingerprint for grouping */
-  fingerprint?: string[];
+  fingerprint?: string[]
   /** Timestamp override */
-  timestamp?: number;
+  timestamp?: number
 }
 
 /**
@@ -251,29 +251,29 @@ export interface ErrorOptions {
  */
 export interface ErrorOccurrence {
   /** Unique occurrence ID */
-  id: string;
+  id: string
   /** Error message */
-  message: string;
+  message: string
   /** Error type/name */
-  type?: string;
+  type?: string
   /** Stack trace */
-  stack?: string;
+  stack?: string
   /** Severity level */
-  severity: ErrorSeverity;
+  severity: ErrorSeverity
   /** Timestamp */
-  timestamp: number;
+  timestamp: number
   /** Tags */
-  tags: Record<string, string>;
+  tags: Record<string, string>
   /** Context */
-  context: ErrorContext;
+  context: ErrorContext
   /** Breadcrumbs */
-  breadcrumbs: Breadcrumb[];
+  breadcrumbs: Breadcrumb[]
   /** Fingerprint for grouping */
-  fingerprint: string;
+  fingerprint: string
   /** Service name */
-  service: string;
+  service: string
   /** Environment */
-  environment?: string;
+  environment?: string
 }
 
 /**
@@ -281,19 +281,19 @@ export interface ErrorOccurrence {
  */
 export interface ErrorGroup {
   /** Group fingerprint */
-  fingerprint: string;
+  fingerprint: string
   /** First occurrence */
-  firstSeen: number;
+  firstSeen: number
   /** Last occurrence */
-  lastSeen: number;
+  lastSeen: number
   /** Total occurrence count */
-  count: number;
+  count: number
   /** Sample error */
-  sample: ErrorOccurrence;
+  sample: ErrorOccurrence
   /** All occurrences */
-  occurrences: ErrorOccurrence[];
+  occurrences: ErrorOccurrence[]
   /** Status */
-  status: 'unresolved' | 'resolved' | 'ignored';
+  status: 'unresolved' | 'resolved' | 'ignored'
 }
 
 /**
@@ -301,24 +301,24 @@ export interface ErrorGroup {
  */
 export interface ErrorReport {
   /** Report period start */
-  startTime: number;
+  startTime: number
   /** Report period end */
-  endTime: number;
+  endTime: number
   /** Total error count */
-  totalErrors: number;
+  totalErrors: number
   /** Error groups */
-  groups: ErrorGroup[];
+  groups: ErrorGroup[]
   /** Top errors by count */
   topErrors: Array<{
-    fingerprint: string;
-    count: number;
-    message: string;
-    severity: ErrorSeverity;
-  }>;
+    fingerprint: string
+    count: number
+    message: string
+    severity: ErrorSeverity
+  }>
   /** Errors by severity */
-  bySeverity: Record<ErrorSeverity, number>;
+  bySeverity: Record<ErrorSeverity, number>
   /** Errors by tag */
-  byTag: Record<string, number>;
+  byTag: Record<string, number>
 }
 
 /**
@@ -326,50 +326,50 @@ export interface ErrorReport {
  */
 export interface ErrorTrackerOptions {
   /** Service name */
-  service: string;
+  service: string
   /** Environment (production, staging, etc) */
-  environment?: string;
+  environment?: string
   /** Enable/disable error tracking */
-  enabled?: boolean;
+  enabled?: boolean
   /** Maximum breadcrumbs to keep */
-  maxBreadcrumbs?: number;
+  maxBreadcrumbs?: number
   /** Maximum occurrences per group */
-  maxOccurrencesPerGroup?: number;
+  maxOccurrencesPerGroup?: number
   /** Auto-clear old errors (in ms) */
-  autoClearAge?: number;
+  autoClearAge?: number
   /** Default context */
-  defaultContext?: ErrorContext;
+  defaultContext?: ErrorContext
   /** Default tags */
-  defaultTags?: Record<string, string>;
+  defaultTags?: Record<string, string>
 }
 
 /**
  * Main error tracker class
  */
 export class ErrorTracker {
-  private service: string;
-  private environment: string;
-  private enabled: boolean;
-  private maxBreadcrumbs: number;
-  private maxOccurrencesPerGroup: number;
-  private autoClearAge: number;
-  private breadcrumbs: Breadcrumb[] = [];
-  private context: ErrorContext = {};
-  private defaultTags: Record<string, string>;
-  private groups = new Map<string, ErrorGroup>();
-  private autoClearInterval?: NodeJS.Timeout;
+  private service: string
+  private environment: string
+  private enabled: boolean
+  private maxBreadcrumbs: number
+  private maxOccurrencesPerGroup: number
+  private autoClearAge: number
+  private breadcrumbs: Breadcrumb[] = []
+  private context: ErrorContext = {}
+  private defaultTags: Record<string, string>
+  private groups = new Map<string, ErrorGroup>()
+  private autoClearInterval?: NodeJS.Timeout
 
   constructor(options: ErrorTrackerOptions) {
-    this.service = options.service;
-    this.environment = options.environment || 'development';
-    this.enabled = options.enabled !== false;
-    this.maxBreadcrumbs = options.maxBreadcrumbs || 100;
-    this.maxOccurrencesPerGroup = options.maxOccurrencesPerGroup || 50;
-    this.autoClearAge = options.autoClearAge || 7 * 24 * 60 * 60 * 1000; // 7 days
-    this.defaultTags = options.defaultTags || {};
+    this.service = options.service
+    this.environment = options.environment || 'development'
+    this.enabled = options.enabled !== false
+    this.maxBreadcrumbs = options.maxBreadcrumbs || 100
+    this.maxOccurrencesPerGroup = options.maxOccurrencesPerGroup || 50
+    this.autoClearAge = options.autoClearAge || 7 * 24 * 60 * 60 * 1000 // 7 days
+    this.defaultTags = options.defaultTags || {}
 
     if (options.defaultContext) {
-      this.context = { ...options.defaultContext };
+      this.context = { ...options.defaultContext }
     }
 
     // Start auto-clear interval
@@ -377,7 +377,7 @@ export class ErrorTracker {
       this.autoClearInterval = setInterval(
         () => this.clearOldErrors(),
         24 * 60 * 60 * 1000 // Daily
-      );
+      )
     }
   }
 
@@ -385,7 +385,7 @@ export class ErrorTracker {
    * Capture an exception
    */
   captureException(error: Error, options: ErrorOptions = {}): string {
-    if (!this.enabled) return '';
+    if (!this.enabled) return ''
 
     const occurrence = this.createOccurrence(
       error.message,
@@ -395,44 +395,44 @@ export class ErrorTracker {
           ...options.context,
           error: {
             type: error.name,
-            stack: error.stack,
-          },
-        },
+            stack: error.stack
+          }
+        }
       },
       error
-    );
+    )
 
-    this.storeOccurrence(occurrence);
-    return occurrence.id;
+    this.storeOccurrence(occurrence)
+    return occurrence.id
   }
 
   /**
    * Capture a custom error message
    */
   captureError(message: string, options: ErrorOptions = {}): string {
-    if (!this.enabled) return '';
+    if (!this.enabled) return ''
 
-    const occurrence = this.createOccurrence(message, options);
-    this.storeOccurrence(occurrence);
-    return occurrence.id;
+    const occurrence = this.createOccurrence(message, options)
+    this.storeOccurrence(occurrence)
+    return occurrence.id
   }
 
   /**
    * Add a breadcrumb
    */
   addBreadcrumb(breadcrumb: Omit<Breadcrumb, 'timestamp'>): void {
-    if (!this.enabled) return;
+    if (!this.enabled) return
 
     this.breadcrumbs.push({
       ...breadcrumb,
       timestamp: Date.now(),
       type: breadcrumb.type || BreadcrumbType.DEFAULT,
-      level: breadcrumb.level || ErrorSeverity.INFO,
-    });
+      level: breadcrumb.level || ErrorSeverity.INFO
+    })
 
     // Trim to max breadcrumbs
     if (this.breadcrumbs.length > this.maxBreadcrumbs) {
-      this.breadcrumbs = this.breadcrumbs.slice(-this.maxBreadcrumbs);
+      this.breadcrumbs = this.breadcrumbs.slice(-this.maxBreadcrumbs)
     }
   }
 
@@ -440,88 +440,93 @@ export class ErrorTracker {
    * Set context information
    */
   setContext(key: string, value: any): void {
-    this.context[key] = value;
+    this.context[key] = value
   }
 
   /**
    * Clear context
    */
   clearContext(): void {
-    this.context = {};
+    this.context = {}
   }
 
   /**
    * Set user context
    */
   setUser(user: ErrorContext['user']): void {
-    this.context.user = user;
+    this.context.user = user
   }
 
   /**
    * Clear user context
    */
   clearUser(): void {
-    delete this.context.user;
+    delete this.context.user
   }
 
   /**
    * Get error groups
    */
   getGroups(): ErrorGroup[] {
-    return Array.from(this.groups.values());
+    return Array.from(this.groups.values())
   }
 
   /**
    * Get specific error group
    */
   getGroup(fingerprint: string): ErrorGroup | undefined {
-    return this.groups.get(fingerprint);
+    return this.groups.get(fingerprint)
   }
 
   /**
    * Update group status
    */
-  updateGroupStatus(
-    fingerprint: string,
-    status: 'unresolved' | 'resolved' | 'ignored'
-  ): void {
-    const group = this.groups.get(fingerprint);
+  updateGroupStatus(fingerprint: string, status: 'unresolved' | 'resolved' | 'ignored'): void {
+    const group = this.groups.get(fingerprint)
     if (group) {
-      group.status = status;
+      group.status = status
     }
   }
 
   /**
    * Generate error report
    */
-  generateReport(options: {
-    startTime?: number;
-    endTime?: number;
-    groupBy?: 'message' | 'type' | 'fingerprint';
-  } = {}): ErrorReport {
-    const startTime = options.startTime || 0;
-    const endTime = options.endTime || Date.now();
+  generateReport(
+    options: {
+      startTime?: number
+      endTime?: number
+      groupBy?: 'message' | 'type' | 'fingerprint'
+    } = {}
+  ): ErrorReport {
+    const startTime = options.startTime || 0
+    const endTime = options.endTime || Date.now()
 
     // Filter groups by time range
     const filteredGroups = Array.from(this.groups.values()).filter(
       group => group.lastSeen >= startTime && group.firstSeen <= endTime
-    );
+    )
 
     // Calculate statistics
-    const totalErrors = filteredGroups.reduce((sum, group) => sum + group.count, 0);
+    const totalErrors = filteredGroups.reduce((sum, group) => sum + group.count, 0)
 
-    const bySeverity = filteredGroups.reduce((acc, group) => {
-      const severity = group.sample.severity;
-      acc[severity] = (acc[severity] || 0) + group.count;
-      return acc;
-    }, {} as Record<ErrorSeverity, number>);
+    const bySeverity = filteredGroups.reduce(
+      (acc, group) => {
+        const severity = group.sample.severity
+        acc[severity] = (acc[severity] || 0) + group.count
+        return acc
+      },
+      {} as Record<ErrorSeverity, number>
+    )
 
-    const byTag = filteredGroups.reduce((acc, group) => {
-      Object.keys(group.sample.tags).forEach(tag => {
-        acc[tag] = (acc[tag] || 0) + group.count;
-      });
-      return acc;
-    }, {} as Record<string, number>);
+    const byTag = filteredGroups.reduce(
+      (acc, group) => {
+        Object.keys(group.sample.tags).forEach(tag => {
+          acc[tag] = (acc[tag] || 0) + group.count
+        })
+        return acc
+      },
+      {} as Record<string, number>
+    )
 
     const topErrors = filteredGroups
       .sort((a, b) => b.count - a.count)
@@ -530,8 +535,8 @@ export class ErrorTracker {
         fingerprint: group.fingerprint,
         count: group.count,
         message: group.sample.message,
-        severity: group.sample.severity,
-      }));
+        severity: group.sample.severity
+      }))
 
     return {
       startTime,
@@ -540,15 +545,15 @@ export class ErrorTracker {
       groups: filteredGroups,
       topErrors,
       bySeverity,
-      byTag,
-    };
+      byTag
+    }
   }
 
   /**
    * Export errors as JSON
    */
   exportJSON(): string {
-    return JSON.stringify(Array.from(this.groups.values()), null, 2);
+    return JSON.stringify(Array.from(this.groups.values()), null, 2)
   }
 
   /**
@@ -568,11 +573,11 @@ export class ErrorTracker {
                 value: occurrence.message,
                 stacktrace: occurrence.stack
                   ? {
-                      frames: this.parseStackTrace(occurrence.stack),
+                      frames: this.parseStackTrace(occurrence.stack)
                     }
-                  : undefined,
-              },
-            ],
+                  : undefined
+              }
+            ]
           }
         : undefined,
       tags: occurrence.tags,
@@ -584,24 +589,24 @@ export class ErrorTracker {
           message: b.message,
           data: b.data,
           timestamp: Math.floor(b.timestamp / 1000),
-          level: b.level,
-        })),
+          level: b.level
+        }))
       },
       environment: occurrence.environment,
       server_name: occurrence.service,
-      fingerprint: [occurrence.fingerprint],
-    };
+      fingerprint: [occurrence.fingerprint]
+    }
   }
 
   /**
    * Clear old errors
    */
   clearOldErrors(): void {
-    const cutoff = Date.now() - this.autoClearAge;
+    const cutoff = Date.now() - this.autoClearAge
 
     for (const [fingerprint, group] of this.groups) {
       if (group.lastSeen < cutoff) {
-        this.groups.delete(fingerprint);
+        this.groups.delete(fingerprint)
       }
     }
   }
@@ -610,8 +615,8 @@ export class ErrorTracker {
    * Clear all errors
    */
   clear(): void {
-    this.groups.clear();
-    this.breadcrumbs = [];
+    this.groups.clear()
+    this.breadcrumbs = []
   }
 
   /**
@@ -619,28 +624,20 @@ export class ErrorTracker {
    */
   close(): void {
     if (this.autoClearInterval) {
-      clearInterval(this.autoClearInterval);
+      clearInterval(this.autoClearInterval)
     }
   }
 
   /**
    * Create error occurrence
    */
-  private createOccurrence(
-    message: string,
-    options: ErrorOptions,
-    error?: Error
-  ): ErrorOccurrence {
-    const id = this.generateId();
-    const timestamp = options.timestamp || Date.now();
-    const severity = options.severity || ErrorSeverity.ERROR;
-    const tags = { ...this.defaultTags, ...options.tags };
-    const context = { ...this.context, ...options.context };
-    const fingerprint = this.generateFingerprint(
-      message,
-      error?.stack,
-      options.fingerprint
-    );
+  private createOccurrence(message: string, options: ErrorOptions, error?: Error): ErrorOccurrence {
+    const id = this.generateId()
+    const timestamp = options.timestamp || Date.now()
+    const severity = options.severity || ErrorSeverity.ERROR
+    const tags = { ...this.defaultTags, ...options.tags }
+    const context = { ...this.context, ...options.context }
+    const fingerprint = this.generateFingerprint(message, error?.stack, options.fingerprint)
 
     return {
       id,
@@ -654,24 +651,24 @@ export class ErrorTracker {
       breadcrumbs: [...this.breadcrumbs],
       fingerprint,
       service: this.service,
-      environment: this.environment,
-    };
+      environment: this.environment
+    }
   }
 
   /**
    * Store error occurrence
    */
   private storeOccurrence(occurrence: ErrorOccurrence): void {
-    const { fingerprint } = occurrence;
+    const { fingerprint } = occurrence
 
     if (this.groups.has(fingerprint)) {
-      const group = this.groups.get(fingerprint)!;
-      group.count++;
-      group.lastSeen = occurrence.timestamp;
+      const group = this.groups.get(fingerprint)!
+      group.count++
+      group.lastSeen = occurrence.timestamp
 
       // Add to occurrences (with limit)
       if (group.occurrences.length < this.maxOccurrencesPerGroup) {
-        group.occurrences.push(occurrence);
+        group.occurrences.push(occurrence)
       }
     } else {
       this.groups.set(fingerprint, {
@@ -681,8 +678,8 @@ export class ErrorTracker {
         count: 1,
         sample: occurrence,
         occurrences: [occurrence],
-        status: 'unresolved',
-      });
+        status: 'unresolved'
+      })
     }
   }
 
@@ -690,7 +687,7 @@ export class ErrorTracker {
    * Generate unique ID
    */
   private generateId(): string {
-    return `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
+    return `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`
   }
 
   /**
@@ -702,15 +699,15 @@ export class ErrorTracker {
     customFingerprint?: string[]
   ): string {
     if (customFingerprint && customFingerprint.length > 0) {
-      return createHash('md5').update(customFingerprint.join('|')).digest('hex');
+      return createHash('md5').update(customFingerprint.join('|')).digest('hex')
     }
 
     // Use stack trace for grouping if available
     const fingerprintSource = stack
       ? this.normalizeStackTrace(stack)
-      : this.normalizeMessage(message);
+      : this.normalizeMessage(message)
 
-    return createHash('md5').update(fingerprintSource).digest('hex');
+    return createHash('md5').update(fingerprintSource).digest('hex')
   }
 
   /**
@@ -722,7 +719,7 @@ export class ErrorTracker {
       .replace(/\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/gi, '<UUID>')
       .replace(/\b\d+\b/g, '<NUMBER>')
       .replace(/\b0x[0-9a-f]+\b/gi, '<HEX>')
-      .replace(/["']([^"']+)["']/g, '<STRING>');
+      .replace(/["']([^"']+)["']/g, '<STRING>')
   }
 
   /**
@@ -734,7 +731,7 @@ export class ErrorTracker {
       .split('\n')
       .slice(0, 5)
       .map(line => line.replace(/:\d+:\d+/g, ':0:0'))
-      .join('\n');
+      .join('\n')
   }
 
   /**
@@ -745,19 +742,19 @@ export class ErrorTracker {
       .split('\n')
       .slice(1) // Skip error message line
       .map(line => {
-        const match = line.match(/^\s*at\s+(.+?)\s+\((.+?):(\d+):(\d+)\)$/);
+        const match = line.match(/^\s*at\s+(.+?)\s+\((.+?):(\d+):(\d+)\)$/)
         if (match) {
           return {
             function: match[1],
             filename: match[2],
             lineno: parseInt(match[3], 10),
             colno: parseInt(match[4], 10),
-            in_app: !match[2].includes('node_modules'),
-          };
+            in_app: !match[2].includes('node_modules')
+          }
         }
-        return null;
+        return null
       })
-      .filter(Boolean);
+      .filter(Boolean)
   }
 }
 
@@ -767,5 +764,5 @@ export class ErrorTracker {
 export const defaultErrorTracker = new ErrorTracker({
   service: process.env.SERVICE_NAME || 'unknown',
   environment: process.env.NODE_ENV || 'development',
-  enabled: process.env.ERROR_TRACKING_ENABLED !== 'false',
-});
+  enabled: process.env.ERROR_TRACKING_ENABLED !== 'false'
+})

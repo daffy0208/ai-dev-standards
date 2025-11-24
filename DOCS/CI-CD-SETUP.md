@@ -7,6 +7,7 @@ Complete guide for the automated CI/CD pipeline.
 ## 🎯 Overview
 
 **ai-dev-standards** uses GitHub Actions for fully automated:
+
 - ✅ Testing (unit + integration)
 - ✅ Linting & formatting checks
 - ✅ Type checking
@@ -22,6 +23,7 @@ Complete guide for the automated CI/CD pipeline.
 ### 1. CI Workflow (`.github/workflows/ci.yml`)
 
 **Triggers:**
+
 - Push to `main` or `develop`
 - Pull requests to `main` or `develop`
 
@@ -70,9 +72,11 @@ Complete guide for the automated CI/CD pipeline.
 ### 2. Codex Automated Code Review (`.github/workflows/codex-review.yml`)
 
 **Triggers:**
+
 - Pull requests (opened, synchronized, reopened)
 
 **Scope:**
+
 - Reviews only changed files in:
   - `CLI/commands/**/*.js`
   - `scripts/brain/**/*.ts`
@@ -80,6 +84,7 @@ Complete guide for the automated CI/CD pipeline.
   - `src/**/*.js` and `src/**/*.ts`
 
 **Process:**
+
 1. Detects changed files in PR
 2. Runs Codex CLI review in read-only sandbox
 3. Analyzes for:
@@ -98,17 +103,20 @@ Complete guide for the automated CI/CD pipeline.
 6. Fails CI if HIGH or CRITICAL issues found
 
 **Requirements:**
+
 - Codex CLI v0.50.0+
 - Completes in <5 minutes
 - GitHub token needs `comments:write` permission
 
 **Helper Script:**
+
 - `scripts/ci/codex-review.sh`
 - Takes file list as arguments
 - Outputs structured JSON
 - Exit code 1 for HIGH/CRITICAL issues
 
 **Example Output:**
+
 ```json
 {
   "summary": {
@@ -134,16 +142,19 @@ Complete guide for the automated CI/CD pipeline.
 ### 3. Coverage Workflow (`.github/workflows/coverage.yml`)
 
 **Triggers:**
+
 - Push to `main`
 - Pull requests to `main`
 
 **Actions:**
+
 - Generates detailed coverage report
 - Uploads to Codecov with visualizations
 - Comments coverage changes on PRs
 - Uploads coverage artifacts (30-day retention)
 
 **Coverage Thresholds:**
+
 ```json
 {
   "lines": 80,
@@ -160,10 +171,12 @@ Complete guide for the automated CI/CD pipeline.
 ### 4. Release Workflow (`.github/workflows/release.yml`)
 
 **Triggers:**
+
 - Push to `main` (after PR merge)
 - Ignores documentation-only changes
 
 **Process:**
+
 1. Runs full test suite
 2. Builds project
 3. Analyzes commit messages
@@ -174,6 +187,7 @@ Complete guide for the automated CI/CD pipeline.
 8. Updates documentation
 
 **Version Bumping:**
+
 - `feat:` commits → Minor version (1.0.0 → 1.1.0)
 - `fix:` commits → Patch version (1.0.0 → 1.0.1)
 - `BREAKING CHANGE:` → Major version (1.0.0 → 2.0.0)
@@ -198,6 +212,7 @@ Complete guide for the automated CI/CD pipeline.
 ```
 
 **Rules:**
+
 - TypeScript strict mode
 - React hooks validation
 - No unused variables
@@ -217,6 +232,7 @@ Complete guide for the automated CI/CD pipeline.
 ```
 
 **Style:**
+
 - No semicolons
 - Single quotes
 - 100 character line width
@@ -240,6 +256,7 @@ Complete guide for the automated CI/CD pipeline.
 ```
 
 **Commit Convention:**
+
 - Follows [Conventional Commits](https://www.conventionalcommits.org/)
 - Automatic CHANGELOG generation
 - GitHub release notes
@@ -320,12 +337,12 @@ Navigate to: **Settings → Secrets and variables → Actions**
 
 ### Automatic Triggers
 
-| Event | Workflows |
-|-------|-----------|
-| Push to `main` | CI, Coverage, Release |
-| Push to `develop` | CI |
-| Pull Request | CI, Coverage, Codex Review |
-| Schedule (daily) | Security Audit |
+| Event             | Workflows                  |
+| ----------------- | -------------------------- |
+| Push to `main`    | CI, Coverage, Release      |
+| Push to `develop` | CI                         |
+| Pull Request      | CI, Coverage, Codex Review |
+| Schedule (daily)  | Security Audit             |
 
 ### Manual Triggers
 
@@ -396,6 +413,7 @@ fix(validation): handle edge case in email validator
 ### CI Failing
 
 **Test failures:**
+
 ```bash
 # Run tests locally
 npm test
@@ -405,6 +423,7 @@ npm run test:watch -- validation.test.ts
 ```
 
 **Lint errors:**
+
 ```bash
 # Check what's wrong
 npm run lint
@@ -414,12 +433,14 @@ npm run lint:fix
 ```
 
 **Type errors:**
+
 ```bash
 # Check type errors
 npm run typecheck
 ```
 
 **Coverage below threshold:**
+
 ```bash
 # See coverage report
 npm run test:coverage
@@ -429,6 +450,7 @@ open coverage/index.html
 ```
 
 **Codex review failures:**
+
 ```bash
 # Test locally before pushing
 chmod +x scripts/ci/codex-review.sh
@@ -465,6 +487,7 @@ cat codex-review-results.json | jq '.summary'
 ```
 
 **Expected Results:**
+
 - Exit code 0: No HIGH/CRITICAL issues
 - Exit code 1: HIGH/CRITICAL issues found (CI will fail)
 - Exit code 2: Script error (check Codex installation)
@@ -474,15 +497,18 @@ cat codex-review-results.json | jq '.summary'
 ### Release Not Triggered
 
 **Check commit messages:**
+
 - Ensure using conventional format
 - Must have `feat:` or `fix:` for release
 - Docs/style/test commits don't trigger releases
 
 **Check branch:**
+
 - Releases only from `main` branch
 - Ensure PR was merged, not just pushed
 
 **Check logs:**
+
 - Go to Actions tab
 - Check Release workflow logs
 - Look for errors in semantic-release
@@ -492,12 +518,14 @@ cat codex-review-results.json | jq '.summary'
 ### Coverage Not Uploading
 
 **Missing Codecov token:**
+
 1. Sign up at https://codecov.io/
 2. Add repository
 3. Copy token
 4. Add as `CODECOV_TOKEN` secret
 
 **Workaround:**
+
 - Coverage will still work without token
 - Token improves reliability and features
 
@@ -534,6 +562,7 @@ npx semantic-release --dry-run
 ### 1. Always Run CI Locally First
 
 Before pushing:
+
 ```bash
 npm run ci
 ```
@@ -573,11 +602,13 @@ WIP
 ## 🚀 What Happens on Merge?
 
 1. **PR merged to `main`**
+
    ```
    User clicks "Squash and merge"
    ```
 
 2. **CI runs** (2-3 minutes)
+
    ```
    ✅ Tests pass
    ✅ Lint passes
@@ -586,6 +617,7 @@ WIP
    ```
 
 3. **semantic-release analyzes commits** (30 seconds)
+
    ```
    Found: feat(tools): add new tool
    Decision: Bump minor version
@@ -593,6 +625,7 @@ WIP
    ```
 
 4. **Updates files**
+
    ```
    ✅ package.json → version: 1.3.0
    ✅ CHANGELOG.md → added entry
@@ -600,6 +633,7 @@ WIP
    ```
 
 5. **Creates GitHub release**
+
    ```
    ✅ Release notes generated
    ✅ Assets attached

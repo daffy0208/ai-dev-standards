@@ -186,6 +186,7 @@ components/
 ```
 
 **Component Organization:**
+
 - `ui/` - Reusable, generic UI components
 - `forms/` - Form components with validation
 - `layout/` - Page layout components
@@ -208,8 +209,8 @@ lib/
 // hooks/useAuth.ts
 export function useAuth() {
   const session = useSession()
-  const signIn = async (credentials: Credentials) => { }
-  const signOut = async () => { }
+  const signIn = async (credentials: Credentials) => {}
+  const signOut = async () => {}
   return { session, signIn, signOut }
 }
 
@@ -227,15 +228,15 @@ export function useFetch<T>(url: string) {
 
 ## File Naming Conventions
 
-| Type | Convention | Example |
-|------|-----------|---------|
-| **Pages** | lowercase | `app/dashboard/page.tsx` |
-| **Layouts** | lowercase | `app/dashboard/layout.tsx` |
-| **Components** | PascalCase | `LoginForm.tsx`, `Button.tsx` |
-| **Utilities** | camelCase | `formatDate.ts`, `cn.ts` |
-| **Hooks** | camelCase + `use` | `useAuth.ts`, `useForm.ts` |
-| **Types** | camelCase | `api.ts`, `database.ts` |
-| **API Routes** | lowercase | `app/api/users/route.ts` |
+| Type           | Convention        | Example                       |
+| -------------- | ----------------- | ----------------------------- |
+| **Pages**      | lowercase         | `app/dashboard/page.tsx`      |
+| **Layouts**    | lowercase         | `app/dashboard/layout.tsx`    |
+| **Components** | PascalCase        | `LoginForm.tsx`, `Button.tsx` |
+| **Utilities**  | camelCase         | `formatDate.ts`, `cn.ts`      |
+| **Hooks**      | camelCase + `use` | `useAuth.ts`, `useForm.ts`    |
+| **Types**      | camelCase         | `api.ts`, `database.ts`       |
+| **API Routes** | lowercase         | `app/api/users/route.ts`      |
 
 ---
 
@@ -318,11 +319,11 @@ app/
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['cdn.example.com'],
+    domains: ['cdn.example.com']
   },
   experimental: {
-    serverActions: true,
-  },
+    serverActions: true
+  }
 }
 
 module.exports = nextConfig
@@ -446,18 +447,12 @@ export async function POST(request: NextRequest) {
 }
 
 // Dynamic route: app/api/users/[id]/route.ts
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   const user = await db.user.findUnique({
     where: { id: params.id }
   })
   if (!user) {
-    return NextResponse.json(
-      { error: 'User not found' },
-      { status: 404 }
-    )
+    return NextResponse.json({ error: 'User not found' }, { status: 404 })
   }
   return NextResponse.json(user)
 }
@@ -530,6 +525,7 @@ export const config = {
 ### 1. Use Server Components by Default
 
 Server Components are the default in App Router. Only use Client Components when you need:
+
 - Browser APIs (localStorage, etc.)
 - Event handlers
 - React hooks (useState, useEffect)

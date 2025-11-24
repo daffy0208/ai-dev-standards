@@ -13,6 +13,7 @@ The ai-dev-standards repository has a comprehensive automation system that ensur
 ## Problem Solved
 
 **Before Automation:**
+
 - Developers manually updated resource counts in documentation
 - Registry files manually maintained
 - Documentation frequently drifted out of sync
@@ -20,6 +21,7 @@ The ai-dev-standards repository has a comprehensive automation system that ensur
 - Multiple contradictory coverage metrics
 
 **After Automation:**
+
 - Documentation updates automatically on every commit
 - Registry files auto-generated from directories
 - Drift is impossible - automation enforces sync
@@ -63,6 +65,7 @@ The ai-dev-standards repository has a comprehensive automation system that ensur
 **Purpose:** Scan directories and regenerate all registry files.
 
 **What it does:**
+
 - Scans `SKILLS/` directory → generates `skill-registry.json`
 - Scans `MCP-SERVERS/` directory → generates `mcp-registry.json`
 - Counts tools, components, integrations
@@ -72,6 +75,7 @@ The ai-dev-standards repository has a comprehensive automation system that ensur
 **Command:** `npm run generate:registries`
 
 **Output:**
+
 - `META/skill-registry.json` (64 skills)
 - `META/mcp-registry.json` (50 MCPs)
 - Tool, component, integration counts validated
@@ -81,6 +85,7 @@ The ai-dev-standards repository has a comprehensive automation system that ensur
 **Purpose:** Update all documentation from registry data.
 
 **What it does:**
+
 - Reads counts from registry files
 - Finds AUTO-GEN markers in documentation
 - Updates values between markers
@@ -88,6 +93,7 @@ The ai-dev-standards repository has a comprehensive automation system that ensur
 - Preserves surrounding content
 
 **Marker Format:**
+
 ```markdown
 **<!-- AUTO-GEN:START:skills -->64<!-- AUTO-GEN:END:skills --> Specialized Skills**
 ```
@@ -95,6 +101,7 @@ The ai-dev-standards repository has a comprehensive automation system that ensur
 **Command:** `npm run generate:docs`
 
 **Files Updated:**
+
 - README.md
 - INSTALL.md
 - INTEGRATION-USAGE.md
@@ -107,6 +114,7 @@ The ai-dev-standards repository has a comprehensive automation system that ensur
 **Purpose:** Validate registries are in sync with directories.
 
 **Checks:**
+
 - ✅ `total_*` fields match array lengths
 - ✅ No orphaned registry entries
 - ✅ All directories have registry entries
@@ -120,6 +128,7 @@ The ai-dev-standards repository has a comprehensive automation system that ensur
 **Purpose:** Validate documentation is in sync with registries.
 
 **Checks:**
+
 - ✅ AUTO-GEN markers exist
 - ✅ Values in markers match registry
 - ✅ All required files present
@@ -131,6 +140,7 @@ The ai-dev-standards repository has a comprehensive automation system that ensur
 **Purpose:** Enforce automation on every commit.
 
 **What it does:**
+
 1. Runs `npm run generate:all`
 2. Auto-stages updated files
 3. Runs validation
@@ -145,6 +155,7 @@ The ai-dev-standards repository has a comprehensive automation system that ensur
 **Purpose:** Enforce sync in CI/CD pipeline.
 
 **What it does:**
+
 1. Runs generators
 2. Checks for uncommitted changes
 3. Fails if documentation out of sync
@@ -158,15 +169,18 @@ The ai-dev-standards repository has a comprehensive automation system that ensur
 **Purpose:** Eliminate hardcoded paths in MCP settings.
 
 **Components:**
+
 - `.claude/mcp-settings.template.json` - Template with `{{AI_DEV_ROOT}}`
 - `scripts/render-mcp-settings.ts` - Renders for current environment
 - `scripts/validate-mcp-settings.ts` - Validates paths exist
 
 **Commands:**
+
 - `npm run mcp:render` - Generate settings
 - `npm run mcp:validate` - Validate settings
 
 **Environment Detection:**
+
 1. `AI_DEV_STANDARDS_ROOT` env var
 2. `GITHUB_WORKSPACE` (CI)
 3. Current working directory (local)
@@ -178,11 +192,13 @@ The ai-dev-standards repository has a comprehensive automation system that ensur
 ### For Developers
 
 **Setup (once per machine):**
+
 ```bash
 ./scripts/setup-dev-environment.sh
 ```
 
 **Daily workflow:**
+
 ```bash
 # 1. Make changes (add skill, update MCP, etc.)
 # 2. Commit normally
@@ -195,6 +211,7 @@ git commit -m "feat: add new skill"
 ```
 
 **Manual generation (if needed):**
+
 ```bash
 # Regenerate everything
 npm run generate:all
@@ -233,14 +250,14 @@ SKIP_VALIDATION=1 git commit -m "emergency fix"
 
 **Automatically maintained from:**
 
-| Resource | Source | Count |
-|----------|--------|-------|
-| Skills | `SKILLS/` directories | 64 |
-| MCPs | `MCP-SERVERS/` directories | 50 |
-| Tools | `META/tool-registry.json` | 24 |
-| Components | `META/component-registry.json` | 72 |
-| Integrations | `META/integration-registry.json` | 28 |
-| **TOTAL** | **Auto-calculated** | **238** |
+| Resource     | Source                           | Count   |
+| ------------ | -------------------------------- | ------- |
+| Skills       | `SKILLS/` directories            | 64      |
+| MCPs         | `MCP-SERVERS/` directories       | 50      |
+| Tools        | `META/tool-registry.json`        | 24      |
+| Components   | `META/component-registry.json`   | 72      |
+| Integrations | `META/integration-registry.json` | 28      |
+| **TOTAL**    | **Auto-calculated**              | **238** |
 
 **Coverage:** 78.1% (50 MCPs / 64 Skills)
 
@@ -264,6 +281,7 @@ All criteria met ✅
 ### "Documentation is out of sync" error
 
 **Fix:**
+
 ```bash
 npm run generate:all
 git add .
@@ -274,6 +292,7 @@ git push --force-with-lease
 ### "Registry validation failed"
 
 **Fix:**
+
 ```bash
 npm run generate:registries
 git add META/*.json
@@ -283,6 +302,7 @@ git commit -m "fix: regenerate registries"
 ### "Pre-commit hook not running"
 
 **Fix:**
+
 ```bash
 npm run install-hooks
 ```
@@ -290,6 +310,7 @@ npm run install-hooks
 ### "MCP settings has wrong paths"
 
 **Fix:**
+
 ```bash
 npm run mcp:render
 ```
@@ -304,7 +325,7 @@ npm run mcp:render
 ✅ **Developer Friendly** - One-command setup  
 ✅ **CI Enforced** - Catches issues in PRs  
 ✅ **Idempotent** - Safe to run multiple times  
-✅ **Fast** - Seconds to regenerate everything  
+✅ **Fast** - Seconds to regenerate everything
 
 ---
 
@@ -331,6 +352,7 @@ The automation system itself requires minimal maintenance:
 - **Testing:** Idempotency validated in CI
 
 **To modify automation:**
+
 1. Update script in `scripts/`
 2. Test with `npm run generate:all`
 3. Verify idempotency

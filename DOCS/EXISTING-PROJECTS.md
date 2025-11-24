@@ -14,9 +14,10 @@ The bootstrap system is designed to be **completely safe** for existing projects
 - ✅ **Tested** - Works with projects of any size/age
 
 **Your code stays exactly the same.** We only add:
+
 - `.ai-dev.json` (configuration)
 - `.claude/` directory (skills and MCPs)
-- `.cursorrules` (best practices - *only if doesn't exist*)
+- `.cursorrules` (best practices - _only if doesn't exist_)
 - Updates to `.gitignore` (adds ai-dev patterns)
 - Git hook (auto-sync)
 
@@ -32,6 +33,7 @@ npx @ai-dev-standards/bootstrap
 ```
 
 **That's it!** Your project now has:
+
 - ✅ All 12 skills available
 - ✅ MCPs configured
 - ✅ Best practices enforced
@@ -88,23 +90,24 @@ $ npx @ai-dev-standards/bootstrap
 
 ### ✅ Files Added
 
-| File | Purpose | Overwrites? |
-|------|---------|-------------|
-| `.ai-dev.json` | Sync configuration | No (creates new) |
-| `.claude/claude.md` | Skills registry | No (creates new) |
-| `.claude/mcp-settings.json` | MCP configuration | No (creates new) |
-| `.git/hooks/post-merge` | Auto-sync on pull | No (creates new) |
+| File                        | Purpose            | Overwrites?      |
+| --------------------------- | ------------------ | ---------------- |
+| `.ai-dev.json`              | Sync configuration | No (creates new) |
+| `.claude/claude.md`         | Skills registry    | No (creates new) |
+| `.claude/mcp-settings.json` | MCP configuration  | No (creates new) |
+| `.git/hooks/post-merge`     | Auto-sync on pull  | No (creates new) |
 
 ### 📝 Files Updated
 
-| File | Change | Destructive? |
-|------|--------|--------------|
-| `.gitignore` | Adds 4 patterns | No (appends only) |
-| `.cursorrules` | **Skipped if exists** | No |
+| File           | Change                | Destructive?      |
+| -------------- | --------------------- | ----------------- |
+| `.gitignore`   | Adds 4 patterns       | No (appends only) |
+| `.cursorrules` | **Skipped if exists** | No                |
 
 ### 🚫 Never Touched
 
 Your existing code is **completely safe:**
+
 - ✅ `src/` - Untouched
 - ✅ `components/` - Untouched
 - ✅ `pages/` - Untouched
@@ -130,6 +133,7 @@ Before any update, backups are created:
 ```
 
 **Restore if needed:**
+
 ```bash
 mv .cursorrules.backup .cursorrules
 ```
@@ -343,21 +347,25 @@ Create `.cursorrules` (if skipped) or append to existing:
 ## Existing Project Context
 
 ### Current Architecture
+
 - **Frontend:** React 18 + TypeScript
 - **Backend:** Express.js + PostgreSQL
 - **Deployment:** AWS EC2 + RDS
 
 ### Known Issues
+
 - Search is slow (>5s for 10k products)
 - Auth flow confusing for users
 - Mobile layout needs work
 
 ### Current Priorities
+
 1. Fix search performance
 2. Refactor auth flow
 3. Mobile responsiveness
 
 ### Tech Debt
+
 - Some class components (needs migration)
 - Redux (considering migration to Zustand)
 - No test coverage (needs adding)
@@ -489,12 +497,14 @@ git pull  # Syncs silently
 ### "Will this break my project?"
 
 **No.** The bootstrap system:
+
 - ✅ Only adds/updates config files
 - ✅ Never modifies source code
 - ✅ Creates backups before changes
 - ✅ Can be completely reversed
 
 **Test it yourself:**
+
 ```bash
 # Try in dry-run mode first
 npx @ai-dev-standards/bootstrap --dry-run
@@ -605,21 +615,25 @@ Help Claude understand your legacy code:
 ## Technical Debt
 
 ### High Priority
+
 - [ ] Migrate class components to functional (50+ files)
 - [ ] Add TypeScript to /api (currently JavaScript)
 - [ ] Implement proper error handling
 
 ### Medium Priority
+
 - [ ] Replace Redux with Zustand
 - [ ] Add test coverage (currently 0%)
 - [ ] Optimize database queries
 
 ### Low Priority
+
 - [ ] Update to Next.js 14
 - [ ] Migrate to App Router
 ```
 
 Now ask Claude:
+
 ```
 "Help me migrate class components to functional components"
 ```
@@ -650,12 +664,15 @@ Apply standards incrementally:
 ## Migration Strategy
 
 ### Phase 1: New Code (Now)
+
 All new components follow ai-dev standards
 
 ### Phase 2: Hot Paths (Q1)
+
 Refactor frequently-used components
 
 ### Phase 3: Legacy (Q2+)
+
 Gradually update remaining code
 ```
 
@@ -682,12 +699,14 @@ Gradually update remaining code
 ### Example: 3-Year-Old Next.js App
 
 **Before:**
+
 - Mixed class/functional components
 - No TypeScript
 - Inconsistent patterns
 - No AI assistance guidelines
 
 **After bootstrap (30 seconds):**
+
 - Claude understands the architecture
 - Suggests modern patterns
 - Helps migrate to TypeScript
@@ -700,12 +719,14 @@ Gradually update remaining code
 ### Example: Legacy Express API
 
 **Before:**
+
 - No documentation
 - Inconsistent error handling
 - Security concerns
 - Hard to onboard developers
 
 **After bootstrap (30 seconds):**
+
 - Claude documents endpoints
 - Suggests security improvements
 - Helps add TypeScript
@@ -718,11 +739,13 @@ Gradually update remaining code
 ## ✅ Checklist for Existing Projects
 
 Before bootstrap:
+
 - [ ] Commit all changes (`git commit -am "Snapshot before ai-dev"`)
 - [ ] Backup .cursorrules if exists (`cp .cursorrules .cursorrules.backup`)
 - [ ] Note your Node version (`node -v`)
 
 After bootstrap:
+
 - [ ] Verify .ai-dev.json created
 - [ ] Check .claude/claude.md has skills
 - [ ] Test auto-sync (`git pull`)
@@ -730,6 +753,7 @@ After bootstrap:
 - [ ] Try using a skill
 
 If issues:
+
 - [ ] Check `ai-dev doctor`
 - [ ] Review `.ai-dev.json` configuration
 - [ ] Re-run `ai-dev sync --force`

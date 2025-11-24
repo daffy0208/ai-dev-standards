@@ -12,18 +12,21 @@ I help you build audio players, process audio, and create interactive sound expe
 ## What I Do
 
 **Audio Playback:**
+
 - Custom audio players
 - Playlist management
 - Playback controls (play, pause, seek, volume)
 - Waveform visualization
 
 **Audio Processing:**
+
 - Audio effects (reverb, delay, filters)
 - Equalization and mixing
 - Audio recording
 - Real-time audio manipulation
 
 **Interactive Audio:**
+
 - Background music and sound effects
 - User interaction sounds
 - Spatial audio
@@ -298,7 +301,7 @@ export function useAudioRecorder() {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
       const mediaRecorder = new MediaRecorder(stream)
 
-      mediaRecorder.ondataavailable = (e) => {
+      mediaRecorder.ondataavailable = e => {
         chunksRef.current.push(e.data)
       }
 
@@ -469,6 +472,7 @@ export function SpatialAudio({ audioSrc }: { audioSrc: string }) {
 ## When to Use Me
 
 **Perfect for:**
+
 - Building audio players
 - Creating podcast platforms
 - Adding sound effects
@@ -476,6 +480,7 @@ export function SpatialAudio({ audioSrc }: { audioSrc: string }) {
 - Processing audio in real-time
 
 **I'll help you:**
+
 - Build custom audio players
 - Add waveform visualizations
 - Implement audio recording

@@ -11,24 +11,28 @@ Design robust, scalable, and developer-friendly APIs.
 ## Core Principles
 
 ### 1. Developer Experience First
+
 - Clear, predictable naming conventions
 - Comprehensive documentation
 - Helpful error messages
 - Consistent patterns across endpoints
 
 ### 2. Design for Evolution
+
 - Versioning strategy from day one
 - Backward compatibility
 - Deprecation process
 - Migration guides for breaking changes
 
 ### 3. Security by Default
+
 - Authentication and authorization
 - Rate limiting and throttling
 - Input validation and sanitization
 - HTTPS only, no exceptions
 
 ### 4. Performance Matters
+
 - Efficient queries and indexing
 - Caching strategies
 - Pagination for large datasets
@@ -58,13 +62,13 @@ GET /UserData?id=123
 
 ### HTTP Methods & Semantics
 
-| Method | Purpose | Idempotent | Safe | Request Body | Response Body |
-|--------|---------|------------|------|--------------|---------------|
-| **GET** | Retrieve data | Yes | Yes | No | Yes |
-| **POST** | Create resource | No | No | Yes | Yes (created) |
-| **PUT** | Replace resource | Yes | No | Yes | Yes (optional) |
-| **PATCH** | Partial update | No | No | Yes | Yes (optional) |
-| **DELETE** | Remove resource | Yes | No | No | No (204) or Yes |
+| Method     | Purpose          | Idempotent | Safe | Request Body | Response Body   |
+| ---------- | ---------------- | ---------- | ---- | ------------ | --------------- |
+| **GET**    | Retrieve data    | Yes        | Yes  | No           | Yes             |
+| **POST**   | Create resource  | No         | No   | Yes          | Yes (created)   |
+| **PUT**    | Replace resource | Yes        | No   | Yes          | Yes (optional)  |
+| **PATCH**  | Partial update   | No         | No   | Yes          | Yes (optional)  |
+| **DELETE** | Remove resource  | Yes        | No   | No           | No (204) or Yes |
 
 **Idempotent**: Multiple identical requests have same effect as single request
 **Safe**: Request doesn't modify server state
@@ -72,11 +76,13 @@ GET /UserData?id=123
 ### HTTP Status Codes
 
 **Success (2xx)**:
+
 - `200 OK` - Successful GET, PUT, PATCH, DELETE
 - `201 Created` - Successful POST, includes `Location` header
 - `204 No Content` - Successful request, no response body (often DELETE)
 
 **Client Errors (4xx)**:
+
 - `400 Bad Request` - Invalid syntax, validation error
 - `401 Unauthorized` - Authentication required or failed
 - `403 Forbidden` - Authenticated but lacks permission
@@ -86,6 +92,7 @@ GET /UserData?id=123
 - `429 Too Many Requests` - Rate limit exceeded
 
 **Server Errors (5xx)**:
+
 - `500 Internal Server Error` - Generic server error
 - `502 Bad Gateway` - Upstream service error
 - `503 Service Unavailable` - Temporary unavailability
@@ -94,6 +101,7 @@ GET /UserData?id=123
 ### Response Format Standards
 
 **Success Response**:
+
 ```json
 {
   "data": {
@@ -109,6 +117,7 @@ GET /UserData?id=123
 ```
 
 **Error Response**:
+
 ```json
 {
   "error": {
@@ -133,6 +142,7 @@ GET /UserData?id=123
 ```
 
 **List Response with Pagination**:
+
 ```json
 {
   "data": [...],
@@ -151,6 +161,7 @@ GET /UserData?id=123
 ### Pagination Strategies
 
 **Cursor-based (Recommended)**:
+
 ```
 GET /users?cursor=abc123&limit=20
 
@@ -160,6 +171,7 @@ Use when: Large datasets, real-time data, performance critical
 ```
 
 **Offset-based**:
+
 ```
 GET /users?page=1&per_page=20
 GET /users?offset=0&limit=20
@@ -172,16 +184,19 @@ Use when: Small datasets, admin interfaces, simple use cases
 ### Filtering, Sorting, and Search
 
 **Filtering**:
+
 ```
 GET /users?status=active&role=admin&created_after=2025-01-01
 ```
 
 **Sorting**:
+
 ```
 GET /users?sort=-created_at,name  # Descending created_at, then ascending name
 ```
 
 **Search**:
+
 ```
 GET /users?q=john&fields=name,email  # Search across specified fields
 ```
@@ -189,6 +204,7 @@ GET /users?q=john&fields=name,email  # Search across specified fields
 ### Authentication & Authorization
 
 **JWT Bearer Token (Recommended for SPAs)**:
+
 ```
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
@@ -197,6 +213,7 @@ Cons: Can't revoke until expiry, larger payload
 ```
 
 **API Keys (for service-to-service)**:
+
 ```
 X-API-Key: sk_live_abc123...
 
@@ -205,6 +222,7 @@ Cons: No user context, must be kept secret
 ```
 
 **OAuth 2.0 (for third-party access)**:
+
 ```
 Authorization: Bearer access_token
 
@@ -213,6 +231,7 @@ Cons: Complex setup, requires OAuth server
 ```
 
 **Basic Auth (only for internal/admin tools)**:
+
 ```
 Authorization: Basic base64(username:password)
 
@@ -223,6 +242,7 @@ Cons: Credentials in every request, must use HTTPS
 ### Rate Limiting
 
 **Standard Headers**:
+
 ```
 X-RateLimit-Limit: 1000          # Max requests per window
 X-RateLimit-Remaining: 999       # Requests left
@@ -231,6 +251,7 @@ Retry-After: 60                  # Seconds to wait (on 429)
 ```
 
 **Common Strategies**:
+
 - Fixed window: 1000 requests per hour
 - Sliding window: 1000 requests per rolling hour
 - Token bucket: Burst allowance with refill rate
@@ -239,6 +260,7 @@ Retry-After: 60                  # Seconds to wait (on 429)
 ### Versioning Strategies
 
 **URL Versioning (Recommended)**:
+
 ```
 /v1/users
 /v2/users
@@ -248,6 +270,7 @@ Cons: URL pollution, harder to evolve incrementally
 ```
 
 **Header Versioning**:
+
 ```
 Accept: application/vnd.myapp.v2+json
 API-Version: 2
@@ -257,6 +280,7 @@ Cons: Less visible, harder to test in browser
 ```
 
 **Best Practices**:
+
 - Start with v1, not v0
 - Only increment for breaking changes
 - Support N and N-1 versions simultaneously
@@ -317,11 +341,15 @@ type CreateUserPayload {
 ### GraphQL Best Practices
 
 **1. Use Relay Connection Pattern for Pagination**:
+
 ```graphql
 query {
   users(first: 10, after: "cursor") {
     edges {
-      node { id name }
+      node {
+        id
+        name
+      }
       cursor
     }
     pageInfo {
@@ -333,32 +361,41 @@ query {
 ```
 
 **2. Input Types for Mutations**:
+
 ```graphql
 # ✅ Good: Input type + payload
 mutation {
   createUser(input: { name: "John", email: "john@example.com" }) {
-    user { id name }
-    errors { field message }
+    user {
+      id
+      name
+    }
+    errors {
+      field
+      message
+    }
   }
 }
 
 # ❌ Bad: Flat arguments
 mutation {
   createUser(name: "John", email: "john@example.com") {
-    id name
+    id
+    name
   }
 }
 ```
 
 **3. Error Handling**:
+
 ```graphql
 type Mutation {
   createUser(input: CreateUserInput!): CreateUserPayload!
 }
 
 type CreateUserPayload {
-  user: User          # Null if errors
-  errors: [Error!]    # Field-level errors
+  user: User # Null if errors
+  errors: [Error!] # Field-level errors
 }
 
 type Error {
@@ -371,6 +408,7 @@ type Error {
 ### REST vs GraphQL Decision
 
 **Use REST when**:
+
 - Simple CRUD operations
 - Caching is critical (HTTP caching)
 - Public API for third-parties
@@ -378,6 +416,7 @@ type Error {
 - Team unfamiliar with GraphQL
 
 **Use GraphQL when**:
+
 - Clients need flexible queries
 - Reducing over-fetching/under-fetching
 - Rapid frontend iteration
@@ -487,14 +526,17 @@ components:
 ## Related Resources
 
 **Related Skills**:
+
 - `frontend-builder` - For consuming APIs from frontend
 - `deployment-advisor` - For API hosting decisions
 - `performance-optimizer` - For API performance tuning
 
 **Related Patterns**:
+
 - `META/DECISION-FRAMEWORK.md` - REST vs GraphQL decisions
 - `STANDARDS/architecture-patterns/api-gateway-pattern.md` - API gateway architecture (when created)
 
 **Related Playbooks**:
+
 - `PLAYBOOKS/deploy-api.md` - API deployment procedure (when created)
 - `PLAYBOOKS/version-api.md` - API versioning workflow (when created)

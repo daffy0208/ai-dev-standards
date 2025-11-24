@@ -28,35 +28,41 @@ TRACE  → Very detailed (loop iterations, variable values)
 ### When to Use Each Level
 
 **FATAL (use sparingly):**
+
 - Database connection lost
 - Critical dependency unavailable
 - Application must shut down
 
 **ERROR:**
+
 - Unhandled exceptions
 - Failed API calls (after retries)
 - Data validation failures
 - Payment processing errors
 
 **WARN:**
+
 - Deprecated API usage
 - Rate limit approaching
 - Retryable operation failed (will retry)
 - Missing optional configuration
 
 **INFO:**
+
 - Application started/stopped
 - User authentication (success/failure)
 - Important business events (order created, user registered)
 - Scheduled job execution
 
 **DEBUG:**
+
 - Function entry/exit
 - Query execution
 - Cache hits/misses
 - HTTP request/response details
 
 **TRACE:**
+
 - Loop iterations
 - Variable values
 - Very detailed execution flow
@@ -120,10 +126,7 @@ const logger = winston.createLogger({
   transports: [
     // Console output
     new winston.transports.Console({
-      format: winston.format.combine(
-        winston.format.colorize(),
-        winston.format.simple()
-      )
+      format: winston.format.combine(winston.format.colorize(), winston.format.simple())
     }),
 
     // File output
@@ -165,7 +168,7 @@ import pino from 'pino'
 const logger = pino({
   level: process.env.LOG_LEVEL || 'info',
   formatters: {
-    level: (label) => {
+    level: label => {
       return { level: label }
     }
   },
@@ -208,6 +211,7 @@ logger.error(
 ### ✅ Always Log
 
 **Authentication Events:**
+
 ```typescript
 logger.info('Login attempt', { email, ip, success: true })
 logger.warn('Login failed', { email, ip, reason: 'Invalid password' })
@@ -216,6 +220,7 @@ logger.info('Password reset requested', { email })
 ```
 
 **Authorization Failures:**
+
 ```typescript
 logger.warn('Unauthorized access attempt', {
   userId,
@@ -225,6 +230,7 @@ logger.warn('Unauthorized access attempt', {
 ```
 
 **API Requests/Responses:**
+
 ```typescript
 logger.info('HTTP request', {
   method: 'POST',
@@ -236,6 +242,7 @@ logger.info('HTTP request', {
 ```
 
 **Database Operations:**
+
 ```typescript
 logger.debug('Database query', {
   query: 'SELECT * FROM users WHERE id = ?',
@@ -245,6 +252,7 @@ logger.debug('Database query', {
 ```
 
 **External API Calls:**
+
 ```typescript
 logger.info('External API call', {
   service: 'stripe',
@@ -256,6 +264,7 @@ logger.info('External API call', {
 ```
 
 **Business Events:**
+
 ```typescript
 logger.info('Order created', { userId, orderId, total: 99.99 })
 logger.info('Payment processed', { userId, orderId, amount: 99.99 })
@@ -263,6 +272,7 @@ logger.info('Email sent', { userId, type: 'order_confirmation' })
 ```
 
 **Errors & Exceptions:**
+
 ```typescript
 try {
   await processOrder(order)
@@ -278,6 +288,7 @@ try {
 ### ❌ Never Log
 
 **Sensitive Data:**
+
 - Passwords (even hashed)
 - Credit card numbers
 - Social security numbers
@@ -363,21 +374,25 @@ const logger = winston.createLogger({
 Send logs to central service:
 
 **CloudWatch (AWS):**
+
 ```typescript
 import winston from 'winston'
 import WinstonCloudWatch from 'winston-cloudwatch'
 
-logger.add(new WinstonCloudWatch({
-  logGroupName: '/aws/lambda/my-function',
-  logStreamName: () => {
-    const date = new Date().toISOString().split('T')[0]
-    return `${date}/instance-id`
-  },
-  awsRegion: 'us-east-1'
-}))
+logger.add(
+  new WinstonCloudWatch({
+    logGroupName: '/aws/lambda/my-function',
+    logStreamName: () => {
+      const date = new Date().toISOString().split('T')[0]
+      return `${date}/instance-id`
+    },
+    awsRegion: 'us-east-1'
+  })
+)
 ```
 
 **Datadog:**
+
 ```typescript
 import { datadogLogs } from '@datadog/browser-logs'
 
@@ -392,17 +407,20 @@ datadogLogs.logger.info('User action', { userId, action: 'purchase' })
 ```
 
 **Elasticsearch (ELK Stack):**
+
 ```typescript
 import winston from 'winston'
 import Elasticsearch from 'winston-elasticsearch'
 
-logger.add(new Elasticsearch({
-  level: 'info',
-  clientOpts: {
-    node: process.env.ELASTICSEARCH_URL
-  },
-  index: 'logs'
-}))
+logger.add(
+  new Elasticsearch({
+    level: 'info',
+    clientOpts: {
+      node: process.env.ELASTICSEARCH_URL
+    },
+    index: 'logs'
+  })
+)
 ```
 
 ---
@@ -415,13 +433,15 @@ logger.add(new Elasticsearch({
 import winston from 'winston'
 import DailyRotateFile from 'winston-daily-rotate-file'
 
-logger.add(new DailyRotateFile({
-  filename: 'logs/application-%DATE%.log',
-  datePattern: 'YYYY-MM-DD',
-  zippedArchive: true,
-  maxSize: '20m',
-  maxFiles: '14d' // Keep 14 days
-}))
+logger.add(
+  new DailyRotateFile({
+    filename: 'logs/application-%DATE%.log',
+    datePattern: 'YYYY-MM-DD',
+    zippedArchive: true,
+    maxSize: '20m',
+    maxFiles: '14d' // Keep 14 days
+  })
+)
 ```
 
 ---
@@ -542,30 +562,36 @@ Action: Alert on-call engineer
 ## Logging Checklist
 
 ### Application Startup
+
 - [ ] Log application version and environment
 - [ ] Log configuration (sanitized)
 - [ ] Log successful startup
 
 ### Authentication
+
 - [ ] Log login attempts (success/failure)
 - [ ] Log password resets
 - [ ] Log logout events
 
 ### Authorization
+
 - [ ] Log access denied events
 - [ ] Log permission changes
 
 ### Business Events
+
 - [ ] Log important user actions
 - [ ] Log state changes (order status, payment status)
 - [ ] Log external API calls
 
 ### Errors
+
 - [ ] Log all unhandled exceptions with stack traces
 - [ ] Log validation failures
 - [ ] Log retry attempts
 
 ### Performance
+
 - [ ] Log slow queries (> 1s)
 - [ ] Log slow HTTP requests (> 2s)
 - [ ] Log cache misses
@@ -620,14 +646,17 @@ export function loggingMiddleware(req, res, next) {
 ## Related Resources
 
 **Patterns:**
+
 - `/STANDARDS/architecture-patterns/monitoring-and-alerting.md`
 - `/STANDARDS/architecture-patterns/error-tracking.md`
 
 **Skills:**
+
 - `/SKILLS/security-engineer/` - Audit logging
 - `/SKILLS/performance-optimizer/` - Performance logging
 
 **External:**
+
 - [Winston Documentation](https://github.com/winstonjs/winston)
 - [Pino Documentation](https://getpino.io/)
 - [12-Factor App: Logs](https://12factor.net/logs)

@@ -6,6 +6,7 @@ Copy this EXACTLY to test in another project.
 # Project: Test Project
 
 ## AI Development Standards
+
 Repository: /mnt/c/Users/david/OneDrive - Qolcom/AI/AI_Development_Projects/ai-dev-standards/
 Status: Active
 
@@ -31,11 +32,13 @@ Status: Active
 
 **Example:**
 ```
+
 Task: "Add user authentication"
 Step 1: Use graph_query_by_effect("implements_authentication")
 Step 2: Returns: security-engineer, api-designer
 Step 3: Use graph_get_dependencies("security-engineer")
 Step 4: Implement using security-engineer skill
+
 ```
 
 **Brain-MCP Tools Available:**
@@ -85,12 +88,14 @@ See all registries in:
 ## How to Use
 
 1. **Copy this to your other project:**
+
    ```bash
    cd /path/to/your/other/project
    cp /mnt/c/Users/david/OneDrive\ -\ Qolcom/AI/AI_Development_Projects/ai-dev-standards/TEMPLATES/cursorrules-quick-test.md .cursorrules
    ```
 
 2. **Open in Cursor/Claude Code:**
+
    ```bash
    cursor .
    ```
@@ -103,6 +108,7 @@ See all registries in:
 ## Customize Later
 
 Once it's working, you can customize by adding:
+
 - Your tech stack
 - Your code conventions
 - Your current goals

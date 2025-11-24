@@ -16,9 +16,12 @@ async function checkUpdatesCommand(options) {
   try {
     // Get ai-dev-standards root directory from config
     const config = await loadProjectConfig()
-    const aiDevRoot = config.aiDevStandardsRoot || process.env.AI_DEV_STANDARDS_ROOT || path.join(require('os').homedir(), 'ai-dev-standards')
+    const aiDevRoot =
+      config.aiDevStandardsRoot ||
+      process.env.AI_DEV_STANDARDS_ROOT ||
+      path.join(require('os').homedir(), 'ai-dev-standards')
 
-    if (!await fs.pathExists(aiDevRoot)) {
+    if (!(await fs.pathExists(aiDevRoot))) {
       console.log(chalk.red('❌ ai-dev-standards directory not found'))
       console.log(chalk.gray(`   Expected location: ${aiDevRoot}`))
       console.log(chalk.yellow('\n💡 Run setup-project.sh to install ai-dev-standards'))
@@ -39,7 +42,7 @@ async function checkUpdatesCommand(options) {
 
     // Get local version
     const localVersion = await getLocalVersion(aiDevRoot)
-    
+
     // Get remote version
     const remoteVersion = await getRemoteVersion(aiDevRoot)
 
@@ -69,7 +72,6 @@ async function checkUpdatesCommand(options) {
       })
       console.log()
     }
-
   } catch (error) {
     console.error(chalk.red(`\n❌ Error: ${error.message}\n`))
     process.exit(1)
@@ -82,9 +84,11 @@ async function checkUpdatesCommand(options) {
 async function getLocalVersion(aiDevRoot) {
   const packageJsonPath = path.join(aiDevRoot, 'package.json')
   const packageJson = await fs.readJson(packageJsonPath)
-  
-  const { stdout: commit } = await execa('git', ['rev-parse', '--short', 'HEAD'], { cwd: aiDevRoot })
-  
+
+  const { stdout: commit } = await execa('git', ['rev-parse', '--short', 'HEAD'], {
+    cwd: aiDevRoot
+  })
+
   return {
     version: packageJson.version,
     commit: commit.trim()
@@ -95,13 +99,17 @@ async function getLocalVersion(aiDevRoot) {
  * Get remote version
  */
 async function getRemoteVersion(aiDevRoot) {
-  const { stdout: commit } = await execa('git', ['rev-parse', '--short', 'origin/main'], { cwd: aiDevRoot })
-  
+  const { stdout: commit } = await execa('git', ['rev-parse', '--short', 'origin/main'], {
+    cwd: aiDevRoot
+  })
+
   // Try to get package.json from remote
   try {
-    const { stdout: content } = await execa('git', ['show', 'origin/main:package.json'], { cwd: aiDevRoot })
+    const { stdout: content } = await execa('git', ['show', 'origin/main:package.json'], {
+      cwd: aiDevRoot
+    })
     const packageJson = JSON.parse(content)
-    
+
     return {
       version: packageJson.version,
       commit: commit.trim()
@@ -119,7 +127,9 @@ async function getRemoteVersion(aiDevRoot) {
  */
 async function getCommitsBehind(aiDevRoot) {
   try {
-    const { stdout } = await execa('git', ['rev-list', '--count', 'HEAD..origin/main'], { cwd: aiDevRoot })
+    const { stdout } = await execa('git', ['rev-list', '--count', 'HEAD..origin/main'], {
+      cwd: aiDevRoot
+    })
     return parseInt(stdout.trim())
   } catch (error) {
     return 0
@@ -131,16 +141,20 @@ async function getCommitsBehind(aiDevRoot) {
  */
 async function getRecentChanges(aiDevRoot, count) {
   try {
-    const { stdout } = await execa('git', [
-      'log',
-      '--oneline',
-      '--no-decorate',
-      `-n${Math.min(count, 5)}`,
-      'origin/main',
-      '--not',
-      'HEAD'
-    ], { cwd: aiDevRoot })
-    
+    const { stdout } = await execa(
+      'git',
+      [
+        'log',
+        '--oneline',
+        '--no-decorate',
+        `-n${Math.min(count, 5)}`,
+        'origin/main',
+        '--not',
+        'HEAD'
+      ],
+      { cwd: aiDevRoot }
+    )
+
     return stdout.split('\n').filter(line => line.trim().length > 0)
   } catch (error) {
     return []
@@ -152,11 +166,11 @@ async function getRecentChanges(aiDevRoot, count) {
  */
 async function loadProjectConfig() {
   const configPath = path.join(process.cwd(), '.ai-dev.json')
-  
-  if (!await fs.pathExists(configPath)) {
+
+  if (!(await fs.pathExists(configPath))) {
     return {}
   }
-  
+
   return await fs.readJson(configPath)
 }
 

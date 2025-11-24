@@ -5,7 +5,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { ApiCallerTool } from '../../../TOOLS/custom-tools/api-caller-tool'
+import { ApiCallerTool } from '../../../TOOLS/custom-tools/api-caller-tool.js'
 
 describe('ApiCallerTool', () => {
   let api: ApiCallerTool
@@ -13,6 +13,7 @@ describe('ApiCallerTool', () => {
   beforeEach(() => {
     api = new ApiCallerTool()
     vi.clearAllMocks()
+    vi.spyOn(console, 'error').mockImplementation(() => {})
   })
 
   afterEach(() => {
@@ -246,32 +247,37 @@ describe('ApiCallerTool', () => {
       // TODO: Timeout implementation needs to be fixed to properly abort fetch
       // Currently the fetch completes before the timeout triggers
       global.fetch = vi.fn().mockImplementation(() => {
-        return new Promise((resolve) => {
-          setTimeout(() => resolve({
-            ok: true,
-            status: 200,
-            statusText: 'OK',
-            json: async () => ({}),
-            headers: new Headers(),
-            url: 'https://api.example.com/slow'
-          }), 5000)
+        return new Promise(resolve => {
+          setTimeout(
+            () =>
+              resolve({
+                ok: true,
+                status: 200,
+                statusText: 'OK',
+                json: async () => ({}),
+                headers: new Headers(),
+                url: 'https://api.example.com/slow'
+              }),
+            5000
+          )
         })
       })
 
-      await expect(
-        api.get('https://api.example.com/slow', { timeout: 100 })
-      ).rejects.toThrow('timeout')
+      await expect(api.get('https://api.example.com/slow', { timeout: 100 })).rejects.toThrow(
+        'timeout'
+      )
     }, 10000)
   })
 
   describe('Retry logic', () => {
-    beforeEach(() => {
-      vi.useFakeTimers()
-    })
+    // Use real timers with short delays to avoid unhandled rejection issues with fake timers
+    // beforeEach(() => {
+    //   vi.useFakeTimers()
+    // })
 
-    afterEach(() => {
-      vi.useRealTimers()
-    })
+    // afterEach(() => {
+    //   vi.useRealTimers()
+    // })
 
     it('should retry on failure', async () => {
       let attempts = 0
@@ -291,13 +297,9 @@ describe('ApiCallerTool', () => {
         })
       })
 
-      const promise = api.get('https://api.example.com/unstable', {
-        retry: { attempts: 3, delayMs: 1000 }
+      const result = await api.get('https://api.example.com/unstable', {
+        retry: { attempts: 3, delayMs: 1 } // Fast retry
       })
-
-      await vi.runAllTimersAsync()
-      
-      const result = await promise
 
       expect(attempts).toBe(3)
       expect(result.data).toEqual({ success: true })
@@ -307,15 +309,11 @@ describe('ApiCallerTool', () => {
       global.fetch = vi.fn().mockRejectedValue(new Error('Network error'))
 
       const promise = api.get('https://api.example.com/failing', {
-        retry: { attempts: 2, delayMs: 1000 }
+        retry: { attempts: 2, delayMs: 1 }
       })
 
-      // Attach a catch handler to avoid "Unhandled Rejection" warnings during timer execution
-      promise.catch(() => {})
-
-      await vi.runAllTimersAsync()
-
       await expect(promise).rejects.toThrow('Network error')
+
       expect(global.fetch).toHaveBeenCalledTimes(2)
     })
 
@@ -330,29 +328,22 @@ describe('ApiCallerTool', () => {
       })
 
       const promise = api.get('https://api.example.com/failing', {
-        retry: { attempts: 3, delayMs: 100, exponentialBackoff: true }
+        retry: { attempts: 3, delayMs: 10, exponentialBackoff: true }
       })
 
-      // Attach a catch handler to avoid "Unhandled Rejection" warnings during timer execution
-      promise.catch(() => {})
-
-      // 1st attempt happens immediately
-      await vi.advanceTimersByTimeAsync(100) // Trigger 2nd attempt
-      await vi.advanceTimersByTimeAsync(200) // Trigger 3rd attempt
-      
-      try {
-        await promise
-      } catch (e) {
-        // Expected error
-      }
+      await expect(promise).rejects.toThrow('Fail')
 
       expect(attempts).toBe(3)
+      // Check timing roughly (1st immediate, 2nd ~10ms, 3rd ~20ms)
+      expect(startTimes.length).toBe(3)
+      expect(startTimes[1] - startTimes[0]).toBeGreaterThanOrEqual(5) // allowing some variance
+      expect(startTimes[2] - startTimes[1]).toBeGreaterThanOrEqual(15) // 10 * 2 = 20ms roughly
     })
   })
 
   describe('Batch requests', () => {
     it('should execute multiple requests in parallel', async () => {
-      global.fetch = vi.fn().mockImplementation((url) => {
+      global.fetch = vi.fn().mockImplementation(url => {
         return Promise.resolve({
           ok: true,
           status: 200,
@@ -419,17 +410,15 @@ describe('ApiCallerTool', () => {
         statusText: 'Internal Server Error'
       })
 
-      await expect(
-        api.get('https://api.example.com/error')
-      ).rejects.toThrow('HTTP 500: Internal Server Error')
+      await expect(api.get('https://api.example.com/error')).rejects.toThrow(
+        'HTTP 500: Internal Server Error'
+      )
     })
 
     it('should throw on network error', async () => {
       global.fetch = vi.fn().mockRejectedValue(new Error('Network failed'))
 
-      await expect(
-        api.get('https://api.example.com/unreachable')
-      ).rejects.toThrow('Network failed')
+      await expect(api.get('https://api.example.com/unreachable')).rejects.toThrow('Network failed')
     })
   })
 })

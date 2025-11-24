@@ -68,7 +68,7 @@ export class RetrievalPipeline {
       rerankModel: options.rerankModel,
       fusionMethod: options.fusionMethod || 'rrf',
       expandQuery: options.expandQuery ?? false,
-      filter: options.filter,
+      filter: options.filter
     }
   }
 
@@ -79,9 +79,7 @@ export class RetrievalPipeline {
     const startTime = Date.now()
 
     // Expand query if enabled
-    const queries = this.options.expandQuery
-      ? await this.expandQuery(query)
-      : [query]
+    const queries = this.options.expandQuery ? await this.expandQuery(query) : [query]
 
     // Perform search based on type
     let results: Array<[Document, number]>
@@ -122,17 +120,15 @@ export class RetrievalPipeline {
         searchType: this.options.searchType,
         reranked: this.options.rerank,
         totalResults: results.length,
-        retrievalTimeMs,
-      },
+        retrievalTimeMs
+      }
     }
   }
 
   /**
    * Vector similarity search
    */
-  private async vectorSearch(
-    query: string
-  ): Promise<Array<[Document, number]>> {
+  private async vectorSearch(query: string): Promise<Array<[Document, number]>> {
     return await this.options.vectorStore.similaritySearchWithScore(
       query,
       this.options.topK * 2, // Get more for reranking
@@ -143,9 +139,7 @@ export class RetrievalPipeline {
   /**
    * Keyword-based search (if supported by vector store)
    */
-  private async keywordSearch(
-    query: string
-  ): Promise<Array<[Document, number]>> {
+  private async keywordSearch(query: string): Promise<Array<[Document, number]>> {
     // Note: This is a placeholder - actual implementation depends on vector store
     // Many vector stores support metadata filtering for keyword search
     const results = await this.options.vectorStore.similaritySearchWithScore(
@@ -166,9 +160,7 @@ export class RetrievalPipeline {
   /**
    * Hybrid search combining vector and keyword
    */
-  private async hybridSearch(
-    queries: string[]
-  ): Promise<Array<[Document, number]>> {
+  private async hybridSearch(queries: string[]): Promise<Array<[Document, number]>> {
     const allResults: Map<string, { doc: Document; scores: number[] }> = new Map()
 
     // Perform vector search for each query
@@ -267,10 +259,7 @@ export class RetrievalPipeline {
   /**
    * Get context window for documents
    */
-  static getContextWindow(
-    documents: Document[],
-    maxTokens: number = 4000
-  ): Document[] {
+  static getContextWindow(documents: Document[], maxTokens: number = 4000): Document[] {
     const contextDocs: Document[] = []
     let totalTokens = 0
 
@@ -296,12 +285,7 @@ export class RetrievalPipeline {
     return documents
       .map((doc, index) => {
         const source = doc.metadata.source || 'Unknown'
-        return [
-          `Document ${index + 1}:`,
-          `Source: ${source}`,
-          doc.pageContent,
-          '---',
-        ].join('\n')
+        return [`Document ${index + 1}:`, `Source: ${source}`, doc.pageContent, '---'].join('\n')
       })
       .join('\n\n')
   }
@@ -317,7 +301,7 @@ export async function retrieve(
 ): Promise<RetrievalResult> {
   const pipeline = new RetrievalPipeline({
     vectorStore,
-    ...options,
+    ...options
   })
 
   return await pipeline.retrieve(query)
@@ -335,10 +319,10 @@ export class QueryRewriter {
     const queries = [query]
 
     const synonymMap: Record<string, string[]> = {
-      'implement': ['build', 'create', 'develop'],
-      'fix': ['repair', 'resolve', 'correct'],
-      'optimize': ['improve', 'enhance', 'speedup'],
-      'documentation': ['docs', 'guide', 'manual'],
+      implement: ['build', 'create', 'develop'],
+      fix: ['repair', 'resolve', 'correct'],
+      optimize: ['improve', 'enhance', 'speedup'],
+      documentation: ['docs', 'guide', 'manual']
     }
 
     for (const [word, synonyms] of Object.entries(synonymMap)) {
@@ -394,9 +378,35 @@ export class QueryRewriter {
    */
   static simplifyQuery(query: string): string {
     const stopWords = new Set([
-      'a', 'an', 'the', 'in', 'on', 'at', 'for', 'to', 'of', 'is', 'are', 'was', 'were',
-      'be', 'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would',
-      'should', 'could', 'may', 'might', 'can'
+      'a',
+      'an',
+      'the',
+      'in',
+      'on',
+      'at',
+      'for',
+      'to',
+      'of',
+      'is',
+      'are',
+      'was',
+      'were',
+      'be',
+      'been',
+      'being',
+      'have',
+      'has',
+      'had',
+      'do',
+      'does',
+      'did',
+      'will',
+      'would',
+      'should',
+      'could',
+      'may',
+      'might',
+      'can'
     ])
 
     return query
@@ -419,20 +429,22 @@ export class ResultReranker {
   ): Array<[Document, number]> {
     const keywords = query.toLowerCase().split(' ')
 
-    return results.map(([doc, score]) => {
-      const content = doc.pageContent.toLowerCase()
-      let keywordScore = 0
+    return results
+      .map(([doc, score]) => {
+        const content = doc.pageContent.toLowerCase()
+        let keywordScore = 0
 
-      keywords.forEach(keyword => {
-        const count = (content.match(new RegExp(keyword, 'g')) || []).length
-        keywordScore += count
+        keywords.forEach(keyword => {
+          const count = (content.match(new RegExp(keyword, 'g')) || []).length
+          keywordScore += count
+        })
+
+        // Combine original score with keyword score (weighted)
+        const combinedScore = score * 0.7 + (keywordScore / keywords.length) * 0.3
+
+        return [doc, combinedScore] as [Document, number]
       })
-
-      // Combine original score with keyword score (weighted)
-      const combinedScore = score * 0.7 + (keywordScore / keywords.length) * 0.3
-
-      return [doc, combinedScore] as [Document, number]
-    }).sort((a, b) => b[1] - a[1])
+      .sort((a, b) => b[1] - a[1])
   }
 
   /**
@@ -442,17 +454,19 @@ export class ResultReranker {
     results: Array<[Document, number]>,
     preferredMetadata: Record<string, any>
   ): Array<[Document, number]> {
-    return results.map(([doc, score]) => {
-      let metadataBoost = 0
+    return results
+      .map(([doc, score]) => {
+        let metadataBoost = 0
 
-      for (const [key, value] of Object.entries(preferredMetadata)) {
-        if (doc.metadata[key] === value) {
-          metadataBoost += 0.1
+        for (const [key, value] of Object.entries(preferredMetadata)) {
+          if (doc.metadata[key] === value) {
+            metadataBoost += 0.1
+          }
         }
-      }
 
-      return [doc, score + metadataBoost] as [Document, number]
-    }).sort((a, b) => b[1] - a[1])
+        return [doc, score + metadataBoost] as [Document, number]
+      })
+      .sort((a, b) => b[1] - a[1])
   }
 
   /**
@@ -464,17 +478,19 @@ export class ResultReranker {
   ): Array<[Document, number]> {
     const now = Date.now()
 
-    return results.map(([doc, score]) => {
-      const timestamp = doc.metadata.timestamp || doc.metadata.indexed_at
-      if (!timestamp) return [doc, score] as [Document, number]
+    return results
+      .map(([doc, score]) => {
+        const timestamp = doc.metadata.timestamp || doc.metadata.indexed_at
+        if (!timestamp) return [doc, score] as [Document, number]
 
-      const age = now - new Date(timestamp).getTime()
-      const recencyScore = Math.exp(-age / (30 * 24 * 60 * 60 * 1000)) // Decay over 30 days
+        const age = now - new Date(timestamp).getTime()
+        const recencyScore = Math.exp(-age / (30 * 24 * 60 * 60 * 1000)) // Decay over 30 days
 
-      const combinedScore = score * (1 - recencyWeight) + recencyScore * recencyWeight
+        const combinedScore = score * (1 - recencyWeight) + recencyScore * recencyWeight
 
-      return [doc, combinedScore] as [Document, number]
-    }).sort((a, b) => b[1] - a[1])
+        return [doc, combinedScore] as [Document, number]
+      })
+      .sort((a, b) => b[1] - a[1])
   }
 
   /**
@@ -540,11 +556,7 @@ export class RetrievalMetrics {
   /**
    * Calculate precision at K
    */
-  static precisionAtK(
-    retrieved: string[],
-    relevant: string[],
-    k: number
-  ): number {
+  static precisionAtK(retrieved: string[], relevant: string[], k: number): number {
     const topK = retrieved.slice(0, k)
     const relevantSet = new Set(relevant)
     const relevantRetrieved = topK.filter(id => relevantSet.has(id)).length
@@ -555,11 +567,7 @@ export class RetrievalMetrics {
   /**
    * Calculate recall at K
    */
-  static recallAtK(
-    retrieved: string[],
-    relevant: string[],
-    k: number
-  ): number {
+  static recallAtK(retrieved: string[], relevant: string[], k: number): number {
     const topK = retrieved.slice(0, k)
     const relevantSet = new Set(relevant)
     const relevantRetrieved = topK.filter(id => relevantSet.has(id)).length
@@ -570,10 +578,7 @@ export class RetrievalMetrics {
   /**
    * Calculate Mean Reciprocal Rank (MRR)
    */
-  static meanReciprocalRank(
-    retrieved: string[],
-    relevant: string[]
-  ): number {
+  static meanReciprocalRank(retrieved: string[], relevant: string[]): number {
     const relevantSet = new Set(relevant)
 
     for (let i = 0; i < retrieved.length; i++) {
@@ -588,11 +593,7 @@ export class RetrievalMetrics {
   /**
    * Calculate Normalized Discounted Cumulative Gain (NDCG)
    */
-  static ndcgAtK(
-    retrieved: string[],
-    relevanceScores: Map<string, number>,
-    k: number
-  ): number {
+  static ndcgAtK(retrieved: string[], relevanceScores: Map<string, number>, k: number): number {
     const topK = retrieved.slice(0, k)
 
     // Calculate DCG

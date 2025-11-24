@@ -11,6 +11,7 @@
 **Location:** `.github/workflows/ci.yml` lines 134-136
 
 **Fix:**
+
 ```yaml
 - name: Run npm audit
   run: npm audit --audit-level=moderate
@@ -18,6 +19,7 @@
 ```
 
 **Also update line 268:**
+
 ```yaml
 needs: [test, lint, typecheck, build, security, registry-validation]
 ```
@@ -27,10 +29,12 @@ needs: [test, lint, typecheck, build, security, registry-validation]
 **Problem:** Installing @latest enables supply-chain attacks
 
 **Locations:**
+
 - `.github/workflows/ci.yml` line 240
 - `.github/workflows/codex-review.yml` line 40
 
 **Fix:**
+
 ```yaml
 - name: Install Codex CLI
   run: npm install -g @anthropics/codex-cli@0.50.0
@@ -41,10 +45,12 @@ needs: [test, lint, typecheck, build, security, registry-validation]
 **Problem:** Build failures are hidden by `|| echo "No build script"`
 
 **Locations:**
+
 - `.github/workflows/ci.yml` line 117
 - `.github/workflows/release.yml` line 40
 
 **Fix:**
+
 ```yaml
 - name: Build CLI
   run: |
@@ -64,6 +70,7 @@ needs: [test, lint, typecheck, build, security, registry-validation]
 **Location:** `.github/workflows/ci.yml` lines 67, 71
 
 **Fix:**
+
 ```yaml
 - name: Run ESLint
   run: npm run lint
@@ -79,13 +86,15 @@ needs: [test, lint, typecheck, build, security, registry-validation]
 **Problem:** Using deprecated v3, not SHA-pinned
 
 **Locations:**
+
 - `.github/workflows/ci.yml` line 40
 - `.github/workflows/coverage.yml` line 31
 
 **Fix:**
+
 ```yaml
 - name: Upload coverage to Codecov
-  uses: codecov/codecov-action@e28ff129e5465c2c0dcc6f003fc735cb6ae0c673  # v4.5.0
+  uses: codecov/codecov-action@e28ff129e5465c2c0dcc6f003fc735cb6ae0c673 # v4.5.0
   if: matrix.node-version == '20.x'
   with:
     token: ${{ secrets.CODECOV_TOKEN }}
@@ -102,6 +111,7 @@ needs: [test, lint, typecheck, build, security, registry-validation]
 ### 6. Add Permissions Blocks (All Workflows)
 
 **Add to ci.yml (top level, after `on:`):**
+
 ```yaml
 permissions:
   contents: read
@@ -110,6 +120,7 @@ permissions:
 ```
 
 **Add to codex-review.yml:**
+
 ```yaml
 permissions:
   contents: read
@@ -118,6 +129,7 @@ permissions:
 ```
 
 **Add to coverage.yml:**
+
 ```yaml
 permissions:
   contents: read
@@ -125,8 +137,9 @@ permissions:
 ```
 
 **Update release.yml (replace existing or add):**
+
 ```yaml
-permissions: {}  # No default permissions
+permissions: {} # No default permissions
 
 jobs:
   release:
@@ -172,7 +185,7 @@ registry-validation:
   # ... rest of job
 
 codex-review:
-  timeout-minutes: 15  # Already has this
+  timeout-minutes: 15 # Already has this
   # ... rest of job
 
 status:
@@ -219,17 +232,20 @@ concurrency:
 ### 10. Fix tsx Installation (weekly-brain-analysis.yml)
 
 **Option 1 (Recommended):** Add to devDependencies
+
 ```bash
 npm install -D tsx
 ```
 
 Then remove the global install and use:
+
 ```yaml
 - name: Run brain status check
   run: npx tsx scripts/brain/brain.ts status
 ```
 
 **Option 2:** Pin the version
+
 ```yaml
 - name: Install tsx
   run: npm install -g tsx@4.7.0
@@ -285,6 +301,7 @@ Then remove the global install and use:
 After making changes:
 
 1. **Test locally first:**
+
    ```bash
    # Check YAML syntax
    yamllint .github/workflows/*.yml
@@ -322,6 +339,7 @@ After making changes:
 Want to apply all fixes automatically? See the complete updated workflow files in the [CI/CD Verification Report](./CI-CD-VERIFICATION-REPORT.md).
 
 **Estimated Time to Fix All:**
+
 - Critical fixes: 30 minutes
 - High priority fixes: 1 hour
 - Total: ~1.5-2 hours

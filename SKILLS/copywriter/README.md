@@ -21,21 +21,25 @@ claude-code --skill copywriter
 ## Common Tasks
 
 ### Write UX Copy
+
 ```
 "Write clear error messages for a login form"
 ```
 
 ### Create Landing Page
+
 ```
 "Write hero section copy for a deployment platform targeting developers"
 ```
 
 ### Draft Email
+
 ```
 "Write a welcome email for new users who just signed up"
 ```
 
 ### Write Microcopy
+
 ```
 "Write helpful placeholder text for an email input field"
 ```

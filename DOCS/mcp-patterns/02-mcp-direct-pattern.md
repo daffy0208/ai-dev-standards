@@ -19,6 +19,7 @@
 Located in `/MCP-SERVERS/`:
 
 **Categories:**
+
 1. **Analysis & Insights** (10 MCPs)
    - market-analyzer-mcp
    - user-insight-analyzer-mcp
@@ -151,6 +152,7 @@ Located in `/MCP-SERVERS/`:
 **User**: "Help me select the right skills for building a dashboard"
 
 **Agent Context** (Direct MCP):
+
 ```
 Available tools:
 1. brain_select_skills:
@@ -167,6 +169,7 @@ Available tools:
 ```
 
 **What Happens**:
+
 1. Agent sees all 200+ tools in context
 2. Agent identifies `brain_select_skills` as most relevant
 3. Agent calls: `brain_select_skills({ task_description: "building a dashboard" })`
@@ -181,11 +184,13 @@ Available tools:
 ### 1. Simplicity
 
 ✅ **Easy to implement**
+
 - Just configure MCP servers
 - No special infrastructure needed
 - Works out of the box
 
 ✅ **Easy to understand**
+
 - Agent behavior is transparent
 - Direct tool calls visible in logs
 - Straightforward debugging
@@ -193,11 +198,13 @@ Available tools:
 ### 2. Reliability
 
 ✅ **Proven pattern**
+
 - Battle-tested by thousands of users
 - Well-documented by Anthropic
 - Stable and predictable
 
 ✅ **No additional failure points**
+
 - No sandboxes to maintain
 - No filesystem dependencies
 - No skill persistence issues
@@ -205,11 +212,13 @@ Available tools:
 ### 3. Performance (for simple tasks)
 
 ✅ **Fast startup**
+
 - No sandbox initialization
 - No tool discovery needed
 - Immediate tool availability
 
 ✅ **Low latency**
+
 - Direct tool calls
 - No intermediate steps
 - Optimal for simple operations
@@ -217,11 +226,13 @@ Available tools:
 ### 4. Universal Compatibility
 
 ✅ **Works everywhere**
+
 - Any platform supporting MCP
 - No special requirements
 - Claude Desktop, API, custom clients
 
 ✅ **No infrastructure dependencies**
+
 - No persistent storage needed
 - No sandboxes required
 - Serverless-friendly
@@ -231,11 +242,13 @@ Available tools:
 ### 1. Context Window Consumption
 
 ❌ **High token usage**
+
 - All 200+ tools loaded always
 - Even if only 2 tools used
 - Expensive at scale
 
 **Our Current State**:
+
 - 50 MCPs × ~4 tools average = 200 tools
 - 200 tools × ~500 tokens each = **100,000 tokens**
 - Used before task even starts!
@@ -243,11 +256,13 @@ Available tools:
 ### 2. Scalability Ceiling
 
 ❌ **Cannot scale beyond ~200 tools**
+
 - Context window fills up
 - Performance degrades
 - Eventually hits limits
 
 **Our Current Limit**:
+
 - 50 MCPs is approaching ceiling
 - Adding more MCPs becomes expensive
 - Each new MCP adds 2-4K tokens
@@ -255,6 +270,7 @@ Available tools:
 ### 3. No Self-Improvement
 
 ❌ **No learning mechanism**
+
 - Can't create reusable skills
 - Repeats same work every time
 - No optimization over time
@@ -262,11 +278,13 @@ Available tools:
 ### 4. Cost at Scale
 
 ❌ **High cost for complex tasks**
+
 - Pay for all tools, use few
 - Repeated tasks pay full price each time
 - No economy of scale
 
 **Example Cost**:
+
 - Complex task with 5 tools
 - Direct MCP: 100K context + 10K execution = 110K tokens = $0.33
 - Run 1000 times/month = **$330/month**
@@ -342,21 +360,25 @@ TOTAL: ~$607/month (estimated)
 ### Perfect for Our Use Cases:
 
 ✅ **brain-mcp orchestration**
+
 - Needs to see all MCPs
 - Selection logic benefits from full context
 - Central coordinator role
 
 ✅ **Quick prototyping**
+
 - Testing new MCP integrations
 - Developing new skills
 - Experimentation
 
 ✅ **Low-frequency operations**
+
 - Ad-hoc analysis
 - One-time reports
 - Administrative tasks
 
 ✅ **Simple single-MCP tasks**
+
 - Using just 1-2 tools
 - Straightforward workflows
 - No complex orchestration
@@ -364,22 +386,25 @@ TOTAL: ~$607/month (estimated)
 ### Not Ideal for:
 
 ❌ **High-frequency automated tasks**
+
 - Daily reports
 - Batch processing
 - Repeated workflows
-→ Consider Code Execution
+  → Consider Code Execution
 
 ❌ **Large data processing**
+
 - > 50KB data payloads
 - Multiple transformation steps
 - Complex analysis pipelines
-→ Consider Code Execution
+  → Consider Code Execution
 
 ❌ **PII-sensitive operations**
+
 - Customer data processing
 - Financial information
 - Healthcare records
-→ Requires Code Execution security layers
+  → Requires Code Execution security layers
 
 ## Integration with Our Stack
 
@@ -407,11 +432,7 @@ brain_select_skills({
 ```json
 {
   "name": "dashboard-builder",
-  "mcp_dependencies": [
-    "chart-builder-mcp",
-    "data-analyzer-mcp",
-    "component-generator-mcp"
-  ],
+  "mcp_dependencies": ["chart-builder-mcp", "data-analyzer-mcp", "component-generator-mcp"],
   "pattern": "direct",
   "estimated_tokens": 115000
 }
@@ -426,7 +447,7 @@ brain_select_skills({
 
 ```typescript
 // Future optimization in brain-mcp
-const relevantMCPs = selectRelevantMCPs(task);
+const relevantMCPs = selectRelevantMCPs(task)
 // Load only 5-10 MCPs instead of all 50
 // Reduction: 100K → 20K tokens
 ```
@@ -459,17 +480,20 @@ const relevantMCPs = selectRelevantMCPs(task);
 MCPs that might benefit from Code Execution:
 
 ### High Priority (Complex, frequent)
+
 1. **brain-mcp** - If we add many more skills
 2. **market-analyzer-mcp** - Large data analysis
 3. **user-insight-analyzer-mcp** - Customer data (PII)
 4. **semantic-search-mcp** - Large corpus searches
 
 ### Medium Priority (Moderate complexity)
+
 5. **deployment-orchestrator-mcp** - Multi-step workflows
 6. **agent-orchestrator-mcp** - Complex coordination
 7. **database-migration-mcp** - Large data operations
 
 ### Low Priority (Simple, keep Direct MCP)
+
 - All single-purpose generators
 - Simple asset lookups
 - Configuration tools
@@ -481,6 +505,7 @@ See [Migration Guide](./04-mcp-migration-guide.md) for details.
 ### 1. Keep MCPs Focused
 
 ✅ **DO**: One clear responsibility per MCP
+
 ```yaml
 Good: chart-builder-mcp
 - Builds charts
@@ -489,6 +514,7 @@ Good: chart-builder-mcp
 ```
 
 ❌ **DON'T**: Bloated MCPs with many tools
+
 ```yaml
 Bad: mega-dashboard-mcp
 - 20+ tools
@@ -499,6 +525,7 @@ Bad: mega-dashboard-mcp
 ### 2. Optimize Tool Descriptions
 
 ✅ **DO**: Concise, clear descriptions
+
 ```typescript
 /**
  * Builds a bar chart from data array
@@ -508,6 +535,7 @@ Bad: mega-dashboard-mcp
 ```
 
 ❌ **DON'T**: Verbose documentation in descriptions
+
 ```typescript
 /**
  * This tool is designed to build bar charts. It takes data
@@ -522,12 +550,12 @@ Bad: mega-dashboard-mcp
 ```typescript
 // Track actual usage per MCP
 const metrics = {
-  mcp: "market-analyzer-mcp",
+  mcp: 'market-analyzer-mcp',
   tools_available: 5,
   tools_used: 2,
   token_overhead: 2500, // Unused tools
-  optimization_potential: "medium"
-};
+  optimization_potential: 'medium'
+}
 ```
 
 ### 4. Document Dependencies
@@ -535,10 +563,10 @@ const metrics = {
 ```yaml
 # In skill-registry.json
 {
-  "skill": "dashboard-builder",
-  "required_mcps": ["chart-builder-mcp", "data-analyzer-mcp"],
-  "optional_mcps": ["export-mcp"],
-  "pattern": "direct"
+  'skill': 'dashboard-builder',
+  'required_mcps': ['chart-builder-mcp', 'data-analyzer-mcp'],
+  'optional_mcps': ['export-mcp'],
+  'pattern': 'direct'
 }
 ```
 
@@ -566,12 +594,14 @@ Optimization Potential:
 Direct MCP works well for ai-dev-standards' current scale (50 MCPs, 64 skills). It's simple, reliable, and handles our diverse use cases effectively.
 
 **Keep Direct MCP for:**
+
 - brain-mcp orchestration
 - Simple generators
 - Infrequent operations
 - Prototyping
 
 **Consider migrating to Code Execution when:**
+
 - Specific MCPs become high-frequency
 - Large data processing needed
 - PII handling required
@@ -580,6 +610,7 @@ Direct MCP works well for ai-dev-standards' current scale (50 MCPs, 64 skills). 
 ---
 
 **Related Documentation:**
+
 - [Code Execution Pattern](./03-mcp-code-execution-pattern.md) - Alternative approach
 - [Decision Framework](./01-mcp-decision-framework.md) - Choose between patterns
 - [Migration Guide](./04-mcp-migration-guide.md) - How to convert

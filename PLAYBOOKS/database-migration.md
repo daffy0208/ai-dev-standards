@@ -21,6 +21,7 @@
 ### 1. Additive (Low Risk)
 
 **Adding columns, tables, indexes:**
+
 ```sql
 -- ✅ Safe: Adding nullable column
 ALTER TABLE users ADD COLUMN phone VARCHAR(20);
@@ -41,6 +42,7 @@ CREATE INDEX idx_users_email ON users(email);
 ### 2. Destructive (High Risk)
 
 **Removing columns, tables:**
+
 ```sql
 -- ❌ Risky: Dropping column
 ALTER TABLE users DROP COLUMN legacy_field;
@@ -54,6 +56,7 @@ DROP TABLE old_analytics;
 ### 3. Transformative (Medium Risk)
 
 **Changing data types, renaming:**
+
 ```sql
 -- ⚠️ Risky: Changing column type
 ALTER TABLE products ALTER COLUMN price TYPE DECIMAL(10,2);
@@ -71,6 +74,7 @@ ALTER TABLE users RENAME COLUMN name TO full_name;
 ### Step 1: Create Migration
 
 **Using Prisma:**
+
 ```bash
 # Create migration file
 npx prisma migrate dev --name add_user_phone
@@ -79,6 +83,7 @@ npx prisma migrate dev --name add_user_phone
 ```
 
 **Migration File:**
+
 ```sql
 -- prisma/migrations/20251022_add_user_phone/migration.sql
 
@@ -134,6 +139,7 @@ npm run test:integration -- --env=staging
 ### Step 4: Production Migration
 
 **Pre-Migration Checklist:**
+
 - [ ] Tested on staging successfully
 - [ ] Backup plan ready
 - [ ] Rollback script prepared
@@ -142,6 +148,7 @@ npm run test:integration -- --env=staging
 - [ ] Monitoring alerts configured
 
 **Production Migration:**
+
 ```bash
 # 1. BACKUP DATABASE (CRITICAL!)
 pg_dump $DATABASE_URL > prod_backup_$(date +%Y%m%d_%H%M%S).sql
@@ -176,6 +183,7 @@ curl https://api.example.com/health
 ### Pattern: Expand-Contract
 
 **Step 1: Expand (Add new column)**
+
 ```sql
 -- Migration 1: Add new column (nullable)
 ALTER TABLE users ADD COLUMN full_name VARCHAR(255);
@@ -184,6 +192,7 @@ ALTER TABLE users ADD COLUMN full_name VARCHAR(255);
 **Deploy:** Old code ignores new column ✅
 
 **Step 2: Dual Write (Write to both old and new)**
+
 ```typescript
 // Application code (deployed after Migration 1)
 await db.users.update({
@@ -198,6 +207,7 @@ await db.users.update({
 **Deploy:** Both columns updated ✅
 
 **Step 3: Backfill (Copy old data to new column)**
+
 ```sql
 -- Migration 2: Backfill existing data
 UPDATE users SET full_name = name WHERE full_name IS NULL;
@@ -206,6 +216,7 @@ UPDATE users SET full_name = name WHERE full_name IS NULL;
 **Deploy:** Old data migrated ✅
 
 **Step 4: Read from New (Switch reads)**
+
 ```typescript
 // Application code (deployed after Migration 2)
 const user = await db.users.findUnique({ where: { id } })
@@ -215,6 +226,7 @@ const displayName = user.full_name || user.name // Fallback for safety
 **Deploy:** Reading from new column ✅
 
 **Step 5: Contract (Remove old column)**
+
 ```sql
 -- Migration 3: Drop old column (after all code uses new)
 ALTER TABLE users DROP COLUMN name;
@@ -231,22 +243,24 @@ ALTER TABLE users DROP COLUMN name;
 ### Option 1: Down Migration
 
 **Create Reversible Migrations:**
+
 ```typescript
 // migrations/20251022_add_user_phone.ts
 export async function up(db) {
-  await db.schema.table('users', (table) => {
+  await db.schema.table('users', table => {
     table.string('phone', 20).nullable()
   })
 }
 
 export async function down(db) {
-  await db.schema.table('users', (table) => {
+  await db.schema.table('users', table => {
     table.dropColumn('phone')
   })
 }
 ```
 
 **Rollback:**
+
 ```bash
 npx prisma migrate resolve --rolled-back 20251022_add_user_phone
 ```
@@ -254,6 +268,7 @@ npx prisma migrate resolve --rolled-back 20251022_add_user_phone
 ### Option 2: Restore from Backup
 
 **If Migration Failed Catastrophically:**
+
 ```bash
 # Stop application
 vercel --prod --rollback
@@ -277,12 +292,14 @@ vercel --prod
 ### Adding a NOT NULL Column
 
 **❌ Wrong (causes downtime):**
+
 ```sql
 ALTER TABLE users ADD COLUMN email VARCHAR(255) NOT NULL;
 -- Error: Existing rows violate NOT NULL constraint
 ```
 
 **✅ Right (zero downtime):**
+
 ```sql
 -- Step 1: Add nullable column
 ALTER TABLE users ADD COLUMN email VARCHAR(255);
@@ -299,12 +316,14 @@ ALTER TABLE users ALTER COLUMN email SET NOT NULL;
 ### Changing Column Type
 
 **❌ Wrong (data loss risk):**
+
 ```sql
 ALTER TABLE products ALTER COLUMN price TYPE INTEGER;
 -- Truncates decimal values!
 ```
 
 **✅ Right (safe):**
+
 ```sql
 -- Step 1: Add new column
 ALTER TABLE products ADD COLUMN price_cents INTEGER;
@@ -324,11 +343,13 @@ ALTER TABLE products RENAME COLUMN price_cents TO price;
 ### Renaming a Column
 
 **❌ Wrong (breaks old code):**
+
 ```sql
 ALTER TABLE users RENAME COLUMN name TO full_name;
 ```
 
 **✅ Right (zero downtime):**
+
 ```sql
 -- Step 1: Add new column
 ALTER TABLE users ADD COLUMN full_name VARCHAR(255);
@@ -356,6 +377,7 @@ ALTER TABLE users DROP COLUMN name;
 ### Splitting a Table
 
 **Before:**
+
 ```sql
 CREATE TABLE users (
   id UUID PRIMARY KEY,
@@ -366,6 +388,7 @@ CREATE TABLE users (
 ```
 
 **After:**
+
 ```sql
 CREATE TABLE users (
   id UUID PRIMARY KEY,
@@ -383,6 +406,7 @@ CREATE TABLE user_profiles (
 ```
 
 **Migration:**
+
 ```sql
 -- Step 1: Create new table
 CREATE TABLE user_profiles (
@@ -409,12 +433,14 @@ ALTER TABLE users DROP COLUMN avatar_url;
 ### Creating Indexes
 
 **❌ Wrong (locks table):**
+
 ```sql
 CREATE INDEX idx_users_email ON users(email);
 -- Blocks writes during index build!
 ```
 
 **✅ Right (no locking):**
+
 ```sql
 CREATE INDEX CONCURRENTLY idx_users_email ON users(email);
 -- Builds index without locking table
@@ -425,12 +451,14 @@ CREATE INDEX CONCURRENTLY idx_users_email ON users(email);
 ### Large Data Migrations
 
 **❌ Wrong (times out):**
+
 ```sql
 UPDATE users SET verified = true WHERE verification_token IS NOT NULL;
 -- 10 million rows = timeout/deadlock
 ```
 
 **✅ Right (batched):**
+
 ```sql
 -- Update in batches
 DO $$
@@ -554,15 +582,18 @@ psql $DATABASE_URL -c "
 ## Migration: 20251022_rename_user_name
 
 ## Impact:
+
 - All queries using `name` column will fail
 - API responses will use `full_name` instead
 
 ## Required Actions:
+
 1. Update client code to use `full_name`
 2. Update mobile app (version 2.3.0+)
 3. Update integrations
 
 ## Timeline:
+
 - 2025-10-22: Staging
 - 2025-10-25: Production (after client updates)
 ```
@@ -605,6 +636,7 @@ psql $DATABASE_URL < prod_backup.sql
 ## Migration Checklist
 
 **Before Migration:**
+
 - [ ] Migration tested on staging
 - [ ] Backup taken
 - [ ] Rollback plan prepared
@@ -613,6 +645,7 @@ psql $DATABASE_URL < prod_backup.sql
 - [ ] Monitoring configured
 
 **During Migration:**
+
 - [ ] Backup verified accessible
 - [ ] Migration command ready
 - [ ] Monitoring dashboard open
@@ -620,6 +653,7 @@ psql $DATABASE_URL < prod_backup.sql
 - [ ] Communication channel open
 
 **After Migration:**
+
 - [ ] Schema verified correct
 - [ ] Data integrity checked
 - [ ] Application deployed successfully

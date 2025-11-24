@@ -5,10 +5,13 @@ Reusable utilities for common development tasks.
 ## Categories
 
 ### 1. CLI Utilities (`cli/`)
+
 Command-line tools and helpers for development workflows.
 
 ### 2. Scripts (`scripts/`)
+
 Automation scripts for common tasks:
+
 - Database migrations
 - Data seeding
 - Deployment automation
@@ -18,24 +21,26 @@ Automation scripts for common tasks:
 ## Usage
 
 Utilities sync with:
+
 ```bash
 ai-dev sync utils
 ```
 
 Or copy specific utilities:
+
 ```bash
 ai-dev get util <name>
 ```
 
 ## Available Utilities
 
-| Category | Utility | Description |
-|----------|---------|-------------|
-| CLI | logger | Colorful console logging |
-| CLI | spinner | Loading indicators |
-| Scripts | db-backup | Automated database backups |
-| Scripts | env-check | Verify environment variables |
-| Scripts | test-runner | Custom test execution |
+| Category | Utility     | Description                  |
+| -------- | ----------- | ---------------------------- |
+| CLI      | logger      | Colorful console logging     |
+| CLI      | spinner     | Loading indicators           |
+| Scripts  | db-backup   | Automated database backups   |
+| Scripts  | env-check   | Verify environment variables |
+| Scripts  | test-runner | Custom test execution        |
 
 ## Creating Custom Utilities
 

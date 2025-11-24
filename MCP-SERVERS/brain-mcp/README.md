@@ -20,23 +20,27 @@ The Brain MCP Server bridges the gap between the ai-dev-standards brain/orchestr
 ### Brain Commands
 
 1. **brain_search** - Search all skills, MCPs, tools by keyword
+
    ```typescript
-   brain_search({ query: "authentication" })
+   brain_search({ query: 'authentication' })
    ```
 
 2. **brain_select_skills** - Get intelligent skill recommendations
+
    ```typescript
-   brain_select_skills({ taskDescription: "implement RAG system" })
+   brain_select_skills({ taskDescription: 'implement RAG system' })
    ```
 
 3. **brain_show_skill** - Get detailed skill information
+
    ```typescript
-   brain_show_skill({ skillName: "rag-implementer" })
+   brain_show_skill({ skillName: 'rag-implementer' })
    ```
 
 4. **brain_relationships** - Show skill relationships
+
    ```typescript
-   brain_relationships({ skillName: "security-engineer" })
+   brain_relationships({ skillName: 'security-engineer' })
    ```
 
 5. **brain_status** - Get repository status
@@ -47,31 +51,37 @@ The Brain MCP Server bridges the gap between the ai-dev-standards brain/orchestr
 ### Graph Queries
 
 6. **graph_query_by_domain** - Find capabilities by domain
+
    ```typescript
-   graph_query_by_domain({ domain: "ai" })
+   graph_query_by_domain({ domain: 'ai' })
    ```
 
 7. **graph_query_by_effect** - Find capabilities by effect
+
    ```typescript
-   graph_query_by_effect({ effect: "implements_authentication" })
+   graph_query_by_effect({ effect: 'implements_authentication' })
    ```
 
 8. **graph_get_dependencies** - Get capability dependencies
+
    ```typescript
-   graph_get_dependencies({ capabilityId: "rag-implementer" })
+   graph_get_dependencies({ capabilityId: 'rag-implementer' })
    ```
 
 9. **graph_find_path** - Find path between capabilities
+
    ```typescript
-   graph_find_path({ from: "rag-implementer", to: "frontend-builder" })
+   graph_find_path({ from: 'rag-implementer', to: 'frontend-builder' })
    ```
 
 10. **graph_composition_chains** - Get composition chains
+
     ```typescript
-    graph_composition_chains({ capabilityId: "security-engineer" })
+    graph_composition_chains({ capabilityId: 'security-engineer' })
     ```
 
 11. **graph_stats** - Get graph statistics
+
     ```typescript
     graph_stats({})
     ```
@@ -102,9 +112,7 @@ Add to your project's `.claude/mcp-settings.json`:
   "mcpServers": {
     "brain-mcp": {
       "command": "node",
-      "args": [
-        "/absolute/path/to/ai-dev-standards/MCP-SERVERS/brain-mcp/dist/index.js"
-      ],
+      "args": ["/absolute/path/to/ai-dev-standards/MCP-SERVERS/brain-mcp/dist/index.js"],
       "env": {
         "AI_DEV_STANDARDS_ROOT": "/absolute/path/to/ai-dev-standards"
       }
@@ -132,6 +140,7 @@ Use brain_select_skills to recommend skills for "building a RAG system with vect
 ```
 
 **Result:**
+
 - rag-implementer
 - knowledge-base-manager
 - vector-database-mcp
@@ -144,6 +153,7 @@ Use graph_query_by_domain to show all AI-related capabilities
 ```
 
 **Result:**
+
 - 80 capabilities including rag-implementer, multi-agent-architect, knowledge-graph-builder, etc.
 
 ### Example 3: Check Dependencies
@@ -153,6 +163,7 @@ Use graph_get_dependencies for rag-implementer
 ```
 
 **Result:**
+
 - Direct: openai-integration, pinecone-mcp, embedding-generator-mcp
 - Transitive: None
 
@@ -163,6 +174,7 @@ Use graph_composition_chains for security-engineer
 ```
 
 **Result:**
+
 - security-engineer → api-designer → frontend-builder
 - Shows what skills work well together
 
@@ -223,6 +235,7 @@ npm run dev
 ### "Brain CLI not found"
 
 Ensure brain CLI is built:
+
 ```bash
 cd scripts/brain
 npm install
@@ -232,11 +245,13 @@ npm run build
 ### "Capability graph missing"
 
 Ensure graph exists:
+
 ```bash
 ls META/capability-graph.json
 ```
 
 If missing, generate it:
+
 ```bash
 python3 scripts/generate-all-manifests.py
 ```
@@ -244,6 +259,7 @@ python3 scripts/generate-all-manifests.py
 ### "Graph query tool not executable"
 
 Ensure Python 3 is installed and script exists:
+
 ```bash
 python3 --version
 ls scripts/graph-query-tool.py

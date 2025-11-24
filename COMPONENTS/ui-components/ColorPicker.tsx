@@ -30,139 +30,131 @@
  * ```
  */
 
-import * as React from 'react';
-import { cn } from './utils';
+import * as React from 'react'
+import { cn } from './utils'
 
 export interface ColorPickerProps {
   /**
    * Current color value (HEX, RGB, or HSL)
    */
-  value?: string;
+  value?: string
 
   /**
    * Callback when color changes
    */
-  onChange?: (color: string) => void;
+  onChange?: (color: string) => void
 
   /**
    * Label for the color picker
    */
-  label?: string;
+  label?: string
 
   /**
    * Show alpha/transparency control
    */
-  showAlpha?: boolean;
+  showAlpha?: boolean
 
   /**
    * Preset color palette
    */
-  presets?: string[];
+  presets?: string[]
 
   /**
    * Input format (hex, rgb, hsl)
    */
-  format?: 'hex' | 'rgb' | 'hsl';
+  format?: 'hex' | 'rgb' | 'hsl'
 
   /**
    * Whether the picker is disabled
    */
-  disabled?: boolean;
+  disabled?: boolean
 
   /**
    * Additional CSS classes
    */
-  className?: string;
+  className?: string
 }
 
 // Color utility functions
 const hexToRgb = (hex: string): { r: number; g: number; b: number } | null => {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
   return result
     ? {
         r: parseInt(result[1], 16),
         g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
+        b: parseInt(result[3], 16)
       }
-    : null;
-};
+    : null
+}
 
 const rgbToHex = (r: number, g: number, b: number): string => {
-  return '#' + [r, g, b].map((x) => x.toString(16).padStart(2, '0')).join('');
-};
+  return '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('')
+}
 
-const rgbToHsl = (
-  r: number,
-  g: number,
-  b: number
-): { h: number; s: number; l: number } => {
-  r /= 255;
-  g /= 255;
-  b /= 255;
+const rgbToHsl = (r: number, g: number, b: number): { h: number; s: number; l: number } => {
+  r /= 255
+  g /= 255
+  b /= 255
 
-  const max = Math.max(r, g, b);
-  const min = Math.min(r, g, b);
+  const max = Math.max(r, g, b)
+  const min = Math.min(r, g, b)
   let h = 0,
-    s = 0;
-  const l = (max + min) / 2;
+    s = 0
+  const l = (max + min) / 2
 
   if (max !== min) {
-    const d = max - min;
-    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    const d = max - min
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
 
     switch (max) {
       case r:
-        h = ((g - b) / d + (g < b ? 6 : 0)) / 6;
-        break;
+        h = ((g - b) / d + (g < b ? 6 : 0)) / 6
+        break
       case g:
-        h = ((b - r) / d + 2) / 6;
-        break;
+        h = ((b - r) / d + 2) / 6
+        break
       case b:
-        h = ((r - g) / d + 4) / 6;
-        break;
+        h = ((r - g) / d + 4) / 6
+        break
     }
   }
 
-  return { h: h * 360, s: s * 100, l: l * 100 };
-};
+  return { h: h * 360, s: s * 100, l: l * 100 }
+}
 
-const hslToRgb = (
-  h: number,
-  s: number,
-  l: number
-): { r: number; g: number; b: number } => {
-  h /= 360;
-  s /= 100;
-  l /= 100;
+const hslToRgb = (h: number, s: number, l: number): { r: number; g: number; b: number } => {
+  h /= 360
+  s /= 100
+  l /= 100
 
-  let r, g, b;
+  let r, g, b
 
   if (s === 0) {
-    r = g = b = l;
+    r = g = b = l
   } else {
     const hue2rgb = (p: number, q: number, t: number) => {
-      if (t < 0) t += 1;
-      if (t > 1) t -= 1;
-      if (t < 1 / 6) return p + (q - p) * 6 * t;
-      if (t < 1 / 2) return q;
-      if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-      return p;
-    };
+      if (t < 0) t += 1
+      if (t > 1) t -= 1
+      if (t < 1 / 6) return p + (q - p) * 6 * t
+      if (t < 1 / 2) return q
+      if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6
+      return p
+    }
 
-    const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-    const p = 2 * l - q;
+    const q = l < 0.5 ? l * (1 + s) : l + s - l * s
+    const p = 2 * l - q
 
-    r = hue2rgb(p, q, h + 1 / 3);
-    g = hue2rgb(p, q, h);
-    b = hue2rgb(p, q, h - 1 / 3);
+    r = hue2rgb(p, q, h + 1 / 3)
+    g = hue2rgb(p, q, h)
+    b = hue2rgb(p, q, h - 1 / 3)
   }
 
   return {
     r: Math.round(r * 255),
     g: Math.round(g * 255),
-    b: Math.round(b * 255),
-  };
-};
+    b: Math.round(b * 255)
+  }
+}
 
 /**
  * ColorPicker component for selecting colors
@@ -177,70 +169,67 @@ export const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>(
       presets = [],
       format = 'hex',
       disabled = false,
-      className,
+      className
     },
     ref
   ) => {
-    const pickerId = React.useId();
-    const [isOpen, setIsOpen] = React.useState(false);
-    const [inputValue, setInputValue] = React.useState(value);
-    const containerRef = React.useRef<HTMLDivElement>(null);
+    const pickerId = React.useId()
+    const [isOpen, setIsOpen] = React.useState(false)
+    const [inputValue, setInputValue] = React.useState(value)
+    const containerRef = React.useRef<HTMLDivElement>(null)
 
     // Parse current color
-    const rgb = hexToRgb(value.startsWith('#') ? value : value);
-    const hsl = rgb ? rgbToHsl(rgb.r, rgb.g, rgb.b) : { h: 0, s: 0, l: 50 };
+    const rgb = hexToRgb(value.startsWith('#') ? value : value)
+    const hsl = rgb ? rgbToHsl(rgb.r, rgb.g, rgb.b) : { h: 0, s: 0, l: 50 }
 
     // Close on outside click
     React.useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
-        if (
-          containerRef.current &&
-          !containerRef.current.contains(event.target as Node)
-        ) {
-          setIsOpen(false);
+        if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+          setIsOpen(false)
         }
-      };
+      }
 
       if (isOpen) {
-        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('mousedown', handleClickOutside)
       }
 
       return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-      };
-    }, [isOpen]);
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
+    }, [isOpen])
 
     // Handle preset selection
     const handlePresetClick = (preset: string) => {
-      setInputValue(preset);
-      onChange?.(preset);
-    };
+      setInputValue(preset)
+      onChange?.(preset)
+    }
 
     // Handle input change
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const newValue = e.target.value;
-      setInputValue(newValue);
+      const newValue = e.target.value
+      setInputValue(newValue)
 
       // Validate and update
       if (format === 'hex' && /^#[0-9A-Fa-f]{6}$/.test(newValue)) {
-        onChange?.(newValue);
+        onChange?.(newValue)
       }
-    };
+    }
 
     // Format display value
     const getDisplayValue = (): string => {
-      if (!rgb) return value;
+      if (!rgb) return value
 
       switch (format) {
         case 'rgb':
-          return `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+          return `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`
         case 'hsl':
-          return `hsl(${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%)`;
+          return `hsl(${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%)`
         case 'hex':
         default:
-          return value.startsWith('#') ? value : `#${value}`;
+          return value.startsWith('#') ? value : `#${value}`
       }
-    };
+    }
 
     return (
       <div ref={ref} className={cn('relative w-full', className)}>
@@ -282,10 +271,7 @@ export const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>(
             />
             <span className="flex-1 text-left">{getDisplayValue()}</span>
             <svg
-              className={cn(
-                'w-4 h-4 text-gray-400 transition-transform',
-                isOpen && 'rotate-180'
-              )}
+              className={cn('w-4 h-4 text-gray-400 transition-transform', isOpen && 'rotate-180')}
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -332,9 +318,7 @@ export const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>(
               {/* Presets */}
               {presets.length > 0 && (
                 <div>
-                  <div className="text-xs font-medium text-gray-700 mb-2">
-                    Presets
-                  </div>
+                  <div className="text-xs font-medium text-gray-700 mb-2">Presets</div>
                   <div className="grid grid-cols-6 gap-2">
                     {presets.map((preset, index) => (
                       <button
@@ -344,9 +328,7 @@ export const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>(
                         className={cn(
                           'w-8 h-8 rounded border-2 transition-all',
                           'hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500',
-                          preset === value
-                            ? 'border-blue-600'
-                            : 'border-gray-300'
+                          preset === value ? 'border-blue-600' : 'border-gray-300'
                         )}
                         style={{ backgroundColor: preset }}
                         aria-label={`Preset color ${preset}`}
@@ -361,10 +343,10 @@ export const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>(
                 <input
                   type="color"
                   value={value.startsWith('#') ? value : `#${value}`}
-                  onChange={(e) => {
-                    const newColor = e.target.value;
-                    setInputValue(newColor);
-                    onChange?.(newColor);
+                  onChange={e => {
+                    const newColor = e.target.value
+                    setInputValue(newColor)
+                    onChange?.(newColor)
                   }}
                   className="w-full h-10 rounded cursor-pointer"
                   aria-label="Native color picker"
@@ -374,8 +356,8 @@ export const ColorPicker = React.forwardRef<HTMLDivElement, ColorPickerProps>(
           )}
         </div>
       </div>
-    );
+    )
   }
-);
+)
 
-ColorPicker.displayName = 'ColorPicker';
+ColorPicker.displayName = 'ColorPicker'

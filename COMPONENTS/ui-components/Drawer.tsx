@@ -51,70 +51,70 @@
  * ```
  */
 
-import * as React from 'react';
-import { createPortal } from 'react-dom';
-import { cn } from './utils';
+import * as React from 'react'
+import { createPortal } from 'react-dom'
+import { cn } from './utils'
 
 export interface DrawerProps {
   /**
    * Whether the drawer is open
    */
-  open: boolean;
+  open: boolean
 
   /**
    * Callback when drawer should close
    */
-  onClose: () => void;
+  onClose: () => void
 
   /**
    * Drawer content
    */
-  children: React.ReactNode;
+  children: React.ReactNode
 
   /**
    * Position of the drawer
    */
-  position?: 'left' | 'right' | 'top' | 'bottom';
+  position?: 'left' | 'right' | 'top' | 'bottom'
 
   /**
    * Size of the drawer
    */
-  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full'
 
   /**
    * Whether clicking the backdrop closes the drawer
    */
-  closeOnBackdropClick?: boolean;
+  closeOnBackdropClick?: boolean
 
   /**
    * Additional CSS classes for drawer
    */
-  className?: string;
+  className?: string
 }
 
 export interface DrawerHeaderProps {
-  children: React.ReactNode;
-  className?: string;
+  children: React.ReactNode
+  className?: string
 }
 
 export interface DrawerTitleProps {
-  children: React.ReactNode;
-  className?: string;
+  children: React.ReactNode
+  className?: string
 }
 
 export interface DrawerDescriptionProps {
-  children: React.ReactNode;
-  className?: string;
+  children: React.ReactNode
+  className?: string
 }
 
 export interface DrawerBodyProps {
-  children: React.ReactNode;
-  className?: string;
+  children: React.ReactNode
+  className?: string
 }
 
 export interface DrawerFooterProps {
-  children: React.ReactNode;
-  className?: string;
+  children: React.ReactNode
+  className?: string
 }
 
 /**
@@ -129,162 +129,161 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
       position = 'right',
       size = 'md',
       closeOnBackdropClick = true,
-      className,
+      className
     },
     ref
   ) => {
-    const [mounted, setMounted] = React.useState(false);
-    const drawerRef = React.useRef<HTMLDivElement>(null);
+    const [mounted, setMounted] = React.useState(false)
+    const drawerRef = React.useRef<HTMLDivElement>(null)
 
     // Handle mounting for portal
     React.useEffect(() => {
-      setMounted(true);
-      return () => setMounted(false);
-    }, []);
+      setMounted(true)
+      return () => setMounted(false)
+    }, [])
 
     // Lock body scroll when drawer is open
     React.useEffect(() => {
       if (open) {
-        const scrollbarWidth =
-          window.innerWidth - document.documentElement.clientWidth;
-        document.body.style.overflow = 'hidden';
-        document.body.style.paddingRight = `${scrollbarWidth}px`;
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+        document.body.style.overflow = 'hidden'
+        document.body.style.paddingRight = `${scrollbarWidth}px`
       } else {
-        document.body.style.overflow = '';
-        document.body.style.paddingRight = '';
+        document.body.style.overflow = ''
+        document.body.style.paddingRight = ''
       }
 
       return () => {
-        document.body.style.overflow = '';
-        document.body.style.paddingRight = '';
-      };
-    }, [open]);
+        document.body.style.overflow = ''
+        document.body.style.paddingRight = ''
+      }
+    }, [open])
 
     // ESC to close
     React.useEffect(() => {
-      if (!open) return;
+      if (!open) return
 
       const handleEscape = (event: KeyboardEvent) => {
         if (event.key === 'Escape') {
-          onClose();
+          onClose()
         }
-      };
+      }
 
-      document.addEventListener('keydown', handleEscape);
-      return () => document.removeEventListener('keydown', handleEscape);
-    }, [open, onClose]);
+      document.addEventListener('keydown', handleEscape)
+      return () => document.removeEventListener('keydown', handleEscape)
+    }, [open, onClose])
 
     // Focus trap
     React.useEffect(() => {
-      if (!open || !drawerRef.current) return;
+      if (!open || !drawerRef.current) return
 
-      const drawer = drawerRef.current;
+      const drawer = drawerRef.current
       const focusableElements = drawer.querySelectorAll<HTMLElement>(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      );
+      )
 
-      const firstElement = focusableElements[0];
-      const lastElement = focusableElements[focusableElements.length - 1];
+      const firstElement = focusableElements[0]
+      const lastElement = focusableElements[focusableElements.length - 1]
 
       // Focus first element when drawer opens
-      firstElement?.focus();
+      firstElement?.focus()
 
       const handleTab = (event: KeyboardEvent) => {
-        if (event.key !== 'Tab') return;
+        if (event.key !== 'Tab') return
 
         if (event.shiftKey) {
           if (document.activeElement === firstElement) {
-            event.preventDefault();
-            lastElement?.focus();
+            event.preventDefault()
+            lastElement?.focus()
           }
         } else {
           if (document.activeElement === lastElement) {
-            event.preventDefault();
-            firstElement?.focus();
+            event.preventDefault()
+            firstElement?.focus()
           }
         }
-      };
+      }
 
-      document.addEventListener('keydown', handleTab);
-      return () => document.removeEventListener('keydown', handleTab);
-    }, [open]);
+      document.addEventListener('keydown', handleTab)
+      return () => document.removeEventListener('keydown', handleTab)
+    }, [open])
 
     // Click backdrop to close
     const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
       if (closeOnBackdropClick && event.target === event.currentTarget) {
-        onClose();
+        onClose()
       }
-    };
+    }
 
-    if (!mounted || !open) return null;
+    if (!mounted || !open) return null
 
     // Size classes
     const getSizeClass = () => {
-      const isHorizontal = position === 'left' || position === 'right';
+      const isHorizontal = position === 'left' || position === 'right'
       if (isHorizontal) {
         switch (size) {
           case 'sm':
-            return 'w-80';
+            return 'w-80'
           case 'md':
-            return 'w-96';
+            return 'w-96'
           case 'lg':
-            return 'w-[32rem]';
+            return 'w-[32rem]'
           case 'xl':
-            return 'w-[48rem]';
+            return 'w-[48rem]'
           case 'full':
-            return 'w-full';
+            return 'w-full'
           default:
-            return 'w-96';
+            return 'w-96'
         }
       } else {
         switch (size) {
           case 'sm':
-            return 'h-1/4';
+            return 'h-1/4'
           case 'md':
-            return 'h-1/3';
+            return 'h-1/3'
           case 'lg':
-            return 'h-1/2';
+            return 'h-1/2'
           case 'xl':
-            return 'h-3/4';
+            return 'h-3/4'
           case 'full':
-            return 'h-full';
+            return 'h-full'
           default:
-            return 'h-1/3';
+            return 'h-1/3'
         }
       }
-    };
+    }
 
     // Animation classes
     const getAnimationClass = () => {
       switch (position) {
         case 'left':
-          return 'animate-in slide-in-from-left';
+          return 'animate-in slide-in-from-left'
         case 'right':
-          return 'animate-in slide-in-from-right';
+          return 'animate-in slide-in-from-right'
         case 'top':
-          return 'animate-in slide-in-from-top';
+          return 'animate-in slide-in-from-top'
         case 'bottom':
-          return 'animate-in slide-in-from-bottom';
+          return 'animate-in slide-in-from-bottom'
         default:
-          return '';
+          return ''
       }
-    };
+    }
 
     // Position classes
     const getPositionClass = () => {
       switch (position) {
         case 'left':
-          return 'top-0 left-0 h-full';
+          return 'top-0 left-0 h-full'
         case 'right':
-          return 'top-0 right-0 h-full';
+          return 'top-0 right-0 h-full'
         case 'top':
-          return 'top-0 left-0 w-full';
+          return 'top-0 left-0 w-full'
         case 'bottom':
-          return 'bottom-0 left-0 w-full';
+          return 'bottom-0 left-0 w-full'
         default:
-          return '';
+          return ''
       }
-    };
+    }
 
     const drawerContent = (
       <div
@@ -321,13 +320,13 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
           {children}
         </div>
       </div>
-    );
+    )
 
-    return createPortal(drawerContent, document.body);
+    return createPortal(drawerContent, document.body)
   }
-);
+)
 
-Drawer.displayName = 'Drawer';
+Drawer.displayName = 'Drawer'
 
 /**
  * Drawer header
@@ -344,51 +343,45 @@ export const DrawerHeader = React.forwardRef<HTMLDivElement, DrawerHeaderProps>(
       >
         {children}
       </div>
-    );
+    )
   }
-);
+)
 
-DrawerHeader.displayName = 'DrawerHeader';
+DrawerHeader.displayName = 'DrawerHeader'
 
 /**
  * Drawer title
  */
-export const DrawerTitle = React.forwardRef<
-  HTMLHeadingElement,
-  DrawerTitleProps
->(({ children, className }, ref) => {
-  return (
-    <h2
-      ref={ref}
-      id="drawer-title"
-      className={cn('text-xl font-semibold text-gray-900', className)}
-    >
-      {children}
-    </h2>
-  );
-});
+export const DrawerTitle = React.forwardRef<HTMLHeadingElement, DrawerTitleProps>(
+  ({ children, className }, ref) => {
+    return (
+      <h2
+        ref={ref}
+        id="drawer-title"
+        className={cn('text-xl font-semibold text-gray-900', className)}
+      >
+        {children}
+      </h2>
+    )
+  }
+)
 
-DrawerTitle.displayName = 'DrawerTitle';
+DrawerTitle.displayName = 'DrawerTitle'
 
 /**
  * Drawer description
  */
-export const DrawerDescription = React.forwardRef<
-  HTMLParagraphElement,
-  DrawerDescriptionProps
->(({ children, className }, ref) => {
-  return (
-    <p
-      ref={ref}
-      id="drawer-description"
-      className={cn('mt-1 text-sm text-gray-500', className)}
-    >
-      {children}
-    </p>
-  );
-});
+export const DrawerDescription = React.forwardRef<HTMLParagraphElement, DrawerDescriptionProps>(
+  ({ children, className }, ref) => {
+    return (
+      <p ref={ref} id="drawer-description" className={cn('mt-1 text-sm text-gray-500', className)}>
+        {children}
+      </p>
+    )
+  }
+)
 
-DrawerDescription.displayName = 'DrawerDescription';
+DrawerDescription.displayName = 'DrawerDescription'
 
 /**
  * Drawer body
@@ -396,17 +389,14 @@ DrawerDescription.displayName = 'DrawerDescription';
 export const DrawerBody = React.forwardRef<HTMLDivElement, DrawerBodyProps>(
   ({ children, className }, ref) => {
     return (
-      <div
-        ref={ref}
-        className={cn('flex-1 overflow-y-auto px-6 py-4', className)}
-      >
+      <div ref={ref} className={cn('flex-1 overflow-y-auto px-6 py-4', className)}>
         {children}
       </div>
-    );
+    )
   }
-);
+)
 
-DrawerBody.displayName = 'DrawerBody';
+DrawerBody.displayName = 'DrawerBody'
 
 /**
  * Drawer footer
@@ -423,8 +413,8 @@ export const DrawerFooter = React.forwardRef<HTMLDivElement, DrawerFooterProps>(
       >
         {children}
       </div>
-    );
+    )
   }
-);
+)
 
-DrawerFooter.displayName = 'DrawerFooter';
+DrawerFooter.displayName = 'DrawerFooter'

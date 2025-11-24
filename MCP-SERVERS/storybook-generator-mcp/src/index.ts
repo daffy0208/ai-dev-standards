@@ -6,7 +6,7 @@ import {
   CallToolRequestSchema,
   ListResourcesRequestSchema,
   ListToolsRequestSchema,
-  ReadResourceRequestSchema,
+  ReadResourceRequestSchema
 } from '@modelcontextprotocol/sdk/types.js'
 import * as fs from 'fs'
 import * as path from 'path'
@@ -38,7 +38,7 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {},
 }`,
-    description: 'Basic Storybook story template',
+    description: 'Basic Storybook story template'
   },
   {
     name: 'with-variants',
@@ -94,8 +94,8 @@ export const Large: Story = {
     children: 'Large {{componentName}}',
   },
 }`,
-    description: 'Story template with multiple variants',
-  },
+    description: 'Story template with multiple variants'
+  }
 ]
 
 const server = new Server(
@@ -114,20 +114,20 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           componentPath: {
             type: 'string',
-            description: 'Path to the React component file',
+            description: 'Path to the React component file'
           },
           template: {
             type: 'string',
             description: 'Story template to use (basic, with-variants)',
-            enum: ['basic', 'with-variants'],
+            enum: ['basic', 'with-variants']
           },
           category: {
             type: 'string',
-            description: 'Storybook category (e.g., Components, UI, Forms)',
-          },
+            description: 'Storybook category (e.g., Components, UI, Forms)'
+          }
         },
-        required: ['componentPath'],
-      },
+        required: ['componentPath']
+      }
     },
     {
       name: 'generate_all_stories',
@@ -137,20 +137,20 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           componentDir: {
             type: 'string',
-            description: 'Directory containing React components',
+            description: 'Directory containing React components'
           },
           template: {
             type: 'string',
             description: 'Story template to use',
-            enum: ['basic', 'with-variants'],
+            enum: ['basic', 'with-variants']
           },
           category: {
             type: 'string',
-            description: 'Storybook category',
-          },
+            description: 'Storybook category'
+          }
         },
-        required: ['componentDir'],
-      },
+        required: ['componentDir']
+      }
     },
     {
       name: 'update_storybook_config',
@@ -160,7 +160,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           projectPath: {
             type: 'string',
-            description: 'Project root path',
+            description: 'Project root path'
           },
           options: {
             type: 'object',
@@ -168,19 +168,19 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
             properties: {
               addons: {
                 type: 'array',
-                items: { type: 'string' },
+                items: { type: 'string' }
               },
               stories: {
                 type: 'array',
-                items: { type: 'string' },
-              },
-            },
-          },
+                items: { type: 'string' }
+              }
+            }
+          }
         },
-        required: ['projectPath'],
-      },
-    },
-  ],
+        required: ['projectPath']
+      }
+    }
+  ]
 }))
 
 // List available resources
@@ -190,13 +190,13 @@ server.setRequestHandler(ListResourcesRequestSchema, async () => ({
       uri: 'storybook://templates/list',
       name: 'Story Templates',
       description: 'Available Storybook story templates',
-      mimeType: 'application/json',
-    },
-  ],
+      mimeType: 'application/json'
+    }
+  ]
 }))
 
 // Read resource content
-server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
+server.setRequestHandler(ReadResourceRequestSchema, async request => {
   const uri = request.params.uri
 
   if (uri === 'storybook://templates/list') {
@@ -205,9 +205,9 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
         {
           uri,
           mimeType: 'application/json',
-          text: JSON.stringify(storyTemplates, null, 2),
-        },
-      ],
+          text: JSON.stringify(storyTemplates, null, 2)
+        }
+      ]
     }
   }
 
@@ -215,13 +215,17 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
 })
 
 // Handle tool calls
-server.setRequestHandler(CallToolRequestSchema, async (request) => {
+server.setRequestHandler(CallToolRequestSchema, async request => {
   const { name, arguments: args } = request.params
 
   try {
     switch (name) {
       case 'generate_story': {
-        const { componentPath, template = 'basic', category = 'Components' } = args as {
+        const {
+          componentPath,
+          template = 'basic',
+          category = 'Components'
+        } = args as {
           componentPath: string
           template?: string
           category?: string
@@ -229,12 +233,16 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
         const result = generateStory(componentPath, template, category)
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
         }
       }
 
       case 'generate_all_stories': {
-        const { componentDir, template = 'basic', category = 'Components' } = args as {
+        const {
+          componentDir,
+          template = 'basic',
+          category = 'Components'
+        } = args as {
           componentDir: string
           template?: string
           category?: string
@@ -242,7 +250,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
         const result = generateAllStories(componentDir, template, category)
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
         }
       }
 
@@ -254,7 +262,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
         const result = updateStorybookConfig(projectPath, options)
         return {
-          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }],
+          content: [{ type: 'text', text: JSON.stringify(result, null, 2) }]
         }
       }
 
@@ -266,10 +274,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       content: [
         {
           type: 'text',
-          text: `Error: ${error instanceof Error ? error.message : String(error)}`,
-        },
+          text: `Error: ${error instanceof Error ? error.message : String(error)}`
+        }
       ],
-      isError: true,
+      isError: true
     }
   }
 })
@@ -279,7 +287,7 @@ function generateStory(componentPath: string, templateName: string, category: st
     throw new Error(`Component file not found: ${componentPath}`)
   }
 
-  const template = storyTemplates.find((t) => t.name === templateName)
+  const template = storyTemplates.find(t => t.name === templateName)
   if (!template) {
     throw new Error(`Template not found: ${templateName}`)
   }
@@ -298,7 +306,7 @@ function generateStory(componentPath: string, templateName: string, category: st
     componentName,
     storyPath,
     template: templateName,
-    message: `Generated ${templateName} story for ${componentName}`,
+    message: `Generated ${templateName} story for ${componentName}`
   }
 }
 
@@ -309,8 +317,11 @@ function generateAllStories(componentDir: string, templateName: string, category
 
   const files = fs.readdirSync(componentDir)
   const componentFiles = files.filter(
-    (file) =>
-      (file.endsWith('.tsx') || file.endsWith('.jsx') || file.endsWith('.ts') || file.endsWith('.js')) &&
+    file =>
+      (file.endsWith('.tsx') ||
+        file.endsWith('.jsx') ||
+        file.endsWith('.ts') ||
+        file.endsWith('.js')) &&
       !file.includes('.stories.') &&
       !file.includes('.test.') &&
       !file.includes('.spec.')
@@ -327,7 +338,7 @@ function generateAllStories(componentDir: string, templateName: string, category
       results.push({
         success: false,
         file,
-        error: error instanceof Error ? error.message : String(error),
+        error: error instanceof Error ? error.message : String(error)
       })
     }
   }
@@ -335,9 +346,9 @@ function generateAllStories(componentDir: string, templateName: string, category
   return {
     success: true,
     total: componentFiles.length,
-    generated: results.filter((r) => r.success).length,
-    failed: results.filter((r) => !r.success).length,
-    results,
+    generated: results.filter(r => r.success).length,
+    failed: results.filter(r => !r.success).length,
+    results
   }
 }
 
@@ -355,15 +366,15 @@ function updateStorybookConfig(projectPath: string, options: any = {}) {
     addons: options.addons || [
       '@storybook/addon-links',
       '@storybook/addon-essentials',
-      '@storybook/addon-interactions',
+      '@storybook/addon-interactions'
     ],
     framework: {
       name: '@storybook/react-vite',
-      options: {},
+      options: {}
     },
     docs: {
-      autodocs: 'tag',
-    },
+      autodocs: 'tag'
+    }
   }
 
   const configContent = `import type { StorybookConfig } from '@storybook/react-vite'
@@ -378,7 +389,7 @@ export default config
   return {
     success: true,
     configPath: mainConfigPath,
-    message: 'Storybook configuration created/updated',
+    message: 'Storybook configuration created/updated'
   }
 }
 
@@ -388,7 +399,7 @@ async function main() {
   console.error('storybook-generator-mcp running on stdio')
 }
 
-main().catch((error) => {
+main().catch(error => {
   console.error('Server error:', error)
   process.exit(1)
 })

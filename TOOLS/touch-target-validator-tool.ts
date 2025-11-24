@@ -70,7 +70,7 @@ WCAG 2.5.5 Requirements:
     '[role="tab"]',
     '[onclick]',
     '[ng-click]',
-    '[@click]',
+    '[@click]'
   ]
 
   async _call(input: string): Promise<string> {
@@ -115,7 +115,7 @@ WCAG 2.5.5 Requirements:
           height: dimensions.height,
           location: element.location,
           compliant,
-          issue: compliant ? undefined : this.getIssueDescription(dimensions),
+          issue: compliant ? undefined : this.getIssueDescription(dimensions)
         }
 
         targets.push(target)
@@ -126,7 +126,7 @@ WCAG 2.5.5 Requirements:
       }
     }
 
-    const compliantTargets = targets.filter((t) => t.compliant).length
+    const compliantTargets = targets.filter(t => t.compliant).length
     const passRate = targets.length > 0 ? (compliantTargets / targets.length) * 100 : 100
 
     const recommendations = this.generateRecommendations(nonCompliantTargets, passRate)
@@ -139,8 +139,8 @@ WCAG 2.5.5 Requirements:
       recommendations,
       summary: {
         passRate,
-        wcagLevel: passRate === 100 ? 'AAA' : passRate >= 80 ? 'Partial' : 'Fail',
-      },
+        wcagLevel: passRate === 100 ? 'AAA' : passRate >= 80 ? 'Partial' : 'Fail'
+      }
     }
   }
 
@@ -148,7 +148,8 @@ WCAG 2.5.5 Requirements:
     content: string,
     selector: string
   ): Array<{ tag: string; selector: string; location: string; fullMatch: string }> {
-    const elements: Array<{ tag: string; selector: string; location: string; fullMatch: string }> = []
+    const elements: Array<{ tag: string; selector: string; location: string; fullMatch: string }> =
+      []
 
     // Simple regex patterns for different element types
     const patterns: Record<string, RegExp> = {
@@ -159,7 +160,7 @@ WCAG 2.5.5 Requirements:
       textarea: /<textarea[^>]*>/gi,
       summary: /<summary[^>]*>/gi,
       '[role="button"]': /<[^>]+role=["']button["'][^>]*>/gi,
-      '[onclick]': /<[^>]+onclick=/gi,
+      '[onclick]': /<[^>]+onclick=/gi
     }
 
     const pattern = patterns[selector]
@@ -172,7 +173,7 @@ WCAG 2.5.5 Requirements:
         tag: selector.replace(/[[\]"']/g, ''),
         selector,
         location: this.getLineNumber(content, match.index || 0),
-        fullMatch: match[0],
+        fullMatch: match[0]
       })
     }
 
@@ -212,7 +213,7 @@ WCAG 2.5.5 Requirements:
         'w-10': 40,
         'w-12': 48,
         'w-16': 64,
-        'w-20': 80,
+        'w-20': 80
       }
 
       // Tailwind height classes
@@ -221,7 +222,7 @@ WCAG 2.5.5 Requirements:
         'h-10': 40,
         'h-12': 48,
         'h-16': 64,
-        'h-20': 80,
+        'h-20': 80
       }
 
       for (const [className, pixels] of Object.entries(widthClasses)) {
@@ -272,7 +273,10 @@ WCAG 2.5.5 Requirements:
       issues.push(`height ${dimensions.height}px < ${this.minHeight}px`)
     }
 
-    if (issues.length === 0 && (dimensions.width === undefined || dimensions.height === undefined)) {
+    if (
+      issues.length === 0 &&
+      (dimensions.width === undefined || dimensions.height === undefined)
+    ) {
       return 'Missing dimension specification'
     }
 
@@ -291,8 +295,12 @@ WCAG 2.5.5 Requirements:
     recommendations.push('Ensure all interactive elements are at least 44x44px')
 
     // Group issues by type
-    const missingDimensions = nonCompliantTargets.filter((t) => t.width === undefined || t.height === undefined)
-    const tooSmall = nonCompliantTargets.filter((t) => t.width !== undefined && t.height !== undefined)
+    const missingDimensions = nonCompliantTargets.filter(
+      t => t.width === undefined || t.height === undefined
+    )
+    const tooSmall = nonCompliantTargets.filter(
+      t => t.width !== undefined && t.height !== undefined
+    )
 
     if (missingDimensions.length > 0) {
       recommendations.push(
@@ -301,7 +309,9 @@ WCAG 2.5.5 Requirements:
     }
 
     if (tooSmall.length > 0) {
-      recommendations.push(`${tooSmall.length} elements are smaller than 44x44px - increase size or padding`)
+      recommendations.push(
+        `${tooSmall.length} elements are smaller than 44x44px - increase size or padding`
+      )
     }
 
     // CSS recommendations
@@ -311,14 +321,16 @@ WCAG 2.5.5 Requirements:
     recommendations.push('Tailwind solution: Use w-12 h-12 (48x48px) or larger classes')
 
     // Specific element recommendations
-    const buttons = nonCompliantTargets.filter((t) => t.element.includes('button'))
+    const buttons = nonCompliantTargets.filter(t => t.element.includes('button'))
     if (buttons.length > 0) {
       recommendations.push(`${buttons.length} buttons need size adjustment`)
     }
 
-    const links = nonCompliantTargets.filter((t) => t.element.includes('a'))
+    const links = nonCompliantTargets.filter(t => t.element.includes('a'))
     if (links.length > 0) {
-      recommendations.push(`${links.length} links need padding or display: inline-block with dimensions`)
+      recommendations.push(
+        `${links.length} links need padding or display: inline-block with dimensions`
+      )
     }
 
     return recommendations
@@ -355,7 +367,9 @@ WCAG 2.5.5 Requirements:
           output.push(`    Width: Not specified ✗`)
         }
         if (target.height !== undefined) {
-          output.push(`    Height: ${target.height}px ${target.height < this.minHeight ? '✗' : '✓'}`)
+          output.push(
+            `    Height: ${target.height}px ${target.height < this.minHeight ? '✗' : '✓'}`
+          )
         } else {
           output.push(`    Height: Not specified ✗`)
         }

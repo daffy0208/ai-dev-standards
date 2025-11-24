@@ -188,7 +188,9 @@ export const auth = {
    * Get current user
    */
   async getUser(): Promise<User | null> {
-    const { data: { user } } = await supabase.auth.getUser()
+    const {
+      data: { user }
+    } = await supabase.auth.getUser()
     return user
   },
 
@@ -196,7 +198,9 @@ export const auth = {
    * Get current session
    */
   async getSession() {
-    const { data: { session } } = await supabase.auth.getSession()
+    const {
+      data: { session }
+    } = await supabase.auth.getSession()
     return session
   },
 
@@ -244,9 +248,7 @@ export const db = {
   async getAll<T extends keyof Database['public']['Tables']>(
     table: T
   ): Promise<Database['public']['Tables'][T]['Row'][]> {
-    const { data, error } = await supabase
-      .from(table)
-      .select('*')
+    const { data, error } = await supabase.from(table).select('*')
 
     if (error) throw new Error(`Query failed: ${error.message}`)
     return data as Database['public']['Tables'][T]['Row'][]
@@ -259,11 +261,7 @@ export const db = {
     table: T,
     id: string
   ): Promise<Database['public']['Tables'][T]['Row'] | null> {
-    const { data, error } = await supabase
-      .from(table)
-      .select('*')
-      .eq('id', id)
-      .single()
+    const { data, error } = await supabase.from(table).select('*').eq('id', id).single()
 
     if (error && error.code !== 'PGRST116') {
       throw new Error(`Query failed: ${error.message}`)
@@ -278,11 +276,7 @@ export const db = {
     table: T,
     data: Database['public']['Tables'][T]['Insert']
   ): Promise<Database['public']['Tables'][T]['Row']> {
-    const { data: result, error } = await supabase
-      .from(table)
-      .insert(data)
-      .select()
-      .single()
+    const { data: result, error } = await supabase.from(table).insert(data).select().single()
 
     if (error) throw new Error(`Insert failed: ${error.message}`)
     return result as Database['public']['Tables'][T]['Row']
@@ -310,14 +304,8 @@ export const db = {
   /**
    * Delete row
    */
-  async delete<T extends keyof Database['public']['Tables']>(
-    table: T,
-    id: string
-  ): Promise<void> {
-    const { error } = await supabase
-      .from(table)
-      .delete()
-      .eq('id', id)
+  async delete<T extends keyof Database['public']['Tables']>(table: T, id: string): Promise<void> {
+    const { error } = await supabase.from(table).delete().eq('id', id)
 
     if (error) throw new Error(`Delete failed: ${error.message}`)
   },
@@ -344,12 +332,10 @@ export const storage = {
    * Upload file to storage bucket
    */
   async upload(bucket: string, path: string, file: File) {
-    const { data, error } = await supabase.storage
-      .from(bucket)
-      .upload(path, file, {
-        cacheControl: '3600',
-        upsert: false
-      })
+    const { data, error } = await supabase.storage.from(bucket).upload(path, file, {
+      cacheControl: '3600',
+      upsert: false
+    })
 
     if (error) throw new Error(`Upload failed: ${error.message}`)
     return data
@@ -359,9 +345,7 @@ export const storage = {
    * Get public URL for file
    */
   getPublicUrl(bucket: string, path: string): string {
-    const { data } = supabase.storage
-      .from(bucket)
-      .getPublicUrl(path)
+    const { data } = supabase.storage.from(bucket).getPublicUrl(path)
 
     return data.publicUrl
   },
@@ -370,9 +354,7 @@ export const storage = {
    * Download file
    */
   async download(bucket: string, path: string) {
-    const { data, error } = await supabase.storage
-      .from(bucket)
-      .download(path)
+    const { data, error } = await supabase.storage.from(bucket).download(path)
 
     if (error) throw new Error(`Download failed: ${error.message}`)
     return data
@@ -382,9 +364,7 @@ export const storage = {
    * Delete file
    */
   async delete(bucket: string, paths: string[]) {
-    const { data, error } = await supabase.storage
-      .from(bucket)
-      .remove(paths)
+    const { data, error } = await supabase.storage.from(bucket).remove(paths)
 
     if (error) throw new Error(`Delete failed: ${error.message}`)
     return data
@@ -394,9 +374,7 @@ export const storage = {
    * List files in bucket
    */
   async list(bucket: string, path?: string) {
-    const { data, error } = await supabase.storage
-      .from(bucket)
-      .list(path)
+    const { data, error } = await supabase.storage.from(bucket).list(path)
 
     if (error) throw new Error(`List failed: ${error.message}`)
     return data
@@ -431,7 +409,7 @@ export async function examples() {
   })
 
   // Real-time subscription
-  const subscription = db.subscribe('users', (payload) => {
+  const subscription = db.subscribe('users', payload => {
     console.log('Change received!', payload)
   })
 

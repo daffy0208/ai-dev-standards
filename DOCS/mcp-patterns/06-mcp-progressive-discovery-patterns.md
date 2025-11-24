@@ -30,13 +30,14 @@ Agent Startup:
 ├─ Load Tool 1 description (500 tokens)
 ├─ Load Tool 2 description (500 tokens)
 ├─ Load Tool 3 description (500 tokens)
-├─ ... 
+├─ ...
 └─ Load Tool 100 description (500 tokens)
 
 Total Context: 50,000 tokens BEFORE agent even starts!
 ```
 
 **Problems:**
+
 - Context window quickly filled
 - Most tools never used
 - Slow agent initialization
@@ -62,6 +63,7 @@ Total Context: 400 tokens for tools (vs 50,000)
 ```
 
 **Benefits:**
+
 - Context window stays small
 - Only load what's needed
 - Fast initialization
@@ -109,7 +111,7 @@ Tools are organized in a discoverable filesystem structure that agents can navig
 // Agent discovers tools through filesystem operations
 
 // Step 1: List available servers
-const servers = await fs.readdir('/servers');
+const servers = await fs.readdir('/servers')
 // Returns: ['google-drive', 'notion', 'salesforce', 'slack']
 
 // Step 2: Pick relevant server(s) based on task
@@ -117,28 +119,28 @@ const servers = await fs.readdir('/servers');
 // Agent reasoning: Need google-drive and notion servers
 
 // Step 3: List tools in google-drive server
-const driveTools = await fs.readdir('/servers/google-drive');
+const driveTools = await fs.readdir('/servers/google-drive')
 // Returns: ['README.md', 'getDocument.ts', 'createDocument.ts', ...]
 
 // Step 4: Read README to understand server
-const driveReadme = await fs.readFile('/servers/google-drive/README.md');
+const driveReadme = await fs.readFile('/servers/google-drive/README.md')
 // Contains: "Google Drive MCP Server provides access to Google Drive files..."
 
 // Step 5: Based on task ("copy doc"), select getDocument tool
-const getDocTool = await fs.readFile('/servers/google-drive/getDocument.ts');
+const getDocTool = await fs.readFile('/servers/google-drive/getDocument.ts')
 // Only now is this tool loaded into context
 
 // Step 6: Repeat for Notion
-const notionTools = await fs.readdir('/servers/notion');
-const notionReadme = await fs.readFile('/servers/notion/README.md');
-const createPageTool = await fs.readFile('/servers/notion/createPage.ts');
+const notionTools = await fs.readdir('/servers/notion')
+const notionReadme = await fs.readFile('/servers/notion/README.md')
+const createPageTool = await fs.readFile('/servers/notion/createPage.ts')
 
 // Step 7: Execute using discovered tools
-import { getDocument } from './servers/google-drive/getDocument';
-import { createPage } from './servers/notion/createPage';
+import { getDocument } from './servers/google-drive/getDocument'
+import { createPage } from './servers/notion/createPage'
 
-const content = await getDocument(documentId);
-await createPage(databaseId, content);
+const content = await getDocument(documentId)
+await createPage(databaseId, content)
 ```
 
 ### README.md Format
@@ -173,12 +175,12 @@ Credentials must be configured before use.
 
 ### Agent Prompting for Filesystem Discovery
 
-```yaml
+````yaml
 system_prompt: |
   You are an agent with access to 1000+ tools organized in /servers/.
-  
+
   ## PROGRESSIVE DISCOVERY WORKFLOW
-  
+
   1. UNDERSTAND THE TASK
      - Parse the user's request
      - Identify which systems/servers are likely needed
@@ -186,20 +188,20 @@ system_prompt: |
        * "Copy Drive doc to Notion" → google-drive, notion
        * "Send Slack message about Salesforce lead" → slack, salesforce
        * "Analyze data from Sheets and update CRM" → google-sheets, salesforce
-  
+
   2. EXPLORE AVAILABLE SERVERS
      ```typescript
      const servers = await fs.readdir('/servers');
      console.log('Available servers:', servers);
      ```
-  
+
   3. READ SERVER READMEs (IMPORTANT)
      For each relevant server, read README.md first:
      ```typescript
      const readme = await fs.readFile('/servers/google-drive/README.md', 'utf-8');
      ```
      This tells you what tools are available and when to use them.
-  
+
   4. SELECT SPECIFIC TOOLS
      Based on README and task, choose specific tools:
      ```typescript
@@ -209,7 +211,7 @@ system_prompt: |
        t.includes('get') || t.includes('read') || t.includes('fetch')
      );
      ```
-  
+
   5. LOAD ONLY NEEDED TOOLS
      ```typescript
      // Load just 1-3 tools, not all tools
@@ -217,15 +219,15 @@ system_prompt: |
        '/servers/google-drive/getDocument.ts', 'utf-8'
      );
      ```
-  
+
   6. IMPORT AND USE
      ```typescript
      import { getDocument } from './servers/google-drive/getDocument';
      const content = await getDocument(docId);
      ```
-  
+
   ## EFFICIENCY RULES
-  
+
   ❌ DON'T do this (loads everything):
   ```typescript
   const allServers = await fs.readdir('/servers');
@@ -235,32 +237,35 @@ system_prompt: |
       await fs.readFile(`/servers/${server}/${tool}`); // WASTEFUL!
     }
   }
-  ```
-  
-  ✅ DO this (loads only what's needed):
-  ```typescript
-  // Task needs google-drive + notion
-  const driveReadme = await fs.readFile('/servers/google-drive/README.md');
-  const notionReadme = await fs.readFile('/servers/notion/README.md');
-  
-  // Based on README, need getDocument and createPage
-  const getDoc = await fs.readFile('/servers/google-drive/getDocument.ts');
-  const createPage = await fs.readFile('/servers/notion/createPage.ts');
-  
-  // Use them
-  import { getDocument } from './servers/google-drive/getDocument';
-  import { createPage as notionCreatePage } from './servers/notion/createPage';
-  ```
-  
-  ## DECISION TREE
-  
-  When deciding which tools to load, ask:
-  1. What ACTION does the task require? (read, write, create, update, delete)
-  2. What SYSTEMS are involved? (google-drive, notion, salesforce, etc.)
-  3. What SPECIFIC tools match action + system? (get*, create*, update*)
-  
-  Only load tools that answer YES to all three questions.
+````
+
+✅ DO this (loads only what's needed):
+
+```typescript
+// Task needs google-drive + notion
+const driveReadme = await fs.readFile('/servers/google-drive/README.md')
+const notionReadme = await fs.readFile('/servers/notion/README.md')
+
+// Based on README, need getDocument and createPage
+const getDoc = await fs.readFile('/servers/google-drive/getDocument.ts')
+const createPage = await fs.readFile('/servers/notion/createPage.ts')
+
+// Use them
+import { getDocument } from './servers/google-drive/getDocument'
+import { createPage as notionCreatePage } from './servers/notion/createPage'
 ```
+
+## DECISION TREE
+
+When deciding which tools to load, ask:
+
+1. What ACTION does the task require? (read, write, create, update, delete)
+2. What SYSTEMS are involved? (google-drive, notion, salesforce, etc.)
+3. What SPECIFIC tools match action + system? (get*, create*, update\*)
+
+Only load tools that answer YES to all three questions.
+
+````
 
 ### Testing Filesystem Discovery
 
@@ -268,26 +273,26 @@ system_prompt: |
 def test_filesystem_discovery():
     # Test 1: Agent discovers servers correctly
     task = "Copy document from Google Drive to Notion"
-    
+
     agent_output = agent.execute(task)
-    
+
     # Verify agent explored filesystem
     assert 'fs.readdir' in agent_output.tool_calls
     assert '/servers' in agent_output.filesystem_reads
-    
+
     # Verify agent read only relevant READMEs
     assert '/servers/google-drive/README.md' in agent_output.files_read
     assert '/servers/notion/README.md' in agent_output.files_read
     assert '/servers/salesforce/README.md' not in agent_output.files_read  # Irrelevant
-    
+
     # Verify agent loaded only needed tools
     assert len(agent_output.tools_loaded) <= 3  # Should be ~2 tools
     assert 'getDocument.ts' in agent_output.tools_loaded
     assert 'createPage.ts' in agent_output.tools_loaded
-    
+
     # Verify did NOT load all tools
     assert len(agent_output.tools_loaded) < 10  # Would be 100+ if loaded all
-```
+````
 
 ---
 
@@ -342,12 +347,12 @@ class ToolIndexer:
         self.model = SentenceTransformer('all-MiniLM-L6-v2')
         self.client = chromadb.PersistentClient(path="./tool-index")
         self.collection = self.client.get_or_create_collection("tools")
-    
+
     def index_tool(self, tool_path: str, description: str):
         """Add tool to search index"""
         # Generate embedding
         embedding = self.model.encode(description).tolist()
-        
+
         # Store in vector database
         self.collection.add(
             ids=[tool_path],
@@ -355,32 +360,32 @@ class ToolIndexer:
             metadatas=[{"path": tool_path}],
             documents=[description]
         )
-    
+
     def index_all_tools(self, servers_dir: str = "/servers"):
         """Index all tools in /servers"""
         for server in os.listdir(servers_dir):
             server_path = f"{servers_dir}/{server}"
-            
+
             for tool_file in os.listdir(server_path):
                 if tool_file.endswith('.ts'):
                     tool_path = f"{server_path}/{tool_file}"
-                    
+
                     # Extract description from JSDoc
                     description = self._extract_description(tool_path)
-                    
+
                     # Index
                     self.index_tool(tool_path, description)
-    
+
     def _extract_description(self, tool_path: str) -> str:
         """Extract JSDoc description from tool file"""
         with open(tool_path, 'r') as f:
             content = f.read()
-        
+
         # Parse JSDoc comment
         match = re.search(r'/\*\*\s*(.*?)\s*\*/', content, re.DOTALL)
         if match:
             return match.group(1).strip()
-        
+
         return f"Tool at {tool_path}"
 ```
 
@@ -391,18 +396,18 @@ class ToolSearcher:
     def __init__(self, model, collection):
         self.model = model
         self.collection = collection
-    
+
     def search_tools(self, query: str, top_k: int = 5) -> list:
         """Search for tools matching query"""
         # Convert query to embedding
         query_embedding = self.model.encode(query).tolist()
-        
+
         # Search vector database
         results = self.collection.query(
             query_embeddings=[query_embedding],
             n_results=top_k
         )
-        
+
         # Return tool paths
         return [
             {
@@ -425,11 +430,11 @@ class ToolSearcher:
 
 /**
  * Search for relevant tools based on natural language query
- * 
+ *
  * @param {string} query - Natural language description of what you need
  * @param {number} topK - Number of results to return (default: 5)
  * @returns {Array} List of relevant tools with paths and descriptions
- * 
+ *
  * @example
  * const tools = await search_tools("read a Google Drive document");
  * // Returns: [
@@ -438,22 +443,22 @@ class ToolSearcher:
  * // ]
  */
 async function search_tools(query: string, topK: number = 5): Promise<Array<any>> {
-    // Implemented by platform, calls Python ToolSearcher
+  // Implemented by platform, calls Python ToolSearcher
 }
 ```
 
 ### Agent Prompting for Semantic Search
 
-```yaml
+````yaml
 system_prompt: |
   You have access to 1000+ tools across many systems.
   Use the `search_tools` function to find relevant tools.
-  
+
   ## WORKFLOW
-  
+
   1. UNDERSTAND THE TASK
      Example: "Copy a Google Drive document to Notion"
-  
+
   2. SEARCH FOR TOOLS
      Break down into sub-actions and search:
      
@@ -474,20 +479,20 @@ system_prompt: |
      //   { path: "/servers/notion/addBlock.ts", relevance: 0.82 }
      // ]
      ```
-  
+
   3. SELECT BEST TOOLS
      Pick the highest relevance tool for each action:
      ```typescript
      const readTool = readTools[0].path;  // /servers/google-drive/getDocument.ts
      const writeTool = writeTools[0].path; // /servers/notion/createPage.ts
      ```
-  
+
   4. LOAD SELECTED TOOLS
      ```typescript
      const readToolCode = await fs.readFile(readTool, 'utf-8');
      const writeToolCode = await fs.readFile(writeTool, 'utf-8');
      ```
-  
+
   5. IMPORT AND USE
      ```typescript
      import { getDocument } from './servers/google-drive/getDocument';
@@ -496,33 +501,33 @@ system_prompt: |
      const content = await getDocument(docId);
      await createPage(dbId, content);
      ```
-  
+
   ## SEARCH QUERY TIPS
-  
+
   ✅ Good queries (specific, action-oriented):
   - "read a Salesforce contact record"
   - "send a message to Slack channel"
   - "create a new Notion page"
   - "update a Google Sheet cell"
-  
+
   ❌ Bad queries (too vague):
   - "salesforce"  // What action?
   - "work with documents"  // Which system?
   - "data"  // Too broad
-  
+
   ## WHEN TO USE
-  
+
   Use semantic search when:
   - You have 100+ tools
   - Tool names aren't obvious
   - Multiple systems provide similar functionality
   - Natural language queries are easier than filesystem navigation
-  
+
   Use filesystem navigation when:
   - You have <50 tools
   - Folder structure is clear and logical
   - Tool names are self-explanatory
-```
+````
 
 ### Testing Semantic Search
 
@@ -531,22 +536,22 @@ def test_semantic_search():
     # Index tools first
     indexer = ToolIndexer()
     indexer.index_all_tools()
-    
+
     # Test search
     searcher = ToolSearcher(indexer.model, indexer.collection)
-    
+
     # Query 1: Find Google Drive read tools
     results = searcher.search_tools("read a Google Doc", top_k=3)
     assert len(results) > 0
     assert "google-drive" in results[0]["path"]
     assert "get" in results[0]["path"].lower() or "read" in results[0]["path"].lower()
-    
+
     # Query 2: Find Notion write tools
     results = searcher.search_tools("create a page in Notion", top_k=3)
     assert len(results) > 0
     assert "notion" in results[0]["path"]
     assert "create" in results[0]["path"].lower() or "add" in results[0]["path"].lower()
-    
+
     # Query 3: Verify relevance ranking
     results = searcher.search_tools("delete a file", top_k=5)
     # Most relevant result should be delete-related
@@ -565,48 +570,45 @@ For best results, combine both methods:
  */
 
 async function discoverTools(task: string): Promise<string[]> {
-    // Step 1: High-level semantic search for relevant SERVERS
-    const serverQuery = extractServerNames(task);
-    // "Copy Drive doc to Notion" → ["google-drive", "notion"]
-    
-    // Step 2: For each server, use filesystem navigation
-    const toolPaths = [];
-    
-    for (const server of serverQuery) {
-        // Read server README
-        const readme = await fs.readFile(`/servers/${server}/README.md`);
-        
-        // List available tools
-        const tools = await fs.readdir(`/servers/${server}`);
-        
-        // Step 3: Semantic search within server for specific tool
-        const action = extractAction(task);  // "copy" → "read" + "write"
-        const relevantTools = await search_tools(
-            `${action} using ${server}`,
-            3
-        );
-        
-        // Pick best match
-        toolPaths.push(relevantTools[0].path);
-    }
-    
-    return toolPaths;
+  // Step 1: High-level semantic search for relevant SERVERS
+  const serverQuery = extractServerNames(task)
+  // "Copy Drive doc to Notion" → ["google-drive", "notion"]
+
+  // Step 2: For each server, use filesystem navigation
+  const toolPaths = []
+
+  for (const server of serverQuery) {
+    // Read server README
+    const readme = await fs.readFile(`/servers/${server}/README.md`)
+
+    // List available tools
+    const tools = await fs.readdir(`/servers/${server}`)
+
+    // Step 3: Semantic search within server for specific tool
+    const action = extractAction(task) // "copy" → "read" + "write"
+    const relevantTools = await search_tools(`${action} using ${server}`, 3)
+
+    // Pick best match
+    toolPaths.push(relevantTools[0].path)
+  }
+
+  return toolPaths
 }
 ```
 
 ### When to Use Each Method
 
-| Scenario | Method | Reason |
-|----------|--------|--------|
-| < 50 tools | Filesystem | Simple, no indexing needed |
-| 50-200 tools | Filesystem or Semantic | Either works |
-| 200+ tools | **Semantic** | Faster, scales better |
-| Clear folder structure | Filesystem | Intuitive navigation |
-| Complex, nested tools | **Semantic** | Search cuts through complexity |
-| Known tool names | Filesystem | Direct access |
-| Unknown tool landscape | **Semantic** | Discovery through search |
-| Real-time indexing needed | Filesystem | No pre-processing |
-| Static tool catalog | Semantic | One-time indexing |
+| Scenario                  | Method                 | Reason                         |
+| ------------------------- | ---------------------- | ------------------------------ |
+| < 50 tools                | Filesystem             | Simple, no indexing needed     |
+| 50-200 tools              | Filesystem or Semantic | Either works                   |
+| 200+ tools                | **Semantic**           | Faster, scales better          |
+| Clear folder structure    | Filesystem             | Intuitive navigation           |
+| Complex, nested tools     | **Semantic**           | Search cuts through complexity |
+| Known tool names          | Filesystem             | Direct access                  |
+| Unknown tool landscape    | **Semantic**           | Discovery through search       |
+| Real-time indexing needed | Filesystem             | No pre-processing              |
+| Static tool catalog       | Semantic               | One-time indexing              |
 
 ---
 
@@ -680,16 +682,16 @@ class CachedToolSearcher:
     def __init__(self, searcher: ToolSearcher):
         self.searcher = searcher
         self.cache = {}
-    
+
     def search_tools(self, query: str, top_k: int = 5) -> list:
         cache_key = f"{query}:{top_k}"
-        
+
         if cache_key in self.cache:
             return self.cache[cache_key]
-        
+
         results = self.searcher.search_tools(query, top_k)
         self.cache[cache_key] = results
-        
+
         return results
 ```
 
@@ -698,15 +700,15 @@ class CachedToolSearcher:
 ```typescript
 // Don't read all tool files at once
 // ❌ Bad
-const tools = await search_tools("google drive");
+const tools = await search_tools('google drive')
 for (const tool of tools) {
-    await fs.readFile(tool.path);  // Loads all at once
+  await fs.readFile(tool.path) // Loads all at once
 }
 
-// ✅ Good  
-const tools = await search_tools("google drive");
-const bestTool = tools[0];  // Pick best match first
-await fs.readFile(bestTool.path);  // Load only this one
+// ✅ Good
+const tools = await search_tools('google drive')
+const bestTool = tools[0] // Pick best match first
+await fs.readFile(bestTool.path) // Load only this one
 ```
 
 ### Incremental Discovery
@@ -714,20 +716,20 @@ await fs.readFile(bestTool.path);  // Load only this one
 ```typescript
 // Discover tools progressively as needed
 async function progressiveDiscovery(task: string) {
-    // Start with high-level search
-    const initialTools = await search_tools(task, 3);
-    
-    // Try first tool
-    const tool1 = await loadAndUse(initialTools[0]);
-    if (tool1.success) return tool1.result;
-    
-    // If failed, try second
-    const tool2 = await loadAndUse(initialTools[1]);
-    if (tool2.success) return tool2.result;
-    
-    // If still failed, expand search
-    const moreTools = await search_tools(task, 10);
-    // ...
+  // Start with high-level search
+  const initialTools = await search_tools(task, 3)
+
+  // Try first tool
+  const tool1 = await loadAndUse(initialTools[0])
+  if (tool1.success) return tool1.result
+
+  // If failed, try second
+  const tool2 = await loadAndUse(initialTools[1])
+  if (tool2.success) return tool2.result
+
+  // If still failed, expand search
+  const moreTools = await search_tools(task, 10)
+  // ...
 }
 ```
 
@@ -762,6 +764,7 @@ progressive_discovery_metrics = {
 **Symptom**: Token consumption higher than expected, agent reads many files.
 
 **Solution**:
+
 ```yaml
 # Add to prompts:
 "RULE: Load maximum 3 tools per task.
@@ -774,6 +777,7 @@ Most tasks need 1-2 tools only."
 **Symptom**: Search returns irrelevant results, agent gives up.
 
 **Solution**:
+
 - Improve tool descriptions (more keywords)
 - Use better embedding model (e.g., `all-mpnet-base-v2`)
 - Increase top-k parameter (try 10 instead of 5)
@@ -783,6 +787,7 @@ Most tasks need 1-2 tools only."
 **Symptom**: Progressive discovery takes >10 seconds.
 
 **Solution**:
+
 - Cache search results
 - Pre-filter by server name (filesystem method)
 - Use faster vector database (Pinecone instead of Chroma)

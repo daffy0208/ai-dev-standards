@@ -9,6 +9,7 @@ Documentation for skills that function as autonomous agents with decision-making
 **Total Skill-Based Agents: 6**
 
 These are specialized skills from the `/SKILLS/` directory that exhibit agent-like characteristics:
+
 - Autonomous decision-making
 - Self-directed workflows
 - State management
@@ -21,42 +22,47 @@ These are specialized skills from the `/SKILLS/` directory that exhibit agent-li
 
 ### By Function
 
-| Function | Agent | Primary Role |
-|----------|-------|--------------|
-| **Strategic Coordination** | archon-manager | Project management and strategy |
-| **Meta-Orchestration** | framework-orchestrator | Framework and skill coordination |
-| **Agent Management** | multi-agent-architect | Multi-agent system design |
-| **Quality Enforcement** | codex-review-workflow | Automated code review |
-| **Design Governance** | design-system-architect | Design system management |
-| **Security Governance** | security-architect | Security architecture |
+| Function                   | Agent                   | Primary Role                     |
+| -------------------------- | ----------------------- | -------------------------------- |
+| **Strategic Coordination** | archon-manager          | Project management and strategy  |
+| **Meta-Orchestration**     | framework-orchestrator  | Framework and skill coordination |
+| **Agent Management**       | multi-agent-architect   | Multi-agent system design        |
+| **Quality Enforcement**    | codex-review-workflow   | Automated code review            |
+| **Design Governance**      | design-system-architect | Design system management         |
+| **Security Governance**    | security-architect      | Security architecture            |
 
 ---
 
 ## 1. Archon-Manager
 
 ### Overview
+
 Strategic project management agent that provides the WHAT/WHEN layer coordinating with Skills for HOW.
 
 ### Agent Characteristics
 
 **Autonomy Level:** High
+
 - Makes strategic decisions about project direction
 - Autonomously manages task priorities
 - Self-organizes project knowledge
 
 **Decision-Making:**
+
 - When to create/update projects
 - How to structure tasks
 - Which knowledge to retrieve
 - When to escalate issues
 
 **State Management:**
+
 - Maintains project state in Archon MCP
 - Tracks task status and dependencies
 - Manages knowledge base versions
 - Persists project metadata
 
 **Coordination:**
+
 - Coordinates with execution skills
 - Delegates tactical work to specialized skills
 - Provides strategic context to other agents
@@ -64,24 +70,28 @@ Strategic project management agent that provides the WHAT/WHEN layer coordinatin
 ### Core Capabilities
 
 **Project Management:**
+
 - Create and manage projects
 - Define project scope and goals
 - Track project progress
 - Manage project metadata
 
 **Task Coordination:**
+
 - Break down high-level goals into tasks
 - Assign tasks to appropriate skills/agents
 - Track task status (todo, doing, review, done)
 - Manage task dependencies
 
 **Knowledge Base Operations:**
+
 - RAG search for relevant knowledge
 - Document management
 - Version control for project data
 - Knowledge retrieval and synthesis
 
 **Strategic Planning:**
+
 - Identify project risks
 - Recommend resource allocation
 - Suggest task prioritization
@@ -90,17 +100,20 @@ Strategic project management agent that provides the WHAT/WHEN layer coordinatin
 ### Integration Points
 
 **Works With:**
+
 - All 59 skills (provides strategic layer)
 - framework-orchestrator (meta-coordination)
 - multi-agent-architect (agent deployment)
 - General-purpose agent (execution)
 
 **MCP Integration:**
+
 - Archon MCP for data persistence
 - Project/task/document/version APIs
 - RAG search capabilities
 
 **Typical Workflow:**
+
 ```
 1. archon-manager identifies project needs
 2. Creates/updates project structure
@@ -181,28 +194,33 @@ Scenario: Building a RAG application
 ## 2. Multi-Agent Architect
 
 ### Overview
+
 Designs and orchestrates multi-agent systems for complex AI applications requiring specialization and parallel processing.
 
 ### Agent Characteristics
 
 **Autonomy Level:** High
+
 - Designs agent topologies independently
 - Makes coordination decisions
 - Optimizes agent communication patterns
 
 **Decision-Making:**
+
 - Agent selection and assignment
 - Communication protocol choice
 - Task decomposition strategy
 - Resource allocation among agents
 
 **State Management:**
+
 - Tracks active agents and their states
 - Manages inter-agent communication
 - Monitors agent performance
 - Coordinates agent lifecycles
 
 **Coordination:**
+
 - Hub-and-spoke or peer-to-peer coordination
 - Message routing between agents
 - Conflict resolution
@@ -211,24 +229,28 @@ Designs and orchestrates multi-agent systems for complex AI applications requiri
 ### Core Capabilities
 
 **Agent System Design:**
+
 - Define agent roles and responsibilities
 - Design agent communication patterns
 - Create agent coordination strategies
 - Establish agent hierarchies
 
 **Task Delegation:**
+
 - Decompose complex tasks
 - Assign tasks to appropriate agents
 - Monitor task progress
 - Handle task failures
 
 **Communication Management:**
+
 - Implement message passing
 - Define communication protocols
 - Handle asynchronous communication
 - Ensure message reliability
 
 **Parallel Processing:**
+
 - Coordinate parallel agent execution
 - Manage dependencies between tasks
 - Aggregate results from multiple agents
@@ -237,18 +259,21 @@ Designs and orchestrates multi-agent systems for complex AI applications requiri
 ### Integration Points
 
 **Works With:**
+
 - All agents (coordinates them)
 - framework-orchestrator (receives orchestration goals)
 - archon-manager (receives project context)
 - LangChain/CrewAI tools
 
 **Agent Patterns:**
+
 - Sequential (one after another)
 - Parallel (simultaneous execution)
 - Hierarchical (manager-worker)
 - Pipeline (staged processing)
 
 **Typical Workflow:**
+
 ```
 1. Receives complex task requiring multiple agents
 2. Designs agent topology for task
@@ -337,28 +362,33 @@ Scenario: Security audit of entire codebase
 ## 3. Framework-Orchestrator
 
 ### Overview
+
 Meta-agent that coordinates all frameworks and skills throughout the project lifecycle with intelligent sequencing.
 
 ### Agent Characteristics
 
 **Autonomy Level:** Very High
+
 - Highest-level strategic decisions
 - Determines entire workflow sequences
 - Self-optimizes based on patterns
 
 **Decision-Making:**
+
 - Which frameworks to use when
 - Optimal skill sequencing
 - Resource allocation across project
 - When to invoke archon-manager vs direct skills
 
 **State Management:**
+
 - Tracks project lifecycle phase
 - Monitors skill usage patterns
 - Learns optimal sequences
 - Maintains framework state
 
 **Coordination:**
+
 - Coordinates archon-manager and other agents
 - Orchestrates skill sequences
 - Manages framework transitions
@@ -367,24 +397,28 @@ Meta-agent that coordinates all frameworks and skills throughout the project lif
 ### Core Capabilities
 
 **Intelligent Sequencing:**
+
 - Analyze project requirements
 - Determine optimal skill order
 - Adapt based on project phase
 - Learn from successful patterns
 
 **Framework Coordination:**
+
 - Coordinate multiple frameworks
 - Handle framework transitions
 - Manage framework dependencies
 - Optimize framework usage
 
 **Lifecycle Management:**
+
 - Guide project from start to finish
 - Adapt to project phase changes
 - Ensure proper skill coverage
 - Maintain continuity
 
 **Pattern Recognition:**
+
 - Identify project patterns
 - Match to known successful sequences
 - Recommend best practices
@@ -393,17 +427,20 @@ Meta-agent that coordinates all frameworks and skills throughout the project lif
 ### Integration Points
 
 **Works With:**
+
 - All 59 skills (orchestrates them)
 - archon-manager (provides strategy)
 - multi-agent-architect (for complex coordination)
 - All other agents (top-level coordination)
 
 **Orchestration Levels:**
+
 - Strategic (What frameworks/approaches)
 - Tactical (Which skills and when)
 - Operational (Detailed execution)
 
 **Typical Workflow:**
+
 ```
 1. Analyze project requirements and pattern
 2. Determine optimal framework sequence
@@ -496,28 +533,33 @@ Scenario: Building a SaaS application from scratch
 ## 4. Codex-Review-Workflow
 
 ### Overview
+
 Automated code review agent using OpenAI Codex CLI with iterative fix-and-review cycles.
 
 ### Agent Characteristics
 
 **Autonomy Level:** Medium-High
+
 - Makes code quality decisions
 - Autonomously fixes issues
 - Iterates until validation passes
 
 **Decision-Making:**
+
 - What issues to fix first
 - How to fix issues
 - When to iterate vs stop
 - When to escalate to human
 
 **State Management:**
+
 - Tracks review iterations
 - Maintains issue list
 - Records fixes applied
 - Monitors validation status
 
 **Coordination:**
+
 - Works with quality-assurance
 - Coordinates with security-architect
 - Integrates with CI/CD
@@ -525,24 +567,28 @@ Automated code review agent using OpenAI Codex CLI with iterative fix-and-review
 ### Core Capabilities
 
 **Automated Code Review:**
+
 - Run Codex CLI validation
 - Identify code issues
 - Categorize by severity
 - Generate issue reports
 
 **Iterative Fix-and-Review:**
+
 - Apply automated fixes
 - Re-run validation
 - Iterate until passing
 - Limit iterations to prevent loops
 
 **Quality Enforcement:**
+
 - Enforce coding standards
 - Check security vulnerabilities
 - Validate best practices
 - Ensure compliance
 
 **CI/CD Integration:**
+
 - Pre-commit validation
 - PR validation
 - Deployment gates
@@ -551,18 +597,21 @@ Automated code review agent using OpenAI Codex CLI with iterative fix-and-review
 ### Integration Points
 
 **Works With:**
+
 - quality-assurance skill
 - security-architect skill
 - testing-strategist skill
 - Codex CLI (external tool)
 
 **Workflow Integration:**
+
 - Pre-commit hooks
 - CI/CD pipelines
 - PR review process
 - Deployment gates
 
 **Typical Workflow:**
+
 ```
 1. Receive code for review
 2. Run Codex CLI validation
@@ -651,28 +700,33 @@ Scenario: Pre-commit validation
 ## 5. Design-System Architect
 
 ### Overview
+
 Agent for building and maintaining scalable design systems with autonomous design decisions.
 
 ### Agent Characteristics
 
 **Autonomy Level:** Medium
+
 - Makes design consistency decisions
 - Autonomously maintains design tokens
 - Self-enforces design standards
 
 **Decision-Making:**
+
 - Component structure decisions
 - Design token values
 - When to create new components
 - How to ensure consistency
 
 **State Management:**
+
 - Tracks design system state
 - Maintains component library
 - Manages design token versions
 - Monitors usage patterns
 
 **Coordination:**
+
 - Works with visual-designer
 - Coordinates with frontend-builder
 - Integrates with Figma-developer
@@ -680,24 +734,28 @@ Agent for building and maintaining scalable design systems with autonomous desig
 ### Core Capabilities
 
 **Design System Architecture:**
+
 - Define system structure
 - Establish design principles
 - Create component hierarchy
 - Set up governance model
 
 **Component Management:**
+
 - Create component library
 - Maintain components
 - Version components
 - Document usage
 
 **Design Token Governance:**
+
 - Define design tokens
 - Maintain consistency
 - Version tokens
 - Sync across platforms
 
 **Storybook Integration:**
+
 - Set up Storybook
 - Document components
 - Create component stories
@@ -706,18 +764,21 @@ Agent for building and maintaining scalable design systems with autonomous desig
 ### Integration Points
 
 **Works With:**
+
 - visual-designer skill
 - frontend-builder skill
 - figma-developer skill
 - component library
 
 **Design Tools:**
+
 - Figma for design
 - Storybook for docs
 - CSS-in-JS for tokens
 - Component frameworks
 
 **Typical Workflow:**
+
 ```
 1. Analyze design requirements
 2. Design system architecture
@@ -812,28 +873,33 @@ Scenario: Creating design system for SaaS app
 ## 6. Security-Architect
 
 ### Overview
+
 Comprehensive security architecture agent combining threat modeling, secure design, code review, and compliance.
 
 ### Agent Characteristics
 
 **Autonomy Level:** Medium-High
+
 - Makes security decisions
 - Autonomously identifies threats
 - Self-enforces security policies
 
 **Decision-Making:**
+
 - Security architecture choices
 - Threat prioritization
 - Compliance requirements
 - Security controls selection
 
 **State Management:**
+
 - Tracks security posture
 - Maintains threat model
 - Monitors compliance status
 - Records security decisions
 
 **Coordination:**
+
 - Works with security-engineer
 - Coordinates with codex-review-workflow
 - Integrates with quality-assurance
@@ -841,24 +907,28 @@ Comprehensive security architecture agent combining threat modeling, secure desi
 ### Core Capabilities
 
 **Threat Modeling:**
+
 - Identify threats using STRIDE
 - Create threat models
 - Prioritize threats
 - Design mitigations
 
 **Security-First Design:**
+
 - Design secure architectures
 - Apply security patterns
 - Implement defense-in-depth
 - Ensure least privilege
 
 **Secure Code Review:**
+
 - Review for vulnerabilities
 - Check OWASP Top 10
 - Validate input handling
 - Ensure secure defaults
 
 **Compliance Validation:**
+
 - GDPR compliance
 - SOC2 requirements
 - HIPAA validation
@@ -867,18 +937,21 @@ Comprehensive security architecture agent combining threat modeling, secure desi
 ### Integration Points
 
 **Works With:**
+
 - security-engineer skill
 - codex-review-workflow agent
 - quality-assurance skill
 - Testing tools
 
 **Security Frameworks:**
+
 - STRIDE threat modeling
 - OWASP Top 10
 - NIST Cybersecurity Framework
 - CIS Controls
 
 **Typical Workflow:**
+
 ```
 1. Analyze system architecture
 2. Create threat model
@@ -974,50 +1047,56 @@ Scenario: Security architecture for healthcare app
 
 ## Comparison Matrix
 
-| Agent | Autonomy | Decision Scope | Primary Function | Integration Complexity |
-|-------|----------|---------------|------------------|----------------------|
-| archon-manager | High | Strategic | Project management | Medium |
-| multi-agent-architect | High | Tactical | Agent coordination | High |
-| framework-orchestrator | Very High | Meta-Strategic | Framework coordination | Very High |
-| codex-review-workflow | Medium-High | Operational | Code validation | Medium |
-| design-system-architect | Medium | Tactical | Design governance | Medium |
-| security-architect | Medium-High | Tactical | Security governance | Medium |
+| Agent                   | Autonomy    | Decision Scope | Primary Function       | Integration Complexity |
+| ----------------------- | ----------- | -------------- | ---------------------- | ---------------------- |
+| archon-manager          | High        | Strategic      | Project management     | Medium                 |
+| multi-agent-architect   | High        | Tactical       | Agent coordination     | High                   |
+| framework-orchestrator  | Very High   | Meta-Strategic | Framework coordination | Very High              |
+| codex-review-workflow   | Medium-High | Operational    | Code validation        | Medium                 |
+| design-system-architect | Medium      | Tactical       | Design governance      | Medium                 |
+| security-architect      | Medium-High | Tactical       | Security governance    | Medium                 |
 
 ---
 
 ## When to Use Skill-Based Agents
 
 ### Use Archon-Manager when:
+
 - Managing complex projects
 - Need strategic coordination
 - Building knowledge-intensive apps
 - Require project state persistence
 
 ### Use Multi-Agent Architect when:
+
 - Building multi-agent systems
 - Need parallel processing
 - Complex coordination required
 - Scalable architecture needed
 
 ### Use Framework-Orchestrator when:
+
 - Complex multi-framework projects
 - Need intelligent skill sequencing
 - Project lifecycle automation
 - Optimal workflow required
 
 ### Use Codex-Review-Workflow when:
+
 - Automated validation needed
 - CI/CD integration
 - Quality gates
 - Security compliance
 
 ### Use Design-System Architect when:
+
 - Building design systems
 - Need design consistency
 - Component library management
 - Design-dev sync
 
 ### Use Security-Architect when:
+
 - Security architecture needed
 - Threat modeling required
 - Compliance validation

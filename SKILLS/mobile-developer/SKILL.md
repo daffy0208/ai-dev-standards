@@ -12,24 +12,28 @@ I help you build cross-platform mobile apps with React Native and Expo.
 ## What I Do
 
 **App Development:**
+
 - React Native / Expo apps (iOS + Android)
 - Navigation and routing
 - State management
 - API integration
 
 **Native Features:**
+
 - Camera, location, notifications
 - Biometric authentication
 - File system access
 - Device sensors
 
 **Performance:**
+
 - Optimize bundle size
 - Lazy loading
 - Image optimization
 - Memory management
 
 **Distribution:**
+
 - App Store / Google Play submission
 - Over-the-air (OTA) updates
 - Beta testing (TestFlight, internal testing)
@@ -429,17 +433,13 @@ export function useNotifications() {
   useEffect(() => {
     registerForPushNotificationsAsync().then(token => setExpoPushToken(token || ''))
 
-    notificationListener.current = Notifications.addNotificationReceivedListener(
-      notification => {
-        console.log('Notification received:', notification)
-      }
-    )
+    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+      console.log('Notification received:', notification)
+    })
 
-    responseListener.current = Notifications.addNotificationResponseReceivedListener(
-      response => {
-        console.log('Notification clicked:', response)
-      }
-    )
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+      console.log('Notification clicked:', response)
+    })
 
     return () => {
       Notifications.removeNotificationSubscription(notificationListener.current!)
@@ -497,7 +497,7 @@ export function useLocation() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       const { status } = await Location.requestForegroundPermissionsAsync()
 
       if (status !== 'granted') {
@@ -537,7 +537,7 @@ interface AuthStore {
   logout: () => void
 }
 
-export const useAuthStore = create<AuthStore>((set) => ({
+export const useAuthStore = create<AuthStore>(set => ({
   user: null,
   token: null,
 
@@ -696,11 +696,7 @@ export default function OptimizedList({ data }) {
       },
       "package": "com.yourcompany.myapp",
       "versionCode": 1,
-      "permissions": [
-        "CAMERA",
-        "ACCESS_FINE_LOCATION",
-        "NOTIFICATIONS"
-      ]
+      "permissions": ["CAMERA", "ACCESS_FINE_LOCATION", "NOTIFICATIONS"]
     },
     "plugins": [
       "expo-router",
@@ -858,12 +854,14 @@ export function useForm<T>(initialValues: T) {
 ## When to Use Me
 
 **Perfect for:**
+
 - Building iOS + Android apps from one codebase
 - Rapid mobile prototyping
 - Apps with native features (camera, location, push)
 - Cross-platform mobile development
 
 **I'll help you:**
+
 - Set up React Native / Expo projects
 - Implement navigation
 - Integrate native features

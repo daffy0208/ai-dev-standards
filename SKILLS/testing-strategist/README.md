@@ -11,6 +11,7 @@ Helps you design and implement comprehensive testing strategies using the testin
 ## When to Use
 
 Use this skill when you need to:
+
 - Set up testing for a new project
 - Choose testing frameworks
 - Decide what to test at which level
@@ -47,15 +48,18 @@ testing-strategist/
 ## Prerequisites
 
 **Knowledge:**
+
 - Basic programming
 - Understanding of your framework (React, Express, etc.)
 
 **Tools:**
+
 - Jest, Vitest, or pytest
 - React Testing Library (for React)
 - Playwright or Cypress (for E2E)
 
 **Related Skills:**
+
 - `frontend-builder` - React component testing
 - `api-designer` - API testing patterns
 - `security-engineer` - Security testing
@@ -63,6 +67,7 @@ testing-strategist/
 ## Success Criteria
 
 You've successfully used this skill when:
+
 - ✅ Testing pyramid established (70/20/10)
 - ✅ Test frameworks configured
 - ✅ Code coverage ≥ 70%
@@ -73,6 +78,7 @@ You've successfully used this skill when:
 ## Common Workflows
 
 ### Workflow 1: New Project Testing Setup
+
 1. Install Jest + React Testing Library
 2. Configure jest.config.js
 3. Write first unit test
@@ -81,12 +87,14 @@ You've successfully used this skill when:
 6. Configure CI/CD to run tests
 
 ### Workflow 2: Test-Driven Development
+
 1. Write failing test (red)
 2. Write minimal code to pass (green)
 3. Refactor while keeping tests green
 4. Repeat
 
 ### Workflow 3: Improve Coverage
+
 1. Run `npm test -- --coverage`
 2. Identify untested files
 3. Add unit tests for business logic
@@ -96,17 +104,20 @@ You've successfully used this skill when:
 ## Key Concepts
 
 **Testing Pyramid:**
+
 - Unit Tests (70%): Fast, isolated, test functions/components
 - Integration Tests (20%): Test components together, APIs + DB
 - E2E Tests (10%): Slow, test complete user flows
 
 **What to Test:**
+
 - ✅ Business logic, utilities, components
 - ✅ API endpoints, database operations
 - ✅ Critical user journeys
 - ❌ Third-party libraries, framework internals
 
 **Coverage Targets:**
+
 - 70%: Minimum acceptable
 - 80%: Good coverage
 - 90%+: Diminishing returns
@@ -114,21 +125,25 @@ You've successfully used this skill when:
 ## Troubleshooting
 
 **Skill not activating?**
+
 - Try explicitly requesting: "Use the testing-strategist skill to..."
 - Mention keywords: "testing", "unit tests", "E2E"
 
 **Tests are slow?**
+
 - Too many E2E tests (shift left to integration/unit)
 - Not using parallel execution
 - Inefficient setup/teardown
 
 **Tests are flaky?**
+
 - Using fragile selectors (E2E)
 - Race conditions (add proper waits)
 - Shared state between tests
 - External dependencies not mocked
 
 **Low coverage?**
+
 - Not testing business logic
 - Missing edge cases
 - Too much code in components (extract to functions)
@@ -136,6 +151,7 @@ You've successfully used this skill when:
 ## Quick Reference
 
 ### Jest Configuration
+
 ```javascript
 // jest.config.js
 module.exports = {
@@ -150,6 +166,7 @@ module.exports = {
 ```
 
 ### Common Commands
+
 ```bash
 # Run all tests
 npm test
@@ -168,6 +185,7 @@ npx playwright test
 ```
 
 ### Test Anatomy (AAA Pattern)
+
 ```typescript
 it('should do something', () => {
   // Arrange - Set up test data

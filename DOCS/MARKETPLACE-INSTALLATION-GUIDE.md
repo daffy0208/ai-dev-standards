@@ -26,11 +26,13 @@ This guide focuses on installing **MCP Server Plugins**.
 ## Marketplace Location
 
 **Linux/WSL Path:**
+
 ```
 /home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/
 ```
 
 **Structure:**
+
 ```
 claude-code-plugins-plus/
 ├── plugins/
@@ -51,22 +53,26 @@ claude-code-plugins-plus/
 **Description:** Knowledge base with semantic search and summarization
 **Tools:** 6 MCP tools for document management
 **Use Cases:**
+
 - Store and search through project documentation
 - Semantic search across 7092 markdown files
 - TF-IDF based document retrieval
 - Document summarization
 
 **Path:**
+
 ```
 /home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins/mcp/domain-memory-agent/
 ```
 
 **Main Entry Point:**
+
 ```
 dist/servers/knowledge-base.js
 ```
 
 **Key Features:**
+
 - Store documents with metadata
 - TF-IDF semantic search
 - Document summarization
@@ -77,22 +83,26 @@ dist/servers/knowledge-base.js
 **Description:** Code health metrics and complexity analysis
 **Tools:** 4 MCP tools for code analysis
 **Use Cases:**
+
 - Analyze code complexity
 - Track git churn rates
 - Identify test coverage gaps
 - Generate code health reports
 
 **Path:**
+
 ```
 /home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins/mcp/project-health-auditor/
 ```
 
 **Main Entry Point:**
+
 ```
 dist/servers/code-metrics.js
 ```
 
 **Key Features:**
+
 - Cyclomatic complexity analysis
 - Git churn tracking
 - Test coverage analysis
@@ -103,22 +113,26 @@ dist/servers/code-metrics.js
 **Description:** DAG-based workflow automation
 **Tools:** 4 MCP tools for workflow management
 **Use Cases:**
+
 - Create multi-step workflows
 - Define task dependencies (DAG)
 - Execute workflows with parallel tasks
 - Track workflow execution history
 
 **Path:**
+
 ```
 /home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins/mcp/workflow-orchestrator/
 ```
 
 **Main Entry Point:**
+
 ```
 dist/servers/workflow-engine.js
 ```
 
 **Key Features:**
+
 - DAG-based task ordering
 - Parallel task execution
 - Workflow templates
@@ -136,6 +150,7 @@ ls -la /home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins
 ```
 
 **Result:** Found 6 MCP servers:
+
 - ai-experiment-logger
 - conversational-api-debugger
 - design-to-code
@@ -156,6 +171,7 @@ npm install --legacy-peer-deps
 Some marketplace MCPs have peer dependency conflicts that need to be bypassed.
 
 **Example:**
+
 ```bash
 cd /home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins/mcp/domain-memory-agent
 npm install --legacy-peer-deps
@@ -175,6 +191,7 @@ npm run build
 **Output location:** `dist/servers/*.js`
 
 **Example:**
+
 ```bash
 cd /home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins/mcp/domain-memory-agent
 npm run build
@@ -188,6 +205,7 @@ ls -la /home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins
 ```
 
 **Expected output:**
+
 ```
 domain-memory-agent/dist/servers/knowledge-base.js
 project-health-auditor/dist/servers/code-metrics.js
@@ -203,15 +221,21 @@ Add to `claude_desktop_config.json`:
   "mcpServers": {
     "domain-memory-agent": {
       "command": "node",
-      "args": ["/home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins/mcp/domain-memory-agent/dist/servers/knowledge-base.js"]
+      "args": [
+        "/home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins/mcp/domain-memory-agent/dist/servers/knowledge-base.js"
+      ]
     },
     "project-health-auditor": {
       "command": "node",
-      "args": ["/home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins/mcp/project-health-auditor/dist/servers/code-metrics.js"]
+      "args": [
+        "/home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins/mcp/project-health-auditor/dist/servers/code-metrics.js"
+      ]
     },
     "workflow-orchestrator": {
       "command": "node",
-      "args": ["/home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins/mcp/workflow-orchestrator/dist/servers/workflow-engine.js"]
+      "args": [
+        "/home/david/.claude/plugins/marketplaces/claude-code-plugins-plus/plugins/mcp/workflow-orchestrator/dist/servers/workflow-engine.js"
+      ]
     }
   }
 }
@@ -298,11 +322,13 @@ After restarting Claude Desktop:
 ### Global Configuration
 
 **Location (Windows):**
+
 ```
 C:\Users\david\AppData\Roaming\Claude\claude_desktop_config.json
 ```
 
 **Location (WSL):**
+
 ```
 /mnt/c/Users/david/AppData/Roaming/Claude/claude_desktop_config.json
 ```
@@ -312,6 +338,7 @@ C:\Users\david\AppData\Roaming\Claude\claude_desktop_config.json
 ### Project Configuration
 
 **Location:**
+
 ```
 .claude/claude_desktop_config.json
 ```
@@ -319,6 +346,7 @@ C:\Users\david\AppData\Roaming\Claude\claude_desktop_config.json
 **MCP Count:** 54
 
 **Breakdown:**
+
 - 49 local repository MCPs
 - 2 framework MCPs (framework-content, framework-orchestrator)
 - 3 marketplace MCPs (domain-memory-agent, project-health-auditor, workflow-orchestrator)
@@ -330,6 +358,7 @@ C:\Users\david\AppData\Roaming\Claude\claude_desktop_config.json
 ### domain-memory-agent
 
 **Store Document:**
+
 ```
 Use domain-memory-agent to store this document:
 Title: "API Design Principles"
@@ -338,11 +367,13 @@ Tags: ["api", "design", "best-practices"]
 ```
 
 **Search Documents:**
+
 ```
 Use domain-memory-agent to search for documents about "authentication patterns"
 ```
 
 **Summarize Document:**
+
 ```
 Use domain-memory-agent to summarize the API design document
 ```
@@ -350,16 +381,19 @@ Use domain-memory-agent to summarize the API design document
 ### project-health-auditor
 
 **Analyze Directory:**
+
 ```
 Use project-health-auditor to analyze code health in the ./src directory
 ```
 
 **Check Complexity:**
+
 ```
 Use project-health-auditor to identify high-complexity files in the SKILLS directory
 ```
 
 **Track Churn:**
+
 ```
 Use project-health-auditor to show git churn for the last 30 days
 ```
@@ -367,6 +401,7 @@ Use project-health-auditor to show git churn for the last 30 days
 ### workflow-orchestrator
 
 **Create Workflow:**
+
 ```
 Use workflow-orchestrator to create a workflow:
 1. Run tests
@@ -376,11 +411,13 @@ Use workflow-orchestrator to create a workflow:
 ```
 
 **Execute Workflow:**
+
 ```
 Use workflow-orchestrator to execute the deployment workflow
 ```
 
 **Check History:**
+
 ```
 Use workflow-orchestrator to show workflow execution history
 ```
@@ -390,16 +427,19 @@ Use workflow-orchestrator to show workflow execution history
 ## Remaining Marketplace MCPs (Not Yet Installed)
 
 ### ai-experiment-logger
+
 **Status:** Not installed
 **Priority:** Low
 **Description:** Log and track AI model experiments
 
 ### conversational-api-debugger
+
 **Status:** Not installed
 **Priority:** Medium
 **Description:** Interactive API debugging with conversational interface
 
 ### design-to-code
+
 **Status:** Not installed
 **Priority:** Medium
 **Description:** Convert design mockups to React components
@@ -413,6 +453,7 @@ Use workflow-orchestrator to show workflow execution history
 ### Issue: npm install fails with peer dependency error
 
 **Solution:** Use `--legacy-peer-deps` flag
+
 ```bash
 npm install --legacy-peer-deps
 ```
@@ -420,6 +461,7 @@ npm install --legacy-peer-deps
 ### Issue: MCP not showing up in Claude Desktop
 
 **Solutions:**
+
 1. Restart Claude Desktop completely
 2. Check MCP build succeeded:
    ```bash
@@ -437,6 +479,7 @@ npm install --legacy-peer-deps
 ### Issue: MCP crashes on startup
 
 **Solutions:**
+
 1. Check the MCP log file:
    ```
    C:\Users\david\AppData\Roaming\Claude\logs\mcp-server-{name}.log
@@ -458,6 +501,7 @@ npm install --legacy-peer-deps
 **Problem:** Using Windows path in WSL or vice versa
 
 **Solution:**
+
 - For Node.js in WSL, use Linux paths: `/home/david/.claude/...`
 - For Node.js in Windows, use Windows paths: `C:\\Users\\david\\...`
 
@@ -492,6 +536,7 @@ The marketplace MCPs are installed in the Linux filesystem (`/home/david/`) whil
 ### What It Does
 
 The `/plugin install` command:
+
 1. Downloads plugin files to marketplace directory
 2. Registers the plugin in Claude Code
 3. Makes instruction plugins immediately available
@@ -499,6 +544,7 @@ The `/plugin install` command:
 ### What It Does NOT Do
 
 For MCP Server plugins, `/plugin install`:
+
 1. Does NOT run `npm install`
 2. Does NOT build TypeScript
 3. Does NOT configure MCP servers

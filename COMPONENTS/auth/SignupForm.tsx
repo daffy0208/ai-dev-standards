@@ -33,28 +33,27 @@ export interface SignupFormProps {
   redirectTo?: string
 }
 
-const signupSchema = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z.string()
-    .min(8, 'Password must be at least 8 characters')
-    .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
-    .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
-    .regex(/[0-9]/, 'Password must contain at least one number'),
-  confirmPassword: z.string(),
-  fullName: z.string().min(2, 'Name must be at least 2 characters'),
-  acceptTerms: z.boolean().refine((val) => val === true, {
-    message: 'You must accept the terms and conditions'
+const signupSchema = z
+  .object({
+    email: z.string().email('Invalid email address'),
+    password: z
+      .string()
+      .min(8, 'Password must be at least 8 characters')
+      .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+      .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
+      .regex(/[0-9]/, 'Password must contain at least one number'),
+    confirmPassword: z.string(),
+    fullName: z.string().min(2, 'Name must be at least 2 characters'),
+    acceptTerms: z.boolean().refine(val => val === true, {
+      message: 'You must accept the terms and conditions'
+    })
   })
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ['confirmPassword']
-})
+  .refine(data => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ['confirmPassword']
+  })
 
-export function SignupForm({
-  onSuccess,
-  onError,
-  redirectTo = '/dashboard'
-}: SignupFormProps) {
+export function SignupForm({ onSuccess, onError, redirectTo = '/dashboard' }: SignupFormProps) {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -79,7 +78,14 @@ export function SignupForm({
   }
 
   const passwordStrength = calculatePasswordStrength(formData.password)
-  const strengthColors = ['bg-gray-200', 'bg-red-500', 'bg-orange-500', 'bg-yellow-500', 'bg-green-500', 'bg-green-600']
+  const strengthColors = [
+    'bg-gray-200',
+    'bg-red-500',
+    'bg-orange-500',
+    'bg-yellow-500',
+    'bg-green-500',
+    'bg-green-600'
+  ]
   const strengthLabels = ['', 'Very Weak', 'Weak', 'Fair', 'Strong', 'Very Strong']
 
   const handleSubmit = async (e: FormEvent) => {
@@ -93,7 +99,7 @@ export function SignupForm({
     } catch (err) {
       if (err instanceof z.ZodError) {
         const errors: Record<string, string> = {}
-        err.errors.forEach((error) => {
+        err.errors.forEach(error => {
           if (error.path[0]) {
             errors[error.path[0] as string] = error.message
           }
@@ -149,7 +155,7 @@ export function SignupForm({
             id="fullName"
             type="text"
             value={formData.fullName}
-            onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+            onChange={e => setFormData({ ...formData, fullName: e.target.value })}
             className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
               fieldErrors.fullName
                 ? 'border-red-500 focus:ring-red-500'
@@ -173,7 +179,7 @@ export function SignupForm({
             id="email"
             type="email"
             value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            onChange={e => setFormData({ ...formData, email: e.target.value })}
             className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
               fieldErrors.email
                 ? 'border-red-500 focus:ring-red-500'
@@ -183,9 +189,7 @@ export function SignupForm({
             required
             disabled={loading}
           />
-          {fieldErrors.email && (
-            <p className="mt-1 text-sm text-red-600">{fieldErrors.email}</p>
-          )}
+          {fieldErrors.email && <p className="mt-1 text-sm text-red-600">{fieldErrors.email}</p>}
         </div>
 
         {/* Password */}
@@ -198,7 +202,7 @@ export function SignupForm({
               id="password"
               type={showPassword ? 'text' : 'password'}
               value={formData.password}
-              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              onChange={e => setFormData({ ...formData, password: e.target.value })}
               className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
                 fieldErrors.password
                   ? 'border-red-500 focus:ring-red-500'
@@ -246,7 +250,7 @@ export function SignupForm({
             id="confirmPassword"
             type={showPassword ? 'text' : 'password'}
             value={formData.confirmPassword}
-            onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+            onChange={e => setFormData({ ...formData, confirmPassword: e.target.value })}
             className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
               fieldErrors.confirmPassword
                 ? 'border-red-500 focus:ring-red-500'
@@ -267,7 +271,7 @@ export function SignupForm({
             <input
               type="checkbox"
               checked={formData.acceptTerms}
-              onChange={(e) => setFormData({ ...formData, acceptTerms: e.target.checked })}
+              onChange={e => setFormData({ ...formData, acceptTerms: e.target.checked })}
               className="mt-1 mr-2"
               disabled={loading}
             />

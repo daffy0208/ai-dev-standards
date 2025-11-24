@@ -16,6 +16,7 @@ This directory will contain API reference documentation for the ai-dev-standards
 ## Contributing
 
 When adding API documentation:
+
 - Follow the [API documentation template](../../TEMPLATES/README.md)
 - Include code examples
 - Document all parameters and return values
@@ -23,4 +24,4 @@ When adding API documentation:
 
 ---
 
-*Last Updated: 2025-10-23*
+_Last Updated: 2025-10-23_

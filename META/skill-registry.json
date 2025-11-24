@@ -207,11 +207,11 @@
       "name": "bmad-method",
       "description": "Business Model and Architecture Design methodology for aligning technical architecture with business model sustainability and scalability",
       "triggers": [
-        "\"bmad-method\"",
-        "\"bmad method\"",
-        "\"business model architecture\"",
-        "\"business architecture design\"",
-        "\"align architecture with business model\""
+        "'bmad-method'",
+        "'bmad method'",
+        "'business model architecture'",
+        "'business architecture design'",
+        "'align architecture with business model'"
       ],
       "tags": [
         "business-architecture"
@@ -284,11 +284,11 @@
       "name": "codex-review-workflow",
       "description": "Automated code review workflow using OpenAI Codex CLI. Implements iterative fix-and-review cycles until code passes validation or reaches iteration limit. Use when building features requiring automated code validation, security checks, or quality assurance through Codex CLI.",
       "triggers": [
-        "\"review with codex\"",
-        "\"run codex review\"",
-        "\"automated code review\"",
-        "\"validate with codex\"",
-        "\"codex cli\""
+        "'review with codex'",
+        "'run codex review'",
+        "'automated code review'",
+        "'validate with codex'",
+        "'codex cli'"
       ],
       "tags": [
         "automation",
@@ -602,11 +602,11 @@
       "name": "framework-orchestrator",
       "description": "Meta-skill that coordinates all frameworks and skills throughout the project lifecycle, providing intelligent sequencing based on project patterns",
       "triggers": [
-        "\"framework-orchestrator\"",
-        "\"framework orchestrator\"",
-        "\"orchestrate frameworks\"",
-        "\"coordinate skills\"",
-        "\"project orchestration\""
+        "'framework-orchestrator'",
+        "'framework orchestrator'",
+        "'orchestrate frameworks'",
+        "'coordinate skills'",
+        "'project orchestration'"
       ],
       "tags": [
         "orchestration"
@@ -1090,11 +1090,11 @@
       "name": "prp-generator",
       "description": "Guides creation of Product Requirements Prompts (PRPs) - comprehensive requirement documents that serve as the foundation for AI-assisted development",
       "triggers": [
-        "\"prp-generator\"",
-        "\"prp generator\"",
-        "\"product requirements prompt\"",
-        "\"create prp\"",
-        "\"generate requirements\""
+        "'prp-generator'",
+        "'prp generator'",
+        "'product requirements prompt'",
+        "'create prp'",
+        "'generate requirements'"
       ],
       "tags": [
         "requirements"
@@ -1117,12 +1117,12 @@
       "name": "quality-assurance",
       "description": "Comprehensive quality assurance combining testing strategy, code quality enforcement, and validation gates. Consolidated from testing-strategist, code-quality-enforcer, and validation-gate-checker.",
       "triggers": [
-        "\"quality-assurance\"",
-        "\"quality assurance\"",
-        "\"qa strategy\"",
-        "\"testing strategy\"",
-        "\"code quality\"",
-        "\"validation gates\""
+        "'quality-assurance'",
+        "'quality assurance'",
+        "'qa strategy'",
+        "'testing strategy'",
+        "'code quality'",
+        "'validation gates'"
       ],
       "tags": [
         "quality"
@@ -1224,12 +1224,12 @@
       "name": "security-architect",
       "description": "Comprehensive security architecture combining threat modeling, security-first design, secure coding review, and compliance validation. Consolidated from threat-modeling, security-first-design, secure-coding-review, and compliance-validator.",
       "triggers": [
-        "\"security-architect\"",
-        "\"security architect\"",
-        "\"threat modeling\"",
-        "\"security design\"",
-        "\"secure coding\"",
-        "\"compliance validation\""
+        "'security-architect'",
+        "'security architect'",
+        "'threat modeling'",
+        "'security design'",
+        "'secure coding'",
+        "'compliance validation'"
       ],
       "tags": [
         "security"

@@ -48,14 +48,17 @@ One-paragraph explanation of what this agent accomplishes, why it exists, and ho
 ### Dependencies
 
 **Required Skills:**
+
 - `skill-name` - Used for [specific purpose]
 - `skill-name` - Used for [specific purpose]
 
 **Required MCPs:**
+
 - `mcp-server-name` - Provides [specific capabilities]
 - `mcp-server-name` - Provides [specific capabilities]
 
 **Optional Components:**
+
 - `component-name` - Enhances [specific functionality]
 
 ### System Diagram
@@ -83,15 +86,18 @@ One-paragraph explanation of what this agent accomplishes, why it exists, and ho
 **Objective:** What this phase achieves
 
 **Actions:**
+
 1. Specific action (tools/skills used)
 2. Specific action (tools/skills used)
 3. Specific action (tools/skills used)
 
 **Decision Points:**
+
 - Decision 1: [Options and selection criteria]
 - Decision 2: [Options and selection criteria]
 
 **Outputs:**
+
 - Output 1: [Description and format]
 - Output 2: [Description and format]
 
@@ -100,15 +106,18 @@ One-paragraph explanation of what this agent accomplishes, why it exists, and ho
 **Objective:** What this phase achieves
 
 **Actions:**
+
 1. Action (with skill/MCP invocation)
 2. Action (with skill/MCP invocation)
 3. Action (with skill/MCP invocation)
 
 **Parallel Operations:**
+
 - Can execute simultaneously: [List operations]
 - Must execute sequentially: [List operations with reasons]
 
 **Error Handling:**
+
 - Error type 1: [Recovery strategy]
 - Error type 2: [Recovery strategy]
 
@@ -117,11 +126,13 @@ One-paragraph explanation of what this agent accomplishes, why it exists, and ho
 **Objective:** What this phase achieves
 
 **Validation Checks:**
+
 - [ ] Success criterion 1
 - [ ] Success criterion 2
 - [ ] Success criterion 3
 
 **Completion Actions:**
+
 1. Final action
 2. Reporting/notification
 3. Cleanup/resource release
@@ -143,10 +154,12 @@ Final Answer: [Ultimate outcome]
 ### State Management
 
 **State Variables:**
+
 - `variable_name`: Purpose and lifecycle
 - `variable_name`: Purpose and lifecycle
 
 **State Transitions:**
+
 ```
 Initial → Phase1 → Phase2 → Phase3 → Complete
               ↓        ↓        ↓
@@ -199,6 +212,7 @@ optional:
 **Scenario:** Describe the situation and goal
 
 **Input:**
+
 ```json
 {
   "parameter1": "value",
@@ -207,12 +221,14 @@ optional:
 ```
 
 **Execution Trace:**
+
 1. Agent analyzes input → invokes `skill-name`
 2. Skill returns data → agent processes with `mcp-name`
 3. MCP completes → agent validates results
 4. Agent returns final output
 
 **Output:**
+
 ```json
 {
   "status": "success",
@@ -223,6 +239,7 @@ optional:
 ```
 
 **Key Insights:**
+
 - Insight 1 about the execution
 - Insight 2 about decision-making
 - Insight 3 about efficiency
@@ -232,6 +249,7 @@ optional:
 **Scenario:** Describe a challenging situation with complications
 
 **Input:**
+
 ```json
 {
   "parameter1": "complex_value",
@@ -240,6 +258,7 @@ optional:
 ```
 
 **Execution Trace:**
+
 1. Agent starts normally
 2. Encounters error condition
 3. Applies recovery strategy
@@ -247,6 +266,7 @@ optional:
 5. Succeeds on second attempt
 
 **Output:**
+
 ```json
 {
   "status": "success",
@@ -261,6 +281,7 @@ optional:
 ```
 
 **Key Insights:**
+
 - How the agent handled errors
 - Why recovery strategy worked
 - What could be improved
@@ -270,11 +291,13 @@ optional:
 **Typical Execution Time:** [Range based on input size]
 
 **Resource Requirements:**
+
 - Memory: [Typical usage]
 - API calls: [Approximate count]
 - Token usage: [Estimated cost]
 
 **Scalability:**
+
 - Handles inputs up to: [Size limit]
 - Parallel instances: [Supported/not supported]
 - Bottlenecks: [Known limitations]
@@ -301,33 +324,41 @@ optional:
 ### Issue: [Common Problem 1]
 
 **Symptoms:**
+
 - What you observe when this occurs
 
 **Possible Causes:**
+
 - Cause 1: Configuration issue
 - Cause 2: Input validation failure
 - Cause 3: Dependency unavailable
 
 **Solutions:**
+
 1. Check [specific configuration]
 2. Validate [specific input]
 3. Verify [specific dependency]
 
 **Prevention:**
+
 - How to avoid this issue in the future
 
 ### Issue: [Common Problem 2]
 
 **Symptoms:**
+
 - Observable indicators
 
 **Possible Causes:**
+
 - List of potential root causes
 
 **Solutions:**
+
 - Step-by-step resolution
 
 **Prevention:**
+
 - Preventive measures
 
 ## Integration Guide
@@ -335,17 +366,20 @@ optional:
 ### Invoking This Agent
 
 **From CLI:**
+
 ```bash
 ai-dev agent invoke agent-name --config config.json
 ```
 
 **From Code:**
+
 ```javascript
 const agent = new AgentName(config)
 const result = await agent.execute(input)
 ```
 
 **From Another Agent:**
+
 ```javascript
 const subAgent = orchestrator.invoke('agent-name', {
   input: data,
@@ -356,22 +390,25 @@ const subAgent = orchestrator.invoke('agent-name', {
 ### Event Hooks
 
 **Pre-Execution Hook:**
+
 ```javascript
-agent.on('pre-execute', (context) => {
+agent.on('pre-execute', context => {
   // Validation or logging
 })
 ```
 
 **Post-Execution Hook:**
+
 ```javascript
-agent.on('post-execute', (result) => {
+agent.on('post-execute', result => {
   // Result processing or notification
 })
 ```
 
 **Error Hook:**
+
 ```javascript
-agent.on('error', (error) => {
+agent.on('error', error => {
   // Error handling or alerting
 })
 ```
@@ -426,12 +463,14 @@ describe('AgentName E2E', () => {
 ### Logging
 
 **Log Levels:**
+
 - DEBUG: State transitions, decision points
 - INFO: Phase completions, major actions
 - WARN: Recoverable errors, performance issues
 - ERROR: Failures requiring attention
 
 **Log Format:**
+
 ```json
 {
   "timestamp": "ISO-8601",
@@ -458,24 +497,29 @@ describe('AgentName E2E', () => {
 ## Related Resources
 
 **Related Agents:**
+
 - `agent-name` - How they work together
 - `agent-name` - How they complement each other
 
 **Related Skills:**
+
 - `skill-name` - How this skill is leveraged
 - `skill-name` - How this skill is leveraged
 
 **Related Playbooks:**
+
 - `PLAYBOOKS/playbook-name.md` - Operational guide
 - `PLAYBOOKS/playbook-name.md` - Troubleshooting guide
 
 **Documentation:**
+
 - `AGENTS/AGENT.md` - Agent fundamentals
 - `DOCS/MULTI-AGENT-SYSTEMS.md` - Architecture patterns
 
 ## Version History
 
 **1.0.0** (YYYY-MM-DD)
+
 - Initial release
 - Core functionality implemented
 - Basic error handling

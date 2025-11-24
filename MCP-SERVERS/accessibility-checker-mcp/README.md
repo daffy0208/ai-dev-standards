@@ -88,3 +88,4 @@ const semantic = await accessibilityChecker.validateSemantics(`
 
 ```
 User: "Check this page for accessibility issues: components/LoginForm.tsx"
+```

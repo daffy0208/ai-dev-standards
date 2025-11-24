@@ -26,7 +26,7 @@ async function analyzeCommand(options) {
 
     // Check if it's a valid project
     const packageJsonPath = path.join(projectPath, 'package.json')
-    if (!await fs.pathExists(packageJsonPath)) {
+    if (!(await fs.pathExists(packageJsonPath))) {
       spinner.fail('Not a valid Node.js project')
       console.log(chalk.red('\n❌ No package.json found\n'))
       process.exit(1)
@@ -175,7 +175,6 @@ async function analyzeCommand(options) {
     }
 
     console.log()
-
   } catch (error) {
     spinner.fail('Analysis failed')
     console.error(chalk.red(`\n❌ Error: ${error.message}\n`))
@@ -217,7 +216,8 @@ async function findUnusedDependencies(projectPath, packageJson) {
   for (const dep of dependencies) {
     let found = false
 
-    for (const file of jsFiles.slice(0, 100)) { // Check first 100 files
+    for (const file of jsFiles.slice(0, 100)) {
+      // Check first 100 files
       const content = await fs.readFile(path.join(projectPath, file), 'utf8')
       if (content.includes(`'${dep}'`) || content.includes(`"${dep}"`)) {
         found = true

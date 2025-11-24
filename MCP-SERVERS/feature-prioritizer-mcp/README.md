@@ -41,30 +41,34 @@ npm run build
 
 ## Tools
 
-| Tool | Description |
-|------|-------------|
-| `add_feature` | Add feature to backlog |
-| `prioritize_features` | Classify features as P0/P1/P2/P3 |
-| `calculate_rice_score` | Calculate RICE score for feature |
-| `get_mvp_features` | Get MVP feature list (P0 + top 3 P1) |
-| `list_features` | List all features |
-| `clear_features` | Clear backlog |
+| Tool                   | Description                          |
+| ---------------------- | ------------------------------------ |
+| `add_feature`          | Add feature to backlog               |
+| `prioritize_features`  | Classify features as P0/P1/P2/P3     |
+| `calculate_rice_score` | Calculate RICE score for feature     |
+| `get_mvp_features`     | Get MVP feature list (P0 + top 3 P1) |
+| `list_features`        | List all features                    |
+| `clear_features`       | Clear backlog                        |
 
 ## Priority Levels
 
 **P0 (Critical):** High Impact (8-10), Low Effort (1-3)
+
 - Ship ASAP
 - Quick wins with major impact
 
 **P1 (Important):** High Impact (6-10), Medium Effort (4-6)
+
 - Next sprint
 - Strategic features
 
 **P2 (Nice to Have):** Medium Impact (4-7), Medium Effort (4-7)
+
 - Future consideration
 - Balanced value/cost
 
 **P3 (Low Priority):** Low Impact (<4) or High Effort (>7)
+
 - Backlog
 - Reevaluate need
 
@@ -73,6 +77,7 @@ npm run build
 **Formula:** (Reach × Impact × Confidence) / Effort
 
 **Thresholds:**
+
 - RICE ≥ 100 → P0
 - RICE ≥ 50 → P1
 - RICE ≥ 10 → P2

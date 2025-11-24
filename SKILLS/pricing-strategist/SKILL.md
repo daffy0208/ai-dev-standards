@@ -22,6 +22,7 @@ Design pricing strategies that maximize revenue while keeping customers happy.
 **Value metric** = What you charge for (users, projects, API calls, etc.)
 
 **Good value metrics**:
+
 - Align with customer value (as they get more value, they pay more)
 - Easy to understand and predict
 - Grow naturally with usage
@@ -52,49 +53,57 @@ AWS: Everything (CPU, storage, bandwidth, etc.)
 
 **Value Metric Decision Matrix**:
 
-| Metric | Alignment to Value | Simplicity | Predictability | Growth Potential |
-|--------|-------------------|------------|----------------|------------------|
-| Per User | High | High | High | Medium |
-| Per Feature | Medium | High | High | Low |
-| Usage-Based | High | Medium | Low | High |
-| Storage | Low | High | Medium | Medium |
-| Transactions | High | Medium | Medium | High |
+| Metric       | Alignment to Value | Simplicity | Predictability | Growth Potential |
+| ------------ | ------------------ | ---------- | -------------- | ---------------- |
+| Per User     | High               | High       | High           | Medium           |
+| Per Feature  | Medium             | High       | High           | Low              |
+| Usage-Based  | High               | Medium     | Low            | High             |
+| Storage      | Low                | High       | Medium         | Medium           |
+| Transactions | High               | Medium     | Medium         | High             |
 
 ### Step 2: Choose Your Pricing Model
 
 **Flat Rate**:
+
 ```
 $99/month - unlimited everything
 ```
+
 - ✅ Simple to understand
 - ✅ Easy to sell
 - ❌ Leaves money on table
 - ❌ Doesn't scale with value
 
 **Tiered Pricing**:
+
 ```
 Starter: $29/mo  - 5 users
 Pro:     $99/mo  - 20 users
 Business: $299/mo - Unlimited users
 ```
+
 - ✅ Captures different customer segments
 - ✅ Upsell path clear
 - ⚠️ Anchor pricing matters
 
 **Usage-Based**:
+
 ```
 $0.01 per API call
 First 10,000 free
 ```
+
 - ✅ Perfect alignment with value
 - ✅ Low barrier to entry
 - ❌ Unpredictable for customers
 - ❌ Hard to forecast revenue
 
 **Hybrid** (Best of both):
+
 ```
 Base: $49/mo + $0.50 per extra user
 ```
+
 - ✅ Predictable base + scales with value
 - ✅ Lower barrier than pure per-seat
 - ⚠️ More complex to explain
@@ -102,6 +111,7 @@ Base: $49/mo + $0.50 per extra user
 ### Step 3: Create Your Pricing Tiers
 
 **The Rule of 3**:
+
 - **Starter/Basic**: Get them in the door (50-60% of customers)
 - **Professional/Pro**: Sweet spot (30-40% of customers)
 - **Business/Enterprise**: High value, high support (5-10% of customers)
@@ -112,30 +122,27 @@ Base: $49/mo + $0.50 per extra user
 Tier 1 - Starter ($29/mo):
   Target: Individuals, tiny teams, trying it out
   Value Limit: 5 users, 10 projects
-  Features:
-    ✅ Core features
+  Features: ✅ Core features
     ✅ Basic support (email)
     ❌ Advanced features
     ❌ Integrations
     ❌ Custom anything
-  
+
 Tier 2 - Professional ($99/mo):
   Target: Small-medium teams, main product
   Value Limit: 20 users, 100 projects
-  Features:
-    ✅ Everything in Starter
+  Features: ✅ Everything in Starter
     ✅ Advanced features
     ✅ Integrations (Slack, etc.)
     ✅ Priority support
     ✅ API access
     ❌ Custom SLA
     ❌ SSO
-  
+
 Tier 3 - Business ($299/mo):
   Target: Larger teams, mission-critical
   Value Limit: Unlimited users, unlimited projects
-  Features:
-    ✅ Everything in Professional
+  Features: ✅ Everything in Professional
     ✅ Advanced security (SSO, SAML)
     ✅ Custom SLA
     ✅ Dedicated support
@@ -144,6 +151,7 @@ Tier 3 - Business ($299/mo):
 ```
 
 **Anchor Pricing Strategy**:
+
 ```
 Starter:  $29/mo  (entry point)
 Pro:      $99/mo  (3.4x - where you want most people) 👈 Sweet spot
@@ -151,6 +159,7 @@ Business: $299/mo (3x - makes Pro look reasonable)
 ```
 
 Most customers choose the middle tier when:
+
 - Middle tier is 3-4x the starter price
 - Top tier is 2-3x the middle tier
 
@@ -187,6 +196,7 @@ Business Tier (100% features):
 ```
 
 **Gating Strategy**:
+
 - **Gate by volume**: 5 users → 20 users → unlimited
 - **Gate by features**: Basic → Advanced → Enterprise
 - **Gate by support**: Email → Priority → Dedicated
@@ -198,12 +208,14 @@ Business Tier (100% features):
 ## Pricing Psychology
 
 ### Charm Pricing
+
 ```
 $99/mo > $100/mo  (1% cheaper, feels 20% cheaper)
 $29/mo > $30/mo
 ```
 
 ### Anchoring
+
 ```
 ❌ Bad:
   Basic:    $50
@@ -216,17 +228,20 @@ $29/mo > $30/mo
 ```
 
 ### Annual Discounts
+
 ```
 Monthly:  $99/mo  ($1,188/year)
 Annual:   $990/year  (Save $198 = 17% discount)
 ```
 
 **Why offer annual?**:
+
 - Cash flow upfront
 - Higher LTV (less churn)
 - 15-20% discount is standard
 
 **When to offer**:
+
 - At signup
 - After 2-3 months (they're hooked)
 - During renewal
@@ -235,6 +250,7 @@ Annual:   $990/year  (Save $198 = 17% discount)
 ### Free Trial vs Freemium
 
 **Free Trial**:
+
 ```yaml
 Type: 14-day free trial, no credit card required
 When: Product has clear "aha moment" quickly
@@ -248,6 +264,7 @@ Cons:
 ```
 
 **Freemium**:
+
 ```yaml
 Type: Forever free tier with limitations
 When: High viral coefficient, network effects
@@ -262,6 +279,7 @@ Cons:
 ```
 
 **Decision Matrix**:
+
 - **B2B SaaS**: Free trial (14 days)
 - **Viral products** (Slack, Zoom): Freemium
 - **High touch sales**: Free trial + demo
@@ -272,6 +290,7 @@ Cons:
 ### A/B Testing Pricing
 
 **What to test**:
+
 1. **Price points**: $99 vs $149
 2. **Packaging**: Features in each tier
 3. **Billing frequency**: Monthly vs annual
@@ -279,6 +298,7 @@ Cons:
 5. **Anchor pricing**: Add expensive tier to make middle tier look good
 
 **How to test**:
+
 ```javascript
 // Example: Test pricing pages
 const pricingVariants = {
@@ -305,6 +325,7 @@ analytics.track('pricing_page_viewed', {
 ```
 
 **Metrics to track**:
+
 - Conversion rate (trial → paid)
 - Average revenue per user (ARPU)
 - Customer acquisition cost (CAC)
@@ -312,6 +333,7 @@ analytics.track('pricing_page_viewed', {
 - Payback period
 
 **Sample size calculator**:
+
 ```
 Need ~1,000 visitors per variant to detect 10% change
 Need ~5,000 visitors per variant to detect 5% change
@@ -347,6 +369,7 @@ Option 3: No grandfathering, small increase
 ### Price Increases
 
 **When to raise prices**:
+
 - Product significantly improved
 - Demand exceeds supply
 - Customer acquisition costs increased
@@ -354,23 +377,27 @@ Option 3: No grandfathering, small increase
 - Every 12-18 months (keep up with inflation)
 
 **How to communicate**:
+
 ```markdown
 Subject: [Product] pricing update - your plan is increasing
 
 Hi [Name],
 
-Good news: We've shipped [impressive features] over the last 
+Good news: We've shipped [impressive features] over the last
 year, including [X, Y, Z].
 
 Starting [Date, 30+ days away], we're updating our pricing:
+
 - Pro: $99 → $129/mo (+30%)
 - Business: $299 → $349/mo (+17%)
 
 Your current pricing:
+
 - You'll stay at $99/mo for the next 12 months
 - To lock in $99/mo permanently, switch to annual: $990/year
 
 Why we're increasing prices:
+
 - [Specific value adds]
 - [New features]
 - [Better support]
@@ -386,22 +413,23 @@ Thanks for being with us,
 ### Upsell Strategies
 
 **When to prompt upgrades**:
+
 ```javascript
 // Hit limit
 if (user.projectCount >= user.plan.projectLimit) {
   showUpgradePrompt({
     message: "You've hit your 10 project limit",
-    cta: "Upgrade to Pro for 100 projects",
-    timing: "when_blocked"
+    cta: 'Upgrade to Pro for 100 projects',
+    timing: 'when_blocked'
   })
 }
 
 // Feature discovery
 if (user.clickedAdvancedFeature && !user.hasAccess) {
   showUpgradePrompt({
-    message: "This feature is available on Pro",
-    cta: "Upgrade now for $99/mo",
-    timing: "moment_of_value"
+    message: 'This feature is available on Pro',
+    cta: 'Upgrade now for $99/mo',
+    timing: 'moment_of_value'
   })
 }
 
@@ -409,13 +437,14 @@ if (user.clickedAdvancedFeature && !user.hasAccess) {
 if (user.daysActive > 30 && user.plan === 'starter') {
   showUpgradePrompt({
     message: "You're a power user! Unlock more with Pro",
-    cta: "See Pro features",
-    timing: "established_user"
+    cta: 'See Pro features',
+    timing: 'established_user'
   })
 }
 ```
 
 **Upgrade Incentives**:
+
 - Prorated credit for current plan
 - Feature preview (7-day trial of Pro features)
 - Bundle discount (annual save 20%)
@@ -434,13 +463,14 @@ Add-ons (à la carte):
   - API rate limit increase: +$49/mo
 
 Example Bill:
-  Pro plan:              $99
-  +5 extra users:        $50
-  +Advanced analytics:   $49
-  Total:                 $198/mo
+  Pro plan: $99
+  +5 extra users: $50
+  +Advanced analytics: $49
+  Total: $198/mo
 ```
 
 **When to use add-ons**:
+
 - Feature has clear standalone value
 - Not every customer needs it
 - Significant cost to provide
@@ -449,6 +479,7 @@ Example Bill:
 ## Pricing by Market Segment
 
 ### Small Business (SMB)
+
 ```yaml
 Price Point: $29-99/mo
 Sales Motion: Self-serve
@@ -459,6 +490,7 @@ Sales Cycle: Minutes to days
 ```
 
 ### Mid-Market
+
 ```yaml
 Price Point: $99-999/mo
 Sales Motion: Self-serve + light touch
@@ -469,6 +501,7 @@ Sales Cycle: Days to weeks
 ```
 
 ### Enterprise
+
 ```yaml
 Price Point: $1,000+/mo (often $10k-100k+)
 Sales Motion: High-touch sales
@@ -485,25 +518,25 @@ Sales Cycle: Weeks to months
 ```typescript
 interface PricingMetrics {
   // Revenue metrics
-  mrr: number  // Monthly Recurring Revenue
-  arr: number  // Annual Recurring Revenue
-  arpu: number  // Average Revenue Per User
-  
+  mrr: number // Monthly Recurring Revenue
+  arr: number // Annual Recurring Revenue
+  arpu: number // Average Revenue Per User
+
   // Conversion
-  trial_to_paid_rate: number  // %
-  free_to_paid_rate: number   // % (if freemium)
-  
+  trial_to_paid_rate: number // %
+  free_to_paid_rate: number // % (if freemium)
+
   // Expansion
-  expansion_mrr: number  // New revenue from existing customers
-  contraction_mrr: number  // Lost revenue from downgrades
-  net_revenue_retention: number  // (Expansion - Contraction) / Starting MRR
-  
+  expansion_mrr: number // New revenue from existing customers
+  contraction_mrr: number // Lost revenue from downgrades
+  net_revenue_retention: number // (Expansion - Contraction) / Starting MRR
+
   // Efficiency
-  cac: number  // Customer Acquisition Cost
-  ltv: number  // Lifetime Value
-  ltv_cac_ratio: number  // Should be > 3x
-  payback_period_months: number  // Should be < 12 months
-  
+  cac: number // Customer Acquisition Cost
+  ltv: number // Lifetime Value
+  ltv_cac_ratio: number // Should be > 3x
+  payback_period_months: number // Should be < 12 months
+
   // Distribution
   customers_by_tier: {
     starter: number
@@ -523,7 +556,7 @@ Good SaaS Company:
   LTV:CAC: > 3:1
   Payback Period: < 12 months
   Net Revenue Retention: > 100% (expansion covers churn)
-  Annual Contract Value: 
+  Annual Contract Value:
     - SMB: $1k-10k
     - Mid-market: $10k-100k
     - Enterprise: $100k+
@@ -540,9 +573,9 @@ Hero Section:
 
 Comparison Table:
   [Starter]  [Pro - Most Popular]  [Business]
-  
+
   Feature comparison rows
-  
+
   [CTA Button]  [CTA Button]  [CTA Button]
 
 FAQ Section:
@@ -581,14 +614,14 @@ Trust Signals:
 
 <!-- Social proof -->
 <div class="testimonial">
-  "We increased revenue by 40% after upgrading to Pro"
-  - Jane Doe, Acme Corp
+  "We increased revenue by 40% after upgrading to Pro" - Jane Doe, Acme Corp
 </div>
 ```
 
 ## Quick Start Checklist
 
 ### Launching Pricing (MVP)
+
 - [ ] Pick value metric (per-user, usage, etc.)
 - [ ] Design 3 tiers (Starter, Pro, Business)
 - [ ] Set anchor prices (3-4x between tiers)
@@ -598,6 +631,7 @@ Trust Signals:
 - [ ] Offer 14-day trial
 
 ### Optimizing Pricing (Post-Launch)
+
 - [ ] Track conversion rates by tier
 - [ ] Survey customers on pricing perception
 - [ ] A/B test price points
@@ -618,6 +652,7 @@ Trust Signals:
 ## Summary
 
 Great pricing strategy:
+
 - ✅ Aligns with customer value (value metric)
 - ✅ Simple to understand (3 tiers, clear packaging)
 - ✅ Room for expansion (upgrade path, add-ons)

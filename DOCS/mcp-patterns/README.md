@@ -23,6 +23,7 @@ START
 ```
 
 **Quick Recommendations:**
+
 - **Simple agents** (1-3 tools, light data) → Direct MCP
 - **Complex agents** (5+ tools, heavy data) → Code Execution
 - **Real-time interactions** → Direct MCP
@@ -31,6 +32,7 @@ START
 ## Documentation Index
 
 ### Getting Started
+
 1. **[MCP Patterns Overview](./00-mcp-patterns-overview.md)** - Understanding both patterns
 2. **[Decision Framework](./01-mcp-decision-framework.md)** - Choosing the right pattern
 3. **[Implementation Roadmap](./10-mcp-implementation-roadmap.md)** - Your migration plan
@@ -38,9 +40,11 @@ START
 ### Pattern-Specific Documentation
 
 #### Direct MCP Pattern (Current)
+
 4. **[Direct MCP Pattern](./02-mcp-direct-pattern.md)** - How your 50 MCPs currently work
 
 #### Code Execution Pattern (Advanced)
+
 5. **[Code Execution Pattern](./03-mcp-code-execution-pattern.md)** - Overview of new pattern
 6. **[Migration Guide](./04-mcp-migration-guide.md)** - Step-by-step conversion process
 7. **[Filesystem Structure](./05-mcp-filesystem-structure.md)** - Tool organization
@@ -52,12 +56,14 @@ START
 ## Current State: ai-dev-standards
 
 ### Our MCPs
+
 - **Total MCPs**: 50 active
 - **Current Pattern**: Direct MCP (all 50)
 - **Migration Candidates**: TBD (see roadmap)
 - **Registry**: [`/META/mcp-registry.json`](../../META/mcp-registry.json)
 
 ### Our Skills
+
 - **Total Skills**: 64 active
 - **MCP-Dependent**: ~40 skills
 - **Pattern Preference**: TBD (will be added to skill-registry.json)
@@ -65,28 +71,31 @@ START
 
 ## Key Benefits Comparison
 
-| Metric | Direct MCP | Code Execution |
-|--------|-----------|---------------|
-| **Token Usage** | Baseline | 40-60% reduction (first run)<br>85-95% reduction (with skills) |
-| **Context Window** | Fills quickly | Stays small |
-| **Setup Complexity** | Simple | Complex |
-| **Latency** | Baseline | Same or better |
-| **Scalability** | ~200 tools max | 1000+ tools |
-| **Self-Improvement** | No | Yes (creates reusable skills) |
-| **Security** | Basic | 4-layer model |
-| **Best For** | Simple agents | Complex workflows |
+| Metric               | Direct MCP     | Code Execution                                                 |
+| -------------------- | -------------- | -------------------------------------------------------------- |
+| **Token Usage**      | Baseline       | 40-60% reduction (first run)<br>85-95% reduction (with skills) |
+| **Context Window**   | Fills quickly  | Stays small                                                    |
+| **Setup Complexity** | Simple         | Complex                                                        |
+| **Latency**          | Baseline       | Same or better                                                 |
+| **Scalability**      | ~200 tools max | 1000+ tools                                                    |
+| **Self-Improvement** | No             | Yes (creates reusable skills)                                  |
+| **Security**         | Basic          | 4-layer model                                                  |
+| **Best For**         | Simple agents  | Complex workflows                                              |
 
 ## Expected Outcomes (Based on Package Analysis)
 
 ### Token Reduction
-| Agent Complexity | Direct MCP | Code Exec (First) | Code Exec (Skills) |
-|------------------|-----------|-------------------|-------------------|
-| Simple (1-2 tools) | ~8,000 | ~4,000 (50% ↓) | ~2,000 (75% ↓) |
-| Medium (3-5 tools) | ~30,000 | ~15,000 (50% ↓) | ~5,000 (83% ↓) |
-| Complex (6+ tools) | ~70,000 | ~30,000 (57% ↓) | ~10,000 (86% ↓) |
+
+| Agent Complexity   | Direct MCP | Code Exec (First) | Code Exec (Skills) |
+| ------------------ | ---------- | ----------------- | ------------------ |
+| Simple (1-2 tools) | ~8,000     | ~4,000 (50% ↓)    | ~2,000 (75% ↓)     |
+| Medium (3-5 tools) | ~30,000    | ~15,000 (50% ↓)   | ~5,000 (83% ↓)     |
+| Complex (6+ tools) | ~70,000    | ~30,000 (57% ↓)   | ~10,000 (86% ↓)    |
 
 ### Our Potential Impact
+
 With 50 MCPs and 64 skills, if we migrate high-complexity candidates:
+
 - **Estimated savings**: 60-85% token reduction for complex workflows
 - **Break-even**: To be determined based on actual usage analysis
 - **ROI**: Calculated in implementation roadmap
@@ -129,20 +138,24 @@ See [Security & Privacy Guide](./07-mcp-security-privacy-best-practices.md) for 
 ## Tools & Utilities
 
 ### Generators
+
 - **MCP Generator**: [`/CLI/generators/mcp-generator.js`](../../CLI/generators/mcp-generator.js) - Creates MCPs (both patterns)
 - **Tool File Generator**: [`/CLI/generators/tool-file-generator.js`](../../CLI/generators/tool-file-generator.js) - Creates individual tool files
 
 ### Migration Tools
+
 - **MCP Converter**: `/TOOLS/migration/mcp-converter.ts` - Converts Direct → Code Execution
 - **Validation**: `/TOOLS/migration/validation/` - Validates conversions
 - **Rollback**: `/TOOLS/migration/rollback/` - Rollback manager
 
 ### Benchmarking
+
 - **Baseline Benchmark**: `/TOOLS/benchmarking/baseline-benchmark.ts`
 - **Migration Benchmark**: `/TOOLS/benchmarking/migration-benchmark.ts`
 - **ROI Calculator**: `/TOOLS/benchmarking/roi-calculator.ts`
 
 ### Security
+
 - **Sandbox**: `/SECURITY/sandbox/` - Isolation configurations
 - **PII Tokenization**: `/SECURITY/pii-tokenization/` - Tokenizers
 - **Access Control**: `/SECURITY/access-control/` - RBAC system
@@ -151,17 +164,20 @@ See [Security & Privacy Guide](./07-mcp-security-privacy-best-practices.md) for 
 ## Related Documentation
 
 ### Core Docs
+
 - [System Overview](../SYSTEM-OVERVIEW.md)
 - [Brain MCP Integration](../BRAIN-MCP-INTEGRATION.md)
 - [MCP Configuration Guide](../MCP-CONFIGURATION-GUIDE.md)
 - [MCP Development Roadmap](../MCP-DEVELOPMENT-ROADMAP.md)
 
 ### Developer Guides
+
 - [MCP Development Playbook](../../PLAYBOOKS/mcp-development.md)
 - [Best Practices](../../STANDARDS/best-practices/mcp-code-execution-best-practices.md)
 - [Troubleshooting](../TROUBLESHOOTING.md)
 
 ### Registries
+
 - [MCP Registry](../../META/mcp-registry.json) - All 50 MCPs
 - [Skill Registry](../../META/skill-registry.json) - All 64 skills
 - [Tool Files Registry](../../META/tool-files-registry.json) - Code Execution tool tracking
@@ -193,6 +209,7 @@ A: Initial setup is significant (engineering time), but ongoing token savings ca
 ## Contributing
 
 When adding new MCPs or updating existing ones:
+
 1. Decide on pattern using Decision Framework
 2. Follow appropriate template in `/TEMPLATES/mcp-patterns/`
 3. Update registry with pattern metadata

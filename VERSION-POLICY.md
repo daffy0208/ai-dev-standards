@@ -22,16 +22,19 @@ Example: 2.1.3
 ## When to Bump Versions
 
 ### MAJOR (X.0.0)
+
 - **Phase completions** (e.g., Phase 3: Design System Complete)
 - **Breaking changes** to CLI, API, or structure
 - **Major architectural changes**
 - **Significant resource additions** (e.g., 20+ skills, 30+ MCPs)
 
 **Examples:**
+
 - `1.0.0 → 2.0.0`: Phase 3 completion (75 resources, design system)
 - `2.0.0 → 3.0.0`: CLI breaking changes, registry restructure
 
 ### MINOR (0.X.0)
+
 - **New skills** (5-15 skills)
 - **New MCPs** (5-15 MCPs)
 - **New features** in CLI or tools
@@ -39,11 +42,13 @@ Example: 2.1.3
 - **Quality improvements** (validation, testing, CI/CD)
 
 **Examples:**
+
 - `1.0.0 → 1.1.0`: Quality & Trust Update (validation system)
 - `1.1.0 → 1.2.0`: Added 8 new skills
 - `2.0.0 → 2.1.0`: New authentication MCP suite
 
 ### PATCH (0.0.X)
+
 - **Bug fixes** (security, critical fixes)
 - **Documentation updates** (README, guides)
 - **Registry sync fixes** (missing entries)
@@ -51,6 +56,7 @@ Example: 2.1.3
 - **Performance improvements** (no new features)
 
 **Examples:**
+
 - `1.0.0 → 1.0.1`: Fixed 9 security vulnerabilities in CLI
 - `2.0.0 → 2.0.1`: Updated outdated documentation
 - `2.1.0 → 2.1.1`: Registry sync fixes
@@ -89,6 +95,7 @@ git push origin main --tags
 ### Manual (Emergency Only)
 
 If the script fails, manually update:
+
 1. `package.json` → version field
 2. `README.md` → header AND Versioning section
 3. `CHANGELOG.md` → add new section at top
@@ -125,6 +132,7 @@ CHANGELOG.md:  1.0.1  ← Latest entry (inconsistent)
 ```
 
 **Recommendation:** Bump to **2.0.0** to reflect Phase 3 completion:
+
 - 45 skills (was 37)
 - 48 MCPs (was 7)
 - 216 resources (was ~80)
@@ -135,13 +143,16 @@ CHANGELOG.md:  1.0.1  ← Latest entry (inconsistent)
 ## Version History
 
 ### Major Releases
+
 - **2.0.0** (planned): Phase 3 Complete - Design System (75 resources)
 - **1.0.0** (2025-10-22): Initial release (37 skills, 7 MCPs)
 
 ### Minor Releases
+
 - **1.1.0** (2025-10-22): Quality & Trust Update (validation, CI/CD)
 
 ### Patch Releases
+
 - **1.0.1** (2025-10-27): Security fixes (9 CLI vulnerabilities)
 
 ---

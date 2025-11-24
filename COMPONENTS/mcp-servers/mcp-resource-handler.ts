@@ -7,6 +7,7 @@
  * @example
  * ```typescript
  * import { MCPResourceHandler } from './mcp-resource-handler';
+ * import * as crypto from 'crypto';
  *
  * const resourceHandler = new MCPResourceHandler({
  *   uri: 'myapp://docs/readme',
@@ -24,133 +25,137 @@
  * ```
  */
 
+import * as crypto from 'crypto';
+
 export interface ResourceHandlerConfig {
-  uri: string;
-  name: string;
-  description: string;
-  mimeType?: string;
-  handler: (version?: string) => Promise<string | Buffer>;
-  cache?: ResourceCacheConfig;
-  versioning?: ResourceVersioningConfig;
-  metadata?: Record<string, any>;
-  accessControl?: AccessControlConfig;
+  uri: string
+  name: string
+  description: string
+  mimeType?: string
+  handler: (version?: string) => Promise<string | Buffer>
+  cache?: ResourceCacheConfig
+  versioning?: ResourceVersioningConfig
+  metadata?: Record<string, any>
+  accessControl?: AccessControlConfig
 }
 
 export interface ResourceCacheConfig {
-  enabled: boolean;
-  ttl?: number; // milliseconds
-  maxSize?: number; // bytes
+  enabled: boolean
+  ttl?: number // milliseconds
+  maxSize?: number // bytes
 }
 
 export interface ResourceVersioningConfig {
-  enabled: boolean;
-  currentVersion?: string;
-  availableVersions?: string[];
+  enabled: boolean
+  currentVersion?: string
+  availableVersions?: string[]
 }
 
 export interface AccessControlConfig {
-  requiresAuth?: boolean;
-  allowedRoles?: string[];
+  requiresAuth?: boolean
+  allowedRoles?: string[]
   rateLimits?: {
-    maxRequests: number;
-    windowMs: number;
-  };
+    maxRequests: number
+    windowMs: number
+  }
 }
 
 export interface ResourceMetadata {
-  uri: string;
-  name: string;
-  description: string;
-  mimeType?: string;
-  version?: string;
-  size?: number;
-  lastModified?: Date;
-  etag?: string;
+  uri: string
+  name: string
+  description: string
+  mimeType?: string
+  version?: string
+  size?: number
+  lastModified?: Date
+  etag?: string
 }
 
 export interface ResourceAccessResult {
-  success: boolean;
-  content?: string | Buffer;
-  metadata: ResourceMetadata;
-  cached: boolean;
-  accessTime: number;
+  success: boolean
+  content?: string | Buffer
+  metadata: ResourceMetadata
+  cached: boolean
+  accessTime: number
   error?: {
-    code: string;
-    message: string;
-  };
+    code: string
+    message: string
+  }
 }
 
 /**
  * Resource cache with size limiting
  */
 class ResourceCache {
-  private cache: Map<string, { content: string | Buffer; size: number; expiresAt: number; etag: string }> = new Map();
-  private currentSize: number = 0;
+  private cache: Map<
+    string,
+    { content: string | Buffer; size: number; expiresAt: number; etag: string }
+  > = new Map()
+  private currentSize: number = 0
 
   constructor(private maxSize?: number) {}
 
   set(key: string, content: string | Buffer, ttl: number): string {
-    const size = Buffer.isBuffer(content) ? content.length : Buffer.byteLength(content, 'utf-8');
-    const expiresAt = Date.now() + ttl;
-    const etag = this.generateEtag(content);
+    const size = Buffer.isBuffer(content) ? content.length : Buffer.byteLength(content, 'utf-8')
+    const expiresAt = Date.now() + ttl
+    const etag = this.generateEtag(content)
 
     // Check if adding this would exceed max size
     if (this.maxSize && this.currentSize + size > this.maxSize) {
-      this.evictOldest();
+      this.evictOldest()
     }
 
-    this.cache.set(key, { content, size, expiresAt, etag });
-    this.currentSize += size;
+    this.cache.set(key, { content, size, expiresAt, etag })
+    this.currentSize += size
 
-    return etag;
+    return etag
   }
 
   get(key: string): { content: string | Buffer; etag: string } | null {
-    const entry = this.cache.get(key);
-    if (!entry) return null;
+    const entry = this.cache.get(key)
+    if (!entry) return null
 
     if (Date.now() > entry.expiresAt) {
-      this.delete(key);
-      return null;
+      this.delete(key)
+      return null
     }
 
-    return { content: entry.content, etag: entry.etag };
+    return { content: entry.content, etag: entry.etag }
   }
 
   delete(key: string): void {
-    const entry = this.cache.get(key);
+    const entry = this.cache.get(key)
     if (entry) {
-      this.currentSize -= entry.size;
-      this.cache.delete(key);
+      this.currentSize -= entry.size
+      this.cache.delete(key)
     }
   }
 
   clear(): void {
-    this.cache.clear();
-    this.currentSize = 0;
+    this.cache.clear()
+    this.currentSize = 0
   }
 
   private evictOldest(): void {
-    let oldestKey: string | null = null;
-    let oldestTime = Infinity;
+    let oldestKey: string | null = null
+    let oldestTime = Infinity
 
     for (const [key, entry] of this.cache.entries()) {
       if (entry.expiresAt < oldestTime) {
-        oldestTime = entry.expiresAt;
-        oldestKey = key;
+        oldestTime = entry.expiresAt
+        oldestKey = key
       }
     }
 
     if (oldestKey) {
-      this.delete(oldestKey);
+      this.delete(oldestKey)
     }
   }
 
   private generateEtag(content: string | Buffer): string {
-    const crypto = require('crypto');
-    const hash = crypto.createHash('md5');
-    hash.update(content);
-    return hash.digest('hex');
+    const hash = crypto.createHash('md5')
+    hash.update(content)
+    return hash.digest('hex')
   }
 
   getStats() {
@@ -158,7 +163,7 @@ class ResourceCache {
       entryCount: this.cache.size,
       currentSize: this.currentSize,
       maxSize: this.maxSize
-    };
+    }
   }
 }
 
@@ -174,24 +179,26 @@ class ResourceCache {
  * - Rate limiting
  */
 export class MCPResourceHandler {
-  private config: ResourceHandlerConfig;
-  private cache?: ResourceCache;
-  private accessLog: Array<{ timestamp: Date; userId?: string; version?: string }> = [];
-  private versions: Map<string, { content: string | Buffer; timestamp: Date }> = new Map();
+  private config: ResourceHandlerConfig
+  private cache?: ResourceCache
+  private accessLog: Array<{ timestamp: Date; userId?: string; version?: string }> = []
+  private versions: Map<string, { content: string | Buffer; timestamp: Date }> = new Map()
 
   constructor(config: ResourceHandlerConfig) {
-    this.config = config;
+    this.config = config
 
     // Initialize cache if enabled
     if (this.config.cache?.enabled) {
-      this.cache = new ResourceCache(this.config.cache.maxSize);
+      this.cache = new ResourceCache(this.config.cache.maxSize)
     }
 
     // Initialize versioning
     if (this.config.versioning?.enabled) {
-      const currentVersion = this.config.versioning.currentVersion || '1.0.0';
-      this.config.versioning.currentVersion = currentVersion;
-      this.config.versioning.availableVersions = this.config.versioning.availableVersions || [currentVersion];
+      const currentVersion = this.config.versioning.currentVersion || '1.0.0'
+      this.config.versioning.currentVersion = currentVersion
+      this.config.versioning.availableVersions = this.config.versioning.availableVersions || [
+        currentVersion
+      ]
     }
   }
 
@@ -199,68 +206,72 @@ export class MCPResourceHandler {
    * Get resource content
    */
   async get(options?: {
-    version?: string;
-    userId?: string;
-    ifNoneMatch?: string; // ETag for conditional requests
+    version?: string
+    userId?: string
+    ifNoneMatch?: string // ETag for conditional requests
   }): Promise<ResourceAccessResult> {
-    const startTime = Date.now();
+    const startTime = Date.now()
 
     try {
       // Check access control
       if (this.config.accessControl) {
-        const canAccess = await this.checkAccess(options?.userId);
+        const canAccess = await this.checkAccess(options?.userId)
         if (!canAccess) {
-          return this.createErrorResult('ACCESS_DENIED', 'Access denied to resource', startTime);
+          return this.createErrorResult('ACCESS_DENIED', 'Access denied to resource', startTime)
         }
       }
 
       // Determine version
-      const version = options?.version || this.config.versioning?.currentVersion;
+      const version = options?.version || this.config.versioning?.currentVersion
 
       // Check cache
       if (this.cache) {
-        const cacheKey = this.getCacheKey(version);
-        const cached = this.cache.get(cacheKey);
+        const cacheKey = this.getCacheKey(version)
+        const cached = this.cache.get(cacheKey)
+        
+        // DEBUG
+        // console.log(`[MCPResourceHandler] Cache check for key: ${cacheKey}, found: ${!!cached}`)
 
         if (cached) {
           // Check ETag for conditional requests
           if (options?.ifNoneMatch === cached.etag) {
-            return this.createNotModifiedResult(cached.etag, startTime);
+            return this.createNotModifiedResult(cached.etag, startTime)
           }
 
           // Log access
-          this.logAccess(options?.userId, version);
+          this.logAccess(options?.userId, version)
 
-          return this.createSuccessResult(cached.content, true, cached.etag, version, startTime);
+          return this.createSuccessResult(cached.content, true, cached.etag, version, startTime)
         }
       }
 
       // Fetch resource content
-      const content = await this.config.handler(version);
+      const content = await this.config.handler(version)
 
       // Cache the result
-      let etag: string | undefined;
+      let etag: string | undefined
       if (this.cache && this.config.cache) {
-        const cacheKey = this.getCacheKey(version);
-        etag = this.cache.set(cacheKey, content, this.config.cache.ttl || 300000);
+        const cacheKey = this.getCacheKey(version)
+        // DEBUG
+        // console.log(`[MCPResourceHandler] Caching content for key: ${cacheKey}, ttl: ${this.config.cache.ttl}`)
+        etag = this.cache.set(cacheKey, content, this.config.cache.ttl || 300000)
       }
 
       // Store version if versioning is enabled
       if (this.config.versioning?.enabled && version) {
-        this.versions.set(version, { content, timestamp: new Date() });
+        this.versions.set(version, { content, timestamp: new Date() })
       }
 
       // Log access
-      this.logAccess(options?.userId, version);
+      this.logAccess(options?.userId, version)
 
-      return this.createSuccessResult(content, false, etag, version, startTime);
-
+      return this.createSuccessResult(content, false, etag, version, startTime)
     } catch (error) {
       return this.createErrorResult(
         'RESOURCE_ACCESS_FAILED',
         error.message || 'Failed to access resource',
         startTime
-      );
+      )
     }
   }
 
@@ -268,7 +279,7 @@ export class MCPResourceHandler {
    * Get resource metadata without content
    */
   async getMetadata(version?: string): Promise<ResourceMetadata> {
-    const currentVersion = version || this.config.versioning?.currentVersion;
+    const currentVersion = version || this.config.versioning?.currentVersion
 
     return {
       uri: this.config.uri,
@@ -277,7 +288,7 @@ export class MCPResourceHandler {
       mimeType: this.config.mimeType,
       version: currentVersion,
       lastModified: this.getLastModified(currentVersion)
-    };
+    }
   }
 
   /**
@@ -285,9 +296,9 @@ export class MCPResourceHandler {
    */
   listVersions(): string[] {
     if (!this.config.versioning?.enabled) {
-      return [];
+      return []
     }
-    return this.config.versioning.availableVersions || [];
+    return this.config.versioning.availableVersions || []
   }
 
   /**
@@ -295,25 +306,25 @@ export class MCPResourceHandler {
    */
   async createVersion(version: string, content: string | Buffer): Promise<void> {
     if (!this.config.versioning?.enabled) {
-      throw new Error('Versioning is not enabled for this resource');
+      throw new Error('Versioning is not enabled for this resource')
     }
 
     // Store version
-    this.versions.set(version, { content, timestamp: new Date() });
+    this.versions.set(version, { content, timestamp: new Date() })
 
     // Update available versions
     if (!this.config.versioning.availableVersions) {
-      this.config.versioning.availableVersions = [];
+      this.config.versioning.availableVersions = []
     }
 
     if (!this.config.versioning.availableVersions.includes(version)) {
-      this.config.versioning.availableVersions.push(version);
+      this.config.versioning.availableVersions.push(version)
     }
 
     // Cache the new version
     if (this.cache && this.config.cache) {
-      const cacheKey = this.getCacheKey(version);
-      this.cache.set(cacheKey, content, this.config.cache.ttl || 300000);
+      const cacheKey = this.getCacheKey(version)
+      this.cache.set(cacheKey, content, this.config.cache.ttl || 300000)
     }
   }
 
@@ -322,28 +333,28 @@ export class MCPResourceHandler {
    */
   setCurrentVersion(version: string): void {
     if (!this.config.versioning?.enabled) {
-      throw new Error('Versioning is not enabled for this resource');
+      throw new Error('Versioning is not enabled for this resource')
     }
 
-    const availableVersions = this.config.versioning.availableVersions || [];
+    const availableVersions = this.config.versioning.availableVersions || []
     if (!availableVersions.includes(version)) {
-      throw new Error(`Version ${version} not found`);
+      throw new Error(`Version ${version} not found`)
     }
 
-    this.config.versioning.currentVersion = version;
+    this.config.versioning.currentVersion = version
   }
 
   /**
    * Clear cache for this resource
    */
   clearCache(version?: string): void {
-    if (!this.cache) return;
+    if (!this.cache) return
 
     if (version) {
-      const cacheKey = this.getCacheKey(version);
-      this.cache.delete(cacheKey);
+      const cacheKey = this.getCacheKey(version)
+      this.cache.delete(cacheKey)
     } else {
-      this.cache.clear();
+      this.cache.clear()
     }
   }
 
@@ -351,8 +362,8 @@ export class MCPResourceHandler {
    * Get access statistics
    */
   getStats() {
-    const now = Date.now();
-    const last24h = this.accessLog.filter(log => now - log.timestamp.getTime() < 86400000);
+    const now = Date.now()
+    const last24h = this.accessLog.filter(log => now - log.timestamp.getTime() < 86400000)
 
     return {
       uri: this.config.uri,
@@ -361,17 +372,17 @@ export class MCPResourceHandler {
       cacheStats: this.cache?.getStats() || null,
       versions: this.versions.size,
       currentVersion: this.config.versioning?.currentVersion
-    };
+    }
   }
 
   /**
    * Check access permissions
    */
   private async checkAccess(userId?: string): Promise<boolean> {
-    const accessControl = this.config.accessControl;
+    const accessControl = this.config.accessControl
 
     if (!accessControl) {
-      return true;
+      return true
     }
 
     // Check rate limits
@@ -380,18 +391,18 @@ export class MCPResourceHandler {
         return (
           log.userId === userId &&
           Date.now() - log.timestamp.getTime() < accessControl.rateLimits!.windowMs
-        );
-      });
+        )
+      })
 
       if (recentAccesses.length >= accessControl.rateLimits.maxRequests) {
-        return false;
+        return false
       }
     }
 
     // Additional access control logic can be added here
     // (e.g., role-based access control, authentication checks)
 
-    return true;
+    return true
   }
 
   /**
@@ -402,11 +413,11 @@ export class MCPResourceHandler {
       timestamp: new Date(),
       userId,
       version
-    });
+    })
 
     // Keep only last 10000 entries
     if (this.accessLog.length > 10000) {
-      this.accessLog = this.accessLog.slice(-10000);
+      this.accessLog = this.accessLog.slice(-10000)
     }
   }
 
@@ -414,7 +425,7 @@ export class MCPResourceHandler {
    * Get cache key for version
    */
   private getCacheKey(version?: string): string {
-    return version ? `${this.config.uri}:${version}` : this.config.uri;
+    return version ? `${this.config.uri}:${version}` : this.config.uri
   }
 
   /**
@@ -422,9 +433,9 @@ export class MCPResourceHandler {
    */
   private getLastModified(version?: string): Date | undefined {
     if (version && this.versions.has(version)) {
-      return this.versions.get(version)!.timestamp;
+      return this.versions.get(version)!.timestamp
     }
-    return undefined;
+    return undefined
   }
 
   /**
@@ -437,7 +448,7 @@ export class MCPResourceHandler {
     version?: string,
     startTime?: number
   ): ResourceAccessResult {
-    const size = Buffer.isBuffer(content) ? content.length : Buffer.byteLength(content, 'utf-8');
+    const size = Buffer.isBuffer(content) ? content.length : Buffer.byteLength(content, 'utf-8')
 
     return {
       success: true,
@@ -454,7 +465,7 @@ export class MCPResourceHandler {
       },
       cached,
       accessTime: startTime ? Date.now() - startTime : 0
-    };
+    }
   }
 
   /**
@@ -472,13 +483,17 @@ export class MCPResourceHandler {
       },
       cached: true,
       accessTime: Date.now() - startTime
-    };
+    }
   }
 
   /**
    * Create error result
    */
-  private createErrorResult(code: string, message: string, startTime: number): ResourceAccessResult {
+  private createErrorResult(
+    code: string,
+    message: string,
+    startTime: number
+  ): ResourceAccessResult {
     return {
       success: false,
       metadata: {
@@ -493,8 +508,8 @@ export class MCPResourceHandler {
         code,
         message
       }
-    };
+    }
   }
 }
 
-export default MCPResourceHandler;
+export default MCPResourceHandler

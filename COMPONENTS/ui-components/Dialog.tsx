@@ -65,35 +65,35 @@
  * ```
  */
 
-import * as React from 'react';
-import { createPortal } from 'react-dom';
-import { cn } from './utils';
+import * as React from 'react'
+import { createPortal } from 'react-dom'
+import { cn } from './utils'
 
 export interface DialogProps {
   /**
    * Whether the dialog is open
    */
-  open: boolean;
+  open: boolean
 
   /**
    * Callback when dialog should close
    */
-  onClose: () => void;
+  onClose: () => void
 
   /**
    * Dialog title
    */
-  title?: string;
+  title?: string
 
   /**
    * Dialog description
    */
-  description?: string;
+  description?: string
 
   /**
    * Dialog content (children)
    */
-  children?: React.ReactNode;
+  children?: React.ReactNode
 
   /**
    * Dialog type
@@ -101,57 +101,57 @@ export interface DialogProps {
    * - confirm: Two action dialog (Cancel/Confirm buttons)
    * - custom: Custom content and actions
    */
-  type?: 'alert' | 'confirm' | 'custom';
+  type?: 'alert' | 'confirm' | 'custom'
 
   /**
    * Dialog variant
    */
-  variant?: 'default' | 'destructive';
+  variant?: 'default' | 'destructive'
 
   /**
    * Callback when confirm button is clicked (type: confirm)
    */
-  onConfirm?: () => void;
+  onConfirm?: () => void
 
   /**
    * Confirm button text
    */
-  confirmText?: string;
+  confirmText?: string
 
   /**
    * Cancel button text
    */
-  cancelText?: string;
+  cancelText?: string
 
   /**
    * Dialog size
    */
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'sm' | 'md' | 'lg' | 'xl'
 
   /**
    * Whether clicking backdrop closes dialog
    */
-  closeOnBackdropClick?: boolean;
+  closeOnBackdropClick?: boolean
 
   /**
    * Loading state for confirm button
    */
-  loading?: boolean;
+  loading?: boolean
 
   /**
    * Additional CSS classes
    */
-  className?: string;
+  className?: string
 }
 
 export interface DialogBodyProps {
-  children: React.ReactNode;
-  className?: string;
+  children: React.ReactNode
+  className?: string
 }
 
 export interface DialogFooterProps {
-  children: React.ReactNode;
-  className?: string;
+  children: React.ReactNode
+  className?: string
 }
 
 /**
@@ -173,118 +173,117 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       size = 'md',
       closeOnBackdropClick = true,
       loading = false,
-      className,
+      className
     },
     ref
   ) => {
-    const [mounted, setMounted] = React.useState(false);
-    const dialogRef = React.useRef<HTMLDivElement>(null);
+    const [mounted, setMounted] = React.useState(false)
+    const dialogRef = React.useRef<HTMLDivElement>(null)
 
     // Handle mounting for portal
     React.useEffect(() => {
-      setMounted(true);
-      return () => setMounted(false);
-    }, []);
+      setMounted(true)
+      return () => setMounted(false)
+    }, [])
 
     // Lock body scroll when dialog is open
     React.useEffect(() => {
       if (open) {
-        const scrollbarWidth =
-          window.innerWidth - document.documentElement.clientWidth;
-        document.body.style.overflow = 'hidden';
-        document.body.style.paddingRight = `${scrollbarWidth}px`;
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+        document.body.style.overflow = 'hidden'
+        document.body.style.paddingRight = `${scrollbarWidth}px`
       } else {
-        document.body.style.overflow = '';
-        document.body.style.paddingRight = '';
+        document.body.style.overflow = ''
+        document.body.style.paddingRight = ''
       }
 
       return () => {
-        document.body.style.overflow = '';
-        document.body.style.paddingRight = '';
-      };
-    }, [open]);
+        document.body.style.overflow = ''
+        document.body.style.paddingRight = ''
+      }
+    }, [open])
 
     // ESC to close (only if not loading)
     React.useEffect(() => {
-      if (!open || loading) return;
+      if (!open || loading) return
 
       const handleEscape = (event: KeyboardEvent) => {
         if (event.key === 'Escape') {
-          onClose();
+          onClose()
         }
-      };
+      }
 
-      document.addEventListener('keydown', handleEscape);
-      return () => document.removeEventListener('keydown', handleEscape);
-    }, [open, onClose, loading]);
+      document.addEventListener('keydown', handleEscape)
+      return () => document.removeEventListener('keydown', handleEscape)
+    }, [open, onClose, loading])
 
     // Focus trap
     React.useEffect(() => {
-      if (!open || !dialogRef.current) return;
+      if (!open || !dialogRef.current) return
 
-      const dialog = dialogRef.current;
+      const dialog = dialogRef.current
       const focusableElements = dialog.querySelectorAll<HTMLElement>(
         'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
-      );
+      )
 
-      const firstElement = focusableElements[0];
-      const lastElement = focusableElements[focusableElements.length - 1];
+      const firstElement = focusableElements[0]
+      const lastElement = focusableElements[focusableElements.length - 1]
 
       // Focus first element when dialog opens
-      firstElement?.focus();
+      firstElement?.focus()
 
       const handleTab = (event: KeyboardEvent) => {
-        if (event.key !== 'Tab') return;
+        if (event.key !== 'Tab') return
 
         if (event.shiftKey) {
           if (document.activeElement === firstElement) {
-            event.preventDefault();
-            lastElement?.focus();
+            event.preventDefault()
+            lastElement?.focus()
           }
         } else {
           if (document.activeElement === lastElement) {
-            event.preventDefault();
-            firstElement?.focus();
+            event.preventDefault()
+            firstElement?.focus()
           }
         }
-      };
+      }
 
-      document.addEventListener('keydown', handleTab);
-      return () => document.removeEventListener('keydown', handleTab);
-    }, [open]);
+      document.addEventListener('keydown', handleTab)
+      return () => document.removeEventListener('keydown', handleTab)
+    }, [open])
 
     // Click backdrop to close
     const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
       if (closeOnBackdropClick && !loading && event.target === event.currentTarget) {
-        onClose();
+        onClose()
       }
-    };
+    }
 
     // Handle confirm
     const handleConfirm = async () => {
       if (onConfirm) {
-        await onConfirm();
+        await onConfirm()
       }
-      onClose();
-    };
+      onClose()
+    }
 
-    if (!mounted || !open) return null;
+    if (!mounted || !open) return null
 
     // Size classes
     const getSizeClass = () => {
       switch (size) {
         case 'sm':
-          return 'w-full max-w-sm';
+          return 'w-full max-w-sm'
         case 'md':
-          return 'w-full max-w-md';
+          return 'w-full max-w-md'
         case 'lg':
-          return 'w-full max-w-lg';
+          return 'w-full max-w-lg'
         case 'xl':
-          return 'w-full max-w-2xl';
+          return 'w-full max-w-2xl'
         default:
-          return 'w-full max-w-md';
+          return 'w-full max-w-md'
       }
-    };
+    }
 
     // Icon based on variant
     const getIcon = () => {
@@ -305,7 +304,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
               />
             </svg>
           </div>
-        );
+        )
       }
       if ((type === 'confirm' || type === 'alert') && variant === 'destructive') {
         return (
@@ -324,10 +323,10 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
               />
             </svg>
           </div>
-        );
+        )
       }
-      return null;
-    };
+      return null
+    }
 
     const dialogContent = (
       <div
@@ -354,9 +353,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
           className={cn(
             'relative bg-white rounded-lg shadow-xl',
             'transition-all duration-200',
-            open
-              ? 'opacity-100 scale-100 translate-y-0'
-              : 'opacity-0 scale-95 translate-y-4',
+            open ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4',
             getSizeClass(),
             'max-h-[90vh] flex flex-col',
             className
@@ -369,18 +366,12 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
                 {getIcon()}
                 <div className="flex-1 min-w-0">
                   {title && (
-                    <h2
-                      id="dialog-title"
-                      className="text-lg font-semibold text-gray-900"
-                    >
+                    <h2 id="dialog-title" className="text-lg font-semibold text-gray-900">
                       {title}
                     </h2>
                   )}
                   {description && (
-                    <p
-                      id="dialog-description"
-                      className="mt-2 text-sm text-gray-600"
-                    >
+                    <p id="dialog-description" className="mt-2 text-sm text-gray-600">
                       {description}
                     </p>
                   )}
@@ -392,17 +383,11 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
           {/* Custom header (for custom type) */}
           {type === 'custom' && title && (
             <div className="px-6 py-4 border-b border-gray-200">
-              <h2
-                id="dialog-title"
-                className="text-xl font-semibold text-gray-900"
-              >
+              <h2 id="dialog-title" className="text-xl font-semibold text-gray-900">
                 {title}
               </h2>
               {description && (
-                <p
-                  id="dialog-description"
-                  className="mt-1 text-sm text-gray-600"
-                >
+                <p id="dialog-description" className="mt-1 text-sm text-gray-600">
                   {description}
                 </p>
               )}
@@ -411,9 +396,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
 
           {/* Body */}
           {type === 'custom' && children && (
-            <div className="flex-1 overflow-y-auto">
-              {children}
-            </div>
+            <div className="flex-1 overflow-y-auto">{children}</div>
           )}
 
           {/* Footer */}
@@ -494,22 +477,19 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
             </div>
           )}
 
-          {type === 'custom' && !React.Children.toArray(children).some(
-            (child) =>
-              React.isValidElement(child) &&
-              (child.type === DialogFooter)
-          ) && (
-            <div className="px-6 py-4" />
-          )}
+          {type === 'custom' &&
+            !React.Children.toArray(children).some(
+              child => React.isValidElement(child) && child.type === DialogFooter
+            ) && <div className="px-6 py-4" />}
         </div>
       </div>
-    );
+    )
 
-    return createPortal(dialogContent, document.body);
+    return createPortal(dialogContent, document.body)
   }
-);
+)
 
-Dialog.displayName = 'Dialog';
+Dialog.displayName = 'Dialog'
 
 /**
  * Dialog body
@@ -520,11 +500,11 @@ export const DialogBody = React.forwardRef<HTMLDivElement, DialogBodyProps>(
       <div ref={ref} className={cn('px-6 py-4', className)}>
         {children}
       </div>
-    );
+    )
   }
-);
+)
 
-DialogBody.displayName = 'DialogBody';
+DialogBody.displayName = 'DialogBody'
 
 /**
  * Dialog footer
@@ -541,8 +521,8 @@ export const DialogFooter = React.forwardRef<HTMLDivElement, DialogFooterProps>(
       >
         {children}
       </div>
-    );
+    )
   }
-);
+)
 
-DialogFooter.displayName = 'DialogFooter';
+DialogFooter.displayName = 'DialogFooter'

@@ -71,10 +71,7 @@ export async function handleStripeWebhook(
     const signature = request.headers.get('stripe-signature')
 
     if (!signature) {
-      return Response.json(
-        { error: 'Missing stripe-signature header' },
-        { status: 400 }
-      )
+      return Response.json({ error: 'Missing stripe-signature header' }, { status: 400 })
     }
 
     // Verify webhook signature
@@ -92,16 +89,10 @@ export async function handleStripeWebhook(
     console.error('[Stripe Webhook Error]:', error)
 
     if (error instanceof Error && error.message.includes('signature')) {
-      return Response.json(
-        { error: 'Invalid signature' },
-        { status: 400 }
-      )
+      return Response.json({ error: 'Invalid signature' }, { status: 400 })
     }
 
-    return Response.json(
-      { error: 'Webhook handler failed' },
-      { status: 500 }
-    )
+    return Response.json({ error: 'Webhook handler failed' }, { status: 500 })
   }
 }
 
@@ -207,7 +198,7 @@ async function handleEvent(event: Stripe.Event, handlers: WebhookHandlers) {
  */
 export async function exampleWebhookHandler(request: Request) {
   return handleStripeWebhook(request, {
-    onPaymentSuccess: async (paymentIntent) => {
+    onPaymentSuccess: async paymentIntent => {
       console.log('Payment succeeded:', paymentIntent.id)
 
       // Update database
@@ -226,7 +217,7 @@ export async function exampleWebhookHandler(request: Request) {
       // })
     },
 
-    onSubscriptionCreated: async (subscription) => {
+    onSubscriptionCreated: async subscription => {
       console.log('Subscription created:', subscription.id)
 
       // Update user subscription status
@@ -247,7 +238,7 @@ export async function exampleWebhookHandler(request: Request) {
       // })
     },
 
-    onSubscriptionUpdated: async (subscription) => {
+    onSubscriptionUpdated: async subscription => {
       console.log('Subscription updated:', subscription.id)
 
       // Update database
@@ -268,7 +259,7 @@ export async function exampleWebhookHandler(request: Request) {
       }
     },
 
-    onSubscriptionDeleted: async (subscription) => {
+    onSubscriptionDeleted: async subscription => {
       console.log('Subscription deleted:', subscription.id)
 
       // Update database
@@ -285,7 +276,7 @@ export async function exampleWebhookHandler(request: Request) {
       // await revokeAccess(subscription.customer)
     },
 
-    onInvoicePaymentFailed: async (invoice) => {
+    onInvoicePaymentFailed: async invoice => {
       console.log('Invoice payment failed:', invoice.id)
 
       // Send payment failure email
@@ -304,7 +295,7 @@ export async function exampleWebhookHandler(request: Request) {
       // })
     },
 
-    onCheckoutCompleted: async (session) => {
+    onCheckoutCompleted: async session => {
       console.log('Checkout completed:', session.id)
 
       // Fulfill order
@@ -343,10 +334,7 @@ To test webhooks locally:
  * Helper: Verify webhook configuration
  */
 export async function verifyWebhookSetup() {
-  const required = [
-    'STRIPE_SECRET_KEY',
-    'STRIPE_WEBHOOK_SECRET'
-  ]
+  const required = ['STRIPE_SECRET_KEY', 'STRIPE_WEBHOOK_SECRET']
 
   const missing = required.filter(key => !process.env[key])
 

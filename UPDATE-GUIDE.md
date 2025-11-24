@@ -1,7 +1,7 @@
 # Updating Your Project with ai-dev-standards
 
-> **📢 DEPRECATED:** This file is maintained for backward compatibility. 
-> 
+> **📢 DEPRECATED:** This file is maintained for backward compatibility.
+>
 > **Please use:** [INTEGRATION-USAGE.md](INTEGRATION-USAGE.md) for complete integration and update documentation.
 >
 > The new guide consolidates INSTALL.md, UPDATE-GUIDE.md, and AUTO-SYNC-GUIDE.md with improved update checking via `./scripts/check-updates.sh`.
@@ -22,6 +22,7 @@ bash ~/ai-dev-standards/setup-project.sh
 ```
 
 **That's it!** The script automatically:
+
 - Detects existing setup and runs sync
 - Updates all 238 resources (64 skills, 50 MCPs, etc.)
 - Updates configuration files
@@ -48,6 +49,7 @@ bash ~/ai-dev-standards/setup-project.sh
 ```
 
 The script will:
+
 1. **Detect your project type** (Next.js, React, Node.js, etc.)
 2. **Install the ai-dev CLI** globally
 3. **Sync all resources** from ai-dev-standards
@@ -100,6 +102,7 @@ bash ~/ai-dev-standards/setup-project.sh
 ## 📊 What Gets Updated
 
 ### Always Synced
+
 These resources are automatically updated to keep you current:
 
 - **Skills** (SKILLS/) - 64 specialized methodologies
@@ -139,6 +142,7 @@ cat .ai-dev.json
 ```
 
 This shows:
+
 - Version updated to
 - Last sync timestamp
 - Resources installed
@@ -158,6 +162,7 @@ node ~/ai-dev-standards/MCP-SERVERS/brain-mcp/dist/index.js --help
 ### 3. Review Recommendations
 
 Open `START-HERE.md` for:
+
 - Project health score
 - Recommended skills to use
 - Priority tasks
@@ -191,7 +196,7 @@ cat > AI-DEV-STANDARDS-UPDATE.md << 'EOF'
 
 ### Resources Synced
 - Skills: [Number] total
-- MCPs: [Number] total  
+- MCPs: [Number] total
 - Components: [Number] total
 - Integrations: [Number] total
 - Tools: [Number] total
@@ -223,6 +228,7 @@ EOF
 ### Issue: "ai-dev command not found"
 
 **Solution:**
+
 ```bash
 cd ~/ai-dev-standards/CLI
 npm install
@@ -232,6 +238,7 @@ npm link
 ### Issue: "brain-mcp not found"
 
 **Solution:** Build brain-mcp:
+
 ```bash
 cd ~/ai-dev-standards/MCP-SERVERS/brain-mcp
 npm install
@@ -241,6 +248,7 @@ npm run build
 ### Issue: "Setup script fails with permission error"
 
 **Solution:** Ensure the script is executable:
+
 ```bash
 chmod +x ~/ai-dev-standards/setup-project.sh
 ```
@@ -248,6 +256,7 @@ chmod +x ~/ai-dev-standards/setup-project.sh
 ### Issue: "Git hook not running"
 
 **Solution:** Verify and fix the hook:
+
 ```bash
 chmod +x .git/hooks/post-merge
 # Test it manually:
@@ -257,11 +266,13 @@ chmod +x .git/hooks/post-merge
 ### Issue: "Sync overwrote my customizations"
 
 **Prevention:** Keep customizations in these safe locations:
+
 - Custom skills: `.ai-dev/custom-skills/`
 - Custom components: Use your own directories
 - Local configs: The sync preserves local `.env` and project-specific files
 
 **Recovery:** Check git history:
+
 ```bash
 git diff HEAD^ HEAD -- [file-that-changed]
 git checkout HEAD^ -- [file-to-restore]
@@ -274,6 +285,7 @@ git checkout HEAD^ -- [file-to-restore]
 ### What Gets Committed
 
 The sync will add/modify these files in your project:
+
 - `.ai-dev.json` - Configuration and version tracking
 - `.cursorrules` - Development workflow patterns
 - `.claude/` directory - MCP and skill configurations
@@ -283,6 +295,7 @@ The sync will add/modify these files in your project:
 ### What Stays Local
 
 These are automatically excluded (in `.gitignore`):
+
 - `START-HERE.md` - Your personalized guide
 - `.ai-dev/backups/` - Backup files
 - `orchestration-requests/` - Agent request tracking
@@ -299,11 +312,13 @@ These are automatically excluded (in `.gitignore`):
 ## 📚 Additional Resources
 
 ### Documentation
+
 - [INSTALL.md](INSTALL.md) - Complete installation guide
 - [AUTO-SYNC-GUIDE.md](DOCS/AUTO-SYNC-GUIDE.md) - Deep dive into sync system
 - [CLI README](CLI/README.md) - Full CLI command reference
 
 ### Getting Help
+
 - Check [TROUBLESHOOTING.md](DOCS/TROUBLESHOOTING.md) for common issues
 - Review [CONTRIBUTING.md](CONTRIBUTING.md) for development setup
 - Open an issue on GitHub for bugs
@@ -315,6 +330,7 @@ These are automatically excluded (in `.gitignore`):
 ### Version 3.0.0 (Latest)
 
 **Major Updates:**
+
 - Local-first architecture (10x faster, works offline)
 - Fixed cross-project data exposure vulnerability
 - 238 total resources (64 skills, 50 MCPs, 72 components, 28 integrations, 24 tools)
@@ -324,6 +340,7 @@ These are automatically excluded (in `.gitignore`):
 - Enhanced security with project isolation
 
 **Migration from v2.x:**
+
 ```bash
 # Simply re-run the setup script
 bash ~/ai-dev-standards/setup-project.sh
@@ -361,6 +378,7 @@ git diff
 ### 3. Document Your Updates
 
 Keep a log of updates for your team:
+
 - What version you updated to
 - What new skills/tools you gained
 - Any configuration changes made
@@ -368,6 +386,7 @@ Keep a log of updates for your team:
 ### 4. Test After Major Updates
 
 After updating to a new major version:
+
 1. Run your test suite
 2. Test brain-mcp connectivity
 3. Verify Claude can access skills
@@ -377,12 +396,14 @@ After updating to a new major version:
 
 ## 📞 Support
 
-**Questions?** 
+**Questions?**
+
 - Read the [INSTALL.md](INSTALL.md) guide
 - Check [AUTO-SYNC-GUIDE.md](DOCS/AUTO-SYNC-GUIDE.md) for sync details
 - Open an issue on GitHub
 
 **Found a bug?**
+
 - Report it on [GitHub Issues](https://github.com/daffy0208/ai-dev-standards/issues)
 - Include your OS, Node version, and error message
 

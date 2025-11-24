@@ -19,21 +19,25 @@ Comprehensive monitoring and alerting strategy for production systems.
 Monitor these four metrics for every service:
 
 ### 1. Latency
+
 **What:** Response time
 **Why:** Slow = bad UX
 **Target:** p95 < 500ms, p99 < 1s
 
 ### 2. Traffic
+
 **What:** Requests per second
 **Why:** Understand load patterns
 **Target:** Baseline + anomaly detection
 
 ### 3. Errors
+
 **What:** Failed requests (5xx, exceptions)
 **Why:** Users experiencing issues
 **Target:** < 0.1% error rate
 
 ### 4. Saturation
+
 **What:** Resource utilization (CPU, memory, disk)
 **Why:** Predict capacity issues
 **Target:** < 80% utilization
@@ -45,6 +49,7 @@ Monitor these four metrics for every service:
 ### Application Metrics
 
 **HTTP Requests:**
+
 ```typescript
 // Track request count, duration, status code
 metrics.increment('http_requests_total', {
@@ -60,6 +65,7 @@ metrics.histogram('http_request_duration_ms', duration, {
 ```
 
 **Database Queries:**
+
 ```typescript
 metrics.histogram('db_query_duration_ms', duration, {
   operation: 'SELECT',
@@ -70,6 +76,7 @@ metrics.increment('db_connection_pool_exhausted')
 ```
 
 **Cache Performance:**
+
 ```typescript
 metrics.increment('cache_hits', { cache: 'redis' })
 metrics.increment('cache_misses', { cache: 'redis' })
@@ -78,6 +85,7 @@ metrics.increment('cache_misses', { cache: 'redis' })
 ```
 
 **Business Metrics:**
+
 ```typescript
 metrics.increment('orders_created', { userId, total })
 metrics.increment('payments_processed', { amount, status })
@@ -87,19 +95,23 @@ metrics.gauge('active_users', activeCount)
 ### Infrastructure Metrics
 
 **CPU:**
+
 - CPU utilization %
 - CPU steal time (on cloud)
 
 **Memory:**
+
 - Memory used %
 - Memory available
 
 **Disk:**
+
 - Disk used %
 - Disk I/O operations
 - Disk read/write throughput
 
 **Network:**
+
 - Network bandwidth
 - Connection count
 - Packet loss
@@ -111,6 +123,7 @@ metrics.gauge('active_users', activeCount)
 ### Prometheus + Grafana
 
 **Express.js with prom-client:**
+
 ```typescript
 import express from 'express'
 import client from 'prom-client'
@@ -144,10 +157,13 @@ app.use((req, res, next) => {
       status: res.statusCode
     })
 
-    httpRequestDuration.observe({
-      method: req.method,
-      path: req.route?.path || req.path
-    }, duration)
+    httpRequestDuration.observe(
+      {
+        method: req.method,
+        path: req.route?.path || req.path
+      },
+      duration
+    )
   })
 
   next()
@@ -196,18 +212,20 @@ import { CloudWatch } from 'aws-sdk'
 
 const cloudwatch = new CloudWatch()
 
-await cloudwatch.putMetricData({
-  Namespace: 'MyApp',
-  MetricData: [{
-    MetricName: 'OrdersCreated',
-    Value: 1,
-    Unit: 'Count',
-    Timestamp: new Date(),
-    Dimensions: [
-      { Name: 'Environment', Value: 'production' }
+await cloudwatch
+  .putMetricData({
+    Namespace: 'MyApp',
+    MetricData: [
+      {
+        MetricName: 'OrdersCreated',
+        Value: 1,
+        Unit: 'Count',
+        Timestamp: new Date(),
+        Dimensions: [{ Name: 'Environment', Value: 'production' }]
+      }
     ]
-  }]
-}).promise()
+  })
+  .promise()
 ```
 
 ---
@@ -217,12 +235,14 @@ await cloudwatch.putMetricData({
 ### Application Dashboard
 
 **Widgets:**
+
 1. **Traffic:** Requests per second (RPS)
 2. **Latency:** p50, p95, p99 response times
 3. **Error Rate:** 5xx errors per minute
 4. **Success Rate:** % of successful requests
 
 **Example (Grafana):**
+
 ```
 Query: rate(http_requests_total[5m])
 Label: Requests/sec
@@ -237,6 +257,7 @@ Label: Error Rate
 ### Infrastructure Dashboard
 
 **Widgets:**
+
 1. **CPU:** % utilization
 2. **Memory:** % used
 3. **Disk:** % used, I/O
@@ -245,6 +266,7 @@ Label: Error Rate
 ### Business Dashboard
 
 **Widgets:**
+
 1. **Orders:** Orders/hour, revenue/hour
 2. **Users:** Active users, signups/hour
 3. **Conversions:** Funnel completion rate
@@ -256,29 +278,34 @@ Label: Error Rate
 ### Alert Severity Levels
 
 **P0 (Critical) - Page on-call immediately:**
+
 - Service down (health check failing)
 - Database unreachable
 - Error rate > 5%
 - Payment processing failing
 
 **P1 (High) - Notify during business hours:**
+
 - Elevated error rate (1-5%)
 - High latency (p95 > 2s)
 - Disk space > 80%
 - Memory > 85%
 
 **P2 (Medium) - Create ticket:**
+
 - Slow queries detected
 - Cache hit rate low (< 70%)
 - Background job failures
 
 **P3 (Low) - Log for review:**
+
 - API rate limit warnings
 - Deprecation warnings
 
 ### Alert Configuration
 
 **Datadog Example:**
+
 ```yaml
 name: High Error Rate
 query: sum(last_5m):sum:trace.http.request.errors{env:prod}.as_count() > 10
@@ -298,6 +325,7 @@ notify:
 ```
 
 **Prometheus Alertmanager:**
+
 ```yaml
 groups:
   - name: api_alerts
@@ -309,8 +337,8 @@ groups:
         labels:
           severity: critical
         annotations:
-          summary: "High error rate detected"
-          description: "Error rate is {{ $value }} (threshold: 0.05)"
+          summary: 'High error rate detected'
+          description: 'Error rate is {{ $value }} (threshold: 0.05)'
 ```
 
 ---
@@ -320,6 +348,7 @@ groups:
 ### ✅ DO
 
 **1. Alert on symptoms, not causes:**
+
 ```
 ✅ Good: "API response time > 2s"
 ❌ Bad: "CPU > 80%"
@@ -328,6 +357,7 @@ Why: Users care about slow responses, not CPU usage
 ```
 
 **2. Include context in alerts:**
+
 ```typescript
 alert({
   title: 'High error rate on checkout',
@@ -344,18 +374,21 @@ alert({
 ```
 
 **3. Make alerts actionable:**
+
 ```
 ✅ Good: "Payment processing failing. Check Stripe status: https://status.stripe.com. Runbook: https://..."
 ❌ Bad: "Error detected"
 ```
 
 **4. Aggregate related alerts:**
+
 ```
 ✅ Good: Single alert "3 services down"
 ❌ Bad: 50 alerts (one per instance)
 ```
 
 **5. Use escalation:**
+
 ```
 1. Alert → Slack (5 min)
 2. Still firing → Email on-call (10 min)
@@ -365,18 +398,21 @@ alert({
 ### ❌ DON'T
 
 **1. Don't alert on everything:**
+
 ```
 ❌ Bad: Alert on every error
 ✅ Good: Alert when error rate > threshold
 ```
 
 **2. Don't use static thresholds blindly:**
+
 ```
 ❌ Bad: CPU > 80% (normal during deploy)
 ✅ Good: CPU > 80% AND NOT deploying
 ```
 
 **3. Don't wake people up for non-urgent issues:**
+
 ```
 ❌ Bad: Page at 3am for slow query
 ✅ Good: Create ticket for next business day
@@ -472,29 +508,31 @@ Action: If budget exhausted, freeze deploys
 
 ```typescript
 // Check every 5 minutes from multiple locations
-setInterval(async () => {
-  const start = Date.now()
+setInterval(
+  async () => {
+    const start = Date.now()
 
-  try {
-    const response = await fetch('https://api.example.com/health')
+    try {
+      const response = await fetch('https://api.example.com/health')
 
-    if (!response.ok) {
+      if (!response.ok) {
+        alert({
+          title: 'Health check failed',
+          statusCode: response.status
+        })
+      }
+
+      const duration = Date.now() - start
+      metrics.histogram('synthetic_check_duration', duration)
+    } catch (error) {
       alert({
-        title: 'Health check failed',
-        statusCode: response.status
+        title: 'Service unreachable',
+        error: error.message
       })
     }
-
-    const duration = Date.now() - start
-    metrics.histogram('synthetic_check_duration', duration)
-
-  } catch (error) {
-    alert({
-      title: 'Service unreachable',
-      error: error.message
-    })
-  }
-}, 5 * 60 * 1000)
+  },
+  5 * 60 * 1000
+)
 ```
 
 ### E2E Transaction Monitoring
@@ -519,7 +557,6 @@ async function syntheticCheckout() {
     if (duration > 5000) {
       alert({ title: 'Checkout flow slow', duration })
     }
-
   } catch (error) {
     alert({
       title: 'Checkout flow broken',
@@ -534,6 +571,7 @@ async function syntheticCheckout() {
 ## Monitoring Checklist
 
 ### Application
+
 - [ ] HTTP request metrics (count, duration, status)
 - [ ] Database query metrics
 - [ ] Cache hit/miss rate
@@ -541,6 +579,7 @@ async function syntheticCheckout() {
 - [ ] API errors with stack traces
 
 ### Infrastructure
+
 - [ ] CPU utilization
 - [ ] Memory usage
 - [ ] Disk space
@@ -548,11 +587,13 @@ async function syntheticCheckout() {
 - [ ] Connection pool usage
 
 ### Business
+
 - [ ] Key user actions (signups, purchases)
 - [ ] Revenue metrics
 - [ ] Conversion funnel
 
 ### Alerts
+
 - [ ] Service down (P0)
 - [ ] High error rate (P0)
 - [ ] High latency (P1)
@@ -563,27 +604,30 @@ async function syntheticCheckout() {
 
 ## Tools Comparison
 
-| Tool | Best For | Pricing | Learning Curve |
-|------|----------|---------|----------------|
-| **Datadog** | All-in-one | $$$ | Medium |
-| **Prometheus + Grafana** | Self-hosted | Free | High |
-| **New Relic** | APM | $$$ | Low |
-| **CloudWatch** | AWS | $ | Medium |
-| **Honeycomb** | Observability | $$ | Medium |
+| Tool                     | Best For      | Pricing | Learning Curve |
+| ------------------------ | ------------- | ------- | -------------- |
+| **Datadog**              | All-in-one    | $$$     | Medium         |
+| **Prometheus + Grafana** | Self-hosted   | Free    | High           |
+| **New Relic**            | APM           | $$$     | Low            |
+| **CloudWatch**           | AWS           | $       | Medium         |
+| **Honeycomb**            | Observability | $$      | Medium         |
 
 ---
 
 ## Related Resources
 
 **Patterns:**
+
 - `/STANDARDS/architecture-patterns/logging-strategy.md`
 - `/STANDARDS/architecture-patterns/error-tracking.md`
 
 **Skills:**
+
 - `/SKILLS/performance-optimizer/` - Performance monitoring
 - `/SKILLS/deployment-advisor/` - Infrastructure monitoring
 
 **External:**
+
 - [Google SRE Book: Monitoring](https://sre.google/sre-book/monitoring-distributed-systems/)
 - [Prometheus Best Practices](https://prometheus.io/docs/practices/)
 - [Datadog Documentation](https://docs.datadoghq.com/)
