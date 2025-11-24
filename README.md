@@ -335,6 +335,7 @@ If the brain isn't working:
 - **rag-implementer** - Build retrieval-augmented generation systems with 8-phase implementation
 - **multi-agent-architect** - Design multi-agent systems with 4 coordination patterns
 - **knowledge-graph-builder** - Graph database design and implementation (Neo4j, relationships, AI integration)
+- **agent-evaluator** - Design and implement evaluation strategies for AI agents (Eval-Driven Development, Golden Datasets)
 
 ### Technical Development
 

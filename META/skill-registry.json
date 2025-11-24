@@ -1,8 +1,8 @@
 {
   "version": "3.33.0",
-  "last_updated": "2025-11-23",
+  "last_updated": "2025-11-24",
   "description": "Registry of all available skills in ai-dev-standards. Skills are model-invoked capabilities that Claude activates based on context. Now includes 64 active skills covering product development, AI systems, technical implementation, infrastructure, UX design, ADHD support, repository analysis, project management, data forensics, automated code review workflows, design automation, API integrations, customer support, growth experimentation, pricing strategy, product analytics, release management, usability testing, business model architecture, framework orchestration, requirements generation, quality assurance, security architecture, and orchestration meta-skills.",
-  "total_skills": 64,
+  "total_skills": 65,
   "skills": [
     {
       "name": "3d-visualizer",
@@ -45,6 +45,43 @@
       "status": "active",
       "prerequisites": [],
       "related_skills": [],
+      "frameworks": [
+        "all"
+      ],
+      "languages": [
+        "all"
+      ]
+    },
+    {
+      "name": "agent-evaluator",
+      "description": "Design and implement comprehensive evaluation strategies for AI agents using Eval-Driven Development (EDD), Golden Datasets, and Model-Graded Evals.",
+      "triggers": [
+        "agent-evaluator",
+        "agent evaluator",
+        "eval driven development",
+        "edd",
+        "evaluate agent",
+        "model graded evals"
+      ],
+      "tags": [
+        "ai-engineering",
+        "evaluation",
+        "testing",
+        "quality-assurance"
+      ],
+      "category": "ai-native",
+      "difficulty": "advanced",
+      "estimated_time": "2-4 hours",
+      "path": "/SKILLS/agent-evaluator/",
+      "status": "active",
+      "prerequisites": [
+        "testing-strategist"
+      ],
+      "related_skills": [
+        "testing-strategist",
+        "rag-implementer",
+        "quality-auditor"
+      ],
       "frameworks": [
         "all"
       ],

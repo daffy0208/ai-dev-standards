@@ -707,7 +707,7 @@ echo "════════════════════════�
 
 # Verify all critical skills mentioned in README exist
 echo "Step 1: Verifying README skill references..."
-CRITICAL_SKILLS=("mvp-builder" "rag-implementer" "product-strategist" "api-designer")
+CRITICAL_SKILLS=("mvp-builder" "rag-implementer" "product-strategist" "api-designer" "agent-evaluator")
 MISSING_SKILLS=0
 
 for SKILL in "${CRITICAL_SKILLS[@]}"; do

@@ -6,8 +6,8 @@
 
 This is the **AI Development Standards Repository** - a curated knowledge base for AI-assisted development. It provides:
 
-- **Skills** - Specialized methodologies Claude can invoke (MVP building, RAG implementation, API design)
-- **Architecture Patterns** - Proven approaches for complex systems (multi-agent, knowledge graphs, MCP integration)
+- **Skills** - Specialized methodologies Claude can invoke (MVP building, RAG implementation, API design, Agent Evaluation)
+- **Architecture Patterns** - Proven approaches for complex systems (multi-agent, knowledge graphs, MCP integration, agent validation)
 - **Best Practices** - Security, performance, and quality standards
 - **Playbooks** - Step-by-step operational procedures
 - **Decision Frameworks** - Guidance for choosing technologies and approaches
@@ -99,9 +99,10 @@ ai-dev-standards/
 │
 ├── SKILLS/                         # Specialized methodologies
 │   ├── _TEMPLATE/                  # Template for creating skills
+│   ├── agent-evaluator/            # AI agent evaluation skill
 │   ├── mvp-builder/                # MVP development skill
 │   ├── rag-implementer/            # RAG implementation skill
-│   └── [11 more skills]/
+│   └── [more skills]/
 │
 ├── STANDARDS/
 │   ├── architecture-patterns/      # System design patterns
