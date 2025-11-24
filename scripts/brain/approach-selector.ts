@@ -234,7 +234,7 @@ export class ApproachSelector {
   async selectApproachBatch(
     tasks: Array<{
       description: string
-      context?: Parameters<typeof this.selectApproach>[1]
+      context?: Parameters<ApproachSelector['selectApproach']>[1]
     }>
   ): Promise<ApproachDecision[]> {
     const decisions = await Promise.all(

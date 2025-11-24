@@ -272,7 +272,7 @@ export class PatternRouter {
     history: Array<{
       context: RoutingContext
       result: RoutingResult
-      metrics: Parameters<typeof this.validateDecision>[1]
+      metrics: Parameters<PatternRouter['validateDecision']>[1]
     }>
   ): Promise<{
     patterns_identified: number
