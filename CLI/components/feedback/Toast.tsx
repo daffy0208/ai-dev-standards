@@ -329,8 +329,8 @@ export function ToastProviderWithEvents({
           <ToastItem key={toast.id} toast={toast} onDismiss={() => removeToast(toast.id)} />
         ))}
       </div>
+      {/* @ts-expect-error: styled-jsx types not available */}
       {/* eslint-disable-next-line react/no-unknown-property */}
-      {/* @ts-expect-error */}
       <style jsx global>{`
         @keyframes slide-in-right {
           from {
