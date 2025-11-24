@@ -355,6 +355,7 @@ For each of the 12 dimensions:
 - Mocking strategies
 - Performance tests
 - Security tests
+- **Agent Reliability (Eval-Driven Development)**
 
 **Scoring rubric:**
 

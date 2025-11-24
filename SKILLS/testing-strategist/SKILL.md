@@ -22,6 +22,16 @@ Tests should be:
 
 ---
 
+### 4. Agent Validation (Eval-Driven Development)
+
+For AI agents, use **Eval-Driven Development (EDD)** instead of traditional testing.
+
+- **Golden Dataset:** Inputs + Expected Outputs.
+- **Model-Graded Evals:** Use a stronger LLM to grade the agent.
+- **Skill:** [Agent Evaluator](../agent-evaluator/SKILL.md)
+
+---
+
 ## The Testing Pyramid
 
 ```

@@ -501,6 +501,27 @@ ls PLAYBOOKS/
 
 ---
 
+### Scenario 7: "Validate an AI Agent"
+
+**Workflow:**
+
+```
+1. Create a "Golden Dataset" of inputs and expected outputs
+2. Use agent-evaluator skill to define metrics
+3. Run /validate to execute Model-Graded Evals
+4. Analyze pass rate and regressions
+5. Refactor prompts based on failure cases
+```
+
+**Files involved:**
+
+- `DOCS/AGENT-VALIDATION.md` (Step-by-step guide)
+- `SKILLS/agent-evaluator/SKILL.md`
+- `STANDARDS/best-practices/eval-driven-development.md`
+- `tests/fixtures/golden-dataset-example.json`
+
+---
+
 ## File Naming Conventions
 
 **Understanding paths:**

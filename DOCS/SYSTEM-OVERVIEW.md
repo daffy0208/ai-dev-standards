@@ -167,6 +167,7 @@ ai-dev-standards/
     ├── AUTO-UPDATE-FILES.md     ✅ Complete (450+ lines)
     ├── CLI-REFERENCE.md         ✅ Complete (550+ lines)
     ├── DEPLOYMENT.md            ✅ Complete (400+ lines)
+    ├── AGENT-VALIDATION.md      ✅ Complete (Eval-Driven Development)
     └── SYSTEM-OVERVIEW.md       ✅ This file
 ```
 
