@@ -191,7 +191,7 @@ bash ~/ai-dev-standards/setup-project.sh
 
 The sync updates:
 
-- **Skills** (SKILLS/) - <!-- AUTO-GEN:START:skills -->64<!-- AUTO-GEN:END:skills --> specialized methodologies
+- **Skills** (SKILLS/) - <!-- AUTO-GEN:START:skills -->65<!-- AUTO-GEN:END:skills --> specialized methodologies
 - **MCP Servers** (MCP-SERVERS/) - <!-- AUTO-GEN:START:mcps -->50<!-- AUTO-GEN:END:mcps --> automation tools
 - **Configuration** (.cursorrules, .gitignore, etc.)
 - **Standards** (STANDARDS/) - Best practices and patterns

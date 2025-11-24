@@ -1,7 +1,7 @@
 {
   "version": "3.33.0",
   "last_updated": "2025-11-24",
-  "description": "Registry of all available skills in ai-dev-standards. Skills are model-invoked capabilities that Claude activates based on context. Now includes 64 active skills covering product development, AI systems, technical implementation, infrastructure, UX design, ADHD support, repository analysis, project management, data forensics, automated code review workflows, design automation, API integrations, customer support, growth experimentation, pricing strategy, product analytics, release management, usability testing, business model architecture, framework orchestration, requirements generation, quality assurance, security architecture, and orchestration meta-skills.",
+  "description": "Registry of all available skills in ai-dev-standards. Skills are model-invoked capabilities that Claude activates based on context. Now includes 65 active skills covering product development, AI systems, technical implementation, infrastructure, UX design, ADHD support, repository analysis, project management, data forensics, automated code review workflows, design automation, API integrations, customer support, growth experimentation, pricing strategy, product analytics, release management, usability testing, business model architecture, framework orchestration, requirements generation, quality assurance, security architecture, and orchestration meta-skills.",
   "total_skills": 65,
   "skills": [
     {
@@ -54,34 +54,24 @@
     },
     {
       "name": "agent-evaluator",
-      "description": "Design and implement comprehensive evaluation strategies for AI agents using Eval-Driven Development (EDD), Golden Datasets, and Model-Graded Evals.",
+      "description": "Design and implement evaluation strategies for AI agents. Use when building reliable agents, moving beyond \"vibes-based\" testing, setting up golden datasets, or implementing model-graded evaluations.",
       "triggers": [
         "agent-evaluator",
-        "agent evaluator",
-        "eval driven development",
-        "edd",
-        "evaluate agent",
-        "model graded evals"
+        "agent evaluator"
       ],
       "tags": [
-        "ai-engineering",
-        "evaluation",
-        "testing",
-        "quality-assurance"
+        "evals",
+        "llm",
+        "agents",
+        "reliability"
       ],
-      "category": "ai-native",
-      "difficulty": "advanced",
-      "estimated_time": "2-4 hours",
+      "category": "Testing & Quality",
+      "difficulty": "intermediate",
+      "estimated_time": "1-3 hours",
       "path": "/SKILLS/agent-evaluator/",
       "status": "active",
-      "prerequisites": [
-        "testing-strategist"
-      ],
-      "related_skills": [
-        "testing-strategist",
-        "rag-implementer",
-        "quality-auditor"
-      ],
+      "prerequisites": [],
+      "related_skills": [],
       "frameworks": [
         "all"
       ],

@@ -8,7 +8,7 @@
 
 **Version 3.0.3** | **Last Updated:** 2025-11-14
 
-<!-- AUTO-GEN:START:total-resources -->238<!-- AUTO-GEN:END:total-resources --> core resources for AI-assisted development (from a living catalog of 360 total repository resources). One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
+<!-- AUTO-GEN:START:total-resources -->239<!-- AUTO-GEN:END:total-resources --> core resources for AI-assisted development (from a living catalog of 360 total repository resources). One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
 
 > **🎉 Brain/Orchestrator Now Working!** The intelligent skill discovery system is now fully configured and documented. Run `./scripts/configure-mcp-paths.sh` for one-command setup, then use `brain_select_skills` to automatically find the right skills for any task. See [Brain Quick Start](#-repository-brain--orchestrator) or [Complete Solution](STATUS-REPORTS/BRAIN-ORCHESTRATOR-SOLUTION.md).
 
@@ -20,7 +20,7 @@
 
 Think of this as a **shared brain** between you and Claude:
 
-- **<!-- AUTO-GEN:START:skills -->64<!-- AUTO-GEN:END:skills --> Specialized Skills** – Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, design systems, and more) **🆕 Now with auto-activation!**
+- **<!-- AUTO-GEN:START:skills -->65<!-- AUTO-GEN:END:skills --> Specialized Skills** – Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, design systems, and more) **🆕 Now with auto-activation!**
 - **<!-- AUTO-GEN:START:mcps -->50<!-- AUTO-GEN:END:mcps --> MCP Servers** – Executable development tools including brain-mcp for intelligent orchestration (strong skill coverage and actionability)
 - **<!-- AUTO-GEN:START:tools -->24<!-- AUTO-GEN:END:tools --> Core Tools** – Essential development utilities and automation scripts that are synced into your projects
 - **<!-- AUTO-GEN:START:components -->72<!-- AUTO-GEN:END:components --> Reusable Components** – React components for common patterns (auth, forms, errors, feedback, media, layouts, advanced UI)
@@ -32,7 +32,7 @@ Think of this as a **shared brain** between you and Claude:
 - **🆕 Skill Auto-Activation** – Skills activate automatically based on your prompts and file context (no more remembering skill names!)
 
 **Core Resources (Tier 1 - Executable):**  
-**<!-- AUTO-GEN:START:total-resources -->238<!-- AUTO-GEN:END:total-resources --> resources** (64 skills + 50 MCPs + 24 tools + 72 components + 28 integrations)
+**<!-- AUTO-GEN:START:total-resources -->239<!-- AUTO-GEN:END:total-resources --> resources** (64 skills + 50 MCPs + 24 tools + 72 components + 28 integrations)
 
 **Supporting Resources (Tier 2):**  
 **122 resources** (14 playbooks + 20 standards + 19 templates + 4 schemas + 8 utilities + 3 examples + 3 installers + 24 docs)
@@ -69,7 +69,7 @@ The tool automatically:
 - ✅ Installs everything needed
 - ✅ Analyzes your repository
 - ✅ Recommends where to start
-- ✅ Syncs all **<!-- AUTO-GEN:START:total-resources -->238<!-- AUTO-GEN:END:total-resources --> core resources** into your project (from the full 360-resource catalog)
+- ✅ Syncs all **<!-- AUTO-GEN:START:total-resources -->239<!-- AUTO-GEN:END:total-resources --> core resources** into your project (from the full 360-resource catalog)
 
 **Works for:**
 
@@ -82,7 +82,7 @@ The tool automatically:
 
 - 64 skills with **automatic activation** based on context
 - 50 MCP servers (including brain-mcp for intelligent orchestration)
-- **<!-- AUTO-GEN:START:total-resources -->238<!-- AUTO-GEN:END:total-resources --> core resources** (skills, MCPs, components, integrations, tools)
+- **<!-- AUTO-GEN:START:total-resources -->239<!-- AUTO-GEN:END:total-resources --> core resources** (skills, MCPs, components, integrations, tools)
 - Project analysis with recommendations
 - Exact roadmap for where to start
 - Skills that activate when you need them, not when you remember them
@@ -217,7 +217,7 @@ ai-dev-standards/
 
 ## 🧠 Repository Brain & Orchestrator
 
-The **Repository Brain** is an intelligence system that manages, understands, and orchestrates the **<!-- AUTO-GEN:START:total-resources -->238<!-- AUTO-GEN:END:total-resources --> core resources inside your project**, backed by the full **360-resource repository catalog** (238 core + 122 supporting resources). It helps Claude automatically discover and use the right skills, MCPs, tools, and components for any task.
+The **Repository Brain** is an intelligence system that manages, understands, and orchestrates the **<!-- AUTO-GEN:START:total-resources -->239<!-- AUTO-GEN:END:total-resources --> core resources inside your project**, backed by the full **360-resource repository catalog** (238 core + 122 supporting resources). It helps Claude automatically discover and use the right skills, MCPs, tools, and components for any task.
 
 ### Quick Setup
 
@@ -262,7 +262,7 @@ Claude reads those skill files and applies their methodologies
 
 **Status:**
 
-- `brain_status` – Core resource status for your project (64 skills, 50 MCPs, <!-- AUTO-GEN:START:total-resources -->238<!-- AUTO-GEN:END:total-resources --> core resources; 360 total resources available in the repository)
+- `brain_status` – Core resource status for your project (64 skills, 50 MCPs, <!-- AUTO-GEN:START:total-resources -->239<!-- AUTO-GEN:END:total-resources --> core resources; 360 total resources available in the repository)
 
 ### Using the Brain
 
@@ -487,7 +487,7 @@ Every core resource in this system is:
 - ✅ **Audited** with mandatory completeness checks
 
 **Current Core Resources:**  
-64 skills, 50 MCP servers, <!-- AUTO-GEN:START:total-resources -->238<!-- AUTO-GEN:END:total-resources --> total core resources – all fully registered and discoverable.
+64 skills, 50 MCP servers, <!-- AUTO-GEN:START:total-resources -->239<!-- AUTO-GEN:END:total-resources --> total core resources – all fully registered and discoverable.
 
 ### ✅ Strong Skill-to-MCP Coverage (from latest simulation)
 
@@ -746,7 +746,7 @@ See `META/DECISION-FRAMEWORK.md` for complete decision trees.
   - Added MCP code execution best practices and implementation guides (PR #17, #18)
   - Branch cleanup automation tools and workflows (PR #16)
   - Registry synchronization and validation improvements (PR #15)
-  - Updated resource counts to match registry (64 skills, 50 MCPs, <!-- AUTO-GEN:START:total-resources -->238<!-- AUTO-GEN:END:total-resources --> total resources)
+  - Updated resource counts to match registry (64 skills, 50 MCPs, <!-- AUTO-GEN:START:total-resources -->239<!-- AUTO-GEN:END:total-resources --> total resources)
   - Version consistency across all documentation
 - **3.0.1** (2025-11-05): Documentation and automation improvements for self-update workflow
 - **2.1.0** (2025-10-29): Validation & Orchestration Update

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 /**
  * Toast Notification System
  *
@@ -328,8 +329,7 @@ export function ToastProviderWithEvents({
           <ToastItem key={toast.id} toast={toast} onDismiss={() => removeToast(toast.id)} />
         ))}
       </div>
-      {/* eslint-disable-next-line react/no-unknown-property */}
-      {/* @ts-expect-error */}
+      {/* @ts-expect-error: styled-jsx global style support */}
       <style jsx global>{`
         @keyframes slide-in-right {
           from {

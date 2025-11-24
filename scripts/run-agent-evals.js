@@ -10,10 +10,10 @@
  * Supports deterministic checks (Exact, Contains, Regex) and probabilistic checks (LLM-Graded).
  */
 
-const fs = require('fs');
-const path = require('path');
-const { program } = require('commander');
-const chalk = require('chalk');
+import fs from 'fs';
+import path from 'path';
+import { program } from 'commander';
+import chalk from 'chalk';
 
 program
   .name('agent-eval')
@@ -77,22 +77,24 @@ async function evaluate(testCase, actualOutput) {
   const { expected, criteria } = testCase;
   
   switch (criteria) {
-    case 'exact':
+    case 'exact': {
       return {
         passed: actualOutput.trim() === expected.trim(),
         score: actualOutput.trim() === expected.trim() ? 1 : 0,
         reason: `Expected exact match: "${expected}"`
       };
+    }
       
-    case 'contains':
+    case 'contains': {
       const passedContains = actualOutput.includes(expected);
       return {
         passed: passedContains,
         score: passedContains ? 1 : 0,
         reason: `Expected to contain: "${expected}"`
       };
+    }
       
-    case 'regex':
+    case 'regex': {
       const regex = new RegExp(expected);
       const passedRegex = regex.test(actualOutput);
       return {
@@ -100,8 +102,9 @@ async function evaluate(testCase, actualOutput) {
         score: passedRegex ? 1 : 0,
         reason: `Expected to match regex: ${expected}`
       };
+    }
       
-    case 'llm-graded':
+    case 'llm-graded': {
       // In a real implementation, this would call a "Judge" LLM (GPT-4/Claude 3.5)
       // For this reference script, we'll use a simple heuristic fallback
       // or return a "Skipped/Mocked" result if no API key.
@@ -110,13 +113,15 @@ async function evaluate(testCase, actualOutput) {
         score: 0.8, // Mock score
         reason: "(Mock) LLM Judge evaluated semantics as acceptable"
       };
+    }
       
-    default:
+    default: {
       return {
         passed: false,
         score: 0,
         reason: `Unknown criteria: ${criteria}`
       };
+    }
   }
 }
 

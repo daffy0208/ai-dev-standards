@@ -63,7 +63,7 @@ cd ../..
 
 ```
 ai-dev-standards/
-├── SKILLS/                         # <!-- AUTO-GEN:START:skills -->64<!-- AUTO-GEN:END:skills --> specialized methodologies
+├── SKILLS/                         # <!-- AUTO-GEN:START:skills -->65<!-- AUTO-GEN:END:skills --> specialized methodologies
 │   ├── mvp-builder/                # MVP development patterns
 │   ├── rag-implementer/            # RAG implementation guide
 │   ├── api-designer/               # API design principles

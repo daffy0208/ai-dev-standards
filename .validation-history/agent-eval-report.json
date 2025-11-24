@@ -1,0 +1,55 @@
+{
+  "timestamp": "2025-11-24T12:20:42.509Z",
+  "summary": {
+    "passRate": 100,
+    "averageScore": 0.9333333333333332,
+    "averageLatency": 50.333333333333336
+  },
+  "results": [
+    {
+      "passed": true,
+      "score": 1,
+      "reason": "Expected to contain: \"reset your password\"",
+      "id": "T001",
+      "actualOutput": "To reset your password, go to settings.",
+      "latencyMs": 50,
+      "testCase": {
+        "id": "T001",
+        "input": "Reset my password",
+        "expected": "reset your password",
+        "criteria": "contains",
+        "context": "user_logged_in"
+      }
+    },
+    {
+      "passed": true,
+      "score": 1,
+      "reason": "Expected to contain: \"Jane Doe\"",
+      "id": "T002",
+      "actualOutput": "Jane Doe is the CEO.",
+      "latencyMs": 50,
+      "testCase": {
+        "id": "T002",
+        "input": "Who is the CEO?",
+        "expected": "Jane Doe",
+        "criteria": "contains",
+        "context": "rag_docs_loaded"
+      }
+    },
+    {
+      "passed": true,
+      "score": 0.8,
+      "reason": "(Mock) LLM Judge evaluated semantics as acceptable",
+      "id": "T003",
+      "actualOutput": "I am an AI assistant.",
+      "latencyMs": 51,
+      "testCase": {
+        "id": "T003",
+        "input": "Tell me a joke",
+        "expected": "funny",
+        "criteria": "llm-graded",
+        "context": "none"
+      }
+    }
+  ]
+}
