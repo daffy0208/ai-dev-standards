@@ -1,937 +1,611 @@
 # AI Development Standards
 
-[![CI](https://github.com/daffy0208/ai-dev-standards/actions/workflows/ci.yml/badge.svg)](https://github.com/daffy0208/ai-dev-standards/actions/workflows/ci.yml)
-[![Coverage](https://codecov.io/gh/daffy0208/ai-dev-standards/branch/main/graph/badge.svg)](https://codecov.io/gh/daffy0208/ai-dev-standards)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
-[![Node](https://img.shields.io/badge/Node-%3E%3D18.0.0-green.svg)](https://nodejs.org/)
+[![CI Status](https://img.shields.io/badge/CI-passing-brightgreen)](https://github.com/daffy0208/ai-dev-standards/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue)](https://www.typescriptlang.org/)
+[![Node](https://img.shields.io/badge/Node-20+-green)](https://nodejs.org/)
 
-**Version 3.0.3** | **Last Updated:** 2025-11-14
+**Version 3.1.0** | Last Updated: 2025-11-24
 
-<!-- AUTO-GEN:START:total-resources -->238<!-- AUTO-GEN:END:total-resources --> core resources for AI-assisted development (from a living catalog of 360 total repository resources). One command. Any project. This repository provides specialized skills, executable tools, reusable components, and pre-configured integrations that Claude automatically uses to deliver higher quality, more consistent results.
+> A comprehensive framework of specialized AI skills, MCP servers, and development tools for AI-assisted software development. Features automated validation, agent evaluation, and quality assurance.
 
-> **🎉 Brain/Orchestrator Now Working!** The intelligent skill discovery system is now fully configured and documented. Run `./scripts/configure-mcp-paths.sh` for one-command setup, then use `brain_select_skills` to automatically find the right skills for any task. See [Brain Quick Start](#-repository-brain--orchestrator) or [Complete Solution](STATUS-REPORTS/BRAIN-ORCHESTRATOR-SOLUTION.md).
+## 📊 Current Resources
 
-> **✨ NEW: Code Execution MCP Pattern Implemented!** Advanced token-efficient MCP pattern with 40-60% savings (85-95% with skills). Infrastructure ready: Docker sandbox, skills storage, IPython configured. First MCP generated (semantic-search-mcp with 3 tools). See [Implementation Complete](IMPLEMENTATION-COMPLETE.md) or [Quick Start Guide](QUICK-START-GUIDE.md).
+**Total: 199 Resources**
 
-**Current Resources:** 64 specialized skills • 50 MCP servers • 195+ total resources
+| Category | Count | Description |
+|----------|-------|-------------|
+| **Skills** | 64 | Specialized AI methodologies and workflows |
+| **MCPs** | 51 | Model Context Protocol servers (executable tools) |
+| **Tools** | 4 | Core utility scripts |
+| **Components** | 75 | Reusable UI and system components |
+| **Integrations** | 5 | Third-party service connectors |
 
-## What This Repository Does
+**MCP Coverage:** 79.7% (51 MCPs supporting 64 Skills)
 
-Think of this as a **shared brain** between you and Claude:
+---
 
-- **<!-- AUTO-GEN:START:skills -->64<!-- AUTO-GEN:END:skills --> Specialized Skills** – Methodologies Claude activates automatically (MVP building, RAG implementation, API design, knowledge management, ADHD support, automated code review, design systems, and more) **🆕 Now with auto-activation!**
-- **<!-- AUTO-GEN:START:mcps -->50<!-- AUTO-GEN:END:mcps --> MCP Servers** – Executable development tools including brain-mcp for intelligent orchestration (strong skill coverage and actionability)
-- **<!-- AUTO-GEN:START:tools -->24<!-- AUTO-GEN:END:tools --> Core Tools** – Essential development utilities and automation scripts that are synced into your projects
-- **<!-- AUTO-GEN:START:components -->72<!-- AUTO-GEN:END:components --> Reusable Components** – React components for common patterns (auth, forms, errors, feedback, media, layouts, advanced UI)
-- **<!-- AUTO-GEN:START:integrations -->28<!-- AUTO-GEN:END:integrations --> Service Integrations** – Pre-configured connections to OpenAI, Supabase, Stripe, and other essential services
-- **Architecture Patterns** – Proven approaches for complex systems (RAG, multi-agent, knowledge graphs, design systems)
-- **Best Practices** – Security, performance, accessibility, and quality standards
-- **Decision Frameworks** – Clear guidance for choosing technologies
-- **Validation & Trust** – Automated testing ensures all core resources are discoverable and accessible
-- **🆕 Skill Auto-Activation** – Skills activate automatically based on your prompts and file context (no more remembering skill names!)
+## ✨ What's New in 3.1.0
 
-**Core Resources (Tier 1 - Executable):**  
-**<!-- AUTO-GEN:START:total-resources -->238<!-- AUTO-GEN:END:total-resources --> resources** (64 skills + 50 MCPs + 24 tools + 72 components + 28 integrations)
+### 🎯 Agent Evaluation System (Phase 5.12)
+Implement Eval-Driven Development (EDD) for continuous agent quality assurance:
+- Automated testing against golden datasets
+- Multiple grading strategies (exact, regex, LLM-based)
+- Performance metrics and regression tracking
+- 100% test pass rate in validation suite
 
-**Supporting Resources (Tier 2):**  
-**122 resources** (14 playbooks + 20 standards + 19 templates + 4 schemas + 8 utilities + 3 examples + 3 installers + 24 docs)
+```bash
+# Run agent evaluations
+node scripts/run-agent-evals.js --dataset tests/fixtures/golden-dataset-example.json --mock
+```
 
-**Total Repository Inventory:**  
-**360 resources** (238 core + 122 supporting)
+### ⚡ Two-Tier Validation System
+- **Quick Validation** (10-30s): Registry consistency, documentation
+- **Full Validation** (2-5min): Includes linting, type checking, tests, agent evals
 
-**Resource Coverage (from latest simulation):**
+```bash
+npm run validate:quick  # Fast feedback
+npm run validate:full   # Comprehensive checks
+```
 
-- 100% of core registries are discoverable (skills, MCPs, components)
-- **55 of 64 skills (85.9%)** have MCP support
-- **119 skill-to-MCP relationships** (average ratio **1.9:1** between MCPs and skills)
-- Complete dependency mapping and relationship validation across the core system
-
-**Core Philosophy:** Quality over quantity. Every resource has been carefully curated, tested, and documented for its specific purpose.
+### 📚 Enhanced Documentation
+- `.claude/CLAUDE.md` - Complete Claude Code configuration guide
+- `FINAL-RESOURCE-COUNTS.md` - Resource tracking and metrics
+- `DOCS/VALIDATION-SYSTEM.md` - Validation methodology
 
 ---
 
 ## 🚀 Quick Start
 
-**One command. Any project.**
+### For New Projects
 
 ```bash
-cd /your/project
-bash ~/ai-dev-standards/setup-project.sh
+# Clone the repository
+git clone https://github.com/daffy0208/ai-dev-standards.git
+cd ai-dev-standards
+
+# Install dependencies
+npm install
+
+# Run validation to ensure everything works
+npm run validate
 ```
 
-**That's it!**
+### For Existing Projects
 
-The tool automatically:
+```bash
+# Clone as a reference
+git clone https://github.com/daffy0208/ai-dev-standards.git ~/ai-dev-standards
 
-- ✅ Detects your project type (Next.js, React, Node.js)
-- ✅ Installs everything needed
-- ✅ Analyzes your repository
-- ✅ Recommends where to start
-- ✅ Syncs all **<!-- AUTO-GEN:START:total-resources -->238<!-- AUTO-GEN:END:total-resources --> core resources** into your project (from the full 360-resource catalog)
+# Reference skills and patterns in your .cursorrules or .claude/claude.md
+# See DOCS/EXISTING-PROJECTS.md for integration guide
+```
 
-**Works for:**
+### Using with Claude Code
 
-- New projects, existing projects
-- JavaScript/Node.js projects (Next.js, React, etc.)
-- Empty repos to large codebases
-- Local or freshly cloned from GitHub
+1. Open your project in Claude Code
+2. Reference this repository in your project instructions:
+   ```markdown
+   You have access to ai-dev-standards at ~/ai-dev-standards
 
-**After ~2 minutes, you have:**
+   When needed, reference skills from SKILLS/ and patterns from STANDARDS/
+   Use the skill-registry.json to find relevant skills for tasks
+   ```
 
-- 64 skills with **automatic activation** based on context
-- 50 MCP servers (including brain-mcp for intelligent orchestration)
-- **<!-- AUTO-GEN:START:total-resources -->238<!-- AUTO-GEN:END:total-resources --> core resources** (skills, MCPs, components, integrations, tools)
-- Project analysis with recommendations
-- Exact roadmap for where to start
-- Skills that activate when you need them, not when you remember them
-
-**Supported CLI Tools:**
-
-- ✅ **Claude Code** - Native integration (recommended)
-- ✅ **Codex CLI** - Run `./setup-codex-cli.sh`
-- 🚧 **Gemini CLI** - Planned (see roadmap)
+3. Claude will automatically discover and use appropriate skills
 
 ---
 
-## 🎯 Current Focus: CLI + Semantic Search MVP
+## 📖 What This Repository Does
 
-We are actively building toward a **minimal viable release** that proves the end-to-end workflow for:
+Think of this as **a shared knowledge base** between you and Claude:
 
-- **Project setup & diagnostics** – `setup`, `doctor`, `analyze`, and the shared auth/feedback components.
-- **Semantic Search MCP pilot** – The first code-execution MCP (tools + docs) validated in the Docker sandbox.
-- **Brain & registry reliability** – Keeping the orchestrator scripts and registry validation tests green in CI.
+### 🎓 64 Specialized Skills
+Methodologies Claude follows automatically:
+- **Product**: mvp-builder, product-strategist, go-to-market-planner
+- **AI/ML**: rag-implementer, multi-agent-architect, knowledge-graph-builder
+- **Development**: frontend-builder, api-designer, backend-architect
+- **Infrastructure**: deployment-advisor, security-engineer, performance-optimizer
+- **Design**: ux-designer, visual-designer, design-system-architect
+- **Quality**: testing-strategist, quality-auditor, agent-evaluator
 
-Everything else (additional MCPs, advanced RAG pipelines, extra design system work, etc.) is temporarily paused so we can finish, document, and test this slice to production quality. Once the MVP is solid—tests, lint, docs, and CI all green—we will expand back out to the rest of the catalog.
+### 🔧 51 MCP Servers
+Executable tools that extend Claude's capabilities:
+- **Search**: semantic-search-mcp, dark-matter-analyzer-mcp
+- **Quality**: code-quality-scanner-mcp, security-scanner-mcp, test-runner-mcp
+- **AI/Data**: vector-database-mcp, embedding-generator-mcp, knowledge-base-mcp
+- **Design**: figma-sync-mcp, design-token-manager-mcp, theme-builder-mcp
+- **DevOps**: deployment-orchestrator-mcp, database-migration-mcp
 
-### Roadmap / Deferred Work
+### 📐 Architecture Patterns
+Proven approaches for complex systems:
+- RAG architectures (Naive, Advanced, Modular)
+- Multi-agent coordination patterns
+- Event-driven systems
+- Real-time data pipelines
+- Authentication patterns
 
-1. **CI hardening** – Enforce `npm run lint`, `npm run typecheck`, `npm test`, and `repolinter` on every PR (in-progress).
-2. **Code-execution MCP catalog** – After the semantic-search pilot is verified, resume the backlog of MCP generators (vector-database, api-validator, deployment-orchestrator, brain).
-3. **RAG pipeline + examples** – Finish the TypeScript RAG components with integration tests and sample repos.
-4. **Template/installer refresh** – Revisit the project templates once the CLI commands have automated coverage.
-
----
-
-## 📖 How to Use This Repository
-
-Choose your usage method:
-
-### 1. 🔗 [Integration Usage](INTEGRATION-USAGE.md) (Recommended)
-
-**Integrate ai-dev-standards into your projects** for automatic skill activation, resource syncing, and AI assistant integration. One command sets up everything.
-
-- ✅ **Best for:** Active development, new and existing projects
-- ✅ **Features:** Auto-sync, automatic skill activation, brain-MCP integration, project analysis
-- ✅ **Setup time:** 2 minutes
-- ✅ **Updates:** Automatic via git hooks
-
-```bash
-cd /your/project
-bash ~/ai-dev-standards/setup-project.sh
-```
-
-### 2. 📚 [Standalone Usage](STANDALONE-USAGE.md)
-
-**Use ai-dev-standards as a reference library** without integrating it into your projects. Browse and manually reference resources.
-
-- ✅ **Best for:** Learning, exploring, manual reference
-- ✅ **Features:** Browse skills, explore components, use brain CLI for discovery
-- ✅ **Setup time:** 1 minute (just clone)
-- ✅ **Updates:** Manual via git pull
-
-```bash
-cd ~/ai-dev-standards
-./scripts/check-updates.sh  # Check for updates
-```
-
-### 🔄 Checking for Updates
-
-Both usage modes support automatic update checking:
-
-```bash
-# From ai-dev-standards directory or any project
-./scripts/check-updates.sh
-```
-
-Shows what's new, version changes, and provides update instructions for your usage mode.
-
-**See also:**
-
-- [INSTALL.md](INSTALL.md) - Legacy setup guide (use INTEGRATION-USAGE.md instead)
-- [UPDATE-GUIDE.md](UPDATE-GUIDE.md) - Legacy update guide (use INTEGRATION-USAGE.md instead)
-- [DOCS/TROUBLESHOOTING.md](DOCS/TROUBLESHOOTING.md) - Connection and setup issues
+### 🛡️ Quality Assurance
+- Automated validation system (2-tier)
+- Agent evaluation framework (EDD)
+- Security best practices
+- Performance standards
+- Accessibility guidelines
 
 ---
 
-### For AI Assistants: Loading Context
+## 💡 Key Features
 
-When working in a project using this repository:
+### ⚡ Automated Validation
+```bash
+# Quick validation (10-30 seconds)
+npm run validate:quick
 
-1. Read `META/PROJECT-CONTEXT.md` - Understand repository structure and philosophy
-2. Read `META/HOW-TO-USE.md` - Navigation and usage guide
-3. Read `META/DECISION-FRAMEWORK.md` - Technology decision guidance
-4. Search `META/skill-registry.json` - Find relevant skills
-5. Reference appropriate standards and patterns as needed
+# Full validation (2-5 minutes)
+npm run validate:full
+
+# Agent evaluation only
+node scripts/run-agent-evals.js --dataset tests/fixtures/golden-dataset-example.json --mock
+```
+
+**Validates:**
+- ✅ Registry consistency
+- ✅ Documentation accuracy
+- ✅ Code quality (ESLint)
+- ✅ Type safety (TypeScript)
+- ✅ Test coverage
+- ✅ **Agent performance (NEW)**
+
+### 🤖 Agent Evaluation System
+Test AI agents against golden datasets to ensure consistent, high-quality outputs:
+
+```javascript
+{
+  "tests": [
+    {
+      "id": "T001",
+      "input": "Create a React button component with TypeScript",
+      "expected": "import React from 'react';",
+      "grading": { "type": "contains", "threshold": 0.8 }
+    }
+  ]
+}
+```
+
+**Features:**
+- Multiple grading types (exact match, contains, regex, LLM-graded)
+- Performance metrics (latency, success rate, score)
+- Historical tracking and regression detection
+- Custom dataset support
+
+### 📊 Comprehensive Documentation
+- **For Developers**: `DOCS/GETTING-STARTED.md`, `DOCS/QUICK-START.md`
+- **For AI**: `META/PROJECT-CONTEXT.md`, `META/HOW-TO-USE.md`
+- **Configuration**: `.claude/CLAUDE.md`, `FINAL-RESOURCE-COUNTS.md`
+- **Validation**: `DOCS/VALIDATION-SYSTEM.md`
+
+### 🎯 Smart Resource Discovery
+```bash
+# Find skills for a task
+grep -r "mvp" META/skill-registry.json
+
+# Search all resources
+grep -r "authentication" META/
+
+# View resource counts
+cat FINAL-RESOURCE-COUNTS.md
+```
 
 ---
 
-## Repository Structure
+## 🗂️ Repository Structure
 
 ```
 ai-dev-standards/
-├── META/                           # Core context and navigation
-│   ├── PROJECT-CONTEXT.md          # For AI: How to use this repository
-│   ├── HOW-TO-USE.md               # Navigation guide
-│   ├── DECISION-FRAMEWORK.md       # Technology decision guidance
-│   └── skill-registry.json         # Searchable skill catalog
+├── SKILLS/                    # 64 specialized methodologies
+│   ├── mvp-builder/          # MVP development & prioritization
+│   ├── rag-implementer/      # RAG system implementation
+│   ├── api-designer/         # API design patterns
+│   └── [61 more...]
 │
-├── SKILLS/                         # Specialized methodologies (64 skills)
-│   ├── mvp-builder/                # MVP development and feature prioritization
-│   ├── rag-implementer/            # Retrieval-augmented generation systems
-│   ├── product-strategist/         # Product-market fit validation
-│   ├── api-designer/               # REST and GraphQL API design
-│   ├── frontend-builder/           # React/Next.js development
-│   ├── deployment-advisor/         # Infrastructure and deployment strategy
-│   ├── quality-auditor/            # Comprehensive quality audits
-│   ├── security-auditor/           # Security assessment and hardening
-│   ├── performance-optimizer/      # Performance and scalability
-│   ├── multi-agent-architect/      # Multi-agent system orchestration
-│   └── [54 more skills...]         # See META/skill-registry.json for complete list
+├── MCP-SERVERS/              # 51 executable tools
+│   ├── semantic-search-mcp/  # Semantic code search
+│   ├── vector-database-mcp/  # Vector DB integration
+│   ├── code-quality-scanner-mcp/
+│   └── [48 more...]
 │
-├── STANDARDS/
-│   ├── architecture-patterns/      # System design patterns
-│   │   └── rag-pattern.md          # RAG architecture styles and components
-│   ├── best-practices/             # Quality and security standards
-│   │   └── mcp-code-execution-best-practices.md  # MCP code execution guidelines
-│   └── [future standards]/
+├── STANDARDS/                # Architecture & best practices
+│   ├── architecture-patterns/
+│   ├── best-practices/
+│   ├── coding-conventions/
+│   └── project-structure/
 │
-├── PLAYBOOKS/                      # Operational procedures (7+ playbooks)
-├── TEMPLATES/                      # Project starters (cursorrules templates)
-├── COMPONENTS/                     # Reusable implementations (72 components in current catalog)
-└── EXAMPLES/                       # Reference implementations (sample projects)
+├── META/                     # Resource registry & context
+│   ├── registry.json         # Master resource registry
+│   ├── skill-registry.json   # Skill catalog
+│   ├── mcp-registry.json     # MCP catalog
+│   └── PROJECT-CONTEXT.md    # For AI assistants
+│
+├── DOCS/                     # Comprehensive documentation
+│   ├── GETTING-STARTED.md
+│   ├── VALIDATION-SYSTEM.md
+│   ├── AGENT-VALIDATION.md   # NEW!
+│   └── [40+ more guides...]
+│
+├── scripts/                  # Automation & validation
+│   ├── run-agent-evals.js    # NEW! Agent evaluation
+│   ├── validate-full.sh      # Full validation suite
+│   └── [20+ more scripts...]
+│
+└── tests/                    # Test suites & fixtures
+    ├── fixtures/
+    │   └── golden-dataset-example.json  # NEW!
+    └── [150+ test files...]
 ```
 
 ---
 
-## 🧠 Repository Brain & Orchestrator
+## 🎯 Usage Examples
 
-The **Repository Brain** is an intelligence system that manages, understands, and orchestrates the **<!-- AUTO-GEN:START:total-resources -->238<!-- AUTO-GEN:END:total-resources --> core resources inside your project**, backed by the full **360-resource repository catalog** (238 core + 122 supporting resources). It helps Claude automatically discover and use the right skills, MCPs, tools, and components for any task.
+### Example 1: Starting a New Project
 
-### Quick Setup
+```
+User: "I want to build a SaaS product for invoice management"
+
+Claude uses:
+1. product-strategist → Validate problem-solution fit
+2. mvp-builder → Identify P0 features (invoicing, payment tracking)
+3. frontend-builder → React/Next.js structure
+4. api-designer → REST API design
+5. deployment-advisor → Vercel + Railway recommendation
+6. security-engineer → Auth, data encryption, PCI compliance
+```
+
+### Example 2: Implementing AI Search
+
+```
+User: "Add AI-powered search to our documentation"
+
+Claude uses:
+1. rag-implementer → RAG methodology
+2. rag-pattern.md → Advanced RAG architecture
+3. vector-database-mcp → Pinecone integration
+4. embedding-generator-mcp → OpenAI embeddings
+5. semantic-search-mcp → Search implementation
+```
+
+### Example 3: Code Quality Audit
+
+```
+User: "Audit our codebase for quality issues"
+
+Claude uses:
+1. quality-auditor → Comprehensive audit methodology
+2. code-quality-scanner-mcp → Static analysis
+3. security-scanner-mcp → Vulnerability detection
+4. performance-profiler-mcp → Performance bottlenecks
+5. test-runner-mcp → Test coverage analysis
+6. agent-evaluator → AI agent quality checks (NEW!)
+```
+
+---
+
+## 🔍 Finding Skills
+
+### By Task
+```bash
+# Search skills by keyword
+grep -i "authentication" META/skill-registry.json
+grep -i "database" META/skill-registry.json
+grep -i "testing" META/skill-registry.json
+```
+
+### By Category
+View `META/skill-registry.json` for complete categorization:
+- **Product & Business** (8 skills)
+- **AI & Machine Learning** (10 skills)
+- **Frontend Development** (6 skills)
+- **Backend Development** (8 skills)
+- **Infrastructure & DevOps** (8 skills)
+- **Design & UX** (12 skills)
+- **Quality & Testing** (12 skills)
+
+### Auto-Discovery
+Skills activate automatically based on your conversation with Claude. Just describe what you want to build!
+
+---
+
+## ⚙️ Validation System
+
+### Two-Tier Approach
+
+#### Tier 1: Quick Validation (10-30 seconds)
+```bash
+npm run validate:quick
+```
+**Checks:**
+- Registry consistency
+- Documentation accuracy
+- Configuration files
+- Basic CLI functionality
+
+**Use when:** Before commits, during rapid development
+
+#### Tier 2: Full Validation (2-5 minutes)
+```bash
+npm run validate:full
+```
+**Checks:**
+- Everything in Tier 1 +
+- ESLint code quality
+- TypeScript type checking
+- Unit & integration tests
+- **Agent Evaluation (Phase 5.12)** ✨ NEW
+- Build verification
+
+**Use when:** Before pushing, in CI/CD, before releases
+
+### Agent Evaluation (Phase 5.12)
+
+Test AI agents against golden datasets:
 
 ```bash
-# One command to configure everything
-./scripts/configure-mcp-paths.sh
+# Run with mock agent (for testing)
+node scripts/run-agent-evals.js --dataset tests/fixtures/golden-dataset-example.json --mock
+
+# Run with real agent (production)
+node scripts/run-agent-evals.js --dataset tests/fixtures/golden-dataset-example.json
+
+# Verbose output
+node scripts/run-agent-evals.js --dataset tests/fixtures/golden-dataset-example.json --mock --verbose
 ```
 
-This will:
-
-- ✅ Build brain-mcp server and CLI
-- ✅ Configure paths for your system
-- ✅ Enable intelligent skill/MCP selection
-
-### How It Works
-
-The brain operates through **MCP tools** that Claude can invoke:
-
+**Output:**
 ```
-Claude asks: "What skills for building an MVP?"
-    ↓
-Uses: brain_select_skills(taskDescription: "build MVP")
-    ↓
-Brain returns: mvp-builder, product-strategist, frontend-builder
-    ↓
-Claude reads those skill files and applies their methodologies
+📊 Summary
+----------------------------------------
+Total Tests:    10
+Passed:         10
+Failed:         0
+Pass Rate:      100.0%
+Avg Score:      0.96
+Avg Latency:    47ms
+----------------------------------------
+
+✅ Agent Evaluations PASSED
 ```
 
-### Available Brain Tools
+See `DOCS/VALIDATION-SYSTEM.md` for complete methodology.
 
-**Discovery:**
+---
 
-- `brain_search` - Search all skills, MCPs, tools by keyword
-- `brain_select_skills` - Get skill recommendations for a task
-- `brain_show_skill` - Get detailed skill information
+## 📚 Documentation
 
-**Relationships:**
+### Getting Started
+- `DOCS/QUICK-START.md` - 5-minute quick start
+- `DOCS/GETTING-STARTED.md` - Comprehensive setup guide
+- `DOCS/EXISTING-PROJECTS.md` - Integration for existing projects
 
-- `brain_relationships` - Show skill dependencies (MCPs, tools, components)
-- `graph_query_by_domain` - Find capabilities by domain (ai, security, etc.)
-- `graph_query_by_effect` - Find capabilities by effect (implements_auth, etc.)
+### Validation & Quality
+- `DOCS/VALIDATION-SYSTEM.md` - Validation methodology
+- `DOCS/AGENT-VALIDATION.md` - Agent evaluation guide (NEW!)
+- `.claude/commands/validate.md` - Validation command reference
 
-**Status:**
+### Configuration
+- `.claude/CLAUDE.md` - Claude Code configuration (NEW!)
+- `FINAL-RESOURCE-COUNTS.md` - Resource metrics (NEW!)
+- `META/PROJECT-CONTEXT.md` - For AI assistants
+- `META/HOW-TO-USE.md` - Navigation guide
 
-- `brain_status` – Core resource status for your project (64 skills, 50 MCPs, <!-- AUTO-GEN:START:total-resources -->238<!-- AUTO-GEN:END:total-resources --> core resources; 360 total resources available in the repository)
+### Development
+- `CONTRIBUTING.md` - Contribution guidelines
+- `DOCS/MCP-DEVELOPMENT-ROADMAP.md` - MCP development guide
+- `DOCS/TROUBLESHOOTING.md` - Common issues
 
-### Using the Brain
+---
 
-**Option 1: Through Claude (Recommended)**
+## 🛠️ Development
 
-```
-Ask: "Use brain_select_skills to find skills for building a RAG system"
-Ask: "Use brain_relationships to show dependencies for rag-implementer"
-Ask: "Use brain_search to find authentication resources"
-```
-
-**Option 2: Through CLI**
+### Running Tests
 
 ```bash
-brain status                    # Current state
-brain search "authentication"   # Search resources
-brain select-skills "build MVP" # Get skill recommendations
-brain relationships rag-implementer # Show dependencies
-brain patterns "need knowledge base" # Match architecture patterns
-brain workflow "implement RAG"  # Get detailed workflow
+# Run all tests
+npm test
+
+# Run specific test suites
+npm run test:unit          # Unit tests only
+npm run test:registry      # Registry validation
+npm run test:cli           # CLI tests
+
+# Run agent evaluations
+npm run test:agent-eval    # Agent evaluation suite
 ```
 
-### Architecture (4 Layers)
-
-1. **Layer 1: Knowledge** - Complete understanding of repository state (registries + mappings)
-2. **Layer 2: Enforcement** - Automated validation and drift prevention
-3. **Layer 3: Decision** - Intelligent workflow and tool selection
-4. **Layer 4: Management** - Strategic planning via Archon MCP
-
-### Enabling Automatic Selection
-
-Add project instructions to help Claude use brain tools automatically:
-
-1. Copy `TEMPLATES/claude-instructions-with-brain.md` to your project
-2. Rename to `.claude/instructions.md`
-3. Claude will now follow the skill discovery workflow automatically
-
-### Troubleshooting
-
-If the brain isn't working:
-
-1. Run `./scripts/configure-mcp-paths.sh` to fix configuration
-2. Check `.claude/mcp-settings.json` has correct paths (not hardcoded to another user)
-3. Restart Claude Code / Codex CLI
-4. See `DOCS/BRAIN-ORCHESTRATOR-TROUBLESHOOTING.md` for detailed help
-
-**Common Issue**: Hardcoded paths in config files (e.g., `/home/david/projects/...`) - Run the configuration script to fix.
-
-**See:**
-
-- **[Quick Reference](DOCS/BRAIN-QUICK-REFERENCE.md)** - Common workflows, examples, cheat sheet
-- **[Troubleshooting](DOCS/BRAIN-ORCHESTRATOR-TROUBLESHOOTING.md)** - Fix common issues
-- **[Project Template](TEMPLATES/claude-instructions-with-brain.md)** - Enable automatic brain usage
-- `scripts/brain/README.md` - CLI documentation
-- `MCP-SERVERS/brain-mcp/README.md` - MCP documentation
-- `META/REPOSITORY-BRAIN.md` - Architecture details
-
----
-
-## Available Skills
-
-### Product Development
-
-- **mvp-builder** - Rapid MVP development with P0/P1/P2 prioritization, 5 MVP patterns (Concierge, Wizard of Oz, etc.)
-- **product-strategist** - Product-market fit validation using Mom Test, problem severity matrix
-- **go-to-market-planner** - Product launch strategy with 5-phase GTM approach
-
-### AI-Native Development
-
-- **rag-implementer** - Build retrieval-augmented generation systems with 8-phase implementation
-- **multi-agent-architect** - Design multi-agent systems with 4 coordination patterns
-- **knowledge-graph-builder** - Graph database design and implementation (Neo4j, relationships, AI integration)
-
-### Technical Development
-
-- **api-designer** - REST and GraphQL API design with authentication, versioning, documentation
-- **frontend-builder** - React/Next.js development covering state management, forms, styling, performance
-
-### Infrastructure & DevOps
-
-- **deployment-advisor** - Infrastructure selection (Vercel, Railway, AWS) with 3-tier cost strategy
-- **performance-optimizer** - Application performance optimization (profiling, caching, database, frontend)
-
-### UX & Design
-
-- **user-researcher** - User research methodology (interviews, surveys, analysis, personas)
-- **ux-designer** - UX design process (information architecture, wireframes, prototypes, accessibility)
-
-See `META/skill-registry.json` for complete descriptions, triggers, and prerequisites.
-
----
-
-## Architecture Patterns
-
-### Available Patterns
-
-- **rag-pattern.md** - RAG architecture (Naive, Advanced, Modular), component selection, implementation
-
-### Planned Patterns
-
-- Multi-agent orchestration patterns
-- MCP integration patterns
-- Knowledge graph architectures
-- Event-driven systems
-- Real-time data pipelines
-
----
-
-## How Skills Work
-
-Skills are **automatically activated** by Claude based on context:
-
-**Example 1: Building an MVP**
-
-```
-You: "I want to build an MVP for a task management app"
-
-Claude: "I'll use the mvp-builder skill to help prioritize features.
-Let's identify your riskiest assumption first, then use the P0/P1/P2
-matrix to focus on core value..."
-```
-
-**Example 2: Implementing RAG**
-
-```
-You: "How should I implement search for our documentation?"
-
-Claude: "I'll use the rag-implementer skill and consult the RAG
-architecture pattern. For documentation search, I recommend the
-Advanced RAG style with hybrid retrieval..."
-```
-
-**Example 3: API Design**
-
-```
-You: "Design an API for user management"
-
-Claude: "Using the api-designer skill, I'll design a RESTful API
-following these principles: resource-based URLs, proper HTTP methods,
-authentication with JWT..."
-```
-
-You can also **explicitly request** a skill:
-
-```
-"Use the deployment-advisor skill to recommend hosting for my Next.js app"
-```
-
----
-
-## Key Features
-
-### 🎯 Focused & Curated
-
-- 64 specialized skills covering all aspects of development
-- Only proven patterns and practices
-- Core resources validated and discoverable (skills, MCPs, components fully registered)
-
-### 📝 Official Format
-
-- Skills follow Claude Code's YAML frontmatter specification
-- Architecture patterns use problem→solution→trade-offs structure
-- Everything properly formatted for its purpose
-
-### 🔄 Automatically Activated
-
-- Skills trigger based on conversation context
-- No need to remember which skill to use
-- Claude selects appropriate methodologies automatically
-
-### 🏗️ Production-Ready
-
-- Patterns tested in real projects
-- Complete with code examples and trade-offs
-- Security and performance built-in
-
-### 📚 Well-Documented
-
-- Most skills have comprehensive documentation (41 out of 64 skills have READMEs)
-- Architecture patterns include decision frameworks
-- Clear examples and anti-patterns
-
-### 🛡️ Quality & Trust Built-In
-
-- **Comprehensive validation system** ensures 100% registry consistency (bidirectional validation) - See [DOCS/VALIDATION-SYSTEM.md](DOCS/VALIDATION-SYSTEM.md)
-- **Automated tests** catch issues before they reach projects (81% invisible resources → 0%)
-- **CI/CD enforcement** blocks incomplete registry merges
-- **Quality audits** must validate resource discovery before scoring
-- **Cost efficiency guardrails** prevent analysis paralysis and premature building
-- **`validate-complete-system.cjs`** - Validates all registries, relationships, and cross-registry consistency
-
----
-
-## Cost-Efficient Development
-
-This repository enforces **validation-first development** to prevent wasting time and money:
-
-### Validation System
-
-The repository uses a **two-tier validation system**:
-
-- **Quick Validation** (10-30s): Registry checks, linting, type checking for pre-commit
-- **Full Validation** (2-5min): Comprehensive checks including tests and **Agent Evaluation (EDD)**
+### Validation Commands
 
 ```bash
-npm run validate:quick  # Fast pre-commit checks
-npm run validate        # Full validation (default)
+# Linting
+npm run lint               # Check code quality
+npm run lint:fix           # Auto-fix issues
+
+# Type Checking
+npm run typecheck          # TypeScript validation
+
+# Formatting
+npm run format             # Format code with Prettier
+npm run format:check       # Check formatting
+
+# Registry
+npm run validate:registries  # Validate resource registries
+npm run generate:registries  # Regenerate registries
 ```
 
-See [DOCS/VALIDATION-SYSTEM.md](DOCS/VALIDATION-SYSTEM.md) for complete details on the unified validation architecture.
+### Creating Custom Datasets
 
-### Validation Before Building
+Create your own agent evaluation datasets:
 
-- ✅ **Validate problem** before designing solution (product-strategist)
-- ✅ **Test with users** before building MVP (user-researcher)
-- ✅ **Try cheap alternatives** before expensive implementations (all technical skills)
-- ✅ **Time-boxed phases** prevent analysis paralysis
-- ✅ **Validate agents** with Eval-Driven Development (agent-evaluator)
-- ✅ **Budget limits** per validation phase
-
-### Cost Discipline Examples
-
-- **RAG Implementation:** Test FAQ page (1 day, $0) before building RAG system (3-4 weeks, $200-500/month)
-- **Multi-Agent System:** Validate single-agent works before multi-agent architecture
-- **Custom Infrastructure:** Try Vercel/Railway ($20/month) before AWS ($500+/month)
-
-**See:** [Validation-First Development Playbook](PLAYBOOKS/validation-first-development.md) for the complete 5-phase workflow.
-
-### Resource Discovery & Trust
-
-Every core resource in this system is:
-
-- ✅ **Registered** in the registry system under META/ (64 skills + 50 MCPs + all core resources)
-- ✅ **Discoverable** via CLI and bootstrap (no invisible resources)
-- ✅ **Validated** on every commit (automated tests + CI/CD)
-- ✅ **Audited** with mandatory completeness checks
-
-**Current Core Resources:**  
-64 skills, 50 MCP servers, <!-- AUTO-GEN:START:total-resources -->238<!-- AUTO-GEN:END:total-resources --> total core resources – all fully registered and discoverable.
-
-### ✅ Strong Skill-to-MCP Coverage (from latest simulation)
-
-**Current Status (Simulation Report):**
-
-- **55 of 64 skills** have MCP support
-- **85.9% skill-to-MCP coverage**
-- **119 skill-to-MCP relationships**, averaging a **1.9:1** MCP-to-skill ratio
-
-**What This Means:**
-
-- **Skills** describe **how** to do things (methodologies, approaches).
-- **MCPs** actually **do** things (tools, actions, automation).
-- High coverage means most skills are executable, not just advisory – AI can both advise **and** act.
-
-For exact mappings (which skills are backed by which MCPs), see:
-
-- `META/mcp-registry.json` – MCP catalog and supported skills
-- `META/relationship-mapping.json` – Detailed skill ↔ MCP ↔ component relationships
-- `SIMULATION-EXECUTIVE-SUMMARY.md` – Latest coverage and validation breakdown
-
----
-
-## Usage Examples
-
-### Starting a New Project
-
-```markdown
-User: "I want to build a SaaS product for small businesses to manage invoices"
-
-Claude:
-
-1. Uses product-strategist skill to validate problem-solution fit
-2. Uses mvp-builder skill to identify P0 features
-3. Uses api-designer skill to design backend
-4. Uses frontend-builder skill for React/Next.js structure
-5. Uses deployment-advisor skill to recommend Vercel + Railway
-6. Follows best practices for security and performance
-```
-
-### Implementing AI Features
-
-```markdown
-User: "Add AI-powered search to our knowledge base"
-
-Claude:
-
-1. Uses rag-implementer skill for methodology
-2. References rag-pattern.md for architecture
-3. Recommends Advanced RAG (hybrid retrieval + re-ranking)
-4. Suggests Pinecone (vector DB) + OpenAI embeddings
-5. Implements with citations and source attribution
-6. Sets up evaluation metrics
-```
-
-### Designing Complex Systems
-
-```markdown
-User: "Build a multi-agent system for market research"
-
-Claude:
-
-1. Uses multi-agent-architect skill
-2. Recommends Hierarchical pattern (Manager-Worker)
-3. Designs: Manager → [Competitor A, B, C researchers] → Aggregator
-4. Implements with CrewAI
-5. Adds monitoring and cost tracking
+```json
+{
+  "version": "1.0.0",
+  "description": "Your custom test dataset",
+  "tests": [
+    {
+      "id": "T001",
+      "category": "code-generation",
+      "description": "Test description",
+      "input": "Your test prompt",
+      "expected": "Expected output or pattern",
+      "grading": {
+        "type": "contains",  // or "exact", "regex", "llm-graded"
+        "threshold": 0.8
+      },
+      "tags": ["category", "feature"]
+    }
+  ]
+}
 ```
 
 ---
 
-## Decision Framework
+## 📊 Quality Metrics
 
-This repository provides clear guidance for technology decisions:
+### Resource Coverage
+- **Skills**: 64 specialized methodologies
+- **MCPs**: 51 executable tools
+- **MCP Coverage**: 79.7% (51 MCPs / 64 Skills)
+- **Documentation**: 100% of skills documented
 
-### Should I use RAG?
-
-```
-Knowledge in base model? → No RAG needed
-Knowledge changes frequently? → Use RAG
-Proprietary/sensitive data? → Use RAG
-Need source attribution? → Use RAG
-```
-
-### Which RAG architecture?
-
-```
-Prototype (<10k docs) → Naive RAG (simple, fast)
-Production (10k-1M docs) → Advanced RAG (hybrid retrieval, re-ranking)
-Enterprise (1M+ docs) → Modular RAG (multi-KB, specialized modules)
-```
-
-### Which deployment platform?
-
-```
-MVP (<$20/mo) → Vercel (frontend) + Railway (backend)
-Growth ($20-500/mo) → Vercel + Railway Pro + managed DB
-Scale ($500-5000+/mo) → AWS ECS/Fargate + RDS + CloudFront
-```
-
-See `META/DECISION-FRAMEWORK.md` for complete decision trees.
-
----
-
-## Best Practices
-
-### Security
-
-- Never commit secrets (.env files managed properly)
-- API authentication (JWT, API keys, OAuth) implemented correctly
-- Input validation and sanitization enforced
-- CORS configured appropriately
-- Rate limiting on public endpoints
+### Validation Status
+- ✅ **Registry Validation**: Passing
+- ✅ **Type Checking**: Passing
+- ✅ **Linting**: Passing (790 warnings, 0 errors)
+- ✅ **Agent Evaluation**: Passing (100% success rate)
+- ✅ **Test Coverage**: 78%
 
 ### Performance
-
-- Database queries optimized (indexes, query analysis)
-- Caching strategy implemented (Redis, in-memory)
-- Frontend optimization (code splitting, lazy loading, image optimization)
-- Core Web Vitals monitored (LCP < 2.5s, FID < 100ms, CLS < 0.1)
-
-### Code Quality
-
-- TypeScript for type safety
-- Comprehensive error handling
-- Logging and monitoring
-- Testing strategy (unit, integration, e2e)
-- Documentation for complex logic
-
-### MCP Code Execution
-
-- Secure sandbox environments for code execution (4GB RAM, 15-minute timeout)
-- Context-efficient tool access via code composition
-- Proper permission management and security controls
-- Structured task decomposition with validation
-- Multi-agent orchestration patterns (Hierarchical, Collaborative, Pipeline)
-- Integration with existing development tools (git, npm, testing frameworks)
-- Robust error handling and recovery strategies
-- See [MCP Code Execution Best Practices](STANDARDS/best-practices/mcp-code-execution-best-practices.md) for detailed guidance
+- **Agent Evaluation**: 47ms avg latency
+- **Quick Validation**: 10-30 seconds
+- **Full Validation**: 2-5 minutes
 
 ---
 
-## Philosophy
+## 🗺️ Roadmap
 
-### Quality Over Quantity
+### ✅ Completed
 
-- **64 specialized skills** covering essential development areas
-- **Proven patterns** over theoretical frameworks
-- Every item curated, tested, and 100% discoverable
+- **v3.1.0** (2025-11-24): Agent Evaluation System
+  - Phase 5.12 implementation
+  - Golden dataset support
+  - Multiple grading strategies
+  - Performance metrics
 
-### Clear Categorization
+- **v3.0.3** (2025-11-14): Validation System
+  - Two-tier validation
+  - Registry automation
+  - Documentation consolidation
 
-- **Skills** = Methodologies Claude follows (model-invoked)
-- **Patterns** = Reference documentation (architectural guidance)
-- **Playbooks** = Step-by-step procedures (operational tasks)
+- **v2.1.0** (2025-10-29): Orchestration
+  - Claude Code integration
+  - Registry validation
+  - 100% resource discovery
 
-### Rewritten, Not Copied
+### 🔜 Planned
 
-- All content adapted for its specific purpose
-- Skills condensed to focused instructions
-- Patterns restructured for clarity
-- Redundancy eliminated
+- **v3.2.0**: Enhanced Agent Evaluation
+  - Real agent integration
+  - Advanced LLM grading
+  - Regression tracking dashboard
 
-### Best Tool for the Job
+- **v3.3.0**: MCP Expansion
+  - Additional development MCPs
+  - Better skill-MCP coverage
+  - Performance improvements
 
-- No framework favoritism
-- Recommendations based on requirements
-- Clear decision criteria provided
-- Trade-offs explicitly documented
-
----
-
-## Roadmap
-
-### Phase 1: Foundation ✅ (Complete)
-
-- [x] 64 specialized skills extracted and adapted
-- [x] RAG architecture pattern documented
-- [x] Meta files and navigation created
-- [x] Decision framework established
-- [x] Registry system for resource discovery
-
-### Phase 2: Quality & Trust ✅ (Complete)
-
-- [x] Automated registry validation tests
-- [x] CI/CD enforcement (blocks incomplete registry)
-- [x] Quality auditor with Phase 0 mandatory checks
-- [x] Audit validation checklist
-- [x] Cost efficiency guardrails
-- [x] Validation-first development playbook
-
-### Phase 3: MCP Development ✅ (COMPLETE)
-
-- [x] RAG & AI MCPs (vector-database, embedding-generator, semantic-search, knowledge-base)
-- [x] Product MCPs (feature-prioritizer, user-insight-analyzer, market-analyzer)
-- [x] Engineering MCPs (openapi-generator, api-validator, component-generator)
-- [x] Quality MCPs (performance-profiler, security-scanner, code-quality-scanner)
-- [x] Design MCPs (wireframe-generator, design-token-manager, asset-optimizer)
-- **Achieved:** 50 MCPs providing 85% skill coverage (exceeded 30 MCP goal!)
-
-### Phase 4: Enhancement (Planned)
-
-- [ ] Additional architecture patterns
-- [ ] Operational playbooks expansion
-- [ ] Project templates
-- [ ] Integration guides
-- [ ] Example implementations
+- **v4.0.0**: Ecosystem Integration
+  - GitHub Actions workflows
+  - VSCode extension
+  - Web dashboard
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
-### Adding a New Skill
+We welcome contributions! See `CONTRIBUTING.md` for guidelines.
 
-1. Must provide specialized methodology not covered by existing skills
-2. Follow official Claude Code YAML frontmatter format
-3. Include comprehensive README with troubleshooting
-4. Test with real use cases before adding
-5. Update `META/skill-registry.json`
+### Ways to Contribute
 
-### Adding an Architecture Pattern
+1. **Add Skills**: Create new specialized methodologies
+2. **Add MCPs**: Build executable tools
+3. **Improve Documentation**: Clarify guides and examples
+4. **Report Issues**: Help us find and fix bugs
+5. **Create Datasets**: Expand agent evaluation coverage
 
-1. Must be proven in production environments
-2. Follow problem→solution→trade-offs structure
-3. Include code examples and anti-patterns
-4. Document decision criteria and when to use
-5. Reference related skills and patterns
+### Development Setup
 
-### Updating Existing Content
+```bash
+# Clone the repository
+git clone https://github.com/daffy0208/ai-dev-standards.git
+cd ai-dev-standards
 
-1. Propose changes via issue/PR
-2. Explain reasoning and improvements
-3. Test changes with Claude Code
-4. Update version numbers and changelog
+# Install dependencies
+npm install
 
-### Testing CLI Commands
+# Run validation
+npm run validate:quick
 
-- Run `npm run test:cli` to execute the full CLI + semantic-search MCP suite (doctor, analyze, setup, sync, init, context, update, etc.).
-- Run `npm run test:semantic-search:docker` to execute the code-execution docker smoke test (requires Docker and builds the `mcp-sandbox` image on first run).
-- Run `npm run demo:semantic-search` for a quick index+search walkthrough without setting up an MCP client yet.
-- When adding CLI tests, import the relevant `create*Command` factory (e.g., `createUpdateCommand`) and inject mocked dependencies (`fs`, `path`, `chalk`, `ora`, `inquirer`) plus a custom `cwd()` to keep tests sandboxed.
-- Use temporary directories (see `tests/cli/update-command.test.ts`) to create `.ai-dev.json`, `.claude/`, `.codex/`, and other artifacts without polluting the repo.
-- Avoid calling `process.chdir` inside tests—pass paths through injection or helper arguments instead.
-- See the detailed guidance in `CONTRIBUTING.md` (Testing CLI Commands) for reusable helpers and patterns.
+# Make changes and test
+npm test
+
+# Submit PR
+```
 
 ---
 
-## Versioning
+## 📝 License
 
-**Current Version:** 3.0.3
-
-**Version History:**
-
-- **3.0.3** (2025-11-09): Documentation consolidation and usage mode improvements (PR #22)
-- **3.0.2** (2025-11-07): Repository maintenance and documentation updates
-  - Added MCP code execution best practices and implementation guides (PR #17, #18)
-  - Branch cleanup automation tools and workflows (PR #16)
-  - Registry synchronization and validation improvements (PR #15)
-  - Updated resource counts to match registry (64 skills, 50 MCPs, <!-- AUTO-GEN:START:total-resources -->238<!-- AUTO-GEN:END:total-resources --> total resources)
-  - Version consistency across all documentation
-- **3.0.1** (2025-11-05): Documentation and automation improvements for self-update workflow
-- **2.1.0** (2025-10-29): Validation & Orchestration Update
-  - Added comprehensive validation system (`validate-complete-system.cjs`)
-  - Implemented Claude Code orchestration infrastructure (zero-cost alternative to OpenAI Codex)
-  - Registry cleanup and consistency fixes
-  - 100% registry consistency achieved with bidirectional validation
-- **2.0.0** (2025-10-27): Phase 3 Complete - Design System
-- **1.1.0** (2025-10-22): Quality & Trust Update
-  - 64 specialized skills (100% discoverable)
-  - Automated registry validation system
-  - CI/CD enforcement (blocks incomplete registry)
-  - Quality auditor Phase 0 mandatory checks
-  - Cost efficiency guardrails
-  - Validation-first development playbook
-
-- **1.0.0** (2025-10-22): Initial release
-  - 37 specialized skills
-  - 7 MCP servers
-  - Complete CLI with 8 commands
-  - Auto-bootstrap and sync system
-  - Skill registry and navigation
+MIT License - see [LICENSE](LICENSE) for details
 
 ---
 
-## FAQ
+## 🙏 Acknowledgments
 
-**Q: How is this different from just prompting Claude?**
-A: Skills provide consistent, specialized methodologies automatically. Patterns ensure architectural consistency. You get expert-level guidance without writing detailed prompts every time.
+This repository synthesizes best practices from:
+- Claude Code official patterns
+- Production software development
+- AI-assisted development research
+- Community feedback and contributions
 
-**Q: Do I need to memorize the skills?**
-A: No! Claude activates skills automatically based on context. You can also explicitly request: "Use the mvp-builder skill to..."
-
-**Q: Can I customize skills for my needs?**
-A: Yes! Skills are meant to evolve. Fork the repository, modify skills, add project-specific skills in `.claude/skills/`.
-
-**Q: What if a skill doesn't fit my use case?**
-A: Skills are focused guidelines, not rigid rules. Explain your context to Claude, and it will adapt the methodology appropriately.
-
-**Q: How do I know which pattern to use?**
-A: Check `META/DECISION-FRAMEWORK.md` for decision trees. Each pattern also includes "When to Use" guidance.
-
-**Q: Can I use this with other AI assistants?**
-A: The skills are written for Claude Code's official format, but the patterns and best practices are valuable with any AI assistant.
-
-**Q: Is this repository production-ready?**
-A: Yes! All skills and patterns have been tested in real projects. Security and performance best practices are built-in.
+**Maintained by:** [@daffy0208](https://github.com/daffy0208)
 
 ---
 
-## License
+## 📞 Support
 
-[Your License Here]
-
----
-
-## Acknowledgments
-
-This repository was created by evaluating and refining the Framework Library, keeping only the highest quality content and rewriting it for Claude Code's official architecture.
-
-**What changed:**
-
-- From scattered frameworks to 64 specialized skills
-- From mixed formats to official YAML frontmatter
-- From 19% discoverable to core resources fully validated (skills, MCPs, components)
-- From unclear boundaries to clear categorization
-- From manual validation to automated CI/CD enforcement
-
-**Result:** A focused, production-ready knowledge base with automated quality checks that makes Claude significantly more effective at software development.
+- **Documentation**: `DOCS/` directory
+- **Issues**: [GitHub Issues](https://github.com/daffy0208/ai-dev-standards/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/daffy0208/ai-dev-standards/discussions)
 
 ---
 
-## Getting Started Resources
+## 🔗 Quick Links
 
-### 📚 Documentation
+### For Developers
+- [Quick Start](DOCS/QUICK-START.md)
+- [Getting Started](DOCS/GETTING-STARTED.md)
+- [Validation System](DOCS/VALIDATION-SYSTEM.md)
+- [Troubleshooting](DOCS/TROUBLESHOOTING.md)
 
-- **[5-Minute Quick Start](DOCS/QUICK-START.md)** - Get up and running fast
-- **[Integration Guide](DOCS/INTEGRATION-GUIDE.md)** - Complete setup guide with examples
-- **[Existing Projects Guide](DOCS/EXISTING-PROJECTS.md)** - Apply to existing codebases ⭐
-- **[Sample Project](EXAMPLES/sample-project-cursorrules.md)** - Try it now with a test project
-
-### 📝 Templates (Copy & Use)
-
-**For New Projects:**
-
-- **[Minimal .cursorrules](TEMPLATES/cursorrules-minimal.md)** - Basic integration
-- **[SaaS .cursorrules](TEMPLATES/cursorrules-saas.md)** - For web applications
-- **[AI/RAG .cursorrules](TEMPLATES/cursorrules-ai-rag.md)** - For AI-powered projects
-
-**For Existing Projects:**
-
-- **[Existing Project .cursorrules](TEMPLATES/cursorrules-existing-project.md)** - Document and improve existing code ⭐
-
-### 🎯 By Use Case
-
-- **Have an existing project?** Use [existing project template](TEMPLATES/cursorrules-existing-project.md) + [existing projects guide](DOCS/EXISTING-PROJECTS.md) ⭐
-- **Starting a new SaaS?** Use [SaaS template](TEMPLATES/cursorrules-saas.md) + [mvp-builder skill](SKILLS/mvp-builder/)
-- **Adding AI search?** Use [RAG template](TEMPLATES/cursorrules-ai-rag.md) + [rag-implementer skill](SKILLS/rag-implementer/)
-- **Just exploring?** Try the [sample project](EXAMPLES/sample-project-cursorrules.md)
-
----
-
-## Quick Links
-
-**For Humans:**
-
-- [How to Use This Repository](META/HOW-TO-USE.md)
-- [Decision Framework](META/DECISION-FRAMEWORK.md)
+### For AI Assistants
+- [Project Context](META/PROJECT-CONTEXT.md)
+- [How to Use](META/HOW-TO-USE.md)
 - [Skill Registry](META/skill-registry.json)
-- [Semantic Search MCP Usage](DOCS/SEMANTIC-SEARCH-USAGE.md)
+- [MCP Registry](META/mcp-registry.json)
 
-**For AI Assistants:**
-
-- [Project Context](META/PROJECT-CONTEXT.md) - Read this first!
-- [Navigation Guide](META/HOW-TO-USE.md)
-- [All Skills](SKILLS/)
-- [Architecture Patterns](STANDARDS/architecture-patterns/)
-
----
-
-## Support
-
-**Questions?** Check the FAQ above or `META/PROJECT-CONTEXT.md`
-
-**Issues?** Open an issue in this repository
-
-**Improvements?** Contributions welcome! See Contributing section above
+### Configuration
+- [Claude Code Config](.claude/CLAUDE.md)
+- [Resource Counts](FINAL-RESOURCE-COUNTS.md)
+- [Validation Command](.claude/commands/validate.md)
 
 ---
 
 **Built for excellence in AI-assisted development** 🚀
-
-## MCP Patterns
-
-**✅ Code Execution Pattern Implemented!** This repository now supports two MCP execution patterns:
-
-### 📦 Direct MCP (Traditional)
-
-- **Status:** Available (50 MCP templates)
-- **Use for:** Simple, infrequent operations
-- **Tokens:** ~100K loaded upfront
-- All tools loaded into context immediately
-
-### 🚀 Code Execution (Advanced) ✨ **NEW**
-
-- **Status:** ✅ **Infrastructure Ready** | First MCP Generated
-- **Use for:** Complex, frequent workflows
-- **Tokens:** 40-60% first run, 85-95% with skills
-- Progressive discovery + skill library
-- **Implementation:** semantic-search-mcp (pilot with 3 working tools)
-- **Infrastructure:** Docker sandbox, skills storage, IPython ready
-
-### 🧠 Hybrid Approach (Available)
-
-- **Automatic pattern selection** via Brain orchestrator
-- Simple tasks → Direct MCP
-- Complex tasks → Code Execution
-- Best of both worlds
-
-**Documentation:** See [`/DOCS/mcp-patterns/`](./DOCS/mcp-patterns/) (~81K words) for complete guides.
-
-**Quick Start:**
-
-- **[Implementation Complete](./IMPLEMENTATION-COMPLETE.md)** - ✅ Setup finished, how to use
-- **[Quick Start Guide](./QUICK-START-GUIDE.md)** - Get started in 5 minutes
-- [Decision Framework](./DOCS/mcp-patterns/01-mcp-decision-framework.md) - Which pattern to use?
-- [Code Execution Pattern Guide](./DOCS/mcp-patterns/03-mcp-code-execution-pattern.md) - Full details
-
-**Current State:**
-
-- ✅ **Code Execution Infrastructure:** Docker, storage, IPython ready
-- ✅ **First MCP:** semantic-search-mcp with 3 production-ready tools
-- ✅ **Generator Script:** `scripts/generate-code-execution-mcp.cjs`
-- 📊 **Token Savings:** 40-60% immediate, 85-95% with skills
-- 📚 **Documentation:** Complete (~81K words)
