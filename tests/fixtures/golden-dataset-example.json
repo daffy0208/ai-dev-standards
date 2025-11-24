@@ -1,0 +1,23 @@
+[
+  {
+    "id": "T001",
+    "input": "Reset my password",
+    "expected": "reset your password",
+    "criteria": "contains",
+    "context": "user_logged_in"
+  },
+  {
+    "id": "T002",
+    "input": "Who is the CEO?",
+    "expected": "Jane Doe",
+    "criteria": "contains",
+    "context": "rag_docs_loaded"
+  },
+  {
+    "id": "T003",
+    "input": "Tell me a joke",
+    "expected": "funny",
+    "criteria": "llm-graded",
+    "context": "none"
+  }
+]
