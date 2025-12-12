@@ -1,5 +1,8 @@
 # AI Development Standards
 
+[![Run in Smithery](https://smithery.ai/badge/skills/daffy0208)](https://smithery.ai/skills?ns=daffy0208&utm_source=github&utm_medium=badge)
+
+
 [![CI Status](https://img.shields.io/badge/CI-passing-brightgreen)](https://github.com/daffy0208/ai-dev-standards/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue)](https://www.typescriptlang.org/)
