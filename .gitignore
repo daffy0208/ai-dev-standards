@@ -97,6 +97,8 @@ REPORTS/
 *-REPORT.json
 *-SUMMARY.md
 verification-*.md
+.validation-report-*.html
+.validation-report-*.json
 
 # Allow archived status reports to be tracked
 !.archive/status-reports/

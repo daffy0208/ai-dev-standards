@@ -141,12 +141,17 @@
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
   },
+  "workspaces": [
+    "CLI",
+    ".claude/hooks",
+    "MCP-SERVERS/*"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-org/ai-dev-standards.git"
+    "url": "https://github.com/daffy0208/ai-dev-standards.git"
   },
   "bugs": {
-    "url": "https://github.com/your-org/ai-dev-standards/issues"
+    "url": "https://github.com/daffy0208/ai-dev-standards/issues"
   },
-  "homepage": "https://github.com/your-org/ai-dev-standards#readme"
+  "homepage": "https://github.com/daffy0208/ai-dev-standards#readme"
 }
