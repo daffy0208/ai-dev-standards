@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const relationshipsPath = path.join(ROOT, 'META', 'relationship-mapping.json');
+const relationshipsPath = path.join(ROOT, 'meta', 'relationship-mapping.json');
 
 console.log('🔧 Adding backward-compatible relationships section...\n');
 

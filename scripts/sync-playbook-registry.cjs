@@ -3,7 +3,7 @@
 /**
  * Sync Playbook Registry
  *
- * Rebuilds playbook-registry.json from PLAYBOOKS/ folder (single source of truth)
+ * Rebuilds playbook-registry.json from playbooks/ folder (single source of truth)
  * Extracts metadata from playbook markdown files
  * This is the ONLY way to update playbook-registry.json
  */
@@ -12,8 +12,8 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const PLAYBOOKS_DIR = path.join(ROOT, 'PLAYBOOKS');
-const PLAYBOOK_REGISTRY_PATH = path.join(ROOT, 'META', 'playbook-registry.json');
+const PLAYBOOKS_DIR = path.join(ROOT, 'playbooks');
+const PLAYBOOK_REGISTRY_PATH = path.join(ROOT, 'meta', 'playbook-registry.json');
 
 const GREEN = '\x1b[32m';
 const YELLOW = '\x1b[33m';
@@ -89,7 +89,7 @@ function extractMetadataFromPlaybook(fileName) {
     category,
     difficulty,
     estimated_time: estimatedTime,
-    path: `/PLAYBOOKS/${fileName}`,
+    path: `/playbooks/${fileName}`,
     status: 'active',
     prerequisites: [],
     related_playbooks: [],
@@ -99,7 +99,7 @@ function extractMetadataFromPlaybook(fileName) {
 }
 
 function main() {
-  console.log(`\n${GREEN}🔄 Syncing playbook-registry.json from PLAYBOOKS/ folder${RESET}\n`);
+  console.log(`\n${GREEN}🔄 Syncing playbook-registry.json from playbooks/ folder${RESET}\n`);
 
   // Read all playbooks
   const files = fs.readdirSync(PLAYBOOKS_DIR)

@@ -73,7 +73,7 @@ User Input Received
 const sanitizedName = sanitizeName(name, 'MCP server')
 
 // Use directly in paths
-path: `MCP-SERVERS/${sanitizedName}-mcp/index.js`
+path: `mcp-servers/${sanitizedName}-mcp/index.js`
 ```
 
 ### Pattern 2: Used in JavaScript Code (Components, Integrations)
@@ -323,7 +323,7 @@ async generate(config) {
 
   // Use directly
   files.push({
-    path: `MCP-SERVERS/${sanitizedName}-mcp/index.js`,
+    path: `mcp-servers/${sanitizedName}-mcp/index.js`,
     content: this.generateServer(sanitizedName)
   })
 }

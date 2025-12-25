@@ -71,7 +71,7 @@ const ARCHIVED_SKILLS = [
 
 // Load current skill registry
 const currentSkillRegistry = JSON.parse(
-  fs.readFileSync(path.join(CURRENT_REPO, 'META', 'skill-registry.json'), 'utf-8')
+  fs.readFileSync(path.join(CURRENT_REPO, 'meta', 'skill-registry.json'), 'utf-8')
 );
 
 const currentSkills = currentSkillRegistry.skills.map(s => s.name);

@@ -30,7 +30,7 @@ describe('MCPIntegrator warnings', () => {
       description: 'Vector database provider',
       category: 'data',
       status: 'official',
-      path: '/MCP-SERVERS/vector-database-mcp'
+      path: '/mcp-servers/vector-database-mcp'
     }
   ]
 

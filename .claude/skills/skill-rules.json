@@ -71,7 +71,7 @@
       "task tracking"
     ],
     "fileTriggers": {
-      "pathPatterns": ["**/archon-manager/**/*", "**/MCP-SERVERS/**/*"]
+      "pathPatterns": ["**/archon-manager/**/*", "**/mcp-servers/**/*"]
     }
   },
   "asset-manager": {
@@ -309,7 +309,7 @@
   "manifest-generator": {
     "promptTriggers": ["manifest-generator", "manifest generator"],
     "fileTriggers": {
-      "pathPatterns": ["**/manifest-generator/**/*", "**/MCP-SERVERS/**/*"]
+      "pathPatterns": ["**/manifest-generator/**/*", "**/mcp-servers/**/*"]
     }
   },
   "mobile-developer": {
@@ -501,7 +501,7 @@
   "skill-validator": {
     "promptTriggers": ["skill-validator", "skill validator", "api"],
     "fileTriggers": {
-      "pathPatterns": ["**/skill-validator/**/*", "**/MCP-SERVERS/**/*"]
+      "pathPatterns": ["**/skill-validator/**/*", "**/mcp-servers/**/*"]
     }
   },
   "spatial-developer": {

@@ -3,7 +3,7 @@
  * BRAIN COMMAND: build-graph
  *
  * Build queryable capability graph from manifests using Codex
- * Wrapper for SKILLS/capability-graph-builder/build-graph.sh
+ * Wrapper for skills/capability-graph-builder/build-graph.sh
  */
 
 import * as path from 'path'
@@ -49,7 +49,7 @@ ${colorize('Usage:', 'bright')}
   brain build-graph [options]
 
 ${colorize('Options:', 'bright')}
-  --output <path>        Output path for capability-graph.json (default: META/capability-graph.json)
+  --output <path>        Output path for capability-graph.json (default: meta/capability-graph.json)
   --validate             Run Codex validation on relationships
   --infer-missing        Use Codex to infer missing relationships
   --help, -h             Show this help message
@@ -65,8 +65,8 @@ ${colorize('Examples:', 'bright')}
   brain build-graph --output /tmp/capability-graph.json
 
 ${colorize('Description:', 'bright')}
-  Scans all manifest.yaml files in SKILLS/, MCP-SERVERS/, TOOLS/, COMPONENTS/,
-  and INTEGRATIONS/ directories to build a queryable graph structure. The graph
+  Scans all manifest.yaml files in skills/, mcp-servers/, tools/, components/,
+  and integrations/ directories to build a queryable graph structure. The graph
   represents capabilities as nodes and their relationships (requires, enables,
   conflicts_with, composes_with) as edges.
 
@@ -105,7 +105,7 @@ export async function execute(args: string[], rootPath: string): Promise<void> {
     }
   }
 
-  const scriptPath = path.resolve(rootPath, 'SKILLS/capability-graph-builder/build-graph.sh')
+  const scriptPath = path.resolve(rootPath, 'skills/capability-graph-builder/build-graph.sh')
 
   printHeader('Build Capability Graph')
   if (outputPath) {

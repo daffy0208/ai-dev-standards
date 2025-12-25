@@ -3,7 +3,7 @@
  * BRAIN COMMAND: validate-skill
  *
  * Validate implementations match manifests using Codex
- * Wrapper for SKILLS/skill-validator/validate.sh
+ * Wrapper for skills/skill-validator/validate.sh
  */
 
 import * as path from 'path'
@@ -60,18 +60,18 @@ ${colorize('Arguments:', 'bright')}
 
 ${colorize('Examples:', 'bright')}
   # Validate a skill
-  brain validate-skill SKILLS/rag-implementer
+  brain validate-skill skills/rag-implementer
 
   # Validate with strict mode (fail on warnings)
-  brain validate-skill SKILLS/api-designer --strict
+  brain validate-skill skills/api-designer --strict
 
   # Specify custom manifest and implementation paths
-  brain validate-skill SKILLS/frontend-builder \\
+  brain validate-skill skills/frontend-builder \\
     --manifest /tmp/manifest.yaml \\
     --implementation src/index.ts
 
   # Save validation report
-  brain validate-skill MCP-SERVERS/vector-database-mcp --output /tmp/report.json
+  brain validate-skill mcp-servers/vector-database-mcp --output /tmp/report.json
 
 ${colorize('Description:', 'bright')}
   Uses Codex to perform semantic analysis comparing manifest descriptions,
@@ -140,7 +140,7 @@ export async function execute(args: string[], rootPath: string): Promise<void> {
     ? resourcePath
     : path.resolve(rootPath, resourcePath)
 
-  const scriptPath = path.resolve(rootPath, 'SKILLS/skill-validator/validate.sh')
+  const scriptPath = path.resolve(rootPath, 'skills/skill-validator/validate.sh')
 
   printHeader(`Validate Skill: ${path.basename(resourcePath)}`)
   printInfo(`Resource: ${resourcePath}`)

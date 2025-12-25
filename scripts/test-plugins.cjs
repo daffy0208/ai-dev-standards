@@ -145,7 +145,7 @@ console.log(`   Agent Skills: ${results.agentSkills.length}`);
 console.log(`   Total: ${expectedPlugins.length}`);
 
 console.log(colorize('\n3. Checking Skill Relationships...', 'cyan'));
-const skillRegistry = readJSON(path.join(ROOT, 'META/skill-registry.json'));
+const skillRegistry = readJSON(path.join(ROOT, 'meta/skill-registry.json'));
 if (skillRegistry) {
   const registeredSkills = skillRegistry.skills.map(s => s.name);
 
@@ -188,7 +188,7 @@ console.log(`
 
    4. Update Plugin Registry:
       - Run: node scripts/update-plugin-registry.cjs
-      - This will add plugins to META/plugin-registry.json
+      - This will add plugins to meta/plugin-registry.json
 
    5. Update Relationship Mappings:
       - Run: node scripts/update-relationships.cjs

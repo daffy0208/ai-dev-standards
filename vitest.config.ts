@@ -51,7 +51,7 @@ export default defineConfig({
       'tests/**/*.spec.ts',
       'tests/**/*.spec.tsx',
       'scripts/brain/**/*.test.ts',
-      'MCP-SERVERS/**/tests/**/*.test.ts'
+      'mcp-servers/**/tests/**/*.test.ts'
     ],
 
     // Timeout for tests

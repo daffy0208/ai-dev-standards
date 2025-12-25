@@ -1,0 +1,181 @@
+# Documentation Index
+
+Complete guide to all documentation in the ai-dev-standards framework.
+
+## Getting Started
+
+- [Quick Start](QUICK-START.md) - Get up and running in 5 minutes
+- [Bootstrap Guide](BOOTSTRAP.md) - Setting up new projects
+- [Cheat Sheet](CHEAT-SHEET.md) - Quick reference for common tasks
+- [System Overview](SYSTEM-OVERVIEW.md) - Understanding the framework architecture
+- **🆕 [Installation & Updates](INSTALLATION-AND-UPDATES.md)** - Complete guide to installation, updates, and maintenance
+- **🆕 [Skill Auto-Activation](SKILL-AUTO-ACTIVATION.md)** - How skills activate automatically based on context (Phase 1)
+- **🆕 [Modular Skills Guide](MODULAR-SKILLS-GUIDE.md)** - Progressive disclosure pattern for large skills (Phase 2)
+- **🆕 [Specialized Agents Guide](AGENTS-GUIDE.md)** - Autonomous agents for complex tasks (Phase 3)
+- **🆕 [File Tracking & Context Retention](FILE-TRACKING-GUIDE.md)** - Context retention across sessions (Phase 4)
+
+## Core Documentation
+
+### CLI Tools
+
+- [CLI Quick Start](CLI-QUICKSTART.md) - Command-line interface basics
+- [CLI Reference](CLI-REFERENCE.md) - Complete CLI command reference
+- **🆕 [Installation & Updates](INSTALLATION-AND-UPDATES.md)** - Installation, version tracking, and update management
+
+### Integration & Deployment
+
+- [Integration Guide](INTEGRATION-GUIDE.md) - Integrating with existing projects
+- [Existing Projects](EXISTING-PROJECTS.md) - Adding to established codebases
+- [Deployment](DEPLOYMENT.md) - Deploying your applications
+- [CI/CD Setup](CI-CD-SETUP.md) - Continuous integration configuration
+
+### Development
+
+- [MCP Development Roadmap](MCP-DEVELOPMENT-ROADMAP.md) - MCP server development plan
+
+## System Documentation
+
+### Quality & Validation
+
+- **🆕 [Validation System](VALIDATION-SYSTEM.md)** - Unified two-tier validation (Quick/Full)
+- [Agent Validation](AGENT-VALIDATION.md) - Eval-Driven Development (EDD)
+- [Audit System](AUDIT-SYSTEM.md) - Quality and trust validation
+
+### Maintenance & Operations
+
+- [Auto-Sync Guide](AUTO-SYNC-GUIDE.md) - Automatic synchronization system
+- [Resource Guide](RESOURCE-GUIDE.md) - Resource management and discovery
+
+## Reference Documentation
+
+### By Category
+
+#### 📚 API Documentation
+
+- [API Reference](api/README.md) - Complete API documentation (planned)
+
+#### 💡 Concepts
+
+- [Concepts](concepts/README.md) - Framework concepts and theory (planned)
+
+#### 📖 Guides
+
+- [Step-by-Step Guides](guides/README.md) - Practical tutorials (planned)
+
+## Skills & Tools
+
+### Skills Documentation
+
+Navigate to `/skills/` directory to explore 64 specialized AI agent skills:
+
+- Each skill has a `SKILL.md` (detailed specification)
+- Each skill has a `README.md` (user-friendly guide)
+- Use the [Skill Registry](../meta/skill-registry.json) for a complete list
+
+**New Skills:**
+
+- [dark-matter-analyzer](../skills/dark-matter-analyzer/README.md) - Repository coherence and organizational health analysis
+
+### MCP Servers
+
+Navigate to `/mcp-servers/` directory for MCP tool documentation:
+
+- [accessibility-checker-mcp](../mcp-servers/accessibility-checker-mcp/README.md)
+- [component-generator-mcp](../mcp-servers/component-generator-mcp/README.md)
+- [dark-matter-analyzer-mcp](../mcp-servers/dark-matter-analyzer-mcp/README.md) - **NEW!** Repository analysis
+- [embedding-generator-mcp](../mcp-servers/embedding-generator-mcp/README.md)
+- [feature-prioritizer-mcp](../mcp-servers/feature-prioritizer-mcp/README.md)
+- [screenshot-testing-mcp](../mcp-servers/screenshot-testing-mcp/README.md)
+- [vector-database-mcp](../mcp-servers/vector-database-mcp/README.md)
+
+## Standards & Patterns
+
+### Architecture Patterns
+
+Located in `/standards/architecture-patterns/`:
+
+- Authentication Patterns
+- Database Design Patterns
+- Error Tracking
+- Event-Driven Architecture
+- Logging Strategy
+- Microservices Pattern
+- Monitoring and Alerting
+- RAG Pattern
+- Real-Time Systems
+- Serverless Pattern
+
+### Best Practices
+
+Located in `/standards/best-practices/`:
+
+- Database Best Practices
+- Security Best Practices
+- Testing Best Practices
+
+## Templates
+
+Located in `/templates/`:
+
+- Cursor Rules Templates (5 variants)
+- CI/CD Templates
+- Config File Templates
+- Deployment Templates
+- Project Starter Templates
+- Testing Templates
+
+## Playbooks
+
+Located in `/playbooks/`:
+
+- [ADHD Getting Unstuck](../playbooks/adhd-getting-unstuck.md)
+- [Backup and Restore](../playbooks/backup-and-restore.md)
+- [Database Migration](../playbooks/database-migration.md)
+- [Deployment Checklist](../playbooks/deployment-checklist.md)
+- [Incident Response](../playbooks/incident-response.md)
+- [Rollback Procedure](../playbooks/rollback-procedure.md)
+- [Validation-First Development](../playbooks/validation-first-development.md)
+
+## Additional Resources
+
+### Root Level Documentation
+
+- [README](../README.md) - Project overview and introduction
+- [CONTRIBUTING](../CONTRIBUTING.md) - How to contribute
+- [CHANGELOG](../CHANGELOG.md) - Version history
+- [BUILD FOCUS](../BUILD_FOCUS.md) - Current development priorities
+- [Dark Matter Specification](../DARK-MATTER-SPECIFICATION.md) - Repository analysis framework
+
+### Meta Documentation
+
+Located in `/meta/`:
+
+- Skill Registry (`skill-registry.json`)
+- Tool Registry (`registry.json`)
+- Relationship Mapping (`relationship-mapping.json`)
+
+### Legacy Documentation
+
+Historical documentation moved to `/DOCS-LEGACY/` for reference purposes.
+
+## Contributing to Documentation
+
+When adding new documentation:
+
+1. Follow the existing structure and naming conventions
+2. Use kebab-case for filenames (e.g., `my-new-guide.md`)
+3. Update this index when adding new docs
+4. Link related documents together
+5. Include a "Last Updated" date at the bottom
+
+## Documentation Status Legend
+
+- ✅ **Complete** - Fully documented and up to date
+- 🔄 **In Progress** - Currently being written or updated
+- 📋 **Planned** - Scheduled for future documentation
+
+---
+
+_Last Updated: 2025-10-23_
+_Total Documentation Files: 18 active, 20+ legacy_
+_Skills: 64 | MCPs: 50 | Skill-to-Tool Ratio: 1.3:1_

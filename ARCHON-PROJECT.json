@@ -49,8 +49,8 @@
       "estimated_hours": 16,
       "dependencies": [],
       "deliverables": [
-        "SKILLS/knowledge-base-manager/SKILL.md",
-        "SKILLS/knowledge-base-manager/README.md",
+        "skills/knowledge-base-manager/SKILL.md",
+        "skills/knowledge-base-manager/README.md",
         "Knowledge curation best practices",
         "KB architecture decision framework",
         "Integration patterns for RAG + Graphs"
@@ -83,11 +83,11 @@
       "estimated_hours": 24,
       "dependencies": ["P0-1"],
       "deliverables": [
-        "MCP-SERVERS/knowledge-base-mcp/",
-        "MCP-SERVERS/knowledge-base-mcp/README.md",
-        "MCP-SERVERS/knowledge-base-mcp/package.json",
-        "MCP-SERVERS/knowledge-base-mcp/src/index.ts",
-        "MCP-SERVERS/knowledge-base-mcp/src/tools/",
+        "mcp-servers/knowledge-base-mcp/",
+        "mcp-servers/knowledge-base-mcp/README.md",
+        "mcp-servers/knowledge-base-mcp/package.json",
+        "mcp-servers/knowledge-base-mcp/src/index.ts",
+        "mcp-servers/knowledge-base-mcp/src/tools/",
         "Comprehensive test suite"
       ],
       "tools_to_implement": [
@@ -130,9 +130,9 @@
       "estimated_hours": 8,
       "dependencies": [],
       "deliverables": [
-        "DOCS/ARCHON-INTEGRATION.md",
-        "TEMPLATES/archon-project-template.json",
-        "EXAMPLES/archon-workflow-example.md",
+        "docs/ARCHON-INTEGRATION.md",
+        "templates/archon-project-template.json",
+        "examples/archon-workflow-example.md",
         "Update to README.md mentioning Archon integration"
       ],
       "content_sections": [
@@ -175,11 +175,11 @@
   },
   "phase_2_complete": {
     "delivered": [
-      "Knowledge Base Manager skill (SKILLS/knowledge-base-manager/)",
-      "Knowledge Base MCP server (MCP-SERVERS/knowledge-base-mcp/)",
-      "Archon + Skills integration guide (DOCS/ARCHON-INTEGRATION.md)",
-      "Archon project template (TEMPLATES/archon-project-template.json)",
-      "Archon workflow example (EXAMPLES/archon-workflow-example.md)"
+      "Knowledge Base Manager skill (skills/knowledge-base-manager/)",
+      "Knowledge Base MCP server (mcp-servers/knowledge-base-mcp/)",
+      "Archon + Skills integration guide (docs/ARCHON-INTEGRATION.md)",
+      "Archon project template (templates/archon-project-template.json)",
+      "Archon workflow example (examples/archon-workflow-example.md)"
     ],
     "rci_achieved": 75,
     "completion_date": "2025-10-28"
@@ -222,8 +222,8 @@
     "completed_items": [
       "Created .archive/status-reports/ with archival index",
       "Moved 18 historical status reports to archive",
-      "Updated STATUS-REPORTS/README.md with archival flow documentation",
-      "Synced DOCS/README.md, INTEGRATION-USAGE.md, STANDALONE-USAGE.md with registry counts",
+      "Updated status-reports/README.md with archival flow documentation",
+      "Synced docs/README.md, INTEGRATION-USAGE.md, STANDALONE-USAGE.md with registry counts",
       "Fixed REAL-BRAIN-ACTIVATION.md to report correct 50 MCPs",
       "Updated README.md relationship stats to avoid validator confusion",
       "Fixed scripts/generate-docs.ts to refresh components/integrations/tools",
@@ -234,7 +234,7 @@
       "Regenerated all documentation via npm run generate:docs",
       "Full validation now passes with npm run validate",
       "Added plain-text resource counts to README.md for validator",
-      "Updated DOCS/RESOURCE-GUIDE.md to v1.7.0 with current counts",
+      "Updated docs/RESOURCE-GUIDE.md to v1.7.0 with current counts",
       "Synced ARCHON-PROJECT.json with current reality"
     ],
     "remaining_items": [

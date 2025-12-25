@@ -61,9 +61,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `REPO-CLEANUP-GUIDE.md` - Step-by-step cleanup and maintenance guide
 
 - **MCP Code Execution Documentation** (PR #17)
-  - `DOCS/MCP-CODE-EXECUTION-GUIDE.md` - Step-by-step implementation guide with TypeScript examples
-  - `DOCS/ANTHROPIC-CODE-EXECUTION-REVIEW.md` - Analysis of Anthropic's code execution article
-  - Updated `DOCS/MCP-DEVELOPMENT-ROADMAP.md` to v1.2.0 with code execution insights
+  - `docs/MCP-CODE-EXECUTION-GUIDE.md` - Step-by-step implementation guide with TypeScript examples
+  - `docs/ANTHROPIC-CODE-EXECUTION-REVIEW.md` - Analysis of Anthropic's code execution article
+  - Updated `docs/MCP-DEVELOPMENT-ROADMAP.md` to v1.2.0 with code execution insights
 
 #### Changed
 - **Registry Improvements** (PR #15)
@@ -92,7 +92,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### Added
 - **MCP Code Execution Best Practices** - Comprehensive guide based on Anthropic Engineering article
-  - `STANDARDS/best-practices/mcp-code-execution-best-practices.md`
+  - `standards/best-practices/mcp-code-execution-best-practices.md`
   - Security patterns for sandboxed code execution
   - Context-efficient tool access strategies
   - Multi-agent orchestration patterns
@@ -114,8 +114,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - **Orchestration Infrastructure Complete** - Added 5 orchestration skills bringing total from 59→64 skills
-- `SKILLS/skill-validator/manifest.yaml` - Codex-powered validation of implementations against manifests (v0.1.0)
-- `SKILLS/system-diagnostician/manifest.yaml` - Project health diagnostics and capability gap analysis (v1.0.0)
+- `skills/skill-validator/manifest.yaml` - Codex-powered validation of implementations against manifests (v0.1.0)
+- `skills/system-diagnostician/manifest.yaml` - Project health diagnostics and capability gap analysis (v1.0.0)
 - YAML frontmatter to all 5 orchestration skills for registry discovery
 - `.env.local` template for OPENAI_API_KEY configuration
 - MCP SDK dependency: `@modelcontextprotocol/sdk@1.20.2` (58 packages)
@@ -277,7 +277,7 @@ export AI_DEV_STANDARDS_PATH=/path/to/your/ai-dev-standards
 
 #### Updated Documentation
 - **CONTRIBUTING.md** - Added Section 7 on pre-commit hooks
-- **DOCS/CI-CD-SETUP.md** - Complete CI/CD automation guide
+- **docs/CI-CD-SETUP.md** - Complete CI/CD automation guide
 - **package.json** - Added validation scripts and hook installation
 
 ### 🐛 Bug Fixes (Phase 2 - Merged PR #6)
@@ -304,7 +304,7 @@ export AI_DEV_STANDARDS_PATH=/path/to/your/ai-dev-standards
 3. **Path Handling Documentation (lines 427-438)**
    - **Problem:** `normalizeRegistryPath()` documentation unclear
    - **Fix:** Enhanced with comprehensive documentation clarifying behavior
-   - **Result:** Clear handling of both `/TOOLS/tool.js` and `TOOLS/tool.js`
+   - **Result:** Clear handling of both `/tools/tool.js` and `tools/tool.js`
 
 4. **Unimplemented Scheduling (lines 131-159 + docs)**
    - **Problem:** Wizard offered 'daily' and 'weekly' options that didn't work
@@ -610,7 +610,7 @@ From manual setup to bootstrap:
 
 **Issues:** https://github.com/your-org/ai-dev-standards/issues
 **Discussions:** https://github.com/your-org/ai-dev-standards/discussions
-**Documentation:** See DOCS/ directory
+**Documentation:** See docs/ directory
 
 ---
 

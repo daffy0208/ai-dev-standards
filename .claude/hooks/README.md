@@ -23,7 +23,7 @@ Shell wrapper that executes the TypeScript hook. Claude Code calls this script.
 
 ### generate-skill-rules.cjs
 
-Utility script to generate `skill-rules.json` from `META/skill-registry.json`.
+Utility script to generate `skill-rules.json` from `meta/skill-registry.json`.
 
 **Usage:**
 
@@ -217,7 +217,7 @@ These hooks are adapted from [claude-code-infrastructure-showcase](https://githu
 
 ## Related Documentation
 
-- [DOCS/SKILL-AUTO-ACTIVATION.md](../../DOCS/SKILL-AUTO-ACTIVATION.md) - Complete guide
+- [docs/SKILL-AUTO-ACTIVATION.md](../../docs/SKILL-AUTO-ACTIVATION.md) - Complete guide
 - [REPOSITORY-COMPARISON-ANALYSIS.md](../../REPOSITORY-COMPARISON-ANALYSIS.md) - Analysis and implementation plan
 
 ---

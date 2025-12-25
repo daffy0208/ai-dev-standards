@@ -3,7 +3,7 @@
 /**
  * Sync Util Registry
  *
- * Rebuilds util-registry.json from UTILS/ folder (single source of truth)
+ * Rebuilds util-registry.json from utils/ folder (single source of truth)
  * Extracts metadata from utility TypeScript/JavaScript files
  * This is the ONLY way to update util-registry.json
  */
@@ -12,8 +12,8 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const UTILS_DIR = path.join(ROOT, 'UTILS');
-const UTIL_REGISTRY_PATH = path.join(ROOT, 'META', 'util-registry.json');
+const UTILS_DIR = path.join(ROOT, 'utils');
+const UTIL_REGISTRY_PATH = path.join(ROOT, 'meta', 'util-registry.json');
 
 const GREEN = '\x1b[32m';
 const YELLOW = '\x1b[33m';
@@ -67,7 +67,7 @@ function extractMetadataFromUtil(category, fileName) {
     description,
     category,
     language,
-    path: `/UTILS/${category}/${fileName}`,
+    path: `/utils/${category}/${fileName}`,
     status: 'active',
     exports: exports.length > 0 ? exports.slice(0, 5) : [], // Limit to top 5 exports
     dependencies: [...new Set(dependencies)], // Remove duplicates
@@ -79,7 +79,7 @@ function extractMetadataFromUtil(category, fileName) {
 }
 
 function main() {
-  console.log(`\n${GREEN}🔄 Syncing util-registry.json from UTILS/ folder${RESET}\n`);
+  console.log(`\n${GREEN}🔄 Syncing util-registry.json from utils/ folder${RESET}\n`);
 
   // Read all categories
   const categories = fs.readdirSync(UTILS_DIR)
@@ -146,7 +146,7 @@ function main() {
   console.log(`${YELLOW}  Categories: ${Object.keys(categoryCounts).join(', ')}${RESET}\n`);
 
   // Also update main registry.json with category-level entries
-  const MAIN_REGISTRY_PATH = path.join(ROOT, 'META', 'registry.json');
+  const MAIN_REGISTRY_PATH = path.join(ROOT, 'meta', 'registry.json');
   if (fs.existsSync(MAIN_REGISTRY_PATH)) {
     const mainRegistry = JSON.parse(fs.readFileSync(MAIN_REGISTRY_PATH, 'utf-8'));
     
@@ -161,7 +161,7 @@ function main() {
     mainRegistry.utils = Object.keys(categoryCounts).map(category => ({
       category,
       description: categoryDescriptions[category] || `${category} utilities`,
-      path: `UTILS/${category}`,
+      path: `utils/${category}`,
       alwaysUpdate: false
     }));
     

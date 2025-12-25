@@ -5,7 +5,7 @@
  */
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
-import { FileSystemTool } from '../../../TOOLS/custom-tools/filesystem-tool'
+import { FileSystemTool } from '../../../tools/custom-tools/filesystem-tool'
 import { mkdir, writeFile, readFile, rm } from 'fs/promises'
 import { join } from 'path'
 import { tmpdir } from 'os'

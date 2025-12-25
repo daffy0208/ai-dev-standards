@@ -35,7 +35,7 @@ Test Format:
 Skill: rag-implementer
 Prompt: "Help me implement a RAG system"
 Expected: Should activate rag-implementer
-File Context: MCP-SERVERS/vector-database-mcp/src/index.ts
+File Context: mcp-servers/vector-database-mcp/src/index.ts
 Expected: Should activate rag-implementer
 
 Result: [PASS/FAIL]
@@ -265,7 +265,7 @@ const testCases = [
     promptTriggers: ['RAG', 'vector database', 'embeddings'],
     fileTriggers: ['**/rag/**/*', '**/vector/**/*'],
     testPrompts: ['Help me implement a RAG system', 'Set up vector search'],
-    testPaths: ['MCP-SERVERS/vector-database-mcp/src/index.ts', 'src/rag/retriever.ts']
+    testPaths: ['mcp-servers/vector-database-mcp/src/index.ts', 'src/rag/retriever.ts']
   }
   // ... more test cases
 ]

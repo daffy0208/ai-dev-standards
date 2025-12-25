@@ -240,7 +240,7 @@ export class RepositoryBrain {
     } else if (validation.errors.length >= 5) {
       status = 'critical'
       recommendations.push('Manual intervention required')
-      recommendations.push('Review META/skill-registry.json and relationship-mapping.json')
+      recommendations.push('Review meta/skill-registry.json and relationship-mapping.json')
     }
 
     return {

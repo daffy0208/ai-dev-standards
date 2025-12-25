@@ -45,7 +45,7 @@ async function main() {
     // Show structure
     console.log(chalk.cyan('📁 MCP Structure:'));
     console.log(`
-  MCP-SERVERS/${mcpName}-mcp/
+  mcp-servers/${mcpName}-mcp/
   ├── servers/${mcpName}/
   │   ├── README.md           (Server documentation)
   │   ├── tool_list.txt       (Progressive discovery index)
@@ -58,7 +58,7 @@ async function main() {
     `);
 
     console.log(chalk.cyan('🎯 Next Steps:\n'));
-    console.log(`  1. cd MCP-SERVERS/${mcpName}-mcp`);
+    console.log(`  1. cd mcp-servers/${mcpName}-mcp`);
     console.log(`  2. Implement tools in servers/${mcpName}/tools/`);
     console.log(`  3. Update tool_list.txt with tool names`);
     console.log(`  4. Test with Docker sandbox:`);

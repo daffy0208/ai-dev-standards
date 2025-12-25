@@ -17,8 +17,8 @@ const fs = require('fs-extra');
 const path = require('path');
 
 // Load registries
-const mcpRegistry = require('../META/mcp-registry.json');
-const skillRegistry = require('../META/skill-registry.json');
+const mcpRegistry = require('../meta/mcp-registry.json');
+const skillRegistry = require('../meta/skill-registry.json');
 
 console.log('═'.repeat(70));
 console.log('  MCP MIGRATION CANDIDATE ANALYSIS');
@@ -295,11 +295,11 @@ const results = {
 };
 
 fs.writeFileSync(
-  path.join(__dirname, '../META/migration-analysis-results.json'),
+  path.join(__dirname, '../meta/migration-analysis-results.json'),
   JSON.stringify(results, null, 2)
 );
 
 console.log('═'.repeat(70));
 console.log('✅ Analysis complete!');
-console.log('📝 Results saved to: META/migration-analysis-results.json');
+console.log('📝 Results saved to: meta/migration-analysis-results.json');
 console.log('═'.repeat(70));

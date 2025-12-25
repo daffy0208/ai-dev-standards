@@ -39,7 +39,7 @@ class ToolFileGenerator {
 
     // Tool implementation file
     files.push({
-      path: `MCP-SERVERS/${sanitizedServerName}-mcp/servers/${sanitizedServerName}/tools/${toolIdentifier}.py`,
+      path: `mcp-servers/${sanitizedServerName}-mcp/servers/${sanitizedServerName}/tools/${toolIdentifier}.py`,
       content: this.generateToolFile(
         toolIdentifier,
         category,
@@ -51,7 +51,7 @@ class ToolFileGenerator {
 
     // Update tool_list.txt
     files.push({
-      path: `MCP-SERVERS/${sanitizedServerName}-mcp/servers/${sanitizedServerName}/tool_list.txt`,
+      path: `mcp-servers/${sanitizedServerName}-mcp/servers/${sanitizedServerName}/tool_list.txt`,
       content: this.generateToolListEntry(toolIdentifier, description),
       mode: 'append'
     })

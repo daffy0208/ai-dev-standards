@@ -5,15 +5,15 @@
 This is the **AI Dev Standards** repository - a complete system for maintaining AI development standards with automatic installation and syncing.
 
 **Key Components:**
-- **SKILLS/** - 64 specialized skills (mvp-builder, rag-implementer, data-visualizer, etc.)
-- **MCP-SERVERS/** - 50 MCP server implementations (executable tools)
-- **TOOLS/** - 9 LangChain/CrewAI tools + 4 supporting scripts
-- **COMPONENTS/** - 13 reusable React components and patterns
-- **INTEGRATIONS/** - 6 third-party service integrations (OpenAI, Supabase, etc.)
-- **TEMPLATES/** - Config file templates (.cursorrules, .gitignore, etc.)
+- **skills/** - 64 specialized skills (mvp-builder, rag-implementer, data-visualizer, etc.)
+- **mcp-servers/** - 50 MCP server implementations (executable tools)
+- **tools/** - 9 LangChain/CrewAI tools + 4 supporting scripts
+- **components/** - 13 reusable React components and patterns
+- **integrations/** - 6 third-party service integrations (OpenAI, Supabase, etc.)
+- **templates/** - Config file templates (.cursorrules, .gitignore, etc.)
 - **CLI/** - Command-line tool for automatic installation and syncing
-- **INSTALLERS/bootstrap/** - Auto-bootstrap system (`npx @ai-dev-standards/bootstrap`)
-- **DOCS/** - Complete documentation (2500+ lines)
+- **installers/bootstrap/** - Auto-bootstrap system (`npx @ai-dev-standards/bootstrap`)
+- **docs/** - Complete documentation (2500+ lines)
 
 **Current Status:** ✅ Production Ready (v1.3.0)
 **Coverage:** 92% skill-to-MCP parity (1.1:1 ratio) • 107 total resources
@@ -25,10 +25,10 @@ This is the **AI Dev Standards** repository - a complete system for maintaining 
 Before performing ANY task in this repository or in projects referencing it:
 
 1. ✅ Check if `ai-dev-standards/` is accessible
-2. ✅ Read `META/PROJECT-CONTEXT.md` (understand the system)
-3. ✅ Read `META/HOW-TO-USE.md` (learn navigation)
-4. ✅ Review `META/DECISION-FRAMEWORK.md` (when making technology choices)
-5. ✅ Review `DOCS/SYSTEM-OVERVIEW.md` (understand the complete architecture)
+2. ✅ Read `meta/PROJECT-CONTEXT.md` (understand the system)
+3. ✅ Read `meta/HOW-TO-USE.md` (learn navigation)
+4. ✅ Review `meta/DECISION-FRAMEWORK.md` (when making technology choices)
+5. ✅ Review `docs/SYSTEM-OVERVIEW.md` (understand the complete architecture)
 
 **Time investment:** 3-5 minutes
 **Value:** Prevents mistakes, enables effective use, ensures consistency
@@ -40,20 +40,20 @@ Before performing ANY task in this repository or in projects referencing it:
 ### 1. Check Before Creating
 
 **ALWAYS** search for existing solutions before building new:
-- Search `META/skill-registry.json` for relevant skills
-- Check `STANDARDS/architecture-patterns/` for design approaches
-- Review `PLAYBOOKS/` for operational procedures
-- Look in `COMPONENTS/` for reusable implementations
-- Consult `EXAMPLES/` for reference code
+- Search `meta/skill-registry.json` for relevant skills
+- Check `standards/architecture-patterns/` for design approaches
+- Review `playbooks/` for operational procedures
+- Look in `components/` for reusable implementations
+- Consult `examples/` for reference code
 
 **Never invent when a standard exists.**
 
 ### 2. Follow Standards Always
 
 **ALL code must follow:**
-- Conventions in `STANDARDS/coding-conventions/` (when created)
-- Best practices in `STANDARDS/best-practices/`
-- Patterns in `STANDARDS/architecture-patterns/`
+- Conventions in `standards/coding-conventions/` (when created)
+- Best practices in `standards/best-practices/`
+- Patterns in `standards/architecture-patterns/`
 - Security guidelines (never compromise)
 
 **No exceptions without documented reasoning.**
@@ -71,7 +71,7 @@ For specialized tasks:
 ### 4. Apply Decision Framework
 
 For ANY architectural or technical decision:
-- Consult `META/DECISION-FRAMEWORK.md`
+- Consult `meta/DECISION-FRAMEWORK.md`
 - List requirements and constraints
 - Consider trade-offs
 - Document decision with reasoning
@@ -81,7 +81,7 @@ For ANY architectural or technical decision:
 
 ### 5. Use Playbooks for Procedures
 
-Check `PLAYBOOKS/` for step-by-step guides:
+Check `playbooks/` for step-by-step guides:
 - Deployment procedures
 - Release management
 - Operational tasks
@@ -103,7 +103,7 @@ When given any task:
    └─ Is there an existing procedure for this exact task?
 
 3. Identify SKILLS
-   └─ Search META/skill-registry.json for relevant methodologies
+   └─ Search meta/skill-registry.json for relevant methodologies
 
 4. Search COMPONENTS
    └─ Can I reuse existing code?
@@ -131,9 +131,9 @@ When given any task:
 When mentioning files from ai-dev-standards:
 
 **Good examples:**
-- "Based on SKILLS/mvp-builder/SKILL.md, the P0/P1/P2 matrix..."
-- "Following STANDARDS/architecture-patterns/rag-pattern.md:45-67..."
-- "As outlined in META/DECISION-FRAMEWORK.md:123, RAG is appropriate when..."
+- "Based on skills/mvp-builder/SKILL.md, the P0/P1/P2 matrix..."
+- "Following standards/architecture-patterns/rag-pattern.md:45-67..."
+- "As outlined in meta/DECISION-FRAMEWORK.md:123, RAG is appropriate when..."
 
 **Include:**
 - Relative path from repository root
@@ -150,8 +150,8 @@ When mentioning files from ai-dev-standards:
 ```
 "I'll [task description]. Let me check our standards repository first...
 
-✓ Loaded META/PROJECT-CONTEXT.md
-✓ Checked PLAYBOOKS/ for existing procedures
+✓ Loaded meta/PROJECT-CONTEXT.md
+✓ Checked playbooks/ for existing procedures
 ✓ Identified relevant skill: [skill-name]
 
 [Proceed with explanation of approach based on guidance]"
@@ -161,7 +161,7 @@ When mentioning files from ai-dev-standards:
 
 **Say:**
 ```
-"Based on META/DECISION-FRAMEWORK.md ([section-name]), I recommend [choice] because:
+"Based on meta/DECISION-FRAMEWORK.md ([section-name]), I recommend [choice] because:
 
 Requirements:
 - [requirement 1]
@@ -182,7 +182,7 @@ Trade-offs:
 
 **Say:**
 ```
-"I'm using the [skill-name] skill (SKILLS/[skill-name]/SKILL.md) which provides [key methodology].
+"I'm using the [skill-name] skill (skills/[skill-name]/SKILL.md) which provides [key methodology].
 
 [Apply skill guidance to specific task]"
 ```
@@ -192,13 +192,13 @@ Trade-offs:
 **Say:**
 ```
 "I didn't find an existing [component/pattern] for this in:
-- COMPONENTS/ (checked)
-- STANDARDS/architecture-patterns/ (checked)
-- PLAYBOOKS/ (checked)
+- components/ (checked)
+- standards/architecture-patterns/ (checked)
+- playbooks/ (checked)
 
 I'll create one following:
-- STANDARDS/coding-conventions/[relevant].md
-- STANDARDS/best-practices/[relevant].md
+- standards/coding-conventions/[relevant].md
+- standards/best-practices/[relevant].md
 
 This could be added to ai-dev-standards as [suggestion]."
 ```
@@ -224,9 +224,9 @@ Before presenting any code or solution:
 ## Prohibited Actions
 
 **❌ NEVER:**
-- Invent patterns that already exist in STANDARDS/
+- Invent patterns that already exist in standards/
 - Skip loading context from META files
-- Violate security guidelines in STANDARDS/best-practices/
+- Violate security guidelines in standards/best-practices/
 - Ignore decision framework when making choices
 - Duplicate existing components
 - Create skills/patterns/playbooks that overlap with existing ones
@@ -237,7 +237,7 @@ Before presenting any code or solution:
 ## Required Actions
 
 **✅ ALWAYS:**
-- Load META/PROJECT-CONTEXT.md every session
+- Load meta/PROJECT-CONTEXT.md every session
 - Search for existing solutions before creating new
 - Reference specific files and line numbers
 - Explain trade-offs when making decisions
@@ -302,7 +302,7 @@ This project has access to a comprehensive resource system:
 
 ### 📋 Resource Registries
 
-All resources are cataloged in `/META/` registries:
+All resources are cataloged in `/meta/` registries:
 - **`skill-registry.json`** - All 38 specialized skills
 - **`mcp-registry.json`** - All 36 MCP servers
 - **`tool-registry.json`** - All 9 tools + 4 scripts
@@ -312,7 +312,7 @@ All resources are cataloged in `/META/` registries:
 
 ### 🎯 Skills (37 total)
 
-Skills activate automatically based on context. See `META/skill-registry.json` for complete list:
+Skills activate automatically based on context. See `meta/skill-registry.json` for complete list:
 
 **Product & Strategy:**
 - mvp-builder, product-strategist, go-to-market-planner, user-researcher
@@ -340,7 +340,7 @@ Skills activate automatically based on context. See `META/skill-registry.json` f
 
 ### 🔧 MCP Servers (34 total)
 
-Executable tools for common development tasks. See `META/mcp-registry.json`:
+Executable tools for common development tasks. See `meta/mcp-registry.json`:
 - **AI/RAG:** embedding-generator-mcp, vector-database-mcp, semantic-search-mcp, agent-orchestrator-mcp
 - **Development:** component-generator-mcp, test-runner-mcp, code-reviewer-mcp, api-validator-mcp
 - **Design:** wireframe-generator-mcp, design-token-manager-mcp, accessibility-checker-mcp
@@ -350,7 +350,7 @@ Executable tools for common development tasks. See `META/mcp-registry.json`:
 
 ### 🛠️ Tools (9 tools + 4 scripts)
 
-LangChain, CrewAI, and custom tools. See `META/tool-registry.json`:
+LangChain, CrewAI, and custom tools. See `meta/tool-registry.json`:
 - **Core:** filesystem-tool, code-analyzer-tool, api-caller-tool, database-query-tool
 - **Data:** web-scraper-tool, vector-search-tool, embedding-tool
 - **Testing:** test-generator-tool
@@ -359,7 +359,7 @@ LangChain, CrewAI, and custom tools. See `META/tool-registry.json`:
 
 ### 🧩 Components (13 total)
 
-Reusable React components and patterns. See `META/component-registry.json`:
+Reusable React components and patterns. See `meta/component-registry.json`:
 - **Agents:** simple-task-agent
 - **Auth:** login-form, signup-form, password-reset, protected-route
 - **Errors:** error-boundary, error-fallback, not-found
@@ -368,7 +368,7 @@ Reusable React components and patterns. See `META/component-registry.json`:
 
 ### 🔌 Integrations (6 total)
 
-Third-party service integrations. See `META/integration-registry.json`:
+Third-party service integrations. See `meta/integration-registry.json`:
 - **LLM Providers:** openai, anthropic
 - **Platforms:** supabase, stripe, resend
 - **Vector DBs:** pinecone
@@ -384,7 +384,7 @@ Third-party service integrations. See `META/integration-registry.json`:
 
 ### 🔗 Resource Dependencies
 
-Use `META/relationship-mapping.json` to:
+Use `meta/relationship-mapping.json` to:
 - Find which MCPs support a specific skill
 - Discover which tools a component depends on
 - Identify required integrations for a feature
@@ -424,7 +424,7 @@ This automatically:
 - ✅ Sets up git hooks for auto-sync
 - ✅ Runs initial sync
 
-**See:** `DOCS/BOOTSTRAP.md` for complete guide.
+**See:** `docs/BOOTSTRAP.md` for complete guide.
 
 **Alternative (manual setup):** Provide sample `.cursorrules` content:
 
@@ -435,11 +435,11 @@ This automatically:
 Located at: ~/ai-dev-standards/
 
 ## Instructions for AI Assistant
-1. Before any task, read: ai-dev-standards/META/HOW-TO-USE.md
-2. Follow standards in: ai-dev-standards/STANDARDS/
-3. Use skills from: ai-dev-standards/SKILLS/
-4. Reference patterns in: ai-dev-standards/STANDARDS/architecture-patterns/
-5. Apply decision framework: ai-dev-standards/META/DECISION-FRAMEWORK.md
+1. Before any task, read: ai-dev-standards/meta/HOW-TO-USE.md
+2. Follow standards in: ai-dev-standards/standards/
+3. Use skills from: ai-dev-standards/skills/
+4. Reference patterns in: ai-dev-standards/standards/architecture-patterns/
+5. Apply decision framework: ai-dev-standards/meta/DECISION-FRAMEWORK.md
 
 ## Project-Specific Context
 [Project-specific information here]
@@ -450,7 +450,7 @@ Located at: ~/ai-dev-standards/
 When reviewing/auditing existing code:
 
 1. Load ai-dev-standards context
-2. Check project against `STANDARDS/best-practices/`
+2. Check project against `standards/best-practices/`
 3. Review architecture against relevant patterns
 4. Identify gaps or improvements
 5. Prioritize recommendations using mvp-builder P0/P1/P2 logic
@@ -460,7 +460,7 @@ When reviewing/auditing existing code:
 
 When building MCP servers:
 
-1. Use `STANDARDS/architecture-patterns/mcp-integration-pattern.md` (when created)
+1. Use `standards/architecture-patterns/mcp-integration-pattern.md` (when created)
 2. Follow MCP specification exactly
 3. Include security considerations
 4. Document tool designs clearly
@@ -471,7 +471,7 @@ When building MCP servers:
 When designing agent systems:
 
 1. Use `multi-agent-architect` skill
-2. Consult `STANDARDS/architecture-patterns/multi-agent-pattern.md` (when created)
+2. Consult `standards/architecture-patterns/multi-agent-pattern.md` (when created)
 3. Consider single vs multi-agent (decision framework)
 4. Define clear roles and communication patterns
 5. Plan state management approach
@@ -481,7 +481,7 @@ When designing agent systems:
 When implementing RAG:
 
 1. Use `rag-implementer` skill
-2. Check `STANDARDS/architecture-patterns/rag-pattern.md` (when created)
+2. Check `standards/architecture-patterns/rag-pattern.md` (when created)
 3. Decide on vector database (decision framework)
 4. Plan evaluation metrics upfront
 5. Consider security and data privacy
@@ -496,9 +496,9 @@ When implementing RAG:
 ```
 "I'll help build an MVP for a task management app. Let me load context from ai-dev-standards first...
 
-✓ Loaded META/PROJECT-CONTEXT.md
-✓ Loaded META/HOW-TO-USE.md
-✓ Activated mvp-builder skill (SKILLS/mvp-builder/SKILL.md)
+✓ Loaded meta/PROJECT-CONTEXT.md
+✓ Loaded meta/HOW-TO-USE.md
+✓ Activated mvp-builder skill (skills/mvp-builder/SKILL.md)
 
 Using the mvp-builder methodology:
 
@@ -512,7 +512,7 @@ Using the mvp-builder methodology:
    - Validate that users actually want another task manager
    - Timeline: 1-2 weeks
 
-3. Tech stack (from META/DECISION-FRAMEWORK.md, Archetype B):
+3. Tech stack (from meta/DECISION-FRAMEWORK.md, Archetype B):
    - Frontend: Next.js + Tailwind + shadcn/ui
    - Backend: Next.js API Routes
    - Database: Supabase (PostgreSQL + Auth)
@@ -536,8 +536,8 @@ Should I proceed with this approach?"
 - ✅ **Config file management with auto-updates**
 
 **This repository does NOT provide:**
-- ❌ Complete project templates (use TEMPLATES/ when available)
-- ❌ Full code implementations (see EXAMPLES/ for references)
+- ❌ Complete project templates (use templates/ when available)
+- ❌ Full code implementations (see examples/ for references)
 - ❌ Project-specific decisions (apply framework to context)
 - ❌ Rigid rules (guidelines that adapt to context)
 

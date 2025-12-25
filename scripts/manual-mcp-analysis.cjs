@@ -110,7 +110,7 @@ async function main() {
     await analyzeActualMCP(targetMcp);
   } else {
     // Analyze all MCPs
-    const registry = require('../META/mcp-registry.json');
+    const registry = require('../meta/mcp-registry.json');
     const currentTier1 = [
       'semantic-search-mcp',
       'market-analyzer-mcp',
@@ -161,12 +161,12 @@ async function main() {
 
     // Save results
     await fs.writeJSON(
-      path.join(__dirname, '../META/actual-mcp-analysis.json'),
+      path.join(__dirname, '../meta/actual-mcp-analysis.json'),
       { timestamp: new Date().toISOString(), analyses },
       { spaces: 2 }
     );
 
-    console.log('\n✅ Results saved to: META/actual-mcp-analysis.json');
+    console.log('\n✅ Results saved to: meta/actual-mcp-analysis.json');
   }
 
   console.log('\n═'.repeat(60));

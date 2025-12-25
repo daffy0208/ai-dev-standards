@@ -172,7 +172,7 @@ Create and manage output style configurations for Claude Code.
 
 **Type:** Strategic Project Management
 **Status:** Active
-**Location:** `/SKILLS/archon-manager/`
+**Location:** `/skills/archon-manager/`
 
 **Purpose:**
 Master Archon MCP for strategic project management, task tracking, and knowledge base operations. The strategic layer (WHAT/WHEN) that coordinates with Skills (HOW).
@@ -220,7 +220,7 @@ Master Archon MCP for strategic project management, task tracking, and knowledge
 
 **Type:** Agent Orchestration
 **Status:** Active
-**Location:** `/SKILLS/multi-agent-architect/`
+**Location:** `/skills/multi-agent-architect/`
 
 **Purpose:**
 Design and orchestrate multi-agent systems for complex AI applications requiring specialization, parallel processing, or collaborative problem-solving.
@@ -266,7 +266,7 @@ Design and orchestrate multi-agent systems for complex AI applications requiring
 
 **Type:** Meta-Coordination
 **Status:** Active
-**Location:** `/SKILLS/framework-orchestrator/`
+**Location:** `/skills/framework-orchestrator/`
 
 **Purpose:**
 Meta-skill that coordinates all frameworks and skills throughout the project lifecycle, providing intelligent sequencing based on project patterns.
@@ -314,7 +314,7 @@ Meta-skill that coordinates all frameworks and skills throughout the project lif
 
 **Type:** Automated Code Review
 **Status:** Active
-**Location:** `/SKILLS/codex-review-workflow/`
+**Location:** `/skills/codex-review-workflow/`
 
 **Purpose:**
 Automated code review workflow using OpenAI Codex CLI. Implements iterative fix-and-review cycles until code passes validation or reaches iteration limit.
@@ -363,7 +363,7 @@ Automated code review workflow using OpenAI Codex CLI. Implements iterative fix-
 
 **Type:** Design System Management
 **Status:** Active
-**Location:** `/SKILLS/design-system-architect/`
+**Location:** `/skills/design-system-architect/`
 
 **Purpose:**
 Build scalable, maintainable design systems that unify product experiences. Autonomous management of design tokens, components, and standards.
@@ -409,7 +409,7 @@ Build scalable, maintainable design systems that unify product experiences. Auto
 
 **Type:** Security Governance
 **Status:** Active
-**Location:** `/SKILLS/security-architect/`
+**Location:** `/skills/security-architect/`
 
 **Purpose:**
 Comprehensive security architecture combining threat modeling, security-first design, secure coding review, and compliance validation.

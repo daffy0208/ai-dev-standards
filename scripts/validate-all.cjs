@@ -4,7 +4,7 @@
  * Complete Validation Script
  * Validates ALL consistency across the entire framework
  * FAILS LOUDLY with clear error messages
- * Single source of truth: SKILLS/ and MCP-SERVERS/ folders
+ * Single source of truth: skills/ and mcp-servers/ folders
  */
 
 const fs = require('fs');
@@ -12,16 +12,16 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 const ROOT = path.join(__dirname, '..');
-const SKILLS_DIR = path.join(ROOT, 'SKILLS');
-const MCP_DIR = path.join(ROOT, 'MCP-SERVERS');
-const PLAYBOOKS_DIR = path.join(ROOT, 'PLAYBOOKS');
-const STANDARDS_DIR = path.join(ROOT, 'STANDARDS');
-const TEMPLATES_DIR = path.join(ROOT, 'TEMPLATES');
-const SCHEMAS_DIR = path.join(ROOT, 'SCHEMAS');
-const UTILS_DIR = path.join(ROOT, 'UTILS');
-const EXAMPLES_DIR = path.join(ROOT, 'EXAMPLES');
-const INSTALLERS_DIR = path.join(ROOT, 'INSTALLERS');
-const DOCS_DIR = path.join(ROOT, 'DOCS');
+const SKILLS_DIR = path.join(ROOT, 'skills');
+const MCP_DIR = path.join(ROOT, 'mcp-servers');
+const PLAYBOOKS_DIR = path.join(ROOT, 'playbooks');
+const STANDARDS_DIR = path.join(ROOT, 'standards');
+const TEMPLATES_DIR = path.join(ROOT, 'templates');
+const SCHEMAS_DIR = path.join(ROOT, 'schemas');
+const UTILS_DIR = path.join(ROOT, 'utils');
+const EXAMPLES_DIR = path.join(ROOT, 'examples');
+const INSTALLERS_DIR = path.join(ROOT, 'installers');
+const DOCS_DIR = path.join(ROOT, 'docs');
 
 // Color codes for output
 const RED = '\x1b[31m';
@@ -76,14 +76,14 @@ function getActualCounts() {
 function validateSkillRegistry(actual) {
   section('Validating skill-registry.json');
 
-  const registryPath = path.join(ROOT, 'META', 'skill-registry.json');
+  const registryPath = path.join(ROOT, 'meta', 'skill-registry.json');
   const registry = JSON.parse(fs.readFileSync(registryPath, 'utf-8'));
 
   const registryCount = registry.skills.length;
   const registryNames = registry.skills.map(s => s.name).sort();
 
   if (registryCount !== actual.skills) {
-    error(`skill-registry.json has ${registryCount} skills, but SKILLS/ has ${actual.skills}`);
+    error(`skill-registry.json has ${registryCount} skills, but skills/ has ${actual.skills}`);
   } else {
     success(`skill-registry.json count matches (${actual.skills})`);
   }
@@ -96,7 +96,7 @@ function validateSkillRegistry(actual) {
     error(`Skills missing from skill-registry.json: ${missing.join(', ')}`);
   }
   if (extra.length > 0) {
-    error(`Skills in skill-registry.json but not in SKILLS/: ${extra.join(', ')}`);
+    error(`Skills in skill-registry.json but not in skills/: ${extra.join(', ')}`);
   }
   if (missing.length === 0 && extra.length === 0) {
     success('All skills present in skill-registry.json');
@@ -117,7 +117,7 @@ function validateSkillRegistry(actual) {
 function validateMainRegistry(actual) {
   section('Validating registry.json');
 
-  const registryPath = path.join(ROOT, 'META', 'registry.json');
+  const registryPath = path.join(ROOT, 'meta', 'registry.json');
   const registry = JSON.parse(fs.readFileSync(registryPath, 'utf-8'));
 
   const skillCount = registry.skills.length;
@@ -126,13 +126,13 @@ function validateMainRegistry(actual) {
   const mcpNames = registry.mcpServers.map(m => m.name).sort();
 
   if (skillCount !== actual.skills) {
-    error(`registry.json has ${skillCount} skills, but SKILLS/ has ${actual.skills}`);
+    error(`registry.json has ${skillCount} skills, but skills/ has ${actual.skills}`);
   } else {
     success(`registry.json skill count matches (${actual.skills})`);
   }
 
   if (mcpCount !== actual.mcps) {
-    error(`registry.json has ${mcpCount} MCPs, but MCP-SERVERS/ has ${actual.mcps}`);
+    error(`registry.json has ${mcpCount} MCPs, but mcp-servers/ has ${actual.mcps}`);
   } else {
     success(`registry.json MCP count matches (${actual.mcps})`);
   }
@@ -181,7 +181,7 @@ function validateTier2Registries() {
       return;
     }
 
-    const registryPath = path.join(ROOT, 'META', name);
+    const registryPath = path.join(ROOT, 'meta', name);
     if (!fs.existsSync(registryPath)) {
       error(`${name}: Registry file not found`);
       return;
@@ -206,7 +206,7 @@ function validateTier2Registries() {
 function validateRelationships(actual) {
   section('Validating relationship-mapping.json');
 
-  const relationshipsPath = path.join(ROOT, 'META', 'relationship-mapping.json');
+  const relationshipsPath = path.join(ROOT, 'meta', 'relationship-mapping.json');
   const relationships = JSON.parse(fs.readFileSync(relationshipsPath, 'utf-8'));
 
   const skillMappings = relationships.relationships?.skills_to_mcps || relationships.skills || {};
@@ -262,8 +262,8 @@ function validateDocumentation(actual) {
   const files = [
     { path: 'README.md', regex: /(\d+)\s+Specialized Skills/ },
     // BUILD_FOCUS.md moved to .archive/planning/ - no longer active
-    { path: 'DOCS/INDEX.md', regex: /explore\s+(\d+)\s+specialized/ },
-    { path: 'DOCS/MCP-DEVELOPMENT-ROADMAP.md', regex: /Current:\*\*\s*(\d+)\s+skills/ }
+    { path: 'docs/INDEX.md', regex: /explore\s+(\d+)\s+specialized/ },
+    { path: 'docs/MCP-DEVELOPMENT-ROADMAP.md', regex: /Current:\*\*\s*(\d+)\s+skills/ }
   ];
 
   files.forEach(({ path: filePath, regex }) => {
@@ -293,7 +293,7 @@ function validateDocumentation(actual) {
   const mcpFiles = [
     { path: 'README.md', regex: /(\d+)\s+MCP Tools/ },
     // BUILD_FOCUS.md moved to .archive/planning/ - no longer active
-    { path: 'DOCS/INDEX.md', regex: /MCPs:\s*(\d+)/ }
+    { path: 'docs/INDEX.md', regex: /MCPs:\s*(\d+)/ }
   ];
 
   mcpFiles.forEach(({ path: filePath, regex }) => {
@@ -498,9 +498,9 @@ function main() {
   validateCLICommands();
 
   // Count all Tier 1 resources
-  const componentRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'component-registry.json'), 'utf-8'));
-  const integrationRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'integration-registry.json'), 'utf-8'));
-  const toolRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'tool-registry.json'), 'utf-8'));
+  const componentRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'component-registry.json'), 'utf-8'));
+  const integrationRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'integration-registry.json'), 'utf-8'));
+  const toolRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'tool-registry.json'), 'utf-8'));
 
   const componentCount = componentRegistry.components?.length || 0;
   const integrationCount = integrationRegistry.integrations?.length || 0;

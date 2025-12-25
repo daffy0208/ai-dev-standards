@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Generate skill-rules.json from META/skill-registry.json
+ * Generate skill-rules.json from meta/skill-registry.json
  * This creates trigger patterns for all 64 skills to enable auto-activation
  */
 
@@ -9,7 +9,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Read the skill registry
-const registryPath = path.join(__dirname, '../../META/skill-registry.json');
+const registryPath = path.join(__dirname, '../../meta/skill-registry.json');
 const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
 
 // Create skill rules object
@@ -103,12 +103,12 @@ registry.skills.forEach(skill => {
   }
   
   // Add generic path pattern based on skill name
-  const skillPath = skill.path.replace('/SKILLS/', '').replace('/', '');
+  const skillPath = skill.path.replace('/skills/', '').replace('/', '');
   pathPatterns.push(`**/${skillPath}/**/*`);
   
   // Add MCP-related patterns for MCP skills
   if (skillName.includes('mcp') || lowerDesc.includes('mcp')) {
-    pathPatterns.push('**/MCP-SERVERS/**/*');
+    pathPatterns.push('**/mcp-servers/**/*');
   }
   
   // Create the rule

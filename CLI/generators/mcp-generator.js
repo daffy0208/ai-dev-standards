@@ -36,55 +36,55 @@ class McpGenerator {
     if (pattern === 'direct') {
       // Direct MCP: Traditional structure
       files.push({
-        path: `MCP-SERVERS/${sanitizedName}-mcp/index.js`,
+        path: `mcp-servers/${sanitizedName}-mcp/index.js`,
         content: await this.formatCode(
           this.generateServerCode(sanitizedName, description, features)
         )
       })
 
       files.push({
-        path: `MCP-SERVERS/${sanitizedName}-mcp/package.json`,
+        path: `mcp-servers/${sanitizedName}-mcp/package.json`,
         content: this.generatePackageJson(sanitizedName, description)
       })
 
       files.push({
-        path: `MCP-SERVERS/${sanitizedName}-mcp/README.md`,
+        path: `mcp-servers/${sanitizedName}-mcp/README.md`,
         content: this.generateReadme(sanitizedName, description, features, pattern)
       })
 
       files.push({
-        path: `MCP-SERVERS/${sanitizedName}-mcp/.env.example`,
+        path: `mcp-servers/${sanitizedName}-mcp/.env.example`,
         content: this.generateEnvExample(sanitizedName)
       })
     } else {
       // Code Execution: Advanced structure with /servers/ and /skills/
       files.push({
-        path: `MCP-SERVERS/${sanitizedName}-mcp/servers/${sanitizedName}/README.md`,
+        path: `mcp-servers/${sanitizedName}-mcp/servers/${sanitizedName}/README.md`,
         content: this.generateCodeExecutionReadme(sanitizedName, description, features)
       })
 
       files.push({
-        path: `MCP-SERVERS/${sanitizedName}-mcp/servers/${sanitizedName}/tool_list.txt`,
+        path: `mcp-servers/${sanitizedName}-mcp/servers/${sanitizedName}/tool_list.txt`,
         content: this.generateToolList(sanitizedName, features)
       })
 
       files.push({
-        path: `MCP-SERVERS/${sanitizedName}-mcp/servers/${sanitizedName}/tools/example_tool.py`,
+        path: `mcp-servers/${sanitizedName}-mcp/servers/${sanitizedName}/tools/example_tool.py`,
         content: this.generateToolFile(sanitizedName, 'example_tool')
       })
 
       files.push({
-        path: `MCP-SERVERS/${sanitizedName}-mcp/skills/.gitkeep`,
+        path: `mcp-servers/${sanitizedName}-mcp/skills/.gitkeep`,
         content: '# Skills directory for persistent skill files\n'
       })
 
       files.push({
-        path: `MCP-SERVERS/${sanitizedName}-mcp/README.md`,
+        path: `mcp-servers/${sanitizedName}-mcp/README.md`,
         content: this.generateReadme(sanitizedName, description, features, pattern)
       })
 
       files.push({
-        path: `MCP-SERVERS/${sanitizedName}-mcp/.env.example`,
+        path: `mcp-servers/${sanitizedName}-mcp/.env.example`,
         content: this.generateEnvExample(sanitizedName)
       })
     }
@@ -388,7 +388,7 @@ ${pattern === 'code-execution' ? '- 💾 Persistent skill library support' : ''}
 
 \`\`\`bash
 # Install dependencies
-cd MCP-SERVERS/${name}-mcp
+cd mcp-servers/${name}-mcp
 ${pattern === 'direct' ? 'npm install' : '# Code Execution pattern uses tool files - no npm install needed'}
 \`\`\`
 
@@ -403,7 +403,7 @@ ${
   "mcpServers": {
     "${name}": {
       "command": "node",
-      "args": ["${process.cwd()}/MCP-SERVERS/${name}-mcp/index.js"],
+      "args": ["${process.cwd()}/mcp-servers/${name}-mcp/index.js"],
       "env": {
         // Add environment variables here
       }
@@ -416,9 +416,9 @@ ${
   "mcpServers": {
     "${name}": {
       "command": "mcp-code-execution",
-      "args": ["--servers-path", "${process.cwd()}/MCP-SERVERS/${name}-mcp/servers"],
+      "args": ["--servers-path", "${process.cwd()}/mcp-servers/${name}-mcp/servers"],
       "env": {
-        "SKILLS_PATH": "${process.cwd()}/MCP-SERVERS/${name}-mcp/skills"
+        "SKILLS_PATH": "${process.cwd()}/mcp-servers/${name}-mcp/skills"
       }
     }
   }

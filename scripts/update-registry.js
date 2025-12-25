@@ -3,7 +3,7 @@
 /**
  * Update Registry Script
  *
- * Automatically scans SKILLS directory and updates META/registry.json
+ * Automatically scans SKILLS directory and updates meta/registry.json
  * with all available skills, ensuring 100% discoverability.
  *
  * Usage: node scripts/update-registry.js
@@ -20,8 +20,8 @@ async function updateRegistry() {
   console.log('🔄 Scanning SKILLS directory...\n')
 
   const rootDir = path.join(__dirname, '..')
-  const skillsDir = path.join(rootDir, 'SKILLS')
-  const registryPath = path.join(rootDir, 'META', 'registry.json')
+  const skillsDir = path.join(rootDir, 'skills')
+  const registryPath = path.join(rootDir, 'meta', 'registry.json')
 
   // Load existing registry
   const registryContent = await fs.readFile(registryPath, 'utf8')
@@ -47,7 +47,7 @@ async function updateRegistry() {
           name: dir,
           version: frontmatter.version || '1.0.0',
           description: frontmatter.description || `${frontmatter.name} skill`,
-          path: `SKILLS/${dir}/SKILL.md`,
+          path: `skills/${dir}/SKILL.md`,
           tags: extractTags(frontmatter.description) || [],
           category: determineCategory(dir, frontmatter.description)
         }

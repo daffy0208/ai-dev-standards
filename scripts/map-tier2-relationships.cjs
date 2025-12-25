@@ -10,17 +10,17 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const RELATIONSHIP_MAPPING_PATH = path.join(ROOT, 'META', 'relationship-mapping.json');
+const RELATIONSHIP_MAPPING_PATH = path.join(ROOT, 'meta', 'relationship-mapping.json');
 
 // Load all Tier 2 registries
-const playbookRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'playbook-registry.json'), 'utf-8'));
-const standardRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'standard-registry.json'), 'utf-8'));
-const templateRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'template-registry.json'), 'utf-8'));
-const schemaRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'schema-registry.json'), 'utf-8'));
-const utilRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'util-registry.json'), 'utf-8'));
-const exampleRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'example-registry.json'), 'utf-8'));
-const installerRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'installer-registry.json'), 'utf-8'));
-const docsRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'docs-registry.json'), 'utf-8'));
+const playbookRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'playbook-registry.json'), 'utf-8'));
+const standardRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'standard-registry.json'), 'utf-8'));
+const templateRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'template-registry.json'), 'utf-8'));
+const schemaRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'schema-registry.json'), 'utf-8'));
+const utilRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'util-registry.json'), 'utf-8'));
+const exampleRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'example-registry.json'), 'utf-8'));
+const installerRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'installer-registry.json'), 'utf-8'));
+const docsRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'docs-registry.json'), 'utf-8'));
 
 // Load relationship mapping
 const relationshipMapping = JSON.parse(fs.readFileSync(RELATIONSHIP_MAPPING_PATH, 'utf-8'));

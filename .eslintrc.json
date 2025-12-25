@@ -63,8 +63,8 @@
         "scripts/**/*.js",
         "scripts/**/*.ts",
         "scripts/**/*.cjs",
-        "UTILS/scripts/**/*.ts",
-        "UTILS/scripts/**/*.js",
+        "utils/scripts/**/*.ts",
+        "utils/scripts/**/*.js",
         "CLI/scripts/**/*.ts"
       ],
       "rules": {

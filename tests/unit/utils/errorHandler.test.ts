@@ -16,7 +16,7 @@ import {
   ServerError,
   handleApiError,
   isApiError
-} from '../../../UTILS/api/errorHandler'
+} from '../../../utils/api/errorHandler'
 
 describe('ApiError Classes', () => {
   describe('ApiError', () => {

@@ -1,0 +1,4329 @@
+{
+  "version": "1.2.0",
+  "lastUpdated": "2025-11-15T23:25:15.057Z",
+  "description": "Central registry of all ai-dev-standards resources",
+  "skills": [
+    {
+      "name": "3d-visualizer",
+      "version": "1.0.0",
+      "description": "Expert in Three.js, 3D graphics, and interactive 3D visualizations",
+      "path": "skills/3d-visualizer/SKILL.md",
+      "tags": ["design"],
+      "category": "design"
+    },
+    {
+      "name": "accessibility-engineer",
+      "version": "1.0.0",
+      "description": "Implement accessibility (a11y) best practices to make applications usable by everyone. Use when building UIs, conducting accessibility audits, or ensuring WCAG compliance. Covers screen readers, keyboard navigation, ARIA attributes, and inclusive design patterns.",
+      "path": "skills/accessibility-engineer/SKILL.md",
+      "tags": ["design", "accessibility"],
+      "category": "design"
+    },
+    {
+      "name": "animation-designer",
+      "version": "1.0.0",
+      "description": "Expert in web animations, transitions, and motion design using Framer Motion and CSS",
+      "path": "skills/animation-designer/SKILL.md",
+      "tags": ["design"],
+      "category": "design"
+    },
+    {
+      "name": "api-designer",
+      "version": "1.0.0",
+      "description": "Design REST and GraphQL APIs. Use when creating backend APIs, defining API contracts, or integrating third-party services. Covers endpoint design, authentication, versioning, documentation, and best practices.",
+      "path": "skills/api-designer/SKILL.md",
+      "tags": ["api", "design"],
+      "category": "design"
+    },
+    {
+      "name": "api-integration-builder",
+      "version": "1.0.0",
+      "description": "Build reliable third-party API integrations including OAuth, webhooks, rate limiting, error handling, and data sync. Use when integrating with external services (Slack, Stripe, Gmail, etc.), building API connections, handling webhooks, or implementing OAuth flows.",
+      "path": "skills/api-integration-builder/SKILL.md",
+      "tags": ["ai", "api"],
+      "category": "backend"
+    },
+    {
+      "name": "archon-manager",
+      "version": "1.0.0",
+      "description": "Master Archon MCP for strategic project management, task tracking, and knowledge base operations. The strategic layer (WHAT/WHEN) that coordinates with Skills (HOW). Use when managing projects, tracking tasks, querying knowledge bases, or implementing the Archon+Skills two-layer architecture.",
+      "path": "skills/archon-manager/SKILL.md",
+      "tags": ["strategy"],
+      "category": "specialized"
+    },
+    {
+      "name": "asset-manager",
+      "version": "1.0.0",
+      "description": "Organize design assets, optimize images and fonts, maintain brand asset libraries, implement version control for assets, and enforce naming conventions. Keep design assets organized and production-ready.",
+      "path": "skills/asset-manager/SKILL.md",
+      "tags": ["product", "ai", "design"],
+      "category": "product"
+    },
+    {
+      "name": "audio-producer",
+      "version": "1.0.0",
+      "description": "Expert in web audio, audio processing, and interactive sound design",
+      "path": "skills/audio-producer/SKILL.md",
+      "tags": ["design"],
+      "category": "design"
+    },
+    {
+      "name": "bmad-method",
+      "version": "1.0.0",
+      "description": "Business Model and Architecture Design methodology for aligning technical architecture with business model sustainability and scalability",
+      "path": "skills/bmad-method/SKILL.md",
+      "tags": ["ai", "design"],
+      "category": "design"
+    },
+    {
+      "name": "brand-designer",
+      "version": "1.0.0",
+      "description": "Expert in brand identity, logo design, and visual brand systems",
+      "path": "skills/brand-designer/SKILL.md",
+      "tags": ["design"],
+      "category": "design"
+    },
+    {
+      "name": "capability-graph-builder",
+      "version": "1.0.0",
+      "description": "Build queryable capability graphs from manifests using Codex for relationship inference between skills, resources, and capabilities.",
+      "path": "skills/capability-graph-builder/SKILL.md",
+      "tags": [],
+      "category": "general"
+    },
+    {
+      "name": "codex-review-workflow",
+      "version": "1.0.0",
+      "description": "Automated code review workflow using OpenAI Codex CLI. Implements iterative fix-and-review cycles until code passes validation or reaches iteration limit. Use when building features requiring automated code validation, security checks, or quality assurance through Codex CLI.",
+      "path": "skills/codex-review-workflow/SKILL.md",
+      "tags": ["ai", "security", "testing"],
+      "category": "engineering"
+    },
+    {
+      "name": "context-preserver",
+      "version": "1.0.0",
+      "description": "Automatically save and restore development context to minimize cognitive load when resuming work. Use when switching tasks, taking breaks, or returning after interruptions. Captures mental state, file locations, and next steps. Designed for ADHD developers with high context-switching costs.",
+      "path": "skills/context-preserver/SKILL.md",
+      "tags": ["design"],
+      "category": "design"
+    },
+    {
+      "name": "copywriter",
+      "version": "1.0.0",
+      "description": "Expert in writing compelling copy for web, marketing, and product",
+      "path": "skills/copywriter/SKILL.md",
+      "tags": ["product"],
+      "category": "product"
+    },
+    {
+      "name": "customer-feedback-analyzer",
+      "version": "1.0.0",
+      "description": "Synthesize user feedback from multiple channels and identify patterns to inform product decisions. Use when analyzing feedback, prioritizing feature requests, conducting NPS surveys, or understanding user sentiment. Covers feedback collection, categorization, prioritization frameworks, and closing the feedback loop.",
+      "path": "skills/customer-feedback-analyzer/SKILL.md",
+      "tags": ["product"],
+      "category": "product"
+    },
+    {
+      "name": "customer-support-builder",
+      "version": "1.0.0",
+      "description": "Build scalable customer support systems including help centers, chatbots, ticketing systems, and self-service knowledge bases. Use when designing support infrastructure, reducing support load, improving customer satisfaction, or scaling support without linear hiring.",
+      "path": "skills/customer-support-builder/SKILL.md",
+      "tags": ["design"],
+      "category": "design"
+    },
+    {
+      "name": "dark-matter-analyzer",
+      "version": "1.0.0",
+      "description": "Analyze repositories to reveal unseen patterns, strategic drift, and organizational health. Use when assessing repository coherence, diagnosing project issues, identifying documentation inflation, or understanding why a codebase feels misaligned with its stated goals.",
+      "path": "skills/dark-matter-analyzer/SKILL.md",
+      "tags": ["strategy"],
+      "category": "specialized"
+    },
+    {
+      "name": "data-engineer",
+      "version": "1.0.0",
+      "description": "Expert in data pipelines, ETL processes, and data infrastructure",
+      "path": "skills/data-engineer/SKILL.md",
+      "tags": [],
+      "category": "devops"
+    },
+    {
+      "name": "data-visualizer",
+      "version": "1.0.0",
+      "description": "Expert in creating charts, dashboards, and data visualizations using modern libraries",
+      "path": "skills/data-visualizer/SKILL.md",
+      "tags": ["design"],
+      "category": "design"
+    },
+    {
+      "name": "deployment-advisor",
+      "version": "1.0.0",
+      "description": "Choose deployment strategy and infrastructure. Use when deciding where to deploy applications, setting up CI/CD, or configuring production environments. Covers Vercel, Railway, AWS, Cloudflare Workers, and Docker.",
+      "path": "skills/deployment-advisor/SKILL.md",
+      "tags": ["product", "strategy", "ai", "deployment"],
+      "category": "product"
+    },
+    {
+      "name": "design-system-architect",
+      "version": "1.0.0",
+      "description": "Build scalable, maintainable design systems that unify product experiences. Use when creating component libraries, design tokens, or establishing design standards. Covers atomic design, Storybook, theming, and design system governance.",
+      "path": "skills/design-system-architect/SKILL.md",
+      "tags": ["product", "ai", "design"],
+      "category": "product"
+    },
+    {
+      "name": "figma-developer",
+      "version": "1.0.0",
+      "description": "Extract components from Figma, convert designs to React components, sync design tokens, and generate code from designs. Bridge the gap between design and code with automated workflows.",
+      "path": "skills/figma-developer/SKILL.md",
+      "tags": ["frontend", "design"],
+      "category": "design"
+    },
+    {
+      "name": "focus-session-manager",
+      "version": "1.0.0",
+      "description": "Automatically manage focus sessions, breaks, and hyperfocus protection. Uses ADHD-optimized Pomodoro technique with flexible timers, health reminders, and gentle interruptions. Protects against hyperfocus burnout while maximizing productive time.",
+      "path": "skills/focus-session-manager/SKILL.md",
+      "tags": ["product", "ai"],
+      "category": "product"
+    },
+    {
+      "name": "forensic-data-engineer",
+      "version": "1.0.0",
+      "description": "Expert in data forensics, anomaly detection, audit trail analysis, fraud detection, and breach investigation",
+      "path": "skills/forensic-data-engineer/SKILL.md",
+      "tags": ["ai"],
+      "category": "data"
+    },
+    {
+      "name": "framework-orchestrator",
+      "version": "1.0.0",
+      "description": "Meta-skill that coordinates all frameworks and skills throughout the project lifecycle, providing intelligent sequencing based on project patterns",
+      "path": "skills/framework-orchestrator/SKILL.md",
+      "tags": [],
+      "category": "general"
+    },
+    {
+      "name": "frontend-builder",
+      "version": "1.0.0",
+      "description": "Build modern React/Next.js frontends. Use when creating web applications, choosing frontend stack, structuring components, or implementing UI/UX designs. Covers React, Next.js, Tailwind CSS, and component patterns.",
+      "path": "skills/frontend-builder/SKILL.md",
+      "tags": ["ai", "frontend", "ux", "design"],
+      "category": "design"
+    },
+    {
+      "name": "go-to-market-planner",
+      "version": "1.0.0",
+      "description": "Plan product launches and go-to-market strategy. Use when launching products, entering new markets, or planning marketing campaigns. Covers positioning, channels, messaging, and launch execution.",
+      "path": "skills/go-to-market-planner/SKILL.md",
+      "tags": ["product", "strategy", "ai"],
+      "category": "product"
+    },
+    {
+      "name": "growth-experimenter",
+      "version": "1.0.0",
+      "description": "Run systematic growth experiments to increase acquisition, activation, retention, and revenue. Use when optimizing conversion funnels, running A/B tests, improving metrics, or when users mention growth, experimentation, optimization, or scaling user acquisition.",
+      "path": "skills/growth-experimenter/SKILL.md",
+      "tags": ["performance"],
+      "category": "general"
+    },
+    {
+      "name": "iot-developer",
+      "version": "1.0.0",
+      "description": "Expert in IoT development, microcontrollers, sensors, and MQTT protocols",
+      "path": "skills/iot-developer/SKILL.md",
+      "tags": [],
+      "category": "specialized"
+    },
+    {
+      "name": "knowledge-base-manager",
+      "version": "1.0.0",
+      "description": "Design, build, and maintain comprehensive knowledge bases. Bridges document-based (RAG) and entity-based (graph) knowledge systems. Use when building knowledge-intensive applications, managing organizational knowledge, or creating intelligent information systems.",
+      "path": "skills/knowledge-base-manager/SKILL.md",
+      "tags": ["rag", "ai", "design"],
+      "category": "ai"
+    },
+    {
+      "name": "knowledge-graph-builder",
+      "version": "1.0.0",
+      "description": "Design and build knowledge graphs. Use when modeling complex relationships, building semantic search, or creating knowledge bases. Covers schema design, entity relationships, and graph database selection.",
+      "path": "skills/knowledge-graph-builder/SKILL.md",
+      "tags": ["design"],
+      "category": "design"
+    },
+    {
+      "name": "livestream-engineer",
+      "version": "1.0.0",
+      "description": "Expert in live streaming, WebRTC, and real-time video/audio",
+      "path": "skills/livestream-engineer/SKILL.md",
+      "tags": [],
+      "category": "content"
+    },
+    {
+      "name": "localization-engineer",
+      "version": "1.0.0",
+      "description": "Expert in internationalization (i18n), multi-language support, and localization",
+      "path": "skills/localization-engineer/SKILL.md",
+      "tags": [],
+      "category": "engineering"
+    },
+    {
+      "name": "manifest-generator",
+      "version": "1.0.0",
+      "description": "Auto-generate capability manifests from skill/MCP descriptions using Codex-powered semantic analysis and structured extraction.",
+      "path": "skills/manifest-generator/SKILL.md",
+      "tags": [],
+      "category": "general"
+    },
+    {
+      "name": "mobile-developer",
+      "version": "1.0.0",
+      "description": "Expert in React Native, Expo, and cross-platform mobile development",
+      "path": "skills/mobile-developer/SKILL.md",
+      "tags": ["frontend"],
+      "category": "frontend"
+    },
+    {
+      "name": "multi-agent-architect",
+      "version": "1.0.0",
+      "description": "Design and orchestrate multi-agent systems. Use when building complex AI systems requiring specialization, parallel processing, or collaborative problem-solving. Covers agent coordination, communication patterns, and task delegation strategies.",
+      "path": "skills/multi-agent-architect/SKILL.md",
+      "tags": ["ai", "agents", "design"],
+      "category": "ai"
+    },
+    {
+      "name": "mvp-builder",
+      "version": "1.0.0",
+      "description": "Rapid MVP development and feature prioritization for fast product validation. Use when building minimum viable products, prioritizing features, validating ideas quickly, or when users need to ship products fast while avoiding over-engineering.",
+      "path": "skills/mvp-builder/SKILL.md",
+      "tags": ["mvp", "product", "api"],
+      "category": "product"
+    },
+    {
+      "name": "orchestration-planner",
+      "version": "1.0.0",
+      "description": "Plan multi-step workflows using capability graph and Codex-powered goal decomposition with HTN-style hierarchical task planning.",
+      "path": "skills/orchestration-planner/SKILL.md",
+      "tags": [],
+      "category": "specialized"
+    },
+    {
+      "name": "performance-optimizer",
+      "version": "1.0.0",
+      "description": "Optimize application performance and scalability. Use when investigating slow applications, scaling bottlenecks, or improving response times. Covers profiling, caching, database optimization, and frontend performance.",
+      "path": "skills/performance-optimizer/SKILL.md",
+      "tags": ["frontend", "performance"],
+      "category": "frontend"
+    },
+    {
+      "name": "pricing-strategist",
+      "version": "1.0.0",
+      "description": "Design and optimize pricing strategies for SaaS products including tiering, packaging, value metrics, and experimentation. Use when setting initial pricing, optimizing conversion, expanding revenue, or when users ask about pricing strategy, monetization, or revenue optimization.",
+      "path": "skills/pricing-strategist/SKILL.md",
+      "tags": ["product", "strategy", "design", "performance"],
+      "category": "product"
+    },
+    {
+      "name": "product-analyst",
+      "version": "1.0.0",
+      "description": "Track user metrics and provide data-driven insights for product decisions. Use when measuring product health, analyzing user behavior, conducting cohort analysis, or optimizing key metrics. Covers acquisition, engagement, retention, revenue metrics, and data-driven decision making.",
+      "path": "skills/product-analyst/SKILL.md",
+      "tags": ["product"],
+      "category": "product"
+    },
+    {
+      "name": "product-analytics",
+      "version": "1.0.0",
+      "description": "Measure what matters with proper event tracking, funnels, cohorts, and metrics. Use when setting up analytics, tracking features, or understanding behavior.",
+      "path": "skills/product-analytics/SKILL.md",
+      "tags": [],
+      "category": "product"
+    },
+    {
+      "name": "product-strategist",
+      "version": "1.0.0",
+      "description": "Validate product-market fit and strategic direction. Use when defining new products, validating problem-solution fit, prioritizing features, or making build-vs-buy decisions. Focuses on discovery and validation before development.",
+      "path": "skills/product-strategist/SKILL.md",
+      "tags": ["product", "strategy"],
+      "category": "product"
+    },
+    {
+      "name": "prototype-designer",
+      "version": "1.0.0",
+      "description": "Create interactive prototypes, design user flows, implement prototype testing strategies, and manage handoff to development. Validate ideas before building.",
+      "path": "skills/prototype-designer/SKILL.md",
+      "tags": ["design", "testing"],
+      "category": "design"
+    },
+    {
+      "name": "prp-generator",
+      "version": "1.0.0",
+      "description": "Guides creation of Product Requirements Prompts (PRPs) - comprehensive requirement documents that serve as the foundation for AI-assisted development",
+      "path": "skills/prp-generator/SKILL.md",
+      "tags": ["product", "ai"],
+      "category": "product"
+    },
+    {
+      "name": "quality-assurance",
+      "version": "1.0.0",
+      "description": "Comprehensive quality assurance combining testing strategy, code quality enforcement, and validation gates. Consolidated from testing-strategist, code-quality-enforcer, and validation-gate-checker.",
+      "path": "skills/quality-assurance/SKILL.md",
+      "tags": ["strategy", "testing"],
+      "category": "engineering"
+    },
+    {
+      "name": "quality-auditor",
+      "version": "1.0.0",
+      "description": "Comprehensive quality auditing and evaluation of tools, frameworks, and systems against industry best practices with detailed scoring across 12 critical dimensions",
+      "path": "skills/quality-auditor/SKILL.md",
+      "tags": ["ai", "testing"],
+      "category": "general"
+    },
+    {
+      "name": "rag-implementer",
+      "version": "1.0.0",
+      "description": "Implement retrieval-augmented generation systems. Use when building knowledge-intensive applications, document search, Q&A systems, or need to ground LLM responses in external data. Covers embedding strategy, vector stores, retrieval pipelines, and evaluation.",
+      "path": "skills/rag-implementer/SKILL.md",
+      "tags": ["strategy", "rag", "ai"],
+      "category": "ai"
+    },
+    {
+      "name": "release-manager",
+      "version": "1.0.0",
+      "description": "Ship features safely with progressive rollouts, feature flags, and canary deployments. Use when deploying risky features or need gradual rollouts.",
+      "path": "skills/release-manager/SKILL.md",
+      "tags": ["deployment"],
+      "category": "devops"
+    },
+    {
+      "name": "security-architect",
+      "version": "1.0.0",
+      "description": "Comprehensive security architecture combining threat modeling, security-first design, secure coding review, and compliance validation. Consolidated from threat-modeling, security-first-design, secure-coding-review, and compliance-validator.",
+      "path": "skills/security-architect/SKILL.md",
+      "tags": ["design", "security"],
+      "category": "design"
+    },
+    {
+      "name": "security-engineer",
+      "version": "1.0.0",
+      "description": "Implement security best practices across the application stack. Use when securing APIs, implementing authentication, preventing vulnerabilities, or conducting security reviews. Covers OWASP Top 10, auth patterns, input validation, encryption, and security monitoring.",
+      "path": "skills/security-engineer/SKILL.md",
+      "tags": ["api", "security"],
+      "category": "backend"
+    },
+    {
+      "name": "skill-validator",
+      "version": "0.1.0",
+      "description": "Validates that a skill or MCP implementation matches its manifest by running Codex-powered semantic comparisons across descriptions, preconditions, effects, and API surface.",
+      "path": "skills/skill-validator/SKILL.md",
+      "tags": ["api"],
+      "category": "backend"
+    },
+    {
+      "name": "spatial-developer",
+      "version": "1.0.0",
+      "description": "Expert in AR/VR, WebXR, and spatial computing for Vision Pro and web",
+      "path": "skills/spatial-developer/SKILL.md",
+      "tags": [],
+      "category": "specialized"
+    },
+    {
+      "name": "supabase-developer",
+      "version": "1.0.0",
+      "description": "Build full-stack applications with Supabase (PostgreSQL, Auth, Storage, Real-time, Edge Functions). Use when implementing authentication, database design with RLS, file storage, real-time features, or serverless functions.",
+      "path": "skills/supabase-developer/SKILL.md",
+      "tags": ["rag", "design"],
+      "category": "ai"
+    },
+    {
+      "name": "system-diagnostician",
+      "version": "1.0.0",
+      "description": "Performs Codex-assisted project health diagnostics, identifies capability gaps, and produces prioritized improvement plans.",
+      "path": "skills/system-diagnostician/SKILL.md",
+      "tags": [],
+      "category": "general"
+    },
+    {
+      "name": "task-breakdown-specialist",
+      "version": "1.0.0",
+      "description": "Break large tasks into ADHD-friendly micro-tasks that minimize activation energy and maximize momentum. Use when feeling overwhelmed, can't start a task, or need to make progress visible. Optimized for ADHD developers with 15-minute task chunking and dopamine-driven ordering.",
+      "path": "skills/task-breakdown-specialist/SKILL.md",
+      "tags": [],
+      "category": "specialized"
+    },
+    {
+      "name": "technical-writer",
+      "version": "1.0.0",
+      "description": "Create clear, comprehensive technical documentation for developers and users. Use when documenting APIs, writing user guides, creating tutorials, or setting up documentation sites. Covers API docs, user guides, architecture documentation, and documentation best practices.",
+      "path": "skills/technical-writer/SKILL.md",
+      "tags": ["api"],
+      "category": "backend"
+    },
+    {
+      "name": "testing-strategist",
+      "version": "1.0.0",
+      "description": "Design and implement comprehensive testing strategies. Use when setting up tests, choosing test types, implementing TDD, or improving code quality. Covers unit tests, integration tests, E2E tests, test-driven development, and testing best practices.",
+      "path": "skills/testing-strategist/SKILL.md",
+      "tags": ["design", "testing"],
+      "category": "design"
+    },
+    {
+      "name": "usability-tester",
+      "version": "1.0.0",
+      "description": "Conduct usability tests and identify UX issues through systematic observation. Use when testing user flows, validating designs, identifying friction points, or ensuring users can complete core tasks. Covers test planning, think-aloud protocol, task scenarios, and severity rating.",
+      "path": "skills/usability-tester/SKILL.md",
+      "tags": ["ux", "design", "testing"],
+      "category": "design"
+    },
+    {
+      "name": "user-researcher",
+      "version": "1.0.0",
+      "description": "Conduct user research and validation. Use when discovering user needs, validating assumptions, creating personas, or understanding pain points. Covers interviews, surveys, analysis, and synthesis.",
+      "path": "skills/user-researcher/SKILL.md",
+      "tags": ["ai"],
+      "category": "specialized"
+    },
+    {
+      "name": "ux-designer",
+      "version": "1.0.0",
+      "description": "Design user experiences and interfaces. Use when creating user journeys, wireframes, prototypes, or improving usability. Covers user flows, information architecture, interaction design, and accessibility.",
+      "path": "skills/ux-designer/SKILL.md",
+      "tags": ["ux", "design", "accessibility"],
+      "category": "design"
+    },
+    {
+      "name": "video-producer",
+      "version": "1.0.0",
+      "description": "Expert in video playback, streaming, and video player customization",
+      "path": "skills/video-producer/SKILL.md",
+      "tags": [],
+      "category": "content"
+    },
+    {
+      "name": "visual-designer",
+      "version": "1.0.0",
+      "description": "Design beautiful, consistent user interfaces with proper color theory, typography, spacing, and visual hierarchy. Use when creating design systems, choosing colors and fonts, or establishing visual direction. Covers color theory, typography scales, spacing systems, and design principles.",
+      "path": "skills/visual-designer/SKILL.md",
+      "tags": ["design"],
+      "category": "design"
+    },
+    {
+      "name": "voice-interface-builder",
+      "version": "1.0.0",
+      "description": "Expert in building voice interfaces, speech recognition, and text-to-speech systems",
+      "path": "skills/voice-interface-builder/SKILL.md",
+      "tags": [],
+      "category": "general"
+    }
+  ],
+  "mcpServers": [
+    {
+      "name": "3d-asset-manager",
+      "version": "1.0.0",
+      "description": "MCP server for loading, optimizing, and managing 3D models and textures",
+      "path": "mcp-servers/3d-asset-manager-mcp",
+      "tags": ["mcp", "3d", "threejs", "gltf", "models", "textures"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": ["3d-visualizer"],
+      "status": "active"
+    },
+    {
+      "name": "accessibility-checker",
+      "version": "1.0.0",
+      "description": "MCP server for automated WCAG compliance checking",
+      "path": "mcp-servers/accessibility-checker-mcp",
+      "tags": ["mcp", "accessibility", "wcag", "a11y", "contrast", "testing"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "axe-core": "^4.8.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "agent-orchestrator",
+      "version": "1.0.0",
+      "description": "MCP server for coordinating multi-agent workflows and communication",
+      "path": "mcp-servers/agent-orchestrator-mcp",
+      "tags": ["mcp", "multi-agent", "orchestration", "agent-coordination", "workflow"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": ["multi-agent-architect"],
+      "status": "active"
+    },
+    {
+      "name": "animation-library",
+      "version": "1.0.0",
+      "description": "MCP server for Framer Motion animation presets and configurations",
+      "path": "mcp-servers/animation-library-mcp",
+      "tags": ["mcp", "animation", "framer-motion", "transitions", "motion"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": ["animation-designer"],
+      "status": "active"
+    },
+    {
+      "name": "api-validator",
+      "version": "1.0.0",
+      "description": "MCP server for validating API requests and responses against schemas",
+      "path": "mcp-servers/api-validator-mcp",
+      "tags": ["mcp", "api-validation", "schema-validation", "json-schema", "api-testing"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "ajv": "^8.12.0",
+        "ajv-formats": "^2.1.1"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "asset-library",
+      "version": "1.0.0",
+      "description": "MCP server for managing design assets and generating variants",
+      "path": "mcp-servers/asset-library-mcp",
+      "tags": ["mcp", "assets", "design", "images", "library"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "asset-optimizer",
+      "version": "1.0.0",
+      "description": "MCP server for optimizing images, generating color palettes, and managing assets",
+      "path": "mcp-servers/asset-optimizer-mcp",
+      "tags": ["mcp", "image-optimization", "assets", "color-palette", "compression"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": ["visual-designer"],
+      "status": "active"
+    },
+    {
+      "name": "audio-processor",
+      "version": "1.0.0",
+      "description": "MCP server for audio optimization, format conversion, and processing",
+      "path": "mcp-servers/audio-processor-mcp",
+      "tags": ["mcp", "audio", "processing", "compression", "web-audio"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": ["audio-producer"],
+      "status": "active"
+    },
+    {
+      "name": "brain",
+      "version": "1.0.0",
+      "description": "MCP server that exposes ai-dev-standards brain and capability graph to Claude Code",
+      "path": "mcp-servers/brain-mcp",
+      "tags": ["mcp", "brain", "orchestration", "capability-graph", "ai-dev-standards"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "chart-builder",
+      "version": "1.0.0",
+      "description": "MCP server for creating charts and data visualizations programmatically",
+      "path": "mcp-servers/chart-builder-mcp",
+      "tags": ["mcp", "charts", "visualization", "d3", "recharts", "victory"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": ["data-visualizer"],
+      "status": "active"
+    },
+    {
+      "name": "code-quality-scanner",
+      "version": "1.0.0",
+      "description": "MCP server for scanning code quality, complexity, and technical debt",
+      "path": "mcp-servers/code-quality-scanner-mcp",
+      "tags": ["mcp", "code-quality", "complexity", "technical-debt", "eslint", "sonarqube"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "execa": "^8.0.1"
+      },
+      "enables": ["quality-auditor"],
+      "status": "active"
+    },
+    {
+      "name": "component-generator",
+      "version": "1.0.0",
+      "description": "MCP server for intelligent React/Next.js component scaffolding",
+      "path": "mcp-servers/component-generator-mcp",
+      "tags": ["mcp", "component", "generator", "react", "nextjs", "scaffolding"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "handlebars": "^4.7.8",
+        "prettier": "^3.1.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "dark-matter-analyzer",
+      "version": "1.0.0",
+      "description": "MCP server for repository coherence analysis and organizational health insights",
+      "path": "mcp-servers/dark-matter-analyzer-mcp",
+      "tags": [
+        "mcp",
+        "dark-matter-mode",
+        "repository-analysis",
+        "coherence",
+        "organizational-health",
+        "code-patterns",
+        "documentation-analysis"
+      ],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "dark-mode-converter",
+      "version": "0.0.0",
+      "description": "Convert light mode designs to accessible dark mode with automatic color adjustments, contrast validation, and palette generation.",
+      "path": "mcp-servers/dark-mode-converter-mcp",
+      "tags": ["mcp", "dark-mode-converter"],
+      "features": ["tools"],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
+    },
+    {
+      "name": "database-migration",
+      "version": "1.0.0",
+      "description": "MCP server for generating and running database migrations with Prisma and Drizzle",
+      "path": "mcp-servers/database-migration-mcp",
+      "tags": ["mcp", "database", "migrations", "prisma", "drizzle", "schema"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "execa": "^8.0.1"
+      },
+      "enables": ["data-engineer"],
+      "status": "active"
+    },
+    {
+      "name": "deployment-orchestrator",
+      "version": "1.0.0",
+      "description": "MCP server for orchestrating deployments to Vercel, Railway, AWS, and other platforms",
+      "path": "mcp-servers/deployment-orchestrator-mcp",
+      "tags": ["mcp", "deployment", "vercel", "railway", "aws", "ci-cd"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": ["deployment-advisor"],
+      "status": "active"
+    },
+    {
+      "name": "design-handoff",
+      "version": "0.0.0",
+      "description": "Streamline design-to-development handoff with automated spec extraction, code generation, and design-code comparison.",
+      "path": "mcp-servers/design-handoff-mcp",
+      "tags": ["mcp", "design-handoff"],
+      "features": ["tools"],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
+    },
+    {
+      "name": "design-token-manager",
+      "version": "1.0.0",
+      "description": "MCP server for managing design tokens and generating theme configurations",
+      "path": "mcp-servers/design-token-manager-mcp",
+      "tags": ["mcp", "design-tokens", "design-system", "theming", "css-variables"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": ["design-system-architect"],
+      "status": "active"
+    },
+    {
+      "name": "doc-generator",
+      "version": "1.0.0",
+      "description": "MCP server for generating documentation from code, diagrams, and changelogs",
+      "path": "mcp-servers/doc-generator-mcp",
+      "tags": ["mcp", "documentation", "jsdoc", "typedoc", "mermaid", "changelog"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "execa": "^8.0.1"
+      },
+      "enables": ["technical-writer"],
+      "status": "active"
+    },
+    {
+      "name": "embedding-generator",
+      "version": "1.0.0",
+      "description": "MCP server for generating embeddings with OpenAI and Cohere",
+      "path": "mcp-servers/embedding-generator-mcp",
+      "tags": ["mcp", "embeddings", "openai", "cohere", "semantic-search", "rag"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "openai": "^4.20.0",
+        "cohere-ai": "^7.7.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "feature-prioritizer",
+      "version": "1.0.0",
+      "description": "MCP server for feature prioritization using P0/P1/P2 framework",
+      "path": "mcp-servers/feature-prioritizer-mcp",
+      "tags": ["mcp", "prioritization", "feature-prioritization", "mvp", "product-management"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "figma-sync",
+      "version": "0.0.0",
+      "description": "Sync Figma designs with your codebase - import components, extract design tokens, and automate design-to-code workflow.",
+      "path": "mcp-servers/figma-sync-mcp",
+      "tags": ["mcp", "figma-sync"],
+      "features": ["tools"],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
+    },
+    {
+      "name": "font-optimizer",
+      "version": "0.0.0",
+      "description": "MCP server for font optimization including subsetting, format conversion, and usage analysis.",
+      "path": "mcp-servers/font-optimizer-mcp",
+      "tags": ["mcp", "font-optimizer"],
+      "features": ["tools"],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
+    },
+    {
+      "name": "graph-database",
+      "version": "1.0.0",
+      "description": "MCP server for Neo4j operations, Cypher queries, and graph visualization",
+      "path": "mcp-servers/graph-database-mcp",
+      "tags": ["mcp", "neo4j", "graph-database", "cypher", "knowledge-graph"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": ["knowledge-graph-builder"],
+      "status": "active"
+    },
+    {
+      "name": "i18n-manager",
+      "version": "1.0.0",
+      "description": "MCP server for managing translations, extracting strings, and locale files",
+      "path": "mcp-servers/i18n-manager-mcp",
+      "tags": ["mcp", "i18n", "internationalization", "translations", "localization"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": ["localization-engineer"],
+      "status": "active"
+    },
+    {
+      "name": "icon-library",
+      "version": "0.0.0",
+      "description": "MCP server providing icon search and retrieval across multiple icon libraries (Heroicons, Lucide, Font Awesome).",
+      "path": "mcp-servers/icon-library-mcp",
+      "tags": ["mcp", "icon-library"],
+      "features": ["tools"],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
+    },
+    {
+      "name": "illustration-generator",
+      "version": "0.0.0",
+      "description": "Generate custom illustrations, characters, and scenes with AI-powered illustration generation.",
+      "path": "mcp-servers/illustration-generator-mcp",
+      "tags": ["mcp", "illustration-generator"],
+      "features": ["tools"],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
+    },
+    {
+      "name": "image-generator",
+      "version": "0.0.0",
+      "description": "AI-powered image generation MCP server supporting multiple providers (OpenAI DALL-E, Midjourney, Stable Diffusion).",
+      "path": "mcp-servers/image-generator-mcp",
+      "tags": ["mcp", "image-generator"],
+      "features": ["tools"],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
+    },
+    {
+      "name": "iot-device-manager",
+      "version": "1.0.0",
+      "description": "MCP server for IoT device management, MQTT operations, and firmware updates",
+      "path": "mcp-servers/iot-device-manager-mcp",
+      "tags": ["mcp", "iot", "mqtt", "devices", "firmware", "sensors"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": ["iot-developer"],
+      "status": "active"
+    },
+    {
+      "name": "knowledge-base",
+      "version": "1.0.0",
+      "description": "MCP server for knowledge base management - CRUD operations, versioning, validation, and curation",
+      "path": "mcp-servers/knowledge-base-mcp",
+      "tags": ["mcp", "knowledge-base", "rag", "knowledge-graph", "ai-dev-standards"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "market-analyzer",
+      "version": "1.0.0",
+      "description": "MCP server for market analysis, sizing, and competitor tracking",
+      "path": "mcp-servers/market-analyzer-mcp",
+      "tags": ["mcp", "market-analysis", "competitor-tracking", "market-sizing", "gtm"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": ["go-to-market-planner"],
+      "status": "active"
+    },
+    {
+      "name": "mobile-builder",
+      "version": "1.0.0",
+      "description": "MCP server for generating React Native and Expo mobile projects",
+      "path": "mcp-servers/mobile-builder-mcp",
+      "tags": ["mcp", "react-native", "expo", "mobile", "ios", "android"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "execa": "^8.0.1"
+      },
+      "enables": ["mobile-developer"],
+      "status": "active"
+    },
+    {
+      "name": "openapi-generator",
+      "version": "1.0.0",
+      "description": "MCP server for generating OpenAPI/Swagger specifications from code",
+      "path": "mcp-servers/openapi-generator-mcp",
+      "tags": ["mcp", "openapi", "swagger", "api-design", "documentation"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "openapi-typescript": "^6.7.0",
+        "swagger-parser": "^10.0.3"
+      },
+      "enables": ["api-designer"],
+      "status": "active"
+    },
+    {
+      "name": "performance-profiler",
+      "version": "1.0.0",
+      "description": "MCP server for profiling application performance and identifying bottlenecks",
+      "path": "mcp-servers/performance-profiler-mcp",
+      "tags": ["mcp", "performance", "profiling", "lighthouse", "bundle-analysis"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "execa": "^8.0.1"
+      },
+      "enables": ["performance-optimizer"],
+      "status": "active"
+    },
+    {
+      "name": "props-documenter",
+      "version": "1.0.0",
+      "description": "MCP server for documenting React component props",
+      "path": "mcp-servers/props-documenter-mcp",
+      "tags": ["mcp", "props", "documentation", "react", "typescript"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "responsive-preview",
+      "version": "1.0.0",
+      "description": "MCP server for responsive design preview and testing",
+      "path": "mcp-servers/responsive-preview-mcp",
+      "tags": ["mcp", "responsive", "preview", "testing", "breakpoints"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "screenshot-testing",
+      "version": "1.0.0",
+      "description": "MCP server for visual regression testing",
+      "path": "mcp-servers/screenshot-testing-mcp",
+      "tags": ["mcp", "screenshot", "testing", "visual", "regression", "playwright"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "playwright": "^1.40.0",
+        "pixelmatch": "^5.3.0",
+        "pngjs": "^7.0.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "security-scanner",
+      "version": "1.0.0",
+      "description": "MCP server for scanning security vulnerabilities, dependencies, and secrets",
+      "path": "mcp-servers/security-scanner-mcp",
+      "tags": [
+        "mcp",
+        "security",
+        "vulnerability-scanning",
+        "owasp",
+        "secrets-detection",
+        "dependency-audit"
+      ],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "execa": "^8.0.1"
+      },
+      "enables": ["security-engineer"],
+      "status": "active"
+    },
+    {
+      "name": "semantic-search",
+      "version": "1.0.0",
+      "description": "MCP server for semantic search with query embedding, similarity search, and re-ranking",
+      "path": "mcp-servers/semantic-search-mcp",
+      "tags": ["mcp", "semantic-search", "rag", "embeddings", "vector-search", "re-ranking"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": ["rag-implementer"],
+      "status": "active"
+    },
+    {
+      "name": "seo-analyzer",
+      "version": "1.0.0",
+      "description": "MCP server for SEO analysis, readability scoring, and keyword analysis",
+      "path": "mcp-servers/seo-analyzer-mcp",
+      "tags": ["mcp", "seo", "readability", "keywords", "content-analysis"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": ["copywriter"],
+      "status": "active"
+    },
+    {
+      "name": "storybook-generator",
+      "version": "1.0.0",
+      "description": "MCP server for generating Storybook stories from React components",
+      "path": "mcp-servers/storybook-generator-mcp",
+      "tags": ["mcp", "storybook", "design-system", "component-documentation", "react"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "streaming-setup",
+      "version": "1.0.0",
+      "description": "MCP server for WebRTC configuration and live streaming setup",
+      "path": "mcp-servers/streaming-setup-mcp",
+      "tags": ["mcp", "webrtc", "streaming", "live-video", "peer-connection"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": ["livestream-engineer"],
+      "status": "active"
+    },
+    {
+      "name": "svg-generator",
+      "version": "0.0.0",
+      "description": "Generate, optimize, and manage SVG graphics for icons, illustrations, and patterns.",
+      "path": "mcp-servers/svg-generator-mcp",
+      "tags": ["mcp", "svg-generator"],
+      "features": ["tools"],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
+    },
+    {
+      "name": "test-runner",
+      "version": "1.0.0",
+      "description": "MCP server for running tests, parsing results, and generating coverage reports",
+      "path": "mcp-servers/test-runner-mcp",
+      "tags": ["mcp", "testing", "vitest", "jest", "coverage", "test-runner"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "execa": "^8.0.1"
+      },
+      "enables": ["testing-strategist"],
+      "status": "active"
+    },
+    {
+      "name": "theme-builder",
+      "version": "0.0.0",
+      "description": "Generate complete design system themes with automatic color scales, dark mode, accessibility validation, and multi-format export.",
+      "path": "mcp-servers/theme-builder-mcp",
+      "tags": ["mcp", "theme-builder"],
+      "features": ["tools"],
+      "dependencies": {},
+      "enables": [],
+      "status": "planned"
+    },
+    {
+      "name": "typography-analyzer",
+      "version": "1.0.0",
+      "description": "MCP server for typography analysis and type scale generation",
+      "path": "mcp-servers/typography-analyzer-mcp",
+      "tags": ["mcp", "typography", "design-system", "readability", "accessibility"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "user-insight-analyzer",
+      "version": "1.0.0",
+      "description": "MCP server for analyzing user feedback and extracting patterns, pain points, and insights",
+      "path": "mcp-servers/user-insight-analyzer-mcp",
+      "tags": ["mcp", "user-research", "insights", "product-strategy", "analysis"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "openai": "^4.20.0"
+      },
+      "enables": ["product-strategist", "user-researcher"],
+      "status": "active"
+    },
+    {
+      "name": "vector-database",
+      "version": "1.0.0",
+      "description": "MCP server for vector database operations (Pinecone, Weaviate, Chroma)",
+      "path": "mcp-servers/vector-database-mcp",
+      "tags": [
+        "mcp",
+        "vector-database",
+        "pinecone",
+        "weaviate",
+        "chroma",
+        "embeddings",
+        "semantic-search"
+      ],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "@pinecone-database/pinecone": "^2.0.0",
+        "weaviate-ts-client": "^2.0.0",
+        "chromadb": "^1.7.0"
+      },
+      "enables": [],
+      "status": "active"
+    },
+    {
+      "name": "video-optimizer",
+      "version": "1.0.0",
+      "description": "MCP server for video compression, format conversion, and streaming setup",
+      "path": "mcp-servers/video-optimizer-mcp",
+      "tags": ["mcp", "video", "compression", "ffmpeg", "streaming"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "execa": "^8.0.1"
+      },
+      "enables": ["video-producer"],
+      "status": "active"
+    },
+    {
+      "name": "wireframe-generator",
+      "version": "1.0.0",
+      "description": "MCP server for generating wireframes and user flow diagrams",
+      "path": "mcp-servers/wireframe-generator-mcp",
+      "tags": ["mcp", "wireframes", "user-flows", "ux", "diagrams"],
+      "features": ["tools"],
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0"
+      },
+      "enables": ["ux-designer"],
+      "status": "active"
+    }
+  ],
+  "playbooks": [
+    {
+      "name": "adhd-getting-unstuck",
+      "title": "Getting Unstuck (ADHD Edition)",
+      "description": "## Quick Diagnosis (30 seconds)",
+      "use_when": "Feeling stuck, overwhelmed, or can't start a task",
+      "category": "adhd-support",
+      "difficulty": "beginner",
+      "estimated_time": "5-15 minutes",
+      "path": "/playbooks/adhd-getting-unstuck.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["adhd", "adhd-support"]
+    },
+    {
+      "name": "backup-and-restore",
+      "title": "Backup and Restore Playbook",
+      "description": "## Backup Strategy (3-2-1 Rule)",
+      "use_when": "Setting up backups, recovering from data loss, disaster recovery planning",
+      "category": "operations",
+      "difficulty": "intermediate",
+      "estimated_time": "5-15 minutes",
+      "path": "/playbooks/backup-and-restore.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["backup", "operations"]
+    },
+    {
+      "name": "component-development",
+      "title": "Component Development Playbook",
+      "description": "Comprehensive guide for creating reusable, accessible, and well-tested components.",
+      "use_when": "Use when component development",
+      "category": "development",
+      "difficulty": "intermediate",
+      "estimated_time": "1-3 hours",
+      "path": "/playbooks/component-development.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["component", "development"]
+    },
+    {
+      "name": "database-migration",
+      "title": "Database Migration Playbook",
+      "description": "## Migration Principles",
+      "use_when": "Adding/modifying database schema, data transformations",
+      "category": "operations",
+      "difficulty": "intermediate",
+      "estimated_time": "30 minutes - 2 hours",
+      "path": "/playbooks/database-migration.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["database", "operations"]
+    },
+    {
+      "name": "deployment-checklist",
+      "title": "Deployment Checklist",
+      "description": "## Pre-Deployment Checklist",
+      "use_when": "Every production deployment",
+      "category": "operations",
+      "difficulty": "intermediate",
+      "estimated_time": "5-15 minutes",
+      "path": "/playbooks/deployment-checklist.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["deployment", "operations"]
+    },
+    {
+      "name": "incident-response",
+      "title": "Incident Response Playbook",
+      "description": "## Severity Levels",
+      "use_when": "Production is down, critical bug affecting users, security incident",
+      "category": "incident",
+      "difficulty": "advanced",
+      "estimated_time": "5-15 minutes",
+      "path": "/playbooks/incident-response.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["incident", "incident"]
+    },
+    {
+      "name": "mcp-development",
+      "title": "MCP Development Playbook",
+      "description": "Complete guide for creating Model Context Protocol (MCP) servers from scratch using the ai-dev-standards components.",
+      "use_when": "Use when mcp development",
+      "category": "development",
+      "difficulty": "advanced",
+      "estimated_time": "5-15 minutes",
+      "path": "/playbooks/mcp-development.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["mcp", "development"]
+    },
+    {
+      "name": "monitoring-setup",
+      "title": "Monitoring Setup Playbook",
+      "description": "Comprehensive guide for implementing observability across your application stack with logging, metrics, tracing, and alerting.",
+      "use_when": "Use when monitoring setup",
+      "category": "operations",
+      "difficulty": "intermediate",
+      "estimated_time": "1-3 hours",
+      "path": "/playbooks/monitoring-setup.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["monitoring", "operations"]
+    },
+    {
+      "name": "multi-agent-systems",
+      "title": "Multi-Agent Systems Playbook",
+      "description": "Comprehensive guide for designing and orchestrating multi-agent systems with advanced coordination patterns.",
+      "use_when": "Use when multi agent systems",
+      "category": "operations",
+      "difficulty": "advanced",
+      "estimated_time": "1-3 hours",
+      "path": "/playbooks/multi-agent-systems.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["multi", "operations"]
+    },
+    {
+      "name": "performance-optimization",
+      "title": "Performance Optimization Playbook",
+      "description": "Comprehensive guide for profiling, tuning, and optimizing application performance across the stack.",
+      "use_when": "Use when performance optimization",
+      "category": "optimization",
+      "difficulty": "intermediate",
+      "estimated_time": "1-3 hours",
+      "path": "/playbooks/performance-optimization.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["performance", "optimization"]
+    },
+    {
+      "name": "rag-implementation",
+      "title": "RAG Implementation Playbook",
+      "description": "Complete guide for implementing Retrieval-Augmented Generation (RAG) systems from scratch.",
+      "use_when": "Use when rag implementation",
+      "category": "operations",
+      "difficulty": "advanced",
+      "estimated_time": "1-3 hours",
+      "path": "/playbooks/rag-implementation.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["rag", "operations"]
+    },
+    {
+      "name": "rollback-procedure",
+      "title": "Rollback Procedure Playbook",
+      "description": "## When to Rollback",
+      "use_when": "Deployment causes issues, need to revert to previous working state",
+      "category": "operations",
+      "difficulty": "advanced",
+      "estimated_time": "5-15 minutes",
+      "path": "/playbooks/rollback-procedure.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["rollback", "operations"]
+    },
+    {
+      "name": "security-hardening",
+      "title": "Security Hardening Playbook",
+      "description": "Comprehensive guide for implementing security best practices across your application stack.",
+      "use_when": "Use when security hardening",
+      "category": "security",
+      "difficulty": "advanced",
+      "estimated_time": "5-15 minutes",
+      "path": "/playbooks/security-hardening.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["security", "security"]
+    },
+    {
+      "name": "validation-first-development",
+      "title": "Validation-First Development Playbook",
+      "description": "## 🎯 Core Principle",
+      "use_when": "Use when validation first development",
+      "category": "development",
+      "difficulty": "advanced",
+      "estimated_time": "2-4 weeks",
+      "path": "/playbooks/validation-first-development.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["validation", "development"]
+    }
+  ],
+  "architecturePatterns": [
+    {
+      "name": "rag-pattern",
+      "version": "1.0.0",
+      "description": "Retrieval Augmented Generation architecture",
+      "path": "standards/architecture-patterns/rag-pattern.md",
+      "tags": ["rag", "ai", "architecture"]
+    },
+    {
+      "name": "microservices-pattern",
+      "version": "1.0.0",
+      "description": "Microservices architecture pattern",
+      "path": "standards/architecture-patterns/microservices-pattern.md",
+      "tags": ["microservices", "architecture", "distributed"]
+    },
+    {
+      "name": "serverless-pattern",
+      "version": "1.0.0",
+      "description": "Serverless architecture pattern",
+      "path": "standards/architecture-patterns/serverless-pattern.md",
+      "tags": ["serverless", "architecture", "cloud"]
+    },
+    {
+      "name": "authentication-patterns",
+      "version": "1.0.0",
+      "description": "Authentication and authorization patterns",
+      "path": "standards/architecture-patterns/authentication-patterns.md",
+      "tags": ["authentication", "security", "architecture"]
+    },
+    {
+      "name": "database-design-patterns",
+      "version": "1.0.0",
+      "description": "Database design and optimization patterns",
+      "path": "standards/architecture-patterns/database-design-patterns.md",
+      "tags": ["database", "architecture", "performance"]
+    },
+    {
+      "name": "error-tracking",
+      "version": "1.0.0",
+      "description": "Error tracking and monitoring patterns",
+      "path": "standards/architecture-patterns/error-tracking.md",
+      "tags": ["errors", "monitoring", "observability"]
+    },
+    {
+      "name": "event-driven-architecture",
+      "version": "1.0.0",
+      "description": "Event-driven architecture patterns",
+      "path": "standards/architecture-patterns/event-driven-architecture.md",
+      "tags": ["events", "architecture", "messaging"]
+    },
+    {
+      "name": "logging-strategy",
+      "version": "1.0.0",
+      "description": "Logging strategy and best practices",
+      "path": "standards/architecture-patterns/logging-strategy.md",
+      "tags": ["logging", "observability", "monitoring"]
+    },
+    {
+      "name": "monitoring-and-alerting",
+      "version": "1.0.0",
+      "description": "Monitoring and alerting patterns",
+      "path": "standards/architecture-patterns/monitoring-and-alerting.md",
+      "tags": ["monitoring", "alerting", "observability"]
+    },
+    {
+      "name": "real-time-systems",
+      "version": "1.0.0",
+      "description": "Real-time system architecture patterns",
+      "path": "standards/architecture-patterns/real-time-systems.md",
+      "tags": ["real-time", "architecture", "websockets"]
+    }
+  ],
+  "templates": {
+    "cursorrules": {
+      "minimal": "templates/cursorrules-minimal.md",
+      "saas": "templates/cursorrules-saas.md",
+      "aiRag": "templates/cursorrules-ai-rag.md",
+      "existingProject": "templates/cursorrules-existing-project.md",
+      "quickTest": "templates/cursorrules-quick-test.md"
+    },
+    "projects": {
+      "saasStarter": "templates/project-starters/saas-starter",
+      "ragSystem": "templates/project-starters/rag-system"
+    }
+  },
+  "integrations": [
+    {
+      "category": "framework-adapters",
+      "description": "Framework integration adapters",
+      "path": "integrations/framework-adapters",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "framework-library",
+      "description": "AI framework content and orchestration MCP integrations",
+      "path": "integrations/framework-library",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "llm-providers",
+      "description": "LLM provider integrations",
+      "path": "integrations/llm-providers",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "platforms",
+      "description": "Platform integrations (Vercel, AWS, etc.)",
+      "path": "integrations/platforms",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "vector-databases",
+      "description": "Vector database integrations",
+      "path": "integrations/vector-databases",
+      "alwaysUpdate": false
+    }
+  ],
+  "components": [
+    {
+      "id": "simple-task-agent",
+      "name": "Simple Task Agent",
+      "category": "agents",
+      "description": "Basic task execution agent template",
+      "path": "/components/agents/simple-task-agent.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": ["multi-agent-architect"],
+      "supports_mcps": ["agent-orchestrator-mcp"],
+      "depends_on": [],
+      "features": ["Task execution", "Error handling", "State management"]
+    },
+    {
+      "id": "login-form",
+      "name": "Login Form",
+      "category": "auth",
+      "description": "Authentication login form component",
+      "path": "/components/auth/LoginForm.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "security-engineer", "mobile-developer"],
+      "supports_mcps": ["component-generator-mcp", "mobile-builder-mcp"],
+      "depends_on": ["form-field", "use-form"],
+      "features": ["Email/password login", "Form validation", "Error handling", "Loading states"]
+    },
+    {
+      "id": "signup-form",
+      "name": "Signup Form",
+      "category": "auth",
+      "description": "User registration form component",
+      "path": "/components/auth/SignupForm.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "security-engineer", "mobile-developer"],
+      "supports_mcps": ["component-generator-mcp", "mobile-builder-mcp"],
+      "depends_on": ["form-field", "use-form"],
+      "features": [
+        "User registration",
+        "Password strength validation",
+        "Email verification",
+        "Terms acceptance"
+      ]
+    },
+    {
+      "id": "password-reset",
+      "name": "Password Reset",
+      "category": "auth",
+      "description": "Password reset flow component",
+      "path": "/components/auth/PasswordReset.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "security-engineer"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": ["form-field", "use-form"],
+      "features": ["Email verification", "Token validation", "Password update"]
+    },
+    {
+      "id": "protected-route",
+      "name": "Protected Route",
+      "category": "auth",
+      "description": "Route protection wrapper for authenticated pages",
+      "path": "/components/auth/ProtectedRoute.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "security-engineer", "accessibility-engineer"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": [],
+      "features": ["Authentication checking", "Redirect to login", "Role-based access"]
+    },
+    {
+      "id": "error-boundary",
+      "name": "Error Boundary",
+      "category": "errors",
+      "description": "React error boundary for graceful error handling",
+      "path": "/components/errors/ErrorBoundary.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "mobile-developer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "mobile-builder-mcp"],
+      "depends_on": ["error-fallback"],
+      "features": ["Error catching", "Fallback UI", "Error reporting"]
+    },
+    {
+      "id": "error-fallback",
+      "name": "Error Fallback",
+      "category": "errors",
+      "description": "Error fallback UI component",
+      "path": "/components/errors/ErrorFallback.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp", "wireframe-generator-mcp"],
+      "depends_on": [],
+      "features": ["User-friendly error display", "Retry functionality", "Error details"]
+    },
+    {
+      "id": "not-found",
+      "name": "404 Not Found",
+      "category": "errors",
+      "description": "404 error page component",
+      "path": "/components/errors/NotFound.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp", "wireframe-generator-mcp"],
+      "depends_on": [],
+      "features": ["404 messaging", "Navigation links", "Search functionality"]
+    },
+    {
+      "id": "loading-spinner",
+      "name": "Loading Spinner",
+      "category": "feedback",
+      "description": "Loading indicator component",
+      "path": "/components/feedback/LoadingSpinner.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "design-system-architect",
+        "mobile-developer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "mobile-builder-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [],
+      "features": ["Animated spinner", "Size variants", "Color customization"]
+    },
+    {
+      "id": "skeleton",
+      "name": "Skeleton Loader",
+      "category": "feedback",
+      "description": "Skeleton loading placeholder component",
+      "path": "/components/feedback/Skeleton.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": [],
+      "features": ["Content placeholders", "Animation", "Shape variants"]
+    },
+    {
+      "id": "toast",
+      "name": "Toast Notification",
+      "category": "feedback",
+      "description": "Toast notification component",
+      "path": "/components/feedback/Toast.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "ux-designer",
+        "design-system-architect",
+        "mobile-developer"
+      ],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "mobile-builder-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [],
+      "features": [
+        "Success/error/info variants",
+        "Auto-dismiss",
+        "Position control",
+        "Action buttons"
+      ]
+    },
+    {
+      "id": "form-field",
+      "name": "Form Field",
+      "category": "forms",
+      "description": "Reusable form field component with validation",
+      "path": "/components/forms/FormField.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "accessibility-engineer", "design-system-architect"],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "accessibility-checker-mcp",
+        "design-token-manager-mcp"
+      ],
+      "depends_on": [],
+      "features": ["Input types", "Validation", "Error messages", "ARIA labels"]
+    },
+    {
+      "id": "use-form",
+      "name": "useForm Hook",
+      "category": "forms",
+      "description": "Form state management hook",
+      "path": "/components/forms/useForm.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": [],
+      "features": ["Form state", "Validation", "Submit handling", "Reset functionality"]
+    },
+    {
+      "id": "base-mcp-server",
+      "name": "Base MCP Server",
+      "category": "mcp-servers",
+      "description": "Foundation class for all MCP servers with tool/resource/prompt registration",
+      "path": "/components/mcp-servers/base-mcp-server.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": ["multi-agent-architect"],
+      "supports_mcps": ["all-36-mcps"],
+      "depends_on": [],
+      "features": [
+        "Tool registration and invocation",
+        "Resource registration and access",
+        "Prompt registration and execution",
+        "Error handling and logging",
+        "Health checks"
+      ]
+    },
+    {
+      "id": "mcp-tool-handler",
+      "name": "MCP Tool Handler",
+      "category": "mcp-servers",
+      "description": "Advanced tool execution with rate limiting, caching, and retries",
+      "path": "/components/mcp-servers/mcp-tool-handler.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": ["multi-agent-architect", "performance-optimizer"],
+      "supports_mcps": ["all-36-mcps"],
+      "depends_on": ["base-mcp-server"],
+      "features": [
+        "Input/output validation with Zod",
+        "Rate limiting (sliding/fixed window)",
+        "Caching with TTL",
+        "Retry logic with exponential backoff",
+        "Timeout handling",
+        "Performance metrics"
+      ]
+    },
+    {
+      "id": "mcp-resource-handler",
+      "name": "MCP Resource Handler",
+      "category": "mcp-servers",
+      "description": "Resource access management with caching and versioning",
+      "path": "/components/mcp-servers/mcp-resource-handler.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": ["multi-agent-architect"],
+      "supports_mcps": ["all-36-mcps"],
+      "depends_on": ["base-mcp-server"],
+      "features": [
+        "Content caching with size limits",
+        "Version management",
+        "ETags for cache validation",
+        "Access control",
+        "Usage statistics"
+      ]
+    },
+    {
+      "id": "mcp-prompt-handler",
+      "name": "MCP Prompt Handler",
+      "category": "mcp-servers",
+      "description": "Template-based prompt generation with variable substitution",
+      "path": "/components/mcp-servers/mcp-prompt-handler.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": ["multi-agent-architect", "copywriter"],
+      "supports_mcps": ["all-36-mcps"],
+      "depends_on": ["base-mcp-server"],
+      "features": [
+        "Template processing with {{variable}} syntax",
+        "Type validation",
+        "Dynamic prompt generation",
+        "Example management",
+        "Prompt caching"
+      ]
+    },
+    {
+      "id": "document-loader",
+      "name": "Document Loader",
+      "category": "rag-pipelines",
+      "description": "Multi-source document ingestion for RAG pipelines",
+      "path": "/components/rag-pipelines/document-loader.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": ["rag-implementer", "knowledge-base-manager"],
+      "supports_mcps": ["vector-database-mcp", "knowledge-base-mcp"],
+      "depends_on": [],
+      "features": [
+        "Multi-source loading (files, directories, URLs)",
+        "Format support (TXT, MD, HTML, JSON, CSV, PDF)",
+        "Parallel processing",
+        "Metadata extraction",
+        "Progress tracking"
+      ]
+    },
+    {
+      "id": "text-chunker",
+      "name": "Text Chunker",
+      "category": "rag-pipelines",
+      "description": "Smart text chunking with multiple strategies for optimal retrieval",
+      "path": "/components/rag-pipelines/text-chunker.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": ["rag-implementer", "knowledge-base-manager"],
+      "supports_mcps": ["vector-database-mcp", "semantic-search-mcp"],
+      "depends_on": [],
+      "features": [
+        "Multiple chunking strategies (fixed, recursive, semantic, sentence, markdown)",
+        "Overlap configuration",
+        "Token counting",
+        "Metadata preservation",
+        "Batch processing"
+      ]
+    },
+    {
+      "id": "embedding-pipeline",
+      "name": "Embedding Pipeline",
+      "category": "rag-pipelines",
+      "description": "Batch embedding generation with multi-provider support",
+      "path": "/components/rag-pipelines/embedding-pipeline.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": ["rag-implementer", "knowledge-base-manager"],
+      "supports_mcps": ["embedding-generator-mcp", "vector-database-mcp"],
+      "depends_on": [],
+      "features": [
+        "Multi-provider support (OpenAI, Cohere, HuggingFace)",
+        "Batch processing",
+        "Caching and retries",
+        "Progress tracking",
+        "Rate limit handling"
+      ]
+    },
+    {
+      "id": "vector-store-client",
+      "name": "Vector Store Client",
+      "category": "rag-pipelines",
+      "description": "Unified interface for multiple vector databases",
+      "path": "/components/rag-pipelines/vector-store-client.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": ["rag-implementer", "knowledge-base-manager"],
+      "supports_mcps": ["vector-database-mcp", "semantic-search-mcp"],
+      "depends_on": [],
+      "features": [
+        "Multi-database support (Pinecone, Weaviate, Chroma, Qdrant, PgVector)",
+        "Unified search interface",
+        "Connection pooling",
+        "Batch operations",
+        "Metadata filtering"
+      ]
+    },
+    {
+      "id": "retrieval-pipeline",
+      "name": "Retrieval Pipeline",
+      "category": "rag-pipelines",
+      "description": "Query processing with hybrid search and reranking",
+      "path": "/components/rag-pipelines/retrieval-pipeline.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": ["rag-implementer", "knowledge-base-manager"],
+      "supports_mcps": ["semantic-search-mcp", "vector-database-mcp"],
+      "depends_on": ["vector-store-client", "embedding-pipeline"],
+      "features": [
+        "Query expansion and rewriting",
+        "Hybrid search (vector + keyword)",
+        "Fusion algorithms (RRF, weighted)",
+        "Reranking support",
+        "Result deduplication"
+      ]
+    },
+    {
+      "id": "rag-orchestrator",
+      "name": "RAG Orchestrator",
+      "category": "rag-pipelines",
+      "description": "End-to-end RAG pipeline orchestration",
+      "path": "/components/rag-pipelines/rag-orchestrator.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": ["rag-implementer", "knowledge-base-manager"],
+      "supports_mcps": ["knowledge-base-mcp", "vector-database-mcp"],
+      "depends_on": [
+        "document-loader",
+        "text-chunker",
+        "embedding-pipeline",
+        "vector-store-client",
+        "retrieval-pipeline"
+      ],
+      "features": [
+        "Ingestion pipeline (load, chunk, embed, store)",
+        "Query pipeline (retrieve, rerank, generate)",
+        "Pipeline monitoring and metrics",
+        "Error handling and retries",
+        "Configuration management"
+      ]
+    },
+    {
+      "id": "button",
+      "name": "Button",
+      "category": "ui-components",
+      "description": "Accessible button component with variants and loading states",
+      "path": "/components/ui-components/Button.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "design-system-architect", "accessibility-engineer"],
+      "supports_mcps": [
+        "component-generator-mcp",
+        "design-token-manager-mcp",
+        "accessibility-checker-mcp"
+      ],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Variant styles (primary, secondary, ghost, destructive, outline, link)",
+        "Size options (sm, md, lg, icon)",
+        "Loading state with spinner",
+        "Full ARIA support",
+        "Keyboard navigation"
+      ]
+    },
+    {
+      "id": "card",
+      "name": "Card",
+      "category": "ui-components",
+      "description": "Card container component for content grouping",
+      "path": "/components/ui-components/Card.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "design-system-architect", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Variant styles (default, bordered, elevated)",
+        "Optional title and footer",
+        "Composable sections",
+        "Responsive design"
+      ]
+    },
+    {
+      "id": "input",
+      "name": "Input",
+      "category": "ui-components",
+      "description": "Text input component with validation and password toggle",
+      "path": "/components/ui-components/Input.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "accessibility-engineer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Input types (text, password, email, number)",
+        "Password visibility toggle",
+        "Error states with validation",
+        "ARIA labels and descriptions",
+        "Disabled states"
+      ]
+    },
+    {
+      "id": "modal",
+      "name": "Modal",
+      "category": "ui-components",
+      "description": "Accessible modal dialog with focus trap and backdrop",
+      "path": "/components/ui-components/Modal.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "accessibility-engineer", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Size options (sm, md, lg, full)",
+        "Focus trap implementation",
+        "ESC key and backdrop close",
+        "Body scroll lock",
+        "Portal rendering",
+        "Full ARIA dialog support"
+      ]
+    },
+    {
+      "id": "select",
+      "name": "Select",
+      "category": "ui-components",
+      "description": "Dropdown select with single/multi-select and search",
+      "path": "/components/ui-components/Select.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "accessibility-engineer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Single and multi-select modes",
+        "Searchable/filterable options",
+        "Full keyboard navigation",
+        "ARIA listbox pattern",
+        "Disabled options support"
+      ]
+    },
+    {
+      "id": "table",
+      "name": "Table",
+      "category": "ui-components",
+      "description": "Data table with sorting and style variants",
+      "path": "/components/ui-components/Table.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "data-visualizer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Column sorting (ascending/descending)",
+        "Variant styles (default, striped, bordered, compact)",
+        "Custom cell rendering",
+        "useTableSort hook",
+        "ARIA table semantics"
+      ]
+    },
+    {
+      "id": "tabs",
+      "name": "Tabs",
+      "category": "ui-components",
+      "description": "Tabbed interface with controlled/uncontrolled modes",
+      "path": "/components/ui-components/Tabs.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Compound component pattern",
+        "Controlled and uncontrolled modes",
+        "Variant styles (default, pills, underline)",
+        "ARIA tabs pattern",
+        "Keyboard navigation"
+      ]
+    },
+    {
+      "id": "pagination",
+      "name": "Pagination",
+      "category": "ui-components",
+      "description": "Pagination component with intelligent page display",
+      "path": "/components/ui-components/Pagination.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer", "data-visualizer"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Intelligent page number algorithm with ellipsis",
+        "First/last and prev/next buttons",
+        "Configurable sibling count",
+        "ARIA navigation",
+        "Responsive design"
+      ]
+    },
+    {
+      "id": "cn-utility",
+      "name": "CN Utility",
+      "category": "ui-components",
+      "description": "Tailwind CSS class merging utility",
+      "path": "/components/ui-components/utils.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": [],
+      "features": [
+        "Merge Tailwind classes with proper precedence",
+        "Conflict resolution",
+        "Type-safe class values"
+      ]
+    },
+    {
+      "id": "task-queue",
+      "name": "Task Queue",
+      "category": "workflows",
+      "description": "Priority-based task queue with retry logic",
+      "path": "/components/workflows/task-queue.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": ["multi-agent-architect", "mvp-builder", "performance-optimizer"],
+      "supports_mcps": ["agent-orchestrator-mcp"],
+      "depends_on": [],
+      "features": [
+        "Priority queue (low, normal, high, urgent)",
+        "Concurrent task limits",
+        "Retry logic with exponential backoff",
+        "Task dependencies",
+        "Progress tracking"
+      ]
+    },
+    {
+      "id": "workflow-orchestrator",
+      "name": "Workflow Orchestrator",
+      "category": "workflows",
+      "description": "Linear and parallel workflow execution with error recovery",
+      "path": "/components/workflows/workflow-orchestrator.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": ["multi-agent-architect", "mvp-builder"],
+      "supports_mcps": ["agent-orchestrator-mcp"],
+      "depends_on": [],
+      "features": [
+        "Linear and parallel step execution",
+        "Conditional branching",
+        "Error recovery strategies (retry, skip, abort, continue)",
+        "Rollback support",
+        "State persistence"
+      ]
+    },
+    {
+      "id": "state-manager",
+      "name": "State Manager",
+      "category": "workflows",
+      "description": "State management with history and pub/sub",
+      "path": "/components/workflows/state-manager.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": ["multi-agent-architect", "frontend-builder"],
+      "supports_mcps": ["agent-orchestrator-mcp"],
+      "depends_on": [],
+      "features": [
+        "State get/set/delete with dot notation paths",
+        "State history with undo/redo",
+        "Pub/sub for state changes",
+        "Wildcard subscriptions",
+        "State diffing"
+      ]
+    },
+    {
+      "id": "event-bus",
+      "name": "Event Bus",
+      "category": "workflows",
+      "description": "Pub/sub event system with priority and wildcards",
+      "path": "/components/workflows/event-bus.ts",
+      "status": "active",
+      "language": "typescript",
+      "framework": "custom",
+      "supports_skills": ["multi-agent-architect", "frontend-builder", "mvp-builder"],
+      "supports_mcps": ["agent-orchestrator-mcp"],
+      "depends_on": [],
+      "features": [
+        "Pub/sub event pattern",
+        "Wildcard subscriptions (single and multi-level)",
+        "Event priority (low, normal, high, critical)",
+        "Event replay and history",
+        "Typed events support"
+      ]
+    },
+    {
+      "id": "image",
+      "name": "Image",
+      "category": "media",
+      "description": "Optimized image component with lazy loading, srcset, and blur placeholder",
+      "path": "/components/media/Image.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "performance-optimizer", "visual-designer"],
+      "supports_mcps": ["component-generator-mcp", "asset-optimizer-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Lazy loading with Intersection Observer",
+        "Responsive srcset generation",
+        "Blur-up placeholder",
+        "Object-fit support",
+        "Error handling with fallback"
+      ]
+    },
+    {
+      "id": "gallery",
+      "name": "Gallery",
+      "category": "media",
+      "description": "Image gallery with lightbox and keyboard navigation",
+      "path": "/components/media/Gallery.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer", "accessibility-engineer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["image", "modal", "cn-utility"],
+      "features": [
+        "Grid layout with masonry option",
+        "Lightbox modal",
+        "Keyboard navigation (arrows, ESC)",
+        "Touch swipe support",
+        "Thumbnail navigation"
+      ]
+    },
+    {
+      "id": "carousel",
+      "name": "Carousel",
+      "category": "media",
+      "description": "Image carousel with touch swipe and autoplay",
+      "path": "/components/media/Carousel.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer", "mobile-developer"],
+      "supports_mcps": ["component-generator-mcp", "mobile-builder-mcp"],
+      "depends_on": ["image", "cn-utility"],
+      "features": [
+        "Touch swipe support",
+        "Autoplay with pause on hover",
+        "Dot indicators",
+        "Arrow navigation",
+        "Loop/infinite scroll option"
+      ]
+    },
+    {
+      "id": "image-upload",
+      "name": "Image Upload",
+      "category": "media",
+      "description": "Drag-and-drop image uploader with preview",
+      "path": "/components/media/ImageUpload.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Drag and drop interface",
+        "Click to browse",
+        "Image preview before upload",
+        "File type validation",
+        "Size limits",
+        "Multiple upload support"
+      ]
+    },
+    {
+      "id": "avatar",
+      "name": "Avatar",
+      "category": "media",
+      "description": "User avatar with fallback initials",
+      "path": "/components/media/Avatar.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Image with fallback to initials",
+        "Size variants (xs, sm, md, lg, xl)",
+        "Shape options (circle, square, rounded)",
+        "Status indicator",
+        "Group avatar support"
+      ]
+    },
+    {
+      "id": "media-viewer",
+      "name": "Media Viewer",
+      "category": "media",
+      "description": "Full-screen media viewer with zoom and pan",
+      "path": "/components/media/MediaViewer.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": ["modal", "cn-utility"],
+      "features": [
+        "Full-screen mode",
+        "Zoom in/out controls",
+        "Pan/drag support",
+        "Keyboard shortcuts",
+        "Support for images and videos"
+      ]
+    },
+    {
+      "id": "icon",
+      "name": "Icon",
+      "category": "ui-components",
+      "description": "Universal icon component supporting multiple icon libraries",
+      "path": "/components/ui-components/Icon.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "design-system-architect", "visual-designer"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp", "icon-library-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Support for Heroicons, Lucide, Font Awesome",
+        "Size variants (xs, sm, md, lg, xl)",
+        "Color customization",
+        "Accessibility labels",
+        "Animated icons support"
+      ]
+    },
+    {
+      "id": "icon-picker",
+      "name": "Icon Picker",
+      "category": "ui-components",
+      "description": "Icon search and selection interface",
+      "path": "/components/ui-components/IconPicker.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp", "icon-library-mcp"],
+      "depends_on": ["icon", "input", "select", "cn-utility"],
+      "features": [
+        "Search by name",
+        "Category filtering",
+        "Recent icons",
+        "Preview before selection",
+        "Multi-library support"
+      ]
+    },
+    {
+      "id": "tooltip",
+      "name": "Tooltip",
+      "category": "ui-components",
+      "description": "Contextual tooltip with multiple placements",
+      "path": "/components/ui-components/Tooltip.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer", "accessibility-engineer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "4 placements (top, bottom, left, right)",
+        "Auto-positioning",
+        "Hover and click triggers",
+        "Delay configuration",
+        "ARIA compliance"
+      ]
+    },
+    {
+      "id": "popover",
+      "name": "Popover",
+      "category": "ui-components",
+      "description": "Floating popover with portal rendering",
+      "path": "/components/ui-components/Popover.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer", "accessibility-engineer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Portal rendering",
+        "Click outside to close",
+        "Arrow indicator",
+        "Placement options",
+        "Focus trap"
+      ]
+    },
+    {
+      "id": "accordion",
+      "name": "Accordion",
+      "category": "ui-components",
+      "description": "Collapsible content with keyboard navigation",
+      "path": "/components/ui-components/Accordion.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer", "accessibility-engineer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Single or multiple expansion",
+        "Keyboard navigation",
+        "Animated transitions",
+        "ARIA accordion pattern",
+        "Controlled/uncontrolled modes"
+      ]
+    },
+    {
+      "id": "drawer",
+      "name": "Drawer",
+      "category": "ui-components",
+      "description": "Slide-out drawer/sidebar with focus trap",
+      "path": "/components/ui-components/Drawer.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer", "accessibility-engineer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Slide from left/right/top/bottom",
+        "Focus trap",
+        "Body scroll lock",
+        "Backdrop with blur",
+        "ESC key support"
+      ]
+    },
+    {
+      "id": "dialog",
+      "name": "Dialog",
+      "category": "ui-components",
+      "description": "Accessible modal dialog",
+      "path": "/components/ui-components/Dialog.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "accessibility-engineer", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Size options (sm, md, lg, xl)",
+        "Focus trap implementation",
+        "ESC key and backdrop close",
+        "Body scroll lock",
+        "ARIA dialog support"
+      ]
+    },
+    {
+      "id": "slider",
+      "name": "Slider",
+      "category": "ui-components",
+      "description": "Range slider with marks and tooltips",
+      "path": "/components/ui-components/Slider.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer", "accessibility-engineer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Single and range sliders",
+        "Mark indicators",
+        "Tooltip with value",
+        "Keyboard navigation",
+        "ARIA slider pattern"
+      ]
+    },
+    {
+      "id": "color-picker",
+      "name": "Color Picker",
+      "category": "ui-components",
+      "description": "Color selection with HEX/RGB/HSL modes",
+      "path": "/components/ui-components/ColorPicker.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "visual-designer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["input", "cn-utility"],
+      "features": [
+        "HEX/RGB/HSL input modes",
+        "Color palette swatches",
+        "Eyedropper tool",
+        "Alpha channel support",
+        "Recent colors"
+      ]
+    },
+    {
+      "id": "date-picker",
+      "name": "Date Picker",
+      "category": "ui-components",
+      "description": "Calendar date picker with range selection",
+      "path": "/components/ui-components/DatePicker.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer", "accessibility-engineer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["input", "popover", "cn-utility"],
+      "features": [
+        "Single date and range selection",
+        "Min/max date constraints",
+        "Disabled dates",
+        "Month/year navigation",
+        "Keyboard navigation"
+      ]
+    },
+    {
+      "id": "time-picker",
+      "name": "Time Picker",
+      "category": "ui-components",
+      "description": "Time selection with 12/24hr formats",
+      "path": "/components/ui-components/TimePicker.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": ["input", "select", "cn-utility"],
+      "features": [
+        "12/24 hour format",
+        "Hour/minute selection",
+        "Keyboard input",
+        "Dropdown selection",
+        "Time validation"
+      ]
+    },
+    {
+      "id": "file-upload",
+      "name": "File Upload",
+      "category": "ui-components",
+      "description": "File upload with drag-and-drop",
+      "path": "/components/ui-components/FileUpload.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Drag and drop",
+        "Multiple file support",
+        "File type validation",
+        "Size limits",
+        "Upload progress",
+        "Preview thumbnails"
+      ]
+    },
+    {
+      "id": "progress",
+      "name": "Progress",
+      "category": "ui-components",
+      "description": "Linear and circular progress indicators",
+      "path": "/components/ui-components/Progress.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "design-system-architect", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Linear and circular styles",
+        "Determinate and indeterminate modes",
+        "Color variants",
+        "Size options",
+        "Label display"
+      ]
+    },
+    {
+      "id": "badge",
+      "name": "Badge",
+      "category": "ui-components",
+      "description": "Notification badge with variants",
+      "path": "/components/ui-components/Badge.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "design-system-architect", "visual-designer"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Variant styles (default, primary, success, warning, error)",
+        "Size options (sm, md, lg)",
+        "Dot indicator",
+        "Removable option",
+        "Count display"
+      ]
+    },
+    {
+      "id": "alert",
+      "name": "Alert",
+      "category": "ui-components",
+      "description": "Alert message with variants",
+      "path": "/components/ui-components/Alert.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["icon", "cn-utility"],
+      "features": [
+        "Variant styles (info, success, warning, error)",
+        "Closeable option",
+        "Icon support",
+        "Title and description",
+        "Action buttons"
+      ]
+    },
+    {
+      "id": "breadcrumb",
+      "name": "Breadcrumb",
+      "category": "ui-components",
+      "description": "Breadcrumb navigation",
+      "path": "/components/ui-components/Breadcrumb.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer", "accessibility-engineer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Automatic separator",
+        "Current page indicator",
+        "Truncation for long paths",
+        "ARIA navigation",
+        "Custom separators"
+      ]
+    },
+    {
+      "id": "stepper",
+      "name": "Stepper",
+      "category": "ui-components",
+      "description": "Step-by-step progress indicator",
+      "path": "/components/ui-components/Stepper.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Horizontal and vertical layouts",
+        "Step status (active, completed, error)",
+        "Clickable steps",
+        "Optional descriptions",
+        "Progress line"
+      ]
+    },
+    {
+      "id": "rating",
+      "name": "Rating",
+      "category": "ui-components",
+      "description": "Star rating component",
+      "path": "/components/ui-components/Rating.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": ["icon", "cn-utility"],
+      "features": [
+        "Star or custom icon",
+        "Half-star support",
+        "Read-only mode",
+        "Hover preview",
+        "Keyboard navigation"
+      ]
+    },
+    {
+      "id": "skeleton-loader-enhanced",
+      "name": "Skeleton Loader Enhanced",
+      "category": "ui-components",
+      "description": "Enhanced skeleton loader with complex layouts",
+      "path": "/components/ui-components/SkeletonLoaderEnhanced.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Complex layout templates",
+        "Card/list/table skeletons",
+        "Wave animation",
+        "Custom shape composition",
+        "Avatar + text patterns"
+      ]
+    },
+    {
+      "id": "grid",
+      "name": "Grid",
+      "category": "ui-components",
+      "description": "CSS Grid wrapper with responsive columns",
+      "path": "/components/ui-components/Grid.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Responsive column count",
+        "Gap control",
+        "Auto-fit/auto-fill",
+        "Min-width constraints",
+        "Alignment options"
+      ]
+    },
+    {
+      "id": "container",
+      "name": "Container",
+      "category": "ui-components",
+      "description": "Max-width container with padding",
+      "path": "/components/ui-components/Container.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Max-width variants (sm, md, lg, xl, 2xl, full)",
+        "Responsive padding",
+        "Center alignment",
+        "Fluid option"
+      ]
+    },
+    {
+      "id": "stack",
+      "name": "Stack",
+      "category": "ui-components",
+      "description": "Flex stack (vertical/horizontal)",
+      "path": "/components/ui-components/Stack.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Vertical/horizontal direction",
+        "Spacing control",
+        "Alignment options",
+        "Wrap support",
+        "Divider option"
+      ]
+    },
+    {
+      "id": "spacer",
+      "name": "Spacer",
+      "category": "ui-components",
+      "description": "Flexible spacing component",
+      "path": "/components/ui-components/Spacer.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "design-system-architect", "visual-designer"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": [],
+      "features": [
+        "Fixed or flex sizing",
+        "Horizontal/vertical",
+        "Responsive spacing",
+        "Design token integration"
+      ]
+    },
+    {
+      "id": "divider",
+      "name": "Divider",
+      "category": "ui-components",
+      "description": "Visual divider (horizontal/vertical)",
+      "path": "/components/ui-components/Divider.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "visual-designer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Horizontal/vertical orientation",
+        "Label/text in divider",
+        "Thickness control",
+        "Color variants",
+        "Spacing options"
+      ]
+    },
+    {
+      "id": "aspect-ratio",
+      "name": "Aspect Ratio",
+      "category": "ui-components",
+      "description": "Maintain aspect ratio wrapper",
+      "path": "/components/ui-components/AspectRatio.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Common ratios (1:1, 16:9, 4:3, 21:9)",
+        "Custom ratio support",
+        "Responsive behavior",
+        "Content positioning"
+      ]
+    },
+    {
+      "id": "center",
+      "name": "Center",
+      "category": "ui-components",
+      "description": "Center content horizontally and vertically",
+      "path": "/components/ui-components/Center.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Horizontal centering",
+        "Vertical centering",
+        "Both axes centering",
+        "Inline option"
+      ]
+    },
+    {
+      "id": "switch",
+      "name": "Switch",
+      "category": "ui-components",
+      "description": "Toggle switch with ARIA",
+      "path": "/components/ui-components/Switch.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "accessibility-engineer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "On/off toggle",
+        "Size variants (sm, md, lg)",
+        "Disabled state",
+        "ARIA switch role",
+        "Keyboard navigation"
+      ]
+    },
+    {
+      "id": "checkbox",
+      "name": "Checkbox",
+      "category": "ui-components",
+      "description": "Checkbox with indeterminate state",
+      "path": "/components/ui-components/Checkbox.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "accessibility-engineer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Checked/unchecked/indeterminate states",
+        "Label support",
+        "Error state",
+        "Disabled state",
+        "ARIA checkbox"
+      ]
+    },
+    {
+      "id": "radio",
+      "name": "Radio",
+      "category": "ui-components",
+      "description": "Radio button with RadioGroup",
+      "path": "/components/ui-components/Radio.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "accessibility-engineer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "RadioGroup for managing selection",
+        "Keyboard navigation",
+        "Label support",
+        "Disabled options",
+        "ARIA radio pattern"
+      ]
+    },
+    {
+      "id": "dropdown",
+      "name": "Dropdown",
+      "category": "ui-components",
+      "description": "Accessible dropdown menu with keyboard navigation",
+      "path": "/components/ui-components/Dropdown.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "accessibility-engineer", "ux-designer"],
+      "supports_mcps": ["component-generator-mcp", "accessibility-checker-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Compound component pattern (DropdownTrigger, DropdownMenu, DropdownItem)",
+        "Portal rendering",
+        "Keyboard navigation (arrows, Home, End)",
+        "Click outside to close",
+        "ARIA menu pattern",
+        "Destructive and disabled item support"
+      ]
+    },
+    {
+      "id": "skeleton-ui",
+      "name": "Skeleton (UI Components)",
+      "category": "ui-components",
+      "description": "Loading skeleton screens with multiple variants",
+      "path": "/components/ui-components/Skeleton.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer", "design-system-architect"],
+      "supports_mcps": ["component-generator-mcp", "design-token-manager-mcp"],
+      "depends_on": ["cn-utility"],
+      "features": [
+        "Multiple variants (text, circle, rectangle)",
+        "Size options (sm, md, lg, xl)",
+        "Animation options (pulse, wave, none)",
+        "Multi-line support",
+        "Pre-built compositions (SkeletonAvatar, SkeletonCard, SkeletonTableRow, SkeletonListItem)",
+        "Shimmer animation"
+      ]
+    },
+    {
+      "id": "icon-media",
+      "name": "Icon (Media)",
+      "category": "media",
+      "description": "Universal icon component supporting Heroicons, Lucide, Font Awesome",
+      "path": "/components/media/Icon.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": [
+        "frontend-builder",
+        "visual-designer",
+        "brand-designer",
+        "design-system-architect"
+      ],
+      "supports_mcps": ["component-generator-mcp", "icon-library-mcp"],
+      "depends_on": [],
+      "features": [
+        "Multi-library support (Heroicons, Lucide, Font Awesome)",
+        "Size variants (xs, sm, md, lg, xl, 2xl)",
+        "Color customization",
+        "Stroke width control (Lucide)",
+        "Loading and error states",
+        "Full ARIA support",
+        "CDN-based icon loading"
+      ]
+    },
+    {
+      "id": "icon-picker-media",
+      "name": "IconPicker (Media)",
+      "category": "media",
+      "description": "Icon selection UI with search and preview",
+      "path": "/components/media/IconPicker.tsx",
+      "status": "active",
+      "language": "typescript",
+      "framework": "react",
+      "supports_skills": ["frontend-builder", "ux-designer", "visual-designer"],
+      "supports_mcps": ["component-generator-mcp", "icon-library-mcp"],
+      "depends_on": ["icon-media"],
+      "features": [
+        "Search icons by name",
+        "Tag-based filtering",
+        "Multi-library support",
+        "Icon preview grid",
+        "Copy code to clipboard",
+        "Selected icon details view",
+        "Configurable max results"
+      ]
+    }
+  ],
+  "standards": [
+    {
+      "category": "architecture-patterns",
+      "description": "Architecture patterns and designs",
+      "path": "standards/architecture-patterns",
+      "alwaysUpdate": true,
+      "files": [
+        "rag-pattern.md",
+        "microservices-pattern.md",
+        "serverless-pattern.md",
+        "event-driven-architecture.md",
+        "real-time-systems.md",
+        "authentication-patterns.md",
+        "database-design-patterns.md",
+        "error-tracking.md",
+        "logging-strategy.md",
+        "monitoring-and-alerting.md"
+      ]
+    },
+    {
+      "category": "best-practices",
+      "description": "Best practices for development",
+      "path": "standards/best-practices",
+      "alwaysUpdate": true,
+      "files": [
+        "security-best-practices.md",
+        "testing-best-practices.md",
+        "database-best-practices.md"
+      ]
+    },
+    {
+      "category": "coding-conventions",
+      "description": "Coding style and conventions",
+      "path": "standards/coding-conventions",
+      "alwaysUpdate": true
+    },
+    {
+      "category": "project-structure",
+      "description": "Project structure standards",
+      "path": "standards/project-structure",
+      "alwaysUpdate": true
+    }
+  ],
+  "utils": [
+    {
+      "category": "api",
+      "description": "API client utilities and HTTP helpers",
+      "path": "utils/api",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "cli",
+      "description": "CLI utilities and command-line helpers",
+      "path": "utils/cli",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "scripts",
+      "description": "Development scripts and automation",
+      "path": "utils/scripts",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "validation",
+      "description": "Data validation utilities and schema validators",
+      "path": "utils/validation",
+      "alwaysUpdate": false
+    }
+  ],
+  "tools": [
+    {
+      "category": "crewai-tools",
+      "description": "CrewAI tool implementations",
+      "path": "tools/crewai-tools",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "langchain-tools",
+      "description": "LangChain tool implementations",
+      "path": "tools/langchain-tools",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "mcp-tools",
+      "description": "MCP tool implementations",
+      "path": "tools/mcp-tools",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "custom-tools",
+      "description": "Custom tool implementations",
+      "path": "tools/custom-tools",
+      "alwaysUpdate": false
+    }
+  ],
+  "examples": [
+    {
+      "category": "complete-projects",
+      "description": "Complete example projects",
+      "path": "examples/complete-projects",
+      "alwaysUpdate": false
+    },
+    {
+      "category": "mini-examples",
+      "description": "Small focused examples",
+      "path": "examples/mini-examples",
+      "alwaysUpdate": false
+    }
+  ],
+  "configFiles": [
+    {
+      "name": ".cursorrules",
+      "version": "1.0.0",
+      "description": "Cursor IDE rules and best practices",
+      "path": "templates/config-files/.cursorrules.latest",
+      "alwaysUpdate": true,
+      "mergeStrategy": "replace"
+    },
+    {
+      "name": ".gitignore",
+      "version": "1.0.0",
+      "description": "Git ignore patterns",
+      "path": "templates/config-files/.gitignore.latest",
+      "alwaysUpdate": true,
+      "mergeStrategy": "merge"
+    },
+    {
+      "name": ".env.example",
+      "version": "1.0.0",
+      "description": "Environment variable template",
+      "path": "templates/config-files/.env.example.latest",
+      "alwaysUpdate": true,
+      "mergeStrategy": "merge"
+    },
+    {
+      "name": "tsconfig.json",
+      "version": "1.0.0",
+      "description": "TypeScript configuration",
+      "path": "templates/config-files/tsconfig.json.latest",
+      "alwaysUpdate": false,
+      "mergeStrategy": "smart-merge"
+    },
+    {
+      "name": ".prettierrc",
+      "version": "1.0.0",
+      "description": "Prettier code formatting rules",
+      "path": "templates/config-files/.prettierrc.latest",
+      "alwaysUpdate": true,
+      "mergeStrategy": "replace"
+    },
+    {
+      "name": ".eslintrc.json",
+      "version": "1.0.0",
+      "description": "ESLint configuration",
+      "path": "templates/config-files/.eslintrc.json.latest",
+      "alwaysUpdate": true,
+      "mergeStrategy": "smart-merge"
+    },
+    {
+      "name": "tailwind.config.js",
+      "version": "1.0.0",
+      "description": "Tailwind CSS configuration",
+      "path": "templates/config-files/tailwind.config.js.latest",
+      "alwaysUpdate": false,
+      "mergeStrategy": "smart-merge"
+    }
+  ],
+  "schemas": [
+    {
+      "name": "ai-dev.config.schema",
+      "title": "Ai Dev.config.schema",
+      "description": "YAML schema for validating .ai-dev.json project configuration files. Defines structure for tracked resources, sync preferences, and CLI settings.",
+      "format": "yaml-schema",
+      "version": "1.0.0",
+      "path": "/schemas/ai-dev.config.schema.yaml",
+      "status": "active",
+      "validates": [".ai-dev.json"],
+      "related_skills": [],
+      "related_components": [],
+      "tags": ["schema", "validation", "ai"]
+    },
+    {
+      "name": "capability-manifest.schema",
+      "title": "Capability Manifest.schema",
+      "description": "Schema for validating capability manifest.schema",
+      "format": "json-schema",
+      "version": "1.0.0",
+      "path": "/schemas/capability-manifest.schema.json",
+      "status": "active",
+      "validates": [],
+      "related_skills": [],
+      "related_components": [],
+      "tags": ["schema", "validation", "capability"]
+    },
+    {
+      "name": "component.schema",
+      "title": "Component.schema",
+      "description": "YAML schema for validating component structure and metadata. Defines required fields, dependencies, props, and documentation for React components.",
+      "format": "yaml-schema",
+      "version": "1.0.0",
+      "path": "/schemas/component.schema.yaml",
+      "status": "active",
+      "validates": ["components/*"],
+      "related_skills": [],
+      "related_components": [],
+      "tags": ["schema", "validation", "component.schema"]
+    },
+    {
+      "name": "mcp-server.schema",
+      "title": "Mcp Server.schema",
+      "description": "JSON schema for validating MCP (Model Context Protocol) server definitions. Defines server configuration, tools, resources, and metadata structure.",
+      "format": "json-schema",
+      "version": "1.0.0",
+      "path": "/schemas/mcp-server.schema.json",
+      "status": "active",
+      "validates": ["mcp-servers/*"],
+      "related_skills": [],
+      "related_components": [],
+      "tags": ["schema", "validation", "mcp"]
+    },
+    {
+      "name": "orchestration-request.schema",
+      "title": "Orchestration Request.schema",
+      "description": "Schema for validating orchestration request.schema",
+      "format": "json-schema",
+      "version": "1.0.0",
+      "path": "/schemas/orchestration-request.schema.json",
+      "status": "active",
+      "validates": [],
+      "related_skills": [],
+      "related_components": [],
+      "tags": ["schema", "validation", "orchestration"]
+    },
+    {
+      "name": "orchestration-result.schema",
+      "title": "Orchestration Result.schema",
+      "description": "Schema for validating orchestration result.schema",
+      "format": "json-schema",
+      "version": "1.0.0",
+      "path": "/schemas/orchestration-result.schema.json",
+      "status": "active",
+      "validates": [],
+      "related_skills": [],
+      "related_components": [],
+      "tags": ["schema", "validation", "orchestration"]
+    },
+    {
+      "name": "skill.schema",
+      "title": "Skill.schema",
+      "description": "JSON schema for validating skill definitions. Defines required metadata, triggers, dependencies, and documentation structure for AI agent skills.",
+      "format": "json-schema",
+      "version": "1.0.0",
+      "path": "/schemas/skill.schema.json",
+      "status": "active",
+      "validates": ["skills/*/SKILL.md"],
+      "related_skills": [],
+      "related_components": [],
+      "tags": ["schema", "validation", "skill.schema"]
+    }
+  ],
+  "installers": [
+    {
+      "name": "bootstrap",
+      "version": "1.0.0",
+      "description": "Bootstrap complete ai-dev-standards setup in any project",
+      "path": "installers/bootstrap",
+      "installs": {
+        "skills": "all",
+        "mcps": "all",
+        "components": ["agents", "ui-components", "forms", "workflows"],
+        "integrations": ["llm-providers"],
+        "standards": "all",
+        "templates": "all"
+      },
+      "creates": [".ai-dev/", ".claude/", ".cursorrules", ".gitignore", ".env.example"]
+    },
+    {
+      "name": "create-rag-system",
+      "version": "1.0.0",
+      "description": "Create RAG system from scratch with all necessary components",
+      "path": "installers/create-rag-system",
+      "installs": {
+        "skills": ["rag-implementer"],
+        "mcps": ["vector-database", "embedding-generator"],
+        "components": ["rag-pipelines"],
+        "integrations": ["vector-databases", "llm-providers"],
+        "standards": ["rag-pattern"]
+      },
+      "creates": ["src/rag/", ".env.example", "rag.config.ts"]
+    },
+    {
+      "name": "create-saas",
+      "version": "1.0.0",
+      "description": "Create SaaS project with auth, payments, and essential features",
+      "path": "installers/create-saas",
+      "installs": {
+        "skills": [
+          "mvp-builder",
+          "product-strategist",
+          "frontend-builder",
+          "api-designer",
+          "deployment-advisor"
+        ],
+        "mcps": ["component-generator", "accessibility-checker"],
+        "components": ["ui-components", "forms", "auth", "feedback"],
+        "integrations": ["framework-adapters", "llm-providers", "platforms"],
+        "standards": ["authentication-patterns", "serverless-pattern"]
+      },
+      "creates": ["app/", "components/", "lib/", ".env.example", "middleware.ts"]
+    }
+  ],
+  "scripts": [
+    {
+      "name": "add-component-dependencies",
+      "version": "1.0.0",
+      "description": "Script for add component dependencies",
+      "path": "scripts/add-component-dependencies.js",
+      "tags": ["database", "registry"],
+      "usage": "node scripts/add-component-dependencies.js"
+    },
+    {
+      "name": "add-skill-requirements",
+      "version": "1.0.0",
+      "description": "Script for add skill requirements",
+      "path": "scripts/add-skill-requirements.js",
+      "tags": ["database", "deployment", "testing", "registry"],
+      "usage": "node scripts/add-skill-requirements.js"
+    },
+    {
+      "name": "db-backup",
+      "version": "1.0.0",
+      "description": "Database Backup Script",
+      "path": "scripts/db-backup.ts",
+      "tags": ["database"],
+      "usage": "node scripts/db-backup.ts"
+    },
+    {
+      "name": "db-migrate",
+      "version": "1.0.0",
+      "description": "Database Migration Script",
+      "path": "scripts/db-migrate.ts",
+      "tags": ["database"],
+      "usage": "node scripts/db-migrate.ts"
+    },
+    {
+      "name": "deploy",
+      "version": "1.0.0",
+      "description": "Deployment Script",
+      "path": "scripts/deploy.ts",
+      "tags": ["deployment", "registry"],
+      "usage": "node scripts/deploy.ts"
+    },
+    {
+      "name": "generate-docs",
+      "version": "1.0.0",
+      "description": "Generate documentation from registry data using AUTO-GEN markers",
+      "path": "scripts/generate-docs.ts",
+      "tags": ["documentation", "registry", "automation"],
+      "usage": "node scripts/generate-docs.ts"
+    },
+    {
+      "name": "generate-registries",
+      "version": "1.0.0",
+      "description": "Scan repository resources and regenerate all registry JSON files",
+      "path": "scripts/generate-registries.ts",
+      "tags": ["registry", "automation", "validation"],
+      "usage": "node scripts/generate-registries.ts"
+    },
+    {
+      "name": "regenerate-relationships",
+      "version": "1.0.0",
+      "description": "Regenerate relationship-mapping.json from individual registries",
+      "path": "scripts/regenerate-relationships.ts",
+      "tags": ["database", "deployment", "testing", "registry", "relationships", "automation"],
+      "usage": "node scripts/regenerate-relationships.ts"
+    },
+    {
+      "name": "render-mcp-settings",
+      "version": "1.0.0",
+      "description": "Render .claude/mcp-settings.json from templates and registry metadata",
+      "path": "scripts/render-mcp-settings.ts",
+      "tags": ["mcp", "configuration", "automation"],
+      "usage": "node scripts/render-mcp-settings.ts"
+    },
+    {
+      "name": "test-runner",
+      "version": "1.0.0",
+      "description": "Test Runner Script",
+      "path": "scripts/test-runner.ts",
+      "tags": ["testing"],
+      "usage": "node scripts/test-runner.ts"
+    },
+    {
+      "name": "validate-docs",
+      "version": "1.0.0",
+      "description": "Validate documentation consistency with current registry data",
+      "path": "scripts/validate-docs.ts",
+      "tags": ["documentation", "validation"],
+      "usage": "node scripts/validate-docs.ts"
+    },
+    {
+      "name": "validate-mcp-settings",
+      "version": "1.0.0",
+      "description": "Validate MCP settings against registry definitions and local environments",
+      "path": "scripts/validate-mcp-settings.ts",
+      "tags": ["mcp", "validation", "configuration"],
+      "usage": "node scripts/validate-mcp-settings.ts"
+    },
+    {
+      "name": "validate-registries",
+      "version": "1.0.0",
+      "description": "Validate generated registries for completeness and schema accuracy",
+      "path": "scripts/validate-registries.ts",
+      "tags": ["registry", "validation", "testing"],
+      "usage": "node scripts/validate-registries.ts"
+    },
+    {
+      "name": "update-registry",
+      "version": "1.0.0",
+      "description": "Update Registry Script",
+      "path": "scripts/update-registry.js",
+      "tags": ["database", "deployment", "testing", "registry"],
+      "usage": "node scripts/update-registry.js"
+    }
+  ],
+  "changeLog": [
+    {
+      "version": "1.0.0",
+      "date": "2025-10-22",
+      "changes": [
+        "Initial release",
+        "35 skills available",
+        "3 MCP servers",
+        "6 playbooks",
+        "10 architecture patterns"
+      ]
+    }
+  ],
+  "total_skills": 64,
+  "mcps": [
+    {
+      "id": "3d-asset-manager-mcp",
+      "name": "3D Asset Manager MCP",
+      "description": "Manage and optimize 3D assets for web applications",
+      "category": "media",
+      "supports_skills": ["3d-visualizer"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/3d-asset-manager-mcp",
+      "status": "active",
+      "phase": 5,
+      "capabilities": [
+        "Load 3D models (GLB, FBX, OBJ)",
+        "Optimize 3D assets",
+        "Compress textures",
+        "Generate LODs"
+      ]
+    },
+    {
+      "id": "accessibility-checker-mcp",
+      "name": "Accessibility Checker MCP",
+      "description": "WCAG compliance checking and accessibility auditing",
+      "category": "testing",
+      "supports_skills": ["accessibility-engineer"],
+      "features": ["tools"],
+      "path": "/mcp-servers/accessibility-checker-mcp",
+      "status": "active",
+      "phase": 1,
+      "tested": true,
+      "capabilities": [
+        "WCAG 2.1 compliance checking",
+        "Screen reader compatibility testing",
+        "Color contrast validation",
+        "Keyboard navigation testing"
+      ]
+    },
+    {
+      "id": "agent-orchestrator-mcp",
+      "name": "Agent Orchestrator MCP",
+      "description": "Coordinate multi-agent workflows and task delegation",
+      "category": "orchestration",
+      "supports_skills": ["multi-agent-architect", "agent-orchestrator"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/agent-orchestrator-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Agent coordination",
+        "Task delegation",
+        "State management",
+        "Performance monitoring"
+      ]
+    },
+    {
+      "id": "animation-library-mcp",
+      "name": "Animation Library MCP",
+      "description": "Web animation tools and motion design utilities",
+      "category": "media",
+      "supports_skills": ["animation-designer"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/animation-library-mcp",
+      "status": "active",
+      "phase": 5,
+      "capabilities": [
+        "Animation presets",
+        "Easing functions",
+        "Timeline management",
+        "Performance optimization"
+      ]
+    },
+    {
+      "id": "api-validator-mcp",
+      "name": "API Validator MCP",
+      "description": "Validate REST and GraphQL API schemas",
+      "category": "development",
+      "supports_skills": ["api-designer"],
+      "features": ["tools"],
+      "path": "/mcp-servers/api-validator-mcp",
+      "status": "active",
+      "phase": 2,
+      "capabilities": [
+        "OpenAPI schema validation",
+        "GraphQL schema validation",
+        "Request/response validation",
+        "API contract testing"
+      ]
+    },
+    {
+      "id": "archon-mcp",
+      "name": "Archon MCP",
+      "description": "Official Archon MCP server for strategic project management, task tracking, and knowledge base operations (RAG queries, web crawling, document processing). The strategic layer of the Archon+Skills two-layer architecture.",
+      "category": "project-management",
+      "supports_skills": [
+        "archon-manager",
+        "rag-implementer",
+        "knowledge-base-manager",
+        "mvp-builder",
+        "product-strategist",
+        "multi-agent-architect"
+      ],
+      "features": ["tools"],
+      "path": "https://github.com/coleam00/Archon",
+      "status": "active",
+      "phase": 6,
+      "external": true,
+      "installation": "See https://github.com/coleam00/Archon for installation instructions",
+      "capabilities": [
+        "Project and task management with hierarchical structure",
+        "Priority-based workflow (P0/P1/P2)",
+        "RAG queries against knowledge base",
+        "Web crawling with automatic sitemap detection",
+        "PDF and document processing with intelligent chunking",
+        "Code example extraction and search",
+        "Real-time progress tracking and metrics",
+        "Multi-AI-assistant coordination",
+        "Version-controlled document management"
+      ]
+    },
+    {
+      "id": "asset-optimizer-mcp",
+      "name": "Asset Optimizer MCP",
+      "description": "Optimize images, fonts, and other web assets",
+      "category": "optimization",
+      "supports_skills": ["visual-designer"],
+      "features": ["tools"],
+      "path": "/mcp-servers/asset-optimizer-mcp",
+      "status": "active",
+      "phase": 4,
+      "capabilities": [
+        "Image compression",
+        "Format conversion",
+        "Responsive images",
+        "Font subsetting"
+      ]
+    },
+    {
+      "id": "audio-processor-mcp",
+      "name": "Audio Processor MCP",
+      "description": "Process and optimize audio for web applications",
+      "category": "media",
+      "supports_skills": ["audio-producer"],
+      "features": ["tools"],
+      "path": "/mcp-servers/audio-processor-mcp",
+      "status": "active",
+      "phase": 5,
+      "capabilities": [
+        "Audio transcoding",
+        "Level normalization",
+        "Format conversion",
+        "Audio analysis"
+      ]
+    },
+    {
+      "id": "brain-mcp",
+      "name": "Brain MCP",
+      "description": "Expose the ai-dev-standards brain and capability graph for intelligent skill discovery, dependency analysis, and orchestration support.",
+      "category": "orchestration",
+      "supports_skills": ["archon-manager", "multi-agent-architect", "codex-review-workflow"],
+      "features": ["tools"],
+      "path": "/mcp-servers/brain-mcp",
+      "status": "active",
+      "phase": 5,
+      "capabilities": [
+        "Intelligent skill recommendations",
+        "Capability graph queries",
+        "Relationship mapping",
+        "Brain status reporting"
+      ]
+    },
+    {
+      "id": "chart-builder-mcp",
+      "name": "Chart Builder MCP",
+      "description": "Create charts and data visualizations",
+      "category": "visualization",
+      "supports_skills": ["data-visualizer"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/chart-builder-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Chart generation",
+        "Data transformation",
+        "Interactive visualizations",
+        "Export capabilities"
+      ]
+    },
+    {
+      "id": "code-quality-scanner-mcp",
+      "name": "Code Quality Scanner MCP",
+      "description": "Scan code for quality issues and best practices",
+      "category": "quality",
+      "supports_skills": ["quality-auditor"],
+      "features": ["tools"],
+      "path": "/mcp-servers/code-quality-scanner-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Code smell detection",
+        "Complexity analysis",
+        "Best practice validation",
+        "Technical debt tracking"
+      ]
+    },
+    {
+      "id": "component-generator-mcp",
+      "name": "Component Generator MCP",
+      "description": "Generate React components with tests and stories",
+      "category": "development",
+      "supports_skills": ["frontend-builder"],
+      "features": ["tools"],
+      "path": "/mcp-servers/component-generator-mcp",
+      "status": "active",
+      "phase": 1,
+      "capabilities": [
+        "React component generation",
+        "TypeScript support",
+        "Test generation",
+        "Storybook stories"
+      ]
+    },
+    {
+      "id": "dark-matter-analyzer-mcp",
+      "name": "Dark Matter Analyzer MCP",
+      "description": "Analyze repository health and identify strategic drift",
+      "category": "analysis",
+      "supports_skills": ["dark-matter-analyzer"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/dark-matter-analyzer-mcp",
+      "status": "active",
+      "phase": 2,
+      "tested": true,
+      "capabilities": [
+        "Repository coherence analysis",
+        "Documentation inflation detection",
+        "Strategic drift identification",
+        "Pattern recognition"
+      ]
+    },
+    {
+      "id": "database-migration-mcp",
+      "name": "Database Migration MCP",
+      "description": "Manage database schema migrations",
+      "category": "database",
+      "supports_skills": ["data-engineer"],
+      "features": ["tools"],
+      "path": "/mcp-servers/database-migration-mcp",
+      "status": "active",
+      "phase": 2,
+      "capabilities": [
+        "Schema migration",
+        "Version control",
+        "Rollback support",
+        "Migration testing"
+      ]
+    },
+    {
+      "id": "deployment-orchestrator-mcp",
+      "name": "Deployment Orchestrator MCP",
+      "description": "Orchestrate deployments across platforms",
+      "category": "deployment",
+      "supports_skills": ["deployment-advisor"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/deployment-orchestrator-mcp",
+      "status": "active",
+      "phase": 2,
+      "capabilities": [
+        "Multi-platform deployment",
+        "Rollback automation",
+        "Health checks",
+        "Deployment strategies"
+      ]
+    },
+    {
+      "id": "design-token-manager-mcp",
+      "name": "Design Token Manager MCP",
+      "description": "Manage design tokens and design system variables",
+      "category": "design",
+      "supports_skills": ["design-system-architect"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/design-token-manager-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Token management",
+        "Multi-platform export",
+        "Theme generation",
+        "Version control"
+      ]
+    },
+    {
+      "id": "doc-generator-mcp",
+      "name": "Documentation Generator MCP",
+      "description": "Generate documentation from code and comments",
+      "category": "documentation",
+      "supports_skills": ["technical-writer"],
+      "features": ["tools"],
+      "path": "/mcp-servers/doc-generator-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "API documentation generation",
+        "Code comment extraction",
+        "Markdown generation",
+        "Diagram generation"
+      ]
+    },
+    {
+      "id": "embedding-generator-mcp",
+      "name": "Embedding Generator MCP",
+      "description": "Generate embeddings for RAG and semantic search",
+      "category": "ai",
+      "supports_skills": ["rag-implementer"],
+      "features": ["tools"],
+      "path": "/mcp-servers/embedding-generator-mcp",
+      "status": "active",
+      "phase": 2,
+      "tested": true,
+      "capabilities": [
+        "Text embedding generation",
+        "Batch processing",
+        "Multiple embedding models",
+        "Caching support"
+      ]
+    },
+    {
+      "id": "feature-prioritizer-mcp",
+      "name": "Feature Prioritizer MCP",
+      "description": "Prioritize features using P0/P1/P2 matrix",
+      "category": "product",
+      "supports_skills": ["mvp-builder"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/feature-prioritizer-mcp",
+      "status": "active",
+      "phase": 2,
+      "tested": true,
+      "capabilities": [
+        "Priority matrix analysis",
+        "Impact scoring",
+        "Effort estimation",
+        "MVP scope definition"
+      ]
+    },
+    {
+      "id": "graph-database-mcp",
+      "name": "Graph Database MCP",
+      "description": "Manage Neo4j and graph database operations",
+      "category": "database",
+      "supports_skills": ["knowledge-graph-builder"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/graph-database-mcp",
+      "status": "active",
+      "phase": 4,
+      "capabilities": [
+        "Node and relationship management",
+        "Cypher query execution",
+        "Graph visualization",
+        "Schema management"
+      ]
+    },
+    {
+      "id": "i18n-manager-mcp",
+      "name": "Internationalization Manager MCP",
+      "description": "Manage translations and i18n workflows",
+      "category": "localization",
+      "supports_skills": ["localization-engineer"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/i18n-manager-mcp",
+      "status": "active",
+      "phase": 4,
+      "capabilities": [
+        "Translation management",
+        "Locale validation",
+        "RTL support",
+        "Pluralization rules"
+      ]
+    },
+    {
+      "id": "iot-device-manager-mcp",
+      "name": "IoT Device Manager MCP",
+      "description": "Manage IoT devices and MQTT communication",
+      "category": "iot",
+      "supports_skills": ["iot-developer"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/iot-device-manager-mcp",
+      "status": "active",
+      "phase": 5,
+      "capabilities": [
+        "MQTT pub/sub",
+        "Device simulation",
+        "Sensor data collection",
+        "Device provisioning"
+      ]
+    },
+    {
+      "id": "knowledge-base-mcp",
+      "name": "Knowledge Base MCP",
+      "description": "Comprehensive knowledge base management with CRUD operations, versioning, validation, and curation",
+      "category": "ai",
+      "supports_skills": [
+        "knowledge-base-manager",
+        "rag-implementer",
+        "knowledge-graph-builder",
+        "data-engineer"
+      ],
+      "features": ["tools"],
+      "path": "/mcp-servers/knowledge-base-mcp",
+      "status": "active",
+      "phase": 5,
+      "capabilities": [
+        "Create, read, update, delete knowledge entries",
+        "Query with filters (type, category, tags, text)",
+        "Validate for duplicates, conflicts, staleness",
+        "Version tracking and history",
+        "Bulk import/export operations",
+        "Support for document (RAG) and entity (graph) knowledge",
+        "Quality control and curation tools"
+      ]
+    },
+    {
+      "id": "market-analyzer-mcp",
+      "name": "Market Analyzer MCP",
+      "description": "Analyze market trends and competitive landscape",
+      "category": "product",
+      "supports_skills": ["go-to-market-planner"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/market-analyzer-mcp",
+      "status": "active",
+      "phase": 4,
+      "capabilities": [
+        "Market size analysis",
+        "Competitor tracking",
+        "Trend analysis",
+        "TAM/SAM/SOM calculation"
+      ]
+    },
+    {
+      "id": "mobile-builder-mcp",
+      "name": "Mobile Builder MCP",
+      "description": "Build and deploy React Native mobile applications",
+      "category": "development",
+      "supports_skills": ["mobile-developer"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/mobile-builder-mcp",
+      "status": "active",
+      "phase": 4,
+      "capabilities": [
+        "Expo project setup",
+        "Component generation",
+        "Build automation",
+        "App store deployment"
+      ]
+    },
+    {
+      "id": "openapi-generator-mcp",
+      "name": "OpenAPI Generator MCP",
+      "description": "Generate OpenAPI specifications from code",
+      "category": "development",
+      "supports_skills": ["api-designer"],
+      "features": ["tools"],
+      "path": "/mcp-servers/openapi-generator-mcp",
+      "status": "active",
+      "phase": 2,
+      "capabilities": [
+        "OpenAPI spec generation",
+        "Schema inference",
+        "Documentation generation",
+        "Client SDK generation"
+      ]
+    },
+    {
+      "id": "performance-profiler-mcp",
+      "name": "Performance Profiler MCP",
+      "description": "Profile application performance and identify bottlenecks",
+      "category": "optimization",
+      "supports_skills": ["performance-optimizer"],
+      "features": ["tools"],
+      "path": "/mcp-servers/performance-profiler-mcp",
+      "status": "active",
+      "phase": 2,
+      "capabilities": [
+        "Performance profiling",
+        "Bottleneck detection",
+        "Memory analysis",
+        "Lighthouse audits"
+      ]
+    },
+    {
+      "id": "screenshot-testing-mcp",
+      "name": "Screenshot Testing MCP",
+      "description": "Visual regression testing with Playwright",
+      "category": "testing",
+      "supports_skills": ["testing-strategist", "quality-auditor"],
+      "features": ["tools"],
+      "path": "/mcp-servers/screenshot-testing-mcp",
+      "status": "active",
+      "phase": 1,
+      "capabilities": [
+        "Visual regression testing",
+        "Cross-browser testing",
+        "Snapshot comparison",
+        "Automated testing"
+      ]
+    },
+    {
+      "id": "security-scanner-mcp",
+      "name": "Security Scanner MCP",
+      "description": "Scan for security vulnerabilities and best practices",
+      "category": "security",
+      "supports_skills": ["security-engineer"],
+      "features": ["tools"],
+      "path": "/mcp-servers/security-scanner-mcp",
+      "status": "active",
+      "phase": 2,
+      "capabilities": [
+        "Vulnerability scanning",
+        "Dependency auditing",
+        "Secret detection",
+        "OWASP Top 10 checks"
+      ]
+    },
+    {
+      "id": "semantic-search-mcp",
+      "name": "Semantic Search MCP",
+      "description": "Semantic search and retrieval for RAG systems",
+      "category": "ai",
+      "supports_skills": ["rag-implementer"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/semantic-search-mcp",
+      "status": "active",
+      "phase": 2,
+      "capabilities": ["Semantic search", "Vector similarity", "Hybrid search", "Reranking"]
+    },
+    {
+      "id": "seo-analyzer-mcp",
+      "name": "SEO Analyzer MCP",
+      "description": "Analyze SEO and content optimization",
+      "category": "marketing",
+      "supports_skills": ["copywriter"],
+      "features": ["tools"],
+      "path": "/mcp-servers/seo-analyzer-mcp",
+      "status": "active",
+      "phase": 5,
+      "capabilities": [
+        "SEO analysis",
+        "Meta tag validation",
+        "Content optimization",
+        "Readability scoring"
+      ]
+    },
+    {
+      "id": "streaming-setup-mcp",
+      "name": "Streaming Setup MCP",
+      "description": "Setup and manage live streaming infrastructure",
+      "category": "media",
+      "supports_skills": ["livestream-engineer"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/streaming-setup-mcp",
+      "status": "active",
+      "phase": 5,
+      "capabilities": ["RTMP setup", "HLS streaming", "WebRTC configuration", "Stream monitoring"]
+    },
+    {
+      "id": "test-runner-mcp",
+      "name": "Test Runner MCP",
+      "description": "Execute and manage test suites",
+      "category": "testing",
+      "supports_skills": ["testing-strategist"],
+      "features": ["tools"],
+      "path": "/mcp-servers/test-runner-mcp",
+      "status": "active",
+      "phase": 2,
+      "capabilities": [
+        "Test execution",
+        "Coverage reporting",
+        "Test generation",
+        "Parallel testing"
+      ]
+    },
+    {
+      "id": "user-insight-analyzer-mcp",
+      "name": "User Insight Analyzer MCP",
+      "description": "Analyze user feedback and research data",
+      "category": "product",
+      "supports_skills": ["product-strategist", "user-researcher"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/user-insight-analyzer-mcp",
+      "status": "active",
+      "phase": 2,
+      "capabilities": [
+        "Interview transcription",
+        "Sentiment analysis",
+        "Pattern recognition",
+        "Insight extraction"
+      ]
+    },
+    {
+      "id": "vector-database-mcp",
+      "name": "Vector Database MCP",
+      "description": "Manage vector databases for RAG and semantic search",
+      "category": "ai",
+      "supports_skills": ["rag-implementer"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/vector-database-mcp",
+      "status": "active",
+      "phase": 2,
+      "tested": true,
+      "capabilities": [
+        "Vector storage",
+        "Similarity search",
+        "Index management",
+        "Metadata filtering"
+      ]
+    },
+    {
+      "id": "video-optimizer-mcp",
+      "name": "Video Optimizer MCP",
+      "description": "Optimize and process video content",
+      "category": "media",
+      "supports_skills": ["video-producer"],
+      "features": ["tools"],
+      "path": "/mcp-servers/video-optimizer-mcp",
+      "status": "active",
+      "phase": 5,
+      "capabilities": [
+        "Video transcoding",
+        "Thumbnail generation",
+        "Subtitle generation",
+        "Quality optimization"
+      ]
+    },
+    {
+      "id": "wireframe-generator-mcp",
+      "name": "Wireframe Generator MCP",
+      "description": "Generate wireframes and UI mockups",
+      "category": "design",
+      "supports_skills": ["ux-designer"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/wireframe-generator-mcp",
+      "status": "active",
+      "phase": 4,
+      "capabilities": [
+        "Wireframe generation",
+        "Component libraries",
+        "Export to Figma",
+        "Responsive layouts"
+      ]
+    },
+    {
+      "id": "icon-library-mcp",
+      "name": "Icon Library MCP",
+      "description": "Search, manage, and integrate icons from multiple libraries",
+      "category": "design",
+      "supports_skills": ["frontend-builder", "visual-designer", "design-system-architect"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/icon-library-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Multi-library search (Heroicons, Lucide, Font Awesome)",
+        "Icon metadata and tags",
+        "SVG optimization",
+        "React/Vue component generation"
+      ]
+    },
+    {
+      "id": "font-optimizer-mcp",
+      "name": "Font Optimizer MCP",
+      "description": "Optimize and subset web fonts for performance",
+      "category": "design",
+      "supports_skills": ["performance-optimizer", "frontend-builder", "visual-designer"],
+      "features": ["tools"],
+      "path": "/mcp-servers/font-optimizer-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Font subsetting",
+        "WOFF2 conversion",
+        "Variable font optimization",
+        "Preload generation"
+      ]
+    },
+    {
+      "id": "image-generator-mcp",
+      "name": "Image Generator MCP",
+      "description": "AI image generation (DALL-E, Midjourney, Stable Diffusion)",
+      "category": "design",
+      "supports_skills": ["visual-designer", "brand-designer", "copywriter"],
+      "features": ["tools"],
+      "path": "/mcp-servers/image-generator-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Multi-provider support",
+        "Prompt engineering",
+        "Style presets",
+        "Batch generation"
+      ]
+    },
+    {
+      "id": "svg-generator-mcp",
+      "name": "SVG Generator MCP",
+      "description": "Programmatic SVG generation and manipulation",
+      "category": "design",
+      "supports_skills": ["frontend-builder", "visual-designer"],
+      "features": ["tools"],
+      "path": "/mcp-servers/svg-generator-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Programmatic SVG creation",
+        "Shape primitives",
+        "Path manipulation",
+        "SVG optimization"
+      ]
+    },
+    {
+      "id": "illustration-generator-mcp",
+      "name": "Illustration Generator MCP",
+      "description": "Generate illustrations with AI (patterns, backgrounds, graphics)",
+      "category": "design",
+      "supports_skills": ["visual-designer", "brand-designer"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/illustration-generator-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Pattern generation",
+        "Background creation",
+        "Style customization",
+        "SVG/PNG export"
+      ]
+    },
+    {
+      "id": "figma-sync-mcp",
+      "name": "Figma Sync MCP",
+      "description": "Automated Figma-to-code workflows and synchronization",
+      "category": "design",
+      "supports_skills": ["figma-developer", "frontend-builder", "design-system-architect"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/figma-sync-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Component extraction",
+        "Design token sync",
+        "Code generation",
+        "Asset export automation"
+      ]
+    },
+    {
+      "id": "design-handoff-mcp",
+      "name": "Design Handoff MCP",
+      "description": "Automate design-to-development handoff",
+      "category": "design",
+      "supports_skills": ["ux-designer", "visual-designer", "frontend-builder"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/design-handoff-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Spec generation",
+        "Asset export",
+        "Component documentation",
+        "Developer notes"
+      ]
+    },
+    {
+      "id": "theme-builder-mcp",
+      "name": "Theme Builder MCP",
+      "description": "Automated theme generation and customization",
+      "category": "design",
+      "supports_skills": ["design-system-architect", "visual-designer"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/theme-builder-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Theme generation from seed colors",
+        "Light/dark mode variants",
+        "CSS variable output",
+        "Tailwind config generation"
+      ]
+    },
+    {
+      "id": "dark-mode-converter-mcp",
+      "name": "Dark Mode Converter MCP",
+      "description": "Convert light mode designs to dark mode",
+      "category": "design",
+      "supports_skills": ["visual-designer", "design-system-architect"],
+      "features": ["tools"],
+      "path": "/mcp-servers/dark-mode-converter-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Automatic color inversion",
+        "Contrast adjustment",
+        "WCAG compliance checking",
+        "CSS custom property generation"
+      ]
+    },
+    {
+      "id": "storybook-generator-mcp",
+      "name": "Storybook Generator MCP",
+      "description": "Automated Storybook story generation",
+      "category": "design",
+      "supports_skills": ["design-system-architect", "frontend-builder"],
+      "features": ["tools"],
+      "path": "/mcp-servers/storybook-generator-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Auto-generate stories from components",
+        "Props documentation",
+        "Variant generation",
+        "Accessibility addon integration"
+      ]
+    },
+    {
+      "id": "props-documenter-mcp",
+      "name": "Props Documenter MCP",
+      "description": "Automated component props documentation",
+      "category": "design",
+      "supports_skills": ["technical-writer", "frontend-builder", "design-system-architect"],
+      "features": ["tools"],
+      "path": "/mcp-servers/props-documenter-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "TypeScript prop extraction",
+        "JSDoc parsing",
+        "Markdown generation",
+        "Example generation"
+      ]
+    },
+    {
+      "id": "typography-analyzer-mcp",
+      "name": "Typography Analyzer MCP",
+      "description": "Analyze and optimize typography systems",
+      "category": "design",
+      "supports_skills": ["visual-designer", "design-system-architect"],
+      "features": ["tools"],
+      "path": "/mcp-servers/typography-analyzer-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Type scale analysis",
+        "Line height optimization",
+        "Reading comfort metrics",
+        "Font pairing suggestions"
+      ]
+    },
+    {
+      "id": "asset-library-mcp",
+      "name": "Asset Library MCP",
+      "description": "Centralized design asset library management",
+      "category": "design",
+      "supports_skills": ["asset-manager", "visual-designer", "design-system-architect"],
+      "features": ["tools", "resources"],
+      "path": "/mcp-servers/asset-library-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Asset organization and tagging",
+        "Version control",
+        "Usage tracking",
+        "CDN integration"
+      ]
+    },
+    {
+      "id": "responsive-preview-mcp",
+      "name": "Responsive Preview MCP",
+      "description": "Multi-device preview and screenshot generation",
+      "category": "design",
+      "supports_skills": ["frontend-builder", "ux-designer", "mobile-developer"],
+      "features": ["tools"],
+      "path": "/mcp-servers/responsive-preview-mcp",
+      "status": "active",
+      "phase": 3,
+      "capabilities": [
+        "Multi-device screenshots",
+        "Breakpoint testing",
+        "Visual regression",
+        "Device frame overlays"
+      ]
+    }
+  ],
+  "total_mcps": 50
+}

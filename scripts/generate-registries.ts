@@ -165,7 +165,7 @@ function extractSkillMetadata(skillName: string): SkillMetadata | null {
     category,
     difficulty,
     estimated_time: estimatedTime,
-    path: `/SKILLS/${skillName}/`,
+    path: `/skills/${skillName}/`,
     status: 'active',
     prerequisites: [],
     related_skills: [],
@@ -271,7 +271,7 @@ function extractMCPMetadata(mcpName: string): MCPMetadata | null {
     category: 'general',
     supports_skills: [],
     features: ['tools'],
-    path: `/MCP-SERVERS/${mcpName}`,
+    path: `/mcp-servers/${mcpName}`,
     status: 'active',
     phase: 5
   }

@@ -8,7 +8,7 @@ import {
   MCPToolHandler,
   MCPResourceHandler,
   MCPPromptHandler
-} from '../../../COMPONENTS/mcp-servers'
+} from '../../../components/mcp-servers'
 import { z } from 'zod'
 import type { MCPToolArgs, MCPToolDefinition } from '../../../types/mcp'
 

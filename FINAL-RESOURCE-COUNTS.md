@@ -98,13 +98,13 @@ Resources Over Time
 
 ```bash
 # List all skills
-ls SKILLS/
+ls skills/
 
 # List all MCPs
-ls MCP-SERVERS/
+ls mcp-servers/
 
 # View registry
-cat META/registry.json
+cat meta/registry.json
 
 # Search for specific capability
 npm run search "authentication"
@@ -112,12 +112,12 @@ npm run search "authentication"
 
 ### Registry Files
 
-- `META/registry.json` - Master registry (all resources)
-- `META/skill-registry.json` - Skills only
-- `META/mcp-registry.json` - MCPs only
-- `META/tool-registry.json` - Tools only
-- `META/component-registry.json` - Components only
-- `META/integration-registry.json` - Integrations only
+- `meta/registry.json` - Master registry (all resources)
+- `meta/skill-registry.json` - Skills only
+- `meta/mcp-registry.json` - MCPs only
+- `meta/tool-registry.json` - Tools only
+- `meta/component-registry.json` - Components only
+- `meta/integration-registry.json` - Integrations only
 
 ## Contributing
 
@@ -139,8 +139,8 @@ To add a new resource:
 
 - `README.md` - Repository overview
 - `.claude/CLAUDE.md` - Claude Code configuration
-- `DOCS/VALIDATION-SYSTEM.md` - Validation documentation
-- `META/registry.json` - Complete resource registry
+- `docs/VALIDATION-SYSTEM.md` - Validation documentation
+- `meta/registry.json` - Complete resource registry
 
 ---
 

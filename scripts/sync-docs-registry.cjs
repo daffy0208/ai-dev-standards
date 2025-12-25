@@ -4,8 +4,8 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const DOCS_DIR = path.join(ROOT, 'DOCS');
-const DOCS_REGISTRY_PATH = path.join(ROOT, 'META', 'docs-registry.json');
+const DOCS_DIR = path.join(ROOT, 'docs');
+const DOCS_REGISTRY_PATH = path.join(ROOT, 'meta', 'docs-registry.json');
 
 const GREEN = '\x1b[32m';
 const RESET = '\x1b[0m';
@@ -39,7 +39,7 @@ function walkDirectory(dir, baseDir = '') {
         title: name.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
         description: `Documentation for ${name.replace(/-/g, ' ')}`,
         category,
-        path: `/DOCS/${relativePath}`,
+        path: `/docs/${relativePath}`,
         status: 'active',
         audience: ['developers'],
         related_skills: [],

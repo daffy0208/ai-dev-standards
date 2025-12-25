@@ -111,7 +111,7 @@ Key changes:
 
 **Status**: ✅ Generated with 3 production-ready tools
 
-**Location**: `/MCP-SERVERS/semantic-search-mcp/`
+**Location**: `/mcp-servers/semantic-search-mcp/`
 
 **Structure**:
 
@@ -167,7 +167,7 @@ semantic-search-mcp/
 
 ```bash
 # Test vector embedding tool
-cd MCP-SERVERS/semantic-search-mcp/servers/semantic-search/tools
+cd mcp-servers/semantic-search-mcp/servers/semantic-search/tools
 docker run --rm \
   -v $(pwd):/workspace/tools \
   mcp-sandbox \
@@ -203,7 +203,7 @@ Add to your MCP settings (`claude_desktop_config.json` or similar):
         "--cpus=1.0",
         "--network=none",
         "-v",
-        "/home/david/projects/ai-dev-standards/MCP-SERVERS/semantic-search-mcp/servers:/workspace/servers:ro",
+        "/home/david/projects/ai-dev-standards/mcp-servers/semantic-search-mcp/servers:/workspace/servers:ro",
         "-v",
         "/home/david/projects/ai-dev-standards/skills:/workspace/skills:rw",
         "mcp-sandbox",
@@ -272,7 +272,7 @@ node scripts/generate-code-execution-mcp.cjs deployment-orchestrator "CI/CD depl
 1. **Test the pilot MCP** in real scenarios
 
    ```bash
-   cd MCP-SERVERS/semantic-search-mcp
+   cd mcp-servers/semantic-search-mcp
    # Use the MCP with Claude Code
    ```
 
@@ -330,7 +330,7 @@ node scripts/generate-code-execution-mcp.cjs deployment-orchestrator "CI/CD depl
 
 ### MCP Patterns Documentation (~81K words)
 
-Location: `/DOCS/mcp-patterns/`
+Location: `/docs/mcp-patterns/`
 
 1. **00-mcp-patterns-overview.md** - Pattern comparison
 2. **01-mcp-decision-framework.md** - Decision criteria (8K words)
@@ -376,7 +376,7 @@ Location: `/scripts/`
 
 ### Critical Discovery: All 50 MCPs Are Placeholders
 
-**Finding**: Analysis revealed all MCPs in `/MCP-SERVERS/` are skeleton/placeholder only:
+**Finding**: Analysis revealed all MCPs in `/mcp-servers/` are skeleton/placeholder only:
 
 - No `index.js` implementations
 - Only `package.json` + `README.md` exist
@@ -429,7 +429,7 @@ Location: `/scripts/`
 
 1. `/skills/README.md` - Skills storage documentation
 2. `/scripts/generate-code-execution-mcp.cjs` - MCP generator script
-3. `/MCP-SERVERS/semantic-search-mcp/` - Complete pilot MCP
+3. `/mcp-servers/semantic-search-mcp/` - Complete pilot MCP
 4. `/CODE-EXECUTION-SETUP-COMPLETE.md` - This file
 
 ### Modified Files
@@ -439,15 +439,15 @@ Location: `/scripts/`
 
 ### Generated MCP Files
 
-1. `/MCP-SERVERS/semantic-search-mcp/servers/semantic-search/README.md`
-2. `/MCP-SERVERS/semantic-search-mcp/servers/semantic-search/tool_list.txt`
-3. `/MCP-SERVERS/semantic-search-mcp/servers/semantic-search/tools/vector_embed.py`
-4. `/MCP-SERVERS/semantic-search-mcp/servers/semantic-search/tools/similarity_search.py`
-5. `/MCP-SERVERS/semantic-search-mcp/servers/semantic-search/tools/index_documents.py`
-6. `/MCP-SERVERS/semantic-search-mcp/servers/semantic-search/tools/example_tool.py`
-7. `/MCP-SERVERS/semantic-search-mcp/skills/.gitkeep`
-8. `/MCP-SERVERS/semantic-search-mcp/README.md`
-9. `/MCP-SERVERS/semantic-search-mcp/.env.example`
+1. `/mcp-servers/semantic-search-mcp/servers/semantic-search/README.md`
+2. `/mcp-servers/semantic-search-mcp/servers/semantic-search/tool_list.txt`
+3. `/mcp-servers/semantic-search-mcp/servers/semantic-search/tools/vector_embed.py`
+4. `/mcp-servers/semantic-search-mcp/servers/semantic-search/tools/similarity_search.py`
+5. `/mcp-servers/semantic-search-mcp/servers/semantic-search/tools/index_documents.py`
+6. `/mcp-servers/semantic-search-mcp/servers/semantic-search/tools/example_tool.py`
+7. `/mcp-servers/semantic-search-mcp/skills/.gitkeep`
+8. `/mcp-servers/semantic-search-mcp/README.md`
+9. `/mcp-servers/semantic-search-mcp/.env.example`
 
 ---
 
@@ -518,10 +518,10 @@ Location: `/scripts/`
 ## Recommended Reading Order
 
 1. This file (overview of what's done)
-2. `/MCP-SERVERS/semantic-search-mcp/README.md` (pilot MCP)
-3. `/DOCS/mcp-patterns/03-mcp-code-execution-pattern.md` (pattern details)
-4. `/DOCS/mcp-patterns/06-mcp-progressive-discovery-patterns.md` (scaling)
-5. `/DOCS/mcp-patterns/07-mcp-security-privacy-best-practices.md` (security)
+2. `/mcp-servers/semantic-search-mcp/README.md` (pilot MCP)
+3. `/docs/mcp-patterns/03-mcp-code-execution-pattern.md` (pattern details)
+4. `/docs/mcp-patterns/06-mcp-progressive-discovery-patterns.md` (scaling)
+5. `/docs/mcp-patterns/07-mcp-security-privacy-best-practices.md` (security)
 
 ---
 
@@ -529,9 +529,9 @@ Location: `/scripts/`
 
 ### Documentation
 
-- Full docs: `/DOCS/mcp-patterns/README.md`
-- Brain orchestrator: `/DOCS/mcp-patterns/09-brain-orchestrator-mcp-integration.md`
-- Roadmap: `/DOCS/mcp-patterns/10-mcp-implementation-roadmap.md`
+- Full docs: `/docs/mcp-patterns/README.md`
+- Brain orchestrator: `/docs/mcp-patterns/09-brain-orchestrator-mcp-integration.md`
+- Roadmap: `/docs/mcp-patterns/10-mcp-implementation-roadmap.md`
 
 ### Scripts
 
@@ -542,7 +542,7 @@ Location: `/scripts/`
 
 - MCP patterns: `/config/mcp-patterns.json`
 - Security layers: `/config/security-layers.json`
-- Docker sandbox: `/SECURITY/sandbox/docker-sandbox.dockerfile`
+- Docker sandbox: `/security/sandbox/docker-sandbox.dockerfile`
 
 ---
 

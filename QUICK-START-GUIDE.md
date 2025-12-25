@@ -55,10 +55,10 @@ AI_DEV_SKIP_NPM_OUTDATED=1 node CLI/bin/cli.js analyze --directory .
       "command": "mcp-code-execution",
       "args": [
         "--servers-path",
-        "/path/to/ai-dev-standards/MCP-SERVERS/semantic-search-mcp/servers"
+        "/path/to/ai-dev-standards/mcp-servers/semantic-search-mcp/servers"
       ],
       "env": {
-        "SKILLS_PATH": "/path/to/ai-dev-standards/MCP-SERVERS/semantic-search-mcp/skills",
+        "SKILLS_PATH": "/path/to/ai-dev-standards/mcp-servers/semantic-search-mcp/skills",
         "PINECONE_API_KEY": "your-api-key",
         "PINECONE_INDEX": "your-index-name"
       }
@@ -99,7 +99,7 @@ GitHub Actions runs this job on the Node 20 matrix entry, but run it locally whe
 
 > CI Tip: Add `PINECONE_API_KEY`, `PINECONE_INDEX`, and `PINECONE_DIMENSION` as GitHub Actions secrets to enable the live Pinecone check in the workflow.
 
-For a full walkthrough of the CLI demo + docker validation, see [DOCS/SEMANTIC-SEARCH-USAGE.md](DOCS/SEMANTIC-SEARCH-USAGE.md).
+For a full walkthrough of the CLI demo + docker validation, see [docs/SEMANTIC-SEARCH-USAGE.md](docs/SEMANTIC-SEARCH-USAGE.md).
 
 ## 5. Use the MCP
 
@@ -148,18 +148,18 @@ watch -n 5 'ls -lh skills/'
 
 - **Setup complete**: `/CODE-EXECUTION-SETUP-COMPLETE.md` (detailed)
 - **This file**: Quick reference
-- **Full docs**: `/DOCS/mcp-patterns/` (~81K words)
+- **Full docs**: `/docs/mcp-patterns/` (~81K words)
 
 ### Generated MCP
 
-- **Main README**: `/MCP-SERVERS/semantic-search-mcp/README.md`
-- **Tool list**: `/MCP-SERVERS/semantic-search-mcp/servers/semantic-search/tool_list.txt`
-- **Tools**: `/MCP-SERVERS/semantic-search-mcp/servers/semantic-search/tools/`
+- **Main README**: `/mcp-servers/semantic-search-mcp/README.md`
+- **Tool list**: `/mcp-servers/semantic-search-mcp/servers/semantic-search/tool_list.txt`
+- **Tools**: `/mcp-servers/semantic-search-mcp/servers/semantic-search/tools/`
 
 ### Configuration
 
 - **MCP config**: `/config/mcp-patterns.json` (Code Execution enabled)
-- **Docker**: `/SECURITY/sandbox/docker-sandbox.dockerfile`
+- **Docker**: `/security/sandbox/docker-sandbox.dockerfile`
 - **Skills**: `/skills/README.md`
 
 ---
@@ -170,7 +170,7 @@ watch -n 5 'ls -lh skills/'
 
 ```bash
 # 1. Create tool file
-cd MCP-SERVERS/semantic-search-mcp/servers/semantic-search/tools
+cd mcp-servers/semantic-search-mcp/servers/semantic-search/tools
 nano my_new_tool.py
 
 # 2. Update tool list
@@ -191,7 +191,7 @@ cat skills/some_generated_skill.py
 ### Rebuild Docker Image
 
 ```bash
-docker build -f SECURITY/sandbox/docker-sandbox.dockerfile -t mcp-sandbox .
+docker build -f security/sandbox/docker-sandbox.dockerfile -t mcp-sandbox .
 ```
 
 ---
@@ -202,7 +202,7 @@ docker build -f SECURITY/sandbox/docker-sandbox.dockerfile -t mcp-sandbox .
 
 ```bash
 # Check tool file syntax
-python MCP-SERVERS/semantic-search-mcp/servers/semantic-search/tools/vector_embed.py
+python mcp-servers/semantic-search-mcp/servers/semantic-search/tools/vector_embed.py
 
 # Check Docker has tool mounted
 docker run --rm -v $(pwd):/workspace -it mcp-sandbox ls /workspace
@@ -219,7 +219,7 @@ docker run --rm -v $(pwd):/workspace -it mcp-sandbox ls /workspace
 ```bash
 # Current size: 311MB (acceptable)
 # If needed, remove unused packages:
-docker build -f SECURITY/sandbox/docker-sandbox.dockerfile -t mcp-sandbox-slim .
+docker build -f security/sandbox/docker-sandbox.dockerfile -t mcp-sandbox-slim .
 ```
 
 ---
@@ -228,14 +228,14 @@ docker build -f SECURITY/sandbox/docker-sandbox.dockerfile -t mcp-sandbox-slim .
 
 ### Learn More
 
-1. **Pattern details**: `/DOCS/mcp-patterns/03-mcp-code-execution-pattern.md`
-2. **Progressive discovery**: `/DOCS/mcp-patterns/06-mcp-progressive-discovery-patterns.md`
-3. **Security**: `/DOCS/mcp-patterns/07-mcp-security-privacy-best-practices.md`
+1. **Pattern details**: `/docs/mcp-patterns/03-mcp-code-execution-pattern.md`
+2. **Progressive discovery**: `/docs/mcp-patterns/06-mcp-progressive-discovery-patterns.md`
+3. **Security**: `/docs/mcp-patterns/07-mcp-security-privacy-best-practices.md`
 
 ### Get Help
 
 - **Brain orchestrator**: Automatic pattern selection (if enabled)
-- **Documentation**: ~81K words in `/DOCS/mcp-patterns/`
+- **Documentation**: ~81K words in `/docs/mcp-patterns/`
 - **Examples**: See `semantic-search-mcp` pilot
 
 ---

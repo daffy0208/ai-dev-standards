@@ -21,20 +21,20 @@ const CYAN = '\x1b[36m';
 const RESET = '\x1b[0m';
 
 // Load all registries
-const skillRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'skill-registry.json'), 'utf-8'));
-const mcpRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'mcp-registry.json'), 'utf-8'));
-const componentRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'component-registry.json'), 'utf-8'));
-const integrationRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'integration-registry.json'), 'utf-8'));
-const toolRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'tool-registry.json'), 'utf-8'));
-const playbookRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'playbook-registry.json'), 'utf-8'));
-const standardRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'standard-registry.json'), 'utf-8'));
-const templateRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'template-registry.json'), 'utf-8'));
-const schemaRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'schema-registry.json'), 'utf-8'));
-const utilRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'util-registry.json'), 'utf-8'));
-const exampleRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'example-registry.json'), 'utf-8'));
-const installerRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'installer-registry.json'), 'utf-8'));
-const docsRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'docs-registry.json'), 'utf-8'));
-const relationshipMapping = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'relationship-mapping.json'), 'utf-8'));
+const skillRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'skill-registry.json'), 'utf-8'));
+const mcpRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'mcp-registry.json'), 'utf-8'));
+const componentRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'component-registry.json'), 'utf-8'));
+const integrationRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'integration-registry.json'), 'utf-8'));
+const toolRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'tool-registry.json'), 'utf-8'));
+const playbookRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'playbook-registry.json'), 'utf-8'));
+const standardRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'standard-registry.json'), 'utf-8'));
+const templateRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'template-registry.json'), 'utf-8'));
+const schemaRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'schema-registry.json'), 'utf-8'));
+const utilRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'util-registry.json'), 'utf-8'));
+const exampleRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'example-registry.json'), 'utf-8'));
+const installerRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'installer-registry.json'), 'utf-8'));
+const docsRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'docs-registry.json'), 'utf-8'));
+const relationshipMapping = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'relationship-mapping.json'), 'utf-8'));
 
 // Audit results
 const issues = {
@@ -57,19 +57,19 @@ const stats = {
 
 // Directories to scan
 const SCAN_DIRS = [
-  'SKILLS',
-  'MCP-SERVERS',
-  'COMPONENTS',
-  'INTEGRATIONS',
-  'TOOLS',
-  'PLAYBOOKS',
-  'STANDARDS',
-  'TEMPLATES',
-  'SCHEMAS',
-  'UTILS',
-  'EXAMPLES',
-  'INSTALLERS',
-  'DOCS'
+  'skills',
+  'mcp-servers',
+  'components',
+  'integrations',
+  'tools',
+  'playbooks',
+  'standards',
+  'templates',
+  'schemas',
+  'utils',
+  'examples',
+  'installers',
+  'docs'
 ];
 
 // Files to ignore
@@ -151,7 +151,7 @@ function isFileTracked(relativePath) {
     // Check additional_files array (both relative and absolute paths)
     if (resource.additional_files && Array.isArray(resource.additional_files)) {
       for (const additionalFile of resource.additional_files) {
-        // Handle both absolute paths (e.g., "/TOOLS/observability/index.ts")
+        // Handle both absolute paths (e.g., "/tools/observability/index.ts")
         // and relative paths (e.g., "index.ts" relative to resource path)
         let normalizedAdditionalPath;
 
@@ -172,7 +172,7 @@ function isFileTracked(relativePath) {
 
     // Check if file is within a tracked directory
     // File is within directory if it starts with the directory path followed by a slash
-    // e.g., "/MCP-SERVERS/3d-asset-manager-mcp/dist/index.d.ts" starts with "/MCP-SERVERS/3d-asset-manager-mcp/"
+    // e.g., "/mcp-servers/3d-asset-manager-mcp/dist/index.d.ts" starts with "/mcp-servers/3d-asset-manager-mcp/"
     const directoryPrefix = normalizedResourcePath.endsWith('/')
       ? normalizedResourcePath
       : normalizedResourcePath + '/';

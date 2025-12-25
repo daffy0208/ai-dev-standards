@@ -143,14 +143,14 @@ describe('Registry Completeness - CRITICAL', () => {
     for (const skillDir of skillDirs) {
       expect(
         registeredSkills,
-        `Skill "${skillDir}" exists in SKILLS/ but NOT in registry! This makes it invisible to projects.`
+        `Skill "${skillDir}" exists in skills/ but NOT in registry! This makes it invisible to projects.`
       ).toContain(skillDir)
     }
 
     // Verify counts match
     expect(
       registry.skills.length,
-      `Registry has ${registry.skills.length} skills but SKILLS/ has ${skillDirs.length} directories. They must match!`
+      `Registry has ${registry.skills.length} skills but skills/ has ${skillDirs.length} directories. They must match!`
     ).toBe(skillDirs.length)
   })
 
@@ -164,7 +164,7 @@ describe('Registry Completeness - CRITICAL', () => {
         20
       )
       expect(skill.path, `Skill ${skill.name} missing path`).toBeTruthy()
-      expect(skill.path, `Skill ${skill.name} path must start with SKILLS/`).toMatch(/^SKILLS\//)
+      expect(skill.path, `Skill ${skill.name} path must start with skills/`).toMatch(/^SKILLS\//)
       expect(skill.path, `Skill ${skill.name} path must end with SKILL.md`).toMatch(/SKILL\.md$/)
 
       // Verify path actually exists
@@ -189,13 +189,13 @@ describe('Registry Completeness - CRITICAL', () => {
       const mcpName = mcpDir.replace(/-mcp$/, '')
       expect(
         registeredMcps,
-        `MCP "${mcpDir}" exists in MCP-SERVERS/ but NOT in registry! This makes it invisible to projects.`
+        `MCP "${mcpDir}" exists in mcp-servers/ but NOT in registry! This makes it invisible to projects.`
       ).toContain(mcpName)
     }
 
     expect(
       registry.mcpServers?.length || 0,
-      `Registry has ${registry.mcpServers?.length || 0} MCPs but MCP-SERVERS/ has ${mcpDirs.length} directories`
+      `Registry has ${registry.mcpServers?.length || 0} MCPs but mcp-servers/ has ${mcpDirs.length} directories`
     ).toBe(mcpDirs.length)
   })
 
@@ -211,12 +211,12 @@ describe('Registry Completeness - CRITICAL', () => {
     for (const playbookFile of playbookFiles) {
       expect(
         registeredPlaybooks,
-        `Playbook "${playbookFile}" exists in PLAYBOOKS/ but NOT in registry! This makes it invisible to projects.`
+        `Playbook "${playbookFile}" exists in playbooks/ but NOT in registry! This makes it invisible to projects.`
       ).toContain(playbookFile)
     }
   })
 
-  it('should register ALL architecture patterns from STANDARDS/architecture-patterns', () => {
+  it('should register ALL architecture patterns from standards/architecture-patterns', () => {
     if (patternFiles.length === 0) {
       console.warn('No patterns found, skipping')
       return
@@ -228,7 +228,7 @@ describe('Registry Completeness - CRITICAL', () => {
     for (const patternFile of patternFiles) {
       expect(
         registeredPatterns,
-        `Pattern "${patternFile}" exists in STANDARDS/architecture-patterns but NOT in registry!`
+        `Pattern "${patternFile}" exists in standards/architecture-patterns but NOT in registry!`
       ).toContain(patternFile)
     }
   })
@@ -447,7 +447,7 @@ describe('Resource Discovery Integration', () => {
       const content = await fs.readFile(bootstrapPath, 'utf8')
 
       expect(
-        content.includes('registry.json') || content.includes('META/registry'),
+        content.includes('registry.json') || content.includes('meta/registry'),
         'Bootstrap script should reference registry.json for resource discovery'
       ).toBe(true)
     } catch {
@@ -551,13 +551,13 @@ describe('New Categories - Phase 1 Complete', () => {
 
     expect(
       schemas.length,
-      `SCHEMAS/ has ${schemaFiles.length} files but registry has ${schemas.length}`
+      `schemas/ has ${schemaFiles.length} files but registry has ${schemas.length}`
     ).toBe(schemaFiles.length)
 
     for (const schema of schemaFiles) {
       const schemaName = schema.replace(/\.(yaml|json)$/, '').replace('.schema', '')
       const found = schemas.some(entry => entry.path.includes(schema) || entry.name === schemaName)
-      expect(found, `Schema "${schema}" exists in SCHEMAS/ but NOT properly registered`).toBe(true)
+      expect(found, `Schema "${schema}" exists in schemas/ but NOT properly registered`).toBe(true)
     }
   })
 
@@ -570,7 +570,7 @@ describe('New Categories - Phase 1 Complete', () => {
 
     expect(
       installers.length,
-      `INSTALLERS/ has ${installerDirs.length} directories but registry has ${installers.length}`
+      `installers/ has ${installerDirs.length} directories but registry has ${installers.length}`
     ).toBe(installerDirs.length)
 
     const registeredInstallers = installers.map(installer => installer.name)
@@ -578,7 +578,7 @@ describe('New Categories - Phase 1 Complete', () => {
     for (const installer of installerDirs) {
       expect(
         registeredInstallers,
-        `Installer "${installer}" exists in INSTALLERS/ but NOT in registry`
+        `Installer "${installer}" exists in installers/ but NOT in registry`
       ).toContain(installer)
     }
   })
@@ -610,13 +610,13 @@ describe('New Categories - Phase 1 Complete', () => {
 
     expect(
       registeredCategories.length,
-      `COMPONENTS/ has ${componentDirs.length} directories but registry represents ${registeredCategories.length} categories`
+      `components/ has ${componentDirs.length} directories but registry represents ${registeredCategories.length} categories`
     ).toBe(componentDirs.length)
 
     for (const component of componentDirs) {
       expect(
         registeredCategories,
-        `Component category "${component}" exists in COMPONENTS/ but NOT in registry`
+        `Component category "${component}" exists in components/ but NOT in registry`
       ).toContain(component)
     }
   })
@@ -624,13 +624,13 @@ describe('New Categories - Phase 1 Complete', () => {
   it('should register ALL utils from UTILS directory', () => {
     expect(
       registry.utils.length,
-      `UTILS/ has ${utilDirs.length} directories but registry has ${registry.utils.length}`
+      `utils/ has ${utilDirs.length} directories but registry has ${registry.utils.length}`
     ).toBe(utilDirs.length)
 
     const registeredUtils = registry.utils.map(util => util.category)
 
     for (const util of utilDirs) {
-      expect(registeredUtils, `Util "${util}" exists in UTILS/ but NOT in registry`).toContain(util)
+      expect(registeredUtils, `Util "${util}" exists in utils/ but NOT in registry`).toContain(util)
     }
   })
 
@@ -639,13 +639,13 @@ describe('New Categories - Phase 1 Complete', () => {
 
     expect(
       playbooks.length,
-      `PLAYBOOKS/ has ${playbookFiles.length} files but registry has ${playbooks.length}`
+      `playbooks/ has ${playbookFiles.length} files but registry has ${playbooks.length}`
     ).toBe(playbookFiles.length)
 
     for (const playbookFile of playbookFiles) {
       const playbookName = playbookFile.replace('.md', '')
       const found = playbooks.some(playbook => playbook.name === playbookName)
-      expect(found, `Playbook "${playbookFile}" exists in PLAYBOOKS/ but NOT in registry`).toBe(
+      expect(found, `Playbook "${playbookFile}" exists in playbooks/ but NOT in registry`).toBe(
         true
       )
     }

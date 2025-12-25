@@ -409,7 +409,7 @@ fi
 
 # Count actual skills vs registered skills
 ACTUAL_SKILLS=$(find SKILLS -maxdepth 1 -type d ! -name SKILLS ! -name _TEMPLATE | wc -l)
-REGISTERED_SKILLS=$(jq '.skills | length' META/registry.json)
+REGISTERED_SKILLS=$(jq '.skills | length' meta/registry.json)
 
 if [ "$ACTUAL_SKILLS" -ne "$REGISTERED_SKILLS" ]; then
   REGISTRY_FAILED=true
@@ -462,7 +462,7 @@ echo "  ✅ Brain CLI built successfully"
 
 # Build brain MCP server with retry logic
 echo "Building Brain MCP server..."
-cd MCP-SERVERS/brain-mcp
+cd mcp-servers/brain-mcp
 
 retry_with_backoff 3 "npm ci"
 if [ $? -ne 0 ]; then
@@ -667,7 +667,7 @@ echo "════════════════════════�
 
 # Test 1: Verify brain can find RAG-related skills
 echo "Step 1: Testing brain RAG skill discovery..."
-RAG_SKILLS=$(jq -r '.skills[] | select(.name | contains("rag")) | .name' META/skill-registry.json 2>/dev/null | wc -l)
+RAG_SKILLS=$(jq -r '.skills[] | select(.name | contains("rag")) | .name' meta/skill-registry.json 2>/dev/null | wc -l)
 if [ "$RAG_SKILLS" -gt 0 ]; then
   echo "✅ Found $RAG_SKILLS RAG-related skills in registry"
 else
@@ -679,7 +679,7 @@ fi
 # Test 2: Verify MCP-skill relationships are defined
 echo ""
 echo "Step 2: Validating MCP→Skill relationships..."
-MCPS_WITH_ENABLES=$(jq -r '.mcps[] | select(.enables != null) | .name' META/mcp-registry.json 2>/dev/null | wc -l)
+MCPS_WITH_ENABLES=$(jq -r '.mcps[] | select(.enables != null) | .name' meta/mcp-registry.json 2>/dev/null | wc -l)
 if [ "$MCPS_WITH_ENABLES" -gt 0 ]; then
   echo "✅ Found $MCPS_WITH_ENABLES MCPs with skill relationships"
 else
@@ -689,7 +689,7 @@ fi
 # Test 3: Verify capability graph has domains
 echo ""
 echo "Step 3: Checking capability graph structure..."
-DOMAINS=$(jq '.domains | length' META/capability-graph.json 2>/dev/null)
+DOMAINS=$(jq '.domains | length' meta/capability-graph.json 2>/dev/null)
 if [ "$DOMAINS" -gt 0 ]; then
   echo "✅ Capability graph has $DOMAINS domains defined"
 else
@@ -711,7 +711,7 @@ CRITICAL_SKILLS=("mvp-builder" "rag-implementer" "product-strategist" "api-desig
 MISSING_SKILLS=0
 
 for SKILL in "${CRITICAL_SKILLS[@]}"; do
-  if [ ! -d "SKILLS/$SKILL" ]; then
+  if [ ! -d "skills/$SKILL" ]; then
     echo "❌ README mentions $SKILL but directory doesn't exist!"
     MISSING_SKILLS=$((MISSING_SKILLS + 1))
   fi
@@ -749,7 +749,7 @@ AUTH_RESOURCES=$(jq -r '
   (.skills[] | select(.description | test("auth"; "i")) | "skill:\(.name)"),
   (.components[] | select(.name | test("auth"; "i")) | "component:\(.name)"),
   (.integrations[] | select(.name | test("auth"; "i")) | "integration:\(.name)")
-' META/registry.json 2>/dev/null | wc -l)
+' meta/registry.json 2>/dev/null | wc -l)
 
 if [ "$AUTH_RESOURCES" -gt 0 ]; then
   echo "✅ Found $AUTH_RESOURCES authentication-related resources"
@@ -1198,18 +1198,18 @@ echo "Integration 1: Anthropic API Client"
 echo "─────────────────────────────────────"
 
 # Check if client file exists
-if [ -f "INTEGRATIONS/llm-providers/anthropic-client.ts" ]; then
+if [ -f "integrations/llm-providers/anthropic-client.ts" ]; then
   echo "  ✅ Anthropic client file exists"
 
   # Verify it exports the expected interfaces
-  if grep -q "export.*AnthropicClient" INTEGRATIONS/llm-providers/anthropic-client.ts; then
+  if grep -q "export.*AnthropicClient" integrations/llm-providers/anthropic-client.ts; then
     echo "  ✅ AnthropicClient interface exported"
   else
     echo "  ⚠️  AnthropicClient interface not found"
   fi
 
   # Check for required methods
-  if grep -q "createMessage\|sendMessage\|chat" INTEGRATIONS/llm-providers/anthropic-client.ts; then
+  if grep -q "createMessage\|sendMessage\|chat" integrations/llm-providers/anthropic-client.ts; then
     echo "  ✅ Core messaging methods present"
   else
     echo "  ⚠️  Core messaging methods missing"
@@ -1234,25 +1234,25 @@ echo ""
 echo "Integration 2: OpenAI API Client"
 echo "─────────────────────────────────────"
 
-if [ -f "INTEGRATIONS/llm-providers/openai-client.ts" ]; then
+if [ -f "integrations/llm-providers/openai-client.ts" ]; then
   echo "  ✅ OpenAI client file exists"
 
   # Verify exports
-  if grep -q "export.*OpenAIClient\|export.*createOpenAIClient" INTEGRATIONS/llm-providers/openai-client.ts; then
+  if grep -q "export.*OpenAIClient\|export.*createOpenAIClient" integrations/llm-providers/openai-client.ts; then
     echo "  ✅ OpenAI client interface exported"
   else
     echo "  ⚠️  OpenAI client interface not found"
   fi
 
   # Check for embeddings support (critical for RAG)
-  if grep -q "embedding\|createEmbedding" INTEGRATIONS/llm-providers/openai-client.ts; then
+  if grep -q "embedding\|createEmbedding" integrations/llm-providers/openai-client.ts; then
     echo "  ✅ Embeddings support present (RAG-ready)"
   else
     echo "  ⚠️  Embeddings support not found"
   fi
 
   # Check for streaming support
-  if grep -q "stream\|streaming" INTEGRATIONS/llm-providers/openai-client.ts; then
+  if grep -q "stream\|streaming" integrations/llm-providers/openai-client.ts; then
     echo "  ✅ Streaming support present"
   else
     echo "  ⚠️  Streaming support not found"
@@ -1275,25 +1275,25 @@ echo ""
 echo "Integration 3: Supabase Database Client"
 echo "─────────────────────────────────────"
 
-if [ -f "INTEGRATIONS/platforms/supabase/client.ts" ]; then
+if [ -f "integrations/platforms/supabase/client.ts" ]; then
   echo "  ✅ Supabase client file exists"
 
   # Verify createClient export
-  if grep -q "createClient\|createSupabaseClient" INTEGRATIONS/platforms/supabase/client.ts; then
+  if grep -q "createClient\|createSupabaseClient" integrations/platforms/supabase/client.ts; then
     echo "  ✅ Client creation function exported"
   else
     echo "  ⚠️  Client creation function not found"
   fi
 
   # Check for auth helpers
-  if [ -f "INTEGRATIONS/platforms/supabase/server.tsx" ] || [ -f "INTEGRATIONS/platforms/supabase/hooks.tsx" ]; then
+  if [ -f "integrations/platforms/supabase/server.tsx" ] || [ -f "integrations/platforms/supabase/hooks.tsx" ]; then
     echo "  ✅ Auth helpers present"
   else
     echo "  ⚠️  Auth helpers missing"
   fi
 
   # Verify environment variable usage
-  if grep -q "process\.env\.SUPABASE_URL\|SUPABASE_ANON_KEY" INTEGRATIONS/platforms/supabase/client.ts; then
+  if grep -q "process\.env\.SUPABASE_URL\|SUPABASE_ANON_KEY" integrations/platforms/supabase/client.ts; then
     echo "  ✅ Environment variable configuration present"
   else
     echo "  ⚠️  Environment configuration not found"
@@ -1340,36 +1340,36 @@ echo ""
 echo "Integration 4: Stripe Payment Client"
 echo "─────────────────────────────────────"
 
-if [ -f "INTEGRATIONS/platforms/stripe/client.ts" ]; then
+if [ -f "integrations/platforms/stripe/client.ts" ]; then
   echo "  ✅ Stripe client file exists"
 
   # Verify Stripe client exports
-  if grep -q "export.*StripeClient\|export.*createStripeClient" INTEGRATIONS/platforms/stripe/client.ts; then
+  if grep -q "export.*StripeClient\|export.*createStripeClient" integrations/platforms/stripe/client.ts; then
     echo "  ✅ Stripe client interface exported"
   else
     echo "  ⚠️  Stripe client interface not found"
   fi
 
   # Check for payment methods
-  if grep -q "createPaymentIntent\|createCustomer\|createSubscription" INTEGRATIONS/platforms/stripe/client.ts; then
+  if grep -q "createPaymentIntent\|createCustomer\|createSubscription" integrations/platforms/stripe/client.ts; then
     echo "  ✅ Payment creation methods present"
   else
     echo "  ⚠️  Payment methods missing"
   fi
 
   # Verify webhook handling
-  if [ -f "INTEGRATIONS/platforms/stripe/webhooks.ts" ]; then
+  if [ -f "integrations/platforms/stripe/webhooks.ts" ]; then
     echo "  ✅ Webhook handler present"
 
     # Check for webhook signature verification
-    if grep -q "constructEvent\|verifySignature" INTEGRATIONS/platforms/stripe/webhooks.ts; then
+    if grep -q "constructEvent\|verifySignature" integrations/platforms/stripe/webhooks.ts; then
       echo "  ✅ Webhook signature verification present (SECURE)"
     else
       echo "  ⚠️  Webhook signature verification missing (SECURITY RISK)"
     fi
 
     # Check for common event handlers
-    if grep -q "payment_intent\|customer\|subscription" INTEGRATIONS/platforms/stripe/webhooks.ts; then
+    if grep -q "payment_intent\|customer\|subscription" integrations/platforms/stripe/webhooks.ts; then
       echo "  ✅ Payment event handlers present"
     else
       echo "  ⚠️  Event handlers may be incomplete"
@@ -1379,7 +1379,7 @@ if [ -f "INTEGRATIONS/platforms/stripe/client.ts" ]; then
   fi
 
   # Check for test mode support
-  if grep -q "test.*key\|sk_test" INTEGRATIONS/platforms/stripe/client.ts; then
+  if grep -q "test.*key\|sk_test" integrations/platforms/stripe/client.ts; then
     echo "  ✅ Test mode support detected"
   else
     echo "  ⚠️  Test mode configuration not found"
@@ -1410,32 +1410,32 @@ echo ""
 echo "Integration 5: Resend Email Client"
 echo "─────────────────────────────────────"
 
-if [ -f "INTEGRATIONS/platforms/resend/client.ts" ]; then
+if [ -f "integrations/platforms/resend/client.ts" ]; then
   echo "  ✅ Resend client file exists"
 
   # Verify Resend client exports
-  if grep -q "export.*ResendClient\|export.*createResendClient\|export.*Resend" INTEGRATIONS/platforms/resend/client.ts; then
+  if grep -q "export.*ResendClient\|export.*createResendClient\|export.*Resend" integrations/platforms/resend/client.ts; then
     echo "  ✅ Resend client interface exported"
   else
     echo "  ⚠️  Resend client interface not found"
   fi
 
   # Check for email sending methods
-  if grep -q "sendEmail\|send\|emails\.send" INTEGRATIONS/platforms/resend/client.ts; then
+  if grep -q "sendEmail\|send\|emails\.send" integrations/platforms/resend/client.ts; then
     echo "  ✅ Email sending methods present"
   else
     echo "  ⚠️  Email sending methods missing"
   fi
 
   # Check for template support
-  if grep -q "template\|react.*email" INTEGRATIONS/platforms/resend/client.ts; then
+  if grep -q "template\|react.*email" integrations/platforms/resend/client.ts; then
     echo "  ✅ Template support detected (React Email integration)"
   else
     echo "  ⚠️  Template support not found"
   fi
 
   # Check for batch sending
-  if grep -q "batch\|sendBatch" INTEGRATIONS/platforms/resend/client.ts; then
+  if grep -q "batch\|sendBatch" integrations/platforms/resend/client.ts; then
     echo "  ✅ Batch email support present"
   else
     echo "  ℹ️  Batch sending not implemented (not critical)"
@@ -1453,7 +1453,7 @@ if [ -f "INTEGRATIONS/platforms/resend/client.ts" ]; then
     fi
 
     # Check for test email domain
-    if grep -q "onboarding@resend.dev\|test.*domain" INTEGRATIONS/platforms/resend/client.ts; then
+    if grep -q "onboarding@resend.dev\|test.*domain" integrations/platforms/resend/client.ts; then
       echo "  ✅ Test domain configuration present"
     fi
   else
@@ -1474,7 +1474,7 @@ echo "────────────────────────�
 # Check for Slack integration files (multiple possible locations)
 SLACK_CLIENT_FOUND=false
 
-for SLACK_PATH in "INTEGRATIONS/platforms/slack/client.ts" "INTEGRATIONS/platforms/slack/webhooks.ts" "COMPONENTS/notifications/slack-client.ts"; do
+for SLACK_PATH in "integrations/platforms/slack/client.ts" "integrations/platforms/slack/webhooks.ts" "components/notifications/slack-client.ts"; do
   if [ -f "$SLACK_PATH" ]; then
     echo "  ✅ Slack client found: $SLACK_PATH"
     SLACK_CLIENT_FOUND=true
@@ -1614,7 +1614,7 @@ echo ""
 # 3. Grades outputs using exact match, regex, or LLM-based grading
 # 4. Reports pass/fail rates and performance metrics
 #
-# See: DOCS/VALIDATION-SYSTEM.md for methodology
+# See: docs/VALIDATION-SYSTEM.md for methodology
 ###############################################################################
 
 AGENT_EVAL_AVAILABLE=false
@@ -1635,7 +1635,7 @@ if [ "$AGENT_EVAL_AVAILABLE" = false ]; then
   echo "ℹ️  To enable Agent Evaluation:"
   echo "   • Ensure scripts/run-agent-evals.js exists"
   echo "   • Ensure tests/fixtures/golden-dataset-example.json exists"
-  echo "   • See DOCS/VALIDATION-SYSTEM.md for setup"
+  echo "   • See docs/VALIDATION-SYSTEM.md for setup"
   echo ""
 else
   # Run agent evaluations in mock mode for validation

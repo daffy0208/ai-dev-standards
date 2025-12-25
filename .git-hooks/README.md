@@ -20,8 +20,8 @@ Automatically validates code quality and **auto-maintains documentation** before
 When you commit changes:
 
 1. **Registry Generation** (`npm run generate:registries`)
-   - Scans `SKILLS/`, `MCP-SERVERS/`, `TOOLS/`, etc.
-   - Regenerates all `META/*.json` registry files
+   - Scans `skills/`, `mcp-servers/`, `tools/`, etc.
+   - Regenerates all `meta/*.json` registry files
    - Validates counts match directory structure
 
 2. **Documentation Generation** (`npm run generate:docs`)

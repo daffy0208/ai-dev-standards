@@ -160,10 +160,10 @@ See `.claude/CLAUDE.md` for complete skill inventory.
 
 ## Related Resources
 
-- **Skills:** `/SKILLS/` - 41 specialized development methodologies
+- **Skills:** `/skills/` - 41 specialized development methodologies
 - **MCPs:** `/MCP/` - 36 executable servers
-- **Tools:** `/TOOLS/` - LangChain and CrewAI tools
-- **Components:** `/COMPONENTS/` - Reusable React components
+- **Tools:** `/tools/` - LangChain and CrewAI tools
+- **Components:** `/components/` - Reusable React components
 
 ---
 

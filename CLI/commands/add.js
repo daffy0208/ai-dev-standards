@@ -319,7 +319,7 @@ function showNextSteps(type, name) {
     case 'mcp-server':
       console.log(
         chalk.gray(
-          `  1. Install dependencies: ${chalk.cyan(`cd MCP-SERVERS/${name}-mcp && npm install`)}`
+          `  1. Install dependencies: ${chalk.cyan(`cd mcp-servers/${name}-mcp && npm install`)}`
         )
       )
       console.log(chalk.gray(`  2. Test the server: ${chalk.cyan(`npm test`)}`))

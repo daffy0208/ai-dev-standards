@@ -49,7 +49,7 @@ npm install
 For intelligent resource discovery:
 
 ```bash
-cd MCP-SERVERS/brain-mcp
+cd mcp-servers/brain-mcp
 npm install
 npm run build
 cd ../..
@@ -63,37 +63,37 @@ cd ../..
 
 ```
 ai-dev-standards/
-├── SKILLS/                         # <!-- AUTO-GEN:START:skills -->64<!-- AUTO-GEN:END:skills --> specialized methodologies
+├── skills/                         # <!-- AUTO-GEN:START:skills -->64<!-- AUTO-GEN:END:skills --> specialized methodologies
 │   ├── mvp-builder/                # MVP development patterns
 │   ├── rag-implementer/            # RAG implementation guide
 │   ├── api-designer/               # API design principles
 │   └── [61 more skills...]
 │
-├── MCP-SERVERS/                    # <!-- AUTO-GEN:START:mcps -->50<!-- AUTO-GEN:END:mcps --> automation tools
+├── mcp-servers/                    # <!-- AUTO-GEN:START:mcps -->50<!-- AUTO-GEN:END:mcps --> automation tools
 │   ├── brain-mcp/                  # Intelligent orchestration
 │   ├── feature-prioritizer/        # Feature prioritization
 │   └── [48 more MCPs...]
 │
-├── COMPONENTS/                     # <!-- AUTO-GEN:START:components -->72<!-- AUTO-GEN:END:components --> React components
+├── components/                     # <!-- AUTO-GEN:START:components -->72<!-- AUTO-GEN:END:components --> React components
 │   ├── auth/                       # Authentication components
 │   ├── forms/                      # Form components
 │   └── [more categories...]
 │
-├── INTEGRATIONS/                   # <!-- AUTO-GEN:START:integrations -->28<!-- AUTO-GEN:END:integrations --> service integrations
+├── integrations/                   # <!-- AUTO-GEN:START:integrations -->28<!-- AUTO-GEN:END:integrations --> service integrations
 │   ├── openai/                     # AI service providers
 │   ├── supabase/                   # Database & auth
 │   └── [more providers...]
 │
-├── STANDARDS/                      # Architecture patterns & best practices
+├── standards/                      # Architecture patterns & best practices
 │   ├── architecture-patterns/      # System design patterns
 │   └── best-practices/             # Quality standards
 │
-├── META/                           # Navigation and registries
+├── meta/                           # Navigation and registries
 │   ├── skill-registry.json         # Searchable skill catalog
 │   ├── mcp-registry.json           # MCP catalog
 │   └── HOW-TO-USE.md               # Navigation guide
 │
-└── DOCS/                           # Documentation
+└── docs/                           # Documentation
     ├── QUICK-START.md              # Getting started
     └── [more guides...]
 ```
@@ -108,17 +108,17 @@ Navigate through directories to explore:
 
 ```bash
 # Browse skills
-ls SKILLS/
+ls skills/
 
 # Look at a specific skill
-cat SKILLS/mvp-builder/skill.md
-cat SKILLS/mvp-builder/README.md
+cat skills/mvp-builder/skill.md
+cat skills/mvp-builder/README.md
 
 # Explore MCP servers
-ls MCP-SERVERS/
+ls mcp-servers/
 
 # Check out components
-ls COMPONENTS/
+ls components/
 ```
 
 ### Method 2: Search Registries
@@ -127,11 +127,11 @@ Use the registry files for structured exploration:
 
 ```bash
 # View all skills with descriptions
-cat META/skill-registry.json | grep -A 3 "name"
+cat meta/skill-registry.json | grep -A 3 "name"
 
 # Search for specific topics
-grep -r "authentication" META/skill-registry.json
-grep -r "RAG" META/skill-registry.json
+grep -r "authentication" meta/skill-registry.json
+grep -r "RAG" meta/skill-registry.json
 ```
 
 ### Method 3: Use the Brain CLI
@@ -140,7 +140,7 @@ The brain CLI helps you discover resources intelligently:
 
 ```bash
 # Install brain CLI globally
-cd MCP-SERVERS/brain-mcp
+cd mcp-servers/brain-mcp
 npm link
 
 # Search for resources
@@ -170,13 +170,13 @@ Use standard Unix tools:
 
 ```bash
 # Find all skills mentioning "security"
-grep -r "security" SKILLS/ --include="*.md"
+grep -r "security" skills/ --include="*.md"
 
 # Find React components
-find COMPONENTS/ -name "*.tsx" -o -name "*.jsx"
+find components/ -name "*.tsx" -o -name "*.jsx"
 
 # Search documentation
-grep -r "deployment" DOCS/ --include="*.md"
+grep -r "deployment" docs/ --include="*.md"
 ```
 
 ---
@@ -193,7 +193,7 @@ grep -r "deployment" DOCS/ --include="*.md"
 
 ```bash
 # Read about MVP building
-cat SKILLS/mvp-builder/README.md
+cat skills/mvp-builder/README.md
 
 # Apply the P0/P1/P2 prioritization framework manually
 # to your own feature planning
@@ -209,7 +209,7 @@ cat SKILLS/mvp-builder/README.md
 
 ```bash
 # Copy a component
-cp -r COMPONENTS/auth/LoginForm src/components/
+cp -r components/auth/LoginForm src/components/
 
 # Adapt it to your project's styling and requirements
 ```
@@ -221,7 +221,7 @@ Keep the repository open while coding:
 ```bash
 # In one terminal
 cd ~/ai-dev-standards
-cat SKILLS/api-designer/skill.md
+cat skills/api-designer/skill.md
 
 # In another terminal
 cd ~/my-project
@@ -234,11 +234,11 @@ When working with Claude or other AI assistants:
 
 ```
 "I'm building a REST API. Can you reference the api-designer skill
-from ~/ai-dev-standards/SKILLS/api-designer/ and help me design it?"
+from ~/ai-dev-standards/skills/api-designer/ and help me design it?"
 ```
 
 ```
-"Look at ~/ai-dev-standards/STANDARDS/architecture-patterns/rag-pattern.md
+"Look at ~/ai-dev-standards/standards/architecture-patterns/rag-pattern.md
 and help me choose the right RAG architecture for my use case."
 ```
 
@@ -283,7 +283,7 @@ After pulling updates:
 
 ```bash
 # Rebuild brain-mcp if it was updated
-cd MCP-SERVERS/brain-mcp
+cd mcp-servers/brain-mcp
 npm install
 npm run build
 cd ../..
@@ -303,10 +303,10 @@ npm install
 brain search "RAG implementation"
 
 # 2. Read the skill
-cat SKILLS/rag-implementer/README.md
+cat skills/rag-implementer/README.md
 
 # 3. Check related patterns
-cat STANDARDS/architecture-patterns/rag-pattern.md
+cat standards/architecture-patterns/rag-pattern.md
 
 # 4. Look at related MCPs
 brain relationships rag-implementer
@@ -316,16 +316,16 @@ brain relationships rag-implementer
 
 ```bash
 # 1. Browse components
-ls COMPONENTS/
+ls components/
 
 # 2. Look at specific category
-ls COMPONENTS/auth/
+ls components/auth/
 
 # 3. Read component code
-cat COMPONENTS/auth/LoginForm/LoginForm.tsx
+cat components/auth/LoginForm/LoginForm.tsx
 
 # 4. Check for examples
-ls EXAMPLES/
+ls examples/
 ```
 
 ### Planning a New Feature
@@ -335,11 +335,11 @@ ls EXAMPLES/
 brain select-skills "build user authentication"
 
 # 2. Read recommended skills
-cat SKILLS/security-auditor/skill.md
-cat SKILLS/api-designer/skill.md
+cat skills/security-auditor/skill.md
+cat skills/api-designer/skill.md
 
 # 3. Check best practices
-cat STANDARDS/best-practices/
+cat standards/best-practices/
 
 # 4. Plan implementation based on learnings
 ```
@@ -354,7 +354,7 @@ You can manually load skills into your conversation:
 
 ```
 "I want to build an MVP. Please read and follow the methodology in:
-~/ai-dev-standards/SKILLS/mvp-builder/skill.md"
+~/ai-dev-standards/skills/mvp-builder/skill.md"
 ```
 
 ### Cursor / Other IDEs
@@ -362,7 +362,7 @@ You can manually load skills into your conversation:
 Reference the repository in your prompts:
 
 ```
-"Using the principles from ~/ai-dev-standards/SKILLS/frontend-builder/,
+"Using the principles from ~/ai-dev-standards/skills/frontend-builder/,
 help me structure this React component."
 ```
 
@@ -370,7 +370,7 @@ help me structure this React component."
 
 ```bash
 # Example with a hypothetical CLI AI tool
-ai-tool --context ~/ai-dev-standards/SKILLS/api-designer/skill.md \
+ai-tool --context ~/ai-dev-standards/skills/api-designer/skill.md \
   "Design a REST API for user management"
 ```
 
@@ -432,7 +432,7 @@ Development utilities and automation scripts.
 Install the brain CLI:
 
 ```bash
-cd ~/ai-dev-standards/MCP-SERVERS/brain-mcp
+cd ~/ai-dev-standards/mcp-servers/brain-mcp
 npm install
 npm run build
 npm link
@@ -479,8 +479,8 @@ Found a bug or have an improvement? See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ### Get Help
 
-- Check [DOCS/TROUBLESHOOTING.md](DOCS/TROUBLESHOOTING.md)
-- Review [META/HOW-TO-USE.md](META/HOW-TO-USE.md)
+- Check [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)
+- Review [meta/HOW-TO-USE.md](meta/HOW-TO-USE.md)
 - Open an issue on GitHub
 
 ---

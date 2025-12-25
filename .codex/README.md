@@ -30,7 +30,7 @@ This guide walks you through connecting the **Codex CLI** to the **ai-dev-standa
 
 3. Build the Brain MCP
    ```bash
-   cd MCP-SERVERS/brain-mcp
+   cd mcp-servers/brain-mcp
    npm install
    npm run build
    cd ../..
@@ -58,10 +58,10 @@ cat > ~/.codex/mcp-servers.json <<'JSON'
     "brain-mcp": {
       "command": "node",
       "args": [
-        "/mnt/c/Users/david/OneDrive - Qolcom/AI/AI_Development_Projects/ai-dev-standards/MCP-SERVERS/brain-mcp/dist/index.js"
+        "$AI_DEV_STANDARDS_ROOT/mcp-servers/brain-mcp/dist/index.js"
       ],
       "env": {
-        "AI_DEV_STANDARDS_ROOT": "/mnt/c/Users/david/OneDrive - Qolcom/AI/AI_Development_Projects/ai-dev-standards"
+        "AI_DEV_STANDARDS_ROOT": "/path/to/your/ai-dev-standards"
       },
       "description": "Brain MCP for querying skills, MCPs, and capabilities in ai-dev-standards",
       "timeout": 30000
@@ -71,7 +71,7 @@ cat > ~/.codex/mcp-servers.json <<'JSON'
 JSON
 ```
 
-Update the paths if your repository lives somewhere else.
+Update the `AI_DEV_STANDARDS_ROOT` environment variable to point to your repository location.
 
 ---
 
@@ -161,7 +161,7 @@ codex exec "Use brain_select_skills with taskDescription 'build analytics dashbo
 1. Read `.codex/QUICK-START.md` for a 5-minute walkthrough
 2. Compare workflows in `.codex/CLAUDE-VS-CODEX.md`
 3. Run `codex exec "Use brain_status"` to confirm everything works
-4. Explore skills via `META/skill-registry.json` and invoke them with Codex
+4. Explore skills via `meta/skill-registry.json` and invoke them with Codex
 
 ---
 

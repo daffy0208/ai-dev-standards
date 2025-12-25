@@ -340,42 +340,42 @@ function getFileDependencies(): Record<string, FileDependency> {
       priority: 'high',
       description: 'Version and resource statistics must be current'
     },
-    'TEMPLATES/cursorrules-ai-rag.md': {
+    'templates/cursorrules-ai-rag.md': {
       depends_on_registries: ['all'],
       update_type: 'statistics',
       sections: ['Available Resources'],
       priority: 'medium',
       description: 'Template should reference current registry statistics'
     },
-    'TEMPLATES/cursorrules-existing-project.md': {
+    'templates/cursorrules-existing-project.md': {
       depends_on_registries: ['all'],
       update_type: 'statistics',
       sections: ['Available Resources'],
       priority: 'medium',
       description: 'Template should reference current registry statistics'
     },
-    'TEMPLATES/cursorrules-minimal.md': {
+    'templates/cursorrules-minimal.md': {
       depends_on_registries: ['all'],
       update_type: 'statistics',
       sections: ['Available Resources'],
       priority: 'medium',
       description: 'Template should reference current registry statistics'
     },
-    'TEMPLATES/cursorrules-quick-test.md': {
+    'templates/cursorrules-quick-test.md': {
       depends_on_registries: ['all'],
       update_type: 'statistics',
       sections: ['Available Resources'],
       priority: 'medium',
       description: 'Template should reference current registry statistics'
     },
-    'TEMPLATES/cursorrules-saas.md': {
+    'templates/cursorrules-saas.md': {
       depends_on_registries: ['all'],
       update_type: 'statistics',
       sections: ['Available Resources'],
       priority: 'medium',
       description: 'Template should reference current registry statistics'
     },
-    'INSTALLERS/bootstrap/bootstrap.js': {
+    'installers/bootstrap/bootstrap.js': {
       depends_on_registries: ['all'],
       update_type: 'code',
       sections: ['installation logic', 'resource fetching'],
@@ -595,11 +595,11 @@ async function regenerateRelationships(options: { checkOnly?: boolean } = {}) {
       automation:
         'When registries are updated, check file_dependencies to see which files need updating. Sort by priority (critical > high > medium > low) and update_type.',
       cross_references: [
-        'META/skill-registry.json - All skills',
-        'META/mcp-registry.json - All MCPs',
-        'META/tool-registry.json - All tools',
-        'META/component-registry.json - All components',
-        'META/integration-registry.json - All integrations'
+        'meta/skill-registry.json - All skills',
+        'meta/mcp-registry.json - All MCPs',
+        'meta/tool-registry.json - All tools',
+        'meta/component-registry.json - All components',
+        'meta/integration-registry.json - All integrations'
       ]
     }
   }

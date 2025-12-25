@@ -404,7 +404,7 @@ async function addSkillToProject(projectPath, skill, deps = defaultDeps) {
 
     let content = await fs.readFile(configPath, 'utf8')
 
-    let skillPath = skill.path || `/SKILLS/${skill.id}/`
+    let skillPath = skill.path || `/skills/${skill.id}/`
     if (!skillPath.toLowerCase().endsWith('skill.md')) {
       if (!skillPath.endsWith('/')) {
         skillPath = `${skillPath}/`

@@ -105,10 +105,10 @@ class MCPImplementation {
 
 ## Documentation
 
-See /DOCS/mcp-patterns/07-mcp-security-privacy-best-practices.md for details.
+See /docs/mcp-patterns/07-mcp-security-privacy-best-practices.md for details.
 `
 
-    await this.createFile(path.join(__dirname, '../SECURITY/README.md'), securityReadme)
+    await this.createFile(path.join(__dirname, '../security/README.md'), securityReadme)
 
     // Sandbox templates
     const dockerSandbox = `FROM python:3.11-slim
@@ -128,7 +128,7 @@ USER mcpagent
 `
 
     await this.createFile(
-      path.join(__dirname, '../SECURITY/sandbox/docker-sandbox.dockerfile'),
+      path.join(__dirname, '../security/sandbox/docker-sandbox.dockerfile'),
       dockerSandbox
     )
 
@@ -202,7 +202,7 @@ export class PIITokenizer {
 `
 
     await this.createFile(
-      path.join(__dirname, '../SECURITY/pii-tokenization/pii-tokenizer.ts'),
+      path.join(__dirname, '../security/pii-tokenization/pii-tokenizer.ts'),
       piiTokenizer
     )
 
@@ -349,12 +349,12 @@ export class PIITokenizer {
 - Complex tasks → Code Execution
 - Best of both worlds
 
-**Documentation:** See [\`/DOCS/mcp-patterns/\`](./DOCS/mcp-patterns/) for complete guides.
+**Documentation:** See [\`/docs/mcp-patterns/\`](./docs/mcp-patterns/) for complete guides.
 
 **Quick Start:**
-- [Decision Framework](./DOCS/mcp-patterns/01-mcp-decision-framework.md) - Which pattern to use?
-- [Implementation Roadmap](./DOCS/mcp-patterns/10-mcp-implementation-roadmap.md) - 12-week plan
-- [Migration Guide](./DOCS/mcp-patterns/04-mcp-migration-guide.md) - How to migrate
+- [Decision Framework](./docs/mcp-patterns/01-mcp-decision-framework.md) - Which pattern to use?
+- [Implementation Roadmap](./docs/mcp-patterns/10-mcp-implementation-roadmap.md) - 12-week plan
+- [Migration Guide](./docs/mcp-patterns/04-mcp-migration-guide.md) - How to migrate
 
 **Current State:**
 - 50 MCPs (all Direct pattern)
@@ -438,7 +438,7 @@ export class PIITokenizer {
       console.log('     node scripts/update-skill-registry-patterns.js')
       console.log('  2. Review configuration files in /config/')
       console.log('  3. Test brain orchestrator: npm test')
-      console.log('  4. Review documentation in /DOCS/mcp-patterns/')
+      console.log('  4. Review documentation in /docs/mcp-patterns/')
     }
   }
 }

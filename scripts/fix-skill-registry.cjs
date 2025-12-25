@@ -3,8 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const SKILLS_DIR = path.join(__dirname, '..', 'SKILLS');
-const SKILL_REGISTRY_PATH = path.join(__dirname, '..', 'META', 'skill-registry.json');
+const SKILLS_DIR = path.join(__dirname, '..', 'skills');
+const SKILL_REGISTRY_PATH = path.join(__dirname, '..', 'meta', 'skill-registry.json');
 
 // Skills to remove (don't exist as folders)
 const SKILLS_TO_REMOVE = ['database-architect', 'observability-engineer'];
@@ -155,7 +155,7 @@ function main() {
       category: metadata.category,
       difficulty: metadata.difficulty,
       estimated_time: '1-3 hours',
-      path: `/SKILLS/${skillName}/`,
+      path: `/skills/${skillName}/`,
       status: 'active',
       prerequisites: [],
       related_skills: [],

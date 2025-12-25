@@ -3,7 +3,7 @@
 /**
  * Sync Schema Registry
  *
- * Rebuilds schema-registry.json from SCHEMAS/ folder (single source of truth)
+ * Rebuilds schema-registry.json from schemas/ folder (single source of truth)
  * Extracts metadata from schema files
  * This is the ONLY way to update schema-registry.json
  */
@@ -12,8 +12,8 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const SCHEMAS_DIR = path.join(ROOT, 'SCHEMAS');
-const SCHEMA_REGISTRY_PATH = path.join(ROOT, 'META', 'schema-registry.json');
+const SCHEMAS_DIR = path.join(ROOT, 'schemas');
+const SCHEMA_REGISTRY_PATH = path.join(ROOT, 'meta', 'schema-registry.json');
 
 const GREEN = '\x1b[32m';
 const YELLOW = '\x1b[33m';
@@ -34,13 +34,13 @@ function extractMetadataFromSchema(fileName) {
   let description = `Schema for validating ${name.replace(/-/g, ' ')}`;
 
   if (name.includes('skill')) {
-    validates = ['SKILLS/*/SKILL.md'];
+    validates = ['skills/*/SKILL.md'];
     description = 'JSON schema for validating skill definitions. Defines required metadata, triggers, dependencies, and documentation structure for AI agent skills.';
   } else if (name.includes('mcp')) {
-    validates = ['MCP-SERVERS/*'];
+    validates = ['mcp-servers/*'];
     description = 'JSON schema for validating MCP (Model Context Protocol) server definitions. Defines server configuration, tools, resources, and metadata structure.';
   } else if (name.includes('component')) {
-    validates = ['COMPONENTS/*'];
+    validates = ['components/*'];
     description = 'YAML schema for validating component structure and metadata. Defines required fields, dependencies, props, and documentation for React components.';
   } else if (name.includes('ai-dev')) {
     validates = ['.ai-dev.json'];
@@ -53,7 +53,7 @@ function extractMetadataFromSchema(fileName) {
     description,
     format,
     version: '1.0.0',
-    path: `/SCHEMAS/${fileName}`,
+    path: `/schemas/${fileName}`,
     status: 'active',
     validates,
     related_skills: [],
@@ -63,7 +63,7 @@ function extractMetadataFromSchema(fileName) {
 }
 
 function main() {
-  console.log(`\n${GREEN}🔄 Syncing schema-registry.json from SCHEMAS/ folder${RESET}\n`);
+  console.log(`\n${GREEN}🔄 Syncing schema-registry.json from schemas/ folder${RESET}\n`);
 
   // Read all schemas
   const files = fs.readdirSync(SCHEMAS_DIR)
@@ -119,7 +119,7 @@ function main() {
   console.log(`${YELLOW}  Formats: JSON (${formatCounts['json-schema']}), YAML (${formatCounts['yaml-schema']})${RESET}\n`);
 
   // Also update main registry.json
-  const MAIN_REGISTRY_PATH = path.join(ROOT, 'META', 'registry.json');
+  const MAIN_REGISTRY_PATH = path.join(ROOT, 'meta', 'registry.json');
   if (fs.existsSync(MAIN_REGISTRY_PATH)) {
     const mainRegistry = JSON.parse(fs.readFileSync(MAIN_REGISTRY_PATH, 'utf-8'));
     mainRegistry.schemas = schemas;

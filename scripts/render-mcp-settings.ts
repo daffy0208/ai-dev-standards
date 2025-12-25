@@ -63,7 +63,7 @@ function generateMCPConfig(mcpId: string, aiDevRoot: string): any {
   // Most MCPs follow this pattern
   return {
     command: 'node',
-    args: [`${aiDevRoot}/MCP-SERVERS/${mcpId}/dist/index.js`],
+    args: [`${aiDevRoot}/mcp-servers/${mcpId}/dist/index.js`],
     env: {
       AI_DEV_STANDARDS_ROOT: aiDevRoot
     }

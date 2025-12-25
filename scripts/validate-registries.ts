@@ -122,7 +122,7 @@ function validateSkillRegistry(): ValidationResult {
 
   if (registry.skills && registry.skills.length !== actualSkills.length) {
     result.errors.push(
-      `Registry has ${registry.skills.length} skills but SKILLS/ directory has ${actualSkills.length} directories`
+      `Registry has ${registry.skills.length} skills but skills/ directory has ${actualSkills.length} directories`
     )
     result.passed = false
   }
@@ -227,7 +227,7 @@ function validateMCPRegistry(): ValidationResult {
 
   if (registry.mcps && registry.mcps.length !== actualMCPs.length) {
     result.errors.push(
-      `Registry has ${registry.mcps.length} MCPs but MCP-SERVERS/ directory has ${actualMCPs.length} directories`
+      `Registry has ${registry.mcps.length} MCPs but mcp-servers/ directory has ${actualMCPs.length} directories`
     )
     result.passed = false
   }

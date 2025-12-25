@@ -306,7 +306,7 @@ This project is configured to use the Code Execution pattern for:
 - Persistent skill library
 - Sandboxed code execution
 
-See \`/DOCS/mcp-patterns/\` for complete documentation.
+See \`/docs/mcp-patterns/\` for complete documentation.
 `
     : mcpPattern === 'hybrid'
       ? `
@@ -315,7 +315,7 @@ This project uses a hybrid approach:
 - Complex, frequent operations: Code Execution pattern
 - Automatic pattern selection via Brain orchestrator
 
-See \`/DOCS/mcp-patterns/09-brain-orchestrator-mcp-integration.md\` for details.
+See \`/docs/mcp-patterns/09-brain-orchestrator-mcp-integration.md\` for details.
 `
       : `
 This project uses the traditional Direct MCP pattern.
