@@ -12,16 +12,16 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 const ROOT = path.join(__dirname, '..');
-const SKILLS_DIR = path.join(ROOT, 'SKILLS');
-const MCP_DIR = path.join(ROOT, 'MCP-SERVERS');
-const PLAYBOOKS_DIR = path.join(ROOT, 'PLAYBOOKS');
-const STANDARDS_DIR = path.join(ROOT, 'STANDARDS');
-const TEMPLATES_DIR = path.join(ROOT, 'TEMPLATES');
-const SCHEMAS_DIR = path.join(ROOT, 'SCHEMAS');
-const UTILS_DIR = path.join(ROOT, 'UTILS');
-const EXAMPLES_DIR = path.join(ROOT, 'EXAMPLES');
-const INSTALLERS_DIR = path.join(ROOT, 'INSTALLERS');
-const DOCS_DIR = path.join(ROOT, 'DOCS');
+const SKILLS_DIR = path.join(ROOT, 'skills');
+const MCP_DIR = path.join(ROOT, 'mcp-servers');
+const PLAYBOOKS_DIR = path.join(ROOT, 'playbooks');
+const STANDARDS_DIR = path.join(ROOT, 'standards');
+const TEMPLATES_DIR = path.join(ROOT, 'templates');
+const SCHEMAS_DIR = path.join(ROOT, 'schemas');
+const UTILS_DIR = path.join(ROOT, 'utils');
+const EXAMPLES_DIR = path.join(ROOT, 'examples');
+const INSTALLERS_DIR = path.join(ROOT, 'installers');
+const DOCS_DIR = path.join(ROOT, 'docs');
 
 // Color codes for output
 const RED = '\x1b[31m';
@@ -76,7 +76,7 @@ function getActualCounts() {
 function validateSkillRegistry(actual) {
   section('Validating skill-registry.json');
 
-  const registryPath = path.join(ROOT, 'META', 'skill-registry.json');
+  const registryPath = path.join(ROOT, 'meta', 'skill-registry.json');
   const registry = JSON.parse(fs.readFileSync(registryPath, 'utf-8'));
 
   const registryCount = registry.skills.length;
@@ -117,7 +117,7 @@ function validateSkillRegistry(actual) {
 function validateMainRegistry(actual) {
   section('Validating registry.json');
 
-  const registryPath = path.join(ROOT, 'META', 'registry.json');
+  const registryPath = path.join(ROOT, 'meta', 'registry.json');
   const registry = JSON.parse(fs.readFileSync(registryPath, 'utf-8'));
 
   const skillCount = registry.skills.length;
@@ -181,7 +181,7 @@ function validateTier2Registries() {
       return;
     }
 
-    const registryPath = path.join(ROOT, 'META', name);
+    const registryPath = path.join(ROOT, 'meta', name);
     if (!fs.existsSync(registryPath)) {
       error(`${name}: Registry file not found`);
       return;
@@ -206,7 +206,7 @@ function validateTier2Registries() {
 function validateRelationships(actual) {
   section('Validating relationship-mapping.json');
 
-  const relationshipsPath = path.join(ROOT, 'META', 'relationship-mapping.json');
+  const relationshipsPath = path.join(ROOT, 'meta', 'relationship-mapping.json');
   const relationships = JSON.parse(fs.readFileSync(relationshipsPath, 'utf-8'));
 
   const skillMappings = relationships.relationships?.skills_to_mcps || relationships.skills || {};
@@ -498,9 +498,9 @@ function main() {
   validateCLICommands();
 
   // Count all Tier 1 resources
-  const componentRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'component-registry.json'), 'utf-8'));
-  const integrationRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'integration-registry.json'), 'utf-8'));
-  const toolRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'META', 'tool-registry.json'), 'utf-8'));
+  const componentRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'component-registry.json'), 'utf-8'));
+  const integrationRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'integration-registry.json'), 'utf-8'));
+  const toolRegistry = JSON.parse(fs.readFileSync(path.join(ROOT, 'meta', 'tool-registry.json'), 'utf-8'));
 
   const componentCount = componentRegistry.components?.length || 0;
   const integrationCount = integrationRegistry.integrations?.length || 0;

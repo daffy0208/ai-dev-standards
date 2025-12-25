@@ -11,8 +11,8 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const MCP_DIR = path.join(ROOT, 'MCP-SERVERS');
-const REGISTRY_PATH = path.join(ROOT, 'META', 'registry.json');
+const MCP_DIR = path.join(ROOT, 'mcp-servers');
+const REGISTRY_PATH = path.join(ROOT, 'meta', 'registry.json');
 
 const GREEN = '\x1b[32m';
 const YELLOW = '\x1b[33m';

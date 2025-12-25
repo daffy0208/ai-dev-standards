@@ -12,8 +12,8 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const PLAYBOOKS_DIR = path.join(ROOT, 'PLAYBOOKS');
-const PLAYBOOK_REGISTRY_PATH = path.join(ROOT, 'META', 'playbook-registry.json');
+const PLAYBOOKS_DIR = path.join(ROOT, 'playbooks');
+const PLAYBOOK_REGISTRY_PATH = path.join(ROOT, 'meta', 'playbook-registry.json');
 
 const GREEN = '\x1b[32m';
 const YELLOW = '\x1b[33m';

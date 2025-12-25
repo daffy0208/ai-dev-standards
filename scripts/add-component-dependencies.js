@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const registryPath = path.join(__dirname, '..', 'META', 'registry.json')
+const registryPath = path.join(__dirname, '..', 'meta', 'registry.json')
 
 // Component dependencies mapping
 const componentDependencies = {

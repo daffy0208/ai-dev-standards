@@ -11,8 +11,8 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const SKILLS_DIR = path.join(ROOT, 'SKILLS');
-const MCP_DIR = path.join(ROOT, 'MCP-SERVERS');
+const SKILLS_DIR = path.join(ROOT, 'skills');
+const MCP_DIR = path.join(ROOT, 'mcp-servers');
 
 const GREEN = '\x1b[32m';
 const YELLOW = '\x1b[33m';
@@ -100,7 +100,7 @@ safeUpdate(path.join(ROOT, 'CHANGELOG.md'), (file) => {
 }, 'CHANGELOG.md');
 
 // docs/ FILES
-safeUpdate(path.join(ROOT, 'DOCS', 'INDEX.md'), (file) => {
+safeUpdate(path.join(ROOT, 'docs', 'INDEX.md'), (file) => {
   let content = fs.readFileSync(file, 'utf-8');
   content = content.replace(/explore\s+\d+\s+specialized/g, `explore ${skillCount} specialized`);
   content = content.replace(/\*Skills:\s*\d+\s*\|\s*MCPs:\s*\d+\s*\|\s*Skill-to-Tool Ratio:\s*[\d.]+:1\*/g,
@@ -108,7 +108,7 @@ safeUpdate(path.join(ROOT, 'DOCS', 'INDEX.md'), (file) => {
   fs.writeFileSync(file, content);
 }, 'docs/INDEX.md');
 
-safeUpdate(path.join(ROOT, 'DOCS', 'MCP-DEVELOPMENT-ROADMAP.md'), (file) => {
+safeUpdate(path.join(ROOT, 'docs', 'MCP-DEVELOPMENT-ROADMAP.md'), (file) => {
   let content = fs.readFileSync(file, 'utf-8');
   content = content.replace(/\*\*Current:\*\*\s*\d+\s+skills,\s*\d+\s+MCPs\s*\([\d.]+:1 ratio - \d+% actionable\)/g,
     `**Current:** ${skillCount} skills, ${mcpCount} MCPs (${ratio}:1 ratio - ${percentage}% actionable)`);
@@ -116,7 +116,7 @@ safeUpdate(path.join(ROOT, 'DOCS', 'MCP-DEVELOPMENT-ROADMAP.md'), (file) => {
   fs.writeFileSync(file, content);
 }, 'docs/MCP-DEVELOPMENT-ROADMAP.md');
 
-safeUpdate(path.join(ROOT, 'DOCS', 'RESOURCE-GUIDE.md'), (file) => {
+safeUpdate(path.join(ROOT, 'docs', 'RESOURCE-GUIDE.md'), (file) => {
   let content = fs.readFileSync(file, 'utf-8');
   // Update gap count
   content = content.replace(/\d+\s+more MCPs needed to match skill count/g,
@@ -131,7 +131,7 @@ safeUpdate(path.join(ROOT, 'DOCS', 'RESOURCE-GUIDE.md'), (file) => {
 
 // .claude/claude.md - Auto-generate from skill-registry.json
 safeUpdate(path.join(ROOT, '.claude', 'claude.md'), (file) => {
-  const registryPath = path.join(ROOT, 'META', 'skill-registry.json');
+  const registryPath = path.join(ROOT, 'meta', 'skill-registry.json');
   const registry = JSON.parse(fs.readFileSync(registryPath, 'utf-8'));
 
   let content = '# Claude Configuration\n\n## Skills\n\n';
@@ -146,7 +146,7 @@ safeUpdate(path.join(ROOT, '.claude', 'claude.md'), (file) => {
 
 // .codex/codex.md - Auto-generate from skill-registry.json
 safeUpdate(path.join(ROOT, '.codex', 'codex.md'), (file) => {
-  const registryPath = path.join(ROOT, 'META', 'skill-registry.json');
+  const registryPath = path.join(ROOT, 'meta', 'skill-registry.json');
   const registry = JSON.parse(fs.readFileSync(registryPath, 'utf-8'));
 
   let content = '# Codex Configuration\n\n## Skills\n\n';

@@ -4,8 +4,8 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const EXAMPLES_DIR = path.join(ROOT, 'EXAMPLES');
-const EXAMPLE_REGISTRY_PATH = path.join(ROOT, 'META', 'example-registry.json');
+const EXAMPLES_DIR = path.join(ROOT, 'examples');
+const EXAMPLE_REGISTRY_PATH = path.join(ROOT, 'meta', 'example-registry.json');
 
 const GREEN = '\x1b[32m';
 const RESET = '\x1b[0m';

@@ -12,8 +12,8 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const UTILS_DIR = path.join(ROOT, 'UTILS');
-const UTIL_REGISTRY_PATH = path.join(ROOT, 'META', 'util-registry.json');
+const UTILS_DIR = path.join(ROOT, 'utils');
+const UTIL_REGISTRY_PATH = path.join(ROOT, 'meta', 'util-registry.json');
 
 const GREEN = '\x1b[32m';
 const YELLOW = '\x1b[33m';
@@ -146,7 +146,7 @@ function main() {
   console.log(`${YELLOW}  Categories: ${Object.keys(categoryCounts).join(', ')}${RESET}\n`);
 
   // Also update main registry.json with category-level entries
-  const MAIN_REGISTRY_PATH = path.join(ROOT, 'META', 'registry.json');
+  const MAIN_REGISTRY_PATH = path.join(ROOT, 'meta', 'registry.json');
   if (fs.existsSync(MAIN_REGISTRY_PATH)) {
     const mainRegistry = JSON.parse(fs.readFileSync(MAIN_REGISTRY_PATH, 'utf-8'));
     

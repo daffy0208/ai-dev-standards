@@ -4,8 +4,8 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const INSTALLERS_DIR = path.join(ROOT, 'INSTALLERS');
-const INSTALLER_REGISTRY_PATH = path.join(ROOT, 'META', 'installer-registry.json');
+const INSTALLERS_DIR = path.join(ROOT, 'installers');
+const INSTALLER_REGISTRY_PATH = path.join(ROOT, 'meta', 'installer-registry.json');
 
 const GREEN = '\x1b[32m';
 const RESET = '\x1b[0m';

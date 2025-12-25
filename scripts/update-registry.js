@@ -20,8 +20,8 @@ async function updateRegistry() {
   console.log('🔄 Scanning SKILLS directory...\n')
 
   const rootDir = path.join(__dirname, '..')
-  const skillsDir = path.join(rootDir, 'SKILLS')
-  const registryPath = path.join(rootDir, 'META', 'registry.json')
+  const skillsDir = path.join(rootDir, 'skills')
+  const registryPath = path.join(rootDir, 'meta', 'registry.json')
 
   // Load existing registry
   const registryContent = await fs.readFile(registryPath, 'utf8')

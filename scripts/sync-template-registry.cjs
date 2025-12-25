@@ -12,8 +12,8 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const TEMPLATES_DIR = path.join(ROOT, 'TEMPLATES');
-const TEMPLATE_REGISTRY_PATH = path.join(ROOT, 'META', 'template-registry.json');
+const TEMPLATES_DIR = path.join(ROOT, 'templates');
+const TEMPLATE_REGISTRY_PATH = path.join(ROOT, 'meta', 'template-registry.json');
 
 const GREEN = '\x1b[32m';
 const YELLOW = '\x1b[33m';

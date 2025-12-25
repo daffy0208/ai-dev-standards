@@ -189,7 +189,7 @@ function simulateSkillActivation() {
     });
     
     // Test 5: Skill File Existence
-    const skillsDir = path.join(process.cwd(), 'SKILLS');
+    const skillsDir = path.join(process.cwd(), 'skills');
     const missingSkills = skillRegistry.skills.filter(skill => {
       const skillPath = path.join(skillsDir, skill.name, 'SKILL.md');
       return !fs.existsSync(skillPath);
@@ -799,8 +799,8 @@ function simulateSystemHealth() {
   try {
     // Test 1: File structure
     const directories = [
-      'SKILLS', 'MCP-SERVERS', 'TOOLS', 'COMPONENTS', 'INTEGRATIONS',
-      'META', 'DOCS', 'EXAMPLES', 'TEMPLATES', 'PLAYBOOKS', 'STANDARDS'
+      'skills', 'mcp-servers', 'tools', 'components', 'integrations',
+      'meta', 'docs', 'examples', 'templates', 'playbooks', 'standards'
     ];
     
     directories.forEach(dir => {

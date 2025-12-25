@@ -84,7 +84,7 @@ if (!skillRegistry) {
   });
 
   // Check for unregistered skills
-  const actualSkillDirs = fs.readdirSync(path.join(ROOT, 'SKILLS'), { withFileTypes: true })
+  const actualSkillDirs = fs.readdirSync(path.join(ROOT, 'skills'), { withFileTypes: true })
     .filter(entry => entry.isDirectory())
     .map(entry => entry.name);
 
@@ -272,7 +272,7 @@ if (!fileExists(brainCommandsDir)) {
 
 // 9. VALIDATE CAPABILITY MANIFESTS
 console.log(colorize('\n9. Validating Capability Manifests...', 'cyan'));
-const manifestFiles = findFiles(path.join(ROOT, 'SKILLS'), /^manifest\.yaml$/);
+const manifestFiles = findFiles(path.join(ROOT, 'skills'), /^manifest\.yaml$/);
 console.log(`   Found ${manifestFiles.length} manifest.yaml files`);
 
 if (skillRegistry) {

@@ -12,7 +12,7 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
 const SCRIPTS_DIR = path.join(__dirname);
-const REGISTRY_PATH = path.join(ROOT, 'META', 'registry.json');
+const REGISTRY_PATH = path.join(ROOT, 'meta', 'registry.json');
 
 const GREEN = '\x1b[32m';
 const YELLOW = '\x1b[33m';

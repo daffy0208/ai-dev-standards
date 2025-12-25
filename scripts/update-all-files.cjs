@@ -13,8 +13,8 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const SKILLS_DIR = path.join(ROOT, 'SKILLS');
-const MCP_DIR = path.join(ROOT, 'MCP-SERVERS');
+const SKILLS_DIR = path.join(ROOT, 'skills');
+const MCP_DIR = path.join(ROOT, 'mcp-servers');
 
 const GREEN = '\x1b[32m';
 const YELLOW = '\x1b[33m';
@@ -98,7 +98,7 @@ function updateBUILDFOCUS() {
 
 // Update docs/INDEX.md
 function updateDOCSINDEX() {
-  const indexPath = path.join(ROOT, 'DOCS', 'INDEX.md');
+  const indexPath = path.join(ROOT, 'docs', 'INDEX.md');
   let content = fs.readFileSync(indexPath, 'utf-8');
 
   // Update skill count
@@ -116,7 +116,7 @@ function updateDOCSINDEX() {
 
 // Update docs/MCP-DEVELOPMENT-ROADMAP.md
 function updateMCPROADMAP() {
-  const roadmapPath = path.join(ROOT, 'DOCS', 'MCP-DEVELOPMENT-ROADMAP.md');
+  const roadmapPath = path.join(ROOT, 'docs', 'MCP-DEVELOPMENT-ROADMAP.md');
   let content = fs.readFileSync(roadmapPath, 'utf-8');
 
   // Update current line
@@ -192,7 +192,7 @@ function updateCHANGELOG() {
 // Update .claude/claude.md
 function updateClaudeMd() {
   const claudePath = path.join(ROOT, '.claude', 'claude.md');
-  const registryPath = path.join(ROOT, 'META', 'skill-registry.json');
+  const registryPath = path.join(ROOT, 'meta', 'skill-registry.json');
 
   // Read skill registry
   const registry = JSON.parse(fs.readFileSync(registryPath, 'utf-8'));
@@ -213,7 +213,7 @@ function updateClaudeMd() {
 // Update .codex/codex.md
 function updateCodexMd() {
   const codexPath = path.join(ROOT, '.codex', 'codex.md');
-  const registryPath = path.join(ROOT, 'META', 'skill-registry.json');
+  const registryPath = path.join(ROOT, 'meta', 'skill-registry.json');
 
   const registry = JSON.parse(fs.readFileSync(registryPath, 'utf-8'));
 

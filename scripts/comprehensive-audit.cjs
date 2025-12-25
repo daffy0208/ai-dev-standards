@@ -25,11 +25,11 @@ const RESET = '\x1b[0m';
 
 // Get actual counts
 function getActualCounts() {
-  const skillFolders = fs.readdirSync(path.join(ROOT, 'SKILLS'))
-    .filter(f => f !== '_TEMPLATE' && fs.statSync(path.join(ROOT, 'SKILLS', f)).isDirectory());
+  const skillFolders = fs.readdirSync(path.join(ROOT, 'skills'))
+    .filter(f => f !== '_TEMPLATE' && fs.statSync(path.join(ROOT, 'skills', f)).isDirectory());
 
-  const mcpFolders = fs.readdirSync(path.join(ROOT, 'MCP-SERVERS'))
-    .filter(f => fs.statSync(path.join(ROOT, 'MCP-SERVERS', f)).isDirectory());
+  const mcpFolders = fs.readdirSync(path.join(ROOT, 'mcp-servers'))
+    .filter(f => fs.statSync(path.join(ROOT, 'mcp-servers', f)).isDirectory());
 
   return {
     skills: skillFolders.length,

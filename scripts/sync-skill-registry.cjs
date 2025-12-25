@@ -12,8 +12,8 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const SKILLS_DIR = path.join(ROOT, 'SKILLS');
-const SKILL_REGISTRY_PATH = path.join(ROOT, 'META', 'skill-registry.json');
+const SKILLS_DIR = path.join(ROOT, 'skills');
+const SKILL_REGISTRY_PATH = path.join(ROOT, 'meta', 'skill-registry.json');
 
 const GREEN = '\x1b[32m';
 const YELLOW = '\x1b[33m';

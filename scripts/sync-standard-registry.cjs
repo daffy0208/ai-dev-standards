@@ -12,8 +12,8 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const STANDARDS_DIR = path.join(ROOT, 'STANDARDS');
-const STANDARD_REGISTRY_PATH = path.join(ROOT, 'META', 'standard-registry.json');
+const STANDARDS_DIR = path.join(ROOT, 'standards');
+const STANDARD_REGISTRY_PATH = path.join(ROOT, 'meta', 'standard-registry.json');
 
 const GREEN = '\x1b[32m';
 const YELLOW = '\x1b[33m';

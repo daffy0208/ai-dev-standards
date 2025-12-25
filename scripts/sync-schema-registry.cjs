@@ -12,8 +12,8 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const SCHEMAS_DIR = path.join(ROOT, 'SCHEMAS');
-const SCHEMA_REGISTRY_PATH = path.join(ROOT, 'META', 'schema-registry.json');
+const SCHEMAS_DIR = path.join(ROOT, 'schemas');
+const SCHEMA_REGISTRY_PATH = path.join(ROOT, 'meta', 'schema-registry.json');
 
 const GREEN = '\x1b[32m';
 const YELLOW = '\x1b[33m';
@@ -119,7 +119,7 @@ function main() {
   console.log(`${YELLOW}  Formats: JSON (${formatCounts['json-schema']}), YAML (${formatCounts['yaml-schema']})${RESET}\n`);
 
   // Also update main registry.json
-  const MAIN_REGISTRY_PATH = path.join(ROOT, 'META', 'registry.json');
+  const MAIN_REGISTRY_PATH = path.join(ROOT, 'meta', 'registry.json');
   if (fs.existsSync(MAIN_REGISTRY_PATH)) {
     const mainRegistry = JSON.parse(fs.readFileSync(MAIN_REGISTRY_PATH, 'utf-8'));
     mainRegistry.schemas = schemas;
