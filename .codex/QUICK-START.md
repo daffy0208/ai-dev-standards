@@ -8,7 +8,7 @@ Get the ai-dev-standards brain running in Codex in just a few minutes.
 
 - ✅ Codex CLI installed: `npm install -g @anthropics/codex-cli`
 - ✅ `CODEX_API_KEY` exported in your shell
-- ✅ `brain-mcp` build complete (`npm run build` in `MCP-SERVERS/brain-mcp`)
+- ✅ `brain-mcp` build complete (`npm run build` in `mcp-servers/brain-mcp`)
 
 ---
 
@@ -29,7 +29,7 @@ The script:
 **Manual alternative:**
 
 ```bash
-codex mcp add brain-mcp node ./MCP-SERVERS/brain-mcp/dist/index.js
+codex mcp add brain-mcp node ./mcp-servers/brain-mcp/dist/index.js
 ```
 
 Verify:
@@ -129,7 +129,7 @@ Try this interactive session:
 
 1. Read the detailed guide: `.codex/README.md`
 2. Compare flows: `.codex/CLAUDE-VS-CODEX.md`
-3. Explore skills in `META/skill-registry.json`
+3. Explore skills in `meta/skill-registry.json`
 4. Automate reviews via `scripts/ci/codex-review.sh`
 
 ---

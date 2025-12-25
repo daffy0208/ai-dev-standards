@@ -4,7 +4,7 @@
  * Complete Validation Script
  * Validates ALL consistency across the entire framework
  * FAILS LOUDLY with clear error messages
- * Single source of truth: SKILLS/ and MCP-SERVERS/ folders
+ * Single source of truth: skills/ and mcp-servers/ folders
  */
 
 const fs = require('fs');
@@ -83,7 +83,7 @@ function validateSkillRegistry(actual) {
   const registryNames = registry.skills.map(s => s.name).sort();
 
   if (registryCount !== actual.skills) {
-    error(`skill-registry.json has ${registryCount} skills, but SKILLS/ has ${actual.skills}`);
+    error(`skill-registry.json has ${registryCount} skills, but skills/ has ${actual.skills}`);
   } else {
     success(`skill-registry.json count matches (${actual.skills})`);
   }
@@ -96,7 +96,7 @@ function validateSkillRegistry(actual) {
     error(`Skills missing from skill-registry.json: ${missing.join(', ')}`);
   }
   if (extra.length > 0) {
-    error(`Skills in skill-registry.json but not in SKILLS/: ${extra.join(', ')}`);
+    error(`Skills in skill-registry.json but not in skills/: ${extra.join(', ')}`);
   }
   if (missing.length === 0 && extra.length === 0) {
     success('All skills present in skill-registry.json');
@@ -126,13 +126,13 @@ function validateMainRegistry(actual) {
   const mcpNames = registry.mcpServers.map(m => m.name).sort();
 
   if (skillCount !== actual.skills) {
-    error(`registry.json has ${skillCount} skills, but SKILLS/ has ${actual.skills}`);
+    error(`registry.json has ${skillCount} skills, but skills/ has ${actual.skills}`);
   } else {
     success(`registry.json skill count matches (${actual.skills})`);
   }
 
   if (mcpCount !== actual.mcps) {
-    error(`registry.json has ${mcpCount} MCPs, but MCP-SERVERS/ has ${actual.mcps}`);
+    error(`registry.json has ${mcpCount} MCPs, but mcp-servers/ has ${actual.mcps}`);
   } else {
     success(`registry.json MCP count matches (${actual.mcps})`);
   }
@@ -262,8 +262,8 @@ function validateDocumentation(actual) {
   const files = [
     { path: 'README.md', regex: /(\d+)\s+Specialized Skills/ },
     // BUILD_FOCUS.md moved to .archive/planning/ - no longer active
-    { path: 'DOCS/INDEX.md', regex: /explore\s+(\d+)\s+specialized/ },
-    { path: 'DOCS/MCP-DEVELOPMENT-ROADMAP.md', regex: /Current:\*\*\s*(\d+)\s+skills/ }
+    { path: 'docs/INDEX.md', regex: /explore\s+(\d+)\s+specialized/ },
+    { path: 'docs/MCP-DEVELOPMENT-ROADMAP.md', regex: /Current:\*\*\s*(\d+)\s+skills/ }
   ];
 
   files.forEach(({ path: filePath, regex }) => {
@@ -293,7 +293,7 @@ function validateDocumentation(actual) {
   const mcpFiles = [
     { path: 'README.md', regex: /(\d+)\s+MCP Tools/ },
     // BUILD_FOCUS.md moved to .archive/planning/ - no longer active
-    { path: 'DOCS/INDEX.md', regex: /MCPs:\s*(\d+)/ }
+    { path: 'docs/INDEX.md', regex: /MCPs:\s*(\d+)/ }
   ];
 
   mcpFiles.forEach(({ path: filePath, regex }) => {

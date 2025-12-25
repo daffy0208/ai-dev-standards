@@ -462,7 +462,7 @@ async function addSkillReference(projectPath, skill, deps = defaultDeps) {
     }
 
     if (!content.includes(`### ${skill.name}`)) {
-      content += `\n### ${skill.name}\n\n${skill.description}\n\n${client.locationLabel} \`SKILLS/${skill.name}/SKILL.md\`\n`
+      content += `\n### ${skill.name}\n\n${skill.description}\n\n${client.locationLabel} \`skills/${skill.name}/SKILL.md\`\n`
       await fs.writeFile(targetPath, content)
     }
   }

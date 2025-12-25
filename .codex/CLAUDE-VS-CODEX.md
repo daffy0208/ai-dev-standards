@@ -49,7 +49,7 @@ Claude Code has been the default environment for ai-dev-standards, but Codex can
 ## When Codex Shines
 
 - **Automation:** integrate brain queries into scripts, Git hooks, or CI
-- **Reviews:** use Codex CLI for iterative code review, as documented in `SKILLS/codex-review-workflow`
+- **Reviews:** use Codex CLI for iterative code review, as documented in `skills/codex-review-workflow`
 - **Ops Tasks:** run MCP-powered tooling (e.g., `test-runner-mcp`) straight from the shell
 - **Context-light Work:** when you just need a quick answer without opening an IDE
 

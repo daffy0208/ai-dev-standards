@@ -367,7 +367,7 @@ Extract patterns from external repositories:
 
 - Identify recurring architecture patterns
 - Score pattern quality
-- Add to STANDARDS/ if high quality
+- Add to standards/ if high quality
 
 ---
 

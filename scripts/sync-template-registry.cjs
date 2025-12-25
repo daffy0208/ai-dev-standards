@@ -3,7 +3,7 @@
 /**
  * Sync Template Registry
  *
- * Rebuilds template-registry.json from TEMPLATES/ folder (single source of truth)
+ * Rebuilds template-registry.json from templates/ folder (single source of truth)
  * Extracts metadata from template files
  * This is the ONLY way to update template-registry.json
  */
@@ -54,7 +54,7 @@ function extractMetadataFromTemplate(relativePath, fileName) {
       description: `Placeholder for ${dirName.replace(/-/g, ' ')} templates. Coming soon.`,
       category,
       file_type: 'placeholder',
-      path: `/TEMPLATES/${relativePath}`,
+      path: `/templates/${relativePath}`,
       status: 'planned',
       use_case: `Setting up ${dirName.replace(/-/g, ' ')}`,
       related_skills: [],
@@ -105,7 +105,7 @@ function extractMetadataFromTemplate(relativePath, fileName) {
     description,
     category,
     file_type: fileType,
-    path: `/TEMPLATES/${relativePath}`,
+    path: `/templates/${relativePath}`,
     status: 'active',
     use_case: `Setting up ${name.replace(/-/g, ' ')}`,
     related_skills: [],
@@ -132,7 +132,7 @@ function walkDirectory(dir, baseDir = '') {
 }
 
 function main() {
-  console.log(`\n${GREEN}🔄 Syncing template-registry.json from TEMPLATES/ folder${RESET}\n`);
+  console.log(`\n${GREEN}🔄 Syncing template-registry.json from templates/ folder${RESET}\n`);
 
   // Walk all templates
   const templates = walkDirectory(TEMPLATES_DIR);

@@ -109,7 +109,7 @@
 2. **Check logs:** `AppData/Roaming/Claude/logs/mcp.log`
 3. **Rebuild if needed:**
    ```bash
-   cd MCP-SERVERS/{mcp-name}
+   cd mcp-servers/{mcp-name}
    npm install && npm run build
    ```
 
@@ -123,9 +123,9 @@ ListMcpResourcesTool
 
 ## 📚 Documentation
 
-- **Full Guide:** `DOCS/MCP-CONFIGURATION-GUIDE.md`
-- **Registry:** `META/mcp-registry.json`
-- **Individual READMEs:** `MCP-SERVERS/{mcp-name}/README.md`
+- **Full Guide:** `docs/MCP-CONFIGURATION-GUIDE.md`
+- **Registry:** `meta/mcp-registry.json`
+- **Individual READMEs:** `mcp-servers/{mcp-name}/README.md`
 
 ---
 

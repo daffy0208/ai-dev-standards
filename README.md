@@ -55,11 +55,13 @@ npm run validate:full   # Comprehensive checks
 
 - `.claude/CLAUDE.md` - Complete Claude Code configuration guide
 - `FINAL-RESOURCE-COUNTS.md` - Resource tracking and metrics
-- `DOCS/VALIDATION-SYSTEM.md` - Validation methodology
+- `docs/VALIDATION-SYSTEM.md` - Validation methodology
 
 ---
 
 ## 🚀 Quick Start
+
+> 📖 **New to this repository?** Check out our [Installation Guide](INSTALL.md) and [Quick Start Guide](QUICK-START-GUIDE.md) for step-by-step instructions.
 
 ### For New Projects
 
@@ -82,7 +84,7 @@ npm run validate
 git clone https://github.com/daffy0208/ai-dev-standards.git ~/ai-dev-standards
 
 # Reference skills and patterns in your .cursorrules or .claude/claude.md
-# See DOCS/EXISTING-PROJECTS.md for integration guide
+# See docs/EXISTING-PROJECTS.md for integration guide
 ```
 
 ### Using with Claude Code
@@ -93,7 +95,7 @@ git clone https://github.com/daffy0208/ai-dev-standards.git ~/ai-dev-standards
    ```markdown
    You have access to ai-dev-standards at ~/ai-dev-standards
 
-   When needed, reference skills from SKILLS/ and patterns from STANDARDS/
+   When needed, reference skills from skills/ and patterns from standards/
    Use the skill-registry.json to find relevant skills for tasks
    ```
 
@@ -196,19 +198,19 @@ Test AI agents against golden datasets to ensure consistent, high-quality output
 
 ### 📊 Comprehensive Documentation
 
-- **For Developers**: `DOCS/GETTING-STARTED.md`, `DOCS/QUICK-START.md`
-- **For AI**: `META/PROJECT-CONTEXT.md`, `META/HOW-TO-USE.md`
+- **For Developers**: `docs/GETTING-STARTED.md`, `docs/QUICK-START.md`
+- **For AI**: `meta/PROJECT-CONTEXT.md`, `meta/HOW-TO-USE.md`
 - **Configuration**: `.claude/CLAUDE.md`, `FINAL-RESOURCE-COUNTS.md`
-- **Validation**: `DOCS/VALIDATION-SYSTEM.md`
+- **Validation**: `docs/VALIDATION-SYSTEM.md`
 
 ### 🎯 Smart Resource Discovery
 
 ```bash
 # Find skills for a task
-grep -r "mvp" META/skill-registry.json
+grep -r "mvp" meta/skill-registry.json
 
 # Search all resources
-grep -r "authentication" META/
+grep -r "authentication" meta/
 
 # View resource counts
 cat FINAL-RESOURCE-COUNTS.md
@@ -220,31 +222,31 @@ cat FINAL-RESOURCE-COUNTS.md
 
 ```
 ai-dev-standards/
-├── SKILLS/                    # 64 specialized methodologies
+├── skills/                    # 64 specialized methodologies
 │   ├── mvp-builder/          # MVP development & prioritization
 │   ├── rag-implementer/      # RAG system implementation
 │   ├── api-designer/         # API design patterns
 │   └── [61 more...]
 │
-├── MCP-SERVERS/              # 51 executable tools
+├── mcp-servers/              # 51 executable tools
 │   ├── semantic-search-mcp/  # Semantic code search
 │   ├── vector-database-mcp/  # Vector DB integration
 │   ├── code-quality-scanner-mcp/
 │   └── [48 more...]
 │
-├── STANDARDS/                # Architecture & best practices
+├── standards/                # Architecture & best practices
 │   ├── architecture-patterns/
 │   ├── best-practices/
 │   ├── coding-conventions/
 │   └── project-structure/
 │
-├── META/                     # Resource registry & context
+├── meta/                     # Resource registry & context
 │   ├── registry.json         # Master resource registry
 │   ├── skill-registry.json   # Skill catalog
 │   ├── mcp-registry.json     # MCP catalog
 │   └── PROJECT-CONTEXT.md    # For AI assistants
 │
-├── DOCS/                     # Comprehensive documentation
+├── docs/                     # Comprehensive documentation
 │   ├── GETTING-STARTED.md
 │   ├── VALIDATION-SYSTEM.md
 │   ├── AGENT-VALIDATION.md   # NEW!
@@ -314,14 +316,14 @@ Claude uses:
 
 ```bash
 # Search skills by keyword
-grep -i "authentication" META/skill-registry.json
-grep -i "database" META/skill-registry.json
-grep -i "testing" META/skill-registry.json
+grep -i "authentication" meta/skill-registry.json
+grep -i "database" meta/skill-registry.json
+grep -i "testing" meta/skill-registry.json
 ```
 
 ### By Category
 
-View `META/skill-registry.json` for complete categorization:
+View `meta/skill-registry.json` for complete categorization:
 
 - **Product & Business** (8 skills)
 - **AI & Machine Learning** (10 skills)
@@ -404,7 +406,7 @@ Avg Latency:    47ms
 ✅ Agent Evaluations PASSED
 ```
 
-See `DOCS/VALIDATION-SYSTEM.md` for complete methodology.
+See `docs/VALIDATION-SYSTEM.md` for complete methodology.
 
 ---
 
@@ -412,28 +414,28 @@ See `DOCS/VALIDATION-SYSTEM.md` for complete methodology.
 
 ### Getting Started
 
-- `DOCS/QUICK-START.md` - 5-minute quick start
-- `DOCS/GETTING-STARTED.md` - Comprehensive setup guide
-- `DOCS/EXISTING-PROJECTS.md` - Integration for existing projects
+- `docs/QUICK-START.md` - 5-minute quick start
+- `docs/GETTING-STARTED.md` - Comprehensive setup guide
+- `docs/EXISTING-PROJECTS.md` - Integration for existing projects
 
 ### Validation & Quality
 
-- `DOCS/VALIDATION-SYSTEM.md` - Validation methodology
-- `DOCS/AGENT-VALIDATION.md` - Agent evaluation guide (NEW!)
+- `docs/VALIDATION-SYSTEM.md` - Validation methodology
+- `docs/AGENT-VALIDATION.md` - Agent evaluation guide (NEW!)
 - `.claude/commands/validate.md` - Validation command reference
 
 ### Configuration
 
 - `.claude/CLAUDE.md` - Claude Code configuration (NEW!)
 - `FINAL-RESOURCE-COUNTS.md` - Resource metrics (NEW!)
-- `META/PROJECT-CONTEXT.md` - For AI assistants
-- `META/HOW-TO-USE.md` - Navigation guide
+- `meta/PROJECT-CONTEXT.md` - For AI assistants
+- `meta/HOW-TO-USE.md` - Navigation guide
 
 ### Development
 
 - `CONTRIBUTING.md` - Contribution guidelines
-- `DOCS/MCP-DEVELOPMENT-ROADMAP.md` - MCP development guide
-- `DOCS/TROUBLESHOOTING.md` - Common issues
+- `docs/MCP-DEVELOPMENT-ROADMAP.md` - MCP development guide
+- `docs/TROUBLESHOOTING.md` - Common issues
 
 ---
 
@@ -618,7 +620,7 @@ This repository synthesizes best practices from:
 
 ## 📞 Support
 
-- **Documentation**: `DOCS/` directory
+- **Documentation**: `docs/` directory
 - **Issues**: [GitHub Issues](https://github.com/daffy0208/ai-dev-standards/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/daffy0208/ai-dev-standards/discussions)
 
@@ -628,17 +630,17 @@ This repository synthesizes best practices from:
 
 ### For Developers
 
-- [Quick Start](DOCS/QUICK-START.md)
-- [Getting Started](DOCS/GETTING-STARTED.md)
-- [Validation System](DOCS/VALIDATION-SYSTEM.md)
-- [Troubleshooting](DOCS/TROUBLESHOOTING.md)
+- [Quick Start](docs/QUICK-START.md)
+- [Getting Started](docs/GETTING-STARTED.md)
+- [Validation System](docs/VALIDATION-SYSTEM.md)
+- [Troubleshooting](docs/TROUBLESHOOTING.md)
 
 ### For AI Assistants
 
-- [Project Context](META/PROJECT-CONTEXT.md)
-- [How to Use](META/HOW-TO-USE.md)
-- [Skill Registry](META/skill-registry.json)
-- [MCP Registry](META/mcp-registry.json)
+- [Project Context](meta/PROJECT-CONTEXT.md)
+- [How to Use](meta/HOW-TO-USE.md)
+- [Skill Registry](meta/skill-registry.json)
+- [MCP Registry](meta/mcp-registry.json)
 
 ### Configuration
 

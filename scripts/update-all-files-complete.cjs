@@ -4,7 +4,7 @@
  * COMPLETE FILE UPDATE SCRIPT
  *
  * Updates EVERY file in the repository that should auto-update
- * Derived from SINGLE SOURCE OF TRUTH: SKILLS/ and MCP-SERVERS/ folders
+ * Derived from SINGLE SOURCE OF TRUTH: skills/ and mcp-servers/ folders
  */
 
 const fs = require('fs');
@@ -83,9 +83,9 @@ safeUpdate(path.join(ROOT, 'BUILD_FOCUS.md'), (file) => {
 safeUpdate(path.join(ROOT, '.cursorrules'), (file) => {
   let content = fs.readFileSync(file, 'utf-8');
   content = content.replace(/\*\*SKILLS\/\*\*\s*-\s*\d+\s+specialized skills/g,
-    `**SKILLS/** - ${skillCount} specialized skills`);
+    `**skills/** - ${skillCount} specialized skills`);
   content = content.replace(/\*\*MCP-SERVERS\/\*\*\s*-\s*\d+\s+MCP server implementations/g,
-    `**MCP-SERVERS/** - ${mcpCount} MCP server implementations`);
+    `**mcp-servers/** - ${mcpCount} MCP server implementations`);
   content = content.replace(/\*\*Ratio:\*\*\s*[\d.]+:1/g, `**Ratio:** ${ratio}:1`);
   content = content.replace(/\*\*Available skills \(\d+\):\*\*/g, `**Available skills (${skillCount}):**`);
   fs.writeFileSync(file, content);
@@ -99,14 +99,14 @@ safeUpdate(path.join(ROOT, 'CHANGELOG.md'), (file) => {
   fs.writeFileSync(file, content);
 }, 'CHANGELOG.md');
 
-// DOCS/ FILES
+// docs/ FILES
 safeUpdate(path.join(ROOT, 'DOCS', 'INDEX.md'), (file) => {
   let content = fs.readFileSync(file, 'utf-8');
   content = content.replace(/explore\s+\d+\s+specialized/g, `explore ${skillCount} specialized`);
   content = content.replace(/\*Skills:\s*\d+\s*\|\s*MCPs:\s*\d+\s*\|\s*Skill-to-Tool Ratio:\s*[\d.]+:1\*/g,
     `*Skills: ${skillCount} | MCPs: ${mcpCount} | Skill-to-Tool Ratio: ${ratio}:1*`);
   fs.writeFileSync(file, content);
-}, 'DOCS/INDEX.md');
+}, 'docs/INDEX.md');
 
 safeUpdate(path.join(ROOT, 'DOCS', 'MCP-DEVELOPMENT-ROADMAP.md'), (file) => {
   let content = fs.readFileSync(file, 'utf-8');
@@ -114,7 +114,7 @@ safeUpdate(path.join(ROOT, 'DOCS', 'MCP-DEVELOPMENT-ROADMAP.md'), (file) => {
     `**Current:** ${skillCount} skills, ${mcpCount} MCPs (${ratio}:1 ratio - ${percentage}% actionable)`);
   content = content.replace(/\*\*Target:\*\*\s*\d+\s+skills,/g, `**Target:** ${skillCount} skills,`);
   fs.writeFileSync(file, content);
-}, 'DOCS/MCP-DEVELOPMENT-ROADMAP.md');
+}, 'docs/MCP-DEVELOPMENT-ROADMAP.md');
 
 safeUpdate(path.join(ROOT, 'DOCS', 'RESOURCE-GUIDE.md'), (file) => {
   let content = fs.readFileSync(file, 'utf-8');
@@ -127,7 +127,7 @@ safeUpdate(path.join(ROOT, 'DOCS', 'RESOURCE-GUIDE.md'), (file) => {
   content = content.replace(/\*\*Current:\*\*\s*\d+\/\d+\s+skills have `requires` field/g,
     `**Current:** ${skillCount}/${skillCount} skills have \`requires\` field`);
   fs.writeFileSync(file, content);
-}, 'DOCS/RESOURCE-GUIDE.md');
+}, 'docs/RESOURCE-GUIDE.md');
 
 // .claude/claude.md - Auto-generate from skill-registry.json
 safeUpdate(path.join(ROOT, '.claude', 'claude.md'), (file) => {

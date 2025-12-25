@@ -192,7 +192,7 @@ function addPatternMetadata(mcp) {
  */
 async function main() {
   const isDryRun = process.argv.includes('--dry-run')
-  const registryPath = path.join(__dirname, '../META/mcp-registry.json')
+  const registryPath = path.join(__dirname, '../meta/mcp-registry.json')
 
   console.log('🔄 Updating MCP Registry with Pattern Metadata...\n')
 
@@ -202,7 +202,7 @@ async function main() {
 
   // Backup original
   if (!isDryRun) {
-    const backupPath = path.join(__dirname, '../META/mcp-registry.backup.json')
+    const backupPath = path.join(__dirname, '../meta/mcp-registry.backup.json')
     await fs.writeJSON(backupPath, registry, { spaces: 2 })
     console.log(`💾 Backup saved to: mcp-registry.backup.json\n`)
   }

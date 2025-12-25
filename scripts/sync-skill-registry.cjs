@@ -3,7 +3,7 @@
 /**
  * Sync Skill Registry
  *
- * Rebuilds skill-registry.json from SKILLS/ folder (single source of truth)
+ * Rebuilds skill-registry.json from skills/ folder (single source of truth)
  * Extracts metadata from SKILL.md files
  * This is the ONLY way to update skill-registry.json
  */
@@ -85,7 +85,7 @@ function extractMetadataFromSKILL(skillName) {
     category: CATEGORY_MAP[category] || category,
     difficulty,
     estimated_time: estimatedTime,
-    path: `/SKILLS/${skillName}/`,
+    path: `/skills/${skillName}/`,
     status: 'active',
     prerequisites: [],
     related_skills: [],
@@ -96,7 +96,7 @@ function extractMetadataFromSKILL(skillName) {
 }
 
 function main() {
-  console.log(`\n${GREEN}🔄 Syncing skill-registry.json from SKILLS/ folder${RESET}\n`);
+  console.log(`\n${GREEN}🔄 Syncing skill-registry.json from skills/ folder${RESET}\n`);
 
   // Get all skill folders (excluding _TEMPLATE)
   const skillFolders = fs.readdirSync(SKILLS_DIR)

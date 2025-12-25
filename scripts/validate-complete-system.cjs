@@ -67,9 +67,9 @@ const issues = {
 
 // 1. VALIDATE SKILL REGISTRY
 console.log(colorize('1. Validating Skills Registry...', 'cyan'));
-const skillRegistry = readJSON(path.join(ROOT, 'META/skill-registry.json'));
+const skillRegistry = readJSON(path.join(ROOT, 'meta/skill-registry.json'));
 if (!skillRegistry) {
-  issues.critical.push('META/skill-registry.json not found or invalid JSON');
+  issues.critical.push('meta/skill-registry.json not found or invalid JSON');
 } else {
   console.log(`   Found ${skillRegistry.skills.length} skills in registry`);
 
@@ -101,9 +101,9 @@ if (!skillRegistry) {
 
 // 2. VALIDATE MCP REGISTRY
 console.log(colorize('\n2. Validating MCP Registry...', 'cyan'));
-const mcpRegistry = readJSON(path.join(ROOT, 'META/mcp-registry.json'));
+const mcpRegistry = readJSON(path.join(ROOT, 'meta/mcp-registry.json'));
 if (!mcpRegistry) {
-  issues.critical.push('META/mcp-registry.json not found or invalid JSON');
+  issues.critical.push('meta/mcp-registry.json not found or invalid JSON');
 } else {
   console.log(`   Found ${mcpRegistry.mcps.length} MCPs in registry`);
 
@@ -128,9 +128,9 @@ if (!mcpRegistry) {
 
 // 3. VALIDATE TOOL REGISTRY
 console.log(colorize('\n3. Validating Tool Registry...', 'cyan'));
-const toolRegistry = readJSON(path.join(ROOT, 'META/tool-registry.json'));
+const toolRegistry = readJSON(path.join(ROOT, 'meta/tool-registry.json'));
 if (!toolRegistry) {
-  issues.critical.push('META/tool-registry.json not found or invalid JSON');
+  issues.critical.push('meta/tool-registry.json not found or invalid JSON');
 } else {
   console.log(`   Found ${toolRegistry.tools.length} tools in registry`);
 
@@ -148,9 +148,9 @@ if (!toolRegistry) {
 
 // 4. VALIDATE COMPONENT REGISTRY
 console.log(colorize('\n4. Validating Component Registry...', 'cyan'));
-const componentRegistry = readJSON(path.join(ROOT, 'META/component-registry.json'));
+const componentRegistry = readJSON(path.join(ROOT, 'meta/component-registry.json'));
 if (!componentRegistry) {
-  issues.critical.push('META/component-registry.json not found or invalid JSON');
+  issues.critical.push('meta/component-registry.json not found or invalid JSON');
 } else {
   console.log(`   Found ${componentRegistry.components.length} components in registry`);
 
@@ -168,9 +168,9 @@ if (!componentRegistry) {
 
 // 5. VALIDATE INTEGRATION REGISTRY
 console.log(colorize('\n5. Validating Integration Registry...', 'cyan'));
-const integrationRegistry = readJSON(path.join(ROOT, 'META/integration-registry.json'));
+const integrationRegistry = readJSON(path.join(ROOT, 'meta/integration-registry.json'));
 if (!integrationRegistry) {
-  issues.critical.push('META/integration-registry.json not found or invalid JSON');
+  issues.critical.push('meta/integration-registry.json not found or invalid JSON');
 } else {
   console.log(`   Found ${integrationRegistry.integrations.length} integrations in registry`);
 
@@ -188,9 +188,9 @@ if (!integrationRegistry) {
 
 // 6. VALIDATE RELATIONSHIP MAPPING
 console.log(colorize('\n6. Validating Relationship Mapping...', 'cyan'));
-const relationshipMapping = readJSON(path.join(ROOT, 'META/relationship-mapping.json'));
+const relationshipMapping = readJSON(path.join(ROOT, 'meta/relationship-mapping.json'));
 if (!relationshipMapping) {
-  issues.critical.push('META/relationship-mapping.json not found or invalid JSON');
+  issues.critical.push('meta/relationship-mapping.json not found or invalid JSON');
 } else {
   console.log(`   Found relationship mappings`);
 
@@ -234,8 +234,8 @@ orchestrationDirs.forEach(dir => {
 });
 
 const orchestrationSchemas = [
-  'SCHEMAS/orchestration-request.schema.json',
-  'SCHEMAS/orchestration-result.schema.json'
+  'schemas/orchestration-request.schema.json',
+  'schemas/orchestration-result.schema.json'
 ];
 
 let missingSchemas = 0;
@@ -251,7 +251,7 @@ if (!fileExists(path.join(ROOT, createRequestScript))) {
   issues.critical.push(`Create request script missing: ${createRequestScript}`);
 }
 
-const orchestrationDoc = 'DOCS/CLAUDE-CODE-ORCHESTRATION.md';
+const orchestrationDoc = 'docs/CLAUDE-CODE-ORCHESTRATION.md';
 if (!fileExists(path.join(ROOT, orchestrationDoc))) {
   issues.warnings.push(`Orchestration documentation missing: ${orchestrationDoc}`);
 }
@@ -294,9 +294,9 @@ if (skillRegistry) {
 
 // 10. VALIDATE CAPABILITY GRAPH
 console.log(colorize('\n10. Validating Capability Graph...', 'cyan'));
-const capabilityGraph = readJSON(path.join(ROOT, 'META/capability-graph.json'));
+const capabilityGraph = readJSON(path.join(ROOT, 'meta/capability-graph.json'));
 if (!capabilityGraph) {
-  issues.warnings.push('Capability graph not found: META/capability-graph.json');
+  issues.warnings.push('Capability graph not found: meta/capability-graph.json');
   console.log(colorize('   ⚠ Capability graph missing or invalid', 'yellow'));
 } else {
   console.log(`   ✓ Capability graph exists`);

@@ -8,7 +8,7 @@ Documentation for skills that function as autonomous agents with decision-making
 
 **Total Skill-Based Agents: 6**
 
-These are specialized skills from the `/SKILLS/` directory that exhibit agent-like characteristics:
+These are specialized skills from the `/skills/` directory that exhibit agent-like characteristics:
 
 - Autonomous decision-making
 - Self-directed workflows

@@ -151,7 +151,7 @@ function isFileTracked(relativePath) {
     // Check additional_files array (both relative and absolute paths)
     if (resource.additional_files && Array.isArray(resource.additional_files)) {
       for (const additionalFile of resource.additional_files) {
-        // Handle both absolute paths (e.g., "/TOOLS/observability/index.ts")
+        // Handle both absolute paths (e.g., "/tools/observability/index.ts")
         // and relative paths (e.g., "index.ts" relative to resource path)
         let normalizedAdditionalPath;
 
@@ -172,7 +172,7 @@ function isFileTracked(relativePath) {
 
     // Check if file is within a tracked directory
     // File is within directory if it starts with the directory path followed by a slash
-    // e.g., "/MCP-SERVERS/3d-asset-manager-mcp/dist/index.d.ts" starts with "/MCP-SERVERS/3d-asset-manager-mcp/"
+    // e.g., "/mcp-servers/3d-asset-manager-mcp/dist/index.d.ts" starts with "/mcp-servers/3d-asset-manager-mcp/"
     const directoryPrefix = normalizedResourcePath.endsWith('/')
       ? normalizedResourcePath
       : normalizedResourcePath + '/';

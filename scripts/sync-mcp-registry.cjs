@@ -3,7 +3,7 @@
 /**
  * Sync MCP Registry
  *
- * Updates MCP entries in registry.json from MCP-SERVERS/ folder
+ * Updates MCP entries in registry.json from mcp-servers/ folder
  * Extracts metadata from package.json files
  */
 
@@ -75,7 +75,7 @@ function extractMCPMetadata(mcpFolder) {
     name: mcpName,
     version: pkg?.version || '0.0.0',
     description: pkg?.description || description || `MCP server for ${mcpName}`,
-    path: `MCP-SERVERS/${mcpFolder}`,
+    path: `mcp-servers/${mcpFolder}`,
     tags: Array.isArray(pkg?.keywords) ? pkg.keywords : ['mcp', mcpName],
     features: ['tools'], // All MCPs provide tools
     dependencies: pkg?.dependencies || {},

@@ -16,11 +16,11 @@
     ],
     "automaticTriggers": {
       "afterFileChange": [
-        "META/skill-registry.json",
-        "META/mcp-registry.json",
-        "META/component-registry.json",
-        "META/integration-registry.json",
-        "META/tool-registry.json"
+        "meta/skill-registry.json",
+        "meta/mcp-registry.json",
+        "meta/component-registry.json",
+        "meta/integration-registry.json",
+        "meta/tool-registry.json"
       ],
       "beforeCommand": ["npm run release", "npm run publish"]
     },
@@ -59,8 +59,8 @@
     "automaticTriggers": {
       "afterFileChange": [
         ".claude/skills/skill-rules.json",
-        "SKILLS/*/SKILL.md",
-        "SKILLS/*/manifest.yaml"
+        "skills/*/SKILL.md",
+        "skills/*/manifest.yaml"
       ]
     },
     "priority": "high",
@@ -72,7 +72,7 @@
     "contextTriggers": ["creating new MCP", "scaffolding MCP server", "adding tools"],
     "promptTriggers": ["create mcp", "build mcp server", "new mcp", "mcp builder", "scaffold mcp"],
     "automaticTriggers": {
-      "afterFileChange": ["MCP-SERVERS/*/"],
+      "afterFileChange": ["mcp-servers/*/"],
       "minFilesChanged": 3
     },
     "priority": "medium",

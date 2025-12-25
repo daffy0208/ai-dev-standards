@@ -114,7 +114,7 @@ Already included in Docker image - verified working.
 **Status**: COMPLETE with 3 production-ready tools
 
 **MCP**: `semantic-search-mcp`
-**Location**: `/MCP-SERVERS/semantic-search-mcp/`
+**Location**: `/mcp-servers/semantic-search-mcp/`
 
 **Tools implemented**:
 
@@ -148,7 +148,7 @@ Test 1: Single text embedding
 4. `/skills/README.md` - Skills storage guide
 5. `/scripts/generate-code-execution-mcp.cjs` - Generator script
 
-**Existing** (~81K words in `/DOCS/mcp-patterns/`):
+**Existing** (~81K words in `/docs/mcp-patterns/`):
 
 - Pattern overview and comparison
 - Decision framework
@@ -182,7 +182,7 @@ Test 1: Single text embedding
 ### 1. Test Pilot MCP
 
 ```bash
-cd MCP-SERVERS/semantic-search-mcp/servers/semantic-search/tools
+cd mcp-servers/semantic-search-mcp/servers/semantic-search/tools
 
 # Test embedding
 docker run --rm -v $(pwd):/workspace/tools mcp-sandbox \
@@ -251,7 +251,7 @@ ls -la skills/
 3. `/CODE-EXECUTION-SETUP-COMPLETE.md` - Detailed setup docs
 4. `/QUICK-START-GUIDE.md` - Quick reference
 5. `/IMPLEMENTATION-COMPLETE.md` - This summary
-6. `/MCP-SERVERS/semantic-search-mcp/` - Complete pilot MCP with 3 tools
+6. `/mcp-servers/semantic-search-mcp/` - Complete pilot MCP with 3 tools
 
 ### Modified Files ✅
 
@@ -370,13 +370,13 @@ Here's what happened:
 ### For Deep Dive
 
 1. **CODE-EXECUTION-SETUP-COMPLETE.md** - Detailed setup docs
-2. **DOCS/mcp-patterns/03-mcp-code-execution-pattern.md** - Pattern details
-3. **DOCS/mcp-patterns/06-mcp-progressive-discovery-patterns.md** - Scaling guide
+2. **docs/mcp-patterns/03-mcp-code-execution-pattern.md** - Pattern details
+3. **docs/mcp-patterns/06-mcp-progressive-discovery-patterns.md** - Scaling guide
 
 ### For Implementation
 
 1. **scripts/generate-code-execution-mcp.cjs** - Generate new MCPs
-2. **MCP-SERVERS/semantic-search-mcp/tools/** - Tool examples
+2. **mcp-servers/semantic-search-mcp/tools/** - Tool examples
 3. **skills/README.md** - Skills library guide
 
 ---
@@ -387,7 +387,7 @@ Here's what happened:
 
 ```bash
 # Test pilot MCP
-cd MCP-SERVERS/semantic-search-mcp/servers/semantic-search/tools
+cd mcp-servers/semantic-search-mcp/servers/semantic-search/tools
 docker run --rm -v $(pwd):/workspace/tools mcp-sandbox python /workspace/tools/vector_embed.py
 
 # Generate new MCP
@@ -407,7 +407,7 @@ cat config/mcp-patterns.json | grep -A 5 code-execution
 
 - **Quick start**: QUICK-START-GUIDE.md
 - **Setup details**: CODE-EXECUTION-SETUP-COMPLETE.md
-- **Full docs**: DOCS/mcp-patterns/ (~81K words)
+- **Full docs**: docs/mcp-patterns/ (~81K words)
 - **Skills guide**: skills/README.md
 
 ### Scripts

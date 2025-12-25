@@ -698,5 +698,5 @@ Solution: Match thoroughness to task importance
 - **Agent README:** Overview of all agent types
 - **General-Purpose Agent:** Detailed general agent docs
 - **Explore Agent:** Detailed exploration docs
-- **Skills:** 41 specialized capabilities in `/SKILLS/`
+- **Skills:** 41 specialized capabilities in `/skills/`
 - **CLAUDE.md:** Complete repository documentation

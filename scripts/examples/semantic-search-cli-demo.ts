@@ -1,4 +1,4 @@
-import { SemanticSearchServer } from '../../MCP-SERVERS/semantic-search-mcp/src/index.js'
+import { SemanticSearchServer } from '../../mcp-servers/semantic-search-mcp/src/index.js'
 
 type ToolResponse = Awaited<ReturnType<SemanticSearchServer['executeTool']>>
 

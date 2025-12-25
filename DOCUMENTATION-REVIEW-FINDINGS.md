@@ -66,9 +66,9 @@ This document captures all inconsistencies, contradictions, repetitions, gaps, a
 
 **What was fixed:**
 
-- Created STATUS-REPORTS/ directory
+- Created status-reports/ directory
 - Moved all 18 historical reports there
-- Created STATUS-REPORTS/README.md explaining the reports
+- Created status-reports/README.md explaining the reports
 - Root now has only 13 essential markdown files
 
 ---
@@ -85,7 +85,7 @@ This document captures all inconsistencies, contradictions, repetitions, gaps, a
 
 **What was created:**
 
-- META/RESOURCE-TAXONOMY.md with comprehensive guide
+- meta/RESOURCE-TAXONOMY.md with comprehensive guide
 - Explains all resource categories
 - Documents validation methodology
 - Provides best practices and examples
@@ -117,7 +117,7 @@ This document captures all inconsistencies, contradictions, repetitions, gaps, a
 **What was fixed:**
 
 - Root: 30+ files → 13 essential files
-- Created STATUS-REPORTS/ for historical reports
+- Created status-reports/ for historical reports
 - Enhanced .archive/README.md
 - Clear separation of current vs historical
 
@@ -231,7 +231,7 @@ TOTAL:  360 resources
 
 **Recommended Fix:**
 
-1. Create a `STATUS-REPORTS/` directory
+1. Create a `status-reports/` directory
 2. Move historical reports there with date prefixes
 3. Keep only current, authoritative docs at root:
    - README.md
@@ -289,7 +289,7 @@ TOTAL:  360 resources
 
 ### 6. Skill Directory Count Mismatch
 
-**Location:** SKILLS/ directory  
+**Location:** skills/ directory  
 **Issue:** Directory contains 65 subdirectories but only 64 skills in registry
 
 **Investigation Needed:**
@@ -301,7 +301,7 @@ TOTAL:  360 resources
 
 ### 7. MCP Directory Count Mismatch
 
-**Location:** MCP-SERVERS/ directory  
+**Location:** mcp-servers/ directory  
 **Issue:** Directory contains 50 subdirectories but 51 MCPs in registry
 
 **Investigation Needed:**
@@ -347,7 +347,7 @@ TOTAL:  360 resources
 
 **Need:**
 
-- Document in META/RESOURCE-TAXONOMY.md:
+- Document in meta/RESOURCE-TAXONOMY.md:
   - What counts as a resource
   - How to count composite resources (e.g., component library with multiple files)
   - Tier 1 vs Tier 2 distinction
@@ -411,7 +411,7 @@ TOTAL:  360 resources
 - README.md (Quick Start section)
 - INTEGRATION-USAGE.md (Quick Start section)
 - INSTALL.md (deprecated)
-- Various DOCS/ files
+- Various docs/ files
 
 **Issue:** Same installation command repeated in multiple places with slight variations
 
@@ -430,7 +430,7 @@ TOTAL:  360 resources
 - README.md (Brain & Orchestrator section)
 - INTEGRATION-USAGE.md (Brain-MCP section)
 - INSTALL.md (Post-Setup section)
-- Various DOCS/ files
+- Various docs/ files
 
 **Recommended Fix:** Consolidate in one location and link from others
 
@@ -523,13 +523,13 @@ TOTAL:  360 resources
 
 1. **Fix Resource Counts** - Update all documentation to match actual registry counts (239 total, not 198)
 2. **Clarify Resource Taxonomy** - Document what "Project Install Set" vs "Repository Inventory" means
-3. **Consolidate Status Reports** - Move historical reports to STATUS-REPORTS/ directory
+3. **Consolidate Status Reports** - Move historical reports to status-reports/ directory
 4. **Update SECURITY.md Date** - Bring in line with other core docs
 
 ### Short-Term Actions (Medium Priority)
 
 5. **Archive Deprecated Files** - Rename or move INSTALL.md and UPDATE-GUIDE.md
-6. **Investigate Directory Mismatches** - Understand SKILLS/ (65 dirs, 64 in registry) and MCP-SERVERS/ (50 dirs, 51 in registry)
+6. **Investigate Directory Mismatches** - Understand skills/ (65 dirs, 64 in registry) and mcp-servers/ (50 dirs, 51 in registry)
 7. **Add Archive README** - Document what's in .archive/ directory
 8. **Fix OUTDATED-INFO-AUDIT-REPORT Issues** - Either fix identified issues or explain them
 
@@ -553,10 +553,10 @@ TOTAL:  360 resources
 
 ### Medium Priority
 
-- [ ] Move 17 historical status reports to STATUS-REPORTS/ directory
-- [ ] Add STATUS-REPORTS/README.md explaining each report
+- [ ] Move 17 historical status reports to status-reports/ directory
+- [ ] Add status-reports/README.md explaining each report
 - [ ] Add .archive/README.md documenting archive contents
-- [ ] Create META/RESOURCE-TAXONOMY.md explaining resource counting
+- [ ] Create meta/RESOURCE-TAXONOMY.md explaining resource counting
 
 ### Low Priority
 
@@ -611,10 +611,10 @@ TOTAL:  360 resources
 
 **Phase 3: Organization & Taxonomy (Commit 6415224)**
 
-- Created META/RESOURCE-TAXONOMY.md (comprehensive guide)
+- Created meta/RESOURCE-TAXONOMY.md (comprehensive guide)
 - Enhanced .archive/README.md (usage guidance)
-- Created STATUS-REPORTS/ directory
-- Moved 18 historical reports to STATUS-REPORTS/
+- Created status-reports/ directory
+- Moved 18 historical reports to status-reports/
 - Root directory: 30+ files → 13 essential files
 
 ### Impact
@@ -628,7 +628,7 @@ TOTAL:  360 resources
 **Repository Organization:**
 
 - ✅ Clean root directory (13 files instead of 30+)
-- ✅ Historical reports organized in STATUS-REPORTS/
+- ✅ Historical reports organized in status-reports/
 - ✅ Clear separation of current vs historical content
 - ✅ Enhanced navigation with READMEs
 
@@ -671,14 +671,14 @@ TOTAL:  360 resources
 - Resource counts: Correct everywhere (238/360)
 - Root directory: 13 essential files (organized)
 - Resource taxonomy: Fully documented
-- Historical reports: Organized in STATUS-REPORTS/
+- Historical reports: Organized in status-reports/
 - Last updated dates: Consistent
 
 ### Files Created
 
 1. `DOCUMENTATION-REVIEW-FINDINGS.md` - This review document
-2. `META/RESOURCE-TAXONOMY.md` - Resource counting guide
-3. `STATUS-REPORTS/README.md` - Status report index
+2. `meta/RESOURCE-TAXONOMY.md` - Resource counting guide
+3. `status-reports/README.md` - Status report index
 
 ### Files Enhanced
 
@@ -690,7 +690,7 @@ TOTAL:  360 resources
 
 ### Files Moved
 
-18 files moved from root to STATUS-REPORTS/:
+18 files moved from root to status-reports/:
 
 - 3 audit reports
 - 2 resource count analyses

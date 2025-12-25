@@ -39,7 +39,7 @@ function walkDirectory(dir, baseDir = '') {
         title: name.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
         description: `Documentation for ${name.replace(/-/g, ' ')}`,
         category,
-        path: `/DOCS/${relativePath}`,
+        path: `/docs/${relativePath}`,
         status: 'active',
         audience: ['developers'],
         related_skills: [],

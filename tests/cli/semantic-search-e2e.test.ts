@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { SemanticSearchServer } from '../../MCP-SERVERS/semantic-search-mcp/src/index.js'
+import { SemanticSearchServer } from '../../mcp-servers/semantic-search-mcp/src/index.js'
 
 const embedding = (value: number) => Array(8).fill(value)
 

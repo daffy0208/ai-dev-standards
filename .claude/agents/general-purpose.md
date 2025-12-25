@@ -318,6 +318,6 @@ Solution: Invoke appropriate skill (e.g., security-engineer for security tasks)
 ## Related Documentation
 
 - **Explore Agent:** For initial codebase exploration
-- **Skills:** 41 specialized capabilities in `/SKILLS/`
+- **Skills:** 41 specialized capabilities in `/skills/`
 - **MCPs:** 36 executable servers in `/MCP/`
 - **Usage Examples:** Practical scenarios in `usage-examples.md`

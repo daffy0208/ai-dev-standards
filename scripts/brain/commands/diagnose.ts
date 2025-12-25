@@ -3,7 +3,7 @@
  * BRAIN COMMAND: diagnose
  *
  * Analyze project health and recommend capabilities using Codex
- * Wrapper for SKILLS/system-diagnostician/diagnose.sh
+ * Wrapper for skills/system-diagnostician/diagnose.sh
  */
 
 import * as path from 'path'
@@ -49,7 +49,7 @@ ${colorize('Usage:', 'bright')}
   brain diagnose [project-path] [options]
 
 ${colorize('Options:', 'bright')}
-  --graph <path>         Path to capability-graph.json (default: META/capability-graph.json)
+  --graph <path>         Path to capability-graph.json (default: meta/capability-graph.json)
   --focus <areas>        Comma-separated focus areas (e.g., security,performance,testing)
   --metrics              Include detailed metrics in output
   --output <path>        Output path for diagnostic report JSON (optional)
@@ -144,7 +144,7 @@ export async function execute(args: string[], rootPath: string): Promise<void> {
     ? projectPath
     : path.resolve(process.cwd(), projectPath)
 
-  const scriptPath = path.resolve(rootPath, 'SKILLS/system-diagnostician/diagnose.sh')
+  const scriptPath = path.resolve(rootPath, 'skills/system-diagnostician/diagnose.sh')
 
   printHeader('Project Health Diagnostic')
   printInfo(`Project: ${fullProjectPath}`)

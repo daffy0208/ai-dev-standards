@@ -155,7 +155,7 @@ function main() {
       category: metadata.category,
       difficulty: metadata.difficulty,
       estimated_time: '1-3 hours',
-      path: `/SKILLS/${skillName}/`,
+      path: `/skills/${skillName}/`,
       status: 'active',
       prerequisites: [],
       related_skills: [],

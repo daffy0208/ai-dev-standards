@@ -1,0 +1,250 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-11-08",
+  "description": "Registry of all operational playbooks in ai-dev-standards. Playbooks are step-by-step guides for critical operations, incident response, deployment procedures, and development workflows. Now includes 14 playbooks covering ADHD support, deployment, incidents, development workflows, and system reliability.",
+  "playbooks": [
+    {
+      "name": "adhd-getting-unstuck",
+      "title": "Getting Unstuck (ADHD Edition)",
+      "description": "## Quick Diagnosis (30 seconds)",
+      "use_when": "Feeling stuck, overwhelmed, or can't start a task",
+      "category": "adhd-support",
+      "difficulty": "beginner",
+      "estimated_time": "5-15 minutes",
+      "path": "/playbooks/adhd-getting-unstuck.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["adhd", "adhd-support"]
+    },
+    {
+      "name": "backup-and-restore",
+      "title": "Backup and Restore Playbook",
+      "description": "## Backup Strategy (3-2-1 Rule)",
+      "use_when": "Setting up backups, recovering from data loss, disaster recovery planning",
+      "category": "operations",
+      "difficulty": "intermediate",
+      "estimated_time": "5-15 minutes",
+      "path": "/playbooks/backup-and-restore.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["backup", "operations"]
+    },
+    {
+      "name": "component-development",
+      "title": "Component Development Playbook",
+      "description": "Comprehensive guide for creating reusable, accessible, and well-tested components.",
+      "use_when": "Use when component development",
+      "category": "development",
+      "difficulty": "intermediate",
+      "estimated_time": "1-3 hours",
+      "path": "/playbooks/component-development.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["component", "development"]
+    },
+    {
+      "name": "database-migration",
+      "title": "Database Migration Playbook",
+      "description": "## Migration Principles",
+      "use_when": "Adding/modifying database schema, data transformations",
+      "category": "operations",
+      "difficulty": "intermediate",
+      "estimated_time": "30 minutes - 2 hours",
+      "path": "/playbooks/database-migration.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["database", "operations"]
+    },
+    {
+      "name": "deployment-checklist",
+      "title": "Deployment Checklist",
+      "description": "## Pre-Deployment Checklist",
+      "use_when": "Every production deployment",
+      "category": "operations",
+      "difficulty": "intermediate",
+      "estimated_time": "5-15 minutes",
+      "path": "/playbooks/deployment-checklist.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["deployment", "operations"]
+    },
+    {
+      "name": "incident-response",
+      "title": "Incident Response Playbook",
+      "description": "## Severity Levels",
+      "use_when": "Production is down, critical bug affecting users, security incident",
+      "category": "incident",
+      "difficulty": "advanced",
+      "estimated_time": "5-15 minutes",
+      "path": "/playbooks/incident-response.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["incident", "incident"]
+    },
+    {
+      "name": "mcp-development",
+      "title": "MCP Development Playbook",
+      "description": "Complete guide for creating Model Context Protocol (MCP) servers from scratch using the ai-dev-standards components.",
+      "use_when": "Use when mcp development",
+      "category": "development",
+      "difficulty": "advanced",
+      "estimated_time": "5-15 minutes",
+      "path": "/playbooks/mcp-development.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["mcp", "development"]
+    },
+    {
+      "name": "monitoring-setup",
+      "title": "Monitoring Setup Playbook",
+      "description": "Comprehensive guide for implementing observability across your application stack with logging, metrics, tracing, and alerting.",
+      "use_when": "Use when monitoring setup",
+      "category": "operations",
+      "difficulty": "intermediate",
+      "estimated_time": "1-3 hours",
+      "path": "/playbooks/monitoring-setup.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["monitoring", "operations"]
+    },
+    {
+      "name": "multi-agent-systems",
+      "title": "Multi-Agent Systems Playbook",
+      "description": "Comprehensive guide for designing and orchestrating multi-agent systems with advanced coordination patterns.",
+      "use_when": "Use when multi agent systems",
+      "category": "operations",
+      "difficulty": "advanced",
+      "estimated_time": "1-3 hours",
+      "path": "/playbooks/multi-agent-systems.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["multi", "operations"]
+    },
+    {
+      "name": "performance-optimization",
+      "title": "Performance Optimization Playbook",
+      "description": "Comprehensive guide for profiling, tuning, and optimizing application performance across the stack.",
+      "use_when": "Use when performance optimization",
+      "category": "optimization",
+      "difficulty": "intermediate",
+      "estimated_time": "1-3 hours",
+      "path": "/playbooks/performance-optimization.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["performance", "optimization"]
+    },
+    {
+      "name": "rag-implementation",
+      "title": "RAG Implementation Playbook",
+      "description": "Complete guide for implementing Retrieval-Augmented Generation (RAG) systems from scratch.",
+      "use_when": "Use when rag implementation",
+      "category": "operations",
+      "difficulty": "advanced",
+      "estimated_time": "1-3 hours",
+      "path": "/playbooks/rag-implementation.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["rag", "operations"]
+    },
+    {
+      "name": "rollback-procedure",
+      "title": "Rollback Procedure Playbook",
+      "description": "## When to Rollback",
+      "use_when": "Deployment causes issues, need to revert to previous working state",
+      "category": "operations",
+      "difficulty": "advanced",
+      "estimated_time": "5-15 minutes",
+      "path": "/playbooks/rollback-procedure.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["rollback", "operations"]
+    },
+    {
+      "name": "security-hardening",
+      "title": "Security Hardening Playbook",
+      "description": "Comprehensive guide for implementing security best practices across your application stack.",
+      "use_when": "Use when security hardening",
+      "category": "security",
+      "difficulty": "advanced",
+      "estimated_time": "5-15 minutes",
+      "path": "/playbooks/security-hardening.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["security", "security"]
+    },
+    {
+      "name": "validation-first-development",
+      "title": "Validation-First Development Playbook",
+      "description": "## 🎯 Core Principle",
+      "use_when": "Use when validation first development",
+      "category": "development",
+      "difficulty": "advanced",
+      "estimated_time": "2-4 weeks",
+      "path": "/playbooks/validation-first-development.md",
+      "status": "active",
+      "prerequisites": [],
+      "related_playbooks": [],
+      "related_skills": [],
+      "tags": ["validation", "development"]
+    }
+  ],
+  "categories": {
+    "adhd-support": {
+      "description": "Playbooks designed for ADHD developers to manage focus, activation energy, and overwhelm",
+      "count": 1
+    },
+    "operations": {
+      "description": "Operational procedures for deployment, backup, monitoring, and database management",
+      "count": 7
+    },
+    "development": {
+      "description": "Development workflows, best practices, and implementation guides",
+      "count": 3
+    },
+    "incident": {
+      "description": "Emergency response procedures for production incidents and outages",
+      "count": 1
+    },
+    "optimization": {
+      "description": "Performance and scalability optimization procedures",
+      "count": 1
+    },
+    "security": {
+      "description": "Security hardening and vulnerability prevention procedures",
+      "count": 1
+    }
+  },
+  "statistics": {
+    "total_playbooks": 14,
+    "categories_count": 6,
+    "active_playbooks": 14,
+    "planned_playbooks": 0,
+    "average_estimated_time": "1-8 hours"
+  }
+}

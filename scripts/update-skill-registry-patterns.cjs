@@ -179,7 +179,7 @@ function addPatternInfo(skill) {
  */
 async function main() {
   const isDryRun = process.argv.includes('--dry-run')
-  const registryPath = path.join(__dirname, '../META/skill-registry.json')
+  const registryPath = path.join(__dirname, '../meta/skill-registry.json')
 
   console.log('🔄 Updating Skill Registry with MCP Pattern Preferences...\n')
 
@@ -189,7 +189,7 @@ async function main() {
 
   // Backup original
   if (!isDryRun) {
-    const backupPath = path.join(__dirname, '../META/skill-registry.backup.json')
+    const backupPath = path.join(__dirname, '../meta/skill-registry.backup.json')
     await fs.writeJSON(backupPath, registry, { spaces: 2 })
     console.log(`💾 Backup saved to: skill-registry.backup.json\n`)
   }

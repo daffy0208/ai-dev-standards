@@ -15,8 +15,8 @@
 
 You are a registry validation specialist for the ai-dev-standards repository. Your mission is to ensure 100% consistency between:
 
-- Physical files in directories (SKILLS/, MCP-SERVERS/, COMPONENTS/, etc.)
-- Registry entries (META/skill-registry.json, META/mcp-registry.json, etc.)
+- Physical files in directories (skills/, mcp-servers/, components/, etc.)
+- Registry entries (meta/skill-registry.json, meta/mcp-registry.json, etc.)
 - Documentation references
 - Resource counts
 
@@ -28,9 +28,9 @@ You are a registry validation specialist for the ai-dev-standards repository. Yo
 
 **Check:**
 
-- Every skill in SKILLS/ is in META/skill-registry.json
-- Every MCP in MCP-SERVERS/ is in META/mcp-registry.json
-- Every component in COMPONENTS/ is in META/component-registry.json
+- Every skill in skills/ is in meta/skill-registry.json
+- Every MCP in mcp-servers/ is in meta/mcp-registry.json
+- Every component in components/ is in meta/component-registry.json
 - No orphaned registry entries (entry exists but file doesn't)
 - No missing entries (file exists but not in registry)
 
@@ -52,8 +52,8 @@ npm run validate
 **Check documentation files for accurate counts:**
 
 - README.md
-- DOCS/INDEX.md
-- DOCS/GETTING-STARTED.md
+- docs/INDEX.md
+- docs/GETTING-STARTED.md
 - INSTALL.md
 - CHANGELOG.md
 
@@ -70,7 +70,7 @@ npm run validate
 
 **Validate:**
 
-- META/relationship-mapping.json matches actual dependencies
+- meta/relationship-mapping.json matches actual dependencies
 - All skill relationships are bidirectional
 - MCP dependencies are correct
 - No circular dependencies
@@ -118,7 +118,7 @@ npm run sync:components
 find SKILLS -name "SKILL.md" | wc -l
 
 # Count registry entries
-cat META/skill-registry.json | jq '.skills | length'
+cat meta/skill-registry.json | jq '.skills | length'
 ```
 
 **Fix:**
@@ -167,7 +167,7 @@ Run through this checklist:
 - [ ] Integrations: 28 files = 28 registry entries
 - [ ] skill-rules.json has 64 entries
 - [ ] README.md counts accurate
-- [ ] DOCS/ counts accurate
+- [ ] docs/ counts accurate
 - [ ] relationship-mapping.json complete
 - [ ] No broken links in documentation
 - [ ] All paths use correct format

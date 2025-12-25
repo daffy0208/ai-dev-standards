@@ -30,7 +30,7 @@ You are an MCP server development specialist. Your mission is to create producti
 **Create MCP directory structure:**
 
 ```
-MCP-SERVERS/[mcp-name]/
+mcp-servers/[mcp-name]/
 ├── src/
 │   └── index.ts          # Main MCP implementation
 ├── package.json          # Dependencies and scripts
@@ -257,7 +257,7 @@ examples:
 ## Installation
 
 \`\`\`bash
-cd MCP-SERVERS/[mcp-name]
+cd mcp-servers/[mcp-name]
 npm install
 npm run build
 \`\`\`
@@ -272,7 +272,7 @@ Add to `.claude/mcp-settings.json`:
 "[mcp-name]": {
 "command": "node",
 "args": [
-"/path/to/ai-dev-standards/MCP-SERVERS/[mcp-name]/dist/index.js"
+"/path/to/ai-dev-standards/mcp-servers/[mcp-name]/dist/index.js"
 ],
 "env": {
 "CONFIG_VAR": "value"
@@ -300,7 +300,7 @@ Use with brain-mcp or directly via Claude Desktop
 
 ### 5. Registry Integration
 
-**Update META/mcp-registry.json:**
+**Update meta/mcp-registry.json:**
 
 ```bash
 npm run sync:mcps
@@ -320,7 +320,7 @@ node generate-skill-rules.cjs
 
 Creating a new MCP? Use this checklist:
 
-- [ ] Create directory: `MCP-SERVERS/[mcp-name]/`
+- [ ] Create directory: `mcp-servers/[mcp-name]/`
 - [ ] Create `src/index.ts` with MCP implementation
 - [ ] Create `package.json` with dependencies
 - [ ] Create `tsconfig.json` with TypeScript config
@@ -331,7 +331,7 @@ Creating a new MCP? Use this checklist:
 - [ ] Run `npm run build` (verify builds)
 - [ ] Test MCP: `node dist/index.js`
 - [ ] Run `npm run sync:mcps`
-- [ ] Verify in `META/mcp-registry.json`
+- [ ] Verify in `meta/mcp-registry.json`
 - [ ] Add to `.claude/mcp-settings.json` (optional)
 - [ ] Test tools work correctly
 - [ ] Document in README.md

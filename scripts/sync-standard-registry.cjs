@@ -3,7 +3,7 @@
 /**
  * Sync Standard Registry
  *
- * Rebuilds standard-registry.json from STANDARDS/ folder (single source of truth)
+ * Rebuilds standard-registry.json from standards/ folder (single source of truth)
  * Extracts metadata from standard markdown files
  * This is the ONLY way to update standard-registry.json
  */
@@ -63,7 +63,7 @@ function extractMetadataFromStandard(category, fileName) {
     description: description || title,
     category,
     difficulty,
-    path: `/STANDARDS/${category}/${fileName}`,
+    path: `/standards/${category}/${fileName}`,
     status: 'active',
     related_skills: [],
     related_playbooks: [],
@@ -72,7 +72,7 @@ function extractMetadataFromStandard(category, fileName) {
 }
 
 function main() {
-  console.log(`\n${GREEN}🔄 Syncing standard-registry.json from STANDARDS/ folder${RESET}\n`);
+  console.log(`\n${GREEN}🔄 Syncing standard-registry.json from standards/ folder${RESET}\n`);
 
   // Read all categories
   const categories = fs.readdirSync(STANDARDS_DIR)

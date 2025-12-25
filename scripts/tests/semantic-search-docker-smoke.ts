@@ -2,7 +2,7 @@ import { spawnSync, SpawnSyncOptions } from 'child_process'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import fs from 'fs'
-import { createVectorStoreClient } from '../../MCP-SERVERS/semantic-search-mcp/src/vector-store.js'
+import { createVectorStoreClient } from '../../mcp-servers/semantic-search-mcp/src/vector-store.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)

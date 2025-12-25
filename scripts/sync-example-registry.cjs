@@ -36,7 +36,7 @@ function walkDirectory(dir, baseDir = '') {
         description: `Example demonstrating ${name.replace(/-/g, ' ')}`,
         category,
         language,
-        path: `/EXAMPLES/${relativePath}`,
+        path: `/examples/${relativePath}`,
         status: 'active',
         complexity: 'intermediate',
         related_skills: [],

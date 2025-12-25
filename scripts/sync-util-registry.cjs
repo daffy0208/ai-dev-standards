@@ -3,7 +3,7 @@
 /**
  * Sync Util Registry
  *
- * Rebuilds util-registry.json from UTILS/ folder (single source of truth)
+ * Rebuilds util-registry.json from utils/ folder (single source of truth)
  * Extracts metadata from utility TypeScript/JavaScript files
  * This is the ONLY way to update util-registry.json
  */
@@ -67,7 +67,7 @@ function extractMetadataFromUtil(category, fileName) {
     description,
     category,
     language,
-    path: `/UTILS/${category}/${fileName}`,
+    path: `/utils/${category}/${fileName}`,
     status: 'active',
     exports: exports.length > 0 ? exports.slice(0, 5) : [], // Limit to top 5 exports
     dependencies: [...new Set(dependencies)], // Remove duplicates
@@ -79,7 +79,7 @@ function extractMetadataFromUtil(category, fileName) {
 }
 
 function main() {
-  console.log(`\n${GREEN}🔄 Syncing util-registry.json from UTILS/ folder${RESET}\n`);
+  console.log(`\n${GREEN}🔄 Syncing util-registry.json from utils/ folder${RESET}\n`);
 
   // Read all categories
   const categories = fs.readdirSync(UTILS_DIR)
@@ -161,7 +161,7 @@ function main() {
     mainRegistry.utils = Object.keys(categoryCounts).map(category => ({
       category,
       description: categoryDescriptions[category] || `${category} utilities`,
-      path: `UTILS/${category}`,
+      path: `utils/${category}`,
       alwaysUpdate: false
     }));
     

@@ -35,13 +35,13 @@ class DocumentationValidator {
    */
   loadRegistries() {
     const skillRegistry = JSON.parse(
-      fs.readFileSync(path.join(this.rootPath, 'META/skill-registry.json'), 'utf8')
+      fs.readFileSync(path.join(this.rootPath, 'meta/skill-registry.json'), 'utf8')
     )
     const mcpRegistry = JSON.parse(
-      fs.readFileSync(path.join(this.rootPath, 'META/mcp-registry.json'), 'utf8')
+      fs.readFileSync(path.join(this.rootPath, 'meta/mcp-registry.json'), 'utf8')
     )
     const relationshipMapping = JSON.parse(
-      fs.readFileSync(path.join(this.rootPath, 'META/relationship-mapping.json'), 'utf8')
+      fs.readFileSync(path.join(this.rootPath, 'meta/relationship-mapping.json'), 'utf8')
     )
 
     return {
@@ -175,10 +175,10 @@ class DocumentationValidator {
 
     // Check registry versions
     const skillRegistry = JSON.parse(
-      fs.readFileSync(path.join(this.rootPath, 'META/skill-registry.json'), 'utf8')
+      fs.readFileSync(path.join(this.rootPath, 'meta/skill-registry.json'), 'utf8')
     )
     const mcpRegistry = JSON.parse(
-      fs.readFileSync(path.join(this.rootPath, 'META/mcp-registry.json'), 'utf8')
+      fs.readFileSync(path.join(this.rootPath, 'meta/mcp-registry.json'), 'utf8')
     )
 
     console.log(`  Skill registry version: ${skillRegistry.version}`)

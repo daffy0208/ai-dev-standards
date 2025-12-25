@@ -36,7 +36,7 @@ agent-orchestrator-mcp:        0 tools, 0 LOC, Complexity 0/10
 #### What Exists:
 
 ```
-MCP-SERVERS/
+mcp-servers/
 ├── semantic-search-mcp/
 │   ├── package.json      ✅ Exists
 │   ├── README.md         ✅ Exists
@@ -233,7 +233,7 @@ Instead of migration candidates, choose **IMPLEMENTATION PRIORITIES**:
 ai-dev-standards generate mcp <your-priority-mcp> --pattern=<direct|code-execution>
 
 # Implement actual functionality
-cd MCP-SERVERS/<mcp-name>
+cd mcp-servers/<mcp-name>
 # Code the actual tools
 npm test
 ```
@@ -286,7 +286,7 @@ After 10-20 implementations with real usage data:
 
 ### ✅ KEEP - Still Valuable
 
-1. **Documentation** (/ DOCS/mcp-patterns/)
+1. **Documentation** (/ docs/mcp-patterns/)
    - Excellent reference for both patterns
    - Will guide implementation choices
    - Informs architecture decisions
@@ -306,19 +306,19 @@ After 10-20 implementations with real usage data:
    - Can be used when implementing
    - Security settings documented
 
-5. **Security Templates** (/SECURITY/)
+5. **Security Templates** (/security/)
    - Will be needed for Code Execution pattern
    - Good reference material
    - Docker sandbox ready
 
 ### ⚠️ ADJUST - Needs Context Update
 
-1. **MCP Registry** (/META/mcp-registry.json)
+1. **MCP Registry** (/meta/mcp-registry.json)
    - Remove complexity estimates (they're wrong)
    - Add "implementation_status": "placeholder"
    - Update as MCPs are actually implemented
 
-2. **Skill Registry** (/META/skill-registry.json)
+2. **Skill Registry** (/meta/skill-registry.json)
    - Pattern preferences still valid
    - But no MCPs to use them with yet
 
@@ -408,7 +408,7 @@ After 10-20 implementations with real usage data:
 
 ```bash
 # Set up Docker sandbox
-docker build -f SECURITY/sandbox/docker-sandbox.dockerfile -t mcp-sandbox .
+docker build -f security/sandbox/docker-sandbox.dockerfile -t mcp-sandbox .
 
 # Configure storage
 mkdir -p /mnt/skills
@@ -427,7 +427,7 @@ pip install ipython numpy pandas
 ai-dev-standards generate mcp <your-choice> --pattern=<chosen-pattern>
 
 # Implement functionality
-cd MCP-SERVERS/<mcp-name>
+cd mcp-servers/<mcp-name>
 # Write actual tool code
 npm test
 

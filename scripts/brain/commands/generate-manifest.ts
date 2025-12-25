@@ -3,7 +3,7 @@
  * BRAIN COMMAND: generate-manifest
  *
  * Generate capability manifests from skill/MCP descriptions using Codex
- * Wrapper for SKILLS/manifest-generator/generate-manifest.sh
+ * Wrapper for skills/manifest-generator/generate-manifest.sh
  */
 
 import * as path from 'path'
@@ -56,13 +56,13 @@ ${colorize('Options:', 'bright')}
 
 ${colorize('Examples:', 'bright')}
   # Generate manifest for a skill
-  brain generate-manifest --path SKILLS/rag-implementer
+  brain generate-manifest --path skills/rag-implementer
 
   # Generate manifest for an MCP
-  brain generate-manifest --path MCP-SERVERS/vector-database-mcp --type mcp
+  brain generate-manifest --path mcp-servers/vector-database-mcp --type mcp
 
   # Specify custom output path
-  brain generate-manifest --path SKILLS/api-designer --output /tmp/manifest.yaml
+  brain generate-manifest --path skills/api-designer --output /tmp/manifest.yaml
 
 ${colorize('Description:', 'bright')}
   Uses OpenAI Codex to analyze skill/MCP descriptions and automatically generate
@@ -110,7 +110,7 @@ export async function execute(args: string[], rootPath: string): Promise<void> {
     ? resourcePath
     : path.resolve(rootPath, resourcePath)
 
-  const scriptPath = path.resolve(rootPath, 'SKILLS/manifest-generator/generate-manifest.sh')
+  const scriptPath = path.resolve(rootPath, 'skills/manifest-generator/generate-manifest.sh')
 
   printHeader('Generate Manifest')
   printInfo(`Resource: ${resourcePath}`)

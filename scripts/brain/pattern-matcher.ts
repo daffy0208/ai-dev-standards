@@ -152,7 +152,7 @@ export class PatternMatcher {
           'Very small knowledge base'
         ],
         estimated_time: '1-2 weeks',
-        reference: 'STANDARDS/architecture-patterns/rag-pattern.md'
+        reference: 'standards/architecture-patterns/rag-pattern.md'
       },
       {
         name: 'Multi-Agent System',
@@ -191,7 +191,7 @@ export class PatternMatcher {
         ],
         when_not_to_use: ['Simple single-step tasks', 'Low budget', 'Real-time responses required'],
         estimated_time: '2-3 weeks',
-        reference: 'SKILLS/multi-agent-architect/SKILL.md'
+        reference: 'skills/multi-agent-architect/SKILL.md'
       },
       {
         name: 'Full-Stack Web Application',
@@ -234,7 +234,7 @@ export class PatternMatcher {
           'Limited dev resources'
         ],
         estimated_time: '3-6 weeks',
-        reference: 'SKILLS/frontend-builder/SKILL.md'
+        reference: 'skills/frontend-builder/SKILL.md'
       },
       {
         name: 'MVP Pattern',
@@ -277,7 +277,7 @@ export class PatternMatcher {
           'Complex integrations needed'
         ],
         estimated_time: '1-2 weeks',
-        reference: 'SKILLS/mvp-builder/SKILL.md'
+        reference: 'skills/mvp-builder/SKILL.md'
       },
       {
         name: 'Microservices Architecture',
@@ -311,7 +311,7 @@ export class PatternMatcher {
         ],
         when_not_to_use: ['Small team', 'Simple application', 'Tight coupling acceptable'],
         estimated_time: '2-3 months',
-        reference: 'STANDARDS/architecture-patterns/'
+        reference: 'standards/architecture-patterns/'
       },
       {
         name: 'Serverless Architecture',
@@ -349,7 +349,7 @@ export class PatternMatcher {
           'Complex state management'
         ],
         estimated_time: '1-2 weeks',
-        reference: 'SKILLS/deployment-advisor/SKILL.md'
+        reference: 'skills/deployment-advisor/SKILL.md'
       },
       {
         name: 'Knowledge Graph',
@@ -392,7 +392,7 @@ export class PatternMatcher {
           'Standard CRUD sufficient'
         ],
         estimated_time: '3-4 weeks',
-        reference: 'SKILLS/knowledge-graph-builder/SKILL.md'
+        reference: 'skills/knowledge-graph-builder/SKILL.md'
       },
       {
         name: 'API-First Design',
@@ -435,7 +435,7 @@ export class PatternMatcher {
           'Internal tool only'
         ],
         estimated_time: '2-3 weeks',
-        reference: 'SKILLS/api-designer/SKILL.md'
+        reference: 'skills/api-designer/SKILL.md'
       }
     ]
   }

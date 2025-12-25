@@ -22,7 +22,7 @@ import {
   paginationSchema,
   validate,
   validateSafe
-} from '../../../UTILS/validation/schemas'
+} from '../../../utils/validation/schemas'
 
 describe('Basic Field Schemas', () => {
   describe('emailSchema', () => {

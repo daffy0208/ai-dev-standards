@@ -732,10 +732,10 @@ ${colorize('Examples:', 'bright')}
   brain patterns "need knowledge base with search"
   brain workflow "implement RAG system"
   brain analyze "build AI chatbot with custom knowledge"
-  brain generate-manifest --path SKILLS/rag-implementer
+  brain generate-manifest --path skills/rag-implementer
   brain build-graph --validate
   brain plan "implement authentication system"
-  brain validate-skill SKILLS/api-designer
+  brain validate-skill skills/api-designer
   brain diagnose --focus security,performance
 `)
 }

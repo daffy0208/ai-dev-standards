@@ -113,7 +113,7 @@ async function fileExists(relativePath) {
  * Fetch all skills from skill-registry.json
  */
 async function fetchSkills() {
-  const registry = await fetchJSON('META/skill-registry.json')
+  const registry = await fetchJSON('meta/skill-registry.json')
   return registry.skills || []
 }
 
@@ -121,7 +121,7 @@ async function fetchSkills() {
  * Fetch all MCPs from mcp-registry.json
  */
 async function fetchMCPs() {
-  const registry = await fetchJSON('META/mcp-registry.json')
+  const registry = await fetchJSON('meta/mcp-registry.json')
   return registry.mcps || []
 }
 
@@ -129,7 +129,7 @@ async function fetchMCPs() {
  * Fetch all tools from tool-registry.json
  */
 async function fetchTools() {
-  const registry = await fetchJSON('META/tool-registry.json')
+  const registry = await fetchJSON('meta/tool-registry.json')
   return {
     tools: registry.tools || [],
     scripts: registry.supporting_scripts || []
@@ -140,7 +140,7 @@ async function fetchTools() {
  * Fetch all components from component-registry.json
  */
 async function fetchComponents() {
-  const registry = await fetchJSON('META/component-registry.json')
+  const registry = await fetchJSON('meta/component-registry.json')
   return registry.components || []
 }
 
@@ -148,7 +148,7 @@ async function fetchComponents() {
  * Fetch all integrations from integration-registry.json
  */
 async function fetchIntegrations() {
-  const registry = await fetchJSON('META/integration-registry.json')
+  const registry = await fetchJSON('meta/integration-registry.json')
   return registry.integrations || []
 }
 
@@ -156,7 +156,7 @@ async function fetchIntegrations() {
  * Fetch relationship mapping
  */
 async function fetchRelationships() {
-  const mapping = await fetchJSON('META/relationship-mapping.json')
+  const mapping = await fetchJSON('meta/relationship-mapping.json')
   return mapping
 }
 

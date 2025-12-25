@@ -62,7 +62,7 @@ The script will:
 After the first setup, you need to build the brain-mcp MCP server:
 
 ```bash
-cd ~/ai-dev-standards/MCP-SERVERS/brain-mcp
+cd ~/ai-dev-standards/mcp-servers/brain-mcp
 npm install
 npm run build
 ```
@@ -105,13 +105,13 @@ bash ~/ai-dev-standards/setup-project.sh
 
 These resources are automatically updated to keep you current:
 
-- **Skills** (SKILLS/) - 64 specialized methodologies
-- **MCP Servers** (MCP-SERVERS/) - 50 automation tools
+- **Skills** (skills/) - 64 specialized methodologies
+- **MCP Servers** (mcp-servers/) - 50 automation tools
 - **Configuration** (.cursorrules, .gitignore, etc.)
-- **Standards** (STANDARDS/) - Best practices and patterns
-- **Tools** (TOOLS/) - Development utilities
-- **Components** (COMPONENTS/) - 72 React components
-- **Integrations** (INTEGRATIONS/) - 28 service integrations
+- **Standards** (standards/) - Best practices and patterns
+- **Tools** (tools/) - Development utilities
+- **Components** (components/) - 72 React components
+- **Integrations** (integrations/) - 28 service integrations
 
 ### File Locations in Your Project
 
@@ -156,7 +156,7 @@ Verify brain-mcp is working:
 cat .claude/mcp-settings.json | grep brain-mcp
 
 # Test brain-mcp availability
-node ~/ai-dev-standards/MCP-SERVERS/brain-mcp/dist/index.js --help
+node ~/ai-dev-standards/mcp-servers/brain-mcp/dist/index.js --help
 ```
 
 ### 3. Review Recommendations
@@ -240,7 +240,7 @@ npm link
 **Solution:** Build brain-mcp:
 
 ```bash
-cd ~/ai-dev-standards/MCP-SERVERS/brain-mcp
+cd ~/ai-dev-standards/mcp-servers/brain-mcp
 npm install
 npm run build
 ```
@@ -314,12 +314,12 @@ These are automatically excluded (in `.gitignore`):
 ### Documentation
 
 - [INSTALL.md](INSTALL.md) - Complete installation guide
-- [AUTO-SYNC-GUIDE.md](DOCS/AUTO-SYNC-GUIDE.md) - Deep dive into sync system
+- [AUTO-SYNC-GUIDE.md](docs/AUTO-SYNC-GUIDE.md) - Deep dive into sync system
 - [CLI README](CLI/README.md) - Full CLI command reference
 
 ### Getting Help
 
-- Check [TROUBLESHOOTING.md](DOCS/TROUBLESHOOTING.md) for common issues
+- Check [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) for common issues
 - Review [CONTRIBUTING.md](CONTRIBUTING.md) for development setup
 - Open an issue on GitHub for bugs
 
@@ -399,7 +399,7 @@ After updating to a new major version:
 **Questions?**
 
 - Read the [INSTALL.md](INSTALL.md) guide
-- Check [AUTO-SYNC-GUIDE.md](DOCS/AUTO-SYNC-GUIDE.md) for sync details
+- Check [AUTO-SYNC-GUIDE.md](docs/AUTO-SYNC-GUIDE.md) for sync details
 - Open an issue on GitHub
 
 **Found a bug?**

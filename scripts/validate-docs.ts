@@ -204,7 +204,7 @@ function main(): void {
     results.push(
       validateDocFile(
         path.join(ROOT, 'DOCS', 'INDEX.md'),
-        'DOCS/INDEX.md',
+        'docs/INDEX.md',
         ['skills', 'mcps', 'total'],
         counts
       )

@@ -8,7 +8,7 @@
  * Usage:
  *   node scripts/run-agent-evals.js --dataset path/to/dataset.json [--mock]
  *
- * @see DOCS/VALIDATION-SYSTEM.md for methodology
+ * @see docs/VALIDATION-SYSTEM.md for methodology
  */
 
 import fs from 'fs'

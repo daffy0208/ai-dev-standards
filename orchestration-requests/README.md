@@ -31,4 +31,4 @@ Results will be written to `orchestration-results/<ID>.json`
 
 ## Full Documentation
 
-See `DOCS/CLAUDE-CODE-ORCHESTRATION.md` for complete documentation.
+See `docs/CLAUDE-CODE-ORCHESTRATION.md` for complete documentation.

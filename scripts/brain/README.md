@@ -329,16 +329,16 @@ Phase 3 introduces meta-skills that use Codex to generate and manage capability 
 ### Example 9: Generate Capability Manifest
 
 ```bash
-$ brain generate-manifest --path SKILLS/rag-implementer
+$ brain generate-manifest --path skills/rag-implementer
 
 ━━━ Generate Manifest ━━━
 
-→ Resource: SKILLS/rag-implementer
+→ Resource: skills/rag-implementer
 → Type: skill
 → Running manifest generator...
 
 Generating manifest for rag-implementer...
-✅ Manifest generated: SKILLS/rag-implementer/manifest.yaml
+✅ Manifest generated: skills/rag-implementer/manifest.yaml
 ✓ Manifest generation complete!
 ```
 
@@ -354,9 +354,9 @@ $ brain build-graph --validate --infer-missing
 → Building capability graph...
 
 Loading manifests...
-  - SKILLS/rag-implementer/manifest.yaml
-  - SKILLS/api-designer/manifest.yaml
-  - MCP-SERVERS/vector-database-mcp/manifest.yaml
+  - skills/rag-implementer/manifest.yaml
+  - skills/api-designer/manifest.yaml
+  - mcp-servers/vector-database-mcp/manifest.yaml
   ... (106 more)
 
 Building graph structure...
@@ -370,7 +370,7 @@ Validating relationships...
 Inferring missing relationships...
   Added 15 inferred relationships
 
-Writing graph to META/capability-graph.json...
+Writing graph to meta/capability-graph.json...
 ✓ Capability graph build complete!
 ```
 
@@ -423,11 +423,11 @@ Scoring:
 ### Example 12: Validate Skill
 
 ```bash
-$ brain validate-skill SKILLS/rag-implementer
+$ brain validate-skill skills/rag-implementer
 
 ━━━ Validate Skill: rag-implementer ━━━
 
-→ Resource: SKILLS/rag-implementer
+→ Resource: skills/rag-implementer
 → Running validation...
 
 Description Validation:
@@ -702,7 +702,7 @@ The brain is self-aware of all resources. When adding new skills, MCPs, or tools
 
 For issues or questions about the brain:
 
-- Read: `META/REPOSITORY-BRAIN.md` for architecture details
+- Read: `meta/REPOSITORY-BRAIN.md` for architecture details
 - Run: `brain health` to diagnose issues
 - Check: `brain validate` for validation errors
 

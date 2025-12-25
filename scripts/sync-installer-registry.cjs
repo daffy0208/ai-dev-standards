@@ -28,7 +28,7 @@ function main() {
       description: `Installer for ${name.replace(/-/g, ' ')}`,
       category,
       language: 'javascript',
-      path: `/INSTALLERS/${name}/`,
+      path: `/installers/${name}/`,
       entry_point: 'index.js',
       status: 'active',
       npm_package: `@ai-dev-standards/${name}`,

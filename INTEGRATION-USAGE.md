@@ -71,7 +71,7 @@ bash ~/ai-dev-standards/setup-project.sh
 After initial setup, build the brain-mcp server:
 
 ```bash
-cd ~/ai-dev-standards/MCP-SERVERS/brain-mcp
+cd ~/ai-dev-standards/mcp-servers/brain-mcp
 npm install
 npm run build
 ```
@@ -191,13 +191,13 @@ bash ~/ai-dev-standards/setup-project.sh
 
 The sync updates:
 
-- **Skills** (SKILLS/) - <!-- AUTO-GEN:START:skills -->64<!-- AUTO-GEN:END:skills --> specialized methodologies
-- **MCP Servers** (MCP-SERVERS/) - <!-- AUTO-GEN:START:mcps -->50<!-- AUTO-GEN:END:mcps --> automation tools
+- **Skills** (skills/) - <!-- AUTO-GEN:START:skills -->64<!-- AUTO-GEN:END:skills --> specialized methodologies
+- **MCP Servers** (mcp-servers/) - <!-- AUTO-GEN:START:mcps -->50<!-- AUTO-GEN:END:mcps --> automation tools
 - **Configuration** (.cursorrules, .gitignore, etc.)
-- **Standards** (STANDARDS/) - Best practices and patterns
-- **Components** (COMPONENTS/) - <!-- AUTO-GEN:START:components -->72<!-- AUTO-GEN:END:components --> React components
-- **Integrations** (INTEGRATIONS/) - <!-- AUTO-GEN:START:integrations -->28<!-- AUTO-GEN:END:integrations --> service integrations
-- **Tools** (TOOLS/) - <!-- AUTO-GEN:START:tools -->24<!-- AUTO-GEN:END:tools --> development tools
+- **Standards** (standards/) - Best practices and patterns
+- **Components** (components/) - <!-- AUTO-GEN:START:components -->72<!-- AUTO-GEN:END:components --> React components
+- **Integrations** (integrations/) - <!-- AUTO-GEN:START:integrations -->28<!-- AUTO-GEN:END:integrations --> service integrations
+- **Tools** (tools/) - <!-- AUTO-GEN:START:tools -->24<!-- AUTO-GEN:END:tools --> development tools
 
 Your customizations in other directories are preserved.
 
@@ -258,8 +258,8 @@ You: "I need to add user authentication"
 Claude: (Automatically)
 1. Uses brain_search to find auth resources
 2. Activates security-auditor and api-designer skills
-3. References relevant components from COMPONENTS/auth/
-4. Follows best practices from STANDARDS/
+3. References relevant components from components/auth/
+4. Follows best practices from standards/
 5. Suggests implementation steps
 ```
 
@@ -503,7 +503,7 @@ npm link
 Build brain-mcp:
 
 ```bash
-cd ~/ai-dev-standards/MCP-SERVERS/brain-mcp
+cd ~/ai-dev-standards/mcp-servers/brain-mcp
 npm install
 npm run build
 ```
@@ -554,7 +554,7 @@ cat .cursorrules
 cat .claude/mcp-settings.json
 
 # Rebuild brain-mcp
-cd ~/ai-dev-standards/MCP-SERVERS/brain-mcp
+cd ~/ai-dev-standards/mcp-servers/brain-mcp
 npm run build
 ```
 
@@ -640,13 +640,13 @@ EOF
 ### Documentation
 
 - [STANDALONE-USAGE.md](STANDALONE-USAGE.md) - Using as reference library
-- [DOCS/TROUBLESHOOTING.md](DOCS/TROUBLESHOOTING.md) - Common issues
+- [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) - Common issues
 - [CONTRIBUTING.md](CONTRIBUTING.md) - Contributing guidelines
 
 ### Getting Help
 
-- Check [DOCS/INDEX.md](DOCS/INDEX.md) for all documentation
-- Review [META/HOW-TO-USE.md](META/HOW-TO-USE.md) for navigation
+- Check [docs/INDEX.md](docs/INDEX.md) for all documentation
+- Review [meta/HOW-TO-USE.md](meta/HOW-TO-USE.md) for navigation
 - Open an issue on GitHub for bugs
 
 ### What's New

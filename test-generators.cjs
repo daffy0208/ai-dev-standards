@@ -137,10 +137,10 @@ async function testMcpGenerator() {
 
     // Verify files
     const expectedFiles = [
-      'MCP-SERVERS/testvalidation-mcp/index.js',
-      'MCP-SERVERS/testvalidation-mcp/package.json',
-      'MCP-SERVERS/testvalidation-mcp/README.md',
-      'MCP-SERVERS/testvalidation-mcp/.env.example'
+      'mcp-servers/testvalidation-mcp/index.js',
+      'mcp-servers/testvalidation-mcp/package.json',
+      'mcp-servers/testvalidation-mcp/README.md',
+      'mcp-servers/testvalidation-mcp/.env.example'
     ]
 
     for (const file of files) {

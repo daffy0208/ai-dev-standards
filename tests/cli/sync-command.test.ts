@@ -279,7 +279,7 @@ describe('checkForUpdates', () => {
           id: 'focus-skill',
           name: 'Focus Skill',
           description: 'Helps focus',
-          path: '/SKILLS/focus-skill/'
+          path: '/skills/focus-skill/'
         }
       ],
       mcps: [],
@@ -319,7 +319,7 @@ describe('checkForUpdates', () => {
           id: 'focus-skill',
           name: 'Focus Skill',
           description: 'Helps focus',
-          path: '/SKILLS/focus-skill/'
+          path: '/skills/focus-skill/'
         }
       ],
       mcps: [
@@ -330,13 +330,13 @@ describe('checkForUpdates', () => {
           path: '/MCP/index.js'
         }
       ],
-      tools: [{ id: 'tool-1', name: 'Tool', description: 'tool', path: '/TOOLS/tool.ts' }],
+      tools: [{ id: 'tool-1', name: 'Tool', description: 'tool', path: '/tools/tool.ts' }],
       scripts: [{ id: 'script-1', name: 'Script', description: 'script', path: '/scripts/run.sh' }],
       components: [
-        { id: 'comp-1', name: 'Comp', description: 'component', path: '/COMPONENTS/ui/Comp.tsx' }
+        { id: 'comp-1', name: 'Comp', description: 'component', path: '/components/ui/Comp.tsx' }
       ],
       integrations: [
-        { id: 'int-1', name: 'Int', description: 'integration', path: '/INTEGRATIONS/x.ts' }
+        { id: 'int-1', name: 'Int', description: 'integration', path: '/integrations/x.ts' }
       ],
       cursorrules: '',
       gitignore: ''
@@ -385,7 +385,7 @@ describe('applyUpdate', () => {
         id: 'focus-skill',
         name: 'Focus Skill',
         description: 'Helps maintain focus',
-        path: '/SKILLS/focus-skill/'
+        path: '/skills/focus-skill/'
       }
     }
 
@@ -421,7 +421,7 @@ describe('applyUpdate', () => {
         id: 'semantic-search',
         name: 'semantic-search',
         description: 'vector search',
-        path: '/MCP-SERVERS/semantic-search-mcp/dist/index.js',
+        path: '/mcp-servers/semantic-search-mcp/dist/index.js',
         env: { PINECONE_API_KEY: 'test' }
       }
     }
@@ -433,7 +433,7 @@ describe('applyUpdate', () => {
     for (const settings of [claudeSettings, codexSettings]) {
       expect(settings.mcpServers['semantic-search']).toMatchObject({
         command: 'node',
-        args: ['/MCP-SERVERS/semantic-search-mcp/dist/index.js'],
+        args: ['/mcp-servers/semantic-search-mcp/dist/index.js'],
         env: { PINECONE_API_KEY: 'test' }
       })
     }
@@ -467,7 +467,7 @@ describe('applyUpdate', () => {
           id: 'health-tool',
           name: 'health-tool',
           description: 'tool',
-          path: '/TOOLS/health-tool.ts'
+          path: '/tools/health-tool.ts'
         }
       },
       config,
@@ -500,7 +500,7 @@ describe('applyUpdate', () => {
           name: 'Toast',
           description: 'component',
           category: 'feedback',
-          path: '/COMPONENTS/feedback/Toast.tsx'
+          path: '/components/feedback/Toast.tsx'
         }
       },
       config,
@@ -517,7 +517,7 @@ describe('applyUpdate', () => {
           name: 'Stripe',
           description: 'integration',
           category: 'payments',
-          path: '/INTEGRATIONS/platforms/stripe/client.ts'
+          path: '/integrations/platforms/stripe/client.ts'
         }
       },
       config,
@@ -635,7 +635,7 @@ describe('sync command flow', () => {
           id: 'focus-skill',
           name: 'Focus Skill',
           description: 'Boost focus',
-          path: '/SKILLS/focus-skill/'
+          path: '/skills/focus-skill/'
         }
       ],
       mcps: [
@@ -643,7 +643,7 @@ describe('sync command flow', () => {
           id: 'semantic-search',
           name: 'semantic-search',
           description: 'search',
-          path: '/MCP-SERVERS/semantic-search-mcp/dist/index.js',
+          path: '/mcp-servers/semantic-search-mcp/dist/index.js',
           env: { API_KEY: 'test' }
         }
       ],
@@ -652,7 +652,7 @@ describe('sync command flow', () => {
           id: 'health-tool',
           name: 'health-tool',
           description: 'tool',
-          path: '/TOOLS/health-tool.ts'
+          path: '/tools/health-tool.ts'
         }
       ],
       scripts: [
@@ -669,7 +669,7 @@ describe('sync command flow', () => {
           name: 'Toast',
           description: 'component',
           category: 'feedback',
-          path: '/COMPONENTS/feedback/Toast.tsx'
+          path: '/components/feedback/Toast.tsx'
         }
       ],
       integrations: [
@@ -678,7 +678,7 @@ describe('sync command flow', () => {
           name: 'Stripe',
           description: 'integration',
           category: 'payments',
-          path: '/INTEGRATIONS/platforms/stripe/client.ts'
+          path: '/integrations/platforms/stripe/client.ts'
         }
       ],
       cursorrules: '# New Rules',
@@ -901,7 +901,7 @@ describe('sync command flow', () => {
           id: 'focus-skill',
           name: 'Focus Skill',
           description: 'Boost focus',
-          path: '/SKILLS/focus-skill/'
+          path: '/skills/focus-skill/'
         }
       ],
       mcps: [
@@ -909,7 +909,7 @@ describe('sync command flow', () => {
           id: 'semantic-search',
           name: 'semantic-search',
           description: 'search',
-          path: '/MCP-SERVERS/semantic-search-mcp/dist/index.js',
+          path: '/mcp-servers/semantic-search-mcp/dist/index.js',
           env: { API_KEY: 'test' }
         }
       ],

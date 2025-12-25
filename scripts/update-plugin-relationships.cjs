@@ -38,8 +38,8 @@ function writeJSON(filePath, data) {
 console.log(colorize('\n=== UPDATING PLUGIN RELATIONSHIPS ===\n', 'bright'));
 
 // Read registries
-const pluginRegistry = readJSON(path.join(ROOT, 'META/plugin-registry.json'));
-const relationshipMapping = readJSON(path.join(ROOT, 'META/relationship-mapping.json'));
+const pluginRegistry = readJSON(path.join(ROOT, 'meta/plugin-registry.json'));
+const relationshipMapping = readJSON(path.join(ROOT, 'meta/relationship-mapping.json'));
 
 if (!pluginRegistry) {
   console.log(colorize('✗ Could not read plugin-registry.json', 'red'));
@@ -112,7 +112,7 @@ console.log('   ✓ Added plugin metadata to relationship mapping');
 
 console.log(colorize('\n4. Writing Updated Relationships...', 'cyan'));
 
-const outputPath = path.join(ROOT, 'META/relationship-mapping.json');
+const outputPath = path.join(ROOT, 'meta/relationship-mapping.json');
 writeJSON(outputPath, relationshipMapping);
 
 console.log(colorize('   ✓ relationship-mapping.json updated', 'green'));

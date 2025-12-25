@@ -34,7 +34,7 @@ Everything else (the remaining MCP catalog, advanced pipelines, template work, e
 
 **Phase 5: Security Infrastructure** ✅
 
-- Created `/SECURITY/` directory structure
+- Created `/security/` directory structure
 - Created Docker sandbox template
 - Created PII tokenization template
 - Security README with 4-layer model
@@ -61,7 +61,7 @@ Everything else (the remaining MCP catalog, advanced pipelines, template work, e
 
 **Phase 1 (Documentation)** ✅
 
-- Created `/DOCS/mcp-patterns/` directory with 12 comprehensive guides (~81K words)
+- Created `/docs/mcp-patterns/` directory with 12 comprehensive guides (~81K words)
 - Integrated extracted Anthropic documentation
 - Added cross-references to existing documentation
 
@@ -76,7 +76,7 @@ Everything else (the remaining MCP catalog, advanced pipelines, template work, e
 
 **Phase 1: Documentation Foundation (80% complete)**
 
-1. **Created `/DOCS/mcp-patterns/` directory** with complete structure
+1. **Created `/docs/mcp-patterns/` directory** with complete structure
 2. **Created 10 core documentation files**:
    - ✅ README.md - Master index with navigation
    - ✅ 00-mcp-patterns-overview.md - Comprehensive pattern comparison
@@ -115,10 +115,10 @@ Everything else (the remaining MCP catalog, advanced pipelines, template work, e
 
 #### File Locations
 
-All files created in `/DOCS/mcp-patterns/`:
+All files created in `/docs/mcp-patterns/`:
 
 ```
-/DOCS/mcp-patterns/
+/docs/mcp-patterns/
 ├── README.md                                       ✅ Created
 ├── 00-mcp-patterns-overview.md                    ✅ Created
 ├── 01-mcp-decision-framework.md                   ✅ Copied
@@ -188,17 +188,17 @@ All files created in `/DOCS/mcp-patterns/`:
 **Phase 1 Completion (20% remaining)**:
 
 1. **Update existing docs with cross-references** (~10 files):
-   - `/DOCS/MCP-CODE-EXECUTION-GUIDE.md`
-   - `/DOCS/MCP-DEVELOPMENT-ROADMAP.md`
-   - `/DOCS/BRAIN-MCP-INTEGRATION.md`
-   - `/STANDARDS/best-practices/mcp-code-execution-best-practices.md`
-   - `/PLAYBOOKS/mcp-development.md`
-   - `/DOCS/SECURITY.md`
-   - Add links to new `/DOCS/mcp-patterns/` structure
+   - `/docs/MCP-CODE-EXECUTION-GUIDE.md`
+   - `/docs/MCP-DEVELOPMENT-ROADMAP.md`
+   - `/docs/BRAIN-MCP-INTEGRATION.md`
+   - `/standards/best-practices/mcp-code-execution-best-practices.md`
+   - `/playbooks/mcp-development.md`
+   - `/docs/SECURITY.md`
+   - Add links to new `/docs/mcp-patterns/` structure
 
 2. **Clean up root directory**:
-   - Keep `mcp-decision-framework.md` (now also in /DOCS/mcp-patterns/)
-   - Keep `mcp-filesystem-structure.md` (now also in /DOCS/mcp-patterns/)
+   - Keep `mcp-decision-framework.md` (now also in /docs/mcp-patterns/)
+   - Keep `mcp-filesystem-structure.md` (now also in /docs/mcp-patterns/)
    - Add notes pointing to new locations
 
 ### Phase 2: Brain Orchestrator Enhancement
@@ -247,10 +247,10 @@ All files created in `/DOCS/mcp-patterns/`:
 **Update schemas and registries**:
 
 ```json
-/SCHEMAS/mcp-server.schema.json       // Add pattern fields
-/META/mcp-registry.json               // Add pattern to all 50 MCPs
-/META/skill-registry.json             // Add MCP pattern preferences
-/META/tool-files-registry.json [NEW]  // Create new registry
+/schemas/mcp-server.schema.json       // Add pattern fields
+/meta/mcp-registry.json               // Add pattern to all 50 MCPs
+/meta/skill-registry.json             // Add MCP pattern preferences
+/meta/tool-files-registry.json [NEW]  // Create new registry
 ```
 
 ### Phases 5-14: Remaining Work
@@ -303,18 +303,18 @@ Say: **"Create automation script for remaining phases"**
 
 ### Documentation (12 files)
 
-1. `/DOCS/mcp-patterns/README.md` (2,500 words)
-2. `/DOCS/mcp-patterns/00-mcp-patterns-overview.md` (3,800 words)
-3. `/DOCS/mcp-patterns/01-mcp-decision-framework.md` (copied, 8,000 words)
-4. `/DOCS/mcp-patterns/02-mcp-direct-pattern.md` (4,200 words)
-5. `/DOCS/mcp-patterns/03-mcp-code-execution-pattern.md` (5,000 words)
-6. `/DOCS/mcp-patterns/04-mcp-migration-guide.md` (imported, 10,000 words)
-7. `/DOCS/mcp-patterns/05-mcp-filesystem-structure.md` (copied, 2,500 words)
-8. `/DOCS/mcp-patterns/06-mcp-progressive-discovery-patterns.md` (imported, 10,000 words)
-9. `/DOCS/mcp-patterns/07-mcp-security-privacy-best-practices.md` (imported, 12,000 words)
-10. `/DOCS/mcp-patterns/08-mcp-performance-benchmarking-guide.md` (imported, 9,000 words)
-11. `/DOCS/mcp-patterns/09-brain-orchestrator-mcp-integration.md` (imported, 10,000 words)
-12. `/DOCS/mcp-patterns/10-mcp-implementation-roadmap.md` (3,500 words)
+1. `/docs/mcp-patterns/README.md` (2,500 words)
+2. `/docs/mcp-patterns/00-mcp-patterns-overview.md` (3,800 words)
+3. `/docs/mcp-patterns/01-mcp-decision-framework.md` (copied, 8,000 words)
+4. `/docs/mcp-patterns/02-mcp-direct-pattern.md` (4,200 words)
+5. `/docs/mcp-patterns/03-mcp-code-execution-pattern.md` (5,000 words)
+6. `/docs/mcp-patterns/04-mcp-migration-guide.md` (imported, 10,000 words)
+7. `/docs/mcp-patterns/05-mcp-filesystem-structure.md` (copied, 2,500 words)
+8. `/docs/mcp-patterns/06-mcp-progressive-discovery-patterns.md` (imported, 10,000 words)
+9. `/docs/mcp-patterns/07-mcp-security-privacy-best-practices.md` (imported, 12,000 words)
+10. `/docs/mcp-patterns/08-mcp-performance-benchmarking-guide.md` (imported, 9,000 words)
+11. `/docs/mcp-patterns/09-brain-orchestrator-mcp-integration.md` (imported, 10,000 words)
+12. `/docs/mcp-patterns/10-mcp-implementation-roadmap.md` (3,500 words)
 
 ### Status Tracking (1 file)
 

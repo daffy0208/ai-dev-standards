@@ -83,15 +83,15 @@ function simulateRegistryDiscovery() {
   section('SECTION 1: Registry Discovery and Validation');
   
   const registries = [
-    { name: 'Skills', path: 'META/skill-registry.json', expectedMin: 60 },
-    { name: 'MCPs', path: 'META/mcp-registry.json', expectedMin: 45 },
-    { name: 'Tools', path: 'META/tool-registry.json', expectedMin: 20 },
-    { name: 'Components', path: 'META/component-registry.json', expectedMin: 9 },
-    { name: 'Integrations', path: 'META/integration-registry.json', expectedMin: 9 },
-    { name: 'Playbooks', path: 'META/playbook-registry.json', expectedMin: 5 },
-    { name: 'Standards', path: 'META/standard-registry.json', expectedMin: 5 },
-    { name: 'Templates', path: 'META/template-registry.json', expectedMin: 5 },
-    { name: 'Relationships', path: 'META/relationship-mapping.json', required: true }
+    { name: 'Skills', path: 'meta/skill-registry.json', expectedMin: 60 },
+    { name: 'MCPs', path: 'meta/mcp-registry.json', expectedMin: 45 },
+    { name: 'Tools', path: 'meta/tool-registry.json', expectedMin: 20 },
+    { name: 'Components', path: 'meta/component-registry.json', expectedMin: 9 },
+    { name: 'Integrations', path: 'meta/integration-registry.json', expectedMin: 9 },
+    { name: 'Playbooks', path: 'meta/playbook-registry.json', expectedMin: 5 },
+    { name: 'Standards', path: 'meta/standard-registry.json', expectedMin: 5 },
+    { name: 'Templates', path: 'meta/template-registry.json', expectedMin: 5 },
+    { name: 'Relationships', path: 'meta/relationship-mapping.json', required: true }
   ];
   
   let totalResources = 0;
@@ -145,7 +145,7 @@ function simulateSkillActivation() {
   
   try {
     const skillRegistry = JSON.parse(
-      fs.readFileSync(path.join(process.cwd(), 'META/skill-registry.json'), 'utf-8')
+      fs.readFileSync(path.join(process.cwd(), 'meta/skill-registry.json'), 'utf-8')
     );
     
     // Test 1: Skill Count
@@ -223,7 +223,7 @@ function simulateMCPServers() {
   
   try {
     const mcpRegistry = JSON.parse(
-      fs.readFileSync(path.join(process.cwd(), 'META/mcp-registry.json'), 'utf-8')
+      fs.readFileSync(path.join(process.cwd(), 'meta/mcp-registry.json'), 'utf-8')
     );
     
     // Test 1: MCP Count
@@ -306,11 +306,11 @@ function simulateRelationships() {
   
   try {
     const relationships = JSON.parse(
-      fs.readFileSync(path.join(process.cwd(), 'META/relationship-mapping.json'), 'utf-8')
+      fs.readFileSync(path.join(process.cwd(), 'meta/relationship-mapping.json'), 'utf-8')
     );
     
     const skillRegistry = JSON.parse(
-      fs.readFileSync(path.join(process.cwd(), 'META/skill-registry.json'), 'utf-8')
+      fs.readFileSync(path.join(process.cwd(), 'meta/skill-registry.json'), 'utf-8')
     );
     
     // Test 1: Skills with relationships
@@ -397,7 +397,7 @@ function simulateBrainOrchestration() {
   section('SECTION 5: Brain Orchestration and Intelligence');
   
   try {
-    const brainPath = path.join(process.cwd(), 'MCP-SERVERS/brain-mcp');
+    const brainPath = path.join(process.cwd(), 'mcp-servers/brain-mcp');
     
     // Test 1: Brain MCP exists
     if (fs.existsSync(brainPath)) {
@@ -428,7 +428,7 @@ function simulateBrainOrchestration() {
     }
     
     // Test 4: Capability graph
-    const capabilityGraph = path.join(process.cwd(), 'META/capability-graph.json');
+    const capabilityGraph = path.join(process.cwd(), 'meta/capability-graph.json');
     if (fs.existsSync(capabilityGraph)) {
       const graph = JSON.parse(fs.readFileSync(capabilityGraph, 'utf-8'));
       const nodeCount = graph.nodes?.length || 0;
@@ -473,7 +473,7 @@ function simulateCapabilityGraph() {
   section('SECTION 6: Capability Graph Query Simulation');
   
   try {
-    const graphPath = path.join(process.cwd(), 'META/capability-graph.json');
+    const graphPath = path.join(process.cwd(), 'meta/capability-graph.json');
     
     if (!fs.existsSync(graphPath)) {
       recordResult('capability_graph', 'Graph File', 'warnings', {
@@ -555,7 +555,7 @@ function simulateAgentWorkflows() {
   
   try {
     // Test 1: Agent registry
-    const agentRegistryPath = path.join(process.cwd(), 'META/agent-registry.json');
+    const agentRegistryPath = path.join(process.cwd(), 'meta/agent-registry.json');
     if (fs.existsSync(agentRegistryPath)) {
       const agentRegistry = JSON.parse(fs.readFileSync(agentRegistryPath, 'utf-8'));
       const agentCount = agentRegistry.agents?.length || 0;
@@ -630,7 +630,7 @@ function simulateComponentsAndTools() {
   try {
     // Test 1: Component registry
     const componentRegistry = JSON.parse(
-      fs.readFileSync(path.join(process.cwd(), 'META/component-registry.json'), 'utf-8')
+      fs.readFileSync(path.join(process.cwd(), 'meta/component-registry.json'), 'utf-8')
     );
     
     const components = componentRegistry.components || [];
@@ -650,7 +650,7 @@ function simulateComponentsAndTools() {
     
     // Test 3: Tool registry
     const toolRegistry = JSON.parse(
-      fs.readFileSync(path.join(process.cwd(), 'META/tool-registry.json'), 'utf-8')
+      fs.readFileSync(path.join(process.cwd(), 'meta/tool-registry.json'), 'utf-8')
     );
     
     const tools = toolRegistry.tools ? Object.keys(toolRegistry.tools) : [];
@@ -702,7 +702,7 @@ function simulateIntegrations() {
   
   try {
     const integrationRegistry = JSON.parse(
-      fs.readFileSync(path.join(process.cwd(), 'META/integration-registry.json'), 'utf-8')
+      fs.readFileSync(path.join(process.cwd(), 'meta/integration-registry.json'), 'utf-8')
     );
     
     const integrations = integrationRegistry.integrations || [];

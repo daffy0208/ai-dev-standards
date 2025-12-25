@@ -97,7 +97,7 @@ ai-dev add mcp-server accessibility-checker
 Creates:
 
 ```
-MCP-SERVERS/accessibility-checker-mcp/
+mcp-servers/accessibility-checker-mcp/
 ├── index.js         # Full MCP server implementation
 ├── package.json     # Dependencies configured
 ├── README.md        # Setup instructions

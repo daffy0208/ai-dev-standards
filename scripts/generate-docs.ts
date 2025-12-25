@@ -301,15 +301,15 @@ function updateCLAUDEMD(counts: RegistryCounts): void {
 }
 
 /**
- * Update DOCS/INDEX.md
+ * Update docs/INDEX.md
  */
 function updateDOCSINDEX(counts: RegistryCounts): void {
-  console.log(`${BLUE}📝 Updating DOCS/INDEX.md${RESET}`)
+  console.log(`${BLUE}📝 Updating docs/INDEX.md${RESET}`)
 
   const filePath = path.join(ROOT, 'DOCS', 'INDEX.md')
 
   if (!fs.existsSync(filePath)) {
-    console.warn(`${YELLOW}⚠️  DOCS/INDEX.md not found${RESET}`)
+    console.warn(`${YELLOW}⚠️  docs/INDEX.md not found${RESET}`)
     return
   }
 
@@ -322,7 +322,7 @@ function updateDOCSINDEX(counts: RegistryCounts): void {
 
   fs.writeFileSync(filePath, content)
 
-  console.log(`${GREEN}✅ Updated DOCS/INDEX.md${RESET}`)
+  console.log(`${GREEN}✅ Updated docs/INDEX.md${RESET}`)
 }
 
 /**

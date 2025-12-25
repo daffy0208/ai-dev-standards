@@ -51,8 +51,8 @@ This automatically:
 On every commit, the pre-commit hook automatically:
 
 1. **Regenerates registries** from directory structure
-   - Scans `SKILLS/`, `MCP-SERVERS/`, `TOOLS/`, etc.
-   - Updates all `META/*.json` files
+   - Scans `skills/`, `mcp-servers/`, `tools/`, etc.
+   - Updates all `meta/*.json` files
 
 2. **Updates documentation** from registry data
    - Updates counts in README.md, INSTALL.md, etc.
@@ -68,14 +68,14 @@ On every commit, the pre-commit hook automatically:
 
 ✅ **DO:**
 
-- Add new skills to `SKILLS/` directory
-- Add new MCPs to `MCP-SERVERS/` directory
+- Add new skills to `skills/` directory
+- Add new MCPs to `mcp-servers/` directory
 - Let automation update documentation
 
 ❌ **DON'T:**
 
 - Manually edit resource counts in documentation
-- Manually edit registry files in `META/`
+- Manually edit registry files in `meta/`
 - Skip automation (except emergencies)
 
 **Result:** Documentation can NEVER drift - it's automatically maintained!
